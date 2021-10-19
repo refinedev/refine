@@ -18,6 +18,8 @@ import {
     CreateButton,
     Input,
     getDefaultFilter,
+    Button,
+    useDeleteMany,
 } from "@pankod/refine";
 
 import { ICategory, IPost } from "interfaces";
@@ -43,6 +45,8 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         },
     });
 
+    const deleteMany = useDeleteMany<IPost>();
+
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
         metaData: {
@@ -56,24 +60,34 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 id: item.id,
                 title: item.title,
                 content: item.content,
-                category: item.category.id,
+                category_id: item.category_id,
             };
         },
         metaData: {
-            fields: ["id", "title", "content", { category: ["id"] }],
+            fields: ["id", "title", "content", "category_id"],
         },
     });
 
     const importProps = useImport<IPost>({
         mapData: (item) => {
             return {
-                title: item.title,
+                title: item.title + Math.ceil(Math.random() * 1000),
                 content: item.content,
-                category: item.category,
+                category_id: item.category_id,
             };
         },
-        batchSize: 100,
+        batchSize: 10,
     });
+
+    const handleDeleteMany = () => {
+        deleteMany.mutate({
+            resource: "posts",
+            ids: [
+                "422bd8ed-396c-4164-8a51-31092a055ea4",
+                "471e591b-2121-492f-9e9c-72840f59fc26",
+            ],
+        });
+    };
 
     return (
         <List
@@ -85,6 +99,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                             onClick={triggerExport}
                             loading={exportLoading}
                         />
+                        <Button onClick={handleDeleteMany}>Delete 2</Button>
                         <CreateButton />
                     </Space>
                 ),
@@ -156,6 +171,13 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                 hideText
                                 size="small"
                                 recordItemId={record.id}
+                                metaData={{
+                                    fields: [
+                                        "id",
+                                        "content",
+                                        { category: ["id"] },
+                                    ],
+                                }}
                             />
                         </Space>
                     )}

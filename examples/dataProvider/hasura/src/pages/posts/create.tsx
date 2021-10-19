@@ -45,7 +45,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                 </Form.Item>
                 <Form.Item
                     label="Category"
-                    name="category"
+                    name="category_id"
                     rules={[
                         {
                             required: true,

@@ -8,4 +8,5 @@ export interface IPost {
     title: string;
     content: string;
     category: ICategory;
+    category_id: string;
 }

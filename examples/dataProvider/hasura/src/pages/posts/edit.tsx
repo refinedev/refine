@@ -31,6 +31,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                 {
                     category: ["id", "title"],
                 },
+                "category_id",
                 "content",
             ],
         },
@@ -39,7 +40,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
-        defaultValue: postData?.category.id,
+        defaultValue: postData?.category_id,
         metaData: {
             fields: ["id", "title"],
         },
@@ -56,8 +57,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                 onFinish={(values) =>
                     formProps.onFinish?.({
                         ...values,
-                        category: values.category.id,
-                    } as any)
+                    })
                 }
             >
                 <Form.Item
@@ -73,7 +73,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                 </Form.Item>
                 <Form.Item
                     label="Category"
-                    name={["category", "id"]}
+                    name="category_id"
                     rules={[
                         {
                             required: true,
