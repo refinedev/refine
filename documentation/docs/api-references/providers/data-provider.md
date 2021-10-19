@@ -25,7 +25,7 @@ const dataProvider = {
     getOne: ({ resource, id, metaData }) => Promise,
     update: ({ resource, id, variables, metaData }) => Promise,
     updateMany: ({ resource, ids, variables, metaData }) => Promise,
-    custom?: ({
+    custom: ({
         url,
         method,
         sort,
@@ -88,11 +88,7 @@ import { Refine } from "@pankod/refine";
 import dataProvider from "./dataProvider";
 
 const App: React.FC = () => {
-    return (
-        <Refine dataProvider={dataProvider}>
-           ...
-        </Refine>
-    );
+    return <Refine dataProvider={dataProvider} />;
 };
 ```
 

@@ -51,24 +51,21 @@ export const CustomMenu: React.FC = () => {
             style={isMobile ? antLayoutSiderMobile : antLayoutSider}
         >
             <Title collapsed={collapsed} />
-            <Menu 
-                selectedKeys={[selectedKey]}
-                mode="inline"
-                >
-                    {menuItems.map(({ icon, route, label }) => (
-                        <Menu.Item key={route} icon={icon}>
-                            <Link to={route}>{label}</Link>
-                        </Menu.Item>
-                    ))}
+            <Menu selectedKeys={[selectedKey]} mode="inline">
+                {menuItems.map(({ icon, route, label }) => (
+                    <Menu.Item key={route} icon={icon}>
+                        <Link to={route}>{label}</Link>
+                    </Menu.Item>
+                ))}
             </Menu>
         </AntdLayout.Sider>
     );
 };
 
-const antLayoutSider:CSSProperties = {
+const antLayoutSider: CSSProperties = {
     position: "relative",
 };
-const antLayoutSiderMobile:CSSProperties = {
+const antLayoutSiderMobile: CSSProperties = {
     position: "fixed",
     height: "100vh",
     zIndex: 999,
@@ -81,8 +78,8 @@ const antLayoutSiderMobile:CSSProperties = {
 
 We can override the default sider and show the custom menu we implemented in its place by passing a the custom component to `<Refine>`s `Sider` prop:
 
-```tsx title="App.tsx" {6, 15}
-import { Refine, Resource } from "@pankod/refine";
+```tsx title="App.tsx" {6, 14}
+import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -94,11 +91,11 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine 
+        <Refine
             dataProvider={dataProvider(API_URL)}
-            Sider={CustomMenu}>
-                <Resource name="posts" list={PostList} />
-        </Refine>
+            Sider={CustomMenu}
+            resources={[{ name: "posts", list: PostList }]}
+        />
     );
 };
 
@@ -171,10 +168,10 @@ export const CustomMenu: React.FC = () => {
     );
 };
 
-const antLayoutSider:CSSProperties = {
+const antLayoutSider: CSSProperties = {
     position: "relative",
 };
-const antLayoutSiderMobile:CSSProperties = {
+const antLayoutSiderMobile: CSSProperties = {
     position: "fixed",
     height: "100vh",
     zIndex: 999,

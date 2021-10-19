@@ -9,7 +9,7 @@ import isLoading from '@site/static/img/guides-and-concepts/basic-views/show/isL
 
 `<Show>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a refresh button or giving title to the page.
 
-We will show what `<Show>` does ?using properties with examples.
+We will show what `<Show>` does using properties with examples.
 
 ## Properties
 
@@ -188,9 +188,10 @@ The `<Show>` component reads the `resource` information from the route by defaul
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
-```tsx twoslash
+```tsx twoslash {4-10, 18-24}
 import { Refine, Show } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router";
 
 const CustomPage = () => {
     return (
@@ -203,6 +204,7 @@ const CustomPage = () => {
 export const App: React.FC = () => {
     return (
         <Refine
+            routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
             resources={[{ name: "posts" }]}
             routes={[

@@ -20,6 +20,7 @@ import { CustomPage } from "pages/custom-page";
 const App = () => {
     return (
         <Refine
+            ...
             routes={[
                 {
                     exact: true,
@@ -27,9 +28,7 @@ const App = () => {
                     path: "/custom-page",
                 },
             ]}
-        >
-            ...
-        </Refine>
+        />
     );
 };
 
@@ -77,6 +76,7 @@ const AuthenticatedCustomPage = () => {
 const App = () => {
     return (
         <Refine
+            ...
             authProvider={authProvider}
             routes={[
                 {
@@ -85,9 +85,7 @@ const App = () => {
                     path: "/custom-page",
                 },
             ]}
-        >
-            ...
-        </Refine>
+        />
     );
 };
 
@@ -148,21 +146,26 @@ First, we will create the post's CRUD pages and bootstrap the app.
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 const App = () => {
     return (
-        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
-            <Resource
-                name="posts"
-                list={PostList}
-                create={PostCreate}
-                edit={PostEdit}
-                show={PostShow}
-            />
-        </Refine>
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+            ]}
+        />
     );
 };
 
@@ -336,8 +339,9 @@ export const PostReview = () => {
 
 Then, pass this `<PostReview>` as the routes property in the `<Refine>` component:
 
-```tsx title="src/App.tsx" {6, 12-18}
+```tsx title="src/App.tsx" {7, 14-20}
 import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -348,6 +352,7 @@ import { PostReview } from "pages/post-review";
 const App = () => {
     return (
         <Refine
+            routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             routes={[
                 {
@@ -356,15 +361,16 @@ const App = () => {
                     path: "/post-review",
                 },
             ]}
-        >
-            <Resource
-                name="posts"
-                list={PostList}
-                create={PostCreate}
-                edit={PostEdit}
-                show={PostShow}
-            />
-        </Refine>
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+            ]}
+        />
     );
 };
 
