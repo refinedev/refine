@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [14.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -21,8 +21,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
       - run: |
-          npm install
-          npm run bootstrap
+          npm ci
+          npm run bootstrap -- -- --production
           npm run build
           npm run lint
           npm test
