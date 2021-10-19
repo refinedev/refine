@@ -304,3 +304,64 @@ const routerProvider: IRouterProvider = {
 
   </TabItem>
 </Tabs>
+
+### `Link`
+
+**refine** uses `<Link>` for navigation.
+
+<Tabs
+defaultValue="react-link"
+values={[
+{label: 'react-router', value: 'react-link'},
+{label: 'nextjs-router', value: 'nextjs-link'}
+]}>
+<TabItem value="react-link">
+
+```ts title="routerProvider.ts" {1,5}
+import { IRouterProvider } from "@pankod/refine";
+import { Link } from "react-router-dom";
+
+const routerProvider: IRouterProvider = {
+    ...
+    Link,
+    ...
+};
+```
+
+  </TabItem>
+    <TabItem value="nextjs-link">
+
+```ts title="routerProvider.ts" {1,5}
+import { IRouterProvider } from "@pankod/refine";
+import { Link } from "next/link";
+
+const routerProvider: IRouterProvider = {
+    ...
+    Link,
+    ...
+};
+```
+
+  </TabItem>
+</Tabs>
+
+### `RouterComponent`
+
+It creates the navigation routes of the **refine** app and determines how the components will be rendered on which paths.
+
+In general, we can list what it does as follows:
+
+-   It creates create, edit, list, show pages with paths according to the resources' own name.
+-   Allows rendering of custom `routes` passed to `<Refine>` as props.
+-   Different routers render when the user is authenticated and not.
+
+:::info
+`RouteComponent` is required for **refine** React apps but not required for Nextjs apps.
+
+Since Nextjs has a folder base route structure, it is used by importing the `RouteComponent` into the created page.
+:::
+
+<br />
+
+&#8594 [Refer to the react-router's `<RouteComponent>` for detailed usage information.](https://github.com/pankod/refine/blob/alpha/packages/react-router/src/routerComponent.tsx)  
+&#8594 [Refer to the nextjs-router's `<nextRouteComponent>` for detailed usage information.](https://github.com/pankod/refine/blob/alpha/packages/nextjs-router/src/nextRouteComponent.tsx)
