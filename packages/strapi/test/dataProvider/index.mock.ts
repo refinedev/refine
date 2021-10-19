@@ -474,7 +474,7 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     );
 
 nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
-    .get("/posts/count")
+    .get("/posts/count?")
     .reply(200, "5", [
         "Server",
         "nginx/1.17.10",
@@ -650,7 +650,7 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     );
 
 nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
-    .get("/posts/count")
+    .get("/posts/count?title_eq=foo")
     .reply(200, "5", [
         "Server",
         "nginx/1.17.10",
@@ -806,7 +806,7 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
 nock("https://api.strapi.refine.dev:443", {
     encodedQueryParams: true,
 })
-    .get("/posts/count")
+    .get("/posts/count?")
     .reply(200, "5", [
         "Server",
         "nginx/1.17.10",
@@ -831,7 +831,7 @@ nock("https://api.strapi.refine.dev:443", {
     ]);
 
 nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
-    .get("/posts/count")
+    .get("/posts/count?title_eq=foo")
     .reply(200, "5", [
         "Server",
         "nginx/1.17.10",

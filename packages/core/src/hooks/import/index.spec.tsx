@@ -62,13 +62,12 @@ describe("useImport hook", () => {
         expect(result).toBeTruthy();
     });
 
-    it("should trigger parse", async (done) => {
+    it("should trigger parse", async () => {
         const { result } = renderHook(
             () =>
                 useImport({
-                    onFinish: () => {
+                    onFinish: async () => {
                         expect(papaparse.parse).toHaveBeenCalled();
-                        done();
                     },
                 }),
             {
@@ -91,7 +90,7 @@ describe("useImport hook", () => {
         });
     });
 
-    it("should call mutate method of result of useCreateMany many times with correct values in if batchSize is 2", async (done) => {
+    it("should call mutate method of result of useCreateMany many times with correct values in if batchSize is 2", async () => {
         const mockDataProvider = {
             ...MockJSONServer,
             createMany: jest.fn(),
@@ -101,7 +100,7 @@ describe("useImport hook", () => {
             () =>
                 useImport({
                     batchSize: 2,
-                    onFinish: () => {
+                    onFinish: async () => {
                         expect(
                             mockDataProvider.createMany,
                         ).toHaveBeenCalledWith({
@@ -123,8 +122,6 @@ describe("useImport hook", () => {
                                 }),
                             ),
                         });
-
-                        done();
                     },
                 }),
             {
@@ -147,7 +144,7 @@ describe("useImport hook", () => {
         });
     });
 
-    it("should map data successfully before it uploads to server", async (done) => {
+    it("should map data successfully before it uploads to server", async () => {
         const mockDataProvider = {
             ...MockJSONServer,
             createMany: jest.fn(),
@@ -170,7 +167,6 @@ describe("useImport hook", () => {
                                 newTitle: parsedData.title,
                             })),
                         });
-                        done();
                     },
                 }),
             {
@@ -193,7 +189,7 @@ describe("useImport hook", () => {
         });
     });
 
-    it("should send request for the specified resource", async (done) => {
+    it("should send request for the specified resource", async () => {
         const mockDataProvider = {
             ...MockJSONServer,
             createMany: jest.fn(),
@@ -212,7 +208,6 @@ describe("useImport hook", () => {
                                 ...parsedData,
                             })),
                         });
-                        done();
                     },
                 }),
             {
@@ -289,7 +284,7 @@ describe("useImport hook", () => {
             });
         });
 
-        it("should give successes in onFinish callback if batchSize=undefined", async (done) => {
+        it("should give successes in onFinish callback if batchSize=undefined", async () => {
             const mockDataProvider = {
                 ...MockJSONServer,
                 createMany: jest.fn(async () => {
@@ -305,7 +300,6 @@ describe("useImport hook", () => {
                         resourceName: "posts",
                         onFinish: ({ succeeded }) => {
                             expect(succeeded[0].request).toEqual(parsedData);
-                            done();
                         },
                     }),
                 {
@@ -328,7 +322,7 @@ describe("useImport hook", () => {
             });
         });
 
-        it("should give errors in onFinish callback if batchSize=undefined", async (done) => {
+        it("should give errors in onFinish callback if batchSize=undefined", async () => {
             const mockDataProvider = {
                 ...MockJSONServer,
                 createMany: () => {
@@ -350,7 +344,6 @@ describe("useImport hook", () => {
                                 message: "something happened",
                                 statusCode: 500,
                             });
-                            done();
                         },
                     }),
                 {
@@ -375,7 +368,7 @@ describe("useImport hook", () => {
     });
 
     describe("batchSize = 1", () => {
-        it("should call mutate method of result of useCreate many times with correct values if batchSize is 1", async (done) => {
+        it("should call mutate method of result of useCreate many times with correct values if batchSize is 1", async () => {
             const mockDataProvider = {
                 ...MockJSONServer,
                 create: jest.fn(),
@@ -404,7 +397,6 @@ describe("useImport hook", () => {
                                 resource: "posts",
                                 variables: parsedData[2],
                             });
-                            done();
                         },
                     }),
                 {
@@ -427,7 +419,7 @@ describe("useImport hook", () => {
             });
         });
 
-        it("should give successes in onFinish callback if batchSize=1", async (done) => {
+        it("should give successes in onFinish callback if batchSize=1", async () => {
             const mockDataProvider = {
                 ...MockJSONServer,
                 create: jest.fn(async ({ variables }: any) => {
@@ -471,7 +463,6 @@ describe("useImport hook", () => {
                             expect(succeeded[2].response[0]).toEqual(
                                 parsedData[2],
                             );
-                            done();
                         },
                     }),
                 {
