@@ -97,9 +97,9 @@ We also used `<LayoutWrapper>` to show the page in the layout provided to [`<Ref
 
 [Nextjs]: https://nextjs.org/docs/getting-started
 [NextjsRouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router
-[routerProvider]: /getting-started/overview
+[routerProvider]: /getting-started/overview.md
 [supeprlate]: https://github.com/pankod/superplate
 [NextjsCustomApp]: https://nextjs.org/docs/advanced-features/custom-app
-[Refine]: /api-references/components/refine-config
+[Refine]: /api-references/components/refine-config.md
 [NextjsPages]: https://nextjs.org/docs/basic-features/pages
-[useTable]: /api-references/hooks/table/useTable
+[useTable]: /api-references/hooks/table/useTable.md
