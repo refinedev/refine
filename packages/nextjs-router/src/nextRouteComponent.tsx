@@ -11,7 +11,7 @@ import { RouterProvider } from "./routerProvider";
 
 const { useHistory, useLocation, useParams } = RouterProvider;
 
-type NextRouteComponent = {
+type NextRouteComponentProps = {
     pageData?: {
         list?: any;
         create?: any;
@@ -19,7 +19,8 @@ type NextRouteComponent = {
         show?: any;
     };
 };
-export const NextRouteComponent: React.FC<NextRouteComponent> = ({
+
+export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
     pageData,
 }) => {
     const { resources } = useResource();

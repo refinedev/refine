@@ -92,7 +92,7 @@ Notice how we passed `resource` prop to [`useTable`][useTable]. This is necessar
 We also used `<LayoutWrapper>` to show the page in the layout provided to [`<Refine>`][Refine]. This is deliberately opt-in to provide flexibility. [If you're building a standart CRUD page layout can be baked in automatically](#standart-crud-page).
 :::
 
-### SSR Data
+### SSR
 
 **refine** uses [react-query][ReactQuery] in its hooks for data management. [Following react-query's guide][ReactQuerySSR], SSR can be achieved like this:
 
@@ -157,25 +157,107 @@ We used `getList` from `dataProvider` but data can be fetched in any way you des
 
 ## Standart CRUD Page
 
-**nextjs-router** package provides `NextRouteComponent` for pages with the dynamic route `/[resource]/[action]/[id]` and root `/`.
+**nextjs-router** package provides `NextRouteComponent` for pages with the dynamic route `/[resource]/[action]/[id]` and root `/`. Simply export the component from the page.
 
 ```tsx twoslash title="pages/[resource]/index.tsx"
 export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
 ```
 
-:::important
 `NextRouteComponent` can be used in the following pages with any combination of them:
 - `pages/[resource].tsx`
 - `pages/[resource]/[action].tsx`
 - `pages/[resource]/[action]/[id].tsx`
 - `pages/index.tsx`
-:::
 
 `NextRouteComponent` will use route parameters `resource` and `action` and render the associated component defined in [`resources`][Refine].
 
 - `list` component will be rendered for `/[resource]` route
-- `create`, `edit` and `show` will be rendered for `/[resource]/[action]` and `/[resource]/[action]/[id]` route
+- `create`, `edit` and `show` will be rendered for `/[resource]/[action]` and `/[resource]/[action]/[id]` routes
 - For the root `/` route, it will render `DashboardPage` if it's defined and if not will navigate to the first resource in `resources`.
+
+:::important
+`NextRouteComponent` will wrap the page with `Layout` provided to [`<Refine>`][Refine]
+:::
+
+### SSR
+
+`NextRouteComponent` accepts a `pageData` prop for SSR data.
+
+```ts
+type NextRouteComponentProps = {
+    pageData?: {
+        list?: any;
+        create?: any;
+        edit?: any;
+        show?: any;
+    };
+};
+```
+You can pass `pageData` from `getServerSideProps`. Data for every type of page can be passed with their respective fields in `pageData`. `NextRouteComponent` will pass this data as `initialData` to components. For example, since `list` component will be rendered for `/[resource]`, the page can use SSR like this:
+
+```tsx twoslash title="pages/[resource]/index.tsx"
+export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
+import dataProvider from "@pankod/refine-simple-rest";
+
+import { GetServerSideProps } from "next";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+
+    const { query } = context;
+
+    const data = await dataProvider(API_URL).getList({
+        resource: query["resource"] as string,
+    });
+
+    return {
+        props: {
+            pageData: {
+                list: data,
+            },
+        },
+    };
+};
+
+```
+
+And in a `list` component for a `resource` e.g. "posts":
+
+```tsx title="src/components/posts/list.tsx" {10, 12-13}
+import {
+    useTable,
+    List,
+    Table,
+    GetListResponse,
+} from "@pankod/refine";
+import type { IResourceComponentsProps } from "@pankod/refine";
+
+export const PostList: React.FC<
+    IResourceComponentsProps<GetListResponse<IPost>>
+> = ({ initialData }) => {
+    const { tableProps } = useTable<IPost>({
+        queryOptions: {
+            initialData,
+        },
+    });
+
+    return (
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="status" title="Status" />
+            </Table>
+        </List>
+    );
+};
+
+interface IPost {
+    id: string;
+    firstName: string;
+}
+```
+
 
 [Nextjs]: https://nextjs.org/docs/getting-started
 [NextjsRouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router

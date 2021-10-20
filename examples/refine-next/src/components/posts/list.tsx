@@ -16,11 +16,9 @@ export const PostList: React.FC<
 > = ({ initialData }) => {
     const { tableProps } = useTable<IPost>({
         queryOptions: {
-            initialData: initialData,
+            initialData,
         },
     });
-
-    console.log({ tableProps });
 
     return (
         <List>

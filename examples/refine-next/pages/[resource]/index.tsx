@@ -20,23 +20,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     const { query } = context;
 
-    const isList = !!query.resource && !query["action"];
-
-    if (isList) {
-        const data = await dataProvider(API_URL).getList({
-            resource: query["resource"] as string,
-        });
-
-        return {
-            props: {
-                pageData: {
-                    list: data,
-                },
-            },
-        };
-    }
+    const data = await dataProvider(API_URL).getList({
+        resource: query["resource"] as string,
+    });
 
     return {
-        props: {},
+        props: {
+            pageData: {
+                list: data,
+            },
+        },
     };
 };
