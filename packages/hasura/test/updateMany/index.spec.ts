@@ -1,4 +1,3 @@
-import nock from "nock";
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
 import "./index.mock";
@@ -29,8 +28,6 @@ describe("updateMany", () => {
     });
 
     it("correct response without metaData", async () => {
-        nock.recorder.rec();
-
         const { data } = await dataProvider(client).updateMany({
             resource: "posts",
             ids: [

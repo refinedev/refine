@@ -91,3 +91,49 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "6a0a345b2cdd5488-IST",
         ],
     );
+
+nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
+    .post("/v1/graphql", {
+        query: "mutation ($where: posts_bool_exp!, $_set: posts_set_input!) {\n  update_posts (where: $where, _set: $_set) {\n    returning { id }\n  }\n}",
+        variables: {
+            where: {
+                id: {
+                    _in: [
+                        "487524fd-1160-45c8-a28d-717f78893c37",
+                        "55c37980-05e5-45b3-8368-a2d8c2210436",
+                    ],
+                },
+            },
+            _set: { title: "updated-foo-1", content: "updated-bar-1" },
+        },
+    })
+    .reply(
+        200,
+        [
+            "1f8b08000000000004032d8bcb0ac32010007f45f6dc055fab1b7f259462d5945cd2909893f8ef35d0db0ccc34c8b146080dae7d5079eddfb39eb71fa55ec7b66e1f1041cc0dd60c012c7bd276c9a8949368293146cd19bdf28b679e4c321efa43fc73a2e1134b945468e46f836cdcfd644e5a2b698d83feecbdff00f6692c0888000000",
+        ],
+        [
+            "Date",
+            "Wed, 20 Oct 2021 08:44:31 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "close",
+            "x-request-id",
+            "c977780342afaba2339bc77459d0c3b0",
+            "Content-Encoding",
+            "gzip",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Expect-CT",
+            'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+            "Server",
+            "cloudflare",
+            "CF-RAY",
+            "6a10f6e91c5d5482-IST",
+        ],
+    );
