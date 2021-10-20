@@ -134,53 +134,36 @@ const { radioGroupProps } = useRadioGroup({
 
 `sort` allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
 
-
-
-
 ### `queryOptions`
 
-[useQuery](https://react-query.tanstack.com/reference/useQuery) options can be set by passing `queryOptions` property.
-
-
-
-```tsx twoslash {2}
+```tsx twoslash {2-6}
 import { useRadioGroup } from "@pankod/refine";
 // ---cut---
 const { radioGroupProps } = useRadioGroup({
     resource: "languages",
-    queryOptions: { onError: () => { console.log("triggers when on query return Error") }}
+    queryOptions: {
+        onError: () => {
+            console.log("triggers when on query return Error");
+        },
+    },
 });
 ```
 
-```tsx twoslash {2, 4-10}
-import { useRadioGroup } from "@pankod/refine";
-// ---cut---
-const { 
-    radioGroupProps, 
-} = useRadioGroup({
-    resource: "languages",
-    queryOptions: { 
-        onSuccess: (data) => { 
-            console.log("triggers when on query return on success") 
-        } 
-    }
-});
-```
+[useQuery](https://react-query.tanstack.com/reference/useQuery) options can be set by passing `queryOptions` property.
 
 ## API Reference
 
 ### Properties
 
-| Property                                                                                            | Description                                                                         | Type                                                             | Default   |
-| --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------- | --------- |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](/api-references/components/resource.md) for API data interactions      | `string`                                                         |           |
-| optionValue                                                                                         | Sets the option's value                                                             | `string`                                                         | `"id"`    |
-| optionLabel                                                                                         | Sets the option's label value                                                       | `string`                                                         | `"title"` |
-| filters                                                                                             | Adds filters while fetching the data                                                | [`CrudFilters`](../../interfaces.md#crudfilters)                 |           |
-| sort                                                                                                | Allows us to sort the options                                                       | [`CrudSorting`](../../interfaces.md#crudsorting)                 |           |
-| queryOptions                                                                                        | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>`               |           |
+| Property                                                                                            | Description                                                                         | Type                                                           | Default   |
+| --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------- | --------- |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                             | `string`                                                       |           |
+| optionValue                                                                                         | Sets the option's value                                                             | `string`                                                       | `"id"`    |
+| optionLabel                                                                                         | Sets the option's label value                                                       | `string`                                                       | `"title"` |
+| filters                                                                                             | Adds filters while fetching the data                                                | [`CrudFilters`](../../interfaces.md#crudfilters)               |           |
+| sort                                                                                                | Allows us to sort the options                                                       | [`CrudSorting`](../../interfaces.md#crudsorting)               |           |
+| queryOptions                                                                                        | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>`             |           |
 | metaData                                                                                            | Metadata query for `dataProvider`                                                   | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery) | {}        |
-
 
 ### Return values
 
@@ -188,7 +171,6 @@ const {
 | --------------- | -------------------------------- | --------------------------------------------------------------------------------------------- |
 | radioGroupProps | Ant design radio group props     | [`Radio Group`](https://ant.design/components/radio/#RadioGroup)                              |
 | queryResult     | Results of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
-
 
 ## Live Codesandbox Example
 

@@ -3,20 +3,20 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "NODE_OPTIONS=--max_old_space_size=8192 next dev",
+        "start": "NODE_OPTIONS=--max_old_space_size=8192 next dev -p 3002",
         "build": "next build",
-        "start": "next start",
+        "start:prod": "next start",
         "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
     },
     "dependencies": {
-        "@pankod/refine": "../../packages/core",
-        "@pankod/refine-nextjs-router": "../../packages/nextjs-router",
-        "@pankod/refine-simple-rest": "../../packages/simple-rest",
+        "@pankod/refine": "^1.1.0",
+        "@pankod/refine-nextjs-router": "^0.1.0",
+        "@pankod/refine-simple-rest": "^0.1.8",
         "next": "10.2.0",
         "next-compose-plugins": "^2.2.1",
         "nookies": "^2.5.2",
-        "react": "file:../../node_modules/react",
-        "react-dom": "file:../../node_modules/react-dom"
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2"
     },
     "devDependencies": {
         "@types/node": "^14.14.13",
