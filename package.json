@@ -47,7 +47,7 @@
     },
     "dependencies": {
         "dayjs": "^1.10.5",
-        "prettier": "^2.3.0",
+        "prettier": "^2.4.1",
         "prism-react-renderer": "^1.2.1"
     }
 }
