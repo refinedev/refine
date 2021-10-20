@@ -5,7 +5,7 @@ title: List
 
 import listButton from '@site/static/img/guides-and-concepts/components/buttons/list/list.png';
 
-`<ListButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `list` method from [`useNavigation`](api-references/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of `<Resource>`.
+`<ListButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `list` method from [`useNavigation`](api-references/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
 
 ## Usage
 
@@ -54,14 +54,14 @@ Will look like this:
 <br/>
 
 :::note
-The button text is defined automatically by **refine** based on _`<Resource>`_ component name property.
+The button text is defined automatically by **refine** based on _resource_ object name property.
 :::
 
 ## Properties
 
 ### `resourceName`
 
-Redirection endpoint(`resourceName/list`) is defined by `resourceName` property. By default, `<ListButton>` uses `name` property of the `<Resource>` component as the endpoint to redirect after clicking.
+Redirection endpoint(`resourceName/list`) is defined by `resourceName` property. By default, `<ListButton>` uses `name` property of the resource object as the endpoint to redirect after clicking.
 
 ```tsx twoslash
 import { ListButton } from "@pankod/refine";

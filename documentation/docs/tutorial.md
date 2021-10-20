@@ -242,9 +242,9 @@ Point your browser to [http://localhost:3000](http://localhost:3000) to access i
 
 ## Adding Resources
 
-Now we are ready to start connecting to our API by adding a `<Resource>` to our application.
+Now we are ready to start connecting to our API by adding a resource to our application.
 
-Let's add **/posts/** endpoint from our API as a `<Resource />`. First take a look to the raw API response for the request made to the **/posts/** route:
+Let's add **/posts/** endpoint from our API as a resource. First take a look to the raw API response for the request made to the **/posts/** route:
 
 <details><summary>Show response</summary>
 <p>
@@ -301,7 +301,7 @@ export const App: React.FC = () => {
 <br/>
 
 :::info
-A `<Resource/>` is a child component of `<Refine/>` representing an API Endpoint. The `name` property of `<Resource/>` should match one of the endpoints in your API!
+`resources` is a property of `<Refine/>` representing API Endpoints. The `name` property of every single resource should match one of the endpoints in your API!
 :::
 
 Instead of showing the welcome page, the application should redirect now? to an URL defined by the `name` property. Open your application to check that the URL is routed to **/posts**:
@@ -319,14 +319,14 @@ Instead of showing the welcome page, the application should redirect now? to an 
 <br/>
 </>
 
-You'll still see a **404** error page because no **Page** component is assigned to our `<Resource>` yet.
+You'll still see a **404** error page because no **Page** component is assigned to our resource yet.
 
 :::note
-A `<Resource>` uses **Page** components to handle data and perform rendering. **Page** components are passed to a `<Resource>` using props.
+A `resources` use **Page** components to handle data and perform rendering. **Page** components are passed to a `resources` as an array of objects.
 For basic _CRUD_ operations, there are **four** predefined props: **list**, **create**, **edit** and **show**.
 :::
 
-Let's create a **Page** component to fetch **posts** and display them as a table. Later, we will pass the component as the **list** prop to our `<Resource>`.
+Let's create a **Page** component to fetch **posts** and display them as a table. Later, we will pass the component as the **list** prop to our resource.
 
 ## Creating a List Page
 
@@ -412,7 +412,7 @@ The example uses `<TagField>` and `<DateField>` components. To get the full list
 
 ✳️ `<List>` is a **refine** component. It acts as a wrapper to `<Table>` to add some extras like _Create Button_ and _title_.
 
-Finally, we are ready to add `<PostList>` to our `<Resource>`. Add the highlighted line to your `App.tsx`
+Finally, we are ready to add `<PostList>` to our resource. Add the highlighted line to your `App.tsx`
 
 ```tsx title="src/App.tsx" {4,11}
 import { Refine } from "@pankod/refine";
@@ -737,7 +737,7 @@ export const PostShow = () => {
 
 <br />
 
-Now we can add the newly created component to our `<Resource>` with `show` prop:
+Now we can add the newly created component to our resource with `show` prop:
 
 ```tsx title="src/App.tsx" {4, 11-17}
 import { Refine } from "@pankod/refine";
@@ -945,7 +945,7 @@ export const PostEdit: React.FC = () => {
 
 <br />
 
-Now we can add the newly created component to our `<Resource>` with `edit` prop:
+Now we can add the newly created component to our resource with `edit` prop:
 
 ```tsx title="src/App.tsx" {4, 11-18}
 import { Refine } from "@pankod/refine";
@@ -1176,7 +1176,7 @@ export const PostCreate = () => {
 
 <br />
 
-After creating the `<PostCreate>` component, add it to `<Resource>` with `create` prop:
+After creating the `<PostCreate>` component, add it to resource with `create` prop:
 
 <br />
 
@@ -1352,7 +1352,7 @@ export const PostList: React.FC = () => {
 
 Now you can try deleting records yourself. Just click on the delete button of the record you want to delete and confirm.
 
-The second way is showing delete button in `<PostEdit>` component. To show delete button in edit page, `canDelete` prop needs to be passed to `<Resource>` component
+The second way is showing delete button in `<PostEdit>` component. To show delete button in edit page, `canDelete` prop needs to be passed to resource object.
 
 ```tsx title="src/App.tsx" {18}
 import { Refine, Resource } from "@pankod/refine";

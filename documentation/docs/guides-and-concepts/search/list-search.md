@@ -84,7 +84,7 @@ interface IPost {
 }
 ```
 
-Let's pass the list page we created to our `<Resource>` component.
+After creating the `<PostList>` component, add it to resource with `list` prop:
 
 ```tsx {6, 15}
 import { Refine, Resource } from "@pankod/refine";
