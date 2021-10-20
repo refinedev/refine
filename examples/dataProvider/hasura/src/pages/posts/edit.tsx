@@ -24,7 +24,6 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         IPost
     >({
         metaData: {
-            operation: "post",
             fields: [
                 "id",
                 "title",
