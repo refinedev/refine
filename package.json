@@ -46,7 +46,7 @@
         "typescript": "^3.9.8"
     },
     "dependencies": {
-        "dayjs": "^1.10.5",
+        "dayjs": "^1.10.7",
         "prettier": "^2.3.0",
         "prism-react-renderer": "^1.2.1"
     }
