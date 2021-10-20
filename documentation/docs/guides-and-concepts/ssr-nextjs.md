@@ -94,9 +94,9 @@ We also used `<LayoutWrapper>` to show the page in the layout provided to [`<Ref
 
 ### SSR Data
 
-**refine** uses [react-query][ReactQuery] in its hooks for data management. [Following react-query's guide][ReactQuerySSR] SSR can be achieved like this:
+**refine** uses [react-query][ReactQuery] in its hooks for data management. [Following react-query's guide][ReactQuerySSR], SSR can be achieved like this:
 
-```tsx twoslash {0, 7, 12-14, 17-19, 34-42 }
+```tsx twoslash {0, 7, 12-14, 17-19, 34-42 } title="pages/users.tsx"
 import { GetServerSideProps } from "next";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
@@ -149,8 +149,33 @@ interface IPost {
 export default UserList;
 ```
 
+We use the [`getList`][getList] method from our [`dataProvider`][dataProvider] to fetch `users` data and pass through `props` as conventionally done in Next.js. Then `users` data is available in the props of our `/users` page. [`useTable`][useTable] can take options for underlying react-query queries with `queryOptions`, passing `users` data to its `initialData` loads the data on server side.
+
+:::tip
+We used `getList` from `dataProvider` but data can be fetched in any way you desire.
+:::
+
 ## Standart CRUD Page
 
+**nextjs-router** package provides `NextRouteComponent` for pages with the dynamic route `/[resource]/[action]/[id]` and root `/`.
+
+```tsx twoslash title="pages/[resource]/index.tsx"
+export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
+```
+
+:::important
+`NextRouteComponent` can be used in the following pages with any combination of them:
+- `pages/[resource].tsx`
+- `pages/[resource]/[action].tsx`
+- `pages/[resource]/[action]/[id].tsx`
+- `pages/index.tsx`
+:::
+
+`NextRouteComponent` will use route parameters `resource` and `action` and render the associated component defined in [`resources`][Refine].
+
+- `list` component will be rendered for `/[resource]` route
+- `create`, `edit` and `show` will be rendered for `/[resource]/[action]` and `/[resource]/[action]/[id]` route
+- For the root `/` route, it will render `DashboardPage` if it's defined and if not will navigate to the first resource in `resources`.
 
 [Nextjs]: https://nextjs.org/docs/getting-started
 [NextjsRouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router
@@ -162,3 +187,6 @@ export default UserList;
 [useTable]: /api-references/hooks/table/useTable.md
 [ReactQuerySSR]: https://react-query.tanstack.com/guides/ssr#using-initialdata
 [ReactQuery]: https://react-query.tanstack.com/
+[getList]: /api-references/providers/data-provider.md#getlist
+[dataProvider]: /api-references/providers/data-provider.md
+[useTable]: /api-references/hooks/table/useTable.md

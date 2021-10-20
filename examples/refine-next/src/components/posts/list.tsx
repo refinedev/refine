@@ -15,11 +15,12 @@ export const PostList: React.FC<
     IResourceComponentsProps<GetListResponse<IPost>>
 > = ({ initialData }) => {
     const { tableProps } = useTable<IPost>({
-        resource: "posts",
         queryOptions: {
             initialData: initialData,
         },
     });
+
+    console.log({ tableProps });
 
     return (
         <List>
