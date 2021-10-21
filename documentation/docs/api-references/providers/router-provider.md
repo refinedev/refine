@@ -358,7 +358,7 @@ In general, we can list what it does as follows:
 :::info
 `RouterComponent` is required for **refine** React apps but not required for Nextjs apps.
 
-Since Nextjs has a folder base route structure, it is used by importing the `RouteComponent` into the created page.
+Since Nextjs has a folder base route structure, it is used by exporting the `NextRouteComponent` from the created page.
 :::
 
 <br />
