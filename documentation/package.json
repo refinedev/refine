@@ -16,7 +16,7 @@
     "@docusaurus/preset-classic": "^2.0.0-beta.4",
     "@mdx-js/react": "^1.6.21",
     "@pankod/refine": "^1.0.77",
-    "@pankod/refine-simple-rest": "^0.1.4",
+    "@pankod/refine-simple-rest": "^0.1.8",
     "@pankod/refine-strapi-graphql": "^0.1.0",
     "@types/react-dom": "^17.0.9",
     "clsx": "^1.1.1",
