@@ -5,6 +5,7 @@ import {
     HttpError,
     Input,
     IResourceComponentsProps,
+    RefreshButton,
     Select,
     useForm,
     useSelect,
@@ -49,7 +50,12 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         useState<"write" | "preview">("write");
 
     return (
-        <Edit saveButtonProps={saveButtonProps}>
+        <Edit
+            pageHeaderProps={{
+                extra: <RefreshButton onClick={() => queryResult?.refetch()} />,
+            }}
+            saveButtonProps={saveButtonProps}
+        >
             <Form
                 {...formProps}
                 layout="vertical"

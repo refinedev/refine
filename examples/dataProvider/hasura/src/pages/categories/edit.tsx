@@ -3,20 +3,32 @@ import {
     Form,
     Input,
     IResourceComponentsProps,
+    ListButton,
+    RefreshButton,
     useForm,
 } from "@pankod/refine";
 
 import { ICategory } from "interfaces";
 
 export const CategoriesEdit: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } = useForm<ICategory>({
+    const { formProps, saveButtonProps, queryResult } = useForm<ICategory>({
         metaData: {
             fields: ["id", "title"],
         },
     });
 
     return (
-        <Edit saveButtonProps={saveButtonProps}>
+        <Edit
+            pageHeaderProps={{
+                extra: (
+                    <>
+                        <ListButton />
+                        <RefreshButton onClick={() => queryResult?.refetch()} />
+                    </>
+                ),
+            }}
+            saveButtonProps={saveButtonProps}
+        >
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
