@@ -16,9 +16,9 @@ import TabItem from '@theme/TabItem';
 
 ## Introduction
 
-This tutorial will go through process of building a simple *admin panel* for a *CMS-like* application.
+This tutorial will go through process of building a simple _admin panel_ for a _CMS-like_ application.
 
-Step by step, you're going to learn how to consume a *REST API* and add basic CRUD functionality to your panel leveraging the unique capabilities of **refine**.
+Step by step, you're going to learn how to consume a _REST API_ and add basic CRUD functionality to your panel leveraging the unique capabilities of **refine**.
 
 Let's begin by setting up a new **refine** project.
 
@@ -26,38 +26,36 @@ Let's begin by setting up a new **refine** project.
 
 There are two alternative methods to set up a **refine** application.
 
-The recommended way is using the [superplate](https://github.com/pankod/superplate) tool. *superplate*'s *CLI wizard* will let you create and customize your application in seconds.
+The recommended way is using the [superplate](https://github.com/pankod/superplate) tool. _superplate_'s _CLI wizard_ will let you create and customize your application in seconds.
 
-Alternatively, you may use the *create-react-app* tool to create an empty *React* application and then add **refine** module via *npm*.
-
+Alternatively, you may use the _create-react-app_ tool to create an empty _React_ application and then add **refine** module via _npm_.
 
 <Tabs
-  defaultValue="superplate"
-  values={[
-    {label: 'use superplate', value: 'superplate'},
-    {label: 'use create-react-app', value: 'create-react-app'}
-  ]}>
-  <TabItem value="create-react-app">
+defaultValue="superplate"
+values={[
+{label: 'use superplate', value: 'superplate'},
+{label: 'use create-react-app', value: 'create-react-app'}
+]}>
+<TabItem value="create-react-app">
 
-
-First, run the *create-react-app* tool to bootstrap an empty *React project*.
+First, run the _create-react-app_ tool to bootstrap an empty _React project_.
 
 ```
 npx create-react-app tutorial --template typescript
 ```
 
 :::note
-*--template typescript* flag will ensure that the Typescript language is selected.
+_--template typescript_ flag will ensure that the Typescript language is selected.
 :::
-Navigate to the project folder and install **refine** with the following *npm* command:
+Navigate to the project folder and install **refine** with the following _npm_ command:
 
 <Tabs
-  defaultValue="npm"
-  values={[
-    {label: 'use npm', value: 'npm'},
-    {label: 'use yarn', value: 'yarn'}
-  ]}>
-  <TabItem value="npm">
+defaultValue="npm"
+values={[
+{label: 'use npm', value: 'npm'},
+{label: 'use yarn', value: 'yarn'}
+]}>
+<TabItem value="npm">
 
 ```bash
 npm i @pankod/refine
@@ -78,10 +76,9 @@ This tutorial assumes your project is configured for absolute imports. Since CRA
 
 [Refer to CRA docs for more information about absolute imports. &#8594](https://create-react-app.dev/docs/importing-a-component/#absolute-imports)
 :::
-  
+
   </TabItem>
   <TabItem value="superplate">
-  
 
 First, run the **superplate** with the following command:
 
@@ -89,9 +86,9 @@ First, run the **superplate** with the following command:
 npx superplate-cli tutorial
 ```
 
-Select the following options to complete the *CLI wizard*:
+Select the following options to complete the _CLI wizard_:
 
-``` 
+```
 ? Select your project type:
 ❯ refine
 
@@ -107,38 +104,38 @@ tutorial
 ? Data Provider :
 ❯ REST API
 
-? Auth Provider : 
+? Auth Provider :
 ❯ None
 
 ? Do you want to add an example page?:
 ❯ No
 
-? i18n - Internationalization: 
+? i18n - Internationalization:
 ❯ No
 ```
-  
+
 </TabItem>
 </Tabs>
 
 ## About Fake REST API
 
-**refine** is designed to consume data from APIs. 
+**refine** is designed to consume data from APIs.
 
-For the sake of this tutorial, we will provide you a fully working, *fake REST API* located at https://api.fake-rest.refine.dev/. You may take a look at available [resources and routes of the API](https://api.fake-rest.refine.dev/) before proceeding to the next step.
+For the sake of this tutorial, we will provide you a fully working, _fake REST API_ located at https://api.fake-rest.refine.dev/. You may take a look at available [resources and routes of the API](https://api.fake-rest.refine.dev/) before proceeding to the next step.
 
 ## Using a Dataprovider
 
-Dataproviders are **refine** components making it possible to consume different API's and data services conveniently. To consume our *Fake REST API*, we'll use the **"Simple REST Dataprovider"**.
+Dataproviders are **refine** components making it possible to consume different API's and data services conveniently. To consume our _Fake REST API_, we'll use the **"Simple REST Dataprovider"**.
 
 Next, navigate to the project folder and run the following command to install the required package:
 
 <Tabs
-  defaultValue="npm"
-  values={[
-    {label: 'use npm', value: 'npm'},
-    {label: 'use yarn', value: 'yarn'}
-  ]}>
-  <TabItem value="npm">
+defaultValue="npm"
+values={[
+{label: 'use npm', value: 'npm'},
+{label: 'use yarn', value: 'yarn'}
+]}>
+<TabItem value="npm">
 
 ```bash
 npm i @pankod/refine-simple-rest
@@ -167,18 +164,17 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 
 **refine** includes many out-of-the-box data providers to use in your projects like
 
-* [Simple REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest)
-* [GraphQL](https://github.com/pankod/refine/tree/master/packages/graphql)
-* [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
-* [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
-* [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi)
-* [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql)
-* [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
-* [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
+-   [Simple REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest)
+-   [GraphQL](https://github.com/pankod/refine/tree/master/packages/graphql)
+-   [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
+-   [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
+-   [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi)
+-   [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql)
+-   [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
+-   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
 [Refer to the `dataProvider` documentation for detailed usage. &#8594](/api-references/providers/data-provider.md)
 :::
-
 
 ## Bootstrapping the Application
 
@@ -186,12 +182,15 @@ Replace the contents of `App.tsx` with the following code:
 
 ```tsx twoslash title="src/App.tsx"
 import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
+
 import "@pankod/refine/dist/styles.min.css";
 
 const App: React.FC = () => {
     return (
         <Refine
+            routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
         />
     );
@@ -207,12 +206,12 @@ export default App;
 Run the following command to install the required package:
 
 <Tabs
-  defaultValue="superplate"
-  values={[
-    {label: 'with superplate', value: 'superplate'},
-    {label: 'with create-react-app', value: 'create-react-app'}
-  ]}>
-  <TabItem value="superplate">
+defaultValue="superplate"
+values={[
+{label: 'with superplate', value: 'superplate'},
+{label: 'with create-react-app', value: 'create-react-app'}
+]}>
+<TabItem value="superplate">
 
 ```sh
 npm run dev
@@ -243,9 +242,9 @@ Point your browser to [http://localhost:3000](http://localhost:3000) to access i
 
 ## Adding Resources
 
-Now we are ready to start connecting to our API by adding a `<Resource>` to our application. 
+Now we are ready to start connecting to our API by adding a resource to our application.
 
-Let's add **/posts/** endpoint from our API as a `<Resource />`. First take a look to the raw API response for the request made to the **/posts/** route: 
+Let's add **/posts/** endpoint from our API as a resource. First take a look to the raw API response for the request made to the **/posts/** route:
 
 <details><summary>Show response</summary>
 <p>
@@ -283,15 +282,18 @@ Let's add **/posts/** endpoint from our API as a `<Resource />`. First take a lo
 
 Now, add the highlighted code to your `App.tsx` to connect to the endpoint.
 
-```tsx twoslash {0, 6} title="src/App.tsx" 
-import { Refine, Resource } from "@pankod/refine";
+```tsx twoslash {9} title="src/App.tsx"
+import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 export const App: React.FC = () => {
     return (
-        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
-            <Resource name="posts" />
-        </Refine>
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[{ name: "posts" }]}
+        />
     );
 };
 ```
@@ -299,7 +301,7 @@ export const App: React.FC = () => {
 <br/>
 
 :::info
-A `<Resource/>` is a child component of `<Refine/>` representing an API Endpoint. The `name` property of `<Resource/>` should match one of the endpoints in your API!
+`resources` is a property of `<Refine/>` representing API Endpoints. The `name` property of every single resource should match one of the endpoints in your API!
 :::
 
 Instead of showing the welcome page, the application should redirect now? to an URL defined by the `name` property. Open your application to check that the URL is routed to **/posts**:
@@ -317,20 +319,20 @@ Instead of showing the welcome page, the application should redirect now? to an 
 <br/>
 </>
 
-You'll still see a **404** error page because no **Page** component is assigned to our `<Resource>` yet. 
+You'll still see a **404** error page because no **Page** component is assigned to our resource yet.
 
 :::note
-A `<Resource>` uses **Page** components to handle data and perform rendering. **Page** components are passed to a `<Resource>` using props.
-For basic *CRUD* operations, there are **four** predefined props: **list**, **create**, **edit** and **show**.
+`resources` use **Page** components to handle data and perform rendering. **Page** components are passed to `resources` as an array of objects.
+For basic _CRUD_ operations, there are **four** predefined props: **list**, **create**, **edit** and **show**.
 :::
 
-Let's create a **Page** component to fetch **posts** and display them as a table. Later, we will pass the component as the **list** prop to our `<Resource>`.
+Let's create a **Page** component to fetch **posts** and display them as a table. Later, we will pass the component as the **list** prop to our resource.
 
-## Creating a List Page 
+## Creating a List Page
 
-First, we'll need an interface to work with the data from the API endpoint. 
+First, we'll need an interface to work with the data from the API endpoint.
 
-Create a new folder named *"interface"* under *"/src"* if you don't already have one. Then create a *"index.d.ts"* file with the following code:
+Create a new folder named _"interface"_ under _"/src"_ if you don't already have one. Then create a _"index.d.ts"_ file with the following code:
 
 ```ts title="interfaces/index.d.ts"
 export interface IPost {
@@ -343,7 +345,7 @@ export interface IPost {
 
 We'll be using **title**, **status** and **createdAt** fields of every **post** record.
 
-Now, create a new folder named *"pages/posts"* under *"/src"*. Under that folder, create a *"list.tsx"* file with the following code:
+Now, create a new folder named _"pages/posts"_ under _"/src"_. Under that folder, create a _"list.tsx"_ file with the following code:
 
 ```tsx title="pages/posts/list.tsx"
 import {
@@ -383,15 +385,15 @@ export const PostList: React.FC = () => {
 
 Let's break down the `<PostList/>` component to understand what's going on here:
 
-✳️ `<Table/>` is a native **Ant Design** component. It renders records row by row as a table. 
-`<Table/>` expects a `rowKey` prop as the unique key of the records. 
+✳️ `<Table/>` is a native **Ant Design** component. It renders records row by row as a table.
+`<Table/>` expects a `rowKey` prop as the unique key of the records.
 
 :::note
-**refine** uses [Ant Design](https://ant.design/components/overview/) components to render data. 
+**refine** uses [Ant Design](https://ant.design/components/overview/) components to render data.
 You may refer to [Ant Design Docs](https://ant.design/components/table/#API) for further information about the `<Table/>` component.
 :::
 
-✳️  `useTable<IPost>();` is passed to the `<Table/>` component as `{...tableProps}`. 
+✳️ `useTable<IPost>();` is passed to the `<Table/>` component as `{...tableProps}`.
 
 This is the point where the ✨real magic✨ happens!
 
@@ -402,38 +404,42 @@ This is the point where the ✨real magic✨ happens!
 On [useTable() Documentation](api-references/hooks/table/useTable.md) you may find more information about the usage of this hook.
 :::
 
-✳️ `<Table.Column>` components are used for mapping and formatting each field shown on the `<Table/>`. `dataIndex` prop maps the field to a matching key from the API response. `render` prop is used to choose the appropriate **Field** component for the given data type. 
+✳️ `<Table.Column>` components are used for mapping and formatting each field shown on the `<Table/>`. `dataIndex` prop maps the field to a matching key from the API response. `render` prop is used to choose the appropriate **Field** component for the given data type.
 
 :::note
 The example uses `<TagField>` and `<DateField>` components. To get the full list of available components, you may refer to the [Field Components Documentation](/api-references/components/fields/boolean.md).
 :::
 
-✳️ `<List>` is a **refine** component. It acts as a wrapper to `<Table>` to add some extras like *Create Button* and *title*. 
- 
-Finally, we are ready to add `<PostList>` to our `<Resource>`. Add the highlighted line to your `App.tsx`
+✳️ `<List>` is a **refine** component. It acts as a wrapper to `<Table>` to add some extras like _Create Button_ and _title_.
 
-```tsx title="src/App.tsx" {3,8}
-import { Refine, Resource } from "@pankod/refine";
+Finally, we are ready to add `<PostList>` to our resource. Add the highlighted line to your `App.tsx`
+
+```tsx title="src/App.tsx" {4,11}
+import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import { PostList } from "./pages";
 
 export const App: React.FC = () => {
     return (
-        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
-            <Resource name="posts" list={PostList} />
-        </Refine>
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[{ name: "posts", list: PostList }]}
+        />
     );
 };
 ```
 
 <br />
 
-Open your application in your browser. You will see **posts** are displayed correctly in a table structure and even the pagination works out-of-the box. 
+Open your application in your browser. You will see **posts** are displayed correctly in a table structure and even the pagination works out-of-the box.
 
-On the next step, we are going to add a category field to the table which involves handling data relationships. 
+On the next step, we are going to add a category field to the table which involves handling data relationships.
 
 <>
+
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -447,7 +453,6 @@ On the next step, we are going to add a category field to the table which involv
 
 <br/>
 
-
 ## Handling relationships
 
 Remember the records from `/posts` endpoint that had a category id field?
@@ -459,6 +464,7 @@ Remember the records from `/posts` endpoint that had a category id field?
   }
 ...
 ```
+
 <br />
 
 To display category titles on our table, we first need to map category id's to their corresponding titles.
@@ -473,7 +479,7 @@ The category title data can be obtained from the `/categories` endpoint for each
 
 <br />
 
-At this point, we need to join records from different resources.  For this, we're goint to use the refine hook `useMany`. 
+At this point, we need to join records from different resources. For this, we're goint to use the refine hook `useMany`.
 
 Before we start, just edit our interface for the new `ICategory` type:
 
@@ -495,7 +501,7 @@ export interface IPost {
 So we can update our `list.tsx` with the highlighted lines:
 
 ```tsx title="pages/posts/list.tsx" {7, 10, 15-23, 39-57}
-import {    
+import {
     List,
     TextField,
     TagField,
@@ -559,16 +565,17 @@ export const PostList: React.FC = () => {
 };
 ```
 
-We construct an array of `categoryId`'s from `/posts` endpoint and pass it to the `useMany` hook. `categoriesData` will be filled with *id-title* tuples to be used for rendering our component.
+We construct an array of `categoryId`'s from `/posts` endpoint and pass it to the `useMany` hook. `categoriesData` will be filled with _id-title_ tuples to be used for rendering our component.
 
 Try the result on your browser and you'll notice that the category column is filled correctly with the matching category titles for the each record's category id's. Even the loading state is managed by **refine**.
 
-
 :::tip
 You can access nested properties of table data by using an array:
+
 ```
  dataIndex={["category", "id"]}
 ```
+
 :::
 
 <br />
@@ -578,6 +585,7 @@ You can access nested properties of table data by using an array:
 ```tsx
 enabled: categoryIds.length > 0;
 ```
+
 Here, we set a condition to start fetching only when data is available.
 :::
 
@@ -590,7 +598,7 @@ We're done with displaying `post` records on our `<Table>`. Let's add search and
 We are going to use `<Table.Column>`'s [`filterDropdown`](https://ant.design/components/table/#Column) property and `<FilterDropdown>` component as following:
 
 ```tsx title="pages/posts/list.tsx" {8-10, 28-30, 64-73}
-import {    
+import {
     List,
     TextField,
     TagField,
@@ -600,7 +608,7 @@ import {
     useMany,
     FilterDropdown,
     Select,
-    useSelect
+    useSelect,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
@@ -670,6 +678,7 @@ export const PostList: React.FC = () => {
     );
 };
 ```
+
 ✳️ `<FilterDropdown>` component serves as a bridge between its child input and **refine**'s `useTable` hook. It passes childs input value to `useTable` using `filterDropdown`'s embedded props and provides a filter button.
 
 [Refer to the `<FilterDropdown>` documentation for detailed usage. &#8594](api-references/components/filter-dropdown)
@@ -686,18 +695,12 @@ export const PostList: React.FC = () => {
 
 ## Showing a single record
 
-At this point we are able to list all *post* records on the table component with pagination, sorting and filtering functionality. Next, we are going to add a *details page* to fetch and display data from a single record.
+At this point we are able to list all _post_ records on the table component with pagination, sorting and filtering functionality. Next, we are going to add a _details page_ to fetch and display data from a single record.
 
 Let's create a `<PostShow>` component on `/pages/posts` folder:
 
 ```tsx title="pages/posts/show.tsx"
-import {
-    Show,
-    useShow,
-    Typography,
-    Tag,
-    useOne,
-} from "@pankod/refine";
+import { Show, useShow, Typography, Tag, useOne } from "@pankod/refine";
 import { IPost, ICategory } from "interfaces";
 
 const { Title, Text } = Typography;
@@ -734,23 +737,28 @@ export const PostShow = () => {
 
 <br />
 
-Now we can add the newly created component to our `<Resource>` with `show` prop:
+Now we can add the newly created component to our resource with `show` prop:
 
-```tsx title="src/App.tsx" {3, 11}
-import { Refine, Resource } from "@pankod/refine";
+```tsx title="src/App.tsx" {4, 11-17}
+import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import { PostList, PostShow } from "./pages";
 
 export const App: React.FC = () => {
     return (
-        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
-            <Resource
-                name="posts"
-                list={PostList}
-                show={PostShow}
-            />
-        </Refine>
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    show: PostShow,
+                },
+            ]}
+        />
     );
 };
 ```
@@ -863,13 +871,12 @@ export const PostList: React.FC = () => {
 
 [Refer to the `useOne` documentation for detailed usage information. &#8594](api-references/hooks/data/useOne.md)
 
-
 :::caution attention
 `useShow()` is the preferred hook for fetching data from current resource. For query foreign resources you may use the low-level `useOne()` hook.
 :::
 
-Since we've got access to raw data returning from `useShow()`, there is no restriction how it's displayed on your components. If you prefer presenting your content with a nicer wrapper, **refine** provides you 
-the `<Show>` component which has extra features like `list` and  `refresh` buttons.
+Since we've got access to raw data returning from `useShow()`, there is no restriction how it's displayed on your components. If you prefer presenting your content with a nicer wrapper, **refine** provides you
+the `<Show>` component which has extra features like `list` and `refresh` buttons.
 
 [Refer to the `<Show>` documentation for detailed usage information. &#8594](api-references/components/basic-views/show)
 
@@ -884,7 +891,6 @@ the `<Show>` component which has extra features like `list` and  `refresh` butto
     <img src={showGif} alt="Show record action" />
 </div>
 <br/>
-
 
 ## Editing a record
 
@@ -939,29 +945,34 @@ export const PostEdit: React.FC = () => {
 
 <br />
 
-Now we can add the newly created component to our `<Resource>` with `edit` prop:
+Now we can add the newly created component to our resource with `edit` prop:
 
-```tsx title="src/App.tsx" {3, 12}
-import { Refine, Resource } from "@pankod/refine";
+```tsx title="src/App.tsx" {4, 11-18}
+import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import { PostList, PostShow, PostEdit } from "./pages";
 
 export const App: React.FC = () => {
     return (
-        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
-            <Resource
-                name="posts"
-                list={PostList}
-                show={PostShow}
-                edit={PostEdit}
-            />
-        </Refine>
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+            ]}
+        />
     );
 };
 ```
 
-We are going to need an *edit* button on each row to diplay the `<PostEdit>` component. **refine** doesn't automatically add one, so we have to update our `<PostList>` component to add a `<EditButton>` for each record:
+We are going to need an _edit_ button on each row to diplay the `<PostEdit>` component. **refine** doesn't automatically add one, so we have to update our `<PostList>` component to add a `<EditButton>` for each record:
 
 ```tsx title="components/pages/posts.tsx" {12, 13, 83, 94, 89-93}
 import {
@@ -1053,7 +1064,7 @@ export const PostList: React.FC = () => {
                                     recordItemId={record.id}
                                     hideText
                                 />
-                                <EditButton 
+                                <EditButton
                                     size="small"
                                     recordItemId={record.id}
                                     hideText
@@ -1069,7 +1080,6 @@ export const PostList: React.FC = () => {
 ```
 
 [Refer to the `<EditButton>` documentation for detailed usage information. &#8594](api-references/components/buttons/edit.md)
-
 
 You can try using edit buttons which will trigger the edit forms for each record, allowing you to update the record data.
 
@@ -1091,7 +1101,6 @@ In edit page, `useForm` hook initializes the form with current record values.
 
 ✳️ Save button submits the form by executing the `useUpdate` method provided by the [`dataProvider`](api-references/providers/data-provider.md). After a succesfull response, the application will be redirected to the listing page.
 
-
 <br />
 
 <div class="img-container">
@@ -1103,7 +1112,6 @@ In edit page, `useForm` hook initializes the form with current record values.
     <img src={editGif} alt="Edit record action" />
 </div>
 <br/>
-
 
 <br />
 
@@ -1122,7 +1130,7 @@ import {
     Input,
     Select,
     useForm,
-    useSelect
+    useSelect,
 } from "@pankod/refine";
 
 import { IPost } from "interfaces";
@@ -1164,45 +1172,49 @@ export const PostCreate = () => {
         </Create>
     );
 };
-
 ```
 
 <br />
 
-After creating the `<PostCreate>` component, add it to `<Resource>` with `create` prop:
+After creating the `<PostCreate>` component, add it to resource with `create` prop:
 
 <br />
 
-```tsx title="src/App.tsx" {3, 13}
-import { Refine, Resource } from "@pankod/refine";
+```tsx title="src/App.tsx" {4, 11-19}
+import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router";
 
 import { PostList, PostShow, PostEdit, PostCreate } from "./pages";
 
 export const App: React.FC = () => {
     return (
-        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
-            <Resource
-                name="posts"
-                list={PostList}
-                show={PostShow}
-                edit={PostEdit}
-                create={PostCreate}
-            />
-        </Refine>
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    show: PostShow,
+                    edit: PostEdit,
+                    create: PostCreate,
+                },
+            ]}
+        />
     );
 };
 ```
 
 <br />
 
-And that's it! Try it on browser and see if you can create new posts from scratch. 
+And that's it! Try it on browser and see if you can create new posts from scratch.
 
 We should notice some minor differences from the edit example:
 
 ✳️ `<Form>` is wrapped with `<Create>` component.
 
-✳️ Save button submits the form by executing the `useCreate` method provided by the [`dataProvider`](api-references/providers/data-provider.md). 
+✳️ Save button submits the form by executing the `useCreate` method provided by the [`dataProvider`](api-references/providers/data-provider.md).
 
 ✳️ No `defaultValue` is passed to `useSelect`.
 
@@ -1223,9 +1235,7 @@ We should notice some minor differences from the edit example:
 
 Deleting a record can be done in two ways.
 
-First way is adding an delete button on each row since *refine* doesn't automatically add one, so we have to update our `<PostList>` component to add a `<DeleteButton>` for each record:
-
-
+First way is adding an delete button on each row since _refine_ doesn't automatically add one, so we have to update our `<PostList>` component to add a `<DeleteButton>` for each record:
 
 ```tsx title="components/pages/posts.tsx" {14, 95-99}
 import {
@@ -1242,7 +1252,7 @@ import {
     useSelect,
     Space,
     EditButton,
-    DeleteButton
+    DeleteButton,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "../../interfaces";
@@ -1318,7 +1328,7 @@ export const PostList: React.FC = () => {
                                     recordItemId={record.id}
                                     hideText
                                 />
-                                <EditButton 
+                                <EditButton
                                     size="small"
                                     recordItemId={record.id}
                                     hideText
@@ -1340,35 +1350,38 @@ export const PostList: React.FC = () => {
 
 [Refer to the `<DeleteButton>` documentation for detailed usage information. &#8594](api-references/components/buttons/delete.md)
 
-
 Now you can try deleting records yourself. Just click on the delete button of the record you want to delete and confirm.
 
-The second way is showing delete button in `<PostEdit>` component. To show delete button in edit page, `canDelete` prop needs to be passed to `<Resource>` component
+The second way is showing delete button in `<PostEdit>` component. To show delete button in edit page, `canDelete` prop needs to be passed to resource object.
 
-
-```tsx title="src/App.tsx" {13}
+```tsx title="src/App.tsx" {18}
 import { Refine, Resource } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
+
 import { PostList, PostShow, PostEdit, PostCreate } from "./pages";
 
 export const App: React.FC = () => {
     return (
-        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
-            <Resource
-                name="posts"
-                list={PostList}
-                show={PostShow}
-                edit={PostEdit}
-                create={PostCreate}
-                canDelete
-            />
-        </Refine>
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    show: PostShow,
+                    edit: PostEdit,
+                    create: PostCreate,
+                    canDelete: true,
+                },
+            ]}
+        />
     );
 };
 ```
 
 After adding `canDelete` prop, `<DeleteButton>` will appear in edit form.
-
 
 ## Live Codesandbox Example
 
@@ -1383,12 +1396,12 @@ Our tutorial is complete. Below you'll find a live Codesandbox example displayin
 
 ## Next Steps
 
-* [Read about the authProvider to implement authentication for your refine application. &#8594](api-references/providers/auth-provider)
- 
-* [Read about the dataProvider to consume custom API's &#8594](api-references/providers/data-provider)
+-   [Read about the authProvider to implement authentication for your refine application. &#8594](api-references/providers/auth-provider)
 
-* [Read about the i18nProvider to add language support. &#8594](api-references/providers/i18n-provider)
+-   [Read about the dataProvider to consume custom API's &#8594](api-references/providers/data-provider)
 
-* [Check the Guides & Concept section to learn generic solutions to common problems &#8594](guides-and-concepts/upload/multipart-upload)
+-   [Read about the i18nProvider to add language support. &#8594](api-references/providers/i18n-provider)
 
-* [Check example section for code snippets &#8594](examples/customization/topMenuLayout.md)
+-   [Check the Guides & Concept section to learn generic solutions to common problems &#8594](guides-and-concepts/upload/multipart-upload)
+
+-   [Check example section for code snippets &#8594](examples/customization/topMenuLayout.md)

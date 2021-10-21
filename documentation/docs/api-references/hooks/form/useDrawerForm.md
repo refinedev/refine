@@ -285,3 +285,6 @@ The `saveButtonProps` and `deleteButtonProps` gives us the ability of saving and
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
+
+[BaseRecord]: /api-references/interfaces.md#baserecord
+[HttpError]: /api-references/interfaces.md#httperror

@@ -5,7 +5,7 @@ title: Create
 
 import createButton from '@site/static/img/guides-and-concepts/components/buttons/create/create.png';
 
-`<CreateButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `create` method from [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of `<Resource>`.
+`<CreateButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `create` method from [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of resource.
 
 ## Usage
 
@@ -51,7 +51,7 @@ Will look like this:
 
 ### `resourceName`
 
-It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of `<Resource>` component.
+It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of resource object.
 
 ```tsx twoslash
 import { CreateButton } from "@pankod/refine";
