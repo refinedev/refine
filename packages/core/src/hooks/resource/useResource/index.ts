@@ -9,7 +9,7 @@ export type UseResourceType = {
 };
 
 /**
- * `useResource` is used to get `<Resource>` properties that are defined as children of the `<Refine>` component.
+ * `useResource` is used to get `resources` that are defined as property of the `<Refine>` component.
  *
  * @see {@link https://refine.dev/docs/api-references/hooks/resource/useResource} for more details.
  */
