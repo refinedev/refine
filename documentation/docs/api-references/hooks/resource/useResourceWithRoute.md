@@ -36,4 +36,4 @@ interface IResourceItem {
 }
 ```
 
-> The `canCreate`, `canShow` and `canEdit` properties are defined automatically if the `create`, `show` and `edit` components are defined on the `resources` properties in the `<Refine>`.
+> The `canCreate`, `canShow` and `canEdit` properties are defined automatically if the `create`, `show` and `edit` components are defined on the `resources` property in `<Refine>`.
