@@ -356,7 +356,7 @@ In general, we can list what it does as follows:
 -   Different routers render when the user is authenticated and not.
 
 :::info
-`RouteComponent` is required for **refine** React apps but not required for Nextjs apps.
+`RouterComponent` is required for **refine** React apps but not required for Nextjs apps.
 
 Since Nextjs has a folder base route structure, it is used by importing the `RouteComponent` into the created page.
 :::
