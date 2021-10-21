@@ -148,7 +148,7 @@ After submission, login form calls the `login` method from `authProvider`.
 <br />
 
 :::important
-If an `authProvider` is given, [Resources](/api-references/components/resource.md) passed to `<Refine>` as children are only accessible if the login is successful. if no `authProvider` was provided, they are accessible without authentication.  
+If an `authProvider` is given, `resources` passed to `<Refine>` as propery are only accessible if the login is successful. if no `authProvider` was provided, they are accessible without authentication.  
 :::
 
 :::tip

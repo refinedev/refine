@@ -136,47 +136,34 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 
 ### `queryOptions`
 
-```tsx twoslash {2}
+```tsx twoslash {2-6}
 import { useCheckboxGroup } from "@pankod/refine";
 // ---cut---
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
-    queryOptions: { onError: () => { console.log("triggers when on query return Error") }}
+    queryOptions: {
+        onError: () => {
+            console.log("triggers when on query return Error");
+        },
+    },
 });
 ```
 
 [useQuery](https://react-query.tanstack.com/reference/useQuery) options can be set by passing `queryOptions` property.
 
-
-
-```tsx twoslash {2, 4-10}
-import { useCheckboxGroup } from "@pankod/refine";
-// ---cut---
-const { 
-    checkboxGroupProps, 
-} = useCheckboxGroup({
-    resource: "tags",
-    queryOptions: { 
-        onSuccess: (data) => { 
-            console.log("triggers when on query return on success") 
-        } 
-    }
-});
-```
-
 ## API Reference
 
 ### Properties
 
-| Property                                          | Description                                                                         | Type                                                             | Default   |
-| ------------------------------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------- | --------- |
-| resource <div className="required">Required</div> | [`Resource`](/api-references/components/resource.md) for API data interactions      | `string`                                                         |           |
-| optionValue                                       | Sets the option's value                                                             | `string`                                                         | `"id"`    |
-| optionLabel                                       | Sets the option's label value                                                       | `string`                                                         | `"title"` |
-| filters                                           | Adds filters while fetching the data                                                | [`CrudFilters`](../../interfaces.md#crudfilters)                 |           |
-| sort                                              | Allows us to sort the options                                                       | [`CrudSorting`](../../interfaces.md#crudsorting)                 |           |
-| queryOptions                                      | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>`               |           |
-| metaData                                          | Metadata query for `dataProvider`                                                   | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery) | {}        |
+| Property                                                                                            | Description                                                                         | Type                                                           | Default   |
+| --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------- | --------- |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                             | `string`                                                       |           |
+| optionValue                                                                                         | Sets the option's value                                                             | `string`                                                       | `"id"`    |
+| optionLabel                                                                                         | Sets the option's label value                                                       | `string`                                                       | `"title"` |
+| filters                                                                                             | Adds filters while fetching the data                                                | [`CrudFilters`](../../interfaces.md#crudfilters)               |           |
+| sort                                                                                                | Allows us to sort the options                                                       | [`CrudSorting`](../../interfaces.md#crudsorting)               |           |
+| queryOptions                                                                                        | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>`             |           |
+| metaData                                                                                            | Metadata query for `dataProvider`                                                   | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery) | {}        |
 
 ### Return values
 

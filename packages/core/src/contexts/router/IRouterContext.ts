@@ -1,8 +1,15 @@
 import React from "react";
 
 export interface IRouterProvider {
-    useHistory: () => any;
-    useLocation: () => any;
+    useHistory: () => {
+        push: (...args: any) => any;
+        replace: (...args: any) => any;
+        goBack: (...args: any) => any;
+    };
+    useLocation: () => {
+        search: string;
+        pathname: string;
+    };
     useParams: <
         Params extends { [K in keyof Params]?: string } = {},
     >() => Params;
