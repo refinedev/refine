@@ -10,7 +10,6 @@ import {
     BrowserRouterProps,
 } from "react-router-dom";
 
-import { IRouterProvider } from "@pankod/refine";
 import { RouterComponent } from "./routerComponent";
 
 interface IReactRouterProvider extends IRouterProvider {
