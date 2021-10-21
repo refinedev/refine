@@ -34,14 +34,14 @@ const routerProvider = {
 
 **refine** includes many out-of-the-box router providers to use in your projects like
 
--   [react-router](https://github.com/pankod/refine/tree/alpha/packages/react-router)
--   [nextjs-router](https://github.com/pankod/refine/tree/alpha/packages/nextjs-router)
+-   [react-router][react-router]
+-   [nextjs-router][nextjs-router]
 
 :::
 
 :::tip
 
-We do not recommend creating this provider unless you do not need any customization on the router. Instead, you can use [nextjs-router](https://github.com/pankod/refine/tree/alpha/packages/nextjs-router) for your [Next.js](https://nextjs.org/) app and [react-router](https://github.com/pankod/refine/tree/alpha/packages/react-router) for your [react](https://en.reactjs.org/) app.
+We do not recommend creating this provider unless you do not need any customization on the router. Instead, you can use [nextjs-router][nextjs-router] for your [Next.js](https://nextjs.org/) app and [react-router][react-router] for your [react](https://en.reactjs.org/) app.
 
 :::
 
@@ -85,7 +85,7 @@ const App: React.FC = () => {
 
 The `routerProvider` methods **refine** expects are exactly the same as [react-router-dom](https://reactrouter.com/web) methods.
 
-To understand how to create a `routerProvider`, let's examine how the [react-router](https://github.com/pankod/refine/tree/alpha/packages/react-router) and [nextjs-router](https://github.com/pankod/refine/tree/alpha/packages/nextjs-router) libraries provided by **refine** create a `routerProvider`.
+To understand how to create a `routerProvider`, let's examine how the [react-router][react-router] and [nextjs-router][nextjs-router]] libraries provided by **refine** create a `routerProvider`.
 
 ### `useHistory`
 
@@ -363,5 +363,84 @@ Since Nextjs has a folder base route structure, it is used by importing the `Rou
 
 <br />
 
-&#8594 [Refer to the react-router's `<RouteComponent>` for detailed usage information.](https://github.com/pankod/refine/blob/alpha/packages/react-router/src/routerComponent.tsx)  
-&#8594 [Refer to the nextjs-router's `<nextRouteComponent>` for detailed usage information.](https://github.com/pankod/refine/blob/alpha/packages/nextjs-router/src/nextRouteComponent.tsx)
+&#8594 [Refer to the react-router's `<RouteComponent>` for detailed usage information.][routecomponent]  
+&#8594 [Refer to the nextjs-router's `<NextRouteComponent>` for detailed usage information.](https://github.com/pankod/refine/blob/alpha/packages/nextjs-router/src/nextRouteComponent.tsx)
+
+## Serving the application from a subdirectory
+
+<Tabs
+defaultValue="react-subdirectory"
+values={[
+{label: 'React', value: 'react-subdirectory'},
+{label: 'Nextjs', value: 'nextjs-subdirectory'}
+]}>
+<TabItem value="react-subdirectory">
+
+If you want to serve from a subdirectory in your **refine** react app. You can use `basename` property of [`<BrowserRouter>`][browserrouter].
+
+The [`<RouteComponent>`][routecomponent] in the [react-router][react-router] package passes all its properties to the [`<BrowserRouter>`][browserrouter] component. Therefore, a `<BrowserRouter>` property that we will give to the `<RouteComponent>` is passed to the `<BrowserRouter>` that wraps our application.
+
+In the example below you can see how to serve the application in a subdirectory.
+
+```tsx {1,9,11,16-19} title="src/App.tsx"
+import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
+import dataProvider from "@pankod/refine-simple-rest";
+import "@pankod/refine/dist/styles.min.css";
+
+import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const { RouterComponent } = routerProvider;
+
+const CustomRouterComponent = () => <RouterComponent basename="/admin" />;
+
+const App: React.FC = () => {
+    return (
+        <Refine
+            routerProvider={{
+                ...routerProvider,
+                RouterComponent: CustomRouterComponent,
+            }}
+            dataProvider={dataProvider(API_URL)}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+            ]}
+        />
+    );
+};
+
+export default App;
+```
+
+Now you can access our application at `www.domain.com/admin`.
+
+  </TabItem>
+    <TabItem value="nextjs-subdirectory">
+
+To serve your application from a subdirectory in your **refine** Nextjs application, simply add `basePath` to your `next.config.js` file.
+
+```ts
+module.exports = {
+    basePath: "/admin",
+};
+```
+
+[Refer to the `Nextjs` documentation for detailed usage information. &#8594](https://nextjs.org/docs/api-reference/next.config.js/basepath)
+
+Now you can access our application at `www.domain.com/admin`.
+
+  </TabItem>
+</Tabs>
+
+[browserrouter]: https://reactrouter.com/web/api/BrowserRouter
+[routecomponent]: https://github.com/pankod/refine/blob/alpha/packages/react-router/src/routerComponent.tsx
+[react-router]: https://github.com/pankod/refine/tree/alpha/packages/react-router
+[nextjs-router]: https://github.com/pankod/refine/tree/alpha/packages/nextjs-router
