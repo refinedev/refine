@@ -360,6 +360,56 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                 "getApiUrl method is not implemented on refine-hasura data provider.",
             );
         },
+
+        custom: async ({ url, method, headers, metaData }) => {
+            let gqlClient = client;
+
+            if (url) {
+                gqlClient = new GraphQLClient(url, { headers });
+            }
+
+            if (metaData) {
+                if (metaData.operation) {
+                    if (method === "get") {
+                        const { query, variables } = gql.query({
+                            operation: metaData.operation,
+                            fields: metaData.fields,
+                            variables: metaData.variables,
+                        });
+
+                        const response = await gqlClient.request(
+                            query,
+                            variables,
+                        );
+
+                        return {
+                            data: response[metaData.operation],
+                        };
+                    } else {
+                        const { query, variables } = gql.mutation({
+                            operation: metaData.operation,
+                            fields: metaData.fields,
+                            variables: metaData.variables,
+                        });
+
+                        const response = await gqlClient.request(
+                            query,
+                            variables,
+                        );
+
+                        return {
+                            data: response[metaData.operation],
+                        };
+                    }
+                } else {
+                    throw Error("GraphQL operation name required.");
+                }
+            } else {
+                throw Error(
+                    "GraphQL need to operation, fields and variables values in metaData object.",
+                );
+            }
+        },
     };
 };
 
