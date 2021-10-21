@@ -322,7 +322,7 @@ Instead of showing the welcome page, the application should redirect now? to an 
 You'll still see a **404** error page because no **Page** component is assigned to our resource yet.
 
 :::note
-A `resources` use **Page** components to handle data and perform rendering. **Page** components are passed to a `resources` as an array of objects.
+`resources` use **Page** components to handle data and perform rendering. **Page** components are passed to `resources` as an array of objects.
 For basic _CRUD_ operations, there are **four** predefined props: **list**, **create**, **edit** and **show**.
 :::
 
