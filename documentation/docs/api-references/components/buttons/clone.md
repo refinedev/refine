@@ -6,7 +6,7 @@ title: Clone
 import cloneButton from '@site/static/img/guides-and-concepts/components/buttons/clone/clone.png';
 
 `<CloneButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `clone` method from [useNavigation](/api-references/hooks/navigation/useNavigation.md) under the hood.
-It can be useful when redirecting the app to the create page with the record id route of `<Resource>`.
+It can be useful when redirecting the app to the create page with the record id route of resource.
 
 ## Usage
 
@@ -78,7 +78,7 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/api-re
 
 ### `resourceName`
 
-It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of the `<Resource>` component.
+It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of the resource object.
 
 ```tsx twoslash
 import { CloneButton } from "@pankod/refine";

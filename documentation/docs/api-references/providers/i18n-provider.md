@@ -31,7 +31,8 @@ const i18nProvider = {
 After creating a `i18nProvider`, you can pass it to the `<Refine>` component.
 
 ```tsx title="src/App.tsx"
-import { Refine, Resource } from "@pankod/refine";
+import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import i18nProvider from "./i18nProvider";
@@ -39,11 +40,11 @@ import i18nProvider from "./i18nProvider";
 const App: React.FC = () => {
     return (
         <Refine
+            routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             i18nProvider={i18nProvider}
-        >
-            <Resource name="posts" />
-        </Refine>
+            resources={[{ name: "posts" }]}
+        />
     );
 };
 ```
@@ -116,9 +117,10 @@ We use `React.Suspense` because it improves performance by preventing the app fr
 
 Next, we will include the i18n instance and create the `i18nProvider` using `react-i18next`.
 
-```tsx title="src/App.tsx" {2, 7, 9-13, 18}
-import { Refine, Resource } from "@pankod/refine";
+```tsx title="src/App.tsx" {3, 8, 8-14, 20}
+import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router";
 import { useTranslation } from "react-i18next";
 
 import { PostList } from "pages/posts";
@@ -134,11 +136,11 @@ const App: React.FC = () => {
 
     return (
         <Refine
+            routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             i18nProvider={i18nProvider}
-        >
-            <Resource name="posts" list={PostList} />
-        </Refine>
+            resources={[{ name: "posts", list: PostList }]}
+        />
     );
 };
 ```
@@ -487,9 +489,10 @@ export const Header: React.FC = () => {
 
 Then, we will pass `<Header>` to the `<Refine>` component as a property.
 
-```tsx title="src/App.tsx" {7, 22}
+```tsx title="src/App.tsx" {8, 24}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router";
 import { useTranslation } from "react-i18next";
 import "./i18n";
 
@@ -508,12 +511,12 @@ const App: React.FC = () => {
 
     return (
         <Refine
+            routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             i18nProvider={i18nProvider}
             Header={Header}
-        >
-            <Resource name="posts" list={PostList} />
-        </Refine>
+            resources={[{ name: "posts", list: PostList }]}
+        />
     );
 };
 ```

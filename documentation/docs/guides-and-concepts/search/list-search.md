@@ -84,10 +84,11 @@ interface IPost {
 }
 ```
 
-Let's pass the list page we created to our `<Resource>` component.
+After creating the `<PostList>` component, add it to resource with `list` prop:
 
-```tsx {5, 12}
+```tsx {6, 15}
 import { Refine, Resource } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import "@pankod/refine/dist/styles.min.css";
@@ -98,14 +99,17 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine dataProvider={dataProvider(API_URL)}>
-            <Resource name="posts" list={PostList} />
-        </Refine>
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider(API_URL)}
+            resources={[{ name: "posts", list: PostList }]}
+        />
     );
 };
 
 export default App;
 ```
+
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -195,7 +199,6 @@ interface IPostFilterVariables {
 ```
 
 When the form is submitted, the `onSearch` method runs and we get the search form values. Then the `listProps` is refreshed according to the criteria.
-
 
 <div class="img-container">
     <div class="window">

@@ -21,6 +21,7 @@
 [![npm](https://img.shields.io/npm/dm/@pankod/refine)](https://www.npmjs.com/package/@pankod/refine)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](code_of_conduct.md)
 [![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/UuU3XCc3J5)
+
 </div>
 
 <div align="center">
@@ -29,8 +30,7 @@
 
 ## About
 
-[**refine**](https://refine.dev/) offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to *admin panels*, *B2B applications* and *dashboards*.
-
+[**refine**](https://refine.dev/) offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to _admin panels_, _B2B applications_ and _dashboards_.
 
 ## Documentation
 
@@ -54,13 +54,13 @@ For more detailed information and usage, refer to the [refine documentation](htt
 
 ## Motivation
 
-Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility. 
+Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility.
 
 After many years of experience in developing B2B frontend applications and working with popular frameworks, we came up with a new approach to tackle this dilemma. This is how **refine** is born.
 
 **refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
 
-As **refine** is totally *unopinionated* about UI and logic, it's strongly *opinionated* about three parts of your application:
+As **refine** is totally _unopinionated_ about UI and logic, it's strongly _opinionated_ about three parts of your application:
 
 1. **API Networking**
 2. **State Management**
@@ -72,8 +72,8 @@ We believe, these are the most important components of a data-intensive frontend
 
 ## Architecture
 
-**refine** makes extensive use of [hooks](https://reactjs.org/docs/hooks-reference.html#gatsby-focus-wrapper) as a default way for interacting with your components. 
-Under the hood, **refine** relies heavily to [React Query](https://react-query.tanstack.com/) for data handling, caching and state management. 
+**refine** makes extensive use of [hooks](https://reactjs.org/docs/hooks-reference.html#gatsby-focus-wrapper) as a default way for interacting with your components.
+Under the hood, **refine** relies heavily to [React Query](https://react-query.tanstack.com/) for data handling, caching and state management.
 Access to external sources and API's happen via providers which are basically plug-in type components for extendibility.
 
 <br/>
@@ -82,20 +82,18 @@ Access to external sources and API's happen via providers which are basically pl
     <img src="https://raw.githubusercontent.com/pankod/refine/master/documentation/static/img/getting-started/refine_architecture.png" width="400px" />
 </div>
 
-
 ## Benchmark
 
-After releasing the first internal versions, we had the chance to migrate some of our *React* projects to **refine**.
+After releasing the first internal versions, we had the chance to migrate some of our _React_ projects to **refine**.
 In addition to **shorter development** times and **overall performance gains**, we've measured significant reduction in project size.
 
-**refine** makes your codebase significantly smaller, by eliminating redundant code such as *reducers*, *actions* and *unit tests*. Below is a size comparison for an example project:
+**refine** makes your codebase significantly smaller, by eliminating redundant code such as _reducers_, _actions_ and _unit tests_. Below is a size comparison for an example project:
 
 <br/>
 
 <div align="center">
     <img src="https://raw.githubusercontent.com/pankod/refine/master/documentation/static/img/getting-started/benchmark.png" width="400px" align="center" />
 </div>
-
 
 ## Quick Start
 
@@ -105,7 +103,7 @@ Run the **superplate** tool with the following command:
 npx superplate-cli tutorial
 ```
 
-Follow the *CLI wizard* to select options and start creating your project.
+Follow the _CLI wizard_ to select options and start creating your project.
 
 After setup is complete, navigate to the project folder and start your project with:
 
@@ -115,7 +113,7 @@ npm run dev
 
 Your **refine** application will be accessible at [http://localhost:3000](http://localhost:3000).
 
-Replace the contents of ```App.tsx``` with the following code:
+Replace the contents of `App.tsx` with the following code:
 
 ```tsx title="App.tsx"
 import React from "react";
@@ -128,15 +126,23 @@ import {
     useMany,
     DateField,
 } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import "@pankod/refine/dist/styles.min.css";
 
 const App: React.FC = () => {
     return (
-        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
-            <Resource name="posts" list={PostList} />
-        </Refine>
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                },
+            ]}
+        />
     );
 };
 
@@ -195,9 +201,7 @@ interface ICategory {
     id: string;
     title: string;
 }
-
 ```
-
 
 ## Roadmap
 
@@ -208,6 +212,7 @@ interface ICategory {
 ☑️ Support for more UI frameworks (MaterialUI, Chakra, Spectrum etc.)
 
 ## Stargazers
+
 [![Stargazers repo roster for pankod/refine](https://reporoster.com/stars/pankod/refine)](https://github.com/pankod/refine/stargazers)
 
 ## Contribution
@@ -221,4 +226,5 @@ If you are willing to fix an issue or propose a feature; all PRs with clear expl
 Licensed under the MIT License, Copyright © 2021-present Pankod
 
 ## Special Thanks
+
 [React Admin](https://marmelab.com/react-admin/) has been a great source of ideas and inspiration for refine. Big thanks to friends at [Marmelab](https://marmelab.com) for the amazing work they are doing.
