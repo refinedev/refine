@@ -4,7 +4,11 @@ import { GraphQLClient } from "graphql-request";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import { CategoriesList } from "pages/categories";
+import {
+    CategoriesList,
+    CategoriesCreate,
+    CategoriesEdit,
+} from "pages/categories";
 
 const API_URL = "https://flowing-mammal-24.hasura.app/v1/graphql";
 
@@ -26,7 +30,12 @@ const App: React.FC = () => {
                 edit={PostEdit}
                 show={PostShow}
             />
-            <Resource name="categories" list={CategoriesList} />
+            <Resource
+                name="categories"
+                list={CategoriesList}
+                create={CategoriesCreate}
+                edit={CategoriesEdit}
+            />
         </Refine>
     );
 };

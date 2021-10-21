@@ -29,12 +29,6 @@ export const CategoriesList: React.FC<IResourceComponentsProps> = () => {
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
                 <Table.Column dataIndex="title" title="Title" />
-                <Table.Column
-                    dataIndex="created_at"
-                    title="Created At"
-                    render={(value) => <DateField value={value} format="LLL" />}
-                    sorter
-                />
                 <Table.Column<ICategory>
                     title="Actions"
                     dataIndex="actions"
