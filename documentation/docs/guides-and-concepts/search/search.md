@@ -55,8 +55,9 @@ We created the `<Header>` component as we want it to appear. We have not done an
 :::note
 Let's not forget to pass the `<Header>` component to the `<Refine>` component in `App.tsx` as below.
 
-```tsx title="src/App.tsx" {5, 13}
+```tsx title="src/App.tsx" {6, 15}
 import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import "@pankod/refine/dist/styles.min.css";
@@ -68,11 +69,10 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <Refine
+            routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
             Header={Header}
-        >
-            ...
-        </Refine>
+        />
     );
 };
 

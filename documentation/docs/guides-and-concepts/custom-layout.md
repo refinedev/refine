@@ -3,23 +3,24 @@ id: custom-layout
 title: Custom Layout
 ---
 
-You can create custom layouts using [`<Refine>`][Refine] and [`<LayoutWrapper>`][LayoutWrapper] components.
+You can create custom layouts using [`<Refine>`][refine] and [`<LayoutWrapper>`][layoutwrapper] components.
 
-Both of these components can accept the listed props for customization. [`<Refine>`][Refine] being for global customization and the [`<LayoutWrapper>`][LayoutWrapper] being for local.
+Both of these components can accept the listed props for customization. [`<Refine>`][refine] being for global customization and the [`<LayoutWrapper>`][layoutwrapper] being for local.
 
-* [`Layout`][Layout]
-* [`Sider`][Sider]
-* [`Footer`][Footer]
-* [`Header`][Header]
-* [`OffLayoutArea`][OffLayoutArea]
-* [`Title`][Title]
+-   [`Layout`][layout]
+-   [`Sider`][sider]
+-   [`Footer`][footer]
+-   [`Header`][header]
+-   [`OffLayoutArea`][offlayoutarea]
+-   [`Title`][title]
 
 ## Usage
 
 Let's look at an example of modifying the default layout to have a top menu layout.
 
-```tsx title="/src/App.tsx" {6, 14-34}
-import { Refine, Resource, AntdLayout, Link } from "@pankod/refine";
+```tsx title="/src/App.tsx" {7, 16-36}
+import { Refine, AntdLayout, Link } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -32,6 +33,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <Refine
+            routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
             Layout={({ children, Footer, OffLayoutArea }) => (
                 <AntdLayout>
@@ -54,18 +56,16 @@ const App: React.FC = () => {
                     <img src="/refine.svg" alt="Refine" />
                 </Link>
             )}
-        >
-            <Resource name="posts" list={PostList} />
-        </Refine>
+        />
     );
 };
 
 export default App;
 ```
 
-Here, we override the [`<Title>`][Title] and [`<Layout>`][Layout] components. When we override [`<Layout>`][Layout], we put the `<CustomSider>` (insted of the [`<Sider>`][Sider] that was provided to [`<Layout>`][Layout] to render it by default) on top of [`<AntdLayout>`][AntdLayout].
+Here, we override the [`<Title>`][title] and [`<Layout>`][layout] components. When we override [`<Layout>`][layout], we put the `<CustomSider>` (insted of the [`<Sider>`][sider] that was provided to [`<Layout>`][layout] to render it by default) on top of [`<AntdLayout>`][antdlayout].
 
-So, we just provided a custom [`<Sider>`][Sider]. Here's our custom sider that looks horizontal, instead of the default vertical one:
+So, we just provided a custom [`<Sider>`][sider]. Here's our custom sider that looks horizontal, instead of the default vertical one:
 
 ```tsx twoslash title="/src/components/sider/index.tsx" {3-4, 8, 10-14}
 import { Link, Menu, useMenu, useTitle } from "@pankod/refine";
@@ -89,14 +89,14 @@ export const CustomSider: React.FC = () => {
 };
 ```
 
-Here, we use [`useMenu`][useMenu] hook to get the list of current resources and print it.
+Here, we use [`useMenu`][usemenu] hook to get the list of current resources and print it.
 
 :::info
-By default, [`<Sider>`][Sider] is responsible for rendering [`<Title>`][Title]. It gets this component (configured by [`<Refine>`][Refine] and/or [`<LayoutWrapper>`][LayoutWrapper]) by [`useTitle`][useTitle] hook.
+By default, [`<Sider>`][sider] is responsible for rendering [`<Title>`][title]. It gets this component (configured by [`<Refine>`][refine] and/or [`<LayoutWrapper>`][layoutwrapper]) by [`useTitle`][usetitle] hook.
 :::
 
 :::info
-This example demonstrated how to configure a global layout. To learn how to use global layout in custom pages and make local modifications per page, [refer to the `<LayoutWrapper>` docs. &#8594][LayoutWrapper]
+This example demonstrated how to configure a global layout. To learn how to use global layout in custom pages and make local modifications per page, [refer to the `<LayoutWrapper>` docs. &#8594][layoutwrapper]
 :::
 
 ## Live Codesandbox Example
@@ -110,16 +110,16 @@ Here's how it looks in the end:
     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
-[Refine]: /api-references/components/refine-config.md
-[Layout]: /api-references/components/refine-config.md#layout
-[Sider]: /api-references/components/refine-config.md#sider
-[Footer]: /api-references/components/refine-config.md#footer
-[Header]: /api-references/components/refine-config.md#header
-[OffLayoutArea]: /api-references/components/refine-config.md#offlayoutarea
-[Title]: /api-references/components/refine-config.md#title
-[LayoutWrapper]: /api-references/components/layout-wrapper.md
-[Custom Page Example]: /guides-and-concepts/custom-pages.md
-[Custom Page Example Code]: /examples/customization/topMenuLayout.md
-[AntdLayout]: https://ant.design/components/layout/
-[useMenu]: /api-references/hooks/resource/useMenu.md
-[useTitle]: /api-references/hooks/refine/useTitle.md
+[refine]: /api-references/components/refine-config.md
+[layout]: /api-references/components/refine-config.md#layout
+[sider]: /api-references/components/refine-config.md#sider
+[footer]: /api-references/components/refine-config.md#footer
+[header]: /api-references/components/refine-config.md#header
+[offlayoutarea]: /api-references/components/refine-config.md#offlayoutarea
+[title]: /api-references/components/refine-config.md#title
+[layoutwrapper]: /api-references/components/layout-wrapper.md
+[custom page example]: /guides-and-concepts/custom-pages.md
+[custom page example code]: /examples/customization/topMenuLayout.md
+[antdlayout]: https://ant.design/components/layout/
+[usemenu]: /api-references/hooks/resource/useMenu.md
+[usetitle]: /api-references/hooks/refine/useTitle.md

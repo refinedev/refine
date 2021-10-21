@@ -47,8 +47,9 @@ interface IPost {
 
 We didn't give any property to `useShow` because it can read `resource` and `id` information from the route.
 
-```tsx title="src/App.tsx" {3, 9}
+```tsx title="src/App.tsx" {4, 11}
 import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-json-server";
 
 import { PostShow } from "./pages/posts";
@@ -56,6 +57,7 @@ import { PostShow } from "./pages/posts";
 export const App: React.FC = () => {
     return (
         <Refine
+            routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[{ name: "posts", show: PostShow }]}
         />
@@ -169,8 +171,9 @@ export const PostList: React.FC = () => {
 
 Finally, let's pass this page to the `resources` as a list component.
 
-```tsx title="src/App.tsx" {3,9}
+```tsx title="src/App.tsx" {4,11}
 import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-json-server";
 
 import { PostList } from "./pages/posts";
@@ -178,6 +181,7 @@ import { PostList } from "./pages/posts";
 export const App: React.FC = () => {
     return (
         <Refine
+            routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[{ name: "posts", list: PostList }]}
         />

@@ -1,4 +1,4 @@
-import { Refine, Resource } from "@pankod/refine";
+import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 
@@ -13,15 +13,16 @@ const App = () => {
         <Refine
             dataProvider={dataProvider(API_URL)}
             routerProvider={routerProvider}
-        >
-            <Resource
-                name="posts"
-                list={PostList}
-                create={PostCreate}
-                edit={PostEdit}
-                show={PostShow}
-            />
-        </Refine>
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+            ]}
+        ></Refine>
     );
 };
 

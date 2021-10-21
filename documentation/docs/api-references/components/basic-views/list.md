@@ -90,8 +90,9 @@ export const ListPage: React.FC = () => {
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
-```tsx twoslash
+```tsx twoslash {4-6, 14-20}
 import { Refine, List } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 const CustomPage = () => {
@@ -101,6 +102,7 @@ const CustomPage = () => {
 export const App: React.FC = () => {
     return (
         <Refine
+            routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
             resources={[{ name: "posts" }]}
             routes={[

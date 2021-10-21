@@ -11,7 +11,8 @@ import benchmarkChart from '@site/static/img/getting-started/benchmark.png';
 
 **refine** is a [React](https://reactjs.org/)-based framework for building data-intensive applications in no time :sparkles: It ships with [Ant Design System](https://ant.design/), an enterprise-level UI toolkit.
 
-Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to *admin panels*, *B2B applications* and *dashboards*.
+Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to _admin panels_, _B2B applications_ and _dashboards_.
+
 ###
 
 ## Key features
@@ -32,13 +33,13 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 ### Motivation
 
-Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility. 
+Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility.
 
 After many years of experience in developing B2B frontend applications and working with popular frameworks, we came up with a new approach to tackle this dilemma. This is how **refine** is born.
 
 **Refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
 
-As **refine** is totally *unopinionated* about UI and logic, it's strongly *opinionated* about three parts of your application:
+As **refine** is totally _unopinionated_ about UI and logic, it's strongly _opinionated_ about three parts of your application:
 
 1. **API Networking**
 2. **State Management**
@@ -50,26 +51,24 @@ We believe, these are the most important components of a data-intensive frontend
 
 ### Architecture
 
-**refine** makes extensive use of [hooks](https://reactjs.org/docs/hooks-reference.html#gatsby-focus-wrapper) as a default way for interacting with your components. 
-Under the hood, **refine** relies heavily to [React Query](https://react-query.tanstack.com/) for data handling, caching and state management. 
+**refine** makes extensive use of [hooks](https://reactjs.org/docs/hooks-reference.html#gatsby-focus-wrapper) as a default way for interacting with your components.
+Under the hood, **refine** relies heavily to [React Query](https://react-query.tanstack.com/) for data handling, caching and state management.
 Access to external sources and API's happen via providers which are basically plug-in type components for extendibility.
 
 <div style={{textAlign: "center"}}>
     <img src={architectureDiagram} width="400px" />
 </div>
 
-
 ### Benchmark
 
-After releasing the first internal versions, we had the chance to migrate some of our *React* projects to **refine**.
+After releasing the first internal versions, we had the chance to migrate some of our _React_ projects to **refine**.
 In addition to **shorter development** times and **overall performance gains**, we've measured significant reduction in project size.
 
-**refine** makes your codebase significantly smaller, by eliminating redundant code such as *reducers*, *actions* and *unit tests*. Below is a size comparison for an example project:
+**refine** makes your codebase significantly smaller, by eliminating redundant code such as _reducers_, _actions_ and _unit tests_. Below is a size comparison for an example project:
 
 <div style={{textAlign: "center"}}>
     <img src={benchmarkChart} width="400px" />
 </div>
-
 
 ### Quick Start
 
@@ -79,7 +78,7 @@ Run the **superplate** tool with the following command:
 npx superplate-cli tutorial
 ```
 
-Follow the *CLI wizard* to select options and start creating your project.
+Follow the _CLI wizard_ to select options and start creating your project.
 
 After setup is complete, navigate to the project folder and start your project with:
 
@@ -89,28 +88,29 @@ npm run dev
 
 Your **refine** application will be accessible at [http://localhost:3000](http://localhost:3000).
 
-Replace the contents of ```App.tsx``` with the following code:
+Replace the contents of `App.tsx` with the following code:
 
 ```tsx title="App.tsx"
-import React from "react";
 import {
     Refine,
-    Resource,
     useTable,
     List,
     Table,
     useMany,
     DateField,
 } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import "@pankod/refine/dist/styles.min.css";
 
 const App: React.FC = () => {
     return (
-        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
-            <Resource name="posts" list={PostList} />
-        </Refine>
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[{ name: "posts", list: PostList }]}
+        />
     );
 };
 
@@ -169,9 +169,7 @@ interface ICategory {
     id: string;
     title: string;
 }
-
 ```
-
 
 ### Roadmap
 

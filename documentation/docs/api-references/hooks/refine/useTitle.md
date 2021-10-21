@@ -9,8 +9,9 @@ title: useTitle
 
 Normally refine provides a default title. If we want to build a custom title instead of default one that comes with **refine**, we need to overwrite it like this:
 
-```tsx twoslash title="src/App.tsx" {9-14}
+```tsx twoslash title="src/App.tsx" {11-16}
 import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import "@pankod/refine/dist/styles.min.css";
@@ -18,6 +19,7 @@ import "@pankod/refine/dist/styles.min.css";
 export const App: React.FC = () => {
     return (
         <Refine
+            routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             Title={({ collapsed }) => (
                 <div>

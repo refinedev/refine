@@ -17,8 +17,8 @@ export interface LayoutWrapperProps {
 
 /**
  * `<LayoutWrapper>` wraps its contents in **refine's** layout with all customizations made in {@link https://refine.dev/docs/api-references/components/refine-config `<Refine>`} component.
- * It is the default layout used in {@link https://refine.dev/docs/api-references/components/resource `<Resource>`} pages.
- * It can be used in [custom pages][Custom Pages] to use global layout.
+ * It is the default layout used in resource pages.
+ * It can be used in custom pages to use global layout.
  *
  * @see {@link https://refine.dev/docs/api-references/components/layout-wrapper} for more details.
  */
