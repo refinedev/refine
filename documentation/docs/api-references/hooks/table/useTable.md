@@ -58,7 +58,7 @@ interface IPost {
 ```
 
 :::tip
-In a page in `<Resource>` given to `<Refine>` component, `useTable` decides which sources are going to be shown automatically.
+In a page in resource given to `<Refine>` component, `useTable` decides which sources are going to be shown automatically.
 If you want to show the data that comes from the endpoint of another `resource` . You can do so with the `resource: string` option in the option object that the `useTable(options)` hook takes.
 If the `resource` option is given, `syncWithLocation` will not work.
 

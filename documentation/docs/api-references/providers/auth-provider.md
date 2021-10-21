@@ -34,10 +34,9 @@ Authorization hooks are used to manage authentication and authorization operatio
 
 To use `authProvider` in **refine**, we have to pass the `authProvider` to the `<Refine />` component.
 
-```tsx title="App.tsx" {5, 12}
-import {
-    Refine,
-} from "@pankod/refine";
+```tsx title="App.tsx" {4, 11}
+import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import authProvider from "./auth-provider";
@@ -48,10 +47,9 @@ const App = () => {
     return (
         <Refine
             authProvider={authProvider}
+            routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
-        >
-            ...
-        </Refine>
+        />
     );
 };
 ```
@@ -101,7 +99,7 @@ const authProvider = {
 `login` method will be accessible via `useLogin` auth hook.
 
 ```tsx twoslash
-const values = { };
+const values = {};
 
 // ---cut---
 
@@ -148,7 +146,7 @@ After submission, login form calls the `login` method from `authProvider`.
 <br />
 
 :::important
-If an `authProvider` is given, [Resources](/api-references/components/resource.md) passed to `<Refine>` as children are only accessible if the login is successful. if no `authProvider` was provided, they are accessible without authentication.  
+If an `authProvider` is given, `resources` passed to `<Refine>` as propery are only accessible if the login is successful. if no `authProvider` was provided, they are accessible without authentication.  
 :::
 
 :::tip
@@ -267,7 +265,10 @@ const authProvider = {
 `checkError` method will be accessible via the `useCheckError` auth hook.
 
 ```tsx twoslash
-const error: { message:string, statusCode: number } = { message: "Expired Access Token", statusCode: 401 }
+const error: { message: string; statusCode: number } = {
+    message: "Expired Access Token",
+    statusCode: 401,
+};
 // ---cut---
 
 import { useCheckError } from "@pankod/refine";
@@ -323,7 +324,7 @@ const authProvider = {
 
 <br />
 
-- A custom `redirectPath` can be given to `Promise` reject from the `checkAuth`. If you want to redirect yourself to a certain URL.
+-   A custom `redirectPath` can be given to `Promise` reject from the `checkAuth`. If you want to redirect yourself to a certain URL.
 
 ```tsx {5}
 const authProvider = {
@@ -336,6 +337,7 @@ const authProvider = {
    ...
 };
 ```
+
 <br/>
 
 `checkAuth` method will be accessible via `useAuthenticated` auth hook.
@@ -482,7 +484,7 @@ After user logs in, their credentials can be sent along with the API request by 
 
 We'll show how to add a token acquired from the `login` method to the **Authorization** header of the **HTTP** requests.
 
-```tsx title="App.tsx" {1, 3, 5-8, 19-22, 33}
+```tsx title="App.tsx" {1, 3, 5-8, 19-22, 32}
 ...
 import axios from "axios";
 
@@ -516,9 +518,9 @@ const App = () => {
     return (
         <Refine
             authProvider={authProvider}
-            dataProvider={dataProvider(API_URL, axiosInstance)}>
-            ...
-        </Refine>
+            routerProvider={routerProvider}
+            dataProvider={dataProvider(API_URL, axiosInstance)}
+        />
     );
 }
 ```

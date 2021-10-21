@@ -5,7 +5,7 @@ title: Show
 
 import showButton from '@site/static/img/guides-and-concepts/components/buttons/show/show.png';
 
-`<ShowButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `show` method from [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the show page with the record id route of `<Resource>`.
+`<ShowButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `show` method from [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
 
 ## Usage
 
@@ -76,7 +76,7 @@ Clicking the button will trigger the `show` method of [`useNavigation`](/api-ref
 
 ### `resourceName`
 
-Redirection endpoint(`resourceName/show`) is defined by `resourceName` property. By default, `<ShowButton>` uses `name` property of the `<Resource>` component as an endpoint to redirect after clicking.
+Redirection endpoint(`resourceName/show`) is defined by `resourceName` property. By default, `<ShowButton>` uses `name` property of the resource object as an endpoint to redirect after clicking.
 
 ```tsx twoslash
 import { ShowButton } from "@pankod/refine";

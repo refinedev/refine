@@ -3,7 +3,7 @@ id: useNavigation
 title: useNavigation
 ---
 
-**refine** uses [`React Router`](https://reactrouter.com/web/api/Hooks) and comes with all redirects out of the box. It allows you to manage your routing operations in refine. Using this hook, you can manage all the routing operations of your application very easily.
+**refine** uses [`routerProvider`](#) and comes with all redirects out of the box. It allows you to manage your routing operations in refine. Using this hook, you can manage all the routing operations of your application very easily.
 
 ```tsx twoslash
 import { useNavigation } from "@pankod/refine";
@@ -12,7 +12,7 @@ const { create, edit, clone, show, list, push, replace, goBack } = useNavigation
 ```
 
 :::tip
-`useNavigation` uses React Router's [useHistory](https://reactrouter.com/web/api/Hooks/usehistory) hook.
+`useNavigation` uses the `useHistory` of the [`routerProvider`](#).
 :::
 
 ### Usage
@@ -214,7 +214,7 @@ export const MyHistoryButtons = () => {
 | Property                                          | Description                                 | Type                      | Default  |
 | ------------------------------------------------- | ------------------------------------------- | ------------------------- | -------- |
 | resource <div className="required">Required</div> | Redirect the app to the given resource name | `string`                  |          |
-| type                                              | It is React Router history types            | [HistoryType](#interface) | `"push"` |
+| type                                              | It is [`routerProvider`](#) history types            | [HistoryType](#interface) | `"push"` |
 | id                                                | It is used to append to the end of the path | `string`                  |          |
 
 ### Return values

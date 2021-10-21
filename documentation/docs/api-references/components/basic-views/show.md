@@ -9,13 +9,13 @@ import isLoading from '@site/static/img/guides-and-concepts/basic-views/show/isL
 
 `<Show>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a refresh button or giving title to the page.
 
-We will show what `<Show>` does ?using properties with examples.
+We will show what `<Show>` does using properties with examples.
 
 ## Properties
 
 ### `canDelete` and `canEdit`
 
-`canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the `<Resource>` has `canDelete` or `canEdit` property refine adds the buttons by default.
+`canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the resource has `canDelete` or `canEdit` property refine adds the buttons by default.
 
 When clicked on, delete button executes the `useDelete` method provided by the [`dataProvider`](api-references/providers/data-provider.md) and the edit button redirects the user to the record edit page.
 
@@ -100,6 +100,7 @@ export const ShowPage: React.FC = () => {
     return <Show isLoading={isLoading}>...</Show>;
 };
 ```
+
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -112,7 +113,7 @@ export const ShowPage: React.FC = () => {
 
 ### `pageHeaderProps`
 
-`<Show>` uses the Ant Design [`<PageHeader>`](https://ant.design/components/page-header/#API) components so you can customize it with the properties of `pageHeaderProps`. By default, the `extra` property of the `<PageHeader>` component shows `<RefreshButton>`, `<ListButton>`, `<EditButton>` and `<DeleteButton>` depending on your resource definition on the `<Resource>` component.
+`<Show>` uses the Ant Design [`<PageHeader>`](https://ant.design/components/page-header/#API) components so you can customize it with the properties of `pageHeaderProps`. By default, the `extra` property of the `<PageHeader>` component shows `<RefreshButton>`, `<ListButton>`, `<EditButton>` and `<DeleteButton>` based on your resource definition in the `resources` property you pass to `<Refine>`.
 
 ```tsx twoslash
 import { Show } from "@pankod/refine";
@@ -187,9 +188,10 @@ The `<Show>` component reads the `resource` information from the route by defaul
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
-```tsx twoslash
-import { Refine, Resource, Show } from "@pankod/refine";
+```tsx twoslash {4-10, 18-24}
+import { Refine, Show } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router";
 
 const CustomPage = () => {
     return (
@@ -202,7 +204,9 @@ const CustomPage = () => {
 export const App: React.FC = () => {
     return (
         <Refine
+            routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
+            resources={[{ name: "posts" }]}
             routes={[
                 {
                     exact: true,
@@ -210,9 +214,7 @@ export const App: React.FC = () => {
                     path: "/custom",
                 },
             ]}
-        >
-            <Resource name="posts" />
-        </Refine>
+        />
     );
 };
 ```
@@ -225,13 +227,13 @@ The `<Show>` component needs the `id` information for work properly, so if you u
 
 ### Properties
 
-| Property        | Description                                                                    | Type                                                              | Default                                                                            |
-| --------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| canDelete       | Adds a delete button                                                           | `boolean`                                                         | If `<Resource>` has `canDelete` prop it is `true` else `false`                     |
-| canEdit         | Adds an edit button                                                            | `boolean`                                                         | If `<Resource>` has `canEdit` prop it is `true` else `false`                       |
-| title           | Adds a title                                                                   | `string`                                                          | `"Show"` prefix and singular of `resource.name`                                    |
-| actionButtons   | Gets passed to the `extra` prop of the `<Card>`                                | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
-| isLoading       | Gets passed to the `loading` prop of the `<Card>`                              | `boolean`                                                         | `false`                                                                            |
-| pageHeaderProps | Passes props for `<PageHeader>`                                                | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
-| recordItemId    | Record id for `<RefreshButton>`                                                | `string`                                                          |                                                                                    |
-| resource        | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                          | Resource name that it reads from the URL.                                          |
+| Property        | Description                                       | Type                                                              | Default                                                                        |
+| --------------- | ------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| canDelete       | Adds a delete button                              | `boolean`                                                         | If the resource has `canDelete` prop it is `true` else `false`                 |
+| canEdit         | Adds an edit button                               | `boolean`                                                         | If the resource has `canEdit` prop it is `true` else `false`                   |
+| title           | Adds a title                                      | `string`                                                          | `"Show"` prefix and singular of `resource.name`                                |
+| actionButtons   | Gets passed to the `extra` prop of the `<Card>`   | `React.ReactNode`                                                 | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
+| isLoading       | Gets passed to the `loading` prop of the `<Card>` | `boolean`                                                         | `false`                                                                        |
+| pageHeaderProps | Passes props for `<PageHeader>`                   | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` } |
+| recordItemId    | Record id for `<RefreshButton>`                   | `string`                                                          |                                                                                |
+| resource        | Resource name for API data interactions           | `string`                                                          | Resource name that it reads from the URL.                                      |

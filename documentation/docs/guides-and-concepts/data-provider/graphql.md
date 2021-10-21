@@ -51,9 +51,9 @@ We used [strapi-graphql](https://github.com/pankod/refine/tree/master/packages/s
 
 To activate data provider in `@pankod/refine-strapi-graphql`, we have to pass the API address with `GraphQLClient`.
 
-```tsx twoslash title="src/App.tsx" {2-3, 9}
+```tsx twoslash title="src/App.tsx" {2-3, 11}
 import { Refine } from "@pankod/refine";
-
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-strapi-graphql";
 import { GraphQLClient } from "graphql-request";
 
@@ -61,9 +61,10 @@ const client = new GraphQLClient("API_URL");
 
 const App: React.FC = () => {
     return (
-        <Refine dataProvider={dataProvider(client)}>
-            ...
-        </Refine>
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider(client)}
+        />
     );
 };
 ```
