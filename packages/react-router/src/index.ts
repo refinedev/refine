@@ -5,11 +5,19 @@ import {
     Prompt,
     Link,
 } from "react-router-dom";
+
 import { IRouterProvider } from "@pankod/refine";
 
 import { RouterComponent } from "./routerComponent";
 
-const RouterProvider: IRouterProvider = {
+interface IReactRouterProvider extends IRouterProvider {
+    useHistory: typeof useHistory;
+    useLocation: typeof useLocation;
+    Link: typeof Link;
+    useParams: typeof useParams;
+}
+
+const RouterProvider: IReactRouterProvider = {
     useHistory,
     useLocation,
     useParams,
@@ -17,5 +25,4 @@ const RouterProvider: IRouterProvider = {
     Link,
     RouterComponent,
 };
-
 export default RouterProvider;
