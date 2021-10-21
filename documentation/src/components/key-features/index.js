@@ -189,6 +189,14 @@ export const KeyFeatures = () => {
                         rel="noreferrer"
                     >
                         Supabase
+                    </a>
+                    ,{" "}
+                    <a
+                        href="https://hasura.io/"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        Hasura
                     </a>{" "}
                     and{" "}
                     <a
