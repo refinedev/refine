@@ -85,7 +85,7 @@ const App: React.FC = () => {
 
 The `routerProvider` methods **refine** expects are exactly the same as [react-router-dom](https://reactrouter.com/web) methods.
 
-To understand how to create a `routerProvider`, let's examine how the [react-router][react-router] and [nextjs-router][nextjs-router]] libraries provided by **refine** create a `routerProvider`.
+To understand how to create a `routerProvider`, let's examine how the [react-router][react-router] and [nextjs-router][nextjs-router] libraries provided by **refine** create a `routerProvider`.
 
 ### `useHistory`
 
