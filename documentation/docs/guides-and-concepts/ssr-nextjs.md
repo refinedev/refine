@@ -163,7 +163,7 @@ We used `getList` from `dataProvider` but data can be fetched in any way you des
 export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
 ```
 
-`NextRouteComponent` can be used in the following pages with any combination of them:
+`NextRouteComponent` can be used in the following pages
 - `pages/[resource].tsx`
 - `pages/[resource]/[action].tsx`
 - `pages/[resource]/[action]/[id].tsx`
@@ -193,7 +193,9 @@ type NextRouteComponentProps = {
     };
 };
 ```
-You can pass `pageData` from `getServerSideProps`. Data for every type of page can be passed with their respective fields in `pageData`. `NextRouteComponent` will pass this data as `initialData` to components. For example, since `list` component will be rendered for `/[resource]`, the page can use SSR like this:
+`pageData` must be passed as props from `getServerSideProps`. Data for every type of page must be passed with their respective fields in `pageData`. `NextRouteComponent` will pass this data as `initialData` to the components to be used for that page.
+
+For example, since `list` component will be rendered for `/[resource]`, the page can use SSR like this:
 
 ```tsx twoslash title="pages/[resource]/index.tsx"
 export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
@@ -222,7 +224,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 ```
 
-And in a `list` component for a `resource` e.g. "posts":
+And in the `list` component for a `resource` e.g. "posts":
 
 ```tsx title="src/components/posts/list.tsx" {10, 12-13}
 import {
@@ -257,6 +259,10 @@ interface IPost {
     firstName: string;
 }
 ```
+
+## Server Side Authentication
+
+
 
 
 [Nextjs]: https://nextjs.org/docs/getting-started
