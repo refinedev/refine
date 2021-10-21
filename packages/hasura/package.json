@@ -1,5 +1,5 @@
 {
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -52,5 +52,8 @@
     "gql-query-builder": "^3.5.5",
     "graphql": "^15.6.1",
     "graphql-request": "^3.5.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
