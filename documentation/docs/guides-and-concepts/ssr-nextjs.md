@@ -14,13 +14,13 @@ title: SSR-Next.js
 npm i @pankod/refine-nextjs-router
 ```
 
-:::info
+:::tip
 We recommend [**superplate**][supeprlate] to initialize your refine projects. It configures the project according to your needs including SSR with Next.js.
 :::
 
 ## Usage
 
-[`<Refine>`][Refine] must wrap your pages in a [custom App][NextjsCustomApp] component. This way your [pages][NextjsPages] are integrated to refine.
+[`<Refine>`][refine] must wrap your pages in a [custom App][NextjsCustomApp] component. This way your [pages][NextjsPages] are integrated to refine.
 
 ```tsx twoslash title="pages/_app.tsx" {10-15}
 import { AppProps } from "next/app";
@@ -89,7 +89,7 @@ Notice how we passed `resource` prop to [`useTable`][useTable]. This is necessar
 :::
 
 :::important
-We also used `<LayoutWrapper>` to show the page in the layout provided to [`<Refine>`][Refine]. This is deliberately opt-in to provide flexibility. [If you're building a standart CRUD page layout can be baked in automatically](#standart-crud-page).
+We also used `<LayoutWrapper>` to show the page in the layout provided to [`<Refine>`][refine]. This is deliberately opt-in to provide flexibility. [If you're building a standart CRUD page layout can be baked in automatically](#standart-crud-page).
 :::
 
 ### SSR
@@ -149,7 +149,7 @@ interface IPost {
 export default UserList;
 ```
 
-We use the [`getList`][getList] method from our [`dataProvider`][dataProvider] to fetch `users` data and pass through `props` as conventionally done in Next.js. Then `users` data is available in the props of our `/users` page. [`useTable`][useTable] can take options for underlying react-query queries with `queryOptions`, passing `users` data to its `initialData` loads the data on server side.
+We use the [`getList`][getList] method from our [`dataProvider`][dataProvider] to fetch `users` data and pass through `props` as conventionally done in Next.js. Then `users` data is available in the props of our `/users` page. [`useTable`][useTable] can take options for underlying react-query queries with `queryOptions`. Passing `users` data to its `initialData` loads the data on server side.
 
 :::tip
 We used `getList` from `dataProvider` but data can be fetched in any way you desire.
@@ -169,14 +169,14 @@ export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
 - `pages/[resource]/[action]/[id].tsx`
 - `pages/index.tsx`
 
-`NextRouteComponent` will use route parameters `resource` and `action` and render the associated component defined in [`resources`][Refine].
+`NextRouteComponent` will use route parameters `resource` and `action` and render the associated component defined in [`resources`][refine].
 
 - `list` component will be rendered for `/[resource]` route
 - `create`, `edit` and `show` will be rendered for `/[resource]/[action]` and `/[resource]/[action]/[id]` routes
 - For the root `/` route, it will render `DashboardPage` if it's defined and if not will navigate to the first resource in `resources`.
 
 :::important
-`NextRouteComponent` will wrap the page with `Layout` provided to [`<Refine>`][Refine]
+`NextRouteComponent` will wrap the page with `Layout` provided to [`<Refine>`][refine]
 :::
 
 ### SSR
@@ -262,15 +262,90 @@ interface IPost {
 
 ## Server Side Authentication
 
+**nextjs-router** package provides `checkAuthentication` to easily handle server side authentication.
 
+```tsx twoslash title="pages/[resource]/index.tsx" {1, 9-12, 13-15}
+const authProvider = {
+    login: () => Promise.resolve(),
+    logout: () => Promise.resolve(),
+    checkError: () => Promise.resolve(),
+    checkAuth: () => Promise.resolve(),
+    getPermissions: () => Promise.resolve(["admin"]),
+    getUserIdentity: () => Promise.resolve(),
+}
 
+// ---cut---
+export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
+import { checkAuthentication } from "@pankod/refine-nextjs-router";
+ 
+import { GetServerSideProps } from "next";
+ 
+const API_URL = "https://api.fake-rest.refine.dev";
+ 
+export const getServerSideProps: GetServerSideProps = async (context) => {
+ 
+    const { isAuthenticated, redirect } = await checkAuthentication(
+        authProvider,
+        context,
+    );
+
+    if (!isAuthenticated) {
+        return { redirect };
+    }
+ 
+    return {
+        props: { },
+    };
+};
+```
+
+`checkAuthentication` expects your `authProvider` and **getServerSideProps**'s `context`. It uses the `checkAuth` from the `authProvider` to check for authentication and returns `isAuthenticated` accordingly. It also returns a `redirect` object to handle unauthenticated case. It redirects to `/login` while keeping the original route to be navigated to after succesful login.
+
+## `syncWithLocation` and Query Parameters in SSR
+
+If `syncWithLocation` is enabled, query parameters must be handled while doing SSR.
+
+```tsx twoslash title="pages/users.tsx" {1, 8-14, 17-23}
+import { GetServerSideProps } from "next";
+import { parseTableParams } from "@pankod/refine";
+import dataProvider from "@pankod/refine-simple-rest";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+
+    const { resolvedUrl } = context;
+    const index = resolvedUrl.indexOf("?");
+    const search = resolvedUrl.slice(index);
+
+    const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
+        parseTableParams(search);
+
+    const data = await dataProvider(API_URL).getList({
+        resource: "users",
+        filters: parsedFilters,
+        pagination: {
+            current: parsedCurrent || 1,
+            pageSize: parsedPageSize || 10,
+        },
+        sort: parsedSorter,
+    });
+
+    return {
+        props: { users: data },
+    };
+};
+
+```
+
+`parseTableParams` parses the query string and returns query parameters([refer here for their interfaces][interfaces]). They can be directly used for `dataProvider` methods that accepts them.
 
 [Nextjs]: https://nextjs.org/docs/getting-started
 [NextjsRouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router
 [routerProvider]: /getting-started/overview.md
 [supeprlate]: https://github.com/pankod/superplate
 [NextjsCustomApp]: https://nextjs.org/docs/advanced-features/custom-app
-[Refine]: /api-references/components/refine-config.md
+[refine]: /api-references/components/refine-config.md
 [NextjsPages]: https://nextjs.org/docs/basic-features/pages
 [useTable]: /api-references/hooks/table/useTable.md
 [ReactQuerySSR]: https://react-query.tanstack.com/guides/ssr#using-initialdata
@@ -278,3 +353,4 @@ interface IPost {
 [getList]: /api-references/providers/data-provider.md#getlist
 [dataProvider]: /api-references/providers/data-provider.md
 [useTable]: /api-references/hooks/table/useTable.md
+[interfaces]: /api-references/interfaces.md/#crudfilters
