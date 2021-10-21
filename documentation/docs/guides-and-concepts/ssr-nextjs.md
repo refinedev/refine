@@ -11,7 +11,7 @@ title: SSR-Next.js
 [**nextjs-router**][NextjsRouter] package provided by **refine** must be used for the [`routerProvider`][routerProvider]
 
 ```bash
-npm i @pankod/refine-nextjs-router
+npm i @pankod/refine @pankod/refine-nextjs-router
 ```
 
 :::tip
