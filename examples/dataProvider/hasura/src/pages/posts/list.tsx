@@ -34,6 +34,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 },
                 "content",
                 "category_id",
+                "created_at",
             ],
         },
     });
