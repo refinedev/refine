@@ -16,6 +16,7 @@ export interface IRouterProvider {
     Prompt: React.FC<PromptProps>;
     Link: React.FC<any>;
     RouterComponent?: React.FC<any>;
+    routes?: any;
 }
 
 export interface IRouterContext {
@@ -26,6 +27,7 @@ export interface IRouterContext {
     >() => Params;
     Prompt: React.FC<PromptProps>;
     Link: React.FC<any>;
+    routes?: any;
 }
 
 export type PromptProps = {

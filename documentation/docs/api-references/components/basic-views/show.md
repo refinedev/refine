@@ -188,7 +188,7 @@ The `<Show>` component reads the `resource` information from the route by defaul
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
-```tsx twoslash {4-10, 18-24}
+```tsx twoslash {4-10, 15-24}
 import { Refine, Show } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
@@ -204,16 +204,18 @@ const CustomPage = () => {
 export const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                    {
+                        exact: true,
+                        component: CustomPage,
+                        path: "/custom",
+                    },
+                ]
+            }}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
             resources={[{ name: "posts" }]}
-            routes={[
-                {
-                    exact: true,
-                    component: CustomPage,
-                    path: "/custom",
-                },
-            ]}
         />
     );
 };

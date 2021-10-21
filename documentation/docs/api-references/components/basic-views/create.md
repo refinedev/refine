@@ -112,7 +112,7 @@ The `<Create>` component reads the `resource` information from the route by defa
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
-```tsx twoslash {4-6, 14-20}
+```tsx twoslash {4-6, 11-20}
 import { Refine, Create } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -124,16 +124,18 @@ const CustomPage = () => {
 export const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                    {
+                        exact: true,
+                        component: CustomPage,
+                        path: "/custom",
+                    },
+                ]
+            }}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
             resources={[{ name: "posts" }]}
-            routes={[
-                {
-                    exact: true,
-                    component: CustomPage,
-                    path: "/custom",
-                },
-            ]}
         />
     );
 };

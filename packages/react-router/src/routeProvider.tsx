@@ -10,14 +10,17 @@ import {
     IResourceItem,
     useResource,
     useRefineContext,
+    useRouterContext,
 } from "@pankod/refine";
 
 type IRoutesProps = RouteProps & { routes?: RouteProps[] };
 
-const RouteProviderBase: React.FC = () => {
+const RouteProviderBase: React.FC = (props) => {
     const { resources } = useResource();
-    const { catchAll, DashboardPage, LoginPage, customRoutes } =
-        useRefineContext();
+    const { catchAll, DashboardPage, LoginPage } = useRefineContext();
+
+    const { routes: customRoutes }: { routes: RouteProps[] } =
+        useRouterContext();
 
     const isAuthenticated = useIsAuthenticated();
     const { isLoading } = useAuthenticated({ type: "routeProvider" });

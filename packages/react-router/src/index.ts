@@ -4,6 +4,7 @@ import {
     useParams,
     Prompt,
     Link,
+    RouteProps,
 } from "react-router-dom";
 
 import { IRouterProvider } from "@pankod/refine";
@@ -15,6 +16,7 @@ interface IReactRouterProvider extends IRouterProvider {
     useLocation: typeof useLocation;
     Link: typeof Link;
     useParams: typeof useParams;
+    routes?: RouteProps[];
 }
 
 const RouterProvider: IReactRouterProvider = {

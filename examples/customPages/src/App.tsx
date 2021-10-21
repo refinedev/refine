@@ -49,20 +49,22 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-            routerProvider={routerProvider}
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                    {
+                        exact: true,
+                        component: PostReview,
+                        path: "/public-page",
+                    },
+                    {
+                        exact: true,
+                        component: AuthenticatedPostReview,
+                        path: "/authenticated-page",
+                    },
+                ] as typeof routerProvider.routes,
+            }}
             authProvider={authProvider}
-            routes={[
-                {
-                    exact: true,
-                    component: PostReview,
-                    path: "/public-page",
-                },
-                {
-                    exact: true,
-                    component: AuthenticatedPostReview,
-                    path: "/authenticated-page",
-                },
-            ]}
             resources={[
                 {
                     name: "posts",
