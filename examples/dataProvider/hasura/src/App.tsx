@@ -22,7 +22,7 @@ const gqlDataProvider = dataProvider(client);
 
 const App: React.FC = () => {
     return (
-        <Refine dataProvider={gqlDataProvider as any}>
+        <Refine dataProvider={gqlDataProvider}>
             <Resource
                 name="posts"
                 list={PostList}
