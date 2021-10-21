@@ -10,6 +10,8 @@ import { PostList, PostCreate, PostEdit, PostShow } from "@components";
 
 import { API_URL } from "../src/constants";
 
+import { authProvider } from "../src/authProvider";
+
 import "@pankod/refine/dist/styles.min.css";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
@@ -17,6 +19,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
+            authProvider={authProvider}
             resources={[
                 { name: "users" },
                 {
