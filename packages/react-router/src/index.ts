@@ -6,6 +6,7 @@ import {
     useParams,
     Prompt,
     Link,
+    RouteProps,
     BrowserRouterProps,
 } from "react-router-dom";
 
@@ -16,6 +17,7 @@ interface IReactRouterProvider extends IRouterProvider {
     useLocation: typeof useLocation;
     Link: typeof Link;
     useParams: typeof useParams;
+    routes?: RouteProps[];
     RouterComponent: React.FC<BrowserRouterProps>;
 }
 

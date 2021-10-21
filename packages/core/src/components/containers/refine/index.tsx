@@ -2,7 +2,6 @@ import React from "react";
 import { ConfigProvider, notification } from "antd";
 import { ConfigProviderProps } from "antd/lib/config-provider";
 import { ConfigProps } from "antd/lib/notification";
-import { RouteProps } from "react-router-dom";
 import {
     QueryClientProvider,
     QueryClient,
@@ -57,7 +56,6 @@ export interface RefineProps {
     mutationMode?: MutationMode;
     syncWithLocation?: boolean;
     warnWhenUnsavedChanges?: boolean;
-    routes?: RouteProps[];
     configProviderProps?: ConfigProviderProps;
     undoableTimeout?: number;
     Layout?: React.FC<LayoutProps>;
@@ -91,7 +89,6 @@ export const Refine: React.FC<RefineProps> = ({
     mutationMode = "pessimistic",
     syncWithLocation = false,
     warnWhenUnsavedChanges = false,
-    routes = [],
     configProviderProps = defaultConfigProviderProps,
     undoableTimeout = 5000,
     Title,
@@ -161,7 +158,6 @@ export const Refine: React.FC<RefineProps> = ({
                                             syncWithLocation={syncWithLocation}
                                             Title={Title}
                                             undoableTimeout={undoableTimeout}
-                                            customRoutes={routes}
                                             catchAll={catchAll}
                                             DashboardPage={DashboardPage}
                                             LoginPage={LoginPage}

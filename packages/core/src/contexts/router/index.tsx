@@ -20,6 +20,7 @@ export const RouterContextProvider: React.FC<IRouterContext> = ({
     useParams,
     Prompt,
     Link,
+    routes,
 }) => {
     return (
         <RouterContext.Provider
@@ -29,6 +30,7 @@ export const RouterContextProvider: React.FC<IRouterContext> = ({
                 useParams,
                 Prompt,
                 Link,
+                routes,
             }}
         >
             {children}

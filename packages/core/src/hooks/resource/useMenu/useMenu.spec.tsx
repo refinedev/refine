@@ -36,7 +36,6 @@ describe("useMenu Hook", () => {
                     syncWithLocation: false,
                     undoableTimeout: 20000,
                     hasDashboard: true,
-                    customRoutes: [],
                 },
             }),
         });
@@ -69,7 +68,6 @@ describe("useMenu Hook", () => {
                     syncWithLocation: false,
                     undoableTimeout: 20000,
                     hasDashboard: false,
-                    customRoutes: [],
                 },
             }),
         });
@@ -111,7 +109,6 @@ describe("useMenu Hook", () => {
                     syncWithLocation: false,
                     undoableTimeout: 20000,
                     hasDashboard: false,
-                    customRoutes: [],
                 },
                 resources: [
                     { name: "posts" },
