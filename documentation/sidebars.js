@@ -366,6 +366,10 @@ module.exports = {
         },
         {
             type: "doc",
+            id: "migration-guide",
+        },
+        {
+            type: "doc",
             id: "testing",
         },
         {
