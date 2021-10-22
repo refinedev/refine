@@ -15,7 +15,7 @@ This component accepts layout customizations to further customize the layout par
 
 An example use in a custom page may look like this:
 
-```tsx title="App.tsx" {0, 10-19, 26-31}
+```tsx title="App.tsx" {0, 10-18, 23-32}
 import { Refine, Authenticated, LayoutWrapper } from "@pankod/refine";
 
 import routerProvider from "@pankod/refine-react-router";
@@ -39,16 +39,18 @@ const AuthenticatedPostReview = () => {
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                    {
+                        exact: true,
+                        component: AuthenticatedPostReview,
+                        path: "/authenticated-page",
+                    },
+                ] as typeof routerProvider.routes,
+            }}
             dataProvider={dataProvider(API_URL)}
             resources={[{ name: "posts", list: PostList }]}
-            routes={[
-                {
-                    exact: true,
-                    component: AuthenticatedPostReview,
-                    path: "/authenticated-page",
-                },
-            ]}
         />
     );
 };

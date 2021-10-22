@@ -7,6 +7,7 @@ import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-nextjs-router";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "@components";
+import { authProvider } from "src/authProvider";
 
 import { API_URL } from "../src/constants";
 
@@ -18,6 +19,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <Refine
             routerProvider={routerProvider}
+            authProvider={authProvider}
             dataProvider={dataProvider(API_URL)}
             authProvider={authProvider}
             resources={[

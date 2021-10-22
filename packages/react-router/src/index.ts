@@ -1,12 +1,14 @@
+import React from "react";
+import { IRouterProvider } from "@pankod/refine";
 import {
     useHistory,
     useLocation,
     useParams,
     Prompt,
     Link,
+    RouteProps,
+    BrowserRouterProps,
 } from "react-router-dom";
-
-import { IRouterProvider } from "@pankod/refine";
 
 import { RouterComponent } from "./routerComponent";
 
@@ -15,6 +17,8 @@ interface IReactRouterProvider extends IRouterProvider {
     useLocation: typeof useLocation;
     Link: typeof Link;
     useParams: typeof useParams;
+    routes?: RouteProps[];
+    RouterComponent: React.FC<BrowserRouterProps>;
 }
 
 const RouterProvider: IReactRouterProvider = {
