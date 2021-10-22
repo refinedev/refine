@@ -340,6 +340,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 `parseTableParams` parses the query string and returns query parameters([refer here for their interfaces][interfaces]). They can be directly used for `dataProvider` methods that accepts them.
 
+## Live Codesandbox Example
+
+<iframe src="https://codesandbox.io/embed/refine-next-seneo?autoresize=1&fontsize=14&hidenavigation=1&module=%2Fpages%2F_app.tsx&theme=dark&view=preview"
+         style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+     title="refine-next"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
 [Nextjs]: https://nextjs.org/docs/getting-started
 [NextjsRouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router
 [routerProvider]: /getting-started/overview.md
