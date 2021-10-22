@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 **refine** needs some router functions to create resource pages, navigate, etc. This provider allows you to use the router library you want.
 
-A router provider must include following methods:
+A router provider must include the following methods:
 
 ```tsx
 const routerProvider = {
@@ -345,6 +345,19 @@ const routerProvider: IRouterProvider = {
   </TabItem>
 </Tabs>
 
+### `routes`
+
+`routes` allow us to create custom pages in your **react** apps that have different paths than those defined by `resources`.
+
+[Refer to the Custom Pages documentation for detailed information. &#8594](guides-and-concepts/custom-pages.md)
+
+:::info
+
+Since **Nextjs** has a file system based router built on the page concept, you can create your custom pages under the pages folder you don't need `routes` property.
+
+:::
+
+
 ### `RouterComponent`
 
 It creates the navigation routes of the **refine** app and determines how the components will be rendered on which paths.
@@ -352,18 +365,18 @@ It creates the navigation routes of the **refine** app and determines how the co
 In general, we can list what it does as follows:
 
 -   It creates create, edit, list, show pages with paths according to the resources' own name.
--   Allows rendering of custom `routes` passed to `<Refine>` as props.
--   Different routers render when the user is authenticated and not.
+-   Allows rendering of custom [`routes`](#routes) passed to `routerProviders` as properties.
+-   Different routes render when the user is authenticated and not.
 
 :::info
-`RouteComponent` is required for **refine** React apps but not required for Nextjs apps.
+`<RouterComponent>` is required for **refine** React apps but not required for Nextjs apps.
 
-Since Nextjs has a folder base route structure, it is used by importing the `RouteComponent` into the created page.
+Since Nextjs has a folder base route structure, it is used by importing the `<RouterComponent>` into the created page.
 :::
 
 <br />
 
-&#8594 [Refer to the react-router's `<RouteComponent>` for detailed usage information.][routecomponent]  
+&#8594 [Refer to the react-router's `<RouterComponent>` for detailed usage information.][routercomponent]  
 &#8594 [Refer to the nextjs-router's `<NextRouteComponent>` for detailed usage information.](https://github.com/pankod/refine/blob/alpha/packages/nextjs-router/src/nextRouteComponent.tsx)
 
 ## Serving the application from a subdirectory
@@ -378,7 +391,7 @@ values={[
 
 If you want to serve from a subdirectory in your **refine** react app. You can use `basename` property of [`<BrowserRouter>`][browserrouter].
 
-The [`<RouteComponent>`][routecomponent] in the [react-router][react-router] package passes all its properties to the [`<BrowserRouter>`][browserrouter] component. Therefore, a `<BrowserRouter>` property that we will give to the `<RouteComponent>` is passed to the `<BrowserRouter>` that wraps our application.
+The [`<RouterComponent>`][routercomponent] in the [react-router][react-router] package passes all its properties to the [`<BrowserRouter>`][browserrouter] component. Therefore, a `<BrowserRouter>` property that we will give to the `<RouterComponent>` is passed to the `<BrowserRouter>` that wraps our application.
 
 In the example below you can see how to serve the application in a subdirectory.
 
@@ -441,6 +454,6 @@ Now you can access our application at `www.domain.com/admin`.
 </Tabs>
 
 [browserrouter]: https://reactrouter.com/web/api/BrowserRouter
-[routecomponent]: https://github.com/pankod/refine/blob/alpha/packages/react-router/src/routerComponent.tsx
+[routercomponent]: https://github.com/pankod/refine/blob/alpha/packages/react-router/src/routerComponent.tsx
 [react-router]: https://github.com/pankod/refine/tree/alpha/packages/react-router
 [nextjs-router]: https://github.com/pankod/refine/tree/alpha/packages/nextjs-router
