@@ -155,6 +155,7 @@ export const KeyFeatures = () => {
                         href="https://github.com/nestjsx/crud"
                         target="_blank"
                         rel="noreferrer"
+                        key="nestjsx"
                     >
                         NestJs CRUD
                     </a>
@@ -163,6 +164,7 @@ export const KeyFeatures = () => {
                         href="https://airtable.com"
                         target="_blank"
                         rel="noreferrer"
+                        key="airtable"
                     >
                         Airtable
                     </a>
@@ -171,6 +173,7 @@ export const KeyFeatures = () => {
                         href="https://strapi.io"
                         target="_blank"
                         rel="noreferrer"
+                        key="strapi"
                     >
                         Strapi
                     </a>
@@ -179,6 +182,7 @@ export const KeyFeatures = () => {
                         href="https://strapi.io/documentation/developer-docs/latest/development/plugins/graphql.html"
                         target="_blank"
                         rel="noreferrer"
+                        key="strapi-graphql"
                     >
                         Strapi GraphQL
                     </a>
@@ -187,6 +191,7 @@ export const KeyFeatures = () => {
                         href="https://supabase.io/"
                         target="_blank"
                         rel="noreferrer"
+                        key="supabase"
                     >
                         Supabase
                     </a>
@@ -195,6 +200,7 @@ export const KeyFeatures = () => {
                         href="https://hasura.io/"
                         target="_blank"
                         rel="noreferrer"
+                        key="hasura"
                     >
                         Hasura
                     </a>{" "}
@@ -203,6 +209,7 @@ export const KeyFeatures = () => {
                         href="https://altogic.com/"
                         target="_blank"
                         rel="noreferrer"
+                        key="altogic"
                     >
                         Altogic
                     </a>
