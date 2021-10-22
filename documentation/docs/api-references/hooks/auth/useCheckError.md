@@ -14,7 +14,7 @@ Data that is resolved from the `checkError` will be returned as the `data` in th
 
 Imagine that we make a payment request which is declined by the API. If error status code is `418`, user will be logged out for security reasons.
 
-```tsx twoslash {2,6}
+```tsx  {2,6}
 import { useCheckError } from "@pankod/refine";
 
 const { mutate: checkError } = useCheckError();

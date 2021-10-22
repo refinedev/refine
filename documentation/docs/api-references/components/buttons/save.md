@@ -11,7 +11,7 @@ import saveButton from '@site/static/img/guides-and-concepts/components/buttons/
 
 For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](api-references/hooks/form/useForm.md) hook.
 
-```tsx twoslash {3, 6}
+```tsx  {3, 6}
 import { Edit, Form, Input, useForm } from "@pankod/refine";
 
 export const PostEdit: React.FC = () => {
@@ -62,7 +62,7 @@ The [`useForm`](api-references/hooks/form/useForm.md) hook exposes `saveButtonPr
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx twoslash
+```tsx 
 import { SaveButton } from "@pankod/refine";
 
 export const MyRefreshComponent = () => {

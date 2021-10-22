@@ -51,7 +51,7 @@ Refer to [**Auth0 docs**](https://auth0.com/docs/quickstart/spa/react#configure-
 
 First, we need to override the **refine** login page. In this way, we will redirect it to the Auth0 login page. We create a `login.tsx` file in the `/pages` folder.
 
-```tsx twoslash title="/pages/login.tsx" {7, 11, 52}
+```tsx  title="/pages/login.tsx" {7, 11, 52}
 import { 
     Row,
     Col,

@@ -11,7 +11,7 @@ This hook uses the `getApiUrl` method of the used [`dataProvider`][Data Provider
 
 An example use case might be using it with [`useCustom`][useCustom] hook.
 
-```tsx twoslash {2,9}
+```tsx  {2,9}
 import {
     useCustom,
     useApiUrl

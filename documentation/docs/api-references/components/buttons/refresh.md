@@ -9,7 +9,7 @@ import refreshButton from '@site/static/img/guides-and-concepts/components/butto
 
 ## Usage
 
-```tsx twoslash {1, 17}
+```tsx  {1, 17}
 import {
     RefreshButton,
     useShow,
@@ -61,7 +61,7 @@ Will Look like this:
 
 `recordItemId` allows us to manage which data is going to be refreshed.
 
-```tsx twoslash
+```tsx 
 import { RefreshButton } from "@pankod/refine";
 
 export const MyRefreshComponent = () => {
@@ -79,7 +79,7 @@ Clicking the button will trigger the [`useOne`](api-references/hooks/data/useOne
 
 `resourceName` allows us to manage which resource is going to be refreshed.
 
-```tsx twoslash
+```tsx 
 import { RefreshButton } from "@pankod/refine";
 
 export const MyRefreshComponent = () => {
@@ -97,7 +97,7 @@ Clicking the button will trigger the [`useOne`](api-references/hooks/data/useOne
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx twoslash
+```tsx 
 import { RefreshButton } from "@pankod/refine";
 
 export const MyRefreshComponent = () => {

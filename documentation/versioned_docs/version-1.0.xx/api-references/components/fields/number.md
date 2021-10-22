@@ -13,7 +13,7 @@ This field is used to display a number formatted according to the browser locale
 
 If Intl is not available, `<NumberField>` outputs numbers as is (and ignores the locales and options props).
 
-```tsx twoslash {0, 11-21}
+```tsx  {0, 11-21}
 import { List, Table, NumberField } from "@pankod/refine";
 
 export const PostList: React.FC = () => {

@@ -9,7 +9,7 @@ By encoding your files and images from your forms to Base64 you can change all f
 
 Now let's make a small example to see how its done. In this example, the file we are going to be uploading files in Base64 type  is going to be called `avatar`
 
-```tsx twoslash title="pages/users/create.tsx" {6-7, 18-43, 60, 71}
+```tsx  title="pages/users/create.tsx" {6-7, 18-43, 60, 71}
 import {
     Create,
     Form,

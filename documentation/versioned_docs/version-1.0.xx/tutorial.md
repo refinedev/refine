@@ -184,7 +184,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 
 Replace the contents of `App.tsx` with the following code:
 
-```tsx twoslash title="src/App.tsx"
+```tsx  title="src/App.tsx"
 import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
@@ -283,7 +283,7 @@ Let's add **/posts/** endpoint from our API as a `<Resource />`. First take a lo
 
 Now, add the highlighted code to your `App.tsx` to connect to the endpoint.
 
-```tsx twoslash {0, 6} title="src/App.tsx" 
+```tsx  {0, 6} title="src/App.tsx" 
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 

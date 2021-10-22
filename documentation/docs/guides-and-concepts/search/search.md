@@ -20,7 +20,7 @@ We will now examine how to search within the application with this component.
 
 To do this, let's first create our `<Header>` component.
 
-```tsx twoslash title="src/components/header.tsx"
+```tsx  title="src/components/header.tsx"
 import { AntdLayout, AutoComplete, Input, Icons } from "@pankod/refine";
 
 const { SearchOutlined } = Icons;

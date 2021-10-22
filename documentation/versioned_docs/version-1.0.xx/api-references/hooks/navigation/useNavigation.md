@@ -5,7 +5,7 @@ title: useNavigation
 
 **refine** uses [`React Router`](https://reactrouter.com/web/api/Hooks) and comes with all redirects out of the box. It allows you to manage your routing operations in refine. Using this hook, you can manage all the routing operations of your application very easily.
 
-```tsx twoslash
+```tsx 
 import { useNavigation } from "@pankod/refine";
 
 const { create, edit, clone, show, list, push, replace, goBack } = useNavigation();
@@ -23,7 +23,7 @@ We will make a button for each method to use.
 
 Let's imagine that we have a post list and we want to be redirected to this page. To do this we will use the list hook.
 
-```tsx twoslash {2, 6, 11}
+```tsx  {2, 6, 11}
 import {
     Button,
     useNavigation,
@@ -48,7 +48,7 @@ export const MyListButton = () => {
 
 If we want to go to the post creation page to create a new post, we can use the create hook.
 
-```tsx twoslash {2, 6, 11}
+```tsx  {2, 6, 11}
 import {
     Button,
     useNavigation,
@@ -73,7 +73,7 @@ export const MyCreateButton = () => {
 
 Let's see what we should do if we want to go to the editing page of one of our posts.
 
-```tsx twoslash {2, 6, 11}
+```tsx  {2, 6, 11}
 import {
     Button,
     useNavigation,
@@ -108,7 +108,7 @@ You can also give a `type` property to the methods. You can look here to see the
 
 If you want to show the detail of your posts you can use show and you need `id` for show.
 
-```tsx twoslash {2, 6, 11}
+```tsx  {2, 6, 11}
 import {
     Button,
     useNavigation,
@@ -141,7 +141,7 @@ If you want to return to previous page. You can use `goBack` hook.
 
 If we have the resources to clone a post and we want to go to this page, we will use `clone` with a record id.
 
-```tsx twoslash {2, 6, 11}
+```tsx  {2, 6, 11}
 import {
     Button,
     useNavigation,
@@ -170,7 +170,7 @@ There is something we should pay attention to here. We need to give the `id` of 
 
 If we do not want to use the above methods and want to redirect ourselves, we should use `push` or `replace` methods and also we can use `goBack` to return to previous page. You can check out the differences between them [here](#return-values).
 
-```tsx twoslash {2, 6, 12, 19, 26}
+```tsx  {2, 6, 12, 19, 26}
 import {
     Button,
     useNavigation,

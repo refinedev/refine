@@ -40,7 +40,7 @@ Let's assume that the data we will show in the table comes from the endpoint as 
 
 If we want to make a listing page where we show the `title`, `content`, `hit` and `category.title` values:
 
-```tsx twoslash {13-23, 44-59, 65}
+```tsx  {13-23, 44-59, 65}
 import {
     PageHeader,
     Typography,

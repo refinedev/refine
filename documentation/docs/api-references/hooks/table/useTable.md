@@ -32,7 +32,7 @@ Lets say that the data we are going to show on the table came like this from the
 
 If we want to make a sorting page where we show the `id`, `title` and `content` values:
 
-```tsx twoslash title="/src/pages/posts/list.tsx" {3, 7-11}
+```tsx  title="/src/pages/posts/list.tsx" {3, 7-11}
 import { List, Table, TextField, useTable } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
@@ -94,14 +94,7 @@ const { tableProps } = useTable<IPost>();
 
 If we want to give a column the sorting property, the corresponding `<Table.Column>` component must be given the [sorter](https://ant.design/components/table/#components-table-demo-head) property.
 
-```tsx twoslash title="/src/pages/posts/list.tsx" {13,19}
-interface IPost {
-    id: string;
-    title: string;
-    status: "published" | "draft" | "rejected";
-}
-// ---cut---
-
+```tsx  title="/src/pages/posts/list.tsx" {13,19}
 import { List, Table, TextField, useTable } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
@@ -144,14 +137,7 @@ When using multiple sorting, `multiple` value we had given to the `sorter` prope
 
 ### Initial sort status
 
-```ts twoslash title="/src/pages/posts/list.tsx" {1-6}
-interface IPost {
-    id: string;
-    title: string;
-    status: "published" | "draft" | "rejected";
-}
-import { useTable } from "@pankod/refine";
-// ---cut---
+```ts title="/src/pages/posts/list.tsx" {1-6}
 const { tableProps, sorter } = useTable<IPost>({
     initialSorter: [
         {
@@ -180,13 +166,7 @@ Every `post` that comes from endpoint has a `status` value. This value can eithe
 
 We can use the `filterDropdown` property to make filtering based on the `status` value. In order to do this, we need to put the filtering form inside the `<FilterDropdown>` component and pass the properties coming to the function to these component's properties:
 
-```tsx twoslash title="/src/pages/posts/list.tsx" {3-4,39-47}
-interface IPost {
-    id: string;
-    title: string;
-    status: "published" | "draft" | "rejected";
-}
-// ---cut---
+```tsx  title="/src/pages/posts/list.tsx" {3-4,39-47}
 import {
     List,
     Table,
@@ -255,15 +235,7 @@ export const PostList: React.FC = () => {
 
 In order to set a default filter value, you can use the `initialFilter` option of the `useTable(options)` hook.
 
-```ts twoslash title="/src/pages/posts/list.tsx"
-interface IPost {
-    id: string;
-    title: string;
-    status: "published" | "draft" | "rejected";
-}
-import { useTable } from "@pankod/refine";
-// ---cut---
-
+```ts title="/src/pages/posts/list.tsx"
 const { tableProps, sorter, filters } = useTable<IPost>({
     initialSorter: [
         {
@@ -283,13 +255,7 @@ const { tableProps, sorter, filters } = useTable<IPost>({
 
 If you give default filter values, `defaultFilteredValue` property needs to be properly given to the relevant `<Table.Column>` components so that those filter fields come with default values when the page is opened.
 
-```tsx twoslash title="/src/pages/posts/list.tsx" {6,19-25,56}
-interface IPost {
-    id: string;
-    title: string;
-    status: "published" | "draft" | "rejected";
-}
-// ---cut---
+```tsx  title="/src/pages/posts/list.tsx" {6,19-25,56}
 import {
     List,
     Table,

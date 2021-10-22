@@ -31,7 +31,7 @@ We'll demonstrate how to get data at `/categories` endpoint from `https://api.fa
 }
 ```
 
-```tsx twoslash title="pages/posts/create.tsx" {3-5, 10}
+```tsx  title="pages/posts/create.tsx" {3-5, 10}
 import { Form, Select, useSelect } from "@pankod/refine";
 
 export const PostCreate = () => {
@@ -86,9 +86,7 @@ By default, refine does the search using the `useList` hook and passes it to the
 
 ### `resource`
 
-```tsx twoslash {1}
-import { useSelect } from "@pankod/refine";
-// ---cut---
+```tsx  {1}
 const { selectProps } = useSelect({
     resource: "categories",
 });
@@ -100,9 +98,7 @@ const { selectProps } = useSelect({
 
 ### `defaultValue`
 
-```tsx twoslash {2}
-import { useSelect } from "@pankod/refine";
-// ---cut---
+```tsx  {2}
 const { selectProps } = useSelect({
     resource: "categories",
     defaultValue: "1",
@@ -123,9 +119,7 @@ Can use `defaultValue` property when edit a record in `<Edit>` component.
 
 ### `optionLabel` and `optionValue`
 
-```tsx twoslash {2-3}
-import { useSelect } from "@pankod/refine";
-// ---cut---
+```tsx  {2-3}
 const { selectProps } = useSelect({
     resource: "categories",
     optionLabel: "title",
@@ -137,9 +131,7 @@ Allows you to change the values and appearance of your options. Default values a
 
 ### `filters`
 
-```tsx twoslash {2-8}
-import { useSelect } from "@pankod/refine";
-// ---cut---
+```tsx  {2-8}
 const { selectProps } = useSelect({
     resource: "categories",
     filters: [
@@ -156,9 +148,7 @@ It allows us to add some filters while fetching the data. For example, if you wa
 
 ### `sort`
 
-```tsx twoslash {2-7}
-import { useSelect } from "@pankod/refine";
-// ---cut---
+```tsx  {2-7}
 const { selectProps } = useSelect({
     resource: "categories",
     sort: [
@@ -174,9 +164,7 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 
 ### `queryOptions`
 
-```tsx twoslash {2-6}
-import { useSelect } from "@pankod/refine";
-// ---cut---
+```tsx  {2-6}
 const { selectProps } = useSelect({
     resource: "categories",
     queryOptions: {
@@ -191,9 +179,7 @@ const { selectProps } = useSelect({
 
 ### `defaultValueQueryOptions`
 
-```tsx twoslash {2-6}
-import { useSelect } from "@pankod/refine";
-// ---cut---
+```tsx  {2-6}
 const { selectProps } = useSelect({
     resource: "categories",
     defaultValueQueryOptions: {

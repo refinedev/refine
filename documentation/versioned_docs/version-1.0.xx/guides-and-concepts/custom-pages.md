@@ -173,7 +173,7 @@ Now, let's create the custom page with the name `<PostReview>`. We will use the 
 
 [Refer to the `useList` documentation for detailed usage. &#8594](/api-references/hooks/data/useList.md)
 
-```tsx twoslash title="src/pages/post-review.tsx"
+```tsx  title="src/pages/post-review.tsx"
 import { useList } from "@pankod/refine";
 
 const PostReview = () => {
@@ -212,20 +212,7 @@ We set the filtering process with `filters` then page size set with `pagination`
 
 Post's category is relational. So we will use the post's category "id" to get the category title. Let's use `useOne` to fetch the category we want.
 
-```tsx twoslash title="src/pages/post-review.tsx" {0, 17-26}
-interface ICategory {
-    id: string;
-    title: string;
-}
-
-interface IPost {
-    id: string;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: ICategory;
-}
-// ---cut---
+```tsx  title="src/pages/post-review.tsx" {0, 17-26}
 import { useList, useOne } from "@pankod/refine";
 
 export const PostReview = () => {
@@ -262,20 +249,7 @@ Now we have the data to display the post as we want. Let's use the `<Show>` comp
 `<Show>` component is not required, you are free to display the data as you wish.
 :::
 
-```tsx twoslash title="src/pages/post-review.tsx" {1-3, 9, 37-54}
-interface ICategory {
-    id: string;
-    title: string;
-}
-
-interface IPost {
-    id: string;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: ICategory;
-}
-// ---cut---
+```tsx  title="src/pages/post-review.tsx" {1-3, 9, 37-54}
 import {
     Typography,
     Show,
@@ -387,20 +361,7 @@ Now let's put in approve and reject buttons to change the status of the post sho
 
 [Refer to the `useUpdate` documentation for detailed usage. &#8594](/api-references/hooks/data/useUpdate.md)
 
-```tsx twoslash title="src/pages/post-review.tsx" {4-5, 38, 40, 42-44, 46, 57-81}
-interface ICategory {
-    id: string;
-    title: string;
-}
-
-interface IPost {
-    id: string;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: ICategory;
-}
-// ---cut---
+```tsx  title="src/pages/post-review.tsx" {4-5, 38, 40, 42-44, 46, 57-81}
 import {
     Typography,
     Show,

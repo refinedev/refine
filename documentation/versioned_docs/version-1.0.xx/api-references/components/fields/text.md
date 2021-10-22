@@ -9,7 +9,7 @@ This field lets you show basic text. It uses Ant Design's [`<Typography.Text>`](
 
 Let's see how to use it in a basic list page:
 
-```tsx twoslash title="src/pages/posts/list.tsx" {2, 30-44}
+```tsx  title="src/pages/posts/list.tsx" {2, 30-44}
 import {
     List,
     TextField,

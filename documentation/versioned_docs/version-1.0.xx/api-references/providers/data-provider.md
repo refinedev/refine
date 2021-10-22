@@ -184,7 +184,7 @@ const SimpleRestDataProvider = (
 
 **refine** will consume this `create` method using the `useCreate` data hook.
 
-```ts twoslash
+```ts
 import { useCreate } from "@pankod/refine";
 
 const { mutate } = useCreate();
@@ -241,7 +241,7 @@ const SimpleRestDataProvider = (
 
 **refine** will consume this `createMany` method using the `useCreateMany` data hook.
 
-```ts twoslash
+```ts
 import { useCreateMany } from "@pankod/refine";
 
 const { mutate } = useCreateMany();
@@ -297,7 +297,7 @@ const SimpleRestDataProvider = (
 
 **refine** will consume this `deleteOne` method using the `useDelete` data hook.
 
-```ts twoslash
+```ts
 import { useDelete } from "@pankod/refine";
 
 const { mutate } = useDelete();
@@ -345,7 +345,7 @@ const SimpleRestDataProvider = (
 
 **refine** will consume this `deleteMany` method using the `useDeleteMany` data hook.
 
-```ts twoslash
+```ts
 import { useDeleteMany } from "@pankod/refine";
 
 const { mutate } = useDeleteMany();
@@ -397,7 +397,7 @@ const SimpleRestDataProvider = (
 
 **refine** will consume this `update` method using the `useUpdate` data hook.
 
-```ts twoslash
+```ts
 import { useUpdate } from "@pankod/refine";
 
 const { mutate } = useUpdate();
@@ -454,7 +454,7 @@ const SimpleRestDataProvider = (
 
 **refine** will consume this `updateMany` method using the `useUpdateMany` data hook.
 
-```ts twoslash
+```ts
 import { useUpdateMany } from "@pankod/refine";
 
 const { mutate } = useUpdateMany();
@@ -504,9 +504,7 @@ const SimpleRestDataProvider = (
 
 **refine** will consume this `getOne` method using the `useOne` data hook.
 
-```ts twoslash
-interface ICategory {}
-// ---cut---
+```ts
 import { useOne } from "@pankod/refine";
 
 const { data } = useOne<ICategory>({ resource: "categories", id: "1" });
@@ -550,7 +548,7 @@ const SimpleRestDataProvider = (
 
 **refine** will consume this `getMany` method using the `useMany` data hook.
 
-```ts twoslash
+```ts
 import { useMany } from "@pankod/refine";
 
 const { data } = useMany({ resource: "categories", ids: ["1", "2"] });
@@ -599,7 +597,7 @@ const SimpleRestDataProvider = (
 
 **refine** will consume this `getList` method using the `useList` data hook.
 
-```ts twoslash
+```ts
 import { useList } from "@pankod/refine";
 
 const { data } = useList({ resource: "posts" });
@@ -646,7 +644,7 @@ const SimpleRestDataProvider = (
 
 <br />
 
-```ts twoslash {5}
+```ts {5}
 import { useList } from "@pankod/refine";
 
 const { data } = useList({
@@ -729,7 +727,7 @@ So we added the `generateSort` method to transform sort parameters.
 
 <br />
 
-```ts twoslash {6}
+```ts {6}
 import { useList } from "@pankod/refine";
 
 const { data } = useList({
@@ -838,7 +836,7 @@ So we added the `generateFilter` and `mapOperator` methods to the transform filt
 
 [Refer to the list of all filter operators &#8594](/docs/api-references/interfaceReferences#crudoperators)
 
-```ts twoslash {7-13}
+```ts {7-13}
 import { useList } from "@pankod/refine";
 
 const { data } = useList({
@@ -937,9 +935,7 @@ const SimpleRestDataProvider = (
 
 **refine** will consume this `custom` method using the `useCustom` data hook.
 
-```ts twoslash
-const apiURL = "";
-// ---cut---
+```ts
 import { useCustom } from "@pankod/refine";
 
 const { data, isLoading } = useCustom({

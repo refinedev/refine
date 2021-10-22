@@ -18,7 +18,7 @@ When no property is given, it tries to read the `resource` and `id` information 
 
 First, we'll create a page to show the records. Then we'll use this page for the show property of the resource.
 
-```tsx twoslash title="src/pages/posts/show.tsx" {0,5}
+```tsx  title="src/pages/posts/show.tsx" {0,5}
 import { useShow, Show, Typography } from "@pankod/refine";
 
 const { Title, Text } = Typography;
@@ -80,12 +80,7 @@ In the next example, we'll show how it is used for the modal.
 
 Let's simply create a post list showing posts.
 
-```tsx twoslash title="src/pages/posts/list.tsx"
-interface IPost {
-    id: string;
-    title: string;
-}
-// ---cut---
+```tsx  title="src/pages/posts/list.tsx"
 import { List, Table, useTable } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
@@ -104,13 +99,7 @@ export const PostList: React.FC = () => {
 
 Let's add our modal.
 
-```tsx twoslash title="src/pages/posts/list.tsx" {4-8, 11, 14, 18-20, 28-41, 44-52}
-interface IPost {
-    id: string;
-    title: string;
-}
-import { useState } from "react";
-// ---cut---
+```tsx  title="src/pages/posts/list.tsx" {4-8, 11, 14, 18-20, 28-41, 44-52}
 import {
     List,
     Table,

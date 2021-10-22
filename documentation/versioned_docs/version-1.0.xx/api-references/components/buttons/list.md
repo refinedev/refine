@@ -9,7 +9,7 @@ import listButton from '@site/static/img/guides-and-concepts/components/buttons/
 
 ## Usage
 
-```tsx twoslash {4, 15}
+```tsx  {4, 15}
 import {
     useShow,
     Show,
@@ -63,7 +63,7 @@ The button text is defined automatically by **refine** based on _`<Resource>`_ c
 
 Redirection endpoint(`resourceName/list`) is defined by `resourceName` property. By default, `<ListButton>` uses `name` property of the `<Resource>` component as the endpoint to redirect after clicking.
 
-```tsx twoslash
+```tsx 
 import { ListButton } from "@pankod/refine";
 
 export const MyListComponent = () => {
@@ -77,7 +77,7 @@ Clicking the button will trigger the `list` method of [`useNavigation`](api-refe
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx twoslash
+```tsx 
 import { ListButton } from "@pankod/refine";
 
 export const MyListComponent = () => {

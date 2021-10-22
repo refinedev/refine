@@ -8,14 +8,7 @@ import editGif from '@site/static/img/hooks/useModalForm/edit.gif';
 
 `useModalForm` hook allows you to manage a form within a modal. It returns Ant Design [Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) components props.
 
-```ts twoslash
-interface IPost {
-    id: string;
-    title: string;
-    status: "published" | "draft" | "rejected";
-}
-// ---cut---
-
+```ts
 import { useModalForm } from "@pankod/refine";
 
 const { modalProps, formProps } = useModalForm<IPost>({
@@ -106,7 +99,7 @@ This code block makes `<Modal>` appear when you click the button.
 
 Let's learn how to add editing capabilities to records that will be opening form in Modal by using the `action` prop.
 
-```tsx twoslash title="pages/posts/list.tsx" {17, 19, 32}
+```tsx  title="pages/posts/list.tsx" {17, 19, 32}
 import { 
     useModalForm,
     Modal,

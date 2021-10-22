@@ -10,7 +10,7 @@ It can be useful when redirecting the app to the create page with the record id 
 
 ## Usage
 
-```tsx twoslash {4, 20}
+```tsx  {4, 20}
 import {
     List,
     Table,
@@ -62,7 +62,7 @@ Will look like this:
 
 `recordItemId` is used to append the record id to the end of the route path.
 
-```tsx twoslash
+```tsx 
 import { CloneButton } from "@pankod/refine";
 
 export const MyCloneComponent = () => {
@@ -80,7 +80,7 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/api-re
 
 It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of the `<Resource>` component.
 
-```tsx twoslash
+```tsx 
 import { CloneButton } from "@pankod/refine";
 
 export const MyCloneComponent = () => {
@@ -94,7 +94,7 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/api-re
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx twoslash
+```tsx 
 import { CloneButton } from "@pankod/refine";
 
 export const MyCloneComponent = () => {

@@ -33,7 +33,7 @@ const authProvider: AuthProvider = {
 
 You can access identity data like below.
 
-```tsx twoslash {0, 3}
+```tsx  {0, 3}
 import { useGetIdentity } from "@pankod/refine";
 
 export const User: React.FC = () => {

@@ -9,7 +9,7 @@ import editButton from '@site/static/img/guides-and-concepts/components/buttons/
 
 ## Usage
 
-```tsx twoslash {4, 20}
+```tsx  {4, 20}
 import {
     List,
     Table,
@@ -61,7 +61,7 @@ Will look like this:
 
 `recordItemId` is used to append the record id to the end of the route path.
 
-```tsx twoslash
+```tsx 
 import { EditButton } from "@pankod/refine";
 
 export const MyEditComponent = () => {
@@ -79,7 +79,7 @@ Clicking the button will trigger the `edit` method of [`useNavigation`](/api-ref
 
 Redirection endpoint(`resourceName/edit`) is defined by `resourceName` property. By default, `<EditButton>` uses `name` property of the `<Resource>` component as an endpoint to redirect after clicking.
 
-```tsx twoslash
+```tsx 
 import { EditButton } from "@pankod/refine";
 
 export const MyEditComponent = () => {
@@ -93,7 +93,7 @@ Clicking the button will trigger the `edit` method of [`useNavigation`](/api-ref
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx twoslash
+```tsx 
 import { EditButton } from "@pankod/refine";
 
 export const MyEditComponent = () => {

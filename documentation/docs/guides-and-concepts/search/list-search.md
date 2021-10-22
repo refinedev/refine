@@ -10,7 +10,7 @@ We will examine how to make an extensive search and filtering with the [`useSimp
 
 To do this, let's list posts using the posts resource.
 
-```tsx twoslash title="pages/posts/list.tsx" {2-3, 13, 54}
+```tsx  title="pages/posts/list.tsx" {2-3, 13, 54}
 import {
     List,
     useSimpleList,

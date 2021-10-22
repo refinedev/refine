@@ -38,7 +38,7 @@ We have 4 options to manage the redirection after logout process.
 
 - A custom url can be given to mutate function from the `useLogout` hook if you want to redirect yourself to a certain url.
 
-```tsx twoslash
+```tsx 
 import { useLogout } from "@pankod/refine";
 
 const { mutate: logout } = useLogout();

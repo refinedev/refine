@@ -501,8 +501,6 @@ const SimpleRestDataProvider = (
 **refine** will consume this `getOne` method using the `useOne` data hook.
 
 ```ts twoslash
-interface ICategory {}
-// ---cut---
 import { useOne } from "@pankod/refine";
 
 const { data } = useOne<ICategory>({ resource: "categories", id: "1" });
@@ -934,8 +932,6 @@ const SimpleRestDataProvider = (
 **refine** will consume this `custom` method using the `useCustom` data hook.
 
 ```ts twoslash
-const apiURL = "";
-// ---cut---
 import { useCustom } from "@pankod/refine";
 
 const { data, isLoading } = useCustom({

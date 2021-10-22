@@ -39,7 +39,7 @@ Now let's prepare a rule that checks if the titles of the posts are unique. We h
 }
 ```
 
-```tsx twoslash {1, 6-26, 34-50, 52}
+```tsx  {1, 6-26, 34-50, 52}
 import { useState } from "react";
 import { useApiUrl, useCustom, HttpError, useForm, Form, Create, Input } from "@pankod/refine";
 

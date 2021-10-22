@@ -30,7 +30,7 @@ const authProvider: AuthProvider = {
 
 - Get permissions data in the list page with `usePermissions` and check if the user has `"admin`" role.
 
-```tsx twoslash title="pages/post/list" {0, 3}
+```tsx  title="pages/post/list" {0, 3}
 import { List, usePermissions } from "@pankod/refine";
 
 export const PostList: React.FC = () => {

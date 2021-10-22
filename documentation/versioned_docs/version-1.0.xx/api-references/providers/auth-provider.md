@@ -100,11 +100,7 @@ const authProvider = {
 
 `login` method will be accessible via `useLogin` auth hook.
 
-```tsx twoslash
-const values = { };
-
-// ---cut---
-
+```tsx 
 import { useLogin } from "@pankod/refine";
 
 const { mutate: login } = useLogin();
@@ -184,7 +180,7 @@ const authProvider = {
 
 `logout` method will be accessible via the `useLogout` auth hook.
 
-```tsx twoslash
+```tsx 
 import { useLogout } from "@pankod/refine";
 
 const { mutate: logout } = useLogout();
@@ -266,10 +262,7 @@ const authProvider = {
 
 `checkError` method will be accessible via the `useCheckError` auth hook.
 
-```tsx twoslash
-const error: { message:string, statusCode: number } = { message: "Expired Access Token", statusCode: 401 }
-// ---cut---
-
+```tsx 
 import { useCheckError } from "@pankod/refine";
 
 const { mutate: checkError } = useCheckError();
@@ -325,7 +318,7 @@ const authProvider = {
 
 `checkAuth` method will be accessible via `useAuthenticated` auth hook.
 
-```tsx twoslash
+```tsx 
 import { useAuthenticated } from "@pankod/refine";
 
 const {
@@ -416,7 +409,7 @@ const authProvider = {
 
 The resolved data can be acquired using the [`useGetIdentity`](api-references/hooks/auth/useGetIdentity.md) hook.
 
-```tsx twoslash
+```tsx 
 import { useGetIdentity } from "@pankod/refine";
 
 const { data: userIdentity } = useGetIdentity<string>();

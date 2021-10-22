@@ -21,7 +21,7 @@ We will show you how to use `useMenu` to create a custom sider menu that is iden
 
 First we define `<CustomMenu>`:
 
-```tsx twoslash title="src/CustomMenu.tsx" {12, 30, 34-36}
+```tsx  title="src/CustomMenu.tsx" {12, 30, 34-36}
 import { useState, CSSProperties } from "react";
 import {
     AntdLayout,
@@ -109,7 +109,7 @@ export default App;
 
 We can also add a logout button:
 
-```tsx twoslash title="src/CustomMenu.tsx" {6-8, 22-23, 53-55}
+```tsx  title="src/CustomMenu.tsx" {6-8, 22-23, 53-55}
 import { useState, CSSProperties } from "react";
 import {
     AntdLayout,

@@ -36,7 +36,7 @@ const authProvider: AuthProvider = {
 
 Let's create a wrapper component that renders children if `checkAuth` method returns the Promise resolved.
 
-```tsx twoslash title="components/authenticated.tsx" {0, 7} 
+```tsx  title="components/authenticated.tsx" {0, 7} 
 import { useAuthenticated, useNavigation } from "@pankod/refine";
 
 export const Authenticated: React.FC<AuthenticatedProps> = ({

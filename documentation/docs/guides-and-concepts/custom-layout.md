@@ -67,7 +67,7 @@ Here, we override the [`<Title>`][title] and [`<Layout>`][layout] components. Wh
 
 So, we just provided a custom [`<Sider>`][sider]. Here's our custom sider that looks horizontal, instead of the default vertical one:
 
-```tsx twoslash title="/src/components/sider/index.tsx" {3-4, 8, 10-14}
+```tsx  title="/src/components/sider/index.tsx" {3-4, 8, 10-14}
 import { Link, Menu, useMenu, useTitle } from "@pankod/refine";
 
 export const CustomSider: React.FC = () => {

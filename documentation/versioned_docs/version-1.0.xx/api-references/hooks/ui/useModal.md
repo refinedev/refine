@@ -17,7 +17,7 @@ You can pass the returned `modalProps` as props to [Modal][Modal] component and 
 
 Let's see an example:
 
-```tsx twoslash title="src/pages/posts/list.tsx" {4-5, 12, 18, 27-29}
+```tsx  title="src/pages/posts/list.tsx" {4-5, 12, 18, 27-29}
 import {
     List,
     Table,

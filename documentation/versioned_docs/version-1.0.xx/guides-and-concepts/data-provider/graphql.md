@@ -51,7 +51,7 @@ We used [strapi-graphql](https://github.com/pankod/refine/tree/master/packages/s
 
 To activate data provider in `@pankod/refine-strapi-graphql`, we have to pass the API address with `GraphQLClient`.
 
-```tsx twoslash title="src/App.tsx" {2-3, 9}
+```tsx  title="src/App.tsx" {2-3, 9}
 import { Refine } from "@pankod/refine";
 
 import dataProvider from "@pankod/refine-strapi-graphql";
@@ -102,34 +102,7 @@ values={[
 ]}>
 <TabItem value="usage">
 
-```tsx twoslash {8-16, 21-23}
-import {
-    List,
-    Table,
-    useTable,
-    IResourceComponentsProps,
-    Space,
-    EditButton,
-    ShowButton,
-    DeleteButton,
-    getDefaultSortOrder,
-    FilterDropdown,
-    Select,
-    useSelect,
-} from "@pankod/refine";
-
-export interface ICategory {
-    id: string;
-    title: string;
-}
-
-export interface IPost {
-    id: string;
-    title: string;
-    content: string;
-    category: ICategory;
-}
-// ---cut---
+```tsx  {8-16, 21-23}
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter } = useTable<IPost>({
         initialSorter: [
