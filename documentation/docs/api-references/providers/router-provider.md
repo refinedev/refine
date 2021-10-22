@@ -85,7 +85,7 @@ const App: React.FC = () => {
 
 The `routerProvider` methods **refine** expects are exactly the same as [react-router-dom](https://reactrouter.com/web) methods.
 
-To understand how to create a `routerProvider`, let's examine how the [react-router][react-router] and [nextjs-router][nextjs-router]] libraries provided by **refine** create a `routerProvider`.
+To understand how to create a `routerProvider`, let's examine how the [react-router][react-router] and [nextjs-router][nextjs-router] libraries provided by **refine** create a `routerProvider`.
 
 ### `useHistory`
 
@@ -369,9 +369,9 @@ In general, we can list what it does as follows:
 -   Different routes render when the user is authenticated and not.
 
 :::info
-`<RouterComponent>` is required for **refine** React apps but not required for Nextjs apps.
+`RouterComponent` is required for **refine** React apps but not required for Nextjs apps.
 
-Since Nextjs has a folder base route structure, it is used by importing the `<RouterComponent>` into the created page.
+Since Nextjs has a folder base route structure, it is used by exporting the `<NextRouteComponent>` from the created page.
 :::
 
 <br />
