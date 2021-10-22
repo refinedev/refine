@@ -1,19 +1,17 @@
 import React from "react";
 import { AppProps } from "next/app";
-import "@styles/global.css";
 
 import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-nextjs-router";
+import "@pankod/refine/dist/styles.min.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "@components";
+import "@styles/global.css";
+
 import { authProvider } from "src/authProvider";
-
 import { API_URL } from "../src/constants";
 
-import { authProvider } from "../src/authProvider";
-
-import "@pankod/refine/dist/styles.min.css";
+import { PostList, PostCreate, PostEdit, PostShow } from "@components";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
@@ -21,7 +19,6 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             routerProvider={routerProvider}
             authProvider={authProvider}
             dataProvider={dataProvider(API_URL)}
-            authProvider={authProvider}
             resources={[
                 { name: "users" },
                 {
