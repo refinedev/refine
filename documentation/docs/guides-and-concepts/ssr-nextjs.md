@@ -11,7 +11,7 @@ title: SSR-Next.js
 [**nextjs-router**][NextjsRouter] package provided by **refine** must be used for the [`routerProvider`][routerProvider]
 
 ```bash
-npm i @pankod/refine-nextjs-router
+npm i @pankod/refine @pankod/refine-nextjs-router
 ```
 
 :::tip
@@ -226,7 +226,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 And in the `list` component for a `resource` e.g. "posts":
 
-```tsx title="src/components/posts/list.tsx" {10, 12-13}
+```tsx title="src/components/posts/list.tsx" {10, 12-14}
 import {
     useTable,
     List,
@@ -305,7 +305,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 If `syncWithLocation` is enabled, query parameters must be handled while doing SSR.
 
-```tsx twoslash title="pages/users.tsx" {1, 8-14, 17-23}
+```tsx twoslash title="pages/users.tsx" {1, 8-14, 17-22}
 import { GetServerSideProps } from "next";
 import { parseTableParams } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
