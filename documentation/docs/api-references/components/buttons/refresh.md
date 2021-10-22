@@ -9,8 +9,9 @@ import refreshButton from '@site/static/img/guides-and-concepts/components/butto
 
 ## Usage
 
-```tsx  {1, 17}
+```tsx
 import {
+    // highlight-next-line
     RefreshButton,
     useShow,
     Show,
@@ -27,6 +28,7 @@ export const PostShow: React.FC = () => {
     return (
         <Show
             isLoading={isLoading}
+            // highlight-next-line
             pageHeaderProps={{ extra: <RefreshButton /> }}
         >
             <Title level={5}>Id</Title>

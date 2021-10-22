@@ -9,11 +9,12 @@ import showButton from '@site/static/img/guides-and-concepts/components/buttons/
 
 ## Usage
 
-```tsx  {4, 19}
+```tsx
 import {
     List,
     Table,
     useTable,
+    // highlight-next-line
     ShowButton,
 } from "@pankod/refine";
 
@@ -29,6 +30,7 @@ export const PostList: React.FC = () => {
                     title="Actions"
                     dataIndex="actions"
                     render={(_, record) => (
+                        // highlight-next-line
                         <ShowButton size="small" recordItemId={record.id} />
                     )}
                 />

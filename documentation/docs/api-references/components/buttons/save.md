@@ -11,13 +11,15 @@ import saveButton from '@site/static/img/guides-and-concepts/components/buttons/
 
 For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](api-references/hooks/form/useForm.md) hook.
 
-```tsx  {3, 6}
+```tsx
 import { Edit, Form, Input, useForm } from "@pankod/refine";
 
 export const PostEdit: React.FC = () => {
+    // highlight-next-line
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     return (
+        // highlight-next-line
         <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item

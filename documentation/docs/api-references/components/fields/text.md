@@ -9,9 +9,10 @@ This field lets you show basic text. It uses Ant Design's [`<Typography.Text>`](
 
 Let's see how to use it in a basic list page:
 
-```tsx  title="src/pages/posts/list.tsx" {2, 30-44}
+```tsx  title="src/pages/posts/list.tsx"
 import {
     List,
+    // highlight-next-line
     TextField,
     Table,
     useTable,
@@ -41,6 +42,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                     dataIndex={["category", "id"]}
                     title="category"
                     render={(value: string) => {
+                        // highlight-start
                         if (isLoading) {
                             return <TextField value="Loading..." />;
                         }
@@ -54,6 +56,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                                 }
                             />
                         );
+                        // highlight-end
                     }}
                 />
             </Table>

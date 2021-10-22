@@ -11,11 +11,12 @@ This field lets you embed a link. It uses Ant Design's [<Typography.Link\>](http
 
 Let's see how we can use `<UrlField>` with an example:
 
-```tsx  title="pages/posts/list.tsx" {4, 22}
+```tsx  title="pages/posts/list.tsx"
 import {
     List,
     Table,
     useTable,
+    // highlight-next-line
     UrlField 
 } from "@pankod/refine";
 
@@ -34,6 +35,7 @@ export const PostList: React.FC = () => {
                     dataIndex={["image", "0", "url"]}
                     title={"Image"}
                     key="image"
+                    // highlight-next-line
                     render={(value: string) => <UrlField value={value} />}
                 />
             </Table>

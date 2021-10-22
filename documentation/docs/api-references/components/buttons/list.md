@@ -9,11 +9,12 @@ import listButton from '@site/static/img/guides-and-concepts/components/buttons/
 
 ## Usage
 
-```tsx  {4, 15}
+```tsx
 import {
     useShow,
     Show,
     Typography,
+    // highlight-next-line
     ListButton,
 } from "@pankod/refine";
 
@@ -25,6 +26,7 @@ export const PostShow: React.FC = () => {
     const record = data?.data;
 
     return (
+        // highlight-next-line
         <Show pageHeaderProps={{ extra: <ListButton /> }} isLoading={isLoading}>
             <Title level={5}>Id</Title>
             <Text>{record?.id}</Text>
