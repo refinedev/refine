@@ -18,7 +18,7 @@ title: Interface References
 #### CrudOperators
 
 ```ts
-    "eq" |
+"eq" |
     "ne" |
     "lt" |
     "gt" |
@@ -123,7 +123,6 @@ ButtonProps
 | successNotification | [Notification Properties](https://ant.design/components/notification/#API) & `false` |
 | errorNotification   | [Notification Properties](https://ant.design/components/notification/#API) & `false` |
 
-
 ## MetaDataQuery
 
 | Key         | Type                                                       |
@@ -159,3 +158,11 @@ ButtonProps
 | list?       | `bool`   |
 | required?   | `bool`   |
 | [k: string] | `any`    |
+
+## PromptProps
+
+| Key          | Type                          |
+| ------------ | ----------------------------- |
+| message      | `string`                      |
+| when?        | `boolean`                     |
+| setWarnWhen? | `(warnWhen: boolean) => void` |

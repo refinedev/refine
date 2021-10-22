@@ -58,6 +58,10 @@ A [`dataProvider`](api-references/providers/data-provider.md) makes HTTP request
 <br/>
 <br/>
 
+**refine** needs some router functions to create resource pages, handle navigation, etc. This provider allows you to use the router library you want.
+
+[Refer to the Router Provider documentation for detailed information. &#8594](api-references/providers/router-provider.md)
+
 ## `resources`
 
 `resources` is the main building block of a **refine** app. A resource represents an entity in an endpoint in the API (e.g. https://api.fake-rest.refine.dev/posts). It serves as a bridge between the data from the API and the pages in the app, allowing pages to interact with the data from the API.
@@ -232,13 +236,6 @@ Custom route name
 
 <br />
 
-## `routes`
-
-`routes` allow us to create custom pages with paths that are different than the ones defined by `resources`.
-
-[Refer to the Custom Pages documentation for detailed information. &#8594](guides-and-concepts/custom-pages.md)
-
-<br />
 
 ## `catchAll`
 

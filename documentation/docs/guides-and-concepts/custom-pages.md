@@ -6,14 +6,24 @@ title: Custom Pages
 import basic from '@site/static/img/guides-and-concepts/custom-pages/basic.png'
 import gif from '@site/static/img/guides-and-concepts/custom-pages/gif.gif'
 
-refine allows us to add custom pages to our application. To do this, it is necessary to create an object array with [react-router-dom](https://reactrouter.com/web/api/Route) `<Route>` properties. Then, pass this array as `routes` property in the `<Refine>` component.
+:::caution
+
+This document is related to how to create custom pages for **react** applications. Since **Nextjs** has a file system based router built on the page concept, you can create your custom pages under the `pages` folder.
+
+[Refer to the `Nextjs Guide` documentation for detailed information. &#8594](#)
+:::
+
+<br />
+
+**refine** allows us to add custom pages to our application. To do this, it is necessary to create an object array with [react-router-dom](https://reactrouter.com/web/api/Route) `<Route>` properties. Then, pass this array as `routes` property in `routerProvider` property.
 
 ## Public Custom Pages
 
 Allows creating custom pages that everyone can access via path.
 
-```tsx title="src/App.tsx" {2, 7-13}
+```tsx title="src/App.tsx" {3, 9-18}
 import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 
 import { CustomPage } from "pages/custom-page";
 
@@ -21,13 +31,16 @@ const App = () => {
     return (
         <Refine
             ...
-            routes={[
-                {
-                    exact: true,
-                    component: CustomPage,
-                    path: "/custom-page",
-                },
-            ]}
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                     {
+                        exact: true,
+                        component: CustomPage,
+                        path: "/custom-page",
+                    },
+                ],
+            }}
         />
     );
 };
@@ -41,8 +54,9 @@ Everyone can access this page via `/custom-page` path.
 
 Allows creating custom pages that only authenticated users can access via path.
 
-```tsx title="src/App.tsx" {0-2, 4-21, 23-29, 38}
+```tsx title="src/App.tsx" {0-1,3, 5-22, 24-30, 36, 42}
 import { Refine, Authenticated, AuthProvider } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 
 import { CustomPage } from "pages/custom-page";
 
@@ -78,13 +92,16 @@ const App = () => {
         <Refine
             ...
             authProvider={authProvider}
-            routes={[
-                {
-                    exact: true,
-                    component: AuthenticatedCustomPage,
-                    path: "/custom-page",
-                },
-            ]}
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                     {
+                        exact: true,
+                        component: AuthenticatedCustomPage,
+                        path: "/custom-page",
+                    },
+                ],
+            }}
         />
     );
 };
@@ -354,13 +371,16 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            routes={[
-                {
-                    exact: true,
-                    component: PostReview,
-                    path: "/post-review",
-                },
-            ]}
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                    {
+                        exact: true,
+                        component: PostReview,
+                        path: "/post-review",
+                    },
+                ],
+            }}
             resources={[
                 {
                     name: "posts",
