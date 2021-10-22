@@ -1,5 +1,6 @@
 import { AuthProvider } from "@pankod/refine";
 import { GetServerSidePropsContext, Redirect } from "next";
+import Router from "next/router";
 
 export const checkAuthentication = async (
     authProvider: AuthProvider,
@@ -15,11 +16,11 @@ export const checkAuthentication = async (
     } catch (error) {}
 
     const encodeURI = () => {
-        if (context.req.url === "/" || context.req.url === undefined) {
+        if (context.resolvedUrl === "/" || context.resolvedUrl === undefined) {
             return "/login";
         }
 
-        return `/login?to=${encodeURIComponent(context.req.url)}`;
+        return `/login?to=${encodeURIComponent(context.resolvedUrl)}`;
     };
 
     return {
