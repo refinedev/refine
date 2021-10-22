@@ -10,7 +10,7 @@ import gif from '@site/static/img/guides-and-concepts/custom-pages/gif.gif'
 
 This document is related to how to create custom pages for **react** applications. Since **Nextjs** has a file system based router built on the page concept, you can create your custom pages under the `pages` folder.
 
-[Refer to the `Nextjs Guide` documentation for detailed information. &#8594](#)
+[Refer to the `Nextjs Guide` documentation for detailed information. &#8594][ssrNextjs]
 :::
 
 <br />
@@ -541,3 +541,5 @@ export const PostReview = () => {
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
+
+[ssrNextjs]: /guides-and-concepts/ssr-nextjs.md
