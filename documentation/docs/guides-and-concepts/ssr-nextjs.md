@@ -305,7 +305,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 If `syncWithLocation` is enabled, query parameters must be handled while doing SSR.
 
-```tsx twoslash title="pages/users.tsx" {1, 8-14, 17-23}
+```tsx twoslash title="pages/users.tsx" {1, 8-14, 17-22}
 import { GetServerSideProps } from "next";
 import { parseTableParams } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
