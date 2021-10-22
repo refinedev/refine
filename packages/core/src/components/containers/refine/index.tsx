@@ -2,7 +2,6 @@ import React from "react";
 import { ConfigProvider, notification } from "antd";
 import { ConfigProviderProps } from "antd/lib/config-provider";
 import { ConfigProps } from "antd/lib/notification";
-import { RouteProps } from "react-router-dom";
 import {
     QueryClientProvider,
     QueryClient,
@@ -57,7 +56,6 @@ export interface RefineProps {
     mutationMode?: MutationMode;
     syncWithLocation?: boolean;
     warnWhenUnsavedChanges?: boolean;
-    routes?: RouteProps[];
     configProviderProps?: ConfigProviderProps;
     undoableTimeout?: number;
     Layout?: React.FC<LayoutProps>;
@@ -91,7 +89,6 @@ export const Refine: React.FC<RefineProps> = ({
     mutationMode = "pessimistic",
     syncWithLocation = false,
     warnWhenUnsavedChanges = false,
-    routes = [],
     configProviderProps = defaultConfigProviderProps,
     undoableTimeout = 5000,
     Title,
@@ -117,7 +114,6 @@ export const Refine: React.FC<RefineProps> = ({
 
     notification.config({ ...notifcationConfig });
 
-    const isSSr = true;
     const resources: IResourceItem[] = [];
 
     resourcesFromProps?.map((resource) => {
@@ -136,31 +132,6 @@ export const Refine: React.FC<RefineProps> = ({
             edit: resource.edit,
         });
     });
-
-    /* React.Children.map(children, (child: any) => {
-        if (!child) {
-            return;
-        }
-
-        if (child.type === Resource) {
-            isSSr = false;
-
-            resources.push({
-                name: child.props.name,
-                label: child.props.options?.label,
-                icon: child.props.icon,
-                route: child.props.options?.route ?? child.props.name,
-                canCreate: !!child.props.create,
-                canEdit: !!child.props.edit,
-                canShow: !!child.props.show,
-                canDelete: child.props.canDelete,
-                create: child.props.create,
-                show: child.props.show,
-                list: child.props.list,
-                edit: child.props.edit,
-            });
-        }
-    }); */
 
     if (resources.length === 0) {
         return ReadyPage ? <ReadyPage /> : <DefaultReadyPage />;
@@ -187,7 +158,6 @@ export const Refine: React.FC<RefineProps> = ({
                                             syncWithLocation={syncWithLocation}
                                             Title={Title}
                                             undoableTimeout={undoableTimeout}
-                                            customRoutes={routes}
                                             catchAll={catchAll}
                                             DashboardPage={DashboardPage}
                                             LoginPage={LoginPage}
