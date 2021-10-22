@@ -12,12 +12,14 @@ import filterDropdown from '@site/static/img/category_filter-dropdown.png';
 
 It serves as a bridge by synchronizing between its children's input value and `<Table>`'s filter values.
 
-```tsx  title="components/pages/postList.tsx" {3-5, 20-29}
+```tsx  title="components/pages/postList.tsx"
 import {
     List,
     Table,
+    // highlight-start
     FilterDropdown,
     Select,
+    // highlight-end
     useTable,
 } from "@pankod/refine";
 
@@ -32,6 +34,7 @@ const PostList: React.FC = (props) => {
                     dataIndex={["category", "id"]}
                     title="Category"
                     key="category.id"
+                    // highlight-start
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
                             <Select
@@ -44,6 +47,7 @@ const PostList: React.FC = (props) => {
                             />
                         </FilterDropdown>
                     )}
+                    // highlight-end
                 />
             </Table>
         </List>

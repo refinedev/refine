@@ -282,7 +282,7 @@ Let's add **/posts/** endpoint from our API as a resource. First take a look to 
 
 Now, add the highlighted code to your `App.tsx` to connect to the endpoint.
 
-```tsx  {9} title="src/App.tsx"
+```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -292,6 +292,7 @@ export const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            // highlight-next-line
             resources={[{ name: "posts" }]}
         />
     );
@@ -414,11 +415,12 @@ The example uses `<TagField>` and `<DateField>` components. To get the full list
 
 Finally, we are ready to add `<PostList>` to our resource. Add the highlighted line to your `App.tsx`
 
-```tsx title="src/App.tsx" {4,11}
+```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
+// highlight-next-line
 import { PostList } from "./pages";
 
 export const App: React.FC = () => {
@@ -426,6 +428,7 @@ export const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            // highlight-next-line
             resources={[{ name: "posts", list: PostList }]}
         />
     );
@@ -500,7 +503,7 @@ export interface IPost {
 
 So we can update our `list.tsx` with the highlighted lines:
 
-```tsx title="pages/posts/list.tsx" {7, 10, 15-23, 39-57}
+```tsx title="pages/posts/list.tsx"
 import {
     List,
     TextField,
@@ -508,14 +511,17 @@ import {
     DateField,
     Table,
     useTable,
+    // highlight-next-line
     useMany,
 } from "@pankod/refine";
 
+// highlight-next-line
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
+    // highlight-start
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
     const { data: categoriesData, isLoading } = useMany<ICategory>({
@@ -525,6 +531,7 @@ export const PostList: React.FC = () => {
             enabled: categoryIds.length > 0,
         },
     });
+    // highlight-end
 
     return (
         <List>
@@ -540,6 +547,7 @@ export const PostList: React.FC = () => {
                     title="createdAt"
                     render={(value) => <DateField format="LLL" value={value} />}
                 />
+                // highlight-start
                 <Table.Column
                     dataIndex={["category", "id"]}
                     title="category"
@@ -559,6 +567,7 @@ export const PostList: React.FC = () => {
                         );
                     }}
                 />
+                // highlight-end
             </Table>
         </List>
     );
@@ -597,7 +606,7 @@ We're done with displaying `post` records on our `<Table>`. Let's add search and
 
 We are going to use `<Table.Column>`'s [`filterDropdown`](https://ant.design/components/table/#Column) property and `<FilterDropdown>` component as following:
 
-```tsx title="pages/posts/list.tsx" {8-10, 28-30, 64-73}
+```tsx title="pages/posts/list.tsx"
 import {
     List,
     TextField,
@@ -607,8 +616,10 @@ import {
     useTable,
     useMany,
     FilterDropdown,
+    // highlight-start
     Select,
     useSelect,
+    // highlight-end
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
@@ -625,10 +636,11 @@ export const PostList: React.FC = () => {
             enabled: categoryIds.length > 0,
         },
     });
-
+    // highlight-start
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
     });
+    // highlight-end
 
     return (
         <List>
@@ -662,6 +674,7 @@ export const PostList: React.FC = () => {
                             />
                         );
                     }}
+                    // highlight-start
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
                             <Select
@@ -672,6 +685,7 @@ export const PostList: React.FC = () => {
                             />
                         </FilterDropdown>
                     )}
+                    // highlight-end
                 />
             </Table>
         </List>
@@ -739,11 +753,12 @@ export const PostShow = () => {
 
 Now we can add the newly created component to our resource with `show` prop:
 
-```tsx title="src/App.tsx" {4, 11-17}
+```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
+// highlight-next-line
 import { PostList, PostShow } from "./pages";
 
 export const App: React.FC = () => {
@@ -751,6 +766,7 @@ export const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            // highlight-start
             resources={[
                 {
                     name: "posts",
@@ -758,6 +774,7 @@ export const App: React.FC = () => {
                     show: PostShow,
                 },
             ]}
+            // highlight-end
         />
     );
 };
@@ -767,7 +784,7 @@ export const App: React.FC = () => {
 
 And then we can add a `<ShowButton>` on the list page to make it possible for users to navigate to detail pages:
 
-```tsx title="src/pages/posts/list.tsx" {10, 76-88}
+```tsx title="src/pages/posts/list.tsx"
 import {
     List,
     TextField,
@@ -778,6 +795,7 @@ import {
     useMany,
     FilterDropdown,
     Select,
+    // highlight-next-line
     ShowButton,
     useSelect,
 } from "@pankod/refine";
@@ -847,6 +865,7 @@ export const PostList: React.FC = () => {
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
+                    // highlight-start
                     render={(_text, record): React.ReactNode => {
                         return (
                             <ShowButton
@@ -856,6 +875,7 @@ export const PostList: React.FC = () => {
                             />
                         );
                     }}
+                    // highlight-end
                 />
             </Table>
         </List>
@@ -947,11 +967,12 @@ export const PostEdit: React.FC = () => {
 
 Now we can add the newly created component to our resource with `edit` prop:
 
-```tsx title="src/App.tsx" {4, 11-18}
+```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
+// highlight-next-line
 import { PostList, PostShow, PostEdit } from "./pages";
 
 export const App: React.FC = () => {
@@ -959,6 +980,7 @@ export const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            // highlight-start
             resources={[
                 {
                     name: "posts",
@@ -967,6 +989,7 @@ export const App: React.FC = () => {
                     show: PostShow,
                 },
             ]}
+            // highlight-end
         />
     );
 };
@@ -974,7 +997,7 @@ export const App: React.FC = () => {
 
 We are going to need an _edit_ button on each row to diplay the `<PostEdit>` component. **refine** doesn't automatically add one, so we have to update our `<PostList>` component to add a `<EditButton>` for each record:
 
-```tsx title="components/pages/posts.tsx" {12, 13, 83, 94, 89-93}
+```tsx title="components/pages/posts.tsx"
 import {
     List,
     TextField,
@@ -987,8 +1010,10 @@ import {
     Select,
     ShowButton,
     useSelect,
+    // highlight-start
     Space,
     EditButton,
+    // highlight-end
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
@@ -1056,6 +1081,7 @@ export const PostList: React.FC = () => {
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
+                    // highlight-start
                     render={(_text, record): React.ReactNode => {
                         return (
                             <Space>
@@ -1072,6 +1098,7 @@ export const PostList: React.FC = () => {
                             </Space>
                         );
                     }}
+                    // highlight-end
                 />
             </Table>
         </List>
@@ -1123,8 +1150,9 @@ Creating a record in **refine** follows a similar flow as editing records.
 
 First, we'll create a `<PostCreate>` page:
 
-```tsx title="pages/posts/create.tsx" {1, 18, 45}
+```tsx title="pages/posts/create.tsx"
 import {
+    // highlight-next-line
     Create,
     Form,
     Input,
@@ -1142,6 +1170,7 @@ export const PostCreate = () => {
     });
 
     return (
+        // highlight-start
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item label="Title" name="title">
@@ -1170,6 +1199,7 @@ export const PostCreate = () => {
                 </Form.Item>
             </Form>
         </Create>
+        // highlight-end
     );
 };
 ```
@@ -1180,11 +1210,12 @@ After creating the `<PostCreate>` component, add it to resource with `create` pr
 
 <br />
 
-```tsx title="src/App.tsx" {4, 11-19}
+```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 
+// highlight-next-line
 import { PostList, PostShow, PostEdit, PostCreate } from "./pages";
 
 export const App: React.FC = () => {
@@ -1192,6 +1223,7 @@ export const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            // highlight-start
             resources={[
                 {
                     name: "posts",
@@ -1201,6 +1233,7 @@ export const App: React.FC = () => {
                     create: PostCreate,
                 },
             ]}
+            // highlight-end
         />
     );
 };
@@ -1237,7 +1270,7 @@ Deleting a record can be done in two ways.
 
 First way is adding an delete button on each row since _refine_ doesn't automatically add one, so we have to update our `<PostList>` component to add a `<DeleteButton>` for each record:
 
-```tsx title="components/pages/posts.tsx" {14, 95-99}
+```tsx title="components/pages/posts.tsx"
 import {
     List,
     TextField,
@@ -1252,6 +1285,7 @@ import {
     useSelect,
     Space,
     EditButton,
+    // highlight-next-line
     DeleteButton,
 } from "@pankod/refine";
 
@@ -1333,11 +1367,13 @@ export const PostList: React.FC = () => {
                                     recordItemId={record.id}
                                     hideText
                                 />
+                                // highlight-start
                                 <DeleteButton
                                     size="small"
                                     recordItemId={record.id}
                                     hideText
                                 />
+                                // highlight-end
                             </Space>
                         );
                     }}
@@ -1373,6 +1409,7 @@ export const App: React.FC = () => {
                     show: PostShow,
                     edit: PostEdit,
                     create: PostCreate,
+                    // highlight-next-line
                     canDelete: true,
                 },
             ]}

@@ -239,7 +239,7 @@ If `checkError` returns a rejected promise, the `logout` method is called and us
 In this example, we log the user out when **HTTP** error status code is `401`.  
 You can decide, depending on any error status code you want to check, if the users continue to process by returning a resolved promise or if they are logged out for rejecting the promise.
 
-```tsx title="auth-provider.ts" {6-11}
+```tsx title="auth-provider.ts" {7-12}
 const authProvider = {
     ...
     logout: () => {
