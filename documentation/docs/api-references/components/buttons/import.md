@@ -10,23 +10,27 @@ It uses Ant Design's [`<Button>`][button] and [`<Upload>`][upload] components. I
 
 ## Usage
 
-```tsx  title="/src/pages/posts/list.tsx" {4-5, 11, 16}
+```tsx  title="/src/pages/posts/list.tsx"
 import {
     List,
     Table,
     useTable,
+    // highlight-start
     useImport,
     ImportButton,
+    // highlight-end
 } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
+    // highlight-next-line
     const importProps = useImport<IPostFile>();
 
     return (
         <List
             pageHeaderProps={{
+                // highlight-next-line
                 extra: <ImportButton {...importProps} />,
             }}
         >

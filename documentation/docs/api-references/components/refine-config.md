@@ -71,7 +71,7 @@ Here's an app that consumes the https://api.fake-rest.refine.dev/posts endpoint 
 Page components that are for interacting with the CRUD API operations are passed as a resource element to `resources`.
 <br />
 
-```tsx title="App.tsx" {12-20}
+```tsx title="App.tsx"
 import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
@@ -84,6 +84,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
+            // highlight-start
             resources={[
                 {
                     name: "posts",
@@ -93,6 +94,7 @@ const App: React.FC = () => {
                     show: PostShow,
                 },
             ]}
+            // highlight-end
         />
     );
 };
@@ -182,12 +184,13 @@ This value will be passed to all CRUD pages defined to as the `resources` elemen
 
 An icon element can be passed as properties for the icon in the menu.
 
-```tsx {5}
+```tsx
 <Refine
     ...
     resources={[
         {
             ...
+            // highlight-next-line
             icon={<CustomIcon />}
         },
     ]}
@@ -198,12 +201,13 @@ An icon element can be passed as properties for the icon in the menu.
 
 Menu item name and route on clicking can be customized.
 
-```tsx {5}
+```tsx
 <Refine
     ...
     resources={[
         {
             ...
+            // highlight-next-line
             options={{ label: "custom", route: "/custom" }}
         },
     ]}
@@ -241,13 +245,15 @@ Custom route name
 
 When the app is navigated to a non-existent route, **refine** shows a default error page. A custom error component can be used for this error page by passing the customized component to `catchAll` property:
 
-```tsx title="App.tsx" {0, 6}
+```tsx title="App.tsx"
+// highlight-next-line
 const CustomErrorPage = () => <div>Page not found</div>;
 
 const App: React.FC = () => {
     return (
         <Refine
             ...
+            // highlight-next-line
             catchAll={CustomErrorPage}
         />
     );
@@ -260,11 +266,12 @@ const App: React.FC = () => {
 
 `mutationMode` determines which mode the mutations run with. (e.g. useUpdate, useDelete).
 
-```tsx title="App.tsx" {4}
+```tsx title="App.tsx"
 const App: React.FC = () => {
     return (
         <Refine
             ...
+            // highlight-next-line
             mutationMode="optimistic"
         />
     );
@@ -285,12 +292,13 @@ The duration of the timeout period in **undoable** mode, shown in milliseconds. 
 The value set in hooks will override the value set with `undoableTimeout`.  
 `undoableTimeout` has a default value of `5000`.
 
-```tsx title="App.tsx" {5}
+```tsx title="App.tsx"
 const App: React.FC = () => {
     return (
         <Refine
             ...
             mutationMode="undoable"
+            // highlight-next-line
             undoableTimeout={3500}
         />
     );
@@ -341,13 +349,15 @@ Ant Design's [ConfigProvider](https://ant.design/components/config-provider) whi
 
 For example, Layout direction can be set to other way:
 
-```tsx title="App.tsx" {3-5}
+```tsx title="App.tsx"
 const App: React.FC = () => (
     <Refine
         ...
+        // highlight-start
         configProviderProps={{
             direction: "rtl",
         }}
+        // highlight-end
     />
 );
 ```
@@ -360,12 +370,14 @@ const App: React.FC = () => (
 
 Custom login component can be passed to the `LoginPage` property.
 
-```tsx title="App.tsx" {0, 5}
+```tsx title="App.tsx"
+// highlight-next-line
 const CustomLoginPage = () => <div> Custom Login Page </div>;
 
 const App: React.FC = () => (
     <Refine
         ...
+        // highlight-next-line
         LoginPage={CustomLoginPage}
     />
 );
@@ -379,12 +391,14 @@ A custom dashboard page can be passed to the `DashboardPage` prop which is acces
 
 The dashboard item will appear at the top of the sider menu. If `DashboardPage` is not given, the first resource of `resources` will be shown.
 
-```tsx title="App.tsx" {0, 5}
+```tsx title="App.tsx"
+// highlight-next-line
 const CustomDashboardPage = () => <div> Custom Dashboard Page </div>;
 
 const App: React.FC = () => (
     <Refine
         ...
+        // highlight-next-line
         DashboardPage={CustomDashboardPage}
     />
 );
@@ -398,12 +412,14 @@ const App: React.FC = () => (
 
 Custom ready page component can be set by passing to `ReadyPage` property?.
 
-```tsx title="App.tsx" {0, 5}
+```tsx title="App.tsx"
+// highlight-next-line
 const CustomReadyPage = () => <div> Custom Ready Page </div>;
 
 const App: React.FC = () => (
     <Refine
         ...
+        // highlight-next-line
         ReadyPage={CustomReadyPage}
     />
 );
@@ -425,12 +441,14 @@ The default sidebar can be customized by using refine hooks and passing custom c
 
 The default app footer can be customized by passing the `Footer` property.
 
-```tsx title="App.tsx" {0, 5}
+```tsx title="App.tsx"
+// highlight-next-line
 const CustomFooter = () => <div>Custom Footer</div>;
 
 const App: React.FC = () => (
     <Refine
         ...
+        // highlight-next-line
         Footer={CustomFooter}
     />
 );
@@ -442,12 +460,14 @@ const App: React.FC = () => (
 
 The default app header can be customized by passing the `Header` property.
 
-```tsx title="App.tsx" {0, 5}
+```tsx title="App.tsx"
+// highlight-next-line
 const CustomHeader = () => <div>Custom Header</div>;
 
 const App: React.FC = () => (
     <Refine
         ...
+        // highlight-next-line
         Header={CustomHeader}
     />
 );
@@ -463,10 +483,11 @@ Default layout can be customized by passing the `Layout` property.
 
 Layout property will receive individual layout components as property.
 
-```tsx title="App.tsx" {3-17}
+```tsx title="App.tsx"
 const App: React.FC = () => (
     <Refine
         ...
+        // highlight-start
         Layout={({ children, Sider, Footer, Header, OffLayoutArea }) => (
             <AntdLayout style={{ minHeight: "100vh", flexDirection: "row" }}>
                 <Sider />
@@ -482,6 +503,7 @@ const App: React.FC = () => (
                 <OffLayoutArea />
             </AntdLayout>
         )}
+        // highlight-end
     />
 );
 ```
@@ -490,16 +512,18 @@ const App: React.FC = () => (
 
 A completely custom layout can also be implemented instead of the **refine**'s default [Ant Design based layout](https://ant.design/components/layout) like below.
 
-```tsx title="App.tsx" {3-8}
+```tsx title="App.tsx"
 const App: React.FC = () => (
     <Refine
         ...
+        // highlight-start
         Layout={({ children }) => (
             <div style={{ display: "flex", flexDirection: "column" }}>
                 <div>Custom Layout</div>
                 <div>{children}</div>
             </div>
         )}
+        // highlight-end
     />
 );
 ```
@@ -514,12 +538,14 @@ const App: React.FC = () => (
 
 The component wanted to be placed out of app layout structure can be set by passing to `OffLayoutArea` prop.
 
-```tsx title="App.tsx" {0, 5}
+```tsx title="App.tsx"
+// highlight-next-line
 import { Refine, BackTop } from "@pankod/refine";
 
 const App: React.FC = () => (
     <Refine
         ...
+        // highlight-next-line
         OffLayoutArea={() => <BackTop />}
     />
 );
@@ -531,14 +557,17 @@ const App: React.FC = () => (
 
 The app title can be set by passing the `Title` property.
 
-```tsx title="App.tsx" {0-2, 7}
+```tsx title="App.tsx"
+// highlight-start
 const CustomTitle = ({ collapsed }) => (
     <div>{collapsed ? "Collapsed Title" : "Full Title"}</div>
 );
+// highlight-end
 
 const App: React.FC = () => (
     <Refine
         ...
+        // highlight-next-line
         Title={CustomTitle}
     />
 );
@@ -561,10 +590,11 @@ Config for React Query client that **refine** uses.
 
 [Refer to the QueryClient documentation for detailed information. &#8594](https://react-query.tanstack.com/reference/QueryClient#queryclient)
 
-```tsx {3-9}
+```tsx
 const App: React.FC = () => (
     <Refine
         ...
+        // highlight-start
         reactQueryClientConfig={{
             defaultOptions: {
                 queries: {
@@ -572,6 +602,7 @@ const App: React.FC = () => (
                 },
             },
         }}
+        // highlight-end
     />
 );
 ```
@@ -580,15 +611,17 @@ const App: React.FC = () => (
 
 Config for Ant Design [notification](https://ant.design/components/notification/) that **refine** uses.
 
-```tsx {3-7}
+```tsx
 const App: React.FC = () => (
     <Refine
         ...
+        // highlight-start
         notifcationConfig={{
             placement: "bottomRight",
             bottom: 40,
             closeIcon: <CloseOutlined />,
         }}
+        // highlight-end
     />
 );
 ```

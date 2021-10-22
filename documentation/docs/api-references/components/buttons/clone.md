@@ -10,11 +10,12 @@ It can be useful when redirecting the app to the create page with the record id 
 
 ## Usage
 
-```tsx  {4, 20}
+```tsx
 import {
     List,
     Table,
     useTable,
+    // highlight-next-line
     CloneButton,
 } from "@pankod/refine";
 
@@ -31,6 +32,7 @@ export const PostList: React.FC = () => {
                     dataIndex="actions"
                     key="actions"
                     render={(_, record) => (
+                        // highlight-next-line
                         <CloneButton size="small" recordItemId={record.id} />
                     )}
                 />

@@ -188,11 +188,12 @@ The `<Show>` component reads the `resource` information from the route by defaul
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
-```tsx  {4-10, 15-24}
+```tsx
 import { Refine, Show } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 
+// highlight-start
 const CustomPage = () => {
     return (
         <Show resource="posts" recordItemId="postId">
@@ -200,12 +201,14 @@ const CustomPage = () => {
         </Show>
     );
 };
+// highlight-end
 
 export const App: React.FC = () => {
     return (
         <Refine
             routerProvider={{
                 ...routerProvider,
+                // highlight-start
                 routes: [
                     {
                         exact: true,
@@ -213,6 +216,7 @@ export const App: React.FC = () => {
                         path: "/custom",
                     },
                 ]
+                // highlight-end
             }}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
             resources={[{ name: "posts" }]}

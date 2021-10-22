@@ -90,20 +90,23 @@ export const ListPage: React.FC = () => {
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
-```tsx  {4-6, 11-20}
+```tsx
 import { Refine, List } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
+// highlight-start
 const CustomPage = () => {
     return <List resource="posts">...</List>;
 };
+// highlight-end
 
 export const App: React.FC = () => {
     return (
         <Refine
             routerProvider={{
                 ...routerProvider,
+                // highlight-start
                 routes: [
                     {
                         exact: true,
@@ -111,6 +114,7 @@ export const App: React.FC = () => {
                         path: "/custom",
                     },
                 ]
+                // highlight-end
             }}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
             resources={[{ name: "posts" }]}

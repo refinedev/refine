@@ -9,8 +9,9 @@ import createButton from '@site/static/img/guides-and-concepts/components/button
 
 ## Usage
 
-```tsx  {1, 11}
+```tsx
 import {
+    // highlight-next-line
     CreateButton,
     List,
     Table,
@@ -21,6 +22,7 @@ export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     return (
+        // highlight-next-line
         <List pageHeaderProps={{ extra: <CreateButton /> }}>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />

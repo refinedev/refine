@@ -9,11 +9,12 @@ import editButton from '@site/static/img/guides-and-concepts/components/buttons/
 
 ## Usage
 
-```tsx  {4, 20}
+```tsx
 import {
     List,
     Table,
     useTable,
+    // highlight-next-line
     EditButton,
 } from "@pankod/refine";
 
@@ -30,6 +31,7 @@ export const PostList: React.FC = () => {
                     dataIndex="actions"
                     key="actions"
                     render={(_, record) => (
+                        // highlight-next-line
                         <EditButton size="small" recordItemId={record.id} />
                     )}
                 />

@@ -13,12 +13,13 @@ import exportButton from '@site/static/img/guides-and-concepts/components/button
 
 Use it like any other Ant Design [`<Button>`][button]. You can use it with [useExport][useexport]:
 
-```tsx  title="/src/pages/posts/list.tsx" {5, 17-20}
+```tsx  title="/src/pages/posts/list.tsx"
 import {
     List,
     Table,
     useTable,
     useExport,
+    // highlight-next-line
     ExportButton,
 } from "@pankod/refine";
 
@@ -31,10 +32,12 @@ export const PostList: React.FC = () => {
         <List
             pageHeaderProps={{
                 extra: (
+                    // highlight-start
                     <ExportButton
                         onClick={triggerExport}
                         loading={exportLoading}
                     />
+                    // highlight-end
                 ),
             }}
         >
