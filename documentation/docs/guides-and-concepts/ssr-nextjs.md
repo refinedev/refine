@@ -226,7 +226,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 And in the `list` component for a `resource` e.g. "posts":
 
-```tsx title="src/components/posts/list.tsx" {10, 12-13}
+```tsx title="src/components/posts/list.tsx" {10, 12-14}
 import {
     useTable,
     List,
