@@ -120,6 +120,37 @@ const features = [
     },
 ];
 
+const backendLinks = [
+    {
+        href: "https://github.com/nestjsx/crud",
+        text: "NestJs CRUD",
+    },
+    {
+        href: "https://airtable.com",
+        text: "Airtable",
+    },
+    {
+        href: "https://strapi.io",
+        text: "Strapi",
+    },
+    {
+        href: "https://strapi.io/documentation/developer-docs/latest/development/plugins/graphql.html",
+        text: "Strapi GraphQL",
+    },
+    {
+        href: "https://supabase.io/",
+        text: "Supabase",
+    },
+    {
+        href: "https://hasura.io/",
+        text: "Hasura",
+    },
+    {
+        href: "https://altogic.com/",
+        text: "Altogic",
+    },
+];
+
 export const KeyFeatures = () => {
     return (
         <section className={styles.section}>
@@ -151,54 +182,25 @@ export const KeyFeatures = () => {
                     <br />
                     <br />
                     Built-in support for <br />
-                    <a
-                        href="https://github.com/nestjsx/crud"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        NestJs CRUD
-                    </a>
-                    ,{" "}
-                    <a
-                        href="https://airtable.com"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        Airtable
-                    </a>
-                    ,{" "}
-                    <a
-                        href="https://strapi.io"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        Strapi
-                    </a>
-                    ,{" "}
-                    <a
-                        href="https://strapi.io/documentation/developer-docs/latest/development/plugins/graphql.html"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        Strapi GraphQL
-                    </a>
-                    ,{" "}
-                    <a
-                        href="https://supabase.io/"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        Supabase
-                    </a>{" "}
-                    and{" "}
-                    <a
-                        href="https://altogic.com/"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        Altogic
-                    </a>
-                    .
+                    {backendLinks.map((item, index) => {
+                        return (
+                            <>
+                                {index === 0
+                                    ? ""
+                                    : index === backendsLink.length - 1
+                                    ? " and "
+                                    : ", "}
+                                <a
+                                    href={item.href}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    key={item.text}
+                                >
+                                    {item.text}
+                                </a>
+                            </>
+                        );
+                    })}
                 </p>
                 <div className="row row--justify--center">
                     <div className="col col--6">
