@@ -1,9 +1,9 @@
 {
-    "name": "refine-next",
+    "name": "i18n-next",
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "start": "NODE_OPTIONS=--max_old_space_size=4096 next dev",
+        "start": "NODE_OPTIONS=--max_old_space_size=4096 next dev -p 3001",
         "build": "next build",
         "start:prod": "next start",
         "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
