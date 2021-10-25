@@ -644,7 +644,7 @@ const SimpleRestDataProvider = (
 
 <br />
 
-```ts {5}
+```ts {6}
 import { useList } from "@pankod/refine";
 
 const { data } = useList({
@@ -727,7 +727,7 @@ So we added the `generateSort` method to transform sort parameters.
 
 <br />
 
-```ts {6}
+```ts {7}
 import { useList } from "@pankod/refine";
 
 const { data } = useList({
@@ -836,7 +836,7 @@ So we added the `generateFilter` and `mapOperator` methods to the transform filt
 
 [Refer to the list of all filter operators &#8594](/docs/api-references/interfaceReferences#crudoperators)
 
-```ts {7-13}
+```ts {8-14}
 import { useList } from "@pankod/refine";
 
 const { data } = useList({
