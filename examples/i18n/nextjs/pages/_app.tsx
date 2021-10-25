@@ -8,7 +8,7 @@ import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-nextjs-router";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "@components";
+import { PostList, PostCreate, PostEdit, PostShow, Header } from "@components";
 import { authProvider } from "src/authProvider";
 
 import "@pankod/refine/dist/styles.min.css";
@@ -29,6 +29,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             authProvider={authProvider}
             dataProvider={dataProvider(API_URL)}
             i18nProvider={i18nProvider}
+            Header={Header}
             resources={[
                 {
                     name: "posts",
