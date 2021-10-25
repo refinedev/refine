@@ -17,7 +17,8 @@
         "next-i18next": "^8.9.0",
         "nookies": "^2.5.2",
         "react": "^17.0.2",
-        "react-dom": "^17.0.2"
+        "react-dom": "^17.0.2",
+        "react-mde": "^11.5.0"
     },
     "devDependencies": {
         "@types/node": "^14.14.13",

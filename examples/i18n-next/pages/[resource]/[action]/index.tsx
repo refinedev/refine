@@ -1,5 +1,6 @@
 export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
 import { checkAuthentication } from "@pankod/refine-nextjs-router";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import { GetServerSideProps } from "next";
 
@@ -16,6 +17,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
 
     return {
-        props: {},
+        props: {
+            ...(await serverSideTranslations(context.locale ?? "en", [
+                "common",
+            ])),
+        },
     };
 };

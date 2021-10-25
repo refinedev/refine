@@ -30,7 +30,6 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             dataProvider={dataProvider(API_URL)}
             i18nProvider={i18nProvider}
             resources={[
-                { name: "users" },
                 {
                     name: "posts",
                     list: PostList,
