@@ -6,7 +6,22 @@ title: Migration Guide
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## `<Resource/>` to `resources`
+## 1.0.XX to 1.1.XX
+
+### Motivation behind breaking changes
+
+#### `resources`
+
+Making `resources` property-based instead of component-based was necessary for Nextjs support. A property is also more flexible, dynamic and easier to configure compared to a component.
+
+#### `routerProvider`
+
+Router layer is abstracted from the core for mainly Nextjs support. This also creates the opportunity for any other router solution to be used.
+
+#### Custom Pages
+
+This is also related to abstracting away the router layer from core. Differences between (currently two) router provider are so big that adding a layer to cover both cases (possibly more in the future) is much harder to implement and maintain compared to letting everyone handle it with their own conventions. This also has the huge benefit of allowing maximum configurability for every respective provider.
+### `<Resource/>` to `resources`
 
 `<Resource/>` is deprecated. Resources must be passed to [`resources`][resources] prop instead.
 
@@ -39,7 +54,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-## `routerProvider`
+### `routerProvider`
 
 [`<Refine/>`][refine] now requires a [`routerProvider`][routerProvider]. You can use packages **@pankod/refine-react-router** or **@pankod/refine-nextjs-router** provided by **refine**.
 
@@ -75,24 +90,9 @@ const App: React.FC = () => {
   </TabItem>
 </Tabs>
 
-## Custom Pages
-
-`routes` prop of `<Refine/>` is deprecated. Custom routes must be handled by the router provider you choose. [Refer to Custom Pages documentation for a detailed guide][customPages]
-
-## Motivation behind breaking changes
-
-### `resources`
-
-Making `resources` property-based instead of component-based was necessary for Nextjs support. A property is also more flexible, dynamic and easier to configure compared to a component.
-
-### `routerProvider`
-
-Router layer is abstracted from the core for mainly Nextjs support. This also creates the opportunity for any other router solution to be used.
-
 ### Custom Pages
 
-This is also related to abstracting away the router layer from core. Differences between (currently two) router provider are so big that adding a layer to cover both cases (possibly more in the future) is much harder to implement and maintain compared to letting everyone handle it with their own conventions. This also has the huge benefit of allowing maximum configurability for every respective provider.
-
+`routes` prop of `<Refine/>` is deprecated. Custom routes must be handled by the router provider you choose. [Refer to Custom Pages documentation for a detailed guide][customPages]
 
 [refine]: /api-references/components/refine-config.md
 [resources]: /api-references/components/refine-config.md#resources
