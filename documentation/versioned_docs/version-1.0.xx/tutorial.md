@@ -283,7 +283,7 @@ Let's add **/posts/** endpoint from our API as a `<Resource />`. First take a lo
 
 Now, add the highlighted code to your `App.tsx` to connect to the endpoint.
 
-```tsx  {1, 7} title="src/App.tsx" 
+```tsx title="src/App.tsx" {1,7}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
