@@ -4,6 +4,7 @@ export interface IPost {
     status: "published" | "draft" | "rejected";
     createdAt: string;
     category: ICategory;
+    content: string;
 }
 
 export interface ICategory {
