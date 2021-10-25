@@ -9,14 +9,18 @@ title: useForm
 
 We'll show the basic usage of `useForm` by adding an editing form.
 
-```tsx  title="pages/posts/edit.tsx" {0, 3, 6, 7}
+```tsx  title="pages/posts/edit.tsx"
+// highlight-next-line
 import { Edit, Form, Input, useForm, Select } from "@pankod/refine";
 
 export const PostEdit: React.FC = () => {
+// highlight-next-line
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     return (
+// highlight-next-line
         <Edit saveButtonProps={saveButtonProps}>
+// highlight-next-line
             <Form {...formProps} layout="vertical">
                 <Form.Item label="Title" name="title">
                     <Input />

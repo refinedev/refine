@@ -23,18 +23,21 @@ We will make a button for each method to use.
 
 Let's imagine that we have a post list and we want to be redirected to this page. To do this we will use the list hook.
 
-```tsx  {2, 6, 11}
+```tsx
 import {
     Button,
+// highlight-next-line
     useNavigation,
 } from "@pankod/refine";
 
 export const MyListButton = () => {
+// highlight-next-line
     const { list } = useNavigation();
 
     return (
         <Button
             onClick={(): void =>
+// highlight-next-line
                 list("posts")
             }
         >
@@ -48,18 +51,21 @@ export const MyListButton = () => {
 
 If we want to go to the post creation page to create a new post, we can use the create hook.
 
-```tsx  {2, 6, 11}
+```tsx
 import {
     Button,
+// highlight-next-line
     useNavigation,
 } from "@pankod/refine";
 
 export const MyCreateButton = () => {
+// highlight-next-line
     const { create } = useNavigation();
 
     return (
         <Button
             onClick={(): void =>
+// highlight-next-line
                 create("posts")
             }
         >
@@ -73,18 +79,21 @@ export const MyCreateButton = () => {
 
 Let's see what we should do if we want to go to the editing page of one of our posts.
 
-```tsx  {2, 6, 11}
+```tsx
 import {
     Button,
+// highlight-next-line
     useNavigation,
 } from "@pankod/refine";
 
 export const MyEditButton = () => {
+// highlight-next-line
     const { edit } = useNavigation();
 
     return (
         <Button
             onClick={(): void =>
+// highlight-next-line
                 edit("posts", "1")
             }
         >
@@ -108,18 +117,21 @@ You can also give a `type` property to the methods. You can look here to see the
 
 If you want to show the detail of your posts you can use show and you need `id` for show.
 
-```tsx  {2, 6, 11}
+```tsx
 import {
     Button,
+// highlight-next-line
     useNavigation,
 } from "@pankod/refine";
 
 export const MyShowButton = () => {
+// highlight-next-line
     const { show } = useNavigation();
 
     return (
         <Button
             onClick={(): void =>
+// highlight-next-line
                 show("posts", "1")
             }
         >
@@ -141,18 +153,21 @@ If you want to return to previous page. You can use `goBack` hook.
 
 If we have the resources to clone a post and we want to go to this page, we will use `clone` with a record id.
 
-```tsx  {2, 6, 11}
+```tsx
 import {
     Button,
+// highlight-next-line
     useNavigation,
 } from "@pankod/refine";
 
 export const MyCloneButton = () => {
+// highlight-next-line
     const { clone } = useNavigation();
 
     return (
         <Button
             onClick={(): void =>
+// highlight-next-line
                 clone("posts", "1")
             }
         >
@@ -170,19 +185,22 @@ There is something we should pay attention to here. We need to give the `id` of 
 
 If we do not want to use the above methods and want to redirect ourselves, we should use `push` or `replace` methods and also we can use `goBack` to return to previous page. You can check out the differences between them [here](#return-values).
 
-```tsx  {2, 6, 12, 19, 26}
+```tsx 
 import {
     Button,
+// highlight-next-line
     useNavigation,
 } from "@pankod/refine";
 
 export const MyHistoryButtons = () => {
+// highlight-next-line
     const { push, replace, goBack } = useNavigation();
 
     return (
         <>
             <Button
                 onClick={(): void =>
+// highlight-next-line
                     push("posts")
                 }
             >
@@ -190,6 +208,7 @@ export const MyHistoryButtons = () => {
             </Button>
             <Button
                 onClick={(): void =>
+// highlight-next-line
                     replace("posts")
                 }
             >
@@ -197,6 +216,7 @@ export const MyHistoryButtons = () => {
             </Button>
             <Button
                 onClick={(): void =>
+// highlight-next-line
                     goBack()
                 }
             >

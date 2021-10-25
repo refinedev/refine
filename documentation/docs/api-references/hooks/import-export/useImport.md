@@ -40,23 +40,27 @@ This file should be parsed as:
 
 ### With `<ImportButton>` (Recommended)
 
-```tsx  {4-5, 11, 16}
+```tsx
 import {
     List,
     Table,
     useTable,
+// highlight-start
     useImport,
     ImportButton,
+// highlight-end
 } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
+// highlight-next-line
     const importProps = useImport<IPostFile>();
 
     return (
         <List
             pageHeaderProps={{
+// highlight-next-line
                 extra: <ImportButton {...importProps} />,
             }}
         >
@@ -87,15 +91,17 @@ interface IPost {
 
 ### With Ant Design's `<Upload>` and `<Button>` Components
 
-```tsx  {4-7, 10, 15, 20-26}
+```tsx
 import {
     List,
     Table,
     useTable,
+// highlight-start
     useImport,
     Button,
     Icons,
     Upload,
+// highlight-end
 } from "@pankod/refine";
 
 const { ImportOutlined } = Icons;
@@ -103,10 +109,12 @@ const { ImportOutlined } = Icons;
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
+// highlight-next-line
     const { buttonProps, uploadProps } = useImport<IPostFile>();
 
     return (
         <List
+// highlight-start
             pageHeaderProps={{
                 extra: (
                     <Upload {...uploadProps}>
@@ -116,6 +124,7 @@ export const PostList: React.FC = () => {
                     </Upload>
                 ),
             }}
+// highlight-end
         >
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />

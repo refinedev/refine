@@ -24,10 +24,11 @@ We'll do two examples, one for creating and one for editing a post. Let's see ho
 
 ### Create Drawer
 
-```tsx  title="pages/posts/list.tsx" {3-10, 15-19, 23-39}
+```tsx  title="pages/posts/list.tsx"
 import { useDrawerForm, Drawer, Form, Create, Radio, List, Input } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
+// highlight-start
     const {
         formProps,
         drawerProps,
@@ -36,18 +37,22 @@ export const PostList: React.FC = () => {
     } = useDrawerForm<IPost>({
         action: "create",
     });
+// highlight-end
 
     return (
         <>
             <List
+// highlight-start
                 createButtonProps={{
                     onClick: () => {
                         show();
                     },
                 }}
+// highlight-end
             >
                 ...
             </List>
+// highlight-start
             <Drawer {...drawerProps}>
                 <Create saveButtonProps={saveButtonProps}>
                     <Form {...formProps} layout="vertical">
@@ -64,6 +69,7 @@ export const PostList: React.FC = () => {
                     </Form>
                 </Create>
             </Drawer>
+// highlight-end
         </>
     )
 }
@@ -105,7 +111,7 @@ This code block makes `<Drawer>` appear when you click the button.
 
 Let's learn how to add editing capabilities to the records that will be opening form in Drawer with using `action` prop.
 
-```tsx  title="pages/posts/list.tsx" {19-20, 22, 35-39, 45, 47-48}
+```tsx  title="pages/posts/list.tsx"
 import { 
     useDrawerForm,
     Drawer,
@@ -128,6 +134,7 @@ export const PostList: React.FC = () => {
         deleteButtonProps,
         editId,
     } = useDrawerForm<IPost>({
+// highlight-next-line
         action: "edit",
     });
 
@@ -140,6 +147,7 @@ export const PostList: React.FC = () => {
                         title="Actions"
                         dataIndex="actions"
                         key="actions"
+// highlight-start
                         render={(_value, record) => (
                             <EditButton
                                 size="small"
@@ -147,15 +155,19 @@ export const PostList: React.FC = () => {
                                 onClick={() => show(record.id)}
                             />
                         )}
+// highlight-end
                     />
                 </Table>
             </List>
             <Drawer {...drawerProps}>
                 <Edit
+// highlight-start
                     saveButtonProps={saveButtonProps}
                     deleteButtonProps={deleteButtonProps}
                     recordItemId={editId}
+// highlight-end
                 >
+// highlight-next-line
                     <Form {...formProps} layout="vertical">
                         <Form.Item label="Title" name="title">
                             <Input />

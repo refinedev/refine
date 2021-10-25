@@ -17,14 +17,16 @@ Let's say that you want to show the user's name.
 
 We have a logic in [`authProvider`](/docs/api-references/providers/auth-provider)'s `getUserIdentity` method like below.
 
-```tsx {2-6}
+```tsx
 const authProvider: AuthProvider = {
   ...
+    // highlight-start
     getUserIdentity: () =>
             Promise.resolve({
                 id: 1,
                 fullName: "Jane Doe",
             }),
+  // highlight-end
   ...
 };
 ```
@@ -33,10 +35,12 @@ const authProvider: AuthProvider = {
 
 You can access identity data like below.
 
-```tsx  {0, 3}
+```tsx
+// highlight-next-line
 import { useGetIdentity } from "@pankod/refine";
 
 export const User: React.FC = () => {
+    // highlight-next-line
     const { data: identity } = useGetIdentity<{ id: string; fullName: string}>();
 
     return <span>{identity?.fullName}</span>

@@ -26,25 +26,30 @@ We'll show two examples, one for creating and one for editing a post. Let's see 
 
 In this example, we will show you how to create a record with `useModalForm`.
 
-```tsx title="pages/posts/list.tsx" twoslash {3-5, 10-14, 18-31}
+```tsx title="pages/posts/list.tsx"
 import { useModalForm, Modal, Form, Create, Radio, List, Input } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
+// highlight-start
     const { modalProps, formProps, show } = useModalForm<IPost>({
         action: "create",
     });
+// highlight-end
 
     return (
         <>
             <List
+// highlight-start
                 createButtonProps={{
                     onClick: () => {
                         show();
                     },
                 }}
+// highlight-end
             >
                 ...
             </List>
+// highlight-start
             <Modal {...modalProps}>
                 <Form {...formProps} layout="vertical">
                     <Form.Item label="Title" name="title">
@@ -59,6 +64,7 @@ export const PostList: React.FC = () => {
                     </Form.Item>
                 </Form>
             </Modal>
+// highlight-end
         </>
     );
 };
@@ -99,7 +105,7 @@ This code block makes `<Modal>` appear when you click the button.
 
 Let's learn how to add editing capabilities to records that will be opening form in Modal by using the `action` prop.
 
-```tsx  title="pages/posts/list.tsx" {17, 19, 32}
+```tsx  title="pages/posts/list.tsx"
 import { 
     useModalForm,
     Modal,
@@ -119,6 +125,7 @@ export const PostList: React.FC = () => {
         show,
         editId,
     } = useModalForm<IPost>({
+// highlight-next-line
         action: "edit",
     });
 
@@ -132,12 +139,14 @@ export const PostList: React.FC = () => {
                         dataIndex="actions"
                         key="actions"
                         render={(_value, record) => (
+// highlight-next-line
                             <EditButton onClick={() => show(record.id)} />
                         )}
                     />
                 </Table>
             </List>
             <Modal {...modalProps}>
+// highlight-next-line
                 <Form {...formProps} layout="vertical">
                     <Form.Item label="Title" name="title">
                         <Input />

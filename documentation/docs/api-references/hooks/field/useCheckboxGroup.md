@@ -30,17 +30,20 @@ We will demonstrate how to get data at the `/tags` endpoint from the `https://ap
 }
 ```
 
-```tsx  title="pages/posts/create.tsx" {3-5, 10}
+```tsx  title="pages/posts/create.tsx"
 import { Form, Checkbox, useCheckboxGroup } from "@pankod/refine";
 
 export const PostCreate: React.FC = () => {
+    // highlight-start
     const { checkboxGroupProps } = useCheckboxGroup<ITag>({
         resource: "tags",
     });
+    // highlight-end
 
     return (
         <Form>
             <Form.Item label="Tags" name="tags">
+                // highlight-next-line
                 <Checkbox.Group {...checkboxGroupProps} />
             </Form.Item>
         </Form>
@@ -83,11 +86,13 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 ### `optionLabel` and `optionValue`
 
-```tsx  {2-3}
+```tsx
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
+    // highlight-start
     optionLabel: "title",
     optionValue: "id",
+    // highlight-end
 });
 ```
 
@@ -95,9 +100,10 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 ### `filters`
 
-```tsx  {2-8}
+```tsx
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
+    // highlight-start
     filters: [
         {
             field: "title",
@@ -105,6 +111,7 @@ const { checkboxGroupProps } = useCheckboxGroup({
             value: "Driver Deposit",
         },
     ],
+    // highlight-end
 });
 ```
 
@@ -112,15 +119,17 @@ It allows us to add some filters while fetching the data. For example, if you wa
 
 ### `sort`
 
-```tsx  {2-7}
+```tsx
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
+    // highlight-start
     sort: [
         {
             field: "title",
             order: "asc",
         },
     ],
+    // highlight-end
 });
 ```
 
@@ -128,14 +137,16 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 
 ### `queryOptions`
 
-```tsx  {2-6}
+```tsx
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
+    // highlight-start
     queryOptions: {
         onError: () => {
             console.log("triggers when on query return Error");
         },
     },
+    // highlight-end
 });
 ```
 

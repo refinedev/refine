@@ -31,17 +31,20 @@ We'll demonstrate how to get data at `/categories` endpoint from `https://api.fa
 }
 ```
 
-```tsx  title="pages/posts/create.tsx" {3-5, 10}
+```tsx  title="pages/posts/create.tsx"
 import { Form, Select, useSelect } from "@pankod/refine";
 
 export const PostCreate = () => {
+// highlight-start
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
     });
+// highlight-end
 
     return (
         <Form>
             <Form.Item label="Categories" name="categories">
+// highlight-next-line
                 <Select {...selectProps} />
             </Form.Item>
         </Form>
@@ -86,7 +89,7 @@ By default, refine does the search using the `useList` hook and passes it to the
 
 ### `resource`
 
-```tsx  {1}
+```tsx
 const { selectProps } = useSelect({
     resource: "categories",
 });
@@ -98,9 +101,10 @@ const { selectProps } = useSelect({
 
 ### `defaultValue`
 
-```tsx  {2}
+```tsx
 const { selectProps } = useSelect({
     resource: "categories",
+// highlight-next-line
     defaultValue: "1",
 });
 ```
@@ -119,11 +123,13 @@ Can use `defaultValue` property when edit a record in `<Edit>` component.
 
 ### `optionLabel` and `optionValue`
 
-```tsx  {2-3}
+```tsx
 const { selectProps } = useSelect({
     resource: "categories",
+// highlight-start
     optionLabel: "title",
     optionValue: "id",
+// highlight-end
 });
 ```
 
@@ -131,9 +137,10 @@ Allows you to change the values and appearance of your options. Default values a
 
 ### `filters`
 
-```tsx  {2-8}
+```tsx
 const { selectProps } = useSelect({
     resource: "categories",
+// highlight-start
     filters: [
         {
             field: "isActive",
@@ -141,6 +148,7 @@ const { selectProps } = useSelect({
             value: true,
         },
     ],
+// highlight-end
 });
 ```
 
@@ -148,15 +156,17 @@ It allows us to add some filters while fetching the data. For example, if you wa
 
 ### `sort`
 
-```tsx  {2-7}
+```tsx
 const { selectProps } = useSelect({
     resource: "categories",
+// highlight-start
     sort: [
         {
             field: "title",
             order: "asc",
         },
     ],
+// highlight-end
 });
 ```
 
@@ -164,14 +174,16 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 
 ### `queryOptions`
 
-```tsx  {2-6}
+```tsx 
 const { selectProps } = useSelect({
     resource: "categories",
+// highlight-start
     queryOptions: {
         onError: () => {
             console.log("triggers when on query return Error");
         },
     },
+// highlight-end
 });
 ```
 
@@ -179,14 +191,16 @@ const { selectProps } = useSelect({
 
 ### `defaultValueQueryOptions`
 
-```tsx  {2-6}
+```tsx
 const { selectProps } = useSelect({
     resource: "categories",
+// highlight-start
     defaultValueQueryOptions: {
         onSuccess: (data) => {
             console.log("triggers when on query return on success");
         },
     },
+// highlight-end
 });
 ```
 

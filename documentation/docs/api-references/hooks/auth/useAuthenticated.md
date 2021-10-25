@@ -21,14 +21,16 @@ We will demonstrate a similar basic implementation below. Imagine that you have 
 
 We have a logic in [`authProvider`](/docs/api-references/providers/auth-provider)'s `checkAuth` method like below.
 
-```tsx {2-6}
+```tsx
 const authProvider: AuthProvider = {
   ...
+    // highlight-start
     checkAuth: () => {
         localStorage.getItem("username")
                 ? Promise.resolve()
                 : Promise.reject(),
     },
+    // highlight-end
   ...
 };
 ```
@@ -36,7 +38,8 @@ const authProvider: AuthProvider = {
 
 Let's create a wrapper component that renders children if `checkAuth` method returns the Promise resolved.
 
-```tsx  title="components/authenticated.tsx" {0, 7} 
+```tsx  title="components/authenticated.tsx"
+// highlight-next-line
 import { useAuthenticated, useNavigation } from "@pankod/refine";
 
 export const Authenticated: React.FC<AuthenticatedProps> = ({
@@ -44,6 +47,7 @@ export const Authenticated: React.FC<AuthenticatedProps> = ({
     fallback,
     loading,
 }) => {
+    // highlight-next-line
     const { isSuccess, isLoading, isError } = useAuthenticated();
 
     const { replace } = useNavigation();
@@ -78,9 +82,10 @@ type AuthenticatedProps = {
 
 Now, only authenticated users can see the price field.
 
-```tsx title="components/postShow" {2, 10-13}
+```tsx title="components/postShow"
 import { Typography, Show } from "@pankod/refine";
 
+// highlight-next-line
 import { Authenticated } from "components/authenticated"
 
 const { Title, Text } = Typography;
@@ -89,10 +94,12 @@ export const PostShow: React.FC = () => (
     <Show>
         <Title>Status</Title>
         <Text>Approved</Text>
+        // highlight-start
         <Authenticated>
             <Title>Price</Title>
             <Text>20</Text>
         </Authenticated>
+        // highlight-end
     </Show>
 )
 ```

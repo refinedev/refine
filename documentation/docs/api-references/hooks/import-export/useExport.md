@@ -39,24 +39,28 @@ Let's say that we have an endpoint like this:
 
 To enable export functionality for this endpoint, we can use the `useExport` hook to create an export button.
 
-```tsx  title="src/pages/posts/list.tsx" {4-5, 11, 17}
+```tsx  title="src/pages/posts/list.tsx"
 import {
     List,
     Table,
     useTable,
+// highlight-start
     useExport,
     ExportButton,
+// highlight-end
 } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
+// highlight-next-line
     const { triggerExport, isLoading } = useExport<IPost>();
 
     return (
         <List
             pageHeaderProps={{
                 extra: (
+// highlight-next-line
                     <ExportButton onClick={triggerExport} loading={isLoading} />
                 ),
             }}

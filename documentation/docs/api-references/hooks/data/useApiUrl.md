@@ -11,8 +11,9 @@ This hook uses the `getApiUrl` method of the used [`dataProvider`][Data Provider
 
 An example use case might be using it with [`useCustom`][useCustom] hook.
 
-```tsx  {2,9}
+```tsx
 import {
+    // highlight-next-line
     useCustom,
     useApiUrl
 } from "@pankod/refine";
@@ -23,6 +24,7 @@ interface PostUniqueCheckResponse {
 
 const apiUrl = useApiUrl();
 
+// highlight-start
 const { data, isLoading } = useCustom<PostUniqueCheckResponse>({
     url: `${apiUrl}/posts-unique-check`,
     method: "get",
@@ -32,6 +34,7 @@ const { data, isLoading } = useCustom<PostUniqueCheckResponse>({
         },
     },
 });
+// highlight-end
 ```
 
 ## API
