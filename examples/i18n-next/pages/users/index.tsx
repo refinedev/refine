@@ -9,6 +9,7 @@ import {
 } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import { checkAuthentication } from "@pankod/refine-nextjs-router";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import { IPost } from "src/interfaces";
 
@@ -69,6 +70,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     });
 
     return {
-        props: { users: data },
+        props: {
+            users: data,
+            ...(await serverSideTranslations(context.locale ?? "en", [
+                "common",
+            ])),
+        },
     };
 };
