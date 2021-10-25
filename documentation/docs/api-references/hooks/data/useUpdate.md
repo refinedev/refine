@@ -70,12 +70,11 @@ After mutation runs, `categories` will be updated as below:
             id: 1,
             title: "E-business",
         },
-// highlight-start
         {
             id: 2,
+// highlight-next-line
             title: "New Category Title",
         },
-// highlight-end
     ];
 }
 ```
