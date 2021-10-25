@@ -15,20 +15,23 @@ Let's start with the `creation form` first.
 
 Let's add the image field to the post `creation form`.
 
-```tsx  title="pages/posts/create.tsx" {1-2, 13, 29-48}
+```tsx  title="pages/posts/create.tsx"
 import { 
+// highlight-start
     Upload,
     getValueFromEvent,
+    useApiUrl,
+// highlight-end
     Create,
     Form,
     Input,
     useForm,
-    useApiUrl,
 } from "@pankod/refine";
 
 export const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
+// highlight-next-line
     const apiUrl = useApiUrl();
 
     return (
@@ -49,9 +52,11 @@ export const PostCreate: React.FC = () => {
                     <Form.Item
                         name="image"
                         valuePropName="fileList"
+// highlight-next-line
                         getValueFromEvent={getValueFromEvent}
                         noStyle
                     >
+// highlight-start
                         <Upload.Dragger
                             name="file"
                             action={`${apiUrl}/media/upload`}
@@ -63,6 +68,7 @@ export const PostCreate: React.FC = () => {
                                 Drag & drop a file in this area
                             </p>
                         </Upload.Dragger>
+// highlight-end
                     </Form.Item>
                 </Form.Item>
             </Form>
@@ -173,20 +179,23 @@ The following data are required for the [Antd Upload](https://ant.design/compone
 
 Let's add the image field to the post editing form.
 
-```tsx  title="pages/posts/edit.tsx" {1-2, 13, 29-48}
+```tsx  title="pages/posts/edit.tsx"
 import { 
+// highlight-start
     Upload,
     getValueFromEvent,
+    useApiUrl,
+// highlight-end
     Edit,
     Form,
     Input,
     useForm,
-    useApiUrl,
 } from "@pankod/refine";
 
 export const PostEdit: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
+// highlight-next-line
     const apiUrl = useApiUrl();
 
     return (
@@ -207,9 +216,11 @@ export const PostEdit: React.FC = () => {
                     <Form.Item
                         name="image"
                         valuePropName="fileList"
+// highlight-next-line
                         getValueFromEvent={getValueFromEvent}
                         noStyle
                     >
+// highlight-start
                         <Upload.Dragger
                             name="file"
                             action={`${apiUrl}/media/upload`}
@@ -221,6 +232,7 @@ export const PostEdit: React.FC = () => {
                                 Drag & drop a file in this area
                             </p>
                         </Upload.Dragger>
+// highlight-end
                     </Form.Item>
                 </Form.Item>
             </Form>
@@ -282,10 +294,11 @@ This data is sent to the API when form is submitted.
 
 You may want to disable the "Save" button in the form while the upload is going on. To do this, you can use the `useFileUploadState` hook.
 
-```tsx  title="pages/posts/create.tsx" {3, 14, 19-24, 50}
+```tsx  title="pages/posts/create.tsx"
 import {
     Upload,
     getValueFromEvent,
+// highlight-next-line
     useFileUploadState,
     Create,
     Form,
@@ -297,16 +310,19 @@ import {
 export const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
+// highlight-next-line
     const { isLoading, onChange } = useFileUploadState();
 
     const apiUrl = useApiUrl();
 
     return (
         <Create
+// highlight-start
             saveButtonProps={{
                 ...saveButtonProps,
                 disabled: isLoading,
             }}
+// highlight-end
         >
             <Form {...formProps} layout="vertical">
                 <Form.Item
@@ -333,6 +349,7 @@ export const PostCreate: React.FC = () => {
                             listType="picture"
                             maxCount={5}
                             multiple
+// highlight-next-line
                             onChange={onChange}
                         >
                             <p className="ant-upload-text">
