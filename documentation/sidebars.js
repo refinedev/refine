@@ -271,6 +271,7 @@ module.exports = {
                     items: [
                         "examples/data-provider/strapi",
                         "examples/data-provider/strapi-graphql",
+                        "examples/data-provider/hasura",
                         "examples/data-provider/nestjsxCrud",
                         "examples/data-provider/airtable",
                         "examples/data-provider/supabase",
