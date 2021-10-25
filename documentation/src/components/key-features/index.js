@@ -187,7 +187,7 @@ export const KeyFeatures = () => {
                             <>
                                 {index === 0
                                     ? ""
-                                    : index === backendsLink.length - 1
+                                    : index === backendLinks.length - 1
                                     ? " and "
                                     : ", "}
                                 <a
