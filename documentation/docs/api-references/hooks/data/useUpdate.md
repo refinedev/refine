@@ -63,17 +63,19 @@ mutate({
 
 After mutation runs, `categories` will be updated as below:
 
-```ts title="https://api.fake-rest.refine.dev/categories" {8}
+```ts title="https://api.fake-rest.refine.dev/categories"
 {
     [
         {
             id: 1,
             title: "E-business",
         },
+// highlight-start
         {
             id: 2,
             title: "New Category Title",
         },
+// highlight-end
     ];
 }
 ```

@@ -129,7 +129,7 @@ You can just change variables values in `less` files. Add these contents to your
 
 Or you can use `craco.config.js` to change variable values. To change the variable named `@primary-color`, you can use the `modifyVars` property of [`lessOptions`](https://github.com/DocSpring/craco-less#configuration):
 
-```ts title="craco.config.js" {9}
+```ts title="craco.config.js" {10}
 const CracoLessPlugin = require("craco-less");
 
 module.exports = {

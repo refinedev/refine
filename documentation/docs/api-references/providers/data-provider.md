@@ -149,12 +149,13 @@ It will take the API URL as a parameter and an optional **HTTP** client. We will
 
 This method allows us to create a single item in a resource.
 
-```ts title="dataProvider.ts" {5-13}
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
+// highlight-start
     create: async ({ resource, variables }) => {
         const url = `${apiUrl}/${resource}`;
 
@@ -164,6 +165,7 @@ const SimpleRestDataProvider = (
             data,
         };
     },
+// highlight-end
     ...
 })
 ```
@@ -266,12 +268,13 @@ mutate({
 
 This method allows us to delete an item in a resource.
 
-```ts title="dataProvider.ts" {5-13}
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
+// highlight-start
     deleteOne: async ({ resource, id }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
@@ -281,6 +284,7 @@ const SimpleRestDataProvider = (
             data,
         };
     },
+// highlight-end
     ...
 })
 ```
@@ -312,12 +316,13 @@ mutate({ resource: "categories", id: "2" });
 
 This method allows us to delete multiple items in a resource.
 
-```ts title="dataProvider.ts" {5-15}
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
+// highlight-start
     deleteMany: async ({ resource, ids }) => {
         const response = await Promise.all(
             ids.map(async (id) => {
@@ -329,6 +334,7 @@ const SimpleRestDataProvider = (
         );
         return { data: response };
     },
+// highlight-end
     ...
 })
 ```
@@ -363,12 +369,13 @@ mutate({
 
 This method allows us to update an item in a resource.
 
-```ts title="dataProvider.ts" {5-13}
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
+// highlight-start
     update: async ({ resource, id, variables }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
@@ -378,6 +385,7 @@ const SimpleRestDataProvider = (
             data,
         };
     },
+// highlight-end
     ...
 })
 ```
@@ -416,12 +424,13 @@ mutate({
 
 This method allows us to update multiple items in a resource.
 
-```ts title="dataProvider.ts" {5-17}
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
+// highlight-start
     updateMany: async ({ resource, ids, variables }) => {
         const response = await Promise.all(
             ids.map(async (id) => {
@@ -435,6 +444,7 @@ const SimpleRestDataProvider = (
 
         return { data: response };
     },
+// highlight-end
     ...
 })
 ```
@@ -473,12 +483,13 @@ mutate({
 
 This method allows us to retrieve a single item in a resource.
 
-```ts title="dataProvider.ts" {5-13}
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
+// highlight-start
     getOne: async ({ resource, id }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
@@ -488,6 +499,7 @@ const SimpleRestDataProvider = (
             data,
         };
     },
+// highlight-end
     ...
 })
 ```
@@ -517,12 +529,13 @@ const { data } = useOne<ICategory>({ resource: "categories", id: "1" });
 
 This method allows us to retrieve multiple items in a resource.
 
-```ts title="dataProvider.ts" {5-13}
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
+// highlight-start
     getMany: async ({ resource, ids }) => {
         const { data } = await httpClient.get(
             `${apiUrl}/${resource}?${stringify({ id: ids })}`,
@@ -532,6 +545,7 @@ const SimpleRestDataProvider = (
             data,
         };
     },
+// highlight-end
     ...
 })
 ```

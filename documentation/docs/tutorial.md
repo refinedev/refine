@@ -487,16 +487,19 @@ At this point, we need to join records from different resources. For this, we're
 
 Before we start, just edit our interface for the new `ICategory` type:
 
-```ts title="interfaces/index.d.ts" {0-3,9}
+```ts title="interfaces/index.d.ts"
+// highlight-start
 export interface ICategory {
     id: string;
     title: string;
 }
+// highlight-end
 
 export interface IPost {
     id: string;
     title: string;
     status: "published" | "draft" | "rejected";
+// highlight-next-line
     category: { id: string };
     createdAt: string;
 }

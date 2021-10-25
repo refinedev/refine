@@ -62,7 +62,7 @@ mutate({
 
 After mutation runs `posts` will be updated as below:
 
-```ts title="https://api.fake-rest.refine.dev/posts" {4,8}
+```ts title="https://api.fake-rest.refine.dev/posts" {5,9}
 {
     [
         {
@@ -105,7 +105,7 @@ Values passed to `mutate` must have these types:
 
 Mutation mode determines the mode which mutation runs with.
 
-```tsx  {9}
+```tsx  {8}
 import { useUpdateMany } from "@pankod/refine";
 
 const { mutate } = useUpdateMany();
@@ -133,7 +133,7 @@ Default behaviour on undo action includes notifications. If a custom callback is
 :::danger
 Passed callback will receive a function that actually cancels the mutation. Don't forget to run this function to cancel the mutation on `undoable` mode.
 
-```tsx  {3-6,15-17}
+```tsx  {2-5,14-16}
 import { useUpdateMany } from "@pankod/refine";
 
 const customOnCancel = (cancelMutation: () => void) => {

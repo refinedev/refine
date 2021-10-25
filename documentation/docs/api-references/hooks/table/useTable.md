@@ -144,14 +144,16 @@ When using multiple sorting, `multiple` value we had given to the `sorter` prope
 
 ### Initial sort status
 
-```ts title="/src/pages/posts/list.tsx" {1-6}
+```ts title="/src/pages/posts/list.tsx"
 const { tableProps, sorter } = useTable<IPost>({
+// highlight-start
     initialSorter: [
         {
             field: "title",
             order: "asc",
         },
     ],
+// highlight-end
 });
 ```
 

@@ -61,15 +61,17 @@ mutate({
 
 After mutation runs `posts` will be updated as below:
 
-```ts title="https://api.fake-rest.refine.dev/posts" {4,8}
+```ts title="https://api.fake-rest.refine.dev/posts"
 {
     [
         {
             id: 1,
+// highlight-next-line
             status: "draft",
         },
         {
             id: 2,
+// highlight-next-line
             status: "draft",
         },
     ];

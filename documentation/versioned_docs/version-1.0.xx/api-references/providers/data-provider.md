@@ -152,7 +152,7 @@ It will take the API URL as a parameter and an optional **HTTP** client. We will
 
 This method allows us to create a single item in a resource.
 
-```ts title="dataProvider.ts" {5-13}
+```ts title="dataProvider.ts" {6-14}
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -205,7 +205,7 @@ mutate({
 
 This method allows us to create multiple items in a resource.
 
-```ts title="dataProvider.ts" {5-17}
+```ts title="dataProvider.ts" {6-18}
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -267,7 +267,7 @@ mutate({
 
 This method allows us to delete an item in a resource.
 
-```ts title="dataProvider.ts" {5-13}
+```ts title="dataProvider.ts" {6-14}
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -313,7 +313,7 @@ mutate({ resource: "categories", id: "2" });
 
 This method allows us to delete multiple items in a resource.
 
-```ts title="dataProvider.ts" {5-15}
+```ts title="dataProvider.ts" {6-16}
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -364,7 +364,7 @@ mutate({
 
 This method allows us to update an item in a resource.
 
-```ts title="dataProvider.ts" {5-13}
+```ts title="dataProvider.ts" {6-14}
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -417,7 +417,7 @@ mutate({
 
 This method allows us to update multiple items in a resource.
 
-```ts title="dataProvider.ts" {5-17}
+```ts title="dataProvider.ts" {6-18}
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -474,7 +474,7 @@ mutate({
 
 This method allows us to retrieve a single item in a resource.
 
-```ts title="dataProvider.ts" {5-13}
+```ts title="dataProvider.ts" {6-14}
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -518,7 +518,7 @@ const { data } = useOne<ICategory>({ resource: "categories", id: "1" });
 
 This method allows us to retrieve multiple items in a resource.
 
-```ts title="dataProvider.ts" {5-13}
+```ts title="dataProvider.ts" {6-14}
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -562,7 +562,7 @@ const { data } = useMany({ resource: "categories", ids: ["1", "2"] });
 
 This method allows us to retrieve a collection of items in a resource.
 
-```tsx title="dataProvider.ts" {5-18}
+```tsx title="dataProvider.ts" {4-17}
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -611,7 +611,7 @@ const { data } = useList({ resource: "posts" });
 
 We will send start and end parameters to list a certain size of items.
 
-```tsx title="dataProvider.ts" {1, 10-11, 13-16, 19}
+```tsx title="dataProvider.ts" {0, 9-10, 12-15, 18}
 import { stringify } from "query-string";
 
 const SimpleRestDataProvider = (
@@ -665,7 +665,7 @@ We'll sort records by speficified order and field.
 
 > [CrudSorting](/docs/api-references/interfaceReferences#crudoperators) ?
 
-```tsx title="dataProvider.ts" {1-19, 31, 36-37, 41}
+```tsx title="dataProvider.ts" {0-18, 30, 35-36, 40}
 const generateSort = (sort?: CrudSorting) => {
     let _sort = ["id"]; // default sorting field
     let _order = ["desc"]; // default sorting
@@ -747,7 +747,7 @@ const { data } = useList({
 
 Filters allow you to filter queries using [refine's filter operators](/docs/api-references/interfaceReferences#crudoperators). It is configured via field, operator and value properites.
 
-```tsx title="dataProvider.ts" {21-32, 34-45, 58, 68}
+```tsx title="dataProvider.ts" {20-31, 33-44, 57, 67}
 const generateSort = (sort?: CrudSorting) => {
     let _sort = ["id"]; // default sorting field
     let _order = ["desc"]; // default sorting
