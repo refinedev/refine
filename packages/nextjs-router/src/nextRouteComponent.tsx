@@ -1,9 +1,10 @@
 import React from "react";
 import {
-    useResource,
     useRefineContext,
     LayoutWrapper,
     ErrorComponent,
+    useResourceWithRoute,
+    useResource,
 } from "@pankod/refine";
 import type { ResourceRouterParams } from "@pankod/refine";
 
@@ -24,6 +25,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
     pageData,
 }) => {
     const { resources } = useResource();
+    const resourceWithRoute = useResourceWithRoute();
     const { push } = useHistory();
     const { resource: routeResourceName, action } =
         useParams<ResourceRouterParams>();
@@ -31,7 +33,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
     const { pathname } = useLocation();
     const { DashboardPage, catchAll } = useRefineContext();
 
-    const resource = resources.find((res) => res.route === routeResourceName);
+    const resource = resourceWithRoute(routeResourceName);
 
     const isServer = typeof window !== "undefined";
 
