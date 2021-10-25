@@ -18,12 +18,14 @@ When no property is given, it tries to read the `resource` and `id` information 
 
 First, we'll create a page to show the records. Then we'll use this page for the show property of the resource.
 
-```tsx  title="src/pages/posts/show.tsx" {0,5}
+```tsx  title="src/pages/posts/show.tsx"
+// highlight-next-line
 import { useShow, Show, Typography } from "@pankod/refine";
 
 const { Title, Text } = Typography;
 
 export const PostShow: React.FC = () => {
+// highlight-next-line
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;
@@ -47,11 +49,12 @@ interface IPost {
 
 We didn't give any property to `useShow` because it can read `resource` and `id` information from the route.
 
-```tsx title="src/App.tsx" {4, 11}
+```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-json-server";
 
+// highlight-next-line
 import { PostShow } from "./pages/posts";
 
 export const App: React.FC = () => {
@@ -59,6 +62,7 @@ export const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+// highlight-next-line
             resources={[{ name: "posts", show: PostShow }]}
         />
     );
@@ -99,16 +103,18 @@ export const PostList: React.FC = () => {
 
 Let's add our modal.
 
-```tsx  title="src/pages/posts/list.tsx" {4-8, 11, 14, 18-20, 28-41, 44-52}
+```tsx  title="src/pages/posts/list.tsx"
 import {
     List,
     Table,
     useTable,
+// highlight-start
     Modal,
     Show,
     ShowButton,
     Typography,
     useShow,
+// highlight-end
 } from "@pankod/refine";
 
 const { Title, Text } = Typography;
@@ -118,8 +124,10 @@ export const PostList: React.FC = () => {
 
     const { tableProps } = useTable<IPost>();
 
+// highlight-next-line
     const { queryResult, showId, setShowId } = useShow<IPost>();
     const { data, isLoading } = queryResult;
+// highlight-next-line
     const record = data?.data;
 
     return (
@@ -131,6 +139,7 @@ export const PostList: React.FC = () => {
                     <Table.Column<IPost>
                         title="Actions"
                         dataIndex="actions"
+// highlight-start
                         render={(_, record) => (
                             <ShowButton
                                 size="small"
@@ -141,9 +150,11 @@ export const PostList: React.FC = () => {
                                 }}
                             />
                         )}
+// highlight-end
                     />
                 </Table>
             </List>
+// highlight-start
             <Modal visible={visible} onCancel={() => setVisible(false)}>
                 <Show isLoading={isLoading} recordItemId={showId}>
                     <Title level={5}>Id</Title>
@@ -153,6 +164,7 @@ export const PostList: React.FC = () => {
                     <Text>{record?.title}</Text>
                 </Show>
             </Modal>
+// highlight-end
         </>
     );
 };
@@ -160,11 +172,12 @@ export const PostList: React.FC = () => {
 
 Finally, let's pass this page to the `resources` as a list component.
 
-```tsx title="src/App.tsx" {4,11}
+```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-json-server";
 
+// highlight-next-line
 import { PostList } from "./pages/posts";
 
 export const App: React.FC = () => {
@@ -172,6 +185,7 @@ export const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+// highlight-next-line
             resources={[{ name: "posts", list: PostList }]}
         />
     );

@@ -32,19 +32,22 @@ Lets say that the data we are going to show on the table came like this from the
 
 If we want to make a sorting page where we show the `id`, `title` and `content` values:
 
-```tsx  title="/src/pages/posts/list.tsx" {3, 7-11}
+```tsx  title="/src/pages/posts/list.tsx"
 import { List, Table, TextField, useTable } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
+// highlight-next-line
     const { tableProps } = useTable<IPost>();
 
     return (
         <List>
+// highlight-start
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
                 <Table.Column dataIndex="title" title="Title" />
                 <Table.Column dataIndex="content" title="Content" />
             </Table>
+// highlight-end
         </List>
     );
 };
@@ -72,17 +75,19 @@ If the `resource` option is given, `syncWithLocation` will not work.
 :::info
 If you want to make a change in the pagination of the `<Table>`. You should pass the pagination object of the `tableProps` to the pagination property of the `<Table>` as below.
 
-```tsx {5-9}
+```tsx
 const { tableProps } = useTable<IPost>();
 
 <Table
     {...tableProps}
     rowKey="id"
+// highlight-start
     pagination={{
         ...tableProps.pagination,
         position: ["bottomCenter"],
         size: "small",
     }}
+// highlight-end
 >
     ...
 </Table>;
@@ -94,7 +99,7 @@ const { tableProps } = useTable<IPost>();
 
 If we want to give a column the sorting property, the corresponding `<Table.Column>` component must be given the [sorter](https://ant.design/components/table/#components-table-demo-head) property.
 
-```tsx  title="/src/pages/posts/list.tsx" {13,19}
+```tsx  title="/src/pages/posts/list.tsx"
 import { List, Table, TextField, useTable } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
@@ -107,12 +112,14 @@ export const PostList: React.FC = () => {
                     dataIndex="id"
                     title="ID"
                     render={(value) => <TextField value={value} />}
+// highlight-next-line
                     sorter
                 />
                 <Table.Column
                     dataIndex="title"
                     title="Title"
                     render={(value) => <TextField value={value} />}
+// highlight-next-line
                     sorter={{ multiple: 1 }}
                 />
                 <Table.Column dataIndex="content" title="Content" />
@@ -166,12 +173,14 @@ Every `post` that comes from endpoint has a `status` value. This value can eithe
 
 We can use the `filterDropdown` property to make filtering based on the `status` value. In order to do this, we need to put the filtering form inside the `<FilterDropdown>` component and pass the properties coming to the function to these component's properties:
 
-```tsx  title="/src/pages/posts/list.tsx" {3-4,39-47}
+```tsx  title="/src/pages/posts/list.tsx"
 import {
     List,
     Table,
+// highlight-start
     Radio,
     FilterDropdown,
+// highlight-end
     TagField,
     useTable,
     getDefaultSortOrder,
@@ -206,6 +215,7 @@ export const PostList: React.FC = () => {
                     dataIndex="status"
                     title="Status"
                     render={(value) => <TagField value={value} />}
+// highlight-start
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
                             <Radio.Group>
@@ -215,6 +225,7 @@ export const PostList: React.FC = () => {
                             </Radio.Group>
                         </FilterDropdown>
                     )}
+// highlight-end
                 />
             </Table>
         </List>
@@ -255,13 +266,14 @@ const { tableProps, sorter, filters } = useTable<IPost>({
 
 If you give default filter values, `defaultFilteredValue` property needs to be properly given to the relevant `<Table.Column>` components so that those filter fields come with default values when the page is opened.
 
-```tsx  title="/src/pages/posts/list.tsx" {6,19-25,56}
+```tsx  title="/src/pages/posts/list.tsx"
 import {
     List,
     Table,
     Radio,
     FilterDropdown,
     TagField,
+// highlight-next-line
     getDefaultFilter,
     useTable,
     getDefaultSortOrder,
@@ -275,6 +287,7 @@ export const PostList: React.FC = () => {
                 order: "asc",
             },
         ],
+// highlight-start
         initialFilter: [
             {
                 field: "status",
@@ -282,6 +295,7 @@ export const PostList: React.FC = () => {
                 value: "draft",
             },
         ],
+// highlight-end
     });
 
     return (
@@ -312,6 +326,7 @@ export const PostList: React.FC = () => {
                             </Radio.Group>
                         </FilterDropdown>
                     )}
+// highlight-next-line
                     defaultFilteredValue={getDefaultFilter("status", filters)}
                 />
             </Table>

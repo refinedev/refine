@@ -15,20 +15,23 @@ Let's say that we want to make the `Post` data where we show the `id` and `title
 
 This time, to add the edit feature, we have to cover the `<Table>` component with a `<Form>`component and pass the properties coming from `useEditableTable` to the corresponding components:
 
-```tsx  title="/pages/posts/list.tsx" {3, 7-12}
+```tsx  title="/pages/posts/list.tsx"
 import { List, Table, useEditableTable, Form, TextField } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
+// highlight-next-line
     const { tableProps, formProps } = useEditableTable<IPost>();
 
     return (
         <List>
+// highlight-start
             <Form {...formProps}>
                 <Table {...tableProps} rowKey="id">
                     <Table.Column dataIndex="id" title="ID" />
                     <Table.Column dataIndex="title" title="Title" />
                 </Table>
             </Form>
+// highlight-end
         </List>
     );
 };
@@ -43,15 +46,17 @@ interface IPost {
 
 Now lets add a column for edit buttons:
 
-```tsx  title="/pages/posts/list.tsx" {4-7, 15-18, 27-57}
+```tsx  title="/pages/posts/list.tsx"
 import {
     List,
     Table,
     Form,
+// highlight-start
     Space,
     Button,
     SaveButton,
     EditButton,
+// highlight-end
     useEditableTable,
 } from "@pankod/refine";
 
@@ -60,9 +65,11 @@ export const PostList: React.FC = () => {
         tableProps,
         formProps,
         isEditing,
+// highlight-start
         saveButtonProps,
         cancelButtonProps,
         editButtonProps,
+// highlight-end
     } = useEditableTable<IPost>();
 
     return (
@@ -75,6 +82,7 @@ export const PostList: React.FC = () => {
                         title="Actions"
                         dataIndex="actions"
                         key="actions"
+// highlight-start
                         render={(_text, record) => {
                             if (isEditing(record.id)) {
                                 return (
@@ -101,6 +109,7 @@ export const PostList: React.FC = () => {
                                 </Space>
                             );
                         }}
+// highlight-end
                     />
                 </Table>
             </Form>
@@ -117,7 +126,7 @@ export const PostList: React.FC = () => {
 
 For now, our post is not editable yet. If a post is being edited, we must show editable columns inside a `<Form.Item>` using conditional rendering:
 
-```tsx  title="/pages/posts/list.tsx" {8-9, 32-44}
+```tsx  title="/pages/posts/list.tsx"
 import {
     List,
     Table,
@@ -126,8 +135,10 @@ import {
     Button,
     SaveButton,
     EditButton,
+// highlight-start
     Input,
     TextField,
+// highlight-end
     useEditableTable,
 } from "@pankod/refine";
 
@@ -150,6 +161,7 @@ export const PostList: React.FC = () => {
                         key="title"
                         dataIndex="title"
                         title="Title"
+// highlight-start
                         render={(value, record) => {
                             if (isEditing(record.id)) {
                                 return (
@@ -163,6 +175,7 @@ export const PostList: React.FC = () => {
                             }
                             return <TextField value={value} />;
                         }}
+// highlight-end
                     />
                     <Table.Column<IPost>
                         title="Actions"
@@ -226,7 +239,7 @@ The `onRow` property of the `<Table>` component can be used to put a line to edi
 
 We can use `setEditId` to put a line to edit mode whenever its clicked on.
 
-```tsx  title="/pages/posts/list.tsx" {14, 23-29}
+```tsx  title="/pages/posts/list.tsx"
 import {
     List,
     Table,
@@ -237,8 +250,10 @@ import {
 } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
+// highlight-start
     const { tableProps, formProps, isEditing, setEditId } =
         useEditableTable<IPost>();
+// highlight-end
 
     return (
         <List>
@@ -246,6 +261,7 @@ export const PostList: React.FC = () => {
                 <Table
                     {...tableProps}
                     key="id"
+// highlight-start
                     onRow={(record) => ({
                         onClick: (event: any) => {
                             if (event.target.nodeName === "TD") {
@@ -253,6 +269,7 @@ export const PostList: React.FC = () => {
                             }
                         },
                     })}
+// highlight-end
                 >
                     <Table.Column key="id" dataIndex="id" title="ID" />
                     <Table.Column<IPost>
