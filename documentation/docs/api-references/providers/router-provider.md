@@ -395,8 +395,9 @@ The [`<RouterComponent>`][routercomponent] in the [react-router][react-router] p
 
 In the example below you can see how to serve the application in a subdirectory.
 
-```tsx {1,9,11,16-19} title="src/App.tsx"
+```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";
+// highlight-next-line
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
@@ -407,15 +408,18 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const { RouterComponent } = routerProvider;
 
+// highlight-next-line
 const CustomRouterComponent = () => <RouterComponent basename="/admin" />;
 
 const App: React.FC = () => {
     return (
         <Refine
+// highlight-start
             routerProvider={{
                 ...routerProvider,
                 RouterComponent: CustomRouterComponent,
             }}
+// highlight-end
             dataProvider={dataProvider(API_URL)}
             resources={[
                 {

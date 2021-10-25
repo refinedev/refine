@@ -558,11 +558,12 @@ const { data } = useMany({ resource: "categories", ids: ["1", "2"] });
 
 This method allows us to retrieve a collection of items in a resource.
 
-```tsx title="dataProvider.ts" {4-17}
+```tsx title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
+// highlight-start
     getList: async ({ resource, pagination, filters, sort }) => {
         const url = `${apiUrl}/${resource}`;
 
@@ -577,6 +578,7 @@ const SimpleRestDataProvider = (
             total,
         };
     },
+// highlight-end
 }
 ```
 
@@ -607,7 +609,8 @@ const { data } = useList({ resource: "posts" });
 
 We will send start and end parameters to list a certain size of items.
 
-```tsx title="dataProvider.ts" {0, 9-10, 12-15, 18}
+```tsx title="dataProvider.ts"
+// highlight-next-line
 import { stringify } from "query-string";
 
 const SimpleRestDataProvider = (
@@ -617,15 +620,20 @@ const SimpleRestDataProvider = (
     getList: async ({ resource, pagination, filters, sort }) => {
         const url = `${apiUrl}/${resource}`;
 
+// highlight-start
         const current = pagination?.current || 1;
         const pageSize = pagination?.pageSize || 10;
+// highlight-end
 
+// highlight-start
         const query = {
             _start: (current - 1) * pageSize,
             _end: current * pageSize,
         };
+// highlight-end
 
         const { data, headers } = await httpClient.get(
+// highlight-next-line
             `${url}?${stringify(query)}`,
         );
 
@@ -661,7 +669,8 @@ We'll sort records by speficified order and field.
 
 > [CrudSorting](/docs/api-references/interfaceReferences#crudoperators) ?
 
-```tsx title="dataProvider.ts" {0-18, 30, 35-36, 40}
+```tsx title="dataProvider.ts"
+// highlight-start
 const generateSort = (sort?: CrudSorting) => {
     let _sort = ["id"]; // default sorting field
     let _order = ["desc"]; // default sorting
@@ -681,6 +690,7 @@ const generateSort = (sort?: CrudSorting) => {
         _order,
     };
 };
+// highlight-end
 
 const SimpleRestDataProvider = (
     apiUrl: string,
@@ -692,16 +702,20 @@ const SimpleRestDataProvider = (
         const current = pagination?.current || 1;
         const pageSize = pagination?.pageSize || 10;
 
+// highlight-next-line
         const { _sort, _order } = generateSort(sort);
 
+// highlight-start
         const query = {
             _start: (current - 1) * pageSize,
             _end: current * pageSize,
             _sort: _sort.join(","),
             _order: _order.join(","),
         };
+// highlight-end
 
         const { data, headers } = await httpClient.get(
+// highlight-next-line
             `${url}?${stringify(query)}`,
         );
 
@@ -743,7 +757,7 @@ const { data } = useList({
 
 Filters allow you to filter queries using [refine's filter operators](/docs/api-references/interfaceReferences#crudoperators). It is configured via field, operator and value properites.
 
-```tsx title="dataProvider.ts" {20-31, 33-44, 57, 67}
+```tsx title="dataProvider.ts"
 const generateSort = (sort?: CrudSorting) => {
     let _sort = ["id"]; // default sorting field
     let _order = ["desc"]; // default sorting
@@ -764,6 +778,7 @@ const generateSort = (sort?: CrudSorting) => {
     };
 };
 
+// highlight-start
 const mapOperator = (operator: CrudOperators): string => {
     switch (operator) {
         case "ne":
@@ -788,6 +803,7 @@ const generateFilter = (filters?: CrudFilters) => {
 
     return queryFilters;
 };
+// highlight-end
 
 const SimpleRestDataProvider = (
     apiUrl: string,
@@ -801,6 +817,7 @@ const SimpleRestDataProvider = (
 
         const { _sort, _order } = generateSort(sort);
 
+// highlight-next-line
         const queryFilters = generateFilter(filters);
 
         const query = {
@@ -811,6 +828,7 @@ const SimpleRestDataProvider = (
         };
 
         const { data, headers } = await httpClient.get(
+// highlight-next-line
             `${url}?${stringify(query)}&${stringify(queryFilters)}`,
         );
 

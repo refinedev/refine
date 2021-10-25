@@ -10,11 +10,13 @@ We will examine how to make an extensive search and filtering with the [`useSimp
 
 To do this, let's list posts using the posts resource.
 
-```tsx  title="pages/posts/list.tsx" {2-3, 13, 54}
+```tsx  title="pages/posts/list.tsx"
 import {
     List,
+// highlight-start
     useSimpleList,
     useMany,
+// highlight-end
     AntdList,
     Typography,
     Space,
@@ -24,6 +26,7 @@ import {
 const { Text } = Typography;
 
 export const PostList: React.FC = () => {
+// highlight-start
     const { listProps } = useSimpleList<IPost>();
 
     const categoryIds =
@@ -35,6 +38,7 @@ export const PostList: React.FC = () => {
             enabled: categoryIds.length > 0,
         },
     });
+// highlight-end
 
     const renderItem = (item: IPost) => {
         const { title, hit, content } = item;
@@ -50,7 +54,6 @@ export const PostList: React.FC = () => {
                         <NumberField
                             value={hit}
                             options={{
-                                // @ts-ignore
                                 notation: "compact",
                             }}
                         />
@@ -65,6 +68,7 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
+// highlight-next-line
             <AntdList {...listProps} renderItem={renderItem} />
         </List>
     );
@@ -86,13 +90,14 @@ interface IPost {
 
 After creating the `<PostList>` component, add it to resource with `list` prop:
 
-```tsx {6, 15}
+```tsx
 import { Refine, Resource } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import "@pankod/refine/dist/styles.min.css";
 
+// highlight-next-line
 import { PostList } from "pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -102,6 +107,7 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
+// highlight-next-line
             resources={[{ name: "posts", list: PostList }]}
         />
     );
@@ -122,15 +128,17 @@ export default App;
 
 We will create a form by extracting `searchFormProps` from [`useSimpleList`](../../api-references/hooks/show/useSimpleList.md). We will use this form for search/filtering. We will also create an interface to determine the types of values from the form.
 
-```tsx title="pages/posts/list.tsx" {4, 12-35, 39-42, 46-63}
+```tsx title="pages/posts/list.tsx"
 ...
 
 import {
     ...
+// highlight-next-line
     CrudFilters,
 } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
+// highlight-start
     const { listProps, searchFormProps } = useSimpleList<
         IPost,
         IPostFilterVariables
@@ -160,6 +168,7 @@ export const PostList: React.FC = () => {
             return filters;
         },
     });
+// highlight-end
 
     // ...
 
@@ -169,6 +178,7 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
+// highlight-start
             <Form
                 {...searchFormProps}
                 layout="vertical"
@@ -188,6 +198,7 @@ export const PostList: React.FC = () => {
                 </Space>
             </Form>
             <AntdList {...listProps} renderItem={renderItem} />
+// highlight-end
         </List>
     );
 };

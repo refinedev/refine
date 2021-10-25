@@ -21,16 +21,18 @@ npm install @auth0/auth0-react
 
 Wrap your root component with an Auth0Provider that you can import from the SDK.
 
-```tsx title="index.tsx" {3, 9-15}
+```tsx title="index.tsx"
 import React from "react";
 import ReactDOM from "react-dom";
 
+// highlight-next-line
 import { Auth0Provider } from "@auth0/auth0-react";
 
 import App from "./App";
 
 ReactDOM.render(
     <React.StrictMode>
+// highlight-start
         <Auth0Provider
             domain="YOUR_DOMAIN"
             clientId="YOUR_CLIENT_ID"
@@ -38,6 +40,7 @@ ReactDOM.render(
         >
             <App />
         </Auth0Provider>
+// highlight-end
     </React.StrictMode>,
     document.getElementById("root"),
 );
@@ -51,7 +54,7 @@ Refer to [**Auth0 docs**](https://auth0.com/docs/quickstart/spa/react#configure-
 
 First, we need to override the **refine** login page. In this way, we will redirect it to the Auth0 login page. We create a `login.tsx` file in the `/pages` folder.
 
-```tsx  title="/pages/login.tsx" {7, 11, 52}
+```tsx  title="/pages/login.tsx"
 import { 
     Row,
     Col,
@@ -59,10 +62,12 @@ import {
     Card,
     Typography,
     Button,
+// highlight-next-line
     useLogin
 } from "@pankod/refine";
 
 export const Login: React.FC = () => {
+// highlight-next-line
     const { mutate: login } = useLogin();
 
     const CardTitle = (
@@ -104,6 +109,7 @@ export const Login: React.FC = () => {
                             size="large"
                             htmlType="submit"
                             block
+// highlight-next-line
                             onClick={() => login({})}
                         >
                             Login

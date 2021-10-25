@@ -55,13 +55,14 @@ We created the `<Header>` component as we want it to appear. We have not done an
 :::note
 Let's not forget to pass the `<Header>` component to the `<Refine>` component in `App.tsx` as below.
 
-```tsx title="src/App.tsx" {6, 15}
+```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import "@pankod/refine/dist/styles.min.css";
 
+// highlight-next-line
 import { Header } from "components";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -71,6 +72,7 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
+// highlight-next-line
             Header={Header}
         />
     );
@@ -109,7 +111,7 @@ export interface IOptions {
 }
 ```
 
-```tsx title="src/components/header.tsx" {0, 6-8, 11, 14-35, 38-67, 79-80}
+```tsx title="src/components/header.tsx"
 import { useState, useEffect } from "react";
 import {
     AntdLayout,
@@ -209,7 +211,7 @@ We created states to dynamically manage the `value` and `options` properties of 
 
 Search value is currently only searched and fetched inside posts. Let's update our code to search both posts and categories according to search value.
 
-```tsx title="src/components/header.tsx" {17-23, 29-51, 56}
+```tsx title="src/components/header.tsx"
 ...
 export const Header: React.FC = () => {
     const [value, setValue] = useState<string>("");

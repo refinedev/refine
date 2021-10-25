@@ -11,24 +11,28 @@ With **refine**, you can easily add export functionality to dump resources' reco
 
 Let's see an example:
 
-```tsx  title="pages/posts/list.tsx" {4-5, 11, 17}
+```tsx  title="pages/posts/list.tsx"
 import {
     List,
     Table,
     useTable,
+// highlight-start
     useExport,
     ExportButton,
+// highlight-end
 } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
+// highlight-next-line
     const { triggerExport, isLoading } = useExport<IPost>();
 
     return (
         <List
             pageHeaderProps={{
                 extra: (
+// highlight-next-line
                     <ExportButton onClick={triggerExport} loading={isLoading} />
                 ),
             }}
