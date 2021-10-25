@@ -11,7 +11,7 @@ This field is used to display dates. It uses [`Day.js`](https://day.js.org/docs/
 
 Let's see how we can use `<DateField>` with the example in the post list.
 
-```tsx  {3, 16}
+```tsx  {4, 17}
 import { 
     List,
     Table,

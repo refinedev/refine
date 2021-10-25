@@ -32,7 +32,7 @@ Lets say that the data we are going to show on the table came like this from the
 
 If we want to make a sorting page where we show the `id`, `title` and `content` values:
 
-```tsx  title="/src/pages/posts/list.tsx" {3, 7-11}
+```tsx  title="/src/pages/posts/list.tsx" {4, 8-12}
 import { List, Table, TextField, useTable } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
@@ -72,7 +72,7 @@ If the `resource` option is given, `syncWithLocation` will not work.
 :::info
 If you want to make a change in the pagination of the `<Table>`. You should pass the pagination object of the `tableProps` to the pagination property of the `<Table>` as below.
 
-```tsx {5-9}
+```tsx {6-10}
 const { tableProps } = useTable<IPost>();
 
 <Table
@@ -94,7 +94,7 @@ const { tableProps } = useTable<IPost>();
 
 If we want to give a column the sorting property, the corresponding `<Table.Column>` component must be given the [sorter](https://ant.design/components/table/#components-table-demo-head) property.
 
-```tsx  title="/src/pages/posts/list.tsx" {13,19}
+```tsx  title="/src/pages/posts/list.tsx" {14,20}
 import { List, Table, TextField, useTable } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
@@ -166,7 +166,7 @@ Every `post` that comes from endpoint has a `status` value. This value can eithe
 
 We can use the `filterDropdown` property to make filtering based on the `status` value. In order to do this, we need to put the filtering form inside the `<FilterDropdown>` component and pass the properties coming to the function to these component's properties:
 
-```tsx  title="/src/pages/posts/list.tsx" {3-4,39-47}
+```tsx  title="/src/pages/posts/list.tsx" {4-5,40-48}
 import {
     List,
     Table,
@@ -255,7 +255,7 @@ const { tableProps, sorter, filters } = useTable<IPost>({
 
 If you give default filter values, `defaultFilteredValue` property needs to be properly given to the relevant `<Table.Column>` components so that those filter fields come with default values when the page is opened.
 
-```tsx  title="/src/pages/posts/list.tsx" {6,19-25,56}
+```tsx  title="/src/pages/posts/list.tsx" {7,20-26,57}
 import {
     List,
     Table,

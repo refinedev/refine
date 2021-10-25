@@ -40,7 +40,7 @@ This file should be parsed as:
 
 ### With `<ImportButton>` (Recommended)
 
-```tsx  {4-5, 11, 16}
+```tsx  {5-6, 12, 17}
 import {
     List,
     Table,
@@ -87,7 +87,7 @@ interface IPost {
 
 ### With Ant Design's `<Upload>` and `<Button>` Components
 
-```tsx  {4-7, 10, 15, 20-26}
+```tsx  {5-8, 11, 16, 21-27}
 import {
     List,
     Table,

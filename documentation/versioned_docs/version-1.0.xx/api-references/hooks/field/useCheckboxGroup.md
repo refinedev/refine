@@ -30,7 +30,7 @@ We will demonstrate how to get data at the `/tags` endpoint from the `https://ap
 }
 ```
 
-```tsx  title="pages/posts/create.tsx" {3-5, 10}
+```tsx  title="pages/posts/create.tsx" {4-6, 11}
 import { Form, Checkbox, useCheckboxGroup } from "@pankod/refine";
 
 export const PostCreate: React.FC = () => {
@@ -83,7 +83,7 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 ### `optionLabel` and `optionValue`
 
-```tsx  {2-3}
+```tsx  {3-4}
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
     optionLabel: "title",
@@ -95,7 +95,7 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 ### `filters`
 
-```tsx  {2-8}
+```tsx  {3-9}
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
     filters: [
@@ -112,7 +112,7 @@ It allows us to add some filters while fetching the data. For example, if you wa
 
 ### `sort`
 
-```tsx  {2-7}
+```tsx  {3-8}
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
     sort: [
@@ -128,7 +128,7 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 
 ### `queryOptions`
 
-```tsx  {2}
+```tsx {3}
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
     queryOptions: { onError: () => { console.log("triggers when on query return Error") }}
@@ -139,7 +139,7 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 
 
-```tsx  {2, 4-10}
+```tsx {3, 5-11}
 const { 
     checkboxGroupProps, 
 } = useCheckboxGroup({

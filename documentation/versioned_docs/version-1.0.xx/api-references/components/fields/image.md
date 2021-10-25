@@ -11,7 +11,7 @@ This field is used to display images and uses [`<Image>`](https://ant.design/com
 
 Let's see how we can use `<ImageField>` with the example in the edit page.
 
-```tsx  {3, 18-23}
+```tsx  {4, 19-24}
 import { 
     List,
     Table,

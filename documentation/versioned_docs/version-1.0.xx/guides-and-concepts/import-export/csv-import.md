@@ -13,7 +13,7 @@ You can call the `useImport` hook and add an `<ImportButton>` with properties re
 
 Let's look at an example of adding a custom import button:
 
-```tsx  title="pages/posts/list.tsx" {4-5, 21, 25-27}
+```tsx  title="pages/posts/list.tsx" {5-6, 22, 26-28}
 import {
     List,
     useTable,
@@ -94,7 +94,7 @@ It has 3 entries. We should map `categoryId` to `category.id` and `userId` to `
 
 This would make our `useImport` call look like this:
 
-```tsx  title="/src/pages/posts/list.tsx" {14-26}
+```tsx  title="/src/pages/posts/list.tsx" {15-27}
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 

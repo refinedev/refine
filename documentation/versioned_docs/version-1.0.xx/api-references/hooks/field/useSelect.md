@@ -31,7 +31,7 @@ We'll demonstrate how to get data at `/categories` endpoint from `https://api.fa
 }
 ```
 
-```tsx  title="pages/posts/create.tsx" {3-5, 10}
+```tsx  title="pages/posts/create.tsx" {4-6, 11}
 import { Form, Select, useSelect } from "@pankod/refine";
 
 export const PostCreate = () => {
@@ -86,7 +86,7 @@ By default, refine does the search using the `useList` hook and passes it to the
 
 ### `resource`
 
-```tsx  {1}
+```tsx  {2}
 const { selectProps } = useSelect({
     resource: "categories",
 });
@@ -98,7 +98,7 @@ const { selectProps } = useSelect({
 
 ### `defaultValue`
 
-```tsx  {2}
+```tsx  {3}
 const { selectProps } = useSelect({
     resource: "categories",
     defaultValue: "1",
@@ -119,7 +119,7 @@ Can use `defaultValue` property when edit a record in `<Edit>` component.
 
 ### `optionLabel` and `optionValue`
 
-```tsx  {2-3}
+```tsx  {3-4}
 const { selectProps } = useSelect({
     resource: "categories",
     optionLabel: "title",
@@ -131,7 +131,7 @@ Allows you to change the values and appearance of your options. Default values a
 
 ### `filters`
 
-```tsx  {2-8}
+```tsx  {3-9}
 const { selectProps } = useSelect({
     resource: "categories",
     filters: [
@@ -148,7 +148,7 @@ It allows us to add some filters while fetching the data. For example, if you wa
 
 ### `sort`
 
-```tsx  {2-7}
+```tsx  {3-8}
 const { selectProps } = useSelect({
     resource: "categories",
     sort: [
@@ -168,7 +168,7 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 [useQuery](https://react-query.tanstack.com/reference/useQuery) options can be set by passing `queryOptions` property.
 
 
-```tsx  {2}
+```tsx  {3}
 const { selectProps } = useSelect({
     resource: "categories",
     queryOptions: { onError: () => { console.log("triggers when on query return Error") }}
@@ -180,14 +180,14 @@ const { selectProps } = useSelect({
 [useQuery](https://react-query.tanstack.com/reference/useQuery) options for default value query can be set by passing `queryOptions` property.
 
 
-```tsx  {2}
+```tsx  {3}
 const { selectProps } = useSelect({
     resource: "categories",
     defaultValueQueryOptions: { onError: () => { console.log("triggers when on query return Error") }}
 });
 ```
 
-```tsx  {2, 4-10}
+```tsx  {3, 5-11}
 const { 
     selectProps, 
 } = useSelect({

@@ -11,7 +11,7 @@ This field lets you display a value in a tag. It uses Ant Design's [`<Tag>`](htt
 
 Let's see how we can use it in a basic list page:
 
-```tsx  title="pages/posts/list.tsx" {2, 18}
+```tsx  title="pages/posts/list.tsx" {3, 19}
 import {
     List,
     TagField,

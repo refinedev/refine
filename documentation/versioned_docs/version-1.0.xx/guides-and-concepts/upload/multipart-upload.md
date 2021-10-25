@@ -15,7 +15,7 @@ Let's start with the `creation form` first.
 
 Let's add the image field to the post `creation form`.
 
-```tsx  title="pages/posts/create.tsx" {1-2, 13, 29-48}
+```tsx  title="pages/posts/create.tsx" {2-3, 14, 30-49}
 import { 
     Upload,
     getValueFromEvent,
@@ -173,7 +173,7 @@ The following data are required for the [Antd Upload](https://ant.design/compone
 
 Let's add the image field to the post editing form.
 
-```tsx  title="pages/posts/edit.tsx" {1-2, 13, 29-48}
+```tsx  title="pages/posts/edit.tsx" {2-3, 14, 30-49}
 import { 
     Upload,
     getValueFromEvent,
@@ -282,7 +282,7 @@ This data is sent to the API when form is submitted.
 
 You may want to disable the "Save" button in the form while the upload is going on. To do this, you can use the `useFileUploadState` hook.
 
-```tsx  title="pages/posts/create.tsx" {3, 14, 19-24, 50}
+```tsx  title="pages/posts/create.tsx" {4, 15, 20-25, 51}
 import {
     Upload,
     getValueFromEvent,

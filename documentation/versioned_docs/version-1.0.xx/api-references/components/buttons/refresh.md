@@ -9,7 +9,7 @@ import refreshButton from '@site/static/img/guides-and-concepts/components/butto
 
 ## Usage
 
-```tsx  {1, 17}
+```tsx  {2, 18}
 import {
     RefreshButton,
     useShow,

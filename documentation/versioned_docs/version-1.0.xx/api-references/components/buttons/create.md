@@ -9,7 +9,7 @@ import createButton from '@site/static/img/guides-and-concepts/components/button
 
 ## Usage
 
-```tsx  {1, 11}
+```tsx  {2, 12}
 import {
     CreateButton,
     List,

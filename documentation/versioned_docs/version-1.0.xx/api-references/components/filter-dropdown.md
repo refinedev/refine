@@ -12,7 +12,7 @@ import filterDropdown from '@site/static/img/category_filter-dropdown.png';
 
 It serves as a bridge by synchronizing between its children's input value and `<Table>`'s filter values.
 
-```tsx  title="components/pages/postList.tsx" {3-5, 20-29}
+```tsx  title="components/pages/postList.tsx" {4-6, 21-30}
 import {
     List,
     Table,

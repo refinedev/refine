@@ -18,7 +18,7 @@ When no property is given, it tries to read the `resource` and `id` information 
 
 First, we'll create a page to show the records. Then we'll use this page for the show property of the `<Resource>` component.
 
-```tsx  title="src/pages/posts/show.tsx" {0,5}
+```tsx  title="src/pages/posts/show.tsx" {1,6}
 import { useShow, Show, Typography } from "@pankod/refine";
 
 const { Title, Text } = Typography;
@@ -47,7 +47,7 @@ interface IPost {
 
 We didn't give any property to `useShow` because it can read `resource` and `id` information from the route.
 
-```tsx title="src/App.tsx" {3, 10}
+```tsx title="src/App.tsx" {4, 11}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 
@@ -96,7 +96,7 @@ export const PostList: React.FC = () => {
 
 Let's add our modal.
 
-```tsx  title="src/pages/posts/list.tsx" {4-8, 11, 14, 18-20, 28-41, 44-52}
+```tsx  title="src/pages/posts/list.tsx" {5-9, 12, 15, 19-21, 29-42, 45-53}
 import {
     List,
     Table,
@@ -157,7 +157,7 @@ export const PostList: React.FC = () => {
 
 Finally, let's pass this page to the `<Resource>` component.
 
-```tsx title="src/App.tsx" {3,10}
+```tsx title="src/App.tsx" {4,11}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 

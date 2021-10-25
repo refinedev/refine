@@ -9,7 +9,7 @@ title: useForm
 
 We'll show the basic usage of `useForm` by adding an editing form.
 
-```tsx  title="pages/posts/edit.tsx" {0, 3, 6, 7}
+```tsx  title="pages/posts/edit.tsx" {1, 4, 7, 8}
 import { Edit, Form, Input, useForm, Select } from "@pankod/refine";
 
 export const PostEdit: React.FC = () => {

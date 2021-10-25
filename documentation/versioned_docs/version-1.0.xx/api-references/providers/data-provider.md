@@ -562,7 +562,7 @@ const { data } = useMany({ resource: "categories", ids: ["1", "2"] });
 
 This method allows us to retrieve a collection of items in a resource.
 
-```tsx title="dataProvider.ts" {4-17}
+```tsx title="dataProvider.ts" {5-18}
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -611,7 +611,7 @@ const { data } = useList({ resource: "posts" });
 
 We will send start and end parameters to list a certain size of items.
 
-```tsx title="dataProvider.ts" {0, 9-10, 12-15, 18}
+```tsx title="dataProvider.ts" {1, 10-11, 13-16, 19}
 import { stringify } from "query-string";
 
 const SimpleRestDataProvider = (
@@ -665,7 +665,7 @@ We'll sort records by speficified order and field.
 
 > [CrudSorting](/docs/api-references/interfaceReferences#crudoperators) ?
 
-```tsx title="dataProvider.ts" {0-18, 30, 35-36, 40}
+```tsx title="dataProvider.ts" {1-19, 31, 36-37, 41}
 const generateSort = (sort?: CrudSorting) => {
     let _sort = ["id"]; // default sorting field
     let _order = ["desc"]; // default sorting
@@ -747,7 +747,7 @@ const { data } = useList({
 
 Filters allow you to filter queries using [refine's filter operators](/docs/api-references/interfaceReferences#crudoperators). It is configured via field, operator and value properites.
 
-```tsx title="dataProvider.ts" {20-31, 33-44, 57, 67}
+```tsx title="dataProvider.ts" {21-32, 34-45, 58, 68}
 const generateSort = (sort?: CrudSorting) => {
     let _sort = ["id"]; // default sorting field
     let _order = ["desc"]; // default sorting

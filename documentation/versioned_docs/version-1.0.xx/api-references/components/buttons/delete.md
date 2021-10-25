@@ -11,7 +11,7 @@ When you try to delete something, a pop-up shows up and asks for confirmation. W
 
 ## Usage
 
-```tsx  {1, 19}
+```tsx  {2, 20}
 import {
     DeleteButton,
     List,
@@ -112,7 +112,7 @@ Clicking the button will trigger the [`useDelete`](api-references/hooks/data/use
 
 For example, let's `console.log` after deletion:
 
-```tsx  {17-19}
+```tsx  {18-20}
 import { List, Table, DeleteButton, useTable } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
@@ -148,7 +148,7 @@ Determines which mode mutation will have while executing `<DeleteButton>`.
 
 [Refer to the mutation mode docs for further information. &#8594](guides-and-concepts/mutation-mode.md)
 
-```tsx  {17}
+```tsx  {18}
 import { List, Table, DeleteButton, useTable } from "@pankod/refine";
 
 export const PostList: React.FC = () => {

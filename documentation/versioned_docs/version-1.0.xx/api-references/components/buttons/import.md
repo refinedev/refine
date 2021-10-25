@@ -10,7 +10,7 @@ It uses Ant Design's [`<Button>`][button] and [`<Upload>`][upload] components. I
 
 ## Usage
 
-```tsx  title="/src/pages/posts/list.tsx" {4-5, 11, 16}
+```tsx  title="/src/pages/posts/list.tsx" {5-6, 12, 17}
 import {
     List,
     Table,

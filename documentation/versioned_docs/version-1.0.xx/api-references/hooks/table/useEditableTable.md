@@ -15,7 +15,7 @@ Let's say that we want to make the `Post` data where we show the `id` and `title
 
 This time, to add the edit feature, we have to cover the `<Table>` component with a `<Form>`component and pass the properties coming from `useEditableTable` to the corresponding components:
 
-```tsx  title="/pages/posts/list.tsx" {3, 7-12}
+```tsx  title="/pages/posts/list.tsx" {4, 8-13}
 import { List, Table, useEditableTable, Form, TextField } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
@@ -43,7 +43,7 @@ interface IPost {
 
 Now lets add a column for edit buttons:
 
-```tsx  title="/pages/posts/list.tsx" {4-7, 15-18, 27-57}
+```tsx  title="/pages/posts/list.tsx" {5-8, 16-19, 28-58}
 import {
     List,
     Table,
@@ -117,7 +117,7 @@ export const PostList: React.FC = () => {
 
 For now, our post is not editable yet. If a post is being edited, we must show editable columns inside a `<Form.Item>` using conditional rendering:
 
-```tsx  title="/pages/posts/list.tsx" {8-9, 32-44}
+```tsx  title="/pages/posts/list.tsx" {9-10, 33-45}
 import {
     List,
     Table,
@@ -226,7 +226,7 @@ The `onRow` property of the `<Table>` component can be used to put a line to edi
 
 We can use `setEditId` to put a line to edit mode whenever its clicked on.
 
-```tsx  title="/pages/posts/list.tsx" {14, 23-29}
+```tsx  title="/pages/posts/list.tsx" {15, 24-30}
 import {
     List,
     Table,

@@ -76,7 +76,7 @@ Create a less file and import antd styles from `node_modules/antd`:
 
 And import the `less` file in `App.tsx`:
 
-```tsx title="App.tsx" {3}
+```tsx title="App.tsx" {4}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 

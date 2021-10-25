@@ -11,7 +11,7 @@ This field is used to display email values. It uses the [`<Link>`](https://ant.d
 
 Let's see how we can use `<EmailField>` with the example in the user list.
 
-```tsx  {3, 15}
+```tsx  {4, 16}
 import { 
     List,
     Table,

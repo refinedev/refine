@@ -10,7 +10,7 @@ It can be useful when redirecting the app to the create page with the record id 
 
 ## Usage
 
-```tsx  {4, 20}
+```tsx  {6, 22}
 import {
     List,
     Table,

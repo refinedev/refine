@@ -39,7 +39,7 @@ Let's say that we have an endpoint like this:
 
 To enable export functionality for this endpoint, we can use the `useExport` hook to create an export button.
 
-```tsx  title="src/pages/posts/list.tsx" {4-5, 11, 17}
+```tsx  title="src/pages/posts/list.tsx" {5-6, 12, 18}
 import {
     List,
     Table,

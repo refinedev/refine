@@ -91,7 +91,7 @@ export default i18n;
 
 Then we will import the i18n instance we created and wrap the application with `React.Suspense`.
 
-```tsx title="src/index.tsx" {4, 8-10}
+```tsx title="src/index.tsx" {5, 9-11}
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
@@ -116,7 +116,7 @@ We use `React.Suspense` because it improves performance by preventing the app fr
 
 Next, we will include the i18n instance and create the `i18nProvider` using `react-i18next`.
 
-```tsx title="src/App.tsx" {2, 7, 9-13, 18}
+```tsx title="src/App.tsx" {3, 8, 10-14, 19}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import { useTranslation } from "react-i18next";
@@ -487,7 +487,7 @@ export const Header: React.FC = () => {
 
 Then, we will pass `<Header>` to the `<Refine>` component as a property.
 
-```tsx title="src/App.tsx" {7, 22}
+```tsx title="src/App.tsx" {7, 23}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import { useTranslation } from "react-i18next";
@@ -522,7 +522,7 @@ const App: React.FC = () => {
 
 Finally, we will create the `<PostList>` page and then we will translate texts using `useTranslate`.
 
-```tsx title="src/App.tsx" {9, 15, 34, 38, 55}
+```tsx title="src/App.tsx" {10, 16, 35, 39, 56}
 import {
     List,
     Table,

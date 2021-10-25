@@ -18,7 +18,7 @@ Both of these components can accept the listed props for customization. [`<Refin
 
 Let's look at an example of modifying the default layout to have a top menu layout.
 
-```tsx title="/src/App.tsx" {6, 14-34}
+```tsx title="/src/App.tsx" {7, 15-35}
 import { Refine, Resource, AntdLayout, Link } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
@@ -67,7 +67,7 @@ Here, we override the [`<Title>`][Title] and [`<Layout>`][Layout] components. Wh
 
 So, we just provided a custom [`<Sider>`][Sider]. Here's our custom sider that looks horizontal, instead of the default vertical one:
 
-```tsx  title="/src/components/sider/index.tsx" {3-4, 8, 10-14}
+```tsx  title="/src/components/sider/index.tsx" {4-5, 9, 11-15}
 import { Link, Menu, useMenu, useTitle } from "@pankod/refine";
 
 export const CustomSider: React.FC = () => {

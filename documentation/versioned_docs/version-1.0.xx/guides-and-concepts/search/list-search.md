@@ -10,7 +10,7 @@ We will examine how to make an extensive search and filtering with the [`useSimp
 
 To do this, let's list posts using the posts resource.
 
-```tsx  title="pages/posts/list.tsx" {2-3, 13, 54}
+```tsx  title="pages/posts/list.tsx" {3-4, 14, 55}
 import {
     List,
     useSimpleList,
@@ -86,7 +86,7 @@ interface IPost {
 
 Let's pass the list page we created to our `<Resource>` component.
 
-```tsx {5, 12}
+```tsx {6, 13}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -118,7 +118,7 @@ export default App;
 
 We will create a form by extracting `searchFormProps` from [`useSimpleList`](../../api-references/hooks/show/useSimpleList.md). We will use this form for search/filtering. We will also create an interface to determine the types of values from the form.
 
-```tsx title="pages/posts/list.tsx" {4, 12-35, 39-42, 46-63}
+```tsx title="pages/posts/list.tsx" {5, 13-36, 40-43, 47-64}
 ...
 
 import {

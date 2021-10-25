@@ -25,7 +25,7 @@ For the sake of simplicity, in this example we're going to build a `Post` create
 
 To split your form items under a `<Steps>` component, first import and use `useStepsForm` hook in your page:
 
-```tsx  title="pages/posts/create.tsx" {3-10}
+```tsx  title="pages/posts/create.tsx" {4-11}
 import { useStepsForm } from "@pankod/refine";
 
 export const PostCreate: React.FC = () => {
@@ -59,7 +59,7 @@ This hook returns a set of useful values to render steps form. Given `current` v
 
 Here, each item of `formList` corresponds to one step in form:
 
-```tsx  title="pages/posts/create.tsx" {0, 11-13,15-42}
+```tsx  title="pages/posts/create.tsx" {1, 12-14,16-43}
 import { useStepsForm, useSelect, Form, Input, Select } from "@pankod/refine";
 
 export const PostCreate: React.FC = () => {
@@ -119,7 +119,7 @@ Since `category` is a relational data, we use `useSelect` to fetch its data.
 
 You should use `stepsProps` on `<Steps>` component, `formProps` on the `<Form>` component respectively. And as the last step, you should render the `<Steps>` component besides the form like this:
 
-```tsx  title="pages/posts/create.tsx" {6-7, 54-62}
+```tsx  title="pages/posts/create.tsx" {7-8, 55-63}
 import {
     useStepsForm,
     useSelect,
@@ -195,7 +195,7 @@ Make sure to add as much `<Steps.Step>` components as the number of steps in the
 
 To help users navigate between steps in the form, you can use action buttons. Your navigation buttons should use the `gotoStep` function that was previously returned from the the `useStepsForm` hook.
 
-```tsx  title="pages/posts/create.tsx" {8-9, 58-86}
+```tsx  title="pages/posts/create.tsx" {9-10, 59-87}
 import {
     useStepsForm,
     useSelect,
@@ -309,7 +309,7 @@ export const PostCreate: React.FC = () => {
 
 In this example, we'll just look at what's different from the example above.
 
-```tsx  title="pages/posts/edit.tsx" {9,19, 23, 27, 59-97}
+```tsx  title="pages/posts/edit.tsx" {10,20, 24, 28, 60-98}
 import {
     useStepsForm,
     useSelect,

@@ -11,7 +11,7 @@ This field is used to display boolean values. It uses the [`<Tooltip>`](https://
 
 Let's see how we can use `<BooleanField>` with the example in the post list.
 
-```tsx  {3-4, 8, 18-24}
+```tsx  {4-5, 9, 19-25}
 import { 
     List,
     Table,

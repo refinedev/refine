@@ -113,7 +113,7 @@ The `<Create>` component reads the `resource` information from the route by defa
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
-```tsx  {2-4, 11-17}
+```tsx  {3-5, 12-18}
 import { Refine, Resource, Create } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 

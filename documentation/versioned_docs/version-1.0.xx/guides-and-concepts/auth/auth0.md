@@ -21,7 +21,7 @@ npm install @auth0/auth0-react
 
 Wrap your root component with an Auth0Provider that you can import from the SDK.
 
-```tsx title="index.tsx" {3, 9-15}
+```tsx title="index.tsx" {4, 10-16}
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -51,7 +51,7 @@ Refer to [**Auth0 docs**](https://auth0.com/docs/quickstart/spa/react#configure-
 
 First, we need to override the **refine** login page. In this way, we will redirect it to the Auth0 login page. We create a `login.tsx` file in the `/pages` folder.
 
-```tsx  title="/pages/login.tsx" {7, 11, 52}
+```tsx  title="/pages/login.tsx" {8, 12, 53}
 import { 
     Row,
     Col,

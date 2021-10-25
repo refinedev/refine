@@ -9,7 +9,7 @@ title: useTitle
 
 Normally refine provides a default title. If we want to build a custom title instead of default one that comes with **refine**, we need to overwrite it like this:
 
-```tsx  title="src/App.tsx" {9-14}
+```tsx  title="src/App.tsx" {10-15}
 import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -37,7 +37,7 @@ This `<Title>` we created is used in the `<Sider>` that refine provides by defau
 
 Now `useTitle` will provides us to access to the `<Title>` component from various parts of the application, like this:
 
-```tsx  title="src/components/customSider" {0,4,13}
+```tsx  title="src/components/customSider" {1,5,15}
 import { AntdLayout, useTitle } from "@pankod/refine";
 
 export const CustomSider: React.FC = () => {

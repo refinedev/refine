@@ -7,7 +7,7 @@ import customValidation from '@site/static/img/examples/form/custom-form-validat
 
 In refine, we can use the form validation that comes with `Ant Design` with the [rules](https://ant.design/components/form/#Rule) property of the [Form.Item](https://ant.design/components/form/#Form.Item) component.
 
-```tsx {4-11}
+```tsx {5-12}
 <Form>
     <Form.Item
         label="Title"
@@ -39,7 +39,7 @@ Now let's prepare a rule that checks if the titles of the posts are unique. We h
 }
 ```
 
-```tsx  {1, 6-26, 34-50, 52}
+```tsx  {2, 7-27, 35-51, 53}
 import { useState } from "react";
 import { useApiUrl, useCustom, HttpError, useForm, Form, Create, Input } from "@pankod/refine";
 

@@ -105,7 +105,7 @@ Values passed to `mutate` must have these types:
 
 Mutation mode determines the mode which mutation runs with.
 
-```tsx  {8}
+```tsx  {9}
 import { useUpdateMany } from "@pankod/refine";
 
 const { mutate } = useUpdateMany();
@@ -133,7 +133,7 @@ Default behaviour on undo action includes notifications. If a custom callback is
 :::danger
 Passed callback will receive a function that actually cancels the mutation. Don't forget to run this function to cancel the mutation on `undoable` mode.
 
-```tsx  {2-5,14-16}
+```tsx  {3-6,15-17}
 import { useUpdateMany } from "@pankod/refine";
 
 const customOnCancel = (cancelMutation: () => void) => {

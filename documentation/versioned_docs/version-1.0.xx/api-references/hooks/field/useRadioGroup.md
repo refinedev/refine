@@ -30,7 +30,7 @@ We will demonstrate how to get data at `/languages` endpoint from the `https://a
 }
 ```
 
-```tsx  title="pages/posts/create.tsx" {3-5, 10}
+```tsx  title="pages/posts/create.tsx" {4-6, 11}
 import { Form, Radio, useRadioGroup } from "@pankod/refine";
 
 export const PostCreate = () => {
@@ -71,7 +71,7 @@ All we have to do is pass the `radioGroupProps` it returns to the `<Radio.Group>
 
 ### `resource`
 
-```tsx  {1}
+```tsx {2}
 const { radioGroupProps } = useRadioGroup({
     resource: "languages",
 });
@@ -83,7 +83,7 @@ const { radioGroupProps } = useRadioGroup({
 
 ### `optionLabel` and `optionValue`
 
-```tsx  {2-3}
+```tsx  {3-4}
 const { radioGroupProps } = useRadioGroup({
     resource: "languages",
     optionLabel: "title",
@@ -95,7 +95,7 @@ const { radioGroupProps } = useRadioGroup({
 
 ### `filters`
 
-```tsx  {2-8}
+```tsx  {3-9}
 const { radioGroupProps } = useRadioGroup({
     resource: "languages",
     filters: [
@@ -112,7 +112,7 @@ const { radioGroupProps } = useRadioGroup({
 
 ### `sort`
 
-```tsx  {2-7}
+```tsx  {3-8}
 const { radioGroupProps } = useRadioGroup({
     resource: "languages",
     sort: [
@@ -135,14 +135,14 @@ const { radioGroupProps } = useRadioGroup({
 
 
 
-```tsx  {2}
+```tsx  {3}
 const { radioGroupProps } = useRadioGroup({
     resource: "languages",
     queryOptions: { onError: () => { console.log("triggers when on query return Error") }}
 });
 ```
 
-```tsx  {2, 4-10}
+```tsx  {3, 5-11}
 const { 
     radioGroupProps, 
 } = useRadioGroup({

@@ -26,7 +26,7 @@ We'll show two examples, one for creating and one for editing a post. Let's see 
 
 In this example, we will show you how to create a record with `useModalForm`.
 
-```tsx title="pages/posts/list.tsx" twoslash {3-5, 10-14, 18-31}
+```tsx title="pages/posts/list.tsx" twoslash {4-6, 11-15, 19-32}
 import { useModalForm, Modal, Form, Create, Radio, List, Input } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
@@ -99,7 +99,7 @@ This code block makes `<Modal>` appear when you click the button.
 
 Let's learn how to add editing capabilities to records that will be opening form in Modal by using the `action` prop.
 
-```tsx  title="pages/posts/list.tsx" {17, 19, 32}
+```tsx  title="pages/posts/list.tsx" {18, 20, 33}
 import { 
     useModalForm,
     Modal,
