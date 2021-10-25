@@ -1391,7 +1391,7 @@ Now you can try deleting records yourself. Just click on the delete button of th
 
 The second way is showing delete button in `<PostEdit>` component. To show delete button in edit page, `canDelete` prop needs to be passed to resource object.
 
-```tsx title="src/App.tsx" {18}
+```tsx title="src/App.tsx"
 import { Refine, Resource } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";

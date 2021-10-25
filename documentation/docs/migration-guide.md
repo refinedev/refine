@@ -25,7 +25,7 @@ This is also related to abstracting away the router layer from core. Differences
 
 `<Resource/>` is deprecated. Resources must be passed to [`resources`][resources] prop instead.
 
-```tsx title="App.tsx" {12-20}
+```tsx title="App.tsx"
 import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
@@ -38,6 +38,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
+// highlight-start
             resources={[
                 {
                     name: "posts",
@@ -47,6 +48,7 @@ const App: React.FC = () => {
                     show: PostShow,
                 },
             ]}
+// highlight-end
         />
     );
 };
