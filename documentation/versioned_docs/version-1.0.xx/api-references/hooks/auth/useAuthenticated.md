@@ -21,7 +21,7 @@ We will demonstrate a similar basic implementation below. Imagine that you have 
 
 We have a logic in [`authProvider`](/docs/api-references/providers/auth-provider)'s `checkAuth` method like below.
 
-```tsx {2-6}
+```tsx {3-7}
 const authProvider: AuthProvider = {
   ...
     checkAuth: () => {
@@ -36,7 +36,7 @@ const authProvider: AuthProvider = {
 
 Let's create a wrapper component that renders children if `checkAuth` method returns the Promise resolved.
 
-```tsx twoslash title="components/authenticated.tsx" {0, 7} 
+```tsx  title="components/authenticated.tsx" {1, 8} 
 import { useAuthenticated, useNavigation } from "@pankod/refine";
 
 export const Authenticated: React.FC<AuthenticatedProps> = ({
@@ -78,7 +78,7 @@ type AuthenticatedProps = {
 
 Now, only authenticated users can see the price field.
 
-```tsx title="components/postShow" {2, 10-13}
+```tsx title="components/postShow" {3, 11-14}
 import { Typography, Show } from "@pankod/refine";
 
 import { Authenticated } from "components/authenticated"

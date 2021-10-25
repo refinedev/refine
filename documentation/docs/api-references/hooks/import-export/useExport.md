@@ -7,9 +7,7 @@ title: useExport
 
 This hook accepts [`export-to-csv`][export-to-csv]'s options to create `CSV` files.
 
-```ts twoslash
-const options = {};
-// ---cut---
+```ts
 import { useExport } from "@pankod/refine";
 
 const { triggerExport, isLoading } = useExport(options);
@@ -41,24 +39,28 @@ Let's say that we have an endpoint like this:
 
 To enable export functionality for this endpoint, we can use the `useExport` hook to create an export button.
 
-```tsx twoslash title="src/pages/posts/list.tsx" {4-5, 11, 17}
+```tsx  title="src/pages/posts/list.tsx"
 import {
     List,
     Table,
     useTable,
+// highlight-start
     useExport,
     ExportButton,
+// highlight-end
 } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
+// highlight-next-line
     const { triggerExport, isLoading } = useExport<IPost>();
 
     return (
         <List
             pageHeaderProps={{
                 extra: (
+// highlight-next-line
                     <ExportButton onClick={triggerExport} loading={isLoading} />
                 ),
             }}
@@ -140,10 +142,7 @@ We have the `category` and `user` fields as possible relational data keys. Their
 
 We can save `category.id` as `categoryId` and `user.id` as `userId`. Thus using a mapping function that looks like this:
 
-```ts twoslash
-
-import { useExport } from "@pankod/refine";
-// ---cut---
+```ts
 const { triggerExport, isLoading } = useExport<IPost>({
     mapData: (item) => {
         return {

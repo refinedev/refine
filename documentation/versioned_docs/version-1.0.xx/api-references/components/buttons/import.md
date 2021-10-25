@@ -10,7 +10,7 @@ It uses Ant Design's [`<Button>`][button] and [`<Upload>`][upload] components. I
 
 ## Usage
 
-```tsx twoslash title="/src/pages/posts/list.tsx" {4-5, 11, 16}
+```tsx  title="/src/pages/posts/list.tsx" {5-6, 12, 17}
 import {
     List,
     Table,
@@ -66,7 +66,7 @@ Will look like this:
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx twoslash
+```tsx 
 import { ImportButton, useImport } from "@pankod/refine";
 
 export const MyRefreshComponent = () => {

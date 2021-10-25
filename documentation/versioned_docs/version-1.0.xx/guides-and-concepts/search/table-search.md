@@ -9,7 +9,7 @@ We can make extensive search / filter operations using the `useTable` hook on th
 
 First, we create a form by extracting `searchFormProps` from `useTable`. We will use this form for search / filtering.
 
-```tsx twoslash title="pages/list.tsx" {1-3, 17, 22-37}
+```tsx  title="pages/list.tsx" {2-4, 18, 23-38}
 import {
     Form,
     Table,

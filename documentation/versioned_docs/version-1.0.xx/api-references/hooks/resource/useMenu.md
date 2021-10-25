@@ -21,7 +21,7 @@ We will show you how to use `useMenu` to create a custom sider menu that is iden
 
 First we define `<CustomMenu>`:
 
-```tsx twoslash title="src/CustomMenu.tsx" {12, 30, 34-36}
+```tsx  title="src/CustomMenu.tsx" {13, 31, 35-37}
 import { useState, CSSProperties } from "react";
 import {
     AntdLayout,
@@ -81,7 +81,7 @@ const antLayoutSiderMobile:CSSProperties = {
 
 We can override the default sider and show the custom menu we implemented in its place by passing a the custom component to `<Refine>`s `Sider` prop:
 
-```tsx title="App.tsx" {6, 15}
+```tsx title="App.tsx" {7, 16}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
@@ -109,7 +109,7 @@ export default App;
 
 We can also add a logout button:
 
-```tsx twoslash title="src/CustomMenu.tsx" {6-8, 22-23, 53-55}
+```tsx  title="src/CustomMenu.tsx" {7-9, 23-24, 54-56}
 import { useState, CSSProperties } from "react";
 import {
     AntdLayout,

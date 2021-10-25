@@ -9,15 +9,17 @@ By encoding your files and images from your forms to Base64 you can change all f
 
 Now let's make a small example to see how its done. In this example, the file we are going to be uploading files in Base64 type  is going to be called `avatar`
 
-```tsx twoslash title="pages/users/create.tsx" {6-7, 18-43, 60, 71}
+```tsx  title="pages/users/create.tsx"
 import {
     Create,
     Form,
     Upload,
     Input,
     useForm,
+// highlight-start
     getValueFromEvent,
     file2Base64,
+// highlight-end
 } from "@pankod/refine";
 
 export const UserCreate: React.FC = () => {
@@ -28,6 +30,7 @@ export const UserCreate: React.FC = () => {
             <Form
                 {...formProps}
                 layout="vertical"
+// highlight-start
                 onFinish={async (values) => {
                     const base64Files = [];
                     // @ts-ignore
@@ -54,6 +57,7 @@ export const UserCreate: React.FC = () => {
                         })
                     );
                 }}
+// highlight-end
             >
                 <Form.Item
                     label="First Name"
@@ -70,6 +74,7 @@ export const UserCreate: React.FC = () => {
                     <Form.Item
                         name="avatar"
                         valuePropName="fileList"
+// highlight-start
                         getValueFromEvent={getValueFromEvent}
                         noStyle
                         rules={[
@@ -81,6 +86,7 @@ export const UserCreate: React.FC = () => {
                         <Upload.Dragger
                             listType="picture"
                             multiple
+// highlight-start
                             beforeUpload={() => false}
                         >
                             <p className="ant-upload-text">

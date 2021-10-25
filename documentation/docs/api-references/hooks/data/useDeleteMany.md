@@ -41,7 +41,7 @@ Let's say that we have a resource named `categories`.
 }
 ```
 
-```tsx twoslash
+```tsx 
 import { useDeleteMany } from "@pankod/refine";
 
 const { mutate } = useDeleteMany();
@@ -101,7 +101,7 @@ Values passed to `mutate` must have these types.
 
 Mutation mode determines the mode which the mutation runs with.
 
-```tsx twoslash {7}
+```tsx 
 import { useDeleteMany } from "@pankod/refine";
 
 const { mutate } = useDeleteMany();
@@ -109,6 +109,7 @@ const { mutate } = useDeleteMany();
 mutate({
     resource: "categories",
     ids: ["2", "3"],
+    // highlight-next-line
     mutationMode: "optimistic",
 });
 ```
@@ -126,13 +127,15 @@ Default behaviour on undo action includes notifications. If a custom callback is
 :::danger
 Passed callback will receive a function that actually cancels the mutation. Don't forget to run this function to cancel the mutation on the `undoable` mode.
 
-```tsx twoslash {2-5, 12-14}
+```tsx
 import { useDeleteMany } from "@pankod/refine";
 
+// highlight-start
 const customOnCancel = (cancelMutation: () => void) => {
     cancelMutation();
     // rest of custom cancel logic...
 };
+// highlight-end
 
 const { mutate } = useDeleteMany();
 
@@ -140,8 +143,10 @@ mutate({
     resource: "categories",
     ids: ["1", "2"],
     mutationMode: "undoable",
+    // highlight-start
     undoableTimeout: 7500,
     onCancel: customOnCancel,
+    // highlight-end
 });
 ```
 

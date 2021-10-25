@@ -18,7 +18,7 @@ We will show what `<List>` does using properties with examples.
 
 Create button redirects to the create page of the resource according to the value it reads from the URL.
 
-```tsx twoslash
+```tsx 
 import { List, usePermissions } from "@pankod/refine";
 
 export const ListPage: React.FC = () => {
@@ -41,7 +41,7 @@ export const ListPage: React.FC = () => {
 
 It allows adding a title for the `<List>` component. if you don't pass title props, it uses plural from of resource name by default.
 
-```tsx twoslash
+```tsx 
 import { List } from "@pankod/refine";
 
 export const ListPage: React.FC = () => {
@@ -55,7 +55,7 @@ export const ListPage: React.FC = () => {
 
 [Refer to the `<PageHeader>` documentation for detailed usage. &#8594](https://ant.design/components/page-header/#API)
 
-```tsx twoslash
+```tsx 
 import { List } from "@pankod/refine";
 
 export const ListPage: React.FC = () => {
@@ -90,20 +90,23 @@ export const ListPage: React.FC = () => {
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
-```tsx twoslash {4-6, 11-20}
+```tsx
 import { Refine, List } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
+// highlight-start
 const CustomPage = () => {
     return <List resource="posts">...</List>;
 };
+// highlight-end
 
 export const App: React.FC = () => {
     return (
         <Refine
             routerProvider={{
                 ...routerProvider,
+                // highlight-start
                 routes: [
                     {
                         exact: true,
@@ -111,6 +114,7 @@ export const App: React.FC = () => {
                         path: "/custom",
                     },
                 ]
+                // highlight-end
             }}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
             resources={[{ name: "posts" }]}

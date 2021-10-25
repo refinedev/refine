@@ -17,7 +17,7 @@ Custom components may be useful when working with markdown (with markdown editor
 
 We will demonstrate how to use custom input fields for markdown data by adding a markdown editor to edit and create forms.
 
-```tsx title="/src/pages/posts/edit.tsx" {9-10, 12, 37-55}
+```tsx title="/src/pages/posts/edit.tsx" {10-11, 13, 38-56}
 import React, { useState } from "react";
 import {
     Edit,

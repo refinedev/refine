@@ -11,10 +11,11 @@ This field is used to display files and uses [`<Typography.Link>`](https://ant.d
 
 Let's see how we can use `<FileField>` with the example in the edit page. 
 
-```tsx twoslash {3, 18}
+```tsx
 import { 
     List,
     Table,
+    // highlight-next-line
     FileField 
 } from "@pankod/refine";
 
@@ -30,7 +31,8 @@ export const PostList: React.FC = () => {
                     title="Image"
                     dataIndex="image"
                     render={(_, record) => (
-                         <FileField src={record.image[0].url} />
+                        // highlight-next-line
+                        <FileField src={record.image[0].url} />
                     )}
                 />
             </Table>

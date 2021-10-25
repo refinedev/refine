@@ -11,9 +11,10 @@ This field lets you display a value in a tag. It uses Ant Design's [`<Tag>`](htt
 
 Let's see how we can use it in a basic list page:
 
-```tsx twoslash title="pages/posts/list.tsx" {2, 18}
+```tsx  title="pages/posts/list.tsx"
 import {
     List,
+    // highlight-next-line
     TagField,
     Table,
     useTable,
@@ -30,6 +31,7 @@ export const PostList: React.FC = () => {
                 <Table.Column
                     dataIndex="status"
                     title="status"
+                    // highlight-next-line
                     render={(value: string) => <TagField value={value} />}
                 />
             </Table>

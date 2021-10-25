@@ -129,7 +129,7 @@ This value will be passed to all CRUD pages defined to `<Resource>`.
 
 An icon element can be passed as properties for the icon in the menu.
 
-```tsx {2}
+```tsx {3}
 <Resource
     ...
     icon={<CustomIcon />}
@@ -140,7 +140,7 @@ An icon element can be passed as properties for the icon in the menu.
 
 Menu item name and route on clicking can be customized.
 
-```tsx {2}
+```tsx {3}
 <Resource
     ...
     options={{ label: "custom", route: "/custom" }}
