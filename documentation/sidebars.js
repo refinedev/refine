@@ -216,6 +216,7 @@ module.exports = {
                     label: "Data Provider",
                     items: ["guides-and-concepts/data-provider/graphql"],
                 },
+                "guides-and-concepts/ssr-nextjs",
                 {
                     type: "category",
                     label: "Upload",
@@ -270,6 +271,7 @@ module.exports = {
                     items: [
                         "examples/data-provider/strapi",
                         "examples/data-provider/strapi-graphql",
+                        "examples/data-provider/hasura",
                         "examples/data-provider/nestjsxCrud",
                         "examples/data-provider/airtable",
                         "examples/data-provider/supabase",
@@ -363,6 +365,10 @@ module.exports = {
                 "examples/customTheme",
                 "examples/javascript",
             ],
+        },
+        {
+            type: "doc",
+            id: "migration-guide",
         },
         {
             type: "doc",

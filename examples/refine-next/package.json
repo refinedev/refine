@@ -12,7 +12,7 @@
         "@pankod/refine": "^1.1.0",
         "@pankod/refine-nextjs-router": "^0.1.0",
         "@pankod/refine-simple-rest": "^0.1.8",
-        "next": "10.2.0",
+        "next": "^11.1.2",
         "next-compose-plugins": "^2.2.1",
         "nookies": "^2.5.2",
         "react": "^17.0.2",

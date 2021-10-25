@@ -18,6 +18,7 @@
     "@types/react-dom": "^17.0.9",
     "clsx": "^1.1.1",
     "graphql-request": "^3.5.0",
+    "next": "^11.1.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-icons": "^4.2.0",
