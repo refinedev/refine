@@ -11,7 +11,18 @@ import { RouterProvider } from "./routerProvider";
 
 const { useHistory, useLocation, useParams } = RouterProvider;
 
-export const NextRouteComponent: React.FC = () => {
+type NextRouteComponentProps = {
+    pageData?: {
+        list?: any;
+        create?: any;
+        edit?: any;
+        show?: any;
+    };
+};
+
+export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
+    pageData,
+}) => {
     const { resources } = useResource();
     const { push } = useHistory();
     const { resource: routeResourceName, action } =
@@ -64,6 +75,7 @@ export const NextRouteComponent: React.FC = () => {
                             canEdit={canEdit}
                             canDelete={canDelete}
                             canShow={canShow}
+                            initialData={pageData?.list}
                         />
                     );
                 }
@@ -76,6 +88,7 @@ export const NextRouteComponent: React.FC = () => {
                             canEdit={canEdit}
                             canDelete={canDelete}
                             canShow={canShow}
+                            initialData={pageData?.create}
                         />
                     );
                 }
@@ -88,6 +101,7 @@ export const NextRouteComponent: React.FC = () => {
                             canEdit={canEdit}
                             canDelete={canDelete}
                             canShow={canShow}
+                            initialData={pageData?.edit}
                         />
                     );
                 }
@@ -100,6 +114,7 @@ export const NextRouteComponent: React.FC = () => {
                             canEdit={canEdit}
                             canDelete={canDelete}
                             canShow={canShow}
+                            initialData={pageData?.show}
                         />
                     );
                 }

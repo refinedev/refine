@@ -12,7 +12,7 @@ import { checkAuthentication } from "@pankod/refine-nextjs-router";
 
 import { IPost } from "src/interfaces";
 
-const API_URL = "https://api.fake-rest.refine.dev";
+import { API_URL } from "../../src/constants";
 
 export const UserList: React.FC<{ users: GetListResponse<IPost> }> = ({
     users,

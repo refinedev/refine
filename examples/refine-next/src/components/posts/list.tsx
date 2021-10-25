@@ -6,12 +6,18 @@ import {
     EditButton,
     ShowButton,
     DeleteButton,
+    GetListResponse,
 } from "@pankod/refine";
+import type { IResourceComponentsProps } from "@pankod/refine";
 import { IPost } from "../../interfaces";
 
-export const PostList: React.FC = () => {
+export const PostList: React.FC<
+    IResourceComponentsProps<GetListResponse<IPost>>
+> = ({ initialData }) => {
     const { tableProps } = useTable<IPost>({
-        resource: "posts",
+        queryOptions: {
+            initialData,
+        },
     });
 
     return (

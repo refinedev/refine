@@ -60,7 +60,7 @@ A [`dataProvider`](api-references/providers/data-provider.md) makes HTTP request
 
 **refine** needs some router functions to create resource pages, handle navigation, etc. This provider allows you to use the router library you want.
 
-[Refer to the Router Provider documentation for detailed information. &#8594](api-references/providers/router-provider.md)
+[Refer to the Router Provider documentation for detailed information. &#8594][routerProvider]
 
 ## `resources`
 
@@ -593,3 +593,4 @@ const App: React.FC = () => (
 );
 ```
 
+[routerProvider]: /api-references/providers/router-provider.md
