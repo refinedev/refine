@@ -143,7 +143,7 @@ export const ShowPage: React.FC = () => {
 
 ### `recordItemId`
 
-`<Show>` component reads the `id` information from the route by default. `recordIdItem` is used when it cannot read from the URL (when used on a custom page, modal or drawer).
+`<Show>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL (when used on a custom page, modal or drawer).
 
 ```tsx 
 import { useState } from "react";
@@ -218,7 +218,7 @@ export const App: React.FC = () => {
 ```
 
 :::caution
-The `<Show>` component needs the `id` information for work properly, so if you use the `<Show>` component in custom pages, you should pass the `recordIditem` property.
+The `<Show>` component needs the `id` information for work properly, so if you use the `<Show>` component in custom pages, you should pass the `recordItemId` property.
 :::
 
 ## API Reference

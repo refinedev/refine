@@ -136,7 +136,7 @@ export const EditPage: React.FC = () => {
 
 ### `recordItemId`
 
-The `<Edit>` component reads the `id` information from the route by default. `recordIdItem` is used when it cannot read from the URL(when used on a custom page, modal or drawer).
+The `<Edit>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL(when used on a custom page, modal or drawer).
 
 ```tsx 
 import { Edit, Modal, useModalForm } from "@pankod/refine";
@@ -215,7 +215,7 @@ export const App: React.FC = () => {
 ```
 
 :::caution
-`<Edit>` component needs the `id` information for work properly so if you use the `<Edit>` component in custom pages, you should pass the `recordIditem` property.
+`<Edit>` component needs the `id` information for work properly so if you use the `<Edit>` component in custom pages, you should pass the `recordItemId` property.
 :::
 
 ## API Reference
