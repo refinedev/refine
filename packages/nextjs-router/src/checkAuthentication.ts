@@ -1,33 +1,45 @@
 import { AuthProvider } from "@pankod/refine";
-import { GetServerSidePropsContext, Redirect } from "next";
-import Router from "next/router";
+import { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 
 export const checkAuthentication = async (
     authProvider: AuthProvider,
     context: GetServerSidePropsContext,
-): Promise<{
-    isAuthenticated: boolean;
-    redirect: Redirect;
-}> => {
+): Promise<
+    GetServerSidePropsResult<{}> & {
+        isAuthenticated: boolean;
+    }
+> => {
     let isAuthenticated = false;
+    if (context.resolvedUrl.includes("/login")) {
+        return {
+            props: {},
+            isAuthenticated,
+        };
+    }
+
     try {
         await authProvider.checkAuth(context);
         isAuthenticated = true;
-    } catch (error) {}
+    } catch (error) {
+        const encodeURI = () => {
+            if (
+                context.resolvedUrl === "/" ||
+                context.resolvedUrl === undefined
+            ) {
+                return "/login";
+            }
 
-    const encodeURI = () => {
-        if (context.resolvedUrl === "/" || context.resolvedUrl === undefined) {
-            return "/login";
-        }
+            return `/login?to=${encodeURIComponent(context.resolvedUrl)}`;
+        };
 
-        return `/login?to=${encodeURIComponent(context.resolvedUrl)}`;
-    };
+        return {
+            isAuthenticated,
+            redirect: {
+                destination: encodeURI(),
+                permanent: false,
+            },
+        };
+    }
 
-    return {
-        isAuthenticated,
-        redirect: {
-            destination: encodeURI(),
-            permanent: false,
-        },
-    };
+    return { props: {}, isAuthenticated };
 };
