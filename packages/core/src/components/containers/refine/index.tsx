@@ -172,10 +172,9 @@ export const Refine: React.FC<RefineProps> = ({
                                                 <>
                                                     {children}
                                                     {RouterComponent && (
-                                                        <RouterComponent>
-                                                            <RouteChangeHandler />
-                                                        </RouterComponent>
+                                                        <RouterComponent />
                                                     )}
+                                                    <RouteChangeHandler />
                                                 </>
                                             </UnsavedWarnContextProvider>
                                         </RefineContextProvider>
