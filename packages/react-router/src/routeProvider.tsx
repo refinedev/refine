@@ -121,7 +121,7 @@ const RouteProviderBase: React.FC = (props) => {
 
     const renderAuthorized = () => (
         <Switch>
-            {[...customRoutes].map((route, i) => (
+            {[...(customRoutes || [])].map((route, i) => (
                 <RouteWithSubRoutes key={i} {...route} />
             ))}
             <Route>
