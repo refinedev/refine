@@ -5,6 +5,7 @@ import {
     ErrorComponent,
     useResource,
     LoginPage as DefaultLoginPage,
+    useAuthenticated,
 } from "@pankod/refine";
 import type { ResourceRouterParams } from "@pankod/refine";
 
@@ -28,6 +29,12 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
     const { push } = useHistory();
     const { resource: routeResourceName, action } =
         useParams<ResourceRouterParams>();
+
+    const { isLoading } = useAuthenticated({ type: "routeProvider" });
+
+    if (isLoading) {
+        return null;
+    }
 
     const { pathname } = useLocation();
     const { DashboardPage, catchAll, LoginPage } = useRefineContext();
