@@ -4,10 +4,7 @@ import { BrowserRouter, BrowserRouterProps } from "react-router-dom";
 
 import { RouteProvider } from "./routeProvider";
 
-export const RouterComponent: React.FC<BrowserRouterProps> = ({
-    children,
-    ...props
-}) => {
+export const RouterComponent: React.FC<BrowserRouterProps> = ({ ...props }) => {
     const { setWarnWhen } = useWarnAboutChange();
 
     const getUserConfirmation: (
@@ -23,7 +20,6 @@ export const RouterComponent: React.FC<BrowserRouterProps> = ({
     return (
         <BrowserRouter getUserConfirmation={getUserConfirmation} {...props}>
             <RouteProvider />
-            {children}
         </BrowserRouter>
     );
 };
