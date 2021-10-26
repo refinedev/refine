@@ -288,13 +288,13 @@ const API_URL = "https://api.fake-rest.refine.dev";
  
 export const getServerSideProps: GetServerSideProps = async (context) => {
  
-    const { isAuthenticated, redirect } = await checkAuthentication(
+    const { isAuthenticated, ...props } = await checkAuthentication(
         authProvider,
         context,
     );
 
     if (!isAuthenticated) {
-        return { redirect };
+        return props;
     }
  
     return {

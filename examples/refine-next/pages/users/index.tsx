@@ -48,7 +48,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     );
 
     if (!isAuthenticated) {
-        return { props };
+        return props;
     }
 
     const { resolvedUrl } = context;
