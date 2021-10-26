@@ -15,7 +15,8 @@ This component accepts layout customizations to further customize the layout par
 
 An example use in a custom page may look like this:
 
-```tsx title="App.tsx" {0, 10-18, 23-32}
+```tsx title="App.tsx"
+// highlight-next-line
 import { Refine, Authenticated, LayoutWrapper } from "@pankod/refine";
 
 import routerProvider from "@pankod/refine-react-router";
@@ -26,6 +27,7 @@ import { PostList } from "pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
+// highlight-start
 const AuthenticatedPostReview = () => {
     return (
         <Authenticated>
@@ -35,10 +37,12 @@ const AuthenticatedPostReview = () => {
         </Authenticated>
     );
 };
+// highlight-end
 
 const App: React.FC = () => {
     return (
         <Refine
+            // highlight-start
             routerProvider={{
                 ...routerProvider,
                 routes: [
@@ -49,6 +53,7 @@ const App: React.FC = () => {
                     },
                 ] as typeof routerProvider.routes,
             }}
+            // highlight-end
             dataProvider={dataProvider(API_URL)}
             resources={[{ name: "posts", list: PostList }]}
         />

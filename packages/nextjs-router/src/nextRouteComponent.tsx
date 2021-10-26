@@ -3,8 +3,8 @@ import {
     useRefineContext,
     LayoutWrapper,
     ErrorComponent,
-    useResourceWithRoute,
     useResource,
+    LoginPage as DefaultLoginPage,
 } from "@pankod/refine";
 import type { ResourceRouterParams } from "@pankod/refine";
 
@@ -25,17 +25,20 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
     pageData,
 }) => {
     const { resources } = useResource();
-    const resourceWithRoute = useResourceWithRoute();
     const { push } = useHistory();
     const { resource: routeResourceName, action } =
         useParams<ResourceRouterParams>();
 
     const { pathname } = useLocation();
-    const { DashboardPage, catchAll } = useRefineContext();
+    const { DashboardPage, catchAll, LoginPage } = useRefineContext();
 
-    const resource = resourceWithRoute(routeResourceName);
+    const resource = resources.find((res) => res.route === routeResourceName);
 
     const isServer = typeof window !== "undefined";
+
+    if (routeResourceName === "login") {
+        return LoginPage ? <LoginPage /> : <DefaultLoginPage />;
+    }
 
     if (pathname === "/") {
         if (DashboardPage) {
@@ -49,6 +52,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
             return null;
         }
     }
+
     if (resource) {
         const {
             list,
@@ -125,5 +129,11 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
 
         return <LayoutWrapper>{renderCrud()}</LayoutWrapper>;
     }
-    return catchAll ? <>{catchAll}</> : <ErrorComponent />;
+    return catchAll ? (
+        <>{catchAll}</>
+    ) : (
+        <LayoutWrapper>
+            <ErrorComponent />
+        </LayoutWrapper>
+    );
 };

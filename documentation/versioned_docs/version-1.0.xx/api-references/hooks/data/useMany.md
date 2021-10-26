@@ -32,7 +32,7 @@ Let's say that we have a resource named `categories`.
 }
 ```
 
-```tsx twoslash
+```tsx 
 import { useMany } from "@pankod/refine";
 
 type ICategory = {

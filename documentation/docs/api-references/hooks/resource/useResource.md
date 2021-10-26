@@ -5,7 +5,7 @@ title: useResource
 
 `useResource` is used to get `resources` that are defined as property of the `<Refine>` component.
 
-```ts twoslash
+```ts
 import { useResource } from "@pankod/refine";
 
 const resources = useResource();

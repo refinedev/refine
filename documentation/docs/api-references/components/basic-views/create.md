@@ -16,7 +16,7 @@ We'll show what `<Create>` does using properties with examples.
 
 It allows adding title inside the `<Create>` component. if you don't pass title props it uses "Create" prefix and singular resource name by default. For example, for the `/posts/create` resource, it will be "Create post".
 
-```tsx twoslash
+```tsx 
 import { Create } from "@pankod/refine";
 
 export const CreatePage: React.FC = () => {
@@ -30,7 +30,7 @@ export const CreatePage: React.FC = () => {
 
 [Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-references/components/buttons/save.md)
 
-```tsx twoslash
+```tsx 
 import { Create } from "@pankod/refine";
 
 export const CreatePage: React.FC = () => {
@@ -42,7 +42,7 @@ export const CreatePage: React.FC = () => {
 
 `<Create>` uses the Ant Design [`<Card>`](https://ant.design/components/card) component. The `action` property of the `<Card>` component shows `<SaveButton>` and `<DeleteButton>` based on your resource definition in the `resources` property you pass to `<Refine>`. If you want to use other things instead of these buttons, you can use the `actionButton` property like the code below.
 
-```tsx twoslash
+```tsx 
 import { Create, Button } from "@pankod/refine";
 
 export const CreatePage: React.FC = () => {
@@ -78,7 +78,7 @@ export const CreatePage: React.FC = () => {
 
 [Refer to the `<PageHeader>` documentation for detailed usage. &#8594](https://ant.design/components/page-header/#API)
 
-```tsx twoslash
+```tsx 
 import { Create } from "@pankod/refine";
 
 export const CreatePage: React.FC = () => {
@@ -112,20 +112,23 @@ The `<Create>` component reads the `resource` information from the route by defa
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
-```tsx twoslash {4-6, 11-20}
+```tsx
 import { Refine, Create } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
+// highlight-start
 const CustomPage = () => {
     return <Create resource="posts">...</Create>;
 };
+// highlight-end
 
 export const App: React.FC = () => {
     return (
         <Refine
             routerProvider={{
                 ...routerProvider,
+                // highlight-start
                 routes: [
                     {
                         exact: true,
@@ -133,6 +136,7 @@ export const App: React.FC = () => {
                         path: "/custom",
                     },
                 ]
+                // highlight-end
             }}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
             resources={[{ name: "posts" }]}

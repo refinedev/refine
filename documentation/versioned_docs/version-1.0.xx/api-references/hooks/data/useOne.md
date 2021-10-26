@@ -28,7 +28,7 @@ Let's say that we have a resource named `posts`.
 }
 ```
 
-```tsx twoslash
+```tsx 
 import { useOne } from "@pankod/refine";
 
 type ICategory = {

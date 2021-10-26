@@ -14,7 +14,7 @@ This component accepts layout customizations to further customize the layout par
 
 An example use in a custom page may look like this:
 
-```tsx title="App.tsx" {4, 14-22, 28-34}
+```tsx title="App.tsx" {5, 15-23, 29-35}
 import {
     Refine,
     Resource,

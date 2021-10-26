@@ -79,7 +79,7 @@ A [`dataProvider`](api-references/providers/data-provider.md) makes HTTP request
 
 When the app is navigated to a non-existent route, **refine** shows a default error page. A custom error component can be used for this error page by passing the customized component to `catchAll` property:
 
-```tsx title="App.tsx" {0-2, 8}
+```tsx title="App.tsx" {1-3, 9}
 const CustomErrorPage = () => (
     <div>Page not found</div>
 );
@@ -101,7 +101,7 @@ const App: React.FC = () => {
 
 `mutationMode` determines which mode the mutations run with. (e.g. useUpdate, useDelete).
 
-```tsx title="App.tsx" {4}
+```tsx title="App.tsx" {5}
 const App: React.FC = () => {
     return (
         <Refine
@@ -128,7 +128,7 @@ The duration of the timeout period in **undoable** mode, shown in milliseconds. 
 The value set in hooks will override the value set with `undoableTimeout`.  
 `undoableTimeout` has a default value of `5000`.
 
-```tsx title="App.tsx" {5}
+```tsx title="App.tsx" {6}
 const App: React.FC = () => {
     return (
         <Refine
@@ -187,7 +187,7 @@ Ant Design's [ConfigProvider](https://ant.design/components/config-provider) whi
 
 For example, Layout direction can be set to other way:
 
-```tsx title="App.tsx" {4-6}
+```tsx title="App.tsx" {5-7}
 const App: React.FC = () => 
     (
         <Refine
@@ -209,7 +209,7 @@ const App: React.FC = () =>
 
 Custom login component can be passed to the `LoginPage` property.
 
-```tsx title="App.tsx" {0, 6}
+```tsx title="App.tsx" {1, 7}
 const CustomLoginPage = () => <div> Custom Login Page </div>;
 
 const App: React.FC = () => 
@@ -232,7 +232,7 @@ The dashboard item will appear at the top of the sider menu.
 `<Resource>` will be shown first if no `DashboardPage` is given.
 
 
-```tsx title="App.tsx" {0, 6}
+```tsx title="App.tsx" {1, 7}
 const CustomDashboardPage = () => <div> Custom Dashboard Page </div>;
 
 const App: React.FC = () => 
@@ -254,7 +254,7 @@ const App: React.FC = () =>
 
 Custom ready page component can be set by passing to `ReadyPage` property?.
 
-```tsx title="App.tsx" {0, 6}
+```tsx title="App.tsx" {1, 7}
 const CustomReadyPage = () => <div> Custom Ready Page </div>;
 
 const App: React.FC = () => 
@@ -285,7 +285,7 @@ The default sidebar can be customized by using refine hooks and passing custom c
 The default app footer can be customized by passing the `Footer` property.
 
 
-```tsx title="App.tsx" {0, 6}
+```tsx title="App.tsx" {1, 7}
 const CustomFooter = () => <div>Custom Footer</div>;
 
 const App: React.FC = () => 
@@ -306,7 +306,7 @@ const App: React.FC = () =>
 The default app header can be customized by passing the `Header` property.
 
 
-```tsx title="App.tsx" {0, 6}
+```tsx title="App.tsx" {1, 7}
 const CustomHeader = () => <div>Custom Header</div>;
 
 const App: React.FC = () => 
@@ -330,7 +330,7 @@ Default layout can be customized by passing the `Layout` property.
 
 Layout property will receive individual layout components as property.
 
-```tsx title="App.tsx" {4-20}
+```tsx title="App.tsx" {5-21}
 const App: React.FC = () => 
     (
         <Refine
@@ -362,7 +362,7 @@ const App: React.FC = () =>
 
 A completely custom layout can also be implemented instead of the  **refine**'s default [Ant Design based layout](https://ant.design/components/layout) like below.
 
-```tsx title="App.tsx" {4-9}
+```tsx title="App.tsx" {5-10}
 const App: React.FC = () => 
     (
         <Refine
@@ -387,7 +387,7 @@ const App: React.FC = () =>
 
 The component wanted to be placed out of app layout structure can be set by passing to `OffLayoutArea` prop.
 
-```tsx title="App.tsx" {0, 6}
+```tsx title="App.tsx" {1, 7}
 import { Refine, BackTop } from "@pankod/refine";
 
 const App: React.FC = () => 
@@ -408,7 +408,7 @@ const App: React.FC = () =>
 The app title can be set by passing the `Title` property.
 
 
-```tsx title="App.tsx" {0, 6}
+```tsx title="App.tsx" {1, 7}
 const CustomTitle = ({collapsed}) => <div>{collapsed ? "Collapsed Title" : "Full Title"}</div>;
 
 const App: React.FC = () => 
@@ -439,7 +439,7 @@ Config for React Query client that **refine** uses.
 [Refer to the QueryClient documentation for detailed information. &#8594](https://react-query.tanstack.com/reference/QueryClient#queryclient)
 
 
-```tsx {4-10}
+```tsx {5-11}
 const App: React.FC = () => 
     (
         <Refine
@@ -461,7 +461,7 @@ const App: React.FC = () =>
 
 Config for Ant Design [notification](https://ant.design/components/notification/) that **refine** uses.
 
-```tsx {4-8}
+```tsx {5-9}
 const App: React.FC = () =>
     (
         <Refine

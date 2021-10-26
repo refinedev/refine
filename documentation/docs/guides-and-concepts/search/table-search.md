@@ -9,11 +9,13 @@ We can make extensive search / filter operations using the `useTable` hook on th
 
 First, we create a form by extracting `searchFormProps` from `useTable`. We will use this form for search / filtering.
 
-```tsx twoslash title="pages/list.tsx" {1-3, 17, 22-37}
+```tsx  title="pages/list.tsx"
 import {
+// highlight-start
     Form,
     Table,
     useTable,
+// highlight-end
     Row,
     Col,
     Icons,
@@ -27,9 +29,11 @@ import {
 const { RangePicker } = DatePicker;
 
 export const ListPage: React.FC = () => {
+// highlight-next-line
     const { searchFormProps } = useTable<IPost>();
 
     return (
+// highlight-start
         <Row gutter={[16, 16]}>
             <Col lg={6} xs={24}>
                 <Form layout="vertical" {...searchFormProps}>
@@ -55,6 +59,7 @@ export const ListPage: React.FC = () => {
                 </List>
             </Col>
         </Row>
+// highlight-end
     );
 };
 

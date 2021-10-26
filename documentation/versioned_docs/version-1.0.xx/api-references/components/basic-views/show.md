@@ -21,7 +21,7 @@ When clicked on, delete button executes the `useDelete` method provided by the [
 
 Refer to the [`<DeleteButton>`](api-references/components/buttons/delete.md) and the [`<EditButton>`](api-references/components/buttons/edit.md) documentation for detailed usage.
 
-```tsx twoslash
+```tsx 
 import { Show, usePermissions } from "@pankod/refine";
 
 export const ShowPage: React.FC = () => {
@@ -44,7 +44,7 @@ export const ShowPage: React.FC = () => {
 
 It allows adding a title for the `<Show>` component. if you don't pass title props it uses the "Show" prefix and the singular resource name by default. For example, for the "posts" resource, it will be "Show post".
 
-```tsx twoslash
+```tsx 
 import { Show } from "@pankod/refine";
 
 export const ShowPage: React.FC = () => {
@@ -56,7 +56,7 @@ export const ShowPage: React.FC = () => {
 
 `<Show>` uses the Ant Design [`<Card>`](https://ant.design/components/card/) component so you can customize the `action` property with the properties of `actionButtons`. By default, the `action` property of the `<Card>` component shows nothing in the `<Show>` component.
 
-```tsx twoslash
+```tsx 
 import { Show, Space, Button } from "@pankod/refine";
 
 export const ShowPage: React.FC = () => {
@@ -89,7 +89,7 @@ export const ShowPage: React.FC = () => {
 
 Since `<Show>` uses the Ant Design [`<Card>`](https://ant.design/components/card/) component, the `isLoading` property can be set like the below.
 
-```tsx twoslash
+```tsx 
 import { useState } from "react";
 import { Show, Modal, ShowButton, useShow } from "@pankod/refine";
 
@@ -114,7 +114,7 @@ export const ShowPage: React.FC = () => {
 
 `<Show>` uses the Ant Design [`<PageHeader>`](https://ant.design/components/page-header/#API) components so you can customize it with the properties of `pageHeaderProps`. By default, the `extra` property of the `<PageHeader>` component shows `<RefreshButton>`, `<ListButton>`, `<EditButton>` and `<DeleteButton>` depending on your resource definition on the `<Resource>` component.
 
-```tsx twoslash
+```tsx 
 import { Show } from "@pankod/refine";
 
 export const ShowPage: React.FC = () => {
@@ -143,9 +143,9 @@ export const ShowPage: React.FC = () => {
 
 ### `recordItemId`
 
-`<Show>` component reads the `id` information from the route by default. `recordIdItem` is used when it cannot read from the URL (when used on a custom page, modal or drawer).
+`<Show>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL (when used on a custom page, modal or drawer).
 
-```tsx twoslash
+```tsx 
 import { useState } from "react";
 import { Show, Modal, ShowButton, useShow } from "@pankod/refine";
 
@@ -187,7 +187,7 @@ The `<Show>` component reads the `resource` information from the route by defaul
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
-```tsx twoslash
+```tsx 
 import { Refine, Resource, Show } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -218,7 +218,7 @@ export const App: React.FC = () => {
 ```
 
 :::caution
-The `<Show>` component needs the `id` information for work properly, so if you use the `<Show>` component in custom pages, you should pass the `recordIditem` property.
+The `<Show>` component needs the `id` information for work properly, so if you use the `<Show>` component in custom pages, you should pass the `recordItemId` property.
 :::
 
 ## API Reference

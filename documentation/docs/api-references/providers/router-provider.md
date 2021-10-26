@@ -99,12 +99,14 @@ values={[
 ]}>
 <TabItem value="react-useHistory">
 
-```ts title="routerProvider.ts" {1,5}
+```ts title="routerProvider.ts"
 import { IRouterProvider } from "@pankod/refine";
+// highlight-next-line
 import { useHistory } from "react-router-dom";
 
 const routerProvider: IRouterProvider = {
     ...
+// highlight-next-line
     useHistory,
     ...
 };
@@ -113,12 +115,14 @@ const routerProvider: IRouterProvider = {
   </TabItem>
     <TabItem value="nextjs-useHistory">
 
-```ts title="routerProvider.ts" {1,5-13}
+```ts title="routerProvider.ts"
 import { IRouterProvider } from "@pankod/refine";
+// highlight-next-line
 import { useRouter } from "next/router";
 
 const routerProvider: IRouterProvider = {
     ...
+// highlight-start
     useHistory: () => {
         const router = useRouter();
         const { push, replace, back } = router;
@@ -128,6 +132,7 @@ const routerProvider: IRouterProvider = {
             goBack: back,
         };
     },
+// highlight-end
     ...
 };
 ```
@@ -147,12 +152,14 @@ values={[
 ]}>
 <TabItem value="react-useLocation">
 
-```ts title="routerProvider.ts" {1,5}
+```ts title="routerProvider.ts"
 import { IRouterProvider } from "@pankod/refine";
+// highlight-next-line
 import { useLocation } from "react-router-dom";
 
 const routerProvider: IRouterProvider = {
     ...
+// highlight-next-line
     useLocation,
     ...
 };
@@ -161,13 +168,16 @@ const routerProvider: IRouterProvider = {
   </TabItem>
     <TabItem value="nextjs-useLocation">
 
-```ts title="routerProvider.ts" {1-2,6-16}
+```ts title="routerProvider.ts"
 import { IRouterProvider } from "@pankod/refine";
+// highlight-start
 import { useRouter } from "next/router";
 import qs from "qs";
+// highlight-end
 
 const routerProvider: IRouterProvider = {
     ...
+// highlight-start
     useLocation: () => {
         const router = useRouter();
         const { pathname, query } = router;
@@ -179,6 +189,7 @@ const routerProvider: IRouterProvider = {
             search: queryParams && `?${queryParams}`,
         };
     },
+// highlight-end
     ...
 };
 ```
@@ -198,12 +209,14 @@ values={[
 ]}>
 <TabItem value="react-useParams">
 
-```ts title="routerProvider.ts" {1,5}
+```ts title="routerProvider.ts"
 import { IRouterProvider } from "@pankod/refine";
+// highlight-next-line
 import { useParams } from "react-router-dom";
 
 const routerProvider: IRouterProvider = {
     ...
+// highlight-next-line
     useParams,
     ...
 };
@@ -212,18 +225,21 @@ const routerProvider: IRouterProvider = {
   </TabItem>
     <TabItem value="nextjs-useParams">
 
-```ts title="routerProvider.ts" {1,5-10}
+```ts title="routerProvider.ts"
 import { IRouterProvider } from "@pankod/refine";
+// highlight-next-line
 import { useRouter } from "next/router";
 
 const routerProvider: IRouterProvider = {
     ...
+// highlight-start
     useParams: <Params>() => {
         const router = useRouter();
 
         const { query } = router;
         return query as unknown as Params;
     },
+// highlight-end
     ...
 };
 ```
@@ -243,12 +259,14 @@ values={[
 ]}>
 <TabItem value="react-prompt">
 
-```ts title="routerProvider.ts" {1,5}
+```ts title="routerProvider.ts"
 import { IRouterProvider } from "@pankod/refine";
+// highlight-next-line
 import { Prompt } from "react-router-dom";
 
 const routerProvider: IRouterProvider = {
     ...
+// highlight-next-line
     Prompt: Prompt as any,
     ...
 };
@@ -290,13 +308,15 @@ export const Prompt: React.FC<PromptProps> = ({
 };
 ```
 
-```ts title="routerProvider.ts" {2, 6}
+```ts title="routerProvider.ts"
 import { IRouterProvider } from "@pankod/refine";
 
+// highlight-next-line
 import { Prompt } from "./prompt";
 
 const routerProvider: IRouterProvider = {
     ...
+// highlight-next-line
     Prompt,
     ...
 };
@@ -317,12 +337,14 @@ values={[
 ]}>
 <TabItem value="react-link">
 
-```ts title="routerProvider.ts" {1,5}
+```ts title="routerProvider.ts"
 import { IRouterProvider } from "@pankod/refine";
+// highlight-next-line
 import { Link } from "react-router-dom";
 
 const routerProvider: IRouterProvider = {
     ...
+// highlight-next-line
     Link,
     ...
 };
@@ -331,12 +353,14 @@ const routerProvider: IRouterProvider = {
   </TabItem>
     <TabItem value="nextjs-link">
 
-```ts title="routerProvider.ts" {1,5}
+```ts title="routerProvider.ts"
 import { IRouterProvider } from "@pankod/refine";
+// highlight-next-line
 import { Link } from "next/link";
 
 const routerProvider: IRouterProvider = {
     ...
+// highlight-next-line
     Link,
     ...
 };
@@ -395,8 +419,9 @@ The [`<RouterComponent>`][routercomponent] in the [react-router][react-router] p
 
 In the example below you can see how to serve the application in a subdirectory.
 
-```tsx {1,9,11,16-19} title="src/App.tsx"
+```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";
+// highlight-next-line
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
@@ -407,15 +432,18 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const { RouterComponent } = routerProvider;
 
+// highlight-next-line
 const CustomRouterComponent = () => <RouterComponent basename="/admin" />;
 
 const App: React.FC = () => {
     return (
         <Refine
+// highlight-start
             routerProvider={{
                 ...routerProvider,
                 RouterComponent: CustomRouterComponent,
             }}
+// highlight-end
             dataProvider={dataProvider(API_URL)}
             resources={[
                 {

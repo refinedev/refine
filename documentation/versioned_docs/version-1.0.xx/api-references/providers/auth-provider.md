@@ -34,7 +34,7 @@ Authorization hooks are used to manage authentication and authorization operatio
 
 To use `authProvider` in **refine**, we have to pass the `authProvider` to the `<Refine />` component.
 
-```tsx title="App.tsx" {5, 12}
+```tsx title="App.tsx" {6, 13}
 import {
     Refine,
 } from "@pankod/refine";
@@ -78,7 +78,7 @@ We will build a simple `authProvider` from scratch to show the logic of how `aut
 Here we show an example `login` method that stores auth data in `localStorage`.
 For the sake of simplicity, we'll use mock data and check the user credentials from local storage.
 
-```tsx title="auth-provider.ts" {0, 3-13}
+```tsx title="auth-provider.ts" {1, 4-14}
 const mockUsers = [{ username: "admin" }, { username: "editor" }];
 
 const authProvider = {
@@ -100,11 +100,7 @@ const authProvider = {
 
 `login` method will be accessible via `useLogin` auth hook.
 
-```tsx twoslash
-const values = { };
-
-// ---cut---
-
+```tsx 
 import { useLogin } from "@pankod/refine";
 
 const { mutate: login } = useLogin();
@@ -169,7 +165,7 @@ If an `authProvider` is given, [Resources](/api-references/components/resource.m
 
 Here we show an example `logout` that removes auth data from local storage and returns a resolved promise.
 
-```tsx title="auth-provider.ts" {2-5}
+```tsx title="auth-provider.ts" {3-6}
 const authProvider = {
     ...
     logout: () => {
@@ -184,7 +180,7 @@ const authProvider = {
 
 `logout` method will be accessible via the `useLogout` auth hook.
 
-```tsx twoslash
+```tsx 
 import { useLogout } from "@pankod/refine";
 
 const { mutate: logout } = useLogout();
@@ -221,7 +217,7 @@ If authentication is enabled, a logout button appears at the bottom of the side 
 
 Redirection url can be customized by returning a route string, or false to disable redirection after logout.
 
-```tsx {4}
+```tsx {5}
 const authProvider = {
     ...
     logout: () => {
@@ -245,7 +241,7 @@ If `checkError` returns a rejected promise, the `logout` method is called and us
 In this example, we log the user out when **HTTP** error status code is `401`.  
 You can decide, depending on any error status code you want to check, if the users continue to process by returning a resolved promise or if they are logged out for rejecting the promise.
 
-```tsx title="auth-provider.ts" {6-11}
+```tsx title="auth-provider.ts" {7-12}
 const authProvider = {
     ...
     logout: () => {
@@ -266,10 +262,7 @@ const authProvider = {
 
 `checkError` method will be accessible via the `useCheckError` auth hook.
 
-```tsx twoslash
-const error: { message:string, statusCode: number } = { message: "Expired Access Token", statusCode: 401 }
-// ---cut---
-
+```tsx 
 import { useCheckError } from "@pankod/refine";
 
 const { mutate: checkError } = useCheckError();
@@ -289,7 +282,7 @@ checkError(error);
 
 You can override the default redirection by giving a path to the rejected promise.
 
-```tsx {1-3}
+```tsx {2-4}
 checkError: (error) => {
     if (error.status === 401) {
         return Promise.reject("custom-url");
@@ -311,7 +304,7 @@ When `checkAuth` returns a rejected promise, authentication is cancelled and the
 
 Checking the authentication data can be easily done here. For example if the authentication data is stored in the local storage:
 
-```tsx title="auth-provider.ts" {2-4}
+```tsx title="auth-provider.ts" {3-5}
 const authProvider = {
    ...
     checkAuth: () => {
@@ -325,7 +318,7 @@ const authProvider = {
 
 `checkAuth` method will be accessible via `useAuthenticated` auth hook.
 
-```tsx twoslash
+```tsx 
 import { useAuthenticated } from "@pankod/refine";
 
 const {
@@ -346,7 +339,7 @@ You may want to require authorization for certain parts of the app based on the 
 
 We will show you how to give authorization based on roles determined in `getPermissions`.
 
-```tsx title="auth-provider.ts" {3, 7, 13-20}
+```tsx title="auth-provider.ts" {4, 8, 14-21}
 const mockUsers = [
     {
         username: "admin",
@@ -379,7 +372,7 @@ Data that `getPermissions` resolves with is accesible by the [`usePermissions`](
 For example let's say that only the admins must be able to create new posts from the list page.
 `<List>` can show a button for creating new posts. If it's required that only admins can create new posts, this button must be only accessible to users who has the `"admin"` role.
 
-```tsx title="pages/post/list" twoslash
+```tsx title="pages/post/list"
 import { List, usePermissions } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
@@ -397,7 +390,7 @@ export const PostList: React.FC = () => {
 
 User data can be accessed within the app by returning a resolved Promise in the `getUserIdentity` method.
 
-```tsx title="auth-provider.ts" {2-9}
+```tsx title="auth-provider.ts" {3-10}
 const authProvider = {
 ...
     getUserIdentity: () => {
@@ -416,7 +409,7 @@ const authProvider = {
 
 The resolved data can be acquired using the [`useGetIdentity`](api-references/hooks/auth/useGetIdentity.md) hook.
 
-```tsx twoslash
+```tsx 
 import { useGetIdentity } from "@pankod/refine";
 
 const { data: userIdentity } = useGetIdentity<string>();
@@ -427,7 +420,7 @@ const { data: userIdentity } = useGetIdentity<string>();
 
 <br />
 
-```tsx title="auth-provider.ts" {2-8}
+```tsx title="auth-provider.ts" {3-9}
 const authProvider = {
     ...
     getUserIdentity: () => {
@@ -467,7 +460,7 @@ After user logs in, their credentials can be sent along with the API request by 
 
 We'll show how to add a token acquired from the `login` method to the **Authorization** header of the **HTTP** requests.
 
-```tsx title="App.tsx" {1, 3, 5-8, 19-22, 33}
+```tsx title="App.tsx" {2, 4, 6-9, 20-23, 34}
 ...
 import axios from "axios";
 

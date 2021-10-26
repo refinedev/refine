@@ -9,7 +9,7 @@ import showButton from '@site/static/img/guides-and-concepts/components/buttons/
 
 ## Usage
 
-```tsx twoslash {4, 19}
+```tsx  {5, 20}
 import {
     List,
     Table,
@@ -60,7 +60,7 @@ Will look like this:
 
 `recordItemId` is used to append the record id to the end of the route path.
 
-```tsx twoslash
+```tsx 
 import { ShowButton } from "@pankod/refine";
 
 export const MyShowComponent = () => {
@@ -78,7 +78,7 @@ Clicking the button will trigger the `show` method of [`useNavigation`](/api-ref
 
 Redirection endpoint(`resourceName/show`) is defined by `resourceName` property. By default, `<ShowButton>` uses `name` property of the `<Resource>` component as an endpoint to redirect after clicking.
 
-```tsx twoslash
+```tsx 
 import { ShowButton } from "@pankod/refine";
 
 export const MyShowComponent = () => {
@@ -92,7 +92,7 @@ Clicking the button will trigger the `show` method of [`useNavigation`](/api-ref
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx twoslash
+```tsx 
 import { ShowButton } from "@pankod/refine";
 
 export const MyShowComponent = () => {

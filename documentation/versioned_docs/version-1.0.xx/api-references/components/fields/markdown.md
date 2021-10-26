@@ -11,7 +11,7 @@ This field lets you display markdown content. It supports [GitHub Flavored Markd
 
 Let's see how we can use `<MarkdownField>` in a show page.
 
-```tsx twoslash title="pages/posts/show.tsx" {5, 21}
+```tsx  title="pages/posts/show.tsx" {6, 22}
 import {
     useShow,
     Show,

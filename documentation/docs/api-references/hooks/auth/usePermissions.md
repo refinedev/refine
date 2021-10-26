@@ -17,12 +17,14 @@ Imagine that you want to allow only users with the admin role to see the create 
 
 - We have a logic in [`authProvider`](/docs/api-references/providers/auth-provider)'s `getPermissions` method like below.
 
-```tsx {2-4}
+```tsx
 const authProvider: AuthProvider = {
   ...
+    // highlight-start
     getPermissions: () => {
         return Promise.resolve(["admin"]);
     },
+    // highlight-end
   ...
 };
 ```
@@ -30,10 +32,12 @@ const authProvider: AuthProvider = {
 
 - Get permissions data in the list page with `usePermissions` and check if the user has `"admin`" role.
 
-```tsx twoslash title="pages/post/list" {0, 3}
+```tsx  title="pages/post/list"
+// highlight-next-line
 import { List, usePermissions } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
+    // highlight-next-line
     const { data: permissionsData } = usePermissions();
 
     return <List canCreate={permissionsData?.includes("admin")}>...</List>;

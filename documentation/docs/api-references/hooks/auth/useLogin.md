@@ -17,7 +17,7 @@ Data that is resolved from `login` will be returned as the `data` in the query r
 Normally refine provides a default login page. If you prefer to use this default login page, there is no need to handle login flow manually.  
 If we want to build a custom login page instead of default one that comes with refine, `useLogin` can be used like this:
 
-```tsx title="pages/customLoginPage" twoslash
+```tsx title="pages/customLoginPage"
 import { useLogin, Form } from "@pankod/refine";
 
 type LoginVariables = {
