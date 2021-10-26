@@ -11,10 +11,11 @@ This field is used to display images and uses [`<Image>`](https://ant.design/com
 
 Let's see how we can use `<ImageField>` with the example in the edit page.
 
-```tsx twoslash {3, 18-23}
+```tsx
 import { 
     List,
     Table,
+    // highlight-next-line
     ImageField,
 } from "@pankod/refine";
 
@@ -26,11 +27,13 @@ export const PostList: React.FC = () => {
                     title="Image"
                     dataIndex="image"
                     render={(_, record) => (
+                        // highlight-start
                         <ImageField
                             value={record.image[0].url}
                             title={record.image[0].name}
                             width={200}
                         />
+                        // highlight-end
                     )}
                 />
                 <Table.Column

@@ -9,7 +9,7 @@ import createButton from '@site/static/img/guides-and-concepts/components/button
 
 ## Usage
 
-```tsx twoslash {1, 11}
+```tsx  {2, 12}
 import {
     CreateButton,
     List,
@@ -53,7 +53,7 @@ Will look like this:
 
 It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of `<Resource>` component.
 
-```tsx twoslash
+```tsx 
 import { CreateButton } from "@pankod/refine";
 
 export const MyCreateComponent = () => {
@@ -67,7 +67,7 @@ Clicking the button will trigger the `create` method of [`useNavigation`](/api-r
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx twoslash
+```tsx 
 import { CreateButton } from "@pankod/refine";
 
 export const MyCreateComponent = () => {

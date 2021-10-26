@@ -38,7 +38,7 @@ Let's say that we have a resource named `categories`.
 ```
 
 
-```tsx twoslash
+```tsx 
 type CategoryMutationResult = {
     id: string;
     title: string;
@@ -70,7 +70,7 @@ mutate({
 
 After the mutation runs `categories` will be updated as below:
 
-```ts title="https://api.fake-rest.refine.dev/categories" {10-17}
+```ts title="https://api.fake-rest.refine.dev/categories" {11-18}
 {
     [
         {

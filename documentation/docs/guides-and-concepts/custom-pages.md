@@ -10,7 +10,7 @@ import gif from '@site/static/img/guides-and-concepts/custom-pages/gif.gif'
 
 This document is related to how to create custom pages for **react** applications. Since **Nextjs** has a file system based router built on the page concept, you can create your custom pages under the `pages` folder.
 
-[Refer to the `Nextjs Guide` documentation for detailed information. &#8594](#)
+[Refer to the `Nextjs Guide` documentation for detailed information. &#8594][ssrNextjs]
 :::
 
 <br />
@@ -21,16 +21,18 @@ This document is related to how to create custom pages for **react** application
 
 Allows creating custom pages that everyone can access via path.
 
-```tsx title="src/App.tsx" {3, 9-18}
+```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router";
 
+// highlight-next-line
 import { CustomPage } from "pages/custom-page";
 
 const App = () => {
     return (
         <Refine
             ...
+// highlight-start
             routerProvider={{
                 ...routerProvider,
                 routes: [
@@ -41,6 +43,7 @@ const App = () => {
                     },
                 ],
             }}
+// highlight-end
         />
     );
 };
@@ -54,12 +57,16 @@ Everyone can access this page via `/custom-page` path.
 
 Allows creating custom pages that only authenticated users can access via path.
 
-```tsx title="src/App.tsx" {0-1,3, 5-22, 24-30, 36, 42}
+```tsx title="src/App.tsx"
+// highlight-start
 import { Refine, Authenticated, AuthProvider } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router";
+// highlight-end
 
+// highlight-next-line
 import { CustomPage } from "pages/custom-page";
 
+// highlight-start
 const authProvider: AuthProvider = {
     login: (params: any) => {
         if (params.username === "admin") {
@@ -78,7 +85,9 @@ const authProvider: AuthProvider = {
         localStorage.getItem("username") ? Promise.resolve() : Promise.reject(),
     getPermissions: () => Promise.resolve(["admin"]),
 };
+// highlight-end
 
+// highlight-start
 const AuthenticatedCustomPage = () => {
     return (
         <Authenticated>
@@ -86,11 +95,13 @@ const AuthenticatedCustomPage = () => {
         </Authenticated>
     );
 };
+// highlight-end
 
 const App = () => {
     return (
         <Refine
             ...
+// highlight-start
             authProvider={authProvider}
             routerProvider={{
                 ...routerProvider,
@@ -102,6 +113,7 @@ const App = () => {
                     },
                 ],
             }}
+// highlight-end
         />
     );
 };
@@ -193,7 +205,7 @@ Now, let's create the custom page with the name `<PostReview>`. We will use the 
 
 [Refer to the `useList` documentation for detailed usage. &#8594](/api-references/hooks/data/useList.md)
 
-```tsx twoslash title="src/pages/post-review.tsx"
+```tsx  title="src/pages/post-review.tsx"
 import { useList } from "@pankod/refine";
 
 const PostReview = () => {
@@ -232,20 +244,8 @@ We set the filtering process with `filters` then page size set with `pagination`
 
 Post's category is relational. So we will use the post's category "id" to get the category title. Let's use `useOne` to fetch the category we want.
 
-```tsx twoslash title="src/pages/post-review.tsx" {0, 17-26}
-interface ICategory {
-    id: string;
-    title: string;
-}
-
-interface IPost {
-    id: string;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: ICategory;
-}
-// ---cut---
+```tsx  title="src/pages/post-review.tsx"
+// highlight-next-line
 import { useList, useOne } from "@pankod/refine";
 
 export const PostReview = () => {
@@ -263,6 +263,7 @@ export const PostReview = () => {
         },
     });
 
+// highlight-start
     const post = data?.data[0];
 
     const { data: categoryData, isLoading: categoryIsLoading } =
@@ -274,6 +275,7 @@ export const PostReview = () => {
             },
         });
 };
+// highlight-end
 ```
 
 Now we have the data to display the post as we want. Let's use the `<Show>` component of refine to show this data.
@@ -282,28 +284,18 @@ Now we have the data to display the post as we want. Let's use the `<Show>` comp
 `<Show>` component is not required, you are free to display the data as you wish.
 :::
 
-```tsx twoslash title="src/pages/post-review.tsx" {1-3, 9, 37-54}
-interface ICategory {
-    id: string;
-    title: string;
-}
-
-interface IPost {
-    id: string;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: ICategory;
-}
-// ---cut---
+```tsx  title="src/pages/post-review.tsx"
 import {
+// highlight-start
     Typography,
     Show,
     MarkdownField,
+// highlight-end
     useOne,
     useList,
 } from "@pankod/refine";
 
+// highlight-next-line
 const { Title, Text } = Typography;
 
 export const PostReview = () => {
@@ -332,6 +324,7 @@ export const PostReview = () => {
         });
 
     return (
+// highlight-start
         <Show
             title="Review Posts"
             resource="posts"
@@ -350,13 +343,14 @@ export const PostReview = () => {
             <Title level={5}>Content</Title>
             <MarkdownField value={record?.content} />
         </Show>
+// highlight-end
     );
 };
 ```
 
 Then, pass this `<PostReview>` as the routes property in the `<Refine>` component:
 
-```tsx title="src/App.tsx" {7, 14-20}
+```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -364,6 +358,7 @@ import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
+// highlight-next-line
 import { PostReview } from "pages/post-review";
 
 const App = () => {
@@ -371,6 +366,7 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+// highlight-start
             routerProvider={{
                 ...routerProvider,
                 routes: [
@@ -381,6 +377,7 @@ const App = () => {
                     },
                 ],
             }}
+// highlight-end
             resources={[
                 {
                     name: "posts",
@@ -413,29 +410,18 @@ Now let's put in approve and reject buttons to change the status of the post sho
 
 [Refer to the `useUpdate` documentation for detailed usage. &#8594](/api-references/hooks/data/useUpdate.md)
 
-```tsx twoslash title="src/pages/post-review.tsx" {4-5, 38, 40, 42-44, 46, 57-81}
-interface ICategory {
-    id: string;
-    title: string;
-}
-
-interface IPost {
-    id: string;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: ICategory;
-}
-// ---cut---
+```tsx  title="src/pages/post-review.tsx"
 import {
     Typography,
     Show,
     MarkdownField,
+// highlight-start
     Space,
     Button,
+    useUpdate,
+// highlight-end
     useOne,
     useList,
-    useUpdate,
 } from "@pankod/refine";
 
 const { Title, Text } = Typography;
@@ -465,13 +451,17 @@ export const PostReview = () => {
             },
         });
 
+// highlight-next-line
     const mutationResult = useUpdate<IPost>();
 
+// highlight-next-line
     const { mutate, isLoading: mutateIsLoading } = mutationResult;
 
+// highlight-start
     const handleUpdate = (item: IPost, status: string) => {
         mutate({ resource: "posts", id: item.id, values: { ...item, status } });
     };
+// highlight-end
 
     const buttonDisabled = isLoading || categoryIsLoading || mutateIsLoading;
 
@@ -484,6 +474,7 @@ export const PostReview = () => {
             pageHeaderProps={{
                 backIcon: false,
             }}
+// highlight-start
             actionButtons={
                 <Space
                     key="action-buttons"
@@ -509,7 +500,8 @@ export const PostReview = () => {
                     </Button>
                 </Space>
             }
-        >
+       // highlight-end
+>
             <Title level={5}>Status</Title>
             <Text>{record?.status}</Text>
             <Title level={5}>Title</Title>
@@ -541,3 +533,5 @@ export const PostReview = () => {
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
+
+[ssrNextjs]: /guides-and-concepts/ssr-nextjs.md

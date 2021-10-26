@@ -12,7 +12,7 @@ refine allows us to add custom pages to our application. To do this, it is neces
 
 Allows creating custom pages that everyone can access via path.
 
-```tsx title="src/App.tsx" {2, 7-13}
+```tsx title="src/App.tsx" {3, 8-14}
 import { Refine } from "@pankod/refine";
 
 import { CustomPage } from "pages/custom-page";
@@ -42,7 +42,7 @@ Everyone can access this page via `/custom-page` path.
 
 Allows creating custom pages that only authenticated users can access via path.
 
-```tsx title="src/App.tsx" {0-2, 4-21, 23-29, 38}
+```tsx title="src/App.tsx" {1-3, 5-22, 24-30, 39}
 import { Refine, Authenticated, AuthProvider } from "@pankod/refine";
 
 import { CustomPage } from "pages/custom-page";
@@ -173,7 +173,7 @@ Now, let's create the custom page with the name `<PostReview>`. We will use the 
 
 [Refer to the `useList` documentation for detailed usage. &#8594](/api-references/hooks/data/useList.md)
 
-```tsx twoslash title="src/pages/post-review.tsx"
+```tsx  title="src/pages/post-review.tsx"
 import { useList } from "@pankod/refine";
 
 const PostReview = () => {
@@ -212,20 +212,7 @@ We set the filtering process with `filters` then page size set with `pagination`
 
 Post's category is relational. So we will use the post's category "id" to get the category title. Let's use `useOne` to fetch the category we want.
 
-```tsx twoslash title="src/pages/post-review.tsx" {0, 17-26}
-interface ICategory {
-    id: string;
-    title: string;
-}
-
-interface IPost {
-    id: string;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: ICategory;
-}
-// ---cut---
+```tsx  title="src/pages/post-review.tsx" {1, 18-27}
 import { useList, useOne } from "@pankod/refine";
 
 export const PostReview = () => {
@@ -262,20 +249,7 @@ Now we have the data to display the post as we want. Let's use the `<Show>` comp
 `<Show>` component is not required, you are free to display the data as you wish.
 :::
 
-```tsx twoslash title="src/pages/post-review.tsx" {1-3, 9, 37-54}
-interface ICategory {
-    id: string;
-    title: string;
-}
-
-interface IPost {
-    id: string;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: ICategory;
-}
-// ---cut---
+```tsx  title="src/pages/post-review.tsx" {2-4, 10, 38-55}
 import {
     Typography,
     Show,
@@ -336,7 +310,7 @@ export const PostReview = () => {
 
 Then, pass this `<PostReview>` as the routes property in the `<Refine>` component:
 
-```tsx title="src/App.tsx" {6, 12-18}
+```tsx title="src/App.tsx" {7, 13-19}
 import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
@@ -387,20 +361,7 @@ Now let's put in approve and reject buttons to change the status of the post sho
 
 [Refer to the `useUpdate` documentation for detailed usage. &#8594](/api-references/hooks/data/useUpdate.md)
 
-```tsx twoslash title="src/pages/post-review.tsx" {4-5, 38, 40, 42-44, 46, 57-81}
-interface ICategory {
-    id: string;
-    title: string;
-}
-
-interface IPost {
-    id: string;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: ICategory;
-}
-// ---cut---
+```tsx  title="src/pages/post-review.tsx" {5-6, 39, 41, 43-45, 47, 58-82}
 import {
     Typography,
     Show,

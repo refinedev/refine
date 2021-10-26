@@ -7,9 +7,7 @@ title: useImport
 
 It's return type is compatible with [`<ImportButton>`][ImportButton]. It can also be further customized by using it with Ant Design's [`<Upload>`][Upload] and [`<Button>`][Button] props.
 
-```ts twoslash
-const options = {};
-// ---cut---
+```ts
 import { useImport } from "@pankod/refine";
 
 const { uploadProps, buttonProps, mutationResult } = useImport(options);
@@ -42,23 +40,27 @@ This file should be parsed as:
 
 ### With `<ImportButton>` (Recommended)
 
-```tsx twoslash {4-5, 11, 16}
+```tsx
 import {
     List,
     Table,
     useTable,
+// highlight-start
     useImport,
     ImportButton,
+// highlight-end
 } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
+// highlight-next-line
     const importProps = useImport<IPostFile>();
 
     return (
         <List
             pageHeaderProps={{
+// highlight-next-line
                 extra: <ImportButton {...importProps} />,
             }}
         >
@@ -89,26 +91,17 @@ interface IPost {
 
 ### With Ant Design's `<Upload>` and `<Button>` Components
 
-```tsx twoslash {4-7, 10, 15, 20-26}
-interface IPostFile {
-    title: string;
-    categoryId: string;
-}
-
-interface IPost {
-    id: string;
-    title: string;
-    status: string;
-}
-// ---cut---
+```tsx
 import {
     List,
     Table,
     useTable,
+// highlight-start
     useImport,
     Button,
     Icons,
     Upload,
+// highlight-end
 } from "@pankod/refine";
 
 const { ImportOutlined } = Icons;
@@ -116,10 +109,12 @@ const { ImportOutlined } = Icons;
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
+// highlight-next-line
     const { buttonProps, uploadProps } = useImport<IPostFile>();
 
     return (
         <List
+// highlight-start
             pageHeaderProps={{
                 extra: (
                     <Upload {...uploadProps}>
@@ -129,6 +124,7 @@ export const PostList: React.FC = () => {
                     </Upload>
                 ),
             }}
+// highlight-end
         >
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
@@ -171,9 +167,7 @@ Since `user` and `category` are relational fields, we shouldn't store them as ob
 
 When creating these resources back, we should map it back to our backend API's required format. `mapData` option allows us to do this. Here is an example:
 
-```ts twoslash
-import { useImport } from "@pankod/refine";
-// ---cut---
+```ts
 const importProps = useImport<IPostFile>({
     mapData: (item) => {
         return {

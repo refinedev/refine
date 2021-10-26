@@ -40,7 +40,7 @@ Let's assume that the data we will show in the table comes from the endpoint as 
 
 If we want to make a listing page where we show the `title`, `content`, `hit` and `category.title` values:
 
-```tsx twoslash {13-23, 44-59, 65}
+```tsx 
 import {
     PageHeader,
     Typography,
@@ -54,6 +54,7 @@ import {
 export const PostList: React.FC = () => {
     const { Text } = Typography;
 
+// highlight-start
     const { listProps } = useSimpleList<IPost>({
         initialSorter: [
             {
@@ -65,6 +66,7 @@ export const PostList: React.FC = () => {
             pageSize: 6,
         },
     });
+// highlight-end
 
     const categoryIds =
         listProps?.dataSource?.map((item) => item.category.id) ?? [];
@@ -77,6 +79,7 @@ export const PostList: React.FC = () => {
         },
     });
 
+// highlight-start
     const renderItem = (item: IPost) => {
         const { title, hit, content } = item;
 
@@ -103,9 +106,11 @@ export const PostList: React.FC = () => {
             </AntdList.Item>
         );
     };
+// highlight-end
 
     return (
         <PageHeader ghost={false} title="Posts">
+// highlight-next-line
             <AntdList {...listProps} renderItem={renderItem} />
         </PageHeader>
     );

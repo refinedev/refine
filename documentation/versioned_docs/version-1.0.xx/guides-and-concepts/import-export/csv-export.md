@@ -11,7 +11,7 @@ With **refine**, you can easily add export functionality to dump resources' reco
 
 Let's see an example:
 
-```tsx twoslash title="pages/posts/list.tsx" {4-5, 11, 17}
+```tsx  title="pages/posts/list.tsx" {5-6, 12, 18}
 import {
     List,
     Table,

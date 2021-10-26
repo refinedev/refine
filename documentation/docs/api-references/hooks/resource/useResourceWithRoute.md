@@ -7,7 +7,7 @@ title: useResourceWithRoute
 
 The hook is used internal in **refine**. Normally you don't need this hook, but we export it as it may be useful for some use-cases.
 
-```ts twoslash
+```ts
 import { useResourceWithRoute } from "@pankod/refine";
 
 const resourceWithRoute = useResourceWithRoute();

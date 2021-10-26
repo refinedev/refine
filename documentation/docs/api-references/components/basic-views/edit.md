@@ -20,7 +20,7 @@ When clicked on, the delete button executes the `useDelete` method provided by t
 
 [Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](/api-references/components/buttons/delete.md)
 
-```tsx twoslash
+```tsx 
 import { Edit, usePermissions } from "@pankod/refine";
 
 export const EditPage: React.FC = () => {
@@ -47,7 +47,7 @@ Clicking on the save button will submit your form.
 
 [Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-references/components/buttons/save.md)
 
-```tsx twoslash
+```tsx 
 import { Edit } from "@pankod/refine";
 
 export const EditPage: React.FC = () => {
@@ -59,7 +59,7 @@ export const EditPage: React.FC = () => {
 
 It allows adding titles inside the `<Edit>` component. if you don't pass title props it uses the "Edit" prefix and singular resource name by default. For example, for the "posts" resource, it will be "Edit post".
 
-```tsx twoslash
+```tsx 
 import { Edit } from "@pankod/refine";
 
 export const EditPage: React.FC = () => {
@@ -71,7 +71,7 @@ export const EditPage: React.FC = () => {
 
 `<Edit>` uses the Ant Design [`<Card>`](https://ant.design/components/card) component. The `action` property of the `<Card>` component shows `<SaveButton>` or `<DeleteButton>` based on your resource definition in the `resources` property you pass to `<Refine>`. If you want to use other things instead of these buttons, you can use the `actionButton` property like the code below.
 
-```tsx twoslash
+```tsx 
 import { Edit, Button } from "@pankod/refine";
 
 export const EditPage: React.FC = () => {
@@ -106,7 +106,7 @@ export const EditPage: React.FC = () => {
 `<Edit>` uses the Ant Design [`<PageHeader>`](https://ant.design/components/page-header/#API) components, which means that you can customize the properties of `pageHeaderProps`.
 By default, the `extra` property of the `<PageHeader>` component shows `<RefreshButton>` or `<ListButton>` based on your resource definition in the `resources` property you pass to `<Refine>`.
 
-```tsx twoslash
+```tsx 
 import { Edit } from "@pankod/refine";
 
 export const EditPage: React.FC = () => {
@@ -136,9 +136,9 @@ export const EditPage: React.FC = () => {
 
 ### `recordItemId`
 
-The `<Edit>` component reads the `id` information from the route by default. `recordIdItem` is used when it cannot read from the URL(when used on a custom page, modal or drawer).
+The `<Edit>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL(when used on a custom page, modal or drawer).
 
-```tsx twoslash
+```tsx 
 import { Edit, Modal, useModalForm } from "@pankod/refine";
 
 export const EditPage: React.FC = () => {
@@ -167,7 +167,7 @@ Determines which mode mutation will have while executing `<DeleteButton>` .
 
 [Refer to the mutation mode docs for further information. &#8594](guides-and-concepts/mutation-mode.md)
 
-```tsx twoslash
+```tsx 
 import { Edit } from "@pankod/refine";
 
 export const EditPage: React.FC = () => {
@@ -181,20 +181,23 @@ export const EditPage: React.FC = () => {
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
-```tsx twoslash {4-6, 11-20}
+```tsx
 import { Refine, Edit } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
+// highlight-start
 const CustomPage = () => {
     return <Edit resource="posts">...</Edit>;
 };
+// highlight-end
 
 export const App: React.FC = () => {
     return (
         <Refine
             routerProvider={{
                 ...routerProvider,
+                // highlight-start
                 routes: [
                     {
                         exact: true,
@@ -202,6 +205,7 @@ export const App: React.FC = () => {
                         path: "/custom",
                     },
                 ]
+                // highlight-end
             }}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
             resources={[{ name: "posts" }]}
@@ -211,7 +215,7 @@ export const App: React.FC = () => {
 ```
 
 :::caution
-`<Edit>` component needs the `id` information for work properly so if you use the `<Edit>` component in custom pages, you should pass the `recordIditem` property.
+`<Edit>` component needs the `id` information for work properly so if you use the `<Edit>` component in custom pages, you should pass the `recordItemId` property.
 :::
 
 ## API Reference

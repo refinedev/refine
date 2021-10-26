@@ -15,7 +15,7 @@ Data that is resolved from the `logout` will be returned as the `data` in the qu
 By default, Refine already provides a logout button on the sider and if you want to use this default button you won't need to handle the logout flow manually. 
 If you want to build a custom logout button instead of the default one, `useLogout` can be used like this:
 
-```tsx title="components/customLogoutButton"twoslash
+```tsx title="components/customLogoutButton"
 import { useLogout, Button } from "@pankod/refine";
 
 export const LogoutButton = () => {
@@ -38,7 +38,7 @@ We have 4 options to manage the redirection after logout process.
 
 - A custom url can be given to mutate function from the `useLogout` hook if you want to redirect yourself to a certain url.
 
-```tsx twoslash
+```tsx 
 import { useLogout } from "@pankod/refine";
 
 const { mutate: logout } = useLogout();

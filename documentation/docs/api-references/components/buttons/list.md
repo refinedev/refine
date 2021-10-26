@@ -9,11 +9,12 @@ import listButton from '@site/static/img/guides-and-concepts/components/buttons/
 
 ## Usage
 
-```tsx twoslash {4, 15}
+```tsx
 import {
     useShow,
     Show,
     Typography,
+    // highlight-next-line
     ListButton,
 } from "@pankod/refine";
 
@@ -25,6 +26,7 @@ export const PostShow: React.FC = () => {
     const record = data?.data;
 
     return (
+        // highlight-next-line
         <Show pageHeaderProps={{ extra: <ListButton /> }} isLoading={isLoading}>
             <Title level={5}>Id</Title>
             <Text>{record?.id}</Text>
@@ -63,7 +65,7 @@ The button text is defined automatically by **refine** based on _resource_ objec
 
 Redirection endpoint(`resourceName/list`) is defined by `resourceName` property. By default, `<ListButton>` uses `name` property of the resource object as the endpoint to redirect after clicking.
 
-```tsx twoslash
+```tsx 
 import { ListButton } from "@pankod/refine";
 
 export const MyListComponent = () => {
@@ -77,7 +79,7 @@ Clicking the button will trigger the `list` method of [`useNavigation`](api-refe
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx twoslash
+```tsx 
 import { ListButton } from "@pankod/refine";
 
 export const MyListComponent = () => {

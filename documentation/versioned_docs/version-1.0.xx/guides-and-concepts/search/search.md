@@ -20,7 +20,7 @@ We will now examine how to search within the application with this component.
 
 To do this, let's first create our `<Header>` component.
 
-```tsx twoslash title="src/components/header.tsx"
+```tsx  title="src/components/header.tsx"
 import { AntdLayout, AutoComplete, Input, Icons } from "@pankod/refine";
 
 const { SearchOutlined } = Icons;
@@ -55,7 +55,7 @@ We created the `<Header>` component as we want it to appear. We have not done an
 :::note
 Let's not forget to pass the `<Header>` component to the `<Refine>` component in `App.tsx` as below.
 
-```tsx title="src/App.tsx" {5, 13}
+```tsx title="src/App.tsx" {6, 14}
 import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -109,7 +109,7 @@ export interface IOptions {
 }
 ```
 
-```tsx title="src/components/header.tsx" {0, 6-8, 11, 14-35, 38-67, 79-80}
+```tsx title="src/components/header.tsx" {1, 7-9, 12, 15-36, 39-68, 80-81}
 import { useState, useEffect } from "react";
 import {
     AntdLayout,
@@ -209,7 +209,7 @@ We created states to dynamically manage the `value` and `options` properties of 
 
 Search value is currently only searched and fetched inside posts. Let's update our code to search both posts and categories according to search value.
 
-```tsx title="src/components/header.tsx" {17-23, 29-51, 56}
+```tsx title="src/components/header.tsx" {18-24, 30-52, 57}
 ...
 export const Header: React.FC = () => {
     const [value, setValue] = useState<string>("");

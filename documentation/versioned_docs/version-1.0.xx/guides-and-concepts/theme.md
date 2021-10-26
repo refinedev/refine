@@ -76,7 +76,7 @@ Create a less file and import antd styles from `node_modules/antd`:
 
 And import the `less` file in `App.tsx`:
 
-```tsx title="App.tsx" {3}
+```tsx title="App.tsx" {4}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -129,7 +129,7 @@ You can just change variables values in `less` files. Add these contents to your
 
 Or you can use `craco.config.js` to change variable values. To change the variable named `@primary-color`, you can use the `modifyVars` property of [`lessOptions`](https://github.com/DocSpring/craco-less#configuration):
 
-```ts title="craco.config.js" {9}
+```ts title="craco.config.js" {10}
 const CracoLessPlugin = require("craco-less");
 
 module.exports = {

@@ -42,7 +42,7 @@ Let's say that we have a resource named `categories`.
 }
 ```
 
-```tsx twoslash
+```tsx 
 import { useDeleteMany } from "@pankod/refine";
 
 const { mutate } = useDeleteMany();
@@ -100,7 +100,7 @@ Values passed to `mutate` must have these types.
 
 Mutation mode determines the mode which the mutation runs with.
 
-```tsx twoslash {7}
+```tsx {8}
 import { useDeleteMany } from "@pankod/refine";
 
 const { mutate } = useDeleteMany();
@@ -127,7 +127,7 @@ Default behaviour on undo action includes notifications. If a custom callback is
 :::danger
 Passed callback will receive a function that actually cancels the mutation. Don't forget to run this function to cancel the mutation on the `undoable` mode.
 
-```tsx twoslash {2-5, 12-14}
+```tsx  {3-6, 13-15}
 import { useDeleteMany } from "@pankod/refine";
 
 const customOnCancel = (cancelMutation: () => void) => {

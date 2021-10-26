@@ -12,7 +12,7 @@ import filterDropdown from '@site/static/img/category_filter-dropdown.png';
 
 It serves as a bridge by synchronizing between its children's input value and `<Table>`'s filter values.
 
-```tsx twoslash title="components/pages/postList.tsx" {3-5, 20-29}
+```tsx  title="components/pages/postList.tsx" {4-6, 21-30}
 import {
     List,
     Table,
@@ -76,13 +76,7 @@ Selecting categories from dropdown will send the id's of categories as filtering
 :::tip
 We added category options for `<Select>` manually for the sake of simplicity but [useSelect](api-references/hooks/field/useSelect.md) hook can be used to populate the props of `<Select>`
 
-```tsx twoslash
-import { useSelect, Select } from "@pankod/refine";
-interface ICategory {
-    id: string;
-    title: string;
-}
-// ---cut---
+```tsx 
 const { selectProps: categorySelectProps } = useSelect<ICategory>({
     resource: "categories",
     optionLabel: "title",
@@ -106,17 +100,7 @@ Determines the value passed to children. `mapValue` takes `selectedKeys` as an a
 
 For example when using `useSelect` for `<Select>` component. In this case values must be mapped to `number`s using `mapValue`.
 
-```tsx twoslash
-interface IPost {
-    id: string;
-    category: ICategory;
-}
-
-interface ICategory {
-    id: string;
-    title: string;
-}
-// ---cut---
+```tsx 
 import {
     useTable,
     Table,

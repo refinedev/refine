@@ -184,7 +184,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 
 Replace the contents of `App.tsx` with the following code:
 
-```tsx twoslash title="src/App.tsx"
+```tsx  title="src/App.tsx"
 import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
@@ -283,7 +283,7 @@ Let's add **/posts/** endpoint from our API as a `<Resource />`. First take a lo
 
 Now, add the highlighted code to your `App.tsx` to connect to the endpoint.
 
-```tsx twoslash {0, 6} title="src/App.tsx" 
+```tsx title="src/App.tsx" {1,7}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -412,7 +412,7 @@ The example uses `<TagField>` and `<DateField>` components. To get the full list
  
 Finally, we are ready to add `<PostList>` to our `<Resource>`. Add the highlighted line to your `App.tsx`
 
-```tsx title="src/App.tsx" {3,8}
+```tsx title="src/App.tsx" {4,9}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -477,16 +477,19 @@ At this point, we need to join records from different resources.  For this, we'r
 
 Before we start, just edit our interface for the new `ICategory` type:
 
-```ts title="interfaces/index.d.ts" {0-3,9}
+```ts title="interfaces/index.d.ts"
+// highlight-start
 export interface ICategory {
     id: string;
     title: string;
 }
+// highlight-end
 
 export interface IPost {
     id: string;
     title: string;
     status: "published" | "draft" | "rejected";
+// highlight-next-line
     category: { id: string };
     createdAt: string;
 }
@@ -494,7 +497,7 @@ export interface IPost {
 
 So we can update our `list.tsx` with the highlighted lines:
 
-```tsx title="pages/posts/list.tsx" {7, 10, 15-23, 39-57}
+```tsx title="pages/posts/list.tsx" {8, 11, 16-24, 40-58}
 import {    
     List,
     TextField,
@@ -589,7 +592,7 @@ We're done with displaying `post` records on our `<Table>`. Let's add search and
 
 We are going to use `<Table.Column>`'s [`filterDropdown`](https://ant.design/components/table/#Column) property and `<FilterDropdown>` component as following:
 
-```tsx title="pages/posts/list.tsx" {8-10, 28-30, 64-73}
+```tsx title="pages/posts/list.tsx" {9-11, 29-31, 65-74}
 import {    
     List,
     TextField,
@@ -736,7 +739,7 @@ export const PostShow = () => {
 
 Now we can add the newly created component to our `<Resource>` with `show` prop:
 
-```tsx title="src/App.tsx" {3, 11}
+```tsx title="src/App.tsx" {4, 12}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-json-server";
 
@@ -759,7 +762,7 @@ export const App: React.FC = () => {
 
 And then we can add a `<ShowButton>` on the list page to make it possible for users to navigate to detail pages:
 
-```tsx title="src/pages/posts/list.tsx" {10, 76-88}
+```tsx title="src/pages/posts/list.tsx" {11, 77-89}
 import {
     List,
     TextField,
@@ -941,7 +944,7 @@ export const PostEdit: React.FC = () => {
 
 Now we can add the newly created component to our `<Resource>` with `edit` prop:
 
-```tsx title="src/App.tsx" {3, 12}
+```tsx title="src/App.tsx" {4, 13}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -963,7 +966,7 @@ export const App: React.FC = () => {
 
 We are going to need an *edit* button on each row to diplay the `<PostEdit>` component. **refine** doesn't automatically add one, so we have to update our `<PostList>` component to add a `<EditButton>` for each record:
 
-```tsx title="components/pages/posts.tsx" {12, 13, 83, 94, 89-93}
+```tsx title="components/pages/posts.tsx" {13, 14, 84, 95, 90-94}
 import {
     List,
     TextField,
@@ -1115,7 +1118,7 @@ Creating a record in **refine** follows a similar flow as editing records.
 
 First, we'll create a `<PostCreate>` page:
 
-```tsx title="pages/posts/create.tsx" {1, 18, 45}
+```tsx title="pages/posts/create.tsx" {2, 19, 46}
 import {
     Create,
     Form,
@@ -1173,7 +1176,7 @@ After creating the `<PostCreate>` component, add it to `<Resource>` with `create
 
 <br />
 
-```tsx title="src/App.tsx" {3, 13}
+```tsx title="src/App.tsx" {4, 14}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -1227,7 +1230,7 @@ First way is adding an delete button on each row since *refine* doesn't automati
 
 
 
-```tsx title="components/pages/posts.tsx" {14, 95-99}
+```tsx title="components/pages/posts.tsx" {15, 96-100}
 import {
     List,
     TextField,
@@ -1346,7 +1349,7 @@ Now you can try deleting records yourself. Just click on the delete button of th
 The second way is showing delete button in `<PostEdit>` component. To show delete button in edit page, `canDelete` prop needs to be passed to `<Resource>` component
 
 
-```tsx title="src/App.tsx" {13}
+```tsx title="src/App.tsx" {14}
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import { PostList, PostShow, PostEdit, PostCreate } from "./pages";

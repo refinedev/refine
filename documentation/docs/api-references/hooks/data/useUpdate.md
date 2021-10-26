@@ -37,7 +37,7 @@ Let's say that we have a resource named `categories`.
 }
 ```
 
-```tsx twoslash
+```tsx 
 type CategoryMutationResult = {
     id: string;
     title: string;
@@ -63,7 +63,7 @@ mutate({
 
 After mutation runs, `categories` will be updated as below:
 
-```ts title="https://api.fake-rest.refine.dev/categories" {8}
+```ts title="https://api.fake-rest.refine.dev/categories"
 {
     [
         {
@@ -72,6 +72,7 @@ After mutation runs, `categories` will be updated as below:
         },
         {
             id: 2,
+// highlight-next-line
             title: "New Category Title",
         },
     ];
@@ -108,7 +109,7 @@ Values passed to `mutate` must have these types.
 
 Mutation mode determines which mode mutation runs with.
 
-```tsx twoslash {8}
+```tsx
 import { useUpdate } from "@pankod/refine";
 
 const { mutate } = useUpdate();
@@ -117,6 +118,7 @@ mutate({
     resource: "categories",
     id: "2",
     values: { title: "New Category Title" },
+    // highlight-next-line
     mutationMode: "optimistic",
 });
 ```
@@ -134,13 +136,15 @@ Default behaviour on undo action includes notifications. If a custom callback is
 :::danger
 Passed callback will receive a function that actually cancels the mutation. Don't forget to run this function to cancel the mutation on `undoable` mode.
 
-```tsx twoslash {2-5, 13-15}
+```tsx
 import { useUpdate } from "@pankod/refine";
 
+// highlight-start
 const customOnCancel = (cancelMutation: () => void) => {
     cancelMutation();
     // rest of custom cancel logic...
 };
+// highlight-end
 
 const { mutate } = useUpdate();
 
@@ -149,8 +153,10 @@ mutate({
     id: "2",
     values: { title: "New Category Title" },
     mutationMode: "undoable",
+    // highlight-start
     undoableTimeout: 7500,
     onCancel: customOnCancel,
+    // highlight-end
 });
 ```
 

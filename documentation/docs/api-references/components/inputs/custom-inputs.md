@@ -17,7 +17,7 @@ Custom components may be useful when working with markdown (with markdown editor
 
 We will demonstrate how to use custom input fields for markdown data by adding a markdown editor to edit and create forms.
 
-```tsx title="/src/pages/posts/edit.tsx" {9-10, 12, 37-55}
+```tsx title="/src/pages/posts/edit.tsx"
 import React, { useState } from "react";
 import {
     Edit,
@@ -27,9 +27,12 @@ import {
     useForm,
 } from "@pankod/refine";
 
+// highlight-start
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
+// highlight-end
 
+// highlight-next-line
 import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost } from "interfaces";
@@ -55,6 +58,7 @@ export const PostEdit: React.FC = (props) => {
                 >
                     <Input />
                 </Form.Item>
+                // highlight-start
                 <Form.Item
                     label="Content"
                     name="content"
@@ -74,6 +78,7 @@ export const PostEdit: React.FC = (props) => {
                         }
                     />
                 </Form.Item>
+                // highlight-end
             </Form>
         </Edit>
     );

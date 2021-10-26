@@ -216,6 +216,7 @@ module.exports = {
                     label: "Data Provider",
                     items: ["guides-and-concepts/data-provider/graphql"],
                 },
+                "guides-and-concepts/ssr-nextjs",
                 {
                     type: "category",
                     label: "Upload",
@@ -364,6 +365,10 @@ module.exports = {
                 "examples/customTheme",
                 "examples/javascript",
             ],
+        },
+        {
+            type: "doc",
+            id: "migration-guide",
         },
         {
             type: "doc",

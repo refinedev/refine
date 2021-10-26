@@ -1,9 +1,11 @@
 import React from "react";
 import {
-    useResource,
     useRefineContext,
     LayoutWrapper,
     ErrorComponent,
+    useResource,
+    LoginPage as DefaultLoginPage,
+    useAuthenticated,
 } from "@pankod/refine";
 import type { ResourceRouterParams } from "@pankod/refine";
 
@@ -11,18 +13,39 @@ import { RouterProvider } from "./routerProvider";
 
 const { useHistory, useLocation, useParams } = RouterProvider;
 
-export const NextRouteComponent: React.FC = () => {
+type NextRouteComponentProps = {
+    pageData?: {
+        list?: any;
+        create?: any;
+        edit?: any;
+        show?: any;
+    };
+};
+
+export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
+    pageData,
+}) => {
     const { resources } = useResource();
     const { push } = useHistory();
     const { resource: routeResourceName, action } =
         useParams<ResourceRouterParams>();
 
+    const { isLoading } = useAuthenticated({ type: "routeProvider" });
+
+    if (isLoading) {
+        return null;
+    }
+
     const { pathname } = useLocation();
-    const { DashboardPage, catchAll } = useRefineContext();
+    const { DashboardPage, catchAll, LoginPage } = useRefineContext();
 
     const resource = resources.find((res) => res.route === routeResourceName);
 
     const isServer = typeof window !== "undefined";
+
+    if (routeResourceName === "login") {
+        return LoginPage ? <LoginPage /> : <DefaultLoginPage />;
+    }
 
     if (pathname === "/") {
         if (DashboardPage) {
@@ -36,6 +59,7 @@ export const NextRouteComponent: React.FC = () => {
             return null;
         }
     }
+
     if (resource) {
         const {
             list,
@@ -64,6 +88,7 @@ export const NextRouteComponent: React.FC = () => {
                             canEdit={canEdit}
                             canDelete={canDelete}
                             canShow={canShow}
+                            initialData={pageData?.list}
                         />
                     );
                 }
@@ -76,6 +101,7 @@ export const NextRouteComponent: React.FC = () => {
                             canEdit={canEdit}
                             canDelete={canDelete}
                             canShow={canShow}
+                            initialData={pageData?.create}
                         />
                     );
                 }
@@ -88,6 +114,7 @@ export const NextRouteComponent: React.FC = () => {
                             canEdit={canEdit}
                             canDelete={canDelete}
                             canShow={canShow}
+                            initialData={pageData?.edit}
                         />
                     );
                 }
@@ -100,6 +127,7 @@ export const NextRouteComponent: React.FC = () => {
                             canEdit={canEdit}
                             canDelete={canDelete}
                             canShow={canShow}
+                            initialData={pageData?.show}
                         />
                     );
                 }
@@ -108,5 +136,11 @@ export const NextRouteComponent: React.FC = () => {
 
         return <LayoutWrapper>{renderCrud()}</LayoutWrapper>;
     }
-    return catchAll ? <>{catchAll}</> : <ErrorComponent />;
+    return catchAll ? (
+        <>{catchAll}</>
+    ) : (
+        <LayoutWrapper>
+            <ErrorComponent />
+        </LayoutWrapper>
+    );
 };
