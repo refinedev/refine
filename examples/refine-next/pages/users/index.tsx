@@ -42,13 +42,13 @@ export default UserList;
 import { authProvider } from "../../src/authProvider";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const { isAuthenticated, redirect } = await checkAuthentication(
+    const { isAuthenticated, ...props } = await checkAuthentication(
         authProvider,
         context,
     );
 
     if (!isAuthenticated) {
-        return { redirect };
+        return { props };
     }
 
     const { resolvedUrl } = context;
