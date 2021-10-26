@@ -130,7 +130,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
         return <LayoutWrapper>{renderCrud()}</LayoutWrapper>;
     }
     return catchAll ? (
-        <LayoutWrapper>{catchAll}</LayoutWrapper>
+        <>{catchAll}</>
     ) : (
         <LayoutWrapper>
             <ErrorComponent />
