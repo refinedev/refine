@@ -22,7 +22,7 @@ We recommend [**superplate**][supeprlate] to initialize your refine projects. It
 
 [`<Refine>`][refine] must wrap your pages in a [custom App][NextjsCustomApp] component. This way your [pages][NextjsPages] are integrated to refine.
 
-```tsx twoslash title="pages/_app.tsx" {10-15}
+```tsx title="pages/_app.tsx" {11-16}
 import { AppProps } from "next/app";
 
 import { Refine } from "@pankod/refine";
@@ -49,7 +49,7 @@ export default MyApp;
 
 Let's say we want to show a list of users in `/users`. After creating `users.tsx` under `pages` in your Nextjs app, we can use the `useTable` hook to list the users in a table:
 
-```tsx twoslash title="pages/users.tsx" {9-24}
+```tsx title="pages/users.tsx" {10-25}
 import {
     useTable,
     List,
@@ -96,7 +96,7 @@ We also used `<LayoutWrapper>` to show the page in the layout provided to [`<Ref
 
 **refine** uses [react-query][ReactQuery] in its hooks for data management. [Following react-query's guide][ReactQuerySSR], SSR can be achieved like this:
 
-```tsx twoslash {0, 7, 12-14, 17-19, 34-42 } title="pages/users.tsx"
+```tsx title="pages/users.tsx" {1,8,13-14,17-20,35-43}
 import { GetServerSideProps } from "next";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
@@ -157,11 +157,19 @@ We used `getList` from `dataProvider` but data can be fetched in any way you des
 
 ## Standart CRUD Page
 
-**nextjs-router** package provides `NextRouteComponent` for pages with the dynamic route `/[resource]/[action]/[id]` and root `/`. Simply export the component from the page.
+**nextjs-router** package provides `NextRouteComponent` for pages with the dynamic route `/[resource]/[action]/[id]` and root `/`. Simply export the component from the page and add a [data fetching function][dataFetching]
 
-```tsx twoslash title="pages/[resource]/index.tsx"
+```tsx title="pages/[resource]/index.tsx"
 export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
+
+export const getServerSideProps: GetServerSideProps = async () => {
+    return { props: {} };
+};
 ```
+
+:::warning
+`NextRouteComponent` doesn't support [automatic static optimization][autoStaticOpt] currently since it requires route paramaters thus a data fetching function must be defined.
+:::
 
 `NextRouteComponent` can be used in the following pages
 - `pages/[resource].tsx`
@@ -197,7 +205,7 @@ type NextRouteComponentProps = {
 
 For example, since `list` component will be rendered for `/[resource]`, the page can use SSR like this:
 
-```tsx twoslash title="pages/[resource]/index.tsx"
+```tsx title="pages/[resource]/index.tsx"
 export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -230,7 +238,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 And in the `list` component for a `resource` e.g. "posts":
 
-```tsx title="src/components/posts/list.tsx" {10, 12-14}
+```tsx title="src/components/posts/list.tsx" {11,13-15}
 import {
     useTable,
     List,
@@ -268,33 +276,25 @@ interface IPost {
 
 **nextjs-router** package provides `checkAuthentication` to easily handle server side authentication.
 
-```tsx twoslash title="pages/[resource]/index.tsx" {1, 9-12, 13-15}
-const authProvider = {
-    login: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(["admin"]),
-    getUserIdentity: () => Promise.resolve(),
-}
-
-// ---cut---
+```tsx title="pages/[resource]/index.tsx" {2,12-15,17-19}
 export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
 import { checkAuthentication } from "@pankod/refine-nextjs-router";
  
 import { GetServerSideProps } from "next";
+
+import {authProvider} from "../../src/authProvider";
  
 const API_URL = "https://api.fake-rest.refine.dev";
  
 export const getServerSideProps: GetServerSideProps = async (context) => {
  
-    const { isAuthenticated, redirect } = await checkAuthentication(
+    const { isAuthenticated, ...props } = await checkAuthentication(
         authProvider,
         context,
     );
 
     if (!isAuthenticated) {
-        return { redirect };
+        return props;
     }
  
     return {
@@ -309,7 +309,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 If `syncWithLocation` is enabled, query parameters must be handled while doing SSR.
 
-```tsx twoslash title="pages/users.tsx" {1, 8-14, 17-22}
+```tsx title="pages/users.tsx" {2,9-14,18-23}
 import { GetServerSideProps } from "next";
 import { parseTableParams } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -367,3 +367,5 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 [dataProvider]: /api-references/providers/data-provider.md
 [useTable]: /api-references/hooks/table/useTable.md
 [interfaces]: /api-references/interfaces.md/#crudfilters
+[autoStaticOpt]: https://nextjs.org/docs/advanced-features/automatic-static-optimization
+[dataFetching]: https://nextjs.org/docs/basic-features/data-fetching
