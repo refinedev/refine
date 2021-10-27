@@ -6,7 +6,7 @@ title: Migration Guide
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## 1.0.XX to 1.1.XX
+## 1.0.XX to 2.0.XX
 
 ### Motivation behind breaking changes
 
