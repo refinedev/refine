@@ -41,7 +41,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         <List
             pageHeaderProps={{
                 onBack: () => console.log("clicked"),
-                subTitle: "Subtitle",
             }}
         >
             <Table {...tableProps} rowKey="id">
