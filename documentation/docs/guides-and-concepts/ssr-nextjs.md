@@ -288,7 +288,7 @@ interface IPost {
 
 **nextjs-router** package provides `checkAuthentication` to easily handle server side authentication.
 
-```tsx title="pages/[resource]/index.tsx" {2,12-15,17-19}
+```tsx title="pages/[resource]/index.tsx"
 export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
 // highlight-next-line
 import { checkAuthentication } from "@pankod/refine-nextjs-router";
