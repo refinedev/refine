@@ -28,9 +28,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
         return {
             props: {
-                pageData: {
-                    list: data,
-                },
+                pageData: data,
             },
         };
     } catch (error) {

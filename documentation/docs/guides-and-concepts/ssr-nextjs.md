@@ -202,17 +202,12 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 ```ts
 type NextRouteComponentProps = {
-    pageData?: {
-        list?: any;
-        create?: any;
-        edit?: any;
-        show?: any;
-    };
+    pageData?: any;
 };
 ```
-`pageData` must be passed as props from `getServerSideProps`. Data for every type of page must be passed with their respective fields in `pageData`. `NextRouteComponent` will pass this data as `initialData` to the components to be used for that page.
+`pageData` must be passed as props from `getServerSideProps`. `NextRouteComponent` will pass this data as `initialData` to the `list`, `create`, `edit` and `show` components.
 
-For example, since `list` component will be rendered for `/[resource]`, the page can use SSR like this:
+For example, for a `list` component that will be rendered for `/[resource]`, the page can use SSR like this:
 
 ```tsx title="pages/[resource]/index.tsx"
 export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
@@ -233,9 +228,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
         return {
             props: {
-                pageData: {
-                    list: data,
-                },
+                pageData: data,
             },
         };
     } catch (error) {
