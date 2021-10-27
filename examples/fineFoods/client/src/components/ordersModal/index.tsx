@@ -66,7 +66,7 @@ export const OrdersModal = () => {
                                     {
                                         onSuccess: (data) => {
                                             replace(
-                                                `/order/[id]`,
+                                                "/order/[id]",
                                                 `/order/${data.data.id}`,
                                             );
                                             setOrdersModalVisible(false);
