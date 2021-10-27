@@ -5,6 +5,7 @@ import {
     IResourceComponentsProps,
     useOne,
     MarkdownField,
+    DateField,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
@@ -37,6 +38,9 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
             <Text>
                 {categoryIsLoading ? "Loading..." : categoryData?.data.title}
             </Text>
+
+            <Title level={5}>Published At</Title>
+            <DateField value={record?.publishedAt} format="LLL" />
 
             <Title level={5}>Content</Title>
             <MarkdownField value={record?.content} />
