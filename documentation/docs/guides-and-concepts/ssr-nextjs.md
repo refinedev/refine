@@ -22,7 +22,7 @@ We recommend [**superplate**][supeprlate] to initialize your refine projects. It
 
 [`<Refine>`][refine] must wrap your pages in a [custom App][NextjsCustomApp] component. This way your [pages][NextjsPages] are integrated to refine.
 
-```tsx title="pages/_app.tsx" {11-16}
+```tsx title="pages/_app.tsx"
 import { AppProps } from "next/app";
 
 import { Refine } from "@pankod/refine";
@@ -33,12 +33,14 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
+        // highlight-start
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
         >
             <Component {...pageProps} />
         </Refine>
+        // highlight-end
     );
 }
 
@@ -49,7 +51,7 @@ export default MyApp;
 
 Let's say we want to show a list of users in `/users`. After creating `users.tsx` under `pages` in your Nextjs app, we can use the `useTable` hook to list the users in a table:
 
-```tsx title="pages/users.tsx" {10-25}
+```tsx title="pages/users.tsx"
 import {
     useTable,
     List,
@@ -58,7 +60,7 @@ import {
 } from "@pankod/refine";
 
 const API_URL = "https://api.fake-rest.refine.dev";
-
+// highlight-start
 export const UserList: React.FC = () => {
     const { tableProps } = useTable<IPost>({
         resource: "users"
@@ -75,7 +77,7 @@ export const UserList: React.FC = () => {
         </LayoutWrapper>
     );
 };
-
+// highlight-end
 interface IPost {
     id: string;
     firstName: string;
@@ -96,7 +98,8 @@ We also used `<LayoutWrapper>` to show the page in the layout provided to [`<Ref
 
 **refine** uses [react-query][ReactQuery] in its hooks for data management. [Following react-query's guide][ReactQuerySSR], SSR can be achieved like this:
 
-```tsx title="pages/users.tsx" {1,8,13-14,17-20,35-43}
+```tsx title="pages/users.tsx"
+// highlight-next-line
 import { GetServerSideProps } from "next";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
@@ -104,19 +107,23 @@ import {
     List,
     Table,
     LayoutWrapper,
+// highlight-next-line
     GetListResponse,
 } from "@pankod/refine";
 
 const API_URL = "https://api.fake-rest.refine.dev";
-
+// highlight-start
 export const UserList: React.FC<{ users: GetListResponse<IPost> }> = ({
     users
 }) => {
+// highlight-end
     const { tableProps } = useTable<IPost>({
         resource: "users",
+// highlight-start
         queryOptions: {
             initialData: users,
         },
+// highlight-end
     });
 
     return (
@@ -131,6 +138,7 @@ export const UserList: React.FC<{ users: GetListResponse<IPost> }> = ({
     );
 };
 
+// highlight-start
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const data = await dataProvider(API_URL).getList({
         resource: "users",
@@ -140,6 +148,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         props: { users: data },
     };
 };
+// highlight-end
 
 interface IPost {
     id: string;
@@ -238,7 +247,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 And in the `list` component for a `resource` e.g. "posts":
 
-```tsx title="src/components/posts/list.tsx" {11,13-15}
+```tsx title="src/components/posts/list.tsx"
 import {
     useTable,
     List,
@@ -249,11 +258,14 @@ import type { IResourceComponentsProps } from "@pankod/refine";
 
 export const PostList: React.FC<
     IResourceComponentsProps<GetListResponse<IPost>>
+// highlight-next-line
 > = ({ initialData }) => {
     const { tableProps } = useTable<IPost>({
+        // highlight-start
         queryOptions: {
             initialData,
         },
+        // highlight-end
     });
 
     return (
@@ -278,6 +290,7 @@ interface IPost {
 
 ```tsx title="pages/[resource]/index.tsx" {2,12-15,17-19}
 export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
+// highlight-next-line
 import { checkAuthentication } from "@pankod/refine-nextjs-router";
  
 import { GetServerSideProps } from "next";
@@ -288,14 +301,15 @@ const API_URL = "https://api.fake-rest.refine.dev";
  
 export const getServerSideProps: GetServerSideProps = async (context) => {
  
+    // highlight-start
     const { isAuthenticated, ...props } = await checkAuthentication(
         authProvider,
         context,
     );
-
     if (!isAuthenticated) {
         return props;
     }
+    // highlight-end
  
     return {
         props: { },
@@ -309,8 +323,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 If `syncWithLocation` is enabled, query parameters must be handled while doing SSR.
 
-```tsx title="pages/users.tsx" {2,9-14,18-23}
+```tsx title="pages/users.tsx"
 import { GetServerSideProps } from "next";
+// highlight-next-line
 import { parseTableParams } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -318,21 +333,24 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 
+    // highlight-start
     const { resolvedUrl } = context;
     const index = resolvedUrl.indexOf("?");
     const search = resolvedUrl.slice(index);
 
     const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
         parseTableParams(search);
-
+    // highlight-end
     const data = await dataProvider(API_URL).getList({
         resource: "users",
+        // highlight-start
         filters: parsedFilters,
         pagination: {
             current: parsedCurrent || 1,
             pageSize: parsedPageSize || 10,
         },
         sort: parsedSorter,
+        // highlight-end
     });
 
     return {
