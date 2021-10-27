@@ -6,6 +6,7 @@ import { MockJSONServer, TestWrapper } from "@test";
 import { posts } from "@test/dataMocks";
 
 import { useShow } from "./useShow";
+import { act } from "react-dom/test-utils";
 
 const Wrapper = TestWrapper({
     dataProvider: MockJSONServer,
@@ -44,5 +45,41 @@ describe("useShow Hook", () => {
         });
 
         expect(result.current.queryResult.data?.data.id).toEqual(posts[0].id);
+    });
+
+    it("correctly return id value from options", async () => {
+        const { result } = renderHook(
+            () =>
+                useShow({
+                    id: "2",
+                }),
+            {
+                wrapper: WrapperWithRoute,
+            },
+        );
+
+        expect(result.current.showId).toEqual("2");
+    });
+
+    it("correctly return id value from route", async () => {
+        const { result } = renderHook(() => useShow(), {
+            wrapper: WrapperWithRoute,
+        });
+
+        expect(result.current.showId).toEqual("1");
+    });
+
+    it("correctly return id value which was set with setShowId after it was set", async () => {
+        const { result } = renderHook(() => useShow(), {
+            wrapper: WrapperWithRoute,
+        });
+
+        expect(result.current.showId).toEqual("1");
+
+        act(() => {
+            result.current.setShowId("3");
+        });
+
+        expect(result.current.showId).toEqual("3");
     });
 });
