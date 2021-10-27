@@ -5,7 +5,8 @@ import {
     Table,
     GetListResponse,
     LayoutWrapper,
-    parseTableParams,
+    parseTableParamsFromQuery,
+    getDefaultSortOrder,
 } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import { checkAuthentication } from "@pankod/refine-nextjs-router";
@@ -17,7 +18,7 @@ import { API_URL } from "../../src/constants";
 export const UserList: React.FC<{ users: GetListResponse<IPost> }> = ({
     users,
 }) => {
-    const { tableProps } = useTable<IPost>({
+    const { tableProps, sorter } = useTable<IPost>({
         resource: "users",
         queryOptions: {
             initialData: users,
@@ -29,8 +30,23 @@ export const UserList: React.FC<{ users: GetListResponse<IPost> }> = ({
         <LayoutWrapper>
             <List title="Users">
                 <Table {...tableProps} rowKey="id">
-                    <Table.Column dataIndex="id" title="ID" sorter />
-                    <Table.Column dataIndex="firstName" title="Name" />
+                    <Table.Column
+                        dataIndex="id"
+                        title="ID"
+                        sorter={{
+                            multiple: 1,
+                        }}
+                        defaultSortOrder={getDefaultSortOrder("id", sorter)}
+                    />
+                    <Table.Column
+                        dataIndex="firstName"
+                        title="Name"
+                        sorter={{ multiple: 2 }}
+                        defaultSortOrder={getDefaultSortOrder(
+                            "firstName",
+                            sorter,
+                        )}
+                    />
                 </Table>
             </List>
         </LayoutWrapper>
@@ -51,12 +67,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         return props;
     }
 
-    const { resolvedUrl } = context;
-    const index = resolvedUrl.indexOf("?");
-    const search = resolvedUrl.slice(index);
-
     const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
-        parseTableParams(search);
+        parseTableParamsFromQuery(context.query);
 
     const data = await dataProvider(API_URL).getList({
         resource: "users",

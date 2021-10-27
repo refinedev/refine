@@ -299,13 +299,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         authProvider,
         context,
     );
+
     if (!isAuthenticated) {
         return props;
     }
     // highlight-end
  
     return {
-        props: { },
+        props: {},
     };
 };
 ```
@@ -319,7 +320,7 @@ If `syncWithLocation` is enabled, query parameters must be handled while doing S
 ```tsx title="pages/users.tsx"
 import { GetServerSideProps } from "next";
 // highlight-next-line
-import { parseTableParams } from "@pankod/refine";
+import { parseTableParamsFromQuery } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -327,12 +328,8 @@ const API_URL = "https://api.fake-rest.refine.dev";
 export const getServerSideProps: GetServerSideProps = async (context) => {
 
     // highlight-start
-    const { resolvedUrl } = context;
-    const index = resolvedUrl.indexOf("?");
-    const search = resolvedUrl.slice(index);
-
     const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
-        parseTableParams(search);
+        parseTableParamsFromQuery(context.query);
     // highlight-end
     const data = await dataProvider(API_URL).getList({
         resource: "users",
