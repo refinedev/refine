@@ -50,7 +50,7 @@ const App: React.FC = () => {
 
 ## Example
 
-Let's add multi-language support using the `react-i18next` framework. At the end of our example, our application will support both Turkish and English.
+Let's add multi-language support using the `react-i18next` framework. At the end of our example, our application will support both German and English.
 
 [Refer to the react-i18n docs for detailed information &#8594](https://react.i18next.com/getting-started)
 
