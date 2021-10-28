@@ -2,11 +2,10 @@ import React from "react";
 import { renderHook } from "@testing-library/react-hooks";
 import { Route } from "react-router-dom";
 
-import { MockJSONServer, TestWrapper } from "@test";
+import { MockJSONServer, TestWrapper, act } from "@test";
 import { posts } from "@test/dataMocks";
 
 import { useShow } from "./useShow";
-import { act } from "react-dom/test-utils";
 
 const Wrapper = TestWrapper({
     dataProvider: MockJSONServer,
