@@ -98,7 +98,8 @@ export const useEditForm = <
     TError,
     TVariables
 > => {
-    const [editId, setEditId] = React.useState<string>();
+    const { id: idFromRoute, action } = useParams<ResourceRouterParams>();
+    const [editId, setEditId] = React.useState<string | undefined>(idFromRoute);
 
     const [formAnt] = Form.useForm();
     const formSF = useFormSF<TData, TVariables>({
@@ -119,16 +120,15 @@ export const useEditForm = <
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
-    const { id: idFromRoute, action } = useParams<ResourceRouterParams>();
     const isEdit = !!editId || action === "edit";
 
-    const id = editId ?? idFromRoute;
+    // const id = editId ?? idFromRoute;
 
     const queryResult = useOne<TData>({
         resource: resource.name,
-        id,
+        id: editId ?? "",
         queryOptions: {
-            enabled: isEdit,
+            enabled: isEdit && editId !== undefined,
         },
         metaData,
     });
@@ -142,7 +142,7 @@ export const useEditForm = <
         return () => {
             form.resetFields();
         };
-    }, [data, id, isFetching]);
+    }, [data, editId, isFetching]);
 
     const mutationResult = useUpdate<TData, TError, TVariables>();
 
@@ -159,7 +159,7 @@ export const useEditForm = <
         setTimeout(() => {
             mutate(
                 {
-                    id,
+                    id: editId ?? "",
                     values,
                     resource: resource.name,
                     mutationMode,
@@ -178,7 +178,7 @@ export const useEditForm = <
                             handleSubmitWithRedirect({
                                 redirect,
                                 resource,
-                                id: idFromRoute,
+                                id: editId,
                             });
                         }
                     },
@@ -196,7 +196,7 @@ export const useEditForm = <
             handleSubmitWithRedirect({
                 redirect,
                 resource,
-                id: idFromRoute,
+                id: editId,
             });
         }
     };
