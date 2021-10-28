@@ -1,4 +1,4 @@
-import { Button, Typography } from "@pankod/refine";
+import { Button, Typography, useNavigation } from "@pankod/refine";
 
 import { PlateIcon } from "@components/icons";
 
@@ -10,6 +10,7 @@ require("./style.less");
 
 export const Promotional = () => {
     const isMobile = useIsMobile();
+    const { push } = useNavigation();
 
     return (
         <div className="promotional-wrapper">
@@ -18,7 +19,12 @@ export const Promotional = () => {
                     Delight <br /> in every bite!
                 </Text>
                 <Text className="subtitle">Delivering happiness, on time.</Text>
-                <Button className="explore-button">
+                <Button
+                    className="explore-button"
+                    onClick={() => {
+                        push("/[id]/[category]", "/1/Starters");
+                    }}
+                >
                     <Text style={{ fontSize: 24, fontWeight: 700 }}>
                         Explore menu
                     </Text>

@@ -47,6 +47,7 @@ export {
     getDefaultSortOrder,
     getDefaultFilter,
     parseTableParams,
+    parseTableParamsFromQuery,
 } from "./definitions/table";
 export { defaultConfigProviderProps } from "./definitions/config";
 

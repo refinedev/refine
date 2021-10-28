@@ -19,7 +19,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
     return (
         <Link
             href={{
-                pathname: `/[id]/[category]`,
+                pathname: "/[id]/[category]",
                 query: { id, category: encodeURIComponent(title) },
             }}
         >

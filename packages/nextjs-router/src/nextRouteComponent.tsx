@@ -14,12 +14,7 @@ import { RouterProvider } from "./routerProvider";
 const { useHistory, useLocation, useParams } = RouterProvider;
 
 type NextRouteComponentProps = {
-    pageData?: {
-        list?: any;
-        create?: any;
-        edit?: any;
-        show?: any;
-    };
+    pageData?: any;
 };
 
 export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
@@ -29,12 +24,6 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
     const { push } = useHistory();
     const { resource: routeResourceName, action } =
         useParams<ResourceRouterParams>();
-
-    const { isLoading } = useAuthenticated({ type: "routeProvider" });
-
-    if (isLoading) {
-        return null;
-    }
 
     const { pathname } = useLocation();
     const { DashboardPage, catchAll, LoginPage } = useRefineContext();
@@ -88,7 +77,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                             canEdit={canEdit}
                             canDelete={canDelete}
                             canShow={canShow}
-                            initialData={pageData?.list}
+                            initialData={pageData}
                         />
                     );
                 }
@@ -101,7 +90,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                             canEdit={canEdit}
                             canDelete={canDelete}
                             canShow={canShow}
-                            initialData={pageData?.create}
+                            initialData={pageData}
                         />
                     );
                 }
@@ -114,7 +103,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                             canEdit={canEdit}
                             canDelete={canDelete}
                             canShow={canShow}
-                            initialData={pageData?.edit}
+                            initialData={pageData}
                         />
                     );
                 }
@@ -127,7 +116,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                             canEdit={canEdit}
                             canDelete={canDelete}
                             canShow={canShow}
-                            initialData={pageData?.show}
+                            initialData={pageData}
                         />
                     );
                 }
