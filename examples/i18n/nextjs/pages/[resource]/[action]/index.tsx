@@ -7,13 +7,13 @@ import { GetServerSideProps } from "next";
 import { authProvider } from "../../../src/authProvider";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const { isAuthenticated, redirect } = await checkAuthentication(
+    const { isAuthenticated, ...props } = await checkAuthentication(
         authProvider,
         context,
     );
 
     if (!isAuthenticated) {
-        return { redirect };
+        return props;
     }
 
     return {

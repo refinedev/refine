@@ -7,20 +7,28 @@ import { GetServerSideProps } from "next";
 import { authProvider } from "../../src/authProvider";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const { isAuthenticated, redirect } = await checkAuthentication(
+    const { isAuthenticated, ...props } = await checkAuthentication(
         authProvider,
         context,
     );
 
+    const translateProps = await serverSideTranslations(
+        context.locale ?? "en",
+        ["common"],
+    );
+
     if (!isAuthenticated) {
-        return { redirect };
+        return {
+            props: {
+                ...props,
+                ...translateProps,
+            },
+        };
     }
 
     return {
         props: {
-            ...(await serverSideTranslations(context.locale ?? "en", [
-                "common",
-            ])),
+            ...translateProps,
         },
     };
 };
