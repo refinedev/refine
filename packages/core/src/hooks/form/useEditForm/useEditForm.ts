@@ -122,7 +122,6 @@ export const useEditForm = <
 
     const isEdit = !!editId || action === "edit";
 
-    // const id = editId ?? idFromRoute;
 
     const queryResult = useOne<TData>({
         resource: resource.name,
