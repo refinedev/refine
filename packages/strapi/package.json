@@ -44,7 +44,7 @@
     "tslib": "^2.1.0"
   },
   "dependencies": {
-    "@pankod/refine": "^1.0.2",
+    "@pankod/refine": "^2.0.0",
     "axios": "^0.21.1",
     "query-string": "^7.0.0"
   },
