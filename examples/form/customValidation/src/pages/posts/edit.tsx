@@ -28,7 +28,7 @@ interface PostUniqueCheckRequestQuery {
     id?: string;
 }
 
-export const PostEdit: React.FC = (props) => {
+export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
     const postData = queryResult?.data?.data;
