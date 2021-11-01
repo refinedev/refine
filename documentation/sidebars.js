@@ -343,7 +343,10 @@ module.exports = {
                 {
                     type: "category",
                     label: "Inputs",
-                    items: ["examples/inputs/customInput"],
+                    items: [
+                        "examples/inputs/customInput",
+                        "examples/inputs/datePicker",
+                    ],
                 },
                 {
                     type: "category",
