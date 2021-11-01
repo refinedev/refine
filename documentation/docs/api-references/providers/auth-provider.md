@@ -47,7 +47,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App = () => {
     return (
         <Refine
-// highlight-next-line
+            // highlight-next-line
             authProvider={authProvider}
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
@@ -83,7 +83,7 @@ For the sake of simplicity, we'll use mock data and check the user credentials f
 const mockUsers = [{ username: "admin" }, { username: "editor" }];
 
 const authProvider = {
-// highlight-start
+    // highlight-start
     login: ({ username, password, remember }) => {
         // Suppose we actually send a request to the back end here.
         const user = mockUsers.find((item) => item.username === username);
@@ -95,7 +95,7 @@ const authProvider = {
 
         return Promise.reject();
     },
-// highlight-end
+    // highlight-end
 };
 ```
 
@@ -103,7 +103,7 @@ const authProvider = {
 
 `login` method will be accessible via `useLogin` auth hook.
 
-```tsx 
+```tsx
 import { useLogin } from "@pankod/refine";
 
 const { mutate: login } = useLogin();
@@ -185,7 +185,7 @@ const authProvider = {
 
 `logout` method will be accessible via the `useLogout` auth hook.
 
-```tsx 
+```tsx
 import { useLogout } from "@pankod/refine";
 
 const { mutate: logout } = useLogout();
@@ -270,7 +270,7 @@ const authProvider = {
 
 `checkError` method will be accessible via the `useCheckError` auth hook.
 
-```tsx 
+```tsx
 import { useCheckError } from "@pankod/refine";
 
 const { mutate: checkError } = useCheckError();
@@ -345,7 +345,7 @@ const authProvider = {
 
 `checkAuth` method will be accessible via `useAuthenticated` auth hook.
 
-```tsx 
+```tsx
 import { useAuthenticated } from "@pankod/refine";
 
 const {
@@ -442,7 +442,7 @@ const authProvider = {
 
 The resolved data can be acquired using the [`useGetIdentity`](api-references/hooks/auth/useGetIdentity.md) hook.
 
-```tsx 
+```tsx
 import { useGetIdentity } from "@pankod/refine";
 
 const { data: userIdentity } = useGetIdentity<string>();
@@ -576,7 +576,7 @@ These hooks can be used with the `authProvider` authentication and authorization
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-authorization-example-b26r5?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-authentication-example-rz7l8?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-authorization-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

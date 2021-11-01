@@ -10,13 +10,13 @@ We will examine how to make an extensive search and filtering with the [`useSimp
 
 To do this, let's list posts using the posts resource.
 
-```tsx  title="pages/posts/list.tsx"
+```tsx title="pages/posts/list.tsx"
 import {
     List,
-// highlight-start
+    // highlight-start
     useSimpleList,
     useMany,
-// highlight-end
+    // highlight-end
     AntdList,
     Typography,
     Space,
@@ -26,7 +26,7 @@ import {
 const { Text } = Typography;
 
 export const PostList: React.FC = () => {
-// highlight-start
+    // highlight-start
     const { listProps } = useSimpleList<IPost>();
 
     const categoryIds =
@@ -38,7 +38,7 @@ export const PostList: React.FC = () => {
             enabled: categoryIds.length > 0,
         },
     });
-// highlight-end
+    // highlight-end
 
     const renderItem = (item: IPost) => {
         const { title, hit, content } = item;
@@ -68,7 +68,7 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
-// highlight-next-line
+            // highlight-next-line
             <AntdList {...listProps} renderItem={renderItem} />
         </List>
     );
@@ -107,7 +107,7 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
-// highlight-next-line
+            // highlight-next-line
             resources={[{ name: "posts", list: PostList }]}
         />
     );
@@ -228,7 +228,7 @@ When the form is submitted, the `onSearch` method runs and we get the search for
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-use-simple-list-example-vcq4d?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Flist.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-use-simple-list-example-3098n?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-simple-list-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
