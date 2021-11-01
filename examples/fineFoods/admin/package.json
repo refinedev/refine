@@ -5,7 +5,7 @@
 	"dependencies": {
 		"@ant-design/charts": "^1.1.9",
 		"@craco/craco": "^6.1.2",
-		"@pankod/refine": "^1.1.0",
+		"@pankod/refine": "^2.0.0",
 		"@pankod/refine-react-router": "^0.1.0",
 		"@pankod/refine-simple-rest": "^0.1.8",
 		"@testing-library/jest-dom": "^5.12.0",

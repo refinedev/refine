@@ -160,7 +160,7 @@ const RouteProviderBase: React.FC = (props) => {
                     LoginPage ? <LoginPage /> : <DefaultLoginPage />
                 }
             />
-            {customRoutes.map((route, i) => (
+            {[...(customRoutes || [])].map((route, i) => (
                 <RouteWithSubRoutes key={i} {...route} />
             ))}
 

@@ -40,7 +40,7 @@
     "tslib": "^2.1.0"
   },
   "dependencies": {
-    "@pankod/refine": "^1.1.0",
+    "@pankod/refine": "^2.0.0",
     "airtable": "^0.11.1",
     "asyncairtable": "^2.1.0",
     "query-string": "^7.0.1"

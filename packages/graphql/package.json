@@ -41,7 +41,7 @@
     "tslib": "^2.1.0"
   },
   "dependencies": {
-    "@pankod/refine": "^1.0.51",
+    "@pankod/refine": "^2.0.0",
     "camelcase": "^6.2.0",
     "gql-query-builder": "^3.5.5",
     "graphql": "^15.5.3",
