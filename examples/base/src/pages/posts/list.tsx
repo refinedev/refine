@@ -9,7 +9,6 @@ import {
     ShowButton,
     useMany,
     FilterDropdown,
-    Typography,
     useSelect,
     Select,
     Radio,
