@@ -9,7 +9,7 @@
         "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
     },
     "dependencies": {
-        "@pankod/refine": "^1.1.0",
+        "@pankod/refine": "^2.0.0",
         "@pankod/refine-nextjs-router": "^0.1.0",
         "@pankod/refine-simple-rest": "^0.1.8",
         "next": "^11.1.2",
