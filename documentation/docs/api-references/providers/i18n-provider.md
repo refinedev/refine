@@ -51,6 +51,10 @@ const App: React.FC = () => {
 
 ## Example
 
+:::caution
+This example is for SPA react apps, for Nextjs [refer to i18n Nextjs example ][i18nNextjs]
+:::
+
 Let's add multi-language support using the `react-i18next` framework. At the end of our example, our application will support both German and English.
 
 [Refer to the react-i18n docs for detailed information &#8594](https://react.i18next.com/getting-started)
@@ -645,3 +649,5 @@ export interface IPost {
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
+
+[i18nNextjs]: /examples/i18n/i18n-nextjs.md
