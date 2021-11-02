@@ -3,7 +3,7 @@ id: useNavigation
 title: useNavigation
 ---
 
-**refine** uses [`routerProvider`](#) and comes with all redirects out of the box. It allows you to manage your routing operations in refine. Using this hook, you can manage all the routing operations of your application very easily.
+**refine** uses [`routerProvider`][routerProvider] and comes with all redirects out of the box. It allows you to manage your routing operations in refine. Using this hook, you can manage all the routing operations of your application very easily.
 
 ```tsx 
 import { useNavigation } from "@pankod/refine";
@@ -12,7 +12,7 @@ const { create, edit, clone, show, list, push, replace, goBack } = useNavigation
 ```
 
 :::tip
-`useNavigation` uses the `useHistory` of the [`routerProvider`](#).
+`useNavigation` uses the `useHistory` of the [`routerProvider`][routerProvider].
 :::
 
 ### Usage
@@ -234,7 +234,7 @@ export const MyHistoryButtons = () => {
 | Property                                          | Description                                 | Type                      | Default  |
 | ------------------------------------------------- | ------------------------------------------- | ------------------------- | -------- |
 | resource <div className="required">Required</div> | Redirect the app to the given resource name | `string`                  |          |
-| type                                              | It is [`routerProvider`](#) history types            | [HistoryType](#interface) | `"push"` |
+| type                                              | It is [`routerProvider`][routerProvider] history types            | [HistoryType](#interface) | `"push"` |
 | id                                                | It is used to append to the end of the path | `string`                  |          |
 
 ### Return values
@@ -255,3 +255,5 @@ export const MyHistoryButtons = () => {
 ```tsx title="History Type"
 export type HistoryType = "push" | "replace";
 ```
+
+[routerProvider]: api-references/providers/router-provider.md

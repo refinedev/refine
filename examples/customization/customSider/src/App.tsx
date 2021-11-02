@@ -1,4 +1,4 @@
-import { Refine, Link } from "@pankod/refine";
+import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 
@@ -7,6 +7,8 @@ import "./index.css";
 
 import { PostList } from "pages/posts";
 import { CustomSider } from "components";
+
+const { Link } = routerProvider;
 
 const API_URL = "https://api.fake-rest.refine.dev";
 

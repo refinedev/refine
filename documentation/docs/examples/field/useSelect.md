@@ -5,7 +5,7 @@ title: useSelect
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/field/useSelect)
 
-<iframe src="https://codesandbox.io/embed/refine-use-select-example-dp34p?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Fedit.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-use-select-example-6g0jy?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-select-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
