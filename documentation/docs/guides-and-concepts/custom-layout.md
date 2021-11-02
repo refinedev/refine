@@ -110,7 +110,7 @@ This example demonstrated how to configure a global layout. To learn how to use 
 
 Here's how it looks in the end:
 
-<iframe src="https://codesandbox.io/embed/refine-top-menu-layout-example-n1v8x?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-top-menu-layout-example-yb9r8?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-top-menu-layout-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

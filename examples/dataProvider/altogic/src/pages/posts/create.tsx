@@ -2,12 +2,9 @@ import React, { useState } from "react";
 import {
     Create,
     Form,
-    getValueFromEvent,
     Input,
     IResourceComponentsProps,
     Select,
-    Upload,
-    useApiUrl,
     useForm,
     useSelect,
 } from "@pankod/refine";
@@ -21,8 +18,6 @@ import { IPost, ICategory } from "interfaces";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
-
-    const API_URL = useApiUrl();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "category",
