@@ -1,6 +1,6 @@
 ---
 id: i18n-nextjs
-title: Nextjs
+title: Next.js
 ---
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/i18n)
