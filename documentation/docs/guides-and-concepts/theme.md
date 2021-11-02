@@ -10,7 +10,15 @@ Ant Design allows you to customize many of its [less variables](https://github.c
 In this example, we'll be demonstrating theming with `less` using [CRACO (Create React App Configuration Override)](https://github.com/gsoft-inc/craco) as our customization layer for [Create React App](https://github.com/facebook/create-react-app).
 
 :::tip
+We recommend [**superplate**][superplate] to initialize your refine projects. It configures the project according to your needs including SSR with Next.js.
+:::
+
+:::tip
 If you're not using Create React App and already have a webpack setup, you can refer to Ant Design docs for configuring your setup: [Customize in webpack](https://ant.design/docs/react/customize-theme#Customize-in-webpack)
+:::
+
+:::tip
+If you're using Next.js, [refer to finefoods client example app for theme configuration][finefoods-client]. It uses [next-plugin-antd-less][] to customize theme in a nextjs app.
 :::
 
 If you're using Create React App, you can easily enable CRACO.
@@ -161,3 +169,7 @@ All variable overrides configured in `lessOptions.modifyVars` always have higher
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
+
+[superplate]: https://github.com/pankod/superplate
+[finefoods-client]: https://github.com/pankod/refine/tree/alpha/examples/fineFoods/client
+[next-plugin-antd-less]: https://github.com/SolidZORO/next-plugin-antd-less

@@ -51,6 +51,10 @@ const App: React.FC = () => {
 
 ## Example
 
+:::tip
+We recommend [**superplate**][superplate] to initialize your refine projects. It configures the project according to your needs including i18n provider.
+:::
+
 :::caution
 This example is for SPA react apps, for Nextjs [refer to i18n Nextjs example ][i18nNextjs]
 :::
@@ -651,3 +655,4 @@ export interface IPost {
    ></iframe>
 
 [i18nNextjs]: /examples/i18n/i18n-nextjs.md
+[superplate]: https://github.com/pankod/superplate
