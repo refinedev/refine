@@ -56,7 +56,7 @@ We recommend [**superplate**][superplate] to initialize your refine projects. It
 :::
 
 :::caution
-This example is for SPA react apps, for Nextjs [refer to i18n Nextjs example ][i18nNextjs]
+This example is for SPA react apps, for Next.js [refer to i18n Nextjs example ][i18nNextjs]
 :::
 
 Let's add multi-language support using the `react-i18next` framework. At the end of our example, our application will support both German and English.
