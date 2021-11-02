@@ -18,7 +18,7 @@ If you're not using Create React App and already have a webpack setup, you can r
 :::
 
 :::tip
-If you're using Next.js, [refer to finefoods client example app for theme configuration][finefoods-client]. It uses [next-plugin-antd-less][] to customize theme in a nextjs app.
+If you're using Next.js, [refer to finefoods client example app for theme configuration][finefoods-client]. It uses [next-plugin-antd-less][] to customize theme in a Next.js app.
 :::
 
 If you're using Create React App, you can easily enable CRACO.
