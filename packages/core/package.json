@@ -49,7 +49,7 @@
     },
     "dependencies": {
         "@ant-design/icons": "^4.5.0",
-        "antd": "4.17.0-alpha.9",
+        "antd": "^4.16.13",
         "dayjs": "^1.10.4",
         "export-to-csv": "^0.2.1",
         "humanize-string": "^2.1.0",
