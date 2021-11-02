@@ -24,7 +24,5 @@ module.exports = withPlugins([[pluginAntdLess]], {
   //   disableStaticImages: true,
   // },
   // NextFuture
-  future: {
-    webpack5: true,
-  },
+  webpack5: true,
 });
