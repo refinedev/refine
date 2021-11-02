@@ -168,7 +168,7 @@ export type {
     ColumnType as TableColumnType,
     ColumnProps as TableColumnProps,
 } from "antd/lib/table";
-export { default as Table } from "antd/lib/table";
+export { Table } from "antd";
 
 export type { TransferProps } from "antd/lib/transfer";
 export { default as Transfer } from "antd/lib/transfer";
