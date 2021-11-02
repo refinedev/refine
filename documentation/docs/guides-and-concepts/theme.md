@@ -10,7 +10,7 @@ Ant Design allows you to customize many of its [less variables](https://github.c
 In this example, we'll be demonstrating theming with `less` using [CRACO (Create React App Configuration Override)](https://github.com/gsoft-inc/craco) as our customization layer for [Create React App](https://github.com/facebook/create-react-app).
 
 :::tip
-We recommend [**superplate**][superplate] to initialize your refine projects. It configures the project according to your needs including SSR with Next.js.
+We recommend [**superplate**][superplate] to initialize your refine projects. It configures the project according to your needs including SSR and Theme with Next.js.
 :::
 
 :::tip
