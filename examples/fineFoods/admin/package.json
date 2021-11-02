@@ -7,7 +7,7 @@
 		"@craco/craco": "^6.1.2",
 		"@pankod/refine": "^2.0.7",
 		"@pankod/refine-react-router": "^2.0.7",
-		"@pankod/refine-simple-rest": "^0.1.8",
+		"@pankod/refine-simple-rest": "^2.0.7",
 		"@testing-library/jest-dom": "^5.12.0",
 		"@testing-library/react": "^11.2.6",
 		"@testing-library/user-event": "^12.8.3",

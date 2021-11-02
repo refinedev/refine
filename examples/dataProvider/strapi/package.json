@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@pankod/refine": "^2.0.0",
-    "@pankod/refine-react-router": "^0.1.0",
-    "@pankod/refine-strapi": "^0.1.8",
+    "@pankod/refine": "^2.0.7",
+    "@pankod/refine-react-router": "^2.0.7",
+    "@pankod/refine-strapi": "^2.0.7",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
