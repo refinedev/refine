@@ -33,13 +33,13 @@
     }
   ],
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^4.10.1",
-    "size-limit": "^4.10.1",
+    "@size-limit/preset-small-lib": "^5.0.5",
+    "size-limit": "^5.0.5",
     "tsdx": "^0.14.1",
-    "tslib": "^2.1.0"
+    "tslib": "^2.3.1"
   },
   "dependencies": {
-    "@pankod/refine": "^1.1.0",
+    "@pankod/refine": "^2.0.4",
     "@types/qs": "^6.9.7",
     "next": "^11.1.2",
     "qs": "^6.10.1"

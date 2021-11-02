@@ -33,14 +33,14 @@
     }
   ],
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^4.10.1",
-    "nock": "^13.0.11",
-    "size-limit": "^4.10.1",
+    "@size-limit/preset-small-lib": "^5.0.5",
+    "nock": "^13.1.3",
+    "size-limit": "^5.0.5",
     "tsdx": "^0.14.1",
-    "tslib": "^2.1.0"
+    "tslib": "^2.3.1"
   },
   "dependencies": {
-    "@pankod/refine": "^1.0.51",
+    "@pankod/refine": "^2.0.4",
     "@supabase/supabase-js": "^1.22.4"
   },
   "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",

@@ -33,16 +33,16 @@
     }
   ],
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^4.10.1",
-    "nock": "^13.0.11",
-    "size-limit": "^4.10.1",
+    "@size-limit/preset-small-lib": "^5.0.5",
+    "nock": "^13.1.3",
+    "size-limit": "^5.0.5",
     "tsdx": "^0.14.1",
-    "tslib": "^2.1.0"
+    "tslib": "^2.3.1"
   },
   "dependencies": {
-    "@pankod/refine": "^1.1.0",
+    "@pankod/refine": "^2.0.4",
     "axios": "^0.21.4",
-    "query-string": "^7.0.0"
+    "query-string": "^7.0.1"
   },
   "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
   "publishConfig": {

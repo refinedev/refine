@@ -5,18 +5,18 @@
   "dependencies": {
     "@craco/craco": "^6.1.2",
     "@pankod/refine-react-router": "^0.1.0",
-    "@pankod/refine": "^1.0.80",
+    "@pankod/refine": "^2.0.0",
     "@pankod/refine-simple-rest": "^0.1.8",
     "@types/node": "^12.20.11",
     "@types/react": "^17.0.4",
-    "@types/react-dom": "^17.0.3",
+    "@types/react-dom": "^17.0.4",
     "craco-less": "^1.17.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-markdown": "^6.0.1",
     "react-mde": "^11.1.0",
     "react-scripts": "4.0.3",
-    "typescript": "^4.2.4",
+    "typescript": "^4.4.3",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
