@@ -1,6 +1,6 @@
 ---
-id: i18n
-title: i18n
+id: i18n-react
+title: React
 ---
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/i18n)

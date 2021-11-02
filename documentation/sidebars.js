@@ -264,7 +264,14 @@ module.exports = {
             items: [
                 "examples/tutorial-example",
                 "examples/authorization",
-                "examples/i18n",
+                {
+                    type: "category",
+                    label: "i18n",
+                    items: [
+                        "examples/i18n/i18n-react",
+                        "examples/i18n/i18n-nextjs",
+                    ],
+                },
                 {
                     type: "category",
                     label: "Data Provider",
