@@ -13,6 +13,7 @@ import {
     Select,
     Radio,
     TagField,
+    DateField,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
@@ -82,6 +83,11 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                             </Radio.Group>
                         </FilterDropdown>
                     )}
+                />
+                <Table.Column
+                    dataIndex="publishedAt"
+                    title="Published At"
+                    render={(value) => <DateField value={value} format="LLL" />}
                 />
                 <Table.Column<IPost>
                     title="Actions"
