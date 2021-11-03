@@ -1,5 +1,5 @@
 {
-  "version": "2.0.7",
+  "version": "2.0.8",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -40,7 +40,7 @@
     "tslib": "^2.3.1"
   },
   "dependencies": {
-    "@pankod/refine": "^2.0.7",
+    "@pankod/refine": "^2.0.8",
     "axios": "^0.21.4",
     "query-string": "^7.0.1"
   },
