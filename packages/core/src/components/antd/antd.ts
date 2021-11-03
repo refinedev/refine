@@ -10,12 +10,12 @@ export {
     Button,
     Card,
     Collapse,
-    ConfigProvider,
     Carousel,
     Cascader,
     Checkbox,
     Col,
     Comment,
+    ConfigProvider,
     Descriptions,
     Divider,
     Dropdown,
@@ -26,9 +26,9 @@ export {
     Input,
     Image,
     InputNumber,
-    message,
     Layout as AntdLayout,
     List as AntdList,
+    message,
     Menu,
     Mentions,
     Modal,
@@ -75,8 +75,8 @@ export type {
     BreadcrumbProps,
     BreadcrumbItemProps,
     ButtonProps,
-    CardProps,
     CalendarProps,
+    CardProps,
     CollapseProps,
     CollapsePanelProps,
     CarouselProps,
@@ -92,13 +92,15 @@ export type {
     DrawerProps,
     EmptyProps,
     FormInstance,
-    FormItemProps,
     FormProps,
+    FormItemProps,
     InputProps,
     ImageProps,
     InputNumberProps,
     LayoutProps,
     ListProps,
+    MessageArgsProps,
+    MentionProps,
     MenuProps,
     MenuTheme,
     SubMenuProps,
@@ -125,8 +127,15 @@ export type {
     StepProps,
     StepsProps,
     SwitchProps,
+    TableProps,
+    TablePaginationConfig,
+    TableColumnGroupType,
+    TableColumnType,
+    TableColumnProps,
     TransferProps,
     TreeSelectProps,
+    TreeProps,
+    TreeNodeProps,
     TabsProps,
     TabPaneProps,
     TagProps,
@@ -137,22 +146,5 @@ export type {
     TypographyProps,
     UploadProps,
 } from "antd";
-
-export type { ArgsProps as MessageArgsProps } from "antd/lib/message";
-
-export type { MentionProps } from "antd";
-
-export type {
-    TableProps,
-    TablePaginationConfig,
-    ColumnGroupType as TableColumnGroupType,
-    ColumnType as TableColumnType,
-    ColumnProps as TableColumnProps,
-} from "antd/lib/table";
-
-export type {
-    TreeProps,
-    AntTreeNodeProps as TreeNodeProps,
-} from "antd/lib/tree";
 
 export type { TitleProps } from "antd/lib/typography/Title";
