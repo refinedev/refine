@@ -807,6 +807,10 @@
             {
               "type": "doc",
               "id": "version-1.0.xx/examples/inputs/customInput"
+            },
+            {
+              "type": "doc",
+              "id": "version-1.0.xx/examples/inputs/datePicker"
             }
           ],
           "collapsible": true,
