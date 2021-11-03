@@ -15,7 +15,7 @@ npm i @pankod/refine @pankod/refine-nextjs-router
 ```
 
 :::tip
-We recommend [**superplate**][supeprlate] to initialize your refine projects. It configures the project according to your needs including SSR with Next.js.
+We recommend [**superplate**][superplate] to initialize your refine projects. It configures the project according to your needs including SSR with Next.js.
 :::
 
 ## Usage
@@ -364,7 +364,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 [Nextjs]: https://nextjs.org/docs/getting-started
 [NextjsRouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router
 [routerProvider]: /api-references/providers/router-provider.md
-[supeprlate]: https://github.com/pankod/superplate
+[superplate]: https://github.com/pankod/superplate
 [NextjsCustomApp]: https://nextjs.org/docs/advanced-features/custom-app
 [refine]: /api-references/components/refine-config.md
 [NextjsPages]: https://nextjs.org/docs/basic-features/pages
