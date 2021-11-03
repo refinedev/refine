@@ -38,21 +38,20 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
     errorNotification,
     metaData,
 }: useShowProps = {}): useShowReturnType<TData> => {
-    const [showId, setShowId] = useState<string>();
-
     const { resource: routeResourceName, id: idFromRoute } =
         useParams<ResourceRouterParams>();
+
+    const [showId, setShowId] = useState<string | undefined>(id ?? idFromRoute);
+
     const resourceWithRoute = useResourceWithRoute();
 
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
-    const resourceId = showId ?? id ?? idFromRoute;
-
     const queryResult = useOne<TData>({
         resource: resource.name,
-        id: resourceId,
+        id: showId ?? "",
         queryOptions: {
-            enabled: !!resourceId,
+            enabled: showId !== undefined,
         },
         successNotification,
         errorNotification,
