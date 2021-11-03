@@ -5,6 +5,7 @@ title: Migration Guide
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
 
 ## 1.0.XX to 2.0.XX
 
@@ -21,7 +22,47 @@ Router layer is abstracted from the core for mainly Nextjs support. This also cr
 #### Custom Pages
 
 This is also related to abstracting away the router layer from core. Differences between (currently two) router provider are so big that adding a layer to cover both cases (possibly more in the future) is much harder to implement and maintain compared to letting everyone handle it with their own conventions. This also has the huge benefit of allowing maximum configurability for every respective provider.
+
+### Updating the packages
+
+Packages used by your app must be updated to `^2.0.7`
+
+export const Packages = () => {
+    const packages = [
+        "@pankod/refine",
+        "@pankod/refine-airtable",
+        "@pankod/refine-altogic",
+        "@pankod/refine-graphql",
+        "@pankod/refine-hasura",
+        "@pankod/refine-nestjsx-crud",
+        "@pankod/refine-nextjs-router",
+        "@pankod/refine-react-router",
+        "@pankod/refine-simple-rest",
+        "@pankod/refine-strapi",
+        "@pankod/refine-strapi-graphql",
+        "@pankod/refine-supabase",
+    ]
+    return (
+        <Tabs
+        defaultValue="@pankod/refine"
+        values={packages.map(p => ({
+            label: p, value: p
+        }))}
+        >{
+            packages.map(p => 
+            <TabItem value={p}>
+                <CodeBlock className="language-bash">{`npm i ${p}@latest`}</CodeBlock>
+            </TabItem>
+            )
+        }
+        </Tabs>
+        )
+}
+
+<Packages/>
+
 ### `<Resource/>` to `resources`
+
 
 `<Resource/>` is deprecated. Resources must be passed to [`resources`][resources] prop instead.
 
