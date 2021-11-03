@@ -21,10 +21,9 @@ const App: React.FC = () => {
                     name: "posts",
                     list: PostList,
                     create: PostCreate,
-                    edit:PostEdit,
-                    show:PostShow
+                    edit: PostEdit,
+                    show: PostShow,
                 },
-                
             ]}
         />
     );
