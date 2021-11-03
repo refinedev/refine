@@ -12,15 +12,23 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         context,
     );
 
+    const translateProps = await serverSideTranslations(
+        context.locale ?? "en",
+        ["common"],
+    );
+
     if (!isAuthenticated) {
-        return props;
+        return {
+            props: {
+                ...props,
+                ...translateProps,
+            },
+        };
     }
 
     return {
         props: {
-            ...(await serverSideTranslations(context.locale ?? "en", [
-                "common",
-            ])),
+            ...translateProps,
         },
     };
 };
