@@ -25,7 +25,7 @@ This is also related to abstracting away the router layer from core. Differences
 
 ### Updating the packages
 
-Packages used by your app must be updated to `^2.0.7`
+Packages used by your app must be updated to `^2.xx.xx`
 
 export const Packages = () => {
     const packages = [
