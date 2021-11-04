@@ -102,6 +102,13 @@
     }
 }
 
+@media (min-width: 768px) {
+    .mobile-view {
+        display: none;
+    }
+}
+
+
 .mobile-pane {
     display: flex;
     justify-content: center;
