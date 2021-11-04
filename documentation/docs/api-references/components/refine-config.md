@@ -456,6 +456,35 @@ const App: React.FC = () =>
         </Refine>
     );
 ```
+### `reactQueryDevtoolConfig`
+
+Config for customize React Query Devtools.
+
+**refine** uses some defaults that applies to react-query devtool:
+
+```ts
+{
+    initialIsOpen: false,
+    position: "bottom-right"
+}
+```
+[Refer to the Devtools documentation for detailed information. &#8594](https://react-query.tanstack.com/devtools#options)
+
+
+```tsx {4-10}
+const App: React.FC = () => 
+    (
+        <Refine
+            dataProvider={dataProvider(API_URL)}
+            reactQueryDevtoolConfig={{
+                panelProps: { style: { background: "blue" } },
+                closeButtonProps: { onClick: () => console.log("On close") },
+            }}
+        >
+         ...
+        </Refine>
+    );
+```
 
 ### `notificationConfig`
 
