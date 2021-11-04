@@ -1,0 +1,27 @@
+.wrapper {
+    background-image: url("/contact-page/contact_bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* font-family: "Montserrat"; */
+    padding: 45px 0 0;
+}
+
+.descriptionTitle {
+    font-size: 72px;
+    color: white;
+    line-height: 66px;
+}
+
+.descriptionTitle span {
+    color: rgba(12, 206, 233, 1)
+}
+
+.descriptionBody {
+    color: white;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.descriptionBody span {
+    font-weight: 700;
+}
