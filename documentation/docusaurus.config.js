@@ -56,7 +56,7 @@ const siteConfig = {
                 },
                 { to: "docs", label: "Tutorial", position: "left" },
                 {
-                    to: "https://example.refine.dev",
+                    to: "/demo",
                     label: "Demo",
                     position: "left",
                 },
