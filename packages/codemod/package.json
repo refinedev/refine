@@ -1,0 +1,34 @@
+{
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "private": false,
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch --tsconfig tsconfig.json --verbose --noClean",
+    "build": "tsdx build --tsconfig tsconfig.json",
+    "test": "tsdx test --passWithNoTests --runInBand",
+    "prepare": "tsdx build",
+    "jscodeshift": "jscodeshift -d --transform=src/index.ts"
+  },
+  "name": "@pankod/refine-codemod",
+  "author": "Pankod",
+  "devDependencies": {
+    "tsdx": "^0.14.1",
+    "tslib": "^2.1.0",
+    "@types/jscodeshift": "0.11.0"
+  },
+  "dependencies": {
+    "jscodeshift": "^0.6.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
