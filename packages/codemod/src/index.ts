@@ -14,27 +14,33 @@ export default function transformer(
     options: Options,
 ) {
     const j = api.jscodeshift;
-
     const source = j(file.source);
 
-    const resourceElements = source.find(j.JSXIdentifier, {
-        name: "Resource",
-    });
+    const newResources: { [key: string]: any }[] = [];
 
-    const newResources: { [key: string]: JSXExpressionContainer }[] = [];
+    source
+        .find(j.JSXElement, {
+            openingElement: {
+                name: {
+                    name: "Resource",
+                },
+            },
+        })
+        .forEach((resources) => {
+            const newResource: { [key: string]: any } = {};
 
-    resourceElements.forEach((resources) => {
-        const newResource: { [key: string]: JSXExpressionContainer } = {};
+            resources.node.openingElement.attributes?.forEach((resource) => {
+                if (
+                    resource.type === "JSXAttribute" &&
+                    resource.name.type === "JSXIdentifier" &&
+                    resource.value
+                ) {
+                    newResource[resource.name.name] = resource.value;
+                }
+            });
 
-        resources.parent.node.attributes.forEach((resource: JSXAttribute) => {
-            if (resource.value) {
-                newResource[resource.name.name as string] =
-                    resource.value as JSXExpressionContainer;
-            }
+            newResources.push(newResource);
         });
-
-        newResources.push(newResource);
-    });
 
     const newAttributes = j.jsxAttribute(
         j.jsxIdentifier("resources"),
@@ -95,6 +101,8 @@ export default function transformer(
             },
         })
         .remove();
+
+    console.log(source.toSource());
 
     return source.toSource();
 }
