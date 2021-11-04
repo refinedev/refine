@@ -43,7 +43,7 @@ const Hello = () => {
                             className="link-button"
                             to="https://alpha.example.admin.refine.dev"
                         >
-                            Admin panel
+                            Admin Panel
                             <IoMdOpen />
                         </Link>
                         <div className="toggle toggle-right">
@@ -73,7 +73,7 @@ const Hello = () => {
                         className="link-button"
                         to="https://alpha.example.admin.refine.dev"
                     >
-                        Admin panel
+                        Admin Panel
                         <IoMdOpen />
                     </Link>
                     <img src="/demo/react-admin.png" />
