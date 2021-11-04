@@ -24,16 +24,16 @@ const Hello = () => {
                     <div className="pane">
                         <Link
                             className="link-button"
-                            to="https://alpha.client.example.refine.dev"
+                            to="https://alpha.example.refine.dev"
                         >
-                            Public facing app (client)
+                            B2B Next.js App (SSR)
                             <IoIosArrowForward />
                         </Link>
                         <div className="toggle toggle-left">
                             <IoIosArrowBack />
                         </div>
                         <iframe
-                            src="https://alpha.client.example.refine.dev"
+                            src="https://alpha.example.refine.dev"
                             width="100%"
                             height="100%"
                         ></iframe>
@@ -41,7 +41,7 @@ const Hello = () => {
                     <div className="pane">
                         <Link
                             className="link-button"
-                            to="https://alpha.example.refine.dev"
+                            to="https://alpha.example.admin.refine.dev"
                         >
                             Admin panel
                             <IoIosArrowForward />
@@ -50,7 +50,7 @@ const Hello = () => {
                             <IoIosArrowForward />
                         </div>
                         <iframe
-                            src="https://alpha.example.refine.dev"
+                            src="https://alpha.example.admin.refine.dev"
                             width="100%"
                             height="100%"
                         ></iframe>
@@ -61,9 +61,9 @@ const Hello = () => {
                 <div className="mobile-pane client-pane">
                     <Link
                         className="link-button"
-                        to="https://alpha.client.example.refine.dev"
+                        to="https://alpha.example.refine.dev"
                     >
-                        Public facing app (client)
+                        B2B Next.js App (SSR)
                         <IoIosArrowForward />
                     </Link>
                     <img src="/demo/nextjs-client.png" />
@@ -71,7 +71,7 @@ const Hello = () => {
                 <div className="mobile-pane admin-pane">
                     <Link
                         className="link-button"
-                        to="https://alpha.example.refine.dev"
+                        to="https://alpha.example.admin.refine.dev"
                     >
                         Admin panel
                         <IoIosArrowForward />

@@ -78,13 +78,13 @@ jobs:
             --set ingress.tls[0].secretName=${{ env.domain }} \
             --set ingress.tls[0].hosts[0]=${{ env.domain }} \
         env:
-          domain: "alpha.example.refine.dev"
+          domain: "alpha.example.admin.refine.dev"
 
       - name: Send custom variable to Meercode Build
         uses: meercodeio/meercode-custom-variable@0.1.0
         with:
           meercode-token: ${{ secrets.MEERCODE_TOKEN }}
-          url: 'https://alpha.example.refine.dev'
+          url: 'https://alpha.example.admin.refine.dev'
 
   client-example:
     runs-on: ubuntu-latest
@@ -135,13 +135,13 @@ jobs:
             --set ingress.tls[0].secretName=${{ env.domain }} \
             --set ingress.tls[0].hosts[0]=${{ env.domain }} \
         env:
-          domain: "alpha.client.example.refine.dev"
+          domain: "alpha.example.refine.dev"
 
       - name: Send custom variable to Meercode Build
         uses: meercodeio/meercode-custom-variable@0.1.0
         with:
           meercode-token: ${{ secrets.MEERCODE_TOKEN }}
-          url: 'https://alpha.client.example.refine.dev'
+          url: 'https://alpha.example.refine.dev'
   documentation:
     runs-on: ubuntu-latest
     strategy:
