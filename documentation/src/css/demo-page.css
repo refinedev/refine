@@ -55,10 +55,11 @@
 
 .link-button svg {
     transition: all 1s;
+    margin-left: 5px;
 }
 
 .link-button:hover svg {
-    transform: translateX(5px) scale(1.2);
+    transform: translateX(2px) scale(1.2);
 }
 
 .link-button:hover {

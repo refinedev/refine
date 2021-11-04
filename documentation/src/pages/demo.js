@@ -3,7 +3,7 @@ import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import SplitPane from "react-split-pane";
 
-import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+import { IoMdOpen, IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
 const Hello = () => {
     return (
@@ -27,7 +27,7 @@ const Hello = () => {
                             to="https://alpha.example.refine.dev"
                         >
                             B2B Next.js App (SSR)
-                            <IoIosArrowForward />
+                            <IoMdOpen />
                         </Link>
                         <div className="toggle toggle-left">
                             <IoIosArrowBack />
@@ -44,7 +44,7 @@ const Hello = () => {
                             to="https://alpha.example.admin.refine.dev"
                         >
                             Admin panel
-                            <IoIosArrowForward />
+                            <IoMdOpen />
                         </Link>
                         <div className="toggle toggle-right">
                             <IoIosArrowForward />
@@ -64,7 +64,7 @@ const Hello = () => {
                         to="https://alpha.example.refine.dev"
                     >
                         B2B Next.js App (SSR)
-                        <IoIosArrowForward />
+                        <IoMdOpen />
                     </Link>
                     <img src="/demo/nextjs-client.png" />
                 </div>
@@ -74,7 +74,7 @@ const Hello = () => {
                         to="https://alpha.example.admin.refine.dev"
                     >
                         Admin panel
-                        <IoIosArrowForward />
+                        <IoMdOpen />
                     </Link>
                     <img src="/demo/react-admin.png" />
                 </div>
