@@ -1,6 +1,5 @@
 import React from "react";
 import Layout from "@theme/Layout";
-import clsx from "clsx";
 
 import styles from "./styles.module.css";
 
@@ -14,17 +13,19 @@ const Contact: React.FC = () => {
                             <img src="/contact-page/contact_rise.png" />
                         </div>
                         <div className="col col--6">
-                            <h1 className={styles.descriptionTitle}>
-                                refine for <br /> <span>Enterprise</span>
-                            </h1>
-                            <p className={styles.descriptionBody}>
-                                Your business may require{" "}
-                                <span>a tailor-made solution. </span>
-                                <br />
-                                Our team is <span>ready to help you. </span>
-                                <br />
-                                <span>Let us hear about some details.</span>
-                            </p>
+                            <div className={styles.descriptionContainer}>
+                                <h1 className={styles.descriptionTitle}>
+                                    refine for <br /> <span>Enterprise</span>
+                                </h1>
+                                <p className={styles.descriptionBody}>
+                                    Your business may require{" "}
+                                    <span>a tailor-made solution. </span>
+                                    <br />
+                                    Our team is <span>ready to help you. </span>
+                                    <br />
+                                    <span>Let us hear about some details.</span>
+                                </p>
+                            </div>
                         </div>
                     </div>
                     <div className={styles.contactContainer}>
@@ -32,7 +33,10 @@ const Contact: React.FC = () => {
                             Request more information about{" "}
                             <span>refine Enterprise Edition.</span>
                         </h2>
-                        <form>
+                        <form
+                            action="https://getform.io/f/297fa631-d9e2-4ae5-af58-1a74a7b8b3b5"
+                            method="POST"
+                        >
                             <div className="row row--justify--center">
                                 <div className="col col--6">
                                     <div className="row">
@@ -149,7 +153,10 @@ const Contact: React.FC = () => {
                                         us emailing you occasionally. You can
                                         unsubscribe from emails at any time, and
                                         we will never pass your email onto third
-                                        parties. <a href="#">Privacy Policy</a>
+                                        parties.{" "}
+                                        <a href="./privacy-policy">
+                                            Privacy Policy
+                                        </a>
                                     </p>
                                 </div>
                                 <div className="col col--6">

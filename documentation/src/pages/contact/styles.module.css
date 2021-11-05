@@ -2,8 +2,18 @@
     background-image: url("/contact-page/contact_bg.png");
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 45px 0 0;
+    padding: 45px 0 15px;
     min-height: 100vh;
+}
+
+@media (max-width: 996px) {
+    .descriptionContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
 }
 
 .descriptionTitle {
@@ -70,7 +80,6 @@ select:focus,
 textarea:focus {
     border: 1px solid #0b82f0;
 }
-
 
 .submitButton {
     border-radius: 4px;
