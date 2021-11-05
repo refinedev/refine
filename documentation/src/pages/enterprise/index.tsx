@@ -1,9 +1,30 @@
 import React from "react";
 import Layout from "@theme/Layout";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+
+import {
+    IoIosCheckmarkCircleOutline,
+    IoIosCloseCircleOutline,
+} from "react-icons/io";
 
 import styles from "./styles.module.css";
 
 const Contact: React.FC = () => {
+    const {
+        register,
+        handleSubmit,
+        formState: { isSubmitSuccessful, isSubmitting, isSubmitted },
+    } = useForm();
+
+    const onSubmit = async (data) => {
+        await axios.post(
+            "https://getform.io/f/d499c25d-0c5c-45d6-8dc3-6352d87e1751",
+            data,
+            { headers: { Accept: "application/json" } },
+        );
+    };
+
     return (
         <Layout title="refine for Enterprise">
             <div className={styles.wrapper}>
@@ -33,10 +54,7 @@ const Contact: React.FC = () => {
                             Request more information about{" "}
                             <span>refine Enterprise Edition.</span>
                         </h2>
-                        <form
-                            action="https://getform.io/f/d499c25d-0c5c-45d6-8dc3-6352d87e1751"
-                            method="POST"
-                        >
+                        <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="row row--justify--center">
                                 <div className="col col--6">
                                     <div className="row">
@@ -54,6 +72,7 @@ const Contact: React.FC = () => {
                                                     placeholder="First name"
                                                     name="firstName"
                                                     required
+                                                    {...register("firstName")}
                                                 />
                                             </div>
                                         </div>
@@ -71,6 +90,7 @@ const Contact: React.FC = () => {
                                                     placeholder="Last name"
                                                     name="lastName"
                                                     required
+                                                    {...register("lastName")}
                                                 />
                                             </div>
                                         </div>
@@ -84,6 +104,7 @@ const Contact: React.FC = () => {
                                             placeholder="Company name"
                                             name="companyName"
                                             required
+                                            {...register("companyName")}
                                         />
                                     </div>
                                     <div className={styles.inputContainer}>
@@ -94,6 +115,7 @@ const Contact: React.FC = () => {
                                             placeholder="Email"
                                             name="email"
                                             required
+                                            {...register("email")}
                                         />
                                     </div>
                                     <div className={styles.inputContainer}>
@@ -105,8 +127,10 @@ const Contact: React.FC = () => {
                                             id="organization"
                                             required
                                             name="organization"
+                                            defaultValue=""
+                                            {...register("organization")}
                                         >
-                                            <option disabled selected value="">
+                                            <option disabled value="">
                                                 Please select
                                             </option>
                                             <option value="Freelance">
@@ -137,6 +161,7 @@ const Contact: React.FC = () => {
                                             placeholder="Job title"
                                             name="jobTitle"
                                             required
+                                            {...register("jobTitle")}
                                         />
                                     </div>
                                     <div className={styles.inputContainer}>
@@ -146,6 +171,7 @@ const Contact: React.FC = () => {
                                         <textarea
                                             id="message"
                                             required
+                                            {...register("message")}
                                             rows={10}
                                             name="message"
                                         ></textarea>
@@ -171,6 +197,7 @@ const Contact: React.FC = () => {
                                             <button
                                                 className={styles.submitButton}
                                                 type="submit"
+                                                disabled={isSubmitting}
                                             >
                                                 Submit
                                             </button>
@@ -179,6 +206,26 @@ const Contact: React.FC = () => {
                                 </div>
                             </div>
                         </form>
+                        {!isSubmitting && isSubmitSuccessful && (
+                            <div className={styles.messageContainer}>
+                                <IoIosCheckmarkCircleOutline
+                                    style={{ color: "#389e0d" }}
+                                />
+                                <h3 className={styles.successMessage}>
+                                    Your message sent successfully.
+                                </h3>
+                            </div>
+                        )}
+                        {!isSubmitting && isSubmitted && !isSubmitSuccessful && (
+                            <div className={styles.messageContainer}>
+                                <IoIosCloseCircleOutline
+                                    style={{ color: "#cf1322" }}
+                                />
+                                <h3 className={styles.errorMessage}>
+                                    Your message {"couldn't"} be sent.
+                                </h3>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

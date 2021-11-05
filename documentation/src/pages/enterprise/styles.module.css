@@ -41,6 +41,7 @@
     padding: 24px;
     border-radius: 8px;
     background-color: white;
+    transition: all 0.2s;
 }
 
 .contactContainer h2 {
@@ -99,6 +100,10 @@ textarea:focus {
     background-color: #0972d3;
 }
 
+.submitButton:disabled {
+    background-color: #bfbfbf;
+}
+
 .subDescription {
     font-size: 12px;
     font-weight: 400;
@@ -108,4 +113,25 @@ textarea:focus {
 
 .subDescription a {
     color: #0b82f0;
+}
+
+.messageContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 22px;
+    margin-top: 8px;
+}
+
+.successMessage {
+    color: #389e0d;
+    margin-bottom: 0px;
+    font-size: 17px;
+}
+
+.errorMessage {
+    color: #cf1322;
+    margin-bottom: 0px;
+    font-size: 17px;
 }

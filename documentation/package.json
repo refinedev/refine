@@ -19,11 +19,13 @@
     "@pankod/refine-simple-rest": "^0.1.4",
     "@pankod/refine-strapi-graphql": "^0.1.0",
     "@types/react-dom": "^17.0.9",
+    "axios": "^0.24.0",
     "clsx": "^1.1.1",
     "docusaurus-preset-shiki-twoslash": "^1.1.16",
     "graphql-request": "^3.5.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-hook-form": "^7.19.0",
     "react-icons": "^4.2.0",
     "react-lazyload": "^3.2.0",
     "react-player": "^2.9.0"
