@@ -471,7 +471,7 @@ Config for customize React Query Devtools.
 [Refer to the Devtools documentation for detailed information. &#8594](https://react-query.tanstack.com/devtools#options)
 
 
-```tsx {4-10}
+```tsx {4-7}
 const App: React.FC = () => 
     (
         <Refine
