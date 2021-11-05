@@ -477,8 +477,8 @@ const App: React.FC = () =>
         <Refine
             dataProvider={dataProvider(API_URL)}
             reactQueryDevtoolConfig={{
-                panelProps: { style: { background: "blue" } },
-                closeButtonProps: { onClick: () => console.log("On close") },
+                position: "bottom-left",
+                initialIsOpen: true,
             }}
         >
          ...
