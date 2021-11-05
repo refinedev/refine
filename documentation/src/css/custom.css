@@ -154,6 +154,10 @@
     justify-content: center;
 }
 
+.row--align--center {
+    align-items: center;
+}
+
 /* Header classes */
 .navbar__brand {
     margin-left: 8px;

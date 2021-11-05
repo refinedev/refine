@@ -71,6 +71,11 @@ const siteConfig = {
                     position: "left",
                 },
                 {
+                    to: "/enterprise",
+                    label: "Enterprise",
+                    position: "left",
+                },
+                {
                     type: "docsVersionDropdown",
                     position: "right",
                     dropdownActiveClassDisabled: true,
