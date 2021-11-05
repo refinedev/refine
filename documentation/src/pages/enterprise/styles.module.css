@@ -72,7 +72,7 @@ textarea {
     border: 1px solid #d9d9d9;
     border-radius: 4px;
     outline: none;
-    transition: all 0.5s;
+    transition: border 0.5s;
 }
 
 .inputContainer input:focus,

@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 
 const Contact: React.FC = () => {
     return (
-        <Layout>
+        <Layout title="refine for Enterprise">
             <div className={styles.wrapper}>
                 <div className="container">
                     <div className="row row--justify--center row--no-gutters row--align--center">
@@ -34,7 +34,7 @@ const Contact: React.FC = () => {
                             <span>refine Enterprise Edition.</span>
                         </h2>
                         <form
-                            action="https://getform.io/f/297fa631-d9e2-4ae5-af58-1a74a7b8b3b5"
+                            action="https://getform.io/f/d499c25d-0c5c-45d6-8dc3-6352d87e1751"
                             method="POST"
                         >
                             <div className="row row--justify--center">
@@ -106,32 +106,38 @@ const Contact: React.FC = () => {
                                             required
                                             name="organization"
                                         >
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">
-                                                Mercedes
+                                            <option disabled selected value="">
+                                                Please select
                                             </option>
-                                            <option value="audi">Audi</option>
+                                            <option value="Freelance">
+                                                Freelance
+                                            </option>
+                                            <option value="Agency">
+                                                Agency
+                                            </option>
+                                            <option value="Startup (<500 employees)">
+                                                Startup ({"<"}500 employees)
+                                            </option>
+                                            <option value="Enterprise (>500 employees)">
+                                                Enterprise ({">"}500 employees)
+                                            </option>
+                                            <option value="University">
+                                                University
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
                                 <div className="col col--6">
                                     <div className={styles.inputContainer}>
-                                        <label htmlFor="postion">
-                                            Your position in your company?
+                                        <label htmlFor="jobTitle">
+                                            Your job title in your company?
                                         </label>
-                                        <select
-                                            id="postion"
+                                        <input
+                                            id="jobTitle"
+                                            placeholder="Job title"
+                                            name="jobTitle"
                                             required
-                                            name="position"
-                                        >
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">
-                                                Mercedes
-                                            </option>
-                                            <option value="audi">Audi</option>
-                                        </select>
+                                        />
                                     </div>
                                     <div className={styles.inputContainer}>
                                         <label htmlFor="message">

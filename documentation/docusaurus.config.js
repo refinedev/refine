@@ -73,7 +73,7 @@ const siteConfig = {
                     position: "left",
                 },
                 {
-                    to: "/contact",
+                    to: "/enterprise",
                     label: "Enterprise",
                     position: "left",
                 },
