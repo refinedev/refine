@@ -1,12 +1,27 @@
 import {
     API,
+    ArrayExpression,
     FileInfo,
+    ObjectExpression,
     Options,
-    JSXAttribute,
-    JSXExpressionContainer,
 } from "jscodeshift";
 
 export const parser = "tsx";
+
+// const getObjFromObjectExpression = (node: ObjectExpression) => {
+//     const result: Record<string, any> = {};
+
+//     node.properties.forEach((property) => {
+//         if (
+//             property.type === "Property" &&
+//             property.key.type === "Identifier"
+//         ) {
+//             result[property.key.name] = property.value;
+//         }
+//     });
+
+//     return result;
+// };
 
 export default function transformer(
     file: FileInfo,
@@ -16,8 +31,93 @@ export default function transformer(
     const j = api.jscodeshift;
     const source = j(file.source);
 
+    // Import route provider
+    source
+        .find(j.ImportDeclaration, {
+            source: {
+                value: "@pankod/refine",
+            },
+        })
+        .insertAfter(
+            j.importDeclaration(
+                [j.importDefaultSpecifier(j.identifier("routerProvider"))],
+                j.literal("@pankod/refine-react-router"),
+            ),
+        );
+
+    // Add routerProvider attribute
+    source
+        .find(j.JSXElement, {
+            openingElement: {
+                name: {
+                    name: "Refine",
+                },
+            },
+        })
+        .replaceWith((path) => {
+            const openingElement = path.node.openingElement;
+
+            let routesArrayExpression: ArrayExpression | undefined;
+
+            const routesAttributeIndex = openingElement.attributes?.findIndex(
+                (attribute) =>
+                    attribute.type === "JSXAttribute" &&
+                    attribute.name.type === "JSXIdentifier" &&
+                    attribute.name.name === "routes",
+            );
+
+            if (
+                routesAttributeIndex !== undefined &&
+                routesAttributeIndex > -1
+            ) {
+                const routesAttribute =
+                    openingElement.attributes?.[routesAttributeIndex];
+
+                if (routesAttribute?.type === "JSXAttribute") {
+                    const attributeValue = routesAttribute.value;
+
+                    if (
+                        attributeValue?.type === "JSXExpressionContainer" &&
+                        attributeValue.expression.type === "ArrayExpression"
+                    ) {
+                        routesArrayExpression = attributeValue.expression;
+                    }
+                }
+            }
+
+            if (routesArrayExpression) {
+                openingElement.attributes?.push(
+                    j.jsxAttribute(
+                        j.jsxIdentifier("routerProvider"),
+                        j.jsxExpressionContainer(
+                            j.objectExpression([
+                                j.spreadElement(j.identifier("routerProvider")),
+                                j.property(
+                                    "init",
+                                    j.identifier("routes"),
+                                    routesArrayExpression,
+                                ),
+                            ]),
+                        ),
+                    ),
+                );
+            } else {
+                openingElement.attributes?.push(
+                    j.jsxAttribute(
+                        j.jsxIdentifier("routerProvider"),
+                        j.jsxExpressionContainer(
+                            j.identifier("routerProvider"),
+                        ),
+                    ),
+                );
+            }
+
+            return path.node;
+        });
+
     const newResources: { [key: string]: any }[] = [];
 
+    // Get resources data
     source
         .find(j.JSXElement, {
             openingElement: {
@@ -42,6 +142,7 @@ export default function transformer(
             newResources.push(newResource);
         });
 
+    // Construct a resources attribute with the resources data
     const newAttributes = j.jsxAttribute(
         j.jsxIdentifier("resources"),
         j.jsxExpressionContainer(
@@ -75,12 +176,12 @@ export default function transformer(
                 },
             },
         })
-        .find(j.JSXAttribute)
-        .filter((path) => {
-            return path.parent.node.name.name === "Refine";
-        })
-        .at(-1)
-        .insertAfter(newAttributes);
+        .replaceWith((path) => {
+            const openingElement = path.node.openingElement;
+            openingElement.attributes?.push(newAttributes);
+
+            return path.node;
+        });
 
     // Remove resources
     source
@@ -101,6 +202,24 @@ export default function transformer(
             },
         })
         .remove();
+
+    // Clear the body of Refine component
+    source
+        .find(j.JSXElement, {
+            openingElement: {
+                name: {
+                    name: "Refine",
+                },
+            },
+        })
+        .replaceWith((path) => {
+            const openingElement = path.node.openingElement;
+
+            path.node.closingElement = null;
+            openingElement.selfClosing = true;
+
+            return path.node;
+        });
 
     console.log(source.toSource());
 

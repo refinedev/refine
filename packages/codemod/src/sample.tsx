@@ -3,6 +3,7 @@ import { Refine, Resource, Icons } from "@pankod/refine";
 import jsonServerDataProvider from "@pankod/refine-simple-rest";
 import de_DE from "antd/lib/locale/de_DE";
 import { authProvider } from "authProvider";
+
 import dayjs from "dayjs";
 
 import "styles/antd.less";
@@ -12,6 +13,7 @@ import { DashboardPage } from "./pages/dashboard";
 import { LoginPage } from "./pages/login";
 import { OrderList, OrderShow } from "./pages/orders";
 import { UserList, UserShow } from "./pages/users";
+import { CustomPage } from "pages/custom-page";
 import {
     CourierList,
     CourierShow,
@@ -62,6 +64,13 @@ const App = () => {
             configProviderProps={{
                 locale: locale === "de" ? de_DE : undefined,
             }}
+            routes={[
+                {
+                    exact: true,
+                    component: CustomPage,
+                    path: "/custom-page",
+                },
+            ]}
         >
             <Resource
                 name="orders"
