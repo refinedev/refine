@@ -64,13 +64,6 @@ const App = () => {
             configProviderProps={{
                 locale: locale === "de" ? de_DE : undefined,
             }}
-            routes={[
-                {
-                    exact: true,
-                    component: CustomPage,
-                    path: "/custom-page",
-                },
-            ]}
         >
             <Resource
                 name="orders"

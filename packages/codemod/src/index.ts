@@ -1,33 +1,8 @@
-import {
-    API,
-    ArrayExpression,
-    FileInfo,
-    ObjectExpression,
-    Options,
-} from "jscodeshift";
+import { API, FileInfo, Options } from "jscodeshift";
 
 export const parser = "tsx";
 
-// const getObjFromObjectExpression = (node: ObjectExpression) => {
-//     const result: Record<string, any> = {};
-
-//     node.properties.forEach((property) => {
-//         if (
-//             property.type === "Property" &&
-//             property.key.type === "Identifier"
-//         ) {
-//             result[property.key.name] = property.value;
-//         }
-//     });
-
-//     return result;
-// };
-
-export default function transformer(
-    file: FileInfo,
-    api: API,
-    options: Options,
-) {
+export default function transformer(file: FileInfo, api: API) {
     const j = api.jscodeshift;
     const source = j(file.source);
 
@@ -57,7 +32,7 @@ export default function transformer(
         .replaceWith((path) => {
             const openingElement = path.node.openingElement;
 
-            let routesArrayExpression: ArrayExpression | undefined;
+            let routesExpression: any;
 
             const routesAttributeIndex = openingElement.attributes?.findIndex(
                 (attribute) =>
@@ -76,16 +51,13 @@ export default function transformer(
                 if (routesAttribute?.type === "JSXAttribute") {
                     const attributeValue = routesAttribute.value;
 
-                    if (
-                        attributeValue?.type === "JSXExpressionContainer" &&
-                        attributeValue.expression.type === "ArrayExpression"
-                    ) {
-                        routesArrayExpression = attributeValue.expression;
+                    if (attributeValue?.type === "JSXExpressionContainer") {
+                        routesExpression = attributeValue.expression;
                     }
                 }
             }
 
-            if (routesArrayExpression) {
+            if (routesExpression) {
                 openingElement.attributes?.push(
                     j.jsxAttribute(
                         j.jsxIdentifier("routerProvider"),
@@ -95,12 +67,16 @@ export default function transformer(
                                 j.property(
                                     "init",
                                     j.identifier("routes"),
-                                    routesArrayExpression,
+                                    routesExpression,
                                 ),
                             ]),
                         ),
                     ),
                 );
+
+                if (routesAttributeIndex !== undefined) {
+                    openingElement.attributes?.splice(routesAttributeIndex, 1);
+                }
             } else {
                 openingElement.attributes?.push(
                     j.jsxAttribute(
