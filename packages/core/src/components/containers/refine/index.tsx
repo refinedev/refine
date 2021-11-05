@@ -10,6 +10,7 @@ import {
     MutationCache,
     DefaultOptions,
 } from "react-query";
+
 import { ReactQueryDevtools } from "react-query/devtools";
 
 import { AuthContextProvider } from "@contexts/auth";
@@ -43,6 +44,7 @@ interface QueryClientConfig {
     mutationCache?: MutationCache;
     defaultOptions?: DefaultOptions;
 }
+
 export interface RefineProps {
     authProvider?: IAuthContext;
     dataProvider: IDataContextProvider;
@@ -65,6 +67,7 @@ export interface RefineProps {
     Title?: React.FC<TitleProps>;
     reactQueryClientConfig?: QueryClientConfig;
     notifcationConfig?: ConfigProps;
+    reactQueryDevtoolConfig?: any;
 }
 
 /**
@@ -96,6 +99,7 @@ export const Refine: React.FC<RefineProps> = ({
     Footer,
     OffLayoutArea,
     reactQueryClientConfig,
+    reactQueryDevtoolConfig,
     notifcationConfig,
 }) => {
     const queryClient = new QueryClient({
@@ -191,6 +195,7 @@ export const Refine: React.FC<RefineProps> = ({
                 <ReactQueryDevtools
                     initialIsOpen={false}
                     position="bottom-right"
+                    {...reactQueryDevtoolConfig}
                 />
             </QueryClientProvider>
         </MainRouter>
