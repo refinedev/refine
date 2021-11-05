@@ -73,6 +73,11 @@ const siteConfig = {
                     position: "left",
                 },
                 {
+                    to: "/enterprise",
+                    label: "Enterprise",
+                    position: "left",
+                },
+                {
                     href: "https://github.com/pankod/refine",
                     position: "right",
                     className: "header-icon-link header-github-link",
