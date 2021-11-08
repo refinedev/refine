@@ -43,14 +43,14 @@ const MenuItem: React.FC<{ item: IOrder; index: number }> = ({
                         xl: 132,
                         xxl: 108,
                     }}
-                    src={item.products[0].images[0].url}
+                    src={item.products[0]?.images[0]?.url}
                 />
                 <div className="menu-item__avatar-circle">
                     <span>#{index + 1}</span>
                 </div>
             </div>
             <div className="menu-item__text">
-                <Text strong>{item.products[0].name}</Text>
+                <Text strong>{item.products[0]?.name}</Text>
                 <NumberField
                     strong
                     options={{
