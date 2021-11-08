@@ -1,203 +1,211 @@
-import { API, FileInfo, Options } from "jscodeshift";
+/* eslint-disable @typescript-eslint/no-var-requires */
+/**
+ * Copyright 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+// Based on https://github.com/vercel/next.js/blob/canary/packages/next-codemod/bin/cli.ts
+// and https://github.com/reactjs/react-codemod/blob/dd8671c9a470a2c342b221ec903c574cf31e9f57/bin/cli.js
+// @pankod/refine-codemod name-of-transform optional/path/to/src [...options]
 
-export const parser = "tsx";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
-export default function transformer(file: FileInfo, api: API) {
-    const j = api.jscodeshift;
-    const source = j(file.source);
+import globby from "globby";
+import inquirer from "inquirer";
+import meow from "meow";
+import path from "path";
+import execa from "execa";
+import chalk from "chalk";
+import isGitClean from "is-git-clean";
 
-    // Import route provider
-    source
-        .find(j.ImportDeclaration, {
-            source: {
-                value: "@pankod/refine",
-            },
-        })
-        .insertAfter(
-            j.importDeclaration(
-                [j.importDefaultSpecifier(j.identifier("routerProvider"))],
-                j.literal("@pankod/refine-react-router"),
-            ),
-        );
+export const jscodeshiftExecutable = require.resolve(".bin/jscodeshift");
+export const transformerDirectory = path.join(
+    __dirname,
+    "../",
+    "dist/transformations",
+);
 
-    // Add routerProvider attribute
-    source
-        .find(j.JSXElement, {
-            openingElement: {
-                name: {
-                    name: "Refine",
-                },
-            },
-        })
-        .replaceWith((path) => {
-            const openingElement = path.node.openingElement;
+export function checkGitStatus(force) {
+    let clean = false;
+    let errorMessage = "Unable to determine if git directory is clean";
+    try {
+        clean = isGitClean.sync(process.cwd());
+        errorMessage = "Git directory is not clean";
+    } catch (err) {
+        if (
+            err &&
+            err.stderr &&
+            err.stderr.indexOf("Not a git repository") >= 0
+        ) {
+            clean = true;
+        }
+    }
 
-            let routesExpression: any;
-
-            const routesAttributeIndex = openingElement.attributes?.findIndex(
-                (attribute) =>
-                    attribute.type === "JSXAttribute" &&
-                    attribute.name.type === "JSXIdentifier" &&
-                    attribute.name.name === "routes",
+    if (!clean) {
+        if (force) {
+            console.log(`WARNING: ${errorMessage}. Forcibly continuing.`);
+        } else {
+            console.log("Thank you for using @pankod/refine-codemod!");
+            console.log(
+                chalk.yellow(
+                    "\nBut before we continue, please stash or commit your git changes.",
+                ),
             );
+            console.log(
+                "\nYou may use the --force flag to override this safety check.",
+            );
+            process.exit(1);
+        }
+    }
+}
 
-            if (
-                routesAttributeIndex !== undefined &&
-                routesAttributeIndex > -1
-            ) {
-                const routesAttribute =
-                    openingElement.attributes?.[routesAttributeIndex];
-
-                if (routesAttribute?.type === "JSXAttribute") {
-                    const attributeValue = routesAttribute.value;
-
-                    if (attributeValue?.type === "JSXExpressionContainer") {
-                        routesExpression = attributeValue.expression;
-                    }
-                }
-            }
-
-            if (routesExpression) {
-                openingElement.attributes?.push(
-                    j.jsxAttribute(
-                        j.jsxIdentifier("routerProvider"),
-                        j.jsxExpressionContainer(
-                            j.objectExpression([
-                                j.spreadElement(j.identifier("routerProvider")),
-                                j.property(
-                                    "init",
-                                    j.identifier("routes"),
-                                    routesExpression,
-                                ),
-                            ]),
-                        ),
-                    ),
-                );
-
-                if (routesAttributeIndex !== undefined) {
-                    openingElement.attributes?.splice(routesAttributeIndex, 1);
-                }
-            } else {
-                openingElement.attributes?.push(
-                    j.jsxAttribute(
-                        j.jsxIdentifier("routerProvider"),
-                        j.jsxExpressionContainer(
-                            j.identifier("routerProvider"),
-                        ),
-                    ),
-                );
-            }
-
-            return path.node;
-        });
-
-    const newResources: { [key: string]: any }[] = [];
-
-    // Get resources data
-    source
-        .find(j.JSXElement, {
-            openingElement: {
-                name: {
-                    name: "Resource",
-                },
-            },
-        })
-        .forEach((resources) => {
-            const newResource: { [key: string]: any } = {};
-
-            resources.node.openingElement.attributes?.forEach((resource) => {
-                if (
-                    resource.type === "JSXAttribute" &&
-                    resource.name.type === "JSXIdentifier" &&
-                    resource.value
-                ) {
-                    newResource[resource.name.name] = resource.value;
-                }
-            });
-
-            newResources.push(newResource);
-        });
-
-    // Construct a resources attribute with the resources data
-    const newAttributes = j.jsxAttribute(
-        j.jsxIdentifier("resources"),
-        j.jsxExpressionContainer(
-            j.arrayExpression(
-                newResources.map((resource) => {
-                    const newValue = j.objectExpression(
-                        Object.entries(resource).map(([key, value]) => {
-                            const valueToPut = value.expression
-                                ? value.expression
-                                : value;
-                            return j.property(
-                                "init",
-                                j.identifier(key),
-                                valueToPut as any,
-                            );
-                        }),
-                    );
-
-                    return newValue;
-                }),
-            ),
-        ),
+export function runTransform({ files, flags, transformer }) {
+    const transformerPath = path.join(
+        transformerDirectory,
+        `${transformer}.js`,
     );
 
-    // Add resources attribute
-    source
-        .find(j.JSXElement, {
-            openingElement: {
-                name: {
-                    name: "Refine",
-                },
-            },
-        })
-        .replaceWith((path) => {
-            const openingElement = path.node.openingElement;
-            openingElement.attributes?.push(newAttributes);
+    let args = [];
 
-            return path.node;
-        });
+    const { dry, print, runInBand } = flags;
 
-    // Remove resources
-    source
-        .find(j.JSXElement, {
-            openingElement: {
-                name: {
-                    name: "Resource",
-                },
-            },
-        })
-        .remove();
+    if (dry) {
+        args.push("--dry");
+    }
+    if (print) {
+        args.push("--print");
+    }
+    if (runInBand) {
+        args.push("--run-in-band");
+    }
 
-    // Remove import of Resource component
-    source
-        .find(j.ImportSpecifier, {
-            imported: {
-                name: "Resource",
-            },
-        })
-        .remove();
+    args.push("--verbose=2");
 
-    // Clear the body of Refine component
-    source
-        .find(j.JSXElement, {
-            openingElement: {
-                name: {
-                    name: "Refine",
-                },
-            },
-        })
-        .replaceWith((path) => {
-            const openingElement = path.node.openingElement;
+    args.push("--ignore-pattern=**/node_modules/**");
+    args.push("--ignore-pattern=**/.next/**");
 
-            path.node.closingElement = null;
-            openingElement.selfClosing = true;
+    args.push("--extensions=tsx,ts,jsx,js");
+    args.push("--parser=tsx");
 
-            return path.node;
-        });
+    args = args.concat(["--transform", transformerPath]);
 
-    console.log(source.toSource());
+    if (flags.jscodeshift) {
+        args = args.concat(flags.jscodeshift);
+    }
 
-    return source.toSource();
+    args = args.concat(files);
+
+    console.log(`Executing command: jscodeshift ${args.join(" ")}`);
+
+    const result = execa.sync(jscodeshiftExecutable, args, {
+        stdio: "inherit",
+        stripFinalNewline: false,
+    });
+
+    if (result.failed) {
+        throw new Error(`jscodeshift exited with code ${result.exitCode}`);
+    }
 }
+
+const TRANSFORMER_INQUIRER_CHOICES = [
+    {
+        name: "refine1-to-refine2: Transform from refine 1.x.x to at least 2.0.0",
+        value: "refine1-to-refine2",
+    },
+];
+
+function expandFilePathsIfNeeded(filesBeforeExpansion) {
+    const shouldExpandFiles = filesBeforeExpansion.some((file) =>
+        file.includes("*"),
+    );
+    return shouldExpandFiles
+        ? globby.sync(filesBeforeExpansion)
+        : filesBeforeExpansion;
+}
+
+export function run() {
+    const cli = meow({
+        description: "Codemods for updating refine apps.",
+        help: `
+    Usage
+      $ npx @pankod/refine-codemod <transform> <path> <...options>
+        path         Files or directory to transform. Can be a glob like pages/**.js
+    Options
+      --force            Bypass Git safety checks and forcibly run codemods
+      --dry              Dry run (no changes are made to files)
+      --print            Print transformed files to your terminal
+      --jscodeshift  (Advanced) Pass options directly to jscodeshift
+    `,
+        flags: {
+            boolean: ["force", "dry", "print", "help"],
+            string: ["_"],
+            alias: {
+                h: "help",
+            },
+        },
+    } as meow.Options<meow.AnyFlags>);
+
+    if (!cli.flags.dry) {
+        checkGitStatus(cli.flags.force);
+    }
+
+    if (
+        cli.input[0] &&
+        !TRANSFORMER_INQUIRER_CHOICES.find((x) => x.value === cli.input[0])
+    ) {
+        console.error("Invalid transform choice, pick one of:");
+        console.error(
+            TRANSFORMER_INQUIRER_CHOICES.map((x) => "- " + x.value).join("\n"),
+        );
+        process.exit(1);
+    }
+
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                name: "files",
+                message:
+                    "On which files or directory should the codemods be applied?",
+                when: !cli.input[1],
+                default: ".",
+                // validate: () =>
+                filter: (files) => files.trim(),
+            },
+            {
+                type: "list",
+                name: "transformer",
+                message: "Which transform would you like to apply?",
+                when: !cli.input[0],
+                pageSize: TRANSFORMER_INQUIRER_CHOICES.length,
+                choices: TRANSFORMER_INQUIRER_CHOICES,
+            },
+        ])
+        .then((answers) => {
+            const { files, transformer } = answers;
+
+            const filesBeforeExpansion = cli.input[1] || files;
+            const filesExpanded = expandFilePathsIfNeeded([
+                filesBeforeExpansion,
+            ]);
+
+            const selectedTransformer = cli.input[0] || transformer;
+
+            if (!filesExpanded.length) {
+                console.log(
+                    `No files found matching ${filesBeforeExpansion.join(" ")}`,
+                );
+                return null;
+            }
+
+            return runTransform({
+                files: filesExpanded,
+                flags: cli.flags,
+                transformer: selectedTransformer,
+            });
+        });
+}
+
+run();
