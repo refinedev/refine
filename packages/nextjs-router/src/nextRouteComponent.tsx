@@ -14,11 +14,13 @@ import { RouterProvider } from "./routerProvider";
 const { useHistory, useLocation, useParams } = RouterProvider;
 
 type NextRouteComponentProps = {
-    pageData?: any;
+    initialData?: any;
 };
 
 export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
-    pageData,
+    initialData,
+    children,
+    ...rest
 }) => {
     const { resources } = useResource();
     const { push } = useHistory();
@@ -77,7 +79,8 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                             canEdit={canEdit}
                             canDelete={canDelete}
                             canShow={canShow}
-                            initialData={pageData}
+                            initialData={initialData}
+                            {...rest}
                         />
                     );
                 }
@@ -90,7 +93,8 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                             canEdit={canEdit}
                             canDelete={canDelete}
                             canShow={canShow}
-                            initialData={pageData}
+                            initialData={initialData}
+                            {...rest}
                         />
                     );
                 }
@@ -103,7 +107,8 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                             canEdit={canEdit}
                             canDelete={canDelete}
                             canShow={canShow}
-                            initialData={pageData}
+                            initialData={initialData}
+                            {...rest}
                         />
                     );
                 }
@@ -116,7 +121,8 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                             canEdit={canEdit}
                             canDelete={canDelete}
                             canShow={canShow}
-                            initialData={pageData}
+                            initialData={initialData}
+                            {...rest}
                         />
                     );
                 }
