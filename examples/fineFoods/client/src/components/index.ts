@@ -9,3 +9,4 @@ export * from "./productListCard";
 export * from "./ordersModal";
 export * from "./orderModalProductItem";
 export * from "./orderSuccess";
+export * from "./offLayoutArea";

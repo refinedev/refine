@@ -24,7 +24,7 @@ import { StoreCreate, StoreEdit, StoreList } from "./pages/stores";
 import { CategoryList } from "./pages/categories";
 import { ReviewsList } from "./pages/reviews";
 import { useTranslation } from "react-i18next";
-import { Header, Title } from "components";
+import { Header, Title, OffLayoutArea } from "components";
 import { BikeWhiteIcon, PizzaIcon } from "components/icons";
 
 const App: React.FC = () => {
@@ -57,6 +57,7 @@ const App: React.FC = () => {
             i18nProvider={i18nProvider}
             Header={Header}
             Title={Title}
+            OffLayoutArea={OffLayoutArea}
             DashboardPage={DashboardPage}
             LoginPage={LoginPage}
             syncWithLocation
