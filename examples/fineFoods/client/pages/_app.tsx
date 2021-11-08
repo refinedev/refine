@@ -6,7 +6,7 @@ import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-nextjs-router";
 
-import { Layout, Header, Footer } from "@components";
+import { Layout, Header, Footer, OffLayoutArea } from "@components";
 import { BasketContextProvider } from "@contextProviders";
 
 require("antd/dist/antd.less");
@@ -21,6 +21,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             dataProvider={dataProvider(API_URL)}
             Layout={Layout}
             Header={Header}
+            OffLayoutArea={OffLayoutArea}
             Footer={Footer}
             resources={[{ name: "users" }]}
             warnWhenUnsavedChanges={true}
