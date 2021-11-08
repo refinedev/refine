@@ -198,14 +198,14 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 ### SSR
 
-`NextRouteComponent` accepts a `pageData` prop for SSR data.
+`NextRouteComponent` accepts a `initialData` prop for SSR data.
 
 ```ts
 type NextRouteComponentProps = {
-    pageData?: any;
+    initialData?: any;
 };
 ```
-`pageData` must be passed as props from `getServerSideProps`. `NextRouteComponent` will pass this data as `initialData` to the `list`, `create`, `edit` and `show` components.
+`initialData` must be passed as props from `getServerSideProps`. `NextRouteComponent` will pass this data as `initialData` to the `list`, `create`, `edit` and `show` components.
 
 For example, for a `list` component that will be rendered for `/[resource]`, the page can use SSR like this:
 
@@ -228,7 +228,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
         return {
             props: {
-                pageData: data,
+                initialData: data,
             },
         };
     } catch (error) {
