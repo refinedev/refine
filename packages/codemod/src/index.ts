@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+#!/usr/bin/env node
+
 /**
  * Copyright 2015-present, Facebook, Inc.
  *
@@ -11,6 +12,7 @@
 // @pankod/refine-codemod name-of-transform optional/path/to/src [...options]
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-var-requires */
 
 import globby from "globby";
 import inquirer from "inquirer";
@@ -26,6 +28,8 @@ export const transformerDirectory = path.join(
     "../",
     "dist/transformations",
 );
+
+const transformsWithPostTransform = ["refine1-to-refine2"];
 
 export function checkGitStatus(force) {
     let clean = false;
@@ -84,7 +88,6 @@ export function runTransform({ files, flags, transformer }) {
     args.push("--verbose=2");
 
     args.push("--ignore-pattern=**/node_modules/**");
-    args.push("--ignore-pattern=**/.next/**");
 
     args.push("--extensions=tsx,ts,jsx,js");
     args.push("--parser=tsx");
@@ -125,7 +128,7 @@ function expandFilePathsIfNeeded(filesBeforeExpansion) {
         : filesBeforeExpansion;
 }
 
-export function run() {
+export async function run(): Promise<void> {
     const cli = meow({
         description: "Codemods for updating refine apps.",
         help: `
@@ -162,50 +165,52 @@ export function run() {
         process.exit(1);
     }
 
-    inquirer
-        .prompt([
-            {
-                type: "input",
-                name: "files",
-                message:
-                    "On which files or directory should the codemods be applied?",
-                when: !cli.input[1],
-                default: ".",
-                // validate: () =>
-                filter: (files) => files.trim(),
-            },
-            {
-                type: "list",
-                name: "transformer",
-                message: "Which transform would you like to apply?",
-                when: !cli.input[0],
-                pageSize: TRANSFORMER_INQUIRER_CHOICES.length,
-                choices: TRANSFORMER_INQUIRER_CHOICES,
-            },
-        ])
-        .then((answers) => {
-            const { files, transformer } = answers;
+    const { files, transformer } = await inquirer.prompt([
+        {
+            type: "input",
+            name: "files",
+            message:
+                "On which files or directory should the codemods be applied?",
+            when: !cli.input[1],
+            default: ".",
+            filter: (files) => files.trim(),
+        },
+        {
+            type: "list",
+            name: "transformer",
+            message: "Which transform would you like to apply?",
+            when: !cli.input[0],
+            pageSize: TRANSFORMER_INQUIRER_CHOICES.length,
+            choices: TRANSFORMER_INQUIRER_CHOICES,
+        },
+    ]);
 
-            const filesBeforeExpansion = cli.input[1] || files;
-            const filesExpanded = expandFilePathsIfNeeded([
-                filesBeforeExpansion,
-            ]);
+    const filesBeforeExpansion = cli.input[1] || files;
+    const filesExpanded = expandFilePathsIfNeeded([filesBeforeExpansion]);
 
-            const selectedTransformer = cli.input[0] || transformer;
+    const selectedTransformer = cli.input[0] || transformer;
 
-            if (!filesExpanded.length) {
-                console.log(
-                    `No files found matching ${filesBeforeExpansion.join(" ")}`,
-                );
-                return null;
-            }
+    if (!filesExpanded.length) {
+        console.log(
+            `No files found matching ${filesBeforeExpansion.join(" ")}`,
+        );
+        return null;
+    }
 
-            return runTransform({
-                files: filesExpanded,
-                flags: cli.flags,
-                transformer: selectedTransformer,
-            });
-        });
+    await runTransform({
+        files: filesExpanded,
+        flags: cli.flags,
+        transformer: selectedTransformer,
+    });
+
+    if (transformsWithPostTransform.includes(selectedTransformer)) {
+        const transformerPath = path.join(
+            transformerDirectory,
+            `${selectedTransformer}.js`,
+        );
+
+        await require(transformerPath).postTransform(filesExpanded, cli.flags);
+    }
 }
 
 run();
