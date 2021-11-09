@@ -23,9 +23,9 @@ Router layer is abstracted from the core for mainly Nextjs support. This also cr
 
 This is also related to abstracting away the router layer from core. Differences between (currently two) router provider are so big that adding a layer to cover both cases (possibly more in the future) is much harder to implement and maintain compared to letting everyone handle it with their own conventions. This also has the huge benefit of allowing maximum configurability for every respective provider.
 
-## 🪄 Migrate your project automatically with refine-codemod ✨ (recommended)
+## 🪄 Migrating your project automatically with refine-codemod ✨ (recommended)
 
-[`@pankod/refine-codemod`][refine-codemod] package handles the breaking changes for your project automatically, without any manual steps. It migrates your project of `1.x.x` to `2.x.x`.
+[`@pankod/refine-codemod`][refine-codemod] package handles the breaking changes for your project automatically, without any manual steps. It migrates your project from `1.x.x` to `2.x.x`.
 
 Just `cd` into root folder of your project (where `package.json` is contained) and run this command:
 
@@ -35,7 +35,7 @@ npx @pankod/refine-codemod refine1-to-refine2
 
 And it's done. Now your project uses `refine@2.x.x`.
 
-## Migrate your project manually
+## Migrating your project manually
 
 ### Updating the packages
 
