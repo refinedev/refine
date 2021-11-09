@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "2.0.10",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -33,8 +33,8 @@
     "globby": "11.0.1",
     "inquirer": "7.3.3",
     "is-git-clean": "1.1.0",
-    "meow": "7.0.1",
-    "jscodeshift": "^0.6.4"
+    "jscodeshift": "^0.6.4",
+    "meow": "7.0.1"
   },
   "publishConfig": {
     "access": "public"
