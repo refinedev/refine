@@ -23,6 +23,20 @@ Router layer is abstracted from the core for mainly Nextjs support. This also cr
 
 This is also related to abstracting away the router layer from core. Differences between (currently two) router provider are so big that adding a layer to cover both cases (possibly more in the future) is much harder to implement and maintain compared to letting everyone handle it with their own conventions. This also has the huge benefit of allowing maximum configurability for every respective provider.
 
+## 🪄 Migrating your project automatically with refine-codemod ✨ (recommended)
+
+[`@pankod/refine-codemod`][refine-codemod] package handles the breaking changes for your project automatically, without any manual steps. It migrates your project from `1.x.x` to `2.x.x`.
+
+Just `cd` into root folder of your project (where `package.json` is contained) and run this command:
+
+```sh
+npx @pankod/refine-codemod refine1-to-refine2
+```
+
+And it's done. Now your project uses `refine@2.x.x`.
+
+## Migrating your project manually
+
 ### Updating the packages
 
 Packages used by your app must be updated to `^2.xx.xx`
@@ -137,8 +151,8 @@ const App: React.FC = () => {
 
 `routes` prop of `<Refine/>` is deprecated. Custom routes must be handled by the router provider you choose. [Refer to Custom Pages documentation for a detailed guide][customPages]
 
+[refine-codemod]: https://github.com/pankod/refine/tree/master/packages/codemod
 [refine]: /api-references/components/refine-config.md
 [resources]: /api-references/components/refine-config.md#resources
 [routerProvider]: /api-references/providers/router-provider.md
 [customPages]: /guides-and-concepts/custom-pages.md
-
