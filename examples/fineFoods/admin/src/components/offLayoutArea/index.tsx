@@ -8,7 +8,7 @@ export const OffLayoutArea = () => {
     return (
         <div className="toggle-container">
             <LeftOutlined />
-            <a href="https://alpha.example.refine.dev">
+            <a href="https://example.refine.dev">
                 Switch to <br />
                 <strong>CLIENT APP</strong>
             </a>

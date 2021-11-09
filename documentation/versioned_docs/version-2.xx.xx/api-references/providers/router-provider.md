@@ -401,7 +401,7 @@ Since Nextjs has a folder base route structure, it is used by exporting the `<Ne
 <br />
 
 &#8594 [Refer to the react-router's `<RouterComponent>` for detailed usage information.][routercomponent]  
-&#8594 [Refer to the nextjs-router's `<NextRouteComponent>` for detailed usage information.](https://github.com/pankod/refine/blob/alpha/packages/nextjs-router/src/nextRouteComponent.tsx)
+&#8594 [Refer to the nextjs-router's `<NextRouteComponent>` for detailed usage information.](https://github.com/pankod/refine/blob/master/packages/nextjs-router/src/nextRouteComponent.tsx)
 
 ## Serving the application from a subdirectory
 
@@ -482,6 +482,6 @@ Now you can access our application at `www.domain.com/admin`.
 </Tabs>
 
 [browserrouter]: https://reactrouter.com/web/api/BrowserRouter
-[routercomponent]: https://github.com/pankod/refine/blob/alpha/packages/react-router/src/routerComponent.tsx
-[react-router]: https://github.com/pankod/refine/tree/alpha/packages/react-router
-[nextjs-router]: https://github.com/pankod/refine/tree/alpha/packages/nextjs-router
+[routercomponent]: https://github.com/pankod/refine/blob/master/packages/react-router/src/routerComponent.tsx
+[react-router]: https://github.com/pankod/refine/tree/master/packages/react-router
+[nextjs-router]: https://github.com/pankod/refine/tree/master/packages/nextjs-router

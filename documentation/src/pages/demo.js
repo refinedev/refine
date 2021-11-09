@@ -24,7 +24,7 @@ const Hello = () => {
                     <div className="pane">
                         <Link
                             className="link-button"
-                            to="https://alpha.example.refine.dev"
+                            to="https://example.refine.dev"
                         >
                             B2B Next.js App (SSR)
                             <IoMdOpen />
@@ -33,7 +33,7 @@ const Hello = () => {
                             <IoIosArrowBack />
                         </div>
                         <iframe
-                            src="https://alpha.example.refine.dev"
+                            src="https://example.refine.dev"
                             width="100%"
                             height="100%"
                         ></iframe>
@@ -41,7 +41,7 @@ const Hello = () => {
                     <div className="pane">
                         <Link
                             className="link-button"
-                            to="https://alpha.example.admin.refine.dev"
+                            to="https://example.admin.refine.dev"
                         >
                             Admin Panel
                             <IoMdOpen />
@@ -50,7 +50,7 @@ const Hello = () => {
                             <IoIosArrowForward />
                         </div>
                         <iframe
-                            src="https://alpha.example.admin.refine.dev"
+                            src="https://example.admin.refine.dev"
                             width="100%"
                             height="100%"
                         ></iframe>
@@ -61,7 +61,7 @@ const Hello = () => {
                 <div className="mobile-pane client-pane">
                     <Link
                         className="link-button"
-                        to="https://alpha.example.refine.dev"
+                        to="https://example.refine.dev"
                     >
                         B2B Next.js App (SSR)
                         <IoMdOpen />
@@ -71,7 +71,7 @@ const Hello = () => {
                 <div className="mobile-pane admin-pane">
                     <Link
                         className="link-button"
-                        to="https://alpha.example.admin.refine.dev"
+                        to="https://example.admin.refine.dev"
                     >
                         Admin Panel
                         <IoMdOpen />
