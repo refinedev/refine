@@ -1,4 +1,8 @@
 import { API, JSCodeshift, Collection, FileInfo } from "jscodeshift";
+import fs from "fs";
+import path from "path";
+import { install } from "../helpers";
+import checkPackageLock from "../helpers/checkPackageLock";
 
 export const parser = "tsx";
 
@@ -204,7 +208,6 @@ const moveResources = (j: JSCodeshift, root: Collection<any>) => {
     });
 
     resourceElements.remove();
-
     resourceImportSpecifiers.remove();
 
     // Clear the body of Refine component
@@ -217,6 +220,69 @@ const moveResources = (j: JSCodeshift, root: Collection<any>) => {
         return path.node;
     });
 };
+
+const packagesToUpdate = [
+    "@pankod/refine-airtable",
+    "@pankod/refine-altogic",
+    "@pankod/refine-graphql",
+    "@pankod/refine-hasura",
+    "@pankod/refine-nestjsx-crud",
+    "@pankod/refine-nextjs-router",
+    "@pankod/refine-react-router",
+    "@pankod/refine-simple-rest",
+    "@pankod/refine-strapi",
+    "@pankod/refine-strapi-graphql",
+    "@pankod/refine-supabase",
+];
+
+export async function postTransform(files: any, flags: any) {
+    const rootDir = path.join(process.cwd(), files[0]);
+    const packageJsonPath = path.join(rootDir, "package.json");
+    const useYarn = checkPackageLock(rootDir) === "yarn.lock";
+    let packageJsonData;
+
+    try {
+        packageJsonData = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
+    } catch (err) {
+        console.error(
+            `Error: failed to load package.json from ${packageJsonPath}, ensure provided directory is root.`,
+        );
+    }
+
+    const dependenciesToInstall: Array<{
+        name: string;
+        version: string;
+    }> = [
+        {
+            name: "@pankod/refine",
+            version: "2.x.x",
+        },
+        {
+            name: "@pankod/refine-react-router",
+            version: "2.x.x",
+        },
+    ];
+
+    for (const key of Object.keys(packageJsonData.dependencies)) {
+        if (packagesToUpdate.includes(key)) {
+            dependenciesToInstall.push({
+                name: key,
+                version: "2.x.x",
+            });
+        }
+    }
+
+    if (!flags.dry) {
+        await install(
+            rootDir,
+            dependenciesToInstall.map((dep) => `${dep.name}@${dep.version}`),
+            {
+                useYarn,
+                isOnline: true,
+            },
+        );
+    }
+}
 
 export default function transformer(file: FileInfo, api: API): string {
     const j = api.jscodeshift;
