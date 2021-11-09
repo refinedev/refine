@@ -8,6 +8,9 @@ export interface IRefineContext {
     warnWhenUnsavedChanges: boolean;
     syncWithLocation: boolean;
     undoableTimeout: number;
+    catchAll?: React.ReactNode;
+    DashboardPage?: React.FC;
+    LoginPage?: React.FC | false;
     Title: React.FC<TitleProps>;
     Layout: React.FC<LayoutProps>;
     Sider: React.FC;
@@ -22,6 +25,9 @@ export interface IRefineContextProvider {
     warnWhenUnsavedChanges: boolean;
     syncWithLocation: boolean;
     undoableTimeout: number;
+    catchAll?: React.ReactNode;
+    DashboardPage?: React.FC;
+    LoginPage?: React.FC | false;
     Title?: React.FC<TitleProps>;
     Layout?: React.FC<LayoutProps>;
     Sider?: React.FC;

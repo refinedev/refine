@@ -1,9 +1,8 @@
 import React, { FC } from "react";
 import { Button, ButtonProps } from "antd";
 import { EditOutlined } from "@ant-design/icons";
-import { useParams } from "react-router-dom";
 
-import { useNavigation, useTranslate } from "@hooks";
+import { useNavigation, useRouterContext, useTranslate } from "@hooks";
 import { ResourceRouterParams } from "../../../interfaces";
 
 type EditButtonProps = ButtonProps & {
@@ -15,7 +14,7 @@ type EditButtonProps = ButtonProps & {
 /**
  * `<EditButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} component.
  * It uses the {@link https://refine.dev/docs/api-references/hooks/navigation/useNavigation#edit `edit`} method from {@link https://refine.dev/docs/api-references/hooks/navigation/useNavigation `useNavigation`} under the hood.
- * It can be useful when redirecting the app to the edit page with the record id route of {@link https://refine.dev/docs/api-references/components/resource `<Resource>`}.
+ * It can be useful when redirecting the app to the edit page with the record id route of resource}.
  *
  * @see {@link https://refine.dev/docs/api-references/components/buttons/edit-button} for more details.
  */
@@ -27,6 +26,8 @@ export const EditButton: FC<EditButtonProps> = ({
     ...rest
 }) => {
     const translate = useTranslate();
+
+    const { useParams } = useRouterContext();
 
     const { resource: routeResourceName, id: idFromRoute } =
         useParams<ResourceRouterParams>();

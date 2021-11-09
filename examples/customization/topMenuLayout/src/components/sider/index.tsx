@@ -1,5 +1,8 @@
 import React from "react";
-import { Link, Menu, useMenu, useTitle } from "@pankod/refine";
+import { Menu, useMenu, useTitle } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
+
+const { Link } = routerProvider;
 
 export const CustomSider: React.FC = () => {
     const Title = useTitle();

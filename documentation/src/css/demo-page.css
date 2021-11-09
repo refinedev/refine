@@ -1,0 +1,131 @@
+.main-title-container {
+    position: absolute;
+    padding-top: 24px;
+    width: 100%;
+    text-align: center;
+    z-index: 3;
+}
+
+.main-title-container h1 {
+    text-transform: uppercase;
+    color: white;
+    font-weight: 800;
+    font-size: 72px;
+    text-shadow: 4px 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.Pane1 {
+    background-color: #2a132e;
+}
+
+.Pane2 {
+    background-color: rgba(251, 122, 50, 1);
+}
+
+.pane {
+    margin-top: 260px;
+    padding: 0px 12px 24px 12px;
+    height: 1000px;
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pane iframe {
+    border: 0;
+    border-radius: 24px;
+}
+
+.link-button {
+    display: flex;
+    align-items: center;
+    color: white;
+    padding: 8px;
+    font-size: 20px;
+    font-weight: 900;
+    border: 2px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.5s;
+    text-align: center;
+}
+
+.link-button svg {
+    transition: all 1s;
+    margin-left: 5px;
+}
+
+.link-button:hover svg {
+    transform: translateX(2px) scale(1.2);
+}
+
+.link-button:hover {
+    transform: scale(1.01);
+    color: white;
+}
+
+.toggle {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 250px;
+    width: 40px;
+    height: 60px;
+    font-size: 64px;
+    color: white;
+}
+
+.toggle:hover svg {
+    transform: scale(1.2);
+}
+
+.toggle-left {
+    right: 0;
+    border-top-left-radius: 99px;
+    border-bottom-left-radius: 99px;
+    background-color: rgba(251, 122, 50, 1);
+}
+
+.toggle-right {
+    left: 0;
+    border-top-right-radius: 99px;
+    border-bottom-right-radius: 99px;
+    background-color: #2a132e;
+}
+
+@media (max-width: 768px) {
+    .desktop-view {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .mobile-view {
+        display: none;
+    }
+}
+
+
+.mobile-pane {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 32px;
+    padding: 24px;
+}
+
+.mobile-pane img {
+    width: 400px;
+}
+
+.client-pane {
+    background-color: #2a132e;
+}
+
+.admin-pane {
+    background-color: rgba(251, 122, 50, 1);
+}

@@ -1,6 +1,7 @@
 import {
     stringifyTableParams,
     parseTableParams,
+    parseTableParamsFromQuery,
     getDefaultSortOrder,
     getDefaultFilter,
     mapAntdSorterToCrudSorting,
@@ -72,6 +73,29 @@ describe("definitions/table", () => {
         expect(parsedSorter).toStrictEqual([{ field: "id", order: "desc" }]);
         expect(parsedFilters).toStrictEqual([
             { field: "categoryId", operator: "in", value: ["1", "2"] },
+        ]);
+    });
+
+    fit("parse table params with advanced query object", async () => {
+        const query = {
+            current: "1",
+            pageSize: "10",
+            id__eq: "1",
+            sort: ["id", "firstName"],
+            order: ["asc", "desc"],
+        };
+
+        const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
+            parseTableParamsFromQuery(query);
+
+        expect(parsedCurrent).toBe(1);
+        expect(parsedPageSize).toBe(10);
+        expect(parsedSorter).toStrictEqual([
+            { field: "id", order: "asc" },
+            { field: "firstName", order: "desc" },
+        ]);
+        expect(parsedFilters).toStrictEqual([
+            { field: "id", operator: "eq", value: "1" },
         ]);
     });
 

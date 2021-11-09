@@ -1,5 +1,5 @@
 {
-  "version": "0.1.2",
+  "version": "2.0.10",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -20,7 +20,6 @@
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
-  "peerDependencies": {},
   "husky": {
     "hooks": {
       "pre-commit": "tsdx lint"
@@ -48,7 +47,7 @@
     "typescript": "^4.4.3"
   },
   "dependencies": {
-    "@pankod/refine": "^1.0.80",
+    "@pankod/refine": "^2.0.10",
     "gql-query-builder": "^3.5.5",
     "graphql": "^15.6.1",
     "graphql-request": "^3.5.0"

@@ -27,14 +27,12 @@ const siteConfig = {
                     showLastUpdateTime: true,
                 },
                 theme: {
-                    customCss: require.resolve("./src/css/custom.css"),
+                    customCss: [
+                        require.resolve("./src/css/custom.css"),
+                        require.resolve("./src/css/split-pane.css"),
+                        require.resolve("./src/css/demo-page.css"),
+                    ],
                 },
-            },
-        ],
-        [
-            "docusaurus-preset-shiki-twoslash",
-            {
-                themes: ["min-light", "nord"],
             },
         ],
     ],
@@ -58,7 +56,7 @@ const siteConfig = {
                 },
                 { to: "docs", label: "Tutorial", position: "left" },
                 {
-                    to: "https://example.refine.dev",
+                    to: "/demo",
                     label: "Demo",
                     position: "left",
                 },
@@ -76,6 +74,11 @@ const siteConfig = {
                     to: "/enterprise",
                     label: "Enterprise",
                     position: "left",
+                },
+                {
+                    type: "docsVersionDropdown",
+                    position: "right",
+                    dropdownActiveClassDisabled: true,
                 },
                 {
                     href: "https://github.com/pankod/refine",

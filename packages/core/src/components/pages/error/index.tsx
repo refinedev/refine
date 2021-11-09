@@ -1,9 +1,13 @@
 import React, { useLayoutEffect, useState } from "react";
 import { Button, Result, Typography, Space, Tooltip } from "antd";
-import { useParams } from "react-router-dom";
 import { InfoCircleOutlined } from "@ant-design/icons";
 
-import { useNavigation, useTranslate, useResourceWithRoute } from "@hooks";
+import {
+    useNavigation,
+    useTranslate,
+    useResourceWithRoute,
+    useRouterContext,
+} from "@hooks";
 import { ResourceErrorRouterParams } from "../../../interfaces";
 
 const { Text } = Typography;
@@ -19,6 +23,8 @@ export const ErrorComponent: React.FC = () => {
     const { push } = useNavigation();
     const translate = useTranslate();
     const actionTypes = ["edit", "create", "show"];
+
+    const { useParams } = useRouterContext();
 
     const params = useParams<ResourceErrorRouterParams>();
     const resource = useResourceWithRoute();

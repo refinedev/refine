@@ -3,7 +3,7 @@ import { useMutation, UseMutationResult } from "react-query";
 
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
-import { useLogout } from "@hooks/auth";
+import { useLogout } from "@hooks";
 
 /**
  * `useCheckError` calls the `checkError` method from the {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
