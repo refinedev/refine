@@ -13,13 +13,15 @@ You can call the `useImport` hook and add an `<ImportButton>` with properties re
 
 Let's look at an example of adding a custom import button:
 
-```tsx twoslash title="pages/posts/list.tsx" {4-5, 21, 25-27}
+```tsx  title="pages/posts/list.tsx"
 import {
     List,
     useTable,
     useMany,
+// highlight-start
     useImport,
     ImportButton,
+// highlight-end
 } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
@@ -35,13 +37,16 @@ export const PostList: React.FC = () => {
         },
     });
 
+// highlight-next-line
     const importProps = useImport<IPostFile>();
 
     return (
         <List
+// highlight-start
             pageHeaderProps={{
                 extra: <ImportButton {...importProps} />,
             }}
+// highlight-end
         >
             ...
         </List>
@@ -94,37 +99,7 @@ It has 3 entries. We should map `categoryId` to `category.id` and `userId` to `
 
 This would make our `useImport` call look like this:
 
-```tsx twoslash title="/src/pages/posts/list.tsx" {14-26}
-interface ICategory {
-    id: string;
-    title: string;
-}
-
-interface IPostFile {
-    id: string;
-    title: string;
-    content: string;
-    userId: number;
-    categoryId: number;
-    status: "published" | "draft" | "rejected";
-}
-
-interface IPost {
-    id: string;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
-    category: ICategory;
-}
-
-import {
-    List,
-    useTable,
-    useMany,
-    useImport,
-    ImportButton,
-} from "@pankod/refine";
-// ---cut---
+```tsx  title="/src/pages/posts/list.tsx"
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
@@ -138,6 +113,7 @@ export const PostList: React.FC = () => {
         },
     });
 
+// highlight-start
     const importProps = useImport<IPostFile>({
         mapData: (item) => {
             return {
@@ -153,6 +129,7 @@ export const PostList: React.FC = () => {
             };
         },
     });
+// highlight-end
 
     return <></>;
 }
@@ -178,7 +155,7 @@ Depending on the [`batchSize`][batchSize] option, posts can get sent one by one 
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-import-export-example-jtzlb?autoresize=1&fontsize=14&hidenavigation=1&module=%2Fsrc%2Fpages%2Fposts%2Flist.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-import-export-example-4nneu?autoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-import-export-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

@@ -8,14 +8,7 @@ import editGif from '@site/static/img/hooks/useModalForm/edit.gif';
 
 `useModalForm` hook allows you to manage a form within a modal. It returns Ant Design [Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) components props.
 
-```ts twoslash
-interface IPost {
-    id: string;
-    title: string;
-    status: "published" | "draft" | "rejected";
-}
-// ---cut---
-
+```ts
 import { useModalForm } from "@pankod/refine";
 
 const { modalProps, formProps } = useModalForm<IPost>({
@@ -33,25 +26,30 @@ We'll show two examples, one for creating and one for editing a post. Let's see 
 
 In this example, we will show you how to create a record with `useModalForm`.
 
-```tsx title="pages/posts/list.tsx" twoslash {3-5, 10-14, 18-31}
+```tsx title="pages/posts/list.tsx"
 import { useModalForm, Modal, Form, Create, Radio, List, Input } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
+// highlight-start
     const { modalProps, formProps, show } = useModalForm<IPost>({
         action: "create",
     });
+// highlight-end
 
     return (
         <>
             <List
+// highlight-start
                 createButtonProps={{
                     onClick: () => {
                         show();
                     },
                 }}
+// highlight-end
             >
                 ...
             </List>
+// highlight-start
             <Modal {...modalProps}>
                 <Form {...formProps} layout="vertical">
                     <Form.Item label="Title" name="title">
@@ -66,6 +64,7 @@ export const PostList: React.FC = () => {
                     </Form.Item>
                 </Form>
             </Modal>
+// highlight-end
         </>
     );
 };
@@ -106,7 +105,7 @@ This code block makes `<Modal>` appear when you click the button.
 
 Let's learn how to add editing capabilities to records that will be opening form in Modal by using the `action` prop.
 
-```tsx twoslash title="pages/posts/list.tsx" {17, 19, 32}
+```tsx  title="pages/posts/list.tsx"
 import { 
     useModalForm,
     Modal,
@@ -126,6 +125,7 @@ export const PostList: React.FC = () => {
         show,
         editId,
     } = useModalForm<IPost>({
+// highlight-next-line
         action: "edit",
     });
 
@@ -139,12 +139,14 @@ export const PostList: React.FC = () => {
                         dataIndex="actions"
                         key="actions"
                         render={(_value, record) => (
+// highlight-next-line
                             <EditButton onClick={() => show(record.id)} />
                         )}
                     />
                 </Table>
             </List>
             <Modal {...modalProps}>
+// highlight-next-line
                 <Form {...formProps} layout="vertical">
                     <Form.Item label="Title" name="title">
                         <Input />
@@ -258,9 +260,12 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 
 ## Live Codesandbox Example
 
-   <iframe src="https://codesandbox.io/embed/refine-use-modal-form-example-qbi4m?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Flist.tsx&theme=dark&view=preview"
+   <iframe src="https://codesandbox.io/embed/refine-use-modal-form-example-syf77?autoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-use-modal-form-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
+
+[BaseRecord]: /api-references/interfaces.md#baserecord
+[HttpError]: /api-references/interfaces.md#httperror

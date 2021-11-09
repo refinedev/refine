@@ -5,15 +5,16 @@ title: Edit
 
 import editButton from '@site/static/img/guides-and-concepts/components/buttons/edit/edit.png';
 
-`<EditButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `edit` method from [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the edit page with the record id route of `<Resource>`.
+`<EditButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `edit` method from [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the edit page with the record id route of resource.
 
 ## Usage
 
-```tsx twoslash {4, 20}
+```tsx
 import {
     List,
     Table,
     useTable,
+    // highlight-next-line
     EditButton,
 } from "@pankod/refine";
 
@@ -30,6 +31,7 @@ export const PostList: React.FC = () => {
                     dataIndex="actions"
                     key="actions"
                     render={(_, record) => (
+                        // highlight-next-line
                         <EditButton size="small" recordItemId={record.id} />
                     )}
                 />
@@ -61,7 +63,7 @@ Will look like this:
 
 `recordItemId` is used to append the record id to the end of the route path.
 
-```tsx twoslash
+```tsx 
 import { EditButton } from "@pankod/refine";
 
 export const MyEditComponent = () => {
@@ -77,9 +79,9 @@ Clicking the button will trigger the `edit` method of [`useNavigation`](/api-ref
 
 ### `resourceName`
 
-Redirection endpoint(`resourceName/edit`) is defined by `resourceName` property. By default, `<EditButton>` uses `name` property of the `<Resource>` component as an endpoint to redirect after clicking.
+Redirection endpoint(`resourceName/edit`) is defined by `resourceName` property. By default, `<EditButton>` uses `name` property of the resource object as an endpoint to redirect after clicking.
 
-```tsx twoslash
+```tsx 
 import { EditButton } from "@pankod/refine";
 
 export const MyEditComponent = () => {
@@ -93,7 +95,7 @@ Clicking the button will trigger the `edit` method of [`useNavigation`](/api-ref
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx twoslash
+```tsx 
 import { EditButton } from "@pankod/refine";
 
 export const MyEditComponent = () => {

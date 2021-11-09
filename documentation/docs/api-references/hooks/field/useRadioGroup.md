@@ -30,17 +30,20 @@ We will demonstrate how to get data at `/languages` endpoint from the `https://a
 }
 ```
 
-```tsx twoslash title="pages/posts/create.tsx" {3-5, 10}
+```tsx  title="pages/posts/create.tsx"
 import { Form, Radio, useRadioGroup } from "@pankod/refine";
 
 export const PostCreate = () => {
+    // highlight-start
     const { radioGroupProps } = useRadioGroup<ILanguage>({
         resource: "languages",
     });
+    // highlight-end
 
     return (
         <Form>
             <Form.Item label="Languages" name="languages">
+                // highlight-next-line
                 <Radio.Group {...radioGroupProps} />
             </Form.Item>
         </Form>
@@ -71,9 +74,7 @@ All we have to do is pass the `radioGroupProps` it returns to the `<Radio.Group>
 
 ### `resource`
 
-```tsx twoslash {1}
-import { useRadioGroup } from "@pankod/refine";
-// ---cut---
+```tsx
 const { radioGroupProps } = useRadioGroup({
     resource: "languages",
 });
@@ -85,13 +86,13 @@ const { radioGroupProps } = useRadioGroup({
 
 ### `optionLabel` and `optionValue`
 
-```tsx twoslash {2-3}
-import { useRadioGroup } from "@pankod/refine";
-// ---cut---
+```tsx
 const { radioGroupProps } = useRadioGroup({
     resource: "languages",
+    // highlight-start
     optionLabel: "title",
     optionValue: "id",
+    // highlight-end
 });
 ```
 
@@ -99,11 +100,10 @@ const { radioGroupProps } = useRadioGroup({
 
 ### `filters`
 
-```tsx twoslash {2-8}
-import { useRadioGroup } from "@pankod/refine";
-// ---cut---
+```tsx
 const { radioGroupProps } = useRadioGroup({
     resource: "languages",
+// highlight-start
     filters: [
         {
             field: "title",
@@ -111,6 +111,7 @@ const { radioGroupProps } = useRadioGroup({
             value: "German",
         },
     ],
+// highlight-end
 });
 ```
 
@@ -118,69 +119,52 @@ const { radioGroupProps } = useRadioGroup({
 
 ### `sort`
 
-```tsx twoslash {2-7}
-import { useRadioGroup } from "@pankod/refine";
-// ---cut---
+```tsx
 const { radioGroupProps } = useRadioGroup({
     resource: "languages",
+// highlight-start
     sort: [
         {
             field: "title",
             order: "asc",
         },
     ],
+// highlight-end
 });
 ```
 
 `sort` allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
 
-
-
-
 ### `queryOptions`
 
-[useQuery](https://react-query.tanstack.com/reference/useQuery) options can be set by passing `queryOptions` property.
-
-
-
-```tsx twoslash {2}
-import { useRadioGroup } from "@pankod/refine";
-// ---cut---
+```tsx
 const { radioGroupProps } = useRadioGroup({
     resource: "languages",
-    queryOptions: { onError: () => { console.log("triggers when on query return Error") }}
+// highlight-start
+    queryOptions: {
+        onError: () => {
+            console.log("triggers when on query return Error");
+        },
+    },
+// highlight-end
 });
 ```
 
-```tsx twoslash {2, 4-10}
-import { useRadioGroup } from "@pankod/refine";
-// ---cut---
-const { 
-    radioGroupProps, 
-} = useRadioGroup({
-    resource: "languages",
-    queryOptions: { 
-        onSuccess: (data) => { 
-            console.log("triggers when on query return on success") 
-        } 
-    }
-});
-```
+[useQuery](https://react-query.tanstack.com/reference/useQuery) options can be set by passing `queryOptions` property.
 
 ## API Reference
 
 ### Properties
 
-| Property                                                                                            | Description                                                                         | Type                                                             | Default   |
-| --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------- | --------- |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](/api-references/components/resource.md) for API data interactions      | `string`                                                         |           |
-| optionValue                                                                                         | Sets the option's value                                                             | `string`                                                         | `"id"`    |
-| optionLabel                                                                                         | Sets the option's label value                                                       | `string`                                                         | `"title"` |
-| filters                                                                                             | Adds filters while fetching the data                                                | [`CrudFilters`](../../interfaces.md#crudfilters)                 |           |
-| sort                                                                                                | Allows us to sort the options                                                       | [`CrudSorting`](../../interfaces.md#crudsorting)                 |           |
-| queryOptions                                                                                        | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>`               |           |
+| Property                                                                                            | Description                                                                         | Type                                                           | Default   |
+| --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------- | --------- |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                             | `string`                                                       |           |
+| optionValue                                                                                         | Sets the option's value                                                             | `string`                                                       | `"id"`    |
+| optionLabel                                                                                         | Sets the option's label value                                                       | `string`                                                       | `"title"` |
+| filters                                                                                             | Adds filters while fetching the data                                                | [`CrudFilters`](../../interfaces.md#crudfilters)               |           |
+| sort                                                                                                | Allows us to sort the options                                                       | [`CrudSorting`](../../interfaces.md#crudsorting)               |           |
+| queryOptions                                                                                        | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>`             |           |
 | metaData                                                                                            | Metadata query for `dataProvider`                                                   | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery) | {}        |
-
 
 ### Return values
 
@@ -189,10 +173,9 @@ const {
 | radioGroupProps | Ant design radio group props     | [`Radio Group`](https://ant.design/components/radio/#RadioGroup)                              |
 | queryResult     | Results of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
 
-
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-use-radio-group-example-5rrxj?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Fedit.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-use-radio-group-example-3wtb3?autoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-use-radio-group-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

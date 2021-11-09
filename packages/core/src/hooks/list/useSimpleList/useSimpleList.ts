@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
 import { QueryObserverResult, UseQueryOptions } from "react-query";
 import { ListProps } from "antd/lib/list";
 import { FormProps } from "antd/lib/form";
@@ -10,6 +9,7 @@ import {
     useList,
     useSyncWithLocation,
     useNavigation,
+    useRouterContext,
 } from "@hooks";
 
 import {
@@ -86,6 +86,8 @@ export const useSimpleList = <
     TError,
     TSearchVariables
 > = {}): useSimpleListReturnType<TData, TError, TSearchVariables> => {
+    const { useLocation, useParams } = useRouterContext();
+
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const { push } = useNavigation();

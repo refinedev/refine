@@ -1,5 +1,7 @@
-import { Refine, Resource, BackTop, AntdLayout, Grid } from "@pankod/refine";
+import { Refine, BackTop, AntdLayout, Grid } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router";
+
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList } from "pages/posts";
@@ -12,6 +14,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
+            routerProvider={routerProvider}
             Layout={({ children, Header, Footer, OffLayoutArea }) => (
                 <AntdLayout
                     style={{ minHeight: "100vh", flexDirection: "row" }}
@@ -39,9 +42,13 @@ const App: React.FC = () => {
                     <BackTop />
                 </>
             )}
-        >
-            <Resource name="posts" list={PostList} />
-        </Refine>
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                },
+            ]}
+        />
     );
 };
 

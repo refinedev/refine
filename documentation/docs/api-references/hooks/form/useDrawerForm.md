@@ -8,14 +8,7 @@ import editGif from '@site/static/img/hooks/useDrawerForm/edit.gif';
 
 `useDrawerForm` hook allows you to manage a form within a Drawer. It returns Ant Design [Form](https://ant.design/components/form/) and [Drawer](https://ant.design/components/drawer/) components props.
 
-```ts twoslash
-interface IPost {
-    id: string;
-    title: string;
-    status: "published" | "draft" | "rejected";
-}
-// ---cut---
-
+```ts
 import { useDrawerForm } from "@pankod/refine";
 
 const { drawerProps, formProps } = useDrawerForm<IPost>({
@@ -31,10 +24,11 @@ We'll do two examples, one for creating and one for editing a post. Let's see ho
 
 ### Create Drawer
 
-```tsx twoslash title="pages/posts/list.tsx" {3-10, 15-19, 23-39}
+```tsx  title="pages/posts/list.tsx"
 import { useDrawerForm, Drawer, Form, Create, Radio, List, Input } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
+// highlight-start
     const {
         formProps,
         drawerProps,
@@ -43,18 +37,22 @@ export const PostList: React.FC = () => {
     } = useDrawerForm<IPost>({
         action: "create",
     });
+// highlight-end
 
     return (
         <>
             <List
+// highlight-start
                 createButtonProps={{
                     onClick: () => {
                         show();
                     },
                 }}
+// highlight-end
             >
                 ...
             </List>
+// highlight-start
             <Drawer {...drawerProps}>
                 <Create saveButtonProps={saveButtonProps}>
                     <Form {...formProps} layout="vertical">
@@ -71,6 +69,7 @@ export const PostList: React.FC = () => {
                     </Form>
                 </Create>
             </Drawer>
+// highlight-end
         </>
     )
 }
@@ -112,7 +111,7 @@ This code block makes `<Drawer>` appear when you click the button.
 
 Let's learn how to add editing capabilities to the records that will be opening form in Drawer with using `action` prop.
 
-```tsx twoslash title="pages/posts/list.tsx" {19-20, 22, 35-39, 45, 47-48}
+```tsx  title="pages/posts/list.tsx"
 import { 
     useDrawerForm,
     Drawer,
@@ -135,6 +134,7 @@ export const PostList: React.FC = () => {
         deleteButtonProps,
         editId,
     } = useDrawerForm<IPost>({
+// highlight-next-line
         action: "edit",
     });
 
@@ -147,6 +147,7 @@ export const PostList: React.FC = () => {
                         title="Actions"
                         dataIndex="actions"
                         key="actions"
+// highlight-start
                         render={(_value, record) => (
                             <EditButton
                                 size="small"
@@ -154,15 +155,19 @@ export const PostList: React.FC = () => {
                                 onClick={() => show(record.id)}
                             />
                         )}
+// highlight-end
                     />
                 </Table>
             </List>
             <Drawer {...drawerProps}>
                 <Edit
+// highlight-start
                     saveButtonProps={saveButtonProps}
                     deleteButtonProps={deleteButtonProps}
                     recordItemId={editId}
+// highlight-end
                 >
+// highlight-next-line
                     <Form {...formProps} layout="vertical">
                         <Form.Item label="Title" name="title">
                             <Input />
@@ -279,9 +284,12 @@ The `saveButtonProps` and `deleteButtonProps` gives us the ability of saving and
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-use-drawer-form-example-582w1?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Flist.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-use-drawer-form-example-zxy1h?autoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-use-drawer-form-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
+
+[BaseRecord]: /api-references/interfaces.md#baserecord
+[HttpError]: /api-references/interfaces.md#httperror

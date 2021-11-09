@@ -9,8 +9,9 @@ title: useTitle
 
 Normally refine provides a default title. If we want to build a custom title instead of default one that comes with **refine**, we need to overwrite it like this:
 
-```tsx twoslash title="src/App.tsx" {9-14}
+```tsx  title="src/App.tsx"
 import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import "@pankod/refine/dist/styles.min.css";
@@ -18,13 +19,16 @@ import "@pankod/refine/dist/styles.min.css";
 export const App: React.FC = () => {
     return (
         <Refine
+            routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+// highlight-start
             Title={({ collapsed }) => (
                 <div>
                     {collapsed && <img src="./logo" alt="Logo" />}
                     <span>Custom Title</span>
                 </div>
             )}
+// highlight-end
         />
     );
 };
@@ -37,11 +41,13 @@ This `<Title>` we created is used in the `<Sider>` that refine provides by defau
 
 Now `useTitle` will provides us to access to the `<Title>` component from various parts of the application, like this:
 
-```tsx twoslash title="src/components/customSider" {0,4,13}
+```tsx  title="src/components/customSider"
+// highlight-next-line
 import { AntdLayout, useTitle } from "@pankod/refine";
 
 export const CustomSider: React.FC = () => {
     const [collapsed, setCollapsed] = React.useState(false);
+// highlight-next-line
     const Title = useTitle();
 
     return (
@@ -51,6 +57,7 @@ export const CustomSider: React.FC = () => {
             collapsed={collapsed}
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
         >
+// highlight-next-line
             <Title collapsed={collapsed} />
             ...
         </AntdLayout.Sider>

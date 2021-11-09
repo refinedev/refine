@@ -31,17 +31,20 @@ We'll demonstrate how to get data at `/categories` endpoint from `https://api.fa
 }
 ```
 
-```tsx twoslash title="pages/posts/create.tsx" {3-5, 10}
+```tsx  title="pages/posts/create.tsx"
 import { Form, Select, useSelect } from "@pankod/refine";
 
 export const PostCreate = () => {
+// highlight-start
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
     });
+// highlight-end
 
     return (
         <Form>
             <Form.Item label="Categories" name="categories">
+// highlight-next-line
                 <Select {...selectProps} />
             </Form.Item>
         </Form>
@@ -86,9 +89,7 @@ By default, refine does the search using the `useList` hook and passes it to the
 
 ### `resource`
 
-```tsx twoslash {1}
-import { useSelect } from "@pankod/refine";
-// ---cut---
+```tsx
 const { selectProps } = useSelect({
     resource: "categories",
 });
@@ -100,11 +101,10 @@ const { selectProps } = useSelect({
 
 ### `defaultValue`
 
-```tsx twoslash {2}
-import { useSelect } from "@pankod/refine";
-// ---cut---
+```tsx
 const { selectProps } = useSelect({
     resource: "categories",
+// highlight-next-line
     defaultValue: "1",
 });
 ```
@@ -123,13 +123,13 @@ Can use `defaultValue` property when edit a record in `<Edit>` component.
 
 ### `optionLabel` and `optionValue`
 
-```tsx twoslash {2-3}
-import { useSelect } from "@pankod/refine";
-// ---cut---
+```tsx
 const { selectProps } = useSelect({
     resource: "categories",
+// highlight-start
     optionLabel: "title",
     optionValue: "id",
+// highlight-end
 });
 ```
 
@@ -137,11 +137,10 @@ Allows you to change the values and appearance of your options. Default values a
 
 ### `filters`
 
-```tsx twoslash {2-8}
-import { useSelect } from "@pankod/refine";
-// ---cut---
+```tsx
 const { selectProps } = useSelect({
     resource: "categories",
+// highlight-start
     filters: [
         {
             field: "isActive",
@@ -149,6 +148,7 @@ const { selectProps } = useSelect({
             value: true,
         },
     ],
+// highlight-end
 });
 ```
 
@@ -156,84 +156,72 @@ It allows us to add some filters while fetching the data. For example, if you wa
 
 ### `sort`
 
-```tsx twoslash {2-7}
-import { useSelect } from "@pankod/refine";
-// ---cut---
+```tsx
 const { selectProps } = useSelect({
     resource: "categories",
+// highlight-start
     sort: [
         {
             field: "title",
             order: "asc",
         },
     ],
+// highlight-end
 });
 ```
 
 It allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
 
-
 ### `queryOptions`
+
+```tsx 
+const { selectProps } = useSelect({
+    resource: "categories",
+// highlight-start
+    queryOptions: {
+        onError: () => {
+            console.log("triggers when on query return Error");
+        },
+    },
+// highlight-end
+});
+```
 
 [useQuery](https://react-query.tanstack.com/reference/useQuery) options can be set by passing `queryOptions` property.
 
-
-```tsx twoslash {2}
-import { useSelect } from "@pankod/refine";
-// ---cut---
-const { selectProps } = useSelect({
-    resource: "categories",
-    queryOptions: { onError: () => { console.log("triggers when on query return Error") }}
-});
-```
-
 ### `defaultValueQueryOptions`
 
-[useQuery](https://react-query.tanstack.com/reference/useQuery) options for default value query can be set by passing `queryOptions` property.
-
-
-```tsx twoslash {2}
-import { useSelect } from "@pankod/refine";
-// ---cut---
+```tsx
 const { selectProps } = useSelect({
     resource: "categories",
-    defaultValueQueryOptions: { onError: () => { console.log("triggers when on query return Error") }}
+// highlight-start
+    defaultValueQueryOptions: {
+        onSuccess: (data) => {
+            console.log("triggers when on query return on success");
+        },
+    },
+// highlight-end
 });
 ```
 
-```tsx twoslash {2, 4-10}
-import { useSelect } from "@pankod/refine";
-// ---cut---
-const { 
-    selectProps, 
-} = useSelect({
-    resource: "categories",
-    queryOptions: { 
-        onSuccess: (data) => { 
-            console.log("triggers when on query return on success") 
-        } 
-    }
-});
-```
-
+[useQuery](https://react-query.tanstack.com/reference/useQuery) options for default value query can be set by passing `queryOptions` property.
 
 ## API Reference
 
 ### Properties
 
-| Property                                          | Description                                                                         | Type                                                             | Default   |
-| ------------------------------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------- | --------- |
-| resource <div className="required">Required</div> | [`Resource`](/api-references/components/resource.md) for API data interactions      | `string`                                                         |           |
-| defaultValue                                      | Adds extra `options`                                                                | `string` \| `Array<string>`                                      |           |
-| optionValue                                       | Set the option's value                                                              | `string`                                                         | `"id"`    |
-| optionLabel                                       | Set the option's label value                                                        | `string`                                                         | `"title"` |
-| filters                                           | Add filters while fetching the data                                                 | [`CrudFilters`](../../interfaces.md#crudfilters)                 |           |
-| sort                                              | Allow us to sort the options                                                        | [`CrudSorting`](../../interfaces.md#crudsorting)                 |           |
-| debounce                                          | The number of milliseconds to delay                                                 | `number`                                                         | 300       |
-| queryOptions                                      | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>`               |           |
-| defaultValueQueryOptions                          | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetManyResponse<TData>, TError>`               |           |
+| Property                                          | Description                                                                         | Type                                                           | Default   |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------- | --------- |
+| resource <div className="required">Required</div> | Resource name for API data interactions                                             | `string`                                                       |           |
+| defaultValue                                      | Adds extra `options`                                                                | `string` \| `Array<string>`                                    |           |
+| optionValue                                       | Set the option's value                                                              | `string`                                                       | `"id"`    |
+| optionLabel                                       | Set the option's label value                                                        | `string`                                                       | `"title"` |
+| filters                                           | Add filters while fetching the data                                                 | [`CrudFilters`](../../interfaces.md#crudfilters)               |           |
+| sort                                              | Allow us to sort the options                                                        | [`CrudSorting`](../../interfaces.md#crudsorting)               |           |
+| debounce                                          | The number of milliseconds to delay                                                 | `number`                                                       | 300       |
+| queryOptions                                      | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>`             |           |
+| defaultValueQueryOptions                          | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetManyResponse<TData>, TError>`             |           |
 | metaData                                          | Metadata query for `dataProvider`                                                   | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery) | {}        |
-
 
 ### Return values
 
@@ -246,7 +234,7 @@ const {
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-use-select-example-dp34p?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Fedit.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-use-select-example-6g0jy?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-select-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

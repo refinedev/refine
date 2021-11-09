@@ -1,40 +1,7 @@
 import React from "react";
-import Highlight, { defaultProps } from "prism-react-renderer";
-import theme from "prism-react-renderer/themes/nightOwl";
 import clsx from "clsx";
 
 import styles from "./styles.module.css";
-
-const exampleCode = `
-import { Refine, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-simple-rest";
-import "@pankod/refine/dist/styles.min.css";
-
-import { 
-    PostList, 
-    PostCreate, 
-    PostEdit, 
-    PostShow ,
-} from "pages/posts";
-
-const API_URL = "https://api.fake-rest.refine.dev";
-
-const App: React.FC = () => {
-    return (
-        <Refine dataProvider={dataProvider(API_URL)}>
-            <Resource
-                name="posts"
-                list={PostList}
-                create={PostCreate}
-                edit={PostEdit}
-                show={PostShow}
-            />
-        </Refine>
-    );
-};
-
-export default App;
-`.trim();
 
 export const PerfectImplementation = () => {
     return (
@@ -49,7 +16,7 @@ export const PerfectImplementation = () => {
                     )}
                 >
                     <iframe
-                        src="https://codesandbox.io/embed/refine-tutorial-cmqrr?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&hidenavigation=1"
+                        src="https://codesandbox.io/embed/tutorial-grg4u?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
                         style={{
                             width: "100%",
                             height: "70vh",

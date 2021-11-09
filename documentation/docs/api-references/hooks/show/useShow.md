@@ -16,14 +16,16 @@ When no property is given, it tries to read the `resource` and `id` information 
 
 ## Usage
 
-First, we'll create a page to show the records. Then we'll use this page for the show property of the `<Resource>` component.
+First, we'll create a page to show the records. Then we'll use this page for the show property of the resource.
 
-```tsx twoslash title="src/pages/posts/show.tsx" {0,5}
+```tsx  title="src/pages/posts/show.tsx"
+// highlight-next-line
 import { useShow, Show, Typography } from "@pankod/refine";
 
 const { Title, Text } = Typography;
 
 export const PostShow: React.FC = () => {
+// highlight-next-line
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;
@@ -47,17 +49,22 @@ interface IPost {
 
 We didn't give any property to `useShow` because it can read `resource` and `id` information from the route.
 
-```tsx title="src/App.tsx" {3, 10}
-import { Refine, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-simple-rest";
+```tsx title="src/App.tsx"
+import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
+import dataProvider from "@pankod/refine-json-server";
 
+// highlight-next-line
 import { PostShow } from "./pages/posts";
 
 export const App: React.FC = () => {
     return (
-        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
-            <Resource name="posts" show={PostShow} />
-        </Refine>
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+// highlight-next-line
+            resources={[{ name: "posts", show: PostShow }]}
+        />
     );
 };
 ```
@@ -77,12 +84,7 @@ In the next example, we'll show how it is used for the modal.
 
 Let's simply create a post list showing posts.
 
-```tsx twoslash title="src/pages/posts/list.tsx"
-interface IPost {
-    id: string;
-    title: string;
-}
-// ---cut---
+```tsx  title="src/pages/posts/list.tsx"
 import { List, Table, useTable } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
@@ -101,22 +103,18 @@ export const PostList: React.FC = () => {
 
 Let's add our modal.
 
-```tsx twoslash title="src/pages/posts/list.tsx" {4-8, 11, 14, 18-20, 28-41, 44-52}
-interface IPost {
-    id: string;
-    title: string;
-}
-import { useState } from "react";
-// ---cut---
+```tsx  title="src/pages/posts/list.tsx"
 import {
     List,
     Table,
     useTable,
+// highlight-start
     Modal,
     Show,
     ShowButton,
     Typography,
     useShow,
+// highlight-end
 } from "@pankod/refine";
 
 const { Title, Text } = Typography;
@@ -126,8 +124,10 @@ export const PostList: React.FC = () => {
 
     const { tableProps } = useTable<IPost>();
 
+// highlight-next-line
     const { queryResult, showId, setShowId } = useShow<IPost>();
     const { data, isLoading } = queryResult;
+// highlight-next-line
     const record = data?.data;
 
     return (
@@ -139,6 +139,7 @@ export const PostList: React.FC = () => {
                     <Table.Column<IPost>
                         title="Actions"
                         dataIndex="actions"
+// highlight-start
                         render={(_, record) => (
                             <ShowButton
                                 size="small"
@@ -149,9 +150,11 @@ export const PostList: React.FC = () => {
                                 }}
                             />
                         )}
+// highlight-end
                     />
                 </Table>
             </List>
+// highlight-start
             <Modal visible={visible} onCancel={() => setVisible(false)}>
                 <Show isLoading={isLoading} recordItemId={showId}>
                     <Title level={5}>Id</Title>
@@ -161,24 +164,30 @@ export const PostList: React.FC = () => {
                     <Text>{record?.title}</Text>
                 </Show>
             </Modal>
+// highlight-end
         </>
     );
 };
 ```
 
-Finally, let's pass this page to the `<Resource>` component.
+Finally, let's pass this page to the `resources` as a list component.
 
-```tsx title="src/App.tsx" {3,10}
-import { Refine, Resource } from "@pankod/refine";
-import dataProvider from "@pankod/refine-simple-rest";
+```tsx title="src/App.tsx"
+import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
+import dataProvider from "@pankod/refine-json-server";
 
+// highlight-next-line
 import { PostList } from "./pages/posts";
 
 export const App: React.FC = () => {
     return (
-        <Refine dataProvider={dataProvider("https://api.fake-rest.refine.dev")}>
-            <Resource name="posts" list={PostList} />
-        </Refine>
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+// highlight-next-line
+            resources={[{ name: "posts", list: PostList }]}
+        />
     );
 };
 ```
@@ -202,11 +211,11 @@ To show data in the drawer, you can do it by simply replacing `<Modal>` with `<D
 
 ### Properties
 
-| Property | Description                                                          | Type                                                             | Default                                  |
-| -------- | -------------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------- |
-| resource | [`Resource`](../../components/resource.md) for API data interactions | `string`                                                         | Resource name that it reads from the url |
-| id       | Record id for fetching                                               | `string`                                                         | Id that it reads from the url            |
-| metaData | Metadata query for `dataProvider`                                    | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery) | {}                                       |
+| Property | Description                             | Type                                                           | Default                                  |
+| -------- | --------------------------------------- | -------------------------------------------------------------- | ---------------------------------------- |
+| resource | Resource name for API data interactions | `string`                                                       | Resource name that it reads from the url |
+| id       | Record id for fetching                  | `string`                                                       | Id that it reads from the url            |
+| metaData | Metadata query for `dataProvider`       | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery) | {}                                       |
 
 ### Return values
 

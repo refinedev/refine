@@ -6,15 +6,16 @@ title: Clone
 import cloneButton from '@site/static/img/guides-and-concepts/components/buttons/clone/clone.png';
 
 `<CloneButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `clone` method from [useNavigation](/api-references/hooks/navigation/useNavigation.md) under the hood.
-It can be useful when redirecting the app to the create page with the record id route of `<Resource>`.
+It can be useful when redirecting the app to the create page with the record id route of resource.
 
 ## Usage
 
-```tsx twoslash {4, 20}
+```tsx
 import {
     List,
     Table,
     useTable,
+    // highlight-next-line
     CloneButton,
 } from "@pankod/refine";
 
@@ -31,6 +32,7 @@ export const PostList: React.FC = () => {
                     dataIndex="actions"
                     key="actions"
                     render={(_, record) => (
+                        // highlight-next-line
                         <CloneButton size="small" recordItemId={record.id} />
                     )}
                 />
@@ -62,7 +64,7 @@ Will look like this:
 
 `recordItemId` is used to append the record id to the end of the route path.
 
-```tsx twoslash
+```tsx 
 import { CloneButton } from "@pankod/refine";
 
 export const MyCloneComponent = () => {
@@ -78,9 +80,9 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/api-re
 
 ### `resourceName`
 
-It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of the `<Resource>` component.
+It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of the resource object.
 
-```tsx twoslash
+```tsx 
 import { CloneButton } from "@pankod/refine";
 
 export const MyCloneComponent = () => {
@@ -94,7 +96,7 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/api-re
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx twoslash
+```tsx 
 import { CloneButton } from "@pankod/refine";
 
 export const MyCloneComponent = () => {

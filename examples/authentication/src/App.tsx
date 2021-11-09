@@ -1,5 +1,7 @@
-import { Refine, Resource, AuthProvider } from "@pankod/refine";
+import { Refine, AuthProvider } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router";
+
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostEdit, PostShow } from "pages/posts";
@@ -39,15 +41,17 @@ const App: React.FC = () => {
         <Refine
             authProvider={authProvider}
             dataProvider={dataProvider(API_URL)}
+            routerProvider={routerProvider}
             DashboardPage={DashboardPage}
-        >
-            <Resource
-                name="posts"
-                list={PostList}
-                edit={PostEdit}
-                show={PostShow}
-            />
-        </Refine>
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+            ]}
+        />
     );
 };
 

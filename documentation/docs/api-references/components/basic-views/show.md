@@ -9,19 +9,19 @@ import isLoading from '@site/static/img/guides-and-concepts/basic-views/show/isL
 
 `<Show>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a refresh button or giving title to the page.
 
-We will show what `<Show>` does ?using properties with examples.
+We will show what `<Show>` does using properties with examples.
 
 ## Properties
 
 ### `canDelete` and `canEdit`
 
-`canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the `<Resource>` has `canDelete` or `canEdit` property refine adds the buttons by default.
+`canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the resource has `canDelete` or `canEdit` property refine adds the buttons by default.
 
 When clicked on, delete button executes the `useDelete` method provided by the [`dataProvider`](api-references/providers/data-provider.md) and the edit button redirects the user to the record edit page.
 
 Refer to the [`<DeleteButton>`](api-references/components/buttons/delete.md) and the [`<EditButton>`](api-references/components/buttons/edit.md) documentation for detailed usage.
 
-```tsx twoslash
+```tsx 
 import { Show, usePermissions } from "@pankod/refine";
 
 export const ShowPage: React.FC = () => {
@@ -44,7 +44,7 @@ export const ShowPage: React.FC = () => {
 
 It allows adding a title for the `<Show>` component. if you don't pass title props it uses the "Show" prefix and the singular resource name by default. For example, for the "posts" resource, it will be "Show post".
 
-```tsx twoslash
+```tsx 
 import { Show } from "@pankod/refine";
 
 export const ShowPage: React.FC = () => {
@@ -56,7 +56,7 @@ export const ShowPage: React.FC = () => {
 
 `<Show>` uses the Ant Design [`<Card>`](https://ant.design/components/card/) component so you can customize the `action` property with the properties of `actionButtons`. By default, the `action` property of the `<Card>` component shows nothing in the `<Show>` component.
 
-```tsx twoslash
+```tsx 
 import { Show, Space, Button } from "@pankod/refine";
 
 export const ShowPage: React.FC = () => {
@@ -89,7 +89,7 @@ export const ShowPage: React.FC = () => {
 
 Since `<Show>` uses the Ant Design [`<Card>`](https://ant.design/components/card/) component, the `isLoading` property can be set like the below.
 
-```tsx twoslash
+```tsx 
 import { useState } from "react";
 import { Show, Modal, ShowButton, useShow } from "@pankod/refine";
 
@@ -100,6 +100,7 @@ export const ShowPage: React.FC = () => {
     return <Show isLoading={isLoading}>...</Show>;
 };
 ```
+
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -112,9 +113,9 @@ export const ShowPage: React.FC = () => {
 
 ### `pageHeaderProps`
 
-`<Show>` uses the Ant Design [`<PageHeader>`](https://ant.design/components/page-header/#API) components so you can customize it with the properties of `pageHeaderProps`. By default, the `extra` property of the `<PageHeader>` component shows `<RefreshButton>`, `<ListButton>`, `<EditButton>` and `<DeleteButton>` depending on your resource definition on the `<Resource>` component.
+`<Show>` uses the Ant Design [`<PageHeader>`](https://ant.design/components/page-header/#API) components so you can customize it with the properties of `pageHeaderProps`. By default, the `extra` property of the `<PageHeader>` component shows `<RefreshButton>`, `<ListButton>`, `<EditButton>` and `<DeleteButton>` based on your resource definition in the `resources` property you pass to `<Refine>`.
 
-```tsx twoslash
+```tsx 
 import { Show } from "@pankod/refine";
 
 export const ShowPage: React.FC = () => {
@@ -143,9 +144,9 @@ export const ShowPage: React.FC = () => {
 
 ### `recordItemId`
 
-`<Show>` component reads the `id` information from the route by default. `recordIdItem` is used when it cannot read from the URL (when used on a custom page, modal or drawer).
+`<Show>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL (when used on a custom page, modal or drawer).
 
-```tsx twoslash
+```tsx 
 import { useState } from "react";
 import { Show, Modal, ShowButton, useShow } from "@pankod/refine";
 
@@ -187,10 +188,12 @@ The `<Show>` component reads the `resource` information from the route by defaul
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
-```tsx twoslash
-import { Refine, Resource, Show } from "@pankod/refine";
+```tsx
+import { Refine, Show } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router";
 
+// highlight-start
 const CustomPage = () => {
     return (
         <Show resource="posts" recordItemId="postId">
@@ -198,40 +201,45 @@ const CustomPage = () => {
         </Show>
     );
 };
+// highlight-end
 
 export const App: React.FC = () => {
     return (
         <Refine
+            routerProvider={{
+                ...routerProvider,
+                // highlight-start
+                routes: [
+                    {
+                        exact: true,
+                        component: CustomPage,
+                        path: "/custom",
+                    },
+                ]
+                // highlight-end
+            }}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
-            routes={[
-                {
-                    exact: true,
-                    component: CustomPage,
-                    path: "/custom",
-                },
-            ]}
-        >
-            <Resource name="posts" />
-        </Refine>
+            resources={[{ name: "posts" }]}
+        />
     );
 };
 ```
 
 :::caution
-The `<Show>` component needs the `id` information for work properly, so if you use the `<Show>` component in custom pages, you should pass the `recordIditem` property.
+The `<Show>` component needs the `id` information for work properly, so if you use the `<Show>` component in custom pages, you should pass the `recordItemId` property.
 :::
 
 ## API Reference
 
 ### Properties
 
-| Property        | Description                                                                    | Type                                                              | Default                                                                            |
-| --------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| canDelete       | Adds a delete button                                                           | `boolean`                                                         | If `<Resource>` has `canDelete` prop it is `true` else `false`                     |
-| canEdit         | Adds an edit button                                                            | `boolean`                                                         | If `<Resource>` has `canEdit` prop it is `true` else `false`                       |
-| title           | Adds a title                                                                   | `string`                                                          | `"Show"` prefix and singular of `resource.name`                                    |
-| actionButtons   | Gets passed to the `extra` prop of the `<Card>`                                | `React.ReactNode`                                                 | `<SaveButton>` and depending on your `<Resource>` configuration (`canDelete` prop) |
-| isLoading       | Gets passed to the `loading` prop of the `<Card>`                              | `boolean`                                                         | `false`                                                                            |
-| pageHeaderProps | Passes props for `<PageHeader>`                                                | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` }     |
-| recordItemId    | Record id for `<RefreshButton>`                                                | `string`                                                          |                                                                                    |
-| resource        | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                          | Resource name that it reads from the URL.                                          |
+| Property        | Description                                       | Type                                                              | Default                                                                        |
+| --------------- | ------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| canDelete       | Adds a delete button                              | `boolean`                                                         | If the resource has `canDelete` prop it is `true` else `false`                 |
+| canEdit         | Adds an edit button                               | `boolean`                                                         | If the resource has `canEdit` prop it is `true` else `false`                   |
+| title           | Adds a title                                      | `string`                                                          | `"Show"` prefix and singular of `resource.name`                                |
+| actionButtons   | Gets passed to the `extra` prop of the `<Card>`   | `React.ReactNode`                                                 | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
+| isLoading       | Gets passed to the `loading` prop of the `<Card>` | `boolean`                                                         | `false`                                                                        |
+| pageHeaderProps | Passes props for `<PageHeader>`                   | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` } |
+| recordItemId    | Record id for `<RefreshButton>`                   | `string`                                                          |                                                                                |
+| resource        | Resource name for API data interactions           | `string`                                                          | Resource name that it reads from the URL.                                      |

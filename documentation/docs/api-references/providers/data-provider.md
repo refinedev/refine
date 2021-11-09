@@ -25,7 +25,7 @@ const dataProvider = {
     getOne: ({ resource, id, metaData }) => Promise,
     update: ({ resource, id, variables, metaData }) => Promise,
     updateMany: ({ resource, ids, variables, metaData }) => Promise,
-    custom?: ({
+    custom: ({
         url,
         method,
         sort,
@@ -89,11 +89,7 @@ import { Refine } from "@pankod/refine";
 import dataProvider from "./dataProvider";
 
 const App: React.FC = () => {
-    return (
-        <Refine dataProvider={dataProvider}>
-           ...
-        </Refine>
-    );
+    return <Refine dataProvider={dataProvider} />;
 };
 ```
 
@@ -153,12 +149,13 @@ It will take the API URL as a parameter and an optional **HTTP** client. We will
 
 This method allows us to create a single item in a resource.
 
-```ts title="dataProvider.ts" {5-13}
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
+// highlight-start
     create: async ({ resource, variables }) => {
         const url = `${apiUrl}/${resource}`;
 
@@ -168,6 +165,7 @@ const SimpleRestDataProvider = (
             data,
         };
     },
+// highlight-end
     ...
 })
 ```
@@ -185,7 +183,7 @@ const SimpleRestDataProvider = (
 
 **refine** will consume this `create` method using the `useCreate` data hook.
 
-```ts twoslash
+```ts
 import { useCreate } from "@pankod/refine";
 
 const { mutate } = useCreate();
@@ -206,12 +204,13 @@ mutate({
 
 This method allows us to create multiple items in a resource.
 
-```ts title="dataProvider.ts" {5-17}
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
+// highlight-start
     createMany: async ({ resource, variables }) => {
         const response = await Promise.all(
             variables.map(async (param) => {
@@ -225,6 +224,7 @@ const SimpleRestDataProvider = (
 
         return { data: response };
     },
+// highlight-end
     ...
 })
 ```
@@ -242,7 +242,7 @@ const SimpleRestDataProvider = (
 
 **refine** will consume this `createMany` method using the `useCreateMany` data hook.
 
-```ts twoslash
+```ts
 import { useCreateMany } from "@pankod/refine";
 
 const { mutate } = useCreateMany();
@@ -268,12 +268,13 @@ mutate({
 
 This method allows us to delete an item in a resource.
 
-```ts title="dataProvider.ts" {5-13}
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
+// highlight-start
     deleteOne: async ({ resource, id }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
@@ -283,6 +284,7 @@ const SimpleRestDataProvider = (
             data,
         };
     },
+// highlight-end
     ...
 })
 ```
@@ -298,7 +300,7 @@ const SimpleRestDataProvider = (
 
 **refine** will consume this `deleteOne` method using the `useDelete` data hook.
 
-```ts twoslash
+```ts
 import { useDelete } from "@pankod/refine";
 
 const { mutate } = useDelete();
@@ -314,12 +316,13 @@ mutate({ resource: "categories", id: "2" });
 
 This method allows us to delete multiple items in a resource.
 
-```ts title="dataProvider.ts" {5-15}
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
+// highlight-start
     deleteMany: async ({ resource, ids }) => {
         const response = await Promise.all(
             ids.map(async (id) => {
@@ -331,6 +334,7 @@ const SimpleRestDataProvider = (
         );
         return { data: response };
     },
+// highlight-end
     ...
 })
 ```
@@ -346,7 +350,7 @@ const SimpleRestDataProvider = (
 
 **refine** will consume this `deleteMany` method using the `useDeleteMany` data hook.
 
-```ts twoslash
+```ts
 import { useDeleteMany } from "@pankod/refine";
 
 const { mutate } = useDeleteMany();
@@ -365,12 +369,13 @@ mutate({
 
 This method allows us to update an item in a resource.
 
-```ts title="dataProvider.ts" {5-13}
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
+// highlight-start
     update: async ({ resource, id, variables }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
@@ -380,6 +385,7 @@ const SimpleRestDataProvider = (
             data,
         };
     },
+// highlight-end
     ...
 })
 ```
@@ -398,7 +404,7 @@ const SimpleRestDataProvider = (
 
 **refine** will consume this `update` method using the `useUpdate` data hook.
 
-```ts twoslash
+```ts
 import { useUpdate } from "@pankod/refine";
 
 const { mutate } = useUpdate();
@@ -418,12 +424,13 @@ mutate({
 
 This method allows us to update multiple items in a resource.
 
-```ts title="dataProvider.ts" {5-17}
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
+// highlight-start
     updateMany: async ({ resource, ids, variables }) => {
         const response = await Promise.all(
             ids.map(async (id) => {
@@ -437,6 +444,7 @@ const SimpleRestDataProvider = (
 
         return { data: response };
     },
+// highlight-end
     ...
 })
 ```
@@ -455,7 +463,7 @@ const SimpleRestDataProvider = (
 
 **refine** will consume this `updateMany` method using the `useUpdateMany` data hook.
 
-```ts twoslash
+```ts
 import { useUpdateMany } from "@pankod/refine";
 
 const { mutate } = useUpdateMany();
@@ -475,12 +483,13 @@ mutate({
 
 This method allows us to retrieve a single item in a resource.
 
-```ts title="dataProvider.ts" {5-13}
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
+// highlight-start
     getOne: async ({ resource, id }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
@@ -490,6 +499,7 @@ const SimpleRestDataProvider = (
             data,
         };
     },
+// highlight-end
     ...
 })
 ```
@@ -505,9 +515,7 @@ const SimpleRestDataProvider = (
 
 **refine** will consume this `getOne` method using the `useOne` data hook.
 
-```ts twoslash
-interface ICategory {}
-// ---cut---
+```ts
 import { useOne } from "@pankod/refine";
 
 const { data } = useOne<ICategory>({ resource: "categories", id: "1" });
@@ -521,12 +529,13 @@ const { data } = useOne<ICategory>({ resource: "categories", id: "1" });
 
 This method allows us to retrieve multiple items in a resource.
 
-```ts title="dataProvider.ts" {5-13}
+```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     ...
+// highlight-start
     getMany: async ({ resource, ids }) => {
         const { data } = await httpClient.get(
             `${apiUrl}/${resource}?${stringify({ id: ids })}`,
@@ -536,6 +545,7 @@ const SimpleRestDataProvider = (
             data,
         };
     },
+// highlight-end
     ...
 })
 ```
@@ -551,7 +561,7 @@ const SimpleRestDataProvider = (
 
 **refine** will consume this `getMany` method using the `useMany` data hook.
 
-```ts twoslash
+```ts
 import { useMany } from "@pankod/refine";
 
 const { data } = useMany({ resource: "categories", ids: ["1", "2"] });
@@ -565,11 +575,12 @@ const { data } = useMany({ resource: "categories", ids: ["1", "2"] });
 
 This method allows us to retrieve a collection of items in a resource.
 
-```tsx title="dataProvider.ts" {4-17}
+```tsx title="dataProvider.ts"
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
+// highlight-start
     getList: async ({ resource, pagination, filters, sort }) => {
         const url = `${apiUrl}/${resource}`;
 
@@ -584,6 +595,7 @@ const SimpleRestDataProvider = (
             total,
         };
     },
+// highlight-end
 }
 ```
 
@@ -600,7 +612,7 @@ const SimpleRestDataProvider = (
 
 **refine** will consume this `getList` method using the `useList` data hook.
 
-```ts twoslash
+```ts
 import { useList } from "@pankod/refine";
 
 const { data } = useList({ resource: "posts" });
@@ -614,7 +626,8 @@ const { data } = useList({ resource: "posts" });
 
 We will send start and end parameters to list a certain size of items.
 
-```tsx title="dataProvider.ts" {0, 9-10, 12-15, 18}
+```tsx title="dataProvider.ts"
+// highlight-next-line
 import { stringify } from "query-string";
 
 const SimpleRestDataProvider = (
@@ -624,15 +637,20 @@ const SimpleRestDataProvider = (
     getList: async ({ resource, pagination, filters, sort }) => {
         const url = `${apiUrl}/${resource}`;
 
+// highlight-start
         const current = pagination?.current || 1;
         const pageSize = pagination?.pageSize || 10;
+// highlight-end
 
+// highlight-start
         const query = {
             _start: (current - 1) * pageSize,
             _end: current * pageSize,
         };
+// highlight-end
 
         const { data, headers } = await httpClient.get(
+// highlight-next-line
             `${url}?${stringify(query)}`,
         );
 
@@ -647,12 +665,13 @@ const SimpleRestDataProvider = (
 
 <br />
 
-```ts twoslash {5}
+```ts
 import { useList } from "@pankod/refine";
 
 const { data } = useList({
     resource: "posts",
     config: {
+// highlight-next-line
         pagination: { current: 1, pageSize: 10 },
     },
 });
@@ -668,7 +687,8 @@ We'll sort records by speficified order and field.
 
 > [CrudSorting](/docs/api-references/interfaceReferences#crudoperators) ?
 
-```tsx title="dataProvider.ts" {0-18, 30, 35-36, 40}
+```tsx title="dataProvider.ts"
+// highlight-start
 const generateSort = (sort?: CrudSorting) => {
     let _sort = ["id"]; // default sorting field
     let _order = ["desc"]; // default sorting
@@ -688,6 +708,7 @@ const generateSort = (sort?: CrudSorting) => {
         _order,
     };
 };
+// highlight-end
 
 const SimpleRestDataProvider = (
     apiUrl: string,
@@ -699,16 +720,20 @@ const SimpleRestDataProvider = (
         const current = pagination?.current || 1;
         const pageSize = pagination?.pageSize || 10;
 
+// highlight-next-line
         const { _sort, _order } = generateSort(sort);
 
+// highlight-start
         const query = {
             _start: (current - 1) * pageSize,
             _end: current * pageSize,
             _sort: _sort.join(","),
             _order: _order.join(","),
         };
+// highlight-end
 
         const { data, headers } = await httpClient.get(
+// highlight-next-line
             `${url}?${stringify(query)}`,
         );
 
@@ -730,13 +755,14 @@ So we added the `generateSort` method to transform sort parameters.
 
 <br />
 
-```ts twoslash {6}
+```ts
 import { useList } from "@pankod/refine";
 
 const { data } = useList({
     resource: "posts",
     config: {
         pagination: { current: 1, pageSize: 10 },
+// highlight-next-line
         sort: [{ order: "asc", field: "title" }],
     },
 });
@@ -750,7 +776,7 @@ const { data } = useList({
 
 Filters allow you to filter queries using [refine's filter operators](/docs/api-references/interfaceReferences#crudoperators). It is configured via field, operator and value properites.
 
-```tsx title="dataProvider.ts" {20-31, 33-44, 57, 67}
+```tsx title="dataProvider.ts"
 const generateSort = (sort?: CrudSorting) => {
     let _sort = ["id"]; // default sorting field
     let _order = ["desc"]; // default sorting
@@ -771,6 +797,7 @@ const generateSort = (sort?: CrudSorting) => {
     };
 };
 
+// highlight-start
 const mapOperator = (operator: CrudOperators): string => {
     switch (operator) {
         case "ne":
@@ -795,6 +822,7 @@ const generateFilter = (filters?: CrudFilters) => {
 
     return queryFilters;
 };
+// highlight-end
 
 const SimpleRestDataProvider = (
     apiUrl: string,
@@ -808,6 +836,7 @@ const SimpleRestDataProvider = (
 
         const { _sort, _order } = generateSort(sort);
 
+// highlight-next-line
         const queryFilters = generateFilter(filters);
 
         const query = {
@@ -818,6 +847,7 @@ const SimpleRestDataProvider = (
         };
 
         const { data, headers } = await httpClient.get(
+// highlight-next-line
             `${url}?${stringify(query)}&${stringify(queryFilters)}`,
         );
 
@@ -839,12 +869,13 @@ So we added the `generateFilter` and `mapOperator` methods to the transform filt
 
 [Refer to the list of all filter operators &#8594](/docs/api-references/interfaceReferences#crudoperators)
 
-```ts twoslash {7-13}
+```ts
 import { useList } from "@pankod/refine";
 
 const { data } = useList({
     resource: "posts",
     config: {
+// highlight-start
         pagination: { current: 1, pageSize: 10 },
         sort: [{ order: "asc", field: "title" }],
         filters: [
@@ -855,6 +886,7 @@ const { data } = useList({
             },
         ],
     },
+// highlight-end
 });
 ```
 
@@ -938,9 +970,7 @@ const SimpleRestDataProvider = (
 
 **refine** will consume this `custom` method using the `useCustom` data hook.
 
-```ts twoslash
-const apiURL = "";
-// ---cut---
+```ts
 import { useCustom } from "@pankod/refine";
 
 const { data, isLoading } = useCustom({

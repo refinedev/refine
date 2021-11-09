@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
 import { Grid } from "antd";
 import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
@@ -9,9 +8,13 @@ import { QueryObserverResult, UseQueryOptions } from "react-query";
 import { useForm } from "antd/lib/form/Form";
 import { SorterResult } from "antd/lib/table/interface";
 
-import { useResourceWithRoute, useList } from "@hooks";
-import { useSyncWithLocation } from "@hooks/refine";
-import { useNavigation } from "@hooks/navigation";
+import {
+    useRouterContext,
+    useSyncWithLocation,
+    useNavigation,
+    useResourceWithRoute,
+    useList,
+} from "@hooks";
 import {
     stringifyTableParams,
     parseTableParams,
@@ -93,13 +96,14 @@ export const useTable = <
 
     const [form] = useForm<TSearchVariables>();
 
-    let syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
+    const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
 
     // disable syncWithLocation for custom resource tables
-    if (resourceFromProp) {
-        syncWithLocation = false;
-    }
+    // if (resourceFromProp) {
+    //     syncWithLocation = false;
+    // }
 
+    const { useLocation, useParams } = useRouterContext();
     const { search } = useLocation();
 
     let defaultCurrent = initialCurrent;

@@ -51,19 +51,23 @@ We used [strapi-graphql](https://github.com/pankod/refine/tree/master/packages/s
 
 To activate data provider in `@pankod/refine-strapi-graphql`, we have to pass the API address with `GraphQLClient`.
 
-```tsx twoslash title="src/App.tsx" {2-3, 9}
+```tsx  title="src/App.tsx"
 import { Refine } from "@pankod/refine";
-
+import routerProvider from "@pankod/refine-react-router";
+// highlight-start
 import dataProvider from "@pankod/refine-strapi-graphql";
 import { GraphQLClient } from "graphql-request";
+// highlight-end
 
 const client = new GraphQLClient("API_URL");
 
 const App: React.FC = () => {
     return (
-        <Refine dataProvider={dataProvider(client)}>
-            ...
-        </Refine>
+        <Refine
+            routerProvider={routerProvider}
+// highlight-next-line
+            dataProvider={dataProvider(client)}
+        />
     );
 };
 ```
@@ -102,34 +106,7 @@ values={[
 ]}>
 <TabItem value="usage">
 
-```tsx twoslash {8-16, 21-23}
-import {
-    List,
-    Table,
-    useTable,
-    IResourceComponentsProps,
-    Space,
-    EditButton,
-    ShowButton,
-    DeleteButton,
-    getDefaultSortOrder,
-    FilterDropdown,
-    Select,
-    useSelect,
-} from "@pankod/refine";
-
-export interface ICategory {
-    id: string;
-    title: string;
-}
-
-export interface IPost {
-    id: string;
-    title: string;
-    content: string;
-    category: ICategory;
-}
-// ---cut---
+```tsx
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter } = useTable<IPost>({
         initialSorter: [
@@ -138,6 +115,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 order: "asc",
             },
         ],
+// highlight-start
         metaData: {
             fields: [
                 "id",
@@ -147,13 +125,16 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 },
             ],
         },
+// highlight-end
     });
 
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
+// highlight-start
         metaData: {
             fields: ["id", "title"],
         },
+// highlight-end
     });
 
     return (
@@ -255,13 +236,14 @@ values={[
 ]}>
 <TabItem value="usage">
 
-```tsx {6-16, 22-24}
+```tsx
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<
         IPost,
         HttpError,
         IPost
     >({
+// highlight-start
         metaData: {
             fields: [
                 "id",
@@ -272,15 +254,18 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                 "content",
             ],
         },
+// highlight-end
     });
 
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
         defaultValue: postData?.category.id,
+// highlight-start
         metaData: {
             fields: ["id", "title"],
         },
+// highlight-end
     });
 
     const [selectedTab, setSelectedTab] =
@@ -386,7 +371,8 @@ values={[
 ]}>
 <TabItem value="usage">
 
-```tsx {0-9, 14, 22}
+```tsx
+// highlight-start
 const metaData = {
     fields: [
         "id",
@@ -397,10 +383,12 @@ const metaData = {
         "content",
     ],
 };
+// highlight-end
 
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>({
         resource: "posts",
+// highlight-next-line
         metaData,
     });
     const { data, isLoading } = queryResult;
@@ -409,6 +397,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
     return (
         <Show
             isLoading={isLoading}
+// highlight-next-line
             pageHeaderProps={{ extra: <RefreshButton metaData={metaData} /> }}
         >
             <Title level={5}>Id</Title>

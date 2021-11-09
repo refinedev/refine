@@ -5,22 +5,20 @@ siderbar_label: useCreateMany
 description: useCreateMany data hook from refine is a modified version of react-query's useMutation for multiple create mutations
 ---
 
-
 `useCreateMany` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for multiple create mutations.
 
 It uses `createMany` method as mutation function from the [`dataProvider`](api-references/providers/data-provider.md) which is passed to `<Refine>`.
 
-
 ## Features
 
-* Shows notifications after the mutation succeeds or fails.
+-   Shows notifications after the mutation succeeds or fails.
 
-* Automatically invalidates the `list` queries after the mutation is succesfully run.
-[Refer to React Query docs for detailed information &#8594](https://react-query.tanstack.com/guides/invalidations-from-mutations)
+-   Automatically invalidates the `list` queries after the mutation is succesfully run.
+    [Refer to React Query docs for detailed information &#8594](https://react-query.tanstack.com/guides/invalidations-from-mutations)
 
 ## Usage
 
-Let's say that we have a resource named `categories`. 
+Let's say that we have a resource named `categories`.
 
 ```ts title="https://api.fake-rest.refine.dev/categories"
 {
@@ -37,12 +35,11 @@ Let's say that we have a resource named `categories`.
 }
 ```
 
-
-```tsx twoslash
+```tsx 
 type CategoryMutationResult = {
     id: string;
     title: string;
-}
+};
 
 import { useCreateMany } from "@pankod/refine";
 
@@ -55,9 +52,9 @@ mutate({
             title: "New Category",
         },
         {
-            title: "Another New Category"
-        }
-    ]
+            title: "Another New Category",
+        },
+    ],
 });
 ```
 
@@ -70,7 +67,7 @@ mutate({
 
 After the mutation runs `categories` will be updated as below:
 
-```ts title="https://api.fake-rest.refine.dev/categories" {10-17}
+```ts title="https://api.fake-rest.refine.dev/categories"
 {
     [
         {
@@ -81,6 +78,7 @@ After the mutation runs `categories` will be updated as below:
             id: 2,
             title: "Virtual Invoice Avon",
         },
+// highlight-start
         {
             id: 3,
             title: "New Category",
@@ -89,9 +87,11 @@ After the mutation runs `categories` will be updated as below:
             id: 4,
             title: "Another New Category",
         },
+// highlight-end
     ];
 }
 ```
+
 :::note
 Queries that use `/categories` endpoint will be automatically invalidated to show the updated data. For example, data returned from [`useList`](useList.md) will be automatically updated.
 :::
@@ -109,22 +109,22 @@ Variables passed to `mutate` must have these types.
     values: TVariables[] = {};
 }
 ```
+
 :::
 
 ## API
 
 ### Properties
 
-| Property                                            | Description                               | Type                                                                       | Default                                                              |
-| --------------------------------------------------- | ----------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| resource  <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                                   |                                                                      |
-| values  <div className=" required">Required</div>   | Values for mutation function              | `TVariables[]`                                                             | [{}]                                                                 |
-| successNotification                                 | Successful Mutation notification          | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully created `resource`s"                                   |
-| errorNotification                                   | Unsuccessful Mutation notification        | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" |
-| metaData                                            | Metadata query for `dataProvider`                                              | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)           | {}                                                                   |
+| Property                                                                                            | Description                             | Type                                                                       | Default                                                              |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions | `string`                                                                   |                                                                      |
+| values <div className=" required">Required</div>                                                    | Values for mutation function            | `TVariables[]`                                                             | [{}]                                                                 |
+| successNotification                                                                                 | Successful Mutation notification        | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully created `resource`s"                                   |
+| errorNotification                                                                                   | Unsuccessful Mutation notification      | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" |
+| metaData                                                                                            | Metadata query for `dataProvider`       | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)             | {}                                                                   |
 
 ### Type Parameters
-
 
 | Property   | Desription                                                                          | Type                                           | Default                                        |
 | ---------- | ----------------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
@@ -134,7 +134,6 @@ Variables passed to `mutate` must have these types.
 
 ### Return value
 
-| Description                               | Type                                                                                                                                                                                      |
-| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData[]},`<br/>`TError,`<br/>`  { resource: string; values: TVariables[]; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
-
+| Description                               | Type                                                                                                                                                                                     |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData[]},`<br/>`TError,`<br/>` { resource: string; values: TVariables[]; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |

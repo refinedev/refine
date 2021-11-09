@@ -51,6 +51,11 @@ export const parseTableParams = (url: string) => {
     };
 };
 
+export const parseTableParamsFromQuery = (params: any) => {
+    const url = qs.stringify(params);
+    return parseTableParams(`/${url}`);
+};
+
 export const stringifyTableParams = (params: {
     pagination: TablePaginationConfig;
     sorter: CrudSorting;

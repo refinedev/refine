@@ -10,8 +10,7 @@ import {
     HttpError,
     MetaDataQuery,
 } from "../../interfaces";
-import { useCheckError } from "@hooks";
-import { useTranslate } from "@hooks/translate";
+import { useTranslate, useCheckError } from "@hooks";
 import { handleNotification } from "@definitions";
 
 export type UseManyProps<TData, TError> = {

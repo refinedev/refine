@@ -10,11 +10,13 @@ We will examine how to make an extensive search and filtering with the [`useSimp
 
 To do this, let's list posts using the posts resource.
 
-```tsx twoslash title="pages/posts/list.tsx" {2-3, 13, 54}
+```tsx title="pages/posts/list.tsx"
 import {
     List,
+    // highlight-start
     useSimpleList,
     useMany,
+    // highlight-end
     AntdList,
     Typography,
     Space,
@@ -24,6 +26,7 @@ import {
 const { Text } = Typography;
 
 export const PostList: React.FC = () => {
+    // highlight-start
     const { listProps } = useSimpleList<IPost>();
 
     const categoryIds =
@@ -35,6 +38,7 @@ export const PostList: React.FC = () => {
             enabled: categoryIds.length > 0,
         },
     });
+    // highlight-end
 
     const renderItem = (item: IPost) => {
         const { title, hit, content } = item;
@@ -50,7 +54,6 @@ export const PostList: React.FC = () => {
                         <NumberField
                             value={hit}
                             options={{
-                                // @ts-ignore
                                 notation: "compact",
                             }}
                         />
@@ -65,6 +68,7 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
+            // highlight-next-line
             <AntdList {...listProps} renderItem={renderItem} />
         </List>
     );
@@ -84,28 +88,34 @@ interface IPost {
 }
 ```
 
-Let's pass the list page we created to our `<Resource>` component.
+After creating the `<PostList>` component, add it to resource with `list` prop:
 
-```tsx {5, 12}
+```tsx
 import { Refine, Resource } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import "@pankod/refine/dist/styles.min.css";
 
+// highlight-next-line
 import { PostList } from "pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine dataProvider={dataProvider(API_URL)}>
-            <Resource name="posts" list={PostList} />
-        </Refine>
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider(API_URL)}
+            // highlight-next-line
+            resources={[{ name: "posts", list: PostList }]}
+        />
     );
 };
 
 export default App;
 ```
+
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -118,15 +128,17 @@ export default App;
 
 We will create a form by extracting `searchFormProps` from [`useSimpleList`](../../api-references/hooks/show/useSimpleList.md). We will use this form for search/filtering. We will also create an interface to determine the types of values from the form.
 
-```tsx title="pages/posts/list.tsx" {4, 12-35, 39-42, 46-63}
+```tsx title="pages/posts/list.tsx"
 ...
 
 import {
     ...
+// highlight-next-line
     CrudFilters,
 } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
+// highlight-start
     const { listProps, searchFormProps } = useSimpleList<
         IPost,
         IPostFilterVariables
@@ -156,6 +168,7 @@ export const PostList: React.FC = () => {
             return filters;
         },
     });
+// highlight-end
 
     // ...
 
@@ -165,6 +178,7 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
+// highlight-start
             <Form
                 {...searchFormProps}
                 layout="vertical"
@@ -184,6 +198,7 @@ export const PostList: React.FC = () => {
                 </Space>
             </Form>
             <AntdList {...listProps} renderItem={renderItem} />
+// highlight-end
         </List>
     );
 };
@@ -195,7 +210,6 @@ interface IPostFilterVariables {
 ```
 
 When the form is submitted, the `onSearch` method runs and we get the search form values. Then the `listProps` is refreshed according to the criteria.
-
 
 <div class="img-container">
     <div class="window">
@@ -214,7 +228,7 @@ When the form is submitted, the `onSearch` method runs and we get the search for
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-use-simple-list-example-vcq4d?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Flist.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-use-simple-list-example-3098n?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-simple-list-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

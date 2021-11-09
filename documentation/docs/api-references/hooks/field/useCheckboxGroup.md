@@ -30,17 +30,20 @@ We will demonstrate how to get data at the `/tags` endpoint from the `https://ap
 }
 ```
 
-```tsx twoslash title="pages/posts/create.tsx" {3-5, 10}
+```tsx  title="pages/posts/create.tsx"
 import { Form, Checkbox, useCheckboxGroup } from "@pankod/refine";
 
 export const PostCreate: React.FC = () => {
+    // highlight-start
     const { checkboxGroupProps } = useCheckboxGroup<ITag>({
         resource: "tags",
     });
+    // highlight-end
 
     return (
         <Form>
             <Form.Item label="Tags" name="tags">
+                // highlight-next-line
                 <Checkbox.Group {...checkboxGroupProps} />
             </Form.Item>
         </Form>
@@ -71,9 +74,7 @@ All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.
 
 ### `resource`
 
-```tsx twoslash
-import { useCheckboxGroup } from "@pankod/refine";
-// ---cut---
+```tsx 
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
 });
@@ -85,13 +86,13 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 ### `optionLabel` and `optionValue`
 
-```tsx twoslash {2-3}
-import { useCheckboxGroup } from "@pankod/refine";
-// ---cut---
+```tsx
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
+    // highlight-start
     optionLabel: "title",
     optionValue: "id",
+    // highlight-end
 });
 ```
 
@@ -99,11 +100,10 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 ### `filters`
 
-```tsx twoslash {2-8}
-import { useCheckboxGroup } from "@pankod/refine";
-// ---cut---
+```tsx
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
+    // highlight-start
     filters: [
         {
             field: "title",
@@ -111,6 +111,7 @@ const { checkboxGroupProps } = useCheckboxGroup({
             value: "Driver Deposit",
         },
     ],
+    // highlight-end
 });
 ```
 
@@ -118,17 +119,17 @@ It allows us to add some filters while fetching the data. For example, if you wa
 
 ### `sort`
 
-```tsx twoslash {2-7}
-import { useCheckboxGroup } from "@pankod/refine";
-// ---cut---
+```tsx
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
+    // highlight-start
     sort: [
         {
             field: "title",
             order: "asc",
         },
     ],
+    // highlight-end
 });
 ```
 
@@ -136,47 +137,34 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 
 ### `queryOptions`
 
-```tsx twoslash {2}
-import { useCheckboxGroup } from "@pankod/refine";
-// ---cut---
+```tsx
 const { checkboxGroupProps } = useCheckboxGroup({
     resource: "tags",
-    queryOptions: { onError: () => { console.log("triggers when on query return Error") }}
+    // highlight-start
+    queryOptions: {
+        onError: () => {
+            console.log("triggers when on query return Error");
+        },
+    },
+    // highlight-end
 });
 ```
 
 [useQuery](https://react-query.tanstack.com/reference/useQuery) options can be set by passing `queryOptions` property.
 
-
-
-```tsx twoslash {2, 4-10}
-import { useCheckboxGroup } from "@pankod/refine";
-// ---cut---
-const { 
-    checkboxGroupProps, 
-} = useCheckboxGroup({
-    resource: "tags",
-    queryOptions: { 
-        onSuccess: (data) => { 
-            console.log("triggers when on query return on success") 
-        } 
-    }
-});
-```
-
 ## API Reference
 
 ### Properties
 
-| Property                                          | Description                                                                         | Type                                                             | Default   |
-| ------------------------------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------- | --------- |
-| resource <div className="required">Required</div> | [`Resource`](/api-references/components/resource.md) for API data interactions      | `string`                                                         |           |
-| optionValue                                       | Sets the option's value                                                             | `string`                                                         | `"id"`    |
-| optionLabel                                       | Sets the option's label value                                                       | `string`                                                         | `"title"` |
-| filters                                           | Adds filters while fetching the data                                                | [`CrudFilters`](../../interfaces.md#crudfilters)                 |           |
-| sort                                              | Allows us to sort the options                                                       | [`CrudSorting`](../../interfaces.md#crudsorting)                 |           |
-| queryOptions                                      | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>`               |           |
-| metaData                                          | Metadata query for `dataProvider`                                                   | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery) | {}        |
+| Property                                                                                            | Description                                                                         | Type                                                           | Default   |
+| --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------- | --------- |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                             | `string`                                                       |           |
+| optionValue                                                                                         | Sets the option's value                                                             | `string`                                                       | `"id"`    |
+| optionLabel                                                                                         | Sets the option's label value                                                       | `string`                                                       | `"title"` |
+| filters                                                                                             | Adds filters while fetching the data                                                | [`CrudFilters`](../../interfaces.md#crudfilters)               |           |
+| sort                                                                                                | Allows us to sort the options                                                       | [`CrudSorting`](../../interfaces.md#crudsorting)               |           |
+| queryOptions                                                                                        | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>`             |           |
+| metaData                                                                                            | Metadata query for `dataProvider`                                                   | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery) | {}        |
 
 ### Return values
 
@@ -187,7 +175,7 @@ const {
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-use-checkbox-group-example-2sijn?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Fedit.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-use-checkbox-group-example-pwvjg?autoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-use-checkbox-group-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

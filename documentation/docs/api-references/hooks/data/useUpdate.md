@@ -11,13 +11,12 @@ It uses `update` method as mutation function from the [`dataProvider`](api-refer
 
 ## Features
 
-* Shows notifications after the mutation succeeds, fails or gets cancelled.
+-   Shows notifications after the mutation succeeds, fails or gets cancelled.
 
-* Automatically invalidates `list` and `getOne` queries after the mutation is succesfully run.
-[Refer to React Query docs for detailed information &#8594](https://react-query.tanstack.com/guides/invalidations-from-mutations)
+-   Automatically invalidates `list` and `getOne` queries after the mutation is succesfully run.
+    [Refer to React Query docs for detailed information &#8594](https://react-query.tanstack.com/guides/invalidations-from-mutations)
 
-* Supports [mutation mode](#mutation-mode).
-
+-   Supports [mutation mode](#mutation-mode).
 
 ## Usage
 
@@ -38,20 +37,20 @@ Let's say that we have a resource named `categories`.
 }
 ```
 
-```tsx twoslash
+```tsx 
 type CategoryMutationResult = {
     id: string;
     title: string;
-}
+};
 
 import { useUpdate } from "@pankod/refine";
 
 const { mutate } = useUpdate<CategoryMutationResult>();
 
-mutate({ 
-    resource: "categories", 
+mutate({
+    resource: "categories",
     id: "2",
-    values: { title: "New Category Title" }
+    values: { title: "New Category Title" },
 });
 ```
 
@@ -64,7 +63,7 @@ mutate({
 
 After mutation runs, `categories` will be updated as below:
 
-```ts title="https://api.fake-rest.refine.dev/categories" {8}
+```ts title="https://api.fake-rest.refine.dev/categories"
 {
     [
         {
@@ -73,11 +72,13 @@ After mutation runs, `categories` will be updated as below:
         },
         {
             id: 2,
+// highlight-next-line
             title: "New Category Title",
         },
     ];
 }
 ```
+
 <br/>
 
 :::note
@@ -101,13 +102,14 @@ Values passed to `mutate` must have these types.
     onCancel?: (cancelMutation: () => void) => void;
 }
 ```
+
 :::
 
 ## Mutation mode
 
 Mutation mode determines which mode mutation runs with.
 
-```tsx twoslash {8}
+```tsx
 import { useUpdate } from "@pankod/refine";
 
 const { mutate } = useUpdate();
@@ -116,17 +118,16 @@ mutate({
     resource: "categories",
     id: "2",
     values: { title: "New Category Title" },
+    // highlight-next-line
     mutationMode: "optimistic",
 });
 ```
 
-
-
 [Refer to mutation mode docs for further information. &#8594](guides-and-concepts/mutation-mode.md)
 
-
 ### Creating a custom method for cancelling mutations
-You can pass a custom cancel callback to `useUpdate`. This callback will be triggered instead of the default one when undo button is clicked when  `mutationMode = "undoable"`.
+
+You can pass a custom cancel callback to `useUpdate`. This callback will be triggered instead of the default one when undo button is clicked when `mutationMode = "undoable"`.
 
 :::caution
 Default behaviour on undo action includes notifications. If a custom callback is passed, this notification will not appear.
@@ -134,25 +135,31 @@ Default behaviour on undo action includes notifications. If a custom callback is
 
 :::danger
 Passed callback will receive a function that actually cancels the mutation. Don't forget to run this function to cancel the mutation on `undoable` mode.
-```tsx twoslash {2-5, 13-15}
+
+```tsx
 import { useUpdate } from "@pankod/refine";
 
+// highlight-start
 const customOnCancel = (cancelMutation: () => void) => {
     cancelMutation();
     // rest of custom cancel logic...
-}
+};
+// highlight-end
 
 const { mutate } = useUpdate();
 
-mutate({ 
+mutate({
     resource: "categories",
     id: "2",
     values: { title: "New Category Title" },
     mutationMode: "undoable",
+    // highlight-start
     undoableTimeout: 7500,
-    onCancel: customOnCancel
+    onCancel: customOnCancel,
+    // highlight-end
 });
 ```
+
 After 7.5 seconds the mutation will be executed. The mutation can be cancelled within that 7.5 seconds. If cancelled, `customOnCancel` will be executed and the request will not be sent.
 :::
 
@@ -162,20 +169,19 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 
 ### Properties
 
-
 | Property                                                                                            | Description                                                                     | Type                                                                       | Default                                                      |
 | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](/api-references/components/resource.md) for API data interactions  | `string`                                                                   |                                                              |
-| id  <div className=" required">Required</div>                                                       | id for mutation function                                                        | `string`                                                                   |                                                              |
-| values  <div className=" required">Required</div>                                                   | Values for mutation function                                                    | `TVariables`                                                               | {}                                                           |
-| mutationMode                                                                                        | [Determines when mutations are executed](/guides-and-concepts/mutation-mode.md)  | ` "pessimistic` \| `"optimistic` \| `"undoable"`                           | `"pessimistic"`*                                             |
-| undoableTimeout                                                                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"` | `number`                                                                   | `5000ms`*                                                    |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                         | `string`                                                                   |                                                              |
+| id <div className=" required">Required</div>                                                        | id for mutation function                                                        | `string`                                                                   |                                                              |
+| values <div className=" required">Required</div>                                                    | Values for mutation function                                                    | `TVariables`                                                               | {}                                                           |
+| mutationMode                                                                                        | [Determines when mutations are executed](/guides-and-concepts/mutation-mode.md) | ` "pessimistic` \| `"optimistic` \| `"undoable"`                           | `"pessimistic"`\*                                            |
+| undoableTimeout                                                                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"` | `number`                                                                   | `5000ms`\*                                                   |
 | onCancel                                                                                            | Callback that runs when undo button is clicked on `mutationMode = "undoable"`   | `(cancelMutation: () => void) => void`                                     |                                                              |
 | successNotification                                                                                 | Successful Mutation notification                                                | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully updated `resource`"                            |
 | errorNotification                                                                                   | Unsuccessful Mutation notification                                              | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Error when updating `resource` (status code: `statusCode`)" |
-| metaData                                            | Metadata query for `dataProvider`                                              | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)           | {}                                                                   |
+| metaData                                                                                            | Metadata query for `dataProvider`                                               | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)             | {}                                                           |
 
->`*`: These props have default values in `RefineContext` and can also be set on **<[Refine](api-references/components/refine-config.md)>** component. `useUpdate` will use what's passed to `<Refine>` as default, but a local value will override it.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](api-references/components/refine-config.md)>** component. `useUpdate` will use what's passed to `<Refine>` as default, but a local value will override it.
 
 <br/>
 
@@ -189,8 +195,8 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 
 ### Return value
 
- | Description                               | Type                                                                                                                                                                                                     |
- | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
- | Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { resource:string; id: string; values: TVariables; },`<br/>` UpdateContext>`](https://react-query.tanstack.com/reference/useMutation)* |
+| Description                               | Type                                                                                                                                                                                                     |
+| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource:string; id: string; values: TVariables; },`<br/>` UpdateContext>`](https://react-query.tanstack.com/reference/useMutation)\* |
 
->`*` `UpdateContext` is an internal type.
+> `*` `UpdateContext` is an internal type.

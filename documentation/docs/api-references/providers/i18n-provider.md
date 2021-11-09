@@ -31,7 +31,8 @@ const i18nProvider = {
 After creating a `i18nProvider`, you can pass it to the `<Refine>` component.
 
 ```tsx title="src/App.tsx"
-import { Refine, Resource } from "@pankod/refine";
+import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import i18nProvider from "./i18nProvider";
@@ -39,18 +40,26 @@ import i18nProvider from "./i18nProvider";
 const App: React.FC = () => {
     return (
         <Refine
+            routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             i18nProvider={i18nProvider}
-        >
-            <Resource name="posts" />
-        </Refine>
+            resources={[{ name: "posts" }]}
+        />
     );
 };
 ```
 
 ## Example
 
-Let's add multi-language support using the `react-i18next` framework. At the end of our example, our application will support both Turkish and English.
+:::tip
+We recommend [**superplate**][superplate] to initialize your refine projects. It configures the project according to your needs including i18n provider.
+:::
+
+:::caution
+This example is for SPA react apps, for Next.js [refer to i18n Nextjs example ][i18nNextjs]
+:::
+
+Let's add multi-language support using the `react-i18next` framework. At the end of our example, our application will support both German and English.
 
 [Refer to the react-i18n docs for detailed information &#8594](https://react.i18next.com/getting-started)
 
@@ -91,18 +100,21 @@ export default i18n;
 
 Then we will import the i18n instance we created and wrap the application with `React.Suspense`.
 
-```tsx title="src/index.tsx" {4, 8-10}
+```tsx title="src/index.tsx"
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 
+// highlight-next-line
 import "./i18n";
 
 ReactDOM.render(
     <React.StrictMode>
+// highlight-start
         <React.Suspense fallback="loading">
             <App />
         </React.Suspense>
+// highlight-end
     </React.StrictMode>,
     document.getElementById("root"),
 );
@@ -116,14 +128,17 @@ We use `React.Suspense` because it improves performance by preventing the app fr
 
 Next, we will include the i18n instance and create the `i18nProvider` using `react-i18next`.
 
-```tsx title="src/App.tsx" {2, 7, 9-13, 18}
-import { Refine, Resource } from "@pankod/refine";
+```tsx title="src/App.tsx"
+import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router";
+// highlight-next-line
 import { useTranslation } from "react-i18next";
 
 import { PostList } from "pages/posts";
 
 const App: React.FC = () => {
+// highlight-start
     const { t, i18n } = useTranslation();
 
     const i18nProvider = {
@@ -131,14 +146,16 @@ const App: React.FC = () => {
         changeLocale: (lang: string) => i18n.changeLanguage(lang),
         getLocale: () => i18n.language,
     };
+// highlight-end
 
     return (
         <Refine
+            routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+// highlight-next-line
             i18nProvider={i18nProvider}
-        >
-            <Resource name="posts" list={PostList} />
-        </Refine>
+            resources={[{ name: "posts", list: PostList }]}
+        />
     );
 };
 ```
@@ -487,14 +504,16 @@ export const Header: React.FC = () => {
 
 Then, we will pass `<Header>` to the `<Refine>` component as a property.
 
-```tsx title="src/App.tsx" {7, 22}
+```tsx title="src/App.tsx"
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router";
 import { useTranslation } from "react-i18next";
 import "./i18n";
 
 import { PostList } from "pages/posts";
 
+// highlight-next-line
 import { Header } from "components";
 
 const App: React.FC = () => {
@@ -508,12 +527,13 @@ const App: React.FC = () => {
 
     return (
         <Refine
+            routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             i18nProvider={i18nProvider}
+// highlight-next-line
             Header={Header}
-        >
-            <Resource name="posts" list={PostList} />
-        </Refine>
+            resources={[{ name: "posts", list: PostList }]}
+        />
     );
 };
 ```
@@ -522,7 +542,7 @@ const App: React.FC = () => {
 
 Finally, we will create the `<PostList>` page and then we will translate texts using `useTranslate`.
 
-```tsx title="src/App.tsx" {9, 15, 34, 38, 55}
+```tsx title="src/App.tsx"
 import {
     List,
     Table,
@@ -532,12 +552,14 @@ import {
     EditButton,
     ShowButton,
     useMany,
+// highlight-next-line
     useTranslate,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
+// highlight-next-line
     const translate = useTranslate();
     const { tableProps } = useTable<IPost>();
 
@@ -557,10 +579,12 @@ export const PostList: React.FC = () => {
                 <Table.Column dataIndex="id" title="ID" />
                 <Table.Column
                     dataIndex="title"
+// highlight-next-line
                     title={translate("posts.fields.title")}
                 />
                 <Table.Column
                     dataIndex={["category", "id"]}
+// highlight-next-line
                     title={translate("posts.fields.category")}
                     render={(value) => {
                         if (isLoading) {
@@ -578,6 +602,7 @@ export const PostList: React.FC = () => {
                     }}
                 />
                 <Table.Column<IPost>
+// highlight-next-line
                     title={translate("table.actions")}
                     dataIndex="actions"
                     key="actions"
@@ -622,9 +647,12 @@ export interface IPost {
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-i18n-example-xvk6w?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-i18n-example-q85zm?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-i18n-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
+
+[i18nNextjs]: /examples/i18n/i18n-nextjs.md
+[superplate]: https://github.com/pankod/superplate

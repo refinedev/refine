@@ -28,7 +28,7 @@ Let's say that we have a resource named `posts`.
 }
 ```
 
-```tsx twoslash
+```tsx 
 import { useOne } from "@pankod/refine";
 
 type ICategory = {
@@ -82,14 +82,14 @@ After query runs, the `categoryQueryResult` will include the retrieved data:
 
 ### Properties
 
-| Property                                                                                            | Description                                                                    | Type                                                                       | Default                             |
-| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------- | ----------------------------------- |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                                   |                                     |
-| id <div className="required">Required</div>                                                         | id of the item in the resource                                                 | `string`                                                                   |                                     |
-| queryOptions                                                                                        | `react-query`'s `useQuery` options                                             | ` UseQueryOptions<`<br/>`{ data: TData; },`<br/>`TError>`                  |                                     |
-| successNotification                                                                                 | Successful Query notification                                                  | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | `false`                             |
-| errorNotification                                                                                   | Unsuccessful Query notification                                                | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Error (status code: `statusCode`)" |
-| metaData                                            | Metadata query for `dataProvider`                                              | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)           | {}                                                                   |
+| Property                                                                                            | Description                             | Type                                                                       | Default                             |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------- | -------------------------------------------------------------------------- | ----------------------------------- |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions | `string`                                                                   |                                     |
+| id <div className="required">Required</div>                                                         | id of the item in the resource          | `string`                                                                   |                                     |
+| queryOptions                                                                                        | `react-query`'s `useQuery` options      | ` UseQueryOptions<`<br/>`{ data: TData; },`<br/>`TError>`                  |                                     |
+| successNotification                                                                                 | Successful Query notification           | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | `false`                             |
+| errorNotification                                                                                   | Unsuccessful Query notification         | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Error (status code: `statusCode`)" |
+| metaData                                                                                            | Metadata query for `dataProvider`       | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)             | {}                                  |
 
 ### Type Parameters
 

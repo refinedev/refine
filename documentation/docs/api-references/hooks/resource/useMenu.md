@@ -21,19 +21,21 @@ We will show you how to use `useMenu` to create a custom sider menu that is iden
 
 First we define `<CustomMenu>`:
 
-```tsx twoslash title="src/CustomMenu.tsx" {12, 30, 34-36}
+```tsx  title="src/CustomMenu.tsx"
 import { useState, CSSProperties } from "react";
 import {
     AntdLayout,
     Menu,
     Grid,
     Link,
+// highlight-next-line
     useMenu,
     useTitle,
 } from "@pankod/refine";
 
 export const CustomMenu: React.FC = () => {
     const Title = useTitle();
+// highlight-next-line
     const { menuItems, selectedKey } = useMenu();
 
     const [collapsed, setCollapsed] = useState<boolean>(false);
@@ -51,24 +53,23 @@ export const CustomMenu: React.FC = () => {
             style={isMobile ? antLayoutSiderMobile : antLayoutSider}
         >
             <Title collapsed={collapsed} />
-            <Menu 
-                selectedKeys={[selectedKey]}
-                mode="inline"
-                >
-                    {menuItems.map(({ icon, route, label }) => (
-                        <Menu.Item key={route} icon={icon}>
-                            <Link to={route}>{label}</Link>
-                        </Menu.Item>
-                    ))}
+// highlight-start
+            <Menu selectedKeys={[selectedKey]} mode="inline">
+                {menuItems.map(({ icon, route, label }) => (
+                    <Menu.Item key={route} icon={icon}>
+                        <Link to={route}>{label}</Link>
+                    </Menu.Item>
+                ))}
             </Menu>
+// highlight-end
         </AntdLayout.Sider>
     );
 };
 
-const antLayoutSider:CSSProperties = {
+const antLayoutSider: CSSProperties = {
     position: "relative",
 };
-const antLayoutSiderMobile:CSSProperties = {
+const antLayoutSiderMobile: CSSProperties = {
     position: "fixed",
     height: "100vh",
     zIndex: 999,
@@ -81,24 +82,26 @@ const antLayoutSiderMobile:CSSProperties = {
 
 We can override the default sider and show the custom menu we implemented in its place by passing a the custom component to `<Refine>`s `Sider` prop:
 
-```tsx title="App.tsx" {6, 15}
-import { Refine, Resource } from "@pankod/refine";
+```tsx title="App.tsx"
+import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList } from "pages/posts";
 
+// highlight-next-line
 import { CustomMenu } from "./CustomMenu";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <Refine 
+        <Refine
             dataProvider={dataProvider(API_URL)}
-            Sider={CustomMenu}>
-                <Resource name="posts" list={PostList} />
-        </Refine>
+// highlight-next-line
+            Sider={CustomMenu}
+            resources={[{ name: "posts", list: PostList }]}
+        />
     );
 };
 
@@ -109,16 +112,18 @@ export default App;
 
 We can also add a logout button:
 
-```tsx twoslash title="src/CustomMenu.tsx" {6-8, 22-23, 53-55}
+```tsx  title="src/CustomMenu.tsx"
 import { useState, CSSProperties } from "react";
 import {
     AntdLayout,
     Menu,
     Link,
     Grid,
+// highlight-start
     Icons,
     useNavigation,
     useLogout,
+// highlight-end
     useMenu,
     useTitle,
 } from "@pankod/refine";
@@ -132,8 +137,10 @@ export const CustomMenu: React.FC = () => {
     const breakpoint = Grid.useBreakpoint();
     const isMobile = !breakpoint.lg;
 
+// highlight-start
     const { mutate: logout } = useLogout();
     const { push } = useNavigation();
+// highlight-end
 
     return (
         <AntdLayout.Sider
@@ -148,6 +155,7 @@ export const CustomMenu: React.FC = () => {
             <Menu
                 selectedKeys={[selectedKey]}
                 mode="inline"
+// highlight-start
                 onClick={({ key }) => {
                     if (key === "logout") {
                         logout();
@@ -156,6 +164,7 @@ export const CustomMenu: React.FC = () => {
 
                     push(key as string);
                 }}
+// highlight-end
             >
                 {menuItems.map(({ icon, route, label }) => (
                     <Menu.Item key={route} icon={icon}>
@@ -163,18 +172,20 @@ export const CustomMenu: React.FC = () => {
                     </Menu.Item>
                 ))}
 
+// highlight-start
                 <Menu.Item key="logout" icon={<Icons.LogoutOutlined />}>
                     Logout
+// highlight-end
                 </Menu.Item>
             </Menu>
         </AntdLayout.Sider>
     );
 };
 
-const antLayoutSider:CSSProperties = {
+const antLayoutSider: CSSProperties = {
     position: "relative",
 };
-const antLayoutSiderMobile:CSSProperties = {
+const antLayoutSiderMobile: CSSProperties = {
     position: "fixed",
     height: "100vh",
     zIndex: 999,

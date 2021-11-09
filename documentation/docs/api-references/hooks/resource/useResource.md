@@ -3,9 +3,9 @@ id: useResource
 title: useResource
 ---
 
-`useResource` is used to get `<Resource>` properties that are defined as children of the `<Refine>` component.
+`useResource` is used to get `resources` that are defined as property of the `<Refine>` component.
 
-```ts twoslash
+```ts
 import { useResource } from "@pankod/refine";
 
 const resources = useResource();
@@ -34,4 +34,4 @@ interface IResourceItem {
 }
 ```
 
-> The `canCreate`, `canShow` and `canEdit` properties are defined automatically if the `create`, `show` and `edit` components are defined on the `<Resource>` components properties in the `<Refine>` components children.
+> The `canCreate`, `canShow` and `canEdit` properties are defined automatically if the `create`, `show` and `edit` components are defined on the `resources` property in `<Refine>`.

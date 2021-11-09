@@ -14,11 +14,11 @@ We will show what `<List>` does using properties with examples.
 
 ### `canCreate` and `createButtonProps`
 
-`canCreate` allows us to add the create button inside the `<List>` component. If `<Resource>` is passed a create component, refine adds the create button by default. If you want to customize this button you can use `createButtonProps` property like the code below.
+`canCreate` allows us to add the create button inside the `<List>` component. If resource is passed a create component, **refine** adds the create button by default. If you want to customize this button you can use `createButtonProps` property like the code below.
 
 Create button redirects to the create page of the resource according to the value it reads from the URL.
 
-```tsx twoslash
+```tsx 
 import { List, usePermissions } from "@pankod/refine";
 
 export const ListPage: React.FC = () => {
@@ -41,7 +41,7 @@ export const ListPage: React.FC = () => {
 
 It allows adding a title for the `<List>` component. if you don't pass title props, it uses plural from of resource name by default.
 
-```tsx twoslash
+```tsx 
 import { List } from "@pankod/refine";
 
 export const ListPage: React.FC = () => {
@@ -55,7 +55,7 @@ export const ListPage: React.FC = () => {
 
 [Refer to the `<PageHeader>` documentation for detailed usage. &#8594](https://ant.design/components/page-header/#API)
 
-```tsx twoslash
+```tsx 
 import { List } from "@pankod/refine";
 
 export const ListPage: React.FC = () => {
@@ -90,28 +90,35 @@ export const ListPage: React.FC = () => {
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
-```tsx twoslash
-import { Refine, Resource, List } from "@pankod/refine";
+```tsx
+import { Refine, List } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
+// highlight-start
 const CustomPage = () => {
     return <List resource="posts">...</List>;
 };
+// highlight-end
 
 export const App: React.FC = () => {
     return (
         <Refine
+            routerProvider={{
+                ...routerProvider,
+                // highlight-start
+                routes: [
+                    {
+                        exact: true,
+                        component: CustomPage,
+                        path: "/custom",
+                    },
+                ]
+                // highlight-end
+            }}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
-            routes={[
-                {
-                    exact: true,
-                    component: CustomPage,
-                    path: "/custom",
-                },
-            ]}
-        >
-            <Resource name="posts" />
-        </Refine>
+            resources={[{ name: "posts" }]}
+        />
     );
 };
 ```
@@ -120,10 +127,10 @@ export const App: React.FC = () => {
 
 ### Properties
 
-| Property          | Description                                                                    | Type                                                                                  | Default                                                           |
-| ----------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| canCreate         | Adds create button                                                             | `boolean`                                                                             | If `<Resource>` is passed a create component, `true` else `false` |
-| createButtonProps | Adds props for create button                                                   | [ButtonProps](https://ant.design/components/button/#API) & `{ resourceName: string }` | `<CreateButton />`                                                |
-| title             | Adds title                                                                     | `string`                                                                              | Plural of `resource.name`                                         |
-| pageHeaderProps   | Passes properties for `<PageHeader>`                                           | [PageHeaderProps](https://ant.design/components/page-header/#API)                     | { ghost: false, [title](#title), extra: `<CreateButton />` }      |
-| resource          | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                                              | Resource name that it reads from the url.                         |
+| Property          | Description                             | Type                                                                                  | Default                                                       |
+| ----------------- | --------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| canCreate         | Adds create button                      | `boolean`                                                                             | If the resource is passed a create component, `true` else `false` |
+| createButtonProps | Adds props for create button            | [ButtonProps](https://ant.design/components/button/#API) & `{ resourceName: string }` | `<CreateButton />`                                            |
+| title             | Adds title                              | `string`                                                                              | Plural of `resource.name`                                     |
+| pageHeaderProps   | Passes properties for `<PageHeader>`    | [PageHeaderProps](https://ant.design/components/page-header/#API)                     | { ghost: false, [title](#title), extra: `<CreateButton />` }  |
+| resource          | Resource name for API data interactions | `string`                                                                              | Resource name that it reads from the url.                     |

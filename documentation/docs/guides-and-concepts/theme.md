@@ -10,7 +10,15 @@ Ant Design allows you to customize many of its [less variables](https://github.c
 In this example, we'll be demonstrating theming with `less` using [CRACO (Create React App Configuration Override)](https://github.com/gsoft-inc/craco) as our customization layer for [Create React App](https://github.com/facebook/create-react-app).
 
 :::tip
+We recommend [**superplate**][superplate] to initialize your refine projects. It configures the project according to your needs including SSR and Theme with Next.js.
+:::
+
+:::tip
 If you're not using Create React App and already have a webpack setup, you can refer to Ant Design docs for configuring your setup: [Customize in webpack](https://ant.design/docs/react/customize-theme#Customize-in-webpack)
+:::
+
+:::tip
+If you're using Next.js, [refer to finefoods client example app for theme configuration][finefoods-client]. It uses [next-plugin-antd-less][] to customize theme in a Next.js app.
 :::
 
 If you're using Create React App, you can easily enable CRACO.
@@ -76,10 +84,11 @@ Create a less file and import antd styles from `node_modules/antd`:
 
 And import the `less` file in `App.tsx`:
 
-```tsx title="App.tsx" {3}
+```tsx title="App.tsx"
 import { Refine, Resource } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 
+// highlight-next-line
 import "styles/antd.less";
 
 ...
@@ -129,7 +138,7 @@ You can just change variables values in `less` files. Add these contents to your
 
 Or you can use `craco.config.js` to change variable values. To change the variable named `@primary-color`, you can use the `modifyVars` property of [`lessOptions`](https://github.com/DocSpring/craco-less#configuration):
 
-```ts title="craco.config.js" {9}
+```ts title="craco.config.js"
 const CracoLessPlugin = require("craco-less");
 
 module.exports = {
@@ -139,6 +148,7 @@ module.exports = {
             options: {
                 lessLoaderOptions: {
                     lessOptions: {
+// highlight-next-line
                         modifyVars: { "@primary-color": "#1DA57A" },
                         javascriptEnabled: true,
                     },
@@ -153,9 +163,13 @@ All variable overrides configured in `lessOptions.modifyVars` always have higher
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-custom-theme-example-3mrbr?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=editor"
+<iframe src="https://codesandbox.io/embed/refine-custom-theme-example-675ig?autoresize=1&fontsize=14&theme=dark&view=editor"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-custom-theme-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
+
+[superplate]: https://github.com/pankod/superplate
+[finefoods-client]: https://github.com/pankod/refine/tree/alpha/examples/fineFoods/client
+[next-plugin-antd-less]: https://github.com/SolidZORO/next-plugin-antd-less

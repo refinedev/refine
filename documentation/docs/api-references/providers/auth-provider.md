@@ -34,12 +34,12 @@ Authorization hooks are used to manage authentication and authorization operatio
 
 To use `authProvider` in **refine**, we have to pass the `authProvider` to the `<Refine />` component.
 
-```tsx title="App.tsx" {5, 12}
-import {
-    Refine,
-} from "@pankod/refine";
+```tsx title="App.tsx"
+import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
+// highlight-next-line
 import authProvider from "./auth-provider";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -47,11 +47,11 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App = () => {
     return (
         <Refine
+            // highlight-next-line
             authProvider={authProvider}
+            routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
-        >
-            ...
-        </Refine>
+        />
     );
 };
 ```
@@ -78,10 +78,12 @@ We will build a simple `authProvider` from scratch to show the logic of how `aut
 Here we show an example `login` method that stores auth data in `localStorage`.
 For the sake of simplicity, we'll use mock data and check the user credentials from local storage.
 
-```tsx title="auth-provider.ts" {0, 3-13}
+```tsx title="auth-provider.ts"
+// highlight-next-line
 const mockUsers = [{ username: "admin" }, { username: "editor" }];
 
 const authProvider = {
+    // highlight-start
     login: ({ username, password, remember }) => {
         // Suppose we actually send a request to the back end here.
         const user = mockUsers.find((item) => item.username === username);
@@ -93,6 +95,7 @@ const authProvider = {
 
         return Promise.reject();
     },
+    // highlight-end
 };
 ```
 
@@ -100,11 +103,7 @@ const authProvider = {
 
 `login` method will be accessible via `useLogin` auth hook.
 
-```tsx twoslash
-const values = { };
-
-// ---cut---
-
+```tsx
 import { useLogin } from "@pankod/refine";
 
 const { mutate: login } = useLogin();
@@ -148,7 +147,7 @@ After submission, login form calls the `login` method from `authProvider`.
 <br />
 
 :::important
-If an `authProvider` is given, [Resources](/api-references/components/resource.md) passed to `<Refine>` as children are only accessible if the login is successful. if no `authProvider` was provided, they are accessible without authentication.  
+If an `authProvider` is given, `resources` passed to `<Refine>` as propery are only accessible if the login is successful. if no `authProvider` was provided, they are accessible without authentication.  
 :::
 
 :::tip
@@ -169,13 +168,15 @@ If an `authProvider` is given, [Resources](/api-references/components/resource.m
 
 Here we show an example `logout` that removes auth data from local storage and returns a resolved promise.
 
-```tsx title="auth-provider.ts" {2-5}
+```tsx title="auth-provider.ts"
 const authProvider = {
     ...
+// highlight-start
     logout: () => {
         localStorage.removeItem("auth");
         return Promise.resolve();
     }
+// highlight-end
     ...
 }
 ```
@@ -184,7 +185,7 @@ const authProvider = {
 
 `logout` method will be accessible via the `useLogout` auth hook.
 
-```tsx twoslash
+```tsx
 import { useLogout } from "@pankod/refine";
 
 const { mutate: logout } = useLogout();
@@ -221,11 +222,12 @@ If authentication is enabled, a logout button appears at the bottom of the side 
 
 Redirection url can be customized by returning a route string, or false to disable redirection after logout.
 
-```tsx {4}
+```tsx
 const authProvider = {
     ...
     logout: () => {
         localStorage.removeItem("auth");
+// highlight-next-line
         return Promise.resolve("custom-url");
     }
 }
@@ -245,19 +247,21 @@ If `checkError` returns a rejected promise, the `logout` method is called and us
 In this example, we log the user out when **HTTP** error status code is `401`.  
 You can decide, depending on any error status code you want to check, if the users continue to process by returning a resolved promise or if they are logged out for rejecting the promise.
 
-```tsx title="auth-provider.ts" {6-11}
+```tsx title="auth-provider.ts"
 const authProvider = {
     ...
     logout: () => {
         localStorage.removeItem("auth");
         return Promise.resolve();
     },
+// highlight-start
     checkError: (error) => {
         if (error.status === 401) {
             return Promise.reject();
         }
         return Promise.resolve();
     },
+// highlight-end
    ...
 };
 ```
@@ -266,10 +270,7 @@ const authProvider = {
 
 `checkError` method will be accessible via the `useCheckError` auth hook.
 
-```tsx twoslash
-const error: { message:string, statusCode: number } = { message: "Expired Access Token", statusCode: 401 }
-// ---cut---
-
+```tsx
 import { useCheckError } from "@pankod/refine";
 
 const { mutate: checkError } = useCheckError();
@@ -311,23 +312,26 @@ When `checkAuth` returns a rejected promise, authentication is cancelled and the
 
 Checking the authentication data can be easily done here. For example if the authentication data is stored in the local storage:
 
-```tsx title="auth-provider.ts" {2-4}
+```tsx title="auth-provider.ts"
 const authProvider = {
    ...
+// highlight-start
     checkAuth: () => {
         localStorage.getItem("auth") ? Promise.resolve() : Promise.reject();
     },
+// highlight-end
    ...
 };
 ```
 
 <br />
 
-- A custom `redirectPath` can be given to `Promise` reject from the `checkAuth`. If you want to redirect yourself to a certain URL.
+-   A custom `redirectPath` can be given to `Promise` reject from the `checkAuth`. If you want to redirect yourself to a certain URL.
 
-```tsx {5}
+```tsx
 const authProvider = {
    ...
+// highlight-next-line
     checkAuth: () => {
         localStorage.getItem("auth")
             ? Promise.resolve()
@@ -336,11 +340,12 @@ const authProvider = {
    ...
 };
 ```
+
 <br/>
 
 `checkAuth` method will be accessible via `useAuthenticated` auth hook.
 
-```tsx twoslash
+```tsx
 import { useAuthenticated } from "@pankod/refine";
 
 const {
@@ -361,20 +366,23 @@ You may want to require authorization for certain parts of the app based on the 
 
 We will show you how to give authorization based on roles determined in `getPermissions`.
 
-```tsx title="auth-provider.ts" {3, 7, 13-20}
+```tsx title="auth-provider.ts"
 const mockUsers = [
     {
         username: "admin",
+// highlight-next-line
         roles: ["admin"],
     },
     {
         username: "editor",
+// highlight-next-line
         roles: ["editor"],
     }
 ];
 
 const authProvider = {
 ...
+// highlight-start
     getPermissions: () => {
         const auth = localStorage.getItem("auth");
         if (auth) {
@@ -383,6 +391,7 @@ const authProvider = {
         }
         return Promise.reject();
     },
+// highlight-end
 ...
 };
 ```
@@ -394,7 +403,7 @@ Data that `getPermissions` resolves with is accesible by the [`usePermissions`](
 For example let's say that only the admins must be able to create new posts from the list page.
 `<List>` can show a button for creating new posts. If it's required that only admins can create new posts, this button must be only accessible to users who has the `"admin"` role.
 
-```tsx title="pages/post/list" twoslash
+```tsx title="pages/post/list"
 import { List, usePermissions } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
@@ -412,9 +421,10 @@ export const PostList: React.FC = () => {
 
 User data can be accessed within the app by returning a resolved Promise in the `getUserIdentity` method.
 
-```tsx title="auth-provider.ts" {2-9}
+```tsx title="auth-provider.ts"
 const authProvider = {
 ...
+// highlight-start
     getUserIdentity: () => {
         const auth = localStorage.getItem("auth");
         if (auth) {
@@ -423,6 +433,7 @@ const authProvider = {
         }
         return Promise.reject();
     }
+// highlight-end
 ...
 };
 ```
@@ -431,7 +442,7 @@ const authProvider = {
 
 The resolved data can be acquired using the [`useGetIdentity`](api-references/hooks/auth/useGetIdentity.md) hook.
 
-```tsx twoslash
+```tsx
 import { useGetIdentity } from "@pankod/refine";
 
 const { data: userIdentity } = useGetIdentity<string>();
@@ -442,9 +453,10 @@ const { data: userIdentity } = useGetIdentity<string>();
 
 <br />
 
-```tsx title="auth-provider.ts" {2-8}
+```tsx title="auth-provider.ts"
 const authProvider = {
     ...
+// highlight-start
     getUserIdentity: () => {
         const user = {
             name: "Jane Doe",
@@ -452,6 +464,7 @@ const authProvider = {
         };
         return Promise.resolve(user);
     },
+// highlight-end
     ...
 };
 ```
@@ -482,8 +495,9 @@ After user logs in, their credentials can be sent along with the API request by 
 
 We'll show how to add a token acquired from the `login` method to the **Authorization** header of the **HTTP** requests.
 
-```tsx title="App.tsx" {1, 3, 5-8, 19-22, 33}
+```tsx title="App.tsx"
 ...
+// highlight-start
 import axios from "axios";
 
 const axiosInstance = axios.create();
@@ -492,9 +506,11 @@ const mockUsers = [
     { username: "admin", token: "123" },
     { username: "editor", token: "321" }
 ];
+// highlight-end
 
 const App = () => {
     const authProvider: AuthProvider = {
+// highlight-next-line
         login: ({ username, password }) => {
                 // Suppose we actually send a request to the back end here.
                 const user = mockUsers.find((item) => item.username === username);
@@ -510,15 +526,17 @@ const App = () => {
                 }
                 return Promise.reject();
             },
+// highlight-end
             ...
         };
 
     return (
         <Refine
+// highlight-next-line
             authProvider={authProvider}
-            dataProvider={dataProvider(API_URL, axiosInstance)}>
-            ...
-        </Refine>
+            routerProvider={routerProvider}
+            dataProvider={dataProvider(API_URL, axiosInstance)}
+        />
     );
 }
 ```
@@ -558,7 +576,7 @@ These hooks can be used with the `authProvider` authentication and authorization
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-authorization-example-b26r5?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-authentication-example-rz7l8?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-authorization-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

@@ -5,12 +5,13 @@ title: Create
 
 import createButton from '@site/static/img/guides-and-concepts/components/buttons/create/create.png';
 
-`<CreateButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `create` method from [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of `<Resource>`.
+`<CreateButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `create` method from [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of resource.
 
 ## Usage
 
-```tsx twoslash {1, 11}
+```tsx
 import {
+    // highlight-next-line
     CreateButton,
     List,
     Table,
@@ -21,6 +22,7 @@ export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     return (
+        // highlight-next-line
         <List pageHeaderProps={{ extra: <CreateButton /> }}>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
@@ -51,9 +53,9 @@ Will look like this:
 
 ### `resourceName`
 
-It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of `<Resource>` component.
+It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of resource object.
 
-```tsx twoslash
+```tsx 
 import { CreateButton } from "@pankod/refine";
 
 export const MyCreateComponent = () => {
@@ -67,7 +69,7 @@ Clicking the button will trigger the `create` method of [`useNavigation`](/api-r
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx twoslash
+```tsx 
 import { CreateButton } from "@pankod/refine";
 
 export const MyCreateComponent = () => {

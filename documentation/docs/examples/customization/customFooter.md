@@ -5,7 +5,7 @@ title: Custom Footer
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/customization/customFooter)
 
-<iframe src="https://codesandbox.io/embed/refine-custom-footer-exaxmple-yrz7c?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-custom-footer-example-mrueu?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-custom-footer-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

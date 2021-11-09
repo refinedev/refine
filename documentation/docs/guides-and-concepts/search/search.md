@@ -20,7 +20,7 @@ We will now examine how to search within the application with this component.
 
 To do this, let's first create our `<Header>` component.
 
-```tsx twoslash title="src/components/header.tsx"
+```tsx  title="src/components/header.tsx"
 import { AntdLayout, AutoComplete, Input, Icons } from "@pankod/refine";
 
 const { SearchOutlined } = Icons;
@@ -55,12 +55,14 @@ We created the `<Header>` component as we want it to appear. We have not done an
 :::note
 Let's not forget to pass the `<Header>` component to the `<Refine>` component in `App.tsx` as below.
 
-```tsx title="src/App.tsx" {5, 13}
+```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import "@pankod/refine/dist/styles.min.css";
 
+// highlight-next-line
 import { Header } from "components";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -68,11 +70,11 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <Refine
+            routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
+// highlight-next-line
             Header={Header}
-        >
-            ...
-        </Refine>
+        />
     );
 };
 
@@ -109,7 +111,7 @@ export interface IOptions {
 }
 ```
 
-```tsx title="src/components/header.tsx" {0, 6-8, 11, 14-35, 38-67, 79-80}
+```tsx title="src/components/header.tsx"
 import { useState, useEffect } from "react";
 import {
     AntdLayout,
@@ -209,7 +211,7 @@ We created states to dynamically manage the `value` and `options` properties of 
 
 Search value is currently only searched and fetched inside posts. Let's update our code to search both posts and categories according to search value.
 
-```tsx title="src/components/header.tsx" {17-23, 29-51, 56}
+```tsx title="src/components/header.tsx"
 ...
 export const Header: React.FC = () => {
     const [value, setValue] = useState<string>("");
@@ -288,7 +290,7 @@ By doing the same implementation on your other resources, you can search more th
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-search-example-mlfmp?autoresize=1&fontsize=14&module=%2Fsrc%2Fcomponents%2Fheader.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-search-example-ynwkw?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-search-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

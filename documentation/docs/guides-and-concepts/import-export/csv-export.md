@@ -11,24 +11,28 @@ With **refine**, you can easily add export functionality to dump resources' reco
 
 Let's see an example:
 
-```tsx twoslash title="pages/posts/list.tsx" {4-5, 11, 17}
+```tsx  title="pages/posts/list.tsx"
 import {
     List,
     Table,
     useTable,
+// highlight-start
     useExport,
     ExportButton,
+// highlight-end
 } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
+// highlight-next-line
     const { triggerExport, isLoading } = useExport<IPost>();
 
     return (
         <List
             pageHeaderProps={{
                 extra: (
+// highlight-next-line
                     <ExportButton onClick={triggerExport} loading={isLoading} />
                 ),
             }}
@@ -69,7 +73,7 @@ Manually running the `triggerExport` function is another option.
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-import-export-example-jtzlb?autoresize=1&fontsize=14&hidenavigation=1&module=%2Fsrc%2Fpages%2Fposts%2Flist.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-import-export-example-4nneu?autoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-import-export-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

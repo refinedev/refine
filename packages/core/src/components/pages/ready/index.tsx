@@ -28,12 +28,16 @@ const styles: { [key: string]: React.CSSProperties } = {
         color: "white",
         fontSize: "20px",
     },
+    code: {
+        backgroundColor: "white",
+        color: "#331049",
+    },
 };
 
 const { Title } = Typography;
 
 /**
- * **refine** shows a default ready page on root route when no `<Resource>` is passed to the `<Refine>` component as a child.
+ * **refine** shows a default ready page on root route when no `resources` is passed to the `<Refine>` component as a property.
  *
  * @see {@link https://refine.dev/docs/api-references/components/refine-config#readypage} for more details.
  */
@@ -49,8 +53,9 @@ export const ReadyPage: React.FC = () => {
                 <Title style={styles.title}>Welcome on board</Title>
                 <p style={styles.p1}>Your configuration is completed.</p>
                 <p style={styles.p2}>
-                    Now you can get started by adding a &lt;Resource&gt; as a
-                    child of &lt;Refine&gt;
+                    Now you can get started by adding your resources to the{" "}
+                    <code style={styles.code}>{`resources`}</code> property of{" "}
+                    <code style={styles.code}>{`<Refine>`}</code>
                 </p>
                 <Space
                     size="large"

@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { IResourceItem } from "@contexts/resource";
-import { useNavigation } from "@hooks/navigation";
+import { useNavigation } from "@hooks";
 
 export type UseRedirectionAfterSubmissionType = () => (options: {
     redirect: "show" | "list" | "edit" | false;

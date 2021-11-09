@@ -41,7 +41,7 @@ Let's say that we have a resource named `posts`
 
 First of all, we will use `useList` without passing any query configurations.
 
-```tsx twoslash 
+```tsx 
 import { useList } from "@pankod/refine";
 
 type IPost = {
@@ -112,14 +112,7 @@ Allows us to set page and items per page values.
 
 For example imagine that we have 1000 post records:
 
-```ts twoslash
-type IPost = {
-    id: string;
-    title: string;
-    status: "rejected" | "published" | "draft";
-};
-// ---cut---
-
+```ts
 import { useList } from "@pankod/refine";
 
 const postListQueryResult = useList<IPost>({
@@ -138,14 +131,7 @@ const postListQueryResult = useList<IPost>({
 
 Allows us to sort records by the speficified order and field.
 
-```ts twoslash
-type IPost = {
-    id: string;
-    title: string;
-    status: "rejected" | "published" | "draft";
-};
-// ---cut---
-
+```ts
 import { useList } from "@pankod/refine";
 
 const postListQueryResult = useList<IPost>({
@@ -187,14 +173,7 @@ const postListQueryResult = useList<IPost>({
 
 Allows us to filter queries using refine's filter operators. It is configured via `field`, `operator` and `value` properites.
 
-```ts twoslash
-type IPost = {
-    id: string;
-    title: string;
-    status: "rejected" | "published" | "draft";
-};
-// ---cut---
-
+```ts
 import { useList } from "@pankod/refine";
 
 const postListQueryResult = useList<IPost>({
@@ -254,14 +233,7 @@ const postListQueryResult = useList<IPost>({
 
 -   For example, to disable query from running automatically you can set `enabled` to `false`.
 
-```ts twoslash
-type IPost = {
-    id: string;
-    title: string;
-    status: "rejected" | "published" | "draft";
-};
-// ---cut---
-
+```ts
 import { useList } from "@pankod/refine";
 
 const postListQueryResult = useList<IPost>({
@@ -283,14 +255,14 @@ const postListQueryResult = useList<IPost>({
 
 ### Properties
 
-| Property                                                                                           | Description                                                                    | Type                                                                       |
-| -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------- | ----------------------------------- |
-| <div className="required-block"><div>resource</div> <div className="required">Required</div></div> | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                                   |
-| config                                                                                             | Configuration for pagination, sorting and filtering                            | [`UseListConfig`](#config-parameters)                                      |                                     |
-| queryOptions                                                                                       | `react-query`'s `useQuery` options                                             | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                |
-| successNotification                                                                                | Successful Query notification                                                  | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | `false`                             |
-| errorNotification                                                                                  | Unsuccessful Query notification                                                | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Error (status code: `statusCode`)" |
-| metaData                                            | Metadata query for `dataProvider`                                              | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)           | {}                                                                   |
+| Property                                                                                           | Description                                         | Type                                                                       |
+| -------------------------------------------------------------------------------------------------- | --------------------------------------------------- | -------------------------------------------------------------------------- | ----------------------------------- |
+| <div className="required-block"><div>resource</div> <div className="required">Required</div></div> | Resource name for API data interactions             | `string`                                                                   |
+| config                                                                                             | Configuration for pagination, sorting and filtering | [`UseListConfig`](#config-parameters)                                      |                                     |
+| queryOptions                                                                                       | `react-query`'s `useQuery` options                  | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                |
+| successNotification                                                                                | Successful Query notification                       | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | `false`                             |
+| errorNotification                                                                                  | Unsuccessful Query notification                     | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Error (status code: `statusCode`)" |
+| metaData                                                                                           | Metadata query for `dataProvider`                   | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)             | {}                                  |
 
 ### Config parameters
 

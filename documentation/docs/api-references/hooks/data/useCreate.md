@@ -39,7 +39,7 @@ Let'say we have a resource named `categories`
 }
 ```
 
-```tsx twoslash
+```tsx 
 type CategoryMutationResult = {
     id: string;
     title: string;
@@ -65,7 +65,7 @@ mutate({
 
 After the mutation runs `categories` will be updated as below:
 
-```ts title="https://api.fake-rest.refine.dev/categories" {14-17}
+```ts title="https://api.fake-rest.refine.dev/categories"
 {
     [
         {
@@ -111,7 +111,7 @@ Variables passed to `mutate` must have these types.
 
 | Property                                            | Description                                                                    | Type                                                                       | Default                                                              |
 | --------------------------------------------------- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| resource  <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | [`Resource`](/api-references/components/resource.md) for API data interactions | `string`                                                                   |                                                                      |
+| <div className="required-block"><div>resource</div> <div className="required">Required</div></div> | Resource name for API data interactions | `string`                                                                   |                                                                      |
 | values  <div className=" required">Required</div>   | Values for mutation function                                                   | `TVariables`                                                               | {}                                                                   |
 | successNotification                                 | Successful Mutation notification                                               | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully created `resource`"                                    |
 | errorNotification                                   | Unsuccessful Mutation notification                                             | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" |

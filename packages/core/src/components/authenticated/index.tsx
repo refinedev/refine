@@ -1,7 +1,6 @@
 import React from "react";
 
-import { useAuthenticated, useNavigation } from "@hooks";
-import { useLocation } from "react-router-dom";
+import { useAuthenticated, useNavigation, useRouterContext } from "@hooks";
 
 export type AuthenticatedProps = {
     fallback?: React.ReactNode;
@@ -21,15 +20,16 @@ export const Authenticated: React.FC<AuthenticatedProps> = ({
     const { isSuccess, isLoading, isError } = useAuthenticated();
 
     const { replace } = useNavigation();
-    const location = useLocation();
+    const { useLocation } = useRouterContext();
+    const { pathname, search } = useLocation();
 
     if (isLoading) {
         return <>{loading}</> || null;
     }
-
     if (isError) {
         if (!fallback) {
-            replace("/", { from: location });
+            const toURL = `${pathname}${search}`;
+            replace(`/login?to=${encodeURIComponent(toURL)}`);
             return null;
         }
 

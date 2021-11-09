@@ -20,6 +20,7 @@ module.exports = {
                         "api-references/providers/auth-provider",
                         "api-references/providers/data-provider",
                         "api-references/providers/i18n-provider",
+                        "api-references/providers/router-provider",
                     ],
                 },
                 {
@@ -144,7 +145,6 @@ module.exports = {
                     items: [
                         "api-references/components/refine-config",
                         "api-references/components/layout-wrapper",
-                        "api-references/components/resource",
                         "api-references/components/filter-dropdown",
                         {
                             type: "category",
@@ -216,6 +216,7 @@ module.exports = {
                     label: "Data Provider",
                     items: ["guides-and-concepts/data-provider/graphql"],
                 },
+                "guides-and-concepts/ssr-nextjs",
                 {
                     type: "category",
                     label: "Upload",
@@ -263,7 +264,14 @@ module.exports = {
             items: [
                 "examples/tutorial-example",
                 "examples/authorization",
-                "examples/i18n",
+                {
+                    type: "category",
+                    label: "i18n",
+                    items: [
+                        "examples/i18n/i18n-react",
+                        "examples/i18n/i18n-nextjs",
+                    ],
+                },
                 {
                     type: "category",
                     label: "Data Provider",
@@ -367,6 +375,10 @@ module.exports = {
                 "examples/customTheme",
                 "examples/javascript",
             ],
+        },
+        {
+            type: "doc",
+            id: "migration-guide",
         },
         {
             type: "doc",

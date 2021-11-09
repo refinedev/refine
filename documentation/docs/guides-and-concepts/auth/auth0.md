@@ -21,16 +21,18 @@ npm install @auth0/auth0-react
 
 Wrap your root component with an Auth0Provider that you can import from the SDK.
 
-```tsx title="index.tsx" {3, 9-15}
+```tsx title="index.tsx"
 import React from "react";
 import ReactDOM from "react-dom";
 
+// highlight-next-line
 import { Auth0Provider } from "@auth0/auth0-react";
 
 import App from "./App";
 
 ReactDOM.render(
     <React.StrictMode>
+// highlight-start
         <Auth0Provider
             domain="YOUR_DOMAIN"
             clientId="YOUR_CLIENT_ID"
@@ -38,6 +40,7 @@ ReactDOM.render(
         >
             <App />
         </Auth0Provider>
+// highlight-end
     </React.StrictMode>,
     document.getElementById("root"),
 );
@@ -51,7 +54,7 @@ Refer to [**Auth0 docs**](https://auth0.com/docs/quickstart/spa/react#configure-
 
 First, we need to override the **refine** login page. In this way, we will redirect it to the Auth0 login page. We create a `login.tsx` file in the `/pages` folder.
 
-```tsx twoslash title="/pages/login.tsx" {7, 11, 52}
+```tsx  title="/pages/login.tsx"
 import { 
     Row,
     Col,
@@ -59,10 +62,12 @@ import {
     Card,
     Typography,
     Button,
+// highlight-next-line
     useLogin
 } from "@pankod/refine";
 
 export const Login: React.FC = () => {
+// highlight-next-line
     const { mutate: login } = useLogin();
 
     const CardTitle = (
@@ -104,6 +109,7 @@ export const Login: React.FC = () => {
                             size="large"
                             htmlType="submit"
                             block
+// highlight-next-line
                             onClick={() => login({})}
                         >
                             Login
@@ -144,6 +150,8 @@ In refine, authentication and authorization processes are performed with the aut
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine";
+import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { Login } from "pages/login";
@@ -206,11 +214,10 @@ const App = () => {
     return (
         <Refine
             LoginPage={Login}
+            routerProvider={routerProvider}
             authProvider={authProvider}
             dataProvider={dataProvider(API_URL, axios)}
-        >
-            ...
-        </Refine>
+        />
     );
 };
 
@@ -241,7 +248,7 @@ We can use it with the `user` from the `useAuth0` hook.
 
 Auth0 example doesn't work in codesandbox embed mode. With [this](https://ussft.csb.app/) link, you can open the example in the browser and try it.
 
-<iframe src="https://codesandbox.io/embed/refine-auth0-example-ussft?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-auth0-example-7drxm?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-auth0-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

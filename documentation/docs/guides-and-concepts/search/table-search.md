@@ -9,11 +9,13 @@ We can make extensive search / filter operations using the `useTable` hook on th
 
 First, we create a form by extracting `searchFormProps` from `useTable`. We will use this form for search / filtering.
 
-```tsx twoslash title="pages/list.tsx" {1-3, 17, 22-37}
+```tsx  title="pages/list.tsx"
 import {
+// highlight-start
     Form,
     Table,
     useTable,
+// highlight-end
     Row,
     Col,
     Icons,
@@ -27,9 +29,11 @@ import {
 const { RangePicker } = DatePicker;
 
 export const ListPage: React.FC = () => {
+// highlight-next-line
     const { searchFormProps } = useTable<IPost>();
 
     return (
+// highlight-start
         <Row gutter={[16, 16]}>
             <Col lg={6} xs={24}>
                 <Form layout="vertical" {...searchFormProps}>
@@ -55,6 +59,7 @@ export const ListPage: React.FC = () => {
                 </List>
             </Col>
         </Row>
+// highlight-end
     );
 };
 
@@ -117,9 +122,10 @@ const { searchFormProps } = useTable<IPost, { title: string; createdAt: [Dayjs, 
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-table-filter-example-dfm67?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Flist.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-table-filter-example-fdzc4?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-table-filter-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
+
