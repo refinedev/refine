@@ -354,7 +354,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-next-seneo?autoresize=1&fontsize=14&module=%2Fpages%2F_app.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-next-q94fw?autoresize=1&fontsize=14&module=%2Fpages%2F_app.tsx&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-next"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
