@@ -1,13 +1,16 @@
 import React from "react";
 
-import { IRbacContext, IRbacProvider } from "./IRbacContext";
+import { IRbacContext } from "./IRbacContext";
 
-export const RbacContext = React.createContext<IRbacContext>({
+export const defaultRbacContext: IRbacContext = {
     can: () => true,
-});
+};
 
-export const RbacContextProvider: React.FC<IRbacProvider> = ({
-    can = () => true,
+export const RbacContext =
+    React.createContext<IRbacContext>(defaultRbacContext);
+
+export const RbacContextProvider: React.FC<IRbacContext> = ({
+    can,
     children,
 }) => {
     return (

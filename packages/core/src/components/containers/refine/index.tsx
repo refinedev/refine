@@ -23,7 +23,7 @@ import { RefineContextProvider } from "@contexts/refine";
 import { NotificationContextProvider } from "@contexts/notification";
 import { UnsavedWarnContextProvider } from "@contexts/unsavedWarn";
 import { RouterContextProvider } from "@contexts/router";
-import { RbacContextProvider } from "@contexts/rbac";
+import { RbacContextProvider, defaultRbacContext } from "@contexts/rbac";
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
 import { defaultConfigProviderProps } from "@definitions";
 import {
@@ -35,7 +35,7 @@ import {
     TitleProps,
     IRouterProvider,
     ResourceProps,
-    IRbacProvider,
+    IRbacContext,
 } from "../../../interfaces";
 
 interface QueryClientConfig {
@@ -49,7 +49,7 @@ export interface RefineProps {
     authProvider?: IAuthContext;
     dataProvider: IDataContextProvider;
     routerProvider: IRouterProvider;
-    rbacProvider?: IRbacProvider;
+    rbacProvider?: IRbacContext;
     resources?: IResource[];
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
@@ -83,7 +83,7 @@ export const Refine: React.FC<RefineProps> = ({
     authProvider,
     dataProvider,
     routerProvider,
-    rbacProvider,
+    rbacProvider = defaultRbacContext,
     resources: resourcesFromProps,
     DashboardPage,
     ReadyPage,
