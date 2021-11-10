@@ -23,6 +23,7 @@ import { RefineContextProvider } from "@contexts/refine";
 import { NotificationContextProvider } from "@contexts/notification";
 import { UnsavedWarnContextProvider } from "@contexts/unsavedWarn";
 import { RouterContextProvider } from "@contexts/router";
+import { RbacContextProvider } from "@contexts/rbac";
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
 import { defaultConfigProviderProps } from "@definitions";
 import {
@@ -34,6 +35,7 @@ import {
     TitleProps,
     IRouterProvider,
     ResourceProps,
+    IRbacProvider,
 } from "../../../interfaces";
 
 interface QueryClientConfig {
@@ -47,6 +49,7 @@ export interface RefineProps {
     authProvider?: IAuthContext;
     dataProvider: IDataContextProvider;
     routerProvider: IRouterProvider;
+    rbacProvider?: IRbacProvider;
     resources?: IResource[];
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
@@ -80,6 +83,7 @@ export const Refine: React.FC<RefineProps> = ({
     authProvider,
     dataProvider,
     routerProvider,
+    rbacProvider,
     resources: resourcesFromProps,
     DashboardPage,
     ReadyPage,
@@ -150,41 +154,47 @@ export const Refine: React.FC<RefineProps> = ({
                             <TranslationContextProvider
                                 i18nProvider={i18nProvider}
                             >
-                                <ConfigProvider {...configProviderProps}>
-                                    <NotificationContextProvider>
-                                        <RefineContextProvider
-                                            mutationMode={mutationMode}
-                                            warnWhenUnsavedChanges={
-                                                warnWhenUnsavedChanges
-                                            }
-                                            syncWithLocation={syncWithLocation}
-                                            Title={Title}
-                                            undoableTimeout={undoableTimeout}
-                                            catchAll={catchAll}
-                                            DashboardPage={DashboardPage}
-                                            LoginPage={LoginPage}
-                                            Layout={Layout}
-                                            Sider={Sider}
-                                            Footer={Footer}
-                                            Header={Header}
-                                            OffLayoutArea={OffLayoutArea}
-                                            hasDashboard={!!DashboardPage}
-                                        >
-                                            <UnsavedWarnContextProvider>
-                                                <>
-                                                    {children}
-                                                    {RouterComponent ? (
-                                                        <RouterComponent>
+                                <RbacContextProvider {...rbacProvider}>
+                                    <ConfigProvider {...configProviderProps}>
+                                        <NotificationContextProvider>
+                                            <RefineContextProvider
+                                                mutationMode={mutationMode}
+                                                warnWhenUnsavedChanges={
+                                                    warnWhenUnsavedChanges
+                                                }
+                                                syncWithLocation={
+                                                    syncWithLocation
+                                                }
+                                                Title={Title}
+                                                undoableTimeout={
+                                                    undoableTimeout
+                                                }
+                                                catchAll={catchAll}
+                                                DashboardPage={DashboardPage}
+                                                LoginPage={LoginPage}
+                                                Layout={Layout}
+                                                Sider={Sider}
+                                                Footer={Footer}
+                                                Header={Header}
+                                                OffLayoutArea={OffLayoutArea}
+                                                hasDashboard={!!DashboardPage}
+                                            >
+                                                <UnsavedWarnContextProvider>
+                                                    <>
+                                                        {children}
+                                                        {RouterComponent ? (
+                                                            <RouterComponent>
+                                                                <RouteChangeHandler />
+                                                            </RouterComponent>
+                                                        ) : (
                                                             <RouteChangeHandler />
-                                                        </RouterComponent>
-                                                    ) : (
-                                                        <RouteChangeHandler />
-                                                    )}
-                                                </>
-                                            </UnsavedWarnContextProvider>
-                                        </RefineContextProvider>
-                                    </NotificationContextProvider>
-                                </ConfigProvider>
+                                                        )}
+                                                    </>
+                                                </UnsavedWarnContextProvider>
+                                            </RefineContextProvider>
+                                        </NotificationContextProvider>
+                                    </ConfigProvider>
+                                </RbacContextProvider>
                             </TranslationContextProvider>
                         </ResourceContextProvider>
                     </RouterContextProvider>
