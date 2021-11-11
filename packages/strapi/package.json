@@ -1,4 +1,6 @@
 {
+  "name": "@pankod/refine-strapi",
+  "description": "refine Strapi REST data provider. refine is a React-based framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "version": "2.0.11",
   "license": "MIT",
   "main": "dist/index.js",
@@ -23,7 +25,6 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
-  "name": "@pankod/refine-strapi",
   "author": "Pankod",
   "module": "dist/refine-strapi.esm.js",
   "size-limit": [

@@ -1,4 +1,6 @@
 {
+  "name": "@pankod/refine-react-router",
+  "description": "refine react-router router provider. refine is a React-based framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "version": "2.0.11",
   "license": "MIT",
   "main": "dist/index.js",
@@ -19,7 +21,6 @@
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
-  "name": "@pankod/refine-react-router",
   "author": "Pankod",
   "module": "dist/refine-react-router.esm.js",
   "size-limit": [
