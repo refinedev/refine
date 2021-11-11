@@ -48,9 +48,9 @@ export const List: React.FC<ListProps> = ({
     });
 
     const isCreateButtonVisible =
-        canCreate ?? (resource.canCreate || createButtonProps);
+        can && (canCreate ?? (resource.canCreate || createButtonProps));
 
-    const defaultExtra = can && isCreateButtonVisible && (
+    const defaultExtra = isCreateButtonVisible && (
         <CreateButton
             size="middle"
             resourceName={resource.name}

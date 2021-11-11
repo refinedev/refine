@@ -75,6 +75,7 @@ export const Show: React.FC<ShowProps> = ({
     const { data: canEditRbac } = useCan({
         resource: resource.name,
         action: "edit",
+        params: { id: recordItemId ?? idFromRoute },
     });
 
     const isDeleteButtonVisible =
