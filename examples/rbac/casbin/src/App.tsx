@@ -24,10 +24,10 @@ m = g(r.sub, p.sub) && keyMatch(r.obj, p.obj) && regexMatch(r.act, p.act)
 `);
 
 export const adapter = new MemoryAdapter(`
-p, admin, posts/*, delete
-p, user, posts/*, (create)|(list)|(delete)|(edit)
+p, user, posts, (list)|(delete)|(edit)|(create)
 
 p, user, posts/10, delete
+p, user, posts/9, edit
 
 `);
 
@@ -41,18 +41,14 @@ const App: React.FC = () => {
             rbacProvider={{
                 can: async ({ action, params, resource }) => {
                     const enforcer = await newEnforcer(model, adapter);
-                    if (action === "delete") {
+                    if (action === "delete" || action === "edit") {
                         return enforcer.enforce(
                             "user",
                             `${resource}/${params.id}`,
                             action,
                         );
                     }
-                    return enforcer.enforce(
-                        "user",
-                        `${resource}/${params}`,
-                        action,
-                    );
+                    return enforcer.enforce("user", `${resource}`, action);
                 },
             }}
             resources={[
