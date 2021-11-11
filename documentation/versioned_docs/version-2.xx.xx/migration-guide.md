@@ -158,7 +158,7 @@ If you imported `Link` component from `@pankod/refine`, now you have to switch t
 // Now
 import routerProvider from "@pankod/refine-react-router";
 
-const Link = routerProvider.Link;
+const { Link } = routerProvider;
 ```
 
 ### Custom Pages
