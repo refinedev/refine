@@ -2,8 +2,34 @@ import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 import "@pankod/refine/dist/styles.min.css";
+import { newEnforcer, newModel, MemoryAdapter } from "casbin.js";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+
+export const model = newModel(`
+[request_definition]
+r = sub, obj, act
+
+[policy_definition]
+p = sub, obj, act
+
+[role_definition]
+g = _, _
+
+[policy_effect]
+e = some(where (p.eft == allow))
+
+[matchers]
+m = g(r.sub, p.sub) && keyMatch(r.obj, p.obj) && regexMatch(r.act, p.act)
+`);
+
+export const adapter = new MemoryAdapter(`
+p, admin, posts/*, delete
+p, user, posts/*, (create)|(list)|(delete)|(edit)
+
+p, user, posts/10, delete
+
+`);
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -12,6 +38,23 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
+            rbacProvider={{
+                can: async ({ action, params, resource }) => {
+                    const enforcer = await newEnforcer(model, adapter);
+                    if (action === "delete") {
+                        return enforcer.enforce(
+                            "user",
+                            `${resource}/${params.id}`,
+                            action,
+                        );
+                    }
+                    return enforcer.enforce(
+                        "user",
+                        `${resource}/${params}`,
+                        action,
+                    );
+                },
+            }}
             resources={[
                 {
                     name: "posts",

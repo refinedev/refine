@@ -15,7 +15,8 @@
     "react-mde": "^11.1.0",
     "react-scripts": "4.0.3",
     "typescript": "^4.4.3",
-    "web-vitals": "^1.1.1"
+    "web-vitals": "^1.1.1",
+    "casbin.js": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
