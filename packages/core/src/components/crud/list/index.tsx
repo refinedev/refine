@@ -1,7 +1,12 @@
 import React, { ReactNode } from "react";
 import { PageHeader, PageHeaderProps } from "antd";
 
-import { useResourceWithRoute, useRouterContext, useTranslate } from "@hooks";
+import {
+    useResourceWithRoute,
+    useRouterContext,
+    useTranslate,
+    useCan,
+} from "@hooks";
 import { CreateButton } from "@components";
 import { userFriendlyResourceName } from "@definitions";
 import { ResourceRouterParams, CreateButtonProps } from "../../../interfaces";
@@ -37,10 +42,15 @@ export const List: React.FC<ListProps> = ({
 
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
+    const { data: can } = useCan({
+        resource: resource.name,
+        action: "create",
+    });
+
     const isCreateButtonVisible =
         canCreate ?? (resource.canCreate || createButtonProps);
 
-    const defaultExtra = isCreateButtonVisible && (
+    const defaultExtra = can && isCreateButtonVisible && (
         <CreateButton
             size="middle"
             resourceName={resource.name}

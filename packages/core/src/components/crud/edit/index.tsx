@@ -15,6 +15,7 @@ import {
     useNavigation,
     useTranslate,
     useRouterContext,
+    useCan,
 } from "@hooks";
 import {
     DeleteButton,
@@ -75,8 +76,19 @@ export const Edit: React.FC<EditProps> = ({
     } = useParams<ResourceRouterParams>();
 
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
+    const { data: canList } = useCan({
+        resource: resource.name,
+        action: "list",
+    });
+    const { data: canDeleteRbac } = useCan({
+        resource: resource.name,
+        action: "delete",
+        params: { id: recordItemId ?? idFromRoute },
+    });
+
     const isDeleteButtonVisible =
-        canDelete ?? (resource.canDelete || deleteButtonProps);
+        canDeleteRbac &&
+        (canDelete ?? (resource.canDelete || deleteButtonProps));
 
     return (
         <PageHeader
@@ -94,7 +106,7 @@ export const Edit: React.FC<EditProps> = ({
             }
             extra={
                 <Space wrap>
-                    {!recordItemId && (
+                    {canList && !recordItemId && (
                         <ListButton
                             data-testid="edit-list-button"
                             resourceName={resource.name}

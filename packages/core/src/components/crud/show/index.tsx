@@ -9,6 +9,7 @@ import {
     ListButton,
 } from "@components";
 import {
+    useCan,
     useNavigation,
     useResourceWithRoute,
     useRouterContext,
@@ -60,8 +61,25 @@ export const Show: React.FC<ShowProps> = ({
 
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
-    const isDeleteButtonVisible = canDelete ?? resource.canDelete;
-    const isEditButtonVisible = canEdit ?? resource.canEdit;
+    const { data: canList } = useCan({
+        resource: resource.name,
+        action: "list",
+    });
+
+    const { data: canDeleteRbac } = useCan({
+        resource: resource.name,
+        action: "delete",
+        params: { id: recordItemId ?? idFromRoute },
+    });
+
+    const { data: canEditRbac } = useCan({
+        resource: resource.name,
+        action: "edit",
+    });
+
+    const isDeleteButtonVisible =
+        canDeleteRbac && (canDelete ?? resource.canDelete);
+    const isEditButtonVisible = canEditRbac && (canEdit ?? resource.canEdit);
 
     return (
         <PageHeader
@@ -79,7 +97,7 @@ export const Show: React.FC<ShowProps> = ({
             }
             extra={
                 <Space key="extra-buttons" wrap>
-                    {!recordItemId && (
+                    {!recordItemId && canList && (
                         <ListButton
                             data-testid="show-list-button"
                             resourceName={resource.name}
