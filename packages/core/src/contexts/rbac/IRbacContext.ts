@@ -1,9 +1,9 @@
-type CanParams = {
+export type CanParams = {
     resource: string;
     action: string;
-    params: any;
+    params?: any;
 };
 
 export interface IRbacContext {
-    can: ({ resource, action, params }: CanParams) => boolean;
+    can: ({ resource, action, params }: CanParams) => Promise<boolean>;
 }

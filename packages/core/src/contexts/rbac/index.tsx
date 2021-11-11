@@ -3,7 +3,7 @@ import React from "react";
 import { IRbacContext } from "./IRbacContext";
 
 export const defaultRbacContext: IRbacContext = {
-    can: () => true,
+    can: () => Promise.resolve(true),
 };
 
 export const RbacContext =
