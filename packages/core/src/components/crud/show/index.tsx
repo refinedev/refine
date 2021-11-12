@@ -66,21 +66,22 @@ export const Show: React.FC<ShowProps> = ({
         action: "list",
     });
 
-    const { data: canDeleteRbac } = useCan({
+    const { data: canDeleteAccessControl } = useCan({
         resource: resource.name,
         action: "delete",
         params: { id: recordItemId ?? idFromRoute },
     });
 
-    const { data: canEditRbac } = useCan({
+    const { data: canEditAccessControl } = useCan({
         resource: resource.name,
         action: "edit",
         params: { id: recordItemId ?? idFromRoute },
     });
 
     const isDeleteButtonVisible =
-        canDeleteRbac && (canDelete ?? resource.canDelete);
-    const isEditButtonVisible = canEditRbac && (canEdit ?? resource.canEdit);
+        canDeleteAccessControl && (canDelete ?? resource.canDelete);
+    const isEditButtonVisible =
+        canEditAccessControl && (canEdit ?? resource.canEdit);
 
     return (
         <PageHeader

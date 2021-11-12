@@ -23,7 +23,10 @@ import { RefineContextProvider } from "@contexts/refine";
 import { NotificationContextProvider } from "@contexts/notification";
 import { UnsavedWarnContextProvider } from "@contexts/unsavedWarn";
 import { RouterContextProvider } from "@contexts/router";
-import { RbacContextProvider, defaultRbacContext } from "@contexts/rbac";
+import {
+    defaultAccessControlContext,
+    AccessControlContextProvider,
+} from "@contexts/accessControl";
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
 import { defaultConfigProviderProps } from "@definitions";
 import {
@@ -35,7 +38,7 @@ import {
     TitleProps,
     IRouterProvider,
     ResourceProps,
-    IRbacContext,
+    IAccessControlContext,
 } from "../../../interfaces";
 
 interface QueryClientConfig {
@@ -49,7 +52,7 @@ export interface RefineProps {
     authProvider?: IAuthContext;
     dataProvider: IDataContextProvider;
     routerProvider: IRouterProvider;
-    rbacProvider?: IRbacContext;
+    accessControlProvider?: IAccessControlContext;
     resources?: IResource[];
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
@@ -83,7 +86,7 @@ export const Refine: React.FC<RefineProps> = ({
     authProvider,
     dataProvider,
     routerProvider,
-    rbacProvider = defaultRbacContext,
+    accessControlProvider = defaultAccessControlContext,
     resources: resourcesFromProps,
     DashboardPage,
     ReadyPage,
@@ -154,7 +157,9 @@ export const Refine: React.FC<RefineProps> = ({
                             <TranslationContextProvider
                                 i18nProvider={i18nProvider}
                             >
-                                <RbacContextProvider {...rbacProvider}>
+                                <AccessControlContextProvider
+                                    {...accessControlProvider}
+                                >
                                     <ConfigProvider {...configProviderProps}>
                                         <NotificationContextProvider>
                                             <RefineContextProvider
@@ -194,7 +199,7 @@ export const Refine: React.FC<RefineProps> = ({
                                             </RefineContextProvider>
                                         </NotificationContextProvider>
                                     </ConfigProvider>
-                                </RbacContextProvider>
+                                </AccessControlContextProvider>
                             </TranslationContextProvider>
                         </ResourceContextProvider>
                     </RouterContextProvider>

@@ -8,7 +8,7 @@ export { IAuthContext as AuthProvider, Pagination } from "./interfaces";
 export {
     IDataContextProvider as DataProvider,
     ITranslationContext as TranslationProvider,
-    IRbacContext as RbacProvider,
+    IAccessControlContext as AccessControlProvider,
     I18nProvider,
     MutationMode,
     IResourceComponents,

@@ -80,14 +80,14 @@ export const Edit: React.FC<EditProps> = ({
         resource: resource.name,
         action: "list",
     });
-    const { data: canDeleteRbac } = useCan({
+    const { data: canDeleteAccessControl } = useCan({
         resource: resource.name,
         action: "delete",
         params: { id: recordItemId ?? idFromRoute },
     });
 
     const isDeleteButtonVisible =
-        canDeleteRbac &&
+        canDeleteAccessControl &&
         (canDelete ?? (resource.canDelete || deleteButtonProps));
 
     return (

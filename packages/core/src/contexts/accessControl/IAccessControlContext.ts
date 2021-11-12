@@ -4,6 +4,6 @@ export type CanParams = {
     params?: any;
 };
 
-export interface IRbacContext {
+export interface IAccessControlContext {
     can: ({ resource, action, params }: CanParams) => Promise<boolean>;
 }

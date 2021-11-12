@@ -2,6 +2,7 @@ import React from "react";
 
 import { useCan, useRefineContext } from "@hooks";
 import { CanParams } from "../../interfaces";
+import { ErrorComponent } from "@components";
 
 export type CanAccessProps = CanParams & {
     fallback?: React.ReactNode;
@@ -27,7 +28,7 @@ export const CanAccess: React.FC<CanAccessProps> = ({
     }
 
     if (data === false) {
-        return <>{fallback ?? catchAll}</>;
+        return <>{fallback ?? catchAll ?? <ErrorComponent />}</>;
     }
 
     return null;

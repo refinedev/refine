@@ -24,7 +24,7 @@ m = g(r.sub, p.sub) && keyMatch(r.obj, p.obj) && regexMatch(r.act, p.act)
 `);
 
 export const adapter = new MemoryAdapter(`
-p, user, posts, (list)|(delete)|(edit)|(create)
+p, user, posts, (list)|(delete)|(edit)
 
 p, user, posts/10, delete
 p, user, posts/9, edit
@@ -38,7 +38,7 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
-            rbacProvider={{
+            accessControlProvider={{
                 can: async ({ action, params, resource }) => {
                     const enforcer = await newEnforcer(model, adapter);
                     if (action === "delete" || action === "edit") {
