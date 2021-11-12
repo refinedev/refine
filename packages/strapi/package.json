@@ -21,10 +21,7 @@
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
-  "peerDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
-  },
+ 
   "author": "Pankod",
   "module": "dist/refine-strapi.esm.js",
   "size-limit": [
@@ -45,7 +42,11 @@
     "tslib": "^2.3.1"
   },
   "dependencies": {
-    "@pankod/refine": "^2.0.12",
+    "@pankod/refine": "^2.0.12"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "axios": "^0.21.4",
     "query-string": "^7.0.1"
   },

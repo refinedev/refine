@@ -42,7 +42,9 @@
     "tslib": "^2.3.1"
   },
   "dependencies": {
-    "@pankod/refine": "^2.0.12",
+    "@pankod/refine": "^2.0.12"
+  },
+  "peerDependencies": {
     "camelcase": "^6.2.0",
     "gql-query-builder": "^3.5.5",
     "graphql": "^15.6.1",

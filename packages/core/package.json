@@ -15,10 +15,6 @@
         "analyze": "size-limit --why",
         "generate-theme": "npx @emeks/antd-custom-theme-generator -w --antd ../../node_modules/antd ./src/assets/styles/custom-theme.less ./src/assets/styles/styles.min.css"
     },
-    "peerDependencies": {
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2"
-    },
     "devDependencies": {
         "@babel/core": "^7.13.14",
         "@rollup/plugin-image": "^2.0.6",
@@ -48,10 +44,12 @@
         "tsdx": "^0.14.1",
         "typescript": "^4.4.3"
     },
-    "dependencies": {
-        "@ant-design/icons": "^4.5.0",
+    "peerDependencies": {
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
         "antd": "4.16.11",
         "dayjs": "1.10.5",
+        "@ant-design/icons": "^4.5.0",
         "export-to-csv": "^0.2.1",
         "humanize-string": "^2.1.0",
         "lodash": "^4.17.21",

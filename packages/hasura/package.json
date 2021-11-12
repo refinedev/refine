@@ -48,7 +48,9 @@
     "typescript": "^4.4.3"
   },
   "dependencies": {
-    "@pankod/refine": "^2.0.12",
+    "@pankod/refine": "^2.0.12"
+  },
+  "peerDependencies": {
     "gql-query-builder": "^3.5.5",
     "graphql": "^15.6.1",
     "graphql-request": "^3.5.0"
