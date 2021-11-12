@@ -11,11 +11,12 @@ import {
     useResource,
     useRefineContext,
     useRouterContext,
+    CanAccess,
 } from "@pankod/refine";
 
 type IRoutesProps = RouteProps & { routes?: RouteProps[] };
 
-const RouteProviderBase: React.FC = (props) => {
+const RouteProviderBase: React.FC = () => {
     const { resources } = useResource();
     const { catchAll, DashboardPage, LoginPage } = useRefineContext();
 
@@ -51,13 +52,15 @@ const RouteProviderBase: React.FC = (props) => {
                 exact: true,
                 path: `/:resource(${route})/:action(create)/:id?`,
                 component: () => (
-                    <CreateComponent
-                        canCreate={canCreate}
-                        canEdit={canEdit}
-                        canDelete={canDelete}
-                        canShow={canShow}
-                        name={name}
-                    />
+                    <CanAccess resource={name} action="create">
+                        <CreateComponent
+                            canCreate={canCreate}
+                            canEdit={canEdit}
+                            canDelete={canDelete}
+                            canShow={canShow}
+                            name={name}
+                        />
+                    </CanAccess>
                 ),
             });
         }
