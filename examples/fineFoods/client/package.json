@@ -1,6 +1,6 @@
 {
     "name": "fine-foods-client",
-    "version": "2.0.13",
+    "version": "2.0.14",
     "private": true,
     "scripts": {
         "start": "next dev -p 3001",
@@ -11,7 +11,7 @@
     },
     "dependencies": {
         "@pankod/refine": "^2.0.12",
-        "@pankod/refine-nextjs-router": "^2.0.13",
+        "@pankod/refine-nextjs-router": "^2.0.14",
         "@pankod/refine-simple-rest": "^2.0.12",
         "gsap": "^3.8.0",
         "js-confetti": "^0.9.0",
