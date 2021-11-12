@@ -107,7 +107,7 @@ const { setCloneId } = useForm();
 ```
 
 :::tip
-If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](useModalForm) or the [useDrawerForm](useDrawerForm) hook.
+If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](/api-references/hooks/form/useModalForm.md) or the [useDrawerForm](/api-references/hooks/form/useDrawerForm.md) hook.
 :::
 
 :::tip
