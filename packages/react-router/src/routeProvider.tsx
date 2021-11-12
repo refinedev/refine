@@ -16,6 +16,8 @@ import {
 
 type IRoutesProps = RouteProps & { routes?: RouteProps[] };
 
+type IRouteComponentProps = { match: { params: { id: string } } };
+
 const RouteProviderBase: React.FC = () => {
     const { resources } = useResource();
     const { catchAll, DashboardPage, LoginPage } = useRefineContext();
@@ -69,8 +71,12 @@ const RouteProviderBase: React.FC = () => {
             routes.push({
                 exact: true,
                 path: `/:resource(${route})/:action(edit)/:id`,
-                component: () => (
-                    <CanAccess resource={name} action="edit">
+                component: (props: IRouteComponentProps) => (
+                    <CanAccess
+                        resource={name}
+                        action="edit"
+                        params={{ id: props.match.params.id }}
+                    >
                         <EditComponent
                             canCreate={canCreate}
                             canEdit={canEdit}
@@ -87,8 +93,12 @@ const RouteProviderBase: React.FC = () => {
             routes.push({
                 exact: true,
                 path: `/:resource(${route})/:action(show)/:id`,
-                component: () => (
-                    <CanAccess resource={name} action="show">
+                component: (props: IRouteComponentProps) => (
+                    <CanAccess
+                        resource={name}
+                        action="show"
+                        params={{ id: props.match.params.id }}
+                    >
                         <ShowComponent
                             canCreate={canCreate}
                             canEdit={canEdit}

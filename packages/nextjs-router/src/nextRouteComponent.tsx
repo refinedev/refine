@@ -5,7 +5,7 @@ import {
     ErrorComponent,
     useResource,
     LoginPage as DefaultLoginPage,
-    useAuthenticated,
+    CanAccess,
 } from "@pankod/refine";
 import type { ResourceRouterParams } from "@pankod/refine";
 
@@ -24,8 +24,11 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
 }) => {
     const { resources } = useResource();
     const { push } = useHistory();
-    const { resource: routeResourceName, action } =
-        useParams<ResourceRouterParams>();
+    const {
+        resource: routeResourceName,
+        action,
+        id,
+    } = useParams<ResourceRouterParams>();
 
     const { pathname } = useLocation();
     const { DashboardPage, catchAll, LoginPage } = useRefineContext();
@@ -73,57 +76,73 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
             switch (action) {
                 case undefined: {
                     return (
-                        <List
-                            name={name}
-                            canCreate={canCreate}
-                            canEdit={canEdit}
-                            canDelete={canDelete}
-                            canShow={canShow}
-                            initialData={initialData}
-                            {...rest}
-                        />
+                        <CanAccess resource={name} action="list">
+                            <List
+                                name={name}
+                                canCreate={canCreate}
+                                canEdit={canEdit}
+                                canDelete={canDelete}
+                                canShow={canShow}
+                                initialData={initialData}
+                                {...rest}
+                            />
+                        </CanAccess>
                     );
                 }
 
                 case "create": {
                     return (
-                        <Create
-                            name={name}
-                            canCreate={canCreate}
-                            canEdit={canEdit}
-                            canDelete={canDelete}
-                            canShow={canShow}
-                            initialData={initialData}
-                            {...rest}
-                        />
+                        <CanAccess resource={name} action="create">
+                            <Create
+                                name={name}
+                                canCreate={canCreate}
+                                canEdit={canEdit}
+                                canDelete={canDelete}
+                                canShow={canShow}
+                                initialData={initialData}
+                                {...rest}
+                            />
+                        </CanAccess>
                     );
                 }
 
                 case "edit": {
                     return (
-                        <Edit
-                            name={name}
-                            canCreate={canCreate}
-                            canEdit={canEdit}
-                            canDelete={canDelete}
-                            canShow={canShow}
-                            initialData={initialData}
-                            {...rest}
-                        />
+                        <CanAccess
+                            resource={name}
+                            action="edit"
+                            params={{ id }}
+                        >
+                            <Edit
+                                name={name}
+                                canCreate={canCreate}
+                                canEdit={canEdit}
+                                canDelete={canDelete}
+                                canShow={canShow}
+                                initialData={initialData}
+                                {...rest}
+                            />
+                        </CanAccess>
                     );
                 }
 
                 case "show": {
                     return (
-                        <Show
-                            name={name}
-                            canCreate={canCreate}
-                            canEdit={canEdit}
-                            canDelete={canDelete}
-                            canShow={canShow}
-                            initialData={initialData}
-                            {...rest}
-                        />
+                        <CanAccess
+                            resource={name}
+                            action="show"
+                            params={{ id }}
+                        >
+                            <Show
+                                name={name}
+                                canCreate={canCreate}
+                                canEdit={canEdit}
+                                canDelete={canDelete}
+                                canShow={canShow}
+                                initialData={initialData}
+                                {...rest}
+                            />
+                        </CanAccess>
                     );
                 }
             }

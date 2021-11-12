@@ -1,8 +1,8 @@
 import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
-import "@pankod/refine/dist/styles.min.css";
 import { newEnforcer, newModel, MemoryAdapter } from "casbin.js";
+import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -24,10 +24,11 @@ m = g(r.sub, p.sub) && keyMatch(r.obj, p.obj) && regexMatch(r.act, p.act)
 `);
 
 export const adapter = new MemoryAdapter(`
-p, user, posts, (list)|(delete)
+p, user, posts, (list)|(create)
 
 p, user, posts/10, delete
-p, user, posts/9, edit
+p, user, posts/*, edit
+p, user, posts/1, show
 
 `);
 
@@ -42,7 +43,9 @@ const App: React.FC = () => {
                 can: async ({ action, params, resource }) => {
                     const enforcer = await newEnforcer(model, adapter);
                     if (
-                        (action === "delete" || action === "edit") &&
+                        (action === "delete" ||
+                            action === "edit" ||
+                            action === "show") &&
                         !!params
                     ) {
                         return enforcer.enforce(
