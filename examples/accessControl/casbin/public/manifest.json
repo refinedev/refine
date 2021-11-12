@@ -1,6 +1,6 @@
 {
-  "short_name": "refine rbac casbin example",
-  "name": "refine rbac casbin example",
+  "short_name": "access control casbin react",
+  "name": "access control casbin react",
   "icons": [
     {
       "src": "favicon.ico",
