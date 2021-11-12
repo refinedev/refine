@@ -13,6 +13,7 @@ const siteConfig = {
     baseUrl: "/",
     projectName: "refine",
     organizationName: "pankod",
+    trailingSlash: true,
     favicon: "img/refine_favicon.png",
     presets: [
         [
