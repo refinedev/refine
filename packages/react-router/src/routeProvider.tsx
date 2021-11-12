@@ -70,13 +70,15 @@ const RouteProviderBase: React.FC = () => {
                 exact: true,
                 path: `/:resource(${route})/:action(edit)/:id`,
                 component: () => (
-                    <EditComponent
-                        canCreate={canCreate}
-                        canEdit={canEdit}
-                        canDelete={canDelete}
-                        canShow={canShow}
-                        name={name}
-                    />
+                    <CanAccess resource={name} action="edit">
+                        <EditComponent
+                            canCreate={canCreate}
+                            canEdit={canEdit}
+                            canDelete={canDelete}
+                            canShow={canShow}
+                            name={name}
+                        />
+                    </CanAccess>
                 ),
             });
         }
@@ -86,13 +88,15 @@ const RouteProviderBase: React.FC = () => {
                 exact: true,
                 path: `/:resource(${route})/:action(show)/:id`,
                 component: () => (
-                    <ShowComponent
-                        canCreate={canCreate}
-                        canEdit={canEdit}
-                        canDelete={canDelete}
-                        canShow={canShow}
-                        name={name}
-                    />
+                    <CanAccess resource={name} action="show">
+                        <ShowComponent
+                            canCreate={canCreate}
+                            canEdit={canEdit}
+                            canDelete={canDelete}
+                            canShow={canShow}
+                            name={name}
+                        />
+                    </CanAccess>
                 ),
             });
         }
@@ -102,13 +106,15 @@ const RouteProviderBase: React.FC = () => {
                 exact: true,
                 path: `/:resource(${route})`,
                 component: () => (
-                    <ListComponent
-                        canCreate={canCreate}
-                        canEdit={canEdit}
-                        canDelete={canDelete}
-                        canShow={canShow}
-                        name={name}
-                    />
+                    <CanAccess resource={name} action="list">
+                        <ListComponent
+                            canCreate={canCreate}
+                            canEdit={canEdit}
+                            canDelete={canDelete}
+                            canShow={canShow}
+                            name={name}
+                        />
+                    </CanAccess>
                 ),
             });
         }

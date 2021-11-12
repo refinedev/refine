@@ -24,7 +24,7 @@ m = g(r.sub, p.sub) && keyMatch(r.obj, p.obj) && regexMatch(r.act, p.act)
 `);
 
 export const adapter = new MemoryAdapter(`
-p, user, posts, (list)|(delete)|(edit)
+p, user, posts, (list)|(delete)
 
 p, user, posts/10, delete
 p, user, posts/9, edit
@@ -41,7 +41,10 @@ const App: React.FC = () => {
             accessControlProvider={{
                 can: async ({ action, params, resource }) => {
                     const enforcer = await newEnforcer(model, adapter);
-                    if (action === "delete" || action === "edit") {
+                    if (
+                        (action === "delete" || action === "edit") &&
+                        !!params
+                    ) {
                         return enforcer.enforce(
                             "user",
                             `${resource}/${params.id}`,
