@@ -15,7 +15,7 @@
         "@pankod/refine-simple-rest": "^2.0.12",
         "gsap": "^3.8.0",
         "js-confetti": "^0.9.0",
-        "next": "^11.1.2",
+        "next": "^12.0.3",
         "next-compose-plugins": "^2.2.1",
         "next-plugin-antd-less": "^1.4.3",
         "nookies": "^2.5.2",
