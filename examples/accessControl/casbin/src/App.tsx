@@ -7,6 +7,7 @@ import "@pankod/refine/dist/styles.min.css";
 
 import { model, adapter } from "accessControl";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import { UserList, UserCreate, UserEdit, UserShow } from "pages/users";
 import { Header } from "components/header";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -43,6 +44,13 @@ const App: React.FC = () => {
                     edit: PostEdit,
                     show: PostShow,
                     canDelete: true,
+                },
+                {
+                    name: "users",
+                    list: UserList,
+                    create: UserCreate,
+                    edit: UserEdit,
+                    show: UserShow,
                 },
             ]}
             Header={() => <Header role={role} setRole={setRole} />}
