@@ -6,9 +6,15 @@ import { newEnforcer } from "casbin.js";
 import "@pankod/refine/dist/styles.min.css";
 
 import { model, adapter } from "accessControl";
+import { Header } from "components/header";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { UserList, UserCreate, UserEdit, UserShow } from "pages/users";
-import { Header } from "components/header";
+import {
+    CategoryList,
+    CategoryCreate,
+    CategoryEdit,
+    CategoryShow,
+} from "pages/categories";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -51,6 +57,13 @@ const App: React.FC = () => {
                     create: UserCreate,
                     edit: UserEdit,
                     show: UserShow,
+                },
+                {
+                    name: "categories",
+                    list: CategoryList,
+                    create: CategoryCreate,
+                    edit: CategoryEdit,
+                    show: CategoryShow,
                 },
             ]}
             Header={() => <Header role={role} setRole={setRole} />}
