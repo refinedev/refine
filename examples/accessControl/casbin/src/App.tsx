@@ -1,40 +1,18 @@
+import { useState } from "react";
 import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
-import { newEnforcer, newModel, MemoryAdapter } from "casbin.js";
+import { newEnforcer } from "casbin.js";
 import "@pankod/refine/dist/styles.min.css";
 
+import { model, adapter } from "accessControl";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-
-export const model = newModel(`
-[request_definition]
-r = sub, obj, act
-
-[policy_definition]
-p = sub, obj, act
-
-[role_definition]
-g = _, _
-
-[policy_effect]
-e = some(where (p.eft == allow))
-
-[matchers]
-m = g(r.sub, p.sub) && keyMatch(r.obj, p.obj) && regexMatch(r.act, p.act)
-`);
-
-export const adapter = new MemoryAdapter(`
-p, user, posts, (list)|(create)
-
-p, user, posts/10, delete
-p, user, posts/*, edit
-p, user, posts/1, show
-
-`);
+import { Header } from "components/header";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
+    const [role, setRole] = useState("admin");
     return (
         <Refine
             routerProvider={routerProvider}
@@ -49,12 +27,12 @@ const App: React.FC = () => {
                         !!params
                     ) {
                         return enforcer.enforce(
-                            "user",
+                            role,
                             `${resource}/${params.id}`,
                             action,
                         );
                     }
-                    return enforcer.enforce("user", `${resource}`, action);
+                    return enforcer.enforce(role, `${resource}`, action);
                 },
             }}
             resources={[
@@ -67,6 +45,7 @@ const App: React.FC = () => {
                     canDelete: true,
                 },
             ]}
+            Header={() => <Header role={role} setRole={setRole} />}
         />
     );
 };
