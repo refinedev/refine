@@ -10,6 +10,7 @@ import {
     useNavigation,
 } from "@hooks";
 import { AuthContext } from "@contexts/auth";
+import { CanAccess } from "@components";
 import { IAuthContext } from "../../../../interfaces";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
@@ -51,27 +52,31 @@ export const Sider: React.FC = () => {
                     push(key as string);
                 }}
             >
-                {menuItems.map(({ icon, label, route }) => {
+                {menuItems.map(({ icon, label, route, name }) => {
                     const isSelected = route === selectedKey;
                     return (
-                        <Menu.Item
-                            style={{
-                                fontWeight: isSelected ? "bold" : "normal",
-                            }}
-                            key={route}
-                            icon={icon}
-                        >
-                            <div
+                        <CanAccess key={route} resource={name} action="list">
+                            <Menu.Item
                                 style={{
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                    alignItems: "center",
+                                    fontWeight: isSelected ? "bold" : "normal",
                                 }}
+                                key={route}
+                                icon={icon}
                             >
-                                {label}
-                                {!collapsed && isSelected && <RightOutlined />}
-                            </div>
-                        </Menu.Item>
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        justifyContent: "space-between",
+                                        alignItems: "center",
+                                    }}
+                                >
+                                    {label}
+                                    {!collapsed && isSelected && (
+                                        <RightOutlined />
+                                    )}
+                                </div>
+                            </Menu.Item>
+                        </CanAccess>
                     );
                 })}
 
