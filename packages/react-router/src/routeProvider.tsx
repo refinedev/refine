@@ -57,7 +57,7 @@ const RouteProviderBase: React.FC = () => {
                     <CanAccess
                         resource={name}
                         action="create"
-                        fallback={catchAll}
+                        fallback={catchAll ?? <ErrorComponent />}
                     >
                         <CreateComponent
                             canCreate={canCreate}
@@ -80,7 +80,7 @@ const RouteProviderBase: React.FC = () => {
                         resource={name}
                         action="edit"
                         params={{ id: props.match.params.id }}
-                        fallback={catchAll}
+                        fallback={catchAll ?? <ErrorComponent />}
                     >
                         <EditComponent
                             canCreate={canCreate}
@@ -103,7 +103,7 @@ const RouteProviderBase: React.FC = () => {
                         resource={name}
                         action="show"
                         params={{ id: props.match.params.id }}
-                        fallback={catchAll}
+                        fallback={catchAll ?? <ErrorComponent />}
                     >
                         <ShowComponent
                             canCreate={canCreate}
@@ -125,7 +125,7 @@ const RouteProviderBase: React.FC = () => {
                     <CanAccess
                         resource={name}
                         action="list"
-                        fallback={catchAll}
+                        fallback={catchAll ?? <ErrorComponent />}
                     >
                         <ListComponent
                             canCreate={canCreate}

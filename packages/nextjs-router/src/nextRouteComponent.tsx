@@ -79,7 +79,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                         <CanAccess
                             resource={name}
                             action="list"
-                            fallback={catchAll}
+                            fallback={catchAll ?? <ErrorComponent />}
                         >
                             <List
                                 name={name}
@@ -99,7 +99,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                         <CanAccess
                             resource={name}
                             action="create"
-                            fallback={catchAll}
+                            fallback={catchAll ?? <ErrorComponent />}
                         >
                             <Create
                                 name={name}
@@ -120,7 +120,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                             resource={name}
                             action="edit"
                             params={{ id }}
-                            fallback={catchAll}
+                            fallback={catchAll ?? <ErrorComponent />}
                         >
                             <Edit
                                 name={name}
@@ -141,7 +141,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                             resource={name}
                             action="show"
                             params={{ id }}
-                            fallback={catchAll}
+                            fallback={catchAll ?? <ErrorComponent />}
                         >
                             <Show
                                 name={name}
