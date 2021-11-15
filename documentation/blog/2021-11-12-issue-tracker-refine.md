@@ -1432,5 +1432,13 @@ For more information about Refine: [Refine Github Page](https://github.com/panko
 
 For other examples and articles that will interest you with refine:  [https://refine.dev/blog/](https://refine.dev/blog/)
 
+## Live Codesandbox Example
+
+<iframe src="https://codesandbox.io/embed/refine-supabase-issue-tracker-ifuh4?autoresize=1fontsize=14&=1&theme=dark&view=preview"
+     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+     title="refine-supabase-issue-tracker"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
  
 
