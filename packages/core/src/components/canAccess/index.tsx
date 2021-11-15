@@ -1,8 +1,7 @@
 import React from "react";
 
-import { useCan, useRefineContext } from "@hooks";
+import { useCan } from "@hooks";
 import { CanParams } from "../../interfaces";
-import { ErrorComponent } from "@components";
 
 export type CanAccessProps = CanParams & {
     fallback?: React.ReactNode;
@@ -14,9 +13,8 @@ export const CanAccess: React.FC<CanAccessProps> = ({
     params,
     fallback,
     children,
+    ...rest
 }) => {
-    const { catchAll } = useRefineContext();
-
     const { data } = useCan({
         resource,
         action,
@@ -24,11 +22,16 @@ export const CanAccess: React.FC<CanAccessProps> = ({
     });
 
     if (data) {
+        if (React.isValidElement(children)) {
+            const Children = React.cloneElement(children, rest);
+            return Children;
+        }
+
         return <>{children}</>;
     }
 
     if (data === false) {
-        return <>{fallback ?? catchAll ?? <ErrorComponent />}</>;
+        return <>{fallback ?? null}</>;
     }
 
     return null;

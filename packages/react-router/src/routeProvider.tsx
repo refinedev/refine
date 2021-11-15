@@ -54,7 +54,11 @@ const RouteProviderBase: React.FC = () => {
                 exact: true,
                 path: `/:resource(${route})/:action(create)/:id?`,
                 component: () => (
-                    <CanAccess resource={name} action="create">
+                    <CanAccess
+                        resource={name}
+                        action="create"
+                        fallback={catchAll}
+                    >
                         <CreateComponent
                             canCreate={canCreate}
                             canEdit={canEdit}
@@ -76,6 +80,7 @@ const RouteProviderBase: React.FC = () => {
                         resource={name}
                         action="edit"
                         params={{ id: props.match.params.id }}
+                        fallback={catchAll}
                     >
                         <EditComponent
                             canCreate={canCreate}
@@ -98,6 +103,7 @@ const RouteProviderBase: React.FC = () => {
                         resource={name}
                         action="show"
                         params={{ id: props.match.params.id }}
+                        fallback={catchAll}
                     >
                         <ShowComponent
                             canCreate={canCreate}
@@ -116,7 +122,11 @@ const RouteProviderBase: React.FC = () => {
                 exact: true,
                 path: `/:resource(${route})`,
                 component: () => (
-                    <CanAccess resource={name} action="list">
+                    <CanAccess
+                        resource={name}
+                        action="list"
+                        fallback={catchAll}
+                    >
                         <ListComponent
                             canCreate={canCreate}
                             canEdit={canEdit}

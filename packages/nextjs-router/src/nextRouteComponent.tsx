@@ -76,7 +76,11 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
             switch (action) {
                 case undefined: {
                     return (
-                        <CanAccess resource={name} action="list">
+                        <CanAccess
+                            resource={name}
+                            action="list"
+                            fallback={catchAll}
+                        >
                             <List
                                 name={name}
                                 canCreate={canCreate}
@@ -92,7 +96,11 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
 
                 case "create": {
                     return (
-                        <CanAccess resource={name} action="create">
+                        <CanAccess
+                            resource={name}
+                            action="create"
+                            fallback={catchAll}
+                        >
                             <Create
                                 name={name}
                                 canCreate={canCreate}
@@ -112,6 +120,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                             resource={name}
                             action="edit"
                             params={{ id }}
+                            fallback={catchAll}
                         >
                             <Edit
                                 name={name}
@@ -132,6 +141,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                             resource={name}
                             action="show"
                             params={{ id }}
+                            fallback={catchAll}
                         >
                             <Show
                                 name={name}
