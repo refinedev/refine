@@ -12,40 +12,38 @@ import { Dashboard } from "./pages/dashboard";
 import { Login } from "./pages/login";
 import { Signup } from "./pages/signup";
 
-
-
 function App() {
-  return (
-    <Refine
-      dataProvider={dataProvider(supabaseClient)}
-      authProvider={authProvider}
-      DashboardPage={Dashboard}
-      LoginPage={Login}
-      routerProvider={{
-        ...routerProvider,
-        routes: [
-          {
-            exact: true,
-            component: Signup,
-            path: "/signup",
-          },
-        ] as typeof routerProvider.routes,
-      }}
-      resources={[
-        {
-          name: "users",
-          list: UserList,
-        },
-        {
-          name: "tasks",
-          list: TaskList,
-          edit: EditTask,
-          create: TaskCreate,
-          show: TaskShow,
-        },
-      ]}
-    />
-  );
+    return (
+        <Refine
+            dataProvider={dataProvider(supabaseClient)}
+            authProvider={authProvider}
+            DashboardPage={Dashboard}
+            LoginPage={Login}
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                    {
+                        exact: true,
+                        component: Signup,
+                        path: "/signup",
+                    },
+                ] as typeof routerProvider.routes,
+            }}
+            resources={[
+                {
+                    name: "users",
+                    list: UserList,
+                },
+                {
+                    name: "tasks",
+                    list: TaskList,
+                    edit: EditTask,
+                    create: TaskCreate,
+                    show: TaskShow,
+                },
+            ]}
+        />
+    );
 }
 
 export default App;
