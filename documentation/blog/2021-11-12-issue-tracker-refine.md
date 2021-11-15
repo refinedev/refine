@@ -4,7 +4,7 @@ description: This is my first post on Docusaurus 2.
 slug: customizable-issue-tracker-with-refine-and-supabase
 authors: melih
 tags: [refine, supabase, react, tutorial]
-image: https://i.imgur.com/mErPwqL.png
+image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
 ---
 
