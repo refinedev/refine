@@ -8,7 +8,28 @@ image: https://i.imgur.com/mErPwqL.png
 hide_table_of_contents: false
 ---
 
+import start from '@site/static/img/blog/2021-11-12-issue-tracker-refine/start.png';
+import login from '@site/static/img/blog/2021-11-12-issue-tracker-refine/login.gif';
+import labelTable from '@site/static/img/blog/2021-11-12-issue-tracker-refine/label_table.png';
+import common from '@site/static/img/blog/2021-11-12-issue-tracker-refine/common_table.png';
+import userTable from '@site/static/img/blog/2021-11-12-issue-tracker-refine/user_table.png';
+import taskTable from '@site/static/img/blog/2021-11-12-issue-tracker-refine/task_table.png';
+import labelValue from '@site/static/img/blog/2021-11-12-issue-tracker-refine/label_value.png';
+import priorityValue from '@site/static/img/blog/2021-11-12-issue-tracker-refine/priority_value.png';
+import statusValue from '@site/static/img/blog/2021-11-12-issue-tracker-refine/status_value.png';
+import list from '@site/static/img/blog/2021-11-12-issue-tracker-refine/list.png';
+import taskList from '@site/static/img/blog/2021-11-12-issue-tracker-refine/task_list.png';
+import create from '@site/static/img/blog/2021-11-12-issue-tracker-refine/create.png';
+import edit from '@site/static/img/blog/2021-11-12-issue-tracker-refine/edit.png';
+import show from '@site/static/img/blog/2021-11-12-issue-tracker-refine/show.png';
+import dashOverview from '@site/static/img/blog/2021-11-12-issue-tracker-refine/dash_overview.png';
 import overview from '@site/static/img/blog/2021-11-12-issue-tracker-refine/overview-project.gif';
+import filter from '@site/static/img/blog/2021-11-12-issue-tracker-refine/filter.gif';
+import dashboard from '@site/static/img/blog/2021-11-12-issue-tracker-refine/dashboard.gif';
+import taskTest from '@site/static/img/blog/2021-11-12-issue-tracker-refine/task_test.gif';
+import createTest from '@site/static/img/blog/2021-11-12-issue-tracker-refine/create_test.gif';
+import editTest from '@site/static/img/blog/2021-11-12-issue-tracker-refine/edit_test.gif';
+
 
 In this article, we will make a customizable internal issue tracker web application with supabase and refine.
 
@@ -24,9 +45,17 @@ We will use [Supabase](https://supabase.io/) in backend. Let's start by creating
 
 We have to go to [Supabase](https://supabase.io/) and create an organization and database. Then we can start creating our tables.
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/636z7hqvn6leph0krb2n.png)
- 
 
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={start} alt="overview" />
+</div>
+<br />
+ 
 The tables we need to create for our project are as follows:
 
 > label
@@ -34,26 +63,63 @@ The tables we need to create for our project are as follows:
 * `title`: varchar
 * `color`: varchar
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/publxje4ij7irsnabp6y.png)
+<br />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={labelTable} alt="overview" />
+</div>
+<br />
 
 > priority 
 * `id` bigint
 * `title` varchar
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zmfn1w8dsqngr5x0apqm.png)
+<br />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={common} alt="overview" />
+</div>
+<br />
  
 
 > status
 * `id` bigint
 * `title` varchar
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zmfn1w8dsqngr5x0apqm.png)
+<br />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={common} alt="overview" />
+</div>
+<br />
 
 > users
 * `email` varchar
 * `id` uuid
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1yu5v8p0a0th5buba34w.png)
+<br />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={userTable} alt="overview" />
+</div>
+<br />
+
  
 > tasks
 * `id` bigint
@@ -66,12 +132,22 @@ The tables we need to create for our project are as follows:
 * `statuts` bigint
 * `users` uuid
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/jlshwalwk3dd2boz4zx2.png)
+<br />
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={taskTable} alt="overview" />
+</div>
+<br />
  
 
 We created our database tables. The important part here is that as you can see, in our tasks table, label, priority, status and users values ​​are defined as bigint. To summarize the reason for this, we relation the label, priority, status and users tables that we created above with the corresponding values ​​in our tasks table.
 
- **💡 TIP**: Add Foreign key relationships steps:
+:::tip
+  Add Foreign key relationships steps:
 
 1. Got to a table, right click the column you wish to add a foreign key for
 
@@ -82,7 +158,7 @@ We created our database tables. The important part here is that as you can see, 
 4. Select the table and column to make a foreign key for
 
 5. Click save
-
+:::
 
 
 So we can take  reference their id and use their value in our tasks table.
@@ -91,20 +167,52 @@ Now let's go to the Supabase Table editor and create our constant values.
 
 `Label Table`
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/x57znd24e8rx4z8ojf11.png)
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={labelValue} alt="overview" />
+</div>
+<br />
 
 `Priority Table`
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/dlz595fo5z84m4ozjmda.png)
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={priorityValue} alt="overview" />
+</div>
+<br />
+
  
 `Status Table`
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/p4d8bsrw8jxze2e1mwee.png)
- 
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={statusValue} alt="overview" />
+</div>
+<br />
  
 Let's create a test task to better understand key relation. 
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/mvqfnfsf0sj7qtmnny3f.gif)
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={taskTest} alt="overview" />
+</div>
+<br />
 
 As you can see, since we have defined the ids of our label, status, priority and users tables as references to our tasks table, we can now use their values.
 
@@ -132,9 +240,8 @@ After the project setup is loaded, let's start by entering our project and makin
 
 Let's add our supabase url and key to our refine project.
 
-`src/utility/supabaseClient.ts`
 
-```ts
+```ts title="src/utility/supabaseClient.ts"
 import { createClient } from "@pankod/refine-supabase";
 
 const SUPABASE_URL = "YOUR_SUPABASE_URL";
@@ -149,7 +256,7 @@ Now we can access and list the tables we created via the supabase.
 
 Our purpose here is to log in if there is a registered user in the supabase. If you do not have a registered user, saving a user to the supabase with refine.
  
-#### Custom Login Page
+## Custom Login Page
 
 ```tsx
 import React from "react";
@@ -250,7 +357,7 @@ export const Login: React.FC = () => {
 
 ```
 
-#### Custom Sign Up Page
+## Custom Signup Page
 
 ```tsx
 import React from "react";
@@ -366,9 +473,7 @@ export const Signup: React.FC = () => {
 
 ```
 
-- `App.tsx`
-
-```tsx
+```tsx title="App.tsx"
 import { Refine } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router";
 import "styles/antd.less";
@@ -403,13 +508,20 @@ export default App;
 
 Here we define our login and signup pages. We then use the refine's [router-provider](https://refine.dev/docs/next/api-references/providers/router-provider/) and [useNavigaton](https://refine.dev/docs/next/api-references/hooks/navigation/useNavigation/) hooks to switch between login and signup.
 
-
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/aq8z0kzqhdw9xy9vwgig.gif)
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={login} alt="overview" />
+</div>
+<br />
  
 
 We can now create supabase users and log in from our refine interface.
  
-
+## Add Resource
 **Adding resources according to the table name we created in Supabase**
 
 ```tsx
@@ -450,16 +562,23 @@ function App() {
     />
   );
 }
-
 ```
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6l4clvggytlr83a9fr8m.png)
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={list} alt="overview" />
+</div>
+<br />
  
 We can now create lists of tasks and make changes to them.
 
-`src/pages/task/list.tsx`
+## Add List and Filter 
 
-```tsx
+```tsx title="src/pages/task/list.tsx"
 import React from "react";
 import {
   useTable,
@@ -700,9 +819,8 @@ export const TaskList: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
-`src/pages/task/filter.tsx`
 
-```tsx
+```tsx title="src/pages/task/filter.tsx"
 import React from "react";
 import {
   Form,
@@ -774,9 +892,7 @@ export const Filter: React.FC<{ formProps: FormProps }> = ({ formProps }) => {
 };
 ```
 
-`src/interfaces`
-
-```ts
+```ts title="src/interfaces"
 export interface IAuthUser {
   id: string;
   email: string;
@@ -821,9 +937,15 @@ export interface ITaskFilterVariables {
 }
 ```
 
-
-
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/hcxwmwa09aq4ohu4tygz.png)
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={taskList} alt="overview" />
+</div>
+<br />
 
  Using refine's [tableSearch](https://refine.dev/docs/guides-and-concepts/search/table-search) and list, we can create our list and perform filtering. 
 
@@ -831,9 +953,9 @@ As seen in the example, we listed and showed the task table we created in supaba
 
 Now how do we create task? Let's examine how we can edit them and see their details.
 
-`src/pages/task/create.tsx`
+## Create Task
 
-```tsx
+```tsx title="src/pages/task/create.tsx"
 import {
   useForm,
   Create,
@@ -907,13 +1029,22 @@ export const TaskCreate: React.FC<IResourceComponentsProps> = () => {
     </Create>
   );
 };
-
 ```
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ee1bbg97cdckvl96d4ce.png)
- 
-`src/pages/task/edit.tsx`
 
-```tsx
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={createTest} alt="overview" />
+</div>
+<br />
+
+
+## Edit Task
+
+```tsx title="src/pages/task/edit.tsx"
 import {
   useForm,
   Form,
@@ -974,12 +1105,19 @@ export const EditTask: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/kpbbz3xvuop9791u1ifp.png)
- 
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={editTest} alt="overview" />
+</div>
+<br />
 
-`src/pages/task/show`
+## Show Task
 
-```tsx
+```tsx title="src/pages/task/show"
 import { useShow, Show, Typography, Tag, useOne, DateField } from "@pankod/refine";
 import { ITask, ILabel, IPriority, IStatus, IAuthUser } from "interfaces";
 
@@ -1043,8 +1181,15 @@ export const TaskShow: React.FC = () => {
   );
 };
 ```
-
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/pj1i0p6ham59me8qmud5.png)
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={show} alt="overview" />
+</div>
+<br />
  
 
 By using Refine's basic views such as [create](https://refine.dev/docs/api-references/components/basic-views/create), [edit](https://refine.dev/docs/api-references/components/basic-views/edit/) and [show](https://refine.dev/docs/api-references/components/basic-views/show/), we can now create tasks, edit these tasks and view their details.
@@ -1052,9 +1197,9 @@ By using Refine's basic views such as [create](https://refine.dev/docs/api-refer
 
 Let's see how to add a dashboard page to our project together.
 
-`src/components/task/pie.tsx`
+## Add Custom Chart 
 
-```tsx
+```tsx title="src/components/task/pie.tsx"
 import React from "react";
 import { Pie } from "@ant-design/charts";
 
@@ -1089,9 +1234,7 @@ export const TaskChart: React.FC<ChartProps> = ({ data }) => {
 };
 ```
 
-`src/pages/dashboard/index.tsx`
-
-```tsx
+```tsx title="src/pages/dashboard/index.tsx"
 import React from "react";
 import { useList, useMany, Row, Col, Card } from "@pankod/refine";
 import { ITask, ILabel, IPriority, IStatus, IAuthUser } from "interfaces";
@@ -1179,7 +1322,17 @@ export const Dashboard = () => {
 };
 ```
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/l8mhcul8jvnxagiqotbv.png)
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={dashOverview} alt="overview" />
+</div>
+<br/>
+
+
  
 Final version of our `<App.tsx/>`.
 
@@ -1233,9 +1386,9 @@ function App() {
 
 Our project is done. Lets see how its look like.
 
-`Overview`
+## Overview Project
 
-<br />
+`Overview`
 
 <div class="img-container">
     <div class="window">
@@ -1245,17 +1398,31 @@ Our project is done. Lets see how its look like.
     </div>
     <img src={overview} alt="overview" />
 </div>
-
 <br />
 
 `Task Filter`
 
- ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8du6o2q97l6g1773qjwq.gif)
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={filter} alt="overview" />
+</div>
+<br />
 
 `Dashboard Page`
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bphuk3oaufhxacu4xseg.gif)
- 
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={dashboard} alt="overview" />
+</div>
+<br />
 
 As you can see, we made a simple and short task manager application using refine on our front end and using its data-provider. 
 
@@ -1263,7 +1430,7 @@ As you can see, we made a simple and short task manager application using refine
 
 For more information about Refine: [Refine Github Page](https://github.com/pankod/refine)
 
-For other examples and articles that will interest you with refine:  [https://dev.to/pankod](https://dev.to/pankod)
+For other examples and articles that will interest you with refine:  [https://refine.dev/blog/](https://refine.dev/blog/)
 
  
 
