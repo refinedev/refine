@@ -315,6 +315,10 @@ export const Login: React.FC = () => {
                 onFinish={(values) => {
                   login(values);
                 }}
+                 initialValues={{
+                  email: "info@refine.dev",
+                  password: "refine-supabase",
+                }}
               >
                 <Form.Item
                   name="email"
@@ -476,12 +480,16 @@ export const Signup: React.FC = () => {
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router";
-import "styles/antd.less";
 import { dataProvider } from "@pankod/refine-supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
+
+import "@pankod/refine/dist/styles.min.css";
+
 import { Login } from "./pages/login";
 import { Signup } from "./pages/signup";
+
+
 
 function App() {
   return (
@@ -527,11 +535,12 @@ We can now create supabase users and log in from our refine interface.
 ```tsx
 import { Refine } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router";
-import "styles/antd.less";
 import { dataProvider } from "@pankod/refine-supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
-import { Dashboard } from "./pages/dashboard";
+
+import "@pankod/refine/dist/styles.min.css";
+
 import { Login } from "./pages/login";
 import { Signup } from "./pages/signup";
 
@@ -1339,13 +1348,12 @@ Final version of our `<App.tsx/>`.
 ```tsx
 import { Refine } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router";
-import "styles/antd.less";
 import { dataProvider } from "@pankod/refine-supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
-import { UserList } from "./pages/user";
-import { TaskList, TaskShow, TaskCreate, EditTask } from "./pages/task";
-import { Dashboard } from "./pages/dashboard";
+
+import "@pankod/refine/dist/styles.min.css";
+
 import { Login } from "./pages/login";
 import { Signup } from "./pages/signup";
 
