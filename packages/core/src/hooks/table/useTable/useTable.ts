@@ -33,6 +33,7 @@ import {
     SuccessErrorNotification,
     HttpError,
     MetaDataQuery,
+    LiveEventType,
 } from "../../../interfaces";
 
 export type useTableProps<TData, TError, TSearchVariables = unknown> = {
@@ -46,6 +47,8 @@ export type useTableProps<TData, TError, TSearchVariables = unknown> = {
     onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     metaData?: MetaDataQuery;
+    liveMode?: undefined | "immediate" | "controlled";
+    onLiveEvent?: (event: LiveEventType) => void;
 } & SuccessErrorNotification;
 
 export type useTableReturnType<
@@ -85,6 +88,8 @@ export const useTable = <
     successNotification,
     errorNotification,
     queryOptions,
+    liveMode,
+    onLiveEvent,
     metaData,
 }: useTableProps<TData, TError, TSearchVariables> = {}): useTableReturnType<
     TData,
@@ -182,8 +187,10 @@ export const useTable = <
         successNotification,
         errorNotification,
         metaData,
+        liveMode,
+        onLiveEvent,
     });
-    const { data, isFetching } = queryResult;
+    const { data, isFetching, isLoading } = queryResult;
 
     const onChange = (
         pagination: TablePaginationConfig,
@@ -230,7 +237,8 @@ export const useTable = <
         tableProps: {
             ...tablePropsSunflower,
             dataSource: data?.data,
-            loading: isFetching,
+            loading: liveMode ? isLoading : isFetching,
+            // loading: isFetching,
             onChange,
             pagination: {
                 ...tablePropsSunflower.pagination,

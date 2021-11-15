@@ -36,6 +36,9 @@ export * from "./mutationMode";
 // mutationMode
 export * from "./HttpError";
 
+// liveEventType
+export * from "./liveEventType";
+
 // custom components
 export * from "./customComponents";
 

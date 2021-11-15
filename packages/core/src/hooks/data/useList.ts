@@ -1,6 +1,12 @@
-import { useContext } from "react";
-import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
+import { useContext, useEffect } from "react";
+import {
+    QueryObserverResult,
+    useQuery,
+    useQueryClient,
+    UseQueryOptions,
+} from "react-query";
 import { ArgsProps } from "antd/lib/notification";
+import { createClient } from "@supabase/supabase-js";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -12,8 +18,9 @@ import {
     HttpError,
     CrudSorting,
     MetaDataQuery,
+    LiveEventType,
 } from "../../interfaces";
-import { useCheckError, useTranslate } from "@hooks";
+import { useCacheQueries, useCheckError, useTranslate } from "@hooks";
 import { handleNotification } from "@definitions";
 
 interface UseListConfig {
@@ -29,6 +36,8 @@ export type UseListProps<TData, TError> = {
     successNotification?: ArgsProps | false;
     errorNotification?: ArgsProps | false;
     metaData?: MetaDataQuery;
+    liveMode?: undefined | "immediate" | "controlled";
+    onLiveEvent?: (event: LiveEventType) => void;
 };
 
 /**
@@ -52,6 +61,8 @@ export const useList = <
     successNotification,
     errorNotification,
     metaData,
+    liveMode,
+    onLiveEvent,
 }: UseListProps<TData, TError>): QueryObserverResult<
     GetListResponse<TData>,
     TError
@@ -59,6 +70,35 @@ export const useList = <
     const { getList } = useContext<IDataContext>(DataContext);
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
+    const SUPABASE_URL = "https://iwdfzvfqbtokqetmbmbp.supabase.co";
+    const SUPABASE_KEY =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMDU2NzAxMCwiZXhwIjoxOTQ2MTQzMDEwfQ._gr6kXGkQBi9BM9dx5vKaNKYj_DJN1xlkarprGpM_fU";
+    const queryClient = useQueryClient();
+    const getAllQueries = useCacheQueries();
+
+    useEffect(() => {
+        const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        const subscription = supabaseClient
+            .from<TData>(resource)
+            .on("*", (event) => {
+                console.log("event", event);
+
+                if (liveMode === "immediate") {
+                    getAllQueries(resource).forEach((query) => {
+                        queryClient.invalidateQueries(query.queryKey);
+                        console.log("query, ", query);
+                    });
+                } else {
+                    onLiveEvent?.(event as any) as any;
+                }
+            })
+            .subscribe();
+
+        return () => {
+            subscription.unsubscribe();
+        };
+    }, []);
 
     const queryResponse = useQuery<GetListResponse<TData>, TError>(
         [`resource/list/${resource}`, { ...config }],
