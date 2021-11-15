@@ -27,6 +27,17 @@ const siteConfig = {
                     showLastUpdateAuthor: true,
                     showLastUpdateTime: true,
                 },
+                blog: {
+                    blogTitle: "refine blog!",
+                    blogDescription: "A Docusaurus powered blog!",
+                    postsPerPage: "ALL",
+                    blogSidebarTitle: "All posts",
+                    blogSidebarCount: "ALL",
+                    feedOptions: {
+                        type: "all",
+                        copyright: `Copyright © ${new Date().getFullYear()} refine.`,
+                    },
+                },
                 theme: {
                     customCss: [
                         require.resolve("./src/css/custom.css"),
@@ -71,6 +82,7 @@ const siteConfig = {
                     label: "Guides",
                     position: "left",
                 },
+                { to: "blog", label: "Blog", position: "left" },
                 {
                     to: "/enterprise",
                     label: "Enterprise",
