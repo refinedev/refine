@@ -13,6 +13,9 @@ import react_admin from '@site/static/img/blog/2021-10-6-migrating-react-admin-t
 import refine_table from '@site/static/img/blog/2021-10-6-migrating-react-admin-to-refine/refine_table.png';
 import react_admin_create from '@site/static/img/blog/2021-10-6-migrating-react-admin-to-refine/react_admin_create.png';
 
+Recently, our team decided to migrate a B2B admin panel of one of our customers from React-Admin to refine to battle test our new framework and improve our productivity. My mission was to migrate it and it took one and a half days for me to rewrite the panel in refine.
+
+<!--truncate-->
 ### Migrating a React-Admin Application to refine
 
 [refine](https://refine.dev/) is an extremely customizable [Ant Desig](https://ant.design/) based [React](https://reactjs.org/) framework for data-intensive applications and it handles most of the CRUD functionality that can be a requirement in many applications, without much effort. Providing the rest of the desired functionality (outside CRUD) is up to you, like in any <strong>React</strong> application.
