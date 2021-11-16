@@ -1,4 +1,6 @@
-import { Refine, Resource } from "@pankod/refine";
+import { Refine } from "@pankod/refine";
+
+import routerProvider from "@pankod/refine-react-router";
 
 import "@pankod/refine/dist/styles.min.css";
 import { DataProvider } from "@pankod/refine-strapi";
@@ -21,9 +23,14 @@ function App() {
             Header={Header}
             Layout={Layout}
             OffLayoutArea={OffLayoutArea}
-        >
-            <Resource name="feedbacks" list={FeedbackList} />
-        </Refine>
+            routerProvider={routerProvider}
+            resources={[
+                {
+                    name: "feedbacks",
+                    list: FeedbackList,
+                },
+            ]}
+        />
     );
 }
 

@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@pankod/refine": "2.0.12",
+    "@pankod/refine-react-router": "2.0.12",
+    "@pankod/refine-strapi": "2.0.12",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
@@ -10,14 +13,12 @@
     "@types/node": "^12.20.10",
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.3",
+    "axios": "^0.21.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "typescript": "^4.2.4",
-    "web-vitals": "^1.1.1",
-    "@pankod/refine": "^1.0.76",
-    "@pankod/refine-strapi": "^0.1.0",
-    "axios": "^0.21.1"
+    "web-vitals": "^1.1.1"
   },
   "scripts": {
     "dev": "react-scripts start",
