@@ -17,4 +17,4 @@
 
 ## Blog Post
 
-For more blog and example, refer to the [refine blog posts](https://refine.dev/blog/customizable-issue-tracker-with-refine-and-supabase).
+For more blog and example, refer to the [refine blog posts](https://refine.dev/blog/create-a-feedback-admin-panel-with-refine-and-strapi/).
