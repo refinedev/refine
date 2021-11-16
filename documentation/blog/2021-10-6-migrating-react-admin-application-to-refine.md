@@ -1,6 +1,6 @@
 ---
 title: Migrating a React-Admin Application to Refine
-description: This is my first post on Docusaurus 2.
+description: Recently, our team decided to migrate a B2B admin panel of one of our customers from React-Admin to refine to battle test our new framework and improve our productivity.
 slug: migrating-a-react-admin-application-to-refine
 authors: umut
 tags: [refine, react-admin, adminpanel, crud]
