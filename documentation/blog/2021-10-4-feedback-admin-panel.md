@@ -144,9 +144,13 @@ function App() {
 -     Footer={Footer}
       Layout={Layout}
       OffLayoutArea={OffLayoutArea}
-    >
-    <Resource name="feedbacks" />
-    </Refine>
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "feedbacks",
+        },
+      ]}
+    />
   );
 }
  
