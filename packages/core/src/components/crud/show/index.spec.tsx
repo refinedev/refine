@@ -1,17 +1,23 @@
 import React, { ReactNode } from "react";
 import { Route } from "react-router-dom";
 import { Button } from "antd";
+import { wait } from "@testing-library/react";
 
 import { render, TestWrapper, MockJSONServer } from "@test";
+import { IAccessControlContext } from "../../../interfaces";
 
 import { Show } from "./index";
 
-const renderShow = (show: ReactNode) => {
+const renderShow = (
+    show: ReactNode,
+    accessControlProvider?: IAccessControlContext,
+) => {
     return render(<Route path="/:resource/show/:id">{show}</Route>, {
         wrapper: TestWrapper({
             dataProvider: MockJSONServer,
             resources: [{ name: "posts", route: "posts" }],
             routerInitialEntries: ["/posts/show/1"],
+            accessControlProvider,
         }),
     });
 };
@@ -26,16 +32,40 @@ describe("Show", () => {
         const { container, getByText } = renderShow(<Show />);
 
         expect(container.querySelector("button")).toBeTruthy();
-        getByText("Posts");
+        await wait(() => getByText("Posts"));
         getByText("Refresh");
     });
 
     it("should render optional edit and delete buttons successfuly", async () => {
         const { container, getByText } = renderShow(<Show canEdit canDelete />);
-
         expect(container.querySelector("button")).toBeTruthy();
-        getByText("Edit");
-        getByText("Delete");
+
+        await wait(() => getByText("Edit"));
+        await wait(() => getByText("Delete"));
+    });
+
+    it("depending on the accessControlProvider it should get the buttons successfully", async () => {
+        const { getByText, queryByTestId } = renderShow(
+            <Show canEdit canDelete />,
+            {
+                can: ({ action }) => {
+                    switch (action) {
+                        case "edit":
+                        case "list":
+                            return Promise.resolve(true);
+                        case "delete":
+                        default:
+                            return Promise.resolve(false);
+                    }
+                },
+            },
+        );
+
+        await wait(() => getByText("Edit"));
+        await wait(() => getByText("Posts"));
+        await wait(() =>
+            expect(queryByTestId("show-delete-button")).toBeNull(),
+        );
     });
 
     it("should render optional buttons with actionButtons prop", async () => {
@@ -94,7 +124,7 @@ describe("Show", () => {
     });
 
     describe("render edit button", () => {
-        it("should render edit button", () => {
+        it("should render edit button", async () => {
             const { getByText, queryByTestId } = render(
                 <Route path="/:resource/show/:id">
                     <Show />
@@ -110,8 +140,9 @@ describe("Show", () => {
                 },
             );
 
-            expect(queryByTestId("show-edit-button")).not.toBeNull();
-
+            await wait(() =>
+                expect(queryByTestId("show-edit-button")).not.toBeNull(),
+            );
             getByText("Show Post");
         });
 
@@ -155,7 +186,7 @@ describe("Show", () => {
             expect(queryByTestId("show-edit-button")).toBeNull();
         });
 
-        it("should render edit button on resource canEdit false & canEdit props true on component", () => {
+        it("should render edit button on resource canEdit false & canEdit props true on component", async () => {
             const { queryByTestId } = render(
                 <Route path="/:resource/show/:id">
                     <Show canEdit={true} />
@@ -170,11 +201,12 @@ describe("Show", () => {
                     }),
                 },
             );
-
-            expect(queryByTestId("show-edit-button")).not.toBeNull();
+            await wait(() =>
+                expect(queryByTestId("show-edit-button")).not.toBeNull(),
+            );
         });
 
-        it("should render edit button with recordItemId prop", () => {
+        it("should render edit button with recordItemId prop", async () => {
             const { getByText, queryByTestId } = render(
                 <Route path="/:resource/show/:id">
                     <Show recordItemId="1" />
@@ -190,14 +222,16 @@ describe("Show", () => {
                 },
             );
 
-            expect(queryByTestId("show-edit-button")).not.toBeNull();
+            await wait(() =>
+                expect(queryByTestId("show-edit-button")).not.toBeNull(),
+            );
 
             getByText("Show Post");
         });
     });
 
     describe("render delete button", () => {
-        it("should render delete button", () => {
+        it("should render delete button", async () => {
             const { queryByTestId } = render(
                 <Route path="/:resource/show/:id">
                     <Show />
@@ -213,7 +247,9 @@ describe("Show", () => {
                 },
             );
 
-            expect(queryByTestId("show-delete-button")).not.toBeNull();
+            await wait(() =>
+                expect(queryByTestId("show-delete-button")).not.toBeNull(),
+            );
         });
 
         it("should not render delete button on resource canDelete false", () => {
@@ -254,7 +290,7 @@ describe("Show", () => {
             expect(queryByTestId("show-delete-button")).toBeNull();
         });
 
-        it("should render delete button on resource canDelete false & canDelete props true on component", () => {
+        it("should render delete button on resource canDelete false & canDelete props true on component", async () => {
             const { queryByTestId } = render(
                 <Route path="/:resource/show/:id">
                     <Show canDelete={true} />
@@ -270,10 +306,12 @@ describe("Show", () => {
                 },
             );
 
-            expect(queryByTestId("show-delete-button")).not.toBeNull();
+            await wait(() =>
+                expect(queryByTestId("show-delete-button")).not.toBeNull(),
+            );
         });
 
-        it("should render delete button with recordItemId prop", () => {
+        it("should render delete button with recordItemId prop", async () => {
             const { queryByTestId } = render(
                 <Route path="/:resource/show/:id">
                     <Show recordItemId="1" />
@@ -289,7 +327,9 @@ describe("Show", () => {
                 },
             );
 
-            expect(queryByTestId("show-delete-button")).not.toBeNull();
+            await wait(() =>
+                expect(queryByTestId("show-delete-button")).not.toBeNull(),
+            );
         });
     });
 });
