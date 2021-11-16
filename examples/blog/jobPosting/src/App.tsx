@@ -1,4 +1,6 @@
-import { Refine, Resource } from "@pankod/refine";
+import { Refine } from "@pankod/refine";
+
+import routerProvider from "@pankod/refine-react-router";
 
 import "styles/antd.less";
 import nestjsxCrudDataProvider from "@pankod/refine-nestjsx-crud";
@@ -31,24 +33,24 @@ function App() {
             Footer={Footer}
             Layout={Layout}
             OffLayoutArea={OffLayoutArea}
-        >
-            <Resource
-                name="companies"
-                list={CompanyList}
-                create={CompanyCreate}
-                edit={CompanyEdit}
-                show={CompanyShow}
-                canDelete
-            />
-            <Resource
-                name="jobs"
-                list={JobList}
-                create={JobCreate}
-                edit={JobEdit}
-                show={CompanyShow}
-                canDelete
-            />
-        </Refine>
+            routerProvider={routerProvider}
+            resources={[
+                {
+                    name: "companies",
+                    list: CompanyList,
+                    create: CompanyCreate,
+                    edit: CompanyEdit,
+                    show: CompanyShow,
+                },
+                {
+                    name: "jobs",
+                    list: JobList,
+                    create: JobCreate,
+                    edit: JobEdit,
+                    show: CompanyShow,
+                },
+            ]}
+        />
     );
 }
 
