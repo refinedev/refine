@@ -3,7 +3,7 @@ title: Migrating a React-Admin Application to Refine
 description: This is my first post on Docusaurus 2.
 slug: migrating-a-react-admin-application-to-refine
 authors: umut
-tags: [refine, reactadmin, showdev, javascript]
+tags: [refine, react-admin, adminpanel, crud]
 image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
 ---
