@@ -1,6 +1,10 @@
 import { useHistory, useParams, useLocation, Link } from "react-router-dom";
 
-import { IDataContext, IRouterContext } from "../src/interfaces";
+import {
+    IDataContext,
+    IRouterContext,
+    IAccessControlContext,
+} from "../src/interfaces";
 
 export const posts = [
     {
@@ -51,4 +55,8 @@ export const MockRouterProvider: IRouterContext = {
     useParams,
     Link,
     Prompt: () => null,
+};
+
+export const MockAccessControlProvider: IAccessControlContext = {
+    can: () => Promise.resolve(true),
 };
