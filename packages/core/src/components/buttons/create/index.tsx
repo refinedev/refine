@@ -2,12 +2,13 @@ import React, { FC } from "react";
 import { Button, ButtonProps } from "antd";
 import { PlusSquareOutlined } from "@ant-design/icons";
 
-import { useNavigation, useRouterContext, useTranslate } from "@hooks";
+import { useNavigation, useRouterContext, useTranslate, useCan } from "@hooks";
 import { ResourceRouterParams } from "../../../interfaces";
 
 export type CreateButtonProps = ButtonProps & {
     resourceName?: string;
     hideText?: boolean;
+    ignoreAccessControlProvider?: boolean;
 };
 
 /**
@@ -20,6 +21,7 @@ export type CreateButtonProps = ButtonProps & {
 export const CreateButton: FC<CreateButtonProps> = ({
     resourceName,
     hideText = false,
+    ignoreAccessControlProvider = false,
     children,
     ...rest
 }) => {
@@ -30,12 +32,24 @@ export const CreateButton: FC<CreateButtonProps> = ({
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
-    const onButtonClick = () => {
-        create(resourceName ?? routeResourceName, "push");
-    };
+    const resource = resourceName ?? routeResourceName;
+    const onButtonClick = () => create(resource, "push");
+
+    const { data } = useCan(
+        { resource, action: "create" },
+        {
+            enabled: !ignoreAccessControlProvider,
+        },
+    );
 
     return (
-        <Button onClick={onButtonClick} icon={<PlusSquareOutlined />} {...rest}>
+        <Button
+            onClick={onButtonClick}
+            icon={<PlusSquareOutlined />}
+            disabled={data === false}
+            title={data === false ? "Dont have access" : ""}
+            {...rest}
+        >
             {!hideText && (children ?? translate("buttons.create", "Create"))}
         </Button>
     );
