@@ -8,7 +8,7 @@ export const useCan = (params: CanParams): UseQueryResult<boolean> => {
     const { can } = useContext(AccessControlContext);
 
     const queryResponse = useQuery<boolean>(
-        ["useCan", params],
+        ["useCan", { ...params }],
         () => can(params),
         {
             retry: false,
