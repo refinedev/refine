@@ -3,12 +3,19 @@ import { Button, ButtonProps } from "antd";
 import { BarsOutlined } from "@ant-design/icons";
 import humanizeString from "humanize-string";
 
-import { useNavigation, useRouterContext, useTranslate } from "@hooks";
+import {
+    useCan,
+    useNavigation,
+    useResourceWithRoute,
+    useRouterContext,
+    useTranslate,
+} from "@hooks";
 import { ResourceRouterParams } from "../../../interfaces";
 
 type ListButtonProps = ButtonProps & {
     resourceName?: string;
     hideText?: boolean;
+    ignoreAccessControlProvider?: boolean;
 };
 
 /**
@@ -21,9 +28,12 @@ type ListButtonProps = ButtonProps & {
 export const ListButton: FC<ListButtonProps> = ({
     resourceName: propResourceName,
     hideText = false,
+    ignoreAccessControlProvider = false,
     children,
     ...rest
 }) => {
+    const resourceWithRoute = useResourceWithRoute();
+
     const { list } = useNavigation();
     const translate = useTranslate();
 
@@ -31,12 +41,23 @@ export const ListButton: FC<ListButtonProps> = ({
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
-    const resourceName = propResourceName ?? routeResourceName;
+    const resource = resourceWithRoute(routeResourceName);
+
+    const resourceName = propResourceName ?? resource.name;
+
+    const { data } = useCan(
+        { resource: resourceName, action: "list" },
+        {
+            enabled: !ignoreAccessControlProvider,
+        },
+    );
 
     return (
         <Button
-            onClick={(): void => list(resourceName, "push")}
+            onClick={(): void => list(routeResourceName, "push")}
             icon={<BarsOutlined />}
+            disabled={data === false}
+            title={data === false ? "Dont have access" : ""}
             {...rest}
         >
             {!hideText &&

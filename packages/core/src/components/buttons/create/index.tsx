@@ -2,7 +2,13 @@ import React, { FC } from "react";
 import { Button, ButtonProps } from "antd";
 import { PlusSquareOutlined } from "@ant-design/icons";
 
-import { useNavigation, useRouterContext, useTranslate, useCan } from "@hooks";
+import {
+    useNavigation,
+    useRouterContext,
+    useTranslate,
+    useCan,
+    useResourceWithRoute,
+} from "@hooks";
 import { ResourceRouterParams } from "../../../interfaces";
 
 export type CreateButtonProps = ButtonProps & {
@@ -19,24 +25,30 @@ export type CreateButtonProps = ButtonProps & {
  * @see {@link https://refine.dev/docs/api-references/components/buttons/create-button} for more details.
  */
 export const CreateButton: FC<CreateButtonProps> = ({
-    resourceName,
+    resourceName: propResourceName,
     hideText = false,
     ignoreAccessControlProvider = false,
     children,
     ...rest
 }) => {
+    const resourceWithRoute = useResourceWithRoute();
+
     const translate = useTranslate();
+
     const { create } = useNavigation();
 
     const { useParams } = useRouterContext();
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
-    const resource = resourceName ?? routeResourceName;
-    const onButtonClick = () => create(resource, "push");
+    const resource = resourceWithRoute(routeResourceName);
+
+    const resourceName = propResourceName ?? resource.name;
+
+    const onButtonClick = () => create(routeResourceName, "push");
 
     const { data } = useCan(
-        { resource, action: "create" },
+        { resource: resourceName, action: "create" },
         {
             enabled: !ignoreAccessControlProvider,
         },
