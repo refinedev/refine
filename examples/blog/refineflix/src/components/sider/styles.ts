@@ -1,10 +1,10 @@
 import { CSSProperties } from "react";
 
 export const antLayoutSider: CSSProperties = {
-  position: "relative",
+    position: "relative",
 };
 export const antLayoutSiderMobile: CSSProperties = {
-  position: "fixed",
-  height: "100vh",
-  zIndex: 999,
+    position: "fixed",
+    height: "100vh",
+    zIndex: 999,
 };
