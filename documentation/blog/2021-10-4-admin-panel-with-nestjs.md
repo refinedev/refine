@@ -210,26 +210,59 @@ Similarly, let's add the create, edit and jobs crud pages under the pages folder
 Next, let's define the resources in `<Refine>` (App.tsx):
 
 ```tsx
-<Refine
-      dataProvider={dataProvider}
-      ...
-      resources={[
-          {
-            name: "companies",
-            list: CompanyList,
-            create: CompanyCreate,
-            edit: CompanyEdit,
-            show: CompanyShow,
-          },
-          {
-            name: "jobs",
-            list: JobList,
-            create: JobCreate,
-            edit: JobEdit,
-            show: CompanyShow,
-          },
-      ]}
-/>
+import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
+import nestjsxCrudDataProvider from "@pankod/refine-nestjsx-crud";
+
+import "styles/antd.less";
+
+import {
+    CompanyList,
+    CompanyShow,
+    CompanyCreate,
+    CompanyEdit,
+} from "./pages/companies";
+import {
+    Title,
+    Header,
+    Sider,
+    Footer,
+    Layout,
+    OffLayoutArea,
+} from "components";
+import { JobList, JobCreate, JobEdit } from "pages/jobs";
+
+function App() {
+    const API_URL = "http://localhost:3000";
+    const dataProvider = nestjsxCrudDataProvider(API_URL);
+
+    return (
+        <Refine
+            dataProvider={dataProvider}
+            Title={Title}
+            Header={Header}
+            Sider={Sider}
+            Footer={Footer}
+            Layout={Layout}
+            OffLayoutArea={OffLayoutArea}
+            routerProvider={routerProvider}
+            resources={[
+                {
+                    name: "companies",
+                    list: CompanyList,
+                    create: CompanyCreate,
+                    edit: CompanyEdit,
+                    show: CompanyShow,
+                },
+                {
+                    name: "jobs",
+                    list: JobList,
+                    create: JobCreate,
+                    edit: JobEdit,
+                    show: CompanyShow,
+                },
+            ]}
+        />
 ```
 
 <div class="img-container">
