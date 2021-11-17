@@ -229,8 +229,15 @@ export const DashboardPage: React.FC = () => {
   });
 }
 ```
+## Live Codesandbox Example
 
-We can get data from other resources in a similar fashion. You can find the codesandbox [here](https://codesandbox.io/s/9oc34) and the [repo here](https://github.com/pankod/refine/tree/master/examples/blog/hackathonize)
+<iframe src="https://codesandbox.io/embed/hackathonize-xcpcp?autoresize=1fontsize=14&=1&theme=dark&view=preview"
+     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+     title="hackathonize"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
 
+We can get data from other resources in a similar fashion. You can find the [repo here](https://github.com/pankod/refine/tree/master/examples/blog/hackathonize)
 ## Conclusion
 This project itself is a product of a hackathon. It lacks lots of feature like authorization though it shows how **refine** makes it easy to quickly build a working app.
