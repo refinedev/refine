@@ -1,28 +1,23 @@
-import React from "react";
 import { IRouterProvider } from "@pankod/refine";
 import {
     useLocation,
     Prompt,
     Link,
     useNavigate,
-    useSearch,
     useMatch,
+    Route,
 } from "react-location";
 
 import { RouterComponent } from "./routerComponent";
 
-/* interface IReactRouterProvider extends IRouterProvider {
-    useHistory: typeof useHistory;
-    useLocation:;
-    Link: typeof Link;
-    useParams: typeof useParams;
-    routes?: RouteProps[];
-    RouterComponent: React.FC<BrowserRouterProps>;
+interface IReactRouterProvider extends IRouterProvider {
+    routes?: Route[];
 }
- */
-const RouterProvider: IRouterProvider = {
+
+const RouterProvider: IReactRouterProvider = {
     useHistory: () => {
         const navigate = useNavigate();
+        const location = useLocation();
 
         return {
             push: (path: string) => {
@@ -34,18 +29,18 @@ const RouterProvider: IRouterProvider = {
                 navigate({
                     to: path,
                     replace: true,
+                    fromCurrent: true,
                 });
             },
             goBack: () => {
-                return false;
+                location.history.back();
             },
         };
     },
     useLocation: () => {
         const location = useLocation();
         console.log("useLocation", {
-            pathname: location.current.pathname,
-            search: location.current.searchStr,
+            search: location,
         });
         return {
             pathname: location.current.pathname,

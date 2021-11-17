@@ -22,6 +22,7 @@ export const Authenticated: React.FC<AuthenticatedProps> = ({
     const { replace } = useNavigation();
     const { useLocation } = useRouterContext();
     const { pathname, search } = useLocation();
+    console.log("render", pathname, isLoading, isError, isSuccess);
 
     if (isLoading) {
         return <>{loading}</> || null;
@@ -29,7 +30,10 @@ export const Authenticated: React.FC<AuthenticatedProps> = ({
     if (isError) {
         if (!fallback) {
             const toURL = `${pathname}${search}`;
-            replace(`/login?to=${encodeURIComponent(toURL)}`);
+            console.log("toURL", toURL);
+            if (!pathname.includes("/login")) {
+                replace(`/login?to=${encodeURIComponent(toURL)}`);
+            }
             return null;
         }
 
