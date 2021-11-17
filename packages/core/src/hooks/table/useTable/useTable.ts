@@ -33,7 +33,7 @@ import {
     SuccessErrorNotification,
     HttpError,
     MetaDataQuery,
-    LiveEventType,
+    LiveEvent,
 } from "../../../interfaces";
 
 export type useTableProps<TData, TError, TSearchVariables = unknown> = {
@@ -48,7 +48,7 @@ export type useTableProps<TData, TError, TSearchVariables = unknown> = {
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     metaData?: MetaDataQuery;
     liveMode?: undefined | "immediate" | "controlled";
-    onLiveEvent?: (event: LiveEventType) => void;
+    onLiveEvent?: (event: LiveEvent) => void;
 } & SuccessErrorNotification;
 
 export type useTableReturnType<

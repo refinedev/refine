@@ -6,9 +6,10 @@ import {
     UseQueryOptions,
 } from "react-query";
 import { ArgsProps } from "antd/lib/notification";
+import { debounce } from "lodash";
 import { createClient } from "@supabase/supabase-js";
 
-import { DataContext } from "@contexts/data";
+import { DataContext, LiveDataContext } from "@contexts/data";
 import {
     GetListResponse,
     IDataContext,
@@ -18,7 +19,8 @@ import {
     HttpError,
     CrudSorting,
     MetaDataQuery,
-    LiveEventType,
+    LiveEvent,
+    LiveDataContextType,
 } from "../../interfaces";
 import { useCacheQueries, useCheckError, useTranslate } from "@hooks";
 import { handleNotification } from "@definitions";
@@ -37,7 +39,7 @@ export type UseListProps<TData, TError> = {
     errorNotification?: ArgsProps | false;
     metaData?: MetaDataQuery;
     liveMode?: undefined | "immediate" | "controlled";
-    onLiveEvent?: (event: LiveEventType) => void;
+    onLiveEvent?: (event: LiveEvent) => void;
 };
 
 /**
@@ -68,36 +70,39 @@ export const useList = <
     TError
 > => {
     const { getList } = useContext<IDataContext>(DataContext);
+    const liveDataContext = useContext<LiveDataContextType>(LiveDataContext);
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
-    const SUPABASE_URL = "https://iwdfzvfqbtokqetmbmbp.supabase.co";
-    const SUPABASE_KEY =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMDU2NzAxMCwiZXhwIjoxOTQ2MTQzMDEwfQ._gr6kXGkQBi9BM9dx5vKaNKYj_DJN1xlkarprGpM_fU";
     const queryClient = useQueryClient();
     const getAllQueries = useCacheQueries();
 
     useEffect(() => {
-        const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
+        console.log(getList);
+        if (liveDataContext) {
+            const { subscribe, unsubscribe } = liveDataContext;
 
-        const subscription = supabaseClient
-            .from<TData>(resource)
-            .on("*", (event) => {
-                console.log("event", event);
+            const subscription = subscribe(
+                `resources/${resource}`,
+                "*",
+                (event) => {
+                    console.log("event", event);
 
-                if (liveMode === "immediate") {
-                    getAllQueries(resource).forEach((query) => {
-                        queryClient.invalidateQueries(query.queryKey);
-                        console.log("query, ", query);
-                    });
-                } else {
-                    onLiveEvent?.(event as any) as any;
-                }
-            })
-            .subscribe();
+                    if (liveMode === "immediate") {
+                        getAllQueries(resource).forEach((query) => {
+                            queryClient.invalidateQueries(query.queryKey);
+                        });
+                    } else {
+                        onLiveEvent?.(event as any) as any;
+                    }
+                },
+            );
 
-        return () => {
-            subscription.unsubscribe();
-        };
+            return () => {
+                unsubscribe(subscription);
+            };
+        }
+
+        return () => undefined;
     }, []);
 
     const queryResponse = useQuery<GetListResponse<TData>, TError>(

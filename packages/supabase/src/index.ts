@@ -1,6 +1,29 @@
-import { DataProvider } from "@pankod/refine";
-import { CrudFilter } from "@pankod/refine/dist/interfaces";
-import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import {
+    DataProvider,
+    LiveDataProvider,
+    CrudFilter,
+    LiveEvent,
+} from "@pankod/refine";
+import {
+    createClient,
+    RealtimeSubscription,
+    SupabaseClient,
+} from "@supabase/supabase-js";
+import { SupabaseEventTypes } from "@supabase/supabase-js/dist/main/lib/types";
+
+const liveTypes: Record<SupabaseEventTypes, LiveEvent["type"]> = {
+    INSERT: "created",
+    UPDATE: "updated",
+    DELETE: "deleted",
+    "*": "*",
+};
+
+const supabaseTypes: Record<LiveEvent["type"], SupabaseEventTypes> = {
+    created: "INSERT",
+    updated: "UPDATE",
+    deleted: "DELETE",
+    "*": "*",
+};
 
 const generateFilter = (filter: CrudFilter, query: any) => {
     switch (filter.operator) {
@@ -158,4 +181,31 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
     };
 };
 
-export { dataProvider, createClient };
+const liveDataProvider = (supabaseClient: SupabaseClient): LiveDataProvider => {
+    return {
+        subscribe: (channel, type, cb) => {
+            const [, resourceForSupabase] = channel.split("/");
+
+            return supabaseClient
+                .from(resourceForSupabase)
+                .on(supabaseTypes[type], (payload) => {
+                    console.log(payload);
+                    cb({
+                        channel,
+                        type: liveTypes[payload.eventType],
+                        date: new Date(payload.commit_timestamp),
+                        payload: payload.new,
+                    });
+                })
+                .subscribe();
+        },
+
+        unsubscribe: (subscription) => {
+            subscription.unsubscribe();
+        },
+
+        publish: () => ({}),
+    };
+};
+
+export { dataProvider, liveDataProvider, createClient };

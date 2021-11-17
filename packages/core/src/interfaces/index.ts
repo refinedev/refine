@@ -7,6 +7,7 @@ export * from "./istate";
 
 // contexts
 export * from "../contexts/data/IDataContext";
+export * from "../contexts/data/LiveDataContextType";
 export * from "../contexts/auth/IAuthContext";
 export * from "../contexts/refine/IRefineContext";
 export * from "../contexts/translation/ITranslationContext";
@@ -35,9 +36,6 @@ export * from "./mutationMode";
 
 // mutationMode
 export * from "./HttpError";
-
-// liveEventType
-export * from "./liveEventType";
 
 // custom components
 export * from "./customComponents";

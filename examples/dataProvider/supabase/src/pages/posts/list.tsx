@@ -12,6 +12,8 @@ import {
     FilterDropdown,
     Select,
     useSelect,
+    Button,
+    useCreateMany,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
@@ -26,10 +28,11 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         ],
         liveMode: "controlled",
         onLiveEvent: (event) => {
-            console.log(event);
             tableQueryResult.refetch();
         },
     });
+
+    const createMany = useCreateMany();
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
@@ -45,8 +48,32 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         resource: "categories",
     });
 
+    const handleAdd2 = () => {
+        createMany.mutate({
+            resource: "posts",
+            values: [
+                {
+                    content: "test",
+                    createdAt: new Date().toISOString(),
+                    title: "adfasdfasdf",
+                    categoryId: "2",
+                },
+                {
+                    content: "lkjefwlkeflwkef",
+                    createdAt: new Date().toISOString(),
+                    title: "2123123123",
+                    categoryId: "2",
+                },
+            ],
+        });
+    };
+
     return (
-        <List>
+        <List
+            pageHeaderProps={{
+                extra: <Button onClick={handleAdd2}>Add 2</Button>,
+            }}
+        >
             <Table {...tableProps} rowKey="id">
                 <Table.Column
                     key="id"
