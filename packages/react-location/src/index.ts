@@ -29,7 +29,6 @@ const RouterProvider: IReactRouterProvider = {
                 navigate({
                     to: path,
                     replace: true,
-                    fromCurrent: true,
                 });
             },
             goBack: () => {
