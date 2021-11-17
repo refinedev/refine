@@ -3,7 +3,7 @@ import { ReactNode } from "react-markdown";
 
 import {
     IDataContext,
-    LiveDataContextType,
+    ILiveContext,
     IDataContextProvider,
 } from "../../interfaces";
 
@@ -62,10 +62,9 @@ export const DataContextProvider: React.FC<IDataContextProvider> = ({
     );
 };
 
-export const LiveDataContext =
-    React.createContext<LiveDataContextType>(undefined);
+export const LiveDataContext = React.createContext<ILiveContext>(undefined);
 
-export const LiveDataContextProvider: React.FC<LiveDataContextType> = ({
+export const LiveDataContextProvider: React.FC<ILiveContext> = ({
     subscribe,
     unsubscribe,
     publish,
