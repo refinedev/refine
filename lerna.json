@@ -1,7 +1,7 @@
 {
   "packages": [
     "packages/*",
-    "examples/fineFoods/**/*"
+    "examples/routerProvider/react-location"
   ],
   "registry": "https://registry.npmjs.org/",
   "npmClient": "npm",
