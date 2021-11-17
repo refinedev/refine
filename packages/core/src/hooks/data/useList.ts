@@ -80,7 +80,7 @@ export const useList = <
             const { subscribe, unsubscribe } = liveDataContext;
 
             const subscription = subscribe(
-                `resources/${resource}`,
+                `resource/${resource}`,
                 "*",
                 (event) => {
                     console.log("event", event);
