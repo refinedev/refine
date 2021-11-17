@@ -21,8 +21,6 @@ All the steps described are in this [repo](https://github.com/pankod/refine/tree
 ## Intro
 [NestJS](https://github.com/nestjs/nest) is a framework for building efficient, scalable Node.js server-side applications. With [nestjsx/crud](https://github.com/nestjsx/crud) we can add CRUD functions quickly and effortlessly on this framework.
 
-In this article, we will prepare a simple `job-posting` application. We will also use the [refine](https://github.com/pankod/refine) framework for the **admin panel**. The project will consist of two parts, api and admin.
-
 ## NestJS Rest Api
 
 To start playing with NestJS you should have node (>= 10.13.0, except for v13) and [npm](https://nodejs.org) installed.
@@ -215,24 +213,23 @@ Next, let's define the resources in `<Refine>` (App.tsx):
 <Refine
       dataProvider={dataProvider}
       ...
-    >
-      <Resource
-        name="companies"
-        list={CompanyList}
-        create={CompanyCreate}
-        edit={CompanyEdit}
-        show={CompanyShow}
-        canDelete
-      />
-      <Resource
-        name="jobs"
-        list={JobList}
-        create={JobCreate}
-        edit={JobEdit}
-        show={CompanyShow}
-        canDelete
-      />
-</Refine>
+      resources={[
+          {
+            name: "companies",
+            list: CompanyList,
+            create: CompanyCreate,
+            edit: CompanyEdit,
+            show: CompanyShow,
+          },
+          {
+            name: "jobs",
+            list: JobList,
+            create: JobCreate,
+            edit: JobEdit,
+            show: CompanyShow,
+          },
+      ]}
+/>
 ```
 
 <div class="img-container">
