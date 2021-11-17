@@ -146,7 +146,11 @@ const RouteProviderBase: React.FC = () => {
         RouteHandler(item);
     });
 
-    const RouteWithSubRoutes = (route: any) => <Route {...route} />;
+    const RouteWithSubRoutes = (route: any) => (
+        <LayoutWrapper>
+            <Route {...route} />
+        </LayoutWrapper>
+    );
 
     const renderAuthorized = () => (
         <Switch>
@@ -154,28 +158,34 @@ const RouteProviderBase: React.FC = () => {
                 <RouteWithSubRoutes key={i} {...route} />
             ))}
             <Route>
-                <LayoutWrapper>
-                    <Switch>
-                        <Route
-                            path="/"
-                            exact
-                            component={() =>
-                                DashboardPage ? (
+                <Switch>
+                    <Route
+                        path="/"
+                        exact
+                        component={() =>
+                            DashboardPage ? (
+                                <LayoutWrapper>
                                     <DashboardPage />
-                                ) : (
-                                    <Redirect to={`/${resources[0].route}`} />
-                                )
-                            }
-                        />
-                        {[...routes].map((route, i) => (
-                            <RouteWithSubRoutes key={i} {...route} />
-                        ))}
-                        <Route path="/:resource?/:action?">
+                                </LayoutWrapper>
+                            ) : (
+                                <Redirect to={`/${resources[0].route}`} />
+                            )
+                        }
+                    />
+                    {[...routes].map((route, i) => (
+                        <RouteWithSubRoutes key={i} {...route} />
+                    ))}
+                    <Route path="/:resource?/:action?">
+                        <LayoutWrapper>
                             {catchAll ?? <ErrorComponent />}
-                        </Route>
-                        <Route>{catchAll ?? <ErrorComponent />}</Route>
-                    </Switch>
-                </LayoutWrapper>
+                        </LayoutWrapper>
+                    </Route>
+                    <Route>
+                        <LayoutWrapper>
+                            {catchAll ?? <ErrorComponent />}
+                        </LayoutWrapper>
+                    </Route>
+                </Switch>
             </Route>
         </Switch>
     );
