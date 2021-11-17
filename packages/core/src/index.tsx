@@ -7,7 +7,7 @@ export * from "./hooks";
 export { IAuthContext as AuthProvider, Pagination } from "./interfaces";
 export {
     IDataContextProvider as DataProvider,
-    ILiveContext as LiveDataProvider,
+    ILiveContext as LiveProvider,
     LiveEvent,
     ITranslationContext as TranslationProvider,
     I18nProvider,
