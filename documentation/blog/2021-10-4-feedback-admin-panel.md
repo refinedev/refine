@@ -113,9 +113,7 @@ Now let's list the changes we will make:
 - Adding resources according to the collection name we created in Strapi
 
 ```diff
-- import { Refine } from "@pankod/refine";
-+ import { Refine, Resource } from "@pankod/refine";
-
++ import { Refine } from "@pankod/refine";
 import "@pankod/refine/dist/styles.min.css";
 import { DataProvider } from "@pankod/refine-strapi";
 import strapiAuthProvider from "authProvider";
