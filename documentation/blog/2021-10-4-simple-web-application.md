@@ -21,7 +21,7 @@ Do you want to develop a web application quickly? You are at the right place! I 
 
 <!--truncate-->
 
-# 1. Refine setup
+## Refine setup
 
 There are two alternative methods to set up a refine application.
 
@@ -41,7 +41,7 @@ I will use superplate-cli and select a Supabase. You can customize other options
 </div>
 <br />
 
-# 2. Create admin panel with refine
+## Create admin panel with refine
 
  * We should add our Supabase url and key in *supabaseClient.tsx*
  * Add custom login page in *App.tsx*
@@ -71,7 +71,7 @@ export default App;
 
 ```
 
-**Login page**
+## Login page
 ```tsx
 
 import React from "react";
@@ -352,6 +352,8 @@ export interface IMovies {
 
 * Now we will add create page
 
+## Create page
+
 ```tsx
     resources={[
         {
@@ -494,7 +496,7 @@ export const normalizeFile = (event: EventArgs) => {
 </div>
 <br />
 
-* Edit page
+## Edit page
 
 ```tsx
 import React from "react";
@@ -596,7 +598,7 @@ export const AdminMovieEdit: React.FC<IResourceComponentsProps> = () => {
 </div>
 <br />
 
-* Show page
+## Show page
 
 ```tsx
 import {
@@ -698,7 +700,7 @@ Final version of our `<Resource>`.
     ]}
 ```
 
-# 3. Create list page for movies
+## Create list page for movies
 
 We will create custom list and show pages for the unauthorized users because of that, we should add custom routes for these pages.
 
@@ -764,7 +766,7 @@ function App() {
 export default App;
 
 ```
-* Movies list page
+### Movies list page
 
 ```tsx
 import {
@@ -838,7 +840,7 @@ export const MoviesList: React.FC<IResourceComponentsProps> = () => {
 <br />
 
 
-* Movies detail page
+### Movies detail page
 
 ```tsx
 import {
@@ -917,5 +919,14 @@ export const MovieShow: React.FC<IResourceComponentsProps> = () => {
     <img src={detailed} alt="detailed" />
 </div>
 <br />
+
+## Live Codesandbox Example
+
+<iframe src="https://codesandbox.io/embed/refineflix-6wyxo?autoresize=1fontsize=14&=1&theme=dark&view=preview"
+     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+     title="refineflix"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
 
 [here is repo](https://github.com/pankod/refine/tree/master/examples/blog/refineflix)
