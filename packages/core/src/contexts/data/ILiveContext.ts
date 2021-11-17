@@ -7,7 +7,8 @@ export type LiveEvent = {
     date: Date;
 };
 
-export type LiveDataContextType =
+export type ILiveContext =
+    | undefined
     | {
           publish: (event: LiveEvent) => void;
           subscribe: (
@@ -16,5 +17,4 @@ export type LiveDataContextType =
               subscriptionCallback: (event: LiveEvent) => void,
           ) => any;
           unsubscribe: (subscription: any) => void;
-      }
-    | undefined;
+      };

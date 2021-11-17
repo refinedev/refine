@@ -7,7 +7,6 @@ import {
 } from "react-query";
 import { ArgsProps } from "antd/lib/notification";
 import { debounce } from "lodash";
-import { createClient } from "@supabase/supabase-js";
 
 import { DataContext, LiveDataContext } from "@contexts/data";
 import {
@@ -20,7 +19,7 @@ import {
     CrudSorting,
     MetaDataQuery,
     LiveEvent,
-    LiveDataContextType,
+    ILiveContext,
 } from "../../interfaces";
 import { useCacheQueries, useCheckError, useTranslate } from "@hooks";
 import { handleNotification } from "@definitions";
@@ -70,14 +69,13 @@ export const useList = <
     TError
 > => {
     const { getList } = useContext<IDataContext>(DataContext);
-    const liveDataContext = useContext<LiveDataContextType>(LiveDataContext);
+    const liveDataContext = useContext<ILiveContext>(LiveDataContext);
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const queryClient = useQueryClient();
     const getAllQueries = useCacheQueries();
 
     useEffect(() => {
-        console.log(getList);
         if (liveDataContext) {
             const { subscribe, unsubscribe } = liveDataContext;
 
@@ -92,7 +90,7 @@ export const useList = <
                             queryClient.invalidateQueries(query.queryKey);
                         });
                     } else {
-                        onLiveEvent?.(event as any) as any;
+                        onLiveEvent?.(event);
                     }
                 },
             );
