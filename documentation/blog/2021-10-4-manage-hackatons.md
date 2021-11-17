@@ -1,6 +1,6 @@
 ---
 title: Let's Build an App to Manage Your Hackathons with Refine
-description: We'll be building a demo app to manage hackathons with [refine](refine.dev)
+description: We'll be building a demo app to manage hackathons with refine.
 slug: manage-hackathons-with-refine
 authors: muharrem
 tags: [refine, supabase, react, tutorial]
@@ -183,7 +183,7 @@ function App() {
         create: HackathonsCreate,
         edit: HackathonsEdit,
         show: HackathonsShow
-      }]} />
+      }]}
     />
   );
 }
@@ -232,5 +232,5 @@ export const DashboardPage: React.FC = () => {
 
 We can get data from other resources in a similar fashion. You can find the codesandbox [here](https://codesandbox.io/s/9oc34) and the [repo here](https://github.com/pankod/refine/tree/master/examples/blog/hackathonize)
 
-#Conclusion
+## Conclusion
 This project itself is a product of a hackathon. It lacks lots of feature like authorization though it shows how **refine** makes it easy to quickly build a working app.
