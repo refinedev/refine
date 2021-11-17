@@ -60,7 +60,6 @@ export const Sider: React.FC = () => {
                                 style={{
                                     fontWeight: isSelected ? "bold" : "normal",
                                 }}
-                                key={route}
                                 icon={icon}
                             >
                                 <div
