@@ -186,7 +186,7 @@ const Contact: React.FC = () => {
                                         unsubscribe from emails at any time, and
                                         we will never pass your email onto third
                                         parties.{" "}
-                                        <a href="./privacy-policy">
+                                        <a href="/privacy-policy">
                                             Privacy Policy
                                         </a>
                                     </p>
