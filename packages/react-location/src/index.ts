@@ -1,7 +1,6 @@
 import { IRouterProvider } from "@pankod/refine";
 import {
     useLocation,
-    Prompt,
     Link,
     useNavigate,
     useMatch,
@@ -9,6 +8,7 @@ import {
 } from "react-location";
 
 import { RouterComponent } from "./routerComponent";
+import { Prompt } from "./prompt";
 
 interface IReactRouterProvider extends IRouterProvider {
     routes?: Route[];
@@ -38,23 +38,17 @@ const RouterProvider: IReactRouterProvider = {
     },
     useLocation: () => {
         const location = useLocation();
-        console.log("useLocation", {
-            search: location,
-        });
         return {
             pathname: location.current.pathname,
             search: location.current.searchStr,
         };
     },
-    useParams: <Params>() => {
-        const match = useMatch();
+    useParams: () => {
+        const { params } = useMatch();
 
-        const params = match.params;
-
-        console.log("params", params);
         return params as any;
     },
-    Prompt: Prompt as any,
+    Prompt,
     Link,
     RouterComponent,
 };

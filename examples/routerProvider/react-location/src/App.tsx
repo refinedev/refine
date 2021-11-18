@@ -50,6 +50,7 @@ const App: React.FC = () => {
             dataProvider={dataProvider(API_URL)}
             authProvider={authProvider}
             syncWithLocation
+            warnWhenUnsavedChanges
             resources={[
                 {
                     name: "posts",
