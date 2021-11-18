@@ -15,7 +15,7 @@ const routerProvider = {
     useHistory: () => {
         push: (...args) => any,
         replace: (...args) => any,
-        goBach: (...args) => any,
+        goBack: (...args) => any,
     },
     useLocation: () => {
         pathname: string,
