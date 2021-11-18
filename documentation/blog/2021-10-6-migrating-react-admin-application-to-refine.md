@@ -28,7 +28,6 @@ It is, also, one step forward towards the dream of <strong>making it headless</s
 
 To learn more about refine, see: https://refine.dev/docs/getting-started/overview
 
-Recently, our team decided to migrate a B2B admin panel of one of our customers from React-Admin to refine to battle test our new framework and improve our productivity. My mission was to migrate it and it took one and a half days for me to rewrite the panel in refine.
 
 |  <img src={sider} alt="sider" /> | 
 |:--:| 
