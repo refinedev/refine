@@ -111,7 +111,6 @@ export const RouterComponent: React.FC<RouterProps> = (props) => {
         },
     ];
 
-    console.log("props", props);
     return (
         <Router
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment

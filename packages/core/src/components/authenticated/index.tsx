@@ -22,7 +22,6 @@ export const Authenticated: React.FC<AuthenticatedProps> = ({
     const { replace } = useNavigation();
     const { useLocation } = useRouterContext();
     const { pathname, search } = useLocation();
-    console.log("render", pathname, isLoading, isError, isSuccess);
 
     if (isLoading) {
         return <>{loading}</> || null;
