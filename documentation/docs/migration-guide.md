@@ -118,8 +118,8 @@ export default App;
 <Tabs
 defaultValue="react"
 values={[
-{label: 'react-router', value: 'react'},
-{label: 'nextjs-router', value: 'nextjs'}
+{label: 'React Router', value: 'react'},
+{label: 'Next.js Router', value: 'nextjs'}
 ]}>
 <TabItem value="react">
 
