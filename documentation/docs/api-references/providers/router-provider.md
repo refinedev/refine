@@ -35,6 +35,7 @@ const routerProvider = {
 **refine** includes many out-of-the-box router providers to use in your projects like
 
 -   [react-router][react-router]
+-   [react-location][react-location]
 -   [nextjs-router][nextjs-router]
 
 :::
@@ -50,12 +51,13 @@ We do not recommend creating this provider unless you do not need any customizat
 To activate router provider in **refine**, we have to pass the `routerProvider` to the `<Refine />` component.
 
 <Tabs
-defaultValue="react"
+defaultValue="react-router"
 values={[
-{label: 'react-router', value: 'react'},
+{label: 'react-router', value: 'react-router'},
+{label: 'react-location', value: 'react-location'},
 {label: 'nextjs-router', value: 'nextjs'}
 ]}>
-<TabItem value="react">
+<TabItem value="react-router">
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine";
@@ -66,8 +68,20 @@ const App: React.FC = () => {
 };
 ```
 
-  </TabItem>
-    <TabItem value="nextjs">
+</TabItem>
+<TabItem value="react-location">
+
+```tsx title="App.tsx"
+import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-location";
+
+const App: React.FC = () => {
+    return <Refine routerProvider={routerProvider} />;
+};
+```
+
+</TabItem>
+<TabItem value="nextjs">
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine";
@@ -485,3 +499,4 @@ Now you can access our application at `www.domain.com/admin`.
 [routercomponent]: https://github.com/pankod/refine/blob/master/packages/react-router/src/routerComponent.tsx
 [react-router]: https://github.com/pankod/refine/tree/master/packages/react-router
 [nextjs-router]: https://github.com/pankod/refine/tree/master/packages/nextjs-router
+[react-location]: https://github.com/pankod/refine/tree/master/packages/react-location
