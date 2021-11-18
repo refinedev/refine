@@ -6,6 +6,7 @@ import {
     useResource,
     useRouterContext,
     LoginPage as DefaultLoginPage,
+    LayoutWrapper,
 } from "@pankod/refine";
 import { rankRoutes } from "react-location-rank-routes";
 
@@ -15,13 +16,14 @@ import {
     Route,
     Navigate,
     useRouter,
+    RouterProps,
 } from "react-location";
 
 import { ResourceComponentWrapper } from "./resourceComponent";
 
 const location = new ReactLocation();
 
-export const RouterComponent: React.FC = () => {
+export const RouterComponent: React.FC<RouterProps> = () => {
     const { resources } = useResource();
     const { DashboardPage, LoginPage } = useRefineContext();
 
@@ -34,10 +36,8 @@ export const RouterComponent: React.FC = () => {
         return null;
     }
 
-    let routes: Route[] = [];
-
     if (!isAuthenticated) {
-        routes = [
+        const routes: Route[] = [
             ...[...(customRoutes || [])],
             {
                 path: "/",
@@ -52,60 +52,68 @@ export const RouterComponent: React.FC = () => {
                 element: <LoginNavigateWithToParam />,
             },
         ];
+
+        return (
+            <Router
+                location={location}
+                routes={routes}
+                filterRoutes={rankRoutes}
+            />
+        );
     }
 
-    if (isAuthenticated) {
-        routes = [
-            ...[...(customRoutes || [])],
-            {
-                path: "/",
-                children: [
-                    {
-                        path: "/",
-                        element: DashboardPage ? (
+    const routes: Route[] = [
+        ...[...(customRoutes || [])],
+        {
+            path: "/",
+            children: [
+                {
+                    path: "/",
+                    element: DashboardPage ? (
+                        <LayoutWrapper>
                             <DashboardPage />
-                        ) : (
-                            <Navigate to={`/${resources[0].route}`} />
-                        ),
-                    },
-                ],
-            },
-            {
-                path: `:resource`,
-                children: [
-                    {
-                        path: "/",
-                        element: <ResourceComponentWrapper />,
-                    },
-                ],
-            },
-            {
-                path: `:resource/:action`,
-                children: [
-                    {
-                        path: "/",
-                        element: <ResourceComponentWrapper />,
-                    },
-                ],
-            },
-            {
-                path: `:resource/:action/:id`,
-                children: [
-                    {
-                        path: "/",
-                        element: <ResourceComponentWrapper />,
-                    },
-                ],
-            },
-        ];
-    }
+                        </LayoutWrapper>
+                    ) : (
+                        <Navigate to={`/${resources[0].route}`} />
+                    ),
+                },
+            ],
+        },
+        {
+            path: `:resource`,
+            children: [
+                {
+                    path: "/",
+                    element: <ResourceComponentWrapper />,
+                },
+            ],
+        },
+        {
+            path: `:resource/:action`,
+            children: [
+                {
+                    path: "/",
+                    element: <ResourceComponentWrapper />,
+                },
+            ],
+        },
+        {
+            path: `:resource/:action/:id`,
+            children: [
+                {
+                    path: "/",
+                    element: <ResourceComponentWrapper />,
+                },
+            ],
+        },
+    ];
 
     return (
         <Router location={location} routes={routes} filterRoutes={rankRoutes} />
     );
 };
 
-export const LoginNavigateWithToParam: React.FC = () => {
+const LoginNavigateWithToParam: React.FC = () => {
     const { state } = useRouter();
 
     return (
