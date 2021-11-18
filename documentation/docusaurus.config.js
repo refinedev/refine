@@ -53,6 +53,7 @@ const siteConfig = {
         algolia: {
             apiKey: "fbebca5afe7376dbef2995691670b708",
             indexName: "refine",
+            contextualSearch: true,
         },
         navbar: {
             logo: {

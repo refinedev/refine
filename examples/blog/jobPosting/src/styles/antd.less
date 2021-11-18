@@ -1,0 +1,47 @@
+@import "~antd/lib/style/themes/default.less";
+@import "~antd/dist/antd.less";
+
+// There are some major variables below,
+// all less variables could be found in
+// https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+// font
+@font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+// base variables
+@border-radius-base: 6px;
+
+// colors
+@primary-color: #67be23;
+@error-color: #fa541c;
+@text-color: #626262;
+
+// sider
+@layout-sider-background: #2a132e;
+@menu-bg: transparent;
+@menu-item-color: #fff;
+@menu-highlight-color: #fff;
+@menu-item-active-bg: transparent;
+@menu-item-active-border-width: 0px;
+@layout-trigger-background: rgba(0, 0, 0, 0.5);
+
+//form
+@label-color: @text-color;
+
+.ant-menu-inline,
+.ant-menu-vertical,
+.ant-menu-vertical-left {
+  border-right: 0px;
+}
+
+.ant-form-item-label > label {
+  font-weight: bold;
+}
+
+.ant-page-header {
+  border-radius: @border-radius-base;
+}
