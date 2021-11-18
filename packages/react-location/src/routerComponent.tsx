@@ -21,9 +21,9 @@ import {
 
 import { ResourceComponentWrapper } from "./resourceComponent";
 
-const location = new ReactLocation();
+export const location = new ReactLocation();
 
-export const RouterComponent: React.FC<RouterProps> = () => {
+export const RouterComponent: React.FC<RouterProps> = (props) => {
     const { resources } = useResource();
     const { DashboardPage, LoginPage } = useRefineContext();
 
@@ -55,9 +55,12 @@ export const RouterComponent: React.FC<RouterProps> = () => {
 
         return (
             <Router
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
                 location={location}
                 routes={routes}
                 filterRoutes={rankRoutes}
+                {...props}
             />
         );
     }
@@ -108,8 +111,16 @@ export const RouterComponent: React.FC<RouterProps> = () => {
         },
     ];
 
+    console.log("props", props);
     return (
-        <Router location={location} routes={routes} filterRoutes={rankRoutes} />
+        <Router
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            location={location}
+            routes={routes}
+            filterRoutes={rankRoutes}
+            {...props}
+        />
     );
 };
 

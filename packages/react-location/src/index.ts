@@ -5,14 +5,18 @@ import {
     useNavigate,
     useMatch,
     Route,
+    RouterProps,
+    ReactLocation,
 } from "react-location";
 
-import { RouterComponent } from "./routerComponent";
+import { RouterComponent, location } from "./routerComponent";
 import { Prompt } from "./prompt";
 
 interface IReactRouterProvider extends IRouterProvider {
     routes?: Route[];
+    RouterComponent: React.FC<RouterProps>;
     Link: typeof Link;
+    location: ReactLocation;
 }
 
 const RouterProvider: IReactRouterProvider = {
@@ -52,5 +56,6 @@ const RouterProvider: IReactRouterProvider = {
     Prompt,
     Link,
     RouterComponent,
+    location,
 };
 export default RouterProvider;
