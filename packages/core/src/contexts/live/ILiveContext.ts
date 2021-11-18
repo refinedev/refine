@@ -8,7 +8,6 @@ export type LiveEvent = {
 };
 
 export type ILiveContext =
-    | undefined
     | {
           publish: (event: LiveEvent) => void;
           subscribe: (
@@ -17,4 +16,9 @@ export type ILiveContext =
               subscriptionCallback: (event: LiveEvent) => void,
           ) => any;
           unsubscribe: (subscription: any) => void;
-      };
+      }
+    | undefined;
+
+export type ILiveContextProvider = {
+    liveProvider: ILiveContext;
+};

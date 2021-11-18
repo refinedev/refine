@@ -1,6 +1,6 @@
 import {
     DataProvider,
-    LiveDataProvider,
+    LiveProvider,
     CrudFilter,
     LiveEvent,
 } from "@pankod/refine";
@@ -181,9 +181,9 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
     };
 };
 
-const liveDataProvider = (supabaseClient: SupabaseClient): LiveDataProvider => {
+const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
     return {
-        subscribe: (channel, type, cb) => {
+        subscribe: (channel, type, cb): RealtimeSubscription => {
             const [, resourceForSupabase] = channel.split("/");
 
             return supabaseClient
@@ -200,7 +200,7 @@ const liveDataProvider = (supabaseClient: SupabaseClient): LiveDataProvider => {
                 .subscribe();
         },
 
-        unsubscribe: (subscription) => {
+        unsubscribe: (subscription: RealtimeSubscription) => {
             subscription.unsubscribe();
         },
 
@@ -208,4 +208,4 @@ const liveDataProvider = (supabaseClient: SupabaseClient): LiveDataProvider => {
     };
 };
 
-export { dataProvider, liveDataProvider, createClient };
+export { dataProvider, liveProvider, createClient };

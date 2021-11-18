@@ -1,11 +1,6 @@
-import React, { ReactPropTypes } from "react";
-import { ReactNode } from "react-markdown";
+import React from "react";
 
-import {
-    IDataContext,
-    ILiveContext,
-    IDataContextProvider,
-} from "../../interfaces";
+import { IDataContext, IDataContextProvider } from "../../interfaces";
 
 export const defaultDataProvider = () => {
     return {
@@ -59,26 +54,5 @@ export const DataContextProvider: React.FC<IDataContextProvider> = ({
         >
             {children}
         </DataContext.Provider>
-    );
-};
-
-export const LiveDataContext = React.createContext<ILiveContext>(undefined);
-
-export const LiveDataContextProvider: React.FC<ILiveContext> = ({
-    subscribe,
-    unsubscribe,
-    publish,
-    children,
-}) => {
-    return (
-        <LiveDataContext.Provider
-            value={{
-                subscribe,
-                unsubscribe,
-                publish,
-            }}
-        >
-            {children}
-        </LiveDataContext.Provider>
     );
 };
