@@ -12,6 +12,7 @@ import { Prompt } from "./prompt";
 
 interface IReactRouterProvider extends IRouterProvider {
     routes?: Route[];
+    Link: typeof Link;
 }
 
 const RouterProvider: IReactRouterProvider = {
