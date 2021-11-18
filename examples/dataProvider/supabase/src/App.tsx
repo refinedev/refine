@@ -65,7 +65,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(supabaseClient)}
-            // liveProvider={liveProvider(supabaseClient)}
+            liveProvider={liveProvider(supabaseClient)}
             routerProvider={routerProvider}
             authProvider={authProvider}
             LoginPage={Login}

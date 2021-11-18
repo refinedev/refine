@@ -8,7 +8,8 @@ import {
 import { ArgsProps } from "antd/lib/notification";
 import { debounce } from "lodash";
 
-import { DataContext, LiveDataContext } from "@contexts/data";
+import { DataContext } from "@contexts/data";
+import { LiveContext } from "@contexts/live";
 import {
     GetListResponse,
     IDataContext,
@@ -69,7 +70,7 @@ export const useList = <
     TError
 > => {
     const { getList } = useContext<IDataContext>(DataContext);
-    const liveDataContext = useContext<ILiveContext>(LiveDataContext);
+    const liveDataContext = useContext<ILiveContext>(LiveContext);
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const queryClient = useQueryClient();
