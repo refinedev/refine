@@ -11,7 +11,7 @@ hide_table_of_contents: false
 import hackathons from '@site/static/img/blog/2021-10-4-manage-hackathons/hackathons.png';
 import create from '@site/static/img/blog/2021-10-4-manage-hackathons/create.png';
 
-We'll be building a demo app to manage hackathons with [refine](refine.dev). We'll be able to create new hackathons, new project entries for a hackathon and criterias for a hackathon.
+We'll be building a demo app to manage hackathons with [refine](https://refine.dev/). We'll be able to create new hackathons, new project entries for a hackathon and criterias for a hackathon.
 
 <!--truncate-->
 
@@ -25,7 +25,7 @@ We'll be building a demo app to manage hackathons with [refine](refine.dev). We'
 </div>
 <br/>
 
-We'll use [supabase](supabase.io) as the backend service. **refine** comes with a builtin data provider for supabase thus it's very easy to create crud pages.
+We'll use [supabase](https://supabase.io/) as the backend service. **refine** comes with a builtin data provider for supabase thus it's very easy to create crud pages.
 
 ## Creating tables
 Our app will have these tables in supabase
@@ -202,7 +202,7 @@ export default App;
 </div>
 <br/>
 
-**refine** comes with builtin hooks for Ant design components. You can find detailed usage for the hooks and supabase in the [documentation](refine.dev/docs)
+**refine** comes with builtin hooks for Ant design components. You can find detailed usage for the hooks and supabase in the [documentation](https://refine.dev/docs/)
 
 ## Creating voting page
 We'll use the dashboard option to place voting page. We'll need data from different resources. **refine** comes with powerful hooks that are based on react-query to get data from those resources.
