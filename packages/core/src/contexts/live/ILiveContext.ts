@@ -10,11 +10,11 @@ export type LiveEvent = {
 export type ILiveContext =
     | {
           publish: (event: LiveEvent) => void;
-          subscribe: (
-              channel: string,
-              type: LiveEvent["type"],
-              subscriptionCallback: (event: LiveEvent) => void,
-          ) => any;
+          subscribe: (options: {
+              channel: string;
+              type: LiveEvent["type"];
+              callback: (event: LiveEvent) => void;
+          }) => any;
           unsubscribe: (subscription: any) => void;
       }
     | undefined;

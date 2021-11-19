@@ -131,6 +131,7 @@ export const useEditForm = <
             enabled: isEdit && editId !== undefined,
         },
         metaData,
+        liveMode: "immediate",
     });
 
     const { data, isFetching } = queryResult;

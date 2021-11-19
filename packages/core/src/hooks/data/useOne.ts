@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
-
 import { DataContext } from "@contexts/data";
 import {
     GetOneResponse,
@@ -8,8 +7,9 @@ import {
     HttpError,
     BaseRecord,
     MetaDataQuery,
+    LiveEvent,
 } from "../../interfaces";
-import { useCheckError, useTranslate } from "@hooks";
+import { useCheckError, useTranslate, useSubscription } from "@hooks";
 import { ArgsProps } from "antd/lib/notification";
 import { handleNotification } from "@definitions";
 
@@ -20,6 +20,8 @@ export type UseOneProps<TData, TError> = {
     successNotification?: ArgsProps | false;
     errorNotification?: ArgsProps | false;
     metaData?: MetaDataQuery;
+    liveMode?: undefined | "immediate" | "controlled";
+    onLiveEvent?: (event: LiveEvent) => void;
 };
 
 /**
@@ -43,10 +45,20 @@ export const useOne = <
     successNotification,
     errorNotification,
     metaData,
+    liveMode,
+    onLiveEvent,
 }: UseOneProps<TData, TError>): QueryObserverResult<GetOneResponse<TData>> => {
     const { getOne } = useContext<IDataContext>(DataContext);
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
+
+    useSubscription({
+        resource,
+        channel: `resources/${resource}/${id}`,
+        enabled: queryOptions?.enabled,
+        liveMode,
+        onLiveEvent,
+    });
 
     const queryResponse = useQuery<GetOneResponse<TData>, TError>(
         [`resource/getOne/${resource}`, { id }],

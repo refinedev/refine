@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
 import { ArgsProps } from "antd/lib/notification";
 
@@ -9,8 +9,9 @@ import {
     GetManyResponse,
     HttpError,
     MetaDataQuery,
+    LiveEvent,
 } from "../../interfaces";
-import { useTranslate, useCheckError } from "@hooks";
+import { useTranslate, useCheckError, useSubscription } from "@hooks";
 import { handleNotification } from "@definitions";
 
 export type UseManyProps<TData, TError> = {
@@ -20,6 +21,8 @@ export type UseManyProps<TData, TError> = {
     successNotification?: ArgsProps | false;
     errorNotification?: ArgsProps | false;
     metaData?: MetaDataQuery;
+    liveMode?: undefined | "immediate" | "controlled";
+    onLiveEvent?: (event: LiveEvent) => void;
 };
 
 /**
@@ -43,12 +46,22 @@ export const useMany = <
     successNotification,
     errorNotification,
     metaData,
+    liveMode,
+    onLiveEvent,
 }: UseManyProps<TData, TError>): QueryObserverResult<
     GetManyResponse<TData>
 > => {
     const { getMany } = useContext<IDataContext>(DataContext);
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
+
+    useSubscription({
+        resource,
+        channel: `resources/${resource}`,
+        enabled: true,
+        liveMode,
+        onLiveEvent,
+    });
 
     const queryResponse = useQuery<GetManyResponse<TData>, TError>(
         [`resource/getMany/${resource}`, ids],

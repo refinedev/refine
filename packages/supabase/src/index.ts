@@ -183,14 +183,17 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
 
 const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
     return {
-        subscribe: (channel, type, cb): RealtimeSubscription => {
-            const [, resourceForSupabase] = channel.split("/");
+        subscribe: ({ channel, type, callback }): RealtimeSubscription => {
+            const [, resource, id] = channel.split("/");
 
-            return supabaseClient
+            const resourceForSupabase = id
+                ? `${resource}:id=eq.${id}`
+                : resource;
+
+            const client = supabaseClient
                 .from(resourceForSupabase)
                 .on(supabaseTypes[type], (payload) => {
-                    console.log(payload);
-                    cb({
+                    callback({
                         channel,
                         type: liveTypes[payload.eventType],
                         date: new Date(payload.commit_timestamp),
@@ -198,6 +201,10 @@ const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
                     });
                 })
                 .subscribe();
+
+            console.log(supabaseClient.getSubscriptions());
+
+            return client;
         },
 
         unsubscribe: (subscription: RealtimeSubscription) => {

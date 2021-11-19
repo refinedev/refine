@@ -9,6 +9,7 @@ import {
     GetOneResponse,
     SuccessErrorNotification,
     MetaDataQuery,
+    LiveEvent,
 } from "../../interfaces";
 
 export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
@@ -21,6 +22,8 @@ export type useShowProps = {
     resource?: string;
     id?: string;
     metaData?: MetaDataQuery;
+    liveMode?: undefined | "immediate" | "controlled";
+    onLiveEvent?: (event: LiveEvent) => void;
 } & SuccessErrorNotification;
 
 /**
@@ -36,6 +39,8 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
     successNotification,
     errorNotification,
     metaData,
+    liveMode,
+    onLiveEvent,
 }: useShowProps = {}): useShowReturnType<TData> => {
     const { useParams } = useRouterContext();
 
@@ -57,6 +62,8 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
         successNotification,
         errorNotification,
         metaData,
+        liveMode,
+        onLiveEvent,
     });
 
     return {

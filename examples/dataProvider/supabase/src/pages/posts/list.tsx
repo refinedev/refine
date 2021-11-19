@@ -19,29 +19,28 @@ import {
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter, tableQueryResult } = useTable<IPost>({
+    const { tableProps, sorter } = useTable<IPost>({
         initialSorter: [
             {
                 field: "id",
                 order: "asc",
             },
         ],
-        liveMode: "controlled",
-        onLiveEvent: (event) => {
-            tableQueryResult.refetch();
-        },
+        liveMode: "immediate",
     });
 
     const createMany = useCreateMany();
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
+
     const { data, isLoading } = useMany<ICategory>({
         resource: "categories",
         ids: categoryIds,
         queryOptions: {
             enabled: categoryIds.length > 0,
         },
+        liveMode: "immediate",
     });
 
     const { selectProps } = useSelect<ICategory>({

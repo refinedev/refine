@@ -77,31 +77,29 @@ export const useList = <
     const getAllQueries = useCacheQueries();
 
     useEffect(() => {
-        if (liveDataContext) {
-            const { subscribe, unsubscribe } = liveDataContext;
+        let subscription: any;
 
-            const subscription = subscribe(
-                `resource/${resource}`,
-                "*",
-                (event) => {
-                    console.log("event", event);
-
+        if (liveMode) {
+            subscription = liveDataContext?.subscribe({
+                channel: `resource/${resource}`,
+                type: "*",
+                callback: (event) => {
                     if (liveMode === "immediate") {
                         getAllQueries(resource).forEach((query) => {
                             queryClient.invalidateQueries(query.queryKey);
                         });
-                    } else {
+                    } else if (liveMode === "controlled") {
                         onLiveEvent?.(event);
                     }
                 },
-            );
-
-            return () => {
-                unsubscribe(subscription);
-            };
+            });
         }
 
-        return () => undefined;
+        return () => {
+            if (subscription) {
+                liveDataContext?.unsubscribe(subscription);
+            }
+        };
     }, []);
 
     const queryResponse = useQuery<GetListResponse<TData>, TError>(
