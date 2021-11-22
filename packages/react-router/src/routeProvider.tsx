@@ -53,10 +53,11 @@ const RouteProviderBase: React.FC = () => {
             routes.push({
                 exact: true,
                 path: `/:resource(${route})/:action(create)/:id?`,
-                component: () => (
+                component: (props: IRouteComponentProps) => (
                     <CanAccess
                         resource={name}
                         action="create"
+                        params={{ id: props.match.params.id }}
                         fallback={catchAll ?? <ErrorComponent />}
                     >
                         <CreateComponent

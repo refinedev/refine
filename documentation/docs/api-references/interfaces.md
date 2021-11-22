@@ -166,3 +166,11 @@ ButtonProps
 | message      | `string`                      |
 | when?        | `boolean`                     |
 | setWarnWhen? | `(warnWhen: boolean) => void` |
+
+## CanParams
+
+| Key      | Type     |
+| -------- | -------- |
+| resource | `string` |
+| action   | `string` |
+| params?  | `any`    |
