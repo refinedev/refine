@@ -9,7 +9,7 @@
         "@types/node": "^14.14.13",
         "@types/react": "^17.0.4",
         "@types/react-dom": "^17.0.4",
-        "cerbos": "^0.0.5",
+        "cerbos": "^0.0.6-alpha.2",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "react-markdown": "^6.0.1",
