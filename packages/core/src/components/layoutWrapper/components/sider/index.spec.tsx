@@ -94,4 +94,29 @@ describe("Sider", () => {
             );
         });
     });
+
+    it("should render only allowed menu items", async () => {
+        const { getByText, queryByText } = render(<Sider />, {
+            wrapper: TestWrapper({
+                resources: [
+                    { name: "posts", route: "posts" },
+                    { name: "users", route: "users" },
+                ],
+                accessControlProvider: {
+                    can: ({ action, resource }) => {
+                        if (action === "list" && resource === "posts") {
+                            return Promise.resolve(true);
+                        }
+                        if (action === "list" && resource === "users") {
+                            return Promise.resolve(false);
+                        }
+                        return Promise.resolve(false);
+                    },
+                },
+            }),
+        });
+
+        await wait(() => getByText("Posts"));
+        await wait(() => expect(queryByText("Users")).toBeNull());
+    });
 });

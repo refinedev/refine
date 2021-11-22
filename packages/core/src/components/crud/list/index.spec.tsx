@@ -1,19 +1,21 @@
 import React, { ReactNode } from "react";
-
-import { render, TestWrapper, MockJSONServer } from "@test";
-import { wait } from "@testing-library/react";
-
+import { Route } from "react-router-dom";
 import { Table } from "antd";
 
+import { render, TestWrapper, MockJSONServer, wait } from "@test";
 import { List } from "./index";
-import { Route } from "react-router-dom";
+import { IAccessControlContext } from "../../../interfaces";
 
-const renderList = (list: ReactNode) => {
+const renderList = (
+    list: ReactNode,
+    accessControlProvider?: IAccessControlContext,
+) => {
     return render(<Route path="/:resource">{list}</Route>, {
         wrapper: TestWrapper({
             dataProvider: MockJSONServer,
             resources: [{ name: "posts", route: "posts" }],
             routerInitialEntries: ["/posts"],
+            accessControlProvider,
         }),
     });
 };
@@ -50,7 +52,7 @@ describe("<List/>", () => {
         });
 
         describe("render create button", () => {
-            it("should create edit button", async () => {
+            it("should create edit button", () => {
                 const { getByText, queryByTestId } = render(
                     <Route path="/:resource">
                         <List />
@@ -70,9 +72,7 @@ describe("<List/>", () => {
                     },
                 );
 
-                await wait(() =>
-                    expect(queryByTestId("list-create-button")).not.toBeNull(),
-                );
+                expect(queryByTestId("list-create-button")).not.toBeNull();
 
                 getByText("Posts");
             });
@@ -102,7 +102,7 @@ describe("<List/>", () => {
                 getByText("Posts");
             });
 
-            it("should render create button on resource canCreate false & createButtonProps props not null on component", async () => {
+            it("should render create button on resource canCreate false & createButtonProps props not null on component", () => {
                 const { getByText, queryByTestId } = render(
                     <Route path="/:resource">
                         <List createButtonProps={{ size: "large" }} />
@@ -121,14 +121,12 @@ describe("<List/>", () => {
                     },
                 );
 
-                await wait(() =>
-                    expect(queryByTestId("list-create-button")).not.toBeNull(),
-                );
+                expect(queryByTestId("list-create-button")).not.toBeNull();
 
                 getByText("Posts");
             });
 
-            it("should render create button on resource canCreate true & createButtonProps props not null on component", async () => {
+            it("should render create button on resource canCreate true & createButtonProps props not null on component", () => {
                 const { getByText, queryByTestId } = render(
                     <Route path="/:resource">
                         <List createButtonProps={{ size: "large" }} />
@@ -148,9 +146,7 @@ describe("<List/>", () => {
                     },
                 );
 
-                await wait(() =>
-                    expect(queryByTestId("list-create-button")).not.toBeNull(),
-                );
+                expect(queryByTestId("list-create-button")).not.toBeNull();
 
                 getByText("Posts");
             });
@@ -178,7 +174,7 @@ describe("<List/>", () => {
                 expect(queryByTestId("list-create-button")).toBeNull();
             });
 
-            it("should render create button on resource canCreate false & canCreate props true on component", async () => {
+            it("should render create button on resource canCreate false & canCreate props true on component", () => {
                 const { queryByTestId } = render(
                     <Route path="/:resource">
                         <List canCreate={true} />
@@ -198,8 +194,26 @@ describe("<List/>", () => {
                     },
                 );
 
+                expect(queryByTestId("list-create-button")).not.toBeNull();
+            });
+
+            it("should render disabled create button if user doesn't have permission", async () => {
+                const { queryByTestId } = renderList(
+                    <List canCreate={true} />,
+                    {
+                        can: ({ action }) => {
+                            switch (action) {
+                                case "create":
+                                    return Promise.resolve(false);
+                                default:
+                                    return Promise.resolve(false);
+                            }
+                        },
+                    },
+                );
+
                 await wait(() =>
-                    expect(queryByTestId("list-create-button")).not.toBeNull(),
+                    expect(queryByTestId("list-create-button")).toBeDisabled(),
                 );
             });
         });
