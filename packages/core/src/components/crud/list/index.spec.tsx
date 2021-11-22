@@ -1,7 +1,6 @@
 import React, { ReactNode } from "react";
 
 import { render, TestWrapper, MockJSONServer } from "@test";
-import { wait } from "@testing-library/react";
 
 import { Table } from "antd";
 
@@ -50,7 +49,7 @@ describe("<List/>", () => {
         });
 
         describe("render create button", () => {
-            it("should create edit button", async () => {
+            it("should create edit button", () => {
                 const { getByText, queryByTestId } = render(
                     <Route path="/:resource">
                         <List />
@@ -70,9 +69,7 @@ describe("<List/>", () => {
                     },
                 );
 
-                await wait(() =>
-                    expect(queryByTestId("list-create-button")).not.toBeNull(),
-                );
+                expect(queryByTestId("list-create-button")).not.toBeNull();
 
                 getByText("Posts");
             });
@@ -102,7 +99,7 @@ describe("<List/>", () => {
                 getByText("Posts");
             });
 
-            it("should render create button on resource canCreate false & createButtonProps props not null on component", async () => {
+            it("should render create button on resource canCreate false & createButtonProps props not null on component", () => {
                 const { getByText, queryByTestId } = render(
                     <Route path="/:resource">
                         <List createButtonProps={{ size: "large" }} />
@@ -121,14 +118,12 @@ describe("<List/>", () => {
                     },
                 );
 
-                await wait(() =>
-                    expect(queryByTestId("list-create-button")).not.toBeNull(),
-                );
+                expect(queryByTestId("list-create-button")).not.toBeNull();
 
                 getByText("Posts");
             });
 
-            it("should render create button on resource canCreate true & createButtonProps props not null on component", async () => {
+            it("should render create button on resource canCreate true & createButtonProps props not null on component", () => {
                 const { getByText, queryByTestId } = render(
                     <Route path="/:resource">
                         <List createButtonProps={{ size: "large" }} />
@@ -148,9 +143,7 @@ describe("<List/>", () => {
                     },
                 );
 
-                await wait(() =>
-                    expect(queryByTestId("list-create-button")).not.toBeNull(),
-                );
+                expect(queryByTestId("list-create-button")).not.toBeNull();
 
                 getByText("Posts");
             });
@@ -178,7 +171,7 @@ describe("<List/>", () => {
                 expect(queryByTestId("list-create-button")).toBeNull();
             });
 
-            it("should render create button on resource canCreate false & canCreate props true on component", async () => {
+            it("should render create button on resource canCreate false & canCreate props true on component", () => {
                 const { queryByTestId } = render(
                     <Route path="/:resource">
                         <List canCreate={true} />
@@ -198,9 +191,7 @@ describe("<List/>", () => {
                     },
                 );
 
-                await wait(() =>
-                    expect(queryByTestId("list-create-button")).not.toBeNull(),
-                );
+                expect(queryByTestId("list-create-button")).not.toBeNull();
             });
         });
     });
