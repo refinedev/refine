@@ -136,12 +136,12 @@ For example if your app has resource `posts` it will be checked with `{resource:
 These buttons will check for access control.
 Let's say these buttons are rendered where `resource` is `posts` and `id` is `1` where applicable.
 
-- [**list**](/api-references/components/buttons/list): `{resource: "posts, action: "list"}`
-- [**create**](/api-references/components/buttons/create): `{resource: "posts, action: "create"}`
-- [**clone**](/api-references/components/buttons/clone): `{resource: "posts, action: "create", params: { id: 1 }}`
-- [**edit**](/api-references/components/buttons/edit): `{resource: "posts, action: "edit", params: { id: 1 }}`
-- [**delete**](/api-references/components/buttons/delete): `{resource: "posts, action: "delete", params: { id: 1 }}`
-- [**show**](/api-references/components/buttons/show): `{resource: "posts, action: "show", params: { id: 1 }}`
+- [**list**](/api-references/components/buttons/list.md): `{resource: "posts, action: "list"}`
+- [**create**](/api-references/components/buttons/create.md): `{resource: "posts, action: "create"}`
+- [**clone**](/api-references/components/buttons/clone.md): `{resource: "posts, action: "create", params: { id: 1 }}`
+- [**edit**](/api-references/components/buttons/edit.md): `{resource: "posts, action: "edit", params: { id: 1 }}`
+- [**delete**](/api-references/components/buttons/delete.md): `{resource: "posts, action: "delete", params: { id: 1 }}`
+- [**show**](/api-references/components/buttons/show.md): `{resource: "posts, action: "show", params: { id: 1 }}`
 
 These buttons will be disabled if access control returns `false`
 
