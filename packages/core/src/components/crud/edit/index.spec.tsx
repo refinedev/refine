@@ -1,6 +1,5 @@
 import React, { ReactNode } from "react";
 import { Route } from "react-router-dom";
-import { wait } from "@testing-library/react";
 
 import { Button } from "antd";
 
@@ -18,12 +17,10 @@ const renderEdit = (edit: ReactNode) => {
 };
 
 describe("Edit", () => {
-    it("should render page successfuly", async () => {
+    it("should render page successfuly", () => {
         const { container, queryByTestId } = renderEdit(<Edit />);
 
-        await wait(() =>
-            expect(queryByTestId("edit-list-button")).not.toBeNull(),
-        );
+        expect(queryByTestId("edit-list-button")).not.toBeNull();
 
         expect(container).toBeTruthy();
     });
@@ -35,12 +32,12 @@ describe("Edit", () => {
         getByText("Save");
     });
 
-    it("should render default save and delete buttons successfuly", async () => {
+    it("should render default save and delete buttons successfuly", () => {
         const { container, getByText } = renderEdit(<Edit canDelete />);
 
         expect(container.querySelector("button")).toBeTruthy();
         getByText("Save");
-        await wait(() => getByText("Delete"));
+        getByText("Delete");
     });
 
     it("should render optional buttons with actionButtons prop", () => {
@@ -106,7 +103,7 @@ describe("Edit", () => {
     });
 
     describe("render delete button", () => {
-        it("should render delete button ", async () => {
+        it("should render delete button ", () => {
             const { getByText, queryByTestId } = render(
                 <Route path="/:resource/edit/:id">
                     <Edit />
@@ -122,9 +119,7 @@ describe("Edit", () => {
                 },
             );
 
-            await wait(() =>
-                expect(queryByTestId("edit-delete-button")).not.toBeNull(),
-            );
+            expect(queryByTestId("edit-delete-button")).not.toBeNull();
 
             getByText("Edit Post");
         });
@@ -169,7 +164,7 @@ describe("Edit", () => {
             expect(queryByTestId("edit-delete-button")).toBeNull();
         });
 
-        it("should render delete button on resource canDelete false & canDelete props true on component", async () => {
+        it("should render delete button on resource canDelete false & canDelete props true on component", () => {
             const { queryByTestId } = render(
                 <Route path="/:resource/edit/:id">
                     <Edit canDelete={true} />
@@ -185,12 +180,10 @@ describe("Edit", () => {
                 },
             );
 
-            await wait(() =>
-                expect(queryByTestId("edit-delete-button")).not.toBeNull(),
-            );
+            expect(queryByTestId("edit-delete-button")).not.toBeNull();
         });
 
-        it("should render delete button on resource canDelete false & deleteButtonProps props not null on component", async () => {
+        it("should render delete button on resource canDelete false & deleteButtonProps props not null on component", () => {
             const { queryByTestId } = render(
                 <Route path="/:resource/edit/:id">
                     <Edit deleteButtonProps={{ size: "large" }} />
@@ -206,9 +199,7 @@ describe("Edit", () => {
                 },
             );
 
-            await wait(() =>
-                expect(queryByTestId("edit-delete-button")).not.toBeNull(),
-            );
+            expect(queryByTestId("edit-delete-button")).not.toBeNull();
         });
     });
 });
