@@ -55,7 +55,7 @@ export const CloneButton: FC<CloneButtonProps> = ({
     };
 
     const { data } = useCan(
-        { resource: resourceName, action: "create" },
+        { resource: resourceName, action: "create", params: { id } },
         {
             enabled: !ignoreAccessControlProvider,
         },

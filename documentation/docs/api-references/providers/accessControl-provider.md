@@ -29,7 +29,7 @@ const App: React.FC = () => {
     <Refine
         // other providers and props
         accessControlProvider={{
-            can: async ({ action, params, resource }) => {
+            can: async ({ resource, action, params }) => {
                 if(resource === "posts" && action === "edit") return false
                 return true
             },
@@ -42,7 +42,7 @@ const App: React.FC = () => {
 Access control is a broad topic where there are lots of advanced solutions that provide different set of features. **refine** is deliberately agnostic for its own API to be able to integrate different solutions. `can` method would be the entry point for those solutions.
 :::
 
-**refine** checks for access control in its related components and pages. [Refer here to see all the places **refine** checks for access control.](#list-of-access-control-points)
+**refine** checks for access control in its related components and pages. [Refer here to see all the places **refine** checks for access control.](#list-of-default-access-control-points)
 
 ## Check Access Control Yourself
 
@@ -104,4 +104,40 @@ const { data } = useCan(
 
 **refine** uses 5 minutes `cacheTime` by default for its own access control points.
 
-## List of Default Access Control Points 
+## List of Default Access Control Points
+### Routes
+
+[`@pankod/refine-nextjs-router`][NextjsRouter] and [`@pankod/refine-react-router`][ReactRouter] packages integrate access control for crud pages at `[resource]/[action]` routes.
+
+They will check access control with parameters:
+
+- list (e.g. `/posts`): `{resource: "posts", action: "list"}`
+- create (e.g. `/posts/create`): `{resource: "posts", action: "create"}`
+- edit (e.g. `/posts/edit/1`): `{resource: "posts", action: "edit", params: {id:1}}`
+- show (e.g. `/posts/show/1`): `{resource: "posts", action: "show", params: {id:1}}`
+
+In case access control returns `false` they will show [`cathcAll`][CatchAll] if provided or a standard error page otherwise.
+
+### Sider
+
+Sider is also integrated so that unaccessible resources won't appear in the sider menu.
+
+Menu items will check access control with `{resource, action: "list"}`
+
+### Buttons
+
+These buttons will check for access control with parameters:
+
+- [**list**](/api-references/components/buttons/list): `{resource, action: "list"}`
+- [**create**](/api-references/components/buttons/create): `{resource, action: "create"}`
+- [**clone**](/api-references/components/buttons/clone): `{resource, action: "create", params: { id }}`
+- [**edit**](/api-references/components/buttons/edit): `{resource, action: "edit", params: { id }}`
+- [**delete**](/api-references/components/buttons/delete): `{resource, action: "delete", params: { id }}`
+- [**show**](/api-references/components/buttons/show): `{resource, action: "show", params: { id }}`
+
+These buttons will be disabled if access control returns `false`
+
+[NextjsRouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router
+[ReactRouter]: https://www.npmjs.com/package/@pankod/refine-react-router
+[CatchAll]: /api-references/components/refine-config.md#catchall
+[ListBtn]: /api-references/components/buttons/list.md
