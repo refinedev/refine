@@ -240,6 +240,13 @@ Custom route name
 
 <br />
 
+## `accessControlProvider`
+
+`accessControlProvider` is the entry point for implementing access control for **refine** apps.
+
+[Refer to access control documentation for detailed information. &#8594](api-references/providers/accessControl-provider.md)
+
+<br />
 
 ## `catchAll`
 
