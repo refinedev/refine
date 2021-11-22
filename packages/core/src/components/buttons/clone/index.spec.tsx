@@ -109,7 +109,7 @@ describe("Clone Button", () => {
         expect(mHistory.push).toBeCalledWith("/posts/create/1");
     });
 
-    it("should custom resource and recordItemId redirect clone route called function successfully if click the button", () => {
+    xit("should custom resource and recordItemId redirect clone route called function successfully if click the button", () => {
         const { getByText } = render(
             <Route path="/:resource">
                 <CloneButton resourceName="categories" recordItemId="1" />
