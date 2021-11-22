@@ -54,12 +54,14 @@ export const CloneButton: FC<CloneButtonProps> = ({
         clone(routeResourceName, id);
     };
 
-    const { data } = useCan(
-        { resource: resourceName, action: "create", params: { id } },
-        {
+    const { data } = useCan({
+        resource: resourceName,
+        action: "create",
+        params: { id },
+        queryOptions: {
             enabled: !ignoreAccessControlProvider,
         },
-    );
+    });
 
     return (
         <Button

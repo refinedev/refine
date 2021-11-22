@@ -45,12 +45,13 @@ export const ListButton: FC<ListButtonProps> = ({
 
     const resourceName = propResourceName ?? resource.name;
 
-    const { data } = useCan(
-        { resource: resourceName, action: "list" },
-        {
+    const { data } = useCan({
+        resource: resourceName,
+        action: "list",
+        queryOptions: {
             enabled: !ignoreAccessControlProvider,
         },
-    );
+    });
 
     return (
         <Button

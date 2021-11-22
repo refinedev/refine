@@ -47,12 +47,13 @@ export const CreateButton: FC<CreateButtonProps> = ({
 
     const onButtonClick = () => create(routeResourceName, "push");
 
-    const { data } = useCan(
-        { resource: resourceName, action: "create" },
-        {
+    const { data } = useCan({
+        resource: resourceName,
+        action: "create",
+        queryOptions: {
             enabled: !ignoreAccessControlProvider,
         },
-    );
+    });
 
     return (
         <Button
