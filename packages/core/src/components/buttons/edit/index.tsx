@@ -59,6 +59,16 @@ export const EditButton: FC<EditButtonProps> = ({
         },
     });
 
+    const createButtonDisabledTitle = () => {
+        if (data?.can) return "";
+        else if (data?.reason) return data.reason;
+        else
+            return translate(
+                "buttons.notAccessTitle",
+                "You don't have permission to access",
+            );
+    };
+
     return (
         <Button
             onClick={(): void => {
@@ -66,14 +76,7 @@ export const EditButton: FC<EditButtonProps> = ({
             }}
             icon={<EditOutlined />}
             disabled={data?.can === false}
-            title={
-                data?.reason
-                    ? translate(
-                          "buttons.notAccessTitle",
-                          "You don't have permission to access",
-                      )
-                    : ""
-            }
+            title={createButtonDisabledTitle()}
             {...rest}
         >
             {!hideText && (children ?? translate("buttons.edit", "Edit"))}
