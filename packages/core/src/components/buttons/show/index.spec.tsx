@@ -120,6 +120,32 @@ describe("Show Button", () => {
         );
     });
 
+    it("should successfully return disabled button custom title", async () => {
+        const { container, getByText } = render(<ShowButton>Show</ShowButton>, {
+            wrapper: TestWrapper({
+                resources: [{ name: "posts" }],
+                accessControlProvider: {
+                    can: () =>
+                        Promise.resolve({
+                            can: false,
+                            reason: "Access Denied",
+                        }),
+                },
+            }),
+        });
+
+        expect(container).toBeTruthy();
+
+        await wait(() =>
+            expect(getByText("Show").closest("button")).not.toBeDisabled(),
+        );
+        await wait(() =>
+            expect(
+                getByText("Show").closest("button")?.getAttribute("title"),
+            ).toBe("Access Denied"),
+        );
+    });
+
     it("should render called function successfully if click the button", () => {
         const { getByText } = render(<ShowButton onClick={() => show()} />, {
             wrapper: TestWrapper({

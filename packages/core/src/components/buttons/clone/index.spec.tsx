@@ -123,6 +123,35 @@ describe("Clone Button", () => {
         );
     });
 
+    it("should successfully return disabled button custom title", async () => {
+        const { container, getByText } = render(
+            <CloneButton>Clone</CloneButton>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                    accessControlProvider: {
+                        can: () =>
+                            Promise.resolve({
+                                can: false,
+                                reason: "Access Denied",
+                            }),
+                    },
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        await wait(() =>
+            expect(getByText("Clone").closest("button")).not.toBeDisabled(),
+        );
+        await wait(() =>
+            expect(
+                getByText("Clone").closest("button")?.getAttribute("title"),
+            ).toBe("Access Denied"),
+        );
+    });
+
     it("should render called function successfully if click the button", () => {
         const { getByText } = render(
             <CloneButton onClick={() => clone()} recordItemId="1" />,

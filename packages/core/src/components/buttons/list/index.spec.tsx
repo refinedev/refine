@@ -85,6 +85,32 @@ describe("List Button", () => {
         );
     });
 
+    it("should successfully return disabled button custom title", async () => {
+        const { container, getByText } = render(<ListButton>List</ListButton>, {
+            wrapper: TestWrapper({
+                resources: [{ name: "posts" }],
+                accessControlProvider: {
+                    can: () =>
+                        Promise.resolve({
+                            can: false,
+                            reason: "Access Denied",
+                        }),
+                },
+            }),
+        });
+
+        expect(container).toBeTruthy();
+
+        await wait(() =>
+            expect(getByText("List").closest("button")).not.toBeDisabled(),
+        );
+        await wait(() =>
+            expect(
+                getByText("List").closest("button")?.getAttribute("title"),
+            ).toBe("Access Denied"),
+        );
+    });
+
     it("should render called function successfully if click the button", () => {
         const { getByText } = render(
             <ListButton onClick={() => list()} resourceName="posts" />,

@@ -98,6 +98,35 @@ describe("Create Button", () => {
         );
     });
 
+    it("should successfully return disabled button custom title", async () => {
+        const { container, getByText } = render(
+            <CreateButton>Create</CreateButton>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                    accessControlProvider: {
+                        can: () =>
+                            Promise.resolve({
+                                can: false,
+                                reason: "Access Denied",
+                            }),
+                    },
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        await wait(() =>
+            expect(getByText("Create").closest("button")).not.toBeDisabled(),
+        );
+        await wait(() =>
+            expect(
+                getByText("Create").closest("button")?.getAttribute("title"),
+            ).toBe("Access Denied"),
+        );
+    });
+
     it("should render called function successfully if click the button", () => {
         const { getByText } = render(
             <CreateButton onClick={() => create()} />,

@@ -110,6 +110,32 @@ describe("Edit Button", () => {
         );
     });
 
+    it("should successfully return disabled button custom title", async () => {
+        const { container, getByText } = render(<EditButton>Edit</EditButton>, {
+            wrapper: TestWrapper({
+                resources: [{ name: "posts" }],
+                accessControlProvider: {
+                    can: () =>
+                        Promise.resolve({
+                            can: false,
+                            reason: "Access Denied",
+                        }),
+                },
+            }),
+        });
+
+        expect(container).toBeTruthy();
+
+        await wait(() =>
+            expect(getByText("Edit").closest("button")).not.toBeDisabled(),
+        );
+        await wait(() =>
+            expect(
+                getByText("Edit").closest("button")?.getAttribute("title"),
+            ).toBe("Access Denied"),
+        );
+    });
+
     it("should render called function successfully if click the button", () => {
         const { getByText } = render(<EditButton onClick={() => edit()} />, {
             wrapper: TestWrapper({
