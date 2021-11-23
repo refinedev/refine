@@ -59,8 +59,14 @@ export const CreateButton: FC<CreateButtonProps> = ({
         <Button
             onClick={onButtonClick}
             icon={<PlusSquareOutlined />}
-            disabled={data === false}
-            title={data === false ? "Dont have access" : ""}
+            disabled={data?.can === false}
+            title={
+                data?.reason ??
+                translate(
+                    "buttons.notAccessTitle",
+                    "You don't have permission to access",
+                )
+            }
             {...rest}
         >
             {!hideText && (children ?? translate("buttons.create", "Create"))}

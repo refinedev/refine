@@ -33,13 +33,21 @@ const App: React.FC = () => {
                             action === "show") &&
                         !!params
                     ) {
-                        return enforcer.enforce(
-                            role,
-                            `${resource}/${params.id}`,
-                            action,
-                        );
+                        return Promise.resolve({
+                            can: await enforcer.enforce(
+                                role,
+                                `${resource}/${params.id}`,
+                                action,
+                            ),
+                        });
                     }
-                    return enforcer.enforce(role, `${resource}`, action);
+                    return Promise.resolve({
+                        can: await enforcer.enforce(
+                            role,
+                            `${resource}`,
+                            action,
+                        ),
+                    });
                 },
             }}
             resources={[

@@ -3,7 +3,7 @@ import React from "react";
 import { IAccessControlContext } from "./IAccessControlContext";
 
 export const defaultAccessControlContext: IAccessControlContext = {
-    can: () => Promise.resolve(true),
+    can: () => Promise.resolve({ can: true }),
 };
 
 export const AccessControlContext = React.createContext<IAccessControlContext>(
