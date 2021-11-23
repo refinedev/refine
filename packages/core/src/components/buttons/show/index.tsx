@@ -65,11 +65,12 @@ export const ShowButton: FC<ShowButtonProps> = ({
             icon={<EyeOutlined />}
             disabled={data?.can === false}
             title={
-                data?.reason ??
-                translate(
-                    "buttons.notAccessTitle",
-                    "You don't have permission to access",
-                )
+                data?.reason
+                    ? translate(
+                          "buttons.notAccessTitle",
+                          "You don't have permission to access",
+                      )
+                    : ""
             }
             {...rest}
         >

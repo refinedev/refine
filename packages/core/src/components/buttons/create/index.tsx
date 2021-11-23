@@ -61,11 +61,12 @@ export const CreateButton: FC<CreateButtonProps> = ({
             icon={<PlusSquareOutlined />}
             disabled={data?.can === false}
             title={
-                data?.reason ??
-                translate(
-                    "buttons.notAccessTitle",
-                    "You don't have permission to access",
-                )
+                data?.reason
+                    ? translate(
+                          "buttons.notAccessTitle",
+                          "You don't have permission to access",
+                      )
+                    : ""
             }
             {...rest}
         >

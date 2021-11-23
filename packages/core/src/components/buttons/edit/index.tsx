@@ -67,11 +67,12 @@ export const EditButton: FC<EditButtonProps> = ({
             icon={<EditOutlined />}
             disabled={data?.can === false}
             title={
-                data?.reason ??
-                translate(
-                    "buttons.notAccessTitle",
-                    "You don't have permission to access",
-                )
+                data?.reason
+                    ? translate(
+                          "buttons.notAccessTitle",
+                          "You don't have permission to access",
+                      )
+                    : ""
             }
             {...rest}
         >
