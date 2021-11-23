@@ -31,7 +31,8 @@
         "show": "Zeigen",
         "undo": "Undo",
         "import": "Importieren",
-        "clone": "Klon"
+        "clone": "Klon",
+        "notAccessTitle": "Sie haben keine zugriffsberechtigung"
     },
     "warnWhenUnsavedChanges": "Nicht gespeicherte Änderungen werden nicht übernommen.",
     "notifications": {

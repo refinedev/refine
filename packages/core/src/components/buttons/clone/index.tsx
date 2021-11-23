@@ -68,7 +68,13 @@ export const CloneButton: FC<CloneButtonProps> = ({
             onClick={onButtonClick}
             icon={<PlusSquareOutlined />}
             disabled={data?.can === false}
-            title={data?.reason ?? "Dont have access"}
+            title={
+                data?.reason ??
+                translate(
+                    "buttons.notAccessTitle",
+                    "You don't have permission to access",
+                )
+            }
             {...rest}
         >
             {!hideText && (children ?? translate("buttons.clone", "Clone"))}

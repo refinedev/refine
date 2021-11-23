@@ -64,7 +64,13 @@ export const ShowButton: FC<ShowButtonProps> = ({
             onClick={(): void => show(routeResourceName, id)}
             icon={<EyeOutlined />}
             disabled={data?.can === false}
-            title={data?.reason ?? "Dont have access"}
+            title={
+                data?.reason ??
+                translate(
+                    "buttons.notAccessTitle",
+                    "You don't have permission to access",
+                )
+            }
             {...rest}
         >
             {!hideText && (children ?? translate("buttons.show", "Show"))}
