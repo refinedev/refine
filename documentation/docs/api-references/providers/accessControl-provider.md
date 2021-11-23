@@ -19,8 +19,13 @@ type CanParams = {
     params?: any;
 };
 
+type CanReturnType = {
+    can: boolean;
+    reason?: string;
+}
+
 const accessControlProvider = {
-    can: ({ resource, action, params }: CanParams) => Promise<boolean>;
+    can: ({ resource, action, params }: CanParams) => Promise<CanReturnType>;
 }
 ```
 
