@@ -99,8 +99,8 @@ const { formProps, saveButtonProps } = useForm({ action: "edit" });
 
 When creating a new record, `useForm` can initialize the form with the data of an existing record.
 
-`useForm` works on clone mode when a route has a `create` and `id` parameters like this `{{resourceName}}/create/1234`.
-Alternatively, if route doesn't have those parameters, action can be set with `action: "create"` and id can be set with `setCloneId`.
+`useForm` works on clone mode when a route has a `clone` and `id` parameters like this `{{resourceName}}/clone/1234`.
+Alternatively, if route doesn't have those parameters, action can be set with `action: "clone"` and id can be set with `setCloneId`.
 
 ```tsx 
 const { setCloneId } = useForm();
@@ -111,7 +111,7 @@ If you want to show a form in a modal or drawer where necessary route params mig
 :::
 
 :::tip
-`<CloneButton>` can be used to navigate to a create route with an id like this `{{resourceName}}/create/1234`.
+`<CloneButton>` can be used to navigate to a clone route with an id like this `{{resourceName}}/clone/1234`.
 
 ```tsx 
 <CloneButton recordItemId={record.id} />
