@@ -51,13 +51,13 @@ describe("useNavigation Hook", () => {
     it("navigation clone with push", async () => {
         result.current.clone("posts", "1", "push");
 
-        expect(mHistory.push).toBeCalledWith("/posts/create/1");
+        expect(mHistory.push).toBeCalledWith("/posts/clone/1");
     });
 
     it("navigation clone with replace", async () => {
         result.current.clone("posts", "1", "replace");
 
-        expect(mHistory.replace).toBeCalledWith("/posts/create/1");
+        expect(mHistory.replace).toBeCalledWith("/posts/clone/1");
     });
 
     it("navigation show with push", async () => {

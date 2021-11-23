@@ -119,7 +119,8 @@ export const RouterComponent: React.FC<RouterProps> = (props) => {
             // @ts-ignore
             location={location}
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignoreroutes={routes}
+            // @ts-ignore
+            routes={routes}
             filterRoutes={rankRoutes}
             {...props}
         />

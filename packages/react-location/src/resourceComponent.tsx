@@ -51,7 +51,8 @@ export const ResourceComponentWrapper: React.FC = () => {
                     );
                 }
 
-                case "create": {
+                case "create":
+                case "clone": {
                     return (
                         <Create
                             name={name}

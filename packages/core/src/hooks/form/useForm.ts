@@ -19,7 +19,7 @@ import { UseUpdateReturnType } from "../data/useUpdate";
 import { UseCreateReturnType } from "../data/useCreate";
 
 export type ActionParams = {
-    action?: "edit" | "create";
+    action?: "edit" | "create" | "clone";
 };
 
 type ActionFormProps<
@@ -81,7 +81,7 @@ export const useForm = <
     TError extends HttpError = HttpError,
     TVariables = {},
 >({
-    action,
+    action: actionFromProps,
     resource: resourceFromProps,
     ...rest
 }: useFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
@@ -104,40 +104,38 @@ export const useForm = <
     } = useParams<ResourceRouterParams>();
 
     const resourceType = resourceFromProps ?? resourceFromParams;
+    const action = actionFromProps ?? actionFromRoute;
 
     const resource = resourceWithRoute(resourceType);
 
     const editForm = useEditForm<TData, TError, TVariables>({
         ...rest,
         resource,
+        action,
     } as useEditFormProps<TData, TError, TVariables>);
 
     const createForm = useCreateForm<TData, TError, TVariables>({
         ...rest,
         resource,
+        action,
     } as useCreateFormProps<TData, TError, TVariables>);
 
     const cloneForm = useCloneForm<TData, TError, TVariables>({
         ...rest,
         resource,
         cloneId,
+        action,
     } as useCloneFormProps<TData, TError, TVariables>);
 
-    // const { action: actionFromRoute, id } = useParams<ResourceRouterParams>();
-
-    switch (action || actionFromRoute) {
+    switch (action) {
         case "create":
-            // setCloneId and cloneId needs to be returned from both clone and create cases.
-            // It is needed to make them accessible in useModalForm to be able to manage id state.
-
-            // clone case
-            if (cloneId || id) {
-                return { ...cloneForm, setCloneId, cloneId };
-            }
-            // create case
-            return { ...createForm, setCloneId, cloneId };
+            return { ...createForm };
         case "edit":
             return editForm;
+        case "clone":
+            // setCloneId and cloneId needs to be returned from both clone and create cases.
+            // It is needed to make them accessible in useModalForm to be able to manage id state.
+            return { ...cloneForm, setCloneId, cloneId };
         default:
             return createForm;
     }

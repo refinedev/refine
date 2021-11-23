@@ -38,8 +38,8 @@ export const useNavigation = () => {
         const resourceName = resourceWithRoute(resource);
 
         type === "push"
-            ? history.push(`/${resourceName.route}/create/${id}`)
-            : history.replace(`/${resourceName.route}/create/${id}`);
+            ? history.push(`/${resourceName.route}/clone/${id}`)
+            : history.replace(`/${resourceName.route}/clone/${id}`);
     };
 
     const show = (resource: string, id: string, type: HistoryType = "push") => {
