@@ -83,6 +83,7 @@ const useCan: (
 <CanAccess
     resource="posts"
     action="edit"
+    params={{ id: 1 }}
     fallback={<CustomFallback/>}
 >
     <YourComponent>
