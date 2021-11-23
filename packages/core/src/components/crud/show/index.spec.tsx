@@ -52,10 +52,10 @@ describe("Show", () => {
                     switch (action) {
                         case "edit":
                         case "list":
-                            return Promise.resolve(true);
+                            return Promise.resolve({ can: true });
                         case "delete":
                         default:
-                            return Promise.resolve(false);
+                            return Promise.resolve({ can: false });
                     }
                 },
             },

@@ -53,7 +53,7 @@ describe("List Button", () => {
             wrapper: TestWrapper({
                 resources: [{ name: "posts" }],
                 accessControlProvider: {
-                    can: () => Promise.resolve(false),
+                    can: () => Promise.resolve({ can: false }),
                 },
             }),
         });
@@ -72,7 +72,7 @@ describe("List Button", () => {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts" }],
                     accessControlProvider: {
-                        can: () => Promise.resolve(false),
+                        can: () => Promise.resolve({ can: false }),
                     },
                 }),
             },

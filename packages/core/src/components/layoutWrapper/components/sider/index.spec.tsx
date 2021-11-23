@@ -105,12 +105,12 @@ describe("Sider", () => {
                 accessControlProvider: {
                     can: ({ action, resource }) => {
                         if (action === "list" && resource === "posts") {
-                            return Promise.resolve(true);
+                            return Promise.resolve({ can: true });
                         }
                         if (action === "list" && resource === "users") {
-                            return Promise.resolve(false);
+                            return Promise.resolve({ can: false });
                         }
-                        return Promise.resolve(false);
+                        return Promise.resolve({ can: false });
                     },
                 },
             }),

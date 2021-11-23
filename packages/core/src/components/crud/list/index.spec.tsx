@@ -204,9 +204,9 @@ describe("<List/>", () => {
                         can: ({ action }) => {
                             switch (action) {
                                 case "create":
-                                    return Promise.resolve(false);
+                                    return Promise.resolve({ can: false });
                                 default:
-                                    return Promise.resolve(false);
+                                    return Promise.resolve({ can: false });
                             }
                         },
                     },

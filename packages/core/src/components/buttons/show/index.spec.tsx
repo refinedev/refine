@@ -63,7 +63,7 @@ describe("Show Button", () => {
             wrapper: TestWrapper({
                 resources: [{ name: "posts" }],
                 accessControlProvider: {
-                    can: () => Promise.resolve(false),
+                    can: () => Promise.resolve({ can: false }),
                 },
             }),
         });
@@ -84,9 +84,9 @@ describe("Show Button", () => {
                     accessControlProvider: {
                         can: ({ params }) => {
                             if (params.id === "1") {
-                                return Promise.resolve(false);
+                                return Promise.resolve({ can: false });
                             }
-                            return Promise.resolve(true);
+                            return Promise.resolve({ can: true });
                         },
                     },
                 }),
@@ -107,7 +107,7 @@ describe("Show Button", () => {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts" }],
                     accessControlProvider: {
-                        can: () => Promise.resolve(false),
+                        can: () => Promise.resolve({ can: false }),
                     },
                 }),
             },

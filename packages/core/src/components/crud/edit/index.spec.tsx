@@ -213,10 +213,10 @@ describe("Edit", () => {
                 can: ({ action }) => {
                     switch (action) {
                         case "list":
-                            return Promise.resolve(true);
+                            return Promise.resolve({ can: true });
                         case "delete":
                         default:
-                            return Promise.resolve(false);
+                            return Promise.resolve({ can: false });
                     }
                 },
             });
@@ -235,9 +235,9 @@ describe("Edit", () => {
                     switch (action) {
                         case "list":
                         case "delete":
-                            return Promise.resolve(false);
+                            return Promise.resolve({ can: false });
                         default:
-                            return Promise.resolve(false);
+                            return Promise.resolve({ can: false });
                     }
                 },
             });

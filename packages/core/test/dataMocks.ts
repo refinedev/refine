@@ -58,5 +58,5 @@ export const MockRouterProvider: IRouterContext = {
 };
 
 export const MockAccessControlProvider: IAccessControlContext = {
-    can: () => Promise.resolve(true),
+    can: () => Promise.resolve({ can: true }),
 };

@@ -65,7 +65,7 @@ describe("Clone Button", () => {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts" }],
                     accessControlProvider: {
-                        can: () => Promise.resolve(false),
+                        can: () => Promise.resolve({ can: false }),
                     },
                 }),
             },
@@ -87,9 +87,9 @@ describe("Clone Button", () => {
                     accessControlProvider: {
                         can: ({ params }) => {
                             if (params.id === "1") {
-                                return Promise.resolve(false);
+                                return Promise.resolve({ can: false });
                             }
-                            return Promise.resolve(true);
+                            return Promise.resolve({ can: false });
                         },
                     },
                 }),
@@ -110,7 +110,7 @@ describe("Clone Button", () => {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts" }],
                     accessControlProvider: {
-                        can: () => Promise.resolve(false),
+                        can: () => Promise.resolve({ can: false }),
                     },
                 }),
             },
