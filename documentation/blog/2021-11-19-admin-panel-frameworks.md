@@ -1,13 +1,12 @@
 ---
 title: Best Admin Panel Framework 2021
-description: We will make a web application that allows you to quickly create subscribers and send emails to your subscribers in a simple way. We’ll use refine to develop the frontend easily and strapi for backend solutions.
+description: Admin Panel Frameworks
 slug: best-admin-panel-framework-2021
 authors: melih
 tags: [refine, strapi, react, tutorial]
 image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
 ---
-
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -21,6 +20,12 @@ Looking for open source Reactjs admin framework? Then here is the collection of 
 <!--truncate-->
 
 If you are reading this, chances are you are a developer researching options for delivering an admin panel or another internal tool. Together with you, we will take a look at the best admin panel frameworks in response to this need.
+
+Motivation is our most important resource when developing a project. If you lose your motivation as your project progresses, you will not be able to produce a successful product. The point where you will lose this feeling the most is the point where you cannot meet your Business needs. Different UI / UX solutions may be requested for many business models and it is very important that you can realize them regardless of the framework you use. 
+
+When you decide to use these types of frameworks, we need to know to what extent and how they solve your work. If we do not know what these frameworks do and how customizable they are, the problems we may encounter can reduce our motivation.
+
+We will examine how the frameworks we will talk about solve our work and how customizable they are under the title of `Customization`.
 
 ## React-Admin
 
@@ -43,7 +48,7 @@ yarn add react-admin
 ```
 
 ### Features
-* It can be used with any backend(Rest, QraphQL, SOAP)
+* It can be used with any backend(Rest, GraphQL, SOAP)
 * API-based. The UI fetches the data from an API connected to the data source.
 * Powered by Material UI, Redux, Redux Saga, React-router.
 * Supports any authentication provider of your choice(REST API, OAuth, Basic Auth)
@@ -107,7 +112,78 @@ const dataProvider = {
     deleteMany: (resource, params) => Promise,
 }
 ```
-#### QraphQL Data Provider
+#### GraphQL Data Provider
+We can say that React-Admin is a bit lacking in terms of both graphql provider and its documentation. 
+
+React-Admin calls the GraphQL endpoint by running an introspection query for GraphQL.
+
+```jsx title="App.js"
+import React from 'react';
+import { Component } from 'react';
+import buildGraphQLProvider from 'ra-data-graphql-simple';
+import { Admin, Resource } from 'react-admin';
+
+import { PostCreate, PostEdit, PostList } from './posts';
+
+const App = () => {
+
+    const [dataProvider, setDataProvider] = React.useState(null);
+    React.useEffect(() => {
+        buildGraphQLProvider({ clientOptions: { uri: 'http://localhost:4000' } })
+            .then(graphQlDataProvider => setDataProvider(() => graphQlDataProvider));
+    }, []);
+
+    if (!dataProvider) {
+        return <div>Loading < /div>;
+    }
+
+    return (
+        <Admin dataProvider= { dataProvider } >
+            <Resource name="Post" list = { PostList } edit = { PostEdit } create = { PostCreate } />
+        </Admin>
+    );
+}
+
+export default App;
+```
+
+When we want to see this data in a table, all GraphQL entities are queried requested by default(even if you don't add columns to the table). This is against GraphQL's approach and is a scenario we would not want.
+
+The way to prevent this is to override all your queries.
+
+```jsx title="src/dataProvider.js"
+import buildGraphQLProvider, { buildQuery } from 'ra-data-graphql-simple';
+
+const myBuildQuery = introspection => (fetchType, resource, params) => {
+    const builtQuery = buildQuery(introspection)(fetchType, resource, params);
+
+    if (resource === 'Command' && fetchType === 'GET_ONE') {
+        return {
+            // Use the default query variables and parseResponse
+            ...builtQuery,
+            // Override the query
+            query: gql`
+                query Command($id: ID!) {
+                    data: Command(id: $id) {
+                        id
+                        reference
+                        customer {
+                            id
+                            firstName
+                            lastName
+                        }
+                    }
+                }`,
+        };
+    }
+
+    return builtQuery;
+};
+
+export default buildGraphQLProvider({ buildQuery: myBuildQuery })
+```
+
+Although this is a solution, it complicates your project in many ways (debugging, maintenence, etc...).
 
 ### React-Admin Avaible Providers
 The providers that React admin supports are as follows:
@@ -118,9 +194,14 @@ The providers that React admin supports are as follows:
 * Local Strage: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage)
 * Supabase: [https://github.com/marmelab/ra-supabase](https://github.com/marmelab/ra-supabase)
 
+### Customization
+With React-Admin, you can develop effective B2B applications and admin panels in a very short time. Although most of the processes are handled with hooks, the general architecture is built on components. In general, we can say that it is customizable but not very flexible. In some cases or business models, you may need to think about this yourself and make some additions.
+#### UI/UX Customization: 
+React-Admin offers solutions in component architecture. The disadvantage of this is that you will have difficulty meeting your customization needs or different business requests. These  customizable, but they can be a bit of a hard for different business models. 
+#### Logic customization:
+React-Admin uses redux and redux-saga for state management. You should know these two technologies well. In some cases you may need to create the actions and reducers yourself. This is also a disadvantage for many situations.
 
 React-Admin Docs & Demo : [Documentation](https://marmelab.com/react-admin/Readme.html) - [Live Demo](https://marmelab.com/react-admin-demo/#/)
-
 
 ## Refine
 Refine is a React-based framework that helps you to develop admin panel, B2B and dashboard that can be fully customized with Ant Design.
@@ -314,7 +395,157 @@ const dataProvider = {
 Data hooks uses React Query to manage data fetching. React Query handles important concerns like caching, invalidation, loading states etc..
 :::
 
-#### QraphQL Data Provider
+#### GraphQL Data Provider
+It is well covered by GraphQL data provider Refine and explained step by step in the documentation.
+
+Refine GraphQL data provider is built with qql-query-builder and graphql-request. The purpose here is to send dynamic queries that we can do with qql-query-builder as requests with graphql-request. 
+
+Query builder helps us build queries and mutations. We can use these queries with the getList, getMany and getOne methods in our data provider. On the other hand, the create, createMany, update, updateMany, deleteOne and deleteMany methods generate a mutation to send a request.
+
+In order to create a query, we need to specify the fields that we will use from our data provider. Thanks to the MetaDataQuery, we pass these fields to our data provider and start using them.
+
+#### Basic GraphQL Usage
+
+```tsx src/App.tsx
+import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
+import dataProvider from "@pankod/refine-strapi-graphql";
+import { GraphQLClient } from "graphql-request";
+
+const client = new GraphQLClient("API_URL");
+
+const App: React.FC = () => {
+    return (
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider(client)}
+        />
+    );
+};
+```
+
+When sending the request, we must specify which fields will come, so we send fields in `metaData` to hooks that we will fetch data from.
+
+<Tabs
+defaultValue="usage"
+values={[
+{label: 'usage', value: 'usage'},
+{label: 'output', value: 'output'},
+]}>
+
+<TabItem value="usage">
+
+```tsx
+export const PostList: React.FC<IResourceComponentsProps> = () => {
+    const { tableProps, sorter } = useTable<IPost>({
+        initialSorter: [
+            {
+                field: "id",
+                order: "asc",
+            },
+        ],
+        // highlight-start
+        metaData: {
+            fields: [
+                "id",
+                "title",
+                {
+                    category: ["title"],
+                },
+            ],
+        },
+        // highlight-end
+    });
+
+    const { selectProps } = useSelect<ICategory>({
+        resource: "categories",
+         // highlight-start
+        metaData: {
+            fields: ["id", "title"],
+        },
+         // highlight-end
+    });
+
+    return (
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column
+                    dataIndex="id"
+                    title="ID"
+                    sorter={{ multiple: 2 }}
+                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
+                />
+                <Table.Column
+                    key="title"
+                    dataIndex="title"
+                    title="Title"
+                    sorter={{ multiple: 1 }}
+                />
+                <Table.Column<IPost>
+                    dataIndex="category"
+                    title="Category"
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Select
+                                style={{ minWidth: 200 }}
+                                mode="multiple"
+                                placeholder="Select Category"
+                                {...selectProps}
+                            />
+                        </FilterDropdown>
+                    )}
+                    render={(_, record) => record.category.title}
+                />
+                <Table.Column<IPost>
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(_, record) => (
+                        <Space>
+                            <EditButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <ShowButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <DeleteButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                        </Space>
+                    )}
+                />
+            </Table>
+        </List>
+    );
+};
+```
+</TabItem>
+
+<TabItem value="output">
+
+```tsx
+query ($sort: String, $where: JSON, $start: Int, $limit: Int) {
+    posts (sort: $sort, where: $where, start: $start, limit: $limit) {
+        id,
+        title,
+        category {
+            title
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+Here we only make requests for queries that are necessary. As you can see, all you have to do is specify the field you want to select with `metaData`.
+
+[Refer to the GraphQL for detailed usage. → ](https://refine.dev/docs/guides-and-concepts/data-provider/graphql/)
+
 
 
 ### Refine Avaible Providers
@@ -327,5 +558,14 @@ Connects to any REST or GraphQL custom backend.
 * Supabase: [https://github.com/pankod/refine/tree/master/examples/dataProvider/supabase](https://github.com/pankod/refine/tree/master/examples/dataProvider/supabase)
 * Hasura: [https://github.com/pankod/refine/tree/master/examples/dataProvider/supabase](https://github.com/pankod/refine/tree/master/examples/dataProvider/supabase)
 * Altogic: [https://github.com/pankod/refine/tree/master/examples/dataProvider/altogic](https://github.com/pankod/refine/tree/master/examples/dataProvider/altogic)
+
+### Customization
+* Refine's motivation and main purpose are as follows: "Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility." 
+* While the admin panel allows you to make dashboard, B2B and B2C applications quickly, we offer you flexibility in your UI or business model.
+
+#### UI/UX Customization: 
+Refine, comes ready-made decoupled from the UI, and is used. Refine mostly touches UI components via hooks. The main advantage of this for you is that you can successfully perform any Business request or different case.
+#### Logic Customization:
+Refine, works flawless with react-query. You don't have to worry about state management in your business model or when you encounter a different situation.
 
 Refine Docs & Demo: [Documentation](https://refine.dev/docs/) - [Live Demo](https://refine.dev/demo/)
