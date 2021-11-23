@@ -57,8 +57,8 @@ export const ListButton: FC<ListButtonProps> = ({
         <Button
             onClick={(): void => list(routeResourceName, "push")}
             icon={<BarsOutlined />}
-            disabled={data === false}
-            title={data === false ? "Dont have access" : ""}
+            disabled={data?.can === false}
+            title={data?.reason ?? "Dont have access"}
             {...rest}
         >
             {!hideText &&

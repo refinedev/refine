@@ -63,8 +63,8 @@ export const ShowButton: FC<ShowButtonProps> = ({
         <Button
             onClick={(): void => show(routeResourceName, id)}
             icon={<EyeOutlined />}
-            disabled={data === false}
-            title={data === false ? "Dont have access" : ""}
+            disabled={data?.can === false}
+            title={data?.reason ?? "Dont have access"}
             {...rest}
         >
             {!hideText && (children ?? translate("buttons.show", "Show"))}

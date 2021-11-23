@@ -102,13 +102,13 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
                     },
                 );
             }}
-            disabled={data === false}
+            disabled={data?.can === false}
         >
             <Button
                 danger
                 loading={id === variables?.id && isLoading}
                 icon={<DeleteOutlined />}
-                disabled={data === false}
+                disabled={data?.can === false}
                 {...rest}
             >
                 {!hideText &&

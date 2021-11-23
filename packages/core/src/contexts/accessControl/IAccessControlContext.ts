@@ -4,6 +4,10 @@ export type CanParams = {
     params?: any;
 };
 
+export type CanReturnType = {
+    can: boolean;
+    reason?: string;
+};
 export interface IAccessControlContext {
-    can: ({ resource, action, params }: CanParams) => Promise<boolean>;
+    can: ({ resource, action, params }: CanParams) => Promise<CanReturnType>;
 }

@@ -2,10 +2,10 @@ import { useContext } from "react";
 import { useQuery, UseQueryResult, UseQueryOptions } from "react-query";
 
 import { AccessControlContext } from "@contexts/accessControl";
-import { CanParams } from "../../interfaces";
+import { CanParams, CanReturnType } from "../../interfaces";
 
 export type UseCanProps = CanParams & {
-    queryOptions?: UseQueryOptions<boolean>;
+    queryOptions?: UseQueryOptions<CanReturnType>;
 };
 
 export const useCan = ({
@@ -13,10 +13,10 @@ export const useCan = ({
     resource,
     params,
     queryOptions,
-}: UseCanProps): UseQueryResult<boolean> => {
+}: UseCanProps): UseQueryResult<CanReturnType> => {
     const { can } = useContext(AccessControlContext);
 
-    const queryResponse = useQuery<boolean>(
+    const queryResponse = useQuery<CanReturnType>(
         ["useCan", { action, resource, params }],
         () => can({ action, resource, params }),
         {

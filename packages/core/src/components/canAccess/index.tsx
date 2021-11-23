@@ -21,7 +21,7 @@ export const CanAccess: React.FC<CanAccessProps> = ({
         params,
     });
 
-    if (data) {
+    if (data?.can) {
         if (React.isValidElement(children)) {
             const Children = React.cloneElement(children, rest);
             return Children;
@@ -30,7 +30,7 @@ export const CanAccess: React.FC<CanAccessProps> = ({
         return <>{children}</>;
     }
 
-    if (data === false) {
+    if (data?.can === false) {
         return <>{fallback ?? null}</>;
     }
 
