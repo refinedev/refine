@@ -138,6 +138,13 @@ module.exports = {
                             label: "UI",
                             items: ["api-references/hooks/ui/useModal"],
                         },
+                        {
+                            type: "category",
+                            label: "Access Control",
+                            items: [
+                                "api-references/hooks/accessControl/useCan",
+                            ],
+                        },
                     ],
                 },
                 {
