@@ -174,3 +174,10 @@ ButtonProps
 | resource | `string` |
 | action   | `string` |
 | params?  | `any`    |
+
+## CanReturnType
+
+| Key     | Type      |
+| ------- | --------- |
+| can     | `boolean` |
+| reason? | `string`  |

@@ -41,10 +41,10 @@ const App: React.FC = () => {
             can: async ({ resource, action, params }) => {
                 if(resource === "posts" && action === "edit")
                 {
-                    return Promise.resolve(false);
+                    return Promise.resolve({can: false});
                 }
 
-                return Promise.resolve(true);
+                return Promise.resolve({can: true});
             },
         }}
     />
@@ -77,10 +77,10 @@ const { data } = useCan({
 const useCan: (
     params: CanParams*,
     queryOptions?: UseQueryOptions<boolean>,
-) => UseQueryResult<boolean>
+) => UseQueryResult<CanReturnType*>
 ```
 
-> `*`: Too see &#8594 [`CanParams`](/api-references/interfaces.md#canparams)
+> `*`: Too see &#8594 [`CanParams`](/api-references/interfaces.md#canparams), [`CanReturnType`](/api-references/interfaces.md#canreturntype)
 
 ### `<CanAccess />`
 
@@ -152,6 +152,16 @@ Let's say these buttons are rendered where `resource` is `posts` and `id` is `1`
 - [**show**](/api-references/components/buttons/show.md): `{resource: "posts, action: "show", params: { id: 1 }}`
 
 These buttons will be disabled if access control returns `false`
+
+## Live Codesandbox Example
+
+<iframe src="https://codesandbox.io/embed/access-control-casbin-react-l1ne3?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+     title="access-control-casbin-react"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
 
 [NextjsRouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router
 [ReactRouter]: https://www.npmjs.com/package/@pankod/refine-react-router
