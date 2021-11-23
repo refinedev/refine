@@ -210,6 +210,13 @@ module.exports = {
                                 "api-references/components/fields/number",
                             ],
                         },
+                        {
+                            type: "category",
+                            label: "Access Control",
+                            items: [
+                                "api-references/components/accessControl/can-access",
+                            ],
+                        },
                     ],
                 },
                 "api-references/interfaceReferences",
