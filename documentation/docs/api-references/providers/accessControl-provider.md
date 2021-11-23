@@ -86,7 +86,7 @@ const useCan: (
     params={{ id: 1 }}
     fallback={<CustomFallback/>}
 >
-    <YourComponent>
+    <YourComponent />
 </CanAccess>
 ```
 
