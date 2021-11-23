@@ -39,8 +39,12 @@ const App: React.FC = () => {
         // other providers and props
         accessControlProvider={{
             can: async ({ resource, action, params }) => {
-                if(resource === "posts" && action === "edit") return false
-                return true
+                if(resource === "posts" && action === "edit")
+                {
+                    return Promise.resolve(false);
+                }
+
+                return Promise.resolve(true);
             },
         }}
     />
@@ -62,8 +66,6 @@ const App: React.FC = () => {
 `useCan` uses the `can` as the query function for **react-query**'s `useQuery`. It takes the parameters that `can` takes. It can also be configured with `queryOptions` for `useQuery`. Returns the result of `useQuery`.
 
 ```tsx
-// inside your component
-
 const { data } = useCan({
     resource: "resource-you-ask-for-access",
     action: "action-type-on-resource",
@@ -80,17 +82,18 @@ const useCan: (
 
 > `*`: Too see &#8594 [`CanParams`](/api-references/interfaces.md#canparams)
 
-### `<CanAccess/>`
+### `<CanAccess />`
 
-`<CanAccess/>` is a wrapper component that uses `useCan` to check for access control. It takes the parameters that `can` method takes and also a `fallback`. It renders its children if the access control returns true and if access control returns false renders `fallback` if provided.
+`<CanAccess />` is a wrapper component that uses `useCan` to check for access control. It takes the parameters that `can` method takes and also a `fallback`. It renders its children if the access control returns true and if access control returns false renders `fallback` if provided.
 
 ```tsx
 <CanAccess
     resource="posts"
     action="edit"
+    params={{ id: 1 }}
     fallback={<CustomFallback/>}
 >
-    <YourComponent>
+    <YourComponent />
 </CanAccess>
 ```
 

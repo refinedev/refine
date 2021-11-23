@@ -50,12 +50,14 @@ export const EditButton: FC<EditButtonProps> = ({
 
     const id = recordItemId ?? idFromRoute;
 
-    const { data } = useCan(
-        { resource: resourceName, action: "edit", params: { id } },
-        {
+    const { data } = useCan({
+        resource: resourceName,
+        action: "edit",
+        params: { id },
+        queryOptions: {
             enabled: !ignoreAccessControlProvider,
         },
-    );
+    });
 
     return (
         <Button

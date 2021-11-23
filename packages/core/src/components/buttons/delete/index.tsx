@@ -68,12 +68,14 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
 
     const id = recordItemId ?? idFromRoute;
 
-    const { data } = useCan(
-        { resource: resource.name, action: "delete", params: { id } },
-        {
+    const { data } = useCan({
+        resource: resource.name,
+        action: "delete",
+        params: { id },
+        queryOptions: {
             enabled: !ignoreAccessControlProvider,
         },
-    );
+    });
 
     return (
         <Popconfirm

@@ -50,12 +50,14 @@ export const ShowButton: FC<ShowButtonProps> = ({
 
     const id = recordItemId ?? idFromRoute;
 
-    const { data } = useCan(
-        { resource: resourceName, action: "show", params: { id } },
-        {
+    const { data } = useCan({
+        resource: resourceName,
+        action: "show",
+        params: { id },
+        queryOptions: {
             enabled: !ignoreAccessControlProvider,
         },
-    );
+    });
 
     return (
         <Button
