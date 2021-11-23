@@ -74,10 +74,14 @@ const { data } = useCan({
 ```
 
 ```ts
-const useCan: (
-    params: CanParams*,
-    queryOptions?: UseQueryOptions<boolean>,
-) => UseQueryResult<CanReturnType*>
+const useCan: ({
+    action,
+    resource,
+    params,
+    queryOptions,
+}: CanParams* & {
+    queryOptions?: UseQueryOptions<CanReturnType>;
+}) => UseQueryResult<CanReturnType*>
 ```
 
 > `*`: Too see &#8594 [`CanParams`](/api-references/interfaces.md#canparams), [`CanReturnType`](/api-references/interfaces.md#canreturntype)
