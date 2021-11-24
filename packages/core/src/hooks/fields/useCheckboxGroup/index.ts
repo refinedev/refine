@@ -12,6 +12,7 @@ import {
     SuccessErrorNotification,
     HttpError,
     MetaDataQuery,
+    LiveModeProps,
 } from "../../../interfaces";
 
 export type useCheckboxGroupProps<TData, TError> = {
@@ -22,7 +23,8 @@ export type useCheckboxGroupProps<TData, TError> = {
     filters?: CrudFilters;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     metaData?: MetaDataQuery;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification &
+    LiveModeProps;
 
 export type UseCheckboxGroupReturnType<TData extends BaseRecord = BaseRecord> =
     {
@@ -50,6 +52,8 @@ export const useCheckboxGroup = <
     successNotification,
     errorNotification,
     queryOptions,
+    liveMode,
+    onLiveEvent,
     metaData,
 }: useCheckboxGroupProps<TData, TError>): UseCheckboxGroupReturnType<TData> => {
     const [options, setOptions] = React.useState<Option[]>([]);
@@ -78,8 +82,11 @@ export const useCheckboxGroup = <
         },
         successNotification,
         errorNotification,
+        liveMode,
+        onLiveEvent,
         metaData,
     });
+
     return {
         checkboxGroupProps: {
             options,

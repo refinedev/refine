@@ -24,6 +24,7 @@ import {
     HttpError,
     SuccessErrorNotification,
     MetaDataQuery,
+    LiveModeProps,
 } from "../../../interfaces";
 
 type SaveButtonProps = {
@@ -71,7 +72,8 @@ export type useEditFormProps<
     undoableTimeout?: number;
     resource: IResourceItem;
     metaData?: MetaDataQuery;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification &
+    LiveModeProps;
 
 /**
  * A hook that the `useForm` uses
@@ -92,6 +94,8 @@ export const useEditForm = <
     resource,
     successNotification,
     errorNotification,
+    liveMode,
+    onLiveEvent,
     metaData,
 }: useEditFormProps<TData, TError, TVariables>): useEditForm<
     TData,
@@ -130,8 +134,9 @@ export const useEditForm = <
         queryOptions: {
             enabled: isEdit && editId !== undefined,
         },
+        liveMode,
+        onLiveEvent,
         metaData,
-        liveMode: "immediate",
     });
 
     const { data, isFetching } = queryResult;

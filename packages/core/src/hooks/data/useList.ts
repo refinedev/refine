@@ -1,15 +1,8 @@
 import { useContext, useEffect } from "react";
-import {
-    QueryObserverResult,
-    useQuery,
-    useQueryClient,
-    UseQueryOptions,
-} from "react-query";
+import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
 import { ArgsProps } from "antd/lib/notification";
-import { debounce } from "lodash";
 
 import { DataContext } from "@contexts/data";
-import { LiveContext } from "@contexts/live";
 import {
     GetListResponse,
     IDataContext,
@@ -19,10 +12,9 @@ import {
     HttpError,
     CrudSorting,
     MetaDataQuery,
-    LiveEvent,
-    ILiveContext,
+    LiveModeProps,
 } from "../../interfaces";
-import { useCacheQueries, useCheckError, useTranslate } from "@hooks";
+import { useCheckError, useSubscription, useTranslate } from "@hooks";
 import { handleNotification } from "@definitions";
 
 interface UseListConfig {
@@ -38,9 +30,7 @@ export type UseListProps<TData, TError> = {
     successNotification?: ArgsProps | false;
     errorNotification?: ArgsProps | false;
     metaData?: MetaDataQuery;
-    liveMode?: undefined | "immediate" | "controlled";
-    onLiveEvent?: (event: LiveEvent) => void;
-};
+} & LiveModeProps;
 
 /**
  * `useList` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving items from a `resource` with pagination, sort, and filter configurations.
@@ -70,36 +60,22 @@ export const useList = <
     TError
 > => {
     const { getList } = useContext<IDataContext>(DataContext);
-    const liveDataContext = useContext<ILiveContext>(LiveContext);
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
-    const queryClient = useQueryClient();
-    const getAllQueries = useCacheQueries();
+
+    const isEnabled =
+        queryOptions?.enabled === undefined || queryOptions?.enabled === true;
+
+    useSubscription({
+        resource,
+        channel: `resources/${resource}`,
+        enabled: isEnabled,
+        liveMode,
+        onLiveEvent,
+    });
 
     useEffect(() => {
-        let subscription: any;
-
-        if (liveMode) {
-            subscription = liveDataContext?.subscribe({
-                channel: `resource/${resource}`,
-                type: "*",
-                callback: (event) => {
-                    if (liveMode === "immediate") {
-                        getAllQueries(resource).forEach((query) => {
-                            queryClient.invalidateQueries(query.queryKey);
-                        });
-                    } else if (liveMode === "controlled") {
-                        onLiveEvent?.(event);
-                    }
-                },
-            });
-        }
-
-        return () => {
-            if (subscription) {
-                liveDataContext?.unsubscribe(subscription);
-            }
-        };
+        console.log("adfasdf");
     }, []);
 
     const queryResponse = useQuery<GetListResponse<TData>, TError>(

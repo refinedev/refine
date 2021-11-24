@@ -1,27 +1,35 @@
 import { useContext, useEffect } from "react";
 import { useQueryClient } from "react-query";
 import { useCacheQueries } from "@hooks";
-import { ILiveContext, LiveEvent } from "../../interfaces";
-import { LiveContext } from "@contexts/live";
+import {
+    ILiveContext,
+    ILiveModeContext,
+    LiveModeProps,
+} from "../../interfaces";
+import { LiveContext, LiveModeContext } from "@contexts/live";
 
 export type UseSubscriptionProps = {
     channel: string;
     resource: string;
-    liveMode?: "immediate" | "controlled";
     enabled?: boolean;
-    onLiveEvent?: (event: LiveEvent) => void;
-};
+} & LiveModeProps;
 
 export const useSubscription = ({
     resource,
     channel,
     enabled = false,
-    liveMode,
+    liveMode: liveModeFromProp,
     onLiveEvent,
 }: UseSubscriptionProps): void => {
     const queryClient = useQueryClient();
     const getAllQueries = useCacheQueries();
     const liveDataContext = useContext<ILiveContext>(LiveContext);
+    const {
+        liveMode: liveModeFromContext,
+        onLiveEvent: onLiveEventContextCallback,
+    } = useContext<ILiveModeContext>(LiveModeContext);
+
+    const liveMode = liveModeFromProp ?? liveModeFromContext;
 
     useEffect(() => {
         let subscription: any;
@@ -38,6 +46,8 @@ export const useSubscription = ({
                     } else if (liveMode === "controlled") {
                         onLiveEvent?.(event);
                     }
+
+                    onLiveEventContextCallback?.(event);
                 },
             });
         }

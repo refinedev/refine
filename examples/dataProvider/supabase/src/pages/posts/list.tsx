@@ -26,7 +26,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 order: "asc",
             },
         ],
-        liveMode: "immediate",
     });
 
     const createMany = useCreateMany();
@@ -40,7 +39,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         queryOptions: {
             enabled: categoryIds.length > 0,
         },
-        liveMode: "immediate",
     });
 
     const { selectProps } = useSelect<ICategory>({

@@ -9,7 +9,7 @@ import {
     GetManyResponse,
     HttpError,
     MetaDataQuery,
-    LiveEvent,
+    LiveModeProps,
 } from "../../interfaces";
 import { useTranslate, useCheckError, useSubscription } from "@hooks";
 import { handleNotification } from "@definitions";
@@ -21,9 +21,7 @@ export type UseManyProps<TData, TError> = {
     successNotification?: ArgsProps | false;
     errorNotification?: ArgsProps | false;
     metaData?: MetaDataQuery;
-    liveMode?: undefined | "immediate" | "controlled";
-    onLiveEvent?: (event: LiveEvent) => void;
-};
+} & LiveModeProps;
 
 /**
  * `useMany` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving multiple items from a `resource`.
@@ -55,10 +53,13 @@ export const useMany = <
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
 
+    const isEnabled =
+        queryOptions?.enabled === undefined || queryOptions?.enabled === true;
+
     useSubscription({
         resource,
         channel: `resources/${resource}`,
-        enabled: true,
+        enabled: isEnabled,
         liveMode,
         onLiveEvent,
     });

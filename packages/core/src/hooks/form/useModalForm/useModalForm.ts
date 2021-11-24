@@ -15,6 +15,7 @@ import {
 import {
     BaseRecord,
     HttpError,
+    LiveModeProps,
     ResourceRouterParams,
 } from "../../../interfaces";
 import { userFriendlyResourceName } from "@definitions";
@@ -41,7 +42,8 @@ export type useModalFormProps<
     TVariables = {},
 > = useFormProps<TData, TError, TVariables> &
     UseModalFormConfigSF &
-    useModalFormConfig;
+    useModalFormConfig &
+    LiveModeProps;
 /**
  * `useModalForm` hook allows you to manage a form within a modal. It returns Ant Design {@link https://ant.design/components/form/ Form} and {@link https://ant.design/components/modal/ Modal} components props.
  *

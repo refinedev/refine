@@ -7,7 +7,7 @@ import {
     HttpError,
     BaseRecord,
     MetaDataQuery,
-    LiveEvent,
+    LiveModeProps,
 } from "../../interfaces";
 import { useCheckError, useTranslate, useSubscription } from "@hooks";
 import { ArgsProps } from "antd/lib/notification";
@@ -20,9 +20,7 @@ export type UseOneProps<TData, TError> = {
     successNotification?: ArgsProps | false;
     errorNotification?: ArgsProps | false;
     metaData?: MetaDataQuery;
-    liveMode?: undefined | "immediate" | "controlled";
-    onLiveEvent?: (event: LiveEvent) => void;
-};
+} & LiveModeProps;
 
 /**
  * `useOne` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving single items from a `resource`.
@@ -52,10 +50,14 @@ export const useOne = <
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
 
+    //TODO: buraya bak
+    const isEnabled =
+        queryOptions?.enabled === undefined || queryOptions?.enabled === true;
+
     useSubscription({
         resource,
         channel: `resources/${resource}/${id}`,
-        enabled: queryOptions?.enabled,
+        enabled: isEnabled,
         liveMode,
         onLiveEvent,
     });

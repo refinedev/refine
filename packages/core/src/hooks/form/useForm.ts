@@ -13,6 +13,7 @@ import {
     BaseRecord,
     GetOneResponse,
     HttpError,
+    LiveModeProps,
     ResourceRouterParams,
 } from "../../interfaces";
 import { UseUpdateReturnType } from "../data/useUpdate";
@@ -42,7 +43,8 @@ export type useFormProps<
     TVariables = {},
 > = ActionParams & {
     resource?: string;
-} & ResourcelessActionFormProps<TData, TError, TVariables>;
+} & ResourcelessActionFormProps<TData, TError, TVariables> &
+    LiveModeProps;
 
 export type UseFormReturnType<
     TData extends BaseRecord = BaseRecord,

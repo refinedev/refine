@@ -14,9 +14,7 @@ import { IPost, ICategory } from "interfaces";
 const { Title, Text } = Typography;
 
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
-    const { queryResult } = useShow<IPost>({
-        liveMode: "immediate",
-    });
+    const { queryResult } = useShow<IPost>();
 
     const { data, isLoading } = queryResult;
     const record = data?.data;
@@ -28,7 +26,6 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
             queryOptions: {
                 enabled: !!record,
             },
-            liveMode: "immediate",
         });
 
     return (

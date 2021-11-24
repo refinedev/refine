@@ -1,11 +1,4 @@
-import { BaseRecord } from "../../interfaces";
-
-export type LiveEvent = {
-    channel: string;
-    type: "deleted" | "updated" | "created" | "*";
-    payload: BaseRecord;
-    date: Date;
-};
+import { LiveEvent } from "../../interfaces";
 
 export type ILiveContext =
     | {

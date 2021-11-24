@@ -15,6 +15,7 @@ import {
     SuccessErrorNotification,
     HttpError,
     MetaDataQuery,
+    LiveModeProps,
 } from "../../../interfaces";
 
 export type UseSelectProps<TData, TError> = {
@@ -28,7 +29,8 @@ export type UseSelectProps<TData, TError> = {
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     defaultValueQueryOptions?: UseQueryOptions<GetManyResponse<TData>, TError>;
     metaData?: MetaDataQuery;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification &
+    LiveModeProps;
 
 export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
     selectProps: SelectProps<{ value: string; label: string }>;
@@ -67,6 +69,8 @@ export const useSelect = <
         errorNotification,
         defaultValueQueryOptions,
         queryOptions,
+        liveMode,
+        onLiveEvent,
         metaData,
     } = props;
 
@@ -95,6 +99,8 @@ export const useSelect = <
             },
         },
         metaData,
+        liveMode,
+        onLiveEvent,
     });
 
     const defaultQueryOnSuccess = (data: GetListResponse<TData>) => {
@@ -123,6 +129,8 @@ export const useSelect = <
         successNotification,
         errorNotification,
         metaData,
+        liveMode,
+        onLiveEvent,
     });
     const { refetch: refetchList } = queryResult;
 
@@ -130,7 +138,7 @@ export const useSelect = <
         if (search) {
             refetchList();
         }
-    }, [search]);
+    }, [search, queryResult.data, defaultValueQueryResult.data]);
 
     const onSearch = (value: string) => {
         if (!value) {

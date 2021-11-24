@@ -14,6 +14,7 @@ import {
     useNavigation,
     useResourceWithRoute,
     useList,
+    useLiveMode,
 } from "@hooks";
 import {
     stringifyTableParams,
@@ -88,7 +89,7 @@ export const useTable = <
     successNotification,
     errorNotification,
     queryOptions,
-    liveMode,
+    liveMode: liveModeFromProp,
     onLiveEvent,
     metaData,
 }: useTableProps<TData, TError, TSearchVariables> = {}): useTableReturnType<
@@ -110,6 +111,7 @@ export const useTable = <
 
     const { useLocation, useParams } = useRouterContext();
     const { search } = useLocation();
+    const liveMode = useLiveMode(liveModeFromProp);
 
     let defaultCurrent = initialCurrent;
     let defaultPageSize = initialPageSize;
