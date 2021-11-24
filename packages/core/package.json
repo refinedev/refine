@@ -1,7 +1,7 @@
 {
     "name": "@pankod/refine",
-    "version": "2.0.11",
-    "description": "",
+    "version": "2.2.2",
+    "description": "refine is a React-based framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
     "private": false,
     "main": "dist/index.js",
     "module": "dist/refine.esm.js",
@@ -16,6 +16,8 @@
         "generate-theme": "npx @emeks/antd-custom-theme-generator -w --antd ../../node_modules/antd ./src/assets/styles/custom-theme.less ./src/assets/styles/styles.min.css"
     },
     "peerDependencies": {
+        "antd": "^4.17.1",
+        "dayjs": "^1.10.7",
         "react": "^17.0.2",
         "react-dom": "^17.0.2"
     },
@@ -50,8 +52,8 @@
     },
     "dependencies": {
         "@ant-design/icons": "^4.5.0",
-        "antd": "4.16.11",
-        "dayjs": "1.10.5",
+        "antd": "^4.17.1",
+        "dayjs": "^1.10.7",
         "export-to-csv": "^0.2.1",
         "humanize-string": "^2.1.0",
         "lodash": "^4.17.21",

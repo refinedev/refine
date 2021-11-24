@@ -1,5 +1,7 @@
 {
-  "version": "2.0.11",
+  "name": "@pankod/refine-strapi-graphql",
+  "description": "refine Strapi GraphQL data provider. refine is a React-based framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
+  "version": "2.2.2",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -19,7 +21,6 @@
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
-  "name": "@pankod/refine-strapi-graphql",
   "author": "Pankod",
   "module": "dist/refine-strapi-graphql.esm.js",
   "size-limit": [
@@ -41,7 +42,7 @@
     "tslib": "^2.3.1"
   },
   "dependencies": {
-    "@pankod/refine": "^2.0.11",
+    "@pankod/refine": "^2.2.2",
     "camelcase": "^6.2.0",
     "gql-query-builder": "^3.5.5",
     "graphql": "^15.6.1",

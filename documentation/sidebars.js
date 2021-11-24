@@ -312,6 +312,11 @@ module.exports = {
                 },
                 {
                     type: "category",
+                    label: "Router Provider",
+                    items: ["examples/router-provider/react-location"],
+                },
+                {
+                    type: "category",
                     label: "Form",
                     items: [
                         "examples/form/useForm",
