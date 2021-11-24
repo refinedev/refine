@@ -69,4 +69,30 @@ describe("CanAccess Component", () => {
             ).toBe("refine"),
         );
     });
+
+    it("should fallback successfully render when not accessible", async () => {
+        const { container, queryByText, getByText } = render(
+            <CanAccess
+                action="access"
+                resource="posts"
+                fallback={<p>Access Denied</p>}
+            >
+                <p>Accessible</p>
+            </CanAccess>,
+            {
+                wrapper: TestWrapper({
+                    accessControlProvider: {
+                        can: () => Promise.resolve({ can: false }),
+                    },
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        await wait(() =>
+            expect(queryByText("Accessible")).not.toBeInTheDocument(),
+        );
+        await wait(() => getByText("Access Denied"));
+    });
 });
