@@ -17,7 +17,7 @@
 		"@types/react": "^17.0.4",
 		"@types/react-dom": "^17.0.4",
 		"craco-less": "^1.17.1",
-		"dayjs": "1.10.5",
+		"dayjs": "^1.10.7",
 		"google-map-react": "^2.1.10",
 		"i18next": "^20.1.0",
 		"i18next-browser-languagedetector": "^6.1.1",
