@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useQuery, UseQueryResult, UseQueryOptions } from "react-query";
 
 import { AccessControlContext } from "@contexts/accessControl";
-import { CanParams, CanReturnType } from "../../interfaces";
+import { CanParams, CanReturnType } from "../../../interfaces";
 
 export type UseCanProps = CanParams & {
     queryOptions?: UseQueryOptions<CanReturnType>;

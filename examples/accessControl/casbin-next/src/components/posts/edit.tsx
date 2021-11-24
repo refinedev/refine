@@ -16,8 +16,9 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost } from "src/interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
+        "write",
+    );
 
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 

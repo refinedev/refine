@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-    Create,
+    Edit,
     Form,
     Input,
     IResourceComponentsProps,
@@ -16,19 +16,20 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostCreate: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+export const PostEdit: React.FC<IResourceComponentsProps> = () => {
+    const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
+    const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
+        defaultValue: postData?.category.id,
     });
 
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
+    const [selectedTab, setSelectedTab] =
+        useState<"write" | "preview">("write");
 
     return (
-        <Create saveButtonProps={saveButtonProps}>
+        <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
@@ -98,6 +99,6 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                     />
                 </Form.Item>
             </Form>
-        </Create>
+        </Edit>
     );
 };
