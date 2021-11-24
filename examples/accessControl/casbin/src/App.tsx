@@ -28,10 +28,9 @@ const App: React.FC = () => {
                 can: async ({ action, params, resource }) => {
                     const enforcer = await newEnforcer(model, adapter);
                     if (
-                        (action === "delete" ||
-                            action === "edit" ||
-                            action === "show") &&
-                        !!params
+                        action === "delete" ||
+                        action === "edit" ||
+                        action === "show"
                     ) {
                         return Promise.resolve({
                             can: await enforcer.enforce(
@@ -41,12 +40,17 @@ const App: React.FC = () => {
                             ),
                         });
                     }
+                    if (action === "field") {
+                        return Promise.resolve({
+                            can: await enforcer.enforce(
+                                role,
+                                `${resource}/${params.field}`,
+                                action,
+                            ),
+                        });
+                    }
                     return Promise.resolve({
-                        can: await enforcer.enforce(
-                            role,
-                            `${resource}`,
-                            action,
-                        ),
+                        can: await enforcer.enforce(role, resource, action),
                     });
                 },
             }}
