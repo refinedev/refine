@@ -39,9 +39,8 @@ const App: React.FC = () => {
         // other providers and props
         accessControlProvider={{
             can: async ({ resource, action, params }) => {
-                if(resource === "posts" && action === "edit")
-                {
-                    return Promise.resolve({can: false});
+                if(resource === "posts" && action === "edit") {
+                    return Promise.resolve({can: false, reason: "Unauthorized"});
                 }
 
                 return Promise.resolve({can: true});

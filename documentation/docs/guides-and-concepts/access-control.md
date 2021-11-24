@@ -21,12 +21,12 @@ We will be using **casbin** in this guide for users with different roles who hav
 We need to install casbin.
 
 ```bash
-npm install casbin --save
+npm install casbin.js --save
 ```
 
 ## Setup
 
-The app will have two resources: **posts** and **categories** with crud pages(list, create, edit and show)
+The app will have three resources: **posts**, **users** and **categories** with crud pages(list, create, edit and show)
 
 [You can refer to codesandbox to how they are implemented](#live-codesandbox-example)
 
@@ -39,6 +39,7 @@ import routerProvider from "@pankod/refine-react-router";
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import { UserList, UserCreate, UserEdit, UserShow } from "pages/users";
 import {
     CategoryList,
     CategoryCreate,
@@ -61,6 +62,13 @@ const App: React.FC = () => {
                     edit: PostEdit,
                     show: PostShow,
                     canDelete: true,
+                },
+                {
+                    name: "users",
+                    list: UserList,
+                    create: UserCreate,
+                    edit: UserEdit,
+                    show: UserShow,
                 },
                 {
                     name: "categories",
@@ -116,35 +124,44 @@ You can can find more examples in [casbin documentation](https://casbin.org/docs
 
 ## Adding `accessControlProvider`
 
-implement simple version of `can`
+Now we will implement the `can` method for `accessControlProvider` to integrate our policy.
+
+
+```tsx title="src/App.tsx" 
+// ...
+import { newEnforcer } from "casbin.js";
+
+import { model, adapter } from "accessControl";
+
+const App: React.FC = () => {
+    return (
+        <Refine
+            // ...
+            // highlight-start
+            accessControlProvider={{
+                can: async ({ resource, action, params }) => {
+                    const enforcer = await newEnforcer(model, adapter);
+                    
+                    return Promise.resolve({
+                        can: await enforcer.enforce("editor", resource, action),
+                    });
+                },
+            }}
+            // highlight-end
+            // ...
+        />
+    );
+};
+
+export default App;
+
+```
+
+What happens is that whenever a part of the app checks for access control, refine passes `resource`, `action` and `params` parameters to `can` and then we can use these parameters to integrate our specific access control solution which is **casbin** in this case.
+
+What our model provides is that user with role `editor` have access for `list` action on `posts` resource. Although we have two other resources since our policy doesn't include them, they will not appear on sidebar menu. Also in list page of `posts` buttons for **create**, **edit** and **show** buttons will be disabled.
 
 screenshot -> emphasize disabled buttons. menu has only posts item.
-
-admin can access posts list but not create, edit, delete. buttons will be disabled.
-
-## Handling access with params
-
-update `can`: (write if for different actions)
-
-can configure for ownership
-
-admin -> editor
-
-```ts
-export const adapter = new MemoryAdapter(`
-p, admin, posts, (list)|(create)
-p, admin, posts/*, (edit)|(show)|(delete)
-`);
-```
-
-`*` is wildcard. can be specialized for specific ids:
-
-```ts
-export const adapter = new MemoryAdapter(`
-p, admin, posts, (list)|(create)
-p, admin, posts/5, (edit)|(show)|(delete)
-`);
-```
 
 ## Adding Different Roles
 
@@ -171,5 +188,34 @@ Demonstration with dynamic role change
 - update `can` for dynamic role parameter
 
 gif?
+
+## Handling access with params
+
+### ID Based Access
+
+update `can`: (write if for different actions)
+
+can configure for ownership
+
+admin -> editor
+
+```ts
+export const adapter = new MemoryAdapter(`
+p, admin, posts, (list)|(create)
+p, admin, posts/*, (edit)|(show)|(delete)
+`);
+```
+
+`*` is wildcard. can be specialized for specific ids:
+
+```ts
+export const adapter = new MemoryAdapter(`
+p, admin, posts, (list)|(create)
+p, admin, posts/5, (edit)|(show)|(delete)
+`);
+```
+
+### Field Based Access
+
 
 ## Live Codesandbox Example
