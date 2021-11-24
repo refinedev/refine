@@ -25,6 +25,7 @@ import {
     SuccessErrorNotification,
     MetaDataQuery,
 } from "../../../interfaces";
+import { ActionParams } from "../useForm";
 
 type SaveButtonProps = {
     disabled: boolean;
@@ -71,7 +72,8 @@ export type useEditFormProps<
     undoableTimeout?: number;
     resource: IResourceItem;
     metaData?: MetaDataQuery;
-} & SuccessErrorNotification;
+} & ActionParams &
+    SuccessErrorNotification;
 
 /**
  * A hook that the `useForm` uses
@@ -93,6 +95,7 @@ export const useEditForm = <
     successNotification,
     errorNotification,
     metaData,
+    action: actionFromParams,
 }: useEditFormProps<TData, TError, TVariables>): useEditForm<
     TData,
     TError,
@@ -100,8 +103,11 @@ export const useEditForm = <
 > => {
     const { useParams } = useRouterContext();
 
-    const { id: idFromRoute, action } = useParams<ResourceRouterParams>();
+    const { id: idFromRoute, action: actionFromRoute } =
+        useParams<ResourceRouterParams>();
     const [editId, setEditId] = React.useState<string | undefined>(idFromRoute);
+
+    const action = actionFromParams ?? actionFromRoute;
 
     const [formAnt] = Form.useForm();
     const formSF = useFormSF<TData, TVariables>({
@@ -122,13 +128,13 @@ export const useEditForm = <
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
-    const isEdit = !!editId || action === "edit";
+    const isEdit = editId !== undefined && action === "edit";
 
     const queryResult = useOne<TData>({
         resource: resource.name,
         id: editId ?? "",
         queryOptions: {
-            enabled: isEdit && editId !== undefined,
+            enabled: isEdit,
         },
         metaData,
     });

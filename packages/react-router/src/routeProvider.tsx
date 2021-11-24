@@ -49,7 +49,21 @@ const RouteProviderBase: React.FC = (props) => {
         if (CreateComponent) {
             routes.push({
                 exact: true,
-                path: `/:resource(${route})/:action(create)/:id?`,
+                path: `/:resource(${route})/:action(create)`,
+                component: () => (
+                    <CreateComponent
+                        canCreate={canCreate}
+                        canEdit={canEdit}
+                        canDelete={canDelete}
+                        canShow={canShow}
+                        name={name}
+                    />
+                ),
+            });
+
+            routes.push({
+                exact: true,
+                path: `/:resource(${route})/:action(clone)/:id`,
                 component: () => (
                     <CreateComponent
                         canCreate={canCreate}
