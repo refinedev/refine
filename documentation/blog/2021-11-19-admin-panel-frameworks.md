@@ -99,7 +99,8 @@ When React-admin needs to communicate with API, it uses Data Provider.
 <img src={admin_flow} alt="admin" />
 
 Here are the React-Admin data provider methods:
-```
+
+```ts
 const dataProvider = {
     getList:    (resource, params) => Promise,
     getOne:     (resource, params) => Promise,
@@ -134,12 +135,12 @@ const App = () => {
     }, []);
 
     if (!dataProvider) {
-        return <div>Loading < /div>;
+        return <div>Loading</div>;
     }
 
     return (
-        <Admin dataProvider= { dataProvider } >
-            <Resource name="Post" list = { PostList } edit = { PostEdit } create = { PostCreate } />
+        <Admin dataProvider= {dataProvider} >
+            <Resource name="Post" list ={PostList} edit ={PostEdit} create ={PostCreate} />
         </Admin>
     );
 }
@@ -198,7 +199,7 @@ The providers that React admin supports are as follows:
 With React-Admin, you can develop effective B2B applications and admin panels in a very short time. Although most of the processes are handled with hooks, the general architecture is built on components. In general, we can say that it is customizable but not very flexible. In some cases or business models, you may need to think about this yourself and make some additions.
 #### UI/UX Customization: 
 React-Admin offers solutions in component architecture. The disadvantage of this is that you will have difficulty meeting your customization needs or different business requests. These  customizable, but they can be a bit of a hard for different business models. 
-#### Logic customization:
+#### Logic Customization:
 React-Admin uses redux and redux-saga for state management. You should know these two technologies well. In some cases you may need to create the actions and reducers yourself. This is also a disadvantage for many situations.
 
 React-Admin Docs & Demo : [Documentation](https://marmelab.com/react-admin/Readme.html) - [Live Demo](https://marmelab.com/react-admin-demo/#/)
@@ -365,7 +366,7 @@ A data provider is the place where a refine app communicates with an API.
 
 A data provider must include following methods:
 
-```
+```ts
 const dataProvider = {
     create: ({ resource, variables, metaData }) => Promise,
     createMany: ({ resource, variables, metaData }) => Promise,
