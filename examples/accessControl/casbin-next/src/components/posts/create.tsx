@@ -17,9 +17,8 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "src/interfaces";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
+    const [selectedTab, setSelectedTab] =
+        useState<"write" | "preview">("write");
 
     const { formProps, saveButtonProps } = useForm<IPost>();
 
