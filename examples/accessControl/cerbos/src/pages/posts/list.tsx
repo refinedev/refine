@@ -13,6 +13,8 @@ import {
     Select,
     Radio,
     TagField,
+    useCan,
+    NumberField,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
@@ -34,6 +36,12 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         resource: "categories",
         optionLabel: "title",
         optionValue: "id",
+    });
+
+    const { data: canAccess } = useCan({
+        resource: "posts",
+        action: "field",
+        params: { field: "hit" },
     });
 
     return (
@@ -69,6 +77,20 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                         </FilterDropdown>
                     )}
                 />
+                {canAccess?.can && (
+                    <Table.Column
+                        dataIndex="hit"
+                        title="Hit"
+                        render={(value: number) => (
+                            <NumberField
+                                value={value}
+                                options={{
+                                    notation: "compact",
+                                }}
+                            />
+                        )}
+                    />
+                )}
                 <Table.Column
                     dataIndex="status"
                     title="Status"

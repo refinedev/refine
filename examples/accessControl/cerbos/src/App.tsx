@@ -57,7 +57,9 @@ const App: React.FC = () => {
                         actions: [action],
                     };
                     const result = await cerbos.check(cerbosPayload);
-                    return result.isAuthorized(params?.id || "new", action);
+                    return Promise.resolve({
+                        can: result.isAuthorized(params?.id || "new", action),
+                    });
                 },
             }}
             resources={[
