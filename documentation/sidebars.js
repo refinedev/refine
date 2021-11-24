@@ -271,6 +271,7 @@ module.exports = {
                 "guides-and-concepts/custom-layout",
                 "guides-and-concepts/custom-pages",
                 "guides-and-concepts/theme",
+                "guides-and-concepts/access-control",
             ],
         },
         {
