@@ -1,5 +1,5 @@
 ---
-title: Build Fast and Customizable Admin Panel with NestJS.
+title: Build Fast and Customizable Admin Panel with NestJS
 description: We will prepare a simple `job-posting` application. We will also use the refine framework for the admin panel. The project will consist of two parts, api and admin.
 slug: customizable-admin-panel-with-nestjs
 authors: yildiray

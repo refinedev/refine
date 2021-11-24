@@ -42,7 +42,8 @@
   "dependencies": {
     "@pankod/refine": "^2.1.1",
     "@types/qs": "^6.9.7",
-    "qs": "^6.10.1"
+    "qs": "^6.10.1",
+    "next": "^12.0.3"
   },
   "peerDependencies": {
     "next": "^12.0.3"
