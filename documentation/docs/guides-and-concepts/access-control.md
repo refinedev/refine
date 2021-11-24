@@ -4,6 +4,8 @@ title: Access Control
 sidebar_label: Access Control
 ---
 
+import simpleAccess from '@site/static/img/guides-and-concepts/access-control/simple-access.png';
+
 ## Introduction
 
 Access control is a broad topic where there are lots of advanced solutions that provide different set of features. **refine** is deliberately agnostic for its own API to be able to integrate different solutions(RBAC, ABAC, ACL, [casbin](https://casbin.org/), [casl](https://casl.js.org/v5/en/), [cerbos](https://cerbos.dev/), [accesscontrol.js](https://onury.io/accesscontrol/)). `can` method would be the entry point for those solutions.
@@ -159,9 +161,17 @@ export default App;
 
 What happens is that whenever a part of the app checks for access control, refine passes `resource`, `action` and `params` parameters to `can` and then we can use these parameters to integrate our specific access control solution which is **casbin** in this case.
 
-What our model provides is that user with role `editor` have access for `list` action on `posts` resource. Although we have two other resources since our policy doesn't include them, they will not appear on sidebar menu. Also in list page of `posts` buttons for **create**, **edit** and **show** buttons will be disabled.
+What our model provides is that user with role `editor` have access for `list` action on `posts` resource. Even though we have two other resources, since our policy doesn't include them, they will not appear on sidebar menu. Also in list page of `posts`, buttons for **create**, **edit** and **show** buttons will be disabled.
 
-screenshot -> emphasize disabled buttons. menu has only posts item.
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={simpleAccess} alt="Ready Page" />
+</div>
+<br/>
 
 ## Adding Different Roles
 
