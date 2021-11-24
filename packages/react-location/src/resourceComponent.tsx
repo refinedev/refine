@@ -39,7 +39,7 @@ export const ResourceComponentWrapper: React.FC = () => {
 
         const renderCrud = () => {
             switch (action) {
-                case undefined: {
+                case undefined:
                     return (
                         <List
                             name={name}
@@ -49,9 +49,9 @@ export const ResourceComponentWrapper: React.FC = () => {
                             canShow={canShow}
                         />
                     );
-                }
 
-                case "create": {
+                case "create":
+                case "clone":
                     return (
                         <Create
                             name={name}
@@ -61,9 +61,8 @@ export const ResourceComponentWrapper: React.FC = () => {
                             canShow={canShow}
                         />
                     );
-                }
 
-                case "edit": {
+                case "edit":
                     return (
                         <Edit
                             name={name}
@@ -73,9 +72,8 @@ export const ResourceComponentWrapper: React.FC = () => {
                             canShow={canShow}
                         />
                     );
-                }
 
-                case "show": {
+                case "show":
                     return (
                         <Show
                             name={name}
@@ -85,7 +83,6 @@ export const ResourceComponentWrapper: React.FC = () => {
                             canShow={canShow}
                         />
                     );
-                }
             }
         };
 
