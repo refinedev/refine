@@ -140,7 +140,7 @@ Sider is also integrated so that unaccessible resources won't appear in the side
 
 Menu items will check access control with `{resource, action: "list"}`
 
-For example if your app has resource `posts` it will be checked with `{resource: "posts", action: "list"}`
+For example if your app has resource `posts` it will be checked with `{ resource: "posts", action: "list" }`
 
 ### Buttons
 
