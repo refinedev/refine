@@ -237,7 +237,7 @@ npx superplate-cli demo-refine-project
 * React Location: React Location router provider support 
 
 ### SSR - Next.js Support 
-Refine has support for SSR - Next.js. This is an important feature that distinguishes Refine from other frameworks. Thanks to this feature, Refine provides the opportunity to develop B2C applications in addition to B2B and admin panel.
+Refine has support for SSR - Next.js. This is an important feature that separates Refine from other frameworks. Thanks to this feature, Refine provides the opportunity to develop B2C applications in addition to B2B and admin panel.
 
 Refine can be used with Next.js to SSR your pages. It doesn't get in the way and follows Next.js conventions and also provides helper modules when necessary.
 
