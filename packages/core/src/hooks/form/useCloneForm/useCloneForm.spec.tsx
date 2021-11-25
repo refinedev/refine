@@ -9,7 +9,7 @@ import { useCloneForm } from "./useCloneForm";
 
 const Wrapper = TestWrapper({
     dataProvider: MockJSONServer,
-    routerInitialEntries: ["/posts/create/1"],
+    routerInitialEntries: ["/posts/clone/1"],
 });
 
 const WrapperWithRoute: React.FC = ({ children }) => (
