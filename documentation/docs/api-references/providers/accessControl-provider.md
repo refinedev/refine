@@ -154,7 +154,7 @@ Let's say these buttons are rendered where `resource` is `posts` and `id` is `1`
 - [**delete**](/api-references/components/buttons/delete.md): `{ resource: "posts, action: "delete", params: { id: 1 } }`
 - [**show**](/api-references/components/buttons/show.md): `{ resource: "posts, action: "show", params: { id: 1 } }`
 
-These buttons will be disabled if access control returns `false`
+These buttons will be disabled if access control returns `{ can: false }`
 
 ## Live Codesandbox Example
 
