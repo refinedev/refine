@@ -12,7 +12,7 @@ import { DeleteButtonProps } from "../../../components/buttons/delete";
 import { useFormProps, UseFormReturnType } from "../useForm";
 
 export interface UseDrawerFormConfig extends UseFormConfig {
-    action: "show" | "edit" | "create";
+    action: "show" | "edit" | "create" | "clone";
 }
 
 export type UseDrawerFormProps<

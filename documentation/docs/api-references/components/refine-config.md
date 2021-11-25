@@ -145,9 +145,10 @@ https://api.fake-rest.refine.dev/posts/1
 `name` also determines the routes of the pages of a resource:
 
 -   List page -> `/posts`
--   Create page -> `/posts/create/:id?`
+-   Create page -> `/posts/create`
 -   Edit page -> `/posts/edit/:id`
 -   Show page -> `/posts/show/:id`
+-   Clone page -> `/posts/clone/:id`
 
 <br />
 

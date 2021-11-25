@@ -23,7 +23,11 @@ import { ResourceComponentWrapper } from "./resourceComponent";
 
 export const location = new ReactLocation();
 
-export const RouterComponent: React.FC<RouterProps> = (props) => {
+export const RouterComponent: React.FC<RouterProps> = ({
+    children,
+    location: locationFromProps,
+    ...rest
+}) => {
     const { resources } = useResource();
     const { DashboardPage, LoginPage } = useRefineContext();
 
@@ -55,12 +59,10 @@ export const RouterComponent: React.FC<RouterProps> = (props) => {
 
         return (
             <Router
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                location={location}
-                routes={routes}
+                location={locationFromProps ?? location}
+                {...rest}
                 filterRoutes={rankRoutes}
-                {...props}
+                routes={routes}
             />
         );
     }
@@ -69,18 +71,13 @@ export const RouterComponent: React.FC<RouterProps> = (props) => {
         ...[...(customRoutes || [])],
         {
             path: "/",
-            children: [
-                {
-                    path: "/",
-                    element: DashboardPage ? (
-                        <LayoutWrapper>
-                            <DashboardPage />
-                        </LayoutWrapper>
-                    ) : (
-                        <Navigate to={`/${resources[0].route}`} />
-                    ),
-                },
-            ],
+            element: DashboardPage ? (
+                <LayoutWrapper>
+                    <DashboardPage />
+                </LayoutWrapper>
+            ) : (
+                <Navigate to={`/${resources[0].route}`} />
+            ),
         },
         {
             path: `:resource`,
@@ -113,12 +110,10 @@ export const RouterComponent: React.FC<RouterProps> = (props) => {
 
     return (
         <Router
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            location={location}
-            routes={routes}
+            location={locationFromProps ?? location}
+            {...rest}
             filterRoutes={rankRoutes}
-            {...props}
+            routes={routes}
         />
     );
 };

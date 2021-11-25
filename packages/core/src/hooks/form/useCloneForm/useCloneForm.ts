@@ -11,6 +11,7 @@ import {
 } from "../../../interfaces";
 import { useCreateForm, useCreateFormProps } from "../useCreateForm";
 import { UseCreateReturnType } from "../../data/useCreate";
+import { ActionParams } from "../useForm";
 
 export type useCloneFormProps<
     TData extends BaseRecord = BaseRecord,
@@ -18,7 +19,7 @@ export type useCloneFormProps<
     TVariables = {},
 > = useCreateFormProps<TData, TError, TVariables> & {
     cloneId?: string;
-};
+} & ActionParams;
 
 type SaveButtonProps = {
     disabled: boolean;
@@ -62,11 +63,14 @@ export const useCloneForm = <
 
     const { useParams } = useRouterContext();
 
-    const { id: idFromRoute, action } = useParams<ResourceRouterParams>();
+    const { id: idFromRoute, action: actionFromRoute } =
+        useParams<ResourceRouterParams>();
 
     const id = props.cloneId ?? idFromRoute;
+
+    const action = props.action ?? actionFromRoute;
     // Check if clone process comes from useParams or modal
-    const isClone = (action === "create" && !!id) || !!id;
+    const isClone = action === "clone" && id !== undefined;
 
     const queryResult = useOne<TData>({
         resource: props.resource.name,
