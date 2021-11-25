@@ -34,7 +34,6 @@ import {
     SuccessErrorNotification,
     HttpError,
     MetaDataQuery,
-    LiveEvent,
     LiveModeProps,
 } from "../../../interfaces";
 
