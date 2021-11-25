@@ -3,7 +3,7 @@ title: Best Admin Panel Framework 2021
 description: Admin Panel Frameworks
 slug: best-admin-panel-framework-2021
 authors: melih
-tags: [refine, strapi, react, tutorial]
+tags: [refine, react-admin, react, tutorial]
 image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
 ---
@@ -26,6 +26,10 @@ Motivation is our most important resource when developing a project. If you lose
 When you decide to use these types of frameworks, we need to know to what extent and how they solve your work. If we do not know what these frameworks do and how customizable they are, the problems we may encounter can reduce our motivation.
 
 We will examine how the frameworks we will talk about solve our work and how customizable they are under the title of `Customization`.
+
+:::note
+This comparison table strives to be as accurate and as unbiased as possible. If you use any of these libraries and feel the information could be improved, feel free to suggest changes (with notes or evidence of claims) using the "Edit this page on Github" link at the bottom of this page.
+:::
 
 ## React-Admin
 
@@ -195,12 +199,29 @@ The providers that React admin supports are as follows:
 * Local Strage: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage)
 * Supabase: [https://github.com/marmelab/ra-supabase](https://github.com/marmelab/ra-supabase)
 
+[You can view the full list of providers here ->](https://marmelab.com/react-admin/DataProviders.html)
+
 ### Customization
 With React-Admin, you can develop effective B2B applications and admin panels in a very short time. Although most of the processes are handled with hooks, the general architecture is built on components. In general, we can say that it is customizable but not very flexible. In some cases or business models, you may need to think about this yourself and make some additions.
 #### UI/UX Customization: 
 React-Admin offers solutions in component architecture. The disadvantage of this is that you will have difficulty meeting your customization needs or different business requests. These  customizable, but they can be a bit of a hard for different business models. 
 #### Logic Customization:
 React-Admin uses redux and redux-saga for state management. You should know these two technologies well. In some cases you may need to create the actions and reducers yourself. This is also a disadvantage for many situations.
+
+### Enterprise-Edition
+In addition to these features it provides, React-Admin offers some modules as Enterprise-Edition.
+
+A few of these modules are as follows:
+
+* RBAC
+* Editable-Datagrid
+* Realtime
+* Search 
+* Navigation
+
+[For more information about Enterprise-Edition and other modules](https://marmelab.com/ra-enterprise)
+
+
 
 React-Admin Docs & Demo : [Documentation](https://marmelab.com/react-admin/Readme.html) - [Live Demo](https://marmelab.com/react-admin-demo/#/)
 
@@ -569,4 +590,172 @@ Refine, comes ready-made decoupled from the UI, and is used. Refine mostly touch
 #### Logic Customization:
 Refine, works flawless with react-query. You don't have to worry about state management in your business model or when you encounter a different situation.
 
+### Enterprise-Editon
+All features of Refine are available as open source.
+
+* Access Control Provider (RBAC, ABAC, ACL, IP, LDAP, etc...)
+* Realtime
+* Search 
+* Navigation and more features are available
+
 Refine Docs & Demo: [Documentation](https://refine.dev/docs/) - [Live Demo](https://refine.dev/demo/)
+
+
+
+## AdminBro
+AdminBro is an open-source package from  that adds an auto-generated admin panel to your Node.js application. You provide database models or schemas and AdminBro generates the user interface for you. 
+
+You can connect your various databases to the admin interface and perform standard CRUD operations  on the records. In this way, it makes it to make changes on your data and provides you with a great deal of convenience.
+
+You can quickly develop and customize the Admin panel with AdminBro.
+
+It provides you with solutions and provides convenience when making admin panel and b2b applications. It is an open source project that has been in development and ongoing development for a long time. 
+
+### Installation
+
+We can say that it is difficult to install, but it is clearly explained step by step in the documentation.
+
+:::note
+Since AdminBro uses your existing framework to render its routes - you have to use one of our plugins.
+
+There are plugins for:
+* Express
+* Hapi
+* Koa.js
+* Nest.js
+:::note
+
+Install the AdminBro along with the express plugin
+
+```bash
+npm install admin-bro @admin-bro/express
+```
+
+Then, we need to install some dependencies express and the express-formidable packages. express-formidable is a peer dependency for AdminBro
+
+ ```bash
+ npm install express express-formidable
+ ```
+
+[For detailed installation →](https://adminbro.com/tutorial-installation-instructions.html)
+
+### Features 
+
+* You can use any data from any source and make changes to the data(create, read, update, delete)
+* Custom actions
+* Custom resource decorators
+* Form validation 
+* A full-featured control panel can be created.
+* Internationalization(i18n)
+
+### SSR - Next.js Support​
+AdminBro does not support SSR-Next.js. It only helps you develop B2B and admin panel applications.
+
+### Routing
+Adminbro's routing processes are slightly different than others. You should create an express router that will handle all its routes.
+
+```jsx
+const AdminBro = require('admin-bro')
+const AdminBroExpress = require('@admin-bro/express')
+
+const express = require('express')
+const app = express()
+
+const adminBro = new AdminBro({
+  databases: [],
+  rootPath: '/admin',
+})
+
+const router = AdminBroExpress.buildRouter(adminBro)
+```
+The concept of routing is handled in a different way and in general all routing operations are defined through this file.
+
+
+### Data Provider Logic
+It does not have a data provider exactly like other frameworks. It has a different structure. It has created functions for you to control your data. But there are rules that we must follow and do.
+
+AdminBro can be connected to many different types of resources. Right now, they support the following options:
+
+* Mongoose
+* Sequelize
+* TypeORM
+
+To add resources , you first have to intall an adapter for the resource you want to use.
+
+Let's take a look at an example made with the mongoose adapter.
+
+```bash
+npm install mongoose @admin-bro/mongoose
+```
+
+```tsx title="index.js"
+const AdminBro = require('admin-bro')
+const AdminBroExpress = require('@admin-bro/express')
+const AdminBroMongoose = require('@admin-bro/mongoose')
+ 
+const express = require('express')
+const app = express()
+ 
+const mongoose = require('mongoose')
+ 
+AdminBro.registerAdapter(AdminBroMongoose)
+ 
+const run = async () => {
+  const connection = await mongoose.connect('mongodb://localhost:27017/users', {useNewUrlParser: true, useUnifiedTopology: true})
+ 
+  const User = mongoose.model('User', { name: String, email: String, surname: String })
+ 
+  const adminBro = new AdminBro ({
+    Databases: [connection],
+    rootPath: '/admin',
+    resources: [User]
+  })
+  const router = AdminBroExpress.buildRouter(adminBro)
+  app.use(adminBro.options.rootPath, router)
+     
+  app.listen(3000, ()=> {
+    console.log('Application is up and running under localhost:3000/admin')
+  })
+}
+run()
+```
+Here we first installed and connected mongoose. We then created a model and passed it to the AdminBro resource. AdminBro has built an interface for us where we can list our users. You can also add your own [custom adapters](https://adminbro.com/tutorial-writing-custom-adapters.html) and set up [custom resources](https://adminbro.com/tutorial-customizing-resources.html).
+
+The logic is well covered and also well explained in the documentation. But we can say that it is complex compared to other frameworks. It can be difficult to use on big data. 
+
+### Customization
+AdminBro is good at customizing. You can connect your own adapters and customize your resources. These customizations are challenging and complex.
+
+Some customizable features are as follows:
+ * [Customize Resources](https://adminbro.com/tutorial-customizing-resources.html)
+ * [Customize Actions](https://adminbro.com/tutorial-actions.html)
+ * [Custom Validations](https://adminbro.com/tutorial-actions-validations.html)
+ * [Customize dashboard](https://adminbro.com/tutorial-custom-dashboard.html)
+
+#### UI/UX Customization:​
+It automatically offers you an interface option that you can use. You can also develop and customize your own components. You can do your own styling and write your own custom components, but for this customization, you need to follow and apply a few steps. It doesn't speed you up in UI development.
+
+### Enterprise-Editon
+All features of Adminbro are open source and accessible.
+
+* Role-Based Access Control
+* Content Management System
+
+AdminBro Docs & Demo: [Documentation](https://adminbro.com/tutorial-installation-instructions.html) - [Live Demo](https://admin-bro-example-app-staging.herokuapp.com/admin/login)
+
+## Conclusion
+In general, these frameworks that we are comparing have appeared for the same purpose. All of them are successful in meeting business demands and offering you a solution. Here are the this solutions way that they offer, they may differ and there may be distinguishing features between them.
+
+At this point, the questions you should ask when choosing these of framework may be as follows:
+
+* How flexible are they in offering solutions to the different business demands we may encounter?
+
+* How difficult will it be to implement the providers and features we will be using?
+
+* If any problem arises, can I easily find a solution from the documentation?
+
+* How dependent am I on this framework when using it in my project and does it offer customization possibilities?
+
+* What does it offer me as an extra feature?
+
+In this article, we tried to answer these questions. By reading this article, you can choose the appropriate framework for your project and use it.
