@@ -126,8 +126,8 @@ const { data } = useCan({
 
 They will check access control with parameters:
 
-- list (e.g. `/posts`): `{resource: "posts", action: "list"}`
-- create (e.g. `/posts/create`): `{resource: "posts", action: "create"}`
+- list (e.g. `/posts`): `{ resource: "posts", action: "list" }`
+- create (e.g. `/posts/create`): `{ resource: "posts", action: "create" }`
 - clone (e.g. `/posts/clone/1`): `{ resource: "posts", action: "create", params: {id :1} }`
 - edit (e.g. `/posts/edit/1`): `{resource: "posts", action: "edit", params: {id :1}}`
 - show (e.g. `/posts/show/1`): `{resource: "posts", action: "show", params: {id :1}}`
