@@ -20,7 +20,7 @@ We will be using **[Casbin](https://casbin.org/)** in this guide for users with 
 
 ## Installation
 
-We need to install casbin.
+We need to install Casbin.
 
 ```bash
 npm install casbin.js --save
