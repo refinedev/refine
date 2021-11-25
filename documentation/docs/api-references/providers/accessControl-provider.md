@@ -168,5 +168,6 @@ These buttons will be disabled if access control returns `false`
 
 [NextjsRouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router
 [ReactRouter]: https://www.npmjs.com/package/@pankod/refine-react-router
+[ReactLocation]: https://www.npmjs.com/package/@pankod/refine-react-location
 [CatchAll]: /api-references/components/refine-config.md#catchall
 [ListBtn]: /api-references/components/buttons/list.md
