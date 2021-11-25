@@ -122,15 +122,15 @@ const { data } = useCan({
 ## List of Default Access Control Points
 ### Routes
 
-[`@pankod/refine-nextjs-router`][NextjsRouter] and [`@pankod/refine-react-router`][ReactRouter] packages integrate access control for crud pages at `[resource]/[action]` routes.
+[`@pankod/refine-nextjs-router`][NextjsRouter], [`@pankod/refine-react-router`][ReactRouter], and [`@pankod/refine-react-location`][ReactLocation] packages integrate access control for CRUD pages at `[resource]/[action]` routes.
 
 They will check access control with parameters:
 
-- list (e.g. `/posts`): `{resource: "posts", action: "list"}`
-- create (e.g. `/posts/create`): `{resource: "posts", action: "create"}`
-- clone (e.g. `/posts/create/1`): `{resource: "posts", action: "create", params: {id :1}}`
-- edit (e.g. `/posts/edit/1`): `{resource: "posts", action: "edit", params: {id :1}}`
-- show (e.g. `/posts/show/1`): `{resource: "posts", action: "show", params: {id :1}}`
+- list (e.g. `/posts`): `{ resource: "posts", action: "list" }`
+- create (e.g. `/posts/create`): `{ resource: "posts", action: "create" }`
+- clone (e.g. `/posts/clone/1`): `{ resource: "posts", action: "create", params: {id :1} }`
+- edit (e.g. `/posts/edit/1`): `{ resource: "posts", action: "edit", params: {id :1} }`
+- show (e.g. `/posts/show/1`): `{ resource: "posts", action: "show", params: {id :1} }`
 
 In case access control returns `false` they will show [`cathcAll`][CatchAll] if provided or a standard error page otherwise.
 
@@ -140,19 +140,19 @@ Sider is also integrated so that unaccessible resources won't appear in the side
 
 Menu items will check access control with `{resource, action: "list"}`
 
-For example if your app has resource `posts` it will be checked with `{resource: "posts", action: "list"}`
+For example if your app has resource `posts` it will be checked with `{ resource: "posts", action: "list" }`
 
 ### Buttons
 
 These buttons will check for access control.
 Let's say these buttons are rendered where `resource` is `posts` and `id` is `1` where applicable.
 
-- [**list**](/api-references/components/buttons/list.md): `{resource: "posts, action: "list"}`
-- [**create**](/api-references/components/buttons/create.md): `{resource: "posts, action: "create"}`
-- [**clone**](/api-references/components/buttons/clone.md): `{resource: "posts, action: "create", params: { id: 1 }}`
-- [**edit**](/api-references/components/buttons/edit.md): `{resource: "posts, action: "edit", params: { id: 1 }}`
-- [**delete**](/api-references/components/buttons/delete.md): `{resource: "posts, action: "delete", params: { id: 1 }}`
-- [**show**](/api-references/components/buttons/show.md): `{resource: "posts, action: "show", params: { id: 1 }}`
+- [**list**](/api-references/components/buttons/list.md): `{ resource: "posts, action: "list" }`
+- [**create**](/api-references/components/buttons/create.md): `{ resource: "posts, action: "create" }`
+- [**clone**](/api-references/components/buttons/clone.md): `{ resource: "posts, action: "create", params: { id: 1 } }`
+- [**edit**](/api-references/components/buttons/edit.md): `{ resource: "posts, action: "edit", params: { id: 1 } }`
+- [**delete**](/api-references/components/buttons/delete.md): `{ resource: "posts, action: "delete", params: { id: 1 } }`
+- [**show**](/api-references/components/buttons/show.md): `{ resource: "posts, action: "show", params: { id: 1 } }`
 
 These buttons will be disabled if access control returns `false`
 
@@ -168,5 +168,6 @@ These buttons will be disabled if access control returns `false`
 
 [NextjsRouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router
 [ReactRouter]: https://www.npmjs.com/package/@pankod/refine-react-router
+[ReactLocation]: https://www.npmjs.com/package/@pankod/refine-react-location
 [CatchAll]: /api-references/components/refine-config.md#catchall
 [ListBtn]: /api-references/components/buttons/list.md
