@@ -83,6 +83,7 @@ export const useSimpleList = <
     errorNotification,
     liveMode,
     onLiveEvent,
+    liveParams,
     metaData,
     ...listProps
 }: useSimpleListProps<
@@ -171,6 +172,7 @@ export const useSimpleList = <
         errorNotification,
         liveMode,
         onLiveEvent,
+        liveParams,
         metaData,
     });
     const { data, isFetching } = queryResult;

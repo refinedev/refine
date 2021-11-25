@@ -96,6 +96,7 @@ export const useEditForm = <
     errorNotification,
     liveMode,
     onLiveEvent,
+    liveParams,
     metaData,
 }: useEditFormProps<TData, TError, TVariables>): useEditForm<
     TData,
@@ -136,6 +137,7 @@ export const useEditForm = <
         },
         liveMode,
         onLiveEvent,
+        liveParams,
         metaData,
     });
 

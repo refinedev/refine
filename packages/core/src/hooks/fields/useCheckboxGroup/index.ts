@@ -54,6 +54,7 @@ export const useCheckboxGroup = <
     queryOptions,
     liveMode,
     onLiveEvent,
+    liveParams,
     metaData,
 }: useCheckboxGroupProps<TData, TError>): UseCheckboxGroupReturnType<TData> => {
     const [options, setOptions] = React.useState<Option[]>([]);
@@ -84,6 +85,7 @@ export const useCheckboxGroup = <
         errorNotification,
         liveMode,
         onLiveEvent,
+        liveParams,
         metaData,
     });
 

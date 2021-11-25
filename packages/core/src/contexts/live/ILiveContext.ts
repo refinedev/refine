@@ -5,6 +5,10 @@ export type ILiveContext =
           publish: (event: LiveEvent) => void;
           subscribe: (options: {
               channel: string;
+              params?: {
+                  id?: string;
+                  [key: string]: any;
+              };
               type: LiveEvent["type"];
               callback: (event: LiveEvent) => void;
           }) => any;

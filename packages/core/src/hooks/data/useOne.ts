@@ -45,6 +45,7 @@ export const useOne = <
     metaData,
     liveMode,
     onLiveEvent,
+    liveParams,
 }: UseOneProps<TData, TError>): QueryObserverResult<GetOneResponse<TData>> => {
     const { getOne } = useContext<IDataContext>(DataContext);
     const translate = useTranslate();
@@ -56,7 +57,8 @@ export const useOne = <
 
     useSubscription({
         resource,
-        channel: `resources/${resource}/${id}`,
+        channel: `resources/${resource}`,
+        params: { id, ...liveParams },
         enabled: isEnabled,
         liveMode,
         onLiveEvent,

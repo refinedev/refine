@@ -55,6 +55,7 @@ export const useList = <
     metaData,
     liveMode,
     onLiveEvent,
+    liveParams,
 }: UseListProps<TData, TError>): QueryObserverResult<
     GetListResponse<TData>,
     TError
@@ -68,15 +69,12 @@ export const useList = <
 
     useSubscription({
         resource,
+        params: liveParams,
         channel: `resources/${resource}`,
         enabled: isEnabled,
         liveMode,
         onLiveEvent,
     });
-
-    useEffect(() => {
-        console.log("adfasdf");
-    }, []);
 
     const queryResponse = useQuery<GetListResponse<TData>, TError>(
         [`resource/list/${resource}`, { ...config }],

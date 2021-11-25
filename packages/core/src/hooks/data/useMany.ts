@@ -46,6 +46,7 @@ export const useMany = <
     metaData,
     liveMode,
     onLiveEvent,
+    liveParams,
 }: UseManyProps<TData, TError>): QueryObserverResult<
     GetManyResponse<TData>
 > => {
@@ -58,6 +59,7 @@ export const useMany = <
 
     useSubscription({
         resource,
+        params: liveParams,
         channel: `resources/${resource}`,
         enabled: isEnabled,
         liveMode,

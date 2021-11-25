@@ -10,12 +10,17 @@ import { LiveContext, LiveModeContext } from "@contexts/live";
 
 export type UseSubscriptionProps = {
     channel: string;
+    params?: {
+        id?: string;
+        [key: string]: any;
+    };
     resource: string;
     enabled?: boolean;
 } & LiveModeProps;
 
 export const useSubscription = ({
     resource,
+    params,
     channel,
     enabled = false,
     liveMode: liveModeFromProp,
@@ -37,6 +42,7 @@ export const useSubscription = ({
         if (liveMode && enabled) {
             subscription = liveDataContext?.subscribe({
                 channel,
+                params,
                 type: "*",
                 callback: (event) => {
                     if (liveMode === "immediate") {
@@ -50,13 +56,14 @@ export const useSubscription = ({
                     onLiveEventContextCallback?.(event);
                 },
             });
-        }
 
-        console.log("subscribed", channel);
+            console.log("subscribed", channel);
+        }
 
         return () => {
             if (subscription) {
                 liveDataContext?.unsubscribe(subscription);
+
                 console.log("unsubscribed", channel);
             }
         };

@@ -49,7 +49,7 @@ interface IResource extends IResourceItem, ResourceProps {}
 export interface RefineProps extends LiveModeProps {
     authProvider?: IAuthContext;
     dataProvider: IDataContextProvider;
-    liveProvider: ILiveContext;
+    liveProvider?: ILiveContext;
     routerProvider: IRouterProvider;
     resources?: IResource[];
     i18nProvider?: I18nProvider;

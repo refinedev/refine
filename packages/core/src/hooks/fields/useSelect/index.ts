@@ -71,6 +71,7 @@ export const useSelect = <
         queryOptions,
         liveMode,
         onLiveEvent,
+        liveParams,
         metaData,
     } = props;
 
@@ -100,6 +101,7 @@ export const useSelect = <
         },
         metaData,
         liveMode,
+        liveParams,
         onLiveEvent,
     });
 
@@ -130,6 +132,7 @@ export const useSelect = <
         errorNotification,
         metaData,
         liveMode,
+        liveParams,
         onLiveEvent,
     });
     const { refetch: refetchList } = queryResult;

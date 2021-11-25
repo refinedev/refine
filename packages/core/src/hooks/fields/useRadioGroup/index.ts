@@ -54,6 +54,7 @@ export const useRadioGroup = <
     queryOptions,
     liveMode,
     onLiveEvent,
+    liveParams,
     metaData,
 }: useRadioGroupProps<TData, TError>): UseRadioGroupReturnType<TData> => {
     const [options, setOptions] = React.useState<Option[]>([]);
@@ -84,6 +85,7 @@ export const useRadioGroup = <
         errorNotification,
         liveMode,
         onLiveEvent,
+        liveParams,
         metaData,
     });
 
