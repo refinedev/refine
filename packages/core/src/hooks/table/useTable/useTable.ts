@@ -35,6 +35,7 @@ import {
     HttpError,
     MetaDataQuery,
     LiveEvent,
+    LiveModeProps,
 } from "../../../interfaces";
 
 export type useTableProps<TData, TError, TSearchVariables = unknown> = {
@@ -48,9 +49,8 @@ export type useTableProps<TData, TError, TSearchVariables = unknown> = {
     onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     metaData?: MetaDataQuery;
-    liveMode?: undefined | "immediate" | "controlled";
-    onLiveEvent?: (event: LiveEvent) => void;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification &
+    LiveModeProps;
 
 export type useTableReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -91,6 +91,7 @@ export const useTable = <
     queryOptions,
     liveMode: liveModeFromProp,
     onLiveEvent,
+    liveParams,
     metaData,
 }: useTableProps<TData, TError, TSearchVariables> = {}): useTableReturnType<
     TData,
@@ -190,6 +191,7 @@ export const useTable = <
         errorNotification,
         metaData,
         liveMode,
+        liveParams,
         onLiveEvent,
     });
     const { data, isFetching, isLoading } = queryResult;
