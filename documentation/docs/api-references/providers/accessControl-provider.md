@@ -122,7 +122,7 @@ const { data } = useCan({
 ## List of Default Access Control Points
 ### Routes
 
-[`@pankod/refine-nextjs-router`][NextjsRouter] and [`@pankod/refine-react-router`][ReactRouter] packages integrate access control for crud pages at `[resource]/[action]` routes.
+[`@pankod/refine-nextjs-router`][NextjsRouter], [`@pankod/refine-react-router`][ReactRouter], and [`@pankod/refine-react-location`][ReactLocation] packages integrate access control for CRUD pages at `[resource]/[action]` routes.
 
 They will check access control with parameters:
 
