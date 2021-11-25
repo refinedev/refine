@@ -90,7 +90,7 @@ export default App;
 
 ## Adding Policy and Model
 
-The way **casbin** works is that access rights are checked according to policies that are defined based on a model. [You can find further information about how models and policies work here](https://casbin.org/docs/en/how-it-works).
+The way **[Casbin](https://casbin.org/)** works is that access rights are checked according to policies that are defined based on a model. [You can find further information about how models and policies work here](https://casbin.org/docs/en/how-it-works).
 
 Let's add a model and a policy for a role `editor` that have `list` access for `posts` resource.
 
