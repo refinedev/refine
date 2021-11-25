@@ -1,7 +1,8 @@
 import { FormInstance, FormProps, ModalProps } from "../src/components/antd";
 import { UseFormConfig, UseModalFormConfig } from "sunflower-antd";
 
-export interface UseStepsFormConfig extends UseFormConfig {
+export interface UseStepsFormConfig
+    extends Omit<UseFormConfig, "defaultFormValues"> {
     defaultCurrent?: number;
     total?: number;
     isBackValidate?: boolean;
@@ -84,7 +85,7 @@ declare module "sunflower-antd" {
     };
 
     export declare const useModalForm: <TData, TVariables>(
-        config: UseModalFormConfig,
+        config: Omit<UseModalFormConfig, "defaultFormValues">,
     ) => {
         form: FormInstance<TVariables>;
         visible: boolean;
