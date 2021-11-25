@@ -28,7 +28,7 @@ npm install casbin.js --save
 
 ## Setup
 
-The app will have three resources: **posts**, **users** and **categories** with crud pages(list, create, edit and show)
+The app will have three resources: **posts**, **users** and **categories** with CRUD pages(list, create, edit and show)
 
 [You can refer to codesandbox to how they are implemented](#live-codesandbox-example)
 
