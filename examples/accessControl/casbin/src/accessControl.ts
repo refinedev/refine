@@ -29,7 +29,7 @@ p, admin, categories/*, (edit)|(show)|(delete), allow
 
 p, editor, posts, (list)|(create), allow
 p, editor, posts/*, (edit)|(show), allow
-p, editor, posts, field, deny
+p, editor, posts/hit, field, deny
 
 p, editor, categories, list
 

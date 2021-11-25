@@ -5,6 +5,7 @@ sidebar_label: Access Control
 ---
 
 import simpleAccess from '@site/static/img/guides-and-concepts/access-control/simple-access.png';
+import dynamicRole from '@site/static/img/guides-and-concepts/access-control/dynamic-role.gif';
 
 ## Introduction
 
@@ -157,7 +158,6 @@ const App: React.FC = () => {
 };
 
 export default App;
-
 ```
 
 What happens is that whenever a part of the app checks for access control, refine passes `resource`, `action` and `params` parameters to `can` and then we can use these parameters to integrate our specific access control solution which is **casbin** in this case.
@@ -170,35 +170,109 @@ What our model provides is that user with role `editor` have access for `list` a
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={simpleAccess} alt="Ready Page" />
+    <img src={simpleAccess} alt="Simple Access Control" />
 </div>
 <br/>
 
 ## Adding Different Roles
 
-explanation for different roles can have different access rights for different resources and actions.
+We can provide different access rights to different type of users for different parts of the app. We can do that by adding policies for the different roles.
 
 ```ts
 export const adapter = new MemoryAdapter(`
 p, admin, posts, (list)|(create)
-p, admin, posts/*, (edit)|(show)|(delete)
-
+p, admin, users, (list)|(create)
 p, admin, categories, (list)|(create)
-p, admin, categories/*, (edit)|(show)|(delete)
 
 p, editor, posts, (list)|(create)
-p, editor, posts/*, (edit)|(show)|(delete)
-
 p, editor, categories, list
-
 `);
 ```
 
-Demonstration with dynamic role change
-- add header with role selection
-- update `can` for dynamic role parameter
+- **admin** will have access to **list** and **create** for every resource
+- **editor** will have access to **list** and **create** for **posts**
+- **editor** won't have any access for **users**
+- **editor** will have only **list** access for **categories**
 
-gif?
+We can demonstrate the effect of different roles by changing the `role` dynamically. Let's implement a switch in the header for selecting either **admin** or **editor** role to see the effect on the app.
+
+```tsx title="src/App.tsx" 
+// ...
+// highlight-next-line
+import { Header } from "components/header";
+
+const App: React.FC = () => {
+    // highlight-next-line
+    const [role, setRole] = useState("admin");
+
+    return (
+        <Refine
+            // ...
+            accessControlProvider={{
+                can: async ({ resource, action, params }) => {
+                    const enforcer = await newEnforcer(model, adapter);
+                    // highlight-next-line
+                    const can = await enforcer.enforce(role, resource, action);
+
+                    return Promise.resolve({
+                        can,
+                    });
+                },
+            }}
+            // highlight-next-line
+            Header={() => <Header role={role} setRole={setRole} />}
+            // ...
+        />
+    );
+};
+
+export default App;
+```
+
+<details>
+<summary>Header Component</summary>
+
+```tsx title="src/components/header.tsx"
+import { AntdLayout, Radio } from "@pankod/refine";
+
+interface HeaderProps {
+    role: string;
+    setRole: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const Header: React.FC<HeaderProps> = ({ role, setRole }) => {
+    return (
+        <AntdLayout.Header
+            style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "48px",
+                backgroundColor: "#FFF",
+            }}
+        >
+            <Radio.Group
+                value={role}
+                onChange={(event) => setRole(event.target.value)}
+            >
+                <Radio.Button value="admin">Admin</Radio.Button>
+                <Radio.Button value="editor">Editor</Radio.Button>
+            </Radio.Group>
+        </AntdLayout.Header>
+    );
+};
+```
+</details>
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={dynamicRole} alt="Dynamic Role" />
+</div>
+<br/>
 
 ## Handling access with params
 
