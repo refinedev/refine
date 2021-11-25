@@ -5,16 +5,32 @@
 <br />
 <br />
 
+<div align="center">
+<a href="https://refine.dev">Home Page</a> |
+<a href="https://refine.dev/demo/">Demo</a> | 
+<a href="https://refine.dev/blog/">Blog</a> | 
+<a href="https://refine.dev/docs/">Documentation</a> | 
+<a href="https://github.com/pankod/refine/projects/1">Roadmap</a> | 
+<a href="https://refine.dev/docs/examples/tutorial/">Examples</a> | 
+<a href="https://refine.dev/enterprise/">Enterprise</a> | 
+<a href="https://discord.gg/UuU3XCc3J5">Discord</a>
+
+</div>
+
 </div>
 <div align="center"><strong>refine</strong> is a <a href="https://reactjs.org/">React</a>-based framework for building data-intensive applications in no time ✨ It ships with <a href="https://ant.design/">Ant Design System</a>, an enterprise-level UI toolkit.</div>
 <br/>
+
+<br />
 
 <div align="center">
 
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=A%20React-based%20framework%20for%20building%20data-intensive%20applications%20in%20no%20time.&url=https://github.com/pankod/refine&hashtags=opensource,react,reactquery,antdesign)
 
-[![Meercode CI Score](https://meercode.io/badge/pankod/superplate?type=ci-score&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
-[![Meercode CI Success Rate](https://meercode.io/badge/pankod/superplate?type=ci-success-rate&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
+<a href="https://www.producthunt.com/posts/refine-open-source-react-framework?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-refine-open-source-react-framework" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=319164&theme=light" alt="refine: Open Source React Framework - Focus your business logic. refine will do the rest. | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+
+[![Meercode CI Score](https://meercode.io/badge/pankod/refine?type=ci-score&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
+[![Meercode CI Success Rate](https://meercode.io/badge/pankod/refine?type=ci-success-rate&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
 [![Maintainability](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/maintainability)](https://codeclimate.com/github/pankod/refine/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/test_coverage)](https://codeclimate.com/github/pankod/refine/test_coverage)
 [![npm version](https://img.shields.io/npm/v/@pankod/refine.svg)](https://www.npmjs.com/package/@pankod/refine)
@@ -204,12 +220,7 @@ interface ICategory {
 ```
 
 ## Roadmap
-
-☑️ NextJS & SSR support
-
-☑️ Support for more data & auth providers
-
-☑️ Support for more UI frameworks (MaterialUI, Chakra, Spectrum etc.)
+You can find Refine's <a href="https://github.com/pankod/refine/projects/1">Public Roadmap here!</a> 
 
 ## Stargazers
 

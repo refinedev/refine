@@ -5,9 +5,23 @@
 <br />
 <br />
 
+<div align="center">
+<a href="https://refine.dev">Home Page</a> |
+<a href="https://refine.dev/demo/">Demo</a> | 
+<a href="https://refine.dev/blog/">Blog</a> | 
+<a href="https://refine.dev/docs/">Documentation</a> | 
+<a href="https://github.com/pankod/refine/projects/1">Roadmap</a> | 
+<a href="https://refine.dev/docs/examples/tutorial/">Examples</a> | 
+<a href="https://refine.dev/enterprise/">Enterprise</a> | 
+<a href="https://discord.gg/UuU3XCc3J5">Discord</a>
+
+</div>
+
 </div>
 <div align="center"><strong>refine</strong> is a <a href="https://reactjs.org/">React</a>-based framework for building data-intensive applications in no time ✨ It ships with <a href="https://ant.design/">Ant Design System</a>, an enterprise-level UI toolkit.</div>
 <br/>
+
+<br />
 
 <div align="center">
 
@@ -206,12 +220,7 @@ interface ICategory {
 ```
 
 ## Roadmap
-
-☑️ NextJS & SSR support
-
-☑️ Support for more data & auth providers
-
-☑️ Support for more UI frameworks (MaterialUI, Chakra, Spectrum etc.)
+You can find Refine's <a href="https://github.com/pankod/refine/projects/1">Public Roadmap here!</a> 
 
 ## Stargazers
 
