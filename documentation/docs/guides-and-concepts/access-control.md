@@ -8,7 +8,7 @@ import simpleAccess from '@site/static/img/guides-and-concepts/access-control/si
 
 ## Introduction
 
-Access control is a broad topic where there are lots of advanced solutions that provide different set of features. **refine** is deliberately agnostic for its own API to be able to integrate different solutions(RBAC, ABAC, ACL, [casbin](https://casbin.org/), [casl](https://casl.js.org/v5/en/), [cerbos](https://cerbos.dev/), [accesscontrol.js](https://onury.io/accesscontrol/)). `can` method would be the entry point for those solutions.
+Access control is a broad topic where there are lots of advanced solutions that provide different set of features. **refine** is deliberately agnostic for its own API to be able to integrate different solutions(RBAC, ABAC, ACL, IP, LDAP, etc...). `can` method would be the entry point for those solutions.
 
 [Refer to the Access Control Provider documentation for detailed information. &#8594](api-references/providers/accessControl-provider.md)
 
