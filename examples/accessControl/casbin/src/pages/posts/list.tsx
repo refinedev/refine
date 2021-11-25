@@ -19,7 +19,7 @@ import {
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
     const categoryIds =
