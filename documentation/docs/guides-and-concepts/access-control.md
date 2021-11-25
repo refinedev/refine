@@ -143,9 +143,10 @@ const App: React.FC = () => {
             accessControlProvider={{
                 can: async ({ resource, action, params }) => {
                     const enforcer = await newEnforcer(model, adapter);
-                    
+                    const can = await enforcer.enforce("editor", resource, action);
+
                     return Promise.resolve({
-                        can: await enforcer.enforce("editor", resource, action),
+                        can,
                     });
                 },
             }}
