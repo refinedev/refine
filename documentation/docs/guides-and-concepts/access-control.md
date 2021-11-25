@@ -16,7 +16,7 @@ Access control is a broad topic where there are lots of advanced solutions that 
 
 An `accessControlProvider` must implement only one async method named `can` to be used to check if the desired access will be granted.
 
-We will be using **casbin** in this guide for users with different roles who have different access rights for parts of the app.
+We will be using **[Casbin](https://casbin.org/)** in this guide for users with different roles who have different access rights for parts of the app.
 
 ## Installation
 
