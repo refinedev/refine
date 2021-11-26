@@ -186,7 +186,15 @@ const RouteProviderBase: React.FC = () => {
                         component={() =>
                             DashboardPage ? (
                                 <LayoutWrapper>
-                                    <DashboardPage />
+                                    <CanAccess
+                                        resource="dashboard"
+                                        action="list"
+                                        fallback={
+                                            catchAll ?? <ErrorComponent />
+                                        }
+                                    >
+                                        <DashboardPage />
+                                    </CanAccess>
                                 </LayoutWrapper>
                             ) : (
                                 <Redirect to={`/${resources[0].route}`} />

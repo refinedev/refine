@@ -134,10 +134,11 @@ const { data } = useCan({
 
 ### Routes
 
-[`@pankod/refine-nextjs-router`][nextjsrouter], [`@pankod/refine-react-router`][reactrouter], and [`@pankod/refine-react-location`][reactlocation] packages integrate access control for CRUD pages at `[resource]/[action]` routes.
+[`@pankod/refine-nextjs-router`][nextjsrouter], [`@pankod/refine-react-router`][reactrouter], and [`@pankod/refine-react-location`][reactlocation] packages integrate access control for CRUD pages at `[resource]/[action]` and root routes.
 
 They will check access control with parameters:
 
+-   dashboard (`/`): `{ resource: "dashboard", action: "list" }`
 -   list (e.g. `/posts`): `{ resource: "posts", action: "list" }`
 -   create (e.g. `/posts/create`): `{ resource: "posts", action: "create" }`
 -   clone (e.g. `/posts/clone/1`): `{ resource: "posts", action: "create", params: { id :1 } }`
