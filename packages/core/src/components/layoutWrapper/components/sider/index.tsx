@@ -55,7 +55,11 @@ export const Sider: React.FC = () => {
                 {menuItems.map(({ icon, label, route, name }) => {
                     const isSelected = route === selectedKey;
                     return (
-                        <CanAccess key={route} resource={name} action="list">
+                        <CanAccess
+                            key={route}
+                            resource={name.toLowerCase()}
+                            action="list"
+                        >
                             <Menu.Item
                                 style={{
                                     fontWeight: isSelected ? "bold" : "normal",

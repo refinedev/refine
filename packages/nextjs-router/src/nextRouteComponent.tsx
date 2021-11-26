@@ -45,7 +45,13 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
         if (DashboardPage) {
             return (
                 <LayoutWrapper>
-                    <DashboardPage />
+                    <CanAccess
+                        resource="dashboard"
+                        action="list"
+                        fallback={catchAll ?? <ErrorComponent />}
+                    >
+                        <DashboardPage />
+                    </CanAccess>
                 </LayoutWrapper>
             );
         } else {
