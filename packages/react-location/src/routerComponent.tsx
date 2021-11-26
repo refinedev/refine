@@ -7,6 +7,8 @@ import {
     useRouterContext,
     LoginPage as DefaultLoginPage,
     LayoutWrapper,
+    CanAccess,
+    ErrorComponent,
 } from "@pankod/refine";
 import { rankRoutes } from "react-location-rank-routes";
 
@@ -29,7 +31,7 @@ export const RouterComponent: React.FC<RouterProps> = ({
     ...rest
 }) => {
     const { resources } = useResource();
-    const { DashboardPage, LoginPage } = useRefineContext();
+    const { DashboardPage, catchAll, LoginPage } = useRefineContext();
 
     const { routes: customRoutes }: { routes: Route[] } = useRouterContext();
 
@@ -72,9 +74,15 @@ export const RouterComponent: React.FC<RouterProps> = ({
         {
             path: "/",
             element: DashboardPage ? (
-                <LayoutWrapper>
-                    <DashboardPage />
-                </LayoutWrapper>
+                <CanAccess
+                    resource={"dashboard"}
+                    action="list"
+                    fallback={catchAll ?? <ErrorComponent />}
+                >
+                    <LayoutWrapper>
+                        <DashboardPage />
+                    </LayoutWrapper>
+                </CanAccess>
             ) : (
                 <Navigate to={`/${resources[0].route}`} />
             ),

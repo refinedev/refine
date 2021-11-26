@@ -7,6 +7,7 @@ import {
     useRefineContext,
     useRouterContext,
     ResourceRouterParams,
+    CanAccess,
 } from "@pankod/refine";
 
 export const ResourceComponentWrapper: React.FC = () => {
@@ -14,8 +15,11 @@ export const ResourceComponentWrapper: React.FC = () => {
     const { useParams } = useRouterContext();
     const { resources } = useResource();
 
-    const { resource: routeResourceName, action } =
-        useParams<ResourceRouterParams>();
+    const {
+        resource: routeResourceName,
+        action,
+        id,
+    } = useParams<ResourceRouterParams>();
 
     const resource = resources.find((res) => res.route === routeResourceName);
 
@@ -41,47 +45,73 @@ export const ResourceComponentWrapper: React.FC = () => {
             switch (action) {
                 case undefined:
                     return (
-                        <List
-                            name={name}
-                            canCreate={canCreate}
-                            canEdit={canEdit}
-                            canDelete={canDelete}
-                            canShow={canShow}
-                        />
+                        <CanAccess
+                            resource={name}
+                            action="list"
+                            fallback={catchAll ?? <ErrorComponent />}
+                        >
+                            <List
+                                name={name}
+                                canCreate={canCreate}
+                                canEdit={canEdit}
+                                canDelete={canDelete}
+                                canShow={canShow}
+                            />
+                        </CanAccess>
                     );
 
                 case "create":
                 case "clone":
                     return (
-                        <Create
-                            name={name}
-                            canCreate={canCreate}
-                            canEdit={canEdit}
-                            canDelete={canDelete}
-                            canShow={canShow}
-                        />
+                        <CanAccess
+                            resource={name}
+                            action="create"
+                            fallback={catchAll ?? <ErrorComponent />}
+                        >
+                            <Create
+                                name={name}
+                                canCreate={canCreate}
+                                canEdit={canEdit}
+                                canDelete={canDelete}
+                                canShow={canShow}
+                            />
+                        </CanAccess>
                     );
 
                 case "edit":
                     return (
-                        <Edit
-                            name={name}
-                            canCreate={canCreate}
-                            canEdit={canEdit}
-                            canDelete={canDelete}
-                            canShow={canShow}
-                        />
+                        <CanAccess
+                            resource={name}
+                            action="edit"
+                            params={{ id }}
+                            fallback={catchAll ?? <ErrorComponent />}
+                        >
+                            <Edit
+                                name={name}
+                                canCreate={canCreate}
+                                canEdit={canEdit}
+                                canDelete={canDelete}
+                                canShow={canShow}
+                            />
+                        </CanAccess>
                     );
 
                 case "show":
                     return (
-                        <Show
-                            name={name}
-                            canCreate={canCreate}
-                            canEdit={canEdit}
-                            canDelete={canDelete}
-                            canShow={canShow}
-                        />
+                        <CanAccess
+                            resource={name}
+                            action="show"
+                            params={{ id }}
+                            fallback={catchAll ?? <ErrorComponent />}
+                        >
+                            <Show
+                                name={name}
+                                canCreate={canCreate}
+                                canEdit={canEdit}
+                                canDelete={canDelete}
+                                canShow={canShow}
+                            />
+                        </CanAccess>
                     );
             }
         };
