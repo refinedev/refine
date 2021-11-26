@@ -173,6 +173,8 @@ interface ICategory {
 
 ### Roadmap
 
+You can find Refine's [Public Roadmap here!](https://github.com/pankod/refine/projects/1)
+
 ☑️ NextJS & SSR support
 
 ☑️ Support for more data & auth providers

@@ -118,8 +118,8 @@ export default App;
 <Tabs
 defaultValue="react"
 values={[
-{label: 'react-router', value: 'react'},
-{label: 'nextjs-router', value: 'nextjs'}
+{label: 'React Router', value: 'react'},
+{label: 'Next.js Router', value: 'nextjs'}
 ]}>
 <TabItem value="react">
 
@@ -146,6 +146,20 @@ const App: React.FC = () => {
 
   </TabItem>
 </Tabs>
+
+### `Link` component
+
+If you imported `Link` component from `@pankod/refine`, now you have to switch to `@pankod/refine-react-router` package to get the `Link` component. Like this:
+
+```ts
+// Old
+// import { ..., Link } from "@pankod/refine";
+
+// Now
+import routerProvider from "@pankod/refine-react-router";
+
+const Link = routerProvider.Link;
+```
 
 ### Custom Pages
 

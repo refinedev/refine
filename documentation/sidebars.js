@@ -271,6 +271,7 @@ module.exports = {
                 "guides-and-concepts/custom-layout",
                 "guides-and-concepts/custom-pages",
                 "guides-and-concepts/theme",
+                "guides-and-concepts/access-control",
             ],
         },
         {
@@ -308,6 +309,11 @@ module.exports = {
                         "examples/auth-provider/otpLogin",
                         "examples/auth-provider/google-auth",
                     ],
+                },
+                {
+                    type: "category",
+                    label: "Router Provider",
+                    items: ["examples/router-provider/react-location"],
                 },
                 {
                     type: "category",

@@ -22,7 +22,7 @@ import { useModalFormFromSFReturnType } from "../../../../types/sunflower";
 import { useFormProps, UseFormReturnType } from "../useForm";
 
 type useModalFormConfig = {
-    action: "show" | "edit" | "create";
+    action: "show" | "edit" | "create" | "clone";
 };
 
 export type useModalFormReturnType<

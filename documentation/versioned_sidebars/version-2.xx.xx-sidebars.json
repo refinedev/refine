@@ -686,6 +686,18 @@
         },
         {
           "type": "category",
+          "label": "Router Provider",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/examples/router-provider/react-location"
+            }
+          ],
+          "collapsible": true,
+          "collapsed": true
+        },
+        {
+          "type": "category",
           "label": "Form",
           "items": [
             {

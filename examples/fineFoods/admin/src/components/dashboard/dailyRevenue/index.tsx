@@ -7,7 +7,8 @@ import {
     NumberField,
     useTranslate,
 } from "@pankod/refine";
-import { Line, LineConfig } from "@ant-design/charts";
+import { Line } from "@ant-design/charts";
+import { LineConfig } from "@ant-design/plots/lib/components/line";
 import dayjs, { Dayjs } from "dayjs";
 
 import { IncreaseIcon, DecreaseIcon } from "components/icons";

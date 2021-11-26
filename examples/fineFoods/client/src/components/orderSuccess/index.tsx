@@ -136,7 +136,7 @@ export const OrderSuccess: React.FC<OrderPageProps> = ({ order }) => {
                                     <div className="message">
                                         <Button
                                             target="href"
-                                            href={`https://example.refine.dev/orders/show/${order.id}`}
+                                            href={`https://example.admin.refine.dev/orders/show/${order.id}`}
                                             rel="noreferrer"
                                             size="large"
                                             shape="round"

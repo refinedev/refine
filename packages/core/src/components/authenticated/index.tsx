@@ -29,7 +29,9 @@ export const Authenticated: React.FC<AuthenticatedProps> = ({
     if (isError) {
         if (!fallback) {
             const toURL = `${pathname}${search}`;
-            replace(`/login?to=${encodeURIComponent(toURL)}`);
+            if (!pathname.includes("/login")) {
+                replace(`/login?to=${encodeURIComponent(toURL)}`);
+            }
             return null;
         }
 

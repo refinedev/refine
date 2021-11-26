@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { Typography, useApiUrl, useCustom, useTranslate } from "@pankod/refine";
-import { Column, ColumnConfig } from "@ant-design/charts";
+import { Column } from "@ant-design/charts";
+import { ColumnConfig } from "@ant-design/plots/lib/components/column";
 
 import { IncreaseIcon, DecreaseIcon } from "components/icons";
 

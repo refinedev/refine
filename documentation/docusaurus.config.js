@@ -13,6 +13,7 @@ const siteConfig = {
     baseUrl: "/",
     projectName: "refine",
     organizationName: "pankod",
+    trailingSlash: true,
     favicon: "img/refine_favicon.png",
     presets: [
         [
@@ -25,6 +26,17 @@ const siteConfig = {
                         "https://github.com/pankod/refine/tree/master/documentation",
                     showLastUpdateAuthor: true,
                     showLastUpdateTime: true,
+                },
+                blog: {
+                    blogTitle: "refine blog!",
+                    blogDescription: "A Docusaurus powered blog!",
+                    postsPerPage: "ALL",
+                    blogSidebarTitle: "All posts",
+                    blogSidebarCount: "ALL",
+                    feedOptions: {
+                        type: "all",
+                        copyright: `Copyright © ${new Date().getFullYear()} refine.`,
+                    },
                 },
                 theme: {
                     customCss: [
@@ -41,6 +53,7 @@ const siteConfig = {
         algolia: {
             apiKey: "fbebca5afe7376dbef2995691670b708",
             indexName: "refine",
+            contextualSearch: true,
         },
         navbar: {
             logo: {
@@ -70,6 +83,7 @@ const siteConfig = {
                     label: "Guides",
                     position: "left",
                 },
+                { to: "blog", label: "Blog", position: "left" },
                 {
                     to: "/enterprise",
                     label: "Enterprise",
