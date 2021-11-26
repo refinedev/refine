@@ -1,7 +1,14 @@
 import React from "react";
 import { Route } from "react-router-dom";
 
-import { fireEvent, render, TestWrapper, act, MockJSONServer } from "@test";
+import {
+    fireEvent,
+    render,
+    TestWrapper,
+    act,
+    MockJSONServer,
+    wait,
+} from "@test";
 import { DeleteButton } from "./";
 
 describe("Delete Button", () => {
@@ -47,6 +54,71 @@ describe("Delete Button", () => {
         expect(container).toBeTruthy();
 
         expect(queryByText("Delete")).not.toBeInTheDocument();
+    });
+
+    it("should be disabled when user not have access", async () => {
+        const { container, getByText } = render(
+            <DeleteButton>Delete</DeleteButton>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                    accessControlProvider: {
+                        can: () => Promise.resolve({ can: false }),
+                    },
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        await wait(() =>
+            expect(getByText("Delete").closest("button")).toBeDisabled(),
+        );
+    });
+
+    it("should be disabled when recordId not allowed", async () => {
+        const { container, getByText } = render(
+            <DeleteButton recordItemId="1">Delete</DeleteButton>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                    accessControlProvider: {
+                        can: ({ params }) => {
+                            if (params.id === "1") {
+                                return Promise.resolve({ can: false });
+                            }
+                            return Promise.resolve({ can: true });
+                        },
+                    },
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        await wait(() =>
+            expect(getByText("Delete").closest("button")).toBeDisabled(),
+        );
+    });
+
+    it("should skip access control", async () => {
+        const { container, getByText } = render(
+            <DeleteButton ignoreAccessControlProvider>Delete</DeleteButton>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                    accessControlProvider: {
+                        can: () => Promise.resolve({ can: false }),
+                    },
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        await wait(() =>
+            expect(getByText("Delete").closest("button")).not.toBeDisabled(),
+        );
     });
 
     it("should render called function successfully if click the button", () => {

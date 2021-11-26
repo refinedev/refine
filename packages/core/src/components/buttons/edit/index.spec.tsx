@@ -1,6 +1,6 @@
 import React from "react";
 
-import { fireEvent, render, TestWrapper } from "@test";
+import { fireEvent, render, TestWrapper, wait } from "@test";
 import { EditButton } from "./";
 
 describe("Edit Button", () => {
@@ -46,6 +46,94 @@ describe("Edit Button", () => {
         expect(container).toBeTruthy();
 
         expect(queryByText("Edit")).not.toBeInTheDocument();
+    });
+
+    it("should be disabled when user not have access", async () => {
+        const { container, getByText } = render(<EditButton>Edit</EditButton>, {
+            wrapper: TestWrapper({
+                resources: [{ name: "posts" }],
+                accessControlProvider: {
+                    can: () => Promise.resolve({ can: false }),
+                },
+            }),
+        });
+
+        expect(container).toBeTruthy();
+
+        await wait(() =>
+            expect(getByText("Edit").closest("button")).toBeDisabled(),
+        );
+    });
+
+    it("should be disabled when recordId not allowed", async () => {
+        const { container, getByText } = render(
+            <EditButton recordItemId="1">Edit</EditButton>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                    accessControlProvider: {
+                        can: ({ params }) => {
+                            if (params.id === "1") {
+                                return Promise.resolve({ can: false });
+                            }
+                            return Promise.resolve({ can: true });
+                        },
+                    },
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        await wait(() =>
+            expect(getByText("Edit").closest("button")).toBeDisabled(),
+        );
+    });
+
+    it("should skip access control", async () => {
+        const { container, getByText } = render(
+            <EditButton ignoreAccessControlProvider>Edit</EditButton>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                    accessControlProvider: {
+                        can: () => Promise.resolve({ can: false }),
+                    },
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        await wait(() =>
+            expect(getByText("Edit").closest("button")).not.toBeDisabled(),
+        );
+    });
+
+    it("should successfully return disabled button custom title", async () => {
+        const { container, getByText } = render(<EditButton>Edit</EditButton>, {
+            wrapper: TestWrapper({
+                resources: [{ name: "posts" }],
+                accessControlProvider: {
+                    can: () =>
+                        Promise.resolve({
+                            can: false,
+                            reason: "Access Denied",
+                        }),
+                },
+            }),
+        });
+
+        expect(container).toBeTruthy();
+
+        await wait(() =>
+            expect(getByText("Edit").closest("button")).not.toBeDisabled(),
+        );
+        await wait(() =>
+            expect(
+                getByText("Edit").closest("button")?.getAttribute("title"),
+            ).toBe("Access Denied"),
+        );
     });
 
     it("should render called function successfully if click the button", () => {

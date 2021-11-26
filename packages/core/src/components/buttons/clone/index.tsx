@@ -2,13 +2,20 @@ import React, { FC } from "react";
 import { Button, ButtonProps } from "antd";
 import { PlusSquareOutlined } from "@ant-design/icons";
 
-import { useNavigation, useRouterContext, useTranslate } from "@hooks";
+import {
+    useCan,
+    useNavigation,
+    useResourceWithRoute,
+    useRouterContext,
+    useTranslate,
+} from "@hooks";
 import { ResourceRouterParams } from "../../../interfaces";
 
 type CloneButtonProps = ButtonProps & {
     resourceName?: string;
     recordItemId?: string;
     hideText?: boolean;
+    ignoreAccessControlProvider?: boolean;
 };
 
 /**
@@ -19,13 +26,17 @@ type CloneButtonProps = ButtonProps & {
  * @see {@link https://refine.dev/docs/api-references/components/buttons/clone-button} for more details.
  */
 export const CloneButton: FC<CloneButtonProps> = ({
-    resourceName,
+    resourceName: propResourceName,
     recordItemId,
     hideText = false,
+    ignoreAccessControlProvider = false,
     children,
     ...rest
 }) => {
+    const resourceWithRoute = useResourceWithRoute();
+
     const { clone } = useNavigation();
+
     const translate = useTranslate();
 
     const { useParams } = useRouterContext();
@@ -33,12 +44,43 @@ export const CloneButton: FC<CloneButtonProps> = ({
     const { resource: routeResourceName, id: idFromRoute } =
         useParams<ResourceRouterParams>();
 
+    const resource = resourceWithRoute(routeResourceName);
+
+    const resourceName = propResourceName ?? resource.name;
+
+    const id = recordItemId ?? idFromRoute;
+
     const onButtonClick = () => {
-        clone(resourceName ?? routeResourceName, recordItemId ?? idFromRoute);
+        clone(routeResourceName, id);
+    };
+
+    const { data } = useCan({
+        resource: resourceName,
+        action: "create",
+        params: { id },
+        queryOptions: {
+            enabled: !ignoreAccessControlProvider,
+        },
+    });
+
+    const createButtonDisabledTitle = () => {
+        if (data?.can) return "";
+        else if (data?.reason) return data.reason;
+        else
+            return translate(
+                "buttons.notAccessTitle",
+                "You don't have permission to access",
+            );
     };
 
     return (
-        <Button onClick={onButtonClick} icon={<PlusSquareOutlined />} {...rest}>
+        <Button
+            onClick={onButtonClick}
+            icon={<PlusSquareOutlined />}
+            disabled={data?.can === false}
+            title={createButtonDisabledTitle()}
+            {...rest}
+        >
             {!hideText && (children ?? translate("buttons.clone", "Clone"))}
         </Button>
     );

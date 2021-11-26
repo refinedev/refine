@@ -31,7 +31,8 @@
         "show": "Show",
         "undo": "Undo",
         "import": "Import",
-        "clone": "Clone"
+        "clone": "Clone",
+        "notAccessTitle": "You don't have permission to access"
     },
     "warnWhenUnsavedChanges": "Are you sure you want to leave? You have unsaved changes.",
     "notifications": {

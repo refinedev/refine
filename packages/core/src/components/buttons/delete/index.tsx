@@ -8,6 +8,7 @@ import {
     useTranslate,
     useMutationMode,
     useRouterContext,
+    useCan,
 } from "@hooks";
 import {
     DeleteOneResponse,
@@ -24,6 +25,7 @@ export type DeleteButtonProps = ButtonProps & {
     mutationMode?: MutationMode;
     hideText?: boolean;
     metaData?: MetaDataQuery;
+    ignoreAccessControlProvider?: boolean;
 } & SuccessErrorNotification;
 
 /**
@@ -41,11 +43,13 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
     successNotification,
     errorNotification,
     hideText = false,
+    ignoreAccessControlProvider = false,
     metaData,
     ...rest
 }) => {
-    const translate = useTranslate();
     const resourceWithRoute = useResourceWithRoute();
+
+    const translate = useTranslate();
 
     const { mutationMode: mutationModeContext } = useMutationMode();
 
@@ -63,6 +67,15 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
     const { mutate, isLoading, variables } = useDelete();
 
     const id = recordItemId ?? idFromRoute;
+
+    const { data } = useCan({
+        resource: resource.name,
+        action: "delete",
+        params: { id },
+        queryOptions: {
+            enabled: !ignoreAccessControlProvider,
+        },
+    });
 
     return (
         <Popconfirm
@@ -89,11 +102,13 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
                     },
                 );
             }}
+            disabled={data?.can === false}
         >
             <Button
                 danger
                 loading={id === variables?.id && isLoading}
                 icon={<DeleteOutlined />}
+                disabled={data?.can === false}
                 {...rest}
             >
                 {!hideText &&
