@@ -34,6 +34,10 @@
             },
             {
               "type": "doc",
+              "id": "version-2.xx.xx/api-references/providers/accessControl-provider"
+            },
+            {
+              "type": "doc",
               "id": "version-2.xx.xx/api-references/providers/i18n-provider"
             },
             {
@@ -127,6 +131,18 @@
                 {
                   "type": "doc",
                   "id": "version-2.xx.xx/api-references/hooks/auth/usePermissions"
+                }
+              ],
+              "collapsible": true,
+              "collapsed": true
+            },
+            {
+              "type": "category",
+              "label": "Access Control",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "version-2.xx.xx/api-references/hooks/accessControl/useCan"
                 }
               ],
               "collapsible": true,
@@ -366,6 +382,18 @@
             },
             {
               "type": "category",
+              "label": "Access Control",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "version-2.xx.xx/api-references/components/accessControl/can-access"
+                }
+              ],
+              "collapsible": true,
+              "collapsed": true
+            },
+            {
+              "type": "category",
               "label": "Buttons",
               "items": [
                 {
@@ -505,6 +533,10 @@
           "id": "version-2.xx.xx/guides-and-concepts/ssr-nextjs"
         },
         {
+          "type": "doc",
+          "id": "version-2.xx.xx/guides-and-concepts/access-control"
+        },
+        {
           "type": "category",
           "label": "Upload",
           "items": [
@@ -611,6 +643,22 @@
         {
           "type": "doc",
           "id": "version-2.xx.xx/examples/authorization"
+        },
+        {
+          "type": "category",
+          "label": "Access Control",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/examples/access-control/casbin"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/examples/access-control/cerbos"
+            }
+          ],
+          "collapsible": true,
+          "collapsed": true
         },
         {
           "type": "category",
