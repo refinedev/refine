@@ -652,7 +652,7 @@ Then, we need to install some dependencies express and the express-formidable pa
 AdminBro does not support SSR-Next.js. It only helps you develop B2B and admin panel applications.
 
 ### Routing
-Adminbro's routing processes are slightly different than others. You should create an express router that will handle all its routes.
+Adminbro's routing processes are slightly different than others. You can also define the routes of the components that you have created custom here.
 
 ```jsx
 const AdminBro = require('admin-bro')
@@ -681,6 +681,8 @@ AdminBro can be connected to many different types of resources. Right now, they 
 * TypeORM
 
 To add resources , you first have to intall an adapter for the resource you want to use.
+
+#### Install the Database Adapter and add resources
 
 Let's take a look at an example made with the mongoose adapter.
 
@@ -734,6 +736,8 @@ Some customizable features are as follows:
 
 #### UI/UX Customization:​
 It automatically offers you an interface option that you can use. You can also develop and customize your own components. You can do your own styling and write your own custom components, but for this customization, you need to follow and apply a few steps. It doesn't speed you up in UI development.
+
+[For more information about developing your own components ->](https://adminbro.com/tutorial-writing-react-components.html)
 
 ### Enterprise-Editon
 All features of Adminbro are open source and accessible.
