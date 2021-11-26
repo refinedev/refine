@@ -160,7 +160,7 @@ The component passed to `list` prop will be rendered on the `/posts` route.
 
 The component passed to `create` will be rendered on the `/posts/create` route by default.
 
-> It will also be rendered on `/posts/clone/:id`. This represents namely a clone page. `id` represent a record and it will be available as a route parameter.  
+> It will also be rendered on `/posts/create/:id`. This represents namely a clone page. `id` represent a record and it will be available as a route parameter.  
 > For example [`useForm` uses this parameter to create a clone form](/api-references/hooks/form/useForm.md#clone-mode)
 
 > `clone` from `useNavigation` can be used to navigate to a clone page.
@@ -241,6 +241,13 @@ Custom route name
 
 <br />
 
+## `accessControlProvider`
+
+`accessControlProvider` is the entry point for implementing access control for **refine** apps.
+
+[Refer to access control documentation for detailed information. &#8594](api-references/providers/accessControl-provider.md)
+
+<br />
 
 ## `catchAll`
 
