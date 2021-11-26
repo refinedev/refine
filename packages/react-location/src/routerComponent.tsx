@@ -75,7 +75,7 @@ export const RouterComponent: React.FC<RouterProps> = ({
             path: "/",
             element: DashboardPage ? (
                 <CanAccess
-                    resource={"dashboard"}
+                    resource="dashboard"
                     action="list"
                     fallback={catchAll ?? <ErrorComponent />}
                 >
