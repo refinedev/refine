@@ -1,6 +1,6 @@
 import React from "react";
 
-import { fireEvent, render, TestWrapper } from "@test";
+import { fireEvent, render, TestWrapper, wait } from "@test";
 import { ListButton } from "./";
 
 describe("List Button", () => {
@@ -46,6 +46,69 @@ describe("List Button", () => {
         expect(container).toBeTruthy();
 
         expect(queryByText("Posts")).not.toBeInTheDocument();
+    });
+
+    it("should be disabled when user not have access", async () => {
+        const { container, getByText } = render(<ListButton>List</ListButton>, {
+            wrapper: TestWrapper({
+                resources: [{ name: "posts" }],
+                accessControlProvider: {
+                    can: () => Promise.resolve({ can: false }),
+                },
+            }),
+        });
+
+        expect(container).toBeTruthy();
+
+        await wait(() =>
+            expect(getByText("List").closest("button")).toBeDisabled(),
+        );
+    });
+
+    it("should skip access control", async () => {
+        const { container, getByText } = render(
+            <ListButton ignoreAccessControlProvider>List</ListButton>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                    accessControlProvider: {
+                        can: () => Promise.resolve({ can: false }),
+                    },
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        await wait(() =>
+            expect(getByText("List").closest("button")).not.toBeDisabled(),
+        );
+    });
+
+    it("should successfully return disabled button custom title", async () => {
+        const { container, getByText } = render(<ListButton>List</ListButton>, {
+            wrapper: TestWrapper({
+                resources: [{ name: "posts" }],
+                accessControlProvider: {
+                    can: () =>
+                        Promise.resolve({
+                            can: false,
+                            reason: "Access Denied",
+                        }),
+                },
+            }),
+        });
+
+        expect(container).toBeTruthy();
+
+        await wait(() =>
+            expect(getByText("List").closest("button")).not.toBeDisabled(),
+        );
+        await wait(() =>
+            expect(
+                getByText("List").closest("button")?.getAttribute("title"),
+            ).toBe("Access Denied"),
+        );
     });
 
     it("should render called function successfully if click the button", () => {

@@ -2,13 +2,20 @@ import React, { FC } from "react";
 import { Button, ButtonProps } from "antd";
 import { EditOutlined } from "@ant-design/icons";
 
-import { useNavigation, useRouterContext, useTranslate } from "@hooks";
+import {
+    useCan,
+    useNavigation,
+    useResourceWithRoute,
+    useRouterContext,
+    useTranslate,
+} from "@hooks";
 import { ResourceRouterParams } from "../../../interfaces";
 
 type EditButtonProps = ButtonProps & {
     resourceName?: string;
     recordItemId?: string;
     hideText?: boolean;
+    ignoreAccessControlProvider?: boolean;
 };
 
 /**
@@ -22,9 +29,12 @@ export const EditButton: FC<EditButtonProps> = ({
     resourceName: propResourceName,
     recordItemId,
     hideText = false,
+    ignoreAccessControlProvider = false,
     children,
     ...rest
 }) => {
+    const resourceWithRoute = useResourceWithRoute();
+
     const translate = useTranslate();
 
     const { useParams } = useRouterContext();
@@ -32,18 +42,41 @@ export const EditButton: FC<EditButtonProps> = ({
     const { resource: routeResourceName, id: idFromRoute } =
         useParams<ResourceRouterParams>();
 
-    const resourceName = propResourceName ?? routeResourceName;
+    const resource = resourceWithRoute(routeResourceName);
+
+    const resourceName = propResourceName ?? resource.name;
 
     const { edit } = useNavigation();
 
     const id = recordItemId ?? idFromRoute;
 
+    const { data } = useCan({
+        resource: resourceName,
+        action: "edit",
+        params: { id },
+        queryOptions: {
+            enabled: !ignoreAccessControlProvider,
+        },
+    });
+
+    const createButtonDisabledTitle = () => {
+        if (data?.can) return "";
+        else if (data?.reason) return data.reason;
+        else
+            return translate(
+                "buttons.notAccessTitle",
+                "You don't have permission to access",
+            );
+    };
+
     return (
         <Button
             onClick={(): void => {
-                edit(resourceName, id);
+                edit(routeResourceName, id);
             }}
             icon={<EditOutlined />}
+            disabled={data?.can === false}
+            title={createButtonDisabledTitle()}
             {...rest}
         >
             {!hideText && (children ?? translate("buttons.edit", "Edit"))}

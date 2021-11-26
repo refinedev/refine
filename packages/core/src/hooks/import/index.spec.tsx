@@ -453,7 +453,6 @@ describe("useImport hook", () => {
                         batchSize: 1,
                         resourceName: "posts",
                         onFinish: ({ succeeded }) => {
-                            console.log(succeeded);
                             expect(succeeded[0].response[0]).toEqual(
                                 parsedData[0],
                             );
