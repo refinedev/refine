@@ -32,7 +32,7 @@ npm install casbin.js --save
 
 The app will have three resources: **posts**, **users** and **categories** with CRUD pages(list, create, edit and show).
 
-[You can refer to codesandbox to how they are implemented &#8594](#live-codesandbox-example)
+[You can refer to codesandbox to see how they are implemented &#8594](#live-codesandbox-example)
 
 `App.tsx` will look like this before we begin implementing access control:
 
