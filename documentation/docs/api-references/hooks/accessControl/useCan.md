@@ -4,15 +4,16 @@ title: useCan
 siderbar_label: useCan
 ---
 
-## Usage 
+## Usage
+
 `useCan` uses the `can` as the query function for **react-query**'s `useQuery`. It takes the parameters that `can` takes. It can also be configured with `queryOptions` for `useQuery`. Returns the result of `useQuery`.
 
 ```tsx
 const { data } = useCan({
     resource: "resource-you-ask-for-access",
     action: "action-type-on-resource",
-    params: { foo: "optional-params" } },
-);
+    params: { foo: "optional-params" },
+});
 ```
 
 ## Performance
@@ -39,8 +40,8 @@ const { data } = useCan({
 | Property                                                                                            | Description                             | Type                                                              | Default |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------- | ----------------------------------------------------------------- | ------- |
 | <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions | `string`                                                          |         |
-| action <div className="required">Required</div>                                                     | intenden action on resource             | `string`                                                          |         |
-| params                                                                                              | parameters associated with the resource | `any`                                                             |         |
+| action <div className="required">Required</div>                                                     | Intenden action on resource             | `string`                                                          |         |
+| params                                                                                              | Parameters associated with the resource | `any`                                                             |         |
 | queryOptions                                                                                        | `react-query`'s `useQuery` options      | ` UseQueryOptions<`<br/>`{ data: CanReturnType; },`<br/>`TError>` |         |
 
 ### Type Parameters

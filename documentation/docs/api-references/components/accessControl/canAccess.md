@@ -11,7 +11,7 @@ siderbar_label: <CanAccess>
     resource="posts"
     action="edit"
     params={{ id: 1 }}
-    fallback={<CustomFallback/>}
+    fallback={<CustomFallback />}
 >
     <YourComponent />
 </CanAccess>
@@ -24,6 +24,6 @@ siderbar_label: <CanAccess>
 | Property                                                                                            | Description                                     | Type        | Default |
 | --------------------------------------------------------------------------------------------------- | ----------------------------------------------- | ----------- | ------- |
 | <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions         | `string`    |         |
-| action <div className="required">Required</div>                                                     | intenden action on resource                     | `string`    |         |
-| params                                                                                              | parameters associated with the resource         | `any`       |         |
+| action <div className="required">Required</div>                                                     | Intenden action on resource                     | `string`    |         |
+| params                                                                                              | Parameters associated with the resource         | `any`       |         |
 | fallback                                                                                            | Content to show if access control returns false | `ReactNode` |         |

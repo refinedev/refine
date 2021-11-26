@@ -4,7 +4,7 @@ title: Access Control Provider
 sidebar_label: Access Control Provider
 ---
 
-Access control is a broad topic where there are lots of advanced solutions that provide different set of features. **refine** is deliberately agnostic for its own API to be able to integrate different solutions(RBAC, ABAC, ACL, [casbin](https://casbin.org/), [casl](https://casl.js.org/v5/en/), [cerbos](https://cerbos.dev/), [accesscontrol.js](https://onury.io/accesscontrol/)). `can` method would be the entry point for those solutions.
+Access control is a broad topic where there are lots of advanced solutions that provide different set of features. **refine** is deliberately agnostic for its own API to be able to integrate different methods (RBAC, ABAC, ACL, etc.) and different libraries ([Casbin](https://casbin.org/), [CASL](https://casl.js.org/v5/en/), [Cerbos](https://cerbos.dev/), [AccessControl.js](https://onury.io/accesscontrol/)). `can` method would be the entry point for those solutions.
 
 **refine** provides an agnostic API via the `accessControlProvider` to manage access control throughout your app.
 
@@ -39,19 +39,30 @@ const App: React.FC = () => {
         // other providers and props
         accessControlProvider={{
             can: async ({ resource, action, params }) => {
-                if(resource === "posts" && action === "edit") {
-                    return Promise.resolve({can: false, reason: "Unauthorized"});
+                if (resource === "posts" && action === "edit") {
+                    return Promise.resolve({
+                        can: false,
+                        reason: "Unauthorized",
+                    });
                 }
 
-                return Promise.resolve({can: true});
+                return Promise.resolve({ can: true });
             },
         }}
-    />
-}
+    />;
+};
 ```
 
 :::tip
-[You can find access control examples made with **refine** here](https://github.com/pankod/refine/tree/master/examples/accessControl)
+You can pass a `reason` along with `can`. It will be accessible using `useCan`. It will be shown at the tooltip of the buttons from **refine** when they are disabled.
+:::
+
+:::tip
+You can find access control examples made with **refine**
+
+-   **Casbin** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/casbin) - [Demo](https://codesandbox.io/s/access-control-casbin-react-l1ne3)
+-   **Cerbos** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/cerbos) - [Demo](https://codesandbox.io/s/access-control-cerbos-react-5mfkq)
+
 :::
 
 **refine** checks for access control in its related components and pages. [Refer here to see all the places **refine** checks for access control.](#list-of-default-access-control-points)
@@ -68,8 +79,8 @@ const App: React.FC = () => {
 const { data } = useCan({
     resource: "resource-you-ask-for-access",
     action: "action-type-on-resource",
-    params: { foo: "optional-params" } },
-);
+    params: { foo: "optional-params" },
+});
 ```
 
 ```ts
@@ -94,7 +105,7 @@ const useCan: ({
     resource="posts"
     action="edit"
     params={{ id: 1 }}
-    fallback={<CustomFallback/>}
+    fallback={<CustomFallback />}
 >
     <YourComponent />
 </CanAccess>
@@ -120,25 +131,26 @@ const { data } = useCan({
 **refine** uses 5 minutes `cacheTime` and 0 for `staleTime` by default for its own access control points.
 
 ## List of Default Access Control Points
+
 ### Routes
 
-[`@pankod/refine-nextjs-router`][NextjsRouter], [`@pankod/refine-react-router`][ReactRouter], and [`@pankod/refine-react-location`][ReactLocation] packages integrate access control for CRUD pages at `[resource]/[action]` routes.
+[`@pankod/refine-nextjs-router`][nextjsrouter], [`@pankod/refine-react-router`][reactrouter], and [`@pankod/refine-react-location`][reactlocation] packages integrate access control for CRUD pages at `[resource]/[action]` routes.
 
 They will check access control with parameters:
 
-- list (e.g. `/posts`): `{ resource: "posts", action: "list" }`
-- create (e.g. `/posts/create`): `{ resource: "posts", action: "create" }`
-- clone (e.g. `/posts/clone/1`): `{ resource: "posts", action: "create", params: {id :1} }`
-- edit (e.g. `/posts/edit/1`): `{ resource: "posts", action: "edit", params: {id :1} }`
-- show (e.g. `/posts/show/1`): `{ resource: "posts", action: "show", params: {id :1} }`
+-   list (e.g. `/posts`): `{ resource: "posts", action: "list" }`
+-   create (e.g. `/posts/create`): `{ resource: "posts", action: "create" }`
+-   clone (e.g. `/posts/clone/1`): `{ resource: "posts", action: "create", params: { id :1 } }`
+-   edit (e.g. `/posts/edit/1`): `{ resource: "posts", action: "edit", params: { id :1 } }`
+-   show (e.g. `/posts/show/1`): `{ resource: "posts", action: "show", params: { id :1 } }`
 
-In case access control returns `false` they will show [`cathcAll`][CatchAll] if provided or a standard error page otherwise.
+In case access control returns `false` they will show [`cathcAll`][catchall] if provided or a standard error page otherwise.
 
 ### Sider
 
 Sider is also integrated so that unaccessible resources won't appear in the sider menu.
 
-Menu items will check access control with `{resource, action: "list"}`
+Menu items will check access control with `{ resource, action: "list" }`
 
 For example if your app has resource `posts` it will be checked with `{ resource: "posts", action: "list" }`
 
@@ -147,12 +159,12 @@ For example if your app has resource `posts` it will be checked with `{ resource
 These buttons will check for access control.
 Let's say these buttons are rendered where `resource` is `posts` and `id` is `1` where applicable.
 
-- [**list**](/api-references/components/buttons/list.md): `{ resource: "posts, action: "list" }`
-- [**create**](/api-references/components/buttons/create.md): `{ resource: "posts, action: "create" }`
-- [**clone**](/api-references/components/buttons/clone.md): `{ resource: "posts, action: "create", params: { id: 1 } }`
-- [**edit**](/api-references/components/buttons/edit.md): `{ resource: "posts, action: "edit", params: { id: 1 } }`
-- [**delete**](/api-references/components/buttons/delete.md): `{ resource: "posts, action: "delete", params: { id: 1 } }`
-- [**show**](/api-references/components/buttons/show.md): `{ resource: "posts, action: "show", params: { id: 1 } }`
+-   [**List**](/api-references/components/buttons/list.md): `{ resource: "posts, action: "list" }`
+-   [**Create**](/api-references/components/buttons/create.md): `{ resource: "posts, action: "create" }`
+-   [**Clone**](/api-references/components/buttons/clone.md): `{ resource: "posts, action: "create", params: { id: 1 } }`
+-   [**Edit**](/api-references/components/buttons/edit.md): `{ resource: "posts, action: "edit", params: { id: 1 } }`
+-   [**Delete**](/api-references/components/buttons/delete.md): `{ resource: "posts, action: "delete", params: { id: 1 } }`
+-   [**Show**](/api-references/components/buttons/show.md): `{ resource: "posts, action: "show", params: { id: 1 } }`
 
 These buttons will be disabled if access control returns `{ can: false }`
 
@@ -165,9 +177,8 @@ These buttons will be disabled if access control returns `{ can: false }`
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-
-[NextjsRouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router
-[ReactRouter]: https://www.npmjs.com/package/@pankod/refine-react-router
-[ReactLocation]: https://www.npmjs.com/package/@pankod/refine-react-location
-[CatchAll]: /api-references/components/refine-config.md#catchall
-[ListBtn]: /api-references/components/buttons/list.md
+[nextjsrouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router
+[reactrouter]: https://www.npmjs.com/package/@pankod/refine-react-router
+[reactlocation]: https://www.npmjs.com/package/@pankod/refine-react-location
+[catchall]: /api-references/components/refine-config.md#catchall
+[listbtn]: /api-references/components/buttons/list.md

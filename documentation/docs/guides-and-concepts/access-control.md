@@ -6,10 +6,11 @@ sidebar_label: Access Control
 
 import simpleAccess from '@site/static/img/guides-and-concepts/access-control/simple-access.png';
 import dynamicRole from '@site/static/img/guides-and-concepts/access-control/dynamic-role.gif';
+import accessControl from '@site/static/img/guides-and-concepts/access-control/access-control.gif';
 
 ## Introduction
 
-Access control is a broad topic where there are lots of advanced solutions that provide different set of features. **refine** is deliberately agnostic for its own API to be able to integrate different solutions(RBAC, ABAC, ACL, IP, LDAP, etc...). `can` method would be the entry point for those solutions.
+Access control is a broad topic where there are lots of advanced solutions that provide different set of features. **refine** is deliberately agnostic for its own API to be able to integrate different methods (RBAC, ABAC, ACL, etc.) and different libraries ([Casbin](https://casbin.org/), [CASL](https://casl.js.org/v5/en/), [Cerbos](https://cerbos.dev/), [AccessControl.js](https://onury.io/accesscontrol/)). `can` method would be the entry point for those solutions.
 
 [Refer to the Access Control Provider documentation for detailed information. &#8594](api-references/providers/accessControl-provider.md)
 
@@ -29,9 +30,9 @@ npm install casbin.js --save
 
 ## Setup
 
-The app will have three resources: **posts**, **users** and **categories** with CRUD pages(list, create, edit and show)
+The app will have three resources: **posts**, **users** and **categories** with CRUD pages(list, create, edit and show).
 
-[You can refer to codesandbox to how they are implemented](#live-codesandbox-example)
+[You can refer to codesandbox to how they are implemented &#8594](#live-codesandbox-example)
 
 `App.tsx` will look like this before we begin implementing access control:
 
@@ -86,12 +87,11 @@ const App: React.FC = () => {
 };
 
 export default App;
-
 ```
 
 ## Adding Policy and Model
 
-The way **[Casbin](https://casbin.org/)** works is that access rights are checked according to policies that are defined based on a model. [You can find further information about how models and policies work here](https://casbin.org/docs/en/how-it-works).
+The way **[Casbin](https://casbin.org/)** works is that access rights are checked according to policies that are defined based on a model. You can find further information about how models and policies work [here](https://casbin.org/docs/en/how-it-works).
 
 Let's add a model and a policy for a role **editor** that have **list** access for **posts** resource.
 
@@ -118,25 +118,23 @@ m = g(r.sub, p.sub) && keyMatch(r.obj, p.obj) && regexMatch(r.act, p.act)
 export const adapter = new MemoryAdapter(`
 p, editor, posts, list
 `);
-
 ```
 
 :::tip
-You can can find more examples in [casbin documentation](https://casbin.org/docs/en/supported-models) or play with lots of examples in [casbin editor](https://casbin.org/en/editor)  
+You can can find more examples in [Casbin documentation](https://casbin.org/docs/en/supported-models) or play with lots of examples in [Casbin editor](https://casbin.org/en/editor)  
 :::
 
 ## Adding `accessControlProvider`
 
 Now we will implement the `can` method for `accessControlProvider` to integrate our policy.
 
-
-```tsx title="src/App.tsx" 
+```tsx title="src/App.tsx"
 // ...
 // highlight-next-line
 import { newEnforcer } from "casbin.js";
 
 // highlight-next-line
-import { model, adapter } from "accessControl";
+import { model, adapter } from "./accessControl";
 
 const App: React.FC = () => {
     return (
@@ -146,7 +144,11 @@ const App: React.FC = () => {
             accessControlProvider={{
                 can: async ({ resource, action }) => {
                     const enforcer = await newEnforcer(model, adapter);
-                    const can = await enforcer.enforce("editor", resource, action);
+                    const can = await enforcer.enforce(
+                        "editor",
+                        resource,
+                        action,
+                    );
 
                     return Promise.resolve({ can });
                 },
@@ -160,7 +162,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-Whenever a part of the app checks for access control, refine passes `resource`, `action` and `params` parameters to `can` and then we can use these parameters to integrate our specific access control solution which is **casbin** in this case.
+Whenever a part of the app checks for access control, refine passes `resource`, `action` and `params` parameters to `can` and then we can use these parameters to integrate our specific access control solution which is **Casbin** in this case.
 
 Our model provides that user with role **editor** have access for **list** action on **posts** resource. Even though we have two other resources, since our policy doesn't include them, they will not appear on sidebar menu. Also in list page of `posts`, buttons for **create**, **edit** and **show** buttons will be disabled since thay are not included in the policy.
 
@@ -189,14 +191,14 @@ p, editor, categories, list
 `);
 ```
 
-- **admin** will have access to **list** and **create** for every resource
-- **editor** will have access to **list** and **create** for **posts**
-- **editor** won't have any access for **users**
-- **editor** will have only **list** access for **categories**
+-   **admin** will have access to **list** and **create** for every resource
+-   **editor** will have access to **list** and **create** for **posts**
+-   **editor** won't have any access for **users**
+-   **editor** will have only **list** access for **categories**
 
 We can demonstrate the effect of different roles by changing the `role` dynamically. Let's implement a switch in the header for selecting either **admin** or **editor** role to see the effect on the app.
 
-```tsx title="src/App.tsx" 
+```tsx title="src/App.tsx"
 // ...
 // highlight-next-line
 import { Header } from "components/header";
@@ -262,6 +264,7 @@ export const Header: React.FC<HeaderProps> = ({ role, setRole }) => {
     );
 };
 ```
+
 </details>
 
 <div class="img-container">
@@ -302,8 +305,8 @@ p, editor, categories, list
 `);
 ```
 
-- **admin** will have **edit**, **show** and **delete** access for every resource
-- **editor** will have **edit** and **show** access for **posts**
+-   **admin** will have **edit**, **show** and **delete** access for every resource
+-   **editor** will have **edit** and **show** access for **posts**
 
 :::tip
 `*` is wildcard. Specific ids can be targeted too. For example If you want **editor** role to have **delete** access for **post** with **id** `5`, you can add this policy:
@@ -313,6 +316,7 @@ export const adapter = new MemoryAdapter(`
 p, editor, posts/5, delete
 `);
 ```
+
 :::
 
 We must handle id based access controls in the `can` method. **id** parameter will be accessible in `params`.
@@ -330,16 +334,20 @@ const App: React.FC = () => {
                 // highlight-start
                 can: async ({ resource, action, params }) => {
                     const enforcer = await newEnforcer(model, adapter);
-                    if ( action === "delete" || action === "edit" || action === "show" ) {
+                    if (
+                        action === "delete" ||
+                        action === "edit" ||
+                        action === "show"
+                    ) {
                         const can = await enforcer.enforce(
                             role,
                             `${resource}/${params.id}`,
                             action,
-                        )
+                        );
                         return Promise.resolve({ can });
                     }
                     // highlight-end
-                    
+
                     const can = await enforcer.enforce(role, resource, action);
                     return Promise.resolve({ can });
                 },
@@ -357,7 +365,6 @@ export default App;
 We can also check access control for specific areas in our app like a certain field of a table. This can be achieved by adding a special action for the custom access control point in our policies.
 
 For example, we may want to **deny** **editor** roles to access **hit** field in the **posts** resource without denying the **admin** role. This can be done with [RBAC with deny-override](https://casbin.org/docs/en/supported-models) model.
-
 
 ```ts
 export const model = newModel(`
@@ -400,8 +407,8 @@ p, editor, categories, list
 `);
 ```
 
-- **admin** have **field** access for every field of **posts**
-- **editor** won't have **field** access for **hit** field of **posts**
+-   **admin** have **field** access for every field of **posts**
+-   **editor** won't have **field** access for **hit** field of **posts**
 
 Then we must handle the **field** action in the `can` method:
 
@@ -417,12 +424,16 @@ const App: React.FC = () => {
             accessControlProvider={{
                 can: async ({ resource, action, params }) => {
                     const enforcer = await newEnforcer(model, adapter);
-                    if ( action === "delete" || action === "edit" || action === "show" ) {
+                    if (
+                        action === "delete" ||
+                        action === "edit" ||
+                        action === "show"
+                    ) {
                         const can = await enforcer.enforce(
                             role,
                             `${resource}/${params.id}`,
                             action,
-                        )
+                        );
                         return Promise.resolve({ can });
                     }
 
@@ -432,11 +443,11 @@ const App: React.FC = () => {
                             role,
                             `${resource}/${params.field}`,
                             action,
-                        )
+                        );
                         return Promise.resolve({ can });
                     }
                     // highlight-end
-                    
+
                     const can = await enforcer.enforce(role, resource, action);
                     return Promise.resolve({ can });
                 },
@@ -471,7 +482,7 @@ export const PostList: React.FC = () => {
     return (
         <List>
             <Table {...tableProps} rowKey="id">
-                // ...
+                // ... 
                 // highlight-start
                 {canAccess?.can && (
                     <Table.Column
@@ -485,18 +496,27 @@ export const PostList: React.FC = () => {
                         )}
                     />
                 )}
-                // highlight-end
+                // highlight-end 
                 // ...
             </Table>
         </List>
     );
 };
-
 ```
 
 :::tip
 [`<CanAccess />`](api-references/components/accessControl/canAccess.md) can be used too to check access control in custom places in your app.
 :::
+
+<br/>
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={accessControl} alt="Full Example Sample" />
+</div>
 
 ## Live Codesandbox Example
 
