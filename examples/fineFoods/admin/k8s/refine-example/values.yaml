@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: docker.pkg.github.com/pankod/refine/refine-example
+  repository: ghcr.io/pankod/refine/refine-example
   pullPolicy: IfNotPresent
 
 imagePullSecrets:
