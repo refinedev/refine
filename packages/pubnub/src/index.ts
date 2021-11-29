@@ -6,18 +6,36 @@ const liveProvider = (pubnubClient: PubNub): LiveProvider => {
         subscribe: ({
             channel,
             type,
-            params: { id },
+            params,
             callback,
         }): [ListenerParameters, string] => {
             const listenerObject: ListenerParameters = {
                 message: function (pubnubMessage) {
                     const { message, channel: pubnubChannel } = pubnubMessage;
 
+                    console.log("vvvvvvvvvvvvvv");
+                    console.log("message arrived", message);
+                    console.log("type", type);
+                    console.log(
+                        "if",
+                        pubnubChannel === channel &&
+                            (message?.type === type || type === "*"),
+                    );
+
                     if (
                         pubnubChannel === channel &&
                         (message?.type === type || type === "*")
                     ) {
-                        if (id && message?.id !== id) {
+                        console.log(
+                            "id check if",
+                            params?.id &&
+                                message.payload.id.toString() !== params.id,
+                        );
+
+                        if (
+                            params?.id &&
+                            message.payload.id.toString() !== params.id
+                        ) {
                             return;
                         }
 
@@ -25,7 +43,11 @@ const liveProvider = (pubnubClient: PubNub): LiveProvider => {
                             ...message,
                             date: new Date(),
                         });
+
+                        console.log("processed", pubnubMessage);
                     }
+
+                    console.log("^^^^^^^^^^^^^^");
                 },
             };
 
@@ -47,10 +69,17 @@ const liveProvider = (pubnubClient: PubNub): LiveProvider => {
         },
 
         publish: (event: LiveEvent) => {
-            pubnubClient.publish({
-                channel: event.channel,
-                message: event,
-            });
+            console.log(event);
+
+            try {
+                pubnubClient.publish({
+                    channel: event.channel,
+                    message: event,
+                });
+            } catch (e) {
+                console.log(e);
+                console.log("publish failed");
+            }
         },
     };
 };

@@ -10,9 +10,11 @@ import {
     HttpError,
     SuccessErrorNotification,
     MetaDataQuery,
+    ILiveContext,
 } from "../../interfaces";
 import { useTranslate, useCheckError, useCacheQueries } from "@hooks";
 import { handleNotification } from "@definitions";
+import { LiveContext } from "@contexts/live";
 
 type useCreateParams<TVariables> = {
     resource: string;
@@ -54,6 +56,8 @@ export const useCreate = <
     const translate = useTranslate();
     const queryClient = useQueryClient();
 
+    const liveContext = useContext<ILiveContext>(LiveContext);
+
     const mutation = useMutation<
         CreateResponse<TData>,
         TError,
@@ -68,7 +72,7 @@ export const useCreate = <
             }),
         {
             onSuccess: (
-                _,
+                data,
                 { resource, successNotification: successNotificationFromProp },
             ) => {
                 const resourceSingular = pluralize.singular(resource);
@@ -91,6 +95,15 @@ export const useCreate = <
                 getAllQueries(resource).forEach((query) => {
                     queryClient.invalidateQueries(query.queryKey);
                     console.log("query, ", query);
+                });
+
+                liveContext?.publish({
+                    channel: `resources/${resource}`,
+                    type: "created",
+                    payload: {
+                        id: data.data.id,
+                    },
+                    date: new Date(),
                 });
             },
             onError: (
