@@ -1,13 +1,13 @@
 {
 	"name": "fine-foods",
-	"version": "2.2.3",
+	"version": "2.3.1",
 	"private": true,
 	"dependencies": {
 		"@ant-design/charts": "^1.1.9",
 		"@craco/craco": "^6.1.2",
-		"@pankod/refine": "^2.2.3",
-		"@pankod/refine-react-router": "^2.2.3",
-		"@pankod/refine-simple-rest": "^2.2.3",
+		"@pankod/refine": "^2.3.1",
+		"@pankod/refine-react-router": "^2.3.1",
+		"@pankod/refine-simple-rest": "^2.3.1",
 		"@testing-library/jest-dom": "^5.12.0",
 		"@testing-library/react": "^11.2.6",
 		"@testing-library/user-event": "^12.8.3",

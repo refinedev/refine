@@ -1,17 +1,21 @@
 import React, { ReactNode } from "react";
 import { Route } from "react-router-dom";
-
 import { Button } from "antd";
 
-import { render, TestWrapper, MockJSONServer } from "@test";
+import { render, TestWrapper, MockJSONServer, wait } from "@test";
 import { Edit } from "./";
+import { IAccessControlContext } from "../../../interfaces";
 
-const renderEdit = (edit: ReactNode) => {
+const renderEdit = (
+    edit: ReactNode,
+    accessControlProvider?: IAccessControlContext,
+) => {
     return render(<Route path="/:resource/edit/:id">{edit}</Route>, {
         wrapper: TestWrapper({
             dataProvider: MockJSONServer,
             resources: [{ name: "posts", route: "posts" }],
             routerInitialEntries: ["/posts/edit/1"],
+            accessControlProvider,
         }),
     });
 };
@@ -200,6 +204,50 @@ describe("Edit", () => {
             );
 
             expect(queryByTestId("edit-delete-button")).not.toBeNull();
+        });
+    });
+
+    describe("accessibility of buttons by accessControlProvider", () => {
+        it("should render disabled list button and not disabled delete button", async () => {
+            const { queryByTestId } = renderEdit(<Edit canDelete />, {
+                can: ({ action }) => {
+                    switch (action) {
+                        case "list":
+                            return Promise.resolve({ can: true });
+                        case "delete":
+                        default:
+                            return Promise.resolve({ can: false });
+                    }
+                },
+            });
+
+            await wait(() =>
+                expect(queryByTestId("edit-list-button")).not.toBeDisabled(),
+            );
+            await wait(() =>
+                expect(queryByTestId("edit-delete-button")).toBeDisabled(),
+            );
+        });
+
+        it("should render disabled list button and delete button", async () => {
+            const { queryByTestId } = renderEdit(<Edit canDelete />, {
+                can: ({ action }) => {
+                    switch (action) {
+                        case "list":
+                        case "delete":
+                            return Promise.resolve({ can: false });
+                        default:
+                            return Promise.resolve({ can: false });
+                    }
+                },
+            });
+
+            await wait(() =>
+                expect(queryByTestId("edit-list-button")).toBeDisabled(),
+            );
+            await wait(() =>
+                expect(queryByTestId("edit-delete-button")).toBeDisabled(),
+            );
         });
     });
 });

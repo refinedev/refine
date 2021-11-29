@@ -2,16 +2,21 @@ import React, { ReactNode } from "react";
 import { Route } from "react-router-dom";
 import { Button } from "antd";
 
-import { render, TestWrapper, MockJSONServer } from "@test";
+import { render, TestWrapper, MockJSONServer, wait } from "@test";
+import { IAccessControlContext } from "../../../interfaces";
 
 import { Show } from "./index";
 
-const renderShow = (show: ReactNode) => {
+const renderShow = (
+    show: ReactNode,
+    accessControlProvider?: IAccessControlContext,
+) => {
     return render(<Route path="/:resource/show/:id">{show}</Route>, {
         wrapper: TestWrapper({
             dataProvider: MockJSONServer,
             resources: [{ name: "posts", route: "posts" }],
             routerInitialEntries: ["/posts/show/1"],
+            accessControlProvider,
         }),
     });
 };
@@ -34,8 +39,33 @@ describe("Show", () => {
         const { container, getByText } = renderShow(<Show canEdit canDelete />);
 
         expect(container.querySelector("button")).toBeTruthy();
+
         getByText("Edit");
         getByText("Delete");
+    });
+
+    it("depending on the accessControlProvider it should get the buttons successfully", async () => {
+        const { getByText, queryByTestId } = renderShow(
+            <Show canEdit canDelete />,
+            {
+                can: ({ action }) => {
+                    switch (action) {
+                        case "edit":
+                        case "list":
+                            return Promise.resolve({ can: true });
+                        case "delete":
+                        default:
+                            return Promise.resolve({ can: false });
+                    }
+                },
+            },
+        );
+
+        expect(getByText("Edit").closest("button")).not.toBeDisabled();
+        expect(getByText("Posts").closest("button")).not.toBeDisabled();
+        await wait(() =>
+            expect(queryByTestId("show-delete-button")).toBeDisabled(),
+        );
     });
 
     it("should render optional buttons with actionButtons prop", async () => {

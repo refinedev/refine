@@ -2,13 +2,20 @@ import React, { FC } from "react";
 import { Button, ButtonProps } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
 
-import { useNavigation, useRouterContext, useTranslate } from "@hooks";
+import {
+    useCan,
+    useNavigation,
+    useResourceWithRoute,
+    useRouterContext,
+    useTranslate,
+} from "@hooks";
 import { ResourceRouterParams } from "../../../interfaces";
 
 type ShowButtonProps = ButtonProps & {
     resourceName?: string;
     recordItemId?: string;
     hideText?: boolean;
+    ignoreAccessControlProvider?: boolean;
 };
 
 /**
@@ -22,10 +29,14 @@ export const ShowButton: FC<ShowButtonProps> = ({
     resourceName: propResourceName,
     recordItemId,
     hideText = false,
+    ignoreAccessControlProvider = false,
     children,
     ...rest
 }) => {
+    const resourceWithRoute = useResourceWithRoute();
+
     const { show } = useNavigation();
+
     const translate = useTranslate();
 
     const { useParams } = useRouterContext();
@@ -33,14 +44,37 @@ export const ShowButton: FC<ShowButtonProps> = ({
     const { resource: routeResourceName, id: idFromRoute } =
         useParams<ResourceRouterParams>();
 
-    const resourceName = propResourceName ?? routeResourceName;
+    const resource = resourceWithRoute(routeResourceName);
+
+    const resourceName = propResourceName ?? resource.name;
+
+    const id = recordItemId ?? idFromRoute;
+
+    const { data } = useCan({
+        resource: resourceName,
+        action: "show",
+        params: { id },
+        queryOptions: {
+            enabled: !ignoreAccessControlProvider,
+        },
+    });
+
+    const createButtonDisabledTitle = () => {
+        if (data?.can) return "";
+        else if (data?.reason) return data.reason;
+        else
+            return translate(
+                "buttons.notAccessTitle",
+                "You don't have permission to access",
+            );
+    };
 
     return (
         <Button
-            onClick={(): void =>
-                show(resourceName, recordItemId ?? idFromRoute)
-            }
+            onClick={(): void => show(routeResourceName, id)}
             icon={<EyeOutlined />}
+            disabled={data?.can === false}
+            title={createButtonDisabledTitle()}
             {...rest}
         >
             {!hideText && (children ?? translate("buttons.show", "Show"))}

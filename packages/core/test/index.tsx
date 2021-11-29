@@ -1,29 +1,24 @@
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import {
-    useHistory,
-    useLocation,
-    useParams,
-    Link,
-    Prompt,
-    BrowserRouter,
-    Route,
-    Switch,
-    Redirect,
-    MemoryRouter,
-} from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 
 import { AuthContextProvider } from "@contexts/auth";
 import { NotificationContextProvider } from "@contexts/notification";
 import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
-import { IDataContext, IAuthContext, I18nProvider } from "../src/interfaces";
+import {
+    IDataContext,
+    IAuthContext,
+    I18nProvider,
+    IAccessControlContext,
+} from "../src/interfaces";
 import { TranslationContextProvider } from "@contexts/translation";
 import { RefineContextProvider } from "@contexts/refine";
 import { IRefineContextProvider } from "@contexts/refine/IRefineContext";
 import { RouterContextProvider } from "@contexts/router";
+import { AccessControlContextProvider } from "@contexts/accessControl";
 
-import { MockRouterProvider } from "@test";
+import { MockRouterProvider, MockAccessControlProvider } from "@test";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -38,6 +33,7 @@ interface ITestWrapperProps {
     authProvider?: IAuthContext;
     dataProvider?: IDataContext;
     i18nProvider?: I18nProvider;
+    accessControlProvider?: IAccessControlContext;
     resources?: IResourceItem[];
     children?: React.ReactNode;
     routerInitialEntries?: string[];
@@ -49,6 +45,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     dataProvider,
     resources,
     i18nProvider,
+    accessControlProvider,
     routerInitialEntries,
     refineProvider,
 }) => {
@@ -70,12 +67,22 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
             withResource
         );
 
+        const withAccessControl = accessControlProvider ? (
+            <AccessControlContextProvider {...accessControlProvider}>
+                {withData}
+            </AccessControlContextProvider>
+        ) : (
+            <AccessControlContextProvider {...MockAccessControlProvider}>
+                {withData}
+            </AccessControlContextProvider>
+        );
+
         const withTranslation = i18nProvider ? (
             <TranslationContextProvider i18nProvider={i18nProvider}>
-                {withData}
+                {withAccessControl}
             </TranslationContextProvider>
         ) : (
-            withData
+            withAccessControl
         );
 
         const withNotification = (
@@ -112,7 +119,11 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     };
 };
 
-export { MockJSONServer, MockRouterProvider } from "./dataMocks";
+export {
+    MockJSONServer,
+    MockRouterProvider,
+    MockAccessControlProvider,
+} from "./dataMocks";
 
 // re-export everything
 export * from "@testing-library/react";

@@ -200,7 +200,8 @@ Before we get started, let's look at the translations that refine uses in compon
         "show": "Show",
         "undo": "Undo",
         "import": "Import",
-        "clone": "Clone"
+        "clone": "Clone",
+        "notAccessTitle": "You don't have permission to access",
     },
     "warnWhenUnsavedChanges": "Are you sure you want to leave? You have unsaved changes.",
     "notifications": {
@@ -280,7 +281,8 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
         "show": "Show",
         "undo": "Undo",
         "import": "Import",
-        "clone": "Clone"
+        "clone": "Clone",
+        "notAccessTitle": "You don't have permission to access",
     },
     "warnWhenUnsavedChanges": "Are you sure you want to leave? You have unsaved changes.",
     "notifications": {
@@ -367,7 +369,8 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
         "show": "Zeigen",
         "undo": "Undo",
         "import": "Importieren",
-        "clone": "Klon"
+        "clone": "Klon",
+        "notAccessTitle": "Sie haben keine zugriffsberechtigung",
     },
     "warnWhenUnsavedChanges": "Nicht gespeicherte Änderungen werden nicht übernommen.",
     "notifications": {

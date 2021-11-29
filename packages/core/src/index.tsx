@@ -10,6 +10,7 @@ export {
     ILiveContext as LiveProvider,
     LiveEvent,
     ITranslationContext as TranslationProvider,
+    IAccessControlContext as AccessControlProvider,
     I18nProvider,
     MutationMode,
     IResourceComponents,

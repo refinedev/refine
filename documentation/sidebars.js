@@ -19,6 +19,7 @@ module.exports = {
                     items: [
                         "api-references/providers/auth-provider",
                         "api-references/providers/data-provider",
+                        "api-references/providers/accessControl-provider",
                         "api-references/providers/i18n-provider",
                         "api-references/providers/router-provider",
                     ],
@@ -54,6 +55,13 @@ module.exports = {
                                 "api-references/hooks/auth/useAuthenticated",
                                 "api-references/hooks/auth/useGetIdentity",
                                 "api-references/hooks/auth/usePermissions",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Access Control",
+                            items: [
+                                "api-references/hooks/accessControl/useCan",
                             ],
                         },
                         {
@@ -165,6 +173,13 @@ module.exports = {
                         },
                         {
                             type: "category",
+                            label: "Access Control",
+                            items: [
+                                "api-references/components/accessControl/can-access",
+                            ],
+                        },
+                        {
+                            type: "category",
                             label: "Buttons",
                             items: [
                                 "api-references/components/buttons/list-button",
@@ -217,6 +232,7 @@ module.exports = {
                     items: ["guides-and-concepts/data-provider/graphql"],
                 },
                 "guides-and-concepts/ssr-nextjs",
+                "guides-and-concepts/access-control",
                 {
                     type: "category",
                     label: "Upload",
@@ -264,6 +280,14 @@ module.exports = {
             items: [
                 "examples/tutorial-example",
                 "examples/authorization",
+                {
+                    type: "category",
+                    label: "Access Control",
+                    items: [
+                        "examples/access-control/casbin",
+                        "examples/access-control/cerbos",
+                    ],
+                },
                 {
                     type: "category",
                     label: "i18n",
