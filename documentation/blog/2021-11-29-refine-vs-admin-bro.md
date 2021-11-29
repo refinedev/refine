@@ -1,9 +1,9 @@
 ---
-title: Refine vs React-Admin Which is Better for Your Project?
-description: We will compare the features of refine and react-admin
-slug: refine-vs-react-admin-which-is-better-for-your-project
+title: Refine vs AdminBro - Comparison Admin Panel Framework
+description: Refine vs AdminBro
+slug: refine-vs-adminbro-admin-panel-framework
 authors: melih
-tags: [refine, reactadmin, react, comparison]
+tags: [refine, adminbro, react, tutorial]
 image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
 ---
@@ -11,217 +11,19 @@ hide_table_of_contents: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import admin_flow from '@site/static/img/blog/2021-11-26-refine-vs-react-admin/admin_flow.png';
-import refine_flow from '@site/static/img/blog/2021-11-26-refine-vs-react-admin/refine_flow.png';
-import project_setup from '@site/static/img/blog/2021-11-26-refine-vs-react-admin/project_setup.gif';
+import refine_flow from '@site/static/img/blog/2021-11-29-refine-vs-adminbro/refine_flow.png';
+import project_setup from '@site/static/img/blog/2021-11-29-refine-vs-adminbro/project_setup.gif';
 
-If you are reading this, chances are you are a developer researching options for delivering an admin panel or another internal tool. Together with you, we will take a look at the best admin panel frameworks in response to this need.
+Looking for open source admin panel framework? Then here is the collection of the best Open-source admin panel framework of 2021. 
 
 <!--truncate-->
 
-Motivation is our most important resource when developing a project. If you lose your motivation as your project progresses, you will not be able to produce a successful product. The point where you will lose this feeling the most is the point where you cannot meet your Business needs. Different UI / UX solutions may be requested for many business models and it is very important that you can realize them regardless of the framework you use. 
-
-When you decide to use these types of frameworks, we need to know to what extent and how they solve your work. If we do not know what these frameworks do and how customizable they are, the problems we may encounter can reduce our motivation.
-
-We will examine how the frameworks we will talk about solve our work and how customizable they are under the title of `Customization`.
+These frameworks that we will talk about have emerged to offer solutions to the same business demands in general. Although the purpose of these two frameworks is the same, the solutions are different from each other. Our goal in this article is to show you these differences and help you find the appropriate framework for your project.
 
 :::note
 This comparison table strives to be as accurate and as unbiased as possible. If you use any of these libraries and feel the information could be improved, feel free to suggest changes (with notes or evidence of claims) contact info@refine.dev or you can open a issue on [Github](https://github.com/pankod/refine).
 :::
 
-## React-Admin
-
-React-Admin is an  B2B application framework based on Material Design, using Material UI. It provides ready-to-fetch-data components, so you just compose them together to create an application.
-
-It can fetch data from any API connected to the data source, like REST, GraphQL, RPC. It’s powered by React, React Router, Redux, and Redux Saga, while Material UI is responsible for the visual.
-
-React-admin uses Redux and redux-saga for state management. React-Admin creates actions and reducers automatically. Developer should only create data provider, which is used for running requests to the server side and parse server responses. But in some cases it is necessary to run non-typical request to the server side, or to change custom Store parameters. In this case React-Admin gives possibility to create custom actions, reducers and sagas.
-
-React-admin is a framework that has been developed for a long time and has a wider community. Besides being stable, it works with old technologies.
-
-### Installation
-* Can be included in another React app 
-* Installation is very simple
-
-```bash
-npm install react-admin
-#or
-yarn add react-admin
-```
-
-### Features
-* It can be used with any backend(Rest, GraphQL, SOAP)
-* API-based. The UI fetches the data from an API connected to the data source.
-* Powered by Material UI, Redux, Redux Saga, React-router.
-* Supports any authentication provider of your choice(REST API, OAuth, Basic Auth)
-* Internationalization : Uses i18n
-* Supports data validation
-
-### SSR - Next.js Support 
-React-Admin does not support SSR-Next.js. Therefore, it only helps you develop B2B and admin panel applications.
-
-### Routing
-React admin does it with react-router-dom to save routes. You need to create your own module and define it in the `<Route>` component.
-
-```tsx title="src/customRoutes.js"
-import * as React from "react";
-import { Route } from 'react-router-dom';
-import Foo from './Foo';
-import Bar from './Bar';
-
-export default [
-    <Route exact path="/foo" component={Foo} />,
-    <Route exact path="/bar" component={Bar} />,
-];
-```
-
-Then, pass this array as customRoutes prop in the `<Admin>` component:
-
-```tsx title="src/App.js"
-import * as React from "react";
-import { Admin } from 'react-admin';
-
-import customRoutes from './customRoutes';
-
-const App = () => (
-    <Admin customRoutes={customRoutes} dataProvider={simpleRestProvider('http://path.to.my.api')}>
-        ...
-    </Admin>
-);
-
-export default App;
-```
-
-Now, when a user browses to /foo or /bar, the components you defined will appear in the main part of the screen.
-
-
-### Data Provider Logic
-When React-admin needs to communicate with API, it uses Data Provider.
-
-<img src={admin_flow} alt="admin" />
-
-Here are the React-Admin data provider methods:
-
-```ts
-const dataProvider = {
-    getList:    (resource, params) => Promise,
-    getOne:     (resource, params) => Promise,
-    getMany:    (resource, params) => Promise,
-    getManyReference: (resource, params) => Promise,
-    create:     (resource, params) => Promise,
-    update:     (resource, params) => Promise,
-    updateMany: (resource, params) => Promise,
-    delete:     (resource, params) => Promise,
-    deleteMany: (resource, params) => Promise,
-}
-```
-#### GraphQL Data Provider
-We can say that React-Admin is a bit lacking in terms of both graphql provider and its documentation. 
-
-React-Admin calls the GraphQL endpoint by running an introspection query for GraphQL.
-
-```jsx title="App.js"
-import React from 'react';
-import { Component } from 'react';
-import buildGraphQLProvider from 'ra-data-graphql-simple';
-import { Admin, Resource } from 'react-admin';
-
-import { PostCreate, PostEdit, PostList } from './posts';
-
-const App = () => {
-
-    const [dataProvider, setDataProvider] = React.useState(null);
-    React.useEffect(() => {
-        buildGraphQLProvider({ clientOptions: { uri: 'http://localhost:4000' } })
-            .then(graphQlDataProvider => setDataProvider(() => graphQlDataProvider));
-    }, []);
-
-    if (!dataProvider) {
-        return <div>Loading</div>;
-    }
-
-    return (
-        <Admin dataProvider={dataProvider}>
-            <Resource name="Post" list ={PostList} edit ={PostEdit} create ={PostCreate}/>
-        </Admin>
-    );
-}
-
-export default App;
-```
-
-When we want to see this data in a table, all GraphQL entities are queried requested by default(even if you don't add columns to the table). This is against GraphQL's approach and is a scenario we would not want.
-
-The way to prevent this is to override all your queries.
-
-```jsx title="src/dataProvider.js"
-import buildGraphQLProvider, { buildQuery } from 'ra-data-graphql-simple';
-
-const myBuildQuery = introspection => (fetchType, resource, params) => {
-    const builtQuery = buildQuery(introspection)(fetchType, resource, params);
-
-    if (resource === 'Command' && fetchType === 'GET_ONE') {
-        return {
-            // Use the default query variables and parseResponse
-            ...builtQuery,
-            // Override the query
-            query: gql`
-                query Command($id: ID!) {
-                    data: Command(id: $id) {
-                        id
-                        reference
-                        customer {
-                            id
-                            firstName
-                            lastName
-                        }
-                    }
-                }`,
-        };
-    }
-
-    return builtQuery;
-};
-
-export default buildGraphQLProvider({ buildQuery: myBuildQuery })
-```
-
-Although this is a solution, it complicates your project in many ways (debugging, maintenence, etc...).
-
-### React-Admin Avaible Providers
-The providers that React admin supports are as follows:
-* Simple Rest: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-simple-rest](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-simple-rest)
-* Json Server: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-json-server](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-json-server)
-* Simple GrapgQL: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-graphql-simple](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-graphql-simple)
-* Local JSON: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage)
-* Local Strage: [https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-localstorage)
-* Supabase: [https://github.com/marmelab/ra-supabase](https://github.com/marmelab/ra-supabase)
-
-[You can view the full list of providers here ->](https://marmelab.com/react-admin/DataProviders.html)
-
-### Customization
-With React-Admin, you can develop effective B2B applications and admin panels in a very short time. Although most of the processes are handled with hooks, the general architecture is built on components. In general, we can say that it is customizable but not very flexible. In some cases or business models, you may need to think about this yourself and make some additions.
-#### UI/UX Customization: 
-React-Admin offers solutions in component architecture. The disadvantage of this is that you will have difficulty meeting your customization needs or different business requests. These  customizable, but they can be a bit of a hard for different business models. 
-#### Logic Customization:
-React-Admin uses redux and redux-saga for state management. You should know these two technologies well. In some cases you may need to create the actions and reducers yourself. This is also a disadvantage for many situations.
-
-### Pricing
-In addition to these features it provides, React-Admin offers some modules as Enterprise-Edition.
-
-A few of these modules are as follows:
-
-* RBAC
-* Editable-Datagrid
-* Realtime
-* Search 
-* Navigation
-
-[For more information about Enterprise-Edition and other modules](https://marmelab.com/ra-enterprise)
-
-
-
-React-Admin Docs & Demo : [Documentation](https://marmelab.com/react-admin/Readme.html) - [Live Demo](https://marmelab.com/react-admin-demo/#/)
 
 ## Refine
 refine is a React-based framework that helps you to develop admin panel, B2B and dashboard that can be fully customized with Ant Design.
@@ -584,9 +386,9 @@ Connects to any REST or GraphQL custom backend.
 * While the admin panel allows you to make dashboard, B2B and B2C applications quickly, we offer you flexibility in your UI or business model.
 
 #### UI/UX Customization: 
-refine, comes ready-made decoupled from the UI, and is used. refine mostly touches UI components via hooks. The main advantage of this for you is that you can successfully perform any Business request or different case.
+* refine, comes ready-made decoupled from the UI, and is used. refine mostly touches UI components via hooks. The main advantage of this for you is that you can successfully perform any Business request or different case.
 #### Logic Customization:
-refine, works flawless with react-query. You don't have to worry about state management in your business model or when you encounter a different situation.
+* refine, works flawless with react-query. You don't have to worry about state management in your business model or when you encounter a different situation.
 
 ### Pricing
 All features of refine are available as **open source**.
@@ -601,12 +403,155 @@ If you want to get information about the Enterprise, refine ready to help you fo
 
 refine Docs & Demo: [Documentation](https://refine.dev/docs/) - [Live Demo](https://refine.dev/demo/)
 
+## AdminBro
+AdminBro is an open-source package from  that adds an auto-generated admin panel to your Node.js application. You provide database models or schemas and AdminBro generates the user interface for you. 
+
+You can connect your various databases to the admin interface and perform standard CRUD operations  on the records. In this way, it makes it to make changes on your data and provides you with a great deal of convenience.
+
+You can quickly develop and customize the Admin panel with AdminBro.
+
+It provides you with solutions and provides convenience when making admin panel and b2b applications. It is an open source project that has been in development and ongoing development for a long time. 
+
+### Installation
+
+We can say that it is difficult to install, but it is clearly explained step by step in the documentation.
+
+:::note
+Since AdminBro uses your existing framework to render its routes - you have to use one of our plugins.
+
+There are plugins for:
+* Express
+* Hapi
+* Koa.js
+* Nest.js
+:::note
+
+Install the AdminBro along with the express plugin
+
+```bash
+npm install admin-bro @admin-bro/express
+```
+
+Then, we need to install some dependencies express and the express-formidable packages. express-formidable is a peer dependency for AdminBro
+
+ ```bash
+ npm install express express-formidable
+ ```
+
+[For detailed installation →](https://adminbro.com/tutorial-installation-instructions.html)
+
+### Features 
+
+* You can use any data from any source and make changes to the data(create, read, update, delete)
+* Custom actions
+* Custom resource decorators
+* Form validation 
+* A full-featured control panel can be created.
+* Internationalization(i18n)
+
+### SSR - Next.js Support​
+AdminBro does not support SSR-Next.js. It only helps you develop B2B and admin panel applications.
+
+### Routing
+Adminbro's routing processes are slightly different than others. You can also define the routes of the components that you have created custom here.
+
+```jsx
+const AdminBro = require('admin-bro')
+const AdminBroExpress = require('@admin-bro/express')
+
+const express = require('express')
+const app = express()
+
+const adminBro = new AdminBro({
+  databases: [],
+  rootPath: '/admin',
+})
+
+const router = AdminBroExpress.buildRouter(adminBro)
+```
+The concept of routing is handled in a different way and in general all routing operations are defined through this file.
+
+
+### Data Provider Logic
+It does not have a data provider exactly like other frameworks. It has a different structure. It has created functions for you to control your data. But there are rules that we must follow and do.
+
+AdminBro can be connected to many different types of resources. Right now, they support the following options:
+
+* Mongoose
+* Sequelize
+* TypeORM
+
+To add resources , you first have to intall an adapter for the resource you want to use.
+
+#### Install the Database Adapter and add resources
+
+Let's take a look at an example made with the mongoose adapter.
+
+```bash
+npm install mongoose @admin-bro/mongoose
+```
+
+```tsx title="index.js"
+const AdminBro = require('admin-bro')
+const AdminBroExpress = require('@admin-bro/express')
+const AdminBroMongoose = require('@admin-bro/mongoose')
+ 
+const express = require('express')
+const app = express()
+ 
+const mongoose = require('mongoose')
+ 
+AdminBro.registerAdapter(AdminBroMongoose)
+ 
+const run = async () => {
+  const connection = await mongoose.connect('mongodb://localhost:27017/users', {useNewUrlParser: true, useUnifiedTopology: true})
+ 
+  const User = mongoose.model('User', { name: String, email: String, surname: String })
+ 
+  const adminBro = new AdminBro ({
+    Databases: [connection],
+    rootPath: '/admin',
+    resources: [User]
+  })
+  const router = AdminBroExpress.buildRouter(adminBro)
+  app.use(adminBro.options.rootPath, router)
+     
+  app.listen(3000, ()=> {
+    console.log('Application is up and running under localhost:3000/admin')
+  })
+}
+run()
+```
+Here we first installed and connected mongoose. We then created a model and passed it to the AdminBro resource. AdminBro has built an interface for us where we can list our users. You can also add your own [custom adapters](https://adminbro.com/tutorial-writing-custom-adapters.html) and set up [custom resources](https://adminbro.com/tutorial-customizing-resources.html).
+
+The logic is well covered and also well explained in the documentation. But we can say that it is complex compared to other frameworks. It can be difficult to use on big data. 
+
+### Customization
+AdminBro is good at customizing. You can connect your own adapters and customize your resources. These customizations are challenging and complex.
+
+Some customizable features are as follows:
+ * [Customize Resources](https://adminbro.com/tutorial-customizing-resources.html)
+ * [Customize Actions](https://adminbro.com/tutorial-actions.html)
+ * [Custom Validations](https://adminbro.com/tutorial-actions-validations.html)
+ * [Customize dashboard](https://adminbro.com/tutorial-custom-dashboard.html)
+
+#### UI/UX Customization:​
+It automatically offers you an interface option that you can use. You can also develop and customize your own components. You can do your own styling and write your own custom components, but for this customization, you need to follow and apply a few steps. It doesn't speed you up in UI development.
+
+[For more information about developing your own components ->](https://adminbro.com/tutorial-writing-react-components.html)
+
+### Pricing
+All features of Adminbro are open source and accessible.
+
+* Role-Based Access Control
+* Content Management System
+
+AdminBro Docs & Demo: [Documentation](https://adminbro.com/tutorial-installation-instructions.html) - [Live Demo](https://admin-bro-example-app-staging.herokuapp.com/admin/login)
 
 ## Conclusion
-With the pricing, customization and flexibility that **refine** offers you, you will be able to meet all your business demands. In addition, you can easily develop both B2B and B2C applications using a single framework with the support of SSR - Next.js. 
+We have examined these two frameworks under some headings. Both help you successfully develop admin panel and B2B applications.
 
-
-In general, these frameworks that we are comparing have appeared for the same purpose. All of them are successful in meeting business demands and offering you a solution. Here are the this solutions way that they offer, they may differ and there may be distinguishing features between them.
+We suggest asking some questions to find out which one is more suitable for your project.
 
 At this point, the questions you should ask when choosing these of framework may be as follows:
 
@@ -619,6 +564,8 @@ At this point, the questions you should ask when choosing these of framework may
 * How dependent am I on this framework when using it in my project and does it offer customization possibilities?
 
 * What does it offer me as an extra feature?
+
+Here **refine** directly answers some of your questions. You can meet all your business demands with the extra features(SSR-Next.js support) and customization it offers you.
 
 In this article, we tried to answer these questions. By reading this article, you can choose the appropriate framework for your project and use it.
 
