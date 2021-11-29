@@ -85,7 +85,8 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                     );
                 }
 
-                case "create": {
+                case "create":
+                case "clone": {
                     return (
                         <Create
                             name={name}

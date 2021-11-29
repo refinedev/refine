@@ -188,6 +188,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                 value: record.id,
             },
         ],
+        syncWithLocation: false,
     });
 
     const moreMenu = (record: IProduct) => (

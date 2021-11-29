@@ -42,7 +42,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          registry: docker.pkg.github.com
+          registry: ghcr.io
           repository: pankod/refine/refine-documentation
           path: documentation
           tag_with_sha: true
