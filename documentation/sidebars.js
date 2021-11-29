@@ -19,6 +19,7 @@ module.exports = {
                     items: [
                         "api-references/providers/auth-provider",
                         "api-references/providers/data-provider",
+                        "api-references/providers/live-provider",
                         "api-references/providers/i18n-provider",
                         "api-references/providers/router-provider",
                     ],
