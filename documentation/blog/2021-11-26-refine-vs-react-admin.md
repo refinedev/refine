@@ -1,7 +1,7 @@
 ---
 title: Refine vs React-Admin Which is Better for Your Project?
 description: We will compare the features of refine and react-admin
-slug: refine-vs-react-admin-which-is-better-for-your-project
+slug: refine-vs-react-admin
 authors: melih
 tags: [refine, reactadmin, react, comparison]
 image: https://refine.dev/img/refine_social.png
@@ -31,7 +31,7 @@ This comparison table strives to be as accurate and as unbiased as possible. If 
 
 ## React-Admin
 
-React-Admin is an  B2B application framework based on Material Design, using Material UI. It provides ready-to-fetch-data components, so you just compose them together to create an application.
+[React-Admin](https://marmelab.com/react-admin/) is an  B2B application framework based on Material Design, using Material UI. It provides ready-to-fetch-data components, so you just compose them together to create an application.
 
 It can fetch data from any API connected to the data source, like REST, GraphQL, RPC. It’s powered by React, React Router, Redux, and Redux Saga, while Material UI is responsible for the visual.
 
@@ -224,15 +224,15 @@ A few of these modules are as follows:
 React-Admin Docs & Demo : [Documentation](https://marmelab.com/react-admin/Readme.html) - [Live Demo](https://marmelab.com/react-admin-demo/#/)
 
 ## Refine
-refine is a React-based framework that helps you to develop admin panel, B2B and dashboard that can be fully customized with Ant Design.
+**refine** is a React-based framework that helps you to develop admin panel, B2B and dashboard that can be fully customized with Ant Design.
 
-refine directly provides Ant Design components and some hooks to work with those components. These hooks give you the required props for those Ant Design components.
+**refine** directly provides Ant Design components and some hooks to work with those components. These hooks give you the required props for those Ant Design components.
 
-refine is a collection of helper hooks, components and providers. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
+**refine** is a collection of helper hooks, components and providers. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
 
-refine uses React Query for data processing, caching, and state management. In this respect, you do not need to define anything extra for every cases and model.
+**refine** uses [React Query](https://react-query.tanstack.com/) for data processing, caching, and state management. In this respect, you do not need to define anything extra for every cases and model.
 
-Although refine is a newer framework, it is successful in identifying deficiencies in development and producing solutions accordingly. Using new technologies, it offers users more effective and simpler development options.
+Although **refine** is a newer framework, it is successful in identifying deficiencies in development and producing solutions accordingly. Using new technologies, it offers users more effective and simpler development options.
 
 ### Installation
 * Installation is very simple and customizable options can be added.
@@ -256,9 +256,9 @@ npx superplate-cli demo-refine-project
 * React Location: React Location router provider support 
 
 ### SSR - Next.js Support 
-refine has support for SSR - Next.js. This is an important feature that separates refine from other frameworks. Thanks to this feature, refine provides the opportunity to develop B2C applications in addition to B2B and admin panel.
+**refine** has support for SSR - Next.js. This is an important feature that separates refine from other frameworks. Thanks to this feature, refine provides the opportunity to develop B2C applications in addition to B2B and admin panel.
 
-refine can be used with Next.js to SSR your pages. It doesn't get in the way and follows Next.js conventions and also provides helper modules when necessary.
+**refine** can be used with Next.js to SSR your pages. It doesn't get in the way and follows Next.js conventions and also provides helper modules when necessary.
 
 #### SSR-Next.js Setup
 
@@ -294,7 +294,7 @@ export default MyApp;
 [For more information on how to add SSR-Next.js to your Refine project ->](https://refine.dev/docs/guides-and-concepts/ssr-nextjs/) 
 
 ### Routing
-refine uses a customized Router Provider to save routes and navigate between pages. refine offers a much more flexible structure thanks to its routerProvider support.
+**refine** uses a customized Router Provider to save routes and navigate between pages. **refine** offers a much more flexible structure thanks to its routerProvider support.
 
 A router provider must include the following methods:
 
@@ -317,7 +317,7 @@ const routerProvider = {
 ```
 
 :::info
-refine includes many  router providers to use in your projects like: 
+**refine** includes many  router providers to use in your projects like: 
 
 * React Router
 * React Location
@@ -326,7 +326,7 @@ refine includes many  router providers to use in your projects like:
 
 [To take a look at how other router providers are defined and working](https://refine.dev/docs/api-references/providers/router-provider/)
 
-To activate router provider in refine, we have to pass the routerProvider to the `<Refine />` component.
+To activate router provider in **refine**, we have to pass the routerProvider to the `<Refine />` component.
 
 <Tabs
 defaultValue="react-router"
@@ -378,7 +378,7 @@ You just need to tell the route of your component to the routerProvider.
 
 ### Data Provider Logic
 
-A data provider is the place where a refine app communicates with an API.
+A data provider is the place where a **refine** app communicates with an API.
 
 <img src={refine_flow} alt="refine" />
 
@@ -416,9 +416,9 @@ Data hooks uses React Query to manage data fetching. React Query handles importa
 :::
 
 #### GraphQL Data Provider
-It is well covered by GraphQL data provider refine and explained step by step in the documentation.
+It is well covered by GraphQL data provider **refine** and explained step by step in the documentation.
 
-refine GraphQL data provider is built with qql-query-builder and graphql-request. The purpose here is to send dynamic queries that we can do with qql-query-builder as requests with graphql-request. 
+**refine** GraphQL data provider is built with [qql-query-builder](https://github.com/atulmy/gql-query-builder) and [graphql-request](https://github.com/prisma-labs/graphql-request). The purpose here is to send dynamic queries that we can do with qql-query-builder as requests with graphql-request. 
 
 Query builder helps us build queries and mutations. We can use these queries with the getList, getMany and getOne methods in our data provider. On the other hand, the create, createMany, update, updateMany, deleteOne and deleteMany methods generate a mutation to send a request.
 
@@ -580,16 +580,16 @@ Connects to any REST or GraphQL custom backend.
 * Altogic: [https://github.com/pankod/refine/tree/master/examples/dataProvider/altogic](https://github.com/pankod/refine/tree/master/examples/dataProvider/altogic)
 
 ### Customization
-* refine's motivation and main purpose are as follows: "Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility." 
+* **refine's** motivation and main purpose are as follows: "Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility." 
 * While the admin panel allows you to make dashboard, B2B and B2C applications quickly, we offer you flexibility in your UI or business model.
 
 #### UI/UX Customization: 
-refine, comes ready-made decoupled from the UI, and is used. refine mostly touches UI components via hooks. The main advantage of this for you is that you can successfully perform any Business request or different case.
+**refine**, comes ready-made decoupled from the UI, and is used. **refine** mostly touches UI components via hooks. The main advantage of this for you is that you can successfully perform any Business request or different case.
 #### Logic Customization:
-refine, works flawless with react-query. You don't have to worry about state management in your business model or when you encounter a different situation.
+**refine**, works flawless with react-query. You don't have to worry about state management in your business model or when you encounter a different situation.
 
 ### Pricing
-All features of refine are available as **open source**.
+All features of **refine** are available as **open source**.
 
 * Access Control Provider (RBAC, ABAC, ACL, IP, LDAP, etc...)
 * Realtime
