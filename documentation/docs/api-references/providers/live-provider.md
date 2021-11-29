@@ -5,35 +5,76 @@ title: Live Provider
 
 ## Overview
 
+**refine** lets you add real time support to your app via `liveProvider` prop for [`<Refine>`](#). It can be used to update and show data in real time throughout your app. **refine** remains agnostic in its API to allow different solutions([PubNub](https://www.pubnub.com/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com) etc.) to be integrated.
 
+A live provider must include following methods:
 
-what is live provider
-Livemode realtime support için kullanılır
-Refine agnostiktir. Her websocket api si kullanılabilir(pubnub, mercury, socket.io)
+```ts
+const liveProvider = {
+    subscribe: ({ channel, params: { id }, type, callback }) => ({}),
+    publish: (event) => {},
+    unsubscribe: (subscription) => {},
+};
+```
 
-3 metod var: sub, unsure, pub
+:::tip
+**refine** includes out-of-the-box live providers to use in your projects like
 
-interface
+-   [Supabase](#)
+-   [PubNub](#)
+    :::
+
+:::important
+**refine** consumes these methods using [useSubscription](#)
+:::
 
 ## Usage
 
-liveProvider, [liveMode](#) prop
+You must pass a live provider to the `liveProvider` prop of `<Refine>`
+
+```tsx title="App.tsx"
+import { Refine } from "@pankod/refine";
+
+import liveProvider from "./liveProvider";
+
+const App: React.FC = () => {
+    return <Refine liveProvider={liveProvider} />;
+};
+```
 
 ## Creating a live provider
 
-### subscribe
+### `subscribe`
 
 [useSubscription](#)
 
-### unsubscribe
+### `unsubscribe`
 
-### publish
+### `publish`
 
 ## `liveMode`
 
-Hem hook hem refine seviyesinde
+`liveMode` must be passed to either `<Refine>` or [supported hooks](#) for `liveProvider` to work. If it's not provided live features won't be activated. Passing it to `<Refine>` configures it app wide and hooks will use this option. It can also be passed to hooks directly without passing to `<Refine>` for detailed configuration. If both are provided value passed to the hook will override the value at `<Refine>`.
+
+#### Usage in `<Refine>`:
+
+```tsx title="App.tsx"
+// ...
+
+const App: React.FC = () => {
+    return <Refine liveProvider={liveProvider} liveMode="immediate" />;
+};
+```
+
+#### Usage in a hook:
+
+```tsx
+const { data } = useList({ liveMode: "controlled" });
+```
 
 ### `immediate`
+
+Queries of related resource are invalidated in real-time as new events from subscription arrive.
 
 ### `controlled`
 
