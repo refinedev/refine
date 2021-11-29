@@ -1,6 +1,6 @@
 import PubNub from "pubnub";
 
 export const pubnubClient = new PubNub({
-    publishKey: "pub-c-16480a48-d534-4929-bcaa-0f98e54c7fd0",
-    subscribeKey: "sub-c-06614b42-3e0c-11ec-8182-fea14ba1eb2b",
+    publishKey: "pub-c-0716bc72-15dd-4ae5-946b-2db82f4fec05",
+    subscribeKey: "sub-c-b701efd4-4eb9-11ec-9668-6eac75df5fc1",
 });

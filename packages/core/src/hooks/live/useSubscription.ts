@@ -4,6 +4,7 @@ import { useCacheQueries } from "@hooks";
 import {
     ILiveContext,
     ILiveModeContext,
+    LiveEvent,
     LiveModeProps,
 } from "../../interfaces";
 import { LiveContext, LiveModeContext } from "@contexts/live";
@@ -18,11 +19,15 @@ export type UseSubscriptionProps = {
     enabled?: boolean;
 } & LiveModeProps;
 
+export type PublishType = {
+    (event: LiveEvent): void;
+};
+
 export const useSubscription = ({
     resource,
     params,
     channel,
-    enabled = false,
+    enabled = true,
     liveMode: liveModeFromProp,
     onLiveEvent,
 }: UseSubscriptionProps): void => {

@@ -1,7 +1,7 @@
 {
   "name": "@pankod/refine-react-router",
   "description": "refine react-router router provider. refine is a React-based framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
-  "version": "2.2.3",
+  "version": "2.3.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -41,7 +41,7 @@
     "tslib": "^2.3.1"
   },
   "dependencies": {
-    "@pankod/refine": "^2.2.3",
+    "@pankod/refine": "^2.3.1",
     "react-router-dom": "^5.3.0"
   },
   "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",

@@ -1,18 +1,21 @@
 import React, { ReactNode } from "react";
-
-import { render, TestWrapper, MockJSONServer } from "@test";
-
+import { Route } from "react-router-dom";
 import { Table } from "antd";
 
+import { render, TestWrapper, MockJSONServer, wait } from "@test";
 import { List } from "./index";
-import { Route } from "react-router-dom";
+import { IAccessControlContext } from "../../../interfaces";
 
-const renderList = (list: ReactNode) => {
+const renderList = (
+    list: ReactNode,
+    accessControlProvider?: IAccessControlContext,
+) => {
     return render(<Route path="/:resource">{list}</Route>, {
         wrapper: TestWrapper({
             dataProvider: MockJSONServer,
             resources: [{ name: "posts", route: "posts" }],
             routerInitialEntries: ["/posts"],
+            accessControlProvider,
         }),
     });
 };
@@ -192,6 +195,26 @@ describe("<List/>", () => {
                 );
 
                 expect(queryByTestId("list-create-button")).not.toBeNull();
+            });
+
+            it("should render disabled create button if user doesn't have permission", async () => {
+                const { queryByTestId } = renderList(
+                    <List canCreate={true} />,
+                    {
+                        can: ({ action }) => {
+                            switch (action) {
+                                case "create":
+                                    return Promise.resolve({ can: false });
+                                default:
+                                    return Promise.resolve({ can: false });
+                            }
+                        },
+                    },
+                );
+
+                await wait(() =>
+                    expect(queryByTestId("list-create-button")).toBeDisabled(),
+                );
             });
         });
     });

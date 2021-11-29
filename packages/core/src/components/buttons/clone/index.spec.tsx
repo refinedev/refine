@@ -1,7 +1,7 @@
 import React from "react";
 import ReactRouterDom, { Route } from "react-router-dom";
 
-import { fireEvent, render, TestWrapper } from "@test";
+import { fireEvent, render, TestWrapper, wait } from "@test";
 import { CloneButton } from "./";
 
 const mHistory = {
@@ -58,6 +58,100 @@ describe("Clone Button", () => {
         expect(queryByText("Clone")).not.toBeInTheDocument();
     });
 
+    it("should be disabled when user not have access", async () => {
+        const { container, getByText } = render(
+            <CloneButton>Clone</CloneButton>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                    accessControlProvider: {
+                        can: () => Promise.resolve({ can: false }),
+                    },
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        await wait(() =>
+            expect(getByText("Clone").closest("button")).toBeDisabled(),
+        );
+    });
+
+    it("should be disabled when recordId not allowed", async () => {
+        const { container, getByText } = render(
+            <CloneButton recordItemId="1">Clone</CloneButton>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                    accessControlProvider: {
+                        can: ({ params }) => {
+                            if (params.id === "1") {
+                                return Promise.resolve({ can: false });
+                            }
+                            return Promise.resolve({ can: false });
+                        },
+                    },
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        await wait(() =>
+            expect(getByText("Clone").closest("button")).toBeDisabled(),
+        );
+    });
+
+    it("should skip access control", async () => {
+        const { container, getByText } = render(
+            <CloneButton ignoreAccessControlProvider>Clone</CloneButton>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                    accessControlProvider: {
+                        can: () => Promise.resolve({ can: false }),
+                    },
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        await wait(() =>
+            expect(getByText("Clone").closest("button")).not.toBeDisabled(),
+        );
+    });
+
+    it("should successfully return disabled button custom title", async () => {
+        const { container, getByText } = render(
+            <CloneButton>Clone</CloneButton>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }],
+                    accessControlProvider: {
+                        can: () =>
+                            Promise.resolve({
+                                can: false,
+                                reason: "Access Denied",
+                            }),
+                    },
+                }),
+            },
+        );
+
+        expect(container).toBeTruthy();
+
+        await wait(() =>
+            expect(getByText("Clone").closest("button")).not.toBeDisabled(),
+        );
+        await wait(() =>
+            expect(
+                getByText("Clone").closest("button")?.getAttribute("title"),
+            ).toBe("Access Denied"),
+        );
+    });
+
     it("should render called function successfully if click the button", () => {
         const { getByText } = render(
             <CloneButton onClick={() => clone()} recordItemId="1" />,
@@ -109,7 +203,7 @@ describe("Clone Button", () => {
         expect(mHistory.push).toBeCalledWith("/posts/clone/1");
     });
 
-    it("should custom resource and recordItemId redirect clone route called function successfully if click the button", () => {
+    xit("should custom resource and recordItemId redirect clone route called function successfully if click the button", () => {
         const { getByText } = render(
             <Route path="/:resource">
                 <CloneButton resourceName="categories" recordItemId="1" />
