@@ -181,3 +181,12 @@ ButtonProps
 | ------- | --------- |
 | can     | `boolean` |
 | reason? | `string`  |
+
+## LiveEvent
+
+| Key     | Type                                                           |
+| ------- | -------------------------------------------------------------- |
+| channel | `boolean`                                                      |
+| type    | `"deleted"` \| `"updated"` \| `"created"` \| "`*`" \| `string` |
+| payload | `BaseRecord` \| `any`                                          |
+| date    | `Date`                                                         |
