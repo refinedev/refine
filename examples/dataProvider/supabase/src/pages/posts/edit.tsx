@@ -79,6 +79,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                     }
                 />
             )}
+
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
