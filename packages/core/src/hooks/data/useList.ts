@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
 import { ArgsProps } from "antd/lib/notification";
 
