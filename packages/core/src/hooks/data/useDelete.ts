@@ -23,8 +23,10 @@ import {
     GetListResponse,
     SuccessErrorNotification,
     MetaDataQuery,
+    ILiveContext,
 } from "../../interfaces";
 import { handleNotification } from "@definitions/helpers";
+import { LiveContext } from "@contexts/live";
 
 type DeleteParams = {
     id: string;
@@ -63,6 +65,7 @@ export const useDelete = <
 >(): UseDeleteReturnType<TData, TError> => {
     const { mutate: checkError } = useCheckError();
     const queryClient = useQueryClient();
+    const liveContext = useContext<ILiveContext>(LiveContext);
     const { deleteOne } = useContext<IDataContext>(DataContext);
     const {
         mutationMode: mutationModeContext,
@@ -241,6 +244,15 @@ export const useDelete = <
                         `Successfully deleted a ${resourceSingular}`,
                     ),
                     type: "success",
+                });
+
+                liveContext?.publish({
+                    channel: `resources/${resource}`,
+                    type: "deleted",
+                    payload: {
+                        id,
+                    },
+                    date: new Date(),
                 });
             },
             onSettled: (_data, _error, { id, resource }) => {
