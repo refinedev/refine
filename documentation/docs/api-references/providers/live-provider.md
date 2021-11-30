@@ -22,7 +22,8 @@ const liveProvider = {
 
 -   [Supabase](#)
 -   [PubNub](#)
-    :::
+
+:::
 
 :::important
 **refine** consumes these methods using [useSubscription](#)
@@ -44,13 +45,169 @@ const App: React.FC = () => {
 
 ## Creating a live provider
 
+We will build **"PubNub Live Provider"** of `@pankod/refine-pubnub` from scratch to show the logic of how live provider methods interact with PubNub.
+
 ### `subscribe`
 
-[useSubscription](#)
+This method is used to subscribe to a real-time channel.
+
+```ts title="liveProvier.ts"
+import { LiveProvider, LiveEvent } from "@pankod/refine";
+import PubNub, { ListenerParameters } from "pubnub";
+
+const liveProvider = (pubnubClient: PubNub): LiveProvider => {
+    return {
+        // highlight-start
+        subscribe: ({
+            channel,
+            type,
+            params,
+            callback,
+        }): [ListenerParameters, string] => {
+            const listenerObject: ListenerParameters = {
+                message: function (pubnubMessage) {
+                    const { message, channel: pubnubChannel } = pubnubMessage;
+
+                    if (
+                        pubnubChannel === channel &&
+                        (message?.type === type || type === "*")
+                    ) {
+                        if (
+                            params?.id &&
+                            message.payload.id.toString() !== params.id
+                        ) {
+                            return;
+                        }
+
+                        callback({
+                            ...message,
+                            date: new Date(),
+                        });
+                    }
+                },
+            };
+
+            pubnubClient.subscribe({ channels: [channel] });
+            pubnubClient.addListener(listenerObject);
+
+            return [listenerObject, channel];
+        },
+        // highlight-end
+    };
+};
+```
+
+#### Parameter Types
+
+| Name     | Type                                                           |
+| -------- | -------------------------------------------------------------- |
+| channel  | `string`                                                       |
+| type     | `"deleted"` \| `"updated"` \| `"created"` \| "`*`" \| `string` |
+| params   | `{id?: string; [key: string]: any;}`                           |
+| callback | `(event: LiveEvent) => void;`                                  |
+
+> [`LiveEvent`](#)
+
+#### Return Type
+
+| Type  |
+| ----- |
+| `any` |
+
+<br/>
+
+**refine** will use this subscribe method in the [`useSubscription`](#) hook.
+
+```ts
+import { useSubscription } from "@pankod/refine";
+
+useSubscription({
+    resource: "resource-name",
+    channel: "channel-name",
+});
+```
+
+> [Refer to the useSubscription documentation for more information. &#8594](#)
+
+<br />
 
 ### `unsubscribe`
 
+This method is used to unsubscribe from a channel.
+
+```ts title="liveProvier.ts"
+// ...
+
+const liveProvider = (pubnubClient: PubNub): LiveProvider => {
+    return {
+        // ...
+        // highlight-start
+        unsubscribe: ([listenerObject, channel]: [
+            ListenerParameters,
+            string,
+        ]) => {
+            pubnubClient.removeListener(listenerObject);
+        },
+        // highlight-end
+        // ...
+    };
+};
+```
+
+#### Parameter Types
+
+| Name         | Type  |
+| ------------ | ----- |
+| subscription | `any` |
+
+#### Return Type
+
+| Type   |
+| ------ |
+| `void` |
+
+<br/>
+
 ### `publish`
+
+This method is used to publish an event.
+
+```ts title="liveProvier.ts"
+// ...
+
+const liveProvider = (pubnubClient: PubNub): LiveProvider => {
+    return {
+        // ...
+        // highlight-start
+        publish: (event: LiveEvent) => {
+            try {
+                pubnubClient.publish({
+                    channel: event.channel,
+                    message: event,
+                });
+            } catch (e) {
+                console.log(e);
+            }
+        },
+        // highlight-end
+        // ...
+    };
+};
+```
+
+#### Parameter Types
+
+| Name  | Type        |
+| ----- | ----------- |
+| event | `LiveEvent` |
+
+> [`LiveEvent`](#)
+
+#### Return Type
+
+| Type   |
+| ------ |
+| `void` |
 
 ## `liveMode`
 
@@ -78,10 +235,47 @@ Queries of related resource are invalidated in real-time as new events from subs
 
 ### `controlled`
 
+Queries of related resource are **not invalidated** in real-time, instead [`onLiveEvent`](#) is run with the `event` as new events from subscription arrive.
+
 ## `onLiveEvent`
 
-hook lar da alır ve sadece controlled de çalışır.
+Callback that is run when new events from subscription arrive. It can be passed to both `<Refine>` and [supported hooks](#).
 
-refine da alır hep çalışır.
+### `<Refine>`
+
+`onLiveEvent` passed to `<Refine>` will run every time when a new event occurs regardless of the `liveMode`. It can be used for actions that are generally applicable to all events.
+
+```tsx title="App.tsx"
+// ...
+
+const App: React.FC = () => {
+    return (
+        <Refine
+            liveProvider={liveProvider}
+            liveMode="immediate"
+            onLiveEvent={(event) => {
+                // Put your own logic based on event
+            }}
+        />
+    );
+};
+```
+
+### Hooks
+
+`onLiveEvent` passed to hooks runs when `liveMode` is `controlled`.
+
+```tsx
+const { data } = useList({
+    liveMode: "controlled",
+    onLiveEvent: (event) => {
+        // Put your own logic based on event
+    },
+});
+```
+
+:::caution
+Even if `liveMode` for a hook is not `controlled`, `onLiveEvent` from `<Refine>` will still be run.
+:::
 
 ## Supported Hooks
