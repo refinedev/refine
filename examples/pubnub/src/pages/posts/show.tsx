@@ -7,7 +7,6 @@ import {
     MarkdownField,
     Alert,
     Space,
-    Button,
     DeleteButton,
     ListButton,
     EditButton,
@@ -20,12 +19,15 @@ import { useState } from "react";
 const { Title, Text } = Typography;
 
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
-    const [isDeprecated, setIsDeprecated] = useState(false);
+    const [deprecated, setDeprecated] =
+        useState<"deleted" | "updated" | undefined>(undefined);
 
     const { queryResult } = useShow<IPost>({
         liveMode: "controlled",
-        onLiveEvent: () => {
-            setIsDeprecated(true);
+        onLiveEvent: (event) => {
+            if (event.type === "deleted" || event.type === "updated") {
+                setDeprecated(event.type);
+            }
         },
     });
 
@@ -42,8 +44,8 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
         });
 
     const handleRefresh = () => {
-        queryResult.refetch();
-        setIsDeprecated(false);
+        queryResult?.refetch();
+        setDeprecated(undefined);
     };
 
     return (
@@ -60,22 +62,34 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
                 ),
             }}
         >
-            {isDeprecated && (
+            {deprecated === "deleted" && (
                 <Alert
-                    message="This post is changed. Reload to see it's latest version."
+                    message="This post is deleted."
                     type="warning"
                     style={{
                         marginBottom: 20,
                     }}
                     action={
                         <Space>
-                            <Button
-                                onClick={handleRefresh}
+                            <ListButton size="small" />
+                        </Space>
+                    }
+                />
+            )}
+
+            {deprecated === "updated" && (
+                <Alert
+                    message="This post is updated. Refresh to see changes."
+                    type="warning"
+                    style={{
+                        marginBottom: 20,
+                    }}
+                    action={
+                        <Space>
+                            <RefreshButton
                                 size="small"
-                                type="ghost"
-                            >
-                                Refresh
-                            </Button>
+                                onClick={handleRefresh}
+                            />
                         </Space>
                     }
                 />
