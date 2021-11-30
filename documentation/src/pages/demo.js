@@ -26,7 +26,7 @@ const Hello = () => {
                             className="link-button"
                             to="https://example.refine.dev"
                         >
-                            B2B Next.js App (SSR)
+                            B2C Next.js App (SSR)
                             <IoMdOpen />
                         </Link>
                         <div className="toggle toggle-left">
@@ -63,7 +63,7 @@ const Hello = () => {
                         className="link-button"
                         to="https://example.refine.dev"
                     >
-                        B2B Next.js App (SSR)
+                        B2C Next.js App (SSR)
                         <IoMdOpen />
                     </Link>
                     <img src="/demo/nextjs-client.png" />

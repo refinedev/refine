@@ -5,14 +5,32 @@ import {
     IResourceComponentsProps,
     useOne,
     MarkdownField,
+    Alert,
+    Space,
+    DeleteButton,
+    ListButton,
+    EditButton,
+    RefreshButton,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
+import { useState } from "react";
 
 const { Title, Text } = Typography;
 
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
-    const { queryResult } = useShow<IPost>();
+    const [deprecated, setDeprecated] =
+        useState<"deleted" | "updated" | undefined>(undefined);
+
+    const { queryResult } = useShow<IPost>({
+        liveMode: "controlled",
+        onLiveEvent: (event) => {
+            if (event.type === "deleted" || event.type === "updated") {
+                setDeprecated(event.type);
+            }
+        },
+    });
+
     const { data, isLoading } = queryResult;
     const record = data?.data;
 
@@ -25,8 +43,58 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
             },
         });
 
+    const handleRefresh = () => {
+        queryResult?.refetch();
+        setDeprecated(undefined);
+    };
+
     return (
-        <Show isLoading={isLoading}>
+        <Show
+            isLoading={isLoading}
+            pageHeaderProps={{
+                extra: (
+                    <>
+                        <ListButton />
+                        <EditButton />
+                        <DeleteButton />
+                        <RefreshButton onClick={handleRefresh} />
+                    </>
+                ),
+            }}
+        >
+            {deprecated === "deleted" && (
+                <Alert
+                    message="This post is deleted."
+                    type="warning"
+                    style={{
+                        marginBottom: 20,
+                    }}
+                    action={
+                        <Space>
+                            <ListButton size="small" />
+                        </Space>
+                    }
+                />
+            )}
+
+            {deprecated === "updated" && (
+                <Alert
+                    message="This post is updated. Refresh to see changes."
+                    type="warning"
+                    style={{
+                        marginBottom: 20,
+                    }}
+                    action={
+                        <Space>
+                            <RefreshButton
+                                size="small"
+                                onClick={handleRefresh}
+                            />
+                        </Space>
+                    }
+                />
+            )}
+
             <Title level={5}>Id</Title>
             <Text>{record?.id}</Text>
 

@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import {
+    Alert,
     Edit,
     Form,
     Input,
     IResourceComponentsProps,
+    ListButton,
+    RefreshButton,
     Select,
+    Space,
     useForm,
     useSelect,
 } from "@pankod/refine";
@@ -17,7 +21,16 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
+    const [deprecated, setDeprecated] =
+        useState<"deleted" | "updated" | undefined>(undefined);
+    const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+        liveMode: "controlled",
+        onLiveEvent: (event) => {
+            if (event.type === "deleted" || event.type === "updated") {
+                setDeprecated(event.type);
+            }
+        },
+    });
 
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -28,8 +41,56 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const [selectedTab, setSelectedTab] =
         useState<"write" | "preview">("write");
 
+    const handleRefresh = () => {
+        queryResult?.refetch();
+        setDeprecated(undefined);
+    };
+
     return (
-        <Edit saveButtonProps={saveButtonProps}>
+        <Edit
+            saveButtonProps={saveButtonProps}
+            pageHeaderProps={{
+                extra: (
+                    <>
+                        <ListButton />
+                        <RefreshButton onClick={handleRefresh} />
+                    </>
+                ),
+            }}
+        >
+            {deprecated === "deleted" && (
+                <Alert
+                    message="This post is deleted."
+                    type="warning"
+                    style={{
+                        marginBottom: 20,
+                    }}
+                    action={
+                        <Space>
+                            <ListButton size="small" />
+                        </Space>
+                    }
+                />
+            )}
+
+            {deprecated === "updated" && (
+                <Alert
+                    message="This post is updated. Refresh to see changes."
+                    type="warning"
+                    style={{
+                        marginBottom: 20,
+                    }}
+                    action={
+                        <Space>
+                            <RefreshButton
+                                size="small"
+                                onClick={handleRefresh}
+                            />
+                        </Space>
+                    }
+                />
+            )}
+
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
