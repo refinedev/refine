@@ -572,7 +572,7 @@ At this point, the questions you should ask when choosing these of framework may
 
 * What does it offer me as an extra feature?
 
-Here **refine** directly answers some of your questions. **refine**'s customized structures (API, Router, i18n, GraphQL provider, etc...) provide you convenience from many points, unlike admin bro. This convenience and perspective provided by **refine** can be preferred for many projects. In addition, you can be limited to internal tool/b2b applications with adminbro.  You can develop many different projects with **refine**'s rich UI library and SSR support.
+Here **refine** directly answers some of your questions. **refine**'s customized structures (API, Router, i18n, GraphQL provider, etc...) provide you convenience from many points, unlike admin bro. This convenience and perspective provided by **refine** can be preferred for many projects. In addition, you can be limited to internal tool/B2B applications with AdminBro.  You can develop many different projects with **refine**'s rich UI library and SSR support.
 
 In this article, we tried to answer these questions. By reading this article, you can choose the appropriate framework for your project and use it.
 
