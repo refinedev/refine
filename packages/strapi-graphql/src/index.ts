@@ -22,7 +22,11 @@ const generateFilter = (filters?: CrudFilters) => {
 
     if (filters) {
         filters.map(({ field, operator, value }) => {
-            queryFilters[`${field}_${operator}`] = value;
+            if (operator === "eq") {
+                queryFilters[`${field}`] = value;
+            } else {
+                queryFilters[`${field}_${operator}`] = value;
+            }
         });
     }
 
