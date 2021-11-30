@@ -3,7 +3,7 @@ title: Refine vs React-Admin Which is Better for Your Project?
 description: We will compare the features of refine and react-admin
 slug: refine-vs-react-admin
 authors: melih
-tags: [refine, reactadmin, react, comparison]
+tags: [refine, react-admin, react, admin-panel]
 image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
 ---
