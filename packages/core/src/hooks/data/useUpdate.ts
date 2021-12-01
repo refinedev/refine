@@ -271,7 +271,7 @@ export const useUpdate = <
                     type: "success",
                 });
 
-                liveContext?.publish({
+                liveContext?.publish?.({
                     channel: `resources/${resource}`,
                     type: "updated",
                     payload: {

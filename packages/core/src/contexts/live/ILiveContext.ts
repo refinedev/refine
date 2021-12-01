@@ -2,7 +2,7 @@ import { LiveEvent } from "../../interfaces";
 
 export type ILiveContext =
     | {
-          publish: (event: LiveEvent) => void;
+          publish?: (event: LiveEvent) => void;
           subscribe: (options: {
               channel: string;
               params?: {
