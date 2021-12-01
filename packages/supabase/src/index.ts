@@ -210,8 +210,6 @@ const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
         unsubscribe: (subscription: RealtimeSubscription) => {
             subscription.unsubscribe();
         },
-
-        publish: () => ({}),
     };
 };
 

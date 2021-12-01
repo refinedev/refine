@@ -246,7 +246,7 @@ export const useDelete = <
                     type: "success",
                 });
 
-                liveContext?.publish({
+                liveContext?.publish?.({
                     channel: `resources/${resource}`,
                     type: "deleted",
                     payload: {

@@ -97,7 +97,7 @@ export const useCreate = <
                     console.log("query, ", query);
                 });
 
-                liveContext?.publish({
+                liveContext?.publish?.({
                     channel: `resources/${resource}`,
                     type: "created",
                     payload: {
