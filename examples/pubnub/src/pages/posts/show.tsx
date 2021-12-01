@@ -23,7 +23,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
         useState<"deleted" | "updated" | undefined>(undefined);
 
     const { queryResult } = useShow<IPost>({
-        liveMode: "controlled",
+        liveMode: "manual",
         onLiveEvent: (event) => {
             if (event.type === "deleted" || event.type === "updated") {
                 setDeprecated(event.type);

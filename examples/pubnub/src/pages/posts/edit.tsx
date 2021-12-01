@@ -23,8 +23,9 @@ import { IPost, ICategory } from "interfaces";
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const [deprecated, setDeprecated] =
         useState<"deleted" | "updated" | undefined>(undefined);
+
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
-        liveMode: "controlled",
+        liveMode: "manual",
         onLiveEvent: (event) => {
             if (event.type === "deleted" || event.type === "updated") {
                 setDeprecated(event.type);

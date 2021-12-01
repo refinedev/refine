@@ -25,7 +25,7 @@ const App: React.FC = () => {
                     canDelete: true,
                 },
             ]}
-            liveMode="immediate"
+            liveMode="auto"
         />
     );
 };
