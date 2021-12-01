@@ -9,7 +9,7 @@ import {
     MetaDataQuery,
     LiveModeProps,
 } from "../../interfaces";
-import { useCheckError, useTranslate, useSubscription } from "@hooks";
+import { useCheckError, useTranslate, useResourceSubscription } from "@hooks";
 import { ArgsProps } from "antd/lib/notification";
 import { handleNotification } from "@definitions";
 
@@ -51,15 +51,12 @@ export const useOne = <
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
 
-    //TODO: buraya bak
-    const isEnabled =
-        queryOptions?.enabled === undefined || queryOptions?.enabled === true;
-
-    useSubscription({
+    useResourceSubscription({
         resource,
+        type: "*",
         channel: `resources/${resource}`,
         params: { id, ...liveParams },
-        enabled: isEnabled,
+        enabled: queryOptions?.enabled,
         liveMode,
         onLiveEvent,
     });

@@ -10,6 +10,7 @@ import {
     SuccessErrorNotification,
     MetaDataQuery,
     LiveEvent,
+    LiveModeProps,
 } from "../../interfaces";
 
 export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
@@ -22,9 +23,8 @@ export type useShowProps = {
     resource?: string;
     id?: string;
     metaData?: MetaDataQuery;
-    liveMode?: undefined | "immediate" | "controlled";
-    onLiveEvent?: (event: LiveEvent) => void;
-} & SuccessErrorNotification;
+} & LiveModeProps &
+    SuccessErrorNotification;
 
 /**
  * `useShow` hook allows you to fetch the desired record.

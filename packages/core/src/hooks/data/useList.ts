@@ -14,7 +14,7 @@ import {
     MetaDataQuery,
     LiveModeProps,
 } from "../../interfaces";
-import { useCheckError, useSubscription, useTranslate } from "@hooks";
+import { useCheckError, useResourceSubscription, useTranslate } from "@hooks";
 import { handleNotification } from "@definitions";
 
 interface UseListConfig {
@@ -67,8 +67,9 @@ export const useList = <
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
 
-    useSubscription({
+    useResourceSubscription({
         resource,
+        type: "*",
         params: liveParams,
         channel: `resources/${resource}`,
         enabled: isEnabled,

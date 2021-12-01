@@ -1,7 +1,7 @@
 import { LiveEvent } from ".";
 
 export type LiveModeProps = {
-    liveMode?: "immediate" | "controlled";
+    liveMode?: "auto" | "manual" | "off";
     onLiveEvent?: (event: LiveEvent) => void;
     liveParams?: {
         id?: string;

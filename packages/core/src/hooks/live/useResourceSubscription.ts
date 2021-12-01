@@ -15,6 +15,7 @@ export type UseSubscriptionProps = {
         id?: string;
         [key: string]: any;
     };
+    type: LiveEvent["type"];
     resource: string;
     enabled?: boolean;
 } & LiveModeProps;
@@ -23,10 +24,11 @@ export type PublishType = {
     (event: LiveEvent): void;
 };
 
-export const useSubscription = ({
+export const useResourceSubscription = ({
     resource,
     params,
     channel,
+    type,
     enabled = true,
     liveMode: liveModeFromProp,
     onLiveEvent,
@@ -44,20 +46,19 @@ export const useSubscription = ({
     useEffect(() => {
         let subscription: any;
 
-        if (liveMode && enabled) {
+        if (liveMode && liveMode !== "off" && enabled) {
             subscription = liveDataContext?.subscribe({
                 channel,
                 params,
-                type: "*",
+                type,
                 callback: (event) => {
-                    if (liveMode === "immediate") {
+                    if (liveMode === "auto") {
                         getAllQueries(resource).forEach((query) => {
                             queryClient.invalidateQueries(query.queryKey);
                         });
-                    } else if (liveMode === "controlled") {
-                        onLiveEvent?.(event);
                     }
 
+                    onLiveEvent?.(event);
                     onLiveEventContextCallback?.(event);
                 },
             });

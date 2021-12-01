@@ -11,7 +11,7 @@ import {
     MetaDataQuery,
     LiveModeProps,
 } from "../../interfaces";
-import { useTranslate, useCheckError, useSubscription } from "@hooks";
+import { useTranslate, useCheckError, useResourceSubscription } from "@hooks";
 import { handleNotification } from "@definitions";
 
 export type UseManyProps<TData, TError> = {
@@ -57,8 +57,9 @@ export const useMany = <
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
 
-    useSubscription({
+    useResourceSubscription({
         resource,
+        type: "*",
         params: liveParams,
         channel: `resources/${resource}`,
         enabled: isEnabled,
