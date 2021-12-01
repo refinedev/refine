@@ -82,7 +82,7 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .post("/graphql", {
         query: "query ($where: JSON, $sort: String, $start: Int, $limit: Int) { postsConnection (where: $where) { aggregate { count } } posts (sort: $sort, where: $where, start: $start, limit: $limit) { title } }",
         variables: {
-            where: { title_eq: "Delectus neque rerum nulla vel reiciendis." },
+            where: { title: "Delectus neque rerum nulla vel reiciendis." },
             start: 0,
             limit: 10,
         },
@@ -127,7 +127,7 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .post("/graphql", {
         query: "query ($where: JSON, $sort: String, $start: Int, $limit: Int) { postsConnection (where: $where) { aggregate { count } } posts (sort: $sort, where: $where, start: $start, limit: $limit) { id, title, category { id, title } } }",
         variables: {
-            where: { category_eq: "2" },
+            where: { category: "2" },
             sort: "title:asc",
             start: 0,
             limit: 10,

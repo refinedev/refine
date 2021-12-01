@@ -54,7 +54,7 @@ resources: {}
   #   memory: 128Mi
 
 nodeSelector:
-  doks.digitalocean.com/node-pool: pool-vk41bzxym
+  doks.digitalocean.com/node-pool: pool-a086amdxk
 
 tolerations: []
 
