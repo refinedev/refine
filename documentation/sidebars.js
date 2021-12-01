@@ -234,6 +234,7 @@ module.exports = {
                 },
                 "guides-and-concepts/ssr-nextjs",
                 "guides-and-concepts/access-control",
+                "guides-and-concepts/real-time",
                 {
                     type: "category",
                     label: "Upload",
