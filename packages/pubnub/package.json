@@ -42,7 +42,8 @@
     "tslib": "^2.3.1"
   },
   "dependencies": {
-    "pubnub": "^4.34.1"
+    "pubnub": "^4.34.1",
+    "@pankod/refine": "^2.2.3"
   },
   "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
   "publishConfig": {
