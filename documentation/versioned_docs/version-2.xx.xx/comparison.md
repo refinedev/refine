@@ -4,7 +4,7 @@ title: Comparison | Refine vs React-Admin vs AdminBro vs Retool
 ---
 
 :::note
-This comparison table strives to be as accurate and as unbiased as possible. If you use any of these libraries and feel the information could be improved, feel free to suggest changes (with notes or evidence of claims) contact info@refine.dev or you can open a issue on Github.
+This comparison table strives to be as accurate and as unbiased as possible. If you use any of these libraries and feel the information could be improved, feel free to suggest changes (with notes or evidence of claims) using the "Edit this page" link at the bottom of this page.
 :::
 
 -   ✅ &nbsp;1st-class, built-in, and ready to use with no added configuration or code
@@ -12,38 +12,41 @@ This comparison table strives to be as accurate and as unbiased as possible. If 
 -   🔶 &nbsp;Supported and documented, but requires extra user-code to implement
 -   🛑 &nbsp;Not officially supported or documented.
 
-| Features                       | Refine                                       | React-Admin[_(Website)_][react-admin]      | AdminBro[_(Website)_][adminjs]    | Retool [_(Website)_][retool]    |
-| ------------------------------ | -------------------------------------------- | ------------------------------------------ | --------------------------------- | ------------------------------- |
-| Github Repo / Stars            | [![][stars-refine]][gh-refine]               | [![][stars-react-admin]][gh-react-admin]   | [![][stars-adminjs]][gh-adminjs]  | -                               |
-| Bundle Size                    | [![][bp-refine]][bpl-refine]                 | [![][bp-react-admin]][bpl-react-admin]     | [![][bp-adminjs]][bpl-adminjs]    | -                               |
-| Open Source                    | Yes                                          | Community Edition / Enterprise Edition     | Yes                               | No                              |
-| Platform Requirements          | React                                        | React                                      | NodeJS                            | Internal Tool                   |
-| Access Control                 | All Methods(**RBAC,ACL,ABAC...etc**)         | Just RBAC                                  | Just RBAC                         | Just RBAC                       |
-| Realtime                       | Yes with two mode Immediately and Controlled | Yes - just Immediately(Enterprise Edition) | No                                | No                              |
-| Audit Log                      | No - Coming Soon                             | Yes - Enterprise Edition                   | No                                | Yes                             |
-| SSR Support                    | **Yes**                                      | No                                         | No                                | No                              |
-| Technology                     | React Query, React Location, SSR             | Redux - Redux Saga                         | Redux - react-dom - styled-system | -                               |
-| UI                             | Ant Design                                   | Material-UI                                | Styled-Components                 | Own Design Model(drag-and-drop) |
-| Devtools                       | Yes - React Query Devtool                    | No                                         | No                                | No                              |
-| Own Advanced Tutorial Examples | Yes - 50+ Examples                           | Yes - Few Examples                         | No                                | No                              |
-| Auth Provider                  | ✅                                           | ✅                                         | 🔶                                | ✅                              |
-| Data Provider                  | ✅                                           | ✅                                         | 🔶                                | 🟡                              |
-| i18n Support                   | ✅                                           | ✅                                         | ✅                                | 🛑                              |
-| Router Provider                | ✅                                           | 🔶                                         | 🔶                                | -                               |
-| GraphQL Support                | ✅                                           | 🔶                                         | 🟡                                | 🟡                              |
-| Customization                  | ✅                                           | 🔶                                         | 🔶                                | 🛑                              |
-| Basic Form                     | ✅                                           | ✅                                         | ✅                                | ✅                              |
-| Editable Table                 | ✅                                           | ✅ &nbsp;Enterprise Edition                | 🛑                                | ✅                              |
-| Tree Select                    | ✅                                           | ✅ &nbsp;Enterprise Edition                | 🛑                                | 🛑                              |
-| Markdown                       | ✅                                           | ✅ &nbsp;Enterprise Edition                | 🛑                                | ✅                              |
-| Calendar                       | ✅                                           | ✅ &nbsp;Enterprise Edition                | 🛑                                | ✅                              |
-| Caching                        | ✅                                           | ✅                                         | 🛑                                | 🛑                              |
-| API Caching                    | ✅                                           | 🛑                                         | 🛑                                | 🛑                              |
-| Typescript                     | ✅                                           | 🔶                                         | 🔶                                | 🛑                              |
-| Modal Form                     | ✅                                           | ✅ &nbsp;Enterprise Edition                | 🛑                                | ✅                              |
-| Drawer Form                    | ✅                                           | 🔶                                         | 🛑                                | 🛑                              |
-| Step Form                      | ✅                                           | ✅ &nbsp;Enterprise Edition                | 🛑                                | 🛑                              |
-| Theming                        | ✅                                           | 🔶                                         | 🔶                                | ✅                              |
+| Features                       | Refine                                                              | React-Admin[_(Website)_][react-admin]      | AdminBro[_(Website)_][adminjs]   | Retool [_(Website)_][retool]    |
+| ------------------------------ | ------------------------------------------------------------------- | ------------------------------------------ | -------------------------------- | ------------------------------- |
+| Github Repo / Stars            | [![][stars-refine]][gh-refine]                                      | [![][stars-react-admin]][gh-react-admin]   | [![][stars-adminjs]][gh-adminjs] | -                               |
+| Bundle Size                    | [![][bp-refine]][bpl-refine]                                        | [![][bp-react-admin]][bpl-react-admin]     | [![][bp-adminjs]][bpl-adminjs]   | -                               |
+| Open Source                    | Yes                                                                 | Community Edition / Enterprise Edition     | Yes                              | No                              |
+| Platform Requirements          | React                                                               | React                                      | NodeJS                           | Internal Tool                   |
+| Access Control                 | All Methods(**RBAC, ACL, ABAC, ...etc**)                            | Just RBAC                                  | Just RBAC                        | Just RBAC                       |
+| Realtime                       | Yes with two mode Immediately and Controlled                        | Yes - just Immediately(Enterprise Edition) | No                               | No                              |
+| Audit Log                      | No - Coming Soon                                                    | Yes - Enterprise Edition                   | No                               | Yes                             |
+| SSR Support                    | **Yes**                                                             | No                                         | No                               | No                              |
+| State Management               | React Query                                                         | Redux - Redux Saga                         | Redux                            | -                               |
+| Routing                        | React-Router, React Location, Next.js Router or Any Routing Library | React-Router                               | React-Router                     | -                               |
+| UI                             | Ant Design                                                          | Material-UI                                | Styled-Components                | Own Design Model(drag-and-drop) |
+| Devtools                       | Yes - React Query Devtool                                           | No                                         | No                               | No                              |
+| Own Advanced Tutorial Examples | Yes - 50+ Examples                                                  | Yes - Few Examples                         | No                               | No                              |
+| Customization                  | Hooks Based                                                         | Component Based                            | Hooks Based                      | -                               |
+| Auth Provider                  | ✅                                                                  | ✅                                         | ✅                               | ✅                              |
+| Data Provider                  | ✅                                                                  | ✅                                         | 🔶                               | 🟡                              |
+| i18n Support                   | ✅                                                                  | ✅                                         | ✅                               | 🛑                              |
+| Router Provider                | ✅                                                                  | 🔶                                         | 🔶                               | -                               |
+| GraphQL Support                | ✅                                                                  | 🔶                                         | 🟡                               | 🟡                              |
+| Customization                  | ✅                                                                  | 🔶                                         | 🔶                               | 🛑                              |
+| Basic Form                     | ✅                                                                  | ✅                                         | ✅                               | ✅                              |
+| Editable Table                 | ✅                                                                  | ✅ &nbsp;Enterprise Edition                | 🛑                               | ✅                              |
+| Tree Select                    | ✅                                                                  | ✅ &nbsp;Enterprise Edition                | 🛑                               | 🛑                              |
+| Markdown                       | ✅                                                                  | ✅ &nbsp;Enterprise Edition                | 🛑                               | ✅                              |
+| Calendar                       | ✅                                                                  | ✅ &nbsp;Enterprise Edition                | 🛑                               | ✅                              |
+| Caching                        | ✅                                                                  | ✅                                         | 🛑                               | 🛑                              |
+| API Caching                    | ✅                                                                  | 🛑                                         | 🛑                               | 🛑                              |
+| Multi Level Menu               | ✅                                                                  | ✅ &nbsp;Enterprise Edition                | 🟡                               | ✅                              |
+| Typescript                     | ✅                                                                  | 🔶                                         | 🔶                               | 🛑                              |
+| Modal Form                     | ✅                                                                  | ✅ &nbsp;Enterprise Edition                | 🛑                               | ✅                              |
+| Drawer Form                    | ✅                                                                  | 🔶                                         | 🛑                               | 🛑                              |
+| Step Form                      | ✅                                                                  | ✅ &nbsp;Enterprise Edition                | 🛑                               | 🛑                              |
+| Theming                        | ✅                                                                  | 🔶                                         | 🔶                               | ✅                              |
 
 <!-- -->
 
