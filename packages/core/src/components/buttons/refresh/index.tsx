@@ -50,6 +50,7 @@ export const RefreshButton: FC<RefreshButtonProps> = ({
             enabled: false,
         },
         metaData,
+        liveMode: "off",
     });
 
     return (
