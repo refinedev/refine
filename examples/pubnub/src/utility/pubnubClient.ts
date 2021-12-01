@@ -1,4 +1,4 @@
-import PubNub from "pubnub";
+import { PubNub } from "@pankod/refine-pubnub";
 
 export const pubnubClient = new PubNub({
     publishKey: "pub-c-0716bc72-15dd-4ae5-946b-2db82f4fec05",

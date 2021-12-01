@@ -84,4 +84,4 @@ const liveProvider = (pubnubClient: PubNub): LiveProvider => {
     };
 };
 
-export { liveProvider };
+export { liveProvider, PubNub };
