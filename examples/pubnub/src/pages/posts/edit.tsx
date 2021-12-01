@@ -8,7 +8,6 @@ import {
     ListButton,
     RefreshButton,
     Select,
-    Space,
     useForm,
     useSelect,
 } from "@pankod/refine";
@@ -22,7 +21,7 @@ import { IPost, ICategory } from "interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const [deprecated, setDeprecated] =
-        useState<"deleted" | "updated" | undefined>(undefined);
+        useState<"deleted" | "updated" | undefined>();
 
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
         liveMode: "manual",
@@ -66,11 +65,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                     style={{
                         marginBottom: 20,
                     }}
-                    action={
-                        <Space>
-                            <ListButton size="small" />
-                        </Space>
-                    }
+                    action={<ListButton size="small" />}
                 />
             )}
 
@@ -82,12 +77,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                         marginBottom: 20,
                     }}
                     action={
-                        <Space>
-                            <RefreshButton
-                                size="small"
-                                onClick={handleRefresh}
-                            />
-                        </Space>
+                        <RefreshButton size="small" onClick={handleRefresh} />
                     }
                 />
             )}

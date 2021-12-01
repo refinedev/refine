@@ -6,7 +6,6 @@ import {
     useOne,
     MarkdownField,
     Alert,
-    Space,
     DeleteButton,
     ListButton,
     EditButton,
@@ -20,7 +19,7 @@ const { Title, Text } = Typography;
 
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
     const [deprecated, setDeprecated] =
-        useState<"deleted" | "updated" | undefined>(undefined);
+        useState<"deleted" | "updated" | undefined>();
 
     const { queryResult } = useShow<IPost>({
         liveMode: "manual",
@@ -69,11 +68,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
                     style={{
                         marginBottom: 20,
                     }}
-                    action={
-                        <Space>
-                            <ListButton size="small" />
-                        </Space>
-                    }
+                    action={<ListButton size="small" />}
                 />
             )}
 
@@ -85,12 +80,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
                         marginBottom: 20,
                     }}
                     action={
-                        <Space>
-                            <RefreshButton
-                                size="small"
-                                onClick={handleRefresh}
-                            />
-                        </Space>
+                        <RefreshButton size="small" onClick={handleRefresh} />
                     }
                 />
             )}
