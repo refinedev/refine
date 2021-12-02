@@ -6,6 +6,7 @@ import "@pankod/refine/dist/styles.min.css";
 
 import { pubnubClient } from "utility";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import { CustomSider } from "components";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -26,6 +27,7 @@ const App: React.FC = () => {
                 },
             ]}
             liveMode="auto"
+            Sider={CustomSider}
         />
     );
 };
