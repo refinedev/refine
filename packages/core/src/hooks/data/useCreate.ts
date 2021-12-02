@@ -100,9 +100,11 @@ export const useCreate = <
                 liveContext?.publish?.({
                     channel: `resources/${resource}`,
                     type: "created",
-                    payload: {
-                        id: data.data.id,
-                    },
+                    payload: [
+                        {
+                            id: data.data.id,
+                        },
+                    ],
                     date: new Date(),
                 });
             },

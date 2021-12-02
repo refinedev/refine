@@ -16,11 +16,6 @@ const liveProvider = (pubnubClient: PubNub): LiveProvider => {
                     console.log("vvvvvvvvvvvvvv");
                     console.log("message arrived", message);
                     console.log("type", type);
-                    console.log(
-                        "if",
-                        pubnubChannel === channel &&
-                            (message?.type === type || type === "*"),
-                    );
 
                     if (
                         pubnubChannel === channel &&
@@ -28,7 +23,7 @@ const liveProvider = (pubnubClient: PubNub): LiveProvider => {
                     ) {
                         console.log(
                             "id check if",
-                            params?.id &&
+                            params?.ids &&
                                 message.payload.id.toString() !== params.id,
                         );
 

@@ -6,7 +6,7 @@ export type ILiveContext =
           subscribe: (options: {
               channel: string;
               params?: {
-                  id?: string;
+                  ids?: string[];
                   [key: string]: any;
               };
               type: LiveEvent["type"];

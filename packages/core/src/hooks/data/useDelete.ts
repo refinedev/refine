@@ -249,9 +249,7 @@ export const useDelete = <
                 liveContext?.publish?.({
                     channel: `resources/${resource}`,
                     type: "deleted",
-                    payload: {
-                        id,
-                    },
+                    payload: [{ id }],
                     date: new Date(),
                 });
             },
