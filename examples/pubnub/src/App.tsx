@@ -5,8 +5,14 @@ import routerProvider from "@pankod/refine-react-router";
 import "@pankod/refine/dist/styles.min.css";
 
 import { pubnubClient } from "utility";
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { CustomSider } from "components";
+import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import {
+    CategoryList,
+    CategoryCreate,
+    CategoryEdit,
+    CategoryShow,
+} from "pages/categories";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -24,6 +30,13 @@ const App: React.FC = () => {
                     edit: PostEdit,
                     show: PostShow,
                     canDelete: true,
+                },
+                {
+                    name: "categories",
+                    list: CategoryList,
+                    create: CategoryCreate,
+                    edit: CategoryEdit,
+                    show: CategoryShow,
                 },
             ]}
             liveMode="auto"
