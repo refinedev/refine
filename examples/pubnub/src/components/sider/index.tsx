@@ -7,10 +7,13 @@ import {
     useNavigation,
     Grid,
     Icons,
+    Badge,
+    useSubscription,
 } from "@pankod/refine";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 export const CustomSider: React.FC = () => {
+    const [subscriptionCount, setSubscriptionCount] = useState(0);
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
@@ -18,6 +21,12 @@ export const CustomSider: React.FC = () => {
     const { push } = useNavigation();
 
     const isMobile = !breakpoint.lg;
+
+    useSubscription({
+        channel: "resources/posts",
+        type: "created",
+        onLiveEvent: () => setSubscriptionCount((prev) => prev + 1),
+    });
 
     return (
         <AntdLayout.Sider
@@ -35,6 +44,10 @@ export const CustomSider: React.FC = () => {
                 onClick={({ key }) => {
                     if (!breakpoint.lg) {
                         setCollapsed(true);
+                    }
+
+                    if (key === "/posts") {
+                        setSubscriptionCount(0);
                     }
 
                     push(key as string);
@@ -57,7 +70,16 @@ export const CustomSider: React.FC = () => {
                                     alignItems: "center",
                                 }}
                             >
-                                {label}
+                                <div>
+                                    {label}
+                                    {label === "Posts" && (
+                                        <Badge
+                                            size="small"
+                                            count={subscriptionCount}
+                                            offset={[2, -15]}
+                                        />
+                                    )}
+                                </div>
                                 {!collapsed && isSelected && (
                                     <Icons.RightOutlined />
                                 )}
