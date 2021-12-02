@@ -15,6 +15,7 @@ import {
     Context as DeleteContext,
     SuccessErrorNotification,
     MetaDataQuery,
+    ILiveContext,
 } from "../../interfaces";
 import {
     useTranslate,
@@ -25,6 +26,7 @@ import {
 } from "@hooks";
 import { ActionTypes } from "@contexts/notification";
 import { handleNotification } from "@definitions";
+import { LiveContext } from "@contexts/live";
 
 type DeleteManyParams = {
     ids: string[];
@@ -67,6 +69,7 @@ export const useDeleteMany = <
         mutationMode: mutationModeContext,
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
+    const liveContext = useContext<ILiveContext>(LiveContext);
 
     const { notificationDispatch } = useCancelNotification();
     const translate = useTranslate();
@@ -214,6 +217,13 @@ export const useDeleteMany = <
                         `Successfully deleted ${resource}`,
                     ),
                     type: "success",
+                });
+
+                liveContext?.publish?.({
+                    channel: `resources/${resource}`,
+                    type: "deleted",
+                    payload: ids.map((id) => ({ id })),
+                    date: new Date(),
                 });
             },
             onError: (err, { ids, resource, errorNotification }, context) => {

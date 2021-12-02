@@ -12,7 +12,7 @@ import { LiveContext, LiveModeContext } from "@contexts/live";
 export type UseResourceSubscriptionProps = {
     channel: string;
     params?: {
-        id?: string;
+        ids?: string[];
         [key: string]: any;
     };
     type: LiveEvent["type"];

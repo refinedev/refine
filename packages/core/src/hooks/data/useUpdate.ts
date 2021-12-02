@@ -274,9 +274,11 @@ export const useUpdate = <
                 liveContext?.publish?.({
                     channel: `resources/${resource}`,
                     type: "updated",
-                    payload: {
-                        id: data.data.id,
-                    },
+                    payload: [
+                        {
+                            id: data.data.id,
+                        },
+                    ],
                     date: new Date(),
                 });
             },

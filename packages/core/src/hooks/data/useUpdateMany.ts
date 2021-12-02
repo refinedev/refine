@@ -22,8 +22,10 @@ import {
     Context as UpdateContext,
     SuccessErrorNotification,
     MetaDataQuery,
+    ILiveContext,
 } from "../../interfaces";
 import { handleNotification } from "@definitions/helpers";
+import { LiveContext } from "@contexts/live";
 
 type UpdateManyParams<TVariables> = {
     ids: string[];
@@ -71,6 +73,7 @@ export const useUpdateMany = <
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
     const { mutate: checkError } = useCheckError();
+    const liveContext = useContext<ILiveContext>(LiveContext);
 
     const { notificationDispatch } = useCancelNotification();
 
@@ -265,6 +268,13 @@ export const useUpdateMany = <
                         `Successfully updated ${resourceSingular}`,
                     ),
                     type: "success",
+                });
+
+                liveContext?.publish?.({
+                    channel: `resources/${resource}`,
+                    type: "updated",
+                    payload: ids.map((id) => ({ id })),
+                    date: new Date(),
                 });
             },
         },
