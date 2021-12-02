@@ -9,7 +9,7 @@ import {
 } from "../../interfaces";
 import { LiveContext, LiveModeContext } from "@contexts/live";
 
-export type UseSubscriptionProps = {
+export type UseResourceSubscriptionProps = {
     channel: string;
     params?: {
         id?: string;
@@ -32,7 +32,7 @@ export const useResourceSubscription = ({
     enabled = true,
     liveMode: liveModeFromProp,
     onLiveEvent,
-}: UseSubscriptionProps): void => {
+}: UseResourceSubscriptionProps): void => {
     const queryClient = useQueryClient();
     const getAllQueries = useCacheQueries();
     const liveDataContext = useContext<ILiveContext>(LiveContext);
