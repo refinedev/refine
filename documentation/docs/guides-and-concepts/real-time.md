@@ -145,7 +145,6 @@ export const PostEdit: React.FC = () => {
                 />
             )}
             //highlight-end 
-            
             //highlight-start
             {deprecated === "updated" && (
                 <Alert
@@ -158,7 +157,6 @@ export const PostEdit: React.FC = () => {
                 />
             )}
             //highlight-end
-
             <Form {...formProps} layout="vertical">
                 // ....
             </Form>
@@ -183,5 +181,200 @@ We can also implement similar thing in show page.
     </div>
     <img src={manualMode} alt="Manual Mode Demo" />
 </div>
+
+## Custom Subscriptions
+
+You can subscribe to events emitted within **refine** in any place in your app with `useSubscription`.
+
+For example, we can subscribe to **_create_** event for **_posts_** resource and we can show a badge for number of events in the sider menu.
+
+Firstly, let's implement a custom sider like in [this example](/examples/customization/customSider.md).
+
+<details>
+<summary>Custom Sider Menu</summary>
+
+```tsx title="src/components/sider.tsx"
+import React, { useState } from "react";
+import {
+    AntdLayout,
+    Menu,
+    useMenu,
+    useTitle,
+    useNavigation,
+    Grid,
+    Icons,
+} from "@pankod/refine";
+import { antLayoutSider, antLayoutSiderMobile } from "./styles";
+
+export const CustomSider: React.FC = () => {
+    const [collapsed, setCollapsed] = useState<boolean>(false);
+    const Title = useTitle();
+    const { menuItems, selectedKey } = useMenu();
+    const breakpoint = Grid.useBreakpoint();
+    const { push } = useNavigation();
+
+    const isMobile = !breakpoint.lg;
+
+    return (
+        <AntdLayout.Sider
+            collapsible
+            collapsedWidth={isMobile ? 0 : 80}
+            collapsed={collapsed}
+            breakpoint="lg"
+            onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
+            style={isMobile ? antLayoutSiderMobile : antLayoutSider}
+        >
+            <Title collapsed={collapsed} />
+            <Menu
+                selectedKeys={[selectedKey]}
+                mode="inline"
+                onClick={({ key }) => {
+                    if (!breakpoint.lg) {
+                        setCollapsed(true);
+                    }
+
+                    push(key as string);
+                }}
+            >
+                {menuItems.map(({ icon, label, route }) => {
+                    const isSelected = route === selectedKey;
+                    return (
+                        <Menu.Item
+                            style={{
+                                fontWeight: isSelected ? "bold" : "normal",
+                            }}
+                            key={route}
+                            icon={icon}
+                        >
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                }}
+                            >
+                                {label}
+                                {!collapsed && isSelected && (
+                                    <Icons.RightOutlined />
+                                )}
+                            </div>
+                        </Menu.Item>
+                    );
+                })}
+            </Menu>
+        </AntdLayout.Sider>
+    );
+};
+```
+
+</details>
+
+Now, let's add a badge for number of create event for **_posts_** menu item.
+
+```tsx
+import React, { useState } from "react";
+import {
+    AntdLayout,
+    Menu,
+    useMenu,
+    useTitle,
+    useNavigation,
+    Grid,
+    Icons,
+    //highlight-start
+    Badge,
+    useSubscription,
+    //highlight-end
+} from "@pankod/refine";
+import { antLayoutSider, antLayoutSiderMobile } from "./styles";
+
+export const CustomSider: React.FC = () => {
+    const [subscriptionCount, setSubscriptionCount] = useState(0);
+    const [collapsed, setCollapsed] = useState<boolean>(false);
+    const Title = useTitle();
+    const { menuItems, selectedKey } = useMenu();
+    const breakpoint = Grid.useBreakpoint();
+    const { push } = useNavigation();
+
+    const isMobile = !breakpoint.lg;
+
+    //highlight-start
+    useSubscription({
+        channel: "resources/posts",
+        type: "created",
+        onLiveEvent: () => setSubscriptionCount((prev) => prev + 1),
+    });
+    //highlight-end
+
+    return (
+        <AntdLayout.Sider
+            collapsible
+            collapsedWidth={isMobile ? 0 : 80}
+            collapsed={collapsed}
+            breakpoint="lg"
+            onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
+            style={isMobile ? antLayoutSiderMobile : antLayoutSider}
+        >
+            <Title collapsed={collapsed} />
+            <Menu
+                selectedKeys={[selectedKey]}
+                mode="inline"
+                onClick={({ key }) => {
+                    if (!breakpoint.lg) {
+                        setCollapsed(true);
+                    }
+
+                    //highlight-start
+                    if (key === "/posts") {
+                        setSubscriptionCount(0);
+                    }
+                    //highlight-end
+
+                    push(key as string);
+                }}
+            >
+                {menuItems.map(({ icon, label, route }) => {
+                    const isSelected = route === selectedKey;
+                    return (
+                        <Menu.Item
+                            style={{
+                                fontWeight: isSelected ? "bold" : "normal",
+                            }}
+                            key={route}
+                            icon={icon}
+                        >
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                }}
+                            >
+                                //highlight-start
+                                <div>
+                                    {label}
+                                    {label === "Posts" && (
+                                        <Badge
+                                            size="small"
+                                            count={subscriptionCount}
+                                            offset={[2, -15]}
+                                        />
+                                    )}
+                                </div>
+                                //highlight-end
+                                {!collapsed && isSelected && (
+                                    <Icons.RightOutlined />
+                                )}
+                            </div>
+                        </Menu.Item>
+                    );
+                })}
+            </Menu>
+        </AntdLayout.Sider>
+    );
+};
+```
+
+[Gif]!
 
 ## Live Condesandbox Example
