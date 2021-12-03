@@ -9,14 +9,14 @@ export type UseSubscriptionProps = {
     params?: {
         [key: string]: any;
     };
-    type?: LiveEvent["type"];
+    type?: LiveEvent["type"][];
     enabled?: boolean;
 };
 
 export const useSubscription = ({
     params,
     channel,
-    type = "*",
+    type = ["*"],
     enabled = true,
     onLiveEvent,
 }: UseSubscriptionProps): void => {

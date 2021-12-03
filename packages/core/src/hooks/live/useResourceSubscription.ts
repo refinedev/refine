@@ -15,7 +15,7 @@ export type UseResourceSubscriptionProps = {
         ids?: string[];
         [key: string]: any;
     };
-    type: LiveEvent["type"];
+    type: LiveEvent["type"][];
     resource: string;
     enabled?: boolean;
 } & LiveModeProps;

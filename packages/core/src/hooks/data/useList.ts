@@ -69,7 +69,7 @@ export const useList = <
 
     useResourceSubscription({
         resource,
-        type: "*",
+        type: ["*"],
         params: liveParams,
         channel: `resources/${resource}`,
         enabled: isEnabled,
