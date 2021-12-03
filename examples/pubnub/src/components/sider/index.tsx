@@ -24,7 +24,7 @@ export const CustomSider: React.FC = () => {
 
     useSubscription({
         channel: "resources/posts",
-        type: "*",
+        type: "updated",
         onLiveEvent: () => setSubscriptionCount((prev) => prev + 1),
     });
 

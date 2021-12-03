@@ -14,28 +14,30 @@ const liveProvider = (): LiveProvider => {
 
             console.log("First console :", { params, channel, type });
 
-            channelInstance.subscribe(function (message) {
+            const listener = function (message: any) {
                 console.log("Girdi: ", { message, type });
 
                 if (type === "*" || message.data.type === type) {
                     console.log("Girdi 2");
                     callback(message.data);
                 }
-            });
+            };
+            channelInstance.subscribe(listener);
 
-            return channelInstance;
+            return [channelInstance, listener];
         },
 
-        unsubscribe: (channelInstance: Types.RealtimeChannelPromise) => {
-            console.log("unsubscribe", { channelInstance });
-            channelInstance.unsubscribe();
+        unsubscribe: (payload) => {
+            const [channelInstance, listener] = payload;
+            console.log("unsubscribe", { channelInstance, listener });
+            channelInstance.unsubscribe(listener);
         },
 
         publish: (event: LiveEvent) => {
             const channelInstance = client.channels.get(event.channel);
 
             console.log("publish :", { event });
-            channelInstance.publish(event);
+            channelInstance.publish(event.type, event);
         },
     };
 };
