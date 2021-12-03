@@ -1,6 +1,6 @@
 {
-  "short_name": "refine pubnub example",
-  "name": "refine pubnub example",
+  "short_name": "refine ably example",
+  "name": "refine ably example",
   "icons": [
     {
       "src": "favicon.ico",

@@ -1,6 +1,6 @@
 {
-  "name": "@pankod/refine-pubnub",
-  "description": "refine pubnub live provider. refine is a React-based framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
+  "name": "@pankod/refine-ably",
+  "description": "refine ably live provider. refine is a React-based framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "version": "2.0.12",
   "license": "MIT",
   "main": "dist/index.js",
@@ -22,20 +22,19 @@
     "analyze": "size-limit --why"
   },
   "author": "Pankod",
-  "module": "dist/refine-pubnub.esm.js",
+  "module": "dist/refine-ably.esm.js",
   "size-limit": [
     {
-      "path": "dist/refine-pubnub.cjs.production.min.js",
+      "path": "dist/refine-ably.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/refine-pubnub.esm.js",
+      "path": "dist/refine-ably.esm.js",
       "limit": "10 KB"
     }
   ],
   "devDependencies": {
     "@size-limit/preset-small-lib": "^5.0.5",
-    "@types/pubnub": "^4.29.5",
     "nock": "^13.1.3",
     "size-limit": "^5.0.5",
     "tsdx": "^0.14.1",

@@ -1,6 +1,6 @@
 import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
-import { liveProvider } from "@pankod/refine-pubnub";
+import { liveProvider } from "@pankod/refine-ably";
 import routerProvider from "@pankod/refine-react-router";
 import "@pankod/refine/dist/styles.min.css";
 
