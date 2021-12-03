@@ -5,6 +5,7 @@ title: Real Time
 
 import realTimeDemo from '@site/static/img/guides-and-concepts/real-time/real-time.gif';
 import manualMode from '@site/static/img/guides-and-concepts/real-time/manual-mode.gif';
+import customSider from '@site/static/img/guides-and-concepts/real-time/custom-sider.gif';
 
 **refine** lets you add real time support to your app via `liveProvider` prop for [`<Refine>`](api-references/components/refine-config.md). It can be used to update and show data in real time throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com) [PubNub](https://www.pubnub.com/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com) etc.) to be integrated.
 
@@ -26,22 +27,19 @@ Since we will need `apiKey` from Ably, you must first register and get the key f
 
 The app will have one resource: **posts** with [CRUD pages(list, create, edit and show) similar to base example](https://github.com/pankod/refine/tree/master/examples/base/src/pages/posts).
 
-[You can also refer to codesandbox to see final state of the app &#8594](#)
+[You can also refer to codesandbox to see final state of the app &#8594](#live-condesandbox-example)
 
 ## Adding `liveProvider`
 
-Firstly we create a ably client for [`@pankod/refine-ably`](#) live provider.
+Firstly we create a ably client for [`@pankod/refine-ably`](https://github.com/pankod/refine/tree/master/packages/ably) live provider.
 
 ```ts title="src/utility/ablyClient.ts"
 import { Ably } from "@pankod/refine-ably";
 
-export const ablyClient = new Ably.Realtime(
-    "syVQsA.ofJCQg:GvXwhLsJhjMo4onQ_zQKjvb9biBIXMiDd7qLo9ZVA38",
-);
-
+export const ablyClient = new Ably.Realtime("your-api-key");
 ```
 
-Then pass `liveProvider` from [`@pankod/refine-ably`](#) to `<Refine>`.
+Then pass `liveProvider` from [`@pankod/refine-ably`](https://github.com/pankod/refine/tree/master/packages/ably) to `<Refine>`.
 
 ```tsx title="src/App.tsx"
 // ...
@@ -144,8 +142,7 @@ export const PostEdit: React.FC = () => {
                     action={<ListButton size="small" />}
                 />
             )}
-            //highlight-end 
-            //highlight-start
+            //highlight-end //highlight-start
             {deprecated === "updated" && (
                 <Alert
                     message="This post is updated. Refresh to see changes."
@@ -169,7 +166,7 @@ export const PostEdit: React.FC = () => {
 
 We can also implement similar thing in show page.
 
-[Refer to the codesandbox example for detailed information. &#8594](#)
+[Refer to the codesandbox example for detailed information. &#8594](#live-condesandbox-example)
 :::
 
 <br/>
@@ -269,7 +266,7 @@ export const CustomSider: React.FC = () => {
 
 </details>
 
-Now, let's add a badge for number of create event for **_posts_** menu item.
+Now, let's add a badge for number of create and update events for **_posts_** menu item.
 
 ```tsx
 import React, { useState } from "react";
@@ -301,7 +298,7 @@ export const CustomSider: React.FC = () => {
     //highlight-start
     useSubscription({
         channel: "resources/posts",
-        type: "created",
+        type: ["created", "updated"],
         onLiveEvent: () => setSubscriptionCount((prev) => prev + 1),
     });
     //highlight-end
@@ -375,6 +372,39 @@ export const CustomSider: React.FC = () => {
 };
 ```
 
-[Gif]!
+:::tip
+
+You can subscribe to specific `ids` with `params`. For example, you can subscribe to **deleted** and **updated** events from **posts** resource with **id** `1` and `2`.
+
+```tsx
+useSubscription({
+    channel: "resources/posts",
+    type: ["deleted", "updated"],
+    //highlight-start
+    params: {
+        ids: ["1", "2"],
+    },
+    //highlight-end
+    onLiveEvent: () => setSubscriptionCount((prev) => prev + 1),
+});
+```
+:::
+
+<br/>
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={customSider} alt="Custom Sider Demo" />
+</div>
 
 ## Live Condesandbox Example
+
+<iframe src="https://codesandbox.io/embed/refine-ably-example-u9wg9?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+    title="refine-ably-example"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
