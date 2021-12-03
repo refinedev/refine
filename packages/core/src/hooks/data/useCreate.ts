@@ -10,11 +10,14 @@ import {
     HttpError,
     SuccessErrorNotification,
     MetaDataQuery,
-    ILiveContext,
 } from "../../interfaces";
-import { useTranslate, useCheckError, useCacheQueries } from "@hooks";
+import {
+    useTranslate,
+    useCheckError,
+    useCacheQueries,
+    usePublish,
+} from "@hooks";
 import { handleNotification } from "@definitions";
-import { LiveContext } from "@contexts/live";
 
 type useCreateParams<TVariables> = {
     resource: string;
@@ -55,8 +58,7 @@ export const useCreate = <
     const getAllQueries = useCacheQueries();
     const translate = useTranslate();
     const queryClient = useQueryClient();
-
-    const liveContext = useContext<ILiveContext>(LiveContext);
+    const publish = usePublish();
 
     const mutation = useMutation<
         CreateResponse<TData>,
@@ -97,14 +99,14 @@ export const useCreate = <
                     console.log("query, ", query);
                 });
 
-                liveContext?.publish?.({
+                publish?.({
                     channel: `resources/${resource}`,
                     type: "created",
-                    payload: [
-                        {
-                            id: data.data.id,
-                        },
-                    ],
+                    payload: {
+                        ids: data.data?.id
+                            ? [data.data.id.toString()]
+                            : undefined,
+                    },
                     date: new Date(),
                 });
             },

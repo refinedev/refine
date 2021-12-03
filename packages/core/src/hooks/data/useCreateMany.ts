@@ -9,12 +9,10 @@ import {
     HttpError,
     SuccessErrorNotification,
     MetaDataQuery,
-    ILiveContext,
 } from "../../interfaces";
-import { useCacheQueries, useTranslate } from "@hooks";
+import { useCacheQueries, useTranslate, usePublish } from "@hooks";
 import { handleNotification } from "@definitions";
 import pluralize from "pluralize";
-import { LiveContext } from "@contexts/live";
 
 type useCreateManyParams<TVariables> = {
     resource: string;
@@ -54,7 +52,7 @@ export const useCreateMany = <
     const getAllQueries = useCacheQueries();
     const translate = useTranslate();
     const queryClient = useQueryClient();
-    const liveContext = useContext<ILiveContext>(LiveContext);
+    const publish = usePublish();
 
     const mutation = useMutation<
         CreateManyResponse<TData>,
@@ -90,10 +88,14 @@ export const useCreateMany = <
                     queryClient.invalidateQueries(query.queryKey);
                 });
 
-                liveContext?.publish?.({
+                publish?.({
                     channel: `resources/${resource}`,
                     type: "deleted",
-                    payload: response.data.map((item) => ({ id: item.id })),
+                    payload: {
+                        ids: response.data
+                            .filter((item) => item?.id !== undefined)
+                            .map((item) => item.id!.toString()),
+                    },
                     date: new Date(),
                 });
             },

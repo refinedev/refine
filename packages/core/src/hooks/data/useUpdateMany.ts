@@ -9,6 +9,7 @@ import {
     useCheckError,
     useMutationMode,
     useTranslate,
+    usePublish,
 } from "@hooks";
 import { ActionTypes } from "@contexts/notification";
 import {
@@ -22,10 +23,8 @@ import {
     Context as UpdateContext,
     SuccessErrorNotification,
     MetaDataQuery,
-    ILiveContext,
 } from "../../interfaces";
 import { handleNotification } from "@definitions/helpers";
-import { LiveContext } from "@contexts/live";
 
 type UpdateManyParams<TVariables> = {
     ids: string[];
@@ -73,9 +72,9 @@ export const useUpdateMany = <
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
     const { mutate: checkError } = useCheckError();
-    const liveContext = useContext<ILiveContext>(LiveContext);
 
     const { notificationDispatch } = useCancelNotification();
+    const publish = usePublish();
 
     const getAllQueries = useCacheQueries();
 
@@ -270,10 +269,10 @@ export const useUpdateMany = <
                     type: "success",
                 });
 
-                liveContext?.publish?.({
+                publish?.({
                     channel: `resources/${resource}`,
                     type: "updated",
-                    payload: ids.map((id) => ({ id })),
+                    payload: ids.map(String),
                     date: new Date(),
                 });
             },

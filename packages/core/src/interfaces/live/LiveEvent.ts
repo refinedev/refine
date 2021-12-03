@@ -1,8 +1,9 @@
-import { BaseRecord } from "..";
-
 export type LiveEvent = {
     channel: string;
     type: "deleted" | "updated" | "created" | "*" | string;
-    payload: BaseRecord[] | any[];
+    payload: {
+        ids?: string[];
+        [x: string]: any;
+    };
     date: Date;
 };

@@ -7,6 +7,7 @@ import {
     useCacheQueries,
     useTranslate,
     useCheckError,
+    usePublish,
 } from "@hooks";
 import { DataContext } from "@contexts/data";
 import { ActionTypes } from "@contexts/notification";
@@ -23,10 +24,8 @@ import {
     GetListResponse,
     SuccessErrorNotification,
     MetaDataQuery,
-    ILiveContext,
 } from "../../interfaces";
 import { handleNotification } from "@definitions/helpers";
-import { LiveContext } from "@contexts/live";
 
 type DeleteParams = {
     id: string;
@@ -65,7 +64,6 @@ export const useDelete = <
 >(): UseDeleteReturnType<TData, TError> => {
     const { mutate: checkError } = useCheckError();
     const queryClient = useQueryClient();
-    const liveContext = useContext<ILiveContext>(LiveContext);
     const { deleteOne } = useContext<IDataContext>(DataContext);
     const {
         mutationMode: mutationModeContext,
@@ -74,6 +72,7 @@ export const useDelete = <
 
     const { notificationDispatch } = useCancelNotification();
     const translate = useTranslate();
+    const publish = usePublish();
 
     const cacheQueries = useCacheQueries();
 
@@ -246,10 +245,12 @@ export const useDelete = <
                     type: "success",
                 });
 
-                liveContext?.publish?.({
+                publish?.({
                     channel: `resources/${resource}`,
                     type: "deleted",
-                    payload: [{ id }],
+                    payload: {
+                        ids: [id.toString()],
+                    },
                     date: new Date(),
                 });
             },

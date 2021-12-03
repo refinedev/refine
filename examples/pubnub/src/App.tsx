@@ -21,7 +21,7 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
-            liveProvider={liveProvider(pubnubClient)}
+            liveProvider={liveProvider()}
             resources={[
                 {
                     name: "posts",

@@ -62,15 +62,11 @@ export const useResourceSubscription = ({
                     onLiveEventContextCallback?.(event);
                 },
             });
-
-            console.log("subscribed", channel);
         }
 
         return () => {
             if (subscription) {
                 liveDataContext?.unsubscribe(subscription);
-
-                console.log("unsubscribed", channel);
             }
         };
     }, [enabled]);

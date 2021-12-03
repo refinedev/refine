@@ -14,7 +14,6 @@ import {
     HttpError,
     SuccessErrorNotification,
     MetaDataQuery,
-    ILiveContext,
 } from "../../interfaces";
 import pluralize from "pluralize";
 import {
@@ -23,9 +22,9 @@ import {
     useCacheQueries,
     useTranslate,
     useCheckError,
+    usePublish,
 } from "@hooks";
 import { handleNotification } from "@definitions/helpers";
-import { LiveContext } from "@contexts/live";
 
 type UpdateParams<TVariables> = {
     id: string;
@@ -73,8 +72,7 @@ export const useUpdate = <
     } = useMutationMode();
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
-    const liveContext = useContext<ILiveContext>(LiveContext);
-
+    const publish = usePublish();
     const { notificationDispatch } = useCancelNotification();
 
     const getAllQueries = useCacheQueries();
@@ -271,14 +269,14 @@ export const useUpdate = <
                     type: "success",
                 });
 
-                liveContext?.publish?.({
+                publish?.({
                     channel: `resources/${resource}`,
                     type: "updated",
-                    payload: [
-                        {
-                            id: data.data.id,
-                        },
-                    ],
+                    payload: {
+                        ids: data.data?.id
+                            ? [data.data.id.toString()]
+                            : undefined,
+                    },
                     date: new Date(),
                 });
             },
