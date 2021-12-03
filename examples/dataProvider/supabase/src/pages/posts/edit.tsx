@@ -27,7 +27,7 @@ import { supabaseClient, normalizeFile } from "utility";
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const [isDeprecated, setIsDeprecated] = useState(false);
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
-        liveMode: "controlled",
+        liveMode: "manual",
         onLiveEvent: () => {
             setIsDeprecated(true);
         },

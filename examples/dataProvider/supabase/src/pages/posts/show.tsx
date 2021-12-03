@@ -23,7 +23,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
     const [isDeprecated, setIsDeprecated] = useState(false);
 
     const { queryResult } = useShow<IPost>({
-        liveMode: "controlled",
+        liveMode: "manual",
         onLiveEvent: () => {
             setIsDeprecated(true);
         },

@@ -78,7 +78,7 @@ const App: React.FC = () => {
                     show: PostShow,
                 },
             ]}
-            liveMode="immediate"
+            liveMode="auto"
         />
     );
 };

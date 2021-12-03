@@ -9,7 +9,10 @@ import {
     RealtimeSubscription,
     SupabaseClient,
 } from "@supabase/supabase-js";
-import { SupabaseEventTypes } from "@supabase/supabase-js/dist/main/lib/types";
+import {
+    SupabaseEventTypes,
+    SupabaseRealtimePayload,
+} from "@supabase/supabase-js/dist/main/lib/types";
 
 const liveTypes: Record<SupabaseEventTypes, LiveEvent["type"]> = {
     INSERT: "created",
@@ -183,32 +186,56 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
 
 const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
     return {
-        subscribe: ({ channel, type, callback }): RealtimeSubscription => {
-            const [, resource, id] = channel.split("/");
+        subscribe: ({
+            channel,
+            type,
+            params,
+            callback,
+        }): RealtimeSubscription => {
+            const resource = channel.replace("resources/", "");
 
-            const resourceForSupabase = id
-                ? `${resource}:id=eq.${id}`
-                : resource;
+            const listener = (payload: SupabaseRealtimePayload<any>) => {
+                if (
+                    type.includes("*") ||
+                    type.includes(liveTypes[payload.eventType])
+                ) {
+                    if (
+                        liveTypes[payload.eventType] !== "created" &&
+                        params?.ids !== undefined &&
+                        payload.new?.id !== undefined
+                    ) {
+                        if (params.ids.includes(payload.new.id.toString())) {
+                            callback({
+                                channel,
+                                type: liveTypes[payload.eventType],
+                                date: new Date(payload.commit_timestamp),
+                                payload: payload.new,
+                            });
+                        }
+                    } else {
+                        callback({
+                            channel,
+                            type: liveTypes[payload.eventType],
+                            date: new Date(payload.commit_timestamp),
+                            payload: payload.new,
+                        });
+                    }
+                }
+            };
 
             const client = supabaseClient
-                .from(resourceForSupabase)
-                .on(supabaseTypes[type], (payload) => {
-                    callback({
-                        channel,
-                        type: liveTypes[payload.eventType],
-                        date: new Date(payload.commit_timestamp),
-                        payload: payload.new,
-                    });
-                })
-                .subscribe();
+                .from(resource)
+                .on(supabaseTypes[type[0]], listener);
 
-            console.log(supabaseClient.getSubscriptions());
+            type.slice(1).map((item) =>
+                client.on(supabaseTypes[item], listener),
+            );
 
-            return client;
+            return client.subscribe();
         },
 
-        unsubscribe: (subscription: RealtimeSubscription) => {
-            subscription.unsubscribe();
+        unsubscribe: async (subscription: RealtimeSubscription) => {
+            supabaseClient.removeSubscription(subscription);
         },
     };
 };
