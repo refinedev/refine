@@ -9,7 +9,7 @@ export type ILiveContext =
                   ids?: string[];
                   [key: string]: any;
               };
-              type: LiveEvent["type"][];
+              types: LiveEvent["type"][];
               callback: (event: LiveEvent) => void;
           }) => any;
           unsubscribe: (subscription: any) => void;

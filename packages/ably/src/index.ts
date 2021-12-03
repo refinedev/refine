@@ -7,11 +7,11 @@ interface MessageType extends Types.Message {
 
 const liveProvider = (client: Ably.Realtime): LiveProvider => {
     return {
-        subscribe: ({ channel, type, params, callback }) => {
+        subscribe: ({ channel, types, params, callback }) => {
             const channelInstance = client.channels.get(channel);
 
             const listener = function (message: MessageType) {
-                if (type.includes("*") || type.includes(message.data.type)) {
+                if (types.includes("*") || types.includes(message.data.type)) {
                     if (
                         message.data.type !== "created" &&
                         params?.ids !== undefined &&

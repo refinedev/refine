@@ -188,7 +188,7 @@ const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
     return {
         subscribe: ({
             channel,
-            type,
+            types,
             params,
             callback,
         }): RealtimeSubscription => {
@@ -196,8 +196,8 @@ const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
 
             const listener = (payload: SupabaseRealtimePayload<any>) => {
                 if (
-                    type.includes("*") ||
-                    type.includes(liveTypes[payload.eventType])
+                    types.includes("*") ||
+                    types.includes(liveTypes[payload.eventType])
                 ) {
                     if (
                         liveTypes[payload.eventType] !== "created" &&
@@ -225,11 +225,11 @@ const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
 
             const client = supabaseClient
                 .from(resource)
-                .on(supabaseTypes[type[0]], listener);
+                .on(supabaseTypes[types[0]], listener);
 
-            type.slice(1).map((item) =>
-                client.on(supabaseTypes[item], listener),
-            );
+            types
+                .slice(1)
+                .map((item) => client.on(supabaseTypes[item], listener));
 
             return client.subscribe();
         },

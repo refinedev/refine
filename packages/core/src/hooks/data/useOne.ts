@@ -53,7 +53,7 @@ export const useOne = <
 
     useResourceSubscription({
         resource,
-        type: ["*"],
+        types: ["*"],
         channel: `resources/${resource}`,
         params: { ids: [id.toString()], ...liveParams },
         enabled: queryOptions?.enabled,

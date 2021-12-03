@@ -15,7 +15,7 @@ export type UseResourceSubscriptionProps = {
         ids?: string[];
         [key: string]: any;
     };
-    type: LiveEvent["type"][];
+    types: LiveEvent["type"][];
     resource: string;
     enabled?: boolean;
 } & LiveModeProps;
@@ -28,7 +28,7 @@ export const useResourceSubscription = ({
     resource,
     params,
     channel,
-    type,
+    types,
     enabled = true,
     liveMode: liveModeFromProp,
     onLiveEvent,
@@ -50,7 +50,7 @@ export const useResourceSubscription = ({
             subscription = liveDataContext?.subscribe({
                 channel,
                 params,
-                type,
+                types,
                 callback: (event) => {
                     if (liveMode === "auto") {
                         getAllQueries(resource).forEach((query) => {
