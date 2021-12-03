@@ -1,10 +1,10 @@
 import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
-import { liveProvider } from "@pankod/refine-pubnub";
+import { liveProvider } from "@pankod/refine-ably";
 import routerProvider from "@pankod/refine-react-router";
 import "@pankod/refine/dist/styles.min.css";
 
-import { pubnubClient } from "utility";
+import { ablyClient } from "utility";
 import { CustomSider } from "components";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import {
@@ -21,7 +21,7 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
-            liveProvider={liveProvider()}
+            liveProvider={liveProvider(ablyClient)}
             resources={[
                 {
                     name: "posts",
