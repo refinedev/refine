@@ -6,23 +6,23 @@ title: Real Time
 import realTimeDemo from '@site/static/img/guides-and-concepts/real-time/real-time.gif';
 import manualMode from '@site/static/img/guides-and-concepts/real-time/manual-mode.gif';
 
-**refine** lets you add real time support to your app via `liveProvider` prop for [`<Refine>`](api-references/components/refine-config.md). It can be used to update and show data in real time throughout your app. **refine** remains agnostic in its API to allow different solutions([PubNub](https://www.pubnub.com/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com) etc.) to be integrated.
+**refine** lets you add real time support to your app via `liveProvider` prop for [`<Refine>`](api-references/components/refine-config.md). It can be used to update and show data in real time throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com) [PubNub](https://www.pubnub.com/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com) etc.) to be integrated.
 
 [Refer to the Live Provider documentation for detailed information. &#8594](api-references/providers/live-provider.md)
 
-We will be using [PubNub](https://www.pubnub.com/) in this guide to provide real time features.
+We will be using [Ably](https://ably.com) in this guide to provide real time features.
 
 ## Installation
 
-We need to install PubNub live provider package from **refine**.
+We need to install Ably live provider package from **refine**.
 
 ```bash
-npm install @pankod/refine-pubnub
+npm install @pankod/refine-ably
 ```
 
 ## Setup
 
-Since we will need `publishKey` and `subscribeKey` from PubNub, you must first register and get these keys from [PubNub](https://www.pubnub.com/).
+Since we will need `apiKey` from Ably, you must first register and get the key from [Ably](https://ably.com).
 
 The app will have one resource: **posts** with [CRUD pages(list, create, edit and show) similar to base example](https://github.com/pankod/refine/tree/master/examples/base/src/pages/posts).
 
@@ -30,27 +30,27 @@ The app will have one resource: **posts** with [CRUD pages(list, create, edit an
 
 ## Adding `liveProvider`
 
-Firstly we create a pubnub client for [`@pankod/refine-pubnub`](#) live provider.
+Firstly we create a ably client for [`@pankod/refine-ably`](#) live provider.
 
-```ts title="src/utility/pubnubClient.ts"
-import PubNub from "pubnub";
+```ts title="src/utility/ablyClient.ts"
+import { Ably } from "@pankod/refine-ably";
 
-export const pubnubClient = new PubNub({
-    publishKey: "your-publish-key",
-    subscribeKey: "your-subscribe-key",
-});
+export const ablyClient = new Ably.Realtime(
+    "syVQsA.ofJCQg:GvXwhLsJhjMo4onQ_zQKjvb9biBIXMiDd7qLo9ZVA38",
+);
+
 ```
 
-Then pass `liveProvider` from [`@pankod/refine-pubnub`](#) to `<Refine>`.
+Then pass `liveProvider` from [`@pankod/refine-ably`](#) to `<Refine>`.
 
 ```tsx title="src/App.tsx"
 // ...
 
 //highlight-next-line
-import { liveProvider } from "@pankod/refine-pubnub";
+import { liveProvider } from "@pankod/refine-ably";
 
 //highlight-next-line
-import { pubnubClient } from "./utility";
+import { ablyClient } from "./utility";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 const App: React.FC = () => {
@@ -59,7 +59,7 @@ const App: React.FC = () => {
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             //highlight-start
-            liveProvider={liveProvider(pubnubClient)}
+            liveProvider={liveProvider(ablyClient)}
             liveMode="auto"
             //highlight-end
             resources={[

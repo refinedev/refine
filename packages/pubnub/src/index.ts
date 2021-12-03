@@ -1,17 +1,11 @@
-import { LiveProvider, LiveEvent, message } from "@pankod/refine";
-import PubNub from "pubnub";
+import { LiveProvider, LiveEvent } from "@pankod/refine";
 import Ably from "ably/promises";
 import { Types } from "ably";
-
-const client = new Ably.Realtime(
-    "syVQsA.ofJCQg:GvXwhLsJhjMo4onQ_zQKjvb9biBIXMiDd7qLo9ZVA38",
-);
-
 interface MessageType extends Types.Message {
     data: LiveEvent;
 }
 
-const liveProvider = (): LiveProvider => {
+const liveProvider = (client: Ably.Realtime): LiveProvider => {
     return {
         subscribe: ({ channel, type, params, callback }) => {
             const channelInstance = client.channels.get(channel);
@@ -56,11 +50,4 @@ const liveProvider = (): LiveProvider => {
     };
 };
 
-export { liveProvider, PubNub };
-
-/* 
-{
-    message,
-}: {
-    message: { data: { type: string; params: { ids: string[] } } };
-} */
+export { liveProvider, Ably };
