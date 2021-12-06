@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ILiveModeContext, LiveModeProps } from "../../interfaces";
+import { ILiveModeContext, LiveModeProps } from "../../../interfaces";
 import { LiveModeContext } from "@contexts/live";
 
 export const useLiveMode = (

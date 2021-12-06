@@ -11,14 +11,22 @@ import {
     IAuthContext,
     I18nProvider,
     IAccessControlContext,
+    ILiveContext,
+    ILiveModeContext,
 } from "../src/interfaces";
 import { TranslationContextProvider } from "@contexts/translation";
 import { RefineContextProvider } from "@contexts/refine";
 import { IRefineContextProvider } from "@contexts/refine/IRefineContext";
 import { RouterContextProvider } from "@contexts/router";
 import { AccessControlContextProvider } from "@contexts/accessControl";
+import { LiveContextProvider, LiveModeContextProvider } from "@contexts/live";
 
-import { MockRouterProvider, MockAccessControlProvider } from "@test";
+import {
+    MockRouterProvider,
+    MockAccessControlProvider,
+    MockLiveProvider,
+    MockLiveModeProvider,
+} from "@test";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -34,6 +42,8 @@ interface ITestWrapperProps {
     dataProvider?: IDataContext;
     i18nProvider?: I18nProvider;
     accessControlProvider?: IAccessControlContext;
+    liveProvider?: ILiveContext;
+    liveModeProvider?: ILiveModeContext;
     resources?: IResourceItem[];
     children?: React.ReactNode;
     routerInitialEntries?: string[];
@@ -48,6 +58,8 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     accessControlProvider,
     routerInitialEntries,
     refineProvider,
+    liveProvider,
+    liveModeProvider,
 }) => {
     // eslint-disable-next-line react/display-name
     return ({ children }): React.ReactElement => {
@@ -77,12 +89,32 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
             </AccessControlContextProvider>
         );
 
+        const withLive = liveProvider ? (
+            <LiveContextProvider liveProvider={liveProvider}>
+                {withAccessControl}
+            </LiveContextProvider>
+        ) : (
+            <LiveContextProvider liveProvider={MockLiveProvider}>
+                {withAccessControl}
+            </LiveContextProvider>
+        );
+
+        const withLiveMode = liveModeProvider ? (
+            <LiveModeContextProvider {...liveModeProvider}>
+                {withLive}
+            </LiveModeContextProvider>
+        ) : (
+            <LiveModeContextProvider {...MockLiveModeProvider}>
+                {withLive}
+            </LiveModeContextProvider>
+        );
+
         const withTranslation = i18nProvider ? (
             <TranslationContextProvider i18nProvider={i18nProvider}>
-                {withAccessControl}
+                {withLiveMode}
             </TranslationContextProvider>
         ) : (
-            withAccessControl
+            withLiveMode
         );
 
         const withNotification = (
@@ -123,6 +155,8 @@ export {
     MockJSONServer,
     MockRouterProvider,
     MockAccessControlProvider,
+    MockLiveProvider,
+    MockLiveModeProvider,
 } from "./dataMocks";
 
 // re-export everything

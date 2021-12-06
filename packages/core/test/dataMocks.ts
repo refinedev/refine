@@ -4,6 +4,8 @@ import {
     IDataContext,
     IRouterContext,
     IAccessControlContext,
+    ILiveContext,
+    ILiveModeContext,
 } from "../src/interfaces";
 
 export const posts = [
@@ -59,4 +61,14 @@ export const MockRouterProvider: IRouterContext = {
 
 export const MockAccessControlProvider: IAccessControlContext = {
     can: () => Promise.resolve({ can: true }),
+};
+
+export const MockLiveProvider: ILiveContext = {
+    subscribe: () => ({}),
+    unsubscribe: () => ({}),
+    publish: () => ({}),
+};
+
+export const MockLiveModeProvider: ILiveModeContext = {
+    liveMode: "off",
 };
