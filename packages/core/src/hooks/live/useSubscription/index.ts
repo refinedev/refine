@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 
 import { LiveContext } from "@contexts/live";
-import { ILiveContext, LiveEvent } from "../../interfaces";
+import { ILiveContext, LiveEvent } from "../../../interfaces";
 
 export type UseSubscriptionProps = {
     channel: string;

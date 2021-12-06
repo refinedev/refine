@@ -6,7 +6,7 @@ import { usePublish } from "./";
 
 const publishMock = jest.fn();
 describe("usePublish Hook", () => {
-    it("context: auto, params: off -> returns off", async () => {
+    it("publish event", async () => {
         const { result } = renderHook(() => usePublish(), {
             wrapper: TestWrapper({
                 liveProvider: {
