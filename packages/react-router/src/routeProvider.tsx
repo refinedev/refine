@@ -176,7 +176,7 @@ const RouteProviderBase: React.FC = () => {
     const renderAuthorized = () => (
         <Switch>
             {[...(customRoutes || [])].map((route, i) => (
-                <RouteWithSubRoutes key={i} {...route} />
+                <Route key={`custom-route-${i}`} {...route} />
             ))}
             <Route>
                 <Switch>
@@ -205,14 +205,18 @@ const RouteProviderBase: React.FC = () => {
                         <RouteWithSubRoutes key={i} {...route} />
                     ))}
                     <Route path="/:resource?/:action?">
-                        <LayoutWrapper>
-                            {catchAll ?? <ErrorComponent />}
-                        </LayoutWrapper>
+                        {catchAll ?? (
+                            <LayoutWrapper>
+                                <ErrorComponent />
+                            </LayoutWrapper>
+                        )}
                     </Route>
                     <Route>
-                        <LayoutWrapper>
-                            {catchAll ?? <ErrorComponent />}
-                        </LayoutWrapper>
+                        {catchAll ?? (
+                            <LayoutWrapper>
+                                <ErrorComponent />
+                            </LayoutWrapper>
+                        )}
                     </Route>
                 </Switch>
             </Route>
@@ -229,7 +233,7 @@ const RouteProviderBase: React.FC = () => {
                 }
             />
             {[...(customRoutes || [])].map((route, i) => (
-                <RouteWithSubRoutes key={i} {...route} />
+                <Route key={`custom-route-${i}`} {...route} />
             ))}
 
             <Route
