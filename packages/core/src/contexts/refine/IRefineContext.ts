@@ -1,6 +1,11 @@
 import React from "react";
 
-import { MutationMode, TitleProps, LayoutProps } from "../../interfaces";
+import {
+    MutationMode,
+    TitleProps,
+    LayoutProps,
+    LiveModeProps,
+} from "../../interfaces";
 
 export interface IRefineContext {
     hasDashboard: boolean;
@@ -17,6 +22,8 @@ export interface IRefineContext {
     Header: React.FC;
     Footer: React.FC;
     OffLayoutArea: React.FC;
+    liveMode: LiveModeProps["liveMode"];
+    onLiveEvent: LiveModeProps["onLiveEvent"];
 }
 
 export interface IRefineContextProvider {
@@ -34,4 +41,6 @@ export interface IRefineContextProvider {
     Header?: React.FC;
     Footer?: React.FC;
     OffLayoutArea?: React.FC;
+    liveMode: LiveModeProps["liveMode"];
+    onLiveEvent: LiveModeProps["onLiveEvent"];
 }

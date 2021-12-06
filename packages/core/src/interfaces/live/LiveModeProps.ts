@@ -9,5 +9,4 @@ export type LiveModeProps = {
     };
 };
 
-export type ILiveModeContext = LiveModeProps;
 export type ILiveModeContextProvider = LiveModeProps;

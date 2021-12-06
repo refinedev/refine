@@ -3,11 +3,12 @@ import { useQueryClient } from "react-query";
 import { useCacheQueries } from "@hooks";
 import {
     ILiveContext,
-    ILiveModeContext,
+    IRefineContext,
     LiveEvent,
     LiveModeProps,
 } from "../../../interfaces";
-import { LiveContext, LiveModeContext } from "@contexts/live";
+import { LiveContext } from "@contexts/live";
+import { RefineContext } from "@contexts/refine";
 
 export type UseResourceSubscriptionProps = {
     channel: string;
@@ -39,7 +40,7 @@ export const useResourceSubscription = ({
     const {
         liveMode: liveModeFromContext,
         onLiveEvent: onLiveEventContextCallback,
-    } = useContext<ILiveModeContext>(LiveModeContext);
+    } = useContext<IRefineContext>(RefineContext);
 
     const liveMode = liveModeFromProp ?? liveModeFromContext;
 
