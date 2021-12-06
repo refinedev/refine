@@ -4,7 +4,7 @@ export type LiveModeProps = {
     liveMode?: "auto" | "manual" | "off";
     onLiveEvent?: (event: LiveEvent) => void;
     liveParams?: {
-        id?: string;
+        ids?: string[];
         [key: string]: any;
     };
 };

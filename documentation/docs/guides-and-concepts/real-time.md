@@ -7,7 +7,7 @@ import realTimeDemo from '@site/static/img/guides-and-concepts/real-time/real-ti
 import manualMode from '@site/static/img/guides-and-concepts/real-time/manual-mode.gif';
 import customSider from '@site/static/img/guides-and-concepts/real-time/custom-sider.gif';
 
-**refine** lets you add real time support to your app via `liveProvider` prop for [`<Refine>`](api-references/components/refine-config.md). It can be used to update and show data in real time throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com) [PubNub](https://www.pubnub.com/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com) etc.) to be integrated.
+**refine** lets you add real time support to your app via `liveProvider` prop for [`<Refine>`](api-references/components/refine-config.md). It can be used to update and show data in real time throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [PubNub](https://www.pubnub.com/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com) etc.) to be integrated.
 
 [Refer to the Live Provider documentation for detailed information. &#8594](api-references/providers/live-provider.md)
 
@@ -388,6 +388,7 @@ useSubscription({
     onLiveEvent: () => setSubscriptionCount((prev) => prev + 1),
 });
 ```
+
 :::
 
 <br/>
