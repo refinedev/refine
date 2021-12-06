@@ -22,8 +22,8 @@ export interface IRefineContext {
     Header: React.FC;
     Footer: React.FC;
     OffLayoutArea: React.FC;
-    liveMode: LiveModeProps["liveMode"];
-    onLiveEvent: LiveModeProps["onLiveEvent"];
+    liveMode?: LiveModeProps["liveMode"];
+    onLiveEvent?: LiveModeProps["onLiveEvent"];
 }
 
 export interface IRefineContextProvider {
@@ -41,6 +41,6 @@ export interface IRefineContextProvider {
     Header?: React.FC;
     Footer?: React.FC;
     OffLayoutArea?: React.FC;
-    liveMode: LiveModeProps["liveMode"];
-    onLiveEvent: LiveModeProps["onLiveEvent"];
+    liveMode?: LiveModeProps["liveMode"];
+    onLiveEvent?: LiveModeProps["onLiveEvent"];
 }

@@ -3,6 +3,15 @@ import { renderHook } from "@testing-library/react-hooks";
 import { TestWrapper } from "@test";
 
 import { useResourceSubscription } from "./";
+import { IRefineContextProvider } from "src/interfaces";
+
+const mockRefineProvider: IRefineContextProvider = {
+    hasDashboard: false,
+    mutationMode: "pessimistic",
+    warnWhenUnsavedChanges: false,
+    syncWithLocation: false,
+    undoableTimeout: 500,
+};
 
 const onLiveEventMock = jest.fn();
 describe("useResourceSubscription Hook", () => {
@@ -28,7 +37,8 @@ describe("useResourceSubscription Hook", () => {
                         unsubscribe: () => jest.fn(),
                         publish: () => jest.fn(),
                     },
-                    liveModeProvider: {
+                    refineProvider: {
+                        ...mockRefineProvider,
                         liveMode: "auto",
                     },
                 }),
@@ -60,7 +70,8 @@ describe("useResourceSubscription Hook", () => {
                         unsubscribe: () => jest.fn(),
                         publish: () => jest.fn(),
                     },
-                    liveModeProvider: {
+                    refineProvider: {
+                        ...mockRefineProvider,
                         liveMode: "off",
                     },
                 }),
@@ -93,7 +104,8 @@ describe("useResourceSubscription Hook", () => {
                         unsubscribe: () => jest.fn(),
                         publish: () => jest.fn(),
                     },
-                    liveModeProvider: {
+                    refineProvider: {
+                        ...mockRefineProvider,
                         liveMode: "off",
                     },
                 }),
@@ -120,7 +132,8 @@ describe("useResourceSubscription Hook", () => {
                 }),
             {
                 wrapper: TestWrapper({
-                    liveModeProvider: {
+                    refineProvider: {
+                        ...mockRefineProvider,
                         liveMode: "auto",
                     },
                 }),
@@ -153,7 +166,8 @@ describe("useResourceSubscription Hook", () => {
                         unsubscribe: onUnsubscribeMock,
                         publish: () => jest.fn(),
                     },
-                    liveModeProvider: {
+                    refineProvider: {
+                        ...mockRefineProvider,
                         liveMode: "auto",
                     },
                 }),

@@ -77,8 +77,8 @@ export interface RefineProps {
     reactQueryClientConfig?: QueryClientConfig;
     notifcationConfig?: ConfigProps;
     reactQueryDevtoolConfig?: any;
-    liveMode: LiveModeProps["liveMode"];
-    onLiveEvent: LiveModeProps["onLiveEvent"];
+    liveMode?: LiveModeProps["liveMode"];
+    onLiveEvent?: LiveModeProps["onLiveEvent"];
 }
 
 /**

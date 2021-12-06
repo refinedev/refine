@@ -5,7 +5,6 @@ import {
     IRouterContext,
     IAccessControlContext,
     ILiveContext,
-    ILiveModeContext,
 } from "../src/interfaces";
 
 export const posts = [
@@ -67,8 +66,4 @@ export const MockLiveProvider: ILiveContext = {
     subscribe: () => ({}),
     unsubscribe: () => ({}),
     publish: () => ({}),
-};
-
-export const MockLiveModeProvider: ILiveModeContext = {
-    liveMode: "off",
 };
