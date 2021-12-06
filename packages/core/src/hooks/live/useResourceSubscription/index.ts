@@ -6,7 +6,7 @@ import {
     ILiveModeContext,
     LiveEvent,
     LiveModeProps,
-} from "../../interfaces";
+} from "../../../interfaces";
 import { LiveContext, LiveModeContext } from "@contexts/live";
 
 export type UseResourceSubscriptionProps = {

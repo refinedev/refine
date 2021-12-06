@@ -2,11 +2,11 @@ import { renderHook } from "@testing-library/react-hooks";
 
 import { TestWrapper } from "@test";
 
-import { useSubscription } from "./";
+import { useResourceSubscription } from "./";
 
 const onLiveEventMock = jest.fn();
-describe("useSubscribe Hook", () => {
-    it("useSubscribe enabled and all types", async () => {
+describe("useResourceSubscription Hook", () => {
+    it("useResourceSubscription enabled and all types", async () => {
         const onSubscribeMock = jest.fn();
 
         const subscriptionParams = {
@@ -15,9 +15,11 @@ describe("useSubscribe Hook", () => {
         };
         renderHook(
             () =>
-                useSubscription({
-                    channel: "channel",
+                useResourceSubscription({
                     onLiveEvent: onLiveEventMock,
+                    channel: subscriptionParams.channel,
+                    resource: "posts",
+                    types: ["*"],
                 }),
             {
                 wrapper: TestWrapper({
@@ -26,28 +28,30 @@ describe("useSubscribe Hook", () => {
                         unsubscribe: () => jest.fn(),
                         publish: () => jest.fn(),
                     },
+                    liveModeProvider: {
+                        liveMode: "auto",
+                    },
                 }),
             },
         );
 
         expect(onSubscribeMock).toBeCalled();
-        expect(onSubscribeMock).toHaveBeenCalledWith({
-            channel: subscriptionParams.channel,
-            callback: subscriptionParams.onLiveEvent,
-            params: undefined,
-            types: ["*"],
-        });
     });
 
-    it("useSubscribe enabled false", async () => {
+    it("useResourceSubscription liveMode off", async () => {
         const onSubscribeMock = jest.fn();
 
+        const subscriptionParams = {
+            channel: "channel",
+            onLiveEvent: onLiveEventMock,
+        };
         renderHook(
             () =>
-                useSubscription({
-                    channel: "channel",
+                useResourceSubscription({
                     onLiveEvent: onLiveEventMock,
-                    enabled: false,
+                    channel: subscriptionParams.channel,
+                    resource: "posts",
+                    types: ["*"],
                 }),
             {
                 wrapper: TestWrapper({
@@ -55,6 +59,9 @@ describe("useSubscribe Hook", () => {
                         subscribe: onSubscribeMock,
                         unsubscribe: () => jest.fn(),
                         publish: () => jest.fn(),
+                    },
+                    liveModeProvider: {
+                        liveMode: "off",
                     },
                 }),
             },
@@ -63,7 +70,7 @@ describe("useSubscribe Hook", () => {
         expect(onSubscribeMock).not.toBeCalled();
     });
 
-    it("useSubscribe spesific type", async () => {
+    it("useResourceSubscription liveMode on context off, params auto", async () => {
         const onSubscribeMock = jest.fn();
 
         const subscriptionParams = {
@@ -72,10 +79,12 @@ describe("useSubscribe Hook", () => {
         };
         renderHook(
             () =>
-                useSubscription({
-                    channel: "channel",
+                useResourceSubscription({
                     onLiveEvent: onLiveEventMock,
-                    types: ["test", "test2"],
+                    channel: subscriptionParams.channel,
+                    resource: "posts",
+                    types: ["*"],
+                    liveMode: "auto",
                 }),
             {
                 wrapper: TestWrapper({
@@ -84,20 +93,44 @@ describe("useSubscribe Hook", () => {
                         unsubscribe: () => jest.fn(),
                         publish: () => jest.fn(),
                     },
+                    liveModeProvider: {
+                        liveMode: "off",
+                    },
                 }),
             },
         );
 
         expect(onSubscribeMock).toBeCalled();
-        expect(onSubscribeMock).toHaveBeenCalledWith({
-            channel: subscriptionParams.channel,
-            callback: subscriptionParams.onLiveEvent,
-            params: undefined,
-            types: ["test", "test2"],
-        });
     });
 
-    it("useSubscribe calls unsubscribe on unmount", async () => {
+    it("useResourceSubscription subscribe undefined", async () => {
+        const onSubscribeMock = jest.fn();
+
+        const subscriptionParams = {
+            channel: "channel",
+            onLiveEvent: onLiveEventMock,
+        };
+        renderHook(
+            () =>
+                useResourceSubscription({
+                    channel: subscriptionParams.channel,
+                    onLiveEvent: onLiveEventMock,
+                    resource: "posts",
+                    types: ["*"],
+                }),
+            {
+                wrapper: TestWrapper({
+                    liveModeProvider: {
+                        liveMode: "auto",
+                    },
+                }),
+            },
+        );
+
+        expect(onSubscribeMock).not.toBeCalled();
+    });
+
+    it("useResourceSubscription calls unsubscribe on unmount", async () => {
         const onSubscribeMock = jest.fn(() => true);
         const onUnsubscribeMock = jest.fn();
 
@@ -107,9 +140,11 @@ describe("useSubscribe Hook", () => {
         };
         const { unmount } = renderHook(
             () =>
-                useSubscription({
-                    channel: "channel",
+                useResourceSubscription({
                     onLiveEvent: onLiveEventMock,
+                    channel: subscriptionParams.channel,
+                    resource: "posts",
+                    types: ["*"],
                 }),
             {
                 wrapper: TestWrapper({
@@ -118,17 +153,14 @@ describe("useSubscribe Hook", () => {
                         unsubscribe: onUnsubscribeMock,
                         publish: () => jest.fn(),
                     },
+                    liveModeProvider: {
+                        liveMode: "auto",
+                    },
                 }),
             },
         );
 
         expect(onSubscribeMock).toBeCalled();
-        expect(onSubscribeMock).toHaveBeenCalledWith({
-            channel: subscriptionParams.channel,
-            callback: subscriptionParams.onLiveEvent,
-            params: undefined,
-            types: ["*"],
-        });
 
         unmount();
         expect(onUnsubscribeMock).toBeCalledWith(true);
