@@ -121,7 +121,6 @@ export const useSelect = <
             filters: filters.concat(search),
         },
         queryOptions: {
-            enabled: false,
             ...queryOptions,
             onSuccess: (data) => {
                 defaultQueryOnSuccess(data);
