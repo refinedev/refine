@@ -141,7 +141,7 @@ export const useSelect = <
         if (search) {
             refetchList();
         }
-    }, [search, queryResult.data, defaultValueQueryResult.data]);
+    }, [search]);
 
     const onSearch = (value: string) => {
         if (!value) {
