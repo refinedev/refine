@@ -1,12 +1,12 @@
 import { useContext } from "react";
-import { ILiveModeContext, LiveModeProps } from "../../interfaces";
-import { LiveModeContext } from "@contexts/live";
+import { LiveModeProps, IRefineContext } from "../../../interfaces";
+import { RefineContext } from "@contexts/refine";
 
 export const useLiveMode = (
     liveMode: LiveModeProps["liveMode"],
 ): LiveModeProps["liveMode"] => {
     const { liveMode: liveModeFromContext } =
-        useContext<ILiveModeContext>(LiveModeContext);
+        useContext<IRefineContext>(RefineContext);
 
     return liveMode ?? liveModeFromContext;
 };

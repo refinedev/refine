@@ -55,7 +55,7 @@ export const useOne = <
         resource,
         types: ["*"],
         channel: `resources/${resource}`,
-        params: { ids: [id.toString()], ...liveParams },
+        params: { ids: id ? [id.toString()] : [], ...liveParams },
         enabled: queryOptions?.enabled,
         liveMode,
         onLiveEvent,

@@ -14,7 +14,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 
 import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
-import { LiveContextProvider, LiveModeContextProvider } from "@contexts/live";
+import { LiveContextProvider } from "@contexts/live";
 import {
     defaultProvider,
     TranslationContextProvider,
@@ -51,7 +51,7 @@ interface QueryClientConfig {
 }
 
 interface IResource extends IResourceItem, ResourceProps {}
-export interface RefineProps extends LiveModeProps {
+export interface RefineProps {
     authProvider?: IAuthContext;
     dataProvider: IDataContextProvider;
     liveProvider?: ILiveContext;
@@ -77,6 +77,8 @@ export interface RefineProps extends LiveModeProps {
     reactQueryClientConfig?: QueryClientConfig;
     notifcationConfig?: ConfigProps;
     reactQueryDevtoolConfig?: any;
+    liveMode?: LiveModeProps["liveMode"];
+    onLiveEvent?: LiveModeProps["onLiveEvent"];
 }
 
 /**
@@ -159,74 +161,69 @@ export const Refine: React.FC<RefineProps> = ({
         <QueryClientProvider client={queryClient}>
             <AuthContextProvider {...authProvider} isProvided={!!authProvider}>
                 <DataContextProvider {...dataProvider}>
-                    <LiveModeContextProvider
-                        liveMode={liveMode}
-                        onLiveEvent={onLiveEvent}
-                    >
-                        <LiveContextProvider liveProvider={liveProvider}>
-                            <RouterContextProvider {...routerProvider}>
-                                <ResourceContextProvider resources={resources}>
-                                    <TranslationContextProvider
-                                        i18nProvider={i18nProvider}
+                    <LiveContextProvider liveProvider={liveProvider}>
+                        <RouterContextProvider {...routerProvider}>
+                            <ResourceContextProvider resources={resources}>
+                                <TranslationContextProvider
+                                    i18nProvider={i18nProvider}
+                                >
+                                    <AccessControlContextProvider
+                                        {...accessControlProvider}
                                     >
-                                        <AccessControlContextProvider
-                                            {...accessControlProvider}
+                                        <ConfigProvider
+                                            {...configProviderProps}
                                         >
-                                            <ConfigProvider
-                                                {...configProviderProps}
-                                            >
-                                                <NotificationContextProvider>
-                                                    <RefineContextProvider
-                                                        mutationMode={
-                                                            mutationMode
-                                                        }
-                                                        warnWhenUnsavedChanges={
-                                                            warnWhenUnsavedChanges
-                                                        }
-                                                        syncWithLocation={
-                                                            syncWithLocation
-                                                        }
-                                                        Title={Title}
-                                                        undoableTimeout={
-                                                            undoableTimeout
-                                                        }
-                                                        catchAll={catchAll}
-                                                        DashboardPage={
-                                                            DashboardPage
-                                                        }
-                                                        LoginPage={LoginPage}
-                                                        Layout={Layout}
-                                                        Sider={Sider}
-                                                        Footer={Footer}
-                                                        Header={Header}
-                                                        OffLayoutArea={
-                                                            OffLayoutArea
-                                                        }
-                                                        hasDashboard={
-                                                            !!DashboardPage
-                                                        }
-                                                    >
-                                                        <UnsavedWarnContextProvider>
-                                                            <>
-                                                                {children}
-                                                                {RouterComponent ? (
-                                                                    <RouterComponent>
-                                                                        <RouteChangeHandler />
-                                                                    </RouterComponent>
-                                                                ) : (
+                                            <NotificationContextProvider>
+                                                <RefineContextProvider
+                                                    mutationMode={mutationMode}
+                                                    warnWhenUnsavedChanges={
+                                                        warnWhenUnsavedChanges
+                                                    }
+                                                    syncWithLocation={
+                                                        syncWithLocation
+                                                    }
+                                                    Title={Title}
+                                                    undoableTimeout={
+                                                        undoableTimeout
+                                                    }
+                                                    catchAll={catchAll}
+                                                    DashboardPage={
+                                                        DashboardPage
+                                                    }
+                                                    LoginPage={LoginPage}
+                                                    Layout={Layout}
+                                                    Sider={Sider}
+                                                    Footer={Footer}
+                                                    Header={Header}
+                                                    OffLayoutArea={
+                                                        OffLayoutArea
+                                                    }
+                                                    hasDashboard={
+                                                        !!DashboardPage
+                                                    }
+                                                    liveMode={liveMode}
+                                                    onLiveEvent={onLiveEvent}
+                                                >
+                                                    <UnsavedWarnContextProvider>
+                                                        <>
+                                                            {children}
+                                                            {RouterComponent ? (
+                                                                <RouterComponent>
                                                                     <RouteChangeHandler />
-                                                                )}
-                                                            </>
-                                                        </UnsavedWarnContextProvider>
-                                                    </RefineContextProvider>
-                                                </NotificationContextProvider>
-                                            </ConfigProvider>
-                                        </AccessControlContextProvider>
-                                    </TranslationContextProvider>
-                                </ResourceContextProvider>
-                            </RouterContextProvider>
-                        </LiveContextProvider>
-                    </LiveModeContextProvider>
+                                                                </RouterComponent>
+                                                            ) : (
+                                                                <RouteChangeHandler />
+                                                            )}
+                                                        </>
+                                                    </UnsavedWarnContextProvider>
+                                                </RefineContextProvider>
+                                            </NotificationContextProvider>
+                                        </ConfigProvider>
+                                    </AccessControlContextProvider>
+                                </TranslationContextProvider>
+                            </ResourceContextProvider>
+                        </RouterContextProvider>
+                    </LiveContextProvider>
                 </DataContextProvider>
             </AuthContextProvider>
             <ReactQueryDevtools

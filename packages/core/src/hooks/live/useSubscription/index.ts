@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 
 import { LiveContext } from "@contexts/live";
-import { ILiveContext, LiveEvent } from "../../interfaces";
+import { ILiveContext, LiveEvent } from "../../../interfaces";
 
 export type UseSubscriptionProps = {
     channel: string;
@@ -9,14 +9,14 @@ export type UseSubscriptionProps = {
     params?: {
         [key: string]: any;
     };
-    type?: LiveEvent["type"][];
+    types?: LiveEvent["type"][];
     enabled?: boolean;
 };
 
 export const useSubscription = ({
     params,
     channel,
-    type = ["*"],
+    types = ["*"],
     enabled = true,
     onLiveEvent,
 }: UseSubscriptionProps): void => {
@@ -29,7 +29,7 @@ export const useSubscription = ({
             subscription = liveDataContext?.subscribe({
                 channel,
                 params,
-                type,
+                types,
                 callback: onLiveEvent,
             });
         }

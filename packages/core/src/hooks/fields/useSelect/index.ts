@@ -121,7 +121,6 @@ export const useSelect = <
             filters: filters.concat(search),
         },
         queryOptions: {
-            enabled: false,
             ...queryOptions,
             onSuccess: (data) => {
                 defaultQueryOnSuccess(data);
@@ -141,7 +140,7 @@ export const useSelect = <
         if (search) {
             refetchList();
         }
-    }, [search, queryResult.data, defaultValueQueryResult.data]);
+    }, [search]);
 
     const onSearch = (value: string) => {
         if (!value) {
