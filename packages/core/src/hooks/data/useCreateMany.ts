@@ -90,7 +90,7 @@ export const useCreateMany = <
 
                 publish?.({
                     channel: `resources/${resource}`,
-                    type: "deleted",
+                    type: "created",
                     payload: {
                         ids: response.data
                             .filter((item) => item?.id !== undefined)

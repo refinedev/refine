@@ -5,13 +5,13 @@ title: Live Provider
 
 ## Overview
 
-**refine** lets you add real time support to your app via `liveProvider` prop for [`<Refine>`](api-references/components/refine-config.md). It can be used to update and show data in real time throughout your app. **refine** remains agnostic in its API to allow different solutions([PubNub](https://www.pubnub.com/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com) etc.) to be integrated.
+**refine** lets you add real time support to your app via `liveProvider` prop for [`<Refine>`](api-references/components/refine-config.md). It can be used to update and show data in real time throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [PubNub](https://www.pubnub.com/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com) etc.) to be integrated.
 
 A live provider must include following methods:
 
 ```ts
 const liveProvider = {
-    subscribe: ({ channel, params: { id }, type, callback }) => any,
+    subscribe: ({ channel, params: { ids }, types, callback }) => any,
     unsubscribe: (subscription) => void,
     publish?: (event) => void,
 };
@@ -20,13 +20,13 @@ const liveProvider = {
 :::tip
 **refine** includes out-of-the-box live providers to use in your projects like:
 
--   [PubNub](https://github.com/pankod/refine/tree/master/packages/pubnub)
+-   [Ably](https://github.com/pankod/refine/tree/master/packages/ably)
 -   [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
 
 :::
 
 :::note
-**refine** uses these methods in [useSubscription](#) and [usePublish](#).
+**refine** uses these methods in [`useSubscription`](#) and [`usePublish`](#).
 :::
 
 ## Usage
@@ -45,52 +45,49 @@ const App: React.FC = () => {
 
 ## Creating a live provider
 
-We will build **"PubNub Live Provider"** of [`@pankod/refine-pubnub`](https://github.com/pankod/refine/tree/master/packages/pubnub) from scratch to show the logic of how live provider methods interact with PubNub.
+We will build **"Ably Live Provider"** of [`@pankod/refine-ably`](https://github.com/pankod/refine/tree/master/packages/ably) from scratch to show the logic of how live provider methods interact with PubNub.
 
 ### `subscribe`
 
 This method is used to subscribe to a real-time channel.
 
-```ts title="liveProvier.ts"
+```ts title="liveProvider.ts"
 import { LiveProvider, LiveEvent } from "@pankod/refine";
-import PubNub, { ListenerParameters } from "pubnub";
+import Ably from "ably/promises";
+import { Types } from "ably";
 
-const liveProvider = (pubnubClient: PubNub): LiveProvider => {
+interface MessageType extends Types.Message {
+    data: LiveEvent;
+}
+
+const liveProvider = (client: Ably.Realtime): LiveProvider => {
     return {
         // highlight-start
-        subscribe: ({
-            channel,
-            type,
-            params,
-            callback,
-        }): [ListenerParameters, string] => {
-            const listenerObject: ListenerParameters = {
-                message: function (pubnubMessage) {
-                    const { message, channel: pubnubChannel } = pubnubMessage;
+        subscribe: ({ channel, types, params, callback }) => {
+            const channelInstance = client.channels.get(channel);
 
+            const listener = function (message: MessageType) {
+                if (types.includes("*") || types.includes(message.data.type)) {
                     if (
-                        pubnubChannel === channel &&
-                        (message?.type === type || type === "*")
+                        message.data.type !== "created" &&
+                        params?.ids !== undefined &&
+                        message.data?.payload?.ids !== undefined
                     ) {
                         if (
-                            params?.id &&
-                            message.payload.id.toString() !== params.id
+                            params.ids.filter((value) =>
+                                message.data.payload.ids!.includes(value),
+                            ).length > 0
                         ) {
-                            return;
+                            callback(message.data as LiveEvent);
                         }
-
-                        callback({
-                            ...message,
-                            date: new Date(),
-                        });
+                    } else {
+                        callback(message.data);
                     }
-                },
+                }
             };
+            channelInstance.subscribe(listener);
 
-            pubnubClient.subscribe({ channels: [channel] });
-            pubnubClient.addListener(listenerObject);
-
-            return [listenerObject, channel];
+            return { channelInstance, listener };
         },
         // highlight-end
     };
@@ -103,7 +100,7 @@ const liveProvider = (pubnubClient: PubNub): LiveProvider => {
 | -------- | -------------------------------------------------------------- |
 | channel  | `string`                                                       |
 | type     | `"deleted"` \| `"updated"` \| `"created"` \| "`*`" \| `string` |
-| params   | `{id?: string; [key: string]: any;}`                           |
+| params   | `{ids?: string[]; [key: string]: any;}`                        |
 | callback | `(event: LiveEvent) => void;`                                  |
 
 > [`LiveEvent`](api-references/interfaces.md#liveevent)
@@ -122,8 +119,8 @@ const liveProvider = (pubnubClient: PubNub): LiveProvider => {
 import { useSubscription } from "@pankod/refine";
 
 useSubscription({
-    resource: "resource-name",
     channel: "channel-name",
+    onLiveEvent: (event) => {},
 });
 ```
 
@@ -135,21 +132,18 @@ useSubscription({
 
 This method is used to unsubscribe from a channel.
 
-```ts title="liveProvier.ts"
-// ...
-
-const liveProvider = (pubnubClient: PubNub): LiveProvider => {
+```ts title="liveProvider.ts"
+const liveProvider = (client: Ably.Realtime): LiveProvider => {
     return {
-        // ...
         // highlight-start
-        unsubscribe: ([listenerObject, channel]: [
-            ListenerParameters,
-            string,
-        ]) => {
-            pubnubClient.removeListener(listenerObject);
+        unsubscribe: (payload: {
+            channelInstance: Types.RealtimeChannelPromise;
+            listener: () => void;
+        }) => {
+            const { channelInstance, listener } = payload;
+            channelInstance.unsubscribe(listener);
         },
         // highlight-end
-        // ...
     };
 };
 ```
@@ -172,25 +166,16 @@ const liveProvider = (pubnubClient: PubNub): LiveProvider => {
 
 This method is used to publish an event.
 
-```ts title="liveProvier.ts"
-// ...
-
-const liveProvider = (pubnubClient: PubNub): LiveProvider => {
+```ts title="liveProvider.ts"
+const liveProvider = (client: Ably.Realtime): LiveProvider => {
     return {
-        // ...
         // highlight-start
         publish: (event: LiveEvent) => {
-            try {
-                pubnubClient.publish({
-                    channel: event.channel,
-                    message: event,
-                });
-            } catch (e) {
-                console.log(e);
-            }
+            const channelInstance = client.channels.get(event.channel);
+
+            channelInstance.publish(event.type, event);
         },
         // highlight-end
-        // ...
     };
 };
 ```
@@ -211,12 +196,12 @@ const liveProvider = (pubnubClient: PubNub): LiveProvider => {
 
 <br/>
 
-**refine** will use this publish method in the [`usePublish`](#) hook.
+**refine** will provide this publish method via the [`usePublish`](#) hook.
 
 ```ts
 import { usePublish } from "@pankod/refine";
 
-usePublish({});
+const publish = usePublish();
 ```
 
 > [Refer to the usePublish documentation for more information. &#8594](#)
@@ -231,25 +216,30 @@ usePublish({});
 // ...
 
 const App: React.FC = () => {
-    return <Refine liveProvider={liveProvider} liveMode="immediate" />;
+    return <Refine liveProvider={liveProvider} liveMode="auto" />;
 };
 ```
 
 #### Usage in a hook:
 
 ```tsx
-const { data } = useList({ liveMode: "controlled" });
+const { data } = useList({ liveMode: "auto" });
 ```
 
-### `immediate`
+### `auto`
 
 Queries of related resource are invalidated in real-time as new events from subscription arrive.  
 For example data from a `useTable` hook will be automatically updated when data is changed.
 
-### `controlled`
+### `manual`
 
 Queries of related resource are **not invalidated** in real-time, instead [`onLiveEvent`](#onliveevent) is run with the `event` as new events from subscription arrive.  
-For example while in an edit form, it would be undesirable for data shown to change. `controlled` can be used to prevent data from changing.
+For example while in an edit form, it would be undesirable for data shown to change. `manual` mode can be used to prevent data from changing.
+
+### `off`
+
+Disables live mode.  
+For example it can be used to disable some parts of the app if you have app wide live mode configuration in `<Refine>`.
 
 ## `onLiveEvent`
 
@@ -257,7 +247,7 @@ Callback that is run when new events from subscription arrive. It can be passed 
 
 ### `<Refine>`
 
-`onLiveEvent` passed to `<Refine>` will run every time when a new event occurs regardless of the `liveMode`. It can be used for actions that are generally applicable to all events from active subscriptions.
+`onLiveEvent` passed to `<Refine>` will run every time when a new event occurs if `liveMode` is not `off`. It can be used for actions that are generally applicable to all events from active subscriptions.
 
 ```tsx title="App.tsx"
 // ...
@@ -266,7 +256,7 @@ const App: React.FC = () => {
     return (
         <Refine
             liveProvider={liveProvider}
-            liveMode="immediate"
+            liveMode="auto"
             onLiveEvent={(event) => {
                 // Put your own logic based on event
             }}
@@ -277,7 +267,7 @@ const App: React.FC = () => {
 
 ### Hooks
 
-`onLiveEvent` passed to hooks runs when `liveMode` is `controlled`. It is run with the event for related channel.
+`onLiveEvent` passed to hooks runs when `liveMode` is not `off`. It is run with the event for related channel.
 
 ```tsx
 const { data } = useList({
@@ -300,8 +290,267 @@ const { data } = useList({
 |                                                          |                                                                      | [`useSelect` &#8594](api-references/hooks/field/useSelect.md)               |
 |                                                          |                                                                      | [`useRadioGroup` &#8594](api-references/hooks/field/useRadioGroup.md)       |
 
-### Supported Hooks Cheatsheet
+## Supported Hooks Subscriptions
 
--   `useList`(e.g. `useList({ resource: "posts" })`): `{ channel: "resources/posts" }`
--   `useOne`(e.g. `useOne({ resource: "posts", id: "1" })`): `{ channel: "resources/posts", params: { id: "1" }}`
--   `useMany`(e.g. `useMany({ resource: "posts", ids: [ "1", "2" ]})`): `{ channel: "resources/posts" }`
+Supported hooks subscribe in the following way:
+
+### `useList`
+
+```ts
+useList({ resource: "posts" });
+```
+
+```ts
+{
+    types: ["*"],
+    channel: "resources/posts"
+}
+```
+
+:::tip
+Following hooks uses `useList` under the hood and subscribe to same event.
+
+-   [`useTable`](api-references/hooks/table/useTable.md)
+-   [`useEditableTable`](api-references/hooks/table/useEditableTable.md)
+-   [`useSimpleList`](api-references/hooks/show/useSimpleList.md)
+-   [`useCheckboxGroup`](api-references/hooks/field/useCheckboxGroup.md)
+-   [`useSelect`](api-references/hooks/field/useSelect.md)
+-   [`useRadioGroup`](api-references/hooks/field/useRadioGroup.md)
+
+:::
+
+### `useOne`
+
+```ts
+useOne({ resource: "posts", id: "1" });
+```
+
+```ts
+{
+    types: ["*"],
+    channel: "resources/posts",
+    params: { ids: ["1"] }
+}
+```
+
+:::tip
+Following hooks uses `useOne` under the hood and subscribe to same event.
+
+-   [`useForm`](api-references/hooks/form/useForm.md)
+-   [`useModalForm`](api-references/hooks/form/useModalForm.md)
+-   [`useDrawerForm`](api-references/hooks/form/useDrawerForm.md)
+-   [`useStepsForm`](api-references/hooks/form/useStepsForm.md)
+-   [`useShow`](api-references/hooks/show/useShow.md)
+
+:::
+
+### `useMany`
+
+```ts
+useMany({ resource: "posts", ids: ["1", "2"] });
+```
+
+```ts
+{
+    types: ["*"],
+    channel: "resources/posts"
+    params: { ids: ["1", "2"] }
+}
+```
+
+:::tip
+Following hooks uses `useMany` under the hood and subscribe to same event.
+
+-   [`useSelect`](api-references/hooks/field/useSelect.md)
+
+:::
+
+## Publish Events from Hooks
+
+**refine** publishes these events in the hooks. Let's see usage of hooks and what kind of events are published:
+
+### `useCreate`
+
+```ts
+const { mutate } = useCreate();
+
+mutate({
+    resource: "posts",
+    values: {
+        title: "New Post",
+    },
+});
+```
+
+```ts title="Published event"
+{
+    channel: `resources/posts`,
+    type: "created",
+    payload: {
+        ids: ["id-of-created-post"]
+    },
+    date: new Date(),
+}
+```
+
+### `useCreateMany`
+
+```ts
+const { mutate } = useCreateMany();
+
+mutate({
+    resource: "posts",
+    values: [
+        {
+            title: "New Post",
+        },
+        {
+            title: "Another New Post",
+        },
+    ],
+});
+```
+
+```ts title="Published event"
+{
+    channel: `resources/posts`,
+    type: "created",
+    payload: {
+        ids: ["id-of-new-post", "id-of-another-new-post"]
+    },
+    date: new Date(),
+}
+```
+
+### `useDelete`
+
+```ts
+const { mutate } = useDelete();
+
+mutate({
+    resource: "posts",
+    id: "1",
+});
+```
+
+```ts title="Published event"
+{
+    channel: `resources/posts`,
+    type: "deleted",
+    payload: {
+        ids: ["1"]
+    },
+    date: new Date(),
+}
+```
+
+### `useDeleteMany`
+
+```ts
+const { mutate } = useDeleteMany();
+
+mutate({
+    resource: "posts",
+    ids: ["1", "2"],
+});
+```
+
+```ts title="Published event"
+{
+    channel: `resources/posts`,
+    type: "deleted",
+    payload: {
+        ids: ["1", "2"]
+    },
+    date: new Date(),
+}
+```
+
+### `useUpdate`
+
+```ts
+const { mutate } = useUpdate();
+
+mutate({
+    resource: "posts",
+    id: "2",
+    values: { title: "New Post Title" },
+});
+```
+
+```ts title="Published event"
+{
+    channel: `resources/posts`,
+    type: "updated",
+    payload: {
+        ids: ["1"]
+    },
+    date: new Date(),
+}
+```
+
+### `useUpdateMany`
+
+```ts
+const { mutate } = useUpdateMany();
+
+mutate({
+    resource: "posts",
+    ids: ["1", "2"],
+    values: { title: "New Post Title" },
+});
+```
+
+```ts title="Published event"
+{
+    channel: `resources/posts`,
+    type: "updated",
+    payload: {
+        ids: ["1", "2"]
+    },
+    date: new Date(),
+}
+```
+
+## Publish Events from API
+
+Publishing in client side must be avoided generally. It's recommended to handle it in server side. Events published from the server must be in the following ways:
+
+-   When creating a record:
+
+```ts
+{
+    channel: `resources/${resource}`,
+    type: "created",
+    payload: {
+        ids: [id]
+    },
+    date: new Date(),
+}
+```
+
+-   When deleting a record:
+
+```ts
+{
+    channel: `resources/${resource}`,
+    type: "deleted",
+    payload: {
+        ids: [id]
+    },
+    date: new Date(),
+}
+```
+
+-   When updating a record:
+
+```ts
+{
+    channel: `resources/${resource}`,
+    type: "updated",
+    payload: {
+        ids: [id]
+    },
+    date: new Date(),
+}
+```
