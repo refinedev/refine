@@ -18,7 +18,7 @@ const publish = usePublish();
 
 publish({
     channel: `resources/${resource}`,
-    type: "updated",
+    type: "custom-event-name",
     payload: {
         ids: [id],
     },
