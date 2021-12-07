@@ -7,6 +7,11 @@ module.exports = {
         },
         {
             type: "doc",
+            id: "comparison",
+            label: "Comparison",
+        },
+        {
+            type: "doc",
             id: "tutorial",
         },
         {

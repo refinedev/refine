@@ -1,1 +1,1 @@
-Refer to our contribution guide here: [https://refine.dev/docs/contributing](Contributing)
+Refer to our contribution guide here: [Contributing](https://refine.dev/docs/contributing/)
