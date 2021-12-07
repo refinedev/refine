@@ -17,7 +17,7 @@ import { usePublish } from "@pankod/refine";
 const publish = usePublish();
 
 publish({
-    channel: `resources/${resource}`,
+    channel: "custom-channel-name",
     type: "custom-event-name",
     payload: {
         "custom-property": "custom-property-value",
