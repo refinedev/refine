@@ -60,7 +60,7 @@ export const useMany = <
     useResourceSubscription({
         resource,
         types: ["*"],
-        params: { ids: ids.map(String), ...liveParams },
+        params: { ids: ids ? ids?.map(String) : [], ...liveParams },
         channel: `resources/${resource}`,
         enabled: isEnabled,
         liveMode,
