@@ -5,7 +5,7 @@ title: Live Provider
 
 ## Overview
 
-**refine** lets you add real time support to your app via `liveProvider` prop for [`<Refine>`](api-references/components/refine-config.md). It can be used to update and show data in real time throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [PubNub](https://www.pubnub.com/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com) etc.) to be integrated.
+**refine** lets you add Realtime support to your app via `liveProvider` prop for [`<Refine>`](api-references/components/refine-config.md). It can be used to update and show data in Realtime throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), etc.) to be integrated.
 
 A live provider must include following methods:
 
@@ -17,16 +17,16 @@ const liveProvider = {
 };
 ```
 
+:::note
+**refine** uses these methods in [`useSubscription`](/api-references/hooks/live/useSubscription.md) and [`usePublish`](/api-references/hooks/live/usePublish.md).
+:::
+
 :::tip
 **refine** includes out-of-the-box live providers to use in your projects like:
 
--   [Ably](https://github.com/pankod/refine/tree/master/packages/ably)
--   [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
+-   **Ably** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/packages/ably) - [Demo](https://codesandbox.io/s/refine-ably-example-u9wg9)
+-   **Supabase** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/packages/supabase) - [Demo](https://codesandbox.io/s/refine-supabase-example-2zhty)
 
-:::
-
-:::note
-**refine** uses these methods in [`useSubscription`](/api-references/hooks/live/useSubscription.md) and [`usePublish`](/api-references/hooks/live/usePublish.md).
 :::
 
 ## Usage
@@ -45,11 +45,11 @@ const App: React.FC = () => {
 
 ## Creating a live provider
 
-We will build **"Ably Live Provider"** of [`@pankod/refine-ably`](https://github.com/pankod/refine/tree/master/packages/ably) from scratch to show the logic of how live provider methods interact with PubNub.
+We will build **"Ably Live Provider"** of [`@pankod/refine-ably`](https://github.com/pankod/refine/tree/master/packages/ably) from scratch to show the logic of how live provider methods interact with Ably.
 
 ### `subscribe`
 
-This method is used to subscribe to a real-time channel.
+This method is used to subscribe to a Realtime channel. **refine** subscribes to the related channels using subscribe method in supported hooks. This way it can be aware of data changes.
 
 ```ts title="liveProvider.ts"
 import { LiveProvider, LiveEvent } from "@pankod/refine";
@@ -96,12 +96,12 @@ const liveProvider = (client: Ably.Realtime): LiveProvider => {
 
 #### Parameter Types
 
-| Name     | Type                                                           |
-| -------- | -------------------------------------------------------------- |
-| channel  | `string`                                                       |
-| type     | `"deleted"` \| `"updated"` \| `"created"` \| "`*`" \| `string` |
-| params   | `{ids?: string[]; [key: string]: any;}`                        |
-| callback | `(event: LiveEvent) => void;`                                  |
+| Name     | Type                                                                  | Default |
+| -------- | --------------------------------------------------------------------- | ------- |
+| channel  | `string`                                                              |         |
+| types    | `Array<"deleted"` \| `"updated"` \| `"created"` \| "`*`" \| `string`> | `["*"]` |
+| params   | `{ids?: string[]; [key: string]: any;}`                               |         |
+| callback | `(event: LiveEvent) => void;`                                         |         |
 
 > [`LiveEvent`](api-references/interfaces.md#liveevent)
 
@@ -110,6 +110,10 @@ const liveProvider = (client: Ably.Realtime): LiveProvider => {
 | Type  |
 | ----- |
 | `any` |
+
+:::important
+The values returned from the `subscribe` method are passed to the `unsubscribe` method. Thus values needed for `unsubscription` must be returned from `subscribe` method.
+:::
 
 <br/>
 
@@ -130,7 +134,7 @@ useSubscription({
 
 ### `unsubscribe`
 
-This method is used to unsubscribe from a channel.
+This method is used to unsubscribe from a channel. The values returned from the `subscribe` method are passed to the `unsubscribe` method.
 
 ```ts title="liveProvider.ts"
 const liveProvider = (client: Ably.Realtime): LiveProvider => {
@@ -148,11 +152,15 @@ const liveProvider = (client: Ably.Realtime): LiveProvider => {
 };
 ```
 
+:::caution
+If you don't handle unsubscription it could lead to memory leaks.
+:::
+
 #### Parameter Types
 
-| Name         | Type  |
-| ------------ | ----- |
-| subscription | `any` |
+| Name         | Type  | Description                              |
+| ------------ | ----- | ---------------------------------------- |
+| subscription | `any` | The values returned from the `subscribe` |
 
 #### Return Type
 
@@ -164,7 +172,9 @@ const liveProvider = (client: Ably.Realtime): LiveProvider => {
 
 ### `publish`
 
-This method is used to publish an event.
+This method is used to publish an event on client side. Beware that publishing events on client side is not recommended and best practice is to publish events from server side. You can refer [Publish Events from API](#publish-events-from-api) to see which events must be published from the server.
+
+This `publish` is used in [realated hooks](#publish-events-from-hooks). When `publish` is used, subscribers to these events are notifyed. You can also publish your custom events using [`usePublish`](/api-references/hooks/live/usePublish.md).
 
 ```ts title="liveProvider.ts"
 const liveProvider = (client: Ably.Realtime): LiveProvider => {
@@ -179,6 +189,10 @@ const liveProvider = (client: Ably.Realtime): LiveProvider => {
     };
 };
 ```
+
+:::caution
+If `publish` is used on client side you must handle the security of it by yourself.
+:::
 
 #### Parameter Types
 
@@ -228,12 +242,12 @@ const { data } = useList({ liveMode: "auto" });
 
 ### `auto`
 
-Queries of related resource are invalidated in real-time as new events from subscription arrive.  
+Queries of related resource are invalidated in Realtime as new events from subscription arrive.  
 For example data from a `useTable` hook will be automatically updated when data is changed.
 
 ### `manual`
 
-Queries of related resource are **not invalidated** in real-time, instead [`onLiveEvent`](#onliveevent) is run with the `event` as new events from subscription arrive.  
+Queries of related resource are **not invalidated** in Realtime, instead [`onLiveEvent`](#onliveevent) is run with the `event` as new events from subscription arrive.  
 For example while in an edit form, it would be undesirable for data shown to change. `manual` mode can be used to prevent data from changing.
 
 ### `off`
@@ -271,7 +285,7 @@ const App: React.FC = () => {
 
 ```tsx
 const { data } = useList({
-    liveMode: "controlled",
+    liveMode: "manual",
     onLiveEvent: (event) => {
         // Put your own logic based on event
     },

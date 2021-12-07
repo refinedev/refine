@@ -3,7 +3,7 @@ id: useSubscription
 title: useSubscription
 ---
 
-It is used to subscribe to a real-time channel. It returns the `subscribe` method from [`liveProvider`](/api-references/providers/live-provider.md) under the hood.
+It is used to subscribe to a Realtime channel. It returns the `subscribe` method from [`liveProvider`](/api-references/providers/live-provider.md#subscribe) under the hood.
 
 ## Usage
 
@@ -20,3 +20,8 @@ useSubscription({
     onLiveEvent: (event) => {},
 });
 ```
+
+:::info
+
+You can publish events with [`usePublish`](/api-references/hooks/live/usePublish.md).
+:::

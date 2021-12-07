@@ -1,17 +1,17 @@
 ---
 id: real-time
-title: Real Time
+title: Live / Realtime
 ---
 
 import realTimeDemo from '@site/static/img/guides-and-concepts/real-time/real-time.gif';
 import manualMode from '@site/static/img/guides-and-concepts/real-time/manual-mode.gif';
 import customSider from '@site/static/img/guides-and-concepts/real-time/custom-sider.gif';
 
-**refine** lets you add real time support to your app via `liveProvider` prop for [`<Refine>`](api-references/components/refine-config.md). It can be used to update and show data in real time throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [PubNub](https://www.pubnub.com/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com) etc.) to be integrated.
+**refine** lets you add Realtime support to your app via `liveProvider` prop for [`<Refine>`](api-references/components/refine-config.md). It can be used to update and show data in Realtime throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), etc.) to be integrated.
 
 [Refer to the Live Provider documentation for detailed information. &#8594](api-references/providers/live-provider.md)
 
-We will be using [Ably](https://ably.com) in this guide to provide real time features.
+We will be using [Ably](https://ably.com) in this guide to provide Realtime features.
 
 ## Installation
 
@@ -42,13 +42,14 @@ export const ablyClient = new Ably.Realtime("your-api-key");
 Then pass `liveProvider` from [`@pankod/refine-ably`](https://github.com/pankod/refine/tree/master/packages/ably) to `<Refine>`.
 
 ```tsx title="src/App.tsx"
-// ...
-
+import { Refine } from "@pankod/refine";
+import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router";
 //highlight-next-line
 import { liveProvider } from "@pankod/refine-ably";
 
 //highlight-next-line
-import { ablyClient } from "./utility";
+import { ablyClient } from "utility/ablyClient";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 const App: React.FC = () => {
@@ -91,14 +92,14 @@ For live features to work automatically we also added `liveMode="auto"`.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={realTimeDemo} alt="Real Time Demo" />
+    <img src={realTimeDemo} alt="Realtime Demo" />
 </div>
 
 ## Configuring `liveMode`
 
-We may not want to make real-time changes instantly in some cases. In these cases we can use `manual` mode to prevent the data changing instantly. Then we can handle the event manually.
+We may not want to make Realtime changes instantly in some cases. In these cases we can use `manual` mode to prevent the data changing instantly. Then we can handle the event manually.
 
-For example in an edit page for a record, It would be better to handle real-time data manually to prevent synchronization problems caused by multiple editing sources. We would not want the data changing while we are trying to edit a record.
+For example in an edit page for a record, It would be better to handle Realtime data manually to prevent synchronization problems caused by multiple editing sources. We would not want the data changing while we are trying to edit a record.
 
 We will be alerting about changes in an alert box on top of the form instead of changing the data instantly.
 
