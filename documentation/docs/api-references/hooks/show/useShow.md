@@ -211,11 +211,14 @@ To show data in the drawer, you can do it by simply replacing `<Modal>` with `<D
 
 ### Properties
 
-| Property | Description                             | Type                                                           | Default                                  |
-| -------- | --------------------------------------- | -------------------------------------------------------------- | ---------------------------------------- |
-| resource | Resource name for API data interactions | `string`                                                       | Resource name that it reads from the url |
-| id       | Record id for fetching                  | `string`                                                       | Id that it reads from the url            |
-| metaData | Metadata query for `dataProvider`       | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery) | {}                                       |
+| Property                                      | Description                                                                                                                                                        | Type                                                                                     | Default                                  |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- | ---------------------------------------- |
+| resource                                      | Resource name for API data interactions                                                                                                                            | `string`                                                                                 | Resource name that it reads from the url |
+| id                                            | Record id for fetching                                                                                                                                             | `string`                                                                                 | Id that it reads from the url            |
+| metaData                                      | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)                           | {}                                       |
+| [liveMode](/guides-and-concepts/real-time.md) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [``"auto"` \| `"manual"` \| `"off"``](/api-references/interfaces.md#livemodeprops)       | `"off"`                                  |
+| liveParams                                    | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: string[]; [key: string]: any; }`](/api-references/interfaces.md#livemodeprops) | `undefined`                              |
+| onLiveEvent                                   | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/api-references/interfaces.md#livemodeprops)              | `undefined`                              |
 
 ### Return values
 
