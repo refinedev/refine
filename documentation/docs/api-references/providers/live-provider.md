@@ -26,7 +26,7 @@ const liveProvider = {
 :::
 
 :::note
-**refine** uses these methods in [`useSubscription`](#) and [`usePublish`](#).
+**refine** uses these methods in [`useSubscription`](/api-references/hooks/live/useSubscription.md) and [`usePublish`](/api-references/hooks/live/usePublish.md).
 :::
 
 ## Usage
@@ -113,7 +113,7 @@ const liveProvider = (client: Ably.Realtime): LiveProvider => {
 
 <br/>
 
-**refine** will use this subscribe method in the [`useSubscription`](#) hook.
+**refine** will use this subscribe method in the [`useSubscription`](/api-references/hooks/live/useSubscription.md) hook.
 
 ```ts
 import { useSubscription } from "@pankod/refine";
@@ -124,7 +124,7 @@ useSubscription({
 });
 ```
 
-> [Refer to the useSubscription documentation for more information. &#8594](#)
+> [Refer to the useSubscription documentation for more information. &#8594](/api-references/hooks/live/useSubscription.md)
 
 <br />
 
@@ -196,7 +196,7 @@ const liveProvider = (client: Ably.Realtime): LiveProvider => {
 
 <br/>
 
-**refine** will provide this publish method via the [`usePublish`](#) hook.
+**refine** will provide this publish method via the [`usePublish`](/api-references/hooks/live/usePublish.md) hook.
 
 ```ts
 import { usePublish } from "@pankod/refine";
@@ -204,7 +204,7 @@ import { usePublish } from "@pankod/refine";
 const publish = usePublish();
 ```
 
-> [Refer to the usePublish documentation for more information. &#8594](#)
+> [Refer to the usePublish documentation for more information. &#8594](/api-references/hooks/live/usePublish.md)
 
 ## `liveMode`
 
