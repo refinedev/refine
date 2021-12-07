@@ -100,9 +100,7 @@ export const useSelect = <
             },
         },
         metaData,
-        liveMode,
-        liveParams,
-        onLiveEvent,
+        liveMode: "off",
     });
 
     const defaultQueryOnSuccess = (data: GetListResponse<TData>) => {

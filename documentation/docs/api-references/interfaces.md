@@ -190,3 +190,11 @@ ButtonProps
 | type    | `"deleted"` \| `"updated"` \| `"created"` \| "`*`" \| `string` |
 | payload | `{ids?: string[]; [x: string]: any; }`                         |
 | date    | `Date`                                                         |
+
+## LiveModeProps
+
+| Key          | Type                                   |
+| ------------ | -------------------------------------- |
+| liveMode?    | `"auto"` \| `"manual"` \| `"off"`      |
+| liveParams?  | `{ids?: string[]; [x: string]: any; }` |
+| onLiveEvent? | `(event: LiveEvent) => void`           |
