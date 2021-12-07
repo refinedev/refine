@@ -3,7 +3,7 @@ id: usePublish
 title: usePublish
 ---
 
-If you need to publish an events **refine** provides the `usePublish` hook for it, It returns the `publish` method from [`liveProvider`](/api-references/providers/live-provider.md) under the hood.
+If you need to publish a custom events **refine** provides the `usePublish` hook for it, It returns the `publish` method from [`liveProvider`](/api-references/providers/live-provider.md) under the hood.
 
 ## Usage
 
@@ -17,10 +17,10 @@ import { usePublish } from "@pankod/refine";
 const publish = usePublish();
 
 publish({
-    channel: `resources/${resource}`,
-    type: "updated",
+    channel: "custom-channel-name",
+    type: "custom-event-name",
     payload: {
-        ids: [id],
+        "custom-property": "custom-property-value",
     },
     date: new Date(),
 });
