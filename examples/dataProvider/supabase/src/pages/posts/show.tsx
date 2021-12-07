@@ -67,15 +67,13 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
                         marginBottom: 20,
                     }}
                     action={
-                        <Space>
-                            <Button
-                                onClick={handleRefresh}
-                                size="small"
-                                type="ghost"
-                            >
-                                Refresh
-                            </Button>
-                        </Space>
+                        <Button
+                            onClick={handleRefresh}
+                            size="small"
+                            type="ghost"
+                        >
+                            Refresh
+                        </Button>
                     }
                 />
             )}

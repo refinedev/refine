@@ -10,7 +10,6 @@ import {
     RcFile,
     RefreshButton,
     Select,
-    Space,
     Upload,
     useForm,
     useSelect,
@@ -67,15 +66,13 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                         marginBottom: 20,
                     }}
                     action={
-                        <Space>
-                            <Button
-                                onClick={handleRefresh}
-                                size="small"
-                                type="ghost"
-                            >
-                                Refresh
-                            </Button>
-                        </Space>
+                        <Button
+                            onClick={handleRefresh}
+                            size="small"
+                            type="ghost"
+                        >
+                            Refresh
+                        </Button>
                     }
                 />
             )}
