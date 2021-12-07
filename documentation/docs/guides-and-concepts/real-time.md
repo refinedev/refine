@@ -142,7 +142,6 @@ export const PostEdit: React.FC = () => {
                     action={<ListButton size="small" />}
                 />
             )}
-            //highlight-end //highlight-start
             {deprecated === "updated" && (
                 <Alert
                     message="This post is updated. Refresh to see changes."

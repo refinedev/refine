@@ -67,6 +67,14 @@ module.exports = {
                         },
                         {
                             type: "category",
+                            label: "Live",
+                            items: [
+                                "api-references/hooks/live/useSubscription",
+                                "api-references/hooks/live/usePublish",
+                            ],
+                        },
+                        {
+                            type: "category",
                             label: "Form",
                             items: [
                                 "api-references/hooks/form/useForm",
