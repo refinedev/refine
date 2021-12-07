@@ -272,7 +272,9 @@ export const useUpdateMany = <
                 publish?.({
                     channel: `resources/${resource}`,
                     type: "updated",
-                    payload: ids.map(String),
+                    payload: {
+                        ids: ids.map(String),
+                    },
                     date: new Date(),
                 });
             },

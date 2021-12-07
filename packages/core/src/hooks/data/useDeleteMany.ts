@@ -221,7 +221,7 @@ export const useDeleteMany = <
                 publish?.({
                     channel: `resources/${resource}`,
                     type: "deleted",
-                    payload: ids.map(String),
+                    payload: { ids: ids.map(String) },
                     date: new Date(),
                 });
             },
