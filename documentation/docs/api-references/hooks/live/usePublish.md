@@ -20,7 +20,7 @@ publish({
     channel: `resources/${resource}`,
     type: "custom-event-name",
     payload: {
-        ids: [id],
+        "custom-property": "custom-property-value",
     },
     date: new Date(),
 });
