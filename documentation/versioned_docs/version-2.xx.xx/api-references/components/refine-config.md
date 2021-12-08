@@ -249,6 +249,14 @@ Custom route name
 
 <br />
 
+## `liveProvider`
+
+**refine** lets you add Realtime support to your app via `liveProvider`. It can be used to update and show data in Realtime throughout your app.
+
+[Refer to live provider documentation for detailed information. &#8594](api-references/providers/live-provider.md)
+
+<br />
+
 ## `catchAll`
 
 When the app is navigated to a non-existent route, **refine** shows a default error page. A custom error component can be used for this error page by passing the customized component to `catchAll` property:
@@ -348,6 +356,19 @@ To activate this feature, set the `warnWhenUnsavedChanges` to `true`.
 Default value is `false`.
 
 <br />
+
+## `liveMode`
+
+Whether to update data automatically (`auto`) or not (`manual`) if a related live event is received. The `off` value is used to avoid creating a subscription.
+
+[Refer to live provider documentation for detailed information. &#8594](api-references/providers/live-provider.md#livemode)
+
+
+## `onLiveEvent`
+
+Callback to handle all live events.
+
+[Refer to live provider documentation for detailed information. &#8594](api-references/providers/live-provider.md#refine)
 
 ## `configProviderProps`
 

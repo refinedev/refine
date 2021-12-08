@@ -39,6 +39,10 @@
             },
             {
               "type": "doc",
+              "id": "version-2.xx.xx/api-references/providers/live-provider"
+            },
+            {
+              "type": "doc",
               "id": "version-2.xx.xx/api-references/providers/accessControl-provider"
             },
             {
@@ -148,6 +152,22 @@
                 {
                   "type": "doc",
                   "id": "version-2.xx.xx/api-references/hooks/accessControl/useCan"
+                }
+              ],
+              "collapsible": true,
+              "collapsed": true
+            },
+            {
+              "type": "category",
+              "label": "Live",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "version-2.xx.xx/api-references/hooks/live/useSubscription"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-2.xx.xx/api-references/hooks/live/usePublish"
                 }
               ],
               "collapsible": true,
@@ -542,6 +562,10 @@
           "id": "version-2.xx.xx/guides-and-concepts/access-control"
         },
         {
+          "type": "doc",
+          "id": "version-2.xx.xx/guides-and-concepts/real-time"
+        },
+        {
           "type": "category",
           "label": "Upload",
           "items": [
@@ -732,6 +756,18 @@
             {
               "type": "doc",
               "id": "version-2.xx.xx/examples/auth-provider/google-auth"
+            }
+          ],
+          "collapsible": true,
+          "collapsed": true
+        },
+        {
+          "type": "category",
+          "label": "Live Provider",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/examples/live-provider/ably"
             }
           ],
           "collapsible": true,

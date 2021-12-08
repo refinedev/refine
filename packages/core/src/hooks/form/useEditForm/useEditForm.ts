@@ -24,6 +24,7 @@ import {
     HttpError,
     SuccessErrorNotification,
     MetaDataQuery,
+    LiveModeProps,
 } from "../../../interfaces";
 import { ActionParams } from "../useForm";
 
@@ -72,8 +73,9 @@ export type useEditFormProps<
     undoableTimeout?: number;
     resource: IResourceItem;
     metaData?: MetaDataQuery;
-} & ActionParams &
-    SuccessErrorNotification;
+} & SuccessErrorNotification &
+    ActionParams &
+    LiveModeProps;
 
 /**
  * A hook that the `useForm` uses
@@ -94,6 +96,9 @@ export const useEditForm = <
     resource,
     successNotification,
     errorNotification,
+    liveMode,
+    onLiveEvent,
+    liveParams,
     metaData,
     action: actionFromParams,
 }: useEditFormProps<TData, TError, TVariables>): useEditForm<
@@ -136,6 +141,9 @@ export const useEditForm = <
         queryOptions: {
             enabled: isEdit,
         },
+        liveMode,
+        onLiveEvent,
+        liveParams,
         metaData,
     });
 

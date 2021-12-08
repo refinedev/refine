@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import {
+    Alert,
+    Button,
     Edit,
     Form,
     Input,
     IResourceComponentsProps,
+    ListButton,
     RcFile,
+    RefreshButton,
     Select,
     Upload,
     useForm,
@@ -20,7 +24,13 @@ import { IPost, ICategory } from "interfaces";
 import { supabaseClient, normalizeFile } from "utility";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
+    const [isDeprecated, setIsDeprecated] = useState(false);
+    const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+        liveMode: "manual",
+        onLiveEvent: () => {
+            setIsDeprecated(true);
+        },
+    });
 
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -31,8 +41,42 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const [selectedTab, setSelectedTab] =
         useState<"write" | "preview">("write");
 
+    const handleRefresh = () => {
+        queryResult?.refetch();
+        setIsDeprecated(false);
+    };
+
     return (
-        <Edit saveButtonProps={saveButtonProps}>
+        <Edit
+            saveButtonProps={saveButtonProps}
+            pageHeaderProps={{
+                extra: (
+                    <>
+                        <ListButton />
+                        <RefreshButton onClick={handleRefresh} />
+                    </>
+                ),
+            }}
+        >
+            {isDeprecated && (
+                <Alert
+                    message="This post is changed. Reload to see it's latest version."
+                    type="warning"
+                    style={{
+                        marginBottom: 20,
+                    }}
+                    action={
+                        <Button
+                            onClick={handleRefresh}
+                            size="small"
+                            type="ghost"
+                        >
+                            Refresh
+                        </Button>
+                    }
+                />
+            )}
+
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"

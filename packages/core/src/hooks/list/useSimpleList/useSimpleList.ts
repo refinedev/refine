@@ -21,6 +21,7 @@ import {
     SuccessErrorNotification,
     HttpError,
     MetaDataQuery,
+    LiveModeProps,
 } from "../../../interfaces";
 import {
     parseTableParams,
@@ -41,7 +42,8 @@ export type useSimpleListProps<TData, TError, TSearchVariables = unknown> =
         ) => CrudFilters | Promise<CrudFilters>;
         queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
         metaData?: MetaDataQuery;
-    } & SuccessErrorNotification;
+    } & SuccessErrorNotification &
+        LiveModeProps;
 
 export type useSimpleListReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -79,6 +81,9 @@ export const useSimpleList = <
     syncWithLocation: syncWithLocationProp,
     successNotification,
     errorNotification,
+    liveMode,
+    onLiveEvent,
+    liveParams,
     metaData,
     ...listProps
 }: useSimpleListProps<
@@ -165,6 +170,9 @@ export const useSimpleList = <
         queryOptions,
         successNotification,
         errorNotification,
+        liveMode,
+        onLiveEvent,
+        liveParams,
         metaData,
     });
     const { data, isFetching } = queryResult;

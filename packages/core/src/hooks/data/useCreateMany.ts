@@ -10,7 +10,7 @@ import {
     SuccessErrorNotification,
     MetaDataQuery,
 } from "../../interfaces";
-import { useCacheQueries, useTranslate } from "@hooks";
+import { useCacheQueries, useTranslate, usePublish } from "@hooks";
 import { handleNotification } from "@definitions";
 import pluralize from "pluralize";
 
@@ -52,6 +52,7 @@ export const useCreateMany = <
     const getAllQueries = useCacheQueries();
     const translate = useTranslate();
     const queryClient = useQueryClient();
+    const publish = usePublish();
 
     const mutation = useMutation<
         CreateManyResponse<TData>,
@@ -65,7 +66,7 @@ export const useCreateMany = <
                 metaData,
             }),
         {
-            onSuccess: (_, { resource, successNotification }) => {
+            onSuccess: (response, { resource, successNotification }) => {
                 const resourcePlural = pluralize.plural(resource);
 
                 handleNotification(successNotification, {
@@ -85,6 +86,17 @@ export const useCreateMany = <
 
                 getAllQueries(resource).forEach((query) => {
                     queryClient.invalidateQueries(query.queryKey);
+                });
+
+                publish?.({
+                    channel: `resources/${resource}`,
+                    type: "created",
+                    payload: {
+                        ids: response.data
+                            .filter((item) => item?.id !== undefined)
+                            .map((item) => item.id!.toString()),
+                    },
+                    date: new Date(),
                 });
             },
             onError: (err: TError, { resource, errorNotification }) => {

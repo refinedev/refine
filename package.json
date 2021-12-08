@@ -13,7 +13,7 @@
         "bootstrap": "lerna bootstrap --hoist --strict --ignore-scripts --ignore @pankod/refine-codemod && cd packages/codemod && npm i",
         "lint": "eslint -c ./.eslintrc packages examples",
         "lint:fix": "npm run lint -- --quiet --fix",
-        "build": "lerna run build",
+        "build": "lerna run build --ignore @pankod/refine-codemod",
         "versionup": "npm run lerna version --conventional-commits --no-git-tag-version",
         "nuke": "rm -rf node_modules; for d in for d in packages/*/node_modules; do echo $d; rm -rf $d; done; for d in for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in examples/*/node_modules; do echo $d; rm -rf $d; done;  for d in examples/*/package-lock.json; do echo $d; rm -rf $d; done; for d in packages/*/package-lock.json; do echo $d; rm -rf $d; done;"
     },
