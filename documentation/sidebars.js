@@ -335,6 +335,14 @@ module.exports = {
                 },
                 {
                     type: "category",
+                    label: "Live Provider",
+                    items: [
+                        "examples/live-provider/ably",
+                        "examples/live-provider/supabase",
+                    ],
+                },
+                {
+                    type: "category",
                     label: "Router Provider",
                     items: ["examples/router-provider/react-location"],
                 },
