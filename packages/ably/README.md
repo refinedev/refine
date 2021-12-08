@@ -17,10 +17,10 @@
 
 ## Documentation
 
-For more detailed information and usage, refer to the [refine data provider documentation](https://refine.dev/docs/api-references/providers/data-provider).
+For more detailed information and usage, refer to the [refine live provider documentation](https://refine.dev/docs/api-references/providers/live-provider/).
 
 ## Install
 
 ```
-npm install @pankod/refine-supabase
+npm install @pankod/refine-ably
 ```
