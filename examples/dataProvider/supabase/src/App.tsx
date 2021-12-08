@@ -1,5 +1,5 @@
 import { Refine, AuthProvider } from "@pankod/refine";
-import { dataProvider } from "@pankod/refine-supabase";
+import { dataProvider, liveProvider } from "@pankod/refine-supabase";
 import routerProvider from "@pankod/refine-react-router";
 
 import "@pankod/refine/dist/styles.min.css";
@@ -65,6 +65,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(supabaseClient)}
+            liveProvider={liveProvider(supabaseClient)}
             routerProvider={routerProvider}
             authProvider={authProvider}
             LoginPage={Login}
@@ -77,6 +78,7 @@ const App: React.FC = () => {
                     show: PostShow,
                 },
             ]}
+            liveMode="auto"
         />
     );
 };

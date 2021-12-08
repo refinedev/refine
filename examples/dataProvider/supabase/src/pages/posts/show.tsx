@@ -7,14 +7,28 @@ import {
     MarkdownField,
     Space,
     ImageField,
+    Alert,
+    Button,
+    ListButton,
+    EditButton,
+    RefreshButton,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
+import { useState } from "react";
 
 const { Title, Text } = Typography;
 
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
-    const { queryResult } = useShow<IPost>();
+    const [isDeprecated, setIsDeprecated] = useState(false);
+
+    const { queryResult } = useShow<IPost>({
+        liveMode: "manual",
+        onLiveEvent: () => {
+            setIsDeprecated(true);
+        },
+    });
+
     const { data, isLoading } = queryResult;
     const record = data?.data;
 
@@ -27,8 +41,43 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
             },
         });
 
+    const handleRefresh = () => {
+        queryResult.refetch();
+        setIsDeprecated(false);
+    };
+
     return (
-        <Show isLoading={isLoading}>
+        <Show
+            isLoading={isLoading}
+            pageHeaderProps={{
+                extra: (
+                    <>
+                        <ListButton />
+                        <EditButton />
+                        <RefreshButton onClick={handleRefresh} />
+                    </>
+                ),
+            }}
+        >
+            {isDeprecated && (
+                <Alert
+                    message="This post is changed. Reload to see it's latest version."
+                    type="warning"
+                    style={{
+                        marginBottom: 20,
+                    }}
+                    action={
+                        <Button
+                            onClick={handleRefresh}
+                            size="small"
+                            type="ghost"
+                        >
+                            Refresh
+                        </Button>
+                    }
+                />
+            )}
+
             <Title level={5}>Id</Title>
             <Text>{record?.id}</Text>
 

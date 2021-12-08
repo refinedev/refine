@@ -24,6 +24,7 @@ module.exports = {
                     items: [
                         "api-references/providers/auth-provider",
                         "api-references/providers/data-provider",
+                        "api-references/providers/live-provider",
                         "api-references/providers/accessControl-provider",
                         "api-references/providers/i18n-provider",
                         "api-references/providers/router-provider",
@@ -67,6 +68,14 @@ module.exports = {
                             label: "Access Control",
                             items: [
                                 "api-references/hooks/accessControl/useCan",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Live",
+                            items: [
+                                "api-references/hooks/live/useSubscription",
+                                "api-references/hooks/live/usePublish",
                             ],
                         },
                         {
@@ -238,6 +247,7 @@ module.exports = {
                 },
                 "guides-and-concepts/ssr-nextjs",
                 "guides-and-concepts/access-control",
+                "guides-and-concepts/real-time",
                 {
                     type: "category",
                     label: "Upload",

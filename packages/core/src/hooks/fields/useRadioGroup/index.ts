@@ -12,6 +12,7 @@ import {
     SuccessErrorNotification,
     HttpError,
     MetaDataQuery,
+    LiveModeProps,
 } from "../../../interfaces";
 
 export type useRadioGroupProps<TData, TError> = RadioGroupProps & {
@@ -22,7 +23,8 @@ export type useRadioGroupProps<TData, TError> = RadioGroupProps & {
     filters?: CrudFilters;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     metaData?: MetaDataQuery;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification &
+    LiveModeProps;
 
 export type UseRadioGroupReturnType<TData extends BaseRecord = BaseRecord> = {
     radioGroupProps: RadioGroupProps;
@@ -50,6 +52,9 @@ export const useRadioGroup = <
     successNotification,
     errorNotification,
     queryOptions,
+    liveMode,
+    onLiveEvent,
+    liveParams,
     metaData,
 }: useRadioGroupProps<TData, TError>): UseRadioGroupReturnType<TData> => {
     const [options, setOptions] = React.useState<Option[]>([]);
@@ -78,6 +83,9 @@ export const useRadioGroup = <
         },
         successNotification,
         errorNotification,
+        liveMode,
+        onLiveEvent,
+        liveParams,
         metaData,
     });
 

@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
-
 import { DataContext } from "@contexts/data";
 import {
     GetOneResponse,
@@ -8,8 +7,9 @@ import {
     HttpError,
     BaseRecord,
     MetaDataQuery,
+    LiveModeProps,
 } from "../../interfaces";
-import { useCheckError, useTranslate } from "@hooks";
+import { useCheckError, useTranslate, useResourceSubscription } from "@hooks";
 import { ArgsProps } from "antd/lib/notification";
 import { handleNotification } from "@definitions";
 
@@ -20,7 +20,7 @@ export type UseOneProps<TData, TError> = {
     successNotification?: ArgsProps | false;
     errorNotification?: ArgsProps | false;
     metaData?: MetaDataQuery;
-};
+} & LiveModeProps;
 
 /**
  * `useOne` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving single items from a `resource`.
@@ -43,10 +43,23 @@ export const useOne = <
     successNotification,
     errorNotification,
     metaData,
+    liveMode,
+    onLiveEvent,
+    liveParams,
 }: UseOneProps<TData, TError>): QueryObserverResult<GetOneResponse<TData>> => {
     const { getOne } = useContext<IDataContext>(DataContext);
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
+
+    useResourceSubscription({
+        resource,
+        types: ["*"],
+        channel: `resources/${resource}`,
+        params: { ids: id ? [id.toString()] : [], ...liveParams },
+        enabled: queryOptions?.enabled,
+        liveMode,
+        onLiveEvent,
+    });
 
     const queryResponse = useQuery<GetOneResponse<TData>, TError>(
         [`resource/getOne/${resource}`, { id }],

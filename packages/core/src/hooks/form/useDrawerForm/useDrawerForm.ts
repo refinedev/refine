@@ -7,7 +7,7 @@ import {
     useTranslate,
     useWarnAboutChange,
 } from "@hooks";
-import { BaseRecord, HttpError } from "../../../interfaces";
+import { BaseRecord, HttpError, LiveModeProps } from "../../../interfaces";
 import { DeleteButtonProps } from "../../../components/buttons/delete";
 import { useFormProps, UseFormReturnType } from "../useForm";
 
@@ -19,7 +19,9 @@ export type UseDrawerFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = useFormProps<TData, TError, TVariables> & UseDrawerFormConfig;
+> = useFormProps<TData, TError, TVariables> &
+    UseDrawerFormConfig &
+    LiveModeProps;
 
 export type UseDrawerFormReturnType<
     TData extends BaseRecord = BaseRecord,
