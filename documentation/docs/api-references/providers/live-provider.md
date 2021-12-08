@@ -24,8 +24,8 @@ const liveProvider = {
 :::tip
 **refine** includes out-of-the-box live providers to use in your projects like:
 
--   **Ably** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/packages/ably) - [Demo](https://codesandbox.io/s/refine-ably-example-u9wg9)
--   **Supabase** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/packages/supabase) - [Demo](https://codesandbox.io/s/refine-supabase-example-2zhty)
+-   **Ably** &#8594 [Source Code](https://github.com/pankod/refine/blob/alpha/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/s/refine-ably-example-u9wg9)
+-   **Supabase** &#8594 [Source Code](https://github.com/pankod/refine/blob/alpha/packages/supabase/src/index.ts#L187)
 
 :::
 

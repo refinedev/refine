@@ -336,10 +336,7 @@ module.exports = {
                 {
                     type: "category",
                     label: "Live Provider",
-                    items: [
-                        "examples/live-provider/ably",
-                        "examples/live-provider/supabase",
-                    ],
+                    items: ["examples/live-provider/ably"],
                 },
                 {
                     type: "category",

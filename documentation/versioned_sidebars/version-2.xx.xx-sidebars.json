@@ -768,10 +768,6 @@
             {
               "type": "doc",
               "id": "version-2.xx.xx/examples/live-provider/ably"
-            },
-            {
-              "type": "doc",
-              "id": "version-2.xx.xx/examples/live-provider/supabase"
             }
           ],
           "collapsible": true,
