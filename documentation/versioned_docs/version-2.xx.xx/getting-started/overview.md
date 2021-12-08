@@ -175,7 +175,6 @@ interface ICategory {
 
 You can find Refine's [Public Roadmap here!](https://github.com/pankod/refine/projects/1)
 
-
 ## Special Thanks
 
 [React Admin](https://marmelab.com/react-admin/) has been a great source of ideas and inspiration for refine. Big thanks to friends at [Marmelab](https://marmelab.com) for the amazing work they are doing.

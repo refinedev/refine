@@ -160,7 +160,7 @@ The component passed to `list` prop will be rendered on the `/posts` route.
 
 The component passed to `create` will be rendered on the `/posts/create` route by default.
 
-> It will also be rendered on `/posts/create/:id`. This represents namely a clone page. `id` represent a record and it will be available as a route parameter.  
+> It will also be rendered on `/posts/clone/:id`. This represents namely a clone page. `id` represent a record and it will be available as a route parameter.  
 > For example [`useForm` uses this parameter to create a clone form](/api-references/hooks/form/useForm.md#clone-mode)
 
 > `clone` from `useNavigation` can be used to navigate to a clone page.
@@ -246,6 +246,14 @@ Custom route name
 `accessControlProvider` is the entry point for implementing access control for **refine** apps.
 
 [Refer to access control documentation for detailed information. &#8594](api-references/providers/accessControl-provider.md)
+
+<br />
+
+## `liveProvider`
+
+**refine** lets you add Realtime support to your app via `liveProvider`. It can be used to update and show data in Realtime throughout your app.
+
+[Refer to live provider documentation for detailed information. &#8594](api-references/providers/live-provider.md)
 
 <br />
 
@@ -348,6 +356,19 @@ To activate this feature, set the `warnWhenUnsavedChanges` to `true`.
 Default value is `false`.
 
 <br />
+
+## `liveMode`
+
+Whether to update data automatically (`auto`) or not (`manual`) if a related live event is received. The `off` value is used to avoid creating a subscription.
+
+[Refer to live provider documentation for detailed information. &#8594](api-references/providers/live-provider.md#livemode)
+
+
+## `onLiveEvent`
+
+Callback to handle all live events.
+
+[Refer to live provider documentation for detailed information. &#8594](api-references/providers/live-provider.md#refine)
 
 ## `configProviderProps`
 

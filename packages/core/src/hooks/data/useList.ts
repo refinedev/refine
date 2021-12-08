@@ -12,8 +12,9 @@ import {
     HttpError,
     CrudSorting,
     MetaDataQuery,
+    LiveModeProps,
 } from "../../interfaces";
-import { useCheckError, useTranslate } from "@hooks";
+import { useCheckError, useResourceSubscription, useTranslate } from "@hooks";
 import { handleNotification } from "@definitions";
 
 interface UseListConfig {
@@ -29,7 +30,7 @@ export type UseListProps<TData, TError> = {
     successNotification?: ArgsProps | false;
     errorNotification?: ArgsProps | false;
     metaData?: MetaDataQuery;
-};
+} & LiveModeProps;
 
 /**
  * `useList` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving items from a `resource` with pagination, sort, and filter configurations.
@@ -52,6 +53,9 @@ export const useList = <
     successNotification,
     errorNotification,
     metaData,
+    liveMode,
+    onLiveEvent,
+    liveParams,
 }: UseListProps<TData, TError>): QueryObserverResult<
     GetListResponse<TData>,
     TError
@@ -59,6 +63,19 @@ export const useList = <
     const { getList } = useContext<IDataContext>(DataContext);
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
+
+    const isEnabled =
+        queryOptions?.enabled === undefined || queryOptions?.enabled === true;
+
+    useResourceSubscription({
+        resource,
+        types: ["*"],
+        params: liveParams,
+        channel: `resources/${resource}`,
+        enabled: isEnabled,
+        liveMode,
+        onLiveEvent,
+    });
 
     const queryResponse = useQuery<GetListResponse<TData>, TError>(
         [`resource/list/${resource}`, { ...config }],
