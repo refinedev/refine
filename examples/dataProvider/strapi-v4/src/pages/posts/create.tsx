@@ -66,7 +66,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                 </Form.Item>
                 <Form.Item
                     label="Category"
-                    name={["category", "id"]}
+                    name="categories"
                     rules={[
                         {
                             required: true,
@@ -94,7 +94,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                         }
                     />
                 </Form.Item>
-                <Form.Item label="Cover">
+                {/* <Form.Item label="Cover">
                     <Form.Item
                         name="cover"
                         valuePropName="fileList"
@@ -118,7 +118,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                             </p>
                         </Upload.Dragger>
                     </Form.Item>
-                </Form.Item>
+                </Form.Item> */}
             </Form>
         </Create>
     );

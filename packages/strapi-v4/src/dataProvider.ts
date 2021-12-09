@@ -115,7 +115,7 @@ export const DataProvider = (
     create: async ({ resource, variables }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { data } = await httpClient.post(url, variables);
+        const { data } = await httpClient.post(url, { data: variables });
 
         return {
             data,
@@ -125,7 +125,7 @@ export const DataProvider = (
     update: async ({ resource, id, variables }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.put(url, variables);
+        const { data } = await httpClient.put(url, { data: variables });
 
         return {
             data,
@@ -150,13 +150,28 @@ export const DataProvider = (
         throw new Error("createMany not implemented");
     },
 
-    getOne: async ({ resource, id }) => {
-        const url = `${apiUrl}/${resource}/${id}`;
+    getOne: async ({ resource, id, metaData }) => {
+        const locale = metaData?.locale;
+        const fields = metaData?.fields;
+        const populate = metaData?.populate;
+
+        const query = {
+            locale,
+            fields,
+            populate,
+        };
+
+        const url = `${apiUrl}/${resource}/${id}?${stringify(query, {
+            encode: false,
+        })}`;
 
         const { data } = await httpClient.get(url);
 
         return {
-            data,
+            data: {
+                id: data.data.id,
+                ...data.data.attributes,
+            },
         };
     },
 

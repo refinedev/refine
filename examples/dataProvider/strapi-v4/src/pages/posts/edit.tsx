@@ -28,7 +28,9 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const [selectedTab, setSelectedTab] =
         useState<"write" | "preview">("write");
 
-    const { formProps, saveButtonProps } = useForm();
+    const { formProps, saveButtonProps } = useForm({
+        metaData: { populate: "category" },
+    });
 
     const { selectProps } = useSelect({
         resource: "categories",
@@ -62,10 +64,10 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                 >
                     <Input />
                 </Form.Item>
-                <Form.Item
+                {/* <Form.Item
                     wrapperCol={{ span: 8 }}
                     label="Category"
-                    name={["category", "id"]}
+                    name="category"
                     rules={[
                         {
                             required: true,
@@ -73,7 +75,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                     ]}
                 >
                     <Select {...selectProps} />
-                </Form.Item>
+                </Form.Item> */}
                 <Form.Item
                     label="Content"
                     name="content"
@@ -93,7 +95,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                         }
                     />
                 </Form.Item>
-                <Form.Item label="Cover">
+                {/* <Form.Item label="Cover">
                     <Form.Item
                         name="cover"
                         valuePropName="fileList"
@@ -117,7 +119,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                             </p>
                         </Upload.Dragger>
                     </Form.Item>
-                </Form.Item>
+                </Form.Item> */}
             </Form>
         </Edit>
     );

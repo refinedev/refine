@@ -73,7 +73,7 @@ const App: React.FC = () => {
 
     return (
         <Refine
-            authProvider={authProvider}
+            // authProvider={authProvider}
             dataProvider={dataProvider}
             routerProvider={routerProvider}
             resources={[
