@@ -4,7 +4,11 @@ import "@pankod/refine/dist/styles.min.css";
 
 import { Login } from "pages/login";
 import { appwriteClient } from "utility";
-import { CategoriesList } from "pages/categories";
+import {
+    CategoriesEdit,
+    CategoriesList,
+    CategoriesShow,
+} from "pages/categories";
 
 const authProvider: AuthProvider = {
     login: ({ email, password }) => {
@@ -53,6 +57,8 @@ const App: React.FC = () => {
             <Resource
                 name="6180e6efb14df"
                 list={CategoriesList}
+                show={CategoriesShow}
+                edit={CategoriesEdit}
                 options={{
                     label: "Categories",
                 }}

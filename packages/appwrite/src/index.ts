@@ -23,7 +23,10 @@ type GetAppwriteFiltersType = {
 };
 
 type GetAppwriteSortingType = {
-    (filters?: CrudSorting): string[] | undefined;
+    (filters?: CrudSorting): {
+        orderField?: string;
+        orderType?: string;
+    };
 };
 
 export const getAppwriteFilters: GetAppwriteFiltersType = (filters) => {
@@ -63,6 +66,11 @@ export const getAppwriteSorting: GetAppwriteSortingType = (sorting) => {
             "Appwrite data provider does not support multiple sortings",
         );
     }
+
+    return {
+        orderField: sorting?.[0]?.field,
+        orderType: sorting?.[0]?.order.toUpperCase(),
+    };
 };
 
 export const dataProvider = (
@@ -73,26 +81,33 @@ export const dataProvider = (
             const current = pagination?.current ?? 1;
             const pageSize = pagination?.pageSize ?? 10;
             const appwriteFilters = getAppwriteFilters(filters);
-            const appwriteSorting = getAppwriteSorting(sort);
+            const { orderField, orderType } = getAppwriteSorting(sort);
 
             const { sum: total, documents: data } =
                 await appwriteClient.database.listDocuments(
                     resource,
                     appwriteFilters,
                     pageSize,
-                    current * pageSize,
+                    (current - 1) * pageSize,
+                    orderField,
+                    orderType,
                 );
 
-            // sort?.map((item) => {
-            //     query.order(item.field, { ascending: item.order === "asc" });
-            // });
-            // filters?.map((item) => {
-            //     generateFilter(item, query);
-            // });
-            // const { data, count } = await query;
             return {
                 data,
                 total,
+            };
+        },
+        getOne: async ({ resource, id }) => {
+            const result = await appwriteClient.database.getDocument(
+                resource,
+                id,
+            );
+
+            console.log(result);
+
+            return {
+                data: result as any,
             };
         },
         // getMany: async ({ resource, ids }) => {

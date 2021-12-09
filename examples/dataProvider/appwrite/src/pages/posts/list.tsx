@@ -77,8 +77,9 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                         return (
                             <TextField
                                 value={
-                                    data?.data.find((item) => item.id === value)
-                                        ?.title
+                                    data?.data.find(
+                                        (item) => item.$id === value,
+                                    )?.title
                                 }
                             />
                         );
