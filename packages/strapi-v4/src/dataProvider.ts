@@ -49,6 +49,15 @@ const generateFilter = (filters?: CrudFilters) => {
     return queryFilters;
 };
 
+const normalizeData = (data: any) => {
+    const _data = data.data.map((item: any) => ({
+        id: item.id,
+        ...item.attributes,
+    }));
+
+    return _data;
+};
+
 export const DataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -84,10 +93,7 @@ export const DataProvider = (
         );
 
         return {
-            data: data.data.map((item: any) => ({
-                id: item.id,
-                ...item.attributes,
-            })),
+            data: normalizeData(data),
             total: data.meta.pagination.total,
         };
     },
@@ -95,12 +101,14 @@ export const DataProvider = (
     getMany: async ({ resource, ids }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const query = ids.map((item: string) => `id_in=${item}`).join("&");
+        const query = ids
+            .map((item: string) => `filters[id][$in]=${item}`)
+            .join("&");
 
         const { data } = await httpClient.get(`${url}?${query}`);
 
         return {
-            data: [],
+            data: normalizeData(data),
         };
     },
 
