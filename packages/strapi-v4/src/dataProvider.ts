@@ -42,11 +42,7 @@ const generateFilter = (filters?: CrudFilters) => {
     const queryFilters: { [key: string]: string } = {};
     if (filters) {
         filters.map(({ field, operator, value }) => {
-            if (operator === "eq") {
-                queryFilters[`${field}`] = value;
-            } else {
-                queryFilters[`${field}_${operator}`] = value;
-            }
+            queryFilters[`filters[${field}][$${operator}]`] = value;
         });
     }
 
@@ -57,31 +53,42 @@ export const DataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): IDataProvider => ({
-    getList: async ({ resource, pagination, filters, sort }) => {
+    getList: async ({ resource, pagination, filters, sort, metaData }) => {
         const url = `${apiUrl}/${resource}`;
 
         const current = pagination?.current || 1;
         const pageSize = pagination?.pageSize || 10;
+        const locale = metaData?.locale;
+        const fields = metaData?.fields;
+        const populate = metaData?.populate;
+        const publicationState = metaData?.publicationState;
 
-        const _sort = generateSort(sort);
+        const quertSorters = generateSort(sort);
         const queryFilters = generateFilter(filters);
 
         const query = {
-            _start: (current - 1) * pageSize,
-            _limit: pageSize,
-            _sort: _sort.length > 0 ? _sort.join(",") : undefined,
+            "pagination[page]": current,
+            "pagination[pageSize]": pageSize,
+            locale,
+            fields,
+            populate,
+            publicationState,
+            sort: quertSorters.length > 0 ? quertSorters.join(",") : undefined,
         };
 
-        const response = await Promise.all([
-            httpClient.get(
-                `${url}?${stringify(query)}&${stringify(queryFilters)}`,
-            ),
-            httpClient.get(`${url}/count?${stringify(queryFilters)}`),
-        ]);
+        const { data } = await httpClient.get(
+            `${url}?${stringify(query, { encode: false })}&${stringify(
+                queryFilters,
+                { encode: false },
+            )}`,
+        );
 
         return {
-            data: response[0].data,
-            total: response[1].data,
+            data: data.data.map((item: any) => ({
+                id: item.id,
+                ...item.attributes,
+            })),
+            total: data.meta.pagination.total,
         };
     },
 
@@ -93,7 +100,7 @@ export const DataProvider = (
         const { data } = await httpClient.get(`${url}?${query}`);
 
         return {
-            data,
+            data: [],
         };
     },
 
