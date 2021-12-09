@@ -15,7 +15,7 @@
     "@docusaurus/core": "^2.0.0-beta.9",
     "@docusaurus/preset-classic": "^2.0.0-beta.9",
     "@mdx-js/react": "^1.6.21",
-    "@types/react-dom": "^17.0.9",
+    "@types/react-dom": "^17.0.11",
     "axios": "^0.24.0",
     "clsx": "^1.1.1",
     "graphql-request": "^3.5.0",
