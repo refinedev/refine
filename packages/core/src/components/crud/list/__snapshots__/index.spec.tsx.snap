@@ -6,20 +6,6 @@ exports[`<List/> JSON Rest Server renders given data 1`] = `
     class="ant-page-header"
   >
     <div
-      class="ant-page-header-heading"
-    >
-      <div
-        class="ant-page-header-heading-left"
-      >
-        <span
-          class="ant-page-header-heading-title"
-          title="Posts"
-        >
-          Posts
-        </span>
-      </div>
-    </div>
-    <div
       class="ant-page-header-content"
     >
       <div
