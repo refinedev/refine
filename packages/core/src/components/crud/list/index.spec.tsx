@@ -67,7 +67,7 @@ describe("<List/>", () => {
                 },
             );
 
-            getByText("test");
+            getByText("Tests");
         });
 
         describe("render create button", () => {
