@@ -83,7 +83,7 @@ describe("Edit", () => {
             },
         );
 
-        getByText("Edit test");
+        getByText("Edit Test");
     });
 
     it("should render optional title with title prop", () => {

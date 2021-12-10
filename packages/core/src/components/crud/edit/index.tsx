@@ -84,11 +84,10 @@ export const Edit: React.FC<EditProps> = ({
             onBack={routeFromAction ? goBack : undefined}
             title={
                 title ??
-                (resource.label && `Edit ${resource.label}`) ??
                 translate(
-                    `Edit ${resource.name}.titles.edit`,
+                    `${resource.name}.titles.edit`,
                     `Edit ${userFriendlyResourceName(
-                        resource.name,
+                        resource.label ?? resource.name,
                         "singular",
                     )}`,
                 )
