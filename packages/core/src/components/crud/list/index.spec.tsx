@@ -51,7 +51,7 @@ describe("<List/>", () => {
             getByText("New Title");
         });
 
-        fit("should render with label instead of resource name successfully", () => {
+        it("should render with label instead of resource name successfully", () => {
             const { getByText } = render(
                 <Route path="/:resource">
                     <List />
