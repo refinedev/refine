@@ -99,17 +99,36 @@ export const dataProvider = (
             };
         },
         getOne: async ({ resource, id }) => {
-            const result = await appwriteClient.database.getDocument(
+            const data = await appwriteClient.database.getDocument(
                 resource,
                 id,
             );
 
-            console.log(result);
+            return {
+                data,
+            } as any;
+        },
+        update: async ({ resource, id, variables, metaData }) => {
+            const data = await appwriteClient.database.updateDocument(
+                resource,
+                id,
+                variables as any,
+                metaData?.readPermissions ?? ["*"],
+                metaData?.writePermissions ?? ["*"],
+            );
 
             return {
-                data: result as any,
-            };
+                data,
+            } as any;
         },
+        // create: async ({ resource, variables }) => {
+        //     const { data } = await supabaseClient
+        //         .from(resource)
+        //         .insert(variables);
+        //     return {
+        //         data: (data || [])[0] as any,
+        //     };
+        // },
         // getMany: async ({ resource, ids }) => {
         //     const { data } = await supabaseClient
         //         .from(resource)
