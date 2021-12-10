@@ -90,6 +90,25 @@ describe("Show", () => {
         getByText("Show Post");
     });
 
+    it("should render with label instead of resource name successfully", () => {
+        const { getByText } = render(
+            <Route path="/:resource/show/:id">
+                <Show />
+            </Route>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [
+                        { name: "posts", route: "posts", label: "test" },
+                    ],
+                    routerInitialEntries: ["/posts/show/1"],
+                }),
+            },
+        );
+
+        getByText("Show Test");
+    });
+
     it("should render optional title with title prop", () => {
         const { getByText } = renderShow(<Show title="Test Title" />);
 

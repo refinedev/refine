@@ -69,6 +69,11 @@ export const Show: React.FC<ShowProps> = ({
             onBack={routeFromAction ? goBack : undefined}
             title={
                 title ??
+                (resource.label &&
+                    `Show ${userFriendlyResourceName(
+                        resource.label,
+                        "singular",
+                    )}`) ??
                 translate(
                     `${resource.name}.titles.show`,
                     `Show ${userFriendlyResourceName(
