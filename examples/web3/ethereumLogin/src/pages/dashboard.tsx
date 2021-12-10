@@ -28,7 +28,7 @@ export const DashboardPage: React.FC = () => {
     const handleModal = async (values: any) => {
         setLoading(true);
         const tx: any | undefined = await sendEthereum(
-            data?.address!,
+            data?.address || "",
             values.receiver,
             values.amount,
         );
