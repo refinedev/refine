@@ -73,6 +73,7 @@ export const ListButton: FC<ListButtonProps> = ({
         >
             {!hideText &&
                 (children ??
+                    resource.label ??
                     translate(
                         `${resourceName}.titles.list`,
                         humanizeString(resourceName),

@@ -21,6 +21,18 @@ describe("List Button", () => {
         expect(container).toBeTruthy();
     });
 
+    fit("should render label as children if specified", () => {
+        const { container, getByText } = render(<ListButton />, {
+            wrapper: TestWrapper({
+                resources: [{ name: "posts", label: "test" }],
+            }),
+        });
+
+        expect(container).toBeTruthy();
+
+        getByText("test");
+    });
+
     it("should render text by children", () => {
         const { container, getByText } = render(
             <ListButton>refine</ListButton>,
