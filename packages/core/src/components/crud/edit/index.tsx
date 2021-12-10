@@ -87,7 +87,7 @@ export const Edit: React.FC<EditProps> = ({
                 translate(
                     `${resource.name}.titles.edit`,
                     `Edit ${userFriendlyResourceName(
-                        resource.name,
+                        resource.label ?? resource.name,
                         "singular",
                     )}`,
                 )
