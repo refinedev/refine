@@ -4,8 +4,9 @@ import {
     HttpError,
     CrudFilters,
     CrudSorting,
+    CrudOperators,
 } from "@pankod/refine";
-import { stringify } from "query-string";
+import { stringify, parse } from "qs";
 
 const axiosInstance = axios.create();
 
@@ -24,6 +25,21 @@ axiosInstance.interceptors.response.use(
     },
 );
 
+const mapOperator = (operator: CrudOperators) => {
+    switch (operator) {
+        case "nin":
+            return "notIn";
+        case "ncontains":
+            return "notContains";
+        case "containss":
+            return "containsi";
+        case "ncontainss":
+            return "notContainsi";
+    }
+
+    return operator;
+};
+
 const generateSort = (sort?: CrudSorting) => {
     const _sort: string[] = [];
 
@@ -39,12 +55,24 @@ const generateSort = (sort?: CrudSorting) => {
 };
 
 const generateFilter = (filters?: CrudFilters) => {
-    const queryFilters: { [key: string]: string } = {};
+    let rawQuery = "";
+
     if (filters) {
         filters.map(({ field, operator, value }) => {
-            queryFilters[`filters[${field}][$${operator}]`] = value;
+            const mapedOperator = mapOperator(operator);
+
+            if (Array.isArray(value)) {
+                value.map((val: string) => {
+                    rawQuery += `&filters${field}[$${mapedOperator}]=${val}`;
+                });
+            } else {
+                rawQuery += `&filters[${field}][$${mapedOperator}]=${value}`;
+            }
         });
     }
+
+    const parsedQuery = parse(rawQuery);
+    const queryFilters = stringify(parsedQuery, { encodeValuesOnly: true });
 
     return queryFilters;
 };
@@ -79,17 +107,16 @@ export const DataProvider = (
             "pagination[page]": current,
             "pagination[pageSize]": pageSize,
             locale,
+            publicationState,
             fields,
             populate,
-            publicationState,
             sort: quertSorters.length > 0 ? quertSorters.join(",") : undefined,
         };
 
         const { data } = await httpClient.get(
-            `${url}?${stringify(query, { encode: false })}&${stringify(
-                queryFilters,
-                { encode: false },
-            )}`,
+            `${url}?${stringify(query, {
+                encodeValuesOnly: true,
+            })}&${queryFilters}`,
         );
 
         return {
@@ -137,7 +164,7 @@ export const DataProvider = (
             ids.map(async (id) => {
                 const { data } = await httpClient.put(
                     `${apiUrl}/${resource}/${id}`,
-                    variables,
+                    { data: variables },
                 );
                 return data;
             }),
@@ -146,8 +173,17 @@ export const DataProvider = (
         return { data: response };
     },
 
-    createMany: async () => {
-        throw new Error("createMany not implemented");
+    createMany: async ({ resource, variables }) => {
+        const response = await Promise.all(
+            variables.map(async (param) => {
+                const { data } = await httpClient.put(`${apiUrl}/${resource}`, {
+                    data: param,
+                });
+                return data;
+            }),
+        );
+
+        return { data: response };
     },
 
     getOne: async ({ resource, id, metaData }) => {
