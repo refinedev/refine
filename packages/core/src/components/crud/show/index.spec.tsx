@@ -106,7 +106,7 @@ describe("Show", () => {
             },
         );
 
-        getByText("Show test");
+        getByText("Show Test");
     });
 
     it("should render optional title with title prop", () => {
