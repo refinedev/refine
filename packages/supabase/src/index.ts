@@ -37,11 +37,11 @@ const generateFilter = (filter: CrudFilter, query: any) => {
         case "nin":
             throw Error("Not implemented on refine-supabase data provider.");
         case "contains":
-            return query.like(filter.field, `%${filter.value}%`);
+            return query.ilike(filter.field, `%${filter.value}%`);
         case "ncontains":
             throw Error("Not implemented on refine-supabase data provider.");
         case "containss":
-            return query.ilike(filter.field, `%${filter.value}%`);
+            return query.like(filter.field, `%${filter.value}%`);
         case "ncontainss":
             throw Error("Not implemented on refine-supabase data provider.");
         case "null":
