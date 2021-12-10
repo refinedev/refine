@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
     List,
     Table,
@@ -12,64 +13,77 @@ import {
     Space,
     EditButton,
     DeleteButton,
-    useMany,
-    useOne,
+    ImageField,
+    Form,
+    Radio,
+    Tag,
 } from "@pankod/refine";
 
 import { IPost } from "interfaces";
 
+import { API_URL } from "../../constants";
+
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter, filters } = useTable<IPost>({
+    const [locale, setLocale] = useState("en");
+    const [publicationState, setPublicationState] = useState("live");
+
+    const { tableProps, sorter, filters, tableQueryResult } = useTable<IPost>({
         initialSorter: [
             {
                 field: "id",
                 order: "desc",
             },
         ],
-        // initialFilter: [
-        //     { field: "id", operator: "eq", value: 1 },
-        //     { field: "title", operator: "contains", value: "a" },
-        // ],
-        initialPageSize: 1,
+        initialFilter: [
+            { field: "[category][id]", operator: "in", value: [1] },
+        ],
         metaData: {
-            // locale: "de",
-            // fields: ["title", "content"],
-            // populate: "*",
-            populate: ["category"],
-            // publicationState: "preview",
+            populate: ["category", "cover"],
+            locale,
+            publicationState,
         },
     });
-
-    console.log(tableProps);
 
     const { selectProps } = useSelect({
         resource: "categories",
         optionLabel: "title",
         optionValue: "id",
-        // defaultValue: [
-        //     getDefaultFilter("category.data.attributes.id", filters),
-        // ],
+        defaultValue: getDefaultFilter("[category][id]", filters, "in"),
     });
-
-    // const { data } = useMany({ resource: "posts", ids: ["1", "3"] });
-    const { data } = useOne({
-        resource: "posts",
-        id: "1",
-        metaData: {
-            locale: "de",
-            populate: "category",
-        },
-    });
-
-    console.log("client data :", data);
 
     return (
         <List>
+            <Form
+                layout="inline"
+                initialValues={{
+                    locale,
+                    publicationState,
+                }}
+            >
+                <Form.Item label="Locale" name="locale">
+                    <Radio.Group onChange={(e) => setLocale(e.target.value)}>
+                        <Radio.Button value="en">English</Radio.Button>
+                        <Radio.Button value="de">Deutsch</Radio.Button>
+                    </Radio.Group>
+                </Form.Item>
+                <Form.Item label="Publication State" name="publicationState">
+                    <Radio.Group
+                        onChange={(e) => setPublicationState(e.target.value)}
+                    >
+                        <Radio.Button value="live">Published</Radio.Button>
+                        <Radio.Button value="preview">
+                            Draft and Published
+                        </Radio.Button>
+                    </Radio.Group>
+                </Form.Item>
+            </Form>
+            <br />
             <Table
                 {...tableProps}
                 rowKey="id"
                 pagination={{
                     ...tableProps.pagination,
+                    showSizeChanger: true,
                 }}
             >
                 <Table.Column
@@ -87,7 +101,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     sorter={{ multiple: 2 }}
                 />
                 <Table.Column
-                    key="category.data.attributes.id"
+                    key="[category][id]"
                     dataIndex={["category", "data", "attributes", "title"]}
                     title="Category"
                     filterDropdown={(props) => (
@@ -101,18 +115,42 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                         </FilterDropdown>
                     )}
                     defaultFilteredValue={getDefaultFilter(
-                        "category.id",
+                        "[category][id]",
                         filters,
+                        "in",
                     )}
                 />
-                {/* <Table.Column
-                    dataIndex="created_at"
-                    key="created_at"
+                <Table.Column
+                    dataIndex="createdAt"
                     title="Created At"
                     render={(value) => <DateField value={value} format="LLL" />}
-                    defaultSortOrder={getDefaultSortOrder("created_at", sorter)}
+                    defaultSortOrder={getDefaultSortOrder("createdAt", sorter)}
                     sorter={{ multiple: 1 }}
-                /> */}
+                />
+                <Table.Column
+                    dataIndex="publishedAt"
+                    title="Status"
+                    render={(value) => {
+                        return (
+                            <Tag color={value ? "green" : "blue"}>
+                                {value ? "Published" : "Draft"}
+                            </Tag>
+                        );
+                    }}
+                />
+                <Table.Column
+                    dataIndex={["cover", "data", "attributes"]}
+                    title="Cover"
+                    render={(value) => (
+                        <ImageField
+                            value={API_URL + value.url}
+                            alt={value.name}
+                            title={value.name}
+                            width={48}
+                            preview={{ mask: <></> }}
+                        />
+                    )}
+                />
                 <Table.Column<{ id: string }>
                     title="Actions"
                     dataIndex="actions"
