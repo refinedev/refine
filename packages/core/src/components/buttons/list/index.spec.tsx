@@ -16,7 +16,7 @@ describe("List Button", () => {
             },
         );
 
-        getByText("Posts light");
+        getByText("Posts lights");
 
         expect(container).toBeTruthy();
     });
@@ -30,7 +30,7 @@ describe("List Button", () => {
 
         expect(container).toBeTruthy();
 
-        getByText("test");
+        getByText("Tests");
     });
 
     it("should render text by children", () => {

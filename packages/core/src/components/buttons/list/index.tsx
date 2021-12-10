@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { Button, ButtonProps } from "antd";
 import { BarsOutlined } from "@ant-design/icons";
-import humanizeString from "humanize-string";
 
 import {
     useCan,
@@ -11,6 +10,7 @@ import {
     useTranslate,
 } from "@hooks";
 import { ResourceRouterParams } from "../../../interfaces";
+import { userFriendlyResourceName } from "@definitions";
 
 type ListButtonProps = ButtonProps & {
     resourceName?: string;
@@ -73,10 +73,12 @@ export const ListButton: FC<ListButtonProps> = ({
         >
             {!hideText &&
                 (children ??
-                    resource.label ??
                     translate(
                         `${resourceName}.titles.list`,
-                        humanizeString(resourceName),
+                        userFriendlyResourceName(
+                            resource.label ?? resourceName,
+                            "plural",
+                        ),
                     ))}
         </Button>
     );
