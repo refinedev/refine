@@ -15,7 +15,7 @@ export const CategoriesList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter } = useTable<ICategory>();
 
     return (
-        <List title="Categories">
+        <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column
                     dataIndex="$id"

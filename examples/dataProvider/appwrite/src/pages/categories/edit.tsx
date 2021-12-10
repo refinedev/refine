@@ -1,18 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import {
     Edit,
     Form,
     Input,
     IResourceComponentsProps,
-    Select,
     useForm,
-    useSelect,
 } from "@pankod/refine";
 
 import { ICategory } from "interfaces";
 
 export const CategoriesEdit: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } = useForm<ICategory>();
+    const { formProps, saveButtonProps } = useForm<ICategory>({
+        metaData: {
+            readPermissions: ["*"],
+            writePermissions: ["*"],
+        },
+    });
 
     return (
         <Edit saveButtonProps={saveButtonProps}>
