@@ -58,7 +58,7 @@ describe("Create", () => {
             },
         );
 
-        getByText("Create test label");
+        getByText("Create Test label");
     });
 
     it("should render optional title with title prop", async () => {
