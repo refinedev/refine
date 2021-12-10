@@ -273,6 +273,11 @@ module.exports = {
                     label: "Form",
                     items: ["guides-and-concepts/forms/custom-form-validation"],
                 },
+                {
+                    type: "category",
+                    label: "Web3",
+                    items: ["guides-and-concepts/web3/ethereum-signin"],
+                },
                 "guides-and-concepts/mutation-mode",
                 "guides-and-concepts/custom-layout",
                 "guides-and-concepts/custom-pages",

@@ -619,7 +619,7 @@
         },
         {
           "type":"category",
-          "label": "Web3 Wallet",
+          "label": "Web3",
           "items": [
             {
               "type":"doc",
