@@ -27,7 +27,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     const [locale, setLocale] = useState("en");
     const [publicationState, setPublicationState] = useState("live");
 
-    const { tableProps, sorter, filters, tableQueryResult } = useTable<IPost>({
+    const { tableProps, sorter, filters } = useTable<IPost>({
         initialSorter: [
             {
                 field: "id",
@@ -140,16 +140,21 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 />
                 <Table.Column
                     dataIndex={["cover", "data", "attributes"]}
+                    align="center"
                     title="Cover"
-                    render={(value) => (
-                        <ImageField
-                            value={API_URL + value.url}
-                            alt={value.name}
-                            title={value.name}
-                            width={48}
-                            preview={{ mask: <></> }}
-                        />
-                    )}
+                    render={(value) => {
+                        return value ? (
+                            <ImageField
+                                value={API_URL + value?.url}
+                                alt={value?.name}
+                                title={value?.name}
+                                width={48}
+                                preview={{ mask: <></> }}
+                            />
+                        ) : (
+                            <span>---</span>
+                        );
+                    }}
                 />
                 <Table.Column<{ id: string }>
                     title="Actions"
