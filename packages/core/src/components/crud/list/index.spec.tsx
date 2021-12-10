@@ -51,6 +51,25 @@ describe("<List/>", () => {
             getByText("New Title");
         });
 
+        fit("should render with label instead of resource name successfully", () => {
+            const { getByText } = render(
+                <Route path="/:resource">
+                    <List />
+                </Route>,
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [
+                            { name: "posts", route: "posts", label: "test" },
+                        ],
+                        routerInitialEntries: ["/posts"],
+                    }),
+                },
+            );
+
+            getByText("test");
+        });
+
         describe("render create button", () => {
             it("should create edit button", () => {
                 const { getByText, queryByTestId } = render(

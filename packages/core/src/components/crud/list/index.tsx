@@ -53,6 +53,7 @@ export const List: React.FC<ListProps> = ({
             ghost={false}
             title={
                 title ??
+                resource.label ??
                 translate(
                     `${resource.name}.titles.list`,
                     userFriendlyResourceName(resource.name, "plural"),

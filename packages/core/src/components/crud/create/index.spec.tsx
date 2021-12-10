@@ -51,14 +51,14 @@ describe("Create", () => {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
                     resources: [
-                        { name: "posts", route: "posts", label: "test" },
+                        { name: "posts", route: "posts", label: "test label" },
                     ],
                     routerInitialEntries: ["/posts/create"],
                 }),
             },
         );
 
-        getByText("Create Test");
+        getByText("Create test label");
     });
 
     it("should render optional title with title prop", async () => {
