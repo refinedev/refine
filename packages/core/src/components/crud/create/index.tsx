@@ -76,6 +76,11 @@ export const Create: React.FC<CreateProps> = ({
             tags={tags}
             title={
                 title ??
+                (resource.label &&
+                    `Create ${userFriendlyResourceName(
+                        resource.label,
+                        "singular",
+                    )}`) ??
                 translate(
                     `${resource.name}.titles.create`,
                     `Create ${userFriendlyResourceName(
