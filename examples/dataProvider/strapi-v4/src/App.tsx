@@ -13,7 +13,7 @@ import { TOKEN_KEY, API_URL } from "./constants";
 
 const App: React.FC = () => {
     const axiosInstance = axios.create();
-    const strapiAuthHelper = AuthHelper(API_URL);
+    const strapiAuthHelper = AuthHelper(API_URL + "/api");
 
     const authProvider: AuthProvider = {
         login: async ({ username, password }) => {
@@ -72,8 +72,8 @@ const App: React.FC = () => {
 
     return (
         <Refine
-            // authProvider={authProvider}
-            dataProvider={DataProvider("/api", axiosInstance)}
+            authProvider={authProvider}
+            dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
             routerProvider={routerProvider}
             resources={[
                 {

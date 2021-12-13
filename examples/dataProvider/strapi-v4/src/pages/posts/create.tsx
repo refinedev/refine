@@ -9,6 +9,7 @@ import {
     useForm,
     useSelect,
     Upload,
+    Radio,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -25,6 +26,7 @@ import { TOKEN_KEY } from "../../constants";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const API_URL = useApiUrl();
+    const [locale, setLocale] = useState("en");
 
     const [selectedTab, setSelectedTab] =
         useState<"write" | "preview">("write");
@@ -35,6 +37,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const { selectProps } = useSelect({
         resource: "categories",
         defaultValue: postData?.category.id,
+        metaData: { locale },
     });
 
     const { ...uploadProps } = useStrapiUpload({
@@ -53,6 +56,12 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                     );
                 }}
             >
+                <Form.Item label="Locale" name="locale">
+                    <Radio.Group onChange={(e) => setLocale(e.target.value)}>
+                        <Radio.Button value="en">English</Radio.Button>
+                        <Radio.Button value="de">Deutsch</Radio.Button>
+                    </Radio.Group>
+                </Form.Item>
                 <Form.Item
                     label="Title"
                     name="title"
@@ -104,11 +113,11 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                         <Upload.Dragger
                             name="files"
                             action={`${API_URL}/upload`}
-                            // headers={{
-                            //     Authorization: `Bearer ${localStorage.getItem(
-                            //         TOKEN_KEY,
-                            //     )}`,
-                            // }}
+                            headers={{
+                                Authorization: `Bearer ${localStorage.getItem(
+                                    TOKEN_KEY,
+                                )}`,
+                            }}
                             listType="picture"
                             multiple
                             {...uploadProps}

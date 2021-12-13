@@ -7,7 +7,6 @@ import {
     getDefaultSortOrder,
     FilterDropdown,
     Select,
-    getDefaultFilter,
     useSelect,
     DateField,
     Space,
@@ -27,15 +26,12 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     const [locale, setLocale] = useState("en");
     const [publicationState, setPublicationState] = useState("live");
 
-    const { tableProps, sorter, filters } = useTable<IPost>({
+    const { tableProps, sorter } = useTable<IPost>({
         initialSorter: [
             {
                 field: "id",
                 order: "desc",
             },
-        ],
-        initialFilter: [
-            { field: "[category][id]", operator: "in", value: [1] },
         ],
         metaData: {
             populate: ["category", "cover"],
@@ -48,7 +44,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         resource: "categories",
         optionLabel: "title",
         optionValue: "id",
-        defaultValue: getDefaultFilter("[category][id]", filters, "in"),
+        metaData: { locale },
     });
 
     return (
@@ -113,11 +109,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                 {...selectProps}
                             />
                         </FilterDropdown>
-                    )}
-                    defaultFilteredValue={getDefaultFilter(
-                        "[category][id]",
-                        filters,
-                        "in",
                     )}
                 />
                 <Table.Column

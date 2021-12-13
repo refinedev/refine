@@ -3,6 +3,7 @@ import {
     Form,
     Input,
     IResourceComponentsProps,
+    Radio,
     useForm,
 } from "@pankod/refine";
 
@@ -14,6 +15,12 @@ export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
     return (
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
+                <Form.Item label="Locale" name="locale">
+                    <Radio.Group>
+                        <Radio.Button value="en">English</Radio.Button>
+                        <Radio.Button value="de">Deutsch</Radio.Button>
+                    </Radio.Group>
+                </Form.Item>
                 <Form.Item
                     label="Title"
                     name="title"

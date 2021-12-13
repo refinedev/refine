@@ -8,6 +8,7 @@ import {
     useForm,
     useSelect,
     Upload,
+    Radio,
 } from "@pankod/refine";
 import {
     useStrapiUpload,
@@ -25,12 +26,13 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const [selectedTab, setSelectedTab] =
         useState<"write" | "preview">("write");
 
-    const { formProps, saveButtonProps } = useForm({
+    const { formProps, saveButtonProps, queryResult } = useForm({
         metaData: { populate: ["category", "cover"] },
     });
 
     const { selectProps } = useSelect({
         resource: "categories",
+        metaData: { locale: queryResult?.data?.data.locale },
     });
 
     const { ...uploadProps } = useStrapiUpload({
@@ -49,6 +51,12 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                     );
                 }}
             >
+                <Form.Item label="Locale" name="locale">
+                    <Radio.Group disabled>
+                        <Radio.Button value="en">English</Radio.Button>
+                        <Radio.Button value="de">Deutsch</Radio.Button>
+                    </Radio.Group>
+                </Form.Item>
                 <Form.Item
                     wrapperCol={{ span: 14 }}
                     label="Title"
