@@ -5,9 +5,10 @@ import {
     Input,
     IResourceComponentsProps,
     Select,
-    useForm,
     useSelect,
 } from "@pankod/refine-core";
+
+import { useForm } from "@pankod/refine-antd";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
