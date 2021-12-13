@@ -1,10 +1,10 @@
 {
-    "name": "@pankod/refine-core",
+    "name": "@pankod/refine",
     "version": "2.4.3",
     "description": "refine is a React-based framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
     "private": false,
     "main": "dist/index.js",
-    "module": "dist/refine-core.esm.js",
+    "module": "dist/refine.esm.js",
     "typings": "dist/index.d.ts",
     "scripts": {
         "start": "tsdx watch --tsconfig tsconfig.json --verbose --noClean",
