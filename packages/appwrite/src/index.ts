@@ -121,99 +121,92 @@ export const dataProvider = (
                 data,
             } as any;
         },
-        // create: async ({ resource, variables }) => {
-        //     const { data } = await supabaseClient
-        //         .from(resource)
-        //         .insert(variables);
-        //     return {
-        //         data: (data || [])[0] as any,
-        //     };
-        // },
-        // getMany: async ({ resource, ids }) => {
-        //     const { data } = await supabaseClient
-        //         .from(resource)
-        //         .select("*")
-        //         .in("id", ids);
-        //     return {
-        //         data: data || [],
-        //     };
-        // },
-        // create: async ({ resource, variables }) => {
-        //     const { data } = await supabaseClient
-        //         .from(resource)
-        //         .insert(variables);
-        //     return {
-        //         data: (data || [])[0] as any,
-        //     };
-        // },
-        // createMany: async ({ resource, variables }) => {
-        //     const { data } = await supabaseClient
-        //         .from(resource)
-        //         .insert(variables);
-        //     return {
-        //         data: data as any,
-        //     };
-        // },
-        // update: async ({ resource, id, variables }) => {
-        //     const { data } = await supabaseClient
-        //         .from(resource)
-        //         .update(variables)
-        //         .match({ id });
-        //     return {
-        //         data: (data || [])[0] as any,
-        //     };
-        // },
-        // updateMany: async ({ resource, ids, variables }) => {
-        //     const response = await Promise.all(
-        //         ids.map(async (id) => {
-        //             const { data } = await supabaseClient
-        //                 .from(resource)
-        //                 .update(variables)
-        //                 .match({ id });
-        //             return (data || [])[0];
-        //         }),
-        //     );
-        //     return {
-        //         data: response,
-        //     };
-        // },
-        // getOne: async ({ resource, id }) => {
-        //     const { data } = await supabaseClient
-        //         .from(resource)
-        //         .select("*")
-        //         .match({ id });
-        //     return {
-        //         data: (data || [])[0] as any,
-        //     };
-        // },
-        // deleteOne: async ({ resource, id }) => {
-        //     const { data } = await supabaseClient
-        //         .from(resource)
-        //         .delete()
-        //         .match({ id });
-        //     return {
-        //         data: (data || [])[0] as any,
-        //     };
-        // },
-        // deleteMany: async ({ resource, ids }) => {
-        //     const response = await Promise.all(
-        //         ids.map(async (id) => {
-        //             const { data } = await supabaseClient
-        //                 .from(resource)
-        //                 .delete()
-        //                 .match({ id });
-        //             return (data || [])[0];
-        //         }),
-        //     );
-        //     return {
-        //         data: response,
-        //     };
-        // },
-        // getApiUrl: () => {
-        //     throw Error("Not implemented on refine-supabase data provider.");
-        // },
-        // custom: () => {
-        //     throw Error("Not implemented on refine-supabase data provider.");
-        // },
+        create: async ({ resource, variables, metaData }) => {
+            const data = await appwriteClient.database.createDocument(
+                resource,
+                variables as unknown as object,
+                metaData?.readPermissions ?? ["*"],
+                metaData?.writePermissions ?? ["*"],
+            );
+
+            return {
+                data,
+            } as any;
+        },
+        createMany: async ({ resource, variables, metaData }) => {
+            const data = await Promise.all(
+                variables.map((document) =>
+                    appwriteClient.database.createDocument(
+                        resource,
+                        document as unknown as object,
+                        metaData?.readPermissions ?? ["*"],
+                        metaData?.writePermissions ?? ["*"],
+                    ),
+                ),
+            );
+
+            return {
+                data,
+            } as any;
+        },
+        deleteOne: async ({ resource, id }) => {
+            const data = await appwriteClient.database.deleteDocument(
+                resource,
+                id,
+            );
+
+            return {
+                data,
+            } as any;
+        },
+        deleteMany: async ({ resource, ids }) => {
+            const data = await Promise.all(
+                ids.map((id) =>
+                    appwriteClient.database.deleteDocument(resource, id),
+                ),
+            );
+
+            return {
+                data,
+            } as any;
+        },
+        getMany: async ({ resource, ids }) => {
+            const data = await Promise.all(
+                ids.map((id) =>
+                    appwriteClient.database.getDocument(resource, id),
+                ),
+            );
+
+            return {
+                data,
+            } as any;
+        },
+        updateMany: async ({ resource, ids, variables, metaData }) => {
+            const data = await Promise.all(
+                ids.map((id) =>
+                    appwriteClient.database.updateDocument(
+                        resource,
+                        id,
+                        variables as unknown as object,
+                        metaData?.readPermissions ?? ["*"],
+                        metaData?.writePermissions ?? ["*"],
+                    ),
+                ),
+            );
+
+            return {
+                data,
+            } as any;
+        },
+        getApiUrl: () => {
+            throw Error(
+                "'getApiUrl' method is not implemented on refine-appwrite data provider.",
+            );
+        },
+        custom: () => {
+            throw Error(
+                "'custom' method is not implemented on refine-appwrite data provider.",
+            );
+        },
     };
 };
