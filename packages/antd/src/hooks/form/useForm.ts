@@ -13,10 +13,9 @@ import {
     ResourceRouterParams,
     useResourceWithRoute,
     useRouterContext,
+    LiveModeProps,
+    BaseRecord,
 } from "@pankod/refine-core";
-import { BaseRecord, LiveModeProps } from "@pankod/refine-core/dist/interfaces";
-import { UseUpdateReturnType } from "@pankod/refine-core/dist/hooks/data/useUpdate";
-import { UseCreateReturnType } from "@pankod/refine-core/dist/hooks/data/useCreate";
 
 export type ActionParams = {
     action?: "edit" | "create" | "clone";
@@ -58,9 +57,7 @@ export type UseFormReturnType<
         onClick: () => void;
     };
     queryResult?: QueryObserverResult<GetOneResponse<TData>>;
-    mutationResult:
-        | UseUpdateReturnType<TData, TError, TVariables>
-        | UseCreateReturnType<TData, TError, TVariables>;
+    mutationResult: any;
     formLoading: boolean;
     setCloneId?: Dispatch<SetStateAction<string | undefined>>;
     cloneId?: string;

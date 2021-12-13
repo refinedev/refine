@@ -7,12 +7,12 @@ import {
     GetOneResponse,
     HttpError,
     ResourceRouterParams,
+    BaseRecord,
 } from "@pankod/refine-core";
 import { useCreateForm, useCreateFormProps } from "../useCreateForm";
 import { UseCreateReturnType } from "@pankod/refine-core/dist/hooks/data/useCreate";
 
 import { ActionParams } from "../useForm";
-import { BaseRecord } from "@pankod/refine-core/dist/interfaces";
 
 export type useCloneFormProps<
     TData extends BaseRecord = BaseRecord,

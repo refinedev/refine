@@ -9,7 +9,7 @@ import {
     LayoutWrapper,
     CanAccess,
     ErrorComponent,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
 import { rankRoutes } from "react-location-rank-routes";
 
 import {

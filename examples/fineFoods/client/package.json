@@ -10,7 +10,7 @@
         "prettier": "prettier --write '**/*.{js,jsx,ts,tsx}'"
     },
     "dependencies": {
-        "@pankod/refine": "^2.4.3",
+        "@pankod/refine-core": "^2.4.3",
         "@pankod/refine-nextjs-router": "^2.4.3",
         "@pankod/refine-simple-rest": "^2.4.3",
         "gsap": "^3.8.0",

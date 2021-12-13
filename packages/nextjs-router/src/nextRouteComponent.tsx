@@ -6,8 +6,8 @@ import {
     useResource,
     LoginPage as DefaultLoginPage,
     CanAccess,
-} from "@pankod/refine";
-import type { ResourceRouterParams } from "@pankod/refine";
+} from "@pankod/refine-core";
+import type { ResourceRouterParams } from "@pankod/refine-core";
 
 import { RouterProvider } from "./routerProvider";
 

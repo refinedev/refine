@@ -8,7 +8,7 @@ import {
     useRouterContext,
     ResourceRouterParams,
     CanAccess,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
 
 export const ResourceComponentWrapper: React.FC = () => {
     const { catchAll } = useRefineContext();

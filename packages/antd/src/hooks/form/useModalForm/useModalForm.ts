@@ -13,9 +13,12 @@ import {
     useRouterContext,
 } from "@pankod/refine-core";
 import { HttpError, ResourceRouterParams } from "@pankod/refine-core";
-import { useModalFormFromSFReturnType } from "../../../../types/sunflower";
 import { useFormProps, UseFormReturnType } from "../useForm";
-import { BaseRecord, LiveModeProps } from "@pankod/refine-core/dist/interfaces";
+import {
+    BaseRecord,
+    LiveModeProps,
+    useModalFormFromSFReturnType,
+} from "@pankod/refine-core/dist/interfaces";
 
 type useModalFormConfig = {
     action: "show" | "edit" | "create" | "clone";

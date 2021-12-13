@@ -1,13 +1,13 @@
 {
     "include": [
         "src",
-        "types"
+        "types",
     ],
     "extends": "../../tsconfig.build.json",
     "compilerOptions": {
         "rootDir": "./src",
         "baseUrl": ".",
-        "importHelpers": false,
+        "strict": false,
         "paths": {
             "@components/*": [
                 "src/components/*"

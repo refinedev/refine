@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@nestjsx/crud-request": "^5.0.0-alpha.3",
-    "@pankod/refine": "^2.4.3",
+    "@pankod/refine-core": "^2.4.3",
     "axios": "^0.21.4",
     "query-string": "^7.0.1"
   },

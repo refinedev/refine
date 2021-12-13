@@ -13,19 +13,17 @@ import {
     MutationMode,
     ResourceRouterParams,
     GetOneResponse,
-    UpdateResponse,
     IResourceItem,
     HttpError,
     SuccessErrorNotification,
-} from "@pankod/refine-core";
-
-import { ActionParams } from "../useForm";
-import {
-    BaseRecord,
     LiveModeProps,
     MetaDataQuery,
     RedirectionTypes,
-} from "@pankod/refine-core/dist/interfaces";
+    BaseRecord,
+    UpdateResponse,
+} from "@pankod/refine-core";
+
+import { ActionParams } from "../useForm";
 import { UseUpdateReturnType } from "@pankod/refine-core/dist/hooks/data/useUpdate";
 
 type SaveButtonProps = {

@@ -1,4 +1,4 @@
-import { CrudFilters, CrudSorting, DataProvider } from "@pankod/refine";
+import { CrudFilters, CrudSorting, DataProvider } from "@pankod/refine-core";
 import { GraphQLClient } from "graphql-request";
 import * as gql from "gql-query-builder";
 import pluralize from "pluralize";

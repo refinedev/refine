@@ -5,14 +5,7 @@
             {
                 "root": "./",
                 "alias": {
-                    "@components": "./src/components",
-                    "@containers": "./src/containers",
-                    "@pages": "./src/pages",
-                    "@contexts": "./src/contexts",
-                    "@dataProviders": "./src/dataProviders",
-                    "@hooks": "./src/hooks",
-                    "@test": "./test",
-                    "@definitions": "./src/definitions"
+                    "@hooks": "./src/hooks"
                 }
             }
         ]

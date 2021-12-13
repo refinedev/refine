@@ -6,18 +6,15 @@ import {
     useCreate,
     useWarnAboutChange,
     useRedirectionAfterSubmission,
-    CreateResponse,
     IResourceItem,
     HttpError,
-    SuccessErrorNotification,
-} from "@pankod/refine-core";
-import { UseCreateReturnType } from "@pankod/refine-core/dist/hooks/data/useCreate";
-
-import {
     BaseRecord,
+    SuccessErrorNotification,
+    CreateResponse,
     MetaDataQuery,
     RedirectionTypes,
-} from "@pankod/refine-core/dist/interfaces";
+} from "@pankod/refine-core";
+import { UseCreateReturnType } from "@pankod/refine-core/dist/hooks/data/useCreate";
 
 type SaveButtonProps = {
     disabled: boolean;

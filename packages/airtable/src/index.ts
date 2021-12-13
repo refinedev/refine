@@ -1,5 +1,5 @@
-import { DataProvider } from "@pankod/refine";
-import { CrudSorting } from "@pankod/refine/dist/interfaces";
+import { DataProvider } from "@pankod/refine-core";
+import { CrudSorting } from "@pankod/refine-core/dist/interfaces";
 import Airtable from "airtable";
 import { AirtableBase } from "airtable/lib/airtable_base";
 

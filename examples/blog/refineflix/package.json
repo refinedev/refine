@@ -15,7 +15,7 @@
     "react-scripts": "4.0.3",
     "typescript": "^4.2.4",
     "web-vitals": "^1.1.1",
-    "@pankod/refine": "^1.0.76",
+    "@pankod/refine-core": "^1.0.76",
     "@pankod/refine-supabase": "^0.1.0"
   },
   "scripts": {
