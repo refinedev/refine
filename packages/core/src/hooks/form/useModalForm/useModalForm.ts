@@ -3,7 +3,6 @@ import {
     useModalForm as useModalFormSF,
     UseModalFormConfig as UseModalFormConfigSF,
 } from "sunflower-antd";
-import { useParams } from "react-router-dom";
 
 import {
     useForm,
@@ -11,10 +10,12 @@ import {
     useTranslate,
     useWarnAboutChange,
     useResourceWithRoute,
-} from "../../../hooks";
+    useRouterContext,
+} from "@hooks";
 import {
     BaseRecord,
     HttpError,
+    LiveModeProps,
     ResourceRouterParams,
 } from "../../../interfaces";
 import { userFriendlyResourceName } from "@definitions";
@@ -22,7 +23,7 @@ import { useModalFormFromSFReturnType } from "../../../../types/sunflower";
 import { useFormProps, UseFormReturnType } from "../useForm";
 
 type useModalFormConfig = {
-    action: "show" | "edit" | "create";
+    action: "show" | "edit" | "create" | "clone";
 };
 
 export type useModalFormReturnType<
@@ -41,7 +42,8 @@ export type useModalFormProps<
     TVariables = {},
 > = useFormProps<TData, TError, TVariables> &
     UseModalFormConfigSF &
-    useModalFormConfig;
+    useModalFormConfig &
+    LiveModeProps;
 /**
  * `useModalForm` hook allows you to manage a form within a modal. It returns Ant Design {@link https://ant.design/components/form/ Form} and {@link https://ant.design/components/modal/ Modal} components props.
  *
@@ -125,6 +127,8 @@ export const useModalForm = <
         },
         loading: formLoading,
     };
+
+    const { useParams } = useRouterContext();
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 

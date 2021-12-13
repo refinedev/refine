@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
 import { QueryObserverResult, UseQueryOptions } from "react-query";
 import { ListProps } from "antd/lib/list";
 import { FormProps } from "antd/lib/form";
@@ -10,6 +9,7 @@ import {
     useList,
     useSyncWithLocation,
     useNavigation,
+    useRouterContext,
 } from "@hooks";
 
 import {
@@ -21,6 +21,7 @@ import {
     SuccessErrorNotification,
     HttpError,
     MetaDataQuery,
+    LiveModeProps,
 } from "../../../interfaces";
 import {
     parseTableParams,
@@ -41,7 +42,8 @@ export type useSimpleListProps<TData, TError, TSearchVariables = unknown> =
         ) => CrudFilters | Promise<CrudFilters>;
         queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
         metaData?: MetaDataQuery;
-    } & SuccessErrorNotification;
+    } & SuccessErrorNotification &
+        LiveModeProps;
 
 export type useSimpleListReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -79,6 +81,9 @@ export const useSimpleList = <
     syncWithLocation: syncWithLocationProp,
     successNotification,
     errorNotification,
+    liveMode,
+    onLiveEvent,
+    liveParams,
     metaData,
     ...listProps
 }: useSimpleListProps<
@@ -86,6 +91,8 @@ export const useSimpleList = <
     TError,
     TSearchVariables
 > = {}): useSimpleListReturnType<TData, TError, TSearchVariables> => {
+    const { useLocation, useParams } = useRouterContext();
+
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const { push } = useNavigation();
@@ -163,6 +170,9 @@ export const useSimpleList = <
         queryOptions,
         successNotification,
         errorNotification,
+        liveMode,
+        onLiveEvent,
+        liveParams,
         metaData,
     });
     const { data, isFetching } = queryResult;

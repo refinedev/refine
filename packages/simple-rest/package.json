@@ -1,5 +1,7 @@
 {
-  "version": "0.1.8",
+  "name": "@pankod/refine-simple-rest",
+  "description": "refine simple REST data provider. refine is a React-based framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
+  "version": "2.4.3",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -19,7 +21,6 @@
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
-  "name": "@pankod/refine-simple-rest",
   "author": "Pankod",
   "module": "dist/refine-simple-rest.esm.js",
   "size-limit": [
@@ -33,16 +34,16 @@
     }
   ],
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^4.10.1",
-    "nock": "^13.0.11",
-    "size-limit": "^4.10.1",
+    "@size-limit/preset-small-lib": "^5.0.5",
+    "nock": "^13.1.3",
+    "size-limit": "^5.0.5",
     "tsdx": "^0.14.1",
-    "tslib": "^2.1.0"
+    "tslib": "^2.3.1"
   },
   "dependencies": {
-    "@pankod/refine": "^1.0.0",
-    "axios": "^0.21.1",
-    "query-string": "^7.0.0"
+    "@pankod/refine": "^2.4.3",
+    "axios": "^0.21.4",
+    "query-string": "^7.0.1"
   },
   "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
   "publishConfig": {

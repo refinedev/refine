@@ -8,7 +8,7 @@ import {
     TLogoutVariables,
     TLogoutData,
 } from "../../../interfaces";
-import { useNavigation } from "@hooks/navigation";
+import { useNavigation } from "@hooks";
 
 /**
  * `useLogout` calls the `logout` method from the {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.

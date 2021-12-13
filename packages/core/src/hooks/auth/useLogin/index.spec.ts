@@ -45,7 +45,7 @@ describe("useLogin Hook", () => {
             return !result.current?.isLoading;
         });
 
-        expect(mHistory.replace).toBeCalledWith({ pathname: "/" }, undefined);
+        expect(mHistory.replace).toBeCalledWith("/", undefined);
     });
 
     it("fail login", async () => {

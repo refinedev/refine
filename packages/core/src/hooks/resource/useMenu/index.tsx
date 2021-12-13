@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
-import { useLocation } from "react-router-dom";
 import { DashboardOutlined, UnorderedListOutlined } from "@ant-design/icons";
 
 import { RefineContext } from "@contexts/refine";
 import { IRefineContext, IMenuItem } from "../../../interfaces";
-import { useTranslate, useResource } from "@hooks";
+import { useTranslate, useResource, useRouterContext } from "@hooks";
 import { userFriendlyResourceName } from "@definitions";
 
 type useMenuReturnType = {
@@ -23,12 +22,23 @@ type useMenuReturnType = {
 export const useMenu: () => useMenuReturnType = () => {
     const { resources } = useResource();
     const translate = useTranslate();
+
+    const { useLocation, useParams } = useRouterContext();
     const location = useLocation();
+    const params = useParams<{ resource: string }>();
+
     const { hasDashboard } = useContext<IRefineContext>(RefineContext);
 
-    const selectedResource = resources.find((el) =>
-        location.pathname.startsWith(`/${el.route}`),
+    let selectedResource = resources.find((el) =>
+        location?.pathname?.startsWith(`/${el.route}`),
     );
+
+    // for no ssr
+    if (!selectedResource) {
+        selectedResource = resources.find((el) =>
+            params?.resource?.startsWith(el.route as string),
+        );
+    }
 
     let selectedKey: string;
     if (selectedResource?.route) {

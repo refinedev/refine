@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: docker.pkg.github.com/pankod/refine/refine-documentation
+  repository: ghcr.io/pankod/refine/refine-documentation
   pullPolicy: IfNotPresent
 
 imagePullSecrets:
@@ -68,7 +68,7 @@ autoscaling:
   # targetMemoryUtilizationPercentage: 80
 
 nodeSelector:
-  doks.digitalocean.com/node-pool: pool-vk41bzxym
+  doks.digitalocean.com/node-pool: pool-a086amdxk
 
 tolerations: []
 

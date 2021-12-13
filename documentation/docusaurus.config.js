@@ -13,6 +13,7 @@ const siteConfig = {
     baseUrl: "/",
     projectName: "refine",
     organizationName: "pankod",
+    trailingSlash: true,
     favicon: "img/refine_favicon.png",
     presets: [
         [
@@ -26,15 +27,24 @@ const siteConfig = {
                     showLastUpdateAuthor: true,
                     showLastUpdateTime: true,
                 },
-                theme: {
-                    customCss: require.resolve("./src/css/custom.css"),
+                blog: {
+                    blogTitle: "refine blog!",
+                    blogDescription: "A Docusaurus powered blog!",
+                    postsPerPage: "ALL",
+                    blogSidebarTitle: "All posts",
+                    blogSidebarCount: "ALL",
+                    feedOptions: {
+                        type: "all",
+                        copyright: `Copyright © ${new Date().getFullYear()} refine.`,
+                    },
                 },
-            },
-        ],
-        [
-            "docusaurus-preset-shiki-twoslash",
-            {
-                themes: ["min-light", "nord"],
+                theme: {
+                    customCss: [
+                        require.resolve("./src/css/custom.css"),
+                        require.resolve("./src/css/split-pane.css"),
+                        require.resolve("./src/css/demo-page.css"),
+                    ],
+                },
             },
         ],
     ],
@@ -43,6 +53,7 @@ const siteConfig = {
         algolia: {
             apiKey: "fbebca5afe7376dbef2995691670b708",
             indexName: "refine",
+            contextualSearch: true,
         },
         navbar: {
             logo: {
@@ -58,7 +69,7 @@ const siteConfig = {
                 },
                 { to: "docs", label: "Tutorial", position: "left" },
                 {
-                    to: "https://example.refine.dev",
+                    to: "/demo",
                     label: "Demo",
                     position: "left",
                 },
@@ -71,6 +82,17 @@ const siteConfig = {
                     to: "docs/guides-and-concepts/upload/multipart-upload",
                     label: "Guides",
                     position: "left",
+                },
+                { to: "blog", label: "Blog", position: "left" },
+                {
+                    to: "/enterprise",
+                    label: "Enterprise",
+                    position: "left",
+                },
+                {
+                    type: "docsVersionDropdown",
+                    position: "right",
+                    dropdownActiveClassDisabled: true,
                 },
                 {
                     href: "https://github.com/pankod/refine",

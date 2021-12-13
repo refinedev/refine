@@ -40,7 +40,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
             </Text>
 
             <Title level={5}>Published At</Title>
-            <DateField value={record?.publishedAt} format="LLL" />
+            <DateField value={record?.publishedAt || ""} format="LLL" />
 
             <Title level={5}>Content</Title>
             <MarkdownField value={record?.content} />

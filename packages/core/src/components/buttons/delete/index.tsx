@@ -1,13 +1,14 @@
 import React, { FC } from "react";
 import { Button, ButtonProps, Popconfirm } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
-import { useParams } from "react-router-dom";
 
 import {
     useDelete,
     useResourceWithRoute,
     useTranslate,
     useMutationMode,
+    useRouterContext,
+    useCan,
 } from "@hooks";
 import {
     DeleteOneResponse,
@@ -24,6 +25,7 @@ export type DeleteButtonProps = ButtonProps & {
     mutationMode?: MutationMode;
     hideText?: boolean;
     metaData?: MetaDataQuery;
+    ignoreAccessControlProvider?: boolean;
 } & SuccessErrorNotification;
 
 /**
@@ -41,15 +43,19 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
     successNotification,
     errorNotification,
     hideText = false,
+    ignoreAccessControlProvider = false,
     metaData,
     ...rest
 }) => {
-    const translate = useTranslate();
     const resourceWithRoute = useResourceWithRoute();
+
+    const translate = useTranslate();
 
     const { mutationMode: mutationModeContext } = useMutationMode();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
+
+    const { useParams } = useRouterContext();
 
     const { resource: routeResourceName, id: idFromRoute } =
         useParams<ResourceRouterParams>();
@@ -61,6 +67,15 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
     const { mutate, isLoading, variables } = useDelete();
 
     const id = recordItemId ?? idFromRoute;
+
+    const { data } = useCan({
+        resource: resource.name,
+        action: "delete",
+        params: { id },
+        queryOptions: {
+            enabled: !ignoreAccessControlProvider,
+        },
+    });
 
     return (
         <Popconfirm
@@ -87,11 +102,13 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
                     },
                 );
             }}
+            disabled={data?.can === false}
         >
             <Button
                 danger
                 loading={id === variables?.id && isLoading}
                 icon={<DeleteOutlined />}
+                disabled={data?.can === false}
                 {...rest}
             >
                 {!hideText &&

@@ -21,6 +21,7 @@ export const defaultDataProvider = () => {
 export const DataContext = React.createContext<IDataContext>(
     defaultDataProvider() as IDataContext,
 );
+
 export const DataContextProvider: React.FC<IDataContextProvider> = ({
     getList,
     getMany,

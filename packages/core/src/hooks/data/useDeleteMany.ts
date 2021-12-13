@@ -22,6 +22,7 @@ import {
     useCancelNotification,
     useCacheQueries,
     useCheckError,
+    usePublish,
 } from "@hooks";
 import { ActionTypes } from "@contexts/notification";
 import { handleNotification } from "@definitions";
@@ -71,6 +72,7 @@ export const useDeleteMany = <
     const { notificationDispatch } = useCancelNotification();
     const translate = useTranslate();
     const cacheQueries = useCacheQueries();
+    const publish = usePublish();
 
     const queryClient = useQueryClient();
 
@@ -214,6 +216,13 @@ export const useDeleteMany = <
                         `Successfully deleted ${resource}`,
                     ),
                     type: "success",
+                });
+
+                publish?.({
+                    channel: `resources/${resource}`,
+                    type: "deleted",
+                    payload: { ids: ids.map(String) },
+                    date: new Date(),
                 });
             },
             onError: (err, { ids, resource, errorNotification }, context) => {

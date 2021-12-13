@@ -1,4 +1,11 @@
-import { IDataContext } from "../src/interfaces";
+import { useHistory, useParams, useLocation, Link } from "react-router-dom";
+
+import {
+    IDataContext,
+    IRouterContext,
+    IAccessControlContext,
+    ILiveContext,
+} from "../src/interfaces";
 
 export const posts = [
     {
@@ -42,3 +49,21 @@ const MockDataProvider = () => {
 };
 
 export const MockJSONServer = MockDataProvider() as IDataContext;
+
+export const MockRouterProvider: IRouterContext = {
+    useHistory,
+    useLocation,
+    useParams,
+    Link,
+    Prompt: () => null,
+};
+
+export const MockAccessControlProvider: IAccessControlContext = {
+    can: () => Promise.resolve({ can: true }),
+};
+
+export const MockLiveProvider: ILiveContext = {
+    subscribe: () => ({}),
+    unsubscribe: () => ({}),
+    publish: () => ({}),
+};

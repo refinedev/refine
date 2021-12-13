@@ -1,4 +1,5 @@
-import { Refine, Resource } from "@pankod/refine";
+import { Refine } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-hasura";
 import { GraphQLClient } from "graphql-request";
 import "@pankod/refine/dist/styles.min.css";
@@ -22,21 +23,25 @@ const gqlDataProvider = dataProvider(client);
 
 const App: React.FC = () => {
     return (
-        <Refine dataProvider={gqlDataProvider}>
-            <Resource
-                name="posts"
-                list={PostList}
-                create={PostCreate}
-                edit={PostEdit}
-                show={PostShow}
-            />
-            <Resource
-                name="categories"
-                list={CategoriesList}
-                create={CategoriesCreate}
-                edit={CategoriesEdit}
-            />
-        </Refine>
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={gqlDataProvider}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+                {
+                    name: "categories",
+                    list: CategoriesList,
+                    create: CategoriesCreate,
+                    edit: CategoriesEdit,
+                },
+            ]}
+        />
     );
 };
 

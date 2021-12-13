@@ -154,6 +154,10 @@
     justify-content: center;
 }
 
+.row--align--center {
+    align-items: center;
+}
+
 /* Header classes */
 .navbar__brand {
     margin-left: 8px;
@@ -257,14 +261,4 @@
 
 .code-line-content {
     display: table-cell;
-}
-
-
-  
-[data-theme="light"] .shiki.nord {
-    display: none;
-}
-
-[data-theme="dark"] .shiki.min-light {
-    display: none;
 }

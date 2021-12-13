@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { useForm as useFormSF } from "sunflower-antd";
 import { Form, FormInstance, FormProps } from "antd";
-import { useParams } from "react-router-dom";
 import { QueryObserverResult } from "react-query";
 
 import {
@@ -10,6 +9,7 @@ import {
     useUpdate,
     useWarnAboutChange,
     useRedirectionAfterSubmission,
+    useRouterContext,
 } from "@hooks";
 import { UseUpdateReturnType } from "../../data/useUpdate";
 
@@ -24,7 +24,9 @@ import {
     HttpError,
     SuccessErrorNotification,
     MetaDataQuery,
+    LiveModeProps,
 } from "../../../interfaces";
+import { ActionParams } from "../useForm";
 
 type SaveButtonProps = {
     disabled: boolean;
@@ -71,7 +73,9 @@ export type useEditFormProps<
     undoableTimeout?: number;
     resource: IResourceItem;
     metaData?: MetaDataQuery;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification &
+    ActionParams &
+    LiveModeProps;
 
 /**
  * A hook that the `useForm` uses
@@ -92,13 +96,23 @@ export const useEditForm = <
     resource,
     successNotification,
     errorNotification,
+    liveMode,
+    onLiveEvent,
+    liveParams,
     metaData,
+    action: actionFromParams,
 }: useEditFormProps<TData, TError, TVariables>): useEditForm<
     TData,
     TError,
     TVariables
 > => {
-    const [editId, setEditId] = React.useState<string>();
+    const { useParams } = useRouterContext();
+
+    const { id: idFromRoute, action: actionFromRoute } =
+        useParams<ResourceRouterParams>();
+    const [editId, setEditId] = React.useState<string | undefined>(idFromRoute);
+
+    const action = actionFromParams ?? actionFromRoute;
 
     const [formAnt] = Form.useForm();
     const formSF = useFormSF<TData, TVariables>({
@@ -119,17 +133,17 @@ export const useEditForm = <
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
-    const { id: idFromRoute, action } = useParams<ResourceRouterParams>();
-    const isEdit = !!editId || action === "edit";
-
-    const id = editId ?? idFromRoute;
+    const isEdit = editId !== undefined && action === "edit";
 
     const queryResult = useOne<TData>({
         resource: resource.name,
-        id,
+        id: editId ?? "",
         queryOptions: {
             enabled: isEdit,
         },
+        liveMode,
+        onLiveEvent,
+        liveParams,
         metaData,
     });
 
@@ -142,7 +156,7 @@ export const useEditForm = <
         return () => {
             form.resetFields();
         };
-    }, [data, id, isFetching]);
+    }, [data, editId, isFetching]);
 
     const mutationResult = useUpdate<TData, TError, TVariables>();
 
@@ -159,13 +173,14 @@ export const useEditForm = <
         setTimeout(() => {
             mutate(
                 {
-                    id,
+                    id: editId ?? "",
                     values,
                     resource: resource.name,
                     mutationMode,
                     undoableTimeout,
                     successNotification,
                     errorNotification,
+                    metaData,
                 },
                 {
                     onSuccess: (data, _, context) => {
@@ -178,7 +193,7 @@ export const useEditForm = <
                             handleSubmitWithRedirect({
                                 redirect,
                                 resource,
-                                id: idFromRoute,
+                                id: editId,
                             });
                         }
                     },
@@ -196,7 +211,7 @@ export const useEditForm = <
             handleSubmitWithRedirect({
                 redirect,
                 resource,
-                id: idFromRoute,
+                id: editId,
             });
         }
     };

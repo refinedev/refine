@@ -10,6 +10,8 @@ import {
     Title as DefaultTitle,
 } from "@components/layoutWrapper/components";
 
+import { LoginPage as DefaultLoginPage } from "@components/pages";
+
 export const RefineContext = React.createContext<IRefineContext>({
     hasDashboard: false,
     mutationMode: "pessimistic",
@@ -22,6 +24,8 @@ export const RefineContext = React.createContext<IRefineContext>({
     Footer: DefaultFooter,
     Layout: DefaultLayout,
     OffLayoutArea: DefaultOffLayoutArea,
+    liveMode: "off",
+    onLiveEvent: undefined,
 });
 
 export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
@@ -31,12 +35,17 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
     syncWithLocation,
     undoableTimeout,
     children,
+    DashboardPage,
     Title = DefaultTitle,
     Layout = DefaultLayout,
     Header = DefaultHeader,
     Sider = DefaultSider,
     Footer = DefaultFooter,
     OffLayoutArea = DefaultOffLayoutArea,
+    LoginPage = DefaultLoginPage,
+    catchAll,
+    liveMode = "off",
+    onLiveEvent,
 }) => {
     return (
         <RefineContext.Provider
@@ -52,6 +61,11 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
                 Sider,
                 Footer,
                 OffLayoutArea,
+                DashboardPage,
+                LoginPage,
+                catchAll,
+                liveMode,
+                onLiveEvent,
             }}
         >
             {children}

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
 import { Grid } from "antd";
 import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
@@ -9,9 +8,14 @@ import { QueryObserverResult, UseQueryOptions } from "react-query";
 import { useForm } from "antd/lib/form/Form";
 import { SorterResult } from "antd/lib/table/interface";
 
-import { useResourceWithRoute, useList } from "@hooks";
-import { useSyncWithLocation } from "@hooks/refine";
-import { useNavigation } from "@hooks/navigation";
+import {
+    useRouterContext,
+    useSyncWithLocation,
+    useNavigation,
+    useResourceWithRoute,
+    useList,
+    useLiveMode,
+} from "@hooks";
 import {
     stringifyTableParams,
     parseTableParams,
@@ -30,6 +34,7 @@ import {
     SuccessErrorNotification,
     HttpError,
     MetaDataQuery,
+    LiveModeProps,
 } from "../../../interfaces";
 
 export type useTableProps<TData, TError, TSearchVariables = unknown> = {
@@ -43,7 +48,8 @@ export type useTableProps<TData, TError, TSearchVariables = unknown> = {
     onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     metaData?: MetaDataQuery;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification &
+    LiveModeProps;
 
 export type useTableReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -82,6 +88,9 @@ export const useTable = <
     successNotification,
     errorNotification,
     queryOptions,
+    liveMode: liveModeFromProp,
+    onLiveEvent,
+    liveParams,
     metaData,
 }: useTableProps<TData, TError, TSearchVariables> = {}): useTableReturnType<
     TData,
@@ -93,14 +102,16 @@ export const useTable = <
 
     const [form] = useForm<TSearchVariables>();
 
-    let syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
+    const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
 
     // disable syncWithLocation for custom resource tables
-    if (resourceFromProp) {
-        syncWithLocation = false;
-    }
+    // if (resourceFromProp) {
+    //     syncWithLocation = false;
+    // }
 
+    const { useLocation, useParams } = useRouterContext();
     const { search } = useLocation();
+    const liveMode = useLiveMode(liveModeFromProp);
 
     let defaultCurrent = initialCurrent;
     let defaultPageSize = initialPageSize;
@@ -178,8 +189,11 @@ export const useTable = <
         successNotification,
         errorNotification,
         metaData,
+        liveMode,
+        liveParams,
+        onLiveEvent,
     });
-    const { data, isFetching } = queryResult;
+    const { data, isFetching, isLoading } = queryResult;
 
     const onChange = (
         pagination: TablePaginationConfig,
@@ -226,7 +240,8 @@ export const useTable = <
         tableProps: {
             ...tablePropsSunflower,
             dataSource: data?.data,
-            loading: isFetching,
+            loading: liveMode ? isLoading : isFetching,
+            // loading: isFetching,
             onChange,
             pagination: {
                 ...tablePropsSunflower.pagination,

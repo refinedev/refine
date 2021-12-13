@@ -1,6 +1,9 @@
-import { Refine, AuthProvider, Resource } from "@pankod/refine";
+import { Refine, AuthProvider } from "@pankod/refine";
 import { DataProvider, AuthHelper } from "@pankod/refine-strapi";
+import routerProvider from "@pankod/refine-react-router";
+
 import axios from "axios";
+
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit } from "pages/posts";
@@ -69,20 +72,25 @@ const App: React.FC = () => {
     const dataProvider = DataProvider(API_URL, axiosInstance);
 
     return (
-        <Refine authProvider={authProvider} dataProvider={dataProvider}>
-            <Resource
-                name="posts"
-                list={PostList}
-                create={PostCreate}
-                edit={PostEdit}
-            />
-            <Resource
-                name="categories"
-                list={CategoryList}
-                create={CategoryCreate}
-                edit={CategoryEdit}
-            />
-        </Refine>
+        <Refine
+            authProvider={authProvider}
+            dataProvider={dataProvider}
+            routerProvider={routerProvider}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                },
+                {
+                    name: "categories",
+                    list: CategoryList,
+                    create: CategoryCreate,
+                    edit: CategoryEdit,
+                },
+            ]}
+        />
     );
 };
 

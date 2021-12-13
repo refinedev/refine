@@ -1,6 +1,4 @@
-import { useHistory } from "react-router-dom";
-
-import { useResourceWithRoute } from "@hooks";
+import { useResourceWithRoute, useRouterContext } from "@hooks";
 
 export type HistoryType = "push" | "replace";
 
@@ -12,6 +10,7 @@ export type HistoryType = "push" | "replace";
  * @see {@link https://refine.dev/docs/api-references/hooks/navigation/useNavigation} for more details.
  */
 export const useNavigation = () => {
+    const { useHistory } = useRouterContext();
     const history = useHistory();
     const resourceWithRoute = useResourceWithRoute();
 
@@ -39,8 +38,8 @@ export const useNavigation = () => {
         const resourceName = resourceWithRoute(resource);
 
         type === "push"
-            ? history.push(`/${resourceName.route}/create/${id}`)
-            : history.replace(`/${resourceName.route}/create/${id}`);
+            ? history.push(`/${resourceName.route}/clone/${id}`)
+            : history.replace(`/${resourceName.route}/clone/${id}`);
     };
 
     const show = (resource: string, id: string, type: HistoryType = "push") => {

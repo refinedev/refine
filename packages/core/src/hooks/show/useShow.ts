@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
 import { QueryObserverResult } from "react-query";
 
-import { useOne, useResourceWithRoute } from "@hooks";
+import { useOne, useResourceWithRoute, useRouterContext } from "@hooks";
 
 import {
     ResourceRouterParams,
@@ -10,6 +9,8 @@ import {
     GetOneResponse,
     SuccessErrorNotification,
     MetaDataQuery,
+    LiveEvent,
+    LiveModeProps,
 } from "../../interfaces";
 
 export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
@@ -22,7 +23,8 @@ export type useShowProps = {
     resource?: string;
     id?: string;
     metaData?: MetaDataQuery;
-} & SuccessErrorNotification;
+} & LiveModeProps &
+    SuccessErrorNotification;
 
 /**
  * `useShow` hook allows you to fetch the desired record.
@@ -37,26 +39,31 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
     successNotification,
     errorNotification,
     metaData,
+    liveMode,
+    onLiveEvent,
 }: useShowProps = {}): useShowReturnType<TData> => {
-    const [showId, setShowId] = useState<string>();
+    const { useParams } = useRouterContext();
 
     const { resource: routeResourceName, id: idFromRoute } =
         useParams<ResourceRouterParams>();
+
+    const [showId, setShowId] = useState<string | undefined>(id ?? idFromRoute);
+
     const resourceWithRoute = useResourceWithRoute();
 
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
-    const resourceId = showId ?? id ?? idFromRoute;
-
     const queryResult = useOne<TData>({
         resource: resource.name,
-        id: resourceId,
+        id: showId ?? "",
         queryOptions: {
-            enabled: !!resourceId,
+            enabled: showId !== undefined,
         },
         successNotification,
         errorNotification,
         metaData,
+        liveMode,
+        onLiveEvent,
     });
 
     return {

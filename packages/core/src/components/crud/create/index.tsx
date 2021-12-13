@@ -1,5 +1,4 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import {
     Card,
     Space,
@@ -10,7 +9,12 @@ import {
     Spin,
 } from "antd";
 
-import { useNavigation, useResourceWithRoute, useTranslate } from "@hooks";
+import {
+    useNavigation,
+    useResourceWithRoute,
+    useRouterContext,
+    useTranslate,
+} from "@hooks";
 import { SaveButton } from "@components";
 import { userFriendlyResourceName } from "@definitions";
 import { ResourceRouterParams } from "../../../interfaces";
@@ -41,6 +45,8 @@ export const Create: React.FC<CreateProps> = ({
 }) => {
     const { goBack } = useNavigation();
     const translate = useTranslate();
+
+    const { useParams } = useRouterContext();
 
     const {
         resource: routeResourceName,
@@ -73,7 +79,7 @@ export const Create: React.FC<CreateProps> = ({
                 translate(
                     `${resource.name}.titles.create`,
                     `Create ${userFriendlyResourceName(
-                        resource.name,
+                        resource.label ?? resource.name,
                         "singular",
                     )}`,
                 )

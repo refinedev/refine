@@ -1,8 +1,7 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+
 import {
     Card,
-    Row,
     Space,
     ButtonProps,
     PageHeader,
@@ -15,6 +14,7 @@ import {
     useMutationMode,
     useNavigation,
     useTranslate,
+    useRouterContext,
 } from "@hooks";
 import {
     DeleteButton,
@@ -66,6 +66,8 @@ export const Edit: React.FC<EditProps> = ({
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
+    const { useParams } = useRouterContext();
+
     const {
         resource: routeResourceName,
         action: routeFromAction,
@@ -85,7 +87,7 @@ export const Edit: React.FC<EditProps> = ({
                 translate(
                     `${resource.name}.titles.edit`,
                     `Edit ${userFriendlyResourceName(
-                        resource.name,
+                        resource.label ?? resource.name,
                         "singular",
                     )}`,
                 )

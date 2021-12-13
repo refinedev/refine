@@ -1,18 +1,21 @@
 import React, { ReactNode } from "react";
-
-import { render, TestWrapper, MockJSONServer } from "@test";
-
+import { Route } from "react-router-dom";
 import { Table } from "antd";
 
+import { render, TestWrapper, MockJSONServer, wait } from "@test";
 import { List } from "./index";
-import { Route } from "react-router-dom";
+import { IAccessControlContext } from "../../../interfaces";
 
-const renderList = (list: ReactNode) => {
+const renderList = (
+    list: ReactNode,
+    accessControlProvider?: IAccessControlContext,
+) => {
     return render(<Route path="/:resource">{list}</Route>, {
         wrapper: TestWrapper({
             dataProvider: MockJSONServer,
             resources: [{ name: "posts", route: "posts" }],
             routerInitialEntries: ["/posts"],
+            accessControlProvider,
         }),
     });
 };
@@ -46,6 +49,25 @@ describe("<List/>", () => {
         it("should render optional title with title prop", async () => {
             const { getByText } = renderList(<List title="New Title"></List>);
             getByText("New Title");
+        });
+
+        it("should render with label instead of resource name successfully", () => {
+            const { getByText } = render(
+                <Route path="/:resource">
+                    <List />
+                </Route>,
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [
+                            { name: "posts", route: "posts", label: "test" },
+                        ],
+                        routerInitialEntries: ["/posts"],
+                    }),
+                },
+            );
+
+            getByText("Tests");
         });
 
         describe("render create button", () => {
@@ -192,6 +214,26 @@ describe("<List/>", () => {
                 );
 
                 expect(queryByTestId("list-create-button")).not.toBeNull();
+            });
+
+            it("should render disabled create button if user doesn't have permission", async () => {
+                const { queryByTestId } = renderList(
+                    <List canCreate={true} />,
+                    {
+                        can: ({ action }) => {
+                            switch (action) {
+                                case "create":
+                                    return Promise.resolve({ can: false });
+                                default:
+                                    return Promise.resolve({ can: false });
+                            }
+                        },
+                    },
+                );
+
+                await wait(() =>
+                    expect(queryByTestId("list-create-button")).toBeDisabled(),
+                );
             });
         });
     });

@@ -1,6 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { Card, PageHeader, PageHeaderProps, Row, Space, Spin } from "antd";
+import { Card, PageHeader, PageHeaderProps, Space, Spin } from "antd";
 
 import { ResourceRouterParams } from "../../../interfaces";
 import {
@@ -9,7 +8,12 @@ import {
     RefreshButton,
     ListButton,
 } from "@components";
-import { useNavigation, useResourceWithRoute, useTranslate } from "@hooks";
+import {
+    useNavigation,
+    useResourceWithRoute,
+    useRouterContext,
+    useTranslate,
+} from "@hooks";
 import { userFriendlyResourceName } from "@definitions";
 
 export interface ShowProps {
@@ -45,6 +49,9 @@ export const Show: React.FC<ShowProps> = ({
     const { goBack, list } = useNavigation();
 
     const resourceWithRoute = useResourceWithRoute();
+
+    const { useParams } = useRouterContext();
+
     const {
         resource: routeResourceName,
         action: routeFromAction,
@@ -65,7 +72,7 @@ export const Show: React.FC<ShowProps> = ({
                 translate(
                     `${resource.name}.titles.show`,
                     `Show ${userFriendlyResourceName(
-                        resource.name,
+                        resource.label ?? resource.name,
                         "singular",
                     )}`,
                 )

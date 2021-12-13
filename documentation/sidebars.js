@@ -7,6 +7,11 @@ module.exports = {
         },
         {
             type: "doc",
+            id: "comparison",
+            label: "Comparison",
+        },
+        {
+            type: "doc",
             id: "tutorial",
         },
         {
@@ -19,7 +24,10 @@ module.exports = {
                     items: [
                         "api-references/providers/auth-provider",
                         "api-references/providers/data-provider",
+                        "api-references/providers/live-provider",
+                        "api-references/providers/accessControl-provider",
                         "api-references/providers/i18n-provider",
+                        "api-references/providers/router-provider",
                     ],
                 },
                 {
@@ -53,6 +61,21 @@ module.exports = {
                                 "api-references/hooks/auth/useAuthenticated",
                                 "api-references/hooks/auth/useGetIdentity",
                                 "api-references/hooks/auth/usePermissions",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Access Control",
+                            items: [
+                                "api-references/hooks/accessControl/useCan",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Live",
+                            items: [
+                                "api-references/hooks/live/useSubscription",
+                                "api-references/hooks/live/usePublish",
                             ],
                         },
                         {
@@ -144,7 +167,6 @@ module.exports = {
                     items: [
                         "api-references/components/refine-config",
                         "api-references/components/layout-wrapper",
-                        "api-references/components/resource",
                         "api-references/components/filter-dropdown",
                         {
                             type: "category",
@@ -161,6 +183,13 @@ module.exports = {
                             label: "Authorization",
                             items: [
                                 "api-references/components/auth/authenticated",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Access Control",
+                            items: [
+                                "api-references/components/accessControl/can-access",
                             ],
                         },
                         {
@@ -216,6 +245,9 @@ module.exports = {
                     label: "Data Provider",
                     items: ["guides-and-concepts/data-provider/graphql"],
                 },
+                "guides-and-concepts/ssr-nextjs",
+                "guides-and-concepts/access-control",
+                "guides-and-concepts/real-time",
                 {
                     type: "category",
                     label: "Upload",
@@ -251,6 +283,11 @@ module.exports = {
                     label: "Form",
                     items: ["guides-and-concepts/forms/custom-form-validation"],
                 },
+                {
+                    type: "category",
+                    label: "Web3",
+                    items: ["guides-and-concepts/web3/ethereum-signin"],
+                },
                 "guides-and-concepts/mutation-mode",
                 "guides-and-concepts/custom-layout",
                 "guides-and-concepts/custom-pages",
@@ -263,7 +300,22 @@ module.exports = {
             items: [
                 "examples/tutorial-example",
                 "examples/authorization",
-                "examples/i18n",
+                {
+                    type: "category",
+                    label: "Access Control",
+                    items: [
+                        "examples/access-control/casbin",
+                        "examples/access-control/cerbos",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "i18n",
+                    items: [
+                        "examples/i18n/i18n-react",
+                        "examples/i18n/i18n-nextjs",
+                    ],
+                },
                 {
                     type: "category",
                     label: "Data Provider",
@@ -285,6 +337,16 @@ module.exports = {
                         "examples/auth-provider/otpLogin",
                         "examples/auth-provider/google-auth",
                     ],
+                },
+                {
+                    type: "category",
+                    label: "Live Provider",
+                    items: ["examples/live-provider/ably"],
+                },
+                {
+                    type: "category",
+                    label: "Router Provider",
+                    items: ["examples/router-provider/react-location"],
                 },
                 {
                     type: "category",
@@ -367,6 +429,10 @@ module.exports = {
                 "examples/customTheme",
                 "examples/javascript",
             ],
+        },
+        {
+            type: "doc",
+            id: "migration-guide",
         },
         {
             type: "doc",

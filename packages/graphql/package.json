@@ -1,5 +1,7 @@
 {
-  "version": "0.1.2",
+  "name": "@pankod/refine-graphql",
+  "description": "refine GraphQL data provider. refine is a React-based framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
+  "version": "2.4.3",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -19,7 +21,6 @@
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
-  "name": "@pankod/refine-graphql",
   "author": "Pankod",
   "module": "dist/refine-graphql.esm.js",
   "size-limit": [
@@ -33,18 +34,18 @@
     }
   ],
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^4.10.1",
-    "@types/pluralize": "0.0.29",
-    "nock": "^13.0.11",
-    "size-limit": "^4.10.1",
+    "@size-limit/preset-small-lib": "^5.0.5",
+    "@types/pluralize": "^0.0.29",
+    "nock": "^13.1.3",
+    "size-limit": "^5.0.5",
     "tsdx": "^0.14.1",
-    "tslib": "^2.1.0"
+    "tslib": "^2.3.1"
   },
   "dependencies": {
-    "@pankod/refine": "^1.0.51",
+    "@pankod/refine": "^2.4.3",
     "camelcase": "^6.2.0",
     "gql-query-builder": "^3.5.5",
-    "graphql": "^15.5.3",
+    "graphql": "^15.6.1",
     "graphql-request": "^3.5.0",
     "pluralize": "^8.0.0"
   },

@@ -1,5 +1,7 @@
-import { Refine, Resource, AuthProvider } from "@pankod/refine";
-import { dataProvider } from "@pankod/refine-supabase";
+import { Refine, AuthProvider } from "@pankod/refine";
+import { dataProvider, liveProvider } from "@pankod/refine-supabase";
+import routerProvider from "@pankod/refine-react-router";
+
 import "@pankod/refine/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -63,17 +65,21 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(supabaseClient)}
+            liveProvider={liveProvider(supabaseClient)}
+            routerProvider={routerProvider}
             authProvider={authProvider}
             LoginPage={Login}
-        >
-            <Resource
-                name="posts"
-                list={PostList}
-                create={PostCreate}
-                edit={PostEdit}
-                show={PostShow}
-            />
-        </Refine>
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+            ]}
+            liveMode="auto"
+        />
     );
 };
 
