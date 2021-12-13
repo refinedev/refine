@@ -1,5 +1,6 @@
-import { Refine, Resource, AuthProvider } from "@pankod/refine";
+import { Refine, AuthProvider } from "@pankod/refine";
 import { dataProvider } from "@pankod/refine-appwrite";
+import routerProvider from "@pankod/refine-react-router";
 import "@pankod/refine/dist/styles.min.css";
 
 import { Login } from "pages/login";
@@ -45,28 +46,20 @@ const App: React.FC = () => {
         <Refine
             dataProvider={dataProvider(appwriteClient) as any}
             authProvider={authProvider}
+            routerProvider={routerProvider}
             LoginPage={Login}
-        >
-            {/* <Resource
-                name="posts"
-                list={PostList}
-                create={PostCreate}
-                edit={PostEdit}
-                show={PostShow}
-            /> */}
-            <Resource
-                name="6180e6efb14df"
-                list={CategoriesList}
-                show={CategoriesShow}
-                edit={CategoriesEdit}
-                options={{
-                    label: "Categories",
-                }}
-                // create={PostCreate}
-                // edit={PostEdit}
-                // show={PostShow}
-            />
-        </Refine>
+            resources={[
+                {
+                    name: "6180e6efb14df",
+                    list: CategoriesList,
+                    show: CategoriesShow,
+                    edit: CategoriesEdit,
+                    options: {
+                        label: "Categories",
+                    },
+                },
+            ]}
+        />
     );
 };
 
