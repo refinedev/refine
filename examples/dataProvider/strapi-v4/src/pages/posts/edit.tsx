@@ -7,7 +7,6 @@ import {
     Select,
     useForm,
     useSelect,
-    useApiUrl,
     Upload,
 } from "@pankod/refine";
 import {
@@ -20,16 +19,14 @@ import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 
-import { TOKEN_KEY } from "../../constants";
+import { TOKEN_KEY, API_URL } from "../../constants";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
-    const API_URL = useApiUrl();
-
     const [selectedTab, setSelectedTab] =
         useState<"write" | "preview">("write");
 
     const { formProps, saveButtonProps } = useForm({
-        metaData: { populate: "category" },
+        metaData: { populate: ["category", "cover"] },
     });
 
     const { selectProps } = useSelect({
@@ -64,10 +61,10 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                 >
                     <Input />
                 </Form.Item>
-                {/* <Form.Item
+                <Form.Item
                     wrapperCol={{ span: 8 }}
                     label="Category"
-                    name="category"
+                    name="category.data"
                     rules={[
                         {
                             required: true,
@@ -75,7 +72,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                     ]}
                 >
                     <Select {...selectProps} />
-                </Form.Item> */}
+                </Form.Item>
                 <Form.Item
                     label="Content"
                     name="content"
@@ -95,16 +92,16 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                         }
                     />
                 </Form.Item>
-                {/* <Form.Item label="Cover">
+                <Form.Item label="Cover">
                     <Form.Item
-                        name="cover"
+                        name={["cover", "data", "attributes"]}
                         valuePropName="fileList"
                         getValueProps={(data) => getValueProps(data, API_URL)}
                         noStyle
                     >
                         <Upload.Dragger
                             name="files"
-                            action={`${API_URL}/upload`}
+                            action={`${API_URL}/api/upload`}
                             headers={{
                                 Authorization: `Bearer ${localStorage.getItem(
                                     TOKEN_KEY,
@@ -119,7 +116,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                             </p>
                         </Upload.Dragger>
                     </Form.Item>
-                </Form.Item> */}
+                </Form.Item>
             </Form>
         </Edit>
     );
