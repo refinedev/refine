@@ -13,7 +13,7 @@ import {
     Select,
     Radio,
     TagField,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
 
 import { IPost, ICategory } from "interfaces";
 

@@ -7,7 +7,7 @@ import {
     Select,
     useForm,
     useSelect,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";

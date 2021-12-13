@@ -1,5 +1,5 @@
 import React from "react";
-import { IRouterProvider } from "@pankod/refine";
+import { IRouterProvider } from "@pankod/refine-core";
 import {
     useHistory,
     useLocation,

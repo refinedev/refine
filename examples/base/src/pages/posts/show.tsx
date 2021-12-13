@@ -5,7 +5,7 @@ import {
     IResourceComponentsProps,
     useOne,
     MarkdownField,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
 
 import { IPost, ICategory } from "interfaces";
 

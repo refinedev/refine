@@ -1,5 +1,5 @@
 import React from "react";
-import { useWarnAboutChange } from "@pankod/refine";
+import { useWarnAboutChange } from "@pankod/refine-core";
 import { BrowserRouter, BrowserRouterProps } from "react-router-dom";
 
 import { RouteProvider } from "./routeProvider";
