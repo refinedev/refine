@@ -5,10 +5,10 @@ import {
     Input,
     IResourceComponentsProps,
     Select,
-    Upload,
     useApiUrl,
     useForm,
     useSelect,
+    Upload,
 } from "@pankod/refine";
 
 import ReactMarkdown from "react-markdown";
@@ -66,7 +66,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                 </Form.Item>
                 <Form.Item
                     label="Category"
-                    name="categories"
+                    name="category"
                     rules={[
                         {
                             required: true,
@@ -94,7 +94,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                         }
                     />
                 </Form.Item>
-                {/* <Form.Item label="Cover">
+                <Form.Item label="Cover">
                     <Form.Item
                         name="cover"
                         valuePropName="fileList"
@@ -104,11 +104,11 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                         <Upload.Dragger
                             name="files"
                             action={`${API_URL}/upload`}
-                            headers={{
-                                Authorization: `Bearer ${localStorage.getItem(
-                                    TOKEN_KEY,
-                                )}`,
-                            }}
+                            // headers={{
+                            //     Authorization: `Bearer ${localStorage.getItem(
+                            //         TOKEN_KEY,
+                            //     )}`,
+                            // }}
                             listType="picture"
                             multiple
                             {...uploadProps}
@@ -118,7 +118,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                             </p>
                         </Upload.Dragger>
                     </Form.Item>
-                </Form.Item> */}
+                </Form.Item>
             </Form>
         </Create>
     );
