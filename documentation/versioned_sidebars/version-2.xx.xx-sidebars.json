@@ -976,6 +976,16 @@
           "collapsed": true
         },
         {
+          "type": "category",
+          "label": "Web3",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/examples/web3/web3Login"
+            }
+          ]
+        },
+        {
           "type": "doc",
           "id": "version-2.xx.xx/examples/import-export"
         },
