@@ -21,17 +21,19 @@ import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { TOKEN_KEY, API_URL } from "../../constants";
+import { ICategory, IPost } from "interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const [selectedTab, setSelectedTab] =
         useState<"write" | "preview">("write");
 
-    const { formProps, saveButtonProps, queryResult } = useForm({
+    const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
         metaData: { populate: ["category", "cover"] },
     });
 
-    const { selectProps } = useSelect({
+    const { selectProps } = useSelect<ICategory>({
         resource: "categories",
+        defaultValue: queryResult?.data?.data?.category?.data?.id,
         metaData: { locale: queryResult?.data?.data.locale },
     });
 
@@ -44,10 +46,15 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
             <Form
                 {...formProps}
                 layout="vertical"
-                onFinish={(values) => {
+                onFinish={(values: any) => {
                     return (
                         formProps.onFinish &&
-                        formProps.onFinish(mediaUploadMapper(values))
+                        formProps.onFinish(
+                            mediaUploadMapper({
+                                ...values,
+                                cover: values.cover?.data.attributes,
+                            }),
+                        )
                     );
                 }}
             >
@@ -72,12 +79,17 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                 <Form.Item
                     wrapperCol={{ span: 8 }}
                     label="Category"
-                    name="category.data"
+                    name="category"
                     rules={[
                         {
                             required: true,
                         },
                     ]}
+                    getValueProps={(value) => {
+                        return {
+                            value: value?.data?.id,
+                        };
+                    }}
                 >
                     <Select {...selectProps} />
                 </Form.Item>
@@ -109,7 +121,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                     >
                         <Upload.Dragger
                             name="files"
-                            action={`${API_URL}/api/upload`}
+                            action={`/api/upload`}
                             headers={{
                                 Authorization: `Bearer ${localStorage.getItem(
                                     TOKEN_KEY,

@@ -6,6 +6,13 @@ export interface ICategory {
 export interface IPost {
     id: string;
     title: string;
-    category: ICategory;
+    category: {
+        data: {
+            id: string;
+            attributes: ICategory;
+        };
+    };
     content: string;
+    locale: string;
+    createdAt: string;
 }

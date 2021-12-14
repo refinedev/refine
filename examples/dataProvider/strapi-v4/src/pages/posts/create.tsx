@@ -23,6 +23,7 @@ import {
 } from "@pankod/refine-strapi-v4";
 
 import { TOKEN_KEY } from "../../constants";
+import { IPost } from "interfaces";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const API_URL = useApiUrl();
@@ -31,12 +32,10 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const [selectedTab, setSelectedTab] =
         useState<"write" | "preview">("write");
 
-    const { formProps, saveButtonProps, queryResult } = useForm();
+    const { formProps, saveButtonProps } = useForm<IPost>();
 
-    const postData = queryResult?.data?.data;
     const { selectProps } = useSelect({
         resource: "categories",
-        defaultValue: postData?.category.id,
         metaData: { locale },
     });
 
@@ -112,7 +111,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                     >
                         <Upload.Dragger
                             name="files"
-                            action={`${API_URL}/upload`}
+                            action={`/api/upload`}
                             headers={{
                                 Authorization: `Bearer ${localStorage.getItem(
                                     TOKEN_KEY,
