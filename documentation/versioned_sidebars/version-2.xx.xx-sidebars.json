@@ -548,6 +548,10 @@
             {
               "type": "doc",
               "id": "version-2.xx.xx/guides-and-concepts/data-provider/graphql"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/guides-and-concepts/data-provider/strapi-v4"
             }
           ],
           "collapsible": true,
