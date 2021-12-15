@@ -1,4 +1,4 @@
-import { DataProvider } from "@pankod/refine";
+import { DataProvider, LiveProvider, LiveEvent } from "@pankod/refine";
 import { CrudFilters, CrudSorting } from "@pankod/refine/dist/interfaces";
 import { Appwrite } from "appwrite";
 
@@ -16,6 +16,24 @@ const operators = {
     ncontains: undefined,
     ncontainss: undefined,
     null: undefined,
+};
+
+const appwriteEventToRefineEvent = {
+    "database.documents.create": "created",
+    "database.documents.update": "updated",
+    "database.documents.delete": "deleted",
+} as const;
+
+const getRefineEvent = (event: string): LiveEvent["type"] | undefined => {
+    if (
+        event === "database.documents.create" ||
+        event === "database.documents.update" ||
+        event === "database.documents.delete"
+    ) {
+        return appwriteEventToRefineEvent[event];
+    }
+
+    return undefined;
 };
 
 type GetAppwriteFiltersType = {
@@ -73,9 +91,7 @@ export const getAppwriteSorting: GetAppwriteSortingType = (sorting) => {
     };
 };
 
-export const dataProvider = (
-    appwriteClient: Appwrite,
-): Partial<DataProvider> => {
+export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
     return {
         getList: async ({ resource, pagination, filters, sort }) => {
             const current = pagination?.current ?? 1;
@@ -207,6 +223,41 @@ export const dataProvider = (
             throw Error(
                 "'custom' method is not implemented on refine-appwrite data provider.",
             );
+        },
+    };
+};
+
+export const liveProvider = (appwriteClient: Appwrite): LiveProvider => {
+    return {
+        subscribe: ({ channel, types, params, callback }): any => {
+            const resource = channel.replace("resources/", "");
+
+            let appwriteChannel;
+
+            if (params?.ids) {
+                appwriteChannel = params?.ids?.map((id) => `documents.${id}`);
+            } else {
+                appwriteChannel = `collections.${resource}.documents`;
+            }
+
+            return appwriteClient.subscribe(appwriteChannel, (event) => {
+                const refineEvent = getRefineEvent(event.event);
+                if (
+                    types.includes("*") ||
+                    (refineEvent && types.includes(refineEvent))
+                ) {
+                    callback({
+                        channel,
+                        type: getRefineEvent(event.event) ?? event.event,
+                        payload: event.payload as any,
+                        date: new Date(event.timestamp * 1000),
+                    });
+                }
+            });
+        },
+
+        unsubscribe: async (unsubscribe: () => void) => {
+            unsubscribe();
         },
     };
 };
