@@ -13,7 +13,7 @@ import {
     CategoriesShow,
 } from "pages/categories";
 
-import { PostsCreate, PostsList, PostsEdit } from "pages/posts";
+import { PostsCreate, PostsList, PostsEdit, PostsShow } from "pages/posts";
 
 const authProvider: AuthProvider = {
     login: ({ email, password }) => {
@@ -69,6 +69,7 @@ const App: React.FC = () => {
                     create: PostsCreate,
                     list: PostsList,
                     edit: PostsEdit,
+                    show: PostsShow,
                     options: {
                         label: "Post",
                     },

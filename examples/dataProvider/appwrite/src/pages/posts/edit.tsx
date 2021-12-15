@@ -26,6 +26,8 @@ export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "6180e6efb14df",
         defaultValue: postData?.categoryId,
+        optionLabel: "title",
+        optionValue: "$id",
     });
 
     const [selectedTab, setSelectedTab] =

@@ -9,9 +9,6 @@ import {
     ShowButton,
     useMany,
     getDefaultSortOrder,
-    FilterDropdown,
-    Select,
-    useSelect,
 } from "@pankod/refine";
 
 import { IPost, ICategory } from "interfaces";
@@ -36,12 +33,6 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
         },
     });
 
-    const { selectProps } = useSelect<ICategory>({
-        resource: "6180e6efb14df",
-        optionLabel: "title",
-        optionValue: "$id",
-    });
-
     return (
         <List>
             <Table {...tableProps} rowKey="$id">
@@ -55,16 +46,6 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
                 <Table.Column
                     dataIndex="categoryId"
                     title="Category"
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                {...selectProps}
-                            />
-                        </FilterDropdown>
-                    )}
                     render={(value) => {
                         if (isLoading) {
                             return <TextField value="Loading..." />;
