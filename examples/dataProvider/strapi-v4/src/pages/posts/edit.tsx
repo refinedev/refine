@@ -121,7 +121,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                     >
                         <Upload.Dragger
                             name="files"
-                            action={`/api/upload`}
+                            action={`${API_URL}/api/upload`}
                             headers={{
                                 Authorization: `Bearer ${localStorage.getItem(
                                     TOKEN_KEY,
