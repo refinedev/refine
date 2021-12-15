@@ -1,5 +1,5 @@
 import { Refine, AuthProvider } from "@pankod/refine";
-import { dataProvider } from "@pankod/refine-appwrite";
+import { dataProvider, liveProvider } from "@pankod/refine-appwrite";
 import routerProvider from "@pankod/refine-react-router";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -48,7 +48,8 @@ const authProvider: AuthProvider = {
 const App: React.FC = () => {
     return (
         <Refine
-            dataProvider={dataProvider(appwriteClient) as any}
+            dataProvider={dataProvider(appwriteClient)}
+            liveProvider={liveProvider(appwriteClient)}
             authProvider={authProvider}
             routerProvider={routerProvider}
             LoginPage={Login}
@@ -73,6 +74,7 @@ const App: React.FC = () => {
                     },
                 },
             ]}
+            liveMode="auto"
         />
     );
 };
