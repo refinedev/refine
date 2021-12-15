@@ -176,9 +176,12 @@ export const DataProvider = (
     createMany: async ({ resource, variables }) => {
         const response = await Promise.all(
             variables.map(async (param) => {
-                const { data } = await httpClient.put(`${apiUrl}/${resource}`, {
-                    data: param,
-                });
+                const { data } = await httpClient.post(
+                    `${apiUrl}/${resource}`,
+                    {
+                        data: param,
+                    },
+                );
                 return data;
             }),
         );
@@ -244,14 +247,14 @@ export const DataProvider = (
             const sortQuery = generateSort(sort);
             if (sortQuery.length > 0) {
                 requestUrl = `${requestUrl}&${stringify({
-                    _sort: sortQuery.join(","),
+                    sort: sortQuery.join(","),
                 })}`;
             }
         }
 
         if (filters) {
             const filterQuery = generateFilter(filters);
-            requestUrl = `${requestUrl}&${stringify(filterQuery)}`;
+            requestUrl = `${requestUrl}&${filterQuery}`;
         }
 
         if (query) {

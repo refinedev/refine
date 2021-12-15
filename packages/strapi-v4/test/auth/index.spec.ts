@@ -8,26 +8,26 @@ axios.defaults.adapter = require("axios/lib/adapters/http");
 describe("auth", () => {
     describe("login", () => {
         it("correct response", async () => {
-            const { login } = AuthHelper("https://api.strapi.refine.dev");
+            const { login } = AuthHelper("http://localhost:1337/api");
 
-            const { data } = await login("demo", "demo123");
+            const { data } = await login("demo@refine.dev", "demodemo");
 
             expect(data.jwt).toBeTruthy();
-            expect(data.user.email).toBe("demo@mail.com");
-            expect(data.user.username).toBe("demo");
+            expect(data.user.email).toBe("demo@refine.dev");
+            expect(data.user.username).toBe("demo@refine.dev");
         });
     });
 
     describe("me", () => {
         it("correct response", async () => {
-            const { me } = AuthHelper("https://api.strapi.refine.dev");
+            const { me } = AuthHelper("http://localhost:1337/api");
 
             const token =
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjE5OTUzODU5LCJleHAiOjE2MjI1NDU4NTl9.hndbp-vtQ65VPafTE05E6Wbg0OKzNJnSKyBRjO9MHg4";
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM5NDgxNjgzLCJleHAiOjE2NDIwNzM2ODN9.yqfuYb-Mr7I_VDxd2pe6elDROGiA6vqvChY_xNIIPu8";
             const { data } = await me(token);
 
-            expect(data.email).toBe("demo@mail.com");
-            expect(data.username).toBe("demo");
+            expect(data.email).toBe("demo@refine.dev");
+            expect(data.username).toBe("demo@refine.dev");
         });
     });
 });
