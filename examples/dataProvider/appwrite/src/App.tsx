@@ -5,11 +5,15 @@ import "@pankod/refine/dist/styles.min.css";
 
 import { Login } from "pages/login";
 import { appwriteClient } from "utility";
+
 import {
+    CategoriesCreate,
     CategoriesEdit,
     CategoriesList,
     CategoriesShow,
 } from "pages/categories";
+
+import { PostsCreate, PostsList, PostsEdit } from "pages/posts";
 
 const authProvider: AuthProvider = {
     login: ({ email, password }) => {
@@ -54,8 +58,18 @@ const App: React.FC = () => {
                     list: CategoriesList,
                     show: CategoriesShow,
                     edit: CategoriesEdit,
+                    create: CategoriesCreate,
                     options: {
-                        label: "Categories",
+                        label: "Category",
+                    },
+                },
+                {
+                    name: "6180e4315f3e7",
+                    create: PostsCreate,
+                    list: PostsList,
+                    edit: PostsEdit,
+                    options: {
+                        label: "Post",
                     },
                 },
             ]}

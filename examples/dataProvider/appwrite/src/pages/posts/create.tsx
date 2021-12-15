@@ -16,23 +16,24 @@ import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
 
-// import { IPost, ICategory } from "interfaces";
-// import { supabaseClient, normalizeFile } from "utility";
+import { IPost, ICategory } from "interfaces";
+import { appwriteClient, normalizeFile } from "utility";
 
-export const PostCreate: React.FC<IResourceComponentsProps> = () => {
-    // const { formProps, saveButtonProps } = useForm<IPost>();
+export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
+    const { formProps, saveButtonProps } = useForm<IPost>();
 
-    // const { selectProps: categorySelectProps } = useSelect<ICategory>({
-    //     resource: "categories",
-    // });
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "6180e6efb14df",
+        optionLabel: "title",
+        optionValue: "$id",
+    });
 
-    // const [selectedTab, setSelectedTab] =
-    //     useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] =
+        useState<"write" | "preview">("write");
 
     return (
-        <Create>
-            Test
-            {/* <Form {...formProps} layout="vertical">
+        <Create saveButtonProps={saveButtonProps}>
+            <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
                     name="title"
@@ -92,39 +93,28 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                             }) => {
                                 try {
                                     const rcFile = file as RcFile;
-                                    await supabaseClient.storage
-                                        .from("refine")
-                                        .upload(`public/${rcFile.name}`, file, {
-                                            cacheControl: "3600",
-                                            upsert: true,
-                                        });
 
-                                    const { data } =
-                                        await supabaseClient.storage
-                                            .from("refine")
-                                            .getPublicUrl(
-                                                `public/${rcFile.name}`,
-                                            );
-
-                                    const xhr = new XMLHttpRequest();
-                                    onSuccess &&
-                                        onSuccess(
-                                            { url: data?.publicURL },
-                                            xhr,
+                                    const { $id } =
+                                        await appwriteClient.storage.createFile(
+                                            rcFile,
                                         );
+
+                                    const url =
+                                        appwriteClient.storage.getFileView($id);
+
+                                    onSuccess?.({ url }, new XMLHttpRequest());
                                 } catch (error) {
-                                    onError &&
-                                        onError(new Error("Upload Error"));
+                                    onError?.(new Error("Upload Error"));
                                 }
                             }}
                         >
                             <p className="ant-upload-text">
-                                Drag & drop a file in this area
+                                Drag &amp; drop a file in this area
                             </p>
                         </Upload.Dragger>
                     </Form.Item>
                 </Form.Item>
-            </Form> */}
+            </Form>
         </Create>
     );
 };

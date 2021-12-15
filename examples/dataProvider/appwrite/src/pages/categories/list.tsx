@@ -7,6 +7,7 @@ import {
     Space,
     EditButton,
     ShowButton,
+    DeleteButton,
 } from "@pankod/refine";
 
 import { ICategory } from "interfaces";
@@ -35,6 +36,11 @@ export const CategoriesList: React.FC<IResourceComponentsProps> = () => {
                                 recordItemId={record.$id}
                             />
                             <ShowButton
+                                hideText
+                                size="small"
+                                recordItemId={record.$id}
+                            />
+                            <DeleteButton
                                 hideText
                                 size="small"
                                 recordItemId={record.$id}

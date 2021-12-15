@@ -13,7 +13,7 @@ import { IPost, ICategory } from "interfaces";
 
 const { Title, Text } = Typography;
 
-export const PostShow: React.FC<IResourceComponentsProps> = () => {
+export const PostsShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;
@@ -30,7 +30,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
     return (
         <Show isLoading={isLoading}>
             <Title level={5}>Id</Title>
-            <Text>{record?.id}</Text>
+            <Text>{record?.$id}</Text>
 
             <Title level={5}>Title</Title>
             <Text>{record?.title}</Text>

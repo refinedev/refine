@@ -16,11 +16,11 @@ import {
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostsList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter } = useTable<IPost>({
         initialSorter: [
             {
-                field: "id",
+                field: "$id",
                 order: "asc",
             },
         ],
@@ -29,7 +29,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
     const { data, isLoading } = useMany<ICategory>({
-        resource: "categories",
+        resource: "6180e6efb14df",
         ids: categoryIds,
         queryOptions: {
             enabled: categoryIds.length > 0,
@@ -37,25 +37,21 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     });
 
     const { selectProps } = useSelect<ICategory>({
-        resource: "categories",
+        resource: "6180e6efb14df",
+        optionLabel: "title",
+        optionValue: "$id",
     });
 
     return (
         <List>
-            <Table {...tableProps} rowKey="id">
+            <Table {...tableProps} rowKey="$id">
                 <Table.Column
-                    key="id"
-                    dataIndex="id"
+                    dataIndex="$id"
                     title="ID"
                     sorter
                     defaultSortOrder={getDefaultSortOrder("id", sorter)}
                 />
-                <Table.Column
-                    key="title"
-                    dataIndex="title"
-                    title="Title"
-                    sorter
-                />
+                <Table.Column dataIndex="title" title="Title" sorter />
                 <Table.Column
                     dataIndex="categoryId"
                     title="Category"
@@ -93,12 +89,12 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                             <EditButton
                                 hideText
                                 size="small"
-                                recordItemId={record.id}
+                                recordItemId={record.$id}
                             />
                             <ShowButton
                                 hideText
                                 size="small"
-                                recordItemId={record.id}
+                                recordItemId={record.$id}
                             />
                         </Space>
                     )}
