@@ -15,7 +15,7 @@
     "react-google-login": "^5.2.2",
     "react-markdown": "^6.0.1",
     "react-mde": "^11.1.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "5.0.0",
     "typescript": "^4.4.3",
     "web-vitals": "^1.1.1"
   },
