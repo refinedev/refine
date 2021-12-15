@@ -6,13 +6,6 @@ import "@pankod/refine/dist/styles.min.css";
 import { Login } from "pages/login";
 import { appwriteClient } from "utility";
 
-import {
-    CategoriesCreate,
-    CategoriesEdit,
-    CategoriesList,
-    CategoriesShow,
-} from "pages/categories";
-
 import { PostsCreate, PostsList, PostsEdit, PostsShow } from "pages/posts";
 
 const authProvider: AuthProvider = {
@@ -54,16 +47,6 @@ const App: React.FC = () => {
             routerProvider={routerProvider}
             LoginPage={Login}
             resources={[
-                {
-                    name: "6180e6efb14df",
-                    list: CategoriesList,
-                    show: CategoriesShow,
-                    edit: CategoriesEdit,
-                    create: CategoriesCreate,
-                    options: {
-                        label: "Category",
-                    },
-                },
                 {
                     name: "6180e4315f3e7",
                     create: PostsCreate,
