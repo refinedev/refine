@@ -283,6 +283,11 @@ module.exports = {
                     label: "Form",
                     items: ["guides-and-concepts/forms/custom-form-validation"],
                 },
+                {
+                    type: "category",
+                    label: "Web3",
+                    items: ["guides-and-concepts/web3/ethereum-signin"],
+                },
                 "guides-and-concepts/mutation-mode",
                 "guides-and-concepts/custom-layout",
                 "guides-and-concepts/custom-pages",
@@ -417,6 +422,11 @@ module.exports = {
                     type: "category",
                     label: "UI",
                     items: ["examples/ui/useModal"],
+                },
+                {
+                    type: "category",
+                    label: "Web3",
+                    items: ["examples/web3/web3Login"],
                 },
                 "examples/import-export",
                 "examples/e2e-testing",
