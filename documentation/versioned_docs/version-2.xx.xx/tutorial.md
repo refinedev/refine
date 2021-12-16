@@ -172,6 +172,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 -   [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql)
 -   [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
 -   [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura)
+-   [Appwrite](https://github.com/pankod/refine/tree/master/packages/appwrite)
 -   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
 [Refer to the `dataProvider` documentation for detailed usage. &#8594](/api-references/providers/data-provider.md)
