@@ -725,6 +725,10 @@
             },
             {
               "type": "doc",
+              "id": "version-2.xx.xx/examples/data-provider/strapi-v4"
+            },
+            {
+              "type": "doc",
               "id": "version-2.xx.xx/examples/data-provider/strapi-graphql"
             },
             {

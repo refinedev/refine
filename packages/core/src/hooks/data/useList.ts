@@ -78,7 +78,7 @@ export const useList = <
     });
 
     const queryResponse = useQuery<GetListResponse<TData>, TError>(
-        [`resource/list/${resource}`, { ...config }],
+        [`resource/list/${resource}`, { ...config, ...metaData }],
         () => getList<TData>({ resource, ...config, metaData }),
         {
             ...queryOptions,
