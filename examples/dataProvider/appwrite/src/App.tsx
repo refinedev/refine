@@ -10,7 +10,6 @@ import { PostsCreate, PostsList, PostsEdit, PostsShow } from "pages/posts";
 
 const authProvider: AuthProvider = {
     login: ({ email, password }) => {
-        console.log(email, password);
         return appwriteClient.account.createSession(email, password);
     },
     logout: async () => {
