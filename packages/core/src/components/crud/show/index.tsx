@@ -72,7 +72,7 @@ export const Show: React.FC<ShowProps> = ({
                 translate(
                     `${resource.name}.titles.show`,
                     `Show ${userFriendlyResourceName(
-                        resource.name,
+                        resource.label ?? resource.name,
                         "singular",
                     )}`,
                 )

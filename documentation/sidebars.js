@@ -286,6 +286,11 @@ module.exports = {
                     label: "Form",
                     items: ["guides-and-concepts/forms/custom-form-validation"],
                 },
+                {
+                    type: "category",
+                    label: "Web3",
+                    items: ["guides-and-concepts/web3/ethereum-signin"],
+                },
                 "guides-and-concepts/mutation-mode",
                 "guides-and-concepts/custom-layout",
                 "guides-and-concepts/custom-pages",
@@ -319,6 +324,7 @@ module.exports = {
                     label: "Data Provider",
                     items: [
                         "examples/data-provider/strapi",
+                        "examples/data-provider/strapi-v4",
                         "examples/data-provider/strapi-graphql",
                         "examples/data-provider/hasura",
                         "examples/data-provider/nestjsxCrud",
@@ -420,6 +426,11 @@ module.exports = {
                     type: "category",
                     label: "UI",
                     items: ["examples/ui/useModal"],
+                },
+                {
+                    type: "category",
+                    label: "Web3",
+                    items: ["examples/web3/web3Login"],
                 },
                 "examples/import-export",
                 "examples/e2e-testing",

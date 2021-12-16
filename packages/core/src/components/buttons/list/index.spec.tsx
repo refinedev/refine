@@ -16,9 +16,21 @@ describe("List Button", () => {
             },
         );
 
-        getByText("Posts light");
+        getByText("Posts lights");
 
         expect(container).toBeTruthy();
+    });
+
+    it("should render label as children if specified", () => {
+        const { container, getByText } = render(<ListButton />, {
+            wrapper: TestWrapper({
+                resources: [{ name: "posts", label: "test" }],
+            }),
+        });
+
+        expect(container).toBeTruthy();
+
+        getByText("Tests");
     });
 
     it("should render text by children", () => {

@@ -52,7 +52,8 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                         formProps.onFinish(
                             mediaUploadMapper({
                                 ...values,
-                                cover: values.cover?.data.attributes,
+                                cover: values.cover?.data,
+                                category: values.category?.data.id,
                             }),
                         )
                     );
@@ -79,17 +80,12 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                 <Form.Item
                     wrapperCol={{ span: 8 }}
                     label="Category"
-                    name="category"
+                    name={["category", "data", "id"]}
                     rules={[
                         {
                             required: true,
                         },
                     ]}
-                    getValueProps={(value) => {
-                        return {
-                            value: value?.data?.id,
-                        };
-                    }}
                 >
                     <Select {...selectProps} />
                 </Form.Item>
@@ -114,7 +110,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                 </Form.Item>
                 <Form.Item label="Cover">
                     <Form.Item
-                        name={["cover", "data", "attributes"]}
+                        name={["cover", "data"]}
                         valuePropName="fileList"
                         getValueProps={(data) => getValueProps(data, API_URL)}
                         noStyle

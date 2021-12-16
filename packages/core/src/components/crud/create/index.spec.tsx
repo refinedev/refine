@@ -42,6 +42,25 @@ describe("Create", () => {
         getByText("Create Post");
     });
 
+    it("should render with label instead of resource name successfully", () => {
+        const { getByText } = render(
+            <Route path="/:resource/create">
+                <Create />
+            </Route>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [
+                        { name: "posts", route: "posts", label: "test label" },
+                    ],
+                    routerInitialEntries: ["/posts/create"],
+                }),
+            },
+        );
+
+        getByText("Create Test label");
+    });
+
     it("should render optional title with title prop", async () => {
         const { getByText } = renderCreate(<Create title="New Title" />);
 

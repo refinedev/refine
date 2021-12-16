@@ -67,6 +67,25 @@ describe("Edit", () => {
         getByText("Edit Post");
     });
 
+    it("should render with label instead of resource name successfully", () => {
+        const { getByText } = render(
+            <Route path="/:resource/edit/:id">
+                <Edit />
+            </Route>,
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [
+                        { name: "posts", route: "posts", label: "test" },
+                    ],
+                    routerInitialEntries: ["/posts/edit/1"],
+                }),
+            },
+        );
+
+        getByText("Edit Test");
+    });
+
     it("should render optional title with title prop", () => {
         const { getByText } = renderEdit(<Edit title="New Title" />);
 
