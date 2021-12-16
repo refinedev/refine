@@ -43,7 +43,7 @@ You can handle features such as Sorting, Pagination and Filters with Dataprovide
 
 ## Setup 
 ```bash
-npm i @pankod/refine @pankod/refine-strapi-v4
+npm i @pankod/refine-strapi-v4
 ```
 
 ## Usage
@@ -54,14 +54,12 @@ import { DataProvider } from "@pankod/refine-strapi-v4";
 //highlight-end
 import routerProvider from "@pankod/refine-react-router";
 
-import { API_URL } from "./constants";
-
 const App: React.FC = () => {
     return (
         <Refine
             authProvider={authProvider}
             //highlight-start
-            dataProvider={DataProvider(API_URL)}
+            dataProvider={DataProvider("API_URL")}
             //highlight-end
             routerProvider={routerProvider}
         />
@@ -98,19 +96,19 @@ To select only some fields, we must specify this fields with metadata.
 [Refer to the Fields Selection documentation for detailed information. →](https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest-api.html#fields-selection)
 
 ```tsx title="Get only id and title of all posts"
-    const { tableProps } = useTable<IPost>({
-        metaData: {
-            fields: ["id", "title"]
-        },
-    }); 
+const { tableProps } = useTable<IPost>({
+    metaData: {
+        fields: ["id", "title"]
+    },
+}); 
 ```
 
 ```tsx title="Get all fields of all posts(id, title, category, content ...)"
-    const { tableProps } = useTable<IPost>({
-        metaData: {
-            fields: "*"
-        },
-    });    
+const { tableProps } = useTable<IPost>({
+    metaData: {
+        fields: "*"
+    },
+});    
 ```
 
 When sending the request, we can specify which fields will come, so we send `fields` in `metaData` to hooks that we will fetch data from. In this way, you can perform the queries of only the fields you want.
@@ -211,19 +209,19 @@ The `populate` parameter is used to define which fields will be populated.
 [Refer to the Releations Population documentation for detailed information. →](https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest-api.html#relations-population)
 
 ```tsx title="Get all the posts and populate the selected relations"
-    const { tableProps } = useTable<IPost>({
-        metaData: {
-            populate: ["category", "cover"]
-        },
-    }); 
+const { tableProps } = useTable<IPost>({
+    metaData: {
+        populate: ["category", "cover"]
+    },
+}); 
 ```
 
 ```tsx title="Get all posts and populate all their first-level relations"
-    const { tableProps } = useTable<IPost>({
-        metaData: {
-            populate: "*"
-        },
-    });  
+const { tableProps } = useTable<IPost>({
+    metaData: {
+        populate: "*"
+    },
+});  
 ```
 
 In order to pull the `categories` related to the posts, we can now show the categories in our list by defining the `metadata` `populate` parameter.
@@ -359,11 +357,11 @@ The Draft & Publish feature should be enabled on Strapi.
 `preview`: returns draft and published entries
 
 ```tsx
-     const { tableProps } = useTable<IPost>({
-        metaData: {
-            publicationState: "preview"
-        },
-    });
+const { tableProps } = useTable<IPost>({
+    metaData: {
+        publicationState: "preview"
+    },
+});
 ```
 
 We can list the posts separately according to the `published` or `draft` information.
@@ -529,11 +527,11 @@ To fetch content for a locale, make sure it has been already [added to Strapi in
 [Refer to the Locale documentation for detailed information. →](https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest-api.html#locale)
 
 ```tsx
-    const { tableProps } = useTable<IPost>({
-        metaData: {
-            locale: "de"
-        },
-    });
+const { tableProps } = useTable<IPost>({
+    metaData: {
+        locale: "de"
+    },
+});
 ```
 
 With the local parameter feature, we can fetch posts and categories created according to different languages.
@@ -702,16 +700,22 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 :::tip
 When creating and editing posts you can use these API parameters in `metaData`. You can look how it is used in EditList and CreateList from Codesandbox.
 
+```tsx
+const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+    metaData: { publicationState: "preview" },
+});
+```
+
 ```tsx title="EditList.tsx"
-    const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
-        metaData: { populate: ["category", "cover"] },
-    });
+const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+    metaData: { populate: ["category", "cover"] },
+});
 ```
 
 ```tsx title="CreateList.tsx"
-    const { selectProps } = useSelect({
-        metaData: { locale: "en" },
-    });
+const { selectProps } = useSelect({
+    metaData: { locale: "en" },
+});
 ```
 :::
 
