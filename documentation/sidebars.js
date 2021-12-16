@@ -321,6 +321,7 @@ module.exports = {
                     label: "Data Provider",
                     items: [
                         "examples/data-provider/strapi",
+                        "examples/data-provider/strapi-v4",
                         "examples/data-provider/strapi-graphql",
                         "examples/data-provider/hasura",
                         "examples/data-provider/nestjsxCrud",

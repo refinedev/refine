@@ -168,7 +168,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 -   [GraphQL](https://github.com/pankod/refine/tree/master/packages/graphql)
 -   [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
 -   [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
--   [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi)
+-   [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/pankod/refine/tree/master/packages/strapi-v4)
 -   [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql)
 -   [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
 -   [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura)
