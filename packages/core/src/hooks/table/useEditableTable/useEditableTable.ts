@@ -13,9 +13,9 @@ export type useEditableTableReturnType<
     TSearchVariables = unknown,
 > = useTableReturnType<TData, TSearchVariables> &
     UseFormReturnType<TData, TError, TVariables> & {
-        saveButtonProps: ButtonProps & {
-            onClick: () => void;
-        };
+        // saveButtonProps: ButtonProps & {
+        //     onClick: () => void;
+        // };
         cancelButtonProps: ButtonProps & {
             onClick: () => void;
         };
@@ -60,10 +60,10 @@ export const useEditableTable = <
         action: "edit",
     });
 
-    const { form, editId, setEditId, formLoading } = edit;
+    const { /* form, */ editId, setEditId, formLoading } = edit;
 
     const saveButtonProps = {
-        onClick: () => form.submit(),
+        // onClick: () => form.submit(),
         disabled: formLoading,
     };
 
@@ -82,7 +82,7 @@ export const useEditableTable = <
     return {
         ...table,
         ...edit,
-        saveButtonProps,
+        // saveButtonProps,
         cancelButtonProps,
         editButtonProps,
         isEditing,

@@ -28,9 +28,9 @@ export type UseDrawerFormReturnType<
     TError extends HttpError = HttpError,
     TVariables = {},
 > = UseFormReturnType<TData, TError, TVariables> & {
-    formProps: FormProps<TVariables> & {
-        form: FormInstance<TVariables>;
-    };
+    // formProps: FormProps<TVariables> & {
+    //     form: FormInstance<TVariables>;
+    // };
     show: (id?: string) => void;
     close: () => void;
     drawerProps: DrawerProps;
@@ -68,8 +68,8 @@ export const useDrawerForm = <
     });
 
     const {
-        form,
-        formProps,
+        // form,
+        // formProps,
         setEditId,
         editId,
         formLoading,
@@ -104,7 +104,7 @@ export const useDrawerForm = <
     const saveButtonProps = {
         disabled: formLoading,
         onClick: () => {
-            form?.submit();
+            // form?.submit();
             if (!(mutationMode === "pessimistic")) {
                 setVisible(false);
             }
@@ -153,12 +153,12 @@ export const useDrawerForm = <
         ...useFormProps,
         show: handleShow,
         close: handleClose,
-        formProps: {
-            form,
-            onValuesChange: formProps?.onValuesChange,
-            onKeyUp: formProps?.onKeyUp,
-            onFinish: formProps?.onFinish,
-        },
+        // formProps: {
+        // form,
+        // onValuesChange: formProps?.onValuesChange,
+        // onKeyUp: formProps?.onKeyUp,
+        // onFinish: formProps?.onFinish,
+        // },
         drawerProps: {
             width: "500px",
             onClose: handleClose,

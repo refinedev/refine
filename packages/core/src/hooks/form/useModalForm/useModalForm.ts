@@ -73,8 +73,8 @@ export const useModalForm = <
     });
 
     const {
-        form,
-        formProps,
+        // form,
+        // formProps,
         setEditId,
         formLoading,
         mutationResult,
@@ -87,7 +87,7 @@ export const useModalForm = <
 
     const sunflowerUseModal = useModalFormSF<TData, TVariables>({
         ...rest,
-        form: form,
+        // form: form,
     });
 
     const {
@@ -171,9 +171,9 @@ export const useModalForm = <
         close: handleClose,
         formProps: {
             ...modalFormProps,
-            onValuesChange: formProps?.onValuesChange,
-            onKeyUp: formProps?.onKeyUp,
-            onFinish: formProps?.onFinish,
+            // onValuesChange: formProps?.onValuesChange,
+            // onKeyUp: formProps?.onKeyUp,
+            // onFinish: formProps?.onFinish,
         },
         modalProps: {
             ...modalProps,

@@ -6,9 +6,8 @@ import {
     IResourceComponentsProps,
     Select,
     useSelect,
+    useForm,
 } from "@pankod/refine-core";
-
-import { useForm } from "@pankod/refine-antd";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
@@ -18,7 +17,7 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+    const { queryResult } = useForm<IPost>({
         warnWhenUnsavedChanges: true,
     });
 
@@ -32,8 +31,8 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         useState<"write" | "preview">("write");
 
     return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
+        <Edit>
+            {/* <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
                     name="title"
@@ -101,7 +100,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                         }
                     />
                 </Form.Item>
-            </Form>
+            </Form> */}
         </Edit>
     );
 };

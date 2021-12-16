@@ -6,9 +6,8 @@ import {
     IResourceComponentsProps,
     Select,
     useSelect,
+    useForm,
 } from "@pankod/refine-core";
-
-import { useForm } from "@pankod/refine-antd";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
@@ -18,9 +17,9 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "interfaces";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>({
-        // warnWhenUnsavedChanges: true,
-    });
+    // const { formProps, saveButtonProps } = useForm<IPost>({
+    //     // warnWhenUnsavedChanges: true,
+    // });
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
@@ -30,8 +29,9 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
         useState<"write" | "preview">("write");
 
     return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
+        <Create>
+            <h1 className="text-5xl font-bold underline red">Hello world!</h1>
+            {/* <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
                     name="title"
@@ -99,7 +99,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                         }
                     />
                 </Form.Item>
-            </Form>
+            </Form> */}
         </Create>
     );
 };

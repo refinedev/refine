@@ -43,14 +43,14 @@ export const useStepsForm = <
     props: useStepsFormProps<TData, TError, TVariables> = {},
 ): useStepsFormReturnType<TData, TError, TVariables> => {
     const useFormProps = useForm<TData, TError, TVariables>({ ...props });
-    const { form, formProps } = useFormProps;
+    // const { form, formProps } = useFormProps;
 
     const stepsPropsSunflower = useStepsFormSF<TData, TVariables>({
         ...props,
-        form: form,
-        submit: (values: any) => {
-            formProps && formProps.onFinish && formProps.onFinish(values);
-        },
+        // form: form,
+        // submit: (values: any) => {
+        //     formProps && formProps.onFinish && formProps.onFinish(values);
+        // },
     });
 
     return {
@@ -58,12 +58,12 @@ export const useStepsForm = <
         ...stepsPropsSunflower,
         formProps: {
             ...stepsPropsSunflower.formProps,
-            onValuesChange: formProps?.onValuesChange,
-            onKeyUp: formProps?.onKeyUp,
+            // onValuesChange: formProps?.onValuesChange,
+            // onKeyUp: formProps?.onKeyUp,
         },
-        saveButtonProps: {
-            ...useFormProps.saveButtonProps,
-            onClick: () => stepsPropsSunflower.submit(),
-        },
+        // saveButtonProps: {
+        //     ...useFormProps.saveButtonProps,
+        //     onClick: () => stepsPropsSunflower.submit(),
+        // },
     };
 };

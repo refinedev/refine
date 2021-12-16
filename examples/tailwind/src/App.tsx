@@ -3,6 +3,8 @@ import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 import "@pankod/refine-core/dist/styles.min.css";
 
+// import "./index.css";
+
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";

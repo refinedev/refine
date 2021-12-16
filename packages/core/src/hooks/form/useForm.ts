@@ -51,13 +51,13 @@ export type UseFormReturnType<
     TError extends HttpError = HttpError,
     TVariables = {},
 > = {
-    form: FormInstance<TVariables>;
-    formProps: FormProps<TVariables>;
+    // form: FormInstance<TVariables>;
+    // formProps: FormProps<TVariables>;
     editId?: string;
     setEditId?: Dispatch<SetStateAction<string | undefined>>;
-    saveButtonProps: ButtonProps & {
-        onClick: () => void;
-    };
+    // saveButtonProps: ButtonProps & {
+    //     onClick: () => void;
+    // };
     queryResult?: QueryObserverResult<GetOneResponse<TData>>;
     mutationResult:
         | UseUpdateReturnType<TData, TError, TVariables>
