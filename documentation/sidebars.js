@@ -423,6 +423,11 @@ module.exports = {
                     label: "UI",
                     items: ["examples/ui/useModal"],
                 },
+                {
+                    type: "category",
+                    label: "Web3",
+                    items: ["examples/web3/web3Login"],
+                },
                 "examples/import-export",
                 "examples/e2e-testing",
                 "examples/customPages",

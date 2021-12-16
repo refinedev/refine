@@ -62,7 +62,7 @@ export const useOne = <
     });
 
     const queryResponse = useQuery<GetOneResponse<TData>, TError>(
-        [`resource/getOne/${resource}`, { id }],
+        [`resource/getOne/${resource}`, { id, ...metaData }],
         () => getOne<TData>({ resource, id, metaData }),
         {
             ...queryOptions,

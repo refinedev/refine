@@ -240,8 +240,7 @@ export const useTable = <
         tableProps: {
             ...tablePropsSunflower,
             dataSource: data?.data,
-            loading: liveMode ? isLoading : isFetching,
-            // loading: isFetching,
+            loading: liveMode === "auto" ? isLoading : isFetching,
             onChange,
             pagination: {
                 ...tablePropsSunflower.pagination,
