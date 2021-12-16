@@ -1,7 +1,7 @@
 {
   "name": "@pankod/refine-airtable",
   "description": "refine Airtable data provider. refine is a React-based framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
-  "version": "2.4.7",
+  "version": "2.4.8",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -41,7 +41,7 @@
     "tslib": "^2.3.1"
   },
   "dependencies": {
-    "@pankod/refine": "^2.4.7",
+    "@pankod/refine": "^2.4.8",
     "airtable": "^0.11.1",
     "asyncairtable": "^2.1.0",
     "query-string": "^7.0.1"
