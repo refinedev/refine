@@ -3,7 +3,7 @@ export { useOne } from "./useOne";
 export { useMany } from "./useMany";
 
 export { useUpdate } from "./useUpdate";
-export { useCreate } from "./useCreate";
+export { useCreate, UseCreateReturnType } from "./useCreate";
 export { useDelete } from "./useDelete";
 
 export { useCreateMany } from "./useCreateMany";

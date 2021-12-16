@@ -32,11 +32,11 @@ export type useCloneForm<
     TError extends HttpError = HttpError,
     TVariables = {},
 > = {
-    form: FormInstance<TVariables>;
-    formProps: FormProps<TVariables>;
+    // form: FormInstance<TVariables>;
+    // formProps: FormProps<TVariables>;
     editId?: string;
     setEditId?: Dispatch<SetStateAction<string | undefined>>;
-    saveButtonProps: SaveButtonProps;
+    // saveButtonProps: SaveButtonProps;
     formLoading: boolean;
     mutationResult: UseCreateReturnType<TData, TError, TVariables>;
     queryResult: QueryObserverResult<GetOneResponse<TData>>;
@@ -59,7 +59,7 @@ export const useCloneForm = <
         ...props,
     });
 
-    const { form, formLoading, mutationResult } = useCreateFormProps;
+    const { /* form, */ formLoading, mutationResult } = useCreateFormProps;
 
     const { useParams } = useRouterContext();
 
@@ -83,14 +83,14 @@ export const useCloneForm = <
 
     const { data, isFetching } = queryResult;
 
-    React.useEffect(() => {
-        form.setFieldsValue({
-            ...(data?.data as any), // Fix Me
-        });
-        return () => {
-            form.resetFields();
-        };
-    }, [data, id, isFetching]);
+    // React.useEffect(() => {
+    //     form.setFieldsValue({
+    //         ...(data?.data as any), // Fix Me
+    //     });
+    //     return () => {
+    //         form.resetFields();
+    //     };
+    // }, [data, id, isFetching]);
 
     return {
         ...useCreateFormProps,

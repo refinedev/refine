@@ -13,8 +13,10 @@ import {
     CreateResponse,
     MetaDataQuery,
     RedirectionTypes,
+    UseCreateReturnType,
+    useCreateForm as useCreateFormCore,
 } from "@pankod/refine-core";
-import { UseCreateReturnType } from "@pankod/refine-core/dist/hooks/data/useCreate";
+// import { UseCreateReturnType } from "@pankod/refine-core/dist/hooks/data/useCreate";
 
 type SaveButtonProps = {
     disabled: boolean;
@@ -69,7 +71,7 @@ export const useCreateForm = <
     TError extends HttpError = HttpError,
     TVariables = {},
 >({
-    onMutationSuccess,
+    onMutationSuccess: onMutationSuccessProp,
     onMutationError,
     submitOnEnter = false,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
@@ -83,6 +85,28 @@ export const useCreateForm = <
     TError,
     TVariables
 > => {
+    const onMutationSuccess: typeof onMutationSuccessProp = (
+        data,
+        values,
+        context,
+    ) => {
+        form.resetFields();
+
+        onMutationSuccessProp?.(data, values, context);
+    };
+
+    const { formLoading, onFinish, mutationResult } = useCreateFormCore({
+        onMutationSuccess,
+        onMutationError,
+        submitOnEnter,
+        warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
+        redirect,
+        resource,
+        successNotification,
+        errorNotification,
+        metaData,
+    });
+
     const [formAnt] = Form.useForm();
     const formSF = useFormSF<TData, TVariables>({
         form: formAnt,
@@ -98,45 +122,45 @@ export const useCreateForm = <
 
     const { form } = formSF;
 
-    const mutationResult = useCreate<TData, TError, TVariables>();
-    const { mutate, isLoading } = mutationResult;
+    // const mutationResult = useCreate<TData, TError, TVariables>();
+    // const { mutate, isLoading } = mutationResult;
 
-    const handleSubmitWithRedirect = useRedirectionAfterSubmission();
+    // const handleSubmitWithRedirect = useRedirectionAfterSubmission();
 
-    const onFinish = async (values: TVariables) => {
-        setWarnWhen(false);
-        mutate(
-            {
-                values,
-                resource: resource.name,
-                successNotification,
-                errorNotification,
-                metaData,
-            },
-            {
-                onSuccess: (data, variables, context) => {
-                    if (onMutationSuccess) {
-                        return onMutationSuccess(data, values, context);
-                    }
+    // const onFinish = async (values: TVariables) => {
+    //     setWarnWhen(false);
+    //     mutate(
+    //         {
+    //             values,
+    //             resource: resource.name,
+    //             successNotification,
+    //             errorNotification,
+    //             metaData,
+    //         },
+    //         {
+    //             onSuccess: (data, variables, context) => {
+    //                 if (onMutationSuccess) {
+    //                     return onMutationSuccess(data, values, context);
+    //                 }
 
-                    form.resetFields();
+    //                 form.resetFields();
 
-                    const id = data?.data?.id;
+    //                 const id = data?.data?.id;
 
-                    handleSubmitWithRedirect({
-                        redirect,
-                        resource,
-                        id,
-                    });
-                },
-                onError: (error: TError, variables, context) => {
-                    if (onMutationError) {
-                        return onMutationError(error, values, context);
-                    }
-                },
-            },
-        );
-    };
+    //                 handleSubmitWithRedirect({
+    //                     redirect,
+    //                     resource,
+    //                     id,
+    //                 });
+    //             },
+    //             onError: (error: TError, variables, context) => {
+    //                 if (onMutationError) {
+    //                     return onMutationError(error, values, context);
+    //                 }
+    //             },
+    //         },
+    //     );
+    // };
 
     React.useEffect(() => {
         return () => {
@@ -158,7 +182,7 @@ export const useCreateForm = <
     };
 
     const saveButtonProps = {
-        disabled: isLoading,
+        disabled: formLoading,
         onClick: () => {
             form.submit();
         },
@@ -173,7 +197,7 @@ export const useCreateForm = <
             onValuesChange,
         },
         saveButtonProps,
-        formLoading: isLoading,
+        formLoading,
         mutationResult,
     };
 };

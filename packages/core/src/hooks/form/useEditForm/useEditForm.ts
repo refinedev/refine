@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { useForm as useFormSF } from "sunflower-antd";
-import { Form, FormInstance, FormProps } from "antd";
+// import { useForm as useFormSF } from "sunflower-antd";
+// import { Form, FormInstance, FormProps } from "antd";
 import { QueryObserverResult } from "react-query";
 
 import {
@@ -39,16 +39,17 @@ export type useEditForm<
     TError extends HttpError = HttpError,
     TVariables = {},
 > = {
-    form: FormInstance<TVariables>;
-    formProps: FormProps<TVariables>;
+    // form: FormInstance<TVariables>;
+    // formProps: FormProps<TVariables>;
     editId?: string;
     setEditId?: Dispatch<SetStateAction<string | undefined>>;
-    saveButtonProps: SaveButtonProps;
+    // saveButtonProps: SaveButtonProps;
     queryResult: QueryObserverResult<GetOneResponse<TData>>;
     mutationResult: UseUpdateReturnType<TData, TError, TVariables>;
     formLoading: boolean;
     setCloneId?: Dispatch<SetStateAction<string | undefined>>;
     cloneId?: string;
+    onFinish: (values: TVariables) => Promise<void>;
 };
 
 export type useEditFormProps<
@@ -114,20 +115,20 @@ export const useEditForm = <
 
     const action = actionFromParams ?? actionFromRoute;
 
-    const [formAnt] = Form.useForm();
-    const formSF = useFormSF<TData, TVariables>({
-        form: formAnt,
-    });
+    // const [formAnt] = Form.useForm();
+    // const formSF = useFormSF<TData, TVariables>({
+    //     form: formAnt,
+    // });
 
-    const { form } = formSF;
+    // const { form } = formSF;
 
     const {
-        warnWhenUnsavedChanges: warnWhenUnsavedChangesContext,
+        // warnWhenUnsavedChanges: warnWhenUnsavedChangesContext,
         setWarnWhen,
     } = useWarnAboutChange();
 
-    const warnWhenUnsavedChanges =
-        warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesContext;
+    // const warnWhenUnsavedChanges =
+    //     warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesContext;
 
     const { mutationMode: mutationModeContext } = useMutationMode();
 
@@ -147,16 +148,16 @@ export const useEditForm = <
         metaData,
     });
 
-    const { data, isFetching } = queryResult;
+    const { /* data,  */ isFetching } = queryResult;
 
-    React.useEffect(() => {
-        form.setFieldsValue({
-            ...(data?.data as any), // Fix Me
-        });
-        return () => {
-            form.resetFields();
-        };
-    }, [data, editId, isFetching]);
+    // React.useEffect(() => {
+    //     form.setFieldsValue({
+    //         ...(data?.data as any), // Fix Me
+    //     });
+    //     return () => {
+    //         form.resetFields();
+    //     };
+    // }, [data, editId, isFetching]);
 
     const mutationResult = useUpdate<TData, TError, TVariables>();
 
@@ -216,40 +217,41 @@ export const useEditForm = <
         }
     };
 
-    const onKeyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
-        if (submitOnEnter && event.key === "Enter") {
-            form.submit();
-        }
-    };
+    // const onKeyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
+    //     if (submitOnEnter && event.key === "Enter") {
+    //         form.submit();
+    //     }
+    // };
 
-    const onValuesChange = (changeValues: object) => {
-        if (changeValues && warnWhenUnsavedChanges) {
-            setWarnWhen(true);
-        }
-        return changeValues;
-    };
+    // const onValuesChange = (changeValues: object) => {
+    //     if (changeValues && warnWhenUnsavedChanges) {
+    //         setWarnWhen(true);
+    //     }
+    //     return changeValues;
+    // };
 
-    const saveButtonProps: SaveButtonProps = {
-        disabled: formLoading,
-        onClick: () => {
-            form.submit();
-        },
-        loading: formLoading,
-    };
+    // const saveButtonProps: SaveButtonProps = {
+    //     disabled: formLoading,
+    //     onClick: () => {
+    //         form.submit();
+    //     },
+    //     loading: formLoading,
+    // };
 
     return {
-        ...formSF,
-        formProps: {
-            ...formSF.formProps,
-            onFinish,
-            onKeyUp,
-            onValuesChange,
-        },
+        // ...formSF,
+        // formProps: {
+        //     ...formSF.formProps,
+        //     onFinish,
+        //     onKeyUp,
+        //     onValuesChange,
+        // },
         editId,
         setEditId,
-        saveButtonProps,
+        // saveButtonProps,
         queryResult,
         mutationResult,
         formLoading,
+        onFinish,
     };
 };

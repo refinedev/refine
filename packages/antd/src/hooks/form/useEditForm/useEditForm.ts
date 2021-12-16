@@ -21,6 +21,7 @@ import {
     RedirectionTypes,
     BaseRecord,
     UpdateResponse,
+    useEditForm as useEditFormCore,
 } from "@pankod/refine-core";
 
 import { ActionParams } from "../useForm";
@@ -104,13 +105,38 @@ export const useEditForm = <
     TError,
     TVariables
 > => {
-    const { useParams } = useRouterContext();
+    const {
+        queryResult,
+        formLoading,
+        onFinish,
+        editId,
+        setEditId,
+        mutationResult,
+    } = useEditFormCore({
+        onMutationSuccess,
+        onMutationError,
+        mutationMode: mutationModeProp,
+        submitOnEnter,
+        warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
+        redirect,
+        undoableTimeout,
+        resource,
+        successNotification,
+        errorNotification,
+        liveMode,
+        onLiveEvent,
+        liveParams,
+        metaData,
+        action: actionFromParams,
+    });
 
-    const { id: idFromRoute, action: actionFromRoute } =
-        useParams<ResourceRouterParams>();
-    const [editId, setEditId] = React.useState<string | undefined>(idFromRoute);
+    // const { useParams } = useRouterContext();
 
-    const action = actionFromParams ?? actionFromRoute;
+    // const { id: idFromRoute, action: actionFromRoute } =
+    //     useParams<ResourceRouterParams>();
+    // const [editId, setEditId] = React.useState<string | undefined>(idFromRoute);
+
+    // const action = actionFromParams ?? actionFromRoute;
 
     const [formAnt] = Form.useForm();
     const formSF = useFormSF<TData, TVariables>({
@@ -127,23 +153,23 @@ export const useEditForm = <
     const warnWhenUnsavedChanges =
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesContext;
 
-    const { mutationMode: mutationModeContext } = useMutationMode();
+    // const { mutationMode: mutationModeContext } = useMutationMode();
 
-    const mutationMode = mutationModeProp ?? mutationModeContext;
+    // const mutationMode = mutationModeProp ?? mutationModeContext;
 
-    const isEdit = editId !== undefined && action === "edit";
+    // const isEdit = editId !== undefined && action === "edit";
 
-    const queryResult = useOne<TData>({
-        resource: resource.name,
-        id: editId ?? "",
-        queryOptions: {
-            enabled: isEdit,
-        },
-        liveMode,
-        onLiveEvent,
-        liveParams,
-        metaData,
-    });
+    // const queryResult = useOne<TData>({
+    //     resource: resource.name,
+    //     id: editId ?? "",
+    //     queryOptions: {
+    //         enabled: isEdit,
+    //     },
+    //     liveMode,
+    //     onLiveEvent,
+    //     liveParams,
+    //     metaData,
+    // });
 
     const { data, isFetching } = queryResult;
 
@@ -156,63 +182,63 @@ export const useEditForm = <
         };
     }, [data, editId, isFetching]);
 
-    const mutationResult = useUpdate<TData, TError, TVariables>();
+    // const mutationResult = useUpdate<TData, TError, TVariables>();
 
-    const { mutate, isLoading: isLoadingMutation } = mutationResult;
+    // const { mutate, isLoading: isLoadingMutation } = mutationResult;
 
-    const formLoading = isFetching || isLoadingMutation;
+    // const formLoading = isFetching || isLoadingMutation;
 
-    const handleSubmitWithRedirect = useRedirectionAfterSubmission();
+    // const handleSubmitWithRedirect = useRedirectionAfterSubmission();
 
-    const onFinish = async (values: TVariables) => {
-        setWarnWhen(false);
+    // const onFinish = async (values: TVariables) => {
+    //     setWarnWhen(false);
 
-        // Required to make onSuccess vs callbacks to work if component unmounts i.e. on route change
-        setTimeout(() => {
-            mutate(
-                {
-                    id: editId ?? "",
-                    values,
-                    resource: resource.name,
-                    mutationMode,
-                    undoableTimeout,
-                    successNotification,
-                    errorNotification,
-                    metaData,
-                },
-                {
-                    onSuccess: (data, _, context) => {
-                        if (onMutationSuccess) {
-                            return onMutationSuccess(data, values, context);
-                        }
+    //     // Required to make onSuccess vs callbacks to work if component unmounts i.e. on route change
+    //     setTimeout(() => {
+    //         mutate(
+    //             {
+    //                 id: editId ?? "",
+    //                 values,
+    //                 resource: resource.name,
+    //                 mutationMode,
+    //                 undoableTimeout,
+    //                 successNotification,
+    //                 errorNotification,
+    //                 metaData,
+    //             },
+    //             {
+    //                 onSuccess: (data, _, context) => {
+    //                     if (onMutationSuccess) {
+    //                         return onMutationSuccess(data, values, context);
+    //                     }
 
-                        if (mutationMode === "pessimistic") {
-                            setEditId(undefined);
-                            handleSubmitWithRedirect({
-                                redirect,
-                                resource,
-                                id: editId,
-                            });
-                        }
-                    },
-                    onError: (error: TError, variables, context) => {
-                        if (onMutationError) {
-                            return onMutationError(error, values, context);
-                        }
-                    },
-                },
-            );
-        });
+    //                     if (mutationMode === "pessimistic") {
+    //                         setEditId(undefined);
+    //                         handleSubmitWithRedirect({
+    //                             redirect,
+    //                             resource,
+    //                             id: editId,
+    //                         });
+    //                     }
+    //                 },
+    //                 onError: (error: TError, variables, context) => {
+    //                     if (onMutationError) {
+    //                         return onMutationError(error, values, context);
+    //                     }
+    //                 },
+    //             },
+    //         );
+    //     });
 
-        if (!(mutationMode === "pessimistic")) {
-            setEditId(undefined);
-            handleSubmitWithRedirect({
-                redirect,
-                resource,
-                id: editId,
-            });
-        }
-    };
+    //     if (!(mutationMode === "pessimistic")) {
+    //         setEditId(undefined);
+    //         handleSubmitWithRedirect({
+    //             redirect,
+    //             resource,
+    //             id: editId,
+    //         });
+    //     }
+    // };
 
     const onKeyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
         if (submitOnEnter && event.key === "Enter") {
