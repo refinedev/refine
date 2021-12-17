@@ -11,20 +11,18 @@ import { IPost } from "interfaces";
 
 const { Title, Text } = Typography;
 
-const metaData = {
-    fields: [
-        "id",
-        "title",
-        {
-            category: ["title"],
-        },
-        "content",
-    ],
-};
-
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>({
-        metaData,
+        metaData: {
+            fields: [
+                "id",
+                "title",
+                {
+                    category: ["title"],
+                },
+                "content",
+            ],
+        },
     });
     const { data, isLoading } = queryResult;
     const record = data?.data;
@@ -32,7 +30,9 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
     return (
         <Show
             isLoading={isLoading}
-            pageHeaderProps={{ extra: <RefreshButton metaData={metaData} /> }}
+            pageHeaderProps={{
+                extra: <RefreshButton onClick={() => queryResult.refetch()} />,
+            }}
         >
             <Title level={5}>Id</Title>
             <Text>{record?.id}</Text>
