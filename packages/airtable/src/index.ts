@@ -37,20 +37,20 @@ const generateFilter = (filters?: CrudFilters): string | undefined => {
                     return [mappedOperator as string, { field }, value];
                 }
 
-                if (["contains", "ncontains"].includes(operator)) {
-                    const mappedOperator = {
-                        contains: "!=",
-                        ncontains: "=",
-                    }[operator as "contains" | "ncontains"];
-
-                    return [mappedOperator, ["FIND", value, { field }], 0];
-                }
-
                 if (["containss", "ncontainss"].includes(operator)) {
                     const mappedOperator = {
                         containss: "!=",
                         ncontainss: "=",
                     }[operator as "containss" | "ncontainss"];
+
+                    return [mappedOperator, ["FIND", value, { field }], 0];
+                }
+
+                if (["contains", "ncontains"].includes(operator)) {
+                    const mappedOperator = {
+                        contains: "!=",
+                        ncontains: "=",
+                    }[operator as "contains" | "ncontains"];
 
                     const find = [
                         "FIND",

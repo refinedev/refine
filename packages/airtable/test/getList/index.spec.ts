@@ -196,7 +196,7 @@ describe("getList", () => {
 
     it("correct contains filter", async () => {
         const filter = {
-            operator: "contains",
+            operator: "containss",
             field: "title",
             value: "Hello",
         } as const;
@@ -216,7 +216,7 @@ describe("getList", () => {
 
     it("correct not contains filter", async () => {
         const filter = {
-            operator: "ncontains",
+            operator: "ncontainss",
             field: "title",
             value: "Hello",
         } as const;
@@ -236,9 +236,9 @@ describe("getList", () => {
 
     it("correct case-insensitive contains filter", async () => {
         const filter = {
-            operator: "containss",
+            operator: "contains",
             field: "title",
-            value: "hello",
+            value: "Hello",
         } as const;
 
         const response = await dataProvider(
@@ -252,15 +252,15 @@ describe("getList", () => {
         expect(response.total).toBe(1);
         // must find lower-cased string in lower-cased {field} - lower-casing both values makes it case-insensitive
         expect(response.data[0]["query"]).toBe(
-            'AND(FIND(LOWER("hello"),LOWER({title}))!=0)',
+            'AND(FIND(LOWER("Hello"),LOWER({title}))!=0)',
         );
     });
 
     it("correct case-insensitive not contains filter", async () => {
         const filter = {
-            operator: "ncontainss",
+            operator: "ncontains",
             field: "title",
-            value: "hello",
+            value: "Hello",
         } as const;
 
         const response = await dataProvider(
@@ -274,7 +274,7 @@ describe("getList", () => {
         expect(response.total).toBe(1);
         // must not find lower-cased string in lower-cased {field} - lower-casing both values makes it case-insensitive
         expect(response.data[0]["query"]).toBe(
-            'AND(FIND(LOWER("hello"),LOWER({title}))=0)',
+            'AND(FIND(LOWER("Hello"),LOWER({title}))=0)',
         );
     });
 
