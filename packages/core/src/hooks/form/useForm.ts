@@ -65,6 +65,7 @@ export type UseFormReturnType<
     formLoading: boolean;
     setCloneId?: Dispatch<SetStateAction<string | undefined>>;
     cloneId?: string;
+    onFinish: (values: TVariables) => Promise<void>;
 };
 
 /**

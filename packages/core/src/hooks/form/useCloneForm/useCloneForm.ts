@@ -42,6 +42,7 @@ export type useCloneForm<
     queryResult: QueryObserverResult<GetOneResponse<TData>>;
     setCloneId?: Dispatch<SetStateAction<string | undefined>>;
     cloneId?: string;
+    onFinish: (values: TVariables) => Promise<void>;
 };
 
 /**

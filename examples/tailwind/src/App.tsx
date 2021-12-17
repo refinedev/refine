@@ -24,6 +24,7 @@ const App: React.FC = () => {
                     canDelete: true,
                 },
             ]}
+            warnWhenUnsavedChanges={true}
         />
     );
 };

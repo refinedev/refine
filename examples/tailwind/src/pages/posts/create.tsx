@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     Create,
-    Form,
-    Input,
     IResourceComponentsProps,
-    Select,
     useSelect,
-    useForm,
+    useWarnAboutChange,
+    useForm as useFormCore,
 } from "@pankod/refine-core";
+import { useForm, Controller } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
@@ -17,89 +17,161 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "interfaces";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
-    // const { formProps, saveButtonProps } = useForm<IPost>({
-    //     // warnWhenUnsavedChanges: true,
-    // });
+    const { warnWhenUnsavedChanges, setWarnWhen } = useWarnAboutChange();
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    const { queryResult } = useSelect<ICategory>({
         resource: "categories",
     });
+
+    const {
+        register,
+        handleSubmit,
+        reset,
+        control,
+        watch,
+        formState: { errors },
+    } = useForm();
+
+    const { formLoading, onFinish } = useFormCore<IPost>({
+        redirect: false,
+        warnWhenUnsavedChanges: true,
+        onMutationSuccess: () => {
+            reset();
+        },
+    });
+
+    useEffect(() => {
+        const subscription = watch((values) => onValuesChange(values));
+        console.log({ subscription });
+        return () => subscription.unsubscribe();
+    }, [watch]);
 
     const [selectedTab, setSelectedTab] =
         useState<"write" | "preview">("write");
 
+    const onValuesChange = (changeValues: object) => {
+        console.log("changeValues", changeValues);
+
+        if (Object.keys(changeValues).length !== 0 && warnWhenUnsavedChanges) {
+            console.log("true");
+            setWarnWhen(true);
+        }
+        return changeValues;
+    };
+
     return (
-        <Create>
-            <h1 className="text-5xl font-bold underline red">Hello world!</h1>
-            {/* <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
+        <Create
+            saveButtonProps={{
+                onClick: handleSubmit(onFinish),
+                loading: formLoading,
+            }}
+        >
+            <form onSubmit={handleSubmit(onFinish)}>
+                <label
+                    htmlFor="title"
+                    className="inline-block mb-2 text-gray-700 font-bold"
+                >
+                    Title
+                </label>
+                <input
+                    id="title"
+                    type="text"
+                    className="w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
+                    {...register("title", { required: "Title is required" })}
+                />
+                <ErrorMessage
+                    errors={errors}
                     name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
+                    render={({ message }) => (
+                        <p className="text-red-500">{message}</p>
+                    )}
+                />
+
+                <label
+                    htmlFor="category"
+                    className="inline-block mb-2 text-gray-700 font-bold mt-4"
                 >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name={["category", "id"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
+                    Category
+                </label>
+                {!queryResult.isLoading && (
+                    <select
+                        id="category"
+                        className="appearance-none w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
+                        aria-label="Category select"
+                        {...register("category.id", {
+                            required: "Category is required",
+                            valueAsNumber: true,
+                        })}
+                    >
+                        {queryResult.data?.data.map((category) => (
+                            <option key={category.id} value={category.id}>
+                                {category.title}
+                            </option>
+                        ))}
+                    </select>
+                )}
+                <ErrorMessage
+                    errors={errors}
+                    name="category"
+                    render={({ message }) => (
+                        <p className="text-red-500">{message}</p>
+                    )}
+                />
+
+                <label
+                    htmlFor="status"
+                    className="inline-block mb-2 text-gray-700 font-bold mt-4"
                 >
-                    <Select {...categorySelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label="Status"
+                    Status
+                </label>
+                <select
+                    id="status"
+                    className="appearance-none w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
+                    aria-label="Status select"
+                    {...register("status", { required: "Status is required" })}
+                >
+                    <option value="published">Published</option>
+                    <option value="draft">Draft</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+                <ErrorMessage
+                    errors={errors}
                     name="status"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select
-                        options={[
-                            {
-                                label: "Published",
-                                value: "published",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
-                            },
-                            {
-                                label: "Rejected",
-                                value: "rejected",
-                            },
-                        ]}
-                    />
-                </Form.Item>
-                <Form.Item
-                    label="Content"
+                    render={({ message }) => (
+                        <p className="text-red-500">{message}</p>
+                    )}
+                />
+
+                <label className="inline-block mb-2 text-gray-700 font-bold mt-4">
+                    Content
+                </label>
+                <Controller
+                    control={control}
                     name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <ReactMde
-                        selectedTab={selectedTab}
-                        onTabChange={setSelectedTab}
-                        generateMarkdownPreview={(markdown) =>
-                            Promise.resolve(
-                                <ReactMarkdown>{markdown}</ReactMarkdown>,
-                            )
-                        }
-                    />
-                </Form.Item>
-            </Form> */}
+                    defaultValue=""
+                    rules={{ required: "Content is required" }}
+                    render={({ field: { onChange, value } }) => (
+                        <ReactMde
+                            value={value}
+                            onChange={onChange}
+                            selectedTab={selectedTab}
+                            onTabChange={setSelectedTab}
+                            generateMarkdownPreview={(markdown) =>
+                                Promise.resolve(
+                                    <ReactMarkdown>{markdown}</ReactMarkdown>,
+                                )
+                            }
+                        />
+                    )}
+                />
+                <ErrorMessage
+                    errors={errors}
+                    name="content"
+                    render={({ message }) => (
+                        <p className="text-red-500">{message}</p>
+                    )}
+                />
+            </form>
         </Create>
     );
 };
