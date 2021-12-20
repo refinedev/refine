@@ -33,7 +33,6 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     } = useForm();
 
     const { formLoading, onFinish } = useFormCore<IPost>({
-        redirect: false,
         warnWhenUnsavedChanges: true,
         onMutationSuccess: () => {
             reset();
@@ -42,18 +41,19 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
 
     useEffect(() => {
         const subscription = watch((values) => onValuesChange(values));
-        console.log({ subscription });
         return () => subscription.unsubscribe();
     }, [watch]);
 
     const [selectedTab, setSelectedTab] =
         useState<"write" | "preview">("write");
 
-    const onValuesChange = (changeValues: object) => {
-        console.log("changeValues", changeValues);
-
-        if (Object.keys(changeValues).length !== 0 && warnWhenUnsavedChanges) {
-            console.log("true");
+    const onValuesChange = (changeValues: Record<string, any>) => {
+        if (
+            Object.keys(changeValues).filter(
+                (key) => changeValues[key] !== undefined,
+            ).length !== 0 &&
+            warnWhenUnsavedChanges
+        ) {
             setWarnWhen(true);
         }
         return changeValues;
@@ -150,9 +150,9 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                     name="content"
                     defaultValue=""
                     rules={{ required: "Content is required" }}
-                    render={({ field: { onChange, value } }) => (
+                    render={({ field: { onChange, ref } }) => (
                         <ReactMde
-                            value={value}
+                            ref={ref}
                             onChange={onChange}
                             selectedTab={selectedTab}
                             onTabChange={setSelectedTab}
