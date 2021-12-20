@@ -49,6 +49,8 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
 
     const onValuesChange = (changeValues: Record<string, any>) => {
         if (
+            // on reset, only the input with controller is returned with undefined value.
+            // this shouldn't be counted as change.
             Object.keys(changeValues).filter(
                 (key) => changeValues[key] !== undefined,
             ).length !== 0 &&
