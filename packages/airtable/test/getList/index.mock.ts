@@ -1,4 +1,65 @@
 import nock from "nock";
+import url from "url";
+
+const commonHeaders = [
+    "access-control-allow-headers",
+    "authorization,content-length,content-type,user-agent,x-airtable-application-id,x-airtable-user-agent,x-api-version,x-requested-with",
+    "access-control-allow-methods",
+    "DELETE,GET,OPTIONS,PATCH,POST,PUT",
+    "access-control-allow-origin",
+    "*",
+    "airtable-uncompressed-content-length",
+    "380",
+    "Content-Type",
+    "application/json; charset=utf-8",
+    "Date",
+    "Thu, 24 Jun 2021 12:24:32 GMT",
+    "Server",
+    "Tengine",
+    "Set-Cookie",
+    "brw=brwHislGvzT3Ws3Yf; path=/; expires=Fri, 24 Jun 2022 12:24:32 GMT; domain=.airtable.com; samesite=none; secure",
+    "Strict-Transport-Security",
+    "max-age=31536000; includeSubDomains; preload",
+    "Vary",
+    "Accept-Encoding",
+    "X-Content-Type-Options",
+    "nosniff",
+    "X-Frame-Options",
+    "DENY",
+    "Content-Length",
+    "233",
+    "Connection",
+    "Close",
+];
+
+nock("https://api.airtable.com:443", { encodedQueryParams: true })
+    .persist()
+    .get("/v0/appKYl1H4k9g73sBT/posts")
+    .query((query) => {
+        if (query.pageSize !== "100") return false;
+        if (query.filterByFormula === undefined) return false;
+
+        return true;
+    })
+    .reply(
+        200,
+        function () {
+            const parsed = new url.URL(this.req.path, "http://example.com");
+            const query = parsed.searchParams.get("filterByFormula");
+
+            return JSON.stringify({
+                offset: 0,
+                records: [
+                    {
+                        fields: {
+                            query,
+                        },
+                    },
+                ],
+            });
+        },
+        commonHeaders,
+    );
 
 nock("https://api.airtable.com:443", { encodedQueryParams: true })
     .get("/v0/appKYl1H4k9g73sBT/posts")
