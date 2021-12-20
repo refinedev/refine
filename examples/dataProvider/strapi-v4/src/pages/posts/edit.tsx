@@ -33,6 +33,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
 
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
+        defaultValue: queryResult?.data?.data?.category?.data?.id,
         metaData: { locale: queryResult?.data?.data.locale },
     });
 
