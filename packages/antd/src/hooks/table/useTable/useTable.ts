@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-// import { Grid } from "antd";
-// import { useFormTable } from "sunflower-antd";
-// import { TablePaginationConfig, TableProps } from "antd/lib/table";
-// import { FormProps } from "antd/lib/form";
+import { Grid } from "antd";
+import { useFormTable } from "sunflower-antd";
+import { TablePaginationConfig, TableProps } from "antd/lib/table";
+import { FormProps } from "antd/lib/form";
 import { QueryObserverResult, UseQueryOptions } from "react-query";
 
-// import { useForm } from "antd/lib/form/Form";
-// import { SorterResult } from "antd/lib/table/interface";
+import { useForm } from "antd/lib/form/Form";
+import { SorterResult } from "antd/lib/table/interface";
 
 import {
     useRouterContext,
@@ -15,17 +15,6 @@ import {
     useResourceWithRoute,
     useList,
     useLiveMode,
-} from "@hooks";
-import {
-    stringifyTableParams,
-    parseTableParams,
-    mapAntdSorterToCrudSorting,
-    mapAntdFilterToCrudFilter,
-    unionFilters,
-    setInitialFilters,
-} from "@definitions/table";
-
-import {
     ResourceRouterParams,
     BaseRecord,
     CrudFilters,
@@ -35,7 +24,16 @@ import {
     HttpError,
     MetaDataQuery,
     LiveModeProps,
-} from "../../../interfaces";
+} from "@pankod/refine-core";
+
+import {
+    stringifyTableParams,
+    parseTableParams,
+    mapAntdSorterToCrudSorting,
+    mapAntdFilterToCrudFilter,
+    unionFilters,
+    setInitialFilters,
+} from "@definitions/table";
 
 export type useTableProps<TData, TError, TSearchVariables = unknown> = {
     permanentFilter?: CrudFilters;
@@ -51,23 +49,15 @@ export type useTableProps<TData, TError, TSearchVariables = unknown> = {
 } & SuccessErrorNotification &
     LiveModeProps;
 
-type ReactSetState<T> = React.Dispatch<React.SetStateAction<T>>;
-
 export type useTableReturnType<
     TData extends BaseRecord = BaseRecord,
     TSearchVariables = unknown,
 > = {
-    // searchFormProps: FormProps<TSearchVariables>;
-    // tableProps: TableProps<TData>;
+    searchFormProps: FormProps<TSearchVariables>;
+    tableProps: TableProps<TData>;
     tableQueryResult: QueryObserverResult<GetListResponse<TData>>;
-    sorter: CrudSorting;
-    setSorter: ReactSetState<useTableReturnType["sorter"]>;
-    filters: CrudFilters;
-    setFilters: ReactSetState<useTableReturnType["filters"]>;
-    current: number;
-    setCurrent: ReactSetState<useTableReturnType["current"]>;
-    pageSize: number;
-    setPageSize: ReactSetState<useTableReturnType["pageSize"]>;
+    sorter?: CrudSorting;
+    filters?: CrudFilters;
 };
 
 /**
@@ -104,11 +94,11 @@ export const useTable = <
     TData,
     TSearchVariables
 > => {
-    // const breakpoint = Grid.useBreakpoint();
+    const breakpoint = Grid.useBreakpoint();
 
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
-    // const [form] = useForm<TSearchVariables>();
+    const [form] = useForm<TSearchVariables>();
 
     const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
 
@@ -136,10 +126,10 @@ export const useTable = <
         defaultFilter = parsedFilters.length ? parsedFilters : defaultFilter;
     }
 
-    // const { tableProps: tablePropsSunflower } = useFormTable({
-    //     defaultCurrent,
-    //     defaultPageSize,
-    // });
+    const { tableProps: tablePropsSunflower } = useFormTable({
+        defaultCurrent,
+        defaultPageSize,
+    });
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
@@ -152,19 +142,15 @@ export const useTable = <
     const [filters, setFilters] = useState<CrudFilters>(
         setInitialFilters(permanentFilter, defaultFilter ?? []),
     );
-    const [current, setCurrent] = useState<number>(defaultCurrent);
-    const [pageSize, setPageSize] = useState<number>(defaultPageSize);
 
     useEffect(() => {
         if (syncWithLocation) {
             const stringifyParams = stringifyTableParams({
                 pagination: {
-                    pageSize,
-                    current,
-                    // ...tablePropsSunflower.pagination,
-                    // current:
-                    //     tablePropsSunflower.pagination.current ??
-                    //     defaultCurrent,
+                    ...tablePropsSunflower.pagination,
+                    current:
+                        tablePropsSunflower.pagination.current ??
+                        defaultCurrent,
                 },
                 sorter,
                 filters,
@@ -175,28 +161,24 @@ export const useTable = <
         }
     }, [
         syncWithLocation,
-        current,
-        pageSize,
-        // tablePropsSunflower.pagination.current,
-        // tablePropsSunflower.pagination.pageSize,
+        tablePropsSunflower.pagination.current,
+        tablePropsSunflower.pagination.pageSize,
         sorter,
         filters,
     ]);
 
-    // const {
-    //     current: currentSF,
-    //     pageSize: pageSizeSF,
-    //     defaultCurrent: defaultCurrentSF,
-    // } = tablePropsSunflower.pagination;
+    const {
+        current: currentSF,
+        pageSize: pageSizeSF,
+        defaultCurrent: defaultCurrentSF,
+    } = tablePropsSunflower.pagination;
 
     const queryResult = useList<TData, TError>({
         resource: resource.name,
         config: {
             pagination: {
-                current,
-                pageSize,
-                // current: currentSF ?? defaultCurrentSF,
-                // pageSize: pageSizeSF,
+                current: currentSF ?? defaultCurrentSF,
+                pageSize: pageSizeSF,
             },
             filters: unionFilters(permanentFilter, [], filters),
             sort: sorter,
@@ -211,70 +193,64 @@ export const useTable = <
     });
     const { data, isFetching, isLoading } = queryResult;
 
-    // const onChange = (
-    //     pagination: TablePaginationConfig,
-    //     tableFilters: Record<
-    //         string,
-    //         (string | number | boolean) | (string | number | boolean)[] | null
-    //     >,
-    //     sorter: SorterResult<any> | SorterResult<any>[],
-    // ) => {
-    //     // Map Antd:Filter -> refine:CrudFilter
-    //     const crudFilters = mapAntdFilterToCrudFilter(tableFilters, filters);
+    const onChange = (
+        pagination: TablePaginationConfig,
+        tableFilters: Record<
+            string,
+            (string | number | boolean) | (string | number | boolean)[] | null
+        >,
+        sorter: SorterResult<any> | SorterResult<any>[],
+    ) => {
+        // Map Antd:Filter -> refine:CrudFilter
+        const crudFilters = mapAntdFilterToCrudFilter(tableFilters, filters);
 
-    //     setFilters((prevFilters) =>
-    //         unionFilters(permanentFilter, crudFilters, prevFilters),
-    //     );
+        setFilters((prevFilters) =>
+            unionFilters(permanentFilter, crudFilters, prevFilters),
+        );
 
-    //     // Map Antd:Sorter -> refine:CrudSorting
-    //     const crudSorting = mapAntdSorterToCrudSorting(sorter);
-    //     setSorter(crudSorting);
+        // Map Antd:Sorter -> refine:CrudSorting
+        const crudSorting = mapAntdSorterToCrudSorting(sorter);
+        setSorter(crudSorting);
 
-    //     tablePropsSunflower.onChange(pagination, filters, sorter);
-    // };
+        tablePropsSunflower.onChange(pagination, filters, sorter);
+    };
 
-    // const onFinish = async (value: TSearchVariables) => {
-    //     if (onSearch) {
-    //         const searchFilters = await onSearch(value);
-    //         setFilters((prevFilters) =>
-    //             unionFilters(permanentFilter, searchFilters, prevFilters),
-    //         );
+    const onFinish = async (value: TSearchVariables) => {
+        if (onSearch) {
+            const searchFilters = await onSearch(value);
+            setFilters((prevFilters) =>
+                unionFilters(permanentFilter, searchFilters, prevFilters),
+            );
 
-    //         tablePropsSunflower.onChange(
-    //             { ...tablePropsSunflower.pagination, current: 1 },
-    //             undefined,
-    //             undefined,
-    //         );
-    //     }
-    // };
+            tablePropsSunflower.onChange(
+                { ...tablePropsSunflower.pagination, current: 1 },
+                undefined,
+                undefined,
+            );
+        }
+    };
 
     return {
-        // searchFormProps: {
-        //     ...form,
-        //     onFinish,
-        // },
-        // tableProps: {
-        //     ...tablePropsSunflower,
-        //     dataSource: data?.data,
-        //     loading: liveMode ? isLoading : isFetching,
-        //     // loading: isFetching,
-        //     onChange,
-        //     pagination: {
-        //         ...tablePropsSunflower.pagination,
-        //         simple: !breakpoint.sm,
-        //         position: !breakpoint.sm ? ["bottomCenter"] : ["bottomRight"],
-        //         total: data?.total,
-        //     },
-        //     scroll: { x: true },
-        // },
+        searchFormProps: {
+            ...form,
+            onFinish,
+        },
+        tableProps: {
+            ...tablePropsSunflower,
+            dataSource: data?.data,
+            loading: liveMode ? isLoading : isFetching,
+            // loading: isFetching,
+            onChange,
+            pagination: {
+                ...tablePropsSunflower.pagination,
+                simple: !breakpoint.sm,
+                position: !breakpoint.sm ? ["bottomCenter"] : ["bottomRight"],
+                total: data?.total,
+            },
+            scroll: { x: true },
+        },
         tableQueryResult: queryResult,
         sorter,
-        setSorter,
         filters,
-        setFilters,
-        current,
-        setCurrent,
-        pageSize,
-        setPageSize,
     };
 };
