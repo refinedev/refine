@@ -177,7 +177,7 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
             await appwriteClient.database.deleteDocument(resource, id);
 
             return {
-                data: { $id: id },
+                data: { id },
             } as any;
         },
         deleteMany: async ({ resource, ids }) => {

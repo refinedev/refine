@@ -9,6 +9,6 @@ describe("deleteOne", () => {
             id: "61c1a17614a97",
         });
 
-        expect(data.$id).toEqual("61c1a17614a97");
+        expect(data.id).toEqual("61c1a17614a97");
     });
 });
