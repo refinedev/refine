@@ -108,7 +108,10 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
                 );
 
             return {
-                data,
+                data: data.map(({ $id, ...restData }: { $id: string }) => ({
+                    id: $id,
+                    ...restData,
+                })),
                 total,
             };
         },
