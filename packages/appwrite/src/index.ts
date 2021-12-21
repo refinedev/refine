@@ -63,9 +63,7 @@ export const getAppwriteFilters: GetAppwriteFiltersType = (filters) => {
             );
         }
 
-        appwriteFilters.push(
-            `${filter.field}${filter.operator}${filter.value}`,
-        );
+        appwriteFilters.push(`${filter.field}${operator}${filter.value}`);
     }
 
     return appwriteFilters;
