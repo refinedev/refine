@@ -16,7 +16,9 @@ describe("createMany", () => {
             ],
         });
 
-        expect(data[0]["title"]).toEqual("Test 1");
-        expect(data[1]["title"]).toEqual("Test 2");
+        expect(data[0].title).toEqual("Test 1");
+        expect(data[0].id).toBeTruthy();
+        expect(data[1].title).toEqual("Test 2");
+        expect(data[1].id).toBeTruthy();
     });
 });

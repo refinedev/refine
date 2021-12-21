@@ -157,7 +157,7 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
         createMany: async ({ resource, variables, metaData }) => {
             const data = await Promise.all(
                 variables.map((document) =>
-                    appwriteClient.database.createDocument(
+                    appwriteClient.database.createDocument<any>(
                         resource,
                         document as unknown as object,
                         metaData?.readPermissions ?? ["*"],
@@ -167,7 +167,10 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
             );
 
             return {
-                data,
+                data: data.map(({ $id, ...restData }) => ({
+                    id: $id,
+                    ...restData,
+                })),
             } as any;
         },
         deleteOne: async ({ resource, id }) => {
