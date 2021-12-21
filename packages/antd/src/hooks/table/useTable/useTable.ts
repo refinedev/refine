@@ -24,6 +24,7 @@ import {
     HttpError,
     MetaDataQuery,
     LiveModeProps,
+    useTable as useTableCore,
 } from "@pankod/refine-core";
 
 import {
@@ -33,7 +34,7 @@ import {
     mapAntdFilterToCrudFilter,
     unionFilters,
     setInitialFilters,
-} from "@definitions/table";
+} from "../../../definitions/table";
 
 export type useTableProps<TData, TError, TSearchVariables = unknown> = {
     permanentFilter?: CrudFilters;
@@ -68,7 +69,7 @@ export type useTableReturnType<
  * @see {@link https://refine.dev/docs/api-references/hooks/table/useTable} for more details.
  */
 
-const defaultPermanentFilter: CrudFilters = [];
+// const defaultPermanentFilter: CrudFilters = [];
 
 export const useTable = <
     TData extends BaseRecord = BaseRecord,
@@ -76,9 +77,9 @@ export const useTable = <
     TSearchVariables = unknown,
 >({
     onSearch,
-    permanentFilter = defaultPermanentFilter,
-    initialCurrent = 1,
-    initialPageSize = 10,
+    permanentFilter,
+    initialCurrent,
+    initialPageSize,
     initialSorter,
     initialFilter,
     syncWithLocation: syncWithLocationProp,
@@ -94,104 +95,132 @@ export const useTable = <
     TData,
     TSearchVariables
 > => {
+    const {
+        tableQueryResult,
+        current,
+        setCurrent,
+        pageSize,
+        setPageSize,
+        filters,
+        setFilters,
+        sorter,
+        setSorter,
+    } = useTableCore({
+        onSearch,
+        permanentFilter,
+        initialCurrent,
+        initialPageSize,
+        initialSorter,
+        initialFilter,
+        syncWithLocation: syncWithLocationProp,
+        resource: resourceFromProp,
+        successNotification,
+        errorNotification,
+        queryOptions,
+        liveMode: liveModeFromProp,
+        onLiveEvent,
+        liveParams,
+        metaData,
+    });
+
     const breakpoint = Grid.useBreakpoint();
 
-    const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
+    // const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
     const [form] = useForm<TSearchVariables>();
 
-    const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
+    // const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
 
     // disable syncWithLocation for custom resource tables
     // if (resourceFromProp) {
     //     syncWithLocation = false;
     // }
 
-    const { useLocation, useParams } = useRouterContext();
-    const { search } = useLocation();
+    // const { useLocation, useParams } = useRouterContext();
+    // const { search } = useLocation();
     const liveMode = useLiveMode(liveModeFromProp);
 
-    let defaultCurrent = initialCurrent;
-    let defaultPageSize = initialPageSize;
-    let defaultSorter = initialSorter;
-    let defaultFilter = initialFilter;
+    // let defaultCurrent = initialCurrent;
+    // let defaultPageSize = initialPageSize;
+    // let defaultSorter = initialSorter;
+    // let defaultFilter = initialFilter;
 
-    if (syncWithLocation) {
-        const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
-            parseTableParams(search);
+    // if (syncWithLocation) {
+    //     const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
+    //         parseTableParams(search);
 
-        defaultCurrent = parsedCurrent || defaultCurrent;
-        defaultPageSize = parsedPageSize || defaultPageSize;
-        defaultSorter = parsedSorter.length ? parsedSorter : defaultSorter;
-        defaultFilter = parsedFilters.length ? parsedFilters : defaultFilter;
-    }
+    //     defaultCurrent = parsedCurrent || defaultCurrent;
+    //     defaultPageSize = parsedPageSize || defaultPageSize;
+    //     defaultSorter = parsedSorter.length ? parsedSorter : defaultSorter;
+    //     defaultFilter = parsedFilters.length ? parsedFilters : defaultFilter;
+    // }
 
-    const { tableProps: tablePropsSunflower } = useFormTable({
-        defaultCurrent,
-        defaultPageSize,
-    });
+    // const { tableProps: tablePropsSunflower } = useFormTable({
+    //     defaultCurrent: current,
+    //     defaultPageSize: pageSize,
+    // });
 
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
+    // const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
-    const { push } = useNavigation();
-    const resourceWithRoute = useResourceWithRoute();
+    // const { push } = useNavigation();
+    // const resourceWithRoute = useResourceWithRoute();
 
-    const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
+    // const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
-    const [sorter, setSorter] = useState<CrudSorting>(defaultSorter || []);
-    const [filters, setFilters] = useState<CrudFilters>(
-        setInitialFilters(permanentFilter, defaultFilter ?? []),
-    );
+    // const [sorter, setSorter] = useState<CrudSorting>(defaultSorter || []);
+    // const [filters, setFilters] = useState<CrudFilters>(
+    //     setInitialFilters(permanentFilter, defaultFilter ?? []),
+    // );
 
-    useEffect(() => {
-        if (syncWithLocation) {
-            const stringifyParams = stringifyTableParams({
-                pagination: {
-                    ...tablePropsSunflower.pagination,
-                    current:
-                        tablePropsSunflower.pagination.current ??
-                        defaultCurrent,
-                },
-                sorter,
-                filters,
-            });
+    // useEffect(() => {
+    //     if (syncWithLocation) {
+    //         const stringifyParams = stringifyTableParams({
+    //             pagination: {
+    //                 ...tablePropsSunflower.pagination,
+    //                 current:
+    //                     tablePropsSunflower.pagination.current ??
+    //                     defaultCurrent,
+    //             },
+    //             sorter,
+    //             filters,
+    //         });
 
-            // Careful! This triggers render
-            return push(`/${resource.route}?${stringifyParams}`);
-        }
-    }, [
-        syncWithLocation,
-        tablePropsSunflower.pagination.current,
-        tablePropsSunflower.pagination.pageSize,
-        sorter,
-        filters,
-    ]);
+    //         // Careful! This triggers render
+    //         return push(`/${resource.route}?${stringifyParams}`);
+    //     }
+    // }, [
+    //     syncWithLocation,
+    //     tablePropsSunflower.pagination.current,
+    //     tablePropsSunflower.pagination.pageSize,
+    //     sorter,
+    //     filters,
+    // ]);
 
-    const {
-        current: currentSF,
-        pageSize: pageSizeSF,
-        defaultCurrent: defaultCurrentSF,
-    } = tablePropsSunflower.pagination;
+    // const {
+    //     current: currentSF,
+    //     pageSize: pageSizeSF,
+    //     defaultCurrent: defaultCurrentSF,
+    // } = tablePropsSunflower.pagination;
 
-    const queryResult = useList<TData, TError>({
-        resource: resource.name,
-        config: {
-            pagination: {
-                current: currentSF ?? defaultCurrentSF,
-                pageSize: pageSizeSF,
-            },
-            filters: unionFilters(permanentFilter, [], filters),
-            sort: sorter,
-        },
-        queryOptions,
-        successNotification,
-        errorNotification,
-        metaData,
-        liveMode,
-        liveParams,
-        onLiveEvent,
-    });
-    const { data, isFetching, isLoading } = queryResult;
+    // const queryResult = useList<TData, TError>({
+    //     resource: resource.name,
+    //     config: {
+    //         pagination: {
+    //             current: currentSF ?? defaultCurrentSF,
+    //             pageSize: pageSizeSF,
+    //         },
+    //         filters: unionFilters(permanentFilter, [], filters),
+    //         sort: sorter,
+    //     },
+    //     queryOptions,
+    //     successNotification,
+    //     errorNotification,
+    //     metaData,
+    //     liveMode,
+    //     liveParams,
+    //     onLiveEvent,
+    // });
+    const { data, isFetching, isLoading } = tableQueryResult;
 
     const onChange = (
         pagination: TablePaginationConfig,
@@ -212,7 +241,9 @@ export const useTable = <
         const crudSorting = mapAntdSorterToCrudSorting(sorter);
         setSorter(crudSorting);
 
-        tablePropsSunflower.onChange(pagination, filters, sorter);
+        // tablePropsSunflower.onChange(pagination, filters, sorter);
+        setCurrent(pagination.current);
+        setPageSize(pagination.pageSize);
     };
 
     const onFinish = async (value: TSearchVariables) => {
@@ -222,11 +253,12 @@ export const useTable = <
                 unionFilters(permanentFilter, searchFilters, prevFilters),
             );
 
-            tablePropsSunflower.onChange(
-                { ...tablePropsSunflower.pagination, current: 1 },
-                undefined,
-                undefined,
-            );
+            // tablePropsSunflower.onChange(
+            //     { ...tablePropsSunflower.pagination, current: 1 },
+            //     undefined,
+            //     undefined,
+            // );
+            setCurrent(1);
         }
     };
 
@@ -236,20 +268,24 @@ export const useTable = <
             onFinish,
         },
         tableProps: {
-            ...tablePropsSunflower,
+            // ...tablePropsSunflower,
             dataSource: data?.data,
             loading: liveMode ? isLoading : isFetching,
             // loading: isFetching,
             onChange,
             pagination: {
-                ...tablePropsSunflower.pagination,
+                // ...tablePropsSunflower.pagination,
+                pageSize,
+                current,
+                // defaultPageSize,
+                // defaultCurrent,
                 simple: !breakpoint.sm,
                 position: !breakpoint.sm ? ["bottomCenter"] : ["bottomRight"],
                 total: data?.total,
             },
             scroll: { x: true },
         },
-        tableQueryResult: queryResult,
+        tableQueryResult,
         sorter,
         filters,
     };

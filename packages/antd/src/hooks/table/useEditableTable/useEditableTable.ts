@@ -1,10 +1,10 @@
 import { useTable } from "@hooks";
 import { useTableProps } from "../useTable";
-import { BaseRecord, HttpError } from "../../../interfaces";
+import { BaseRecord, HttpError } from "@pankod/refine-core";
 import { useFormProps, UseFormReturnType } from "../../form/useForm";
 import { useTableReturnType } from "../useTable/useTable";
 import { useForm } from "../../form/useForm";
-import { ButtonProps } from "../../../components/antd";
+import { ButtonProps } from "@pankod/refine-core";
 
 export type useEditableTableReturnType<
     TData extends BaseRecord = BaseRecord,

@@ -8,7 +8,7 @@ import {
     CrudOperators,
     CrudSorting,
     CrudFilter,
-} from "../../interfaces";
+} from "@pankod/refine-core";
 import {
     SortOrder,
     TablePaginationConfig,
@@ -100,7 +100,7 @@ export const getDefaultSortOrder = (
     sorter?: CrudSorting,
 ): SortOrder | undefined => {
     if (!sorter) {
-        return;
+        return undefined;
     }
 
     const sortItem = sorter.find((item) => item.field === columnName);
@@ -109,7 +109,7 @@ export const getDefaultSortOrder = (
         return `${sortItem.order}end` as SortOrder;
     }
 
-    return;
+    return undefined;
 };
 
 export const getDefaultFilter = (

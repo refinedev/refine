@@ -2,7 +2,7 @@
 export {
     useModalFormFromSFReturnType,
     useStepsFormFromSFReturnType,
-} from "../../types/sunflower";
+} from "@pankod/refine-core";
 
 export type BaseRecord = {
     id?: string;
