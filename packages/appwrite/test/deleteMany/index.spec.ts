@@ -9,7 +9,7 @@ describe("deleteMany", () => {
             ids: ["61bb4c710fbbf", "61c0832765134"],
         });
 
-        expect(data[0].$id).toEqual("61bb4c710fbbf");
-        expect(data[1].$id).toEqual("61c0832765134");
+        expect(data[0].id).toEqual("61bb4c710fbbf");
+        expect(data[1].id).toEqual("61c0832765134");
     });
 });

@@ -189,7 +189,7 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
 
             return {
                 data: ids.map((id) => ({
-                    $id: id,
+                    id,
                 })),
             } as any;
         },
