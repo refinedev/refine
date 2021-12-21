@@ -139,15 +139,19 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
             } as any;
         },
         create: async ({ resource, variables, metaData }) => {
-            const data = await appwriteClient.database.createDocument(
-                resource,
-                variables as unknown as object,
-                metaData?.readPermissions ?? ["*"],
-                metaData?.writePermissions ?? ["*"],
-            );
+            const { $id, ...restData } =
+                await appwriteClient.database.createDocument(
+                    resource,
+                    variables as unknown as object,
+                    metaData?.readPermissions ?? ["*"],
+                    metaData?.writePermissions ?? ["*"],
+                );
 
             return {
-                data,
+                data: {
+                    id: $id,
+                    ...restData,
+                },
             } as any;
         },
         createMany: async ({ resource, variables, metaData }) => {

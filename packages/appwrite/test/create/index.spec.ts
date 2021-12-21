@@ -15,6 +15,9 @@ describe("create", () => {
             },
         });
 
-        expect(data["title"]).toEqual("Lorem ipsum dolor");
+        console.log(data);
+
+        expect(data.title).toEqual("Lorem ipsum dolor");
+        expect(data.id).toBeTruthy();
     });
 });
