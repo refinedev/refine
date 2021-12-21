@@ -1,11 +1,15 @@
 import nock from "nock";
 
 nock("http://localhost:80", { encodedQueryParams: true })
-    .post("/v1/account/sessions/anonymous", {})
+    .post("/v1/database/collections/6180e6efb14df/documents", {
+        data: { title: "Lorem ipsum dolor" },
+        read: ["*"],
+        write: ["*"],
+    })
     .reply(
         201,
         [
-            "1f8b0800000000000003558ec14ec3300c865f05451cb72a9e583bf5080289033b6ddcbbc483689d5d39eda042bc3b19899aee94f8fb93eff78fba7756d5aa04039be383c6b53e566aa1068ff23a0f0e6b5b9a10e077e704550d65052580ae560bd5095f9c4509cf1b621acf3c7895f1febf6106767c428ac875e1846a55c0a6d00504c2fe892dc694fdb6394ff77714ef387d34ad43ea7763778d5b779046c60967439c93651bf0dd0bf6e6734ab2130a3dd167fa70746388e466038b1767302f18e74769c8cec15b286d938a07ea654cdb2d971925cb9e4ec45f74e58348a855752f03fefe01fe62e3caa6010000",
+            "1f8b08000000000000032d8d410ac2301405af521e5d4916a66a919ec11b880b4d5ee143e22f3f1117a577378acb816166452f1113461f7ce089c38103e1d02fb42ca5883e0ba615c67bd3aed8e1e6f036a9fcd3e650a5a686b8a83177b29457eea226b56f27684a0cb5757e97f39e23e7873fc619db077e3051457d000000",
         ],
         [
             "Access-Control-Allow-Credentials",
@@ -21,31 +25,19 @@ nock("http://localhost:80", { encodedQueryParams: true })
             "Content-Encoding",
             "gzip",
             "Content-Length",
-            "239",
+            "127",
             "Content-Type",
             "application/json; charset=UTF-8",
             "Date",
-            "Tue, 21 Dec 2021 08:24:32 GMT",
+            "Tue, 21 Dec 2021 12:53:50 GMT",
             "Server",
             "Appwrite",
-            "Set-Cookie",
-            "a_session_6180e3c470b7f_legacy=eyJpZCI6IjYxYzE4ZjQwYjVkNmMiLCJzZWNyZXQiOiIwMDZmM2E2ODVlOWNiMzIzMWMyY2VlM2RlNjAxODY0OWViZjBkMGY1OTM5NDAwN2I2NGQ4MGYwNDA0NjhmNjE0Y2RjOWY2ZjcxNWJiODQxNDZiYWU4NjY2NDQ0YWM4ZGJjNDRkZjNhMjBkZjQ2ZWNjYWUzYTcyOWFiODViNGUzYjk1MjdkZmIwMjc0ZGVjZjllNDljMWE2ZjhmY2U3OTE3ZGY0Y2E1MThmZTEwZTU0YzUyYjlhZjYwNDVmY2VlZmQxZTZlNzMwNTg5OTIyOTU3ODYxMGQ1ODJmMmMzNGUyNDljMTJmNDE4Y2I4ZjQzZmQyY2UyMTFlYjMzMjdlNjVmIn0%3D; expires=Wed, 21-Dec-2022 08:24:32 GMT; path=/; httponly",
-            "Set-Cookie",
-            "a_session_6180e3c470b7f=eyJpZCI6IjYxYzE4ZjQwYjVkNmMiLCJzZWNyZXQiOiIwMDZmM2E2ODVlOWNiMzIzMWMyY2VlM2RlNjAxODY0OWViZjBkMGY1OTM5NDAwN2I2NGQ4MGYwNDA0NjhmNjE0Y2RjOWY2ZjcxNWJiODQxNDZiYWU4NjY2NDQ0YWM4ZGJjNDRkZjNhMjBkZjQ2ZWNjYWUzYTcyOWFiODViNGUzYjk1MjdkZmIwMjc0ZGVjZjllNDljMWE2ZjhmY2U3OTE3ZGY0Y2E1MThmZTEwZTU0YzUyYjlhZjYwNDVmY2VlZmQxZTZlNzMwNTg5OTIyOTU3ODYxMGQ1ODJmMmMzNGUyNDljMTJmNDE4Y2I4ZjQzZmQyY2UyMTFlYjMzMjdlNjVmIn0%3D; expires=Wed, 21-Dec-2022 08:24:32 GMT; path=/; httponly; samesite=None",
             "X-Content-Type-Options",
             "nosniff",
             "X-Debug-Fallback",
             "true",
             "X-Debug-Speed",
-            "0.23521614074707",
-            "X-Fallback-Cookies",
-            '{"a_session_6180e3c470b7f":"eyJpZCI6IjYxYzE4ZjQwYjVkNmMiLCJzZWNyZXQiOiIwMDZmM2E2ODVlOWNiMzIzMWMyY2VlM2RlNjAxODY0OWViZjBkMGY1OTM5NDAwN2I2NGQ4MGYwNDA0NjhmNjE0Y2RjOWY2ZjcxNWJiODQxNDZiYWU4NjY2NDQ0YWM4ZGJjNDRkZjNhMjBkZjQ2ZWNjYWUzYTcyOWFiODViNGUzYjk1MjdkZmIwMjc0ZGVjZjllNDljMWE2ZjhmY2U3OTE3ZGY0Y2E1MThmZTEwZTU0YzUyYjlhZjYwNDVmY2VlZmQxZTZlNzMwNTg5OTIyOTU3ODYxMGQ1ODJmMmMzNGUyNDljMTJmNDE4Y2I4ZjQzZmQyY2UyMTFlYjMzMjdlNjVmIn0="}',
-            "X-Ratelimit-Limit",
-            "50",
-            "X-Ratelimit-Remaining",
-            "49",
-            "X-Ratelimit-Reset",
-            "1640077200",
+            "0.0068850517272949",
             "Connection",
             "close",
         ],
