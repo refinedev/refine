@@ -170,8 +170,11 @@ export const useEditForm = <
     const onFinish = async (values: TVariables) => {
         setWarnWhen(false);
 
+        console.log("onFinish");
+
         // Required to make onSuccess vs callbacks to work if component unmounts i.e. on route change
         setTimeout(() => {
+            console.log("mutate");
             mutate(
                 {
                     id: editId ?? "",
@@ -185,6 +188,7 @@ export const useEditForm = <
                 },
                 {
                     onSuccess: (data, _, context) => {
+                        console.log("onsuccess");
                         if (onMutationSuccess) {
                             return onMutationSuccess(data, values, context);
                         }

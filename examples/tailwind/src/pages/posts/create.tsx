@@ -30,17 +30,29 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
         control,
         watch,
         formState: { errors },
-    } = useForm();
+    } = useForm({
+        defaultValues: {
+            title: "",
+            "category.id": undefined,
+            status: "draft",
+            content: "",
+        },
+    });
 
     const { formLoading, onFinish } = useFormCore<IPost>({
         warnWhenUnsavedChanges: true,
+        redirect: false,
         onMutationSuccess: () => {
             reset();
         },
     });
 
     useEffect(() => {
-        const subscription = watch((values) => onValuesChange(values));
+        const subscription = watch((values, { type }) => {
+            if (type === "change") {
+                onValuesChange(values);
+            }
+        });
         return () => subscription.unsubscribe();
     }, [watch]);
 
@@ -48,14 +60,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
         useState<"write" | "preview">("write");
 
     const onValuesChange = (changeValues: Record<string, any>) => {
-        if (
-            // on reset, only the input with controller is returned with undefined value.
-            // this shouldn't be counted as change.
-            Object.keys(changeValues).filter(
-                (key) => changeValues[key] !== undefined,
-            ).length !== 0 &&
-            warnWhenUnsavedChanges
-        ) {
+        if (warnWhenUnsavedChanges) {
             setWarnWhen(true);
         }
         return changeValues;
@@ -150,11 +155,11 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                 <Controller
                     control={control}
                     name="content"
-                    defaultValue=""
                     rules={{ required: "Content is required" }}
-                    render={({ field: { onChange, ref } }) => (
+                    render={({ field: { onChange, ref, value } }) => (
                         <ReactMde
                             ref={ref}
+                            value={value}
                             onChange={onChange}
                             selectedTab={selectedTab}
                             onTabChange={setSelectedTab}

@@ -25,57 +25,64 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const {
         formLoading,
         onFinish,
+        editId,
         queryResult: queryResultForm,
     } = useFormCore<IPost>({
         warnWhenUnsavedChanges: true,
+        redirect: false,
+        onMutationSuccess: () => {
+            reset();
+        },
     });
 
-    const { queryResult, defaultValueQueryResult } = useSelect<ICategory>({
-        resource: "categories",
-        defaultValue: queryResultForm?.data?.data.category.id,
-    });
+    const { queryResult, defaultValueQueryResult, selectProps } =
+        useSelect<ICategory>({
+            resource: "categories",
+            defaultValue: queryResultForm?.data?.data.category.id,
+        });
 
     const {
         register,
         handleSubmit,
         control,
+        setValue,
         watch,
+        reset,
         formState: { errors },
     } = useForm();
 
-    // useEffect(() => {
-    //     (
-    //         ["title", "content", "status", "category.id"] as Array<keyof IPost>
-    //     ).forEach((item) => setValue(item, queryResultForm?.data?.data[item]));
-    //     // queryResultForm?.data?.data.forEach((item) => {
-
-    //     setValue("category", {id: 5})
-    //     // });
-    //     // return () => {
-    //     //     form.resetFields();
-    //     // };
-    // }, [queryResultForm?.data, editId, queryResultForm?.isFetching]);
+    const { data, isFetching } = queryResultForm ?? {};
 
     useEffect(() => {
-        const subscription = watch((values) => onValuesChange(values));
+        Object.entries(queryResultForm?.data?.data || {}).forEach(
+            ([key, value]) => {
+                setValue(key, value);
+            },
+        );
+        return () => {
+            reset();
+        };
+    }, [
+        /* queryResultForm?. */ data,
+        editId,
+        /* queryResultForm?. */ isFetching,
+    ]);
+
+    useEffect(() => {
+        const subscription = watch((values, { type }) => {
+            if (type === "change") {
+                onValuesChange(values);
+            }
+        });
         return () => subscription.unsubscribe();
     }, [watch]);
 
     const onValuesChange = (changeValues: Record<string, any>) => {
-        console.log(changeValues);
-        if (
-            // on reset, only the input with controller is returned with undefined value.
-            // this shouldn't be counted as change.
-            Object.keys(changeValues).filter(
-                (key) => changeValues[key] !== undefined,
-            ).length !== 0 &&
-            warnWhenUnsavedChanges
-        ) {
+        if (warnWhenUnsavedChanges) {
             setWarnWhen(true);
         }
         return changeValues;
     };
-    console.log(queryResultForm?.data?.data.category.id);
 
     return (
         <Edit
@@ -95,7 +102,6 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                     <input
                         id="title"
                         type="text"
-                        defaultValue={queryResultForm?.data?.data.title}
                         className="w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
                         {...register("title", {
                             required: "Title is required",
@@ -121,20 +127,17 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                                 id="category"
                                 className="appearance-none w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
                                 aria-label="Category select"
-                                defaultValue={
-                                    queryResultForm?.data?.data.category.id
-                                }
                                 {...register("category.id", {
                                     required: "Category is required",
                                     valueAsNumber: true,
                                 })}
                             >
-                                {queryResult.data?.data.map((category) => (
+                                {selectProps.options?.map((category) => (
                                     <option
-                                        key={category.id}
-                                        value={category.id}
+                                        key={category.value}
+                                        value={category.value}
                                     >
-                                        {category.title}
+                                        {category.label}
                                     </option>
                                 ))}
                             </select>
@@ -157,7 +160,6 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                         id="status"
                         className="appearance-none w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
                         aria-label="Status select"
-                        defaultValue={queryResultForm?.data?.data.status}
                         {...register("status", {
                             required: "Status is required",
                         })}
@@ -180,11 +182,11 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                     <Controller
                         control={control}
                         name="content"
-                        defaultValue={queryResultForm?.data?.data.content}
                         rules={{ required: "Content is required" }}
-                        render={({ field: { onChange, ref } }) => (
+                        render={({ field: { onChange, ref, value } }) => (
                             <ReactMde
                                 ref={ref}
+                                value={value}
                                 onChange={onChange}
                                 selectedTab={selectedTab}
                                 onTabChange={setSelectedTab}
