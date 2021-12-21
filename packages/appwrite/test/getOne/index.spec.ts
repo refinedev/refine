@@ -9,6 +9,6 @@ describe("useOne", () => {
             id: "61b9dd4a6261d",
         });
 
-        expect(data["$id"]).toEqual("61b9dd4a6261d");
+        expect(data.id).toEqual("61b9dd4a6261d");
     });
 });

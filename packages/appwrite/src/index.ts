@@ -116,13 +116,14 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
             };
         },
         getOne: async ({ resource, id }) => {
-            const data = await appwriteClient.database.getDocument(
-                resource,
-                id,
-            );
+            const { $id, ...restData } =
+                await appwriteClient.database.getDocument(resource, id);
 
             return {
-                data,
+                data: {
+                    id: $id,
+                    ...restData,
+                },
             } as any;
         },
         update: async ({ resource, id, variables, metaData }) => {
