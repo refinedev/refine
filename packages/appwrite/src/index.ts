@@ -166,24 +166,23 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
             } as any;
         },
         deleteOne: async ({ resource, id }) => {
-            const data = await appwriteClient.database.deleteDocument(
-                resource,
-                id,
-            );
+            await appwriteClient.database.deleteDocument(resource, id);
 
             return {
-                data,
+                data: { $id: id },
             } as any;
         },
         deleteMany: async ({ resource, ids }) => {
-            const data = await Promise.all(
+            await Promise.all(
                 ids.map((id) =>
                     appwriteClient.database.deleteDocument(resource, id),
                 ),
             );
 
             return {
-                data,
+                data: ids.map((id) => ({
+                    $id: id,
+                })),
             } as any;
         },
         getMany: async ({ resource, ids }) => {
