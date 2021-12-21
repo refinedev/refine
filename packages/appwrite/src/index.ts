@@ -196,12 +196,15 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
         getMany: async ({ resource, ids }) => {
             const data = await Promise.all(
                 ids.map((id) =>
-                    appwriteClient.database.getDocument(resource, id),
+                    appwriteClient.database.getDocument<any>(resource, id),
                 ),
             );
 
             return {
-                data,
+                data: data.map(({ $id, ...restData }) => ({
+                    id: $id,
+                    ...restData,
+                })),
             } as any;
         },
         updateMany: async ({ resource, ids, variables, metaData }) => {
