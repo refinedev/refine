@@ -215,7 +215,7 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
         updateMany: async ({ resource, ids, variables, metaData }) => {
             const data = await Promise.all(
                 ids.map((id) =>
-                    appwriteClient.database.updateDocument(
+                    appwriteClient.database.updateDocument<any>(
                         resource,
                         id,
                         variables as unknown as object,
@@ -226,7 +226,10 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
             );
 
             return {
-                data,
+                data: data.map(({ $id, ...restData }) => ({
+                    id: $id,
+                    ...restData,
+                })),
             } as any;
         },
         getApiUrl: () => {
