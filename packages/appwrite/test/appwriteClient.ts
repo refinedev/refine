@@ -1,5 +1,4 @@
 import { Appwrite } from "appwrite";
-import nock from "nock";
 
 const APPWRITE_URL = "http://localhost/v1";
 const APPWRITE_PROJECT = "6180e3c470b7f";
