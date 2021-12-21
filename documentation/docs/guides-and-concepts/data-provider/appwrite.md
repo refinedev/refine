@@ -17,6 +17,10 @@ import permission from '@site/static/img/guides-and-concepts/data-provider/appwr
 
 You can only focus on your UI as we can handle your data quickly and simply.
 
+:::caution
+This guide has been prepared assuming you know the basics of **refine**. If you haven't learned these basics yet, we recommend reading the [Tutorial](https://refine.dev/docs/).
+:::
+
 ## Setup
 ```bash
 npm install @pankod/refine-appwrite
@@ -38,16 +42,16 @@ const appwriteClient = new Appwrite();
 
 appwriteClient.setEndpoint(APPWRITE_URL).setProject(APPWRITE_PROJECT);
 
-export { appwriteClient };
+export appwriteClient;
 ```
 
 ### Authprovider
 ```tsx title="authProvider.ts"
 import { AuthProvider } from "@pankod/refine";
 
-import { appwriteClient } from "./appwriteClient";
+import appwriteClient from "./appwriteClient";
 
-const authProvider: AuthProvider = {
+export const authProvider: AuthProvider = {
     login: ({ email, password }) => {
         return appwriteClient.account.createSession(email, password);
     },
@@ -75,8 +79,6 @@ const authProvider: AuthProvider = {
         }
     },
 };
-
-export { authProvider };
 ```
 
 ```tsx title="App.tsx"
@@ -87,7 +89,7 @@ import { dataProvider } from "@pankod/refine-appwrite";
 import routerProvider from "@pankod/refine-react-router";
 
 //highlight-start
-import { appwriteClient } from "./appwriteClient";
+import appwriteClient from "./appwriteClient";
 import authProvider from "./authProvider";
 //highlight-end
 
@@ -152,6 +154,26 @@ Then we need to create an appwrite user to be able to login with **refine**.
 </div>
 
 <br/>
+
+### Permissions 
+In order to list posts and categories, you need to give read and write permission by Appwrite.
+
+Example: `Post Collection Permissons`
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={permission} alt="permission" />
+</div>
+<br/>
+
+We indicate that the read and write permission is open to everyone by giving the "*" parameter.
+
+[Refer to the Appwrite Permissions documentation for detailed information.→](https://appwrite.io/docs/permissions)
+
+[Check out how you can use permissions when creating posts with **refine** →](#create-page)
 
 ## Login page​
 **refine** default login screen allows you to login with username. Appwrite allows login with email, therefore we need to override the login page.
@@ -433,25 +455,6 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
 </p>
 </details>
 
-:::tip
-In order to list posts and categories, you need to give read and write permission by Appwrite.
-
-Example: `Post Collection Permissons`
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src={permission} alt="permission" />
-</div>
-<br/>
-
-We indicate that the read and write permission is open to everyone by giving the "*" parameter.
-
-[Refer to the Appwrite Permission documentation for detailed information.→](https://appwrite.io/docs/permissions)
-:::
-
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -462,7 +465,6 @@ We indicate that the read and write permission is open to everyone by giving the
 </div>
 
 <br/>
-
 
 ## Create Page
 We can now create posts and set categories from our **refine** UI.
