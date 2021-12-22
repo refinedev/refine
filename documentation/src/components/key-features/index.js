@@ -10,9 +10,9 @@ const backends = [
             alt: "nodejs",
         },
         {
-            src: "/icons/backends/java.png",
-            srcset: "/icons/backends/java@2x.png 768w",
-            alt: "java",
+            src: "/icons/backends/appwrite.png",
+            srcset: "/icons/backends/appwrite@2x.png 768w",
+            alt: "Appwrite",
         },
     ],
     [
@@ -67,12 +67,12 @@ const backends = [
         {
             src: "/icons/backends/graphql.png",
             srcset: "/icons/backends/graphql@2x.png 768w",
-            alt: "supabase",
+            alt: "GraphQL",
         },
         {
             src: "/icons/backends/altogic.png",
             srcset: "/icons/backends/altogic@2x.png 768w",
-            alt: "go",
+            alt: "altogic",
         },
     ],
 ];
@@ -144,6 +144,10 @@ const backendLinks = [
     {
         href: "https://hasura.io/",
         text: "Hasura",
+    },
+    {
+        href: "https://appwrite.io/",
+        text: "Appwrite",
     },
     {
         href: "https://altogic.com/",

@@ -209,7 +209,7 @@ export const useTable = <
         liveParams,
         onLiveEvent,
     });
-    const { data, isFetching, isLoading } = queryResult;
+    const { data, isFetched, isLoading } = queryResult;
 
     // const onChange = (
     //     pagination: TablePaginationConfig,

@@ -250,7 +250,7 @@ Let's add **/posts/** endpoint from our API as a `<Resource />`. First take a lo
 <details><summary>Show response</summary>
 <p>
 
-```ts title="GET https://refine-fake-rest.pankod.com/posts/"
+```ts title="GET https://api.fake-rest.refine.dev/posts/"
 [
   {
     "id": 1,

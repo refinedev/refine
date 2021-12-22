@@ -1,7 +1,7 @@
 {
   "name": "@pankod/refine-codemod",
   "description": "refine Codemod CLI. refine is a React-based framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
-  "version": "2.1.1",
+  "version": "2.4.11",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
