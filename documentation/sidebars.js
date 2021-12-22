@@ -246,6 +246,7 @@ module.exports = {
                     items: [
                         "guides-and-concepts/data-provider/graphql",
                         "guides-and-concepts/data-provider/strapi-v4",
+                        "guides-and-concepts/data-provider/appwrite",
                     ],
                 },
                 "guides-and-concepts/ssr-nextjs",
