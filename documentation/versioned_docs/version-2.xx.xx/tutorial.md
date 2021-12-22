@@ -168,10 +168,11 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 -   [GraphQL](https://github.com/pankod/refine/tree/master/packages/graphql)
 -   [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
 -   [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
--   [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi)
+-   [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/pankod/refine/tree/master/packages/strapi-v4)
 -   [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql)
 -   [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
 -   [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura)
+-   [Appwrite](https://github.com/pankod/refine/tree/master/packages/appwrite)
 -   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
 [Refer to the `dataProvider` documentation for detailed usage. &#8594](/api-references/providers/data-provider.md)
@@ -250,7 +251,7 @@ Let's add **/posts/** endpoint from our API as a resource. First take a look to 
 <details><summary>Show response</summary>
 <p>
 
-```ts title="GET https://refine-fake-rest.pankod.com/posts/"
+```ts title="GET https://api.fake-rest.refine.dev/posts/"
 [
   {
     "id": 1,

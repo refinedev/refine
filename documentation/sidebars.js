@@ -243,7 +243,11 @@ module.exports = {
                 {
                     type: "category",
                     label: "Data Provider",
-                    items: ["guides-and-concepts/data-provider/graphql"],
+                    items: [
+                        "guides-and-concepts/data-provider/graphql",
+                        "guides-and-concepts/data-provider/strapi-v4",
+                        "guides-and-concepts/data-provider/appwrite",
+                    ],
                 },
                 "guides-and-concepts/ssr-nextjs",
                 "guides-and-concepts/access-control",
@@ -321,6 +325,7 @@ module.exports = {
                     label: "Data Provider",
                     items: [
                         "examples/data-provider/strapi",
+                        "examples/data-provider/strapi-v4",
                         "examples/data-provider/strapi-graphql",
                         "examples/data-provider/hasura",
                         "examples/data-provider/nestjsxCrud",

@@ -56,7 +56,7 @@ export const RecentOrders: React.FC = () => {
                             xl: 132,
                             xxl: 144,
                         }}
-                        src={record.products[0].images[0].url}
+                        src={record?.products[0]?.images[0].url}
                     />
                 )}
             />
@@ -66,16 +66,16 @@ export const RecentOrders: React.FC = () => {
                 render={(_, record) => (
                     <div className="recent-orders-col__title">
                         <Text className="recent-orders-col__title--up" strong>
-                            {record.products[0].name}
+                            {record.products[0]?.name}
                         </Text>
                         <Paragraph
                             ellipsis={{
                                 rows: 2,
-                                tooltip: record.products[0].description,
+                                tooltip: record.products[0]?.description,
                                 symbol: <span>...</span>,
                             }}
                         >
-                            {record.products[0].description}
+                            {record.products[0]?.description}
                         </Paragraph>
 
                         <Text
