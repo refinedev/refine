@@ -257,7 +257,7 @@ export const liveProvider = (appwriteClient: Appwrite): LiveProvider => {
             let appwriteChannel;
 
             if (params?.ids) {
-                appwriteChannel = params?.ids?.map((id) => `documents.${id}`);
+                appwriteChannel = params.ids.map((id) => `documents.${id}`);
             } else {
                 appwriteChannel = `collections.${resource}.documents`;
             }
