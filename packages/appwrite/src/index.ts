@@ -56,6 +56,7 @@ export const getAppwriteFilters: GetAppwriteFiltersType = (filters) => {
 
     for (const filter of filters) {
         const operator = operators[filter.operator];
+        const filterField = filter.field === "id" ? "$id" : filter.field;
 
         if (!operator) {
             throw new Error(
@@ -63,7 +64,7 @@ export const getAppwriteFilters: GetAppwriteFiltersType = (filters) => {
             );
         }
 
-        appwriteFilters.push(`${filter.field}${operator}${filter.value}`);
+        appwriteFilters.push(`${filterField}${operator}${filter.value}`);
     }
 
     return appwriteFilters;
@@ -83,9 +84,12 @@ export const getAppwriteSorting: GetAppwriteSortingType = (sorting) => {
         );
     }
 
+    const orderField = sorting?.[0]?.field;
+    const orderType = sorting?.[0]?.order.toUpperCase();
+
     return {
-        orderField: sorting?.[0]?.field,
-        orderType: sorting?.[0]?.order.toUpperCase(),
+        orderField: orderField === "id" ? "$id" : orderField,
+        orderType,
     };
 };
 
