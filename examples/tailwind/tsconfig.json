@@ -22,6 +22,7 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
+    "src",
+    "react-table-config.d.ts"
   ]
 }
