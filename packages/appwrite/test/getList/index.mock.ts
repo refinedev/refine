@@ -6,7 +6,7 @@ nock("http://localhost:80", { encodedQueryParams: true })
     .reply(
         200,
         [
-            "1f8b0800000000000003b5934b8bdb3010c7bf4a117b2a762c594f074a294b29851e7b8b9720cb725641b68c2d67d986fdee1d3b5d9aa687eeaba0cb3c34f39f9f4647344e2d5ae709aa83995adbc511ad374774e56ab44682544a89a6aa0b5a2894a02b13bcb726bad02d51852da38437d4ca39dadba175e3085128724483d5506483dea39b04dd0d2eda5fd64382a28b1e4c14ed18e1aad1d1eec270fff5d455112239d1b4c26c0e862e82b0dfd9aed53b7ba9b3d096722324bdd4d94dde5f8adb80a269b93a9874ea7dd0754a042d98924a61c2704a39d4e974fb2872d5773bf04c8307c76d8cfdbacccacc07a3fd6d1863991d48998d310c20adcc1ae7ed5866275d1253808821c5d9bb8ffd10f620edc3428f1a2671251ba81ceffbb9d7325b999dba8dee07f808e558c00bc10466e140308658d4718251e0e13a8b1e92bf58d842e9376221cf581cd21947daeb18edd0a5bb8a1b2c7051c9ad60f83594281ca55e4c89f142f067436a1a9abf0e9222342f729e9eed0b239f0f5f5ca3e5f5b7d5f6d3f576b5ef5f4ac5925a59563f8bcabeb767cba3b8c2ffc072f30798a2ae9916b920f57ff9f1df617bd8d3bffc9cfeeed104a53f01bd61a5c1b1040000",
+            "1f8b0800000000000003bd93c14ec42010865fa5219e4cbb65806dbb9b18cf9ef5b6f54029ddc5d0d200d5e8c67777da3531ae1e5d0f1ce01f66bef9618e244c3dd9b294b44e4dbd1e6220dbdd915c99966c49018a530a503574dd90945c2967ad56d1b861512baa058775c77539aba3f6bd0901554c72245e4b4cb223d7e431252fde44fdb97b4f4934d1e2963ce810f1aa9251ef9d7fbd3b55ad00ca3548de50318b6e8808f6156d7ab9d73f39197208599d730e93b5e7703b249a96ab5e65d3689d6c3328048562232aa8369b0c38e619643f43de2baff590dc1f5c4c18659001cba04c644c80ad04acd67c350e7b8c9fbcc5f0438ce3b6ceebdc3a25edc18558e7cf50e7213a8fe075de19ab439d7fbaab58d156283f1bfd723b7af784e0378bb75c899236658799e3eb38932c9dd7f9a95a306f78068c97459112ec4f2d2e01a5a84519276c149f75d0e43dfde154d7749bbf718a95ffe4146b1563825ed6a9c733afa051b2d26d77b1df9fb0e4d70110bcd03877f2db00b49d0ca735937e00535f3cf1bd030000",
         ],
         [
             "Access-Control-Allow-Credentials",
@@ -22,11 +22,11 @@ nock("http://localhost:80", { encodedQueryParams: true })
             "Content-Encoding",
             "gzip",
             "Content-Length",
-            "449",
+            "394",
             "Content-Type",
             "application/json; charset=UTF-8",
             "Date",
-            "Tue, 21 Dec 2021 11:27:11 GMT",
+            "Wed, 22 Dec 2021 10:49:19 GMT",
             "Server",
             "Appwrite",
             "X-Content-Type-Options",
@@ -34,7 +34,7 @@ nock("http://localhost:80", { encodedQueryParams: true })
             "X-Debug-Fallback",
             "true",
             "X-Debug-Speed",
-            "0.0042209625244141",
+            "0.0042541027069092",
             "Connection",
             "close",
         ],
@@ -42,11 +42,11 @@ nock("http://localhost:80", { encodedQueryParams: true })
 
 nock("http://localhost:80", { encodedQueryParams: true })
     .get("/v1/database/collections/6180e4315f3e7/documents")
-    .query({ limit: "10", offset: "0", orderField: "id", orderType: "ASC" })
+    .query({ limit: "10", offset: "0", orderField: "%24id", orderType: "DESC" })
     .reply(
         200,
         [
-            "1f8b0800000000000003b5934b8bdb3010c7bf4a117b2a762c594f074a294b29851e7b8b9720cb725641b68c2d67d986fdee1d3b5d9aa687eeaba0cb3c34f39f9f4647344e2d5ae709aa83995adbc511ad374774e56ab44682544a89a6aa0b5a2894a02b13bcb726bad02d51852da38437d4ca39dadba175e3085128724483d5506483dea39b04dd0d2eda5fd64382a28b1e4c14ed18e1aad1d1eec270fff5d455112239d1b4c26c0e862e82b0dfd9aed53b7ba9b3d096722324bdd4d94dde5f8adb80a269b93a9874ea7dd0754a042d98924a61c2704a39d4e974fb2872d5773bf04c8307c76d8cfdbacccacc07a3fd6d1863991d48998d310c20adcc1ae7ed5866275d1253808821c5d9bb8ffd10f620edc3428f1a2671251ba81ceffbb9d7325b999dba8dee07f808e558c00bc10466e140308658d4718251e0e13a8b1e92bf58d842e9376221cf581cd21947daeb18edd0a5bb8a1b2c7051c9ad60f83594281ca55e4c89f142f067436a1a9abf0e9222342f729e9eed0b239f0f5f5ca3e5f5b7d5f6d3f576b5ef5f4ac5925a59563f8bcabeb767cba3b8c2ffc072f30798a2ae9916b920f57ff9f1df617bd8d3bffc9cfeeed104a53f01bd61a5c1b1040000",
+            "1f8b0800000000000003bd92c16ee32010865f251af5b4b2630688ed44aa7ade73f716f780314e586163016ed58dfaee3b767269bbc76d857cc0ff307c7c7081380f70e019745ecf83195384c3f10277b6830394a805c356abda743d6470a7bd734627ebc735ad99910277bd30d5924e260c36464aa9c9058251d4e4083fe02983976093b9cdde324836399ac22f13d386d362ad9239f9f0faf3ba6f8d284569ea96a925f46322344aba5ec5eb076fd93b4c8648d5bbf6cb30ff0959ed508996c97790b76a3ba893f9a49371e290aafec839cece7d843b12d1bc2e0d3a9f27e75597632919967b5963bddfe728a8cfa88605f2510763c6cde3d99352c631479e63b55169837c2b71bb13db693c51fd1c1c959f539a0e4dd114ce6be5ce3ea6a678c6a688c907026f8ade3a139be26657f3b2ab297eb6e6e5610afe3781dfaf6e8596156babe581a4d76921594fde14d7dda2fd43ff908baa2c33a0f3e9d51232465952698ecbbdfad17cba5132d5b7fdfeff98e2d53799e29de65cb2af35f544e32f95a51e46bc030000",
         ],
         [
             "Access-Control-Allow-Credentials",
@@ -62,11 +62,11 @@ nock("http://localhost:80", { encodedQueryParams: true })
             "Content-Encoding",
             "gzip",
             "Content-Length",
-            "449",
+            "394",
             "Content-Type",
             "application/json; charset=UTF-8",
             "Date",
-            "Tue, 21 Dec 2021 11:30:43 GMT",
+            "Wed, 22 Dec 2021 10:51:59 GMT",
             "Server",
             "Appwrite",
             "X-Content-Type-Options",
@@ -74,7 +74,7 @@ nock("http://localhost:80", { encodedQueryParams: true })
             "X-Debug-Fallback",
             "true",
             "X-Debug-Speed",
-            "0.0041501522064209",
+            "0.0047950744628906",
             "Connection",
             "close",
         ],
@@ -83,14 +83,14 @@ nock("http://localhost:80", { encodedQueryParams: true })
 nock("http://localhost:80", { encodedQueryParams: true })
     .get("/v1/database/collections/6180e4315f3e7/documents")
     .query({
-        "filters%5B0%5D": "categoryId%3D61811751a3b04",
+        "filters%5B0%5D": "%24id%3D61c300118b05b",
         limit: "10",
         offset: "0",
     })
     .reply(
         200,
         [
-            "1f8b0800000000000003358ecd0e823010845fc54c38991ea8fcca1b78f746389476354d80927689318477b7221ebf7c3b33bb222c231a29609c5e469a38a0695724d6a04129fbab31b92a2fa5341048b41b06d26cddb4db3aa53c93c523a3ea6b67f2a30d21da58b2c2938a252dcee8045ede321db409b0e52122ee14388f59ad989ecebf6fbfd95acaaa902aebd35dba89e367c7f9e98f5bb77d00d2dc9634bf000000",
+            "1f8b0800000000000003bd91414fc3300c85ffca647142ed1aa75ddb4d429c39c36de590a6e916943655e20ec1c47fc72b484870059493f39ce7cf2f6788f3003b4ca0f37a1ecc481176fb335cd90e7650a2ce8540ac5bb16921812bed9d339aac1f17b516a6c871d3e7a6baa89309838d9155363943308a4df6700d8f093c074be6b37a4b802c392ee1c144e2a75a9139f8f072f731b546ac36a8f2561417d18fc4605fdd765007f393533247a1eaef9ce3ecdc77b83d13cdcbd3a0d379725e75299685c0725bd4586fb729e6ec33aae10279af8331e3eafee8692585c414658ad54ad10ae5bac0f5265f4fe381fbe7e0b8fd4834ed9aacc99cd7ca1d7da4263b619345f281c19bacb7cec426fb4c57cbb2ab593e59f37c3b05ffc4e0374bb6b92e2ad1563d3bd3cb742159366fb28f69d1bef21dcabc2acb04783fbda48442b0468a665e94bf7534f096fc48aa6ffbedef2425ab7f4a4a765aca42fc6d528f7cde01fbf03daa15030000",
         ],
         [
             "Access-Control-Allow-Credentials",
@@ -106,11 +106,11 @@ nock("http://localhost:80", { encodedQueryParams: true })
             "Content-Encoding",
             "gzip",
             "Content-Length",
-            "164",
+            "363",
             "Content-Type",
             "application/json; charset=UTF-8",
             "Date",
-            "Tue, 21 Dec 2021 11:41:56 GMT",
+            "Wed, 22 Dec 2021 10:55:32 GMT",
             "Server",
             "Appwrite",
             "X-Content-Type-Options",
@@ -118,7 +118,7 @@ nock("http://localhost:80", { encodedQueryParams: true })
             "X-Debug-Fallback",
             "true",
             "X-Debug-Speed",
-            "0.004457950592041",
+            "0.0036900043487549",
             "Connection",
             "close",
         ],
