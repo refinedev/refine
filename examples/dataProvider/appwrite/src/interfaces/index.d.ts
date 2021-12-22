@@ -1,5 +1,5 @@
 export interface ICategory {
-    $id: string;
+    id: string;
     title: string;
 }
 
@@ -14,7 +14,7 @@ export interface IFile {
 }
 
 export interface IPost {
-    $id: string;
+    id: string;
     title: string;
     content: string;
     categoryId: string;

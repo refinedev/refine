@@ -25,7 +25,7 @@ export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "6180e6efb14df",
         optionLabel: "title",
-        optionValue: "$id",
+        optionValue: "id",
     });
 
     const [selectedTab, setSelectedTab] =
