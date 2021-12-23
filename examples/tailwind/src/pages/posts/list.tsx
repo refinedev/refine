@@ -1,15 +1,13 @@
 /* eslint-disable react/jsx-key */
-import React from "react";
+import React, { useEffect } from "react";
 import {
     List,
     useTable as useTableCore,
-    useSelect,
     useMany,
     ShowButton,
     EditButton,
-    Space,
 } from "@pankod/refine-core";
-import { useTable, usePagination, Column } from "react-table";
+import { useTable, usePagination, useSortBy, Column } from "react-table";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -20,6 +18,8 @@ export const PostList: React.FC = () => {
         setCurrent,
         pageSize: pageSizeCore,
         setPageSize: setPageSizeCore,
+        sorter,
+        setSorter,
     } = useTableCore<IPost>({
         syncWithLocation: true,
     });
@@ -95,23 +95,35 @@ export const PostList: React.FC = () => {
         nextPage,
         previousPage,
         setPageSize,
-        state: { pageIndex, pageSize },
+        state: { pageIndex, pageSize, sortBy },
     } = useTable(
         {
             columns,
             data: tableQueryResult.data?.data || [],
-            initialState: { pageIndex: current - 1, pageSize: pageSizeCore },
+            initialState: {
+                pageIndex: current - 1,
+                pageSize: pageSizeCore,
+                sortBy: sorter.map((sorting) => ({
+                    id: sorting.field,
+                    desc: sorting.order === "desc",
+                })),
+            },
             pageCount: Math.ceil((data?.total || 0) / pageSizeCore),
             manualPagination: true,
+            manualSortBy: true,
         },
+        useSortBy,
         usePagination,
     );
 
-    // const { selectProps: categorySelectProps } = useSelect<ICategory>({
-    //     resource: "categories",
-    //     optionLabel: "title",
-    //     optionValue: "id",
-    // });
+    useEffect(() => {
+        setSorter(
+            sortBy.map((sorting) => ({
+                field: sorting.id,
+                order: sorting.desc ? "desc" : "asc",
+            })),
+        );
+    }, [sortBy]);
 
     return (
         <List>
@@ -121,10 +133,19 @@ export const PostList: React.FC = () => {
                         <tr {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map((column) => (
                                 <th
-                                    {...column.getHeaderProps()}
+                                    {...column.getHeaderProps(
+                                        column.getSortByToggleProps(),
+                                    )}
                                     className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                                 >
                                     {column.render("Header")}
+                                    <span>
+                                        {column.isSorted
+                                            ? column.isSortedDesc
+                                                ? " 🔽"
+                                                : " 🔼"
+                                            : ""}
+                                    </span>
                                 </th>
                             ))}
                         </tr>
