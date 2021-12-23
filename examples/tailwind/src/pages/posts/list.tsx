@@ -5,32 +5,13 @@ import {
     useTable as useTableCore,
     useSelect,
     useMany,
+    ShowButton,
+    EditButton,
+    Space,
 } from "@pankod/refine-core";
 import { useTable, usePagination, Column } from "react-table";
 
 import { IPost, ICategory } from "interfaces";
-
-const columns: Array<Column> = [
-    {
-        Header: "ID",
-        accessor: "id",
-    },
-    {
-        Header: "Title",
-        accessor: "title",
-    },
-    {
-        Header: "Category",
-        accessor: "category.id",
-    },
-    {
-        Header: "Status",
-        accessor: "status",
-    },
-    {
-        Header: "Actions",
-    },
-];
 
 export const PostList: React.FC = () => {
     const {
@@ -44,6 +25,61 @@ export const PostList: React.FC = () => {
     });
 
     const { data } = tableQueryResult;
+
+    const categoryIds = data?.data.map((item) => item.category.id) ?? [];
+    const { data: categoryData } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    const columns: Array<Column> = React.useMemo(
+        () => [
+            {
+                id: "id",
+                Header: "ID",
+                accessor: "id",
+            },
+            {
+                Header: "Title",
+                accessor: "title",
+            },
+            {
+                Header: "Category",
+                accessor: "category.id",
+                Cell: ({ value }) =>
+                    categoryData?.data.find((category) => category.id === value)
+                        ?.title || "loading",
+            },
+            {
+                Header: "Status",
+                accessor: "status",
+            },
+            {
+                id: "actions",
+                Header: "Actions",
+                accessor: "id",
+                // eslint-disable-next-line react/display-name
+                Cell: ({ value }) => (
+                    <div className="flex gap-2">
+                        <EditButton
+                            hideText
+                            size="small"
+                            recordItemId={value}
+                        />
+                        <ShowButton
+                            hideText
+                            size="small"
+                            recordItemId={value}
+                        />
+                    </div>
+                ),
+            },
+        ],
+        [categoryData],
+    );
 
     const {
         getTableProps,
@@ -65,20 +101,11 @@ export const PostList: React.FC = () => {
             columns,
             data: tableQueryResult.data?.data || [],
             initialState: { pageIndex: current - 1, pageSize: pageSizeCore },
-            pageCount: (data?.total || 0) / pageSizeCore,
+            pageCount: Math.ceil((data?.total || 0) / pageSizeCore),
             manualPagination: true,
         },
         usePagination,
     );
-
-    const categoryIds = data?.data.map((item) => item.category.id) ?? [];
-    const { data: categoryData, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
 
     // const { selectProps: categorySelectProps } = useSelect<ICategory>({
     //     resource: "categories",
@@ -104,7 +131,7 @@ export const PostList: React.FC = () => {
                     ))}
                 </thead>
                 <tbody {...getTableBodyProps()}>
-                    {page.map((row, i) => {
+                    {page.map((row) => {
                         prepareRow(row);
                         return (
                             <tr
@@ -134,7 +161,7 @@ export const PostList: React.FC = () => {
                         setCurrent(1);
                     }}
                     disabled={!canPreviousPage}
-                    className="px-2.5 py-2.5 bg-transparent text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:text-blue-700 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:ring-0 active:bg-gray-300 transition duration-150 ease-in-out"
+                    className="px-2.5 py-2.5 bg-transparent text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:text-blue-700 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:ring-0 active:bg-gray-300 transition duration-150 ease-in-out disabled:opacity-60 disabled:cursor-default"
                 >
                     {"<<"}
                 </button>{" "}
@@ -144,7 +171,7 @@ export const PostList: React.FC = () => {
                         setCurrent((prev) => prev - 1);
                     }}
                     disabled={!canPreviousPage}
-                    className="px-2.5 py-2.5 bg-transparent text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:text-blue-700 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:ring-0 active:bg-gray-300 transition duration-150 ease-in-out"
+                    className="px-2.5 py-2.5 bg-transparent text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:text-blue-700 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:ring-0 active:bg-gray-300 transition duration-150 ease-in-out disabled:opacity-60 disabled:cursor-default"
                 >
                     {"<"}
                 </button>{" "}
@@ -154,7 +181,7 @@ export const PostList: React.FC = () => {
                         setCurrent((prev) => prev + 1);
                     }}
                     disabled={!canNextPage}
-                    className="px-2.5 py-2.5 bg-transparent text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:text-blue-700 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:ring-0 active:bg-gray-300 transition duration-150 ease-in-out"
+                    className="px-2.5 py-2.5 bg-transparent text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:text-blue-700 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:ring-0 active:bg-gray-300 transition duration-150 ease-in-out disabled:opacity-60 disabled:cursor-default"
                 >
                     {">"}
                 </button>{" "}
@@ -164,7 +191,7 @@ export const PostList: React.FC = () => {
                         setCurrent(pageCount);
                     }}
                     disabled={!canNextPage}
-                    className="px-2.5 py-2.5 bg-transparent text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:text-blue-700 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:ring-0 active:bg-gray-300 transition duration-150 ease-in-out"
+                    className="px-2.5 py-2.5 bg-transparent text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:text-blue-700 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:ring-0 active:bg-gray-300 transition duration-150 ease-in-out disabled:opacity-60 disabled:cursor-default"
                 >
                     {">>"}
                 </button>{" "}
