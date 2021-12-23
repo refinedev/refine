@@ -384,7 +384,7 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter } = useTable<IPost>({
         initialSorter: [
             {
-                field: "$id",
+                field: "id",
                 order: "asc",
             },
         ],
@@ -402,9 +402,9 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <List>
-            <Table {...tableProps} rowKey="$id">
+            <Table {...tableProps} rowKey="id">
                 <Table.Column
-                    dataIndex="$id"
+                    dataIndex="id"
                     title="ID"
                     sorter
                     defaultSortOrder={getDefaultSortOrder("id", sorter)}
@@ -421,9 +421,8 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
                         return (
                             <TextField
                                 value={
-                                    data?.data.find(
-                                        (item) => item.$id === value,
-                                    )?.title
+                                    data?.data.find((item) => item.id === value)
+                                        ?.title
                                 }
                             />
                         );
@@ -437,12 +436,12 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
                             <EditButton
                                 hideText
                                 size="small"
-                                recordItemId={record.$id}
+                                recordItemId={record.id}
                             />
                             <ShowButton
                                 hideText
                                 size="small"
-                                recordItemId={record.$id}
+                                recordItemId={record.id}
                             />
                         </Space>
                     )}
@@ -501,7 +500,7 @@ export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "61bc4afa9ee2c",
         optionLabel: "title",
-        optionValue: "$id",
+        optionValue: "id",
     });
 
     const [selectedTab, setSelectedTab] =
@@ -662,7 +661,7 @@ export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
         resource: "61bc4afa9ee2c",
         defaultValue: postData?.categoryId,
         optionLabel: "title",
-        optionValue: "$id",
+        optionValue: "id",
     });
 
     const [selectedTab, setSelectedTab] =
