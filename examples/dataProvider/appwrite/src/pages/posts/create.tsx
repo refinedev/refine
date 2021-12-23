@@ -23,7 +23,7 @@ export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "6180e6efb14df",
+        resource: "61c43adc284ac",
         optionLabel: "title",
         optionValue: "id",
     });

@@ -47,7 +47,7 @@ const App: React.FC = () => {
             LoginPage={Login}
             resources={[
                 {
-                    name: "6180e4315f3e7",
+                    name: "61c43ad33b857",
                     create: PostsCreate,
                     list: PostsList,
                     edit: PostsEdit,

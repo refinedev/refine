@@ -17,7 +17,7 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter } = useTable<IPost>({
         initialSorter: [
             {
-                field: "$id",
+                field: "id",
                 order: "asc",
             },
         ],
@@ -26,7 +26,7 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
     const { data, isLoading } = useMany<ICategory>({
-        resource: "6180e6efb14df",
+        resource: "61c43adc284ac",
         ids: categoryIds,
         queryOptions: {
             enabled: categoryIds.length > 0,

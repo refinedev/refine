@@ -20,7 +20,7 @@ export const PostsShow: React.FC<IResourceComponentsProps> = () => {
 
     const { data: categoryData, isLoading: categoryIsLoading } =
         useOne<ICategory>({
-            resource: "6180e6efb14df",
+            resource: "61c43adc284ac",
             id: record?.categoryId || "",
             queryOptions: {
                 enabled: !!record,

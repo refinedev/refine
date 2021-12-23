@@ -24,7 +24,7 @@ export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
 
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "6180e6efb14df",
+        resource: "61c43adc284ac",
         defaultValue: postData?.categoryId,
         optionLabel: "title",
         optionValue: "id",
