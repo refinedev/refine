@@ -7,7 +7,7 @@ import "@pankod/refine/dist/styles.min.css";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
 
-const API_TOKEN = "key5W68f62w8g6AQD";
+const API_TOKEN = "keyI18pnBeEMfPAIb";
 const BASE_ID = "appKYl1H4k9g73sBT";
 
 const App: React.FC = () => {
