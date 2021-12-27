@@ -6,10 +6,32 @@ import {
     useMany,
     ShowButton,
     EditButton,
+    CrudOperators,
 } from "@pankod/refine-core";
-import { useTable, usePagination, useSortBy, Column } from "react-table";
+import {
+    useTable,
+    usePagination,
+    useSortBy,
+    Column,
+    useFilters,
+    FilterProps,
+} from "react-table";
 
 import { IPost, ICategory } from "interfaces";
+
+const TextInput: React.FC<FilterProps<{}>> = ({
+    column: { filterValue, preFilteredRows, setFilter },
+}) => {
+    return (
+        <input
+            value={filterValue || ""}
+            onChange={(event) => setFilter(event.target.value || undefined)}
+            id="title"
+            type="text"
+            className="w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
+        />
+    );
+};
 
 export const PostList: React.FC = () => {
     const {
@@ -20,6 +42,8 @@ export const PostList: React.FC = () => {
         setPageSize: setPageSizeCore,
         sorter,
         setSorter,
+        filters: filtersCore,
+        setFilters,
     } = useTableCore<IPost>({
         syncWithLocation: true,
     });
@@ -41,21 +65,29 @@ export const PostList: React.FC = () => {
                 id: "id",
                 Header: "ID",
                 accessor: "id",
+                Filter: TextInput,
             },
             {
+                id: "title",
                 Header: "Title",
                 accessor: "title",
+                Filter: TextInput,
+                filter: "contains",
             },
             {
+                id: "categoryId",
                 Header: "Category",
                 accessor: "category.id",
                 Cell: ({ value }) =>
                     categoryData?.data.find((category) => category.id === value)
                         ?.title || "loading",
+                Filter: TextInput,
             },
             {
+                id: "status",
                 Header: "Status",
                 accessor: "status",
+                Filter: TextInput,
             },
             {
                 id: "actions",
@@ -76,6 +108,7 @@ export const PostList: React.FC = () => {
                         />
                     </div>
                 ),
+                Filter: TextInput,
             },
         ],
         [categoryData],
@@ -95,7 +128,8 @@ export const PostList: React.FC = () => {
         nextPage,
         previousPage,
         setPageSize,
-        state: { pageIndex, pageSize, sortBy },
+        columns: columnsTable,
+        state: { pageIndex, pageSize, sortBy, filters },
     } = useTable(
         {
             columns,
@@ -107,11 +141,17 @@ export const PostList: React.FC = () => {
                     id: sorting.field,
                     desc: sorting.order === "desc",
                 })),
+                filters: filtersCore.map((filter) => ({
+                    id: filter.field,
+                    value: filter.value,
+                })),
             },
             pageCount: Math.ceil((data?.total || 0) / pageSizeCore),
             manualPagination: true,
             manualSortBy: true,
+            manualFilters: true,
         },
+        useFilters,
         useSortBy,
         usePagination,
     );
@@ -125,10 +165,27 @@ export const PostList: React.FC = () => {
         );
     }, [sortBy]);
 
+    useEffect(() => {
+        // console.log({ filters });
+        setFilters(
+            filters.map((filter) => {
+                const operator = columns.find((c) => c.id === filter.id)
+                    ?.filter as CrudOperators;
+
+                console.log({ operator, filter });
+                return {
+                    field: filter.id,
+                    value: filter.value,
+                    operator,
+                };
+            }),
+        );
+    }, [filters]);
+
     return (
         <List>
-            <table {...getTableProps()} className="min-w-full">
-                <thead className="bg-white border-b">
+            <table {...getTableProps()} className="overflow-x-auto">
+                <thead className="bg-white border-b ">
                     {headerGroups.map((headerGroup) => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map((column) => (
@@ -146,6 +203,11 @@ export const PostList: React.FC = () => {
                                                 : " 🔼"
                                             : ""}
                                     </span>
+                                    <div>
+                                        {column.canFilter
+                                            ? column.render("Filter")
+                                            : null}
+                                    </div>
                                 </th>
                             ))}
                         </tr>
@@ -252,6 +314,7 @@ export const PostList: React.FC = () => {
                     ))}
                 </select>
             </div>
+
             {/* <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
                 <Table.Column dataIndex="title" title="Title" />
