@@ -31,7 +31,7 @@ It is very simple to use and consists of two steps. First, define your Appwrite 
 
 ### Appwrite Client
 ```tsx title="appwriteClient.ts"
-import { Appwrite } from "appwrite";
+import { Appwrite } from "@pankod/refine-appwrite";
 
 const APPWRITE_URL = "http://localhost/v1";
 //highlight-start
