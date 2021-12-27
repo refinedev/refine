@@ -552,7 +552,7 @@
             {
               "type": "doc",
               "id": "version-2.xx.xx/guides-and-concepts/data-provider/strapi-v4"
-            }, 
+            },
             {
               "type": "doc",
               "id": "version-2.xx.xx/guides-and-concepts/data-provider/appwrite"
@@ -734,6 +734,10 @@
             {
               "type": "doc",
               "id": "version-2.xx.xx/examples/data-provider/strapi-v4"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/examples/data-provider/appwrite"
             },
             {
               "type": "doc",
