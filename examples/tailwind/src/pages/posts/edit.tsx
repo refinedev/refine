@@ -135,7 +135,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                                 {selectProps.options?.map((category) => (
                                     <option
                                         key={category.value}
-                                        value={category.value}
+                                        value={category.value || undefined}
                                     >
                                         {category.label}
                                     </option>
