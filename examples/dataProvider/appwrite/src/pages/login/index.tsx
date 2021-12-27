@@ -58,7 +58,7 @@ export const Login: React.FC = () => {
                                 initialValues={{
                                     remember: false,
                                     email: "demo@refine.dev",
-                                    password: "demo",
+                                    password: "demodemo",
                                 }}
                             >
                                 <Form.Item
