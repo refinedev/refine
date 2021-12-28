@@ -4,7 +4,7 @@ import {
     CrudOperators,
     HttpError,
     useTable as useTableCore,
-    useTableProps,
+    useTableProps as useTablePropsCore,
 } from "@pankod/refine-core";
 import { useTable as useTableRT, PluginHook, TableOptions } from "react-table";
 
@@ -18,23 +18,18 @@ export type UseTableProps<
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
 > = {
-    refineTableProps?: useTableProps<TData, TError, TSearchVariables>;
-} & Partial<TableOptions<{}>>;
+    refineTableProps?: useTablePropsCore<TData, TError, TSearchVariables>;
+} & TableOptions<{}>;
 // } & TableOptions<D>;
 
 export const useTable = <
     // D extends object = {},
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TSearchVariables = unknown,
 >(
-    {
-        refineTableProps,
-        ...rest
-    }: UseTableProps<TData, TError, TSearchVariables>,
+    { refineTableProps, ...rest }: UseTableProps<TData, TError>,
     ...plugins: Array<PluginHook<{}>>
-): // ...plugins: Array<PluginHook<D>>
-UseTableReturnType => {
+): UseTableReturnType => {
     const useTableResult = useTableCore({
         ...refineTableProps,
     });
@@ -56,7 +51,6 @@ UseTableReturnType => {
     const reactTableResult = useTableRT(
         {
             data: data?.data || [],
-            columns: [],
             initialState: {
                 pageIndex: current - 1,
                 pageSize: pageSizeCore,
@@ -118,3 +112,5 @@ UseTableReturnType => {
         useTableCore: useTableResult,
     };
 };
+
+export * from "react-table";

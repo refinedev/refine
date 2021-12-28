@@ -7,10 +7,15 @@ import {
     useSelect,
     useOne,
 } from "@pankod/refine-core";
-import { useTable } from "@pankod/refine-react-table";
+import {
+    useTable,
+    Column,
+    useFilters,
+    useSortBy,
+    usePagination,
+} from "@pankod/refine-react-table";
 
 import { IPost, ICategory } from "interfaces";
-import { Column, useFilters, useSortBy, usePagination } from "react-table";
 
 export const PostList: React.FC = () => {
     const columns: Array<Column> = React.useMemo(
@@ -84,14 +89,7 @@ export const PostList: React.FC = () => {
         setPageSize,
         setFilter,
         state: { pageIndex, pageSize, filters },
-    } = useTable<IPost>(
-        {
-            columns,
-        },
-        useFilters,
-        useSortBy,
-        usePagination,
-    );
+    } = useTable<IPost>({ columns }, useFilters, useSortBy, usePagination);
 
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",

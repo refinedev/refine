@@ -18,7 +18,6 @@
     "@hookform/error-message": "^2.0.0",
     "react-markdown": "^6.0.1",
     "react-mde": "^11.1.0",
-    "react-table": "^7.7.0",
     "react-scripts": "4.0.3",
     "typescript": "^4.4.3",
     "web-vitals": "^1.1.1"
@@ -44,7 +43,6 @@
   "devDependencies": {
     "autoprefixer": "^9.8.8",
     "postcss": "^7.0.39",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
-    "@types/react-table": "^7.7.9"
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
   }
 }
