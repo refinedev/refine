@@ -4,4 +4,5 @@ module.exports = {
     name: "appwrite",
     displayName: "appwrite",
     setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
+    resetMocks: true,
 };

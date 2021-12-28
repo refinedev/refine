@@ -1,6 +1,6 @@
 ---
 id: javascript
-title: Javascript
+title: JavaScript
 ---
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/javascript)

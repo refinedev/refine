@@ -17,7 +17,7 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter } = useTable<IPost>({
         initialSorter: [
             {
-                field: "$id",
+                field: "id",
                 order: "asc",
             },
         ],
@@ -26,7 +26,7 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
     const { data, isLoading } = useMany<ICategory>({
-        resource: "6180e6efb14df",
+        resource: "61c43adc284ac",
         ids: categoryIds,
         queryOptions: {
             enabled: categoryIds.length > 0,
@@ -35,9 +35,9 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <List>
-            <Table {...tableProps} rowKey="$id">
+            <Table {...tableProps} rowKey="id">
                 <Table.Column
-                    dataIndex="$id"
+                    dataIndex="id"
                     title="ID"
                     sorter
                     defaultSortOrder={getDefaultSortOrder("id", sorter)}
@@ -54,9 +54,8 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
                         return (
                             <TextField
                                 value={
-                                    data?.data.find(
-                                        (item) => item.$id === value,
-                                    )?.title
+                                    data?.data.find((item) => item.id === value)
+                                        ?.title
                                 }
                             />
                         );
@@ -70,12 +69,12 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
                             <EditButton
                                 hideText
                                 size="small"
-                                recordItemId={record.$id}
+                                recordItemId={record.id}
                             />
                             <ShowButton
                                 hideText
                                 size="small"
-                                recordItemId={record.$id}
+                                recordItemId={record.id}
                             />
                         </Space>
                     )}

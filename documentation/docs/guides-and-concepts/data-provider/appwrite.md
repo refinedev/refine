@@ -31,7 +31,7 @@ It is very simple to use and consists of two steps. First, define your Appwrite 
 
 ### Appwrite Client
 ```tsx title="appwriteClient.ts"
-import { Appwrite } from "appwrite";
+import { Appwrite } from "@pankod/refine-appwrite";
 
 const APPWRITE_URL = "http://localhost/v1";
 //highlight-start
@@ -384,7 +384,7 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter } = useTable<IPost>({
         initialSorter: [
             {
-                field: "$id",
+                field: "id",
                 order: "asc",
             },
         ],
@@ -402,9 +402,9 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <List>
-            <Table {...tableProps} rowKey="$id">
+            <Table {...tableProps} rowKey="id">
                 <Table.Column
-                    dataIndex="$id"
+                    dataIndex="id"
                     title="ID"
                     sorter
                     defaultSortOrder={getDefaultSortOrder("id", sorter)}
@@ -421,9 +421,8 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
                         return (
                             <TextField
                                 value={
-                                    data?.data.find(
-                                        (item) => item.$id === value,
-                                    )?.title
+                                    data?.data.find((item) => item.id === value)
+                                        ?.title
                                 }
                             />
                         );
@@ -437,12 +436,12 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
                             <EditButton
                                 hideText
                                 size="small"
-                                recordItemId={record.$id}
+                                recordItemId={record.id}
                             />
                             <ShowButton
                                 hideText
                                 size="small"
-                                recordItemId={record.$id}
+                                recordItemId={record.id}
                             />
                         </Space>
                     )}
@@ -501,7 +500,7 @@ export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "61bc4afa9ee2c",
         optionLabel: "title",
-        optionValue: "$id",
+        optionValue: "id",
     });
 
     const [selectedTab, setSelectedTab] =
@@ -662,7 +661,7 @@ export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
         resource: "61bc4afa9ee2c",
         defaultValue: postData?.categoryId,
         optionLabel: "title",
-        optionValue: "$id",
+        optionValue: "id",
     });
 
     const [selectedTab, setSelectedTab] =
@@ -767,3 +766,17 @@ export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
     </div>
     <img src={edit} alt="edit" />
 </div>
+
+## Live Codesandbox Example
+
+Username: `demo@refine.dev`
+
+Password: `demodemo`
+
+<iframe
+    src="https://codesandbox.io/embed/refine-appwrite-example-kuzqr?autoresize=1&fontsize=14&hidenavigation=1&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+    title="refine-appwrite-example"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
