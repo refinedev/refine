@@ -27,6 +27,15 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                 order: "asc",
             },
         ],
+        onSearch: (value) => {
+            return [
+                {
+                    field: "title",
+                    operator: "contains",
+                    value,
+                },
+            ];
+        },
     });
 
     const [selectedTab, setSelectedTab] =
