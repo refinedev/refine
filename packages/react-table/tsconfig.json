@@ -1,7 +1,8 @@
 {
   "include": [
       "src",
-      "types"
+      "types",
+      "react-table-config.d.ts"
   ],
   "extends": "../../tsconfig.build.json",
   "compilerOptions": {

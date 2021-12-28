@@ -1,50 +1,18 @@
 /* eslint-disable react/jsx-key */
-import React, { useEffect } from "react";
+import React from "react";
 import {
     List,
-    useTable as useTableCore,
-    useMany,
     ShowButton,
     EditButton,
-    CrudOperators,
     useSelect,
+    useOne,
 } from "@pankod/refine-core";
-import {
-    useTable,
-    usePagination,
-    useSortBy,
-    Column,
-    useFilters,
-} from "react-table";
+import { useTable } from "@pankod/refine-react-table";
 
 import { IPost, ICategory } from "interfaces";
+import { Column, useFilters, useSortBy, usePagination } from "react-table";
 
 export const PostList: React.FC = () => {
-    const {
-        tableQueryResult,
-        current,
-        setCurrent,
-        pageSize: pageSizeCore,
-        setPageSize: setPageSizeCore,
-        sorter,
-        setSorter,
-        filters: filtersCore,
-        setFilters,
-    } = useTableCore<IPost>({
-        syncWithLocation: true,
-    });
-
-    const { data } = tableQueryResult;
-
-    const categoryIds = data?.data.map((item) => item.category.id) ?? [];
-    const { data: categoryData } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
-
     const columns: Array<Column> = React.useMemo(
         () => [
             {
@@ -62,9 +30,13 @@ export const PostList: React.FC = () => {
                 id: "category.id",
                 Header: "Category",
                 accessor: "category.id",
-                Cell: ({ value }) =>
-                    categoryData?.data.find((category) => category.id === value)
-                        ?.title || "loading",
+                Cell: ({ value }) => {
+                    const { data } = useOne({
+                        resource: "categories",
+                        id: value,
+                    });
+                    return data?.data.title || "loading";
+                },
                 filter: "in",
             },
             {
@@ -76,7 +48,7 @@ export const PostList: React.FC = () => {
                 id: "actions",
                 Header: "Actions",
                 accessor: "id",
-                // eslint-disable-next-line react/display-name
+                //eslint-disable-next-line react/display-name
                 Cell: ({ value }) => (
                     <div className="flex gap-2">
                         <EditButton
@@ -93,7 +65,7 @@ export const PostList: React.FC = () => {
                 ),
             },
         ],
-        [categoryData],
+        [],
     );
 
     const {
@@ -111,63 +83,15 @@ export const PostList: React.FC = () => {
         previousPage,
         setPageSize,
         setFilter,
-        state: { pageIndex, pageSize, sortBy, filters },
-    } = useTable(
+        state: { pageIndex, pageSize, filters },
+    } = useTable<IPost>(
         {
             columns,
-            data: tableQueryResult.data?.data || [],
-            initialState: {
-                pageIndex: current - 1,
-                pageSize: pageSizeCore,
-                sortBy: sorter.map((sorting) => ({
-                    id: sorting.field,
-                    desc: sorting.order === "desc",
-                })),
-                filters: filtersCore.map((filter) => ({
-                    id: filter.field,
-                    value: filter.value,
-                })),
-            },
-            pageCount: Math.ceil((data?.total || 0) / pageSizeCore),
-            manualPagination: true,
-            manualSortBy: true,
-            manualFilters: true,
         },
         useFilters,
         useSortBy,
         usePagination,
     );
-    useEffect(() => {
-        setCurrent(pageIndex + 1);
-    }, [pageIndex]);
-
-    useEffect(() => {
-        setPageSizeCore(pageSize);
-    }, [pageSize]);
-
-    useEffect(() => {
-        setSorter(
-            sortBy.map((sorting) => ({
-                field: sorting.id,
-                order: sorting.desc ? "desc" : "asc",
-            })),
-        );
-    }, [sortBy]);
-
-    useEffect(() => {
-        setFilters(
-            filters.map((filter) => {
-                const operator = columns.find((c) => c.id === filter.id)
-                    ?.filter as CrudOperators;
-
-                return {
-                    field: filter.id,
-                    value: filter.value,
-                    operator,
-                };
-            }),
-        );
-    }, [filters]);
 
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
