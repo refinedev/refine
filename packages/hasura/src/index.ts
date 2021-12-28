@@ -163,12 +163,10 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                     operation: aggregateOperation,
                     fields: [{ aggregate: ["count"] }],
                     variables: {
-                        ...({
-                            where: {
-                                value: hasuraFilters,
-                                type: hasuraFiltersType,
-                            },
-                        }),
+                        where: {
+                            value: hasuraFilters,
+                            type: hasuraFiltersType,
+                        },
                     },
                 },
             ]);
