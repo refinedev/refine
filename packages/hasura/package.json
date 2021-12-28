@@ -14,10 +14,9 @@
     "node": ">=10"
   },
   "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
+    "start": "tsdx watch --tsconfig tsconfig.json --verbose --noClean",
+    "build": "tsdx build --tsconfig tsconfig.json",
     "test": "tsdx test --passWithNoTests --runInBand",
-    "lint": "tsdx lint",
     "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why"
