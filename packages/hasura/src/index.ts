@@ -133,7 +133,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
 
             const operation = metaData?.operation ?? resource;
 
-            const aggreateOperation = `${operation}_aggregate`;
+            const aggregateOperation = `${operation}_aggregate`;
 
             const hasuraSortingType = `[${operation}_order_by!]`;
             const hasuraFiltersType = `${operation}_bool_exp`;
@@ -160,8 +160,14 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                     },
                 },
                 {
-                    operation: aggreateOperation,
+                    operation: aggregateOperation,
                     fields: [{ aggregate: ["count"] }],
+                    variables: {
+                        where: {
+                            value: hasuraFilters,
+                            type: hasuraFiltersType,
+                        },
+                    },
                 },
             ]);
 
@@ -169,7 +175,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
 
             return {
                 data: result[operation],
-                total: result[aggreateOperation].aggregate.count,
+                total: result[aggregateOperation].aggregate.count,
             };
         },
 
