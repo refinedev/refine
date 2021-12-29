@@ -1,7 +1,7 @@
 {
   "name": "@pankod/refine-hasura",
   "description": "refine Hasura data provider. refine is a React-based framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
-  "version": "2.4.12",
+  "version": "2.4.13",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -14,10 +14,9 @@
     "node": ">=10"
   },
   "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
+    "start": "tsdx watch --tsconfig tsconfig.json --verbose --noClean",
+    "build": "tsdx build --tsconfig tsconfig.json",
     "test": "tsdx test --passWithNoTests --runInBand",
-    "lint": "tsdx lint",
     "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why"
