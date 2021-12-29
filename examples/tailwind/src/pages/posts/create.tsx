@@ -4,10 +4,9 @@ import {
     IResourceComponentsProps,
     useSelect,
     useWarnAboutChange,
-    useForm as useFormCore,
 } from "@pankod/refine-core";
-import { useForm, Controller } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
+import { useForm, Controller } from "@pankod/refine-react-hook-form";
+// import { ErrorMessage } from "@hookform/error-message";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
@@ -17,13 +16,14 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "interfaces";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
-    const { warnWhenUnsavedChanges, setWarnWhen } = useWarnAboutChange();
+    // const { warnWhenUnsavedChanges, setWarnWhen } = useWarnAboutChange();
 
     const { queryResult } = useSelect<ICategory>({
         resource: "categories",
     });
 
     const {
+        useFormCore: { onFinish, formLoading },
         register,
         handleSubmit,
         reset,
@@ -39,32 +39,34 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
         },
     });
 
-    const { formLoading, onFinish } = useFormCore<IPost>({
-        warnWhenUnsavedChanges: true,
-        redirect: false,
-        onMutationSuccess: () => {
-            reset();
-        },
-    });
+    // console.log({ useFormCore });
 
-    useEffect(() => {
-        const subscription = watch((values, { type }) => {
-            if (type === "change") {
-                onValuesChange(values);
-            }
-        });
-        return () => subscription.unsubscribe();
-    }, [watch]);
+    // const { formLoading, onFinish } = useFormCore<IPost>({
+    //     warnWhenUnsavedChanges: true,
+    //     redirect: false,
+    //     onMutationSuccess: () => {
+    //         reset();
+    //     },
+    // });
+
+    // useEffect(() => {
+    //     const subscription = watch((values, { type }) => {
+    //         if (type === "change") {
+    //             onValuesChange(values);
+    //         }
+    //     });
+    //     return () => subscription.unsubscribe();
+    // }, [watch]);
 
     const [selectedTab, setSelectedTab] =
         useState<"write" | "preview">("write");
 
-    const onValuesChange = (changeValues: Record<string, any>) => {
-        if (warnWhenUnsavedChanges) {
-            setWarnWhen(true);
-        }
-        return changeValues;
-    };
+    // const onValuesChange = (changeValues: Record<string, any>) => {
+    //     if (warnWhenUnsavedChanges) {
+    //         setWarnWhen(true);
+    //     }
+    //     return changeValues;
+    // };
 
     return (
         <Create
@@ -86,13 +88,13 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                     className="w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
                     {...register("title", { required: "Title is required" })}
                 />
-                <ErrorMessage
+                {/* <ErrorMessage
                     errors={errors}
                     name="title"
                     render={({ message }) => (
                         <p className="text-red-500">{message}</p>
                     )}
-                />
+                /> */}
 
                 <label
                     htmlFor="category"
@@ -117,13 +119,13 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                         ))}
                     </select>
                 )}
-                <ErrorMessage
+                {/* <ErrorMessage
                     errors={errors}
                     name="category"
                     render={({ message }) => (
                         <p className="text-red-500">{message}</p>
                     )}
-                />
+                /> */}
 
                 <label
                     htmlFor="status"
@@ -141,13 +143,13 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                     <option value="draft">Draft</option>
                     <option value="rejected">Rejected</option>
                 </select>
-                <ErrorMessage
+                {/* <ErrorMessage
                     errors={errors}
                     name="status"
                     render={({ message }) => (
                         <p className="text-red-500">{message}</p>
                     )}
-                />
+                /> */}
 
                 <label className="inline-block mb-2 text-gray-700 font-bold mt-4">
                     Content
@@ -171,13 +173,13 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                         />
                     )}
                 />
-                <ErrorMessage
+                {/* <ErrorMessage
                     errors={errors}
                     name="content"
                     render={({ message }) => (
                         <p className="text-red-500">{message}</p>
                     )}
-                />
+                /> */}
             </form>
         </Create>
     );

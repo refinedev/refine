@@ -1,76 +1,114 @@
-import { useEffect } from "react";
-import {
-    useForm as useHookForm,
-    UseFormProps as UseHookFormProps,
+export { useForm, UseFormProps, UseFormReturnType } from "./useForm";
+
+export type {
+    BatchFieldArrayUpdate,
+    ChangeHandler,
+    Control,
+    ControllerFieldState,
+    ControllerProps,
+    ControllerRenderProps,
+    CriteriaMode,
+    CustomElement,
+    DeepMap,
+    DeepPartial,
+    DeepPartialSkipArrayKey,
+    DefaultValues,
+    DelayCallback,
+    EmptyObject,
+    ErrorOption,
+    EventType,
+    Field,
+    FieldArray,
+    FieldArrayMethodProps,
+    FieldArrayName,
+    FieldArrayWithId,
+    FieldElement,
+    FieldError,
+    FieldErrors,
+    FieldName,
+    FieldNamesMarkedBoolean,
+    FieldRefs,
+    FieldValue,
+    FieldValues,
+    FormProviderProps,
+    FormState,
+    FormStateProxy,
+    FormStateSubjectRef,
+    GetIsDirty,
+    InternalFieldErrors,
+    InternalFieldName,
+    InternalNameSet,
+    IsAny,
+    IsFlatObject,
+    KeepStateOptions,
+    LiteralUnion,
+    Message,
+    Mode,
+    MultipleFieldErrors,
+    Names,
+    NativeFieldValue,
+    NestedValue,
+    NonUndefined,
+    Noop,
+    Primitive,
+    ReadFormState,
+    Ref,
+    RefCallBack,
+    RegisterOptions,
+    Resolver,
+    ResolverError,
+    ResolverOptions,
+    ResolverResult,
+    ResolverSuccess,
+    SetFieldValue,
+    SetValueConfig,
+    Subjects,
+    SubmitErrorHandler,
+    SubmitHandler,
+    TriggerConfig,
+    UnpackNestedValue,
+    UseControllerProps,
+    UseControllerReturn,
+    UseFieldArrayProps,
+    UseFieldArrayReturn,
+    UseFormClearErrors,
+    UseFormGetValues,
+    UseFormHandleSubmit,
+    UseFormProps as UseReactHookFormProps,
+    UseFormRegister,
+    UseFormRegisterReturn,
+    UseFormReset,
+    UseFormResetField,
+    UseFormReturn,
+    UseFormSetError,
+    UseFormSetFocus,
+    UseFormSetValue,
+    UseFormStateProps,
+    UseFormStateReturn,
+    UseFormTrigger,
+    UseFormUnregister,
+    UseFormWatch,
+    UseWatchProps,
+    Validate,
+    ValidateResult,
+    ValidationMode,
+    ValidationRule,
+    ValidationValue,
+    ValidationValueMessage,
+    WatchInternal,
+    WatchObserver,
 } from "react-hook-form";
-import {
-    BaseRecord,
-    HttpError,
-    useForm as useFormCore,
-    useWarnAboutChange,
-    useFormProps,
-} from "@pankod/refine-core";
 
-export type UseFormProps<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TVariables = {},
-> = {
-    useFormCoreProps: useFormProps<TData, TError, TVariables>;
-} & UseHookFormProps;
-
-export const useForm = <
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TVariables = {},
->({
-    useFormCoreProps,
-    ...rest
-}: UseFormProps<TData, TError, TVariables>): any => {
-    const { warnWhenUnsavedChanges, setWarnWhen } = useWarnAboutChange();
-
-    const useHookFormResult = useHookForm({
-        ...rest,
-        // defaultValues: {
-        //     title: "",
-        //     "category.id": undefined,
-        //     status: "draft",
-        //     content: "",
-        // },
-    });
-
-    const { handleSubmit, reset, watch } = useHookFormResult;
-
-    const useFormCoreResult = useFormCore({
-        onMutationSuccess: () => {
-            reset();
-        },
-        ...useFormCoreProps,
-    });
-
-    // const { onFinish } = useFormCoreResult;
-
-    useEffect(() => {
-        const subscription = watch((values, { type }) => {
-            if (type === "change") {
-                onValuesChange(values);
-            }
-        });
-        return () => subscription.unsubscribe();
-    }, [watch]);
-
-    const onValuesChange = (changeValues: Record<string, any>) => {
-        if (warnWhenUnsavedChanges) {
-            setWarnWhen(true);
-        }
-        return changeValues;
-    };
-
-    // const onSubmit = handleSubmit(onFinish);
-
-    return {
-        ...useHookFormResult,
-        useFormCore: useFormCoreResult,
-        // onSubmit,
-    };
-};
+export {
+    appendErrors,
+    get,
+    set,
+    useController,
+    useFieldArray,
+    useForm as useReactHookForm,
+    useFormContext,
+    useFormState,
+    useWatch,
+    Controller,
+    FormProvider,
+} from "react-hook-form";

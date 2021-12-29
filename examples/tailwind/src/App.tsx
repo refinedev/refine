@@ -5,7 +5,7 @@ import "@pankod/refine-core/dist/styles.min.css";
 
 // import "./index.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import { PostList, PostCreate, /* PostEdit */ PostShow } from "pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -19,7 +19,7 @@ const App: React.FC = () => {
                     name: "posts",
                     list: PostList,
                     create: PostCreate,
-                    edit: PostEdit,
+                    // edit: PostEdit,
                     show: PostShow,
                     canDelete: true,
                 },
