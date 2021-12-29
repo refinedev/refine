@@ -172,6 +172,37 @@ const { selectProps } = useSelect({
 
 It allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
 
+### `fetchSize`
+
+```tsx
+const { selectProps } = useSelect({
+    resource: "categories",
+// highlight-next-line
+    fetchSize: 20,
+});
+```
+
+Amount of records to fetch in select box.
+
+### `onSearch`
+
+```tsx
+const { selectProps } = useSelect({
+    resource: "categories",
+// highlight-start
+    onSearch: (value) => [
+        {
+            field: "title",
+            operator: "containss",
+            value,
+        },
+    ],
+// highlight-end
+});
+```
+
+If defined, it allows us to override the filters to use when fetching list of records. Thus, it . It should return [`CrudFilters`](../../interfaces.md#crudfilters).
+
 ### `queryOptions`
 
 ```tsx 
