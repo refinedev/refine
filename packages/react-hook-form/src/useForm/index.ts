@@ -17,11 +17,7 @@ export type UseFormReturnType<
     TError extends HttpError = HttpError,
     TVariables = {},
 > = ReturnType<typeof useHookForm> & {
-    useFormCore: /* ReturnType<typeof useFormCore> */ UseFormReturnTypeCore<
-        TData,
-        TError,
-        TVariables
-    >;
+    useFormCore: UseFormReturnTypeCore<TData, TError, TVariables>;
 };
 
 export type UseFormProps<
@@ -48,15 +44,9 @@ export const useForm = <
 
     const useHookFormResult = useHookForm({
         ...rest,
-        // defaultValues: {
-        //     title: "",
-        //     "category.id": undefined,
-        //     status: "draft",
-        //     content: "",
-        // },
     });
 
-    const { handleSubmit, reset, watch } = useHookFormResult;
+    const { watch, setValue, reset } = useHookFormResult;
 
     const useFormCoreResult = useFormCore({
         onMutationSuccess: () => {
@@ -65,7 +55,8 @@ export const useForm = <
         ...useFormCoreProps,
     });
 
-    // const { onFinish } = useFormCoreResult;
+    const { editId, queryResult } = useFormCoreResult;
+    const { data, isFetching } = queryResult ?? {};
 
     useEffect(() => {
         const subscription = watch((values: any, { type }: { type?: any }) => {
@@ -76,6 +67,17 @@ export const useForm = <
         return () => subscription.unsubscribe();
     }, [watch]);
 
+    useEffect(() => {
+        Object.entries(queryResult?.data?.data || {}).forEach(
+            ([key, value]) => {
+                setValue(key, value);
+            },
+        );
+        return () => {
+            reset();
+        };
+    }, [data, editId, isFetching]);
+
     const onValuesChange = (changeValues: Record<string, any>) => {
         if (warnWhenUnsavedChanges) {
             setWarnWhen(true);
@@ -83,13 +85,8 @@ export const useForm = <
         return changeValues;
     };
 
-    // const onSubmit = handleSubmit(onFinish);
-
-    console.log({ useFormCoreResult });
-
     return {
         ...useHookFormResult,
         useFormCore: useFormCoreResult,
-        // onSubmit,
     };
 };
