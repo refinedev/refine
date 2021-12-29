@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
     Create,
     IResourceComponentsProps,
     useSelect,
-    useWarnAboutChange,
 } from "@pankod/refine-core";
 import { useForm, Controller } from "@pankod/refine-react-hook-form";
 // import { ErrorMessage } from "@hookform/error-message";
@@ -16,57 +15,30 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "interfaces";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
-    // const { warnWhenUnsavedChanges, setWarnWhen } = useWarnAboutChange();
-
-    const { queryResult } = useSelect<ICategory>({
-        resource: "categories",
-    });
+    const [selectedTab, setSelectedTab] =
+        useState<"write" | "preview">("write");
 
     const {
         useFormCore: { onFinish, formLoading },
         register,
         handleSubmit,
-        reset,
         control,
-        watch,
-        formState: { errors },
-    } = useForm({
+    } = useForm<IPost>({
         defaultValues: {
             title: "",
             "category.id": undefined,
             status: "draft",
             content: "",
         },
+        useFormCoreProps: {
+            warnWhenUnsavedChanges: true,
+            redirect: false,
+        },
     });
 
-    // console.log({ useFormCore });
-
-    // const { formLoading, onFinish } = useFormCore<IPost>({
-    //     warnWhenUnsavedChanges: true,
-    //     redirect: false,
-    //     onMutationSuccess: () => {
-    //         reset();
-    //     },
-    // });
-
-    // useEffect(() => {
-    //     const subscription = watch((values, { type }) => {
-    //         if (type === "change") {
-    //             onValuesChange(values);
-    //         }
-    //     });
-    //     return () => subscription.unsubscribe();
-    // }, [watch]);
-
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
-
-    // const onValuesChange = (changeValues: Record<string, any>) => {
-    //     if (warnWhenUnsavedChanges) {
-    //         setWarnWhen(true);
-    //     }
-    //     return changeValues;
-    // };
+    const { queryResult } = useSelect<ICategory>({
+        resource: "categories",
+    });
 
     return (
         <Create
