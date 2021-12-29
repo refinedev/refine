@@ -616,8 +616,8 @@ If you want to restrict permissions and only allow specific users, you need to s
 ```tsx
 const { formProps, saveButtonProps } = useForm<IPost>({
     metaData: {
-        writeAccess: ["User ID, Team ID, or Role"],
-        readAccess: ["User ID, Team ID, or Role"] 
+        writePermissions: ["User ID, Team ID, or Role"],
+        readPermissions: ["User ID, Team ID, or Role"] 
     }
 });
 ```
