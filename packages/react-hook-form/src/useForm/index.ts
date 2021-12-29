@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import {
     useForm as useHookForm,
     UseFormProps as UseHookFormProps,
+    UseFormReturn,
+    FieldValues,
 } from "react-hook-form";
 import {
     BaseRecord,
@@ -15,40 +17,44 @@ import {
 export type UseFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {},
-> = ReturnType<typeof useHookForm> & {
+    TVariables extends FieldValues = FieldValues,
+    TContext extends object = {},
+> = UseFormReturn<TVariables, TContext> & {
     useFormCore: UseFormReturnTypeCore<TData, TError, TVariables>;
 };
 
 export type UseFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {},
+    TVariables extends FieldValues = FieldValues,
+    TContext extends object = {},
 > = {
     useFormCoreProps?: useFormProps<TData, TError, TVariables>;
-} & UseHookFormProps;
+} & UseHookFormProps<TVariables, TContext>;
 
 export const useForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables = {},
+    TVariables extends FieldValues = FieldValues,
+    TContext extends object = {},
 >({
     useFormCoreProps,
     ...rest
-}: UseFormProps<TData, TError, TVariables>): UseFormReturnType<
+}: UseFormProps<TData, TError, TVariables, TContext>): UseFormReturnType<
     TData,
     TError,
-    TVariables
+    TVariables,
+    TContext
 > => {
     const { warnWhenUnsavedChanges, setWarnWhen } = useWarnAboutChange();
 
-    const useHookFormResult = useHookForm({
+    const useHookFormResult = useHookForm<TVariables, TContext>({
         ...rest,
     });
 
     const { watch, setValue, reset } = useHookFormResult;
 
-    const useFormCoreResult = useFormCore({
+    const useFormCoreResult = useFormCore<TData, TError, TVariables>({
         onMutationSuccess: () => {
             reset();
         },
@@ -70,7 +76,7 @@ export const useForm = <
     useEffect(() => {
         Object.entries(queryResult?.data?.data || {}).forEach(
             ([key, value]) => {
-                setValue(key, value);
+                setValue(key as any, value);
             },
         );
         return () => {
