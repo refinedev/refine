@@ -13,24 +13,22 @@ export type UseTableReturnType = ReturnType<typeof useTableRT> & {
 };
 
 export type UseTableProps<
-    // D extends object = {},
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TSearchVariables = unknown,
+    // D extends object = {},
 > = {
-    refineTableProps?: useTablePropsCore<TData, TError, TSearchVariables>;
+    refineTableProps?: useTablePropsCore<TData, TError>;
 } & TableOptions<{}>;
-// } & TableOptions<D>;
 
 export const useTable = <
-    // D extends object = {},
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
+    // D extends object = {},
 >(
-    { refineTableProps, ...rest }: UseTableProps<TData, TError>,
+    { refineTableProps, ...rest }: UseTableProps<TData, TError /* D */>,
     ...plugins: Array<PluginHook<{}>>
 ): UseTableReturnType => {
-    const useTableResult = useTableCore({
+    const useTableResult = useTableCore<TData, TError>({
         ...refineTableProps,
     });
 
