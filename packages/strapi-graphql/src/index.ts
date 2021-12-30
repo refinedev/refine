@@ -181,7 +181,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                 fields: [
                     {
                         operation: singularResource,
-                        fields: ["id"],
+                        fields: metaData?.fields ?? ["id"],
                         variables: {},
                     },
                 ],
@@ -212,7 +212,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                         fields: [
                             {
                                 operation: singularResource,
-                                fields: ["id"],
+                                fields: metaData?.fields ?? ["id"],
                                 variables: {},
                             },
                         ],
