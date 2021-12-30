@@ -3,7 +3,7 @@ id: contributing
 title: Contributing
 ---
 
-We follow a [code of conduct][CODE_OF_CONDUCT] when participating with community. Please read it before you make any contributions.
+We follow a [code of conduct][CODE_OF_CONDUCT] when participating in the community. Please read it before you make any contributions.
 
 * If you plan to work on an issue, mention so in the issue page before you start working on it.
 * If you plan to work on a new feature, create an issue and discuss it with other community members/maintainers.
@@ -19,23 +19,32 @@ First, install dependencies:
 npm install
 ```
 
-Then, start all the packages in watch mode:
+From now on, depending on the packages you plan to work on, (they are located under `packages/` and `examples/` directories - see [lerna.json][lerna.json]) you will need to bootstrap them and start them in watch mode. Instead of running `lerna bootstrap` directly, read on to see how **refine** team handles it.
+
+[Refer to **lerna** docs to learn more about it. &#8594][Lerna]
+
+[Refer to **lerna** docs to learn more about `lerna bootstrap`. &#8594][Lerna Bootstrap]
+
+### Starting the packages you work in watch mode
+
+To bootstrap the packages, you should run:
 
 ```bash
 npm run bootstrap
 npm run build
-npm run start
 ```
 
-Now all packages run in watch mode. You can start one of the example projects in `/examples/*` or `/example` directories and when you change a file in any of the packages in `/packages/*`, it should re-compile and example gets automatically reloaded.
+At this point, all packages are bootstrapped. Now you can start the packages you plan to work on in development mode. If you don't want to start all packages in development mode, you should filter them:
 
 ```bash
-cd examples/base
-npm install
-npm run start
+npm run start -- --scope @pankod/refine --scope refine-use-select-example
 ```
 
-## Starting Documentation in Development Mode
+This command only starts the packages named `@pankod/refine` and `refine-use-select-example` in dev mode. The value of the flag `--scope` is the name that is defined in it's `package.json` file. Note that `--scope` flag should be used for every package that should be filtered.
+
+Now all filtered packages are running in watch mode. They should re-compile when you make a change in any of them.
+
+### Starting documentation in watch mode
 
 Our documentation is built with [Docusaurus][Docusaurus]. To start it in development mode, run:
 
@@ -81,7 +90,10 @@ Please make sure you contribute well tested code.
 - If the interface changes are not reflected in the project when the interface changes under the packages, delete the `dist` folder in the project and try again.
 
 [Lerna]: https://github.com/lerna/lerna
+[Lerna Bootstrap]: https://lerna.js.org/#command-bootstrap
+[package.json]: https://github.com/pankod/refine/blob/master/package.json
 [Docusaurus]: https://docusaurus.io/
 [Issues]: https://github.com/pankod/refine/issues
 [CODE_OF_CONDUCT]: https://github.com/pankod/refine/blob/master/CODE_OF_CONDUCT.md
 [Discord Channel]: https://discord.gg/UuU3XCc3J5
+[lerna.json]: https://github.com/pankod/refine/blob/master/lerna.json
