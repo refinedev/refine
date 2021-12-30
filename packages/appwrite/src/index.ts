@@ -61,9 +61,7 @@ export const getAppwriteFilters: GetAppwriteFiltersType = (filters) => {
         const filterField = filter.field === "id" ? "$id" : filter.field;
 
         if (!operator) {
-            throw new Error(
-                `Appwrite data provider does not support ${filter.operator} operator`,
-            );
+            throw new Error(`Operator ${filter.operator} is not supported`);
         }
 
         appwriteFilters.push(`${filterField}${operator}${filter.value}`);
