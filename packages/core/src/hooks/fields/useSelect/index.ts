@@ -15,6 +15,7 @@ import {
     SuccessErrorNotification,
     HttpError,
     MetaDataQuery,
+    LiveModeProps,
 } from "../../../interfaces";
 
 export type UseSelectProps<TData, TError> = {
@@ -26,9 +27,12 @@ export type UseSelectProps<TData, TError> = {
     defaultValue?: string | string[];
     debounce?: number;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
+    fetchSize?: number;
     defaultValueQueryOptions?: UseQueryOptions<GetManyResponse<TData>, TError>;
+    onSearch?: (value: string) => CrudFilters;
     metaData?: MetaDataQuery;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification &
+    LiveModeProps;
 
 export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
     selectProps: SelectProps<{ value: string; label: string }>;
@@ -67,6 +71,11 @@ export const useSelect = <
         errorNotification,
         defaultValueQueryOptions,
         queryOptions,
+        fetchSize,
+        liveMode,
+        onLiveEvent,
+        onSearch: onSearchFromProp,
+        liveParams,
         metaData,
     } = props;
 
@@ -95,6 +104,7 @@ export const useSelect = <
             },
         },
         metaData,
+        liveMode: "off",
     });
 
     const defaultQueryOnSuccess = (data: GetListResponse<TData>) => {
@@ -111,9 +121,13 @@ export const useSelect = <
         config: {
             sort,
             filters: filters.concat(search),
+            pagination: fetchSize
+                ? {
+                      pageSize: fetchSize,
+                  }
+                : undefined,
         },
         queryOptions: {
-            enabled: false,
             ...queryOptions,
             onSuccess: (data) => {
                 defaultQueryOnSuccess(data);
@@ -123,6 +137,9 @@ export const useSelect = <
         successNotification,
         errorNotification,
         metaData,
+        liveMode,
+        liveParams,
+        onLiveEvent,
     });
     const { refetch: refetchList } = queryResult;
 
@@ -138,13 +155,17 @@ export const useSelect = <
             return;
         }
 
-        setSearch([
-            {
-                field: optionLabel,
-                operator: "contains",
-                value,
-            },
-        ]);
+        if (onSearchFromProp) {
+            setSearch(onSearchFromProp(value));
+        } else {
+            setSearch([
+                {
+                    field: optionLabel,
+                    operator: "contains",
+                    value,
+                },
+            ]);
+        }
     };
 
     return {

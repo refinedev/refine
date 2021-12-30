@@ -11,7 +11,12 @@ import {
     SuccessErrorNotification,
     MetaDataQuery,
 } from "../../interfaces";
-import { useTranslate, useCheckError, useCacheQueries } from "@hooks";
+import {
+    useTranslate,
+    useCheckError,
+    useCacheQueries,
+    usePublish,
+} from "@hooks";
 import { handleNotification } from "@definitions";
 
 type useCreateParams<TVariables> = {
@@ -53,6 +58,7 @@ export const useCreate = <
     const getAllQueries = useCacheQueries();
     const translate = useTranslate();
     const queryClient = useQueryClient();
+    const publish = usePublish();
 
     const mutation = useMutation<
         CreateResponse<TData>,
@@ -68,7 +74,7 @@ export const useCreate = <
             }),
         {
             onSuccess: (
-                _,
+                data,
                 { resource, successNotification: successNotificationFromProp },
             ) => {
                 const resourceSingular = pluralize.singular(resource);
@@ -90,6 +96,17 @@ export const useCreate = <
 
                 getAllQueries(resource).forEach((query) => {
                     queryClient.invalidateQueries(query.queryKey);
+                });
+
+                publish?.({
+                    channel: `resources/${resource}`,
+                    type: "created",
+                    payload: {
+                        ids: data.data?.id
+                            ? [data.data.id.toString()]
+                            : undefined,
+                    },
+                    date: new Date(),
                 });
             },
             onError: (

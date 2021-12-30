@@ -14,6 +14,7 @@ import {
     useNavigation,
     useResourceWithRoute,
     useList,
+    useLiveMode,
 } from "@hooks";
 import {
     stringifyTableParams,
@@ -33,6 +34,7 @@ import {
     SuccessErrorNotification,
     HttpError,
     MetaDataQuery,
+    LiveModeProps,
 } from "../../../interfaces";
 
 export type useTableProps<TData, TError, TSearchVariables = unknown> = {
@@ -46,7 +48,8 @@ export type useTableProps<TData, TError, TSearchVariables = unknown> = {
     onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     metaData?: MetaDataQuery;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification &
+    LiveModeProps;
 
 export type useTableReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -85,6 +88,9 @@ export const useTable = <
     successNotification,
     errorNotification,
     queryOptions,
+    liveMode: liveModeFromProp,
+    onLiveEvent,
+    liveParams,
     metaData,
 }: useTableProps<TData, TError, TSearchVariables> = {}): useTableReturnType<
     TData,
@@ -105,6 +111,7 @@ export const useTable = <
 
     const { useLocation, useParams } = useRouterContext();
     const { search } = useLocation();
+    const liveMode = useLiveMode(liveModeFromProp);
 
     let defaultCurrent = initialCurrent;
     let defaultPageSize = initialPageSize;
@@ -182,8 +189,11 @@ export const useTable = <
         successNotification,
         errorNotification,
         metaData,
+        liveMode,
+        liveParams,
+        onLiveEvent,
     });
-    const { data, isFetching } = queryResult;
+    const { data, isFetched, isLoading } = queryResult;
 
     const onChange = (
         pagination: TablePaginationConfig,
@@ -230,7 +240,7 @@ export const useTable = <
         tableProps: {
             ...tablePropsSunflower,
             dataSource: data?.data,
-            loading: isFetching,
+            loading: liveMode === "auto" ? isLoading : !isFetched,
             onChange,
             pagination: {
                 ...tablePropsSunflower.pagination,

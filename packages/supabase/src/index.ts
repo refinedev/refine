@@ -1,6 +1,32 @@
-import { DataProvider } from "@pankod/refine";
-import { CrudFilter } from "@pankod/refine/dist/interfaces";
-import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import {
+    DataProvider,
+    LiveProvider,
+    CrudFilter,
+    LiveEvent,
+} from "@pankod/refine";
+import {
+    createClient,
+    RealtimeSubscription,
+    SupabaseClient,
+} from "@supabase/supabase-js";
+import {
+    SupabaseEventTypes,
+    SupabaseRealtimePayload,
+} from "@supabase/supabase-js/dist/main/lib/types";
+
+const liveTypes: Record<SupabaseEventTypes, LiveEvent["type"]> = {
+    INSERT: "created",
+    UPDATE: "updated",
+    DELETE: "deleted",
+    "*": "*",
+};
+
+const supabaseTypes: Record<LiveEvent["type"], SupabaseEventTypes> = {
+    created: "INSERT",
+    updated: "UPDATE",
+    deleted: "DELETE",
+    "*": "*",
+};
 
 const generateFilter = (filter: CrudFilter, query: any) => {
     switch (filter.operator) {
@@ -11,11 +37,11 @@ const generateFilter = (filter: CrudFilter, query: any) => {
         case "nin":
             throw Error("Not implemented on refine-supabase data provider.");
         case "contains":
-            return query.like(filter.field, `%${filter.value}%`);
+            return query.ilike(filter.field, `%${filter.value}%`);
         case "ncontains":
             throw Error("Not implemented on refine-supabase data provider.");
         case "containss":
-            return query.ilike(filter.field, `%${filter.value}%`);
+            return query.like(filter.field, `%${filter.value}%`);
         case "ncontainss":
             throw Error("Not implemented on refine-supabase data provider.");
         case "null":
@@ -158,4 +184,60 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
     };
 };
 
-export { dataProvider, createClient };
+const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
+    return {
+        subscribe: ({
+            channel,
+            types,
+            params,
+            callback,
+        }): RealtimeSubscription => {
+            const resource = channel.replace("resources/", "");
+
+            const listener = (payload: SupabaseRealtimePayload<any>) => {
+                if (
+                    types.includes("*") ||
+                    types.includes(liveTypes[payload.eventType])
+                ) {
+                    if (
+                        liveTypes[payload.eventType] !== "created" &&
+                        params?.ids !== undefined &&
+                        payload.new?.id !== undefined
+                    ) {
+                        if (params.ids.includes(payload.new.id.toString())) {
+                            callback({
+                                channel,
+                                type: liveTypes[payload.eventType],
+                                date: new Date(payload.commit_timestamp),
+                                payload: payload.new,
+                            });
+                        }
+                    } else {
+                        callback({
+                            channel,
+                            type: liveTypes[payload.eventType],
+                            date: new Date(payload.commit_timestamp),
+                            payload: payload.new,
+                        });
+                    }
+                }
+            };
+
+            const client = supabaseClient
+                .from(resource)
+                .on(supabaseTypes[types[0]], listener);
+
+            types
+                .slice(1)
+                .map((item) => client.on(supabaseTypes[item], listener));
+
+            return client.subscribe();
+        },
+
+        unsubscribe: async (subscription: RealtimeSubscription) => {
+            supabaseClient.removeSubscription(subscription);
+        },
+    };
+};
+
+export { dataProvider, liveProvider, createClient };

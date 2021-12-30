@@ -7,6 +7,7 @@ import {
     useCacheQueries,
     useTranslate,
     useCheckError,
+    usePublish,
 } from "@hooks";
 import { DataContext } from "@contexts/data";
 import { ActionTypes } from "@contexts/notification";
@@ -71,6 +72,7 @@ export const useDelete = <
 
     const { notificationDispatch } = useCancelNotification();
     const translate = useTranslate();
+    const publish = usePublish();
 
     const cacheQueries = useCacheQueries();
 
@@ -241,6 +243,15 @@ export const useDelete = <
                         `Successfully deleted a ${resourceSingular}`,
                     ),
                     type: "success",
+                });
+
+                publish?.({
+                    channel: `resources/${resource}`,
+                    type: "deleted",
+                    payload: {
+                        ids: id ? [id.toString()] : [],
+                    },
+                    date: new Date(),
                 });
             },
             onSettled: (_data, _error, { id, resource }) => {

@@ -9,8 +9,9 @@ import {
     GetManyResponse,
     HttpError,
     MetaDataQuery,
+    LiveModeProps,
 } from "../../interfaces";
-import { useTranslate, useCheckError } from "@hooks";
+import { useTranslate, useCheckError, useResourceSubscription } from "@hooks";
 import { handleNotification } from "@definitions";
 
 export type UseManyProps<TData, TError> = {
@@ -20,7 +21,7 @@ export type UseManyProps<TData, TError> = {
     successNotification?: ArgsProps | false;
     errorNotification?: ArgsProps | false;
     metaData?: MetaDataQuery;
-};
+} & LiveModeProps;
 
 /**
  * `useMany` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving multiple items from a `resource`.
@@ -43,6 +44,9 @@ export const useMany = <
     successNotification,
     errorNotification,
     metaData,
+    liveMode,
+    onLiveEvent,
+    liveParams,
 }: UseManyProps<TData, TError>): QueryObserverResult<
     GetManyResponse<TData>
 > => {
@@ -50,8 +54,21 @@ export const useMany = <
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
 
+    const isEnabled =
+        queryOptions?.enabled === undefined || queryOptions?.enabled === true;
+
+    useResourceSubscription({
+        resource,
+        types: ["*"],
+        params: { ids: ids ? ids?.map(String) : [], ...liveParams },
+        channel: `resources/${resource}`,
+        enabled: isEnabled,
+        liveMode,
+        onLiveEvent,
+    });
+
     const queryResponse = useQuery<GetManyResponse<TData>, TError>(
-        [`resource/getMany/${resource}`, ids],
+        [`resource/getMany/${resource}`, { ids, ...metaData }],
         () => getMany<TData>({ resource, ids, metaData }),
         {
             ...queryOptions,

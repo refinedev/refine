@@ -8,7 +8,7 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
 
 const API_TOKEN = "keyI18pnBeEMfPAIb";
-const BASE_ID = "appkLVJ25X9ZP1P2l";
+const BASE_ID = "appKYl1H4k9g73sBT";
 
 const App: React.FC = () => {
     return (

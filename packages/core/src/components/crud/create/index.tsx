@@ -79,7 +79,7 @@ export const Create: React.FC<CreateProps> = ({
                 translate(
                     `${resource.name}.titles.create`,
                     `Create ${userFriendlyResourceName(
-                        resource.name,
+                        resource.label ?? resource.name,
                         "singular",
                     )}`,
                 )

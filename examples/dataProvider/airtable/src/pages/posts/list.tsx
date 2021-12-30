@@ -19,7 +19,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     const categoryIds = tableProps?.dataSource?.flatMap((p) => p.category);
     const { data, isLoading } = useMany<ICategory>({
         resource: "categories",
-        ids: categoryIds,
+        ids: categoryIds || [],
         queryOptions: {
             enabled: categoryIds !== undefined,
         },
@@ -43,7 +43,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                             <TextField
                                 value={data?.data
                                     .filter((item) =>
-                                        record.category.includes(item.id),
+                                        record.category?.includes(item.id),
                                     )
                                     .map((p) => p.title)
                                     .join(", ")}

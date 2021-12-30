@@ -9,6 +9,7 @@ import {
     useCheckError,
     useMutationMode,
     useTranslate,
+    usePublish,
 } from "@hooks";
 import { ActionTypes } from "@contexts/notification";
 import {
@@ -73,6 +74,7 @@ export const useUpdateMany = <
     const { mutate: checkError } = useCheckError();
 
     const { notificationDispatch } = useCancelNotification();
+    const publish = usePublish();
 
     const getAllQueries = useCacheQueries();
 
@@ -265,6 +267,15 @@ export const useUpdateMany = <
                         `Successfully updated ${resourceSingular}`,
                     ),
                     type: "success",
+                });
+
+                publish?.({
+                    channel: `resources/${resource}`,
+                    type: "updated",
+                    payload: {
+                        ids: ids.map(String),
+                    },
+                    date: new Date(),
                 });
             },
         },

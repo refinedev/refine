@@ -39,6 +39,10 @@
             },
             {
               "type": "doc",
+              "id": "version-2.xx.xx/api-references/providers/live-provider"
+            },
+            {
+              "type": "doc",
               "id": "version-2.xx.xx/api-references/providers/accessControl-provider"
             },
             {
@@ -148,6 +152,22 @@
                 {
                   "type": "doc",
                   "id": "version-2.xx.xx/api-references/hooks/accessControl/useCan"
+                }
+              ],
+              "collapsible": true,
+              "collapsed": true
+            },
+            {
+              "type": "category",
+              "label": "Live",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "version-2.xx.xx/api-references/hooks/live/useSubscription"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-2.xx.xx/api-references/hooks/live/usePublish"
                 }
               ],
               "collapsible": true,
@@ -528,6 +548,14 @@
             {
               "type": "doc",
               "id": "version-2.xx.xx/guides-and-concepts/data-provider/graphql"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/guides-and-concepts/data-provider/strapi-v4"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/guides-and-concepts/data-provider/appwrite"
             }
           ],
           "collapsible": true,
@@ -540,6 +568,10 @@
         {
           "type": "doc",
           "id": "version-2.xx.xx/guides-and-concepts/access-control"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.xx.xx/guides-and-concepts/real-time"
         },
         {
           "type": "category",
@@ -618,6 +650,16 @@
           "collapsed": true
         },
         {
+          "type":"category",
+          "label": "Web3",
+          "items": [
+            {
+              "type":"doc",
+              "id": "version-2.xx.xx/guides-and-concepts/web3/ethereum-signin"
+            }
+          ]
+        },
+        {
           "type": "doc",
           "id": "version-2.xx.xx/guides-and-concepts/mutation-mode"
         },
@@ -691,6 +733,14 @@
             },
             {
               "type": "doc",
+              "id": "version-2.xx.xx/examples/data-provider/strapi-v4"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/examples/data-provider/appwrite"
+            },
+            {
+              "type": "doc",
               "id": "version-2.xx.xx/examples/data-provider/strapi-graphql"
             },
             {
@@ -732,6 +782,18 @@
             {
               "type": "doc",
               "id": "version-2.xx.xx/examples/auth-provider/google-auth"
+            }
+          ],
+          "collapsible": true,
+          "collapsed": true
+        },
+        {
+          "type": "category",
+          "label": "Live Provider",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/examples/live-provider/ably"
             }
           ],
           "collapsible": true,
@@ -928,6 +990,16 @@
           ],
           "collapsible": true,
           "collapsed": true
+        },
+        {
+          "type": "category",
+          "label": "Web3",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/examples/web3/web3Login"
+            }
+          ]
         },
         {
           "type": "doc",

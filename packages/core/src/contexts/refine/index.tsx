@@ -24,6 +24,8 @@ export const RefineContext = React.createContext<IRefineContext>({
     Footer: DefaultFooter,
     Layout: DefaultLayout,
     OffLayoutArea: DefaultOffLayoutArea,
+    liveMode: "off",
+    onLiveEvent: undefined,
 });
 
 export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
@@ -42,6 +44,8 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
     OffLayoutArea = DefaultOffLayoutArea,
     LoginPage = DefaultLoginPage,
     catchAll,
+    liveMode = "off",
+    onLiveEvent,
 }) => {
     return (
         <RefineContext.Provider
@@ -60,6 +64,8 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
                 DashboardPage,
                 LoginPage,
                 catchAll,
+                liveMode,
+                onLiveEvent,
             }}
         >
             {children}

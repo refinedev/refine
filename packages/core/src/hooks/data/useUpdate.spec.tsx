@@ -89,4 +89,48 @@ describe("useUpdate Hook", () => {
 
         expect(isSuccess).toBeTruthy();
     });
+
+    describe("usePublish", () => {
+        it("publish live event on success", async () => {
+            const onPublishMock = jest.fn();
+
+            const { result, waitForNextUpdate, waitFor } = renderHook(
+                () => useUpdate(),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [{ name: "posts" }],
+                        liveProvider: {
+                            unsubscribe: jest.fn(),
+                            subscribe: jest.fn(),
+                            publish: onPublishMock,
+                        },
+                    }),
+                },
+            );
+
+            result.current.mutate({
+                resource: "posts",
+                mutationMode: "undoable",
+                undoableTimeout: 0,
+                id: "1",
+                values: { id: "1", title: "undoable test" },
+            });
+            await waitForNextUpdate();
+
+            await waitFor(() => {
+                return result.current.isSuccess;
+            });
+
+            expect(onPublishMock).toBeCalled();
+            expect(onPublishMock).toHaveBeenCalledWith({
+                channel: "resources/posts",
+                date: expect.any(Date),
+                type: "updated",
+                payload: {
+                    ids: ["1"],
+                },
+            });
+        });
+    });
 });
