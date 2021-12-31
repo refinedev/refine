@@ -17,6 +17,7 @@ const WrapperWithRoute: React.FC = ({ children }) => (
         <Route path="/:resource/:action/:id">{children}</Route>
     </Wrapper>
 );
+
 describe("useCloneForm Hook", () => {
     it("fetches data and puts in the form", async () => {
         const { result, waitFor } = renderHook(
@@ -30,7 +31,7 @@ describe("useCloneForm Hook", () => {
             return !result.current.formLoading;
         });
 
-        expect(result.current.form.getFieldValue("title")).toEqual(
+        expect(result.current.queryResult.data?.data.title).toEqual(
             posts[0].title,
         );
     });

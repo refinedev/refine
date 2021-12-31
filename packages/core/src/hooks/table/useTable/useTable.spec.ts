@@ -7,11 +7,6 @@ import { useTable } from "./useTable";
 const defaultPagination = {
     pageSize: 10,
     current: 1,
-    defaultPageSize: 10,
-    defaultCurrent: 1,
-    total: 2,
-    simple: true,
-    position: ["bottomCenter"],
 };
 
 const customPagination = {
@@ -19,9 +14,6 @@ const customPagination = {
     defaultCurrent: 2,
     defaultPageSize: 1,
     pageSize: 1,
-    total: 2,
-    simple: true,
-    position: ["bottomCenter"],
 };
 
 describe("useTable Hook", () => {
@@ -34,15 +26,18 @@ describe("useTable Hook", () => {
         });
 
         await waitFor(() => {
-            return !result.current.tableProps.loading;
+            return !result.current.tableQueryResult.isLoading;
         });
 
         const {
-            tableProps: { pagination, dataSource },
+            tableQueryResult: { data },
+            pageSize,
+            current,
         } = result.current;
 
-        expect(dataSource).toHaveLength(2);
-        expect(pagination).toEqual(defaultPagination);
+        expect(data?.data).toHaveLength(2);
+        expect(pageSize).toEqual(defaultPagination.pageSize);
+        expect(current).toEqual(defaultPagination.current);
     });
 
     it("with initial pagination parameters", async () => {
@@ -61,14 +56,13 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.tableProps.loading;
+            return !result.current.tableQueryResult.isLoading;
         });
 
-        const {
-            tableProps: { pagination },
-        } = result.current;
+        const { pageSize, current } = result.current;
 
-        expect(pagination).toEqual(customPagination);
+        expect(pageSize).toEqual(customPagination.pageSize);
+        expect(current).toEqual(customPagination.current);
     });
 
     it("with custom resource", async () => {
@@ -89,14 +83,14 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.tableProps.loading;
+            return !result.current.tableQueryResult.isLoading;
         });
 
         const {
-            tableProps: { dataSource },
+            tableQueryResult: { data },
         } = result.current;
 
-        expect(dataSource).toHaveLength(2);
+        expect(data?.data).toHaveLength(2);
     });
 
     it("with syncWithLocation", async () => {
@@ -118,14 +112,14 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.tableProps.loading;
+            return !result.current.tableQueryResult.isLoading;
         });
 
         const {
-            tableProps: { dataSource },
+            tableQueryResult: { data },
         } = result.current;
 
-        expect(dataSource).toHaveLength(2);
+        expect(data?.data).toHaveLength(2);
     });
 
     it("should success data with resource", async () => {

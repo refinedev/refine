@@ -21,7 +21,7 @@ const WrapperWithRoute: React.FC = ({ children }) => (
     </Wrapper>
 );
 
-describe("useModalForm Hook", () => {
+xdescribe("useModalForm Hook", () => {
     it("should load data to form with edit action", async () => {
         const { result, waitFor } = renderHook(
             () =>

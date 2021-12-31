@@ -30,7 +30,7 @@ describe("useEditForm Hook", () => {
             return !result.current.formLoading;
         });
 
-        expect(result.current.form.getFieldValue("title")).toEqual(
+        expect(result.current.queryResult.data?.data.title).toEqual(
             posts[0].title,
         );
     });

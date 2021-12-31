@@ -14,6 +14,6 @@ describe("useCreateForm Hook", () => {
             },
         );
 
-        expect(result.current.form).toBeDefined();
+        expect(result.current.formLoading).toBeDefined();
     });
 });

@@ -23,8 +23,7 @@ describe("render hook default options", () => {
             return result.current.queryResult.isSuccess;
         });
 
-        const { checkboxGroupProps } = result.current;
-        const { options } = checkboxGroupProps;
+        const { options } = result.current;
 
         expect(options).toHaveLength(2);
 
@@ -57,8 +56,7 @@ describe("render hook default options", () => {
             return result.current.queryResult.isSuccess;
         });
 
-        const { checkboxGroupProps } = result.current;
-        const { options } = checkboxGroupProps;
+        const { options } = result.current;
 
         expect(options).toHaveLength(2);
         expect(options).toEqual([
@@ -94,8 +92,7 @@ describe("render hook default options", () => {
             return result.current.queryResult.isSuccess;
         });
 
-        const { checkboxGroupProps } = result.current;
-        const { options } = checkboxGroupProps;
+        const { options } = result.current;
 
         expect(options).toHaveLength(2);
         expect(options).toEqual([
