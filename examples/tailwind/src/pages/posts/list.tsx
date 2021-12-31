@@ -91,7 +91,7 @@ export const PostList: React.FC = () => {
         state: { pageIndex, pageSize, filters },
     } = useTable<IPost>({ columns }, useFilters, useSortBy, usePagination);
 
-    const { selectProps } = useSelect<ICategory>({
+    const { options } = useSelect<ICategory>({
         resource: "categories",
     });
 
@@ -136,7 +136,7 @@ export const PostList: React.FC = () => {
                         }
                     >
                         <option value={[]}>All Categories</option>
-                        {selectProps.options?.map((category) => (
+                        {options?.map((category) => (
                             <option
                                 key={category.value}
                                 value={category.value || undefined}

@@ -27,7 +27,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         },
     });
 
-    const { queryResult, defaultValueQueryResult, selectProps } =
+    const { queryResult, defaultValueQueryResult, options } =
         useSelect<ICategory>({
             resource: "categories",
             defaultValue: queryResultForm?.data?.data.category.id,
@@ -81,7 +81,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                                     valueAsNumber: true,
                                 })}
                             >
-                                {selectProps.options?.map((category) => (
+                                {options?.map((category) => (
                                     <option
                                         key={category.value}
                                         value={category.value || undefined}
