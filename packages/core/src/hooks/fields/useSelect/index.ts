@@ -1,6 +1,5 @@
 import React from "react";
 import uniqBy from "lodash/uniqBy";
-import { SelectProps } from "antd/lib/select";
 import { QueryObserverResult, UseQueryOptions } from "react-query";
 import debounce from "lodash/debounce";
 
@@ -33,19 +32,12 @@ export type UseSelectProps<TData, TError> = {
     LiveModeProps;
 
 export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
-    selectProps: SelectProps<{ value: string; label: string }>;
     queryResult: QueryObserverResult<GetListResponse<TData>>;
     defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
+    onSearch: (value: string | undefined) => void;
+    options: Option[];
 };
 
-/**
- * `useSelect` hook allows you to manage an Ant Design {@link https://ant.design/components/select/ Select} component when records in a resource needs to be used as select options.
- *
- * @see {@link https://refine.dev/docs/api-references/hooks/field/useSelect} for more details.
- *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
- *
- */
 export const useSelect = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -132,15 +124,16 @@ export const useSelect = <
         liveParams,
         onLiveEvent,
     });
-    const { refetch: refetchList } = queryResult;
 
-    React.useEffect(() => {
-        if (search) {
-            refetchList();
-        }
-    }, [search]);
+    // const { refetch: refetchList } = queryResult;
 
-    const onSearch = (value: string) => {
+    // React.useEffect(() => {
+    //     if (search) {
+    //         refetchList();
+    //     }
+    // }, [search]);
+
+    const onSearch = (value: string | undefined) => {
         if (!value) {
             setSearch([]);
             return;
@@ -156,14 +149,9 @@ export const useSelect = <
     };
 
     return {
-        selectProps: {
-            options: uniqBy([...options, ...selectedOptions], "value"),
-            onSearch: debounce(onSearch, debounceValue),
-            loading: defaultValueQueryResult.isFetching,
-            showSearch: true,
-            filterOption: false,
-        },
         queryResult,
         defaultValueQueryResult,
+        options: uniqBy([...options, ...selectedOptions], "value"),
+        onSearch: debounce(onSearch, debounceValue),
     };
 };

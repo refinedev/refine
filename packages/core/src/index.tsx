@@ -39,6 +39,7 @@ export {
     ResourceRouterParams,
     IResourceItem,
     BaseRecord,
+    Option,
     LiveModeProps,
     MetaDataQuery,
     RedirectionTypes,
