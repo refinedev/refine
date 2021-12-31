@@ -11,7 +11,9 @@ We follow a [code of conduct][CODE_OF_CONDUCT] when participating in the communi
 
 ## Running in development mode
 
-This project has multiple packages and uses [Lerna][Lerna] to manage all of the packages under `packages/`.
+`node` version 14 is required.
+
+This project has multiple packages and uses [Lerna][Lerna] to manage packages under `packages/`.
 
 First, install dependencies:
 
@@ -27,20 +29,41 @@ From now on, depending on the packages you plan to work on, (they are located un
 
 ### Starting the packages you work in watch mode
 
-To bootstrap the packages, you should run:
+You can either bootstrap all packages or only the packages you plan to work on.
+
+To bootstrap all packages (all packages under `/examples` and under `/packages` whose names start with `@pankod/refine*`), you should run:
 
 ```bash
 npm run bootstrap
-npm run build
 ```
 
-At this point, all packages are bootstrapped. Now you can start the packages you plan to work on in development mode. If you don't want to start all packages in development mode, you should filter them:
+To bootstrap the specific packages/examples only (all packages under `/packages` whose names start with `@pankod/refine*` and specified packages):
 
 ```bash
+npm run bootstrap -- --scope refine-use-select-example
+```
+
+[Refer to **lerna** docs to learn more about `scope` flag. &#8594][Lerna Filter]
+
+`npm run bootstrap` command bootstraps all packages whose name start with `@pankod/refine*` and all packages under `/examples`. If you add filters with `--scope` flag, you can avoid bootstrapping all packages under `/examples`.
+
+At this point, all/required packages are bootstrapped. Now you can start the packages you plan to work on in development mode. If you don't want to start all packages in development mode, you should filter them:
+
+```bash
+npm run build
+npm run start -- --scope refine-use-select-example
+```
+
+This command starts the example named `refine-use-select-example` in dev mode. The value of the flag `--scope` is the name that is defined in it's `package.json` file. Note that `--scope` flag should be used for every package that should be filtered. If you should start two packages:
+
+```bash
+npm run build
 npm run start -- --scope @pankod/refine --scope refine-use-select-example
 ```
 
-This command only starts the packages named `@pankod/refine` and `refine-use-select-example` in dev mode. The value of the flag `--scope` is the name that is defined in it's `package.json` file. Note that `--scope` flag should be used for every package that should be filtered.
+:::warning
+If you run `npm run start` command without `scope` flag, it attempts to start all packages (in `/packages` and `/examples`) in development mode.
+:::
 
 Now all filtered packages are running in watch mode. They should re-compile when you make a change in any of them.
 
@@ -91,6 +114,7 @@ Please make sure you contribute well tested code.
 
 [Lerna]: https://github.com/lerna/lerna
 [Lerna Bootstrap]: https://lerna.js.org/#command-bootstrap
+[Lerna Filter]: https://github.com/lerna/lerna/blob/main/core/filter-options/README.md#--scope-glob
 [package.json]: https://github.com/pankod/refine/blob/master/package.json
 [Docusaurus]: https://docusaurus.io/
 [Issues]: https://github.com/pankod/refine/issues
