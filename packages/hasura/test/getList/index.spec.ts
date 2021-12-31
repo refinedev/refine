@@ -11,9 +11,9 @@ describe("getList", () => {
             },
         });
 
-        expect(data[0]["id"]).toBe("f3771f12-6dc6-4910-8fb5-2f523ff705d0");
-        expect(data[0]["title"]).toBe("Communications Metal Industrial");
-        expect(total).toBe(33);
+        expect(data[0]["id"]).toBe("bac2ef0a-899f-4694-84ef-b9c6fe4dc2b7");
+        expect(data[0]["title"]).toBe("asdfasdfsadf");
+        expect(total).toBe(29);
     });
 
     it("correct sorting response", async () => {
@@ -30,11 +30,9 @@ describe("getList", () => {
             },
         });
 
-        expect(data[0]["id"]).toBe("1ba7b6f0-fef5-4050-a2fb-dacc056c7714");
-        expect(data[0]["title"]).toBe(
-            "Aenean ultricies non libero sit amet pellentesque",
-        );
-        expect(total).toBe(33);
+        expect(data[0]["id"]).toBe("2b5ac145-0f89-4e38-a8c5-a26b1b1631d3");
+        expect(data[0]["title"]).toBe("deneme");
+        expect(total).toBe(29);
     });
 
     it("correct filter response", async () => {
@@ -52,12 +50,13 @@ describe("getList", () => {
             },
         });
 
-        expect(data[0]["id"]).toBe("f3771f12-6dc6-4910-8fb5-2f523ff705d0");
-        expect(data[0]["title"]).toBe("Communications Metal Industrial");
-        expect(total).toBe(33);
+        expect(data[0]["id"]).toBe("bac2ef0a-899f-4694-84ef-b9c6fe4dc2b7");
+        expect(data[0]["title"]).toBe("asdfasdfsadf");
+        expect(total).toBe(8);
     });
 
     it("correct filter and sort response", async () => {
+        //nock.recorder.rec();
         const { data, total } = await dataProvider(client).getList({
             resource: "posts",
             filters: [
@@ -78,8 +77,8 @@ describe("getList", () => {
             },
         });
 
-        expect(data[0]["id"]).toBe("f3771f12-6dc6-4910-8fb5-2f523ff705d0");
-        expect(data[0]["category"].title).toBe("Optical Ohio Wooden");
-        expect(total).toBe(33);
+        expect(data[0]["id"]).toBe("bed4727e-33bb-4468-9868-941efe648acc");
+        expect(data[0]["category"].title).toBe("Optical Ohio Wooddkh");
+        expect(total).toBe(8);
     });
 });

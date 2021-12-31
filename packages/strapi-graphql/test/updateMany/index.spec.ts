@@ -14,18 +14,7 @@ describe("updateMany", () => {
             },
 
             metaData: {
-                fields: [
-                    {
-                        operation: "post",
-                        fields: [
-                            "id",
-                            "title",
-                            "content",
-                            { category: ["id"] },
-                        ],
-                        variables: {},
-                    },
-                ],
+                fields: ["id", "title", "content", { category: ["id"] }],
             },
         });
 

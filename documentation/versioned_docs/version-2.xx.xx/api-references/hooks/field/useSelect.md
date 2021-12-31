@@ -172,6 +172,37 @@ const { selectProps } = useSelect({
 
 It allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
 
+### `fetchSize`
+
+```tsx
+const { selectProps } = useSelect({
+    resource: "categories",
+// highlight-next-line
+    fetchSize: 20,
+});
+```
+
+Amount of records to fetch in select box.
+
+### `onSearch`
+
+```tsx
+const { selectProps } = useSelect({
+    resource: "categories",
+// highlight-start
+    onSearch: (value) => [
+        {
+            field: "title",
+            operator: "containss",
+            value,
+        },
+    ],
+// highlight-end
+});
+```
+
+If defined, it allows us to override the filters to use when fetching list of records. It should return [`CrudFilters`](../../interfaces.md#crudfilters).
+
 ### `queryOptions`
 
 ```tsx 
@@ -220,6 +251,8 @@ const { selectProps } = useSelect({
 | sort                                              | Allow us to sort the options                                                        | [`CrudSorting`](../../interfaces.md#crudsorting)               |           |
 | debounce                                          | The number of milliseconds to delay                                                 | `number`                                                       | 300       |
 | queryOptions                                      | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>`             |           |
+| fetchSize                                         | Amount of records to fetch in select box list.                                      | `number`                                                       | `undefined` |
+| onSearch                                          | If defined, this callback allows us to override all filters for every search request.| `(value: string) => CrudFilters `\|` Promise<CrudFilters>`    | `undefined` |
 | defaultValueQueryOptions                          | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetManyResponse<TData>, TError>`             |           |
 | metaData                                          | Metadata query for `dataProvider`                                                   | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery) | {}        |
 | [liveMode](/api-references/providers/live-provider.md#usage-in-a-hook)                                                                                            | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/api-references/interfaces.md#livemodeprops)       | `"off"`                             |

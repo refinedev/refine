@@ -3,6 +3,7 @@ import { renderHook } from "@testing-library/react-hooks";
 import { MockJSONServer, TestWrapper, act } from "@test";
 
 import { useSelect } from "./";
+import { CrudFilters, IDataContext } from "src/interfaces";
 
 describe("useSelect Hook", () => {
     it("default", async () => {
@@ -332,5 +333,107 @@ describe("useSelect Hook", () => {
             { label: "Recusandae consectetur aut atque est.", value: "2" },
         ]);
         expect(mockFunc).toBeCalled();
+    });
+
+    it("should use fetchSize option as pageSize when fetching list", async () => {
+        const posts = [
+            {
+                id: "1",
+                title: "Post 1",
+            },
+            {
+                id: "2",
+                title: "Post 2",
+            },
+        ];
+
+        const mockDataProvider = {
+            getList: jest.fn(() => Promise.resolve({ data: posts, total: 2 })),
+            getMany: jest.fn(() => Promise.resolve({ data: [...posts] })),
+        };
+
+        const { waitForNextUpdate } = renderHook(
+            () =>
+                useSelect({
+                    resource: "posts",
+                    defaultValue: ["1", "2"],
+                    fetchSize: 20,
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: mockDataProvider as unknown as IDataContext,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitForNextUpdate();
+
+        expect(mockDataProvider.getList).toHaveBeenCalledWith({
+            filters: [],
+            pagination: { pageSize: 20 },
+            resource: "posts",
+        });
+    });
+
+    it("should use onSearch option to get filters", async () => {
+        const posts = [
+            {
+                id: "1",
+                title: "Post 1",
+            },
+            {
+                id: "2",
+                title: "Post 2",
+            },
+        ];
+
+        const mockDataProvider = {
+            getList: jest.fn(() => Promise.resolve({ data: posts, total: 2 })),
+            getMany: jest.fn(() => Promise.resolve({ data: [...posts] })),
+        };
+
+        const filters: CrudFilters = [
+            {
+                field: "field",
+                operator: "lt",
+                value: "value",
+            },
+        ];
+
+        const { result, waitForNextUpdate } = renderHook(
+            () =>
+                useSelect({
+                    resource: "posts",
+                    defaultValue: ["1", "2"],
+                    onSearch: () => filters,
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: mockDataProvider as unknown as IDataContext,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        const { selectProps } = result.current;
+
+        await waitForNextUpdate();
+
+        expect(mockDataProvider.getList).toHaveBeenCalledWith({
+            filters: [],
+            resource: "posts",
+        });
+
+        act(() => {
+            selectProps!.onSearch!("1");
+        });
+
+        await waitForNextUpdate();
+
+        expect(mockDataProvider.getList).toHaveBeenCalledWith({
+            filters,
+            resource: "posts",
+        });
     });
 });

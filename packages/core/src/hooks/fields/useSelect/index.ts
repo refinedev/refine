@@ -1,5 +1,6 @@
 import React from "react";
 import uniqBy from "lodash/uniqBy";
+import { SelectProps } from "antd/lib/select";
 import { QueryObserverResult, UseQueryOptions } from "react-query";
 import debounce from "lodash/debounce";
 
@@ -26,18 +27,27 @@ export type UseSelectProps<TData, TError> = {
     defaultValue?: string | string[];
     debounce?: number;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
+    fetchSize?: number;
     defaultValueQueryOptions?: UseQueryOptions<GetManyResponse<TData>, TError>;
+    onSearch?: (value: string) => CrudFilters;
     metaData?: MetaDataQuery;
 } & SuccessErrorNotification &
     LiveModeProps;
 
 export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
+    selectProps: SelectProps<{ value: string; label: string }>;
     queryResult: QueryObserverResult<GetListResponse<TData>>;
     defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
-    onSearch: (value: string | undefined) => void;
-    options: Option[];
 };
 
+/**
+ * `useSelect` hook allows you to manage an Ant Design {@link https://ant.design/components/select/ Select} component when records in a resource needs to be used as select options.
+ *
+ * @see {@link https://refine.dev/docs/api-references/hooks/field/useSelect} for more details.
+ *
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
+ *
+ */
 export const useSelect = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -61,8 +71,10 @@ export const useSelect = <
         errorNotification,
         defaultValueQueryOptions,
         queryOptions,
+        fetchSize,
         liveMode,
         onLiveEvent,
+        onSearch: onSearchFromProp,
         liveParams,
         metaData,
     } = props;
@@ -109,6 +121,11 @@ export const useSelect = <
         config: {
             sort,
             filters: filters.concat(search),
+            pagination: fetchSize
+                ? {
+                      pageSize: fetchSize,
+                  }
+                : undefined,
         },
         queryOptions: {
             ...queryOptions,
@@ -124,34 +141,42 @@ export const useSelect = <
         liveParams,
         onLiveEvent,
     });
+    const { refetch: refetchList } = queryResult;
 
-    // const { refetch: refetchList } = queryResult;
+    React.useEffect(() => {
+        if (search) {
+            refetchList();
+        }
+    }, [search]);
 
-    // React.useEffect(() => {
-    //     if (search) {
-    //         refetchList();
-    //     }
-    // }, [search]);
-
-    const onSearch = (value: string | undefined) => {
+    const onSearch = (value: string) => {
         if (!value) {
             setSearch([]);
             return;
         }
 
-        setSearch([
-            {
-                field: optionLabel,
-                operator: "contains",
-                value,
-            },
-        ]);
+        if (onSearchFromProp) {
+            setSearch(onSearchFromProp(value));
+        } else {
+            setSearch([
+                {
+                    field: optionLabel,
+                    operator: "contains",
+                    value,
+                },
+            ]);
+        }
     };
 
     return {
+        selectProps: {
+            options: uniqBy([...options, ...selectedOptions], "value"),
+            onSearch: debounce(onSearch, debounceValue),
+            loading: defaultValueQueryResult.isFetching,
+            showSearch: true,
+            filterOption: false,
+        },
         queryResult,
         defaultValueQueryResult,
-        options: uniqBy([...options, ...selectedOptions], "value"),
-        onSearch: debounce(onSearch, debounceValue),
     };
 };
