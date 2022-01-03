@@ -150,6 +150,10 @@ const backendLinks = [
         text: "Appwrite",
     },
     {
+        href: "https://firebase.google.com/",
+        text: "Firebase",
+    },
+    {
         href: "https://altogic.com/",
         text: "Altogic",
     },

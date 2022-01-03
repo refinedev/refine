@@ -44,9 +44,9 @@ const mapOperator = (operator: CrudOperators): string => {
             return "<=";
         case "ne":
             return "!=";
+        default:
+            throw Error(`Operator ${operator} is not supported`);
     }
-
-    return "";
 };
 
 const generateSort = (sort?: CrudSorting) => {

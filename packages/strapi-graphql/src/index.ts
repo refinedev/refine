@@ -178,10 +178,10 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                         type: `${camelUpdateName}Input`,
                     },
                 },
-                fields: metaData?.fields ?? [
+                fields: [
                     {
                         operation: singularResource,
-                        fields: ["id"],
+                        fields: metaData?.fields ?? ["id"],
                         variables: {},
                     },
                 ],
@@ -209,10 +209,10 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                                 type: `${camelUpdateName}Input`,
                             },
                         },
-                        fields: metaData?.fields ?? [
+                        fields: [
                             {
                                 operation: singularResource,
-                                fields: ["id"],
+                                fields: metaData?.fields ?? ["id"],
                                 variables: {},
                             },
                         ],

@@ -54,6 +54,8 @@ const dataProvider = {
 -   [Appwrite](https://github.com/pankod/refine/tree/master/packages/appwrite)
 -   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
+### Community ❤️
+-   [Firebase](https://github.com/rturan29/refine-firebase) by [rturan29](https://github.com/rturan29)
 :::
 
 <br/>

@@ -33,9 +33,11 @@ const mapOperator = (operator: CrudOperators): string => {
             return `_${operator}`;
         case "contains":
             return "_like";
+        case "eq":
+            return "";
+        default:
+            throw Error(`Operator ${operator} is not supported`);
     }
-
-    return ""; // default "eq"
 };
 
 const generateSort = (sort?: CrudSorting) => {

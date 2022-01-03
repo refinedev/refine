@@ -176,6 +176,9 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 * [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
 * [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
+### Community ❤️
+-   [Firebase](https://github.com/rturan29/refine-firebase) by [rturan29](https://github.com/rturan29)
+
 [Refer to the `dataProvider` documentation for detailed usage. &#8594](/api-references/providers/data-provider.md)
 :::
 

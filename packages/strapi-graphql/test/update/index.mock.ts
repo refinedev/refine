@@ -5,7 +5,7 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
         query: "mutation ($input: updatePostInput) {\n  updatePost (input: $input) {\n    post  { id, title, content, category { id } }\n  }\n}",
         variables: {
             input: {
-                where: { id: "21" },
+                where: { id: "150" },
                 data: {
                     title: "updated-foo",
                     content: "updated-bar",
@@ -20,7 +20,7 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
             data: {
                 updatePost: {
                     post: {
-                        id: "21",
+                        id: "150",
                         title: "updated-foo",
                         content: "updated-bar",
                         category: { id: "2" },
@@ -32,11 +32,11 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
             "Server",
             "nginx/1.17.10",
             "Date",
-            "Fri, 17 Sep 2021 08:18:44 GMT",
+            "Thu, 30 Dec 2021 11:49:05 GMT",
             "Content-Type",
             "application/json",
             "Content-Length",
-            "113",
+            "114",
             "Connection",
             "close",
             "Vary",
@@ -48,7 +48,7 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
             "X-Powered-By",
             "Strapi <strapi.io>",
             "X-Response-Time",
-            "157ms",
+            "74ms",
         ],
     );
 
