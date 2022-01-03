@@ -9,9 +9,13 @@ import {
     MetaDataQuery,
     LiveModeProps,
 } from "../../interfaces";
-import { useCheckError, useTranslate, useResourceSubscription } from "@hooks";
+import {
+    useCheckError,
+    useTranslate,
+    useResourceSubscription,
+    useHandleNotification,
+} from "@hooks";
 import { ArgsProps } from "antd/lib/notification";
-import { handleNotification } from "@definitions";
 
 export type UseOneProps<TData, TError> = {
     resource: string;
@@ -50,6 +54,7 @@ export const useOne = <
     const { getOne } = useContext<IDataContext>(DataContext);
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
+    const handleNotification = useHandleNotification();
 
     useResourceSubscription({
         resource,

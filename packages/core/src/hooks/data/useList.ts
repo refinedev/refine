@@ -14,8 +14,12 @@ import {
     MetaDataQuery,
     LiveModeProps,
 } from "../../interfaces";
-import { useCheckError, useResourceSubscription, useTranslate } from "@hooks";
-import { handleNotification } from "@definitions";
+import {
+    useCheckError,
+    useHandleNotification,
+    useResourceSubscription,
+    useTranslate,
+} from "@hooks";
 
 interface UseListConfig {
     pagination?: Pagination;
@@ -63,6 +67,7 @@ export const useList = <
     const { getList } = useContext<IDataContext>(DataContext);
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
+    const handleNotification = useHandleNotification();
 
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;

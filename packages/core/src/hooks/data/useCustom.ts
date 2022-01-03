@@ -12,8 +12,7 @@ import {
     HttpError,
     MetaDataQuery,
 } from "../../interfaces";
-import { useTranslate, useCheckError } from "@hooks";
-import { handleNotification } from "@definitions/helpers";
+import { useTranslate, useCheckError, useHandleNotification } from "@hooks";
 
 interface UseCustomConfig<TQuery, TPayload> {
     sort?: CrudSorting;
@@ -66,6 +65,7 @@ export const useCustom = <
     const { custom } = useContext<IDataContext>(DataContext);
     const { mutate: checkError } = useCheckError();
     const translate = useTranslate();
+    const handleNotification = useHandleNotification();
 
     const queryResponse = useQuery<CustomResponse<TData>, TError>(
         [`custom/${method}-${url}`, { ...config, ...metaData }],

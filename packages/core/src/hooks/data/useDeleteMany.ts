@@ -23,9 +23,9 @@ import {
     useCacheQueries,
     useCheckError,
     usePublish,
+    useHandleNotification,
 } from "@hooks";
 import { ActionTypes } from "@contexts/notification";
-import { handleNotification } from "@definitions";
 
 type DeleteManyParams = {
     ids: string[];
@@ -73,6 +73,7 @@ export const useDeleteMany = <
     const translate = useTranslate();
     const cacheQueries = useCacheQueries();
     const publish = usePublish();
+    const handleNotification = useHandleNotification();
 
     const queryClient = useQueryClient();
 

@@ -10,8 +10,12 @@ import {
     SuccessErrorNotification,
     MetaDataQuery,
 } from "../../interfaces";
-import { useCacheQueries, useTranslate, usePublish } from "@hooks";
-import { handleNotification } from "@definitions";
+import {
+    useCacheQueries,
+    useTranslate,
+    usePublish,
+    useHandleNotification,
+} from "@hooks";
 import pluralize from "pluralize";
 
 type useCreateManyParams<TVariables> = {
@@ -53,6 +57,7 @@ export const useCreateMany = <
     const translate = useTranslate();
     const queryClient = useQueryClient();
     const publish = usePublish();
+    const handleNotification = useHandleNotification();
 
     const mutation = useMutation<
         CreateManyResponse<TData>,

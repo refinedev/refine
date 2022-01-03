@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { ButtonProps, notification, UploadProps, Progress } from "antd";
+import { ButtonProps, UploadProps, Progress } from "antd";
 import { UploadChangeParam } from "antd/lib/upload";
 import {
     useCreate,
@@ -8,6 +8,7 @@ import {
     useCreateMany,
     useResourceWithRoute,
     useRouterContext,
+    useNotification,
 } from "@hooks";
 import {
     MapDataFn,
@@ -92,7 +93,7 @@ export const useImport = <
 
     const t = useTranslate();
     const resourceWithRoute = useResourceWithRoute();
-
+    const { open, close } = useNotification();
     const { useParams } = useRouterContext();
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
@@ -119,7 +120,7 @@ export const useImport = <
         setIsLoading(false);
 
         setTimeout(() => {
-            notification.close(`${resource}-import`);
+            close(`${resource}-import`);
         }, 4500);
     };
 
@@ -173,7 +174,7 @@ export const useImport = <
                 </div>
             );
 
-            notification.open({
+            open({
                 description,
                 message: null,
                 key: `${resource}-import`,

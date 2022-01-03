@@ -16,8 +16,8 @@ import {
     useCheckError,
     useCacheQueries,
     usePublish,
+    useHandleNotification,
 } from "@hooks";
-import { handleNotification } from "@definitions";
 
 type useCreateParams<TVariables> = {
     resource: string;
@@ -59,6 +59,7 @@ export const useCreate = <
     const translate = useTranslate();
     const queryClient = useQueryClient();
     const publish = usePublish();
+    const handleNotification = useHandleNotification();
 
     const mutation = useMutation<
         CreateResponse<TData>,
@@ -92,11 +93,10 @@ export const useCreate = <
                     ),
                     message: translate("notifications.success", "Success"),
                     type: "success",
-                });
-
-                getAllQueries(resource).forEach((query) => {
-                    queryClient.invalidateQueries(query.queryKey);
-                });
+                }),
+                    getAllQueries(resource).forEach((query) => {
+                        queryClient.invalidateQueries(query.queryKey);
+                    });
 
                 publish?.({
                     channel: `resources/${resource}`,

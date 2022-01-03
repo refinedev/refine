@@ -11,8 +11,12 @@ import {
     MetaDataQuery,
     LiveModeProps,
 } from "../../interfaces";
-import { useTranslate, useCheckError, useResourceSubscription } from "@hooks";
-import { handleNotification } from "@definitions";
+import {
+    useTranslate,
+    useCheckError,
+    useResourceSubscription,
+    useHandleNotification,
+} from "@hooks";
 
 export type UseManyProps<TData, TError> = {
     resource: string;
@@ -53,6 +57,7 @@ export const useMany = <
     const { getMany } = useContext<IDataContext>(DataContext);
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
+    const handleNotification = useHandleNotification();
 
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;

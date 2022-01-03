@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { Button, notification, Space } from "antd";
+import { Button } from "antd";
 import { UndoOutlined } from "@ant-design/icons";
 
 import { ActionTypes } from "@contexts/notification";
-import { useCancelNotification, useTranslate } from "@hooks";
+import { useCancelNotification, useNotification, useTranslate } from "@hooks";
 import { INotification } from "../../interfaces";
 
 import { NotificationProgress } from "./components";
@@ -15,6 +15,7 @@ export const Notification: React.FC<{
     const translate = useTranslate();
 
     const { notificationDispatch } = useCancelNotification();
+    const { open, close } = useNotification();
 
     const cancelNotification = () => {
         notifications.forEach((notificationItem: INotification) => {
@@ -59,7 +60,7 @@ export const Notification: React.FC<{
                                     },
                                 });
                                 notificationItem.cancelMutation();
-                                notification.close(
+                                close(
                                     `${notificationItem.id}-${notificationItem.resource}-notification`,
                                 );
                             }}
@@ -69,7 +70,7 @@ export const Notification: React.FC<{
                     </div>
                 );
 
-                notification.open({
+                open({
                     key: `${notificationItem.id}-${notificationItem.resource}-notification`,
                     style: {
                         display: notificationItem.isSilent ? "none" : "block",

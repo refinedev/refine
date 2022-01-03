@@ -10,6 +10,7 @@ import {
     useMutationMode,
     useTranslate,
     usePublish,
+    useHandleNotification,
 } from "@hooks";
 import { ActionTypes } from "@contexts/notification";
 import {
@@ -24,7 +25,6 @@ import {
     SuccessErrorNotification,
     MetaDataQuery,
 } from "../../interfaces";
-import { handleNotification } from "@definitions/helpers";
 
 type UpdateManyParams<TVariables> = {
     ids: string[];
@@ -75,6 +75,7 @@ export const useUpdateMany = <
 
     const { notificationDispatch } = useCancelNotification();
     const publish = usePublish();
+    const handleNotification = useHandleNotification();
 
     const getAllQueries = useCacheQueries();
 
