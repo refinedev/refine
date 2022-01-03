@@ -50,7 +50,7 @@ npm run bootstrap -- --scope refine-use-select-example
 At this point, all/required packages are bootstrapped. Now you can start the packages you plan to work on in development mode. If you don't want to start all packages in development mode, you should filter them:
 
 ```bash
-npm run build -- --scope refine-use-select-example
+npm run build
 npm run start -- --scope @pankod/refine --scope refine-use-select-example
 ```
 
