@@ -2,7 +2,6 @@ import { RadioGroupProps } from "antd/lib/radio";
 import { QueryObserverResult, UseQueryOptions } from "react-query";
 
 import {
-    useRadioGroup as useRadioGroupCore,
     CrudSorting,
     BaseRecord,
     GetListResponse,
@@ -11,7 +10,10 @@ import {
     HttpError,
     MetaDataQuery,
     LiveModeProps,
+    useList,
+    Option,
 } from "@pankod/refine-core";
+import { useState } from "react";
 
 export type useRadioGroupProps<TData, TError> = RadioGroupProps & {
     resource: string;
@@ -41,10 +43,51 @@ export type UseRadioGroupReturnType<TData extends BaseRecord = BaseRecord> = {
 export const useRadioGroup = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
->(
-    props: useRadioGroupProps<TData, TError>,
-): UseRadioGroupReturnType<TData> => {
-    const { queryResult, options } = useRadioGroupCore(props);
+>({
+    resource,
+    sort,
+    filters,
+    optionLabel = "title",
+    optionValue = "id",
+    successNotification,
+    errorNotification,
+    queryOptions,
+    liveMode,
+    onLiveEvent,
+    liveParams,
+    metaData,
+}: useRadioGroupProps<TData, TError>): UseRadioGroupReturnType<TData> => {
+    const [options, setOptions] = useState<Option[]>([]);
+
+    const defaultQueryOnSuccess = (data: GetListResponse<TData>) => {
+        setOptions(() =>
+            data.data.map((item) => ({
+                label: item[optionLabel],
+                value: item[optionValue],
+            })),
+        );
+    };
+
+    const queryResult = useList<TData, TError>({
+        resource,
+        config: {
+            sort,
+            filters,
+        },
+        queryOptions: {
+            ...queryOptions,
+            onSuccess: (data) => {
+                defaultQueryOnSuccess(data);
+                queryOptions?.onSuccess?.(data);
+            },
+        },
+        successNotification,
+        errorNotification,
+        liveMode,
+        onLiveEvent,
+        liveParams,
+        metaData,
+    });
 
     return {
         radioGroupProps: {

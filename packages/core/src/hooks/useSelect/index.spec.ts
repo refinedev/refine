@@ -24,8 +24,7 @@ describe("useSelect Hook", () => {
             return !result.current.queryResult?.isLoading;
         });
 
-        const { selectProps } = result.current;
-        const { options } = selectProps;
+        const { options } = result.current;
 
         expect(options).toHaveLength(2);
         expect(options).toEqual([
@@ -56,8 +55,7 @@ describe("useSelect Hook", () => {
             return !result.current.queryResult.isLoading;
         });
 
-        const { selectProps } = result.current;
-        const { options } = selectProps;
+        const { options } = result.current;
 
         expect(options).toHaveLength(2);
         expect(options).toEqual([
@@ -88,8 +86,7 @@ describe("useSelect Hook", () => {
             return !result.current.queryResult.isLoading;
         });
 
-        const { selectProps } = result.current;
-        const { options } = selectProps;
+        const { options } = result.current;
 
         expect(options).toHaveLength(2);
         expect(options).toEqual([
@@ -121,8 +118,7 @@ describe("useSelect Hook", () => {
             return result.current.queryResult.isSuccess;
         });
 
-        const { selectProps } = result.current;
-        const { options } = selectProps;
+        const { options } = result.current;
 
         expect(options).toHaveLength(2);
         expect(options).toEqual([
@@ -156,8 +152,7 @@ describe("useSelect Hook", () => {
             return result.current.queryResult.isSuccess;
         });
 
-        const { selectProps } = result.current;
-        const { options } = selectProps;
+        const { options } = result.current;
 
         expect(options).toHaveLength(2);
         expect(options).toEqual([
@@ -196,11 +191,11 @@ describe("useSelect Hook", () => {
 
         expect(getListMock).toBeCalledTimes(1);
 
-        const { selectProps } = result.current;
+        const { onSearch } = result.current;
 
         act(() => {
             for (let index = 0; index < 10; index++) {
-                selectProps!.onSearch!(index.toString());
+                onSearch(index.toString());
             }
         });
         await waitForNextUpdate();
@@ -239,13 +234,13 @@ describe("useSelect Hook", () => {
 
         expect(getListMock).toBeCalledTimes(1);
 
-        const { selectProps } = result.current;
+        const { onSearch } = result.current;
 
-        selectProps!.onSearch!("1");
+        onSearch("1");
         await waitForNextUpdate();
-        selectProps!.onSearch!("1");
+        onSearch("1");
         await waitForNextUpdate();
-        selectProps!.onSearch!("1");
+        onSearch("1");
         await waitForNextUpdate();
 
         expect(getListMock).toBeCalledTimes(4);
@@ -263,7 +258,7 @@ describe("useSelect Hook", () => {
                 useSelect({
                     resource: "posts",
                     queryOptions: {
-                        onSuccess: (data) => {
+                        onSuccess: () => {
                             mockFunc();
                         },
                     },
@@ -280,8 +275,7 @@ describe("useSelect Hook", () => {
             return !result.current.queryResult?.isLoading;
         });
 
-        const { selectProps } = result.current;
-        const { options } = selectProps;
+        const { options } = result.current;
 
         expect(options).toHaveLength(2);
         expect(options).toEqual([
@@ -304,7 +298,7 @@ describe("useSelect Hook", () => {
                     resource: "posts",
                     defaultValue: ["1", "2", "3", "4"],
                     defaultValueQueryOptions: {
-                        onSuccess: (data) => {
+                        onSuccess: () => {
                             mockFunc();
                         },
                     },
@@ -321,8 +315,7 @@ describe("useSelect Hook", () => {
             return !result.current.queryResult.isLoading;
         });
 
-        const { selectProps } = result.current;
-        const { options } = selectProps;
+        const { options } = result.current;
 
         expect(options).toHaveLength(2);
         expect(options).toEqual([
@@ -416,7 +409,7 @@ describe("useSelect Hook", () => {
             },
         );
 
-        const { selectProps } = result.current;
+        const { onSearch } = result.current;
 
         await waitForNextUpdate();
 
@@ -426,7 +419,7 @@ describe("useSelect Hook", () => {
         });
 
         act(() => {
-            selectProps!.onSearch!("1");
+            onSearch("1");
         });
 
         await waitForNextUpdate();

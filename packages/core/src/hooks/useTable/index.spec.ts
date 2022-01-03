@@ -2,7 +2,7 @@ import { renderHook } from "@testing-library/react-hooks";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
-import { useTable } from "./useTable";
+import { useTable } from ".";
 
 const defaultPagination = {
     pageSize: 10,

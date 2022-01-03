@@ -41,6 +41,13 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
 
     const { queryResult, onSearch, options } = useSelect<ICategory>({
         resource: "categories",
+        onSearch: (value) => [
+            {
+                field: "title",
+                operator: "containss",
+                value,
+            },
+        ],
     });
 
     const {
@@ -72,7 +79,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                 {/* <Select
                     defaultValue={null}
                     options={options}
-                    onChange={(value) => onSearch(value?.label)}
+                    onChange={(value) => onSearch(() => {})}
                 /> */}
 
                 <br />

@@ -35,7 +35,7 @@ import {
     HttpError,
     MetaDataQuery,
     LiveModeProps,
-} from "../../../interfaces";
+} from "../../interfaces";
 
 export type useTableProps<TData, TError, TSearchVariables = unknown> = {
     permanentFilter?: CrudFilters;

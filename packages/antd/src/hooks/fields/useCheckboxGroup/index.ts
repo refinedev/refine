@@ -2,7 +2,6 @@ import { CheckboxGroupProps } from "antd/lib/checkbox";
 import { QueryObserverResult, UseQueryOptions } from "react-query";
 
 import {
-    useCheckboxGroup as useCheckboxGroupCore,
     CrudSorting,
     BaseRecord,
     GetListResponse,
@@ -11,7 +10,10 @@ import {
     HttpError,
     MetaDataQuery,
     LiveModeProps,
+    useList,
+    Option,
 } from "@pankod/refine-core";
+import { useState } from "react";
 
 export type useCheckboxGroupProps<TData, TError> = {
     resource: string;
@@ -41,10 +43,51 @@ export type UseCheckboxGroupReturnType<TData extends BaseRecord = BaseRecord> =
 export const useCheckboxGroup = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
->(
-    props: useCheckboxGroupProps<TData, TError>,
-): UseCheckboxGroupReturnType<TData> => {
-    const { options, queryResult } = useCheckboxGroupCore(props);
+>({
+    resource,
+    sort,
+    filters,
+    optionLabel = "title",
+    optionValue = "id",
+    successNotification,
+    errorNotification,
+    queryOptions,
+    liveMode,
+    onLiveEvent,
+    liveParams,
+    metaData,
+}: useCheckboxGroupProps<TData, TError>): UseCheckboxGroupReturnType<TData> => {
+    const [options, setOptions] = useState<Option[]>([]);
+
+    const defaultQueryOnSuccess = (data: GetListResponse<TData>) => {
+        setOptions(
+            data.data.map((item) => ({
+                label: item[optionLabel],
+                value: item[optionValue],
+            })),
+        );
+    };
+
+    const queryResult = useList<TData, TError>({
+        resource,
+        config: {
+            sort,
+            filters,
+        },
+        queryOptions: {
+            ...queryOptions,
+            onSuccess: (data) => {
+                defaultQueryOnSuccess(data);
+                queryOptions?.onSuccess?.(data);
+            },
+        },
+        successNotification,
+        errorNotification,
+        liveMode,
+        onLiveEvent,
+        liveParams,
+        metaData,
+    });
 
     return {
         checkboxGroupProps: {
