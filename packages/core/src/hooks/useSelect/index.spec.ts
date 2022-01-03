@@ -238,9 +238,9 @@ describe("useSelect Hook", () => {
 
         onSearch("1");
         await waitForNextUpdate();
-        onSearch("1");
+        onSearch("2");
         await waitForNextUpdate();
-        onSearch("1");
+        onSearch("3");
         await waitForNextUpdate();
 
         expect(getListMock).toBeCalledTimes(4);

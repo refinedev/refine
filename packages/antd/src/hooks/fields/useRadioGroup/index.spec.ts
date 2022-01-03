@@ -12,10 +12,7 @@ describe("render hook default options", () => {
                     resource: "posts",
                 }),
             {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -46,10 +43,7 @@ describe("render hook default options", () => {
                     optionValue: "id",
                 }),
             {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -83,10 +77,7 @@ describe("render hook default options", () => {
                     },
                 }),
             {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
