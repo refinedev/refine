@@ -93,10 +93,11 @@ export const useCreate = <
                     ),
                     message: translate("notifications.success", "Success"),
                     type: "success",
-                }),
-                    getAllQueries(resource).forEach((query) => {
-                        queryClient.invalidateQueries(query.queryKey);
-                    });
+                });
+
+                getAllQueries(resource).forEach((query) => {
+                    queryClient.invalidateQueries(query.queryKey);
+                });
 
                 publish?.({
                     channel: `resources/${resource}`,
