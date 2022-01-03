@@ -1,6 +1,6 @@
 {
     "name": "fine-foods-client",
-    "version": "2.5.0",
+    "version": "2.5.3",
     "private": true,
     "scripts": {
         "start": "next dev -p 3001",

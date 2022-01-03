@@ -68,7 +68,7 @@ describe("getList", () => {
             expect(err).toBeInstanceOf(Error);
             expect(err).toHaveProperty(
                 "message",
-                "Appwrite data provider does not support in operator",
+                "Operator in is not supported",
             );
         }
     });
