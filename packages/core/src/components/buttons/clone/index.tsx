@@ -51,7 +51,7 @@ export const CloneButton: FC<CloneButtonProps> = ({
     const id = recordItemId ?? idFromRoute;
 
     const onButtonClick = () => {
-        clone(routeResourceName, id);
+        clone(resourceName, id);
     };
 
     const { data } = useCan({
