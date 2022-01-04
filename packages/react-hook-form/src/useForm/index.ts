@@ -52,7 +52,7 @@ export const useForm = <
         ...rest,
     });
 
-    const { watch, setValue, reset } = useHookFormResult;
+    const { watch, setValue, reset, getValues } = useHookFormResult;
 
     const useFormCoreResult = useFormCore<TData, TError, TVariables>({
         onMutationSuccess: () => {
@@ -76,7 +76,10 @@ export const useForm = <
     useEffect(() => {
         Object.entries(queryResult?.data?.data || {}).forEach(
             ([key, value]) => {
-                setValue(key as any, value);
+                const registeredFields = Object.keys(getValues());
+                if (registeredFields.includes(key)) {
+                    setValue(key as any, value);
+                }
             },
         );
         return () => {
