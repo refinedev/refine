@@ -94,6 +94,8 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                                         const { $id } =
                                             await appwriteClient.storage.createFile(
                                                 rcFile,
+                                                ["*"],
+                                                ["*"],
                                             );
 
                                         const url =

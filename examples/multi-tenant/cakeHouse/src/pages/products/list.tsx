@@ -49,7 +49,6 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                     grid={{ gutter: 16, xs: 1 }}
                     style={{
                         justifyContent: "center",
-                        marginLeft: "36px",
                     }}
                     {...listProps}
                     renderItem={(item) => (
