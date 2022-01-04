@@ -75,7 +75,7 @@ export const useCloneForm = <
 
     const queryResult = useOne<TData>({
         resource: props.resource.name,
-        id,
+        id: id ?? "",
         queryOptions: {
             enabled: isClone,
         },

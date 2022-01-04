@@ -1,8 +1,16 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { QueryObserverResult } from "react-query";
-import { FormInstance, FormProps } from "antd";
 
-import { useResourceWithRoute, useRouterContext } from "@hooks";
+import {
+    useResourceWithRoute,
+    useRouterContext,
+    useWarnAboutChange,
+    useCreate,
+    useUpdate,
+    useRedirectionAfterSubmission,
+    useMutationMode,
+    useOne,
+} from "@hooks";
 
 import { useCreateForm, useCreateFormProps } from "./useCreateForm";
 import { useEditForm, useEditFormProps } from "./useEditForm";
@@ -94,6 +102,7 @@ export const useForm = <
 > => {
     // id state is needed to determine selected record in addition to id parameter from route
     // this could be moved to a custom hook that encapsulates both create and clone form hooks.
+    const [idState, setId] = React.useState<string>();
     const [cloneId, setCloneId] = React.useState<string>();
 
     const resourceWithRoute = useResourceWithRoute();
@@ -103,43 +112,199 @@ export const useForm = <
     const {
         resource: resourceFromParams,
         action: actionFromRoute,
-        id,
+        id: idFromRoute,
     } = useParams<ResourceRouterParams>();
 
     const resourceType = resourceFromProps ?? resourceFromParams;
     const action = actionFromProps ?? actionFromRoute;
+    const id = idState ?? idFromRoute;
 
     const resource = resourceWithRoute(resourceType);
 
-    const editForm = useEditForm<TData, TError, TVariables>({
-        ...rest,
-        resource,
-        action,
-    } as useEditFormProps<TData, TError, TVariables>);
+    const {
+        onMutationSuccess,
+        onMutationError,
+        redirect = "edit",
+        successNotification,
+        errorNotification,
+        metaData,
+        mutationMode: mutationModeProp,
+        liveMode,
+        onLiveEvent,
+        liveParams,
+        undoableTimeout,
+    } = rest;
 
-    const createForm = useCreateForm<TData, TError, TVariables>({
-        ...rest,
-        resource,
-        action,
-    } as useCreateFormProps<TData, TError, TVariables>);
+    const { mutationMode: mutationModeContext } = useMutationMode();
 
-    const cloneForm = useCloneForm<TData, TError, TVariables>({
-        ...rest,
-        resource,
-        cloneId,
-        action,
-    } as useCloneFormProps<TData, TError, TVariables>);
+    const mutationMode = mutationModeProp ?? mutationModeContext;
 
-    switch (action) {
-        case "create":
-            return { ...createForm };
-        case "edit":
-            return editForm;
-        case "clone":
-            // setCloneId and cloneId needs to be returned from both clone and create cases.
-            // It is needed to make them accessible in useModalForm to be able to manage id state.
-            return { ...cloneForm, setCloneId, cloneId };
-        default:
-            return createForm;
-    }
+    const isEditOrClone =
+        id !== undefined && (action === "edit" || action === "clone");
+
+    // console.log({ id, action, isEditOrClone });
+    const queryResult = useOne<TData>({
+        resource: resource.name,
+        id: id ?? "",
+        queryOptions: {
+            enabled: isEditOrClone,
+        },
+        liveMode,
+        onLiveEvent,
+        liveParams,
+        metaData,
+    });
+
+    const { isFetching: isFetchingQuery } = queryResult;
+
+    const { setWarnWhen } = useWarnAboutChange();
+
+    const mutationResultCreate = useCreate<TData, TError, TVariables>();
+    const { mutate: mutateCreate, isLoading: isLoadingCreate } =
+        mutationResultCreate;
+
+    const mutationResultUpdate = useUpdate<TData, TError, TVariables>();
+    const { mutate: mutateUpdate, isLoading: isLoadingUpdate } =
+        mutationResultUpdate;
+
+    const handleSubmitWithRedirect = useRedirectionAfterSubmission();
+
+    const onFinishCreate = async (values: TVariables) => {
+        console.log({ values });
+        setWarnWhen(false);
+        mutateCreate(
+            {
+                values,
+                resource: resource.name,
+                successNotification,
+                errorNotification,
+                metaData,
+            },
+            {
+                onSuccess: (data, variables, context) => {
+                    if (onMutationSuccess) {
+                        onMutationSuccess(data, values, context);
+                    }
+
+                    // form.resetFields();
+
+                    const id = data?.data?.id;
+
+                    handleSubmitWithRedirect({
+                        redirect,
+                        resource,
+                        id,
+                    });
+                },
+                onError: (error: TError, variables, context) => {
+                    if (onMutationError) {
+                        return onMutationError(error, values, context);
+                    }
+                },
+            },
+        );
+    };
+
+    const onFinishUpdate = async (values: TVariables) => {
+        setWarnWhen(false);
+
+        console.log("onFinish");
+
+        // Required to make onSuccess vs callbacks to work if component unmounts i.e. on route change
+        setTimeout(() => {
+            console.log("mutate");
+            mutateUpdate(
+                {
+                    id: id ?? "",
+                    values,
+                    resource: resource.name,
+                    mutationMode,
+                    undoableTimeout,
+                    successNotification,
+                    errorNotification,
+                    metaData,
+                },
+                {
+                    onSuccess: (data, _, context) => {
+                        console.log("onsuccess");
+                        if (onMutationSuccess) {
+                            return onMutationSuccess(data, values, context);
+                        }
+
+                        if (mutationMode === "pessimistic") {
+                            setId(undefined);
+                            handleSubmitWithRedirect({
+                                redirect,
+                                resource,
+                                id: idState,
+                            });
+                        }
+                    },
+                    onError: (error: TError, variables, context) => {
+                        if (onMutationError) {
+                            return onMutationError(error, values, context);
+                        }
+                    },
+                },
+            );
+        });
+
+        if (!(mutationMode === "pessimistic")) {
+            setId(undefined);
+            handleSubmitWithRedirect({
+                redirect,
+                resource,
+                id: idState,
+            });
+        }
+    };
+
+    const createResult = {
+        formLoading: isFetchingQuery || isLoadingCreate,
+        mutationResult: mutationResultCreate,
+        onFinish: onFinishCreate,
+    };
+
+    const editResult = {
+        formLoading: isFetchingQuery || isLoadingUpdate,
+        mutationResult: mutationResultUpdate,
+        onFinish: onFinishUpdate,
+    };
+
+    const result =
+        action === "create" || action === "clone" ? createResult : editResult;
+
+    return { ...result, queryResult };
+
+    // const editForm = useEditForm<TData, TError, TVariables>({
+    //     ...rest,
+    //     resource,
+    //     action,
+    // } as useEditFormProps<TData, TError, TVariables>);
+
+    // const createForm = useCreateForm<TData, TError, TVariables>({
+    //     ...rest,
+    //     resource,
+    //     action,
+    // } as useCreateFormProps<TData, TError, TVariables>);
+
+    // const cloneForm = useCloneForm<TData, TError, TVariables>({
+    //     ...rest,
+    //     resource,
+    //     cloneId,
+    //     action,
+    // } as useCloneFormProps<TData, TError, TVariables>);
+
+    // switch (action) {
+    //     case "create":
+    //         return { ...createForm };
+    //     case "edit":
+    //         return editForm;
+    //     case "clone":
+    //         // setCloneId and cloneId needs to be returned from both clone and create cases.
+    //         // It is needed to make them accessible in useModalForm to be able to manage id state.
+    //         return { ...cloneForm, setCloneId, cloneId };
+    //     default:
+    //         return createForm;
+    // }
 };

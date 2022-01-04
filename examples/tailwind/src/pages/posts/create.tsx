@@ -21,7 +21,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
         useState<"write" | "preview">("write");
 
     const {
-        useFormCore: { onFinish, formLoading },
+        useFormCore: { onFinish, formLoading, queryResult: queryResultForm },
         register,
         handleSubmit,
         control,
@@ -29,7 +29,8 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     } = useForm<IPost>({
         defaultValues: {
             title: "",
-            "category.id": undefined,
+            // "category.id": undefined,
+            category: { id: undefined },
             status: "draft",
             content: "",
         },
@@ -39,16 +40,18 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
         },
     });
 
-    const { queryResult, onSearch, options } = useSelect<ICategory>({
-        resource: "categories",
-        onSearch: (value) => [
-            {
-                field: "title",
-                operator: "containss",
-                value,
-            },
-        ],
-    });
+    const { queryResult, defaultValueQueryResult, onSearch, options } =
+        useSelect<ICategory>({
+            resource: "categories",
+            defaultValue: queryResultForm?.data?.data.category.id,
+            onSearch: (value) => [
+                {
+                    field: "title",
+                    operator: "containss",
+                    value,
+                },
+            ],
+        });
 
     const {
         isOpen,
@@ -71,7 +74,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     return (
         <Create
             saveButtonProps={{
-                onClick: handleSubmit((values) => console.log(values)),
+                onClick: handleSubmit(onFinish),
                 loading: formLoading,
             }}
         >
@@ -160,7 +163,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                 >
                     Category
                 </label>
-                {!queryResult.isLoading && (
+                {!queryResult.isLoading && !defaultValueQueryResult.isLoading && (
                     <select
                         id="category"
                         className="appearance-none w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
@@ -170,9 +173,12 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                             valueAsNumber: true,
                         })}
                     >
-                        {queryResult.data?.data.map((category) => (
-                            <option key={category.id} value={category.id}>
-                                {category.title}
+                        {options?.map((category) => (
+                            <option
+                                key={category.value}
+                                value={category.value || undefined}
+                            >
+                                {category.label}
                             </option>
                         ))}
                     </select>
