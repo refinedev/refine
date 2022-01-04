@@ -13,7 +13,7 @@ import locale from '@site/static/img/guides-and-concepts/data-provider/strapi-v4
 A few of the Strapi-v4 API features are as follows:
 
 -   Fields Selection
--   Releations Population
+-   Relations Population
 -   Publication State
 -   Locale
 
@@ -201,12 +201,12 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 </div>
 
 
-### Releations Population
+### Relations Population
 By default, relations are not populated when fetching entries.
 
 The `populate` parameter is used to define which fields will be populated.
 
-[Refer to the Releations Population documentation for detailed information. →](https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest-api.html#relations-population)
+[Refer to the Relations Population documentation for detailed information. →](https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest-api.html#relations-population)
 
 ```tsx title="Get all the posts and populate the selected relations"
 const { tableProps } = useTable<IPost>({
