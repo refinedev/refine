@@ -61,7 +61,7 @@ export const useForm = <
         ...useFormCoreProps,
     });
 
-    const { editId, queryResult } = useFormCoreResult;
+    const { id, queryResult } = useFormCoreResult;
     const { data, isFetching } = queryResult ?? {};
 
     useEffect(() => {
@@ -73,10 +73,12 @@ export const useForm = <
         return () => subscription.unsubscribe();
     }, [watch]);
 
+    console.log("reacthookform useForm: ", { registeredFields: getValues() });
+
     useEffect(() => {
+        const registeredFields = Object.keys(getValues());
         Object.entries(queryResult?.data?.data || {}).forEach(
             ([key, value]) => {
-                const registeredFields = Object.keys(getValues());
                 if (registeredFields.includes(key)) {
                     setValue(key as any, value);
                 }
@@ -85,7 +87,7 @@ export const useForm = <
         return () => {
             reset();
         };
-    }, [data, editId, isFetching]);
+    }, [data, id, isFetching]);
 
     const onValuesChange = (changeValues: Record<string, any>) => {
         if (warnWhenUnsavedChanges) {

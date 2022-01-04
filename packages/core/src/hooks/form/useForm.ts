@@ -61,8 +61,10 @@ export type UseFormReturnType<
 > = {
     // form: FormInstance<TVariables>;
     // formProps: FormProps<TVariables>;
-    editId?: string;
-    setEditId?: Dispatch<SetStateAction<string | undefined>>;
+    // editId?: string;
+    // setEditId?: Dispatch<SetStateAction<string | undefined>>;
+    id?: string;
+    setId: Dispatch<SetStateAction<string | undefined>>;
     // saveButtonProps: ButtonProps & {
     //     onClick: () => void;
     // };
@@ -110,10 +112,6 @@ export const useForm = <
     TError,
     TVariables
 > => {
-    // id state is needed to determine selected record in addition to id parameter from route
-    const [idState, setId] = React.useState<string>();
-    // const [cloneId, setCloneId] = React.useState<string>();
-
     const { useParams } = useRouterContext();
     const {
         resource: resourceFromRoute,
@@ -121,9 +119,13 @@ export const useForm = <
         id: idFromRoute,
     } = useParams<ResourceRouterParams>();
 
+    // id state is needed to determine selected record in a context for example useModal
+    const [id, setId] = React.useState<string | undefined>(idFromRoute);
+    // const [cloneId, setCloneId] = React.useState<string>();
+
     const resourceName = resourceFromProps ?? resourceFromRoute;
     const action = actionFromProps ?? actionFromRoute;
-    const id = idState ?? idFromRoute;
+    // const id = idState ?? idFromRoute;
 
     const resourceWithRoute = useResourceWithRoute();
     const resource = resourceWithRoute(resourceName);
@@ -199,9 +201,8 @@ export const useForm = <
     const onFinishUpdate = async (values: TVariables) => {
         setWarnWhen(false);
 
-        // Required to make onSuccess vs callbacks to work if component unmounts i.e. on route change
+        // setTimeout is required to make onSuccess e.g. callbacks to work if component unmounts i.e. on route change
         setTimeout(() => {
-            console.log("mutate");
             mutateUpdate(
                 {
                     id: id ?? "",
@@ -225,7 +226,7 @@ export const useForm = <
                             handleSubmitWithRedirect({
                                 redirect,
                                 resource,
-                                id: idState,
+                                id,
                             });
                         }
                     },
@@ -243,7 +244,7 @@ export const useForm = <
             handleSubmitWithRedirect({
                 redirect,
                 resource,
-                id: idState,
+                id,
             });
         }
     };
@@ -262,7 +263,7 @@ export const useForm = <
 
     const result = isCreate || isClone ? createResult : editResult;
 
-    return { ...result, queryResult };
+    return { ...result, queryResult, id, setId };
 
     // const editForm = useEditForm<TData, TError, TVariables>({
     //     ...rest,

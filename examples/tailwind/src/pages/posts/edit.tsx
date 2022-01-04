@@ -25,6 +25,12 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
             warnWhenUnsavedChanges: true,
             redirect: false,
         },
+        defaultValues: {
+            title: "",
+            category: { id: undefined },
+            status: "draft",
+            content: "",
+        },
     });
 
     const { queryResult, defaultValueQueryResult, options } =

@@ -29,7 +29,6 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     } = useForm<IPost>({
         defaultValues: {
             title: "",
-            // "category.id": undefined,
             category: { id: undefined },
             status: "draft",
             content: "",
