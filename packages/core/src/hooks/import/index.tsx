@@ -179,6 +179,7 @@ export const useImport = <
                 message: null,
                 key: `${resource}-import`,
                 duration: 0,
+                type: "progress",
             });
 
             if (processedAmount >= totalAmount) {

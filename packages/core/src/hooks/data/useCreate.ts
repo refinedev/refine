@@ -118,7 +118,7 @@ export const useCreate = <
                 const resourceSingular = pluralize.singular(resource);
 
                 handleNotification(errorNotificationFromProp, {
-                    description: err.message,
+                    description: err.message || "Error",
                     message: translate(
                         "notifications.createError",
                         {

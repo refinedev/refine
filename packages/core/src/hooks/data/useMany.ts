@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
-import { ArgsProps } from "antd/lib/notification";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -10,6 +9,7 @@ import {
     HttpError,
     MetaDataQuery,
     LiveModeProps,
+    OpenNotificationParams,
 } from "../../interfaces";
 import {
     useTranslate,
@@ -22,8 +22,8 @@ export type UseManyProps<TData, TError> = {
     resource: string;
     ids: string[];
     queryOptions?: UseQueryOptions<GetManyResponse<TData>, TError>;
-    successNotification?: ArgsProps | false;
-    errorNotification?: ArgsProps | false;
+    successNotification?: OpenNotificationParams | false;
+    errorNotification?: OpenNotificationParams | false;
     metaData?: MetaDataQuery;
 } & LiveModeProps;
 
@@ -92,7 +92,7 @@ export const useMany = <
                         { statusCode: err.statusCode },
                         `Error (status code: ${err.statusCode})`,
                     ),
-                    description: err.message,
+                    description: err.message || "Error",
                     type: "error",
                 });
             },

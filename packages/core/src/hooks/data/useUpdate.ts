@@ -235,7 +235,7 @@ export const useUpdate = <
                             },
                             `Error when updating ${resourceSingular} (status code: ${err.statusCode})`,
                         ),
-                        description: err.message,
+                        description: err.message || "Error",
                         type: "error",
                     });
                 }

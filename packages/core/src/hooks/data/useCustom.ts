@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
-import { ArgsProps } from "antd/lib/notification";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -11,6 +10,7 @@ import {
     BaseRecord,
     HttpError,
     MetaDataQuery,
+    OpenNotificationParams,
 } from "../../interfaces";
 import { useTranslate, useCheckError, useHandleNotification } from "@hooks";
 
@@ -27,8 +27,8 @@ export type UseCustomProps<TData, TError, TQuery, TPayload> = {
     method: "get" | "delete" | "head" | "options" | "post" | "put" | "patch";
     config?: UseCustomConfig<TQuery, TPayload>;
     queryOptions?: UseQueryOptions<CustomResponse<TData>, TError>;
-    successNotification?: ArgsProps | false;
-    errorNotification?: ArgsProps | false;
+    successNotification?: OpenNotificationParams | false;
+    errorNotification?: OpenNotificationParams | false;
     metaData?: MetaDataQuery;
 };
 
@@ -87,7 +87,7 @@ export const useCustom = <
                         { statusCode: err.statusCode },
                         `Error (status code: ${err.statusCode})`,
                     ),
-                    description: err.message,
+                    description: err.message || "Error",
                     type: "error",
                 });
             },

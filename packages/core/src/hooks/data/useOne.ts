@@ -8,6 +8,7 @@ import {
     BaseRecord,
     MetaDataQuery,
     LiveModeProps,
+    OpenNotificationParams,
 } from "../../interfaces";
 import {
     useCheckError,
@@ -15,14 +16,13 @@ import {
     useResourceSubscription,
     useHandleNotification,
 } from "@hooks";
-import { ArgsProps } from "antd/lib/notification";
 
 export type UseOneProps<TData, TError> = {
     resource: string;
     id: string;
     queryOptions?: UseQueryOptions<GetOneResponse<TData>, TError>;
-    successNotification?: ArgsProps | false;
-    errorNotification?: ArgsProps | false;
+    successNotification?: OpenNotificationParams | false;
+    errorNotification?: OpenNotificationParams | false;
     metaData?: MetaDataQuery;
 } & LiveModeProps;
 
@@ -86,7 +86,7 @@ export const useOne = <
                         { statusCode: err.statusCode },
                         `Error (status code: ${err.statusCode})`,
                     ),
-                    description: err.message,
+                    description: err.message || "Error",
                     type: "error",
                 });
             },

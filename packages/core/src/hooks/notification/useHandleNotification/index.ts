@@ -1,6 +1,6 @@
 import { useCallback } from "react";
-import { ArgsProps } from "antd/lib/notification";
 
+import { OpenNotificationParams } from "src/interfaces";
 import { useNotification } from "@hooks";
 
 export const useHandleNotification = () => {
@@ -8,8 +8,8 @@ export const useHandleNotification = () => {
 
     const handleNotification = useCallback(
         (
-            notification: ArgsProps | false | undefined,
-            fallbackNotification?: ArgsProps,
+            notification: OpenNotificationParams | false | undefined,
+            fallbackNotification?: OpenNotificationParams,
         ) => {
             if (notification !== false) {
                 if (notification) {

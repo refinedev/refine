@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
-import { ArgsProps } from "antd/lib/notification";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -13,6 +12,7 @@ import {
     CrudSorting,
     MetaDataQuery,
     LiveModeProps,
+    OpenNotificationParams,
 } from "../../interfaces";
 import {
     useCheckError,
@@ -31,8 +31,8 @@ export type UseListProps<TData, TError> = {
     resource: string;
     config?: UseListConfig;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
-    successNotification?: ArgsProps | false;
-    errorNotification?: ArgsProps | false;
+    successNotification?: OpenNotificationParams | false;
+    errorNotification?: OpenNotificationParams | false;
     metaData?: MetaDataQuery;
 } & LiveModeProps;
 
@@ -102,7 +102,7 @@ export const useList = <
                         { statusCode: err.statusCode },
                         `Error (status code: ${err.statusCode})`,
                     ),
-                    description: err.message,
+                    description: err.message || "Error",
                     type: "error",
                 });
             },

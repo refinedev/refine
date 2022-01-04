@@ -72,6 +72,7 @@ export const Notification: React.FC<{
 
                 open({
                     key: `${notificationItem.id}-${notificationItem.resource}-notification`,
+                    type: "progress",
                     style: {
                         display: notificationItem.isSilent ? "none" : "block",
                     },

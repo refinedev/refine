@@ -1,6 +1,6 @@
-import { ArgsProps } from "antd/lib/notification";
+import { OpenNotificationParams } from ".";
 
 export type SuccessErrorNotification = {
-    successNotification?: ArgsProps | false;
-    errorNotification?: ArgsProps | false;
+    successNotification?: OpenNotificationParams | false;
+    errorNotification?: OpenNotificationParams | false;
 };
