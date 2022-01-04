@@ -35,10 +35,6 @@ export const CustomSider: React.FC = () => {
                 selectedKeys={[selectedKey]}
                 mode="inline"
                 onClick={({ key }) => {
-                    if (!breakpoint.lg) {
-                        setCollapsed(true);
-                    }
-
                     push(key as string);
                 }}
             >
@@ -46,7 +42,11 @@ export const CustomSider: React.FC = () => {
                     key={selectedKey}
                     icon={<Icons.AppstoreAddOutlined />}
                 >
-                    <StoreSelect />
+                    <StoreSelect
+                        onSelect={() => {
+                            setCollapsed(true);
+                        }}
+                    />
                 </Menu.Item>
 
                 {menuItems.map(({ icon, label, route }) => {
