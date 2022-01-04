@@ -36,7 +36,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 <Table.Column dataIndex="id" title="Order ID" />
                 <Table.Column
                     dataIndex={["productId"]}
-                    title="Product Title"
+                    title="Product"
                     render={(value) => {
                         if (isLoading) {
                             return <TextField value="Loading..." />;

@@ -43,7 +43,7 @@ export const CreateOrder: React.FC<IResourceComponentsProps> = () => {
                 }}
             >
                 <Form.Item
-                    label="Product Title"
+                    label="Product"
                     name="productId"
                     rules={[
                         {

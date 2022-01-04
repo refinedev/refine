@@ -46,7 +46,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 }}
             >
                 <AntdList
-                    grid={{ gutter: 16, xs: 8, sm: 16, md: 24, lg: 32 }}
+                    grid={{ gutter: 16, xs: 1 }}
                     style={{
                         justifyContent: "center",
                         marginLeft: "36px",
