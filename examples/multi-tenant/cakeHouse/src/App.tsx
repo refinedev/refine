@@ -1,5 +1,5 @@
 import { Refine } from "@pankod/refine";
-import { dataProvider } from "@pankod/refine-appwrite";
+import { dataProvider, liveProvider } from "@pankod/refine-appwrite";
 import routerProvider from "@pankod/refine-react-router";
 
 import "@pankod/refine/dist/styles.min.css";
@@ -19,9 +19,11 @@ function App() {
         <StoreProvider>
             <Refine
                 routerProvider={routerProvider}
+                liveProvider={liveProvider(appwriteClient)}
                 dataProvider={dataProvider(appwriteClient)}
                 authProvider={authProvider}
                 LoginPage={Login}
+                liveMode="auto"
                 Sider={CustomSider}
                 resources={[
                     {
