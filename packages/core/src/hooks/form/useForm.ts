@@ -94,60 +94,54 @@ export const useForm = <
 >({
     action: actionFromProps,
     resource: resourceFromProps,
-    ...rest
+    onMutationSuccess,
+    onMutationError,
+    redirect = "edit",
+    successNotification,
+    errorNotification,
+    metaData,
+    mutationMode: mutationModeProp,
+    liveMode,
+    onLiveEvent,
+    liveParams,
+    undoableTimeout,
 }: useFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
     TData,
     TError,
     TVariables
 > => {
     // id state is needed to determine selected record in addition to id parameter from route
-    // this could be moved to a custom hook that encapsulates both create and clone form hooks.
     const [idState, setId] = React.useState<string>();
-    const [cloneId, setCloneId] = React.useState<string>();
-
-    const resourceWithRoute = useResourceWithRoute();
+    // const [cloneId, setCloneId] = React.useState<string>();
 
     const { useParams } = useRouterContext();
-
     const {
-        resource: resourceFromParams,
+        resource: resourceFromRoute,
         action: actionFromRoute,
         id: idFromRoute,
     } = useParams<ResourceRouterParams>();
 
-    const resourceType = resourceFromProps ?? resourceFromParams;
+    const resourceName = resourceFromProps ?? resourceFromRoute;
     const action = actionFromProps ?? actionFromRoute;
     const id = idState ?? idFromRoute;
 
-    const resource = resourceWithRoute(resourceType);
-
-    const {
-        onMutationSuccess,
-        onMutationError,
-        redirect = "edit",
-        successNotification,
-        errorNotification,
-        metaData,
-        mutationMode: mutationModeProp,
-        liveMode,
-        onLiveEvent,
-        liveParams,
-        undoableTimeout,
-    } = rest;
+    const resourceWithRoute = useResourceWithRoute();
+    const resource = resourceWithRoute(resourceName);
 
     const { mutationMode: mutationModeContext } = useMutationMode();
-
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
-    const isEditOrClone =
-        id !== undefined && (action === "edit" || action === "clone");
+    const isCreate = action === "create";
+    const isEdit = action === "edit";
+    const isClone = action === "clone";
 
-    // console.log({ id, action, isEditOrClone });
+    const enableQuery = id !== undefined && (isEdit || isClone);
+
     const queryResult = useOne<TData>({
         resource: resource.name,
         id: id ?? "",
         queryOptions: {
-            enabled: isEditOrClone,
+            enabled: enableQuery,
         },
         liveMode,
         onLiveEvent,
@@ -157,8 +151,6 @@ export const useForm = <
 
     const { isFetching: isFetchingQuery } = queryResult;
 
-    const { setWarnWhen } = useWarnAboutChange();
-
     const mutationResultCreate = useCreate<TData, TError, TVariables>();
     const { mutate: mutateCreate, isLoading: isLoadingCreate } =
         mutationResultCreate;
@@ -167,10 +159,11 @@ export const useForm = <
     const { mutate: mutateUpdate, isLoading: isLoadingUpdate } =
         mutationResultUpdate;
 
+    const { setWarnWhen } = useWarnAboutChange();
+
     const handleSubmitWithRedirect = useRedirectionAfterSubmission();
 
     const onFinishCreate = async (values: TVariables) => {
-        console.log({ values });
         setWarnWhen(false);
         mutateCreate(
             {
@@ -185,8 +178,6 @@ export const useForm = <
                     if (onMutationSuccess) {
                         onMutationSuccess(data, values, context);
                     }
-
-                    // form.resetFields();
 
                     const id = data?.data?.id;
 
@@ -207,8 +198,6 @@ export const useForm = <
 
     const onFinishUpdate = async (values: TVariables) => {
         setWarnWhen(false);
-
-        console.log("onFinish");
 
         // Required to make onSuccess vs callbacks to work if component unmounts i.e. on route change
         setTimeout(() => {
@@ -271,8 +260,7 @@ export const useForm = <
         onFinish: onFinishUpdate,
     };
 
-    const result =
-        action === "create" || action === "clone" ? createResult : editResult;
+    const result = isCreate || isClone ? createResult : editResult;
 
     return { ...result, queryResult };
 
