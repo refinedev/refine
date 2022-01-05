@@ -114,7 +114,7 @@ export const Refine: React.FC<RefineProps> = ({
     OffLayoutArea,
     reactQueryClientConfig,
     reactQueryDevtoolConfig,
-    notifcationConfig,
+    notificationConfig,
     liveMode,
     onLiveEvent,
 }) => {
@@ -130,7 +130,7 @@ export const Refine: React.FC<RefineProps> = ({
         },
     });
 
-    notification.config({ ...notifcationConfig });
+    notification.config({ ...notificationConfig });
 
     const resources: IResourceItem[] = [];
 

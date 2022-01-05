@@ -674,7 +674,7 @@ const App: React.FC = () => (
     <Refine
         ...
         // highlight-start
-        notifcationConfig={{
+        notificationConfig={{
             placement: "bottomRight",
             bottom: 40,
             closeIcon: <CloseOutlined />,
