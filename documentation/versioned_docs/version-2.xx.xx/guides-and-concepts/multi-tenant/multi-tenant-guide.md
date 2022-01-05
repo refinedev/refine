@@ -491,8 +491,6 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
 </p>
 </details>
 
-By overriding the onFinish method of the form and sending the selected storeId, we specify which store it will be the product of.
-
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -502,6 +500,8 @@ By overriding the onFinish method of the form and sending the selected storeId, 
     <img src={create} alt="create" />
 </div>
 <br/>
+
+By overriding the onFinish method of the form and sending the selected storeId, we specify which store it will be the product of.
 
 :::tip
 If Real-time feature is active on Appwrite, you can use it with Refine by adding only 2 lines.
@@ -535,7 +535,7 @@ function App() {
                 LoginPage={Login}
                 Sider={CustomSider}
                 //highlight-start
-                liveMode={"auto"}
+                liveMode="auto"
                 //highlight-end
                 resources={[
                     {
@@ -555,4 +555,15 @@ function App() {
 
 export default App;
 ```
+
 :::
+
+## Live Codesandbox Example
+
+<iframe src="https://codesandbox.io/embed/cake-house-cvco9?autoresize=1&fontsize=14&theme=dark&view=preview"
+     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+     title="cake-house"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+
