@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import {
     useForm as useHookForm,
     UseFormProps as UseHookFormProps,
@@ -52,7 +52,9 @@ export const useForm = <
         ...rest,
     });
 
-    const { watch, setValue, reset, getValues } = useHookFormResult;
+    const { watch, setValue, reset, getValues, control } = useHookFormResult;
+
+    console.log({ control });
 
     const useFormCoreResult = useFormCore<TData, TError, TVariables>({
         onMutationSuccess: () => {
@@ -73,17 +75,17 @@ export const useForm = <
         return () => subscription.unsubscribe();
     }, [watch]);
 
-    console.log("reacthookform useForm: ", { registeredFields: getValues() });
-
     useEffect(() => {
-        const registeredFields = Object.keys(getValues());
-        Object.entries(queryResult?.data?.data || {}).forEach(
-            ([key, value]) => {
-                if (registeredFields.includes(key)) {
-                    setValue(key as any, value);
-                }
-            },
-        );
+        setTimeout(() => {
+            const registeredFields = Object.keys(getValues());
+            Object.entries(queryResult?.data?.data || {}).forEach(
+                ([key, value]) => {
+                    if (registeredFields.includes(key)) {
+                        setValue(key as any, value);
+                    }
+                },
+            );
+        });
         return () => {
             reset();
         };
