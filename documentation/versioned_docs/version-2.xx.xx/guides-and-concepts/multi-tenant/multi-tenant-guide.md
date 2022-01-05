@@ -3,6 +3,11 @@ id: multiTenant
 title: Multi Tenant
 ---
 
+import collections from '@site/static/img/guides-and-concepts/multi-tenant/collections.png';
+import sider from '@site/static/img/guides-and-concepts/multi-tenant/sider.png';
+import store_filter from '@site/static/img/guides-and-concepts/multi-tenant/store-filter.gif';
+import create from '@site/static/img/guides-and-concepts/multi-tenant/create.gif';
+
 ## Introduction
 
 In this guide, we will create an application with you in the logic of Multi Tenant. Multi Tenant application is to separate and manage multiple contents independently from each other in a single application.
@@ -47,8 +52,18 @@ We recommend that you read the detailed [Appwrite DataProvider](https://refine.d
 We need three collections for our Cake House application. Let's create these collections in the appwrite database.
 
 :::info
-[Check out you can how create collections with **refine** Appwrite guide →](https://refine.dev/docs/guides-and-concepts/data-provider/appwrite/#create-collections)
+[Check out how you can create collections with refine Appwrite guide →](https://refine.dev/docs/guides-and-concepts/data-provider/appwrite/#create-collections)
 :::
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={collections} alt="Collections" />
+</div>
+<br/>
 
 `stores`
 
@@ -71,3 +86,473 @@ We need three collections for our Cake House application. Let's create these col
 -   StoreId: text
 
 Now that we have completed the setup and our collections, we can now log in with the **refine** and start the listing processes.
+
+## Store Context
+
+In order to view the products and orders of two different stores separately, we need to filter by storeId. We will use the storeId information in more than one place. For example, when creating a store-specific order.
+
+For this reason, we will create a [React Context](https://en.reactjs.org/docs/context.html) and keep the storeId state information in it and send it to the relevant **refine** components.
+
+```tsx
+import { createContext, useState } from "react";
+
+export const StoreContext = createContext<any[]>([]);
+
+export const StoreProvider = (props: any) => {
+    const [store, setStore] = useState("61cdb05132609");
+
+    return <StoreContext.Provider value={[store, setStore]} {...props} />;
+};
+```
+
+```tsx title="App.tsx"
+import { Refine } from "@pankod/refine";
+import { dataProvider } from "@pankod/refine-appwrite";
+import routerProvider from "@pankod/refine-react-router";
+
+import { appwriteClient } from "utility";
+import { authProvider } from "./authProvider";
+
+import { StoreProvider } from "context/store";
+
+const App: React.FC = () => {
+    return (
+          //highlight-start
+        <StoreProvider>
+            <Refine
+                dataProvider={dataProvider(appwriteClient)}
+                authProvider={authProvider}
+                routerProvider={routerProvider}
+            />
+        <StoreProvider>
+         //highlight-end
+    );
+};
+```
+
+## Custom Sider Menu
+
+We will create a selectbox to select a stores in the Custom Sider Menu.
+
+```tsx title="scr/components/select/StoreSelect.tsx"
+import { useContext } from "react";
+import { Select, useSelect } from "@pankod/refine";
+
+import { StoreContext } from "context/store";
+import { IStore } from "interfaces";
+
+type SelectProps = {
+    onSelect: () => void;
+};
+
+export const StoreSelect: React.FC<SelectProps> = ({ onSelect }) => {
+    //highlight-start
+    const [store, setStore] = useContext(StoreContext);
+    //highlight-end
+
+    const { selectProps: storeSelectProps } = useSelect<IStore>({
+        resource: "61cd62db95f92",
+        optionLabel: "title",
+        optionValue: "id",
+    });
+
+    //highlight-start
+    const handleChange = (selectedValue: string) => {
+        setStore(selectedValue);
+    };
+    //highlight-end
+
+    return (
+        <Select
+            defaultValue={store}
+            style={{ width: 130 }}
+            onChange={handleChange}
+            onSelect={onSelect}
+        >
+            {storeSelectProps.options?.map(({ value, label }) => (
+                <Select.Option key={value} value={value}>
+                    {label}
+                </Select.Option>
+            ))}
+        </Select>
+    );
+};
+```
+
+Here we have created a select component. Then we fetch the store id and title we created in the Appwrite database with `useSelect`. Now we can place the store information we have in the state we created in the Store Context.
+
+<details>
+<summary>Show Code</summary>
+<p>
+
+```tsx title="src/components/sider/CustomSider.tsx"
+import React, { useState } from "react";
+import {
+    AntdLayout,
+    Menu,
+    useMenu,
+    useTitle,
+    useNavigation,
+    Grid,
+    Icons,
+} from "@pankod/refine";
+import { antLayoutSider, antLayoutSiderMobile } from "./styles";
+
+import { StoreSelect } from "components/select";
+
+export const CustomSider: React.FC = () => {
+    const [collapsed, setCollapsed] = useState<boolean>(false);
+    const Title = useTitle();
+    const { menuItems, selectedKey } = useMenu();
+    const breakpoint = Grid.useBreakpoint();
+    const { push } = useNavigation();
+
+    const isMobile = !breakpoint.lg;
+
+    return (
+        <AntdLayout.Sider
+            collapsible
+            collapsedWidth={isMobile ? 0 : 80}
+            collapsed={collapsed}
+            breakpoint="lg"
+            onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
+            style={isMobile ? antLayoutSiderMobile : antLayoutSider}
+        >
+            <Title collapsed={collapsed} />
+            <Menu
+                selectedKeys={[selectedKey]}
+                mode="inline"
+                onClick={({ key }) => {
+                    push(key as string);
+                }}
+            >
+                //highlight-start
+                <Menu.Item
+                    key={selectedKey}
+                    icon={<Icons.AppstoreAddOutlined />}
+                >
+                    <StoreSelect
+                        onSelect={() => {
+                            setCollapsed(true);
+                        }}
+                    />
+                </Menu.Item>
+                //highlight-end
+                {menuItems.map(({ icon, label, route }) => {
+                    const isSelected = route === selectedKey;
+                    return (
+                        <Menu.Item
+                            style={{
+                                fontWeight: isSelected ? "bold" : "normal",
+                            }}
+                            key={route}
+                            icon={icon}
+                        >
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                }}
+                            >
+                                {label}
+                                {!collapsed && isSelected && (
+                                    <Icons.RightOutlined />
+                                )}
+                            </div>
+                        </Menu.Item>
+                    );
+                })}
+            </Menu>
+        </AntdLayout.Sider>
+    );
+};
+```
+
+</p>
+</details>
+
+|                                                                    <img src={sider} alt="sider" />                                                                     |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| _As you can see, you can now choose the store you want and create products and orders specifically for the store we have chosen according to the storeId information._ |
+
+## Product List Page
+
+Now we can list the products of the selected store according to the storeId information by filtering it.
+
+<details>
+<summary>Show Code</summary>
+<p>
+
+```tsx title="src/pages/ProductList.tsx"
+import { useContext } from "react";
+import {
+    IResourceComponentsProps,
+    useSimpleList,
+    AntdList,
+    useModalForm,
+    useDrawerForm,
+    CreateButton,
+    List,
+} from "@pankod/refine";
+
+import { IProduct } from "interfaces";
+import { ProductItem, EditProduct, CreateProduct } from "components/product";
+import { StoreContext } from "context/store";
+
+export const ProductList: React.FC<IResourceComponentsProps> = () => {
+    //highlight-start
+    const [store] = useContext(StoreContext);
+    const { listProps } = useSimpleList<IProduct>({
+        permanentFilter: [{ field: "storeId", operator: "eq", value: store }],
+    });
+    //highlight-end
+
+    return (
+        <>
+            <List
+                pageHeaderProps={{
+                    extra: <CreateButton onClick={() => createShow()} />,
+                }}
+            >
+                <AntdList
+                    grid={{ gutter: 16, xs: 1 }}
+                    style={{
+                        justifyContent: "center",
+                    }}
+                    {...listProps}
+                    renderItem={(item) => (
+                        <AntdList.Item>
+                            <ProductItem item={item} editShow={editShow} />
+                        </AntdList.Item>
+                    )}
+                />
+            </List>
+        </>
+    );
+};
+```
+
+</p>
+</details>
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={store_filter} alt="Store Filter" />
+</div>
+<br/>
+
+We separate the products of different stores by using the `permanentFilter` with the storeId we get from the Store Context. So we can control more than single content in one application.
+
+## Product Create Page
+
+Now let's see how we can create store-specific products.
+
+<details>
+<summary>Show Code</summary>
+<p>
+
+```tsx title="CreateProduct"
+import {
+    Create,
+    Drawer,
+    DrawerProps,
+    Form,
+    FormProps,
+    Input,
+    ButtonProps,
+    Upload,
+    Grid,
+    RcFile,
+} from "@pankod/refine";
+
+import { appwriteClient, normalizeFile } from "utility";
+import { StoreContext } from "context/store";
+import { useContext } from "react";
+
+type CreateProductProps = {
+    drawerProps: DrawerProps;
+    formProps: FormProps;
+    saveButtonProps: ButtonProps;
+};
+
+export const CreateProduct: React.FC<CreateProductProps> = ({
+    drawerProps,
+    formProps,
+    saveButtonProps,
+}) => {
+    const breakpoint = Grid.useBreakpoint();
+    //highlight-start
+    const [store, setStore] = useContext(StoreContext);
+    // highlight-end
+
+    return (
+        <Drawer
+            {...drawerProps}
+            width={breakpoint.sm ? "500px" : "100%"}
+            bodyStyle={{ padding: 0 }}
+        >
+            <Create saveButtonProps={saveButtonProps}>
+                <Form
+                    {...formProps}
+                    layout="vertical"
+                    initialValues={{
+                        isActive: true,
+                    }}
+                    //highlight-start
+                    onFinish={(values: any) => {
+                        return (
+                            formProps.onFinish &&
+                            formProps.onFinish({
+                                ...values,
+                                storeId: store,
+                            })
+                        );
+                    }}
+                    //highlight-end
+                >
+                    <Form.Item
+                        label="Title"
+                        name="title"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item label="Description" name="description">
+                        <Input />
+                    </Form.Item>
+
+                    <Form.Item label="Images">
+                        <Form.Item
+                            name="image"
+                            valuePropName="fileList"
+                            normalize={normalizeFile}
+                            noStyle
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Upload.Dragger
+                                name="file"
+                                listType="picture"
+                                multiple
+                                customRequest={async ({
+                                    file,
+                                    onError,
+                                    onSuccess,
+                                }) => {
+                                    try {
+                                        const rcFile = file as RcFile;
+
+                                        const { $id } =
+                                            await appwriteClient.storage.createFile(
+                                                rcFile,
+                                                ["*"],
+                                                ["*"],
+                                            );
+
+                                        const url =
+                                            appwriteClient.storage.getFileView(
+                                                $id,
+                                            );
+
+                                        onSuccess?.(
+                                            { url },
+                                            new XMLHttpRequest(),
+                                        );
+                                    } catch (error) {
+                                        onError?.(new Error("Upload Error"));
+                                    }
+                                }}
+                            >
+                                <p className="ant-upload-text">
+                                    Drag &amp; drop a file in this area
+                                </p>
+                            </Upload.Dragger>
+                        </Form.Item>
+                    </Form.Item>
+                </Form>
+            </Create>
+        </Drawer>
+    );
+};
+```
+
+</p>
+</details>
+
+By overriding the onFinish method of the form and sending the selected storeId, we specify which store it will be the product of.
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={create} alt="create" />
+</div>
+<br/>
+
+:::tip
+If Real-time feature is active on Appwrite, you can use it with Refine by adding only 2 lines.
+
+```tsx
+import { Refine } from "@pankod/refine";
+import { dataProvider, liveProvider } from "@pankod/refine-appwrite";
+import routerProvider from "@pankod/refine-react-router";
+
+import "@pankod/refine/dist/styles.min.css";
+
+import { appwriteClient } from "utility";
+import { authProvider } from "./authProvider";
+
+import { CustomSider } from "components/sider";
+import { Login } from "pages/login";
+import { ProductList } from "pages/products";
+import { ProductShow } from "components/product";
+import { StoreProvider } from "context/store";
+
+function App() {
+    return (
+        <StoreProvider>
+            <Refine
+                routerProvider={routerProvider}
+                //highlight-start
+                liveProvider={liveProvider(appwriteClient)}
+                //highlight-end
+                dataProvider={dataProvider(appwriteClient)}
+                authProvider={authProvider}
+                LoginPage={Login}
+                Sider={CustomSider}
+                //highlight-start
+                liveMode={"auto"}
+                //highlight-end
+                resources={[
+                    {
+                        name: "61cb01b17ef57",
+                        list: ProductList,
+                        show: ProductShow,
+                        options: {
+                            label: "Products",
+                            route: "products",
+                        },
+                    },
+                ]}
+            />
+        </StoreProvider>
+    );
+}
+
+export default App;
+```
+:::
