@@ -10,7 +10,7 @@ RUN npm install
 
 COPY . /opt/app
 
-RUN npm run bootstrap -- --scope fine-foods-client
+RUN npm run bootstrap -- --scope fine-foods
 RUN npm run build -- --scope fine-foods
 
 FROM node:14-alpine
