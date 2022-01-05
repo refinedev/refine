@@ -69,14 +69,8 @@ export const useModalForm = <
         mutationMode: mutationModeProp,
     });
 
-    const {
-        form,
-        formProps,
-        setEditId,
-        formLoading,
-        mutationResult,
-        setCloneId,
-    } = useFormProps;
+    const { form, formProps, setId, formLoading, mutationResult } =
+        useFormProps;
 
     const translate = useTranslate();
 
@@ -148,15 +142,12 @@ export const useModalForm = <
             }
         }
 
-        setEditId?.(undefined);
-        setCloneId?.(undefined);
+        setId?.(undefined);
         sunflowerUseModal.close();
     }, [warnWhen]);
 
     const handleShow = useCallback((id?: string) => {
-        setEditId?.(id);
-
-        setCloneId?.(id);
+        setId?.(id);
 
         sunflowerUseModal.show();
     }, []);

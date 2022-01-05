@@ -71,7 +71,7 @@ export const ShowButton: FC<ShowButtonProps> = ({
 
     return (
         <Button
-            onClick={(): void => show(routeResourceName, id)}
+            onClick={(): void => show(routeResourceName, id!)}
             icon={<EyeOutlined />}
             disabled={data?.can === false}
             title={createButtonDisabledTitle()}

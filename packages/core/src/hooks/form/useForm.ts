@@ -12,17 +12,22 @@ import {
     useOne,
 } from "@hooks";
 
-import { useCreateForm, useCreateFormProps } from "./useCreateForm";
-import { useEditForm, useEditFormProps } from "./useEditForm";
-import { useCloneForm, useCloneFormProps } from "./useCloneForm";
-import { ButtonProps } from "../../components/antd";
+import { useEditFormProps } from "./useEditForm";
+import { useCloneFormProps } from "./useCloneForm";
 
 import {
     BaseRecord,
+    CreateResponse,
     GetOneResponse,
     HttpError,
     LiveModeProps,
     ResourceRouterParams,
+    RedirectionTypes,
+    IResourceItem,
+    SuccessErrorNotification,
+    MetaDataQuery,
+    UpdateResponse,
+    MutationMode,
 } from "../../interfaces";
 import { UseUpdateReturnType } from "../data/useUpdate";
 import { UseCreateReturnType } from "../data/useCreate";
@@ -35,46 +40,47 @@ type ActionFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = useCreateFormProps<TData, TError, TVariables> &
-    useEditFormProps<TData, TError, TVariables> &
-    useCloneFormProps<TData, TError, TVariables>;
-
-type ResourcelessActionFormProps<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TVariables = {},
-> = Omit<ActionFormProps<TData, TError, TVariables>, "resource">;
+> = {
+    onMutationSuccess?: (
+        data: CreateResponse<TData> | UpdateResponse<TData>,
+        variables: TVariables,
+        context: any,
+    ) => void;
+    onMutationError?: (
+        error: TError,
+        variables: TVariables,
+        context: any,
+    ) => void;
+    submitOnEnter?: boolean;
+    warnWhenUnsavedChanges?: boolean;
+    redirect?: RedirectionTypes;
+    resource?: string;
+    metaData?: MetaDataQuery;
+    mutationMode?: MutationMode;
+    undoableTimeout?: number;
+} & SuccessErrorNotification &
+    ActionParams &
+    LiveModeProps;
 
 export type useFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = ActionParams & {
-    resource?: string;
-} & ResourcelessActionFormProps<TData, TError, TVariables> &
-    LiveModeProps;
+> = ActionParams & ActionFormProps<TData, TError, TVariables> & LiveModeProps;
 
 export type UseFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
 > = {
-    // form: FormInstance<TVariables>;
-    // formProps: FormProps<TVariables>;
-    // editId?: string;
-    // setEditId?: Dispatch<SetStateAction<string | undefined>>;
     id?: string;
     setId: Dispatch<SetStateAction<string | undefined>>;
-    // saveButtonProps: ButtonProps & {
-    //     onClick: () => void;
-    // };
+
     queryResult?: QueryObserverResult<GetOneResponse<TData>>;
     mutationResult:
         | UseUpdateReturnType<TData, TError, TVariables>
         | UseCreateReturnType<TData, TError, TVariables>;
     formLoading: boolean;
-    setCloneId?: Dispatch<SetStateAction<string | undefined>>;
-    cloneId?: string;
     onFinish: (values: TVariables) => Promise<void>;
 };
 
@@ -264,36 +270,4 @@ export const useForm = <
     const result = isCreate || isClone ? createResult : editResult;
 
     return { ...result, queryResult, id, setId };
-
-    // const editForm = useEditForm<TData, TError, TVariables>({
-    //     ...rest,
-    //     resource,
-    //     action,
-    // } as useEditFormProps<TData, TError, TVariables>);
-
-    // const createForm = useCreateForm<TData, TError, TVariables>({
-    //     ...rest,
-    //     resource,
-    //     action,
-    // } as useCreateFormProps<TData, TError, TVariables>);
-
-    // const cloneForm = useCloneForm<TData, TError, TVariables>({
-    //     ...rest,
-    //     resource,
-    //     cloneId,
-    //     action,
-    // } as useCloneFormProps<TData, TError, TVariables>);
-
-    // switch (action) {
-    //     case "create":
-    //         return { ...createForm };
-    //     case "edit":
-    //         return editForm;
-    //     case "clone":
-    //         // setCloneId and cloneId needs to be returned from both clone and create cases.
-    //         // It is needed to make them accessible in useModalForm to be able to manage id state.
-    //         return { ...cloneForm, setCloneId, cloneId };
-    //     default:
-    //         return createForm;
-    // }
 };

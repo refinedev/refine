@@ -1,6 +1,4 @@
 import React, { Dispatch, SetStateAction } from "react";
-// import { useForm as useFormSF } from "sunflower-antd";
-// import { Form, FormInstance, FormProps } from "antd";
 import { QueryObserverResult } from "react-query";
 
 import {
@@ -28,22 +26,13 @@ import {
 } from "../../../interfaces";
 import { ActionParams } from "../useForm";
 
-type SaveButtonProps = {
-    disabled: boolean;
-    onClick: () => void;
-    loading?: boolean;
-};
-
 export type useEditForm<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
 > = {
-    // form: FormInstance<TVariables>;
-    // formProps: FormProps<TVariables>;
     editId?: string;
     setEditId?: Dispatch<SetStateAction<string | undefined>>;
-    // saveButtonProps: SaveButtonProps;
     queryResult: QueryObserverResult<GetOneResponse<TData>>;
     mutationResult: UseUpdateReturnType<TData, TError, TVariables>;
     formLoading: boolean;
@@ -90,8 +79,6 @@ export const useEditForm = <
     onMutationSuccess,
     onMutationError,
     mutationMode: mutationModeProp,
-    submitOnEnter = false,
-    warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     redirect = "list",
     undoableTimeout,
     resource,
@@ -115,20 +102,7 @@ export const useEditForm = <
 
     const action = actionFromParams ?? actionFromRoute;
 
-    // const [formAnt] = Form.useForm();
-    // const formSF = useFormSF<TData, TVariables>({
-    //     form: formAnt,
-    // });
-
-    // const { form } = formSF;
-
-    const {
-        // warnWhenUnsavedChanges: warnWhenUnsavedChangesContext,
-        setWarnWhen,
-    } = useWarnAboutChange();
-
-    // const warnWhenUnsavedChanges =
-    //     warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesContext;
+    const { setWarnWhen } = useWarnAboutChange();
 
     const { mutationMode: mutationModeContext } = useMutationMode();
 
@@ -149,15 +123,6 @@ export const useEditForm = <
     });
 
     const { /* data,  */ isFetching } = queryResult;
-
-    // React.useEffect(() => {
-    //     form.setFieldsValue({
-    //         ...(data?.data as any), // Fix Me
-    //     });
-    //     return () => {
-    //         form.resetFields();
-    //     };
-    // }, [data, editId, isFetching]);
 
     const mutationResult = useUpdate<TData, TError, TVariables>();
 
@@ -221,38 +186,9 @@ export const useEditForm = <
         }
     };
 
-    // const onKeyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
-    //     if (submitOnEnter && event.key === "Enter") {
-    //         form.submit();
-    //     }
-    // };
-
-    // const onValuesChange = (changeValues: object) => {
-    //     if (changeValues && warnWhenUnsavedChanges) {
-    //         setWarnWhen(true);
-    //     }
-    //     return changeValues;
-    // };
-
-    // const saveButtonProps: SaveButtonProps = {
-    //     disabled: formLoading,
-    //     onClick: () => {
-    //         form.submit();
-    //     },
-    //     loading: formLoading,
-    // };
-
     return {
-        // ...formSF,
-        // formProps: {
-        //     ...formSF.formProps,
-        //     onFinish,
-        //     onKeyUp,
-        //     onValuesChange,
-        // },
         editId,
         setEditId,
-        // saveButtonProps,
         queryResult,
         mutationResult,
         formLoading,

@@ -1,6 +1,5 @@
-import React, { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { QueryObserverResult } from "react-query";
-import { FormInstance, FormProps } from "antd";
 
 import { useOne, useRouterContext } from "@hooks";
 import {
@@ -21,22 +20,13 @@ export type useCloneFormProps<
     cloneId?: string;
 } & ActionParams;
 
-type SaveButtonProps = {
-    disabled: boolean;
-    onClick: () => void;
-    loading?: boolean;
-};
-
 export type useCloneForm<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
 > = {
-    // form: FormInstance<TVariables>;
-    // formProps: FormProps<TVariables>;
     editId?: string;
     setEditId?: Dispatch<SetStateAction<string | undefined>>;
-    // saveButtonProps: SaveButtonProps;
     formLoading: boolean;
     mutationResult: UseCreateReturnType<TData, TError, TVariables>;
     queryResult: QueryObserverResult<GetOneResponse<TData>>;
@@ -60,7 +50,7 @@ export const useCloneForm = <
         ...props,
     });
 
-    const { /* form, */ formLoading, mutationResult } = useCreateFormProps;
+    const { formLoading, mutationResult } = useCreateFormProps;
 
     const { useParams } = useRouterContext();
 
@@ -83,15 +73,6 @@ export const useCloneForm = <
     });
 
     const { data, isFetching } = queryResult;
-
-    // React.useEffect(() => {
-    //     form.setFieldsValue({
-    //         ...(data?.data as any), // Fix Me
-    //     });
-    //     return () => {
-    //         form.resetFields();
-    //     };
-    // }, [data, id, isFetching]);
 
     return {
         ...useCreateFormProps,

@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
 import {
     useForm as useHookForm,
     UseFormProps as UseHookFormProps,
@@ -52,9 +52,7 @@ export const useForm = <
         ...rest,
     });
 
-    const { watch, setValue, reset, getValues, control } = useHookFormResult;
-
-    console.log({ control });
+    const { watch, setValue, reset, getValues } = useHookFormResult;
 
     const useFormCoreResult = useFormCore<TData, TError, TVariables>({
         onMutationSuccess: () => {

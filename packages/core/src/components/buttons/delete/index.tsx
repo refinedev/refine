@@ -88,7 +88,7 @@ export const DeleteButton: FC<DeleteButtonProps> = ({
             onConfirm={(): void => {
                 mutate(
                     {
-                        id: id,
+                        id: id!,
                         resource: resource.name,
                         mutationMode,
                         successNotification,

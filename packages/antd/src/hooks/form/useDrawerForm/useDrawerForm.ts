@@ -67,15 +67,8 @@ export const useDrawerForm = <
         mutationMode: mutationModeProp,
     });
 
-    const {
-        form,
-        formProps,
-        setEditId,
-        editId,
-        formLoading,
-        mutationResult,
-        setCloneId,
-    } = useFormProps;
+    const { form, formProps, formLoading, mutationResult, id, setId } =
+        useFormProps;
 
     const translate = useTranslate();
 
@@ -113,9 +106,9 @@ export const useDrawerForm = <
     };
 
     const deleteButtonProps = {
-        recordItemId: editId,
+        recordItemId: id,
         onSuccess: () => {
-            setEditId?.(undefined);
+            setId?.(undefined);
             setVisible(false);
         },
     };
@@ -137,14 +130,11 @@ export const useDrawerForm = <
         }
 
         setVisible(false);
-        setCloneId?.(undefined);
-        setEditId?.(undefined);
+        setId?.(undefined);
     }, [warnWhen]);
 
     const handleShow = useCallback((id?: string) => {
-        setEditId?.(id);
-
-        setCloneId?.(id);
+        setId?.(id);
 
         setVisible(true);
     }, []);

@@ -1,66 +1,27 @@
-import React, { Dispatch, SetStateAction } from "react";
-import { QueryObserverResult } from "react-query";
-import { FormInstance, FormProps } from "antd";
-
-import { useCreateForm, useCreateFormProps } from "./useCreateForm";
-import { useEditForm, useEditFormProps } from "./useEditForm";
-import { useCloneForm, useCloneFormProps } from "./useCloneForm";
+import React from "react";
+import { FormInstance, FormProps, Form } from "antd";
+import { useForm as useFormSF } from "sunflower-antd";
 
 import {
     ButtonProps,
-    GetOneResponse,
     HttpError,
-    ResourceRouterParams,
-    useResourceWithRoute,
-    useRouterContext,
-    LiveModeProps,
     BaseRecord,
+    useForm as useFormCore,
+    UseFormReturnType as UseFormReturnTypeCore,
+    useWarnAboutChange,
+    useFormProps,
 } from "@pankod/refine-core";
-
-export type ActionParams = {
-    action?: "edit" | "create" | "clone";
-};
-
-type ActionFormProps<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TVariables = {},
-> = useCreateFormProps<TData, TError, TVariables> &
-    useEditFormProps<TData, TError, TVariables> &
-    useCloneFormProps<TData, TError, TVariables>;
-
-type ResourcelessActionFormProps<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TVariables = {},
-> = Omit<ActionFormProps<TData, TError, TVariables>, "resource">;
-
-export type useFormProps<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TVariables = {},
-> = ActionParams & {
-    resource?: string;
-} & ResourcelessActionFormProps<TData, TError, TVariables> &
-    LiveModeProps;
 
 export type UseFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = {
+> = UseFormReturnTypeCore<TData, TError, TVariables> & {
     form: FormInstance<TVariables>;
     formProps: FormProps<TVariables>;
-    editId?: string;
-    setEditId?: Dispatch<SetStateAction<string | undefined>>;
     saveButtonProps: ButtonProps & {
         onClick: () => void;
     };
-    queryResult?: QueryObserverResult<GetOneResponse<TData>>;
-    mutationResult: any;
-    formLoading: boolean;
-    setCloneId?: Dispatch<SetStateAction<string | undefined>>;
-    cloneId?: string;
 };
 
 /**
@@ -79,62 +40,102 @@ export const useForm = <
     TError extends HttpError = HttpError,
     TVariables = {},
 >({
-    action: actionFromProps,
-    resource: resourceFromProps,
-    ...rest
+    action,
+    resource,
+    onMutationSuccess: onMutationSuccessProp,
+    onMutationError,
+    submitOnEnter = false,
+    warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
+    redirect = "edit",
+    successNotification,
+    errorNotification,
+    metaData,
+    liveMode,
+    liveParams,
+    mutationMode,
+    onLiveEvent,
 }: useFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
     TData,
     TError,
     TVariables
 > => {
-    // id state is needed to determine selected record in addition to id parameter from route
-    // this could be moved to a custom hook that encapsulates both create and clone form hooks.
-    const [cloneId, setCloneId] = React.useState<string>();
+    const onMutationSuccess: typeof onMutationSuccessProp = (
+        data,
+        values,
+        context,
+    ) => {
+        form.resetFields();
 
-    const resourceWithRoute = useResourceWithRoute();
+        onMutationSuccessProp?.(data, values, context);
+    };
 
-    const { useParams } = useRouterContext();
+    const [formAnt] = Form.useForm();
+    const formSF = useFormSF<TData, TVariables>({
+        form: formAnt,
+    });
+    const { form } = formSF;
 
-    const {
-        resource: resourceFromParams,
-        action: actionFromRoute,
-        id,
-    } = useParams<ResourceRouterParams>();
-
-    const resourceType = resourceFromProps ?? resourceFromParams;
-    const action = actionFromProps ?? actionFromRoute;
-
-    const resource = resourceWithRoute(resourceType);
-
-    const editForm = useEditForm<TData, TError, TVariables>({
-        ...rest,
-        resource,
+    const useFormCoreResult = useFormCore<TData, TError, TVariables>({
+        onMutationSuccess,
+        onMutationError,
+        submitOnEnter,
+        warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
+        redirect,
         action,
-    } as useEditFormProps<TData, TError, TVariables>);
-
-    const createForm = useCreateForm<TData, TError, TVariables>({
-        ...rest,
         resource,
-        action,
-    } as useCreateFormProps<TData, TError, TVariables>);
+        successNotification,
+        errorNotification,
+        metaData,
+        liveMode,
+        liveParams,
+        mutationMode,
+        onLiveEvent,
+    });
 
-    const cloneForm = useCloneForm<TData, TError, TVariables>({
-        ...rest,
-        resource,
-        cloneId,
-        action,
-    } as useCloneFormProps<TData, TError, TVariables>);
+    const { formLoading, onFinish, queryResult, id } = useFormCoreResult;
 
-    switch (action) {
-        case "create":
-            return { ...createForm };
-        case "edit":
-            return editForm;
-        case "clone":
-            // setCloneId and cloneId needs to be returned from both clone and create cases.
-            // It is needed to make them accessible in useModalForm to be able to manage id state.
-            return { ...cloneForm, setCloneId, cloneId };
-        default:
-            return createForm;
-    }
+    const { warnWhenUnsavedChanges, setWarnWhen } = useWarnAboutChange();
+
+    const { data, isFetching } = queryResult;
+
+    React.useEffect(() => {
+        form.setFieldsValue({
+            ...(data?.data as any), // Fix Me
+        });
+        return () => {
+            form.resetFields();
+        };
+    }, [data, id, isFetching]);
+
+    const onKeyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
+        if (submitOnEnter && event.key === "Enter") {
+            form.submit();
+        }
+    };
+
+    const onValuesChange = (changeValues: object) => {
+        if (changeValues && warnWhenUnsavedChanges) {
+            setWarnWhen(true);
+        }
+        return changeValues;
+    };
+
+    const saveButtonProps = {
+        disabled: formLoading,
+        onClick: () => {
+            form.submit();
+        },
+    };
+
+    return {
+        ...formSF,
+        formProps: {
+            ...formSF.formProps,
+            onFinish,
+            onKeyUp,
+            onValuesChange,
+        },
+        saveButtonProps,
+        ...useFormCoreResult,
+    };
 };
