@@ -1,6 +1,6 @@
 {
     "name": "@pankod/refine",
-    "version": "2.5.3",
+    "version": "2.5.4",
     "description": "refine is a React-based framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
     "private": false,
     "main": "dist/index.js",

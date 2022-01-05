@@ -1,8 +1,10 @@
 {
   "name": "refineflix",
-  "version": "0.1.0",
+  "version": "2.5.4",
   "private": true,
   "dependencies": {
+    "@pankod/refine": "^1.0.76",
+    "@pankod/refine-supabase": "^0.1.0",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
@@ -14,9 +16,7 @@
     "react-dom": "^17.0.2",
     "react-scripts": "^5.0.0",
     "typescript": "^4.2.4",
-    "web-vitals": "^1.1.1",
-    "@pankod/refine": "^1.0.76",
-    "@pankod/refine-supabase": "^0.1.0"
+    "web-vitals": "^1.1.1"
   },
   "scripts": {
     "dev": "react-scripts start",

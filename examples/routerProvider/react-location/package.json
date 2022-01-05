@@ -1,11 +1,11 @@
 {
   "name": "refine-react-location-example",
-  "version": "0.1.0",
+  "version": "2.5.4",
   "private": true,
   "dependencies": {
-    "@pankod/refine": "^2.0.7",
-    "@pankod/refine-react-location": "^2.1.0",
-    "@pankod/refine-simple-rest": "^2.0.7",
+    "@pankod/refine": "^2.5.4",
+    "@pankod/refine-react-location": "^2.5.4",
+    "@pankod/refine-simple-rest": "^2.5.4",
     "@types/node": "^14.14.13",
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.4",
