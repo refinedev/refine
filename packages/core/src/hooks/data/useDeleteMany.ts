@@ -114,19 +114,18 @@ export const useDeleteMany = <
 
                     if (onCancel) {
                         onCancel(cancelMutation);
+                    } else {
+                        notificationDispatch({
+                            type: ActionTypes.ADD,
+                            payload: {
+                                id: ids,
+                                resource: resource,
+                                cancelMutation: cancelMutation,
+                                doMutation: doMutation,
+                                seconds: undoableTimeoutPropOrContext,
+                            },
+                        });
                     }
-
-                    notificationDispatch({
-                        type: ActionTypes.ADD,
-                        payload: {
-                            id: ids,
-                            resource: resource,
-                            cancelMutation: cancelMutation,
-                            doMutation: doMutation,
-                            seconds: undoableTimeoutPropOrContext,
-                            isSilent: !!onCancel,
-                        },
-                    });
                 },
             );
             return updatePromise;
