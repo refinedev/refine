@@ -2,7 +2,7 @@ import React from "react";
 import { NotificationProvider } from "@pankod/refine-core";
 import { notification } from "antd";
 
-import { UndoableNotification } from "../../components/undoableNotification";
+import { UndoableNotification } from "@components/undoableNotification";
 
 export const notificationProvider: NotificationProvider = {
     open: ({
