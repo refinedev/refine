@@ -8,7 +8,7 @@ import sider from '@site/static/img/guides-and-concepts/multi-tenant/sider.png';
 import store_filter from '@site/static/img/guides-and-concepts/multi-tenant/store-filter.gif';
 import create from '@site/static/img/guides-and-concepts/multi-tenant/create.gif';
 
-## What is Multitenancy
+## What is Multitenancy?
 
 Multitenancy refers to a kind of architecture where a single instance of software runs on a server and serves multiple customers. In a multi-tenant environment, separate customers tap into the same hardware and data storage, creating a dedicated instance for each customer. Each tenant’s data is isolated and remains invisible to others, but is running on the same server.
 
@@ -539,7 +539,11 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
 
 ## Bonus - Realtime Feature
 
-**refine** lets you add Realtime support to your app via [liveProvider](https://refine.dev/docs/api-references/providers/live-provider/) prop for [`<Refine>`](api-references/components/refine-config.md).. It can be used to update and show data in Realtime throughout your app.
+**refine** lets you add Realtime support to your app via `liveProvider` prop for [`<Refine>`](api-references/components/refine-config.md). It can be used to update and show data in Realtime throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), etc.) to be integrated.
+
+[Refer to the Live Provider documentation for detailed information. →](https://refine.dev/docs/api-references/providers/live-provider/)
+
+Appwrite Realtime API support is out-of-the-box supported by **refine**, just add two lines to make your app `Realtime`.
 
 ```tsx
 import { Refine } from "@pankod/refine";
@@ -590,8 +594,8 @@ export default App;
 ```
 
 ## Conclusion
-In this guide and in our example app, we talked about how we can build Multitenancy apps with **refine**. Developing a Multitenancy application with **refine** is quite simple. By creating a context and with the hooks that **refine** provides, you can quickly and easily produce similar applications in this logic.
 
+In this guide and in our example app, we talked about how we can build Multitenancy apps with **refine**. Developing a Multitenancy application with **refine** is quite simple. By creating a context and with the hooks that **refine** provides, you can quickly and easily produce similar applications in this logic.
 
 ## Live Codesandbox Example
 
