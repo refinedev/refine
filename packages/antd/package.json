@@ -10,6 +10,7 @@
         "start": "tsdx watch --tsconfig tsconfig.json --verbose --noClean",
         "build": "tsdx build --tsconfig tsconfig.json",
         "prepare": "tsdx build",
+        "test": "tsdx test --passWithNoTests --runInBand",
         "size": "size-limit",
         "analyze": "size-limit --why",
         "generate-theme": "npx @emeks/antd-custom-theme-generator -w --antd ../../node_modules/antd ./src/assets/styles/custom-theme.less ./src/assets/styles/styles.min.css"

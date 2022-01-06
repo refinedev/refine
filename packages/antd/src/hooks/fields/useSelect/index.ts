@@ -1,32 +1,14 @@
 import { SelectProps } from "antd/lib/select";
-import { QueryObserverResult, UseQueryOptions } from "react-query";
+import { QueryObserverResult } from "react-query";
 
 import {
     useSelect as useSelectCore,
-    CrudSorting,
     BaseRecord,
     GetManyResponse,
     GetListResponse,
-    CrudFilters,
-    SuccessErrorNotification,
     HttpError,
-    MetaDataQuery,
-    LiveModeProps,
+    UseSelectProps,
 } from "@pankod/refine-core";
-
-export type UseSelectProps<TData, TError> = {
-    resource: string;
-    optionLabel?: string;
-    optionValue?: string;
-    sort?: CrudSorting;
-    filters?: CrudFilters;
-    defaultValue?: string | string[];
-    debounce?: number;
-    queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
-    defaultValueQueryOptions?: UseQueryOptions<GetManyResponse<TData>, TError>;
-    metaData?: MetaDataQuery;
-} & SuccessErrorNotification &
-    LiveModeProps;
 
 export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
     selectProps: SelectProps<{ value: string; label: string }>;

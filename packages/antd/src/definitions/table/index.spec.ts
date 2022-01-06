@@ -78,7 +78,7 @@ describe("definitions/table", () => {
         ]);
     });
 
-    fit("parse table params with advanced query object", async () => {
+    it("parse table params with advanced query object", async () => {
         const query = {
             current: "1",
             pageSize: "10",

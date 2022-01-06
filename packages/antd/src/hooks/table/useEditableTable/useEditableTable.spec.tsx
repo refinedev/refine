@@ -8,21 +8,10 @@ import { posts } from "@test/dataMocks";
 import { useEditableTable } from "./useEditableTable";
 import { act } from "react-dom/test-utils";
 
-const Wrapper = TestWrapper({
-    dataProvider: MockJSONServer,
-    resources: [{ name: "categories", route: "categories" }],
-    routerInitialEntries: ["/categories"],
-});
-
-const WrapperWithRoute: React.FC = ({ children }) => (
-    <Wrapper>
-        <Route path="/:resource">{children}</Route>
-    </Wrapper>
-);
 describe("useEditableTable Hook", () => {
     it("fetches table and form data", async () => {
         const { result, waitFor } = renderHook(() => useEditableTable(), {
-            wrapper: WrapperWithRoute,
+            wrapper: TestWrapper({}),
         });
 
         await waitFor(() => {

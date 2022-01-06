@@ -7,14 +7,14 @@
     },
     "scripts": {
         "lerna": "lerna",
-        "start": "lerna run start --stream --parallel",
-        "test": "lerna run test --stream --parallel",
+        "start": "lerna run start --stream --parallel --scope @pankod/refine*",
+        "test": "lerna run test --stream --parallel --scope @pankod/refine*",
         "test:coverage": "npm run test --stream -- -- -- --coverage",
-        "bootstrap": "lerna bootstrap --hoist --strict --ignore-scripts --ignore @pankod/refine-codemod && cd packages/codemod && npm i",
+        "bootstrap": "cd packages/codemod && npm i && cd ../.. && lerna bootstrap --hoist --strict --ignore-scripts --ignore @pankod/refine-codemod --scope @pankod/refine*",
         "lint": "eslint -c ./.eslintrc packages examples",
         "lint:fix": "npm run lint -- --quiet --fix",
-        "build": "lerna run build --ignore @pankod/refine-codemod",
-        "versionup": "npm run lerna version --conventional-commits --no-git-tag-version",
+        "build": "lerna run build --scope @pankod/refine*",
+        "versionup": "npm run lerna version --conventional-commits --no-git-tag-version --scope @pankod/refine*",
         "nuke": "rm -rf node_modules; for d in for d in packages/*/node_modules; do echo $d; rm -rf $d; done; for d in for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in examples/*/node_modules; do echo $d; rm -rf $d; done;  for d in examples/*/package-lock.json; do echo $d; rm -rf $d; done; for d in packages/*/package-lock.json; do echo $d; rm -rf $d; done;"
     },
     "lint-staged": {
