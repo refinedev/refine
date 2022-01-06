@@ -291,7 +291,9 @@ Now we can list the products of the selected store according to the storeId info
 We separate the products of different stores by using the `permanentFilter` with the storeId we get from the Store Context. So we can control more than single content in one application.
 
 ```tsx
+//highlight-start
 const [store] = useContext(StoreContext);
+//highlight-end
 const { listProps } = useSimpleList<IProduct>({
     //highlight-start
     permanentFilter: [{ field: "storeId", operator: "eq", value: store }],
@@ -372,20 +374,25 @@ Now let's see how we can create store-specific products. Which store we choose i
 By overriding the `onFinish` method of the `form` and sending the selected storeId, we specify which store it will be the product of.
 
 ```tsx
-  <Form
+//highlight-start
+const [store] = useContext(StoreContext);
+// highlight-end
+
+<Form
     {...formProps}
     ...
+     //highlight-start
     onFinish={(values: any) => {
         return (
-            formProps.onFinish &&
-            formProps.onFinish({
-            ...values,
-            storeId: store,
+            formProps.onFinish?.({
+                ...values,
+                storeId: store,
             })
         );
     }}
-    >
-    ...
+    //highlight-end
+>
+...
 ```
 
 <details>
@@ -440,10 +447,9 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                         isActive: true,
                     }}
                     //highlight-start
-                    onFinish={(values: any) => {
+                    onFinish={(values) => {
                         return (
-                            formProps.onFinish &&
-                            formProps.onFinish({
+                            formProps.onFinish?.({
                                 ...values,
                                 storeId: store,
                             })
@@ -543,7 +549,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
 
 [Refer to the Live Provider documentation for detailed information. →](https://refine.dev/docs/api-references/providers/live-provider/)
 
-Appwrite Realtime API support is out-of-the-box supported by **refine**, just add two lines to make your app `Realtime`.
+Appwrite Realtime API support is out-of-the-box supported by **refine**, just add two lines to make your App Realtime.
 
 ```tsx
 import { Refine } from "@pankod/refine";
