@@ -102,7 +102,7 @@ export const useList = <
                         { statusCode: err.statusCode },
                         `Error (status code: ${err.statusCode})`,
                     ),
-                    description: err.message || "Error",
+                    description: err.message,
                     type: "error",
                 });
             },

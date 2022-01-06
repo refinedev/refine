@@ -213,7 +213,7 @@ export const useDelete = <
                             },
                             `Error (status code: ${err.statusCode})`,
                         ),
-                        description: err.message || "Error",
+                        description: err.message,
                         type: "error",
                     });
                 }

@@ -120,7 +120,7 @@ export const useCreate = <
 
                 handleNotification(errorNotificationFromProp, {
                     key: `create-${resource}-notification`,
-                    description: err.message || "Error",
+                    description: err.message,
                     message: translate(
                         "notifications.createError",
                         {
