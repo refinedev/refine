@@ -12,9 +12,6 @@ import {
     useOne,
 } from "@hooks";
 
-import { useEditFormProps } from "./useEditForm";
-import { useCloneFormProps } from "./useCloneForm";
-
 import {
     BaseRecord,
     CreateResponse,
@@ -23,7 +20,6 @@ import {
     LiveModeProps,
     ResourceRouterParams,
     RedirectionTypes,
-    IResourceItem,
     SuccessErrorNotification,
     MetaDataQuery,
     UpdateResponse,
@@ -127,11 +123,9 @@ export const useForm = <
 
     // id state is needed to determine selected record in a context for example useModal
     const [id, setId] = React.useState<string | undefined>(idFromRoute);
-    // const [cloneId, setCloneId] = React.useState<string>();
 
     const resourceName = resourceFromProps ?? resourceFromRoute;
     const action = actionFromProps ?? actionFromRoute;
-    // const id = idState ?? idFromRoute;
 
     const resourceWithRoute = useResourceWithRoute();
     const resource = resourceWithRoute(resourceName);
