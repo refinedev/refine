@@ -1,6 +1,6 @@
 ---
-id: multiTenant
-title: Multi Tenant
+id: multi-tenancy
+title: Multitenancy
 ---
 
 import collections from '@site/static/img/guides-and-concepts/multi-tenant/collections.png';
@@ -8,11 +8,19 @@ import sider from '@site/static/img/guides-and-concepts/multi-tenant/sider.png';
 import store_filter from '@site/static/img/guides-and-concepts/multi-tenant/store-filter.gif';
 import create from '@site/static/img/guides-and-concepts/multi-tenant/create.gif';
 
+## What is Multitenancy
+
+Multitenancy refers to a kind of architecture where a single instance of software runs on a server and serves multiple customers. In a multi-tenant environment, separate customers tap into the same hardware and data storage, creating a dedicated instance for each customer. Each tenant’s data is isolated and remains invisible to others, but is running on the same server.
+
 ## Introduction
 
-In this guide, we will create an application with you in the logic of Multi Tenant. Multi Tenant application is to separate and manage multiple contents independently from each other in a single application.
+In this guide, we will create an application with you in the logic of Multi Tenant(Multitenancy). We can say multi tenant application is to separate and manage multiple contents independently from each other in a single application.
 
 We will make a Cake House application using **refine** and [Appwrite](https://appwrite.io/). Our Cake House will consist of two separate stores and there will be special products for these stores. We will explain step by step how to manage these stores, products and orders separately.
+
+:::caution
+This guide has been prepared assuming you know the basics of **refine**. If you haven't learned these basics yet, we recommend reading the [Tutorial](https://refine.dev/docs/).
+:::
 
 ## Setup
 
@@ -42,10 +50,6 @@ const App: React.FC = () => {
     );
 };
 ```
-
-:::caution
-We recommend that you read the detailed [Appwrite DataProvider](https://refine.dev/docs/guides-and-concepts/data-provider/appwrite/) guide before reading this article. You can find detailed information about Installation, Usage and Collection creation.
-:::
 
 ## Create Collections
 
@@ -130,9 +134,9 @@ const App: React.FC = () => {
 };
 ```
 
-## Custom Sider Menu
+## Shop Select to Sider Component
 
-We will create a selectbox to select a stores in the Custom Sider Menu.
+We will create a select component in the Sider Menu where the user will select the stores. Let's create our select component first, then let's see how we can define it in the **refine** Sider.
 
 ```tsx title="scr/components/select/StoreSelect.tsx"
 import { useContext } from "react";
@@ -180,6 +184,10 @@ export const StoreSelect: React.FC<SelectProps> = ({ onSelect }) => {
 ```
 
 Here we have created a select component. Then we fetch the store id and title we created in the Appwrite database with `useSelect`. Now we can place the store information we have in the state we created in the Store Context.
+
+Let's define the select component in the **refine** Sider Menu. First, we need to customize the default Sider.
+
+[Check out how you can customize Sider Menu →](https://refine.dev/docs/examples/customization/customSider/)
 
 <details>
 <summary>Show Code</summary>
@@ -278,7 +286,18 @@ export const CustomSider: React.FC = () => {
 
 ## Product List Page
 
-Now we can list the products of the selected store according to the storeId information by filtering it.
+Now we can list the products of the selected store according to the storeId information by filtering it. We can do this filtering by using the `permanetFilter` property within the **refine**'s `useSimpleList` hook.
+
+We separate the products of different stores by using the `permanentFilter` with the storeId we get from the Store Context. So we can control more than single content in one application.
+
+```tsx
+const [store] = useContext(StoreContext);
+const { listProps } = useSimpleList<IProduct>({
+    //highlight-start
+    permanentFilter: [{ field: "storeId", operator: "eq", value: store }],
+    //highlight-end
+});
+```
 
 <details>
 <summary>Show Code</summary>
@@ -297,7 +316,7 @@ import {
 } from "@pankod/refine";
 
 import { IProduct } from "interfaces";
-import { ProductItem, EditProduct, CreateProduct } from "components/product";
+import { ProductItem } from "components/product";
 import { StoreContext } from "context/store";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
@@ -346,11 +365,28 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
 </div>
 <br/>
 
-We separate the products of different stores by using the `permanentFilter` with the storeId we get from the Store Context. So we can control more than single content in one application.
-
 ## Product Create Page
 
-Now let's see how we can create store-specific products.
+Now let's see how we can create store-specific products. Which store we choose in Sider, the product we will create will automatically be the product of the selected store.
+
+By overriding the `onFinish` method of the `form` and sending the selected storeId, we specify which store it will be the product of.
+
+```tsx
+  <Form
+    {...formProps}
+    ...
+    onFinish={(values: any) => {
+        return (
+            formProps.onFinish &&
+            formProps.onFinish({
+            ...values,
+            storeId: store,
+            })
+        );
+    }}
+    >
+    ...
+```
 
 <details>
 <summary>Show Code</summary>
@@ -501,7 +537,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
 </div>
 <br/>
 
-By overriding the onFinish method of the form and sending the selected storeId, we specify which store it will be the product of.
+## Bonus - Realtime Feature
 
 :::tip
 If Real-time feature is active on Appwrite, you can use it with Refine by adding only 2 lines.
@@ -529,14 +565,12 @@ function App() {
                 routerProvider={routerProvider}
                 //highlight-start
                 liveProvider={liveProvider(appwriteClient)}
+                liveMode="auto"
                 //highlight-end
                 dataProvider={dataProvider(appwriteClient)}
                 authProvider={authProvider}
                 LoginPage={Login}
                 Sider={CustomSider}
-                //highlight-start
-                liveMode="auto"
-                //highlight-end
                 resources={[
                     {
                         name: "61cb01b17ef57",
@@ -566,4 +600,3 @@ export default App;
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
-
