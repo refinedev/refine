@@ -44,6 +44,7 @@ export {
     LiveModeProps,
     MetaDataQuery,
     RedirectionTypes,
+    OpenNotificationParams,
 } from "./interfaces";
 
 // sunflower types
