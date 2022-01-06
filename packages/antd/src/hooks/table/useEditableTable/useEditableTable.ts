@@ -1,10 +1,10 @@
 import { useTable } from "@hooks";
 import { useTableProps } from "../useTable";
 import { BaseRecord, HttpError } from "@pankod/refine-core";
-import { useFormProps, UseFormReturnType } from "../../form/useForm";
+import { UseFormReturnType } from "../../form/useForm";
 import { useTableReturnType } from "../useTable/useTable";
 import { useForm } from "../../form/useForm";
-import { ButtonProps } from "@pankod/refine-core";
+import { ButtonProps, useFormProps } from "@pankod/refine-core";
 
 export type useEditableTableReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -60,7 +60,7 @@ export const useEditableTable = <
         action: "edit",
     });
 
-    const { /* form, */ editId, setEditId, formLoading } = edit;
+    const { /* form, */ id: editId, setId, formLoading } = edit;
 
     const saveButtonProps = {
         // onClick: () => form.submit(),
@@ -68,12 +68,12 @@ export const useEditableTable = <
     };
 
     const cancelButtonProps = {
-        onClick: () => setEditId && setEditId(undefined),
+        onClick: () => setId && setId(undefined),
     };
 
     const editButtonProps = (id: string) => {
         return {
-            onClick: () => setEditId && setEditId(id),
+            onClick: () => setId && setId(id),
         };
     };
 

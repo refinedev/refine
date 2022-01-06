@@ -3,9 +3,13 @@ import {
     UseStepsFormConfig,
 } from "sunflower-antd";
 
-import { HttpError, useStepsFormFromSFReturnType } from "@pankod/refine-core";
+import {
+    HttpError,
+    useStepsFormFromSFReturnType,
+    useFormProps,
+} from "@pankod/refine-core";
 
-import { useForm, useFormProps, UseFormReturnType } from "../useForm";
+import { useForm, UseFormReturnType } from "../useForm";
 import { BaseRecord } from "@pankod/refine-core/dist/interfaces";
 
 export type useStepsFormReturnType<
