@@ -11,6 +11,7 @@ export {
     LiveEvent,
     ITranslationContext as TranslationProvider,
     IAccessControlContext as AccessControlProvider,
+    INotificationProviderContext as NotificationProvider,
     I18nProvider,
     MutationMode,
     IResourceComponents,

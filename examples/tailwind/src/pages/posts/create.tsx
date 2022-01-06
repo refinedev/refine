@@ -34,8 +34,8 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
             content: "",
         },
         useFormCoreProps: {
-            warnWhenUnsavedChanges: true,
-            redirect: false,
+            // warnWhenUnsavedChanges: true,
+            // redirect: false,
         },
     });
 
@@ -71,7 +71,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     return (
         <Create
             saveButtonProps={{
-                onClick: handleSubmit((values) => console.log(values)),
+                onClick: handleSubmit(onFinish),
                 loading: formLoading,
             }}
         >

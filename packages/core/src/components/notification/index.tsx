@@ -85,6 +85,9 @@ export const Notification: React.FC<{
                         )} seconds to undo`,
                     ),
                     cancelMutation: notificationItem.cancelMutation,
+                    undoableTimeout: userFriendlySecond(
+                        notificationItem.seconds,
+                    ),
                 });
 
                 if (notificationItem.seconds > 0) {
