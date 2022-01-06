@@ -8,6 +8,7 @@ import {
     useSelect,
     Select,
     InputNumber,
+    HttpError,
 } from "@pankod/refine";
 
 import { IOrder, IProduct } from "interfaces";
@@ -15,7 +16,7 @@ import { StoreContext } from "context/store";
 
 export const CreateOrder: React.FC<IResourceComponentsProps> = () => {
     const [store] = useContext(StoreContext);
-    const { formProps, saveButtonProps } = useForm<IOrder>();
+    const { formProps, saveButtonProps } = useForm<IOrder, HttpError, IOrder>();
 
     const { selectProps: productSelectProps } = useSelect<IProduct>({
         resource: "61cb01b17ef57",
@@ -32,14 +33,11 @@ export const CreateOrder: React.FC<IResourceComponentsProps> = () => {
                 initialValues={{
                     isActive: true,
                 }}
-                onFinish={(values: any) => {
-                    return (
-                        formProps.onFinish &&
-                        formProps.onFinish({
-                            ...values,
-                            storeId: store,
-                        })
-                    );
+                onFinish={(values) => {
+                    return formProps.onFinish?.({
+                        ...values,
+                        storeId: store,
+                    });
                 }}
             >
                 <Form.Item
