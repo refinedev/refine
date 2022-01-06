@@ -28,7 +28,10 @@ import {
     defaultAccessControlContext,
     AccessControlContextProvider,
 } from "@contexts/accessControl";
-import { NotificationProviderContextProvider } from "@contexts/notificationProvider";
+import {
+    NotificationProviderContextProvider,
+    defaultNotificationProvider,
+} from "@contexts/notificationProvider";
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
 import { defaultConfigProviderProps } from "@definitions";
 import {
@@ -58,7 +61,7 @@ export interface RefineProps {
     dataProvider: IDataContextProvider;
     liveProvider?: ILiveContext;
     routerProvider: IRouterProvider;
-    notificationProvider: INotificationProviderContext;
+    notificationProvider?: INotificationProviderContext;
     accessControlProvider?: IAccessControlContext;
     resources?: IResource[];
     i18nProvider?: I18nProvider;
@@ -95,7 +98,7 @@ export const Refine: React.FC<RefineProps> = ({
     authProvider,
     dataProvider,
     routerProvider,
-    notificationProvider,
+    notificationProvider = defaultNotificationProvider,
     accessControlProvider = defaultAccessControlContext,
     resources: resourcesFromProps,
     DashboardPage,
