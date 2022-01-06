@@ -81,7 +81,8 @@ export const useCreate = <
                 const resourceSingular = pluralize.singular(resource);
 
                 handleNotification(successNotificationFromProp, {
-                    description: translate(
+                    key: `create-${resource}-notification`,
+                    message: translate(
                         "notifications.createSuccess",
                         {
                             resource: translate(
@@ -91,7 +92,7 @@ export const useCreate = <
                         },
                         `Successfully created ${resourceSingular}`,
                     ),
-                    message: translate("notifications.success", "Success"),
+                    description: translate("notifications.success", "Success"),
                     type: "success",
                 });
 
@@ -118,6 +119,7 @@ export const useCreate = <
                 const resourceSingular = pluralize.singular(resource);
 
                 handleNotification(errorNotificationFromProp, {
+                    key: `create-${resource}-notification`,
                     description: err.message || "Error",
                     message: translate(
                         "notifications.createError",

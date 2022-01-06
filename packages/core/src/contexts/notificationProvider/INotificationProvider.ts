@@ -1,13 +1,10 @@
-import { CSSProperties, ReactNode } from "react";
-
 export interface OpenNotificationParams {
-    description: ReactNode;
+    key: string;
+    message: string;
     type: "success" | "error" | "progress";
-    key?: string;
-    message?: ReactNode; // required for antd design notification
-    duration?: number;
-    style?: CSSProperties;
-    closeIcon?: ReactNode;
+    description?: string;
+    cancelMutation?: () => void;
+    undoableTimeout?: number;
 }
 
 export interface INotificationProviderContext {

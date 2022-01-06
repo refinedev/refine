@@ -256,8 +256,11 @@ export const useUpdate = <
 
                 handleNotification(successNotification, {
                     key: `${id}-${resource}-notification`,
-                    message: translate("notifications.success", "Successful"),
                     description: translate(
+                        "notifications.success",
+                        "Successful",
+                    ),
+                    message: translate(
                         "notifications.editSuccess",
                         {
                             resource: translate(

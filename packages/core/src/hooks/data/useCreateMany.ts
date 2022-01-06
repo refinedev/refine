@@ -75,7 +75,8 @@ export const useCreateMany = <
                 const resourcePlural = pluralize.plural(resource);
 
                 handleNotification(successNotification, {
-                    description: translate(
+                    key: `createMany-${resource}-notification`,
+                    message: translate(
                         "notifications.createSuccess",
                         {
                             resource: translate(
@@ -85,7 +86,7 @@ export const useCreateMany = <
                         },
                         `Successfully created ${resourcePlural}`,
                     ),
-                    message: translate("notifications.success", "Success"),
+                    description: translate("notifications.success", "Success"),
                     type: "success",
                 });
 
@@ -106,6 +107,7 @@ export const useCreateMany = <
             },
             onError: (err: TError, { resource, errorNotification }) => {
                 handleNotification(errorNotification, {
+                    key: `createMany-${resource}-notification`,
                     description: err.message,
                     message: translate(
                         "notifications.createError",

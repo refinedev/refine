@@ -73,14 +73,32 @@ export const Notification: React.FC<{
                 open({
                     key: `${notificationItem.id}-${notificationItem.resource}-notification`,
                     type: "progress",
-                    style: {
-                        display: notificationItem.isSilent ? "none" : "block",
-                    },
-                    message: null,
-                    description,
-                    duration: 0,
-                    closeIcon: <></>,
+                    message: translate(
+                        "notifications.undoable",
+                        {
+                            seconds: userFriendlySecond(
+                                notificationItem.seconds,
+                            ),
+                        },
+                        `You have ${userFriendlySecond(
+                            notificationItem.seconds,
+                        )} seconds to undo`,
+                    ),
+                    cancelMutation: notificationItem.cancelMutation,
                 });
+
+                if (notificationItem.seconds > 0) {
+                    setTimeout(() => {
+                        notificationDispatch({
+                            type: ActionTypes.DECREASE_NOTIFICATION_SECOND,
+                            payload: {
+                                id: notificationItem.id,
+                                seconds: notificationItem.seconds,
+                                resource: notificationItem.resource,
+                            },
+                        });
+                    }, 1000);
+                }
             }
         });
     };

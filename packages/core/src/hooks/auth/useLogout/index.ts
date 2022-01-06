@@ -45,6 +45,7 @@ export const useLogout = (): UseMutationResult<
         },
         onError: (error: Error) => {
             open({
+                key: "useLogout-error",
                 type: "error",
                 message: error?.name || "Logout Error",
                 description:

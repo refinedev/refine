@@ -205,8 +205,8 @@ export const useDeleteMany = <
             onSuccess: (_data, { ids, resource, successNotification }) => {
                 handleNotification(successNotification, {
                     key: `${ids}-${resource}-notification`,
-                    message: translate("notifications.success", "Success"),
-                    description: translate(
+                    description: translate("notifications.success", "Success"),
+                    message: translate(
                         "notifications.deleteSuccess",
                         {
                             resource: translate(
@@ -248,6 +248,7 @@ export const useDeleteMany = <
                             `Error (status code: ${err.statusCode})`,
                         ),
                         description: err.message,
+                        type: "error",
                     });
                 }
             },

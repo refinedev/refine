@@ -174,11 +174,10 @@ export const useImport = <
                 </div>
             );
 
+            //TODO
             open({
-                description,
-                message: null,
+                message: "",
                 key: `${resource}-import`,
-                duration: 0,
                 type: "progress",
             });
 

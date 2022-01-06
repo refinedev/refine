@@ -232,8 +232,8 @@ export const useDelete = <
 
                 handleNotification(successNotification, {
                     key: `${id}-${resource}-notification`,
-                    message: translate("notifications.success", "Success"),
-                    description: translate(
+                    description: translate("notifications.success", "Success"),
+                    message: translate(
                         "notifications.deleteSuccess",
                         {
                             resource: translate(
