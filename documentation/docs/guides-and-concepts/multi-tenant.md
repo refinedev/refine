@@ -382,7 +382,7 @@ const [store] = useContext(StoreContext);
     {...formProps}
     ...
      //highlight-start
-    onFinish={(values: any) => {
+    onFinish={(values) => {
         return (
             formProps.onFinish?.({
                 ...values,
