@@ -152,9 +152,7 @@ describe("filtering", () => {
                 ],
             });
         } catch (error) {
-            expect(error).toEqual(
-                Error("Not implemented on refine-supabase data provider."),
-            );
+            expect(error).toEqual(Error("Operator nin is not supported"));
         }
     });
 
@@ -187,9 +185,7 @@ describe("filtering", () => {
                 ],
             });
         } catch (error) {
-            expect(error).toEqual(
-                Error("Not implemented on refine-supabase data provider."),
-            );
+            expect(error).toEqual(Error("Operator ncontains is not supported"));
         }
     });
 
@@ -223,7 +219,7 @@ describe("filtering", () => {
             });
         } catch (error) {
             expect(error).toEqual(
-                Error("Not implemented on refine-supabase data provider."),
+                Error("Operator ncontainss is not supported"),
             );
         }
     });

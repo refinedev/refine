@@ -52,7 +52,7 @@ export const useForm = <
         ...rest,
     });
 
-    const { watch, setValue, reset } = useHookFormResult;
+    const { watch, setValue, reset, getValues } = useHookFormResult;
 
     const useFormCoreResult = useFormCore<TData, TError, TVariables>({
         onMutationSuccess: () => {
@@ -61,7 +61,7 @@ export const useForm = <
         ...useFormCoreProps,
     });
 
-    const { editId, queryResult } = useFormCoreResult;
+    const { id, queryResult } = useFormCoreResult;
     const { data, isFetching } = queryResult ?? {};
 
     useEffect(() => {
@@ -74,15 +74,20 @@ export const useForm = <
     }, [watch]);
 
     useEffect(() => {
-        Object.entries(queryResult?.data?.data || {}).forEach(
-            ([key, value]) => {
-                setValue(key as any, value);
-            },
-        );
+        setTimeout(() => {
+            const registeredFields = Object.keys(getValues());
+            Object.entries(queryResult?.data?.data || {}).forEach(
+                ([key, value]) => {
+                    if (registeredFields.includes(key)) {
+                        setValue(key as any, value);
+                    }
+                },
+            );
+        });
         return () => {
             reset();
         };
-    }, [data, editId, isFetching]);
+    }, [data, id, isFetching]);
 
     const onValuesChange = (changeValues: Record<string, any>) => {
         if (warnWhenUnsavedChanges) {

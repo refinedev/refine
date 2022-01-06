@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";
 import { Grid } from "antd";
-import { useFormTable } from "sunflower-antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
 import { FormProps } from "antd/lib/form";
 import { QueryObserverResult, UseQueryOptions } from "react-query";
@@ -9,13 +7,7 @@ import { useForm } from "antd/lib/form/Form";
 import { SorterResult } from "antd/lib/table/interface";
 
 import {
-    useRouterContext,
-    useSyncWithLocation,
-    useNavigation,
-    useResourceWithRoute,
-    useList,
     useLiveMode,
-    ResourceRouterParams,
     BaseRecord,
     CrudFilters,
     CrudSorting,
@@ -28,12 +20,9 @@ import {
 } from "@pankod/refine-core";
 
 import {
-    stringifyTableParams,
-    parseTableParams,
     mapAntdSorterToCrudSorting,
     mapAntdFilterToCrudFilter,
     unionFilters,
-    setInitialFilters,
 } from "../../../definitions/table";
 
 export type useTableProps<TData, TError, TSearchVariables = unknown> = {
@@ -125,101 +114,10 @@ export const useTable = <
 
     const breakpoint = Grid.useBreakpoint();
 
-    // const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
-
     const [form] = useForm<TSearchVariables>();
 
-    // const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
-
-    // disable syncWithLocation for custom resource tables
-    // if (resourceFromProp) {
-    //     syncWithLocation = false;
-    // }
-
-    // const { useLocation, useParams } = useRouterContext();
-    // const { search } = useLocation();
     const liveMode = useLiveMode(liveModeFromProp);
 
-    // let defaultCurrent = initialCurrent;
-    // let defaultPageSize = initialPageSize;
-    // let defaultSorter = initialSorter;
-    // let defaultFilter = initialFilter;
-
-    // if (syncWithLocation) {
-    //     const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
-    //         parseTableParams(search);
-
-    //     defaultCurrent = parsedCurrent || defaultCurrent;
-    //     defaultPageSize = parsedPageSize || defaultPageSize;
-    //     defaultSorter = parsedSorter.length ? parsedSorter : defaultSorter;
-    //     defaultFilter = parsedFilters.length ? parsedFilters : defaultFilter;
-    // }
-
-    // const { tableProps: tablePropsSunflower } = useFormTable({
-    //     defaultCurrent: current,
-    //     defaultPageSize: pageSize,
-    // });
-
-    // const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-
-    // const { push } = useNavigation();
-    // const resourceWithRoute = useResourceWithRoute();
-
-    // const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
-
-    // const [sorter, setSorter] = useState<CrudSorting>(defaultSorter || []);
-    // const [filters, setFilters] = useState<CrudFilters>(
-    //     setInitialFilters(permanentFilter, defaultFilter ?? []),
-    // );
-
-    // useEffect(() => {
-    //     if (syncWithLocation) {
-    //         const stringifyParams = stringifyTableParams({
-    //             pagination: {
-    //                 ...tablePropsSunflower.pagination,
-    //                 current:
-    //                     tablePropsSunflower.pagination.current ??
-    //                     defaultCurrent,
-    //             },
-    //             sorter,
-    //             filters,
-    //         });
-
-    //         // Careful! This triggers render
-    //         return push(`/${resource.route}?${stringifyParams}`);
-    //     }
-    // }, [
-    //     syncWithLocation,
-    //     tablePropsSunflower.pagination.current,
-    //     tablePropsSunflower.pagination.pageSize,
-    //     sorter,
-    //     filters,
-    // ]);
-
-    // const {
-    //     current: currentSF,
-    //     pageSize: pageSizeSF,
-    //     defaultCurrent: defaultCurrentSF,
-    // } = tablePropsSunflower.pagination;
-
-    // const queryResult = useList<TData, TError>({
-    //     resource: resource.name,
-    //     config: {
-    //         pagination: {
-    //             current: currentSF ?? defaultCurrentSF,
-    //             pageSize: pageSizeSF,
-    //         },
-    //         filters: unionFilters(permanentFilter, [], filters),
-    //         sort: sorter,
-    //     },
-    //     queryOptions,
-    //     successNotification,
-    //     errorNotification,
-    //     metaData,
-    //     liveMode,
-    //     liveParams,
-    //     onLiveEvent,
-    // });
     const { data, isFetched, isLoading } = tableQueryResult;
 
     const onChange = (
@@ -253,11 +151,6 @@ export const useTable = <
                 unionFilters(permanentFilter, searchFilters, prevFilters),
             );
 
-            // tablePropsSunflower.onChange(
-            //     { ...tablePropsSunflower.pagination, current: 1 },
-            //     undefined,
-            //     undefined,
-            // );
             setCurrent(1);
         }
     };
@@ -268,16 +161,12 @@ export const useTable = <
             onFinish,
         },
         tableProps: {
-            // ...tablePropsSunflower,
             dataSource: data?.data,
             loading: liveMode === "auto" ? isLoading : !isFetched,
             onChange,
             pagination: {
-                // ...tablePropsSunflower.pagination,
                 pageSize,
                 current,
-                // defaultPageSize,
-                // defaultCurrent,
                 simple: !breakpoint.sm,
                 position: !breakpoint.sm ? ["bottomCenter"] : ["bottomRight"],
                 total: data?.total,

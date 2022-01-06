@@ -12,10 +12,7 @@ describe("useSelect Hook", () => {
                     resource: "posts",
                 }),
             {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -44,10 +41,7 @@ describe("useSelect Hook", () => {
                     defaultValue: ["1", "2", "3", "4"],
                 }),
             {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -76,10 +70,7 @@ describe("useSelect Hook", () => {
                     defaultValue: "1",
                 }),
             {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -109,10 +100,7 @@ describe("useSelect Hook", () => {
                     optionValue: "id",
                 }),
             {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -144,10 +132,7 @@ describe("useSelect Hook", () => {
                     ],
                 }),
             {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -184,7 +169,6 @@ describe("useSelect Hook", () => {
                         ...MockJSONServer,
                         getList: getListMock,
                     },
-                    resources: [{ name: "posts" }],
                 }),
             },
         );
@@ -227,7 +211,6 @@ describe("useSelect Hook", () => {
                         ...MockJSONServer,
                         getList: getListMock,
                     },
-                    resources: [{ name: "posts" }],
                 }),
             },
         );
@@ -242,9 +225,9 @@ describe("useSelect Hook", () => {
 
         selectProps!.onSearch!("1");
         await waitForNextUpdate();
-        selectProps!.onSearch!("1");
+        selectProps!.onSearch!("2");
         await waitForNextUpdate();
-        selectProps!.onSearch!("1");
+        selectProps!.onSearch!("3");
         await waitForNextUpdate();
 
         expect(getListMock).toBeCalledTimes(4);
@@ -268,10 +251,7 @@ describe("useSelect Hook", () => {
                     },
                 }),
             {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -309,10 +289,7 @@ describe("useSelect Hook", () => {
                     },
                 }),
             {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 

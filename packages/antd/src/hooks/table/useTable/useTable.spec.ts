@@ -1,14 +1,11 @@
+import { TestWrapper } from "@test";
 import { renderHook } from "@testing-library/react-hooks";
-
-import { MockJSONServer, TestWrapper } from "@test";
 
 import { useTable } from "./useTable";
 
 const defaultPagination = {
     pageSize: 10,
     current: 1,
-    defaultPageSize: 10,
-    defaultCurrent: 1,
     total: 2,
     simple: true,
     position: ["bottomCenter"],
@@ -16,8 +13,6 @@ const defaultPagination = {
 
 const customPagination = {
     current: 2,
-    defaultCurrent: 2,
-    defaultPageSize: 1,
     pageSize: 1,
     total: 2,
     simple: true,
@@ -27,10 +22,7 @@ const customPagination = {
 describe("useTable Hook", () => {
     it("default", async () => {
         const { result, waitFor } = renderHook(() => useTable(), {
-            wrapper: TestWrapper({
-                dataProvider: MockJSONServer,
-                resources: [{ name: "posts" }],
-            }),
+            wrapper: TestWrapper({}),
         });
 
         await waitFor(() => {
@@ -49,14 +41,11 @@ describe("useTable Hook", () => {
         const { result, waitFor } = renderHook(
             () =>
                 useTable({
-                    initialCurrent: customPagination.defaultCurrent,
-                    initialPageSize: customPagination.defaultPageSize,
+                    initialCurrent: customPagination.current,
+                    initialPageSize: customPagination.pageSize,
                 }),
             {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -78,13 +67,7 @@ describe("useTable Hook", () => {
                     resource: "categories",
                 }),
             {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [
-                        { name: "posts", route: "posts" },
-                        { name: "categories", route: "categories" },
-                    ],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -107,13 +90,7 @@ describe("useTable Hook", () => {
                     syncWithLocation: true,
                 }),
             {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [
-                        { name: "posts", route: "posts" },
-                        { name: "categories", route: "categories" },
-                    ],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -135,13 +112,7 @@ describe("useTable Hook", () => {
                     resource: "categories",
                 }),
             {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [
-                        { name: "posts", route: "posts" },
-                        { name: "categories", route: "categories" },
-                    ],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 

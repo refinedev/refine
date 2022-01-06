@@ -8,13 +8,12 @@ import {
     ShowButton,
     useMany,
     FilterDropdown,
-    useSelect,
     Select,
     Radio,
     TagField,
     getDefaultFilter,
 } from "@pankod/refine-core";
-import { useTable } from "@pankod/refine-antd";
+import { useTable, useSelect } from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
 

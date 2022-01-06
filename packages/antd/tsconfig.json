@@ -1,7 +1,7 @@
 {
     "include": [
         "src",
-        "types",
+        "types"
     ],
     "extends": "../../tsconfig.build.json",
     "compilerOptions": {
