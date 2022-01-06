@@ -42,14 +42,11 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                     initialValues={{
                         isActive: true,
                     }}
-                    onFinish={(values: any) => {
-                        return (
-                            formProps.onFinish &&
-                            formProps.onFinish({
-                                ...values,
-                                storeId: store,
-                            })
-                        );
+                    onFinish={(values) => {
+                        return formProps.onFinish?.({
+                            ...values,
+                            storeId: store,
+                        });
                     }}
                 >
                     <Form.Item

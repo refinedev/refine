@@ -7,6 +7,7 @@ import {
     useDrawerForm,
     CreateButton,
     List,
+    HttpError,
 } from "@pankod/refine";
 
 import { IProduct } from "interfaces";
@@ -24,7 +25,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         formProps: createFormProps,
         saveButtonProps: createSaveButtonProps,
         show: createShow,
-    } = useDrawerForm<IProduct>({
+    } = useDrawerForm<IProduct, HttpError, IProduct>({
         action: "create",
         resource: "61cb01b17ef57",
         redirect: false,
@@ -34,7 +35,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         modalProps: editModalProps,
         formProps: editFormProps,
         show: editShow,
-    } = useModalForm<IProduct>({
+    } = useModalForm<IProduct, HttpError, IProduct>({
         action: "edit",
     });
 
