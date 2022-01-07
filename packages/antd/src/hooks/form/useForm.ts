@@ -3,7 +3,6 @@ import { FormInstance, FormProps, Form } from "antd";
 import { useForm as useFormSF } from "sunflower-antd";
 
 import {
-    ButtonProps,
     HttpError,
     BaseRecord,
     useForm as useFormCore,
@@ -11,6 +10,8 @@ import {
     useWarnAboutChange,
     useFormProps,
 } from "@pankod/refine-core";
+
+import { ButtonProps } from "@components/antd";
 
 export type UseFormReturnType<
     TData extends BaseRecord = BaseRecord,
