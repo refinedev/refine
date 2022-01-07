@@ -661,6 +661,10 @@
         },
         {
           "type": "doc",
+          "id": "version-2.xx.xx/guides-and-concepts/multi-tenancy"
+        },
+        {
+          "type": "doc",
           "id": "version-2.xx.xx/guides-and-concepts/mutation-mode"
         },
         {
