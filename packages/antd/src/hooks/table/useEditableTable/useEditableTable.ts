@@ -1,10 +1,12 @@
 import { useTable } from "@hooks";
-import { useTableProps } from "../useTable";
-import { BaseRecord, HttpError } from "@pankod/refine-core";
-import { UseFormReturnType } from "../../form/useForm";
-import { useTableReturnType } from "../useTable/useTable";
-import { useForm } from "../../form/useForm";
-import { ButtonProps, useFormProps } from "@pankod/refine-core";
+import {
+    BaseRecord,
+    HttpError,
+    ButtonProps,
+    useFormProps,
+} from "@pankod/refine-core";
+import { useTableProps, useTableReturnType } from "../useTable";
+import { UseFormReturnType, useForm } from "../../form/useForm";
 
 export type useEditableTableReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -13,9 +15,9 @@ export type useEditableTableReturnType<
     TSearchVariables = unknown,
 > = useTableReturnType<TData, TSearchVariables> &
     UseFormReturnType<TData, TError, TVariables> & {
-        // saveButtonProps: ButtonProps & {
-        //     onClick: () => void;
-        // };
+        saveButtonProps: ButtonProps & {
+            onClick: () => void;
+        };
         cancelButtonProps: ButtonProps & {
             onClick: () => void;
         };
@@ -60,20 +62,23 @@ export const useEditableTable = <
         action: "edit",
     });
 
-    const { /* form, */ id: editId, setId, formLoading } = edit;
+    const { id: editId, setId, saveButtonProps: editSaveButtonProps } = edit;
 
     const saveButtonProps = {
-        // onClick: () => form.submit(),
-        disabled: formLoading,
+        ...editSaveButtonProps,
+        onClick: () => {
+            editSaveButtonProps.onClick();
+            setId(undefined);
+        },
     };
 
     const cancelButtonProps = {
-        onClick: () => setId && setId(undefined),
+        onClick: () => setId(undefined),
     };
 
     const editButtonProps = (id: string) => {
         return {
-            onClick: () => setId && setId(id),
+            onClick: () => setId(id),
         };
     };
 
@@ -82,7 +87,7 @@ export const useEditableTable = <
     return {
         ...table,
         ...edit,
-        // saveButtonProps,
+        saveButtonProps,
         cancelButtonProps,
         editButtonProps,
         isEditing,
