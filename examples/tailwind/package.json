@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@craco/craco": "^6.1.2",
     "@pankod/refine-antd": "^2.0.7",
     "@pankod/refine-core": "^2.0.7",
     "@pankod/refine-react-router": "^2.0.7",
@@ -25,9 +24,9 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "eject": "craco eject"
+    "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
@@ -42,8 +41,8 @@
     ]
   },
   "devDependencies": {
-    "autoprefixer": "^9.8.8",
-    "postcss": "^7.0.39",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
+    "autoprefixer": "^10.4.1",
+    "postcss": "^8.1.4",
+    "tailwindcss": "^3.0.11"
   }
 }

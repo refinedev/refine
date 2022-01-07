@@ -42,7 +42,7 @@
         "babel-plugin-module-resolver": "^4.1.0",
         "identity-obj-proxy": "^3.0.0",
         "msw": "^0.26.2",
-        "postcss": "^8.0.0",
+        "postcss": "^8.1.4",
         "react-router-dom": "^5.3.0",
         "rollup-plugin-copy": "^3.4.0",
         "rollup-plugin-postcss": "^4.0.0",
