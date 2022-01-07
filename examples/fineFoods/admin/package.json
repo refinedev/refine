@@ -1,6 +1,6 @@
 {
 	"name": "fine-foods",
-	"version": "2.5.3",
+	"version": "2.5.4",
 	"private": true,
 	"dependencies": {
 		"@ant-design/charts": "^1.1.9",

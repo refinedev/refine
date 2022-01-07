@@ -75,7 +75,7 @@ export interface RefineProps {
     OffLayoutArea?: React.FC;
     Title?: React.FC<TitleProps>;
     reactQueryClientConfig?: QueryClientConfig;
-    notifcationConfig?: ConfigProps;
+    notificationConfig?: ConfigProps;
     reactQueryDevtoolConfig?: any;
     liveMode?: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
@@ -114,7 +114,7 @@ export const Refine: React.FC<RefineProps> = ({
     OffLayoutArea,
     reactQueryClientConfig,
     reactQueryDevtoolConfig,
-    notifcationConfig,
+    notificationConfig,
     liveMode,
     onLiveEvent,
 }) => {
@@ -130,7 +130,7 @@ export const Refine: React.FC<RefineProps> = ({
         },
     });
 
-    notification.config({ ...notifcationConfig });
+    notification.config({ ...notificationConfig });
 
     const resources: IResourceItem[] = [];
 
