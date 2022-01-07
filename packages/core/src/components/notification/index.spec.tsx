@@ -21,6 +21,7 @@ const mockNotification = [
         doMutation,
         seconds: 5000,
         isRunning: true,
+        isSilent: false,
     },
 ];
 
