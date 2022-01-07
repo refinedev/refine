@@ -58,18 +58,12 @@ export const useEditableTable = <
         action: "edit",
     });
 
-    const { id: editId, setId, saveButtonProps: editSaveButtonProps } = edit;
-
-    const saveButtonProps = {
-        ...editSaveButtonProps,
-        onClick: () => {
-            editSaveButtonProps.onClick();
-            setId(undefined);
-        },
-    };
+    const { id: editId, setId, saveButtonProps } = edit;
 
     const cancelButtonProps = {
-        onClick: () => setId(undefined),
+        onClick: () => {
+            setId(undefined);
+        },
     };
 
     const editButtonProps = (id: string) => {
