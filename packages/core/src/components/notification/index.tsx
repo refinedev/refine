@@ -20,26 +20,27 @@ export const Notification: React.FC<{
                 if (notificationItem.seconds === 0) {
                     notificationItem.doMutation();
                 }
-
-                open({
-                    key: `${notificationItem.id}-${notificationItem.resource}-notification`,
-                    type: "progress",
-                    message: translate(
-                        "notifications.undoable",
-                        {
-                            seconds: userFriendlySecond(
+                if (!notificationItem.isSilent) {
+                    open({
+                        key: `${notificationItem.id}-${notificationItem.resource}-notification`,
+                        type: "progress",
+                        message: translate(
+                            "notifications.undoable",
+                            {
+                                seconds: userFriendlySecond(
+                                    notificationItem.seconds,
+                                ),
+                            },
+                            `You have ${userFriendlySecond(
                                 notificationItem.seconds,
-                            ),
-                        },
-                        `You have ${userFriendlySecond(
+                            )} seconds to undo`,
+                        ),
+                        cancelMutation: notificationItem.cancelMutation,
+                        undoableTimeout: userFriendlySecond(
                             notificationItem.seconds,
-                        )} seconds to undo`,
-                    ),
-                    cancelMutation: notificationItem.cancelMutation,
-                    undoableTimeout: userFriendlySecond(
-                        notificationItem.seconds,
-                    ),
-                });
+                        ),
+                    });
+                }
 
                 if (notificationItem.seconds > 0) {
                     setTimeout(() => {
