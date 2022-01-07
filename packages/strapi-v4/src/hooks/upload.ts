@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { RcFile, UploadFile } from "@pankod/refine";
+import { RcFile, UploadFile } from "@pankod/refine-core";
 
 interface StrapiUploadParams {
     maxCount: number;
