@@ -124,6 +124,8 @@ export const useForm = <
     // id state is needed to determine selected record in a context for example useModal
     const [id, setId] = React.useState<string | undefined>(idFromRoute);
 
+    console.log({ id });
+
     const resourceName = resourceFromProps ?? resourceFromRoute;
     const action = actionFromProps ?? actionFromRoute;
 
@@ -218,7 +220,7 @@ export const useForm = <
                     onSuccess: (data, _, context) => {
                         console.log("onsuccess");
                         if (onMutationSuccess) {
-                            return onMutationSuccess(data, values, context);
+                            onMutationSuccess(data, values, context);
                         }
 
                         if (mutationMode === "pessimistic") {

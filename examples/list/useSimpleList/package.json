@@ -1,6 +1,6 @@
 {
   "name": "refine-use-simple-list-example",
-  "version": "0.1.0",
+  "version": "2.5.4",
   "private": true,
   "dependencies": {
     "@pankod/refine-core": "^2.0.7",

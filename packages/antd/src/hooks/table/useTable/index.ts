@@ -1,1 +1,1 @@
-export { useTable, useTableProps } from "./useTable";
+export { useTable, useTableProps, useTableReturnType } from "./useTable";
