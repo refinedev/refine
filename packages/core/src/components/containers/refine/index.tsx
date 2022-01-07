@@ -1,7 +1,6 @@
 import React from "react";
-import { ConfigProvider, notification } from "antd";
+import { ConfigProvider } from "antd";
 import { ConfigProviderProps } from "antd/lib/config-provider";
-import { ConfigProps } from "antd/lib/notification";
 import {
     QueryClientProvider,
     QueryClient,
@@ -81,7 +80,6 @@ export interface RefineProps {
     OffLayoutArea?: React.FC;
     Title?: React.FC<TitleProps>;
     reactQueryClientConfig?: QueryClientConfig;
-    notifcationConfig?: ConfigProps;
     reactQueryDevtoolConfig?: any;
     liveMode?: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
@@ -121,7 +119,6 @@ export const Refine: React.FC<RefineProps> = ({
     OffLayoutArea,
     reactQueryClientConfig,
     reactQueryDevtoolConfig,
-    notifcationConfig,
     liveMode,
     onLiveEvent,
 }) => {
@@ -136,8 +133,6 @@ export const Refine: React.FC<RefineProps> = ({
             },
         },
     });
-
-    notification.config({ ...notifcationConfig });
 
     const resources: IResourceItem[] = [];
 
