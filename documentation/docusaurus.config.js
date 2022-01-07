@@ -55,6 +55,14 @@ const siteConfig = {
             indexName: "refine",
             contextualSearch: true,
         },
+        announcementBar: {
+            id: "support",
+            backgroundColor: "#0B82F0",
+            textColor: "#fff",
+            isCloseable: false,
+            content:
+                'If you like refine, give us a &nbsp; ⭐️ &nbsp; on <a target="_blank" rel="noopener noreferrer" href="https://github.com/pankod/refine">GitHub</a>',
+        },
         navbar: {
             logo: {
                 alt: "refine",
