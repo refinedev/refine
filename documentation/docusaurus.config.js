@@ -61,7 +61,7 @@ const siteConfig = {
             textColor: "#fff",
             isCloseable: false,
             content:
-                'If you like refine, give us a &nbsp; ⭐️ &nbsp; on <a target="_blank" rel="noopener noreferrer" href="https://github.com/pankod/refine">GitHub</a>',
+                '⭐️ &nbsp; If you like refine, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/pankod/refine">GitHub</a>! ⭐️',
         },
         navbar: {
             logo: {
