@@ -1,7 +1,4 @@
-// import "node_modules/antd/dist/antd.css";
-
 export * from "./components";
-export * from "./components/antd";
 export * from "./hooks";
 
 export { IAuthContext as AuthProvider, Pagination } from "./interfaces";
@@ -11,6 +8,7 @@ export {
     LiveEvent,
     ITranslationContext as TranslationProvider,
     IAccessControlContext as AccessControlProvider,
+    INotificationProviderContext as NotificationProvider,
     I18nProvider,
     MutationMode,
     IResourceComponents,
@@ -44,6 +42,7 @@ export {
     MetaDataQuery,
     RedirectionTypes,
     MapDataFn,
+    OpenNotificationParams,
 } from "./interfaces";
 
 // sunflower types

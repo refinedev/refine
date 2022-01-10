@@ -5,7 +5,10 @@ import { MemoryRouter } from "react-router-dom";
 import { Refine, IResourceItem } from "@pankod/refine-core";
 
 import { MockRouterProvider, MockJSONServer } from "@test";
-import { IDataContext } from "@pankod/refine-core/dist/interfaces";
+import {
+    IDataContext,
+    INotificationProviderContext,
+} from "@pankod/refine-core/dist/interfaces";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -35,10 +38,12 @@ const List = () => {
 interface ITestWrapperProps {
     dataProvider?: IDataContext;
     resources?: IResourceItem[];
+    notificationProvider?: INotificationProviderContext;
 }
 
 export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     dataProvider,
+    notificationProvider,
 }) => {
     // eslint-disable-next-line react/display-name
     return ({ children }): React.ReactElement => {
@@ -47,6 +52,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
                 <Refine
                     dataProvider={dataProvider ?? MockJSONServer}
                     routerProvider={MockRouterProvider}
+                    notificationProvider={notificationProvider}
                     resources={[{ name: "posts", list: List }]}
                 >
                     {children}

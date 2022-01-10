@@ -23,8 +23,8 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         setValue,
     } = useForm<IPost>({
         useFormCoreProps: {
-            warnWhenUnsavedChanges: true,
-            redirect: false,
+            // warnWhenUnsavedChanges: true,
+            // redirect: false,
         },
     });
 
