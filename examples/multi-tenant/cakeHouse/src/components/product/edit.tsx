@@ -42,6 +42,11 @@ export const EditProduct: React.FC<EditProductProps> = ({
                         valuePropName="fileList"
                         normalize={normalizeFile}
                         noStyle
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
                     >
                         <Upload.Dragger
                             name="file"
