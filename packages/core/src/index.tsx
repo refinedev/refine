@@ -1,7 +1,4 @@
-// import "node_modules/antd/dist/antd.css";
-
 export * from "./components";
-export * from "./components/antd";
 export * from "./hooks";
 
 export { IAuthContext as AuthProvider, Pagination } from "./interfaces";
