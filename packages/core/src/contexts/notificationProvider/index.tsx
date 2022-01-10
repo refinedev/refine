@@ -3,8 +3,12 @@ import React, { createContext } from "react";
 import { INotificationProviderContext } from "./INotificationProvider";
 
 export const defaultNotificationProvider: INotificationProviderContext = {
-    open: () => true,
-    close: () => false,
+    open: () => {
+        return {};
+    },
+    close: () => {
+        return {};
+    },
 };
 
 export const NotificationProviderContext =
