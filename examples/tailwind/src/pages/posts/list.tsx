@@ -6,6 +6,7 @@ import {
     EditButton,
     useSelect,
     useOne,
+    DeleteButton,
 } from "@pankod/refine-core";
 import {
     useTable,
@@ -62,6 +63,11 @@ export const PostList: React.FC = () => {
                             recordItemId={value}
                         />
                         <ShowButton
+                            hideText
+                            size="small"
+                            recordItemId={value}
+                        />
+                        <DeleteButton
                             hideText
                             size="small"
                             recordItemId={value}

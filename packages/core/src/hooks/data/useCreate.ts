@@ -16,8 +16,8 @@ import {
     useCheckError,
     useCacheQueries,
     usePublish,
+    useHandleNotification,
 } from "@hooks";
-import { handleNotification } from "@definitions";
 
 type useCreateParams<TVariables> = {
     resource: string;
@@ -59,6 +59,7 @@ export const useCreate = <
     const translate = useTranslate();
     const queryClient = useQueryClient();
     const publish = usePublish();
+    const handleNotification = useHandleNotification();
 
     const mutation = useMutation<
         CreateResponse<TData>,
@@ -80,7 +81,8 @@ export const useCreate = <
                 const resourceSingular = pluralize.singular(resource);
 
                 handleNotification(successNotificationFromProp, {
-                    description: translate(
+                    key: `create-${resource}-notification`,
+                    message: translate(
                         "notifications.createSuccess",
                         {
                             resource: translate(
@@ -90,7 +92,7 @@ export const useCreate = <
                         },
                         `Successfully created ${resourceSingular}`,
                     ),
-                    message: translate("notifications.success", "Success"),
+                    description: translate("notifications.success", "Success"),
                     type: "success",
                 });
 
@@ -117,6 +119,7 @@ export const useCreate = <
                 const resourceSingular = pluralize.singular(resource);
 
                 handleNotification(errorNotificationFromProp, {
+                    key: `create-${resource}-notification`,
                     description: err.message,
                     message: translate(
                         "notifications.createError",
