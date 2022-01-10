@@ -2,7 +2,7 @@ import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 
-import { Refine } from "@pankod/refine-core";
+import { Refine, IResourceItem } from "@pankod/refine-core";
 
 import { MockRouterProvider, MockJSONServer } from "@test";
 import { IDataContext } from "@pankod/refine-core/dist/interfaces";
@@ -34,6 +34,7 @@ const List = () => {
 
 interface ITestWrapperProps {
     dataProvider?: IDataContext;
+    resources?: IResourceItem[];
 }
 
 export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({

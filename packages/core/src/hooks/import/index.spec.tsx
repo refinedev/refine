@@ -62,6 +62,42 @@ describe("useImport hook", () => {
         expect(result).toBeTruthy();
     });
 
+    it("should call onProgress", async () => {
+        const onProgressMock = jest.fn();
+        const { result } = renderHook(
+            () =>
+                useImport({
+                    batchSize: 1,
+                    onProgress: onProgressMock,
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await act(async () => {
+            jest.useFakeTimers();
+
+            await result.current.handleChange?.({
+                file: file as unknown as UploadFile,
+            });
+
+            jest.runAllTimers();
+        });
+
+        Array.from({ length: parsedData.length }, (_, i) => i + 1).forEach(
+            (i) => {
+                expect(onProgressMock).toBeCalledWith({
+                    totalAmount: parsedData.length,
+                    processedAmount: i,
+                });
+            },
+        );
+    });
+
     it("should trigger parse", async () => {
         const { result } = renderHook(
             () =>
@@ -81,8 +117,7 @@ describe("useImport hook", () => {
         await act(async () => {
             jest.useFakeTimers();
 
-            await result.current.uploadProps.onChange?.({
-                fileList: [],
+            await result.current.handleChange?.({
                 file: file as unknown as UploadFile,
             });
 
@@ -135,8 +170,7 @@ describe("useImport hook", () => {
         await act(async () => {
             jest.useFakeTimers();
 
-            await result.current.uploadProps.onChange?.({
-                fileList: [],
+            await result.current.handleChange({
                 file: file as unknown as UploadFile,
             });
 
@@ -180,8 +214,7 @@ describe("useImport hook", () => {
         await act(async () => {
             jest.useFakeTimers();
 
-            await result.current.uploadProps.onChange?.({
-                fileList: [],
+            await result.current.handleChange({
                 file: file as unknown as UploadFile,
             });
 
@@ -221,35 +254,12 @@ describe("useImport hook", () => {
         await act(async () => {
             jest.useFakeTimers();
 
-            await result.current.uploadProps.onChange?.({
-                fileList: [],
+            await result.current.handleChange({
                 file: file as unknown as UploadFile,
             });
 
             jest.runAllTimers();
         });
-    });
-
-    it("should return false from uploadProps.beforeUpload callback", () => {
-        const { result } = renderHook(
-            () =>
-                useImport({
-                    resourceName: "tests",
-                }),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
-            },
-        );
-
-        const beforeUploadResult = result.current.uploadProps.beforeUpload?.(
-            file as unknown as RcFile,
-            [],
-        );
-
-        expect(beforeUploadResult).toBe(false);
     });
 
     describe("batchSize = undefined", () => {
@@ -275,8 +285,7 @@ describe("useImport hook", () => {
             );
 
             await act(async () => {
-                await result.current.uploadProps.onChange?.({
-                    fileList: [],
+                await result.current.handleChange({
                     file: file as unknown as UploadFile,
                 });
 
@@ -313,8 +322,7 @@ describe("useImport hook", () => {
             await act(async () => {
                 jest.useFakeTimers();
 
-                await result.current.uploadProps.onChange?.({
-                    fileList: [],
+                await result.current.handleChange({
                     file: file as unknown as UploadFile,
                 });
 
@@ -357,8 +365,7 @@ describe("useImport hook", () => {
             await act(async () => {
                 jest.useFakeTimers();
 
-                await result.current.uploadProps.onChange?.({
-                    fileList: [],
+                await result.current.handleChange({
                     file: file as unknown as UploadFile,
                 });
 
@@ -410,8 +417,7 @@ describe("useImport hook", () => {
             await act(async () => {
                 jest.useFakeTimers();
 
-                await result.current.uploadProps.onChange?.({
-                    fileList: [],
+                await result.current.handleChange({
                     file: file as unknown as UploadFile,
                 });
 
@@ -475,8 +481,7 @@ describe("useImport hook", () => {
             await act(async () => {
                 jest.useFakeTimers();
 
-                await result.current.uploadProps.onChange?.({
-                    fileList: [],
+                await result.current.handleChange({
                     file: file as unknown as UploadFile,
                 });
 

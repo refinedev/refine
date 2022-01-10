@@ -43,6 +43,7 @@ export {
     LiveModeProps,
     MetaDataQuery,
     RedirectionTypes,
+    MapDataFn,
 } from "./interfaces";
 
 // sunflower types
@@ -64,3 +65,5 @@ export { RcFile, UploadFile } from "antd/lib/upload/interface";
 
 // antd filterDropDownProps (using for <FilterDropDown> component)
 export { FilterDropdownProps } from "antd/lib/table/interface";
+
+export { importCSVMapper } from "./definitions";
