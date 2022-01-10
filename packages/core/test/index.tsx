@@ -12,6 +12,7 @@ import {
     I18nProvider,
     IAccessControlContext,
     ILiveContext,
+    INotificationProviderContext,
 } from "../src/interfaces";
 import { TranslationContextProvider } from "@contexts/translation";
 import { RefineContextProvider } from "@contexts/refine";
@@ -19,6 +20,7 @@ import { IRefineContextProvider } from "@contexts/refine/IRefineContext";
 import { RouterContextProvider } from "@contexts/router";
 import { AccessControlContextProvider } from "@contexts/accessControl";
 import { LiveContextProvider } from "@contexts/live";
+import { NotificationProviderContextProvider } from "@contexts/notificationProvider";
 
 import {
     MockRouterProvider,
@@ -39,6 +41,7 @@ interface ITestWrapperProps {
     authProvider?: IAuthContext;
     dataProvider?: IDataContext;
     i18nProvider?: I18nProvider;
+    notificationProvider?: INotificationProviderContext;
     accessControlProvider?: IAccessControlContext;
     liveProvider?: ILiveContext;
     resources?: IResourceItem[];
@@ -52,6 +55,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     dataProvider,
     resources,
     i18nProvider,
+    notificationProvider,
     accessControlProvider,
     routerInitialEntries,
     refineProvider,
@@ -75,13 +79,21 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
             withResource
         );
 
+        const withNotificationProvider = notificationProvider ? (
+            <NotificationProviderContextProvider {...notificationProvider}>
+                {withData}
+            </NotificationProviderContextProvider>
+        ) : (
+            withData
+        );
+
         const withAccessControl = accessControlProvider ? (
             <AccessControlContextProvider {...accessControlProvider}>
-                {withData}
+                {withNotificationProvider}
             </AccessControlContextProvider>
         ) : (
             <AccessControlContextProvider {...MockAccessControlProvider}>
-                {withData}
+                {withNotificationProvider}
             </AccessControlContextProvider>
         );
 

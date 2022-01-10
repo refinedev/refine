@@ -33,7 +33,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
             content: "",
         },
         useFormCoreProps: {
-            warnWhenUnsavedChanges: true,
+            // warnWhenUnsavedChanges: true,
             // redirect: false,
         },
     });

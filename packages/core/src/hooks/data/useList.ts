@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
-import { ArgsProps } from "antd/lib/notification";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -13,9 +12,14 @@ import {
     CrudSorting,
     MetaDataQuery,
     LiveModeProps,
+    OpenNotificationParams,
 } from "../../interfaces";
-import { useCheckError, useResourceSubscription, useTranslate } from "@hooks";
-import { handleNotification } from "@definitions";
+import {
+    useCheckError,
+    useHandleNotification,
+    useResourceSubscription,
+    useTranslate,
+} from "@hooks";
 
 interface UseListConfig {
     pagination?: Pagination;
@@ -27,8 +31,8 @@ export type UseListProps<TData, TError> = {
     resource: string;
     config?: UseListConfig;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
-    successNotification?: ArgsProps | false;
-    errorNotification?: ArgsProps | false;
+    successNotification?: OpenNotificationParams | false;
+    errorNotification?: OpenNotificationParams | false;
     metaData?: MetaDataQuery;
 } & LiveModeProps;
 
@@ -63,6 +67,7 @@ export const useList = <
     const { getList } = useContext<IDataContext>(DataContext);
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
+    const handleNotification = useHandleNotification();
 
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
