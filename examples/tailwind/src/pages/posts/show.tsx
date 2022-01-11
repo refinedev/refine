@@ -1,7 +1,7 @@
 import {
     useShow,
     Show,
-    Typography,
+    // Typography,
     IResourceComponentsProps,
     useOne,
     MarkdownField,
@@ -9,7 +9,7 @@ import {
 
 import { IPost, ICategory } from "interfaces";
 
-const { Title, Text } = Typography;
+// const { Title, Text } = Typography;
 
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>();
@@ -27,7 +27,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Show isLoading={isLoading}>
-            <Title level={5}>Id</Title>
+            {/* <Title level={5}>Id</Title>
             <Text>{record?.id}</Text>
 
             <Title level={5}>Title</Title>
@@ -38,7 +38,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
                 {categoryIsLoading ? "Loading..." : categoryData?.data.title}
             </Text>
 
-            <Title level={5}>Content</Title>
+            <Title level={5}>Content</Title> */}
             <MarkdownField value={record?.content} />
         </Show>
     );

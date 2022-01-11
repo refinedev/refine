@@ -1,10 +1,9 @@
 import React from "react";
 
-import { TitleProps } from "../../../../interfaces";
+import { useRouterContext, TitleProps } from "@pankod/refine-core";
 
-import logo from "../../../../assets/images/refine.svg";
-import logoCollapsed from "../../../../assets/images/refine-collapsed.svg";
-import { useRouterContext } from "@hooks";
+import logo from "../../../assets/images/refine.svg";
+import logoCollapsed from "../../../assets/images/refine-collapsed.svg";
 
 export const Title: React.FC<TitleProps> = ({ collapsed }) => {
     const { Link } = useRouterContext();

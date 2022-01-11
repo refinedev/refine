@@ -1,7 +1,7 @@
 import React from "react";
-import { render, fireEvent, TestWrapper, act } from "@test";
 import ReactRouterDom from "react-router-dom";
-import { wait } from "@testing-library/react";
+import { waitFor } from "@testing-library/react";
+import { render, fireEvent, TestWrapper, act } from "@test";
 
 import { Sider } from "./index";
 
@@ -29,35 +29,31 @@ jest.mock("react-router-dom", () => ({
 describe("Sider", () => {
     it("should render successful", async () => {
         const { getByText } = render(<Sider />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
+            wrapper: TestWrapper({}),
         });
 
-        await wait(() => getByText("Posts"));
+        await waitFor(() => getByText("Posts"));
     });
 
     it("should render logout menu item successful", async () => {
         const { getByText } = render(<Sider />, {
             wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
                 authProvider: mockAuthProvider,
             }),
         });
 
-        await wait(() => getByText("Posts"));
+        await waitFor(() => getByText("Posts"));
         getByText("Logout");
     });
 
     it("should work menu item click", async () => {
         const { getByText } = render(<Sider />, {
             wrapper: TestWrapper({
-                resources: [{ name: "posts", route: "posts" }],
                 authProvider: mockAuthProvider,
             }),
         });
 
-        await wait(() => fireEvent.click(getByText("Posts")));
+        await waitFor(() => fireEvent.click(getByText("Posts")));
         expect(mHistory.push).toBeCalledWith("/posts", undefined);
     });
 
@@ -68,7 +64,6 @@ describe("Sider", () => {
         };
         const { getByText } = render(<Sider />, {
             wrapper: TestWrapper({
-                resources: [{ name: "posts", route: "posts" }],
                 authProvider: logoutMockedAuthProvider,
             }),
         });
@@ -82,15 +77,12 @@ describe("Sider", () => {
 
     it("should work sider collapse ", async () => {
         const { container } = render(<Sider />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts", route: "posts" }],
-            }),
+            wrapper: TestWrapper({}),
         });
 
         await act(async () => {
             fireEvent.click(
-                container.children.item(0)!.children.item(1)!
-                    .firstElementChild!,
+                container.children.item(0).children.item(1).firstElementChild,
             );
         });
     });
@@ -116,7 +108,7 @@ describe("Sider", () => {
             }),
         });
 
-        await wait(() => getByText("Posts"));
-        await wait(() => expect(queryByText("Users")).toBeNull());
+        await waitFor(() => getByText("Posts"));
+        await waitFor(() => expect(queryByText("Users")).toBeNull());
     });
 });
