@@ -4,7 +4,6 @@ import {
     useCreateMany,
     useResourceWithRoute,
     useRouterContext,
-    useNotification,
 } from "@hooks";
 import {
     MapDataFn,
@@ -109,7 +108,6 @@ export const useImport = <
     const [isLoading, setIsLoading] = useState(false);
 
     const resourceWithRoute = useResourceWithRoute();
-    const { open, close } = useNotification();
     const { useParams } = useRouterContext();
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
@@ -134,10 +132,6 @@ export const useImport = <
         setTotalAmount(0);
         setProcessedAmount(0);
         setIsLoading(false);
-
-        // setTimeout(() => {
-        //     close(`${resource}-import`);
-        // }, 4500);
     };
 
     const handleFinish = (
@@ -159,48 +153,6 @@ export const useImport = <
 
     useEffect(() => {
         onProgress?.({ totalAmount, processedAmount });
-        // if (totalAmount > 0 && processedAmount > 0) {
-        //     const description = (
-        //         <div
-        //             style={{
-        //                 display: "flex",
-        //                 alignItems: "center",
-        //                 justifyContent: "space-between",
-        //                 marginTop: "-7px",
-        //             }}
-        //         >
-        //             <Progress
-        //                 type="circle"
-        //                 percent={Math.floor(
-        //                     (processedAmount / totalAmount) * 100,
-        //                 )}
-        //                 width={50}
-        //                 strokeColor="#1890ff"
-        //                 status="normal"
-        //             />
-        //             <span style={{ marginLeft: 8, width: "100%" }}>
-        //                 {t(
-        //                     "notifications.importProgress",
-        //                     {
-        //                         processed: processedAmount,
-        //                         total: totalAmount,
-        //                     },
-        //                     `Importing: ${processedAmount}/${totalAmount}`,
-        //                 )}
-        //             </span>
-        //         </div>
-        //     );
-
-        //     //TODO
-        //     open({
-        //         message: "",
-        //         key: `${resource}-import`,
-        //         type: "progress",
-        //     });
-
-        //     if (processedAmount >= totalAmount) {
-        //     }
-        // }
     }, [totalAmount, processedAmount]);
 
     const handleChange: HandleChangeType<TVariables, TData> = ({ file }) => {
@@ -212,7 +164,6 @@ export const useImport = <
                         const values = importCSVMapper(data, mapData);
 
                         setTotalAmount(values.length);
-
                         if (batchSize === 1) {
                             const createdValues = await Promise.all(
                                 values
@@ -231,8 +182,11 @@ export const useImport = <
                                         response
                                             .then(({ data }) => {
                                                 setProcessedAmount(
-                                                    (currentAmount) =>
-                                                        currentAmount + 1,
+                                                    (currentAmount) => {
+                                                        return (
+                                                            currentAmount + 1
+                                                        );
+                                                    },
                                                 );
 
                                                 return {

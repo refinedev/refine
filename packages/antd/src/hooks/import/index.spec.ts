@@ -1,13 +1,10 @@
-import { RcFile } from "antd/lib/upload/interface";
-import { TestWrapper, MockJSONServer } from "@test";
+import { RcFile, UploadFile } from "antd/lib/upload/interface";
+import { act } from "react-dom/test-utils";
+import { notification } from "antd";
 import { renderHook } from "@testing-library/react-hooks";
+import { TestWrapper, MockJSONServer } from "@test";
 
 import { useImport } from ".";
-jest.mock("papaparse", () => {
-    return {
-        parse: jest.fn(jest.requireActual("papaparse").parse),
-    };
-});
 
 const file = new File(
     [
@@ -26,6 +23,8 @@ afterEach(() => {
 });
 
 describe("useImport hook", () => {
+    const notificationOpenSpy = jest.spyOn(notification, "open");
+    const notificationCloseSpy = jest.spyOn(notification, "close");
     it("should return false from uploadProps.beforeUpload callback", () => {
         const { result } = renderHook(
             () =>
@@ -46,5 +45,35 @@ describe("useImport hook", () => {
         );
 
         expect(beforeUploadResult).toBe(false);
+    });
+
+    it("should open notification", async () => {
+        const { result } = renderHook(
+            () =>
+                useImport({
+                    batchSize: 1,
+                    resourceName: "posts",
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await act(async () => {
+            jest.useFakeTimers();
+
+            await result.current.uploadProps.onChange?.({
+                fileList: [],
+                file: file as unknown as UploadFile,
+            });
+
+            jest.runAllTimers();
+        });
+
+        expect(notificationOpenSpy).toBeCalled();
+        expect(notificationCloseSpy).toBeCalled();
     });
 });

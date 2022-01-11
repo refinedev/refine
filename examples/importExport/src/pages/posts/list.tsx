@@ -1,10 +1,8 @@
 import {
     List,
-    Table,
     TextField,
     useMany,
     useExport,
-    Space,
     EditButton,
     ShowButton,
     ImportButton,
@@ -12,7 +10,7 @@ import {
     ExportButton,
 } from "@pankod/refine-core";
 
-import { useTable, useImport } from "@pankod/refine-antd";
+import { useTable, useImport, Space, Table } from "@pankod/refine-antd";
 
 import { IPost, ICategory, IPostFile } from "interfaces";
 

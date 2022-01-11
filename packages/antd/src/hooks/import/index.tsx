@@ -39,7 +39,7 @@ export const useImport = <
     mapData = (item) => item as unknown as TVariables,
     paparseOptions,
     batchSize = Number.MAX_SAFE_INTEGER,
-    onFinish: onFinishFromProps,
+    onFinish,
     metaData,
 }: ImportOptions<TItem, TVariables, TData> = {}): Omit<
     UseImportReturnType<TData, TVariables, TError>,
@@ -68,14 +68,7 @@ export const useImport = <
         paparseOptions,
         batchSize,
         metaData,
-        onFinish: (onFinishParams) => {
-            onFinishFromProps?.(onFinishParams);
-
-            console.log("onfinish");
-            setTimeout(() => {
-                notification.close(`${resource}-import`);
-            }, 4500);
-        },
+        onFinish,
         onProgress: ({ totalAmount, processedAmount }) => {
             if (totalAmount > 0 && processedAmount > 0) {
                 const description = (
@@ -117,6 +110,12 @@ export const useImport = <
                 });
 
                 if (processedAmount >= totalAmount) {
+                }
+
+                if (processedAmount === totalAmount) {
+                    setTimeout(() => {
+                        notification.close(`${resource}-import`);
+                    }, 4500);
                 }
             }
         },

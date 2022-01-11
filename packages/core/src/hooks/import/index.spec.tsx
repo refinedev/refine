@@ -1,4 +1,3 @@
-import { RcFile, UploadFile } from "antd/lib/upload/interface";
 import { TestWrapper, MockJSONServer } from "@test";
 import { renderHook } from "@testing-library/react-hooks";
 import * as papaparse from "papaparse";
@@ -82,7 +81,7 @@ describe("useImport hook", () => {
             jest.useFakeTimers();
 
             await result.current.handleChange?.({
-                file: file as unknown as UploadFile,
+                file: file,
             });
 
             jest.runAllTimers();
@@ -118,7 +117,7 @@ describe("useImport hook", () => {
             jest.useFakeTimers();
 
             await result.current.handleChange?.({
-                file: file as unknown as UploadFile,
+                file: file,
             });
 
             jest.runAllTimers();
@@ -171,7 +170,7 @@ describe("useImport hook", () => {
             jest.useFakeTimers();
 
             await result.current.handleChange({
-                file: file as unknown as UploadFile,
+                file: file,
             });
 
             jest.runAllTimers();
@@ -215,7 +214,7 @@ describe("useImport hook", () => {
             jest.useFakeTimers();
 
             await result.current.handleChange({
-                file: file as unknown as UploadFile,
+                file: file,
             });
 
             jest.runAllTimers();
@@ -255,7 +254,7 @@ describe("useImport hook", () => {
             jest.useFakeTimers();
 
             await result.current.handleChange({
-                file: file as unknown as UploadFile,
+                file: file,
             });
 
             jest.runAllTimers();
@@ -286,7 +285,7 @@ describe("useImport hook", () => {
 
             await act(async () => {
                 await result.current.handleChange({
-                    file: file as unknown as UploadFile,
+                    file: file,
                 });
 
                 jest.runAllTimers();
@@ -323,7 +322,7 @@ describe("useImport hook", () => {
                 jest.useFakeTimers();
 
                 await result.current.handleChange({
-                    file: file as unknown as UploadFile,
+                    file: file,
                 });
 
                 jest.runAllTimers();
@@ -366,7 +365,7 @@ describe("useImport hook", () => {
                 jest.useFakeTimers();
 
                 await result.current.handleChange({
-                    file: file as unknown as UploadFile,
+                    file: file,
                 });
 
                 jest.runAllTimers();
@@ -418,7 +417,7 @@ describe("useImport hook", () => {
                 jest.useFakeTimers();
 
                 await result.current.handleChange({
-                    file: file as unknown as UploadFile,
+                    file: file,
                 });
 
                 jest.runAllTimers();
@@ -482,7 +481,7 @@ describe("useImport hook", () => {
                 jest.useFakeTimers();
 
                 await result.current.handleChange({
-                    file: file as unknown as UploadFile,
+                    file: file,
                 });
 
                 jest.runAllTimers();
