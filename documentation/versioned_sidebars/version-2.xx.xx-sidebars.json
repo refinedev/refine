@@ -548,6 +548,14 @@
             {
               "type": "doc",
               "id": "version-2.xx.xx/guides-and-concepts/data-provider/graphql"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/guides-and-concepts/data-provider/strapi-v4"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/guides-and-concepts/data-provider/appwrite"
             }
           ],
           "collapsible": true,
@@ -642,6 +650,20 @@
           "collapsed": true
         },
         {
+          "type":"category",
+          "label": "Web3",
+          "items": [
+            {
+              "type":"doc",
+              "id": "version-2.xx.xx/guides-and-concepts/web3/ethereum-signin"
+            }
+          ]
+        },
+        {
+          "type": "doc",
+          "id": "version-2.xx.xx/guides-and-concepts/multi-tenancy"
+        },
+        {
           "type": "doc",
           "id": "version-2.xx.xx/guides-and-concepts/mutation-mode"
         },
@@ -712,6 +734,14 @@
             {
               "type": "doc",
               "id": "version-2.xx.xx/examples/data-provider/strapi"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/examples/data-provider/strapi-v4"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/examples/data-provider/appwrite"
             },
             {
               "type": "doc",
@@ -964,6 +994,20 @@
           ],
           "collapsible": true,
           "collapsed": true
+        },
+        {
+          "type": "category",
+          "label": "Web3",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/examples/web3/web3Login"
+            }
+          ]
+        },
+        {
+          "type": "doc",
+          "id": "version-2.xx.xx/examples/multi-tenant/multiTenant"
         },
         {
           "type": "doc",

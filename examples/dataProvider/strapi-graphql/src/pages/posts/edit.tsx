@@ -5,7 +5,10 @@ import {
     HttpError,
     Input,
     IResourceComponentsProps,
+    ListButton,
+    RefreshButton,
     Select,
+    Space,
     useForm,
     useSelect,
 } from "@pankod/refine";
@@ -24,7 +27,6 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         IPost
     >({
         metaData: {
-            operation: "post",
             fields: [
                 "id",
                 "title",
@@ -49,7 +51,17 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         useState<"write" | "preview">("write");
 
     return (
-        <Edit saveButtonProps={saveButtonProps}>
+        <Edit
+            saveButtonProps={saveButtonProps}
+            pageHeaderProps={{
+                extra: (
+                    <Space>
+                        <ListButton />
+                        <RefreshButton onClick={() => queryResult?.refetch()} />
+                    </Space>
+                ),
+            }}
+        >
             <Form
                 {...formProps}
                 layout="vertical"

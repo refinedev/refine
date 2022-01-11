@@ -68,7 +68,7 @@ export const useCustom = <
     const translate = useTranslate();
 
     const queryResponse = useQuery<CustomResponse<TData>, TError>(
-        [`custom/${method}-${url}`, { ...config }],
+        [`custom/${method}-${url}`, { ...config, ...metaData }],
         () => custom<TData>({ url, method, ...config, metaData }),
         {
             ...queryOptions,

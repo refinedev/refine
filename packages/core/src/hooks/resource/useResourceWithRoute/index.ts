@@ -10,7 +10,13 @@ export const useResourceWithRoute = (): ((route: string) => IResourceItem) => {
             const resource = resources.find((p) => p.route === route);
 
             if (!resource) {
-                return { name: route } as IResourceItem;
+                const resourceWithName = resources.find(
+                    (p) => p.name === route,
+                );
+                return (
+                    resourceWithName ??
+                    ({ name: route, route: route } as IResourceItem)
+                );
             }
             return resource;
         },

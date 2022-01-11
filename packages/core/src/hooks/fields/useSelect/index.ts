@@ -27,7 +27,9 @@ export type UseSelectProps<TData, TError> = {
     defaultValue?: string | string[];
     debounce?: number;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
+    fetchSize?: number;
     defaultValueQueryOptions?: UseQueryOptions<GetManyResponse<TData>, TError>;
+    onSearch?: (value: string) => CrudFilters;
     metaData?: MetaDataQuery;
 } & SuccessErrorNotification &
     LiveModeProps;
@@ -69,8 +71,10 @@ export const useSelect = <
         errorNotification,
         defaultValueQueryOptions,
         queryOptions,
+        fetchSize,
         liveMode,
         onLiveEvent,
+        onSearch: onSearchFromProp,
         liveParams,
         metaData,
     } = props;
@@ -117,6 +121,11 @@ export const useSelect = <
         config: {
             sort,
             filters: filters.concat(search),
+            pagination: fetchSize
+                ? {
+                      pageSize: fetchSize,
+                  }
+                : undefined,
         },
         queryOptions: {
             ...queryOptions,
@@ -146,13 +155,17 @@ export const useSelect = <
             return;
         }
 
-        setSearch([
-            {
-                field: optionLabel,
-                operator: "contains",
-                value,
-            },
-        ]);
+        if (onSearchFromProp) {
+            setSearch(onSearchFromProp(value));
+        } else {
+            setSearch([
+                {
+                    field: optionLabel,
+                    operator: "contains",
+                    value,
+                },
+            ]);
+        }
     };
 
     return {

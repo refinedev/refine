@@ -1,6 +1,6 @@
 {
   "name": "hackathonize",
-  "version": "0.1.0",
+  "version": "2.5.4",
   "private": true,
   "dependencies": {
     "@pankod/refine": "2.0.12",
@@ -16,16 +16,16 @@
     "dayjs": "^1.10.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^5.0.0",
     "typescript": "^4.2.4",
     "web-vitals": "^1.1.1"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.25.0",
+    "@typescript-eslint/parser": "^4.25.0",
     "eslint": "^7.32.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
-    "@typescript-eslint/eslint-plugin": "^4.25.0",
-    "@typescript-eslint/parser": "^4.25.0",
     "prettier": "^2.3.0"
   },
   "scripts": {

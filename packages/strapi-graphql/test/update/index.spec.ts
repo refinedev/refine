@@ -6,25 +6,14 @@ describe("create", () => {
     it("correct response with metaData", async () => {
         const { data } = await dataProvider(client).update({
             resource: "posts",
-            id: "21",
+            id: "150",
             variables: {
                 title: "updated-foo",
                 content: "updated-bar",
                 category: "2",
             },
             metaData: {
-                fields: [
-                    {
-                        operation: "post",
-                        fields: [
-                            "id",
-                            "title",
-                            "content",
-                            { category: ["id"] },
-                        ],
-                        variables: {},
-                    },
-                ],
+                fields: ["id", "title", "content", { category: ["id"] }],
             },
         });
 

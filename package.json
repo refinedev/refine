@@ -7,14 +7,14 @@
     },
     "scripts": {
         "lerna": "lerna",
-        "start": "lerna run start --stream --parallel",
-        "test": "lerna run test --stream --parallel",
+        "start": "lerna run start --stream --parallel --scope @pankod/refine",
+        "test": "lerna run test --stream --parallel --scope @pankod/refine*",
         "test:coverage": "npm run test --stream -- -- -- --coverage",
-        "bootstrap": "lerna bootstrap --hoist --strict --ignore-scripts --ignore @pankod/refine-codemod && cd packages/codemod && npm i",
+        "bootstrap": "cd packages/codemod && npm i && cd ../.. && lerna bootstrap --hoist --strict --ignore-scripts --ignore @pankod/refine-codemod --scope @pankod/refine*",
         "lint": "eslint -c ./.eslintrc packages examples",
         "lint:fix": "npm run lint -- --quiet --fix",
-        "build": "lerna run build --ignore @pankod/refine-codemod",
-        "versionup": "npm run lerna version --conventional-commits --no-git-tag-version",
+        "build": "lerna run build --scope @pankod/refine*",
+        "versionup": "npm run lerna version --conventional-commits --no-git-tag-version --scope @pankod/refine*",
         "nuke": "rm -rf node_modules; for d in for d in packages/*/node_modules; do echo $d; rm -rf $d; done; for d in for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in examples/*/node_modules; do echo $d; rm -rf $d; done;  for d in examples/*/package-lock.json; do echo $d; rm -rf $d; done; for d in packages/*/package-lock.json; do echo $d; rm -rf $d; done;"
     },
     "lint-staged": {
@@ -36,17 +36,18 @@
         "@typescript-eslint/eslint-plugin": "^4.25.0",
         "@typescript-eslint/parser": "^4.25.0",
         "eslint": "7.27.0",
-        "eslint-plugin-prettier": "^3.4.0",
-        "eslint-plugin-react": "^7.23.2",
+        "eslint-plugin-prettier": "3.4.0",
+        "eslint-plugin-react": "7.23.2",
         "husky": "^4.3.8",
         "jest": "^25.5.4",
         "lerna": "^4.0.0",
         "lint-staged": "^10.5.4",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
-        "typescript": "^4.4.3"
+        "typescript": "^4.4.3",
+        "react-refresh": "^0.11.0"
     },
     "dependencies": {
-        "prettier": "^2.3.0"
+        "prettier": "2.3.0"
     }
 }

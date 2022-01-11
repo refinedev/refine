@@ -491,7 +491,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
         select: "%2A",
         offset: "0",
         limit: "10",
-        title: "like.%25world%25",
+        title: "ilike.%25world%25",
     })
     .reply(
         200,
@@ -510,7 +510,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
             "Content-Range",
             "*/0",
             "Content-Location",
-            "/posts?limit=10&offset=0&select=%2A&title=like.%25world%25",
+            "/posts?limit=10&offset=0&select=%2A&title=ilike.%25world%25",
             "Content-Profile",
             "public",
             "vary",
@@ -534,7 +534,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
         select: "%2A",
         offset: "0",
         limit: "10",
-        title: "ilike.%25world%25",
+        title: "like.%25world%25",
     })
     .reply(
         200,
@@ -563,7 +563,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
             "Content-Range",
             "0-0/1",
             "Content-Location",
-            "/posts?limit=10&offset=0&select=%2A&title=ilike.%25world%25",
+            "/posts?limit=10&offset=0&select=%2A&title=like.%25world%25",
             "Content-Profile",
             "public",
             "vary",

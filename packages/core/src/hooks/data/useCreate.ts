@@ -96,7 +96,6 @@ export const useCreate = <
 
                 getAllQueries(resource).forEach((query) => {
                     queryClient.invalidateQueries(query.queryKey);
-                    console.log("query, ", query);
                 });
 
                 publish?.({

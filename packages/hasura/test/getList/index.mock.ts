@@ -2,17 +2,17 @@ import nock from "nock";
 
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "query ($limit: Int, $offset: Int) { posts (limit: $limit, offset: $offset) { id, title } posts_aggregate  { aggregate { count } } }",
+        query: "query ($limit: Int, $offset: Int, $where: posts_bool_exp) { posts (limit: $limit, offset: $offset) { id, title } posts_aggregate (where: $where) { aggregate { count } } }",
         variables: { limit: 10, offset: 0 },
     })
     .reply(
         200,
         [
-            "1f8b08000000000004038dd34d6bdc301006e0bf227cce80be6c497beb9696f490529a6329653433da98ecdac1b2d3c392ff5ea52dd4eda906191bec472f339a6bc7b86277b8764f735d6b77f872ed46ee0e5d712198622c0c4c03f86434c4927bb0a5b7ae94a07bd6dd4db78eeb59dae76fe7cb659b46c2759ca7aaee64c5b3fa30f156d765c473f772a37ec359d8071b049ccb19bc1f22a4f87af3468a0c3e22d15ff022eaf396b32cea32d6da78a0655cdb567b95a2a560a8075d7453b5b790133ae09c4228622346b75391a92263dde742b25234424ca9801f9287e8a5348686229ec9e6b0172a176cab3165a710337b1286a137dc72b804984583c5c4a5648a2de84e793fd356d56999b72775bb5d7052f76791c71d187ace25eaf8da070d3e870c990d4231c54523a2c5efcb759ccfe3f388d3acee9e793eaba33daa7b1ca755ddca5926549fe66de29d9f4da294d9438b97c00b15402a022868c95312f26617f8cd499a7594e5b13e8c3f3b535b2b769e1007446bc0a4e25b1929412627606d60621d7528bcf3de41deea3849ad0acfb85c1acd655ef8a7be637d0cbdf585c198a195a1a70868234330a184189323b7efce4759bfcf2da39a9f64823a6f0b897a906d19ff89dbf7edc71435e85efae66607d1b5d3889623596bb477c3ffc6355aebeee5ebcdaf51fa86a7d322275cdb785cbb3f2fead026815a17d6ae3d3af7d2ae1f3ad1a09d86030000",
+            "1f8b08000000000004037d934b6b1c311084ff8a98b31bf49a91b4376f48e24b42888f218456776b337876c6ccc317e3ff1ed909449744202109f15154959e3bc61dbbd373f7b86cfbd69dbe3d772377a72e2359291a21a654c00fc943f45220271a8a78269b4377d3ede33e497d8e1b97d7b92197eee546fda1849e73893ac2c0a4c1e79021b34128a6b86844b4786a28e7651a9f469c17f5e98997499ded59dde338efea4e2699517d598e991b7e368952660f5c4a022f5400a908a0a0254f49c89b867f7b91ca3acbfab0fd1c57515f8f6d1fa9e509fb608380733983f74384145f176fa4c8e02352abf7ddf206c95956751db76d5c66a075ac4c9c1a2a31b32761187ac3e0b54b805934584c5577a648d1362a3f2c746ceab22ec7a3ba3bae38abfb49e4a105464bc1500fbae82a537b5b7341079c5308456cc4e81ae07bc8c736ceb26d0a275cafd5012ecbca6f263458210e88d68049c5d7cc29412627606d60621d7528fc1f6c43f231f4d6170663869a7b4f11d04686604209312647ae6dcff1585b58fd29cb02a6c1f47d7d97a206dd4b5f31d94174350eb41cc95aa3bd1b1a41ffc284105d3fd454ad2d167ce97d6d2156cf285695e83051ebff67dc6b9038a98f2bcee32eeabaece353bd9c2fddcbf79bdf3fe5075e2eab5caaecd7cff3f7a04eb5fb546bba77756bd34b1dbf00a45d630965030000",
         ],
         [
             "Date",
-            "Tue, 19 Oct 2021 08:26:37 GMT",
+            "Thu, 30 Dec 2021 06:52:25 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Transfer-Encoding",
@@ -20,7 +20,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "25c6845e409121f685aa1ccee9c8339d",
+            "4db236d8dbc5d00a9e4e829f713636bc",
             "Content-Encoding",
             "gzip",
             "Strict-Transport-Security",
@@ -32,23 +32,23 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Server",
             "cloudflare",
             "CF-RAY",
-            "6a089f52ea55548e-IST",
+            "6c5958588e9a5482-IST",
         ],
     );
 
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "query ($limit: Int, $offset: Int, $order_by: [posts_order_by!], $where: posts_bool_exp) { posts (limit: $limit, offset: $offset, order_by: $order_by, where: $where) { id, title } posts_aggregate  { aggregate { count } } }",
+        query: "query ($limit: Int, $offset: Int, $order_by: [posts_order_by!], $where: posts_bool_exp) { posts (limit: $limit, offset: $offset, order_by: $order_by, where: $where) { id, title } posts_aggregate (where: $where) { aggregate { count } } }",
         variables: { limit: 10, offset: 0, order_by: { id: "asc" } },
     })
     .reply(
         200,
         [
-            "1f8b0800000000000403a5934d8bdb301086ff8af03903fab4a4dc1a5868615b0a3d965224cd282bead8a9256f0b21ffbd5a5aa8f7bcbec802f1ccab4733b701430bc3f1365c97daea70fc7a1b0a0ec741c460e3983964ca0634371c82cc1130a4c4cd98ac157a380cadb489faf177345398d936b5b5a44295cdcbcca612695d582d8d850b3576a569a2b951fdb9d1703fb07fa5a4454e6ee4405a71d0425a08441c109d535e5a421f77a51e97952eac5ceb7661b84c7db767b994b2f30948fa003a4401d12407523854e84d144eee580fad840b6b654e05b7b931facdb61e764b6d5959ee6b895bdde1158a28a8a70c38aa6e2529709946b0d12b0ce82905b3c3bfc58a76d6489d1184e86af4cb2582740856d86c9df32a29bb2bf589daaf65fd51d972a519eab2ad89d8136d6ba9ada4dd15347a41061df85176ae3208318b0cc21b1f14192365da713fcc2dcce712277a457e2c89e64a680ddfb18de9a1bce3c00df5a631b1eb51e34b7074494ac1b51a77ec07e876cb4cb5b23085f5c24e847959b13e959504e77bf42888eb91100c61ea4d221404c13d8cde67a1b39522ef75044c3560a8f255be515aeb51c79e2a66d0b13b752a7b70d2691ab341ce6997ef2dcf670dc6ecb8831153d71c6d8488224057ad9ce8ed4d7aaff9b44ce5b98479611f9f7b53b3933cb12fa1f4967c4f7d6602fbbc6c330ef76f87bf83fa3d9ccf2b9d43ebc3771bfe6fd8b14f55ea67dbd07f95baf7ef0fe2237c91e4030000",
+            "1f8b080000000000040375934d8b14311086ff4ae8f3063adfc9dc7645744145d09b885492ca18ec498fd3e94158e6bf5bab82f1605ffa83cec3536f553d4d193a4c87a7e9bc6e7d9b0e9f9ea69aa7c324a38124b4e173f1816b549e834f8683b451446195c86aba9b7aed0bd2ef191b9e70baddb13fe7b57746ea92b91076e6da243a2f7de64eb8e2bc0f2a29379cdfcfe481999775e562c4e420d064cf8395845126f35844e12298000a8d91320d98c7d6a11d6b5c90ad676c7c5bf74b42f6a6266c1b6667e6816d0c39043ff3d9a021c5a8b857f6d933fb24a598b5b203fb7f8a56e0ac2db91bcc896b21140731076e432842172745192b859c36c8b0c97f5cac742e641dc92016ae23c5e55509dc4bafd11693e71907977b8a1b1adb977ea9a9e2c6dadad852235e56b6d5cee0849d9d7159b075dcbeef63679cc9b1f8d9739b13451a5de4310be014abf20271463d46fab02ef55aa1adeced35af0b7b900fec03d4d6d96b243cb0f7ebdef210ab735e19eb904b5924d7c568e283e454134d042808490ea5bc835ed7060b7b7581563bb2d3daeb953eb6e308f5c17b471dc2a2a857c9cd9cd2a5cc9d03c85e061bc300fd08cf23f0d8f2be5142047ff115d33742b2fb94c8b7073f4e99a7d2930f927a86916b0b9943246f6ba337ca0925cb98fecb5ee1c4c830d54c2c863fd84e99efa9af1756e85ee3be4db7cf77bf97ea0b1c8f173cd27c3fefd9df1776a065f96533d1a30c37ba7e028d31c39790030000",
         ],
         [
             "Date",
-            "Tue, 19 Oct 2021 08:30:18 GMT",
+            "Thu, 30 Dec 2021 06:52:26 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Transfer-Encoding",
@@ -56,7 +56,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "40420a366725119adcc66778883cc86b",
+            "548f5f3d4ba87ac6ff3fbf1c1062ed53",
             "Content-Encoding",
             "gzip",
             "Strict-Transport-Security",
@@ -68,23 +68,29 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Server",
             "cloudflare",
             "CF-RAY",
-            "6a08a4b9aa285493-IST",
+            "6c595861ce35548e-IST",
         ],
     );
 
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "query ($limit: Int, $offset: Int) { posts (limit: $limit, offset: $offset) { id, title } posts_aggregate  { aggregate { count } } }",
-        variables: { limit: 10, offset: 0 },
+        query: "query ($limit: Int, $offset: Int, $where: posts_bool_exp) { posts (limit: $limit, offset: $offset) { id, title } posts_aggregate (where: $where) { aggregate { count } } }",
+        variables: {
+            limit: 10,
+            offset: 0,
+            where: {
+                category_id: { _eq: "170b5abd-d8e6-476c-b3fd-bd2474b0f369" },
+            },
+        },
     })
     .reply(
         200,
         [
-            "1f8b08000000000004038dd34d6bdc301006e0bf227cce80be6c497beb9696f490529a6329653433da98ecdac1b2d3c392ff5ea52dd4eda906191bec472f339a6bc7b86277b8764f735d6b77f872ed46ee0e5d712198622c0c4c03f86434c4927bb0a5b7ae94a07bd6dd4db78eeb59dae76fe7cb659b46c2759ca7aaee64c5b3fa30f156d765c473f772a37ec359d8071b049ccb19bc1f22a4f87af3468a0c3e22d15ff022eaf396b32cea32d6da78a0655cdb567b95a2a560a8075d7453b5b790133ae09c4228622346b75391a92263dde742b25234424ca9801f9287e8a5348686229ec9e6b0172a176cab3165a710337b1286a137dc72b804984583c5c4a5648a2de84e793fd356d56999b72775bb5d7052f76791c71d187ace25eaf8da070d3e870c990d4231c54523a2c5efcb759ccfe3f388d3acee9e793eaba33daa7b1ca755ddca5926549fe66de29d9f4da294d9438b97c00b15402a022868c95312f26617f8cd499a7594e5b13e8c3f3b535b2b769e1007446bc0a4e25b1929412627606d60621d7528bcf3de41deea3849ad0acfb85c1acd655ef8a7be637d0cbdf585c198a195a1a70868234330a184189323b7efce4759bfcf2da39a9f64823a6f0b897a906d19ff89dbf7edc71435e85efae66607d1b5d3889623596bb477c3ffc6355aebeee5ebcdaf51fa86a7d322275cdb785cbb3f2fead026815a17d6ae3d3af7d2ae1f3ad1a09d86030000",
+            "1f8b08000000000004037d934b6b1c311084ff8a98b31bf49a91b4376f48e24b42888f218456776b337876c6ccc317e3ff1ed909449744202109f15154959e3bc61dbbd373f7b86cfbd69dbe3d772377a72e2359291a21a654c00fc943f45220271a8a78269b4377d3ede33e497d8e1b97d7b92197eee546fda1849e73893ac2c0a4c1e79021b34128a6b86844b4786a28e7651a9f469c17f5e98997499ded59dde338efea4e2699517d598e991b7e368952660f5c4a022f5400a908a0a0254f49c89b867f7b91ca3acbfab0fd1c57515f8f6d1fa9e509fb608380733983f74384145f176fa4c8e02352abf7ddf206c95956751db76d5c66a075ac4c9c1a2a31b32761187ac3e0b54b805934584c5577a648d1362a3f2c746ceab22ec7a3ba3bae38abfb49e4a105464bc1500fbae82a537b5b7341079c5308456cc4e81ae07bc8c736ceb26d0a275cafd5012ecbca6f263458210e88d68049c5d7cc29412627606d60621d7528fc1f6c43f231f4d6170663869a7b4f11d04686604209312647ae6dcff1585b58fd29cb02a6c1f47d7d97a206dd4b5f31d94174350eb41cc95aa3bd1b1a41ffc284105d3fd454ad2d167ce97d6d2156cf285695e83051ebff67dc6b9038a98f2bcee32eeabaece353bd9c2fddcbf79bdf3fe5075e2eab5caaecd7cff3f7a04eb5fb546bba77751b5feaf8059c28bd8464030000",
         ],
         [
             "Date",
-            "Tue, 19 Oct 2021 09:20:57 GMT",
+            "Thu, 30 Dec 2021 06:52:27 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Transfer-Encoding",
@@ -92,7 +98,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "376d6abd20a76d9a9ba71e15ad91e5d6",
+            "12dbc039384f373abd33e98e8ef028e8",
             "Content-Encoding",
             "gzip",
             "Strict-Transport-Security",
@@ -104,13 +110,13 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Server",
             "cloudflare",
             "CF-RAY",
-            "6a08eeee2bea5481-IST",
+            "6c5958686d2a5481-IST",
         ],
     );
 
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "query ($limit: Int, $offset: Int, $order_by: [posts_order_by!], $where: posts_bool_exp) { posts (limit: $limit, offset: $offset, order_by: $order_by, where: $where) { id, title, category { id, title } } posts_aggregate  { aggregate { count } } }",
+        query: "query ($limit: Int, $offset: Int, $order_by: [posts_order_by!], $where: posts_bool_exp) { posts (limit: $limit, offset: $offset, order_by: $order_by, where: $where) { id, title, category { id, title } } posts_aggregate (where: $where) { aggregate { count } } }",
         variables: {
             limit: 10,
             offset: 0,
@@ -123,11 +129,11 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .reply(
         200,
         [
-            "1f8b0800000000000403bd954b8bd4401485ff4a91f55ca8f7a3772a22823a321b1722528f5bddc1eed4509528e330ffdd4aabd80a3e36318b904a8a7b3f4e4e9d7b3f243ffb61773fdc9636b761f7f67e18d3b01bb2308665c641a7a8413a46c1e6a08067c545ce86aa4487ab611ee723f6ed4fcae9b44c63f4f358a6465ee2ec8fe4f9949636d7d11ffbcefe09f7a5deadbdce1d98a141f9902059ec1d8c8e10444e10129746069a8576171dae6fe75efe48ae0f63216f4a49380d0f0f57e45b356f7970a835f09865e735093c450ed1f1609c8c4cc57851ed2fbc86aead37460e98a4e106418810404a6dc1d9f5261966d4d2fa5f902b929b2504ace434b6d6858658c7b32adbc362b05c068e2b6202999883a0bdebcbe835a72953a97fd2f7f7b0c2f0ffc01b93f19e33606ef5838e9d370a04ce4d8a895a6a72bae07d0a6169e384ad117ff4f5441e63caa5a676182b6e4fab5414c6590a54a102a982002bba153c4f3672cea81497eafe919651ba9ecc8dcd6b8c154a77f3729e39c8ac643fb89e7791ade2d20befe2fa97bfe7c3ab7330f4e3fbacfa699c919cca3c7eec2fa7fdf6ac21ca287cd0908d3120d128f0597948e8b54d5cf02ef5bfb15aa7b6c795d674097b1232a66937435c7d60131866b2b1d689ee954b5c9c3f95faa191728b13b4b2d488e4804b1d5bcf86ed715d32ce50dda336f80cd2330396f1088af54cf7394b292f9df01a6b2b5377c28be227f228c6b24c336977d37cc0367eee862037d8d0d778d0723b23bfbbfa3af1defbfdbee2be0fa77530fd58905d9f2c67b6a13f0af1d0af2f1a1d78af2d070000",
+            "1f8b0800000000000403bd944babdb301085ff8ad03a037a8c1eceee524a37a5b7dc4d17a594d12b314dac603b85db90ff5e396da957a52b6b2124218e3ece8cce8d279a89ef6ffc52a779e2fbcf37de27bee7212774ca65d03a0440b41e3abf4c2873c9163dc5c8777ceee7536ed7dfd431b3976b087964e77e9afa3a401cfbb98f746ad722cdf950c7d7e5a187bc7422180a0992cf16d0d9084197042129741844d1b65bc93f5f1e4aecf9d857f6a9d694be1df9fdbe63bfe572f00a83ca0b63024cb28360a96bdb4856895404da95dcbf68b5535b00c7e4889404d91504b4b101479d41299762125eb89256c06f215ca77ec8d3c4e844e3790342e7bc36b635805245011683ad38a41aa6370a49531717a3fe34c0079a5bcde9c4de8d34f47366e73af7dfdbe170d80036448c9a8285e29c03ccce0015439032599f9456dafaff83f59dd980b74bae73c22a88810a2049075eaa0846b6af40a520e2dadc8f799c1ee6beaf34b0a718eb7598d9f43accc73cf53f9ac7ec254f99c678b42836e037266ad77901c26403688206df2c0652c947a5a440bdfe6fd74b4b999ca0d40a72033cf4aef5688b1329ad68787121f3099c74c579dfe946bf6a878df0beec7e85ec573a1cc67c688e2c71f877c3f62dce1ea5e56de9ef6dfc0473d5ba6a9f050000",
         ],
         [
             "Date",
-            "Tue, 19 Oct 2021 09:36:24 GMT",
+            "Thu, 30 Dec 2021 06:52:28 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Transfer-Encoding",
@@ -135,7 +141,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "917f35c774df11cbbdba809343a8dd5b",
+            "b1243eb2890133b324252c79366e8b95",
             "Content-Encoding",
             "gzip",
             "Strict-Transport-Security",
@@ -147,6 +153,6 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Server",
             "cloudflare",
             "CF-RAY",
-            "6a0905906f405481-IST",
+            "6c59586e8bf05488-IST",
         ],
     );

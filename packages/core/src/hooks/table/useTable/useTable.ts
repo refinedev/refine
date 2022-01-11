@@ -193,7 +193,7 @@ export const useTable = <
         liveParams,
         onLiveEvent,
     });
-    const { data, isFetching, isLoading } = queryResult;
+    const { data, isFetched, isLoading } = queryResult;
 
     const onChange = (
         pagination: TablePaginationConfig,
@@ -240,8 +240,7 @@ export const useTable = <
         tableProps: {
             ...tablePropsSunflower,
             dataSource: data?.data,
-            loading: liveMode ? isLoading : isFetching,
-            // loading: isFetching,
+            loading: liveMode === "auto" ? isLoading : !isFetched,
             onChange,
             pagination: {
                 ...tablePropsSunflower.pagination,

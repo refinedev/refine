@@ -1,11 +1,11 @@
 {
   "name": "refine-strapi-example",
-  "version": "0.1.0",
+  "version": "2.5.4",
   "private": true,
   "dependencies": {
-    "@pankod/refine": "^2.0.7",
-    "@pankod/refine-react-router": "^2.0.7",
-    "@pankod/refine-strapi": "^2.0.7",
+    "@pankod/refine": "^2.5.4",
+    "@pankod/refine-react-router": "^2.5.4",
+    "@pankod/refine-strapi": "^2.5.4",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
@@ -18,7 +18,7 @@
     "react-dom": "^17.0.2",
     "react-markdown": "^6.0.1",
     "react-mde": "^11.1.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^5.0.0",
     "typescript": "^4.4.3",
     "web-vitals": "^1.1.1"
   },

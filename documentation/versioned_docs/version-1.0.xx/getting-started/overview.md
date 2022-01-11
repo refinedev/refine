@@ -22,7 +22,7 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 🔌 **Backend Agnostic** : Connects to any custom backend. Built-in support for [REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest), [Strapi](https://strapi.io/), [NestJs CRUD](https://github.com/nestjsx/crud), [Airtable](https://www.airtable.com/), [Supabase](https://supabase.io/) and [Altogic](https://altogic.com/).
 
-📝 **Native Typescript Core** : You can always opt out for plain Javascript.
+📝 **Native Typescript Core** : You can always opt out for plain JavaScript.
 
 🔘 **Decoupled UI** : UI components are exposed directly without encapsulation. You have full control on UI elements.
 

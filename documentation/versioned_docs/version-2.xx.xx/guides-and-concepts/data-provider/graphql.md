@@ -361,7 +361,7 @@ mutation ($input: updatePostInput) {
 
 ## Show Page
 
-Show component includes the [`<RefreshButton>`](api-references/components/buttons/refresh.md) by default. So we have to pass `metaData` to it. Also, we must pass `metaData` again so that [`useShow`](api-references/hooks/show/useShow.md) knows which fields it will fetch.
+Show component includes the [`<RefreshButton>`](api-references/components/buttons/refresh.md) by default. We can pass `refetch` method of `queryResult` to it's `onClick`. This method repeats the last request made by the query. So it refreshes the data that is shown in page.
 
 <Tabs
 defaultValue="usage"
@@ -372,24 +372,21 @@ values={[
 <TabItem value="usage">
 
 ```tsx
-// highlight-start
-const metaData = {
-    fields: [
-        "id",
-        "title",
-        {
-            category: ["title"],
-        },
-        "content",
-    ],
-};
-// highlight-end
-
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>({
         resource: "posts",
-// highlight-next-line
-        metaData,
+        // highlight-start
+        metaData:{
+            fields: [
+                "id",
+                "title",
+                {
+                    category: ["title"],
+                },
+                "content",
+            ],
+        },
+        // highlight-end
     });
     const { data, isLoading } = queryResult;
     const record = data?.data;
@@ -397,8 +394,8 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
     return (
         <Show
             isLoading={isLoading}
-// highlight-next-line
-            pageHeaderProps={{ extra: <RefreshButton metaData={metaData} /> }}
+            // highlight-next-line
+            pageHeaderProps={{ extra: <RefreshButton onClick={() => queryResult.refetch()} /> }}
         >
             <Title level={5}>Id</Title>
             <Text>{record?.id}</Text>

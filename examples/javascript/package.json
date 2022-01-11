@@ -1,16 +1,16 @@
 {
   "name": "javascript-example",
-  "version": "0.1.0",
+  "version": "2.5.4",
   "private": true,
   "dependencies": {
-    "@pankod/refine": "^2.0.7",
-    "@pankod/refine-simple-rest": "^2.0.7",
-    "@pankod/refine-react-router": "^2.0.7",
+    "@pankod/refine": "^2.5.4",
+    "@pankod/refine-react-router": "^2.5.4",
+    "@pankod/refine-simple-rest": "^2.5.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-markdown": "^6.0.1",
     "react-mde": "^11.1.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^5.0.0",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
