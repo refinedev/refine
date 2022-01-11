@@ -1,6 +1,6 @@
 import React from "react";
 
-import { fireEvent, render, TestWrapper, wait } from "@test";
+import { fireEvent, render, TestWrapper, waitFor } from "@test";
 import { ListButton } from "./";
 
 describe("List Button", () => {
@@ -21,15 +21,14 @@ describe("List Button", () => {
         expect(container).toBeTruthy();
     });
 
-    it("should render label as children if specified", () => {
+    it("should render label as children if specified", async () => {
         const { container, getByText } = render(<ListButton />, {
             wrapper: TestWrapper({
-                resources: [{ name: "posts", label: "test" }],
+                resources: [{ name: "posts", options: { label: "test" } }],
             }),
         });
 
         expect(container).toBeTruthy();
-
         getByText("Tests");
     });
 
@@ -72,7 +71,7 @@ describe("List Button", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(getByText("List").closest("button")).toBeDisabled(),
         );
     });
@@ -92,7 +91,7 @@ describe("List Button", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(getByText("List").closest("button")).not.toBeDisabled(),
         );
     });
@@ -113,10 +112,10 @@ describe("List Button", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(getByText("List").closest("button")).not.toBeDisabled(),
         );
-        await wait(() =>
+        await waitFor(() =>
             expect(
                 getByText("List").closest("button")?.getAttribute("title"),
             ).toBe("Access Denied"),

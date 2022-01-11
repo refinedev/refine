@@ -2,7 +2,6 @@ import React from "react";
 import { Row, Table } from "antd";
 
 import { render, MockJSONServer, MockRouterProvider, TestWrapper } from "@test";
-import { List } from "@components";
 
 import { Refine } from "./index";
 
@@ -71,7 +70,8 @@ describe("Refine Container", () => {
     it("should render resource prop list page", async () => {
         const PostList = () => {
             return (
-                <List>
+                <>
+                    <h1>Posts</h1>
                     <Table rowKey="id">
                         <Table.Column
                             key="title"
@@ -79,11 +79,11 @@ describe("Refine Container", () => {
                             dataIndex="title"
                         />
                     </Table>
-                </List>
+                </>
             );
         };
 
-        const { container, getByText, debug } = render(<PostList />, {
+        const { container, getByText } = render(<PostList />, {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
                 resources: [{ name: "posts" }],

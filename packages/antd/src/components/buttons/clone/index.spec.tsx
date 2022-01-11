@@ -1,7 +1,7 @@
 import React from "react";
 import ReactRouterDom, { Route } from "react-router-dom";
 
-import { fireEvent, render, TestWrapper, wait } from "@test";
+import { fireEvent, render, TestWrapper, waitFor } from "@test";
 import { CloneButton } from "./";
 
 const mHistory = {
@@ -20,9 +20,7 @@ describe("Clone Button", () => {
         const { container, getByText } = render(
             <CloneButton onClick={() => clone()} />,
             {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -35,9 +33,7 @@ describe("Clone Button", () => {
         const { container, getByText } = render(
             <CloneButton>refine</CloneButton>,
             {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -48,9 +44,7 @@ describe("Clone Button", () => {
 
     it("should render without text show only icon", () => {
         const { container, queryByText } = render(<CloneButton hideText />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
+            wrapper: TestWrapper({}),
         });
 
         expect(container).toBeTruthy();
@@ -63,7 +57,6 @@ describe("Clone Button", () => {
             <CloneButton>Clone</CloneButton>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
                     accessControlProvider: {
                         can: () => Promise.resolve({ can: false }),
                     },
@@ -73,7 +66,7 @@ describe("Clone Button", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(getByText("Clone").closest("button")).toBeDisabled(),
         );
     });
@@ -83,7 +76,6 @@ describe("Clone Button", () => {
             <CloneButton recordItemId="1">Clone</CloneButton>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
                     accessControlProvider: {
                         can: ({ params }) => {
                             if (params.id === "1") {
@@ -98,7 +90,7 @@ describe("Clone Button", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(getByText("Clone").closest("button")).toBeDisabled(),
         );
     });
@@ -108,7 +100,6 @@ describe("Clone Button", () => {
             <CloneButton ignoreAccessControlProvider>Clone</CloneButton>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
                     accessControlProvider: {
                         can: () => Promise.resolve({ can: false }),
                     },
@@ -118,7 +109,7 @@ describe("Clone Button", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(getByText("Clone").closest("button")).not.toBeDisabled(),
         );
     });
@@ -128,7 +119,6 @@ describe("Clone Button", () => {
             <CloneButton>Clone</CloneButton>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
                     accessControlProvider: {
                         can: () =>
                             Promise.resolve({
@@ -142,10 +132,10 @@ describe("Clone Button", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(getByText("Clone").closest("button")).not.toBeDisabled(),
         );
-        await wait(() =>
+        await waitFor(() =>
             expect(
                 getByText("Clone").closest("button")?.getAttribute("title"),
             ).toBe("Access Denied"),
@@ -174,7 +164,6 @@ describe("Clone Button", () => {
             </Route>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts", route: "posts" }],
                     routerInitialEntries: ["/posts"],
                 }),
             },
@@ -192,7 +181,6 @@ describe("Clone Button", () => {
             </Route>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts", route: "posts" }],
                     routerInitialEntries: ["/posts/edit/1"],
                 }),
             },

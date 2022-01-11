@@ -7,7 +7,7 @@ import {
     TestWrapper,
     act,
     MockJSONServer,
-    wait,
+    waitFor,
 } from "@test";
 import { DeleteButton } from "./";
 
@@ -18,9 +18,7 @@ describe("Delete Button", () => {
         const { container, getByText } = render(
             <DeleteButton onClick={() => deleteFunc()} />,
             {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -33,9 +31,7 @@ describe("Delete Button", () => {
         const { container, getByText } = render(
             <DeleteButton>refine</DeleteButton>,
             {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -46,9 +42,7 @@ describe("Delete Button", () => {
 
     it("should render without text show only icon", () => {
         const { container, queryByText } = render(<DeleteButton hideText />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
+            wrapper: TestWrapper({}),
         });
 
         expect(container).toBeTruthy();
@@ -61,7 +55,6 @@ describe("Delete Button", () => {
             <DeleteButton>Delete</DeleteButton>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
                     accessControlProvider: {
                         can: () => Promise.resolve({ can: false }),
                     },
@@ -71,7 +64,7 @@ describe("Delete Button", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(getByText("Delete").closest("button")).toBeDisabled(),
         );
     });
@@ -81,7 +74,6 @@ describe("Delete Button", () => {
             <DeleteButton recordItemId="1">Delete</DeleteButton>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
                     accessControlProvider: {
                         can: ({ params }) => {
                             if (params.id === "1") {
@@ -96,7 +88,7 @@ describe("Delete Button", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(getByText("Delete").closest("button")).toBeDisabled(),
         );
     });
@@ -106,7 +98,6 @@ describe("Delete Button", () => {
             <DeleteButton ignoreAccessControlProvider>Delete</DeleteButton>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
                     accessControlProvider: {
                         can: () => Promise.resolve({ can: false }),
                     },
@@ -116,7 +107,7 @@ describe("Delete Button", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(getByText("Delete").closest("button")).not.toBeDisabled(),
         );
     });
@@ -125,9 +116,7 @@ describe("Delete Button", () => {
         const { getByText } = render(
             <DeleteButton onClick={() => deleteFunc()} />,
             {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -141,9 +130,7 @@ describe("Delete Button", () => {
             const { getByText, getAllByText } = render(
                 <DeleteButton onClick={() => deleteFunc()} />,
                 {
-                    wrapper: TestWrapper({
-                        resources: [{ name: "posts" }],
-                    }),
+                    wrapper: TestWrapper({}),
                 },
             );
 
@@ -158,7 +145,6 @@ describe("Delete Button", () => {
             const deleteOneMock = jest.fn();
             const { getByText, getAllByText } = render(<DeleteButton />, {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
                     dataProvider: {
                         ...MockJSONServer,
                         deleteOne: deleteOneMock,
@@ -189,7 +175,6 @@ describe("Delete Button", () => {
                 <DeleteButton recordItemId="1" />,
                 {
                     wrapper: TestWrapper({
-                        resources: [{ name: "posts" }],
                         dataProvider: {
                             ...MockJSONServer,
                             deleteOne: deleteOneMock,
@@ -222,7 +207,6 @@ describe("Delete Button", () => {
                 <DeleteButton onSuccess={onSuccessMock} />,
                 {
                     wrapper: TestWrapper({
-                        resources: [{ name: "posts" }],
                         dataProvider: {
                             ...MockJSONServer,
                             deleteOne: deleteOneMock,

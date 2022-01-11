@@ -10,9 +10,7 @@ describe("Refresh Button", () => {
         const { container, getByText } = render(
             <RefreshButton onClick={() => refresh()} />,
             {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -25,9 +23,7 @@ describe("Refresh Button", () => {
         const { container, getByText } = render(
             <RefreshButton>refine</RefreshButton>,
             {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -38,9 +34,7 @@ describe("Refresh Button", () => {
 
     it("should render without text show only icon", () => {
         const { container, queryByText } = render(<RefreshButton hideText />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
+            wrapper: TestWrapper({}),
         });
         expect(container).toBeTruthy();
 
@@ -51,9 +45,7 @@ describe("Refresh Button", () => {
         const { getByText } = render(
             <RefreshButton onClick={() => refresh()} />,
             {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 

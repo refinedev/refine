@@ -2,9 +2,9 @@ import React, { ReactNode } from "react";
 import { Route } from "react-router-dom";
 import { Button } from "antd";
 
-import { render, TestWrapper, MockJSONServer, wait } from "@test";
+import { render, TestWrapper, waitFor } from "@test";
 import { Edit } from "./";
-import { IAccessControlContext } from "../../../interfaces";
+import { IAccessControlContext } from "@pankod/refine-core/dist/interfaces";
 
 const renderEdit = (
     edit: ReactNode,
@@ -12,8 +12,6 @@ const renderEdit = (
 ) => {
     return render(<Route path="/:resource/edit/:id">{edit}</Route>, {
         wrapper: TestWrapper({
-            dataProvider: MockJSONServer,
-            resources: [{ name: "posts", route: "posts" }],
             routerInitialEntries: ["/posts/edit/1"],
             accessControlProvider,
         }),
@@ -74,9 +72,11 @@ describe("Edit", () => {
             </Route>,
             {
                 wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
                     resources: [
-                        { name: "posts", route: "posts", label: "test" },
+                        {
+                            name: "posts",
+                            options: { route: "posts", label: "test" },
+                        },
                     ],
                     routerInitialEntries: ["/posts/edit/1"],
                 }),
@@ -105,8 +105,6 @@ describe("Edit", () => {
             </Route>,
             {
                 wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts", route: "posts" }],
                     routerInitialEntries: ["/custom"],
                 }),
             },
@@ -133,10 +131,7 @@ describe("Edit", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                        resources: [
-                            { name: "posts", route: "posts", canDelete: true },
-                        ],
+                        resources: [{ name: "posts", canDelete: true }],
                         routerInitialEntries: ["/posts/edit/1"],
                     }),
                 },
@@ -154,10 +149,7 @@ describe("Edit", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                        resources: [
-                            { name: "posts", route: "posts", canDelete: false },
-                        ],
+                        resources: [{ name: "posts", canDelete: false }],
                         routerInitialEntries: ["/posts/edit/1"],
                     }),
                 },
@@ -175,10 +167,7 @@ describe("Edit", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                        resources: [
-                            { name: "posts", route: "posts", canDelete: true },
-                        ],
+                        resources: [{ name: "posts", canDelete: true }],
                         routerInitialEntries: ["/posts/edit/1"],
                     }),
                 },
@@ -194,7 +183,6 @@ describe("Edit", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
                         resources: [
                             { name: "posts", route: "posts", canDelete: false },
                         ],
@@ -213,10 +201,7 @@ describe("Edit", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                        resources: [
-                            { name: "posts", route: "posts", canDelete: false },
-                        ],
+                        resources: [{ name: "posts", canDelete: false }],
                         routerInitialEntries: ["/posts/edit/1"],
                     }),
                 },
@@ -240,10 +225,10 @@ describe("Edit", () => {
                 },
             });
 
-            await wait(() =>
+            await waitFor(() =>
                 expect(queryByTestId("edit-list-button")).not.toBeDisabled(),
             );
-            await wait(() =>
+            await waitFor(() =>
                 expect(queryByTestId("edit-delete-button")).toBeDisabled(),
             );
         });
@@ -261,10 +246,10 @@ describe("Edit", () => {
                 },
             });
 
-            await wait(() =>
+            await waitFor(() =>
                 expect(queryByTestId("edit-list-button")).toBeDisabled(),
             );
-            await wait(() =>
+            await waitFor(() =>
                 expect(queryByTestId("edit-delete-button")).toBeDisabled(),
             );
         });

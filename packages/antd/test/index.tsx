@@ -11,6 +11,7 @@ import {
     IDataContext,
     INotificationProviderContext,
     IResourceItem,
+    ResourceProps,
 } from "@pankod/refine-core/dist/interfaces";
 
 const queryClient = new QueryClient({
@@ -37,13 +38,14 @@ const queryClient = new QueryClient({
 const List = () => {
     return <div>hede</div>;
 };
-
+interface IResource extends IResourceItem, ResourceProps {}
 interface ITestWrapperProps {
     dataProvider?: IDataContext;
     authProvider?: IAuthContext;
-    resources?: IResourceItem[];
+    resources?: IResource[];
     notificationProvider?: INotificationProviderContext;
     accessControlProvider?: IAccessControlContext;
+    routerInitialEntries?: string[];
 }
 
 export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
@@ -52,11 +54,12 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     resources,
     notificationProvider,
     accessControlProvider,
+    routerInitialEntries,
 }) => {
     // eslint-disable-next-line react/display-name
     return ({ children }): React.ReactElement => {
         return (
-            <MemoryRouter>
+            <MemoryRouter initialEntries={routerInitialEntries}>
                 <Refine
                     dataProvider={dataProvider ?? MockJSONServer}
                     routerProvider={MockRouterProvider}

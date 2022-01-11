@@ -1,7 +1,7 @@
 import React from "react";
 import ReactRouterDom, { Route } from "react-router-dom";
 
-import { fireEvent, render, TestWrapper, wait } from "@test";
+import { fireEvent, render, TestWrapper, waitFor } from "@test";
 import { ShowButton } from "./";
 
 const mHistory = {
@@ -20,9 +20,7 @@ describe("Show Button", () => {
         const { container, getByText } = render(
             <ShowButton onClick={() => show()} />,
             {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -35,9 +33,7 @@ describe("Show Button", () => {
         const { container, getByText } = render(
             <ShowButton>refine</ShowButton>,
             {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -48,9 +44,7 @@ describe("Show Button", () => {
 
     it("should render without text show only icon", () => {
         const { container, queryByText } = render(<ShowButton hideText />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
+            wrapper: TestWrapper({}),
         });
 
         expect(container).toBeTruthy();
@@ -61,7 +55,6 @@ describe("Show Button", () => {
     it("should be disabled when user not have access", async () => {
         const { container, getByText } = render(<ShowButton>Show</ShowButton>, {
             wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
                 accessControlProvider: {
                     can: () => Promise.resolve({ can: false }),
                 },
@@ -70,7 +63,7 @@ describe("Show Button", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(getByText("Show").closest("button")).toBeDisabled(),
         );
     });
@@ -80,7 +73,6 @@ describe("Show Button", () => {
             <ShowButton recordItemId="1">Show</ShowButton>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
                     accessControlProvider: {
                         can: ({ params }) => {
                             if (params.id === "1") {
@@ -95,7 +87,7 @@ describe("Show Button", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(getByText("Show").closest("button")).toBeDisabled(),
         );
     });
@@ -105,7 +97,6 @@ describe("Show Button", () => {
             <ShowButton ignoreAccessControlProvider>Show</ShowButton>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
                     accessControlProvider: {
                         can: () => Promise.resolve({ can: false }),
                     },
@@ -115,7 +106,7 @@ describe("Show Button", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(getByText("Show").closest("button")).not.toBeDisabled(),
         );
     });
@@ -123,7 +114,6 @@ describe("Show Button", () => {
     it("should successfully return disabled button custom title", async () => {
         const { container, getByText } = render(<ShowButton>Show</ShowButton>, {
             wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
                 accessControlProvider: {
                     can: () =>
                         Promise.resolve({
@@ -136,10 +126,10 @@ describe("Show Button", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(getByText("Show").closest("button")).not.toBeDisabled(),
         );
-        await wait(() =>
+        await waitFor(() =>
             expect(
                 getByText("Show").closest("button")?.getAttribute("title"),
             ).toBe("Access Denied"),
@@ -148,9 +138,7 @@ describe("Show Button", () => {
 
     it("should render called function successfully if click the button", () => {
         const { getByText } = render(<ShowButton onClick={() => show()} />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
+            wrapper: TestWrapper({}),
         });
 
         fireEvent.click(getByText("Show"));

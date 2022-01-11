@@ -2,9 +2,9 @@ import React, { ReactNode } from "react";
 import { Route } from "react-router-dom";
 import { Table } from "antd";
 
-import { render, TestWrapper, MockJSONServer, wait } from "@test";
+import { render, TestWrapper, waitFor } from "@test";
 import { List } from "./index";
-import { IAccessControlContext } from "../../../interfaces";
+import { IAccessControlContext } from "@pankod/refine-core/dist/interfaces";
 
 const renderList = (
     list: ReactNode,
@@ -12,8 +12,6 @@ const renderList = (
 ) => {
     return render(<Route path="/:resource">{list}</Route>, {
         wrapper: TestWrapper({
-            dataProvider: MockJSONServer,
-            resources: [{ name: "posts", route: "posts" }],
             routerInitialEntries: ["/posts"],
             accessControlProvider,
         }),
@@ -58,9 +56,11 @@ describe("<List/>", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
                         resources: [
-                            { name: "posts", route: "posts", label: "test" },
+                            {
+                                name: "posts",
+                                options: { route: "posts", label: "test" },
+                            },
                         ],
                         routerInitialEntries: ["/posts"],
                     }),
@@ -78,11 +78,9 @@ describe("<List/>", () => {
                     </Route>,
                     {
                         wrapper: TestWrapper({
-                            dataProvider: MockJSONServer,
                             resources: [
                                 {
                                     name: "posts",
-                                    route: "posts",
                                     canCreate: true,
                                 },
                             ],
@@ -103,11 +101,9 @@ describe("<List/>", () => {
                     </Route>,
                     {
                         wrapper: TestWrapper({
-                            dataProvider: MockJSONServer,
                             resources: [
                                 {
                                     name: "posts",
-                                    route: "posts",
                                     canCreate: false,
                                 },
                             ],
@@ -128,13 +124,6 @@ describe("<List/>", () => {
                     </Route>,
                     {
                         wrapper: TestWrapper({
-                            dataProvider: MockJSONServer,
-                            resources: [
-                                {
-                                    name: "posts",
-                                    route: "posts",
-                                },
-                            ],
                             routerInitialEntries: ["/posts"],
                         }),
                     },
@@ -152,11 +141,9 @@ describe("<List/>", () => {
                     </Route>,
                     {
                         wrapper: TestWrapper({
-                            dataProvider: MockJSONServer,
                             resources: [
                                 {
                                     name: "posts",
-                                    route: "posts",
                                     canCreate: true,
                                 },
                             ],
@@ -177,11 +164,9 @@ describe("<List/>", () => {
                     </Route>,
                     {
                         wrapper: TestWrapper({
-                            dataProvider: MockJSONServer,
                             resources: [
                                 {
                                     name: "posts",
-                                    route: "posts",
                                     canCreate: true,
                                 },
                             ],
@@ -200,11 +185,9 @@ describe("<List/>", () => {
                     </Route>,
                     {
                         wrapper: TestWrapper({
-                            dataProvider: MockJSONServer,
                             resources: [
                                 {
                                     name: "posts",
-                                    route: "posts",
                                     canCreate: false,
                                 },
                             ],
@@ -231,7 +214,7 @@ describe("<List/>", () => {
                     },
                 );
 
-                await wait(() =>
+                await waitFor(() =>
                     expect(queryByTestId("list-create-button")).toBeDisabled(),
                 );
             });

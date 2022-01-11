@@ -1,7 +1,7 @@
 import React from "react";
 import ReactRouterDom, { Route } from "react-router-dom";
 
-import { fireEvent, render, TestWrapper, wait } from "@test";
+import { fireEvent, render, TestWrapper, waitFor } from "@test";
 import { CreateButton } from "./";
 
 const mHistory = {
@@ -20,9 +20,7 @@ describe("Create Button", () => {
         const { container, getByText } = render(
             <CreateButton onClick={() => create()} />,
             {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -35,9 +33,7 @@ describe("Create Button", () => {
         const { container, getByText } = render(
             <CreateButton>refine</CreateButton>,
             {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -48,13 +44,10 @@ describe("Create Button", () => {
 
     it("should render without text show only icon", () => {
         const { container, queryByText } = render(<CreateButton hideText />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
+            wrapper: TestWrapper({}),
         });
 
         expect(container).toBeTruthy();
-
         expect(queryByText("Create")).not.toBeInTheDocument();
     });
 
@@ -63,7 +56,6 @@ describe("Create Button", () => {
             <CreateButton>Create</CreateButton>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
                     accessControlProvider: {
                         can: () => Promise.resolve({ can: false }),
                     },
@@ -73,7 +65,7 @@ describe("Create Button", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(getByText("Create").closest("button")).toBeDisabled(),
         );
     });
@@ -83,7 +75,6 @@ describe("Create Button", () => {
             <CreateButton ignoreAccessControlProvider>Create</CreateButton>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
                     accessControlProvider: {
                         can: () => Promise.resolve({ can: false }),
                     },
@@ -93,7 +84,7 @@ describe("Create Button", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(getByText("Create").closest("button")).not.toBeDisabled(),
         );
     });
@@ -103,7 +94,6 @@ describe("Create Button", () => {
             <CreateButton>Create</CreateButton>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
                     accessControlProvider: {
                         can: () =>
                             Promise.resolve({
@@ -117,10 +107,10 @@ describe("Create Button", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(getByText("Create").closest("button")).not.toBeDisabled(),
         );
-        await wait(() =>
+        await waitFor(() =>
             expect(
                 getByText("Create").closest("button")?.getAttribute("title"),
             ).toBe("Access Denied"),
@@ -131,9 +121,7 @@ describe("Create Button", () => {
         const { getByText } = render(
             <CreateButton onClick={() => create()} />,
             {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 

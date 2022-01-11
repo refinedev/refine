@@ -2,14 +2,12 @@ import React, { ReactNode } from "react";
 import { Button } from "antd";
 import { Route } from "react-router-dom";
 
-import { render, TestWrapper, MockJSONServer } from "@test";
+import { render, TestWrapper } from "@test";
 import { Create } from "./";
 
 const renderCreate = (create: ReactNode) => {
     return render(<Route path="/:resource/create">{create}</Route>, {
         wrapper: TestWrapper({
-            dataProvider: MockJSONServer,
-            resources: [{ name: "posts", route: "posts" }],
             routerInitialEntries: ["/posts/create"],
         }),
     });
@@ -49,9 +47,11 @@ describe("Create", () => {
             </Route>,
             {
                 wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
                     resources: [
-                        { name: "posts", route: "posts", label: "test label" },
+                        {
+                            name: "posts",
+                            options: { route: "posts", label: "test label" },
+                        },
                     ],
                     routerInitialEntries: ["/posts/create"],
                 }),
@@ -74,8 +74,6 @@ describe("Create", () => {
             </Route>,
             {
                 wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts", route: "posts" }],
                     routerInitialEntries: ["/custom"],
                 }),
             },
@@ -91,8 +89,6 @@ describe("Create", () => {
             </Route>,
             {
                 wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts", route: "posts" }],
                     routerInitialEntries: ["/posts/create/1"],
                 }),
             },

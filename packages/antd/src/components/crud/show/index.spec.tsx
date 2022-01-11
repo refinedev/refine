@@ -1,9 +1,9 @@
 import React, { ReactNode } from "react";
 import { Route } from "react-router-dom";
 import { Button } from "antd";
+import { IAccessControlContext } from "@pankod/refine-core/dist/interfaces";
 
-import { render, TestWrapper, MockJSONServer, wait } from "@test";
-import { IAccessControlContext } from "../../../interfaces";
+import { render, TestWrapper, waitFor } from "@test";
 
 import { Show } from "./index";
 
@@ -13,8 +13,6 @@ const renderShow = (
 ) => {
     return render(<Route path="/:resource/show/:id">{show}</Route>, {
         wrapper: TestWrapper({
-            dataProvider: MockJSONServer,
-            resources: [{ name: "posts", route: "posts" }],
             routerInitialEntries: ["/posts/show/1"],
             accessControlProvider,
         }),
@@ -63,7 +61,7 @@ describe("Show", () => {
 
         expect(getByText("Edit").closest("button")).not.toBeDisabled();
         expect(getByText("Posts").closest("button")).not.toBeDisabled();
-        await wait(() =>
+        await waitFor(() =>
             expect(queryByTestId("show-delete-button")).toBeDisabled(),
         );
     });
@@ -97,9 +95,11 @@ describe("Show", () => {
             </Route>,
             {
                 wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
                     resources: [
-                        { name: "posts", route: "posts", label: "test" },
+                        {
+                            name: "posts",
+                            options: { route: "posts", label: "test" },
+                        },
                     ],
                     routerInitialEntries: ["/posts/show/1"],
                 }),
@@ -122,8 +122,6 @@ describe("Show", () => {
             </Route>,
             {
                 wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts", route: "posts" }],
                     routerInitialEntries: ["/custom"],
                 }),
             },
@@ -150,10 +148,7 @@ describe("Show", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                        resources: [
-                            { name: "posts", route: "posts", canEdit: true },
-                        ],
+                        resources: [{ name: "posts", canEdit: true }],
                         routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
@@ -171,10 +166,7 @@ describe("Show", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                        resources: [
-                            { name: "posts", route: "posts", canEdit: false },
-                        ],
+                        resources: [{ name: "posts", canEdit: false }],
                         routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
@@ -192,10 +184,7 @@ describe("Show", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                        resources: [
-                            { name: "posts", route: "posts", canEdit: true },
-                        ],
+                        resources: [{ name: "posts", canEdit: true }],
                         routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
@@ -211,10 +200,7 @@ describe("Show", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                        resources: [
-                            { name: "posts", route: "posts", canEdit: false },
-                        ],
+                        resources: [{ name: "posts", canEdit: false }],
                         routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
@@ -230,10 +216,7 @@ describe("Show", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                        resources: [
-                            { name: "posts", route: "posts", canEdit: true },
-                        ],
+                        resources: [{ name: "posts", canEdit: true }],
                         routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
@@ -253,10 +236,7 @@ describe("Show", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                        resources: [
-                            { name: "posts", route: "posts", canDelete: true },
-                        ],
+                        resources: [{ name: "posts", canDelete: true }],
                         routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
@@ -272,10 +252,7 @@ describe("Show", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                        resources: [
-                            { name: "posts", route: "posts", canDelete: false },
-                        ],
+                        resources: [{ name: "posts", canDelete: false }],
                         routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
@@ -291,10 +268,7 @@ describe("Show", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                        resources: [
-                            { name: "posts", route: "posts", canDelete: true },
-                        ],
+                        resources: [{ name: "posts", canDelete: true }],
                         routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
@@ -310,10 +284,7 @@ describe("Show", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                        resources: [
-                            { name: "posts", route: "posts", canDelete: false },
-                        ],
+                        resources: [{ name: "posts", canDelete: false }],
                         routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
@@ -329,10 +300,7 @@ describe("Show", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                        resources: [
-                            { name: "posts", route: "posts", canDelete: true },
-                        ],
+                        resources: [{ name: "posts", canDelete: true }],
                         routerInitialEntries: ["/posts/show/1"],
                     }),
                 },

@@ -10,9 +10,7 @@ describe("Save Button", () => {
         const { container, getByText } = render(
             <SaveButton onClick={() => save()} />,
             {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -25,9 +23,7 @@ describe("Save Button", () => {
         const { container, getByText } = render(
             <SaveButton>refine</SaveButton>,
             {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -38,9 +34,7 @@ describe("Save Button", () => {
 
     it("should render without text show only icon", () => {
         const { container, queryByText } = render(<SaveButton hideText />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
+            wrapper: TestWrapper({}),
         });
 
         expect(container).toBeTruthy();
@@ -50,9 +44,7 @@ describe("Save Button", () => {
 
     it("should render called function successfully if click the button", () => {
         const { getByText } = render(<SaveButton onClick={() => save()} />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
+            wrapper: TestWrapper({}),
         });
 
         fireEvent.click(getByText("Save"));

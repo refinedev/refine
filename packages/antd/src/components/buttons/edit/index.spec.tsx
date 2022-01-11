@@ -1,6 +1,6 @@
 import React from "react";
 
-import { fireEvent, render, TestWrapper, wait } from "@test";
+import { fireEvent, render, TestWrapper, waitFor } from "@test";
 import { EditButton } from "./";
 
 describe("Edit Button", () => {
@@ -10,9 +10,7 @@ describe("Edit Button", () => {
         const { container, getByText } = render(
             <EditButton onClick={() => edit()} />,
             {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -25,9 +23,7 @@ describe("Edit Button", () => {
         const { container, getByText } = render(
             <EditButton>refine</EditButton>,
             {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                }),
+                wrapper: TestWrapper({}),
             },
         );
 
@@ -38,9 +34,7 @@ describe("Edit Button", () => {
 
     it("should render without text show only icon", () => {
         const { container, queryByText } = render(<EditButton hideText />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
+            wrapper: TestWrapper({}),
         });
 
         expect(container).toBeTruthy();
@@ -51,7 +45,6 @@ describe("Edit Button", () => {
     it("should be disabled when user not have access", async () => {
         const { container, getByText } = render(<EditButton>Edit</EditButton>, {
             wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
                 accessControlProvider: {
                     can: () => Promise.resolve({ can: false }),
                 },
@@ -60,7 +53,7 @@ describe("Edit Button", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(getByText("Edit").closest("button")).toBeDisabled(),
         );
     });
@@ -70,7 +63,6 @@ describe("Edit Button", () => {
             <EditButton recordItemId="1">Edit</EditButton>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
                     accessControlProvider: {
                         can: ({ params }) => {
                             if (params.id === "1") {
@@ -85,7 +77,7 @@ describe("Edit Button", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(getByText("Edit").closest("button")).toBeDisabled(),
         );
     });
@@ -95,7 +87,6 @@ describe("Edit Button", () => {
             <EditButton ignoreAccessControlProvider>Edit</EditButton>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
                     accessControlProvider: {
                         can: () => Promise.resolve({ can: false }),
                     },
@@ -105,7 +96,7 @@ describe("Edit Button", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(getByText("Edit").closest("button")).not.toBeDisabled(),
         );
     });
@@ -113,7 +104,6 @@ describe("Edit Button", () => {
     it("should successfully return disabled button custom title", async () => {
         const { container, getByText } = render(<EditButton>Edit</EditButton>, {
             wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
                 accessControlProvider: {
                     can: () =>
                         Promise.resolve({
@@ -126,10 +116,10 @@ describe("Edit Button", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(getByText("Edit").closest("button")).not.toBeDisabled(),
         );
-        await wait(() =>
+        await waitFor(() =>
             expect(
                 getByText("Edit").closest("button")?.getAttribute("title"),
             ).toBe("Access Denied"),
@@ -138,9 +128,7 @@ describe("Edit Button", () => {
 
     it("should render called function successfully if click the button", () => {
         const { getByText } = render(<EditButton onClick={() => edit()} />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
+            wrapper: TestWrapper({}),
         });
 
         fireEvent.click(getByText("Edit"));
