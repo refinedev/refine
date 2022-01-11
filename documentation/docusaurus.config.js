@@ -26,6 +26,12 @@ const siteConfig = {
                         "https://github.com/pankod/refine/tree/master/documentation",
                     showLastUpdateAuthor: true,
                     showLastUpdateTime: true,
+                    versions: {
+                        current: {
+                            label: "3.xx.xx 🚧",
+                        },
+                    },
+                    lastVersion: "2.xx.xx",
                 },
                 blog: {
                     blogTitle: "refine blog!",
