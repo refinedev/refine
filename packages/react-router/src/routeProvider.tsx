@@ -167,11 +167,7 @@ const RouteProviderBase: React.FC = () => {
         RouteHandler(item);
     });
 
-    const RouteWithSubRoutes = (route: any) => (
-        <LayoutWrapper>
-            <Route {...route} />
-        </LayoutWrapper>
-    );
+    const RouteWithSubRoutes = (route: any) => <Route {...route} />;
 
     const renderAuthorized = () => (
         <Switch>
@@ -179,13 +175,13 @@ const RouteProviderBase: React.FC = () => {
                 <Route key={`custom-route-${i}`} {...route} />
             ))}
             <Route>
-                <Switch>
-                    <Route
-                        path="/"
-                        exact
-                        component={() =>
-                            DashboardPage ? (
-                                <LayoutWrapper>
+                <LayoutWrapper>
+                    <Switch>
+                        <Route
+                            path="/"
+                            exact
+                            component={() =>
+                                DashboardPage ? (
                                     <CanAccess
                                         resource="dashboard"
                                         action="list"
@@ -195,30 +191,20 @@ const RouteProviderBase: React.FC = () => {
                                     >
                                         <DashboardPage />
                                     </CanAccess>
-                                </LayoutWrapper>
-                            ) : (
-                                <Redirect to={`/${resources[0].route}`} />
-                            )
-                        }
-                    />
-                    {[...routes].map((route, i) => (
-                        <RouteWithSubRoutes key={i} {...route} />
-                    ))}
-                    <Route path="/:resource?/:action?">
-                        {catchAll ?? (
-                            <LayoutWrapper>
-                                <ErrorComponent />
-                            </LayoutWrapper>
-                        )}
-                    </Route>
-                    <Route>
-                        {catchAll ?? (
-                            <LayoutWrapper>
-                                <ErrorComponent />
-                            </LayoutWrapper>
-                        )}
-                    </Route>
-                </Switch>
+                                ) : (
+                                    <Redirect to={`/${resources[0].route}`} />
+                                )
+                            }
+                        />
+                        {[...routes].map((route, i) => (
+                            <RouteWithSubRoutes key={i} {...route} />
+                        ))}
+                        <Route path="/:resource?/:action?">
+                            {catchAll ?? <ErrorComponent />}
+                        </Route>
+                        <Route>{catchAll ?? <ErrorComponent />}</Route>
+                    </Switch>
+                </LayoutWrapper>
             </Route>
         </Switch>
     );

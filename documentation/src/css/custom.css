@@ -262,3 +262,7 @@
 .code-line-content {
     display: table-cell;
 }
+
+[class^="announcementBar"] {
+    border: none !important;
+}

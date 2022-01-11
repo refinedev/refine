@@ -1,6 +1,6 @@
 {
   "name": "refine-auth0-example",
-  "version": "2.5.4",
+  "version": "2.5.5",
   "private": true,
   "dependencies": {
     "@auth0/auth0-react": "^1.5.0",
