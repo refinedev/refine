@@ -15,6 +15,9 @@ jest.mock("papaparse", () => {
 });
 
 describe("<ImportButton /> usage with useImport", () => {
+    it("dummy test", () => {
+        return;
+    });
     //     it("should render without crashing", () => {
     //         const {
     //             result: { current: importProps },
