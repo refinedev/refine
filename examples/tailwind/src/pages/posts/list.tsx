@@ -1,13 +1,6 @@
 /* eslint-disable react/jsx-key */
 import React from "react";
-import {
-    List,
-    ShowButton,
-    EditButton,
-    useSelect,
-    useOne,
-    DeleteButton,
-} from "@pankod/refine-core";
+import { useSelect, useOne } from "@pankod/refine-core";
 import {
     useTable,
     Column,
@@ -15,6 +8,12 @@ import {
     useSortBy,
     usePagination,
 } from "@pankod/refine-react-table";
+import {
+    DeleteButton,
+    EditButton,
+    List,
+    ShowButton,
+} from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
 
