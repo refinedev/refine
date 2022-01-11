@@ -93,7 +93,7 @@ const siteConfig = {
                 },
                 {
                     to: "docs/examples/tutorial",
-                    label: "Example",
+                    label: "Examples",
                     position: "left",
                 },
                 { to: "blog", label: "Blog", position: "left" },
