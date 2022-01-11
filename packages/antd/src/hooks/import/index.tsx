@@ -9,14 +9,8 @@ import {
     ResourceRouterParams,
     useImport as useImportCore,
     UseImportReturnType,
-    ImportOptions as ImportOptionsCore,
+    ImportOptions,
 } from "@pankod/refine-core";
-
-type ImportOptions<
-    TItem,
-    TVariables = any,
-    TData extends BaseRecord = BaseRecord,
-> = Omit<ImportOptionsCore<TItem, TVariables, TData>, "onProgress">;
 
 /**
  * `useImport` hook allows you to handle your csv import logic easily.
@@ -41,7 +35,8 @@ export const useImport = <
     batchSize = Number.MAX_SAFE_INTEGER,
     onFinish,
     metaData,
-}: ImportOptions<TItem, TVariables, TData> = {}): Omit<
+    onProgress: onProgressFromProp,
+}: ImportOptions<TItem, TVariables, TData>): Omit<
     UseImportReturnType<TData, TVariables, TError>,
     "handleChange"
 > & {
@@ -69,56 +64,58 @@ export const useImport = <
         batchSize,
         metaData,
         onFinish,
-        onProgress: ({ totalAmount, processedAmount }) => {
-            if (totalAmount > 0 && processedAmount > 0) {
-                const description = (
-                    <div
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            marginTop: "-7px",
-                        }}
-                    >
-                        <Progress
-                            type="circle"
-                            percent={Math.floor(
-                                (processedAmount / totalAmount) * 100,
-                            )}
-                            width={50}
-                            strokeColor="#1890ff"
-                            status="normal"
-                        />
-                        <span style={{ marginLeft: 8, width: "100%" }}>
-                            {t(
-                                "notifications.importProgress",
-                                {
-                                    processed: processedAmount,
-                                    total: totalAmount,
-                                },
-                                `Importing: ${processedAmount}/${totalAmount}`,
-                            )}
-                        </span>
-                    </div>
-                );
+        onProgress:
+            onProgressFromProp ??
+            (({ totalAmount, processedAmount }) => {
+                if (totalAmount > 0 && processedAmount > 0) {
+                    const description = (
+                        <div
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "space-between",
+                                marginTop: "-7px",
+                            }}
+                        >
+                            <Progress
+                                type="circle"
+                                percent={Math.floor(
+                                    (processedAmount / totalAmount) * 100,
+                                )}
+                                width={50}
+                                strokeColor="#1890ff"
+                                status="normal"
+                            />
+                            <span style={{ marginLeft: 8, width: "100%" }}>
+                                {t(
+                                    "notifications.importProgress",
+                                    {
+                                        processed: processedAmount,
+                                        total: totalAmount,
+                                    },
+                                    `Importing: ${processedAmount}/${totalAmount}`,
+                                )}
+                            </span>
+                        </div>
+                    );
 
-                notification.open({
-                    description,
-                    message: null,
-                    key: `${resource}-import`,
-                    duration: 0,
-                });
+                    notification.open({
+                        description,
+                        message: null,
+                        key: `${resource}-import`,
+                        duration: 0,
+                    });
 
-                if (processedAmount >= totalAmount) {
+                    if (processedAmount >= totalAmount) {
+                    }
+
+                    if (processedAmount === totalAmount) {
+                        setTimeout(() => {
+                            notification.close(`${resource}-import`);
+                        }, 4500);
+                    }
                 }
-
-                if (processedAmount === totalAmount) {
-                    setTimeout(() => {
-                        notification.close(`${resource}-import`);
-                    }, 4500);
-                }
-            }
-        },
+            }),
     });
 
     return {
