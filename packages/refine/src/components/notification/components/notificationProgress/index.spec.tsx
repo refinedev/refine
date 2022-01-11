@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@test";
 
 import { userFriendlySecond } from "@definitions";
-import { NotificationProgress } from "./";
+import { NotificationProgress } from ".";
 
 const notificationDispatch = jest.fn();
 

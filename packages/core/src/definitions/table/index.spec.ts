@@ -9,12 +9,11 @@ import {
     unionFilters,
     compareFilters,
 } from "./";
-import { TablePaginationConfig } from "@components/antd";
 import { CrudSorting, CrudFilters } from "../../interfaces";
 
 describe("definitions/table", () => {
     it("stringify table params correctly", async () => {
-        const pagination: TablePaginationConfig = {
+        const pagination = {
             current: 1,
             pageSize: 10,
         };
@@ -43,7 +42,7 @@ describe("definitions/table", () => {
     });
 
     it("stringify table single sort params correctly", async () => {
-        const pagination: TablePaginationConfig = {
+        const pagination = {
             current: 1,
             pageSize: 10,
         };

@@ -23,9 +23,9 @@ import {
     useCacheQueries,
     useCheckError,
     usePublish,
+    useHandleNotification,
 } from "@hooks";
 import { ActionTypes } from "@contexts/notification";
-import { handleNotification } from "@definitions";
 
 type DeleteManyParams = {
     ids: string[];
@@ -73,6 +73,7 @@ export const useDeleteMany = <
     const translate = useTranslate();
     const cacheQueries = useCacheQueries();
     const publish = usePublish();
+    const handleNotification = useHandleNotification();
 
     const queryClient = useQueryClient();
 
@@ -204,8 +205,8 @@ export const useDeleteMany = <
             onSuccess: (_data, { ids, resource, successNotification }) => {
                 handleNotification(successNotification, {
                     key: `${ids}-${resource}-notification`,
-                    message: translate("notifications.success", "Success"),
-                    description: translate(
+                    description: translate("notifications.success", "Success"),
+                    message: translate(
                         "notifications.deleteSuccess",
                         {
                             resource: translate(
@@ -247,6 +248,7 @@ export const useDeleteMany = <
                             `Error (status code: ${err.statusCode})`,
                         ),
                         description: err.message,
+                        type: "error",
                     });
                 }
             },
