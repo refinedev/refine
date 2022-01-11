@@ -2,10 +2,9 @@ import { AntdLayout, Radio } from "@pankod/refine";
 
 interface HeaderProps {
     role: string;
-    setRole: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const Header: React.FC<HeaderProps> = ({ role, setRole }) => {
+export const Header: React.FC<HeaderProps> = ({ role }) => {
     return (
         <AntdLayout.Header
             style={{
@@ -18,7 +17,10 @@ export const Header: React.FC<HeaderProps> = ({ role, setRole }) => {
         >
             <Radio.Group
                 value={role}
-                onChange={(event) => setRole(event.target.value)}
+                onChange={(event) => {
+                    localStorage.setItem("role", event.target.value);
+                    location.reload();
+                }}
             >
                 <Radio.Button value="admin">Admin</Radio.Button>
                 <Radio.Button value="editor">Editor</Radio.Button>
