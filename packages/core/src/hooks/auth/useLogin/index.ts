@@ -34,7 +34,7 @@ export const useLogin = <TData, TVariables = {}>(): UseLoginReturnType<
     const { useLocation } = useRouterContext();
     const { search } = useLocation();
 
-    const { to } = qs.parse(search.substring(1));
+    const { to } = qs.parse(search?.substring(1));
 
     const queryResponse = useMutation<TData, unknown, TVariables, unknown>(
         "useLogin",
