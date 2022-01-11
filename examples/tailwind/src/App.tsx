@@ -3,6 +3,8 @@ import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 import { ToastContainer } from "react-toastify";
 
+import { Layout, Header, Sider, Title } from "@pankod/refine-antd";
+
 import "@pankod/refine-core/dist/styles.min.css";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -30,6 +32,10 @@ const App: React.FC = () => {
                 ]}
                 warnWhenUnsavedChanges={true}
                 mutationMode="undoable"
+                Layout={Layout}
+                Header={Header}
+                Title={Title}
+                Sider={Sider}
             />
             <ToastContainer />
         </>

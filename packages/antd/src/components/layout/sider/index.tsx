@@ -1,22 +1,21 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Layout, Menu, Grid } from "antd";
 import { RightOutlined, LogoutOutlined } from "@ant-design/icons";
-
 import {
     useTranslate,
     useMenu,
     useLogout,
     useTitle,
     useNavigation,
-} from "@hooks";
-import { AuthContext } from "@contexts/auth";
-import { CanAccess } from "@components";
-import { IAuthContext } from "../../../../interfaces";
+    CanAccess,
+    useIsExistAuthentication,
+} from "@pankod/refine-core";
+
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 export const Sider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
-    const { isProvided } = useContext<IAuthContext>(AuthContext);
+    const isExistAuthentication = useIsExistAuthentication();
     const { mutate: logout } = useLogout();
     const Title = useTitle();
     const translate = useTranslate();
@@ -83,7 +82,7 @@ export const Sider: React.FC = () => {
                     );
                 })}
 
-                {isProvided && (
+                {isExistAuthentication && (
                     <Menu.Item key="logout" icon={<LogoutOutlined />}>
                         {translate("buttons.logout", "Logout")}
                     </Menu.Item>

@@ -2,12 +2,15 @@ import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 
-import { Refine, IResourceItem } from "@pankod/refine-core";
+import { Refine } from "@pankod/refine-core";
 
 import { MockRouterProvider, MockJSONServer } from "@test";
 import {
+    IAccessControlContext,
+    IAuthContext,
     IDataContext,
     INotificationProviderContext,
+    IResourceItem,
 } from "@pankod/refine-core/dist/interfaces";
 
 const queryClient = new QueryClient({
@@ -37,13 +40,18 @@ const List = () => {
 
 interface ITestWrapperProps {
     dataProvider?: IDataContext;
+    authProvider?: IAuthContext;
     resources?: IResourceItem[];
     notificationProvider?: INotificationProviderContext;
+    accessControlProvider?: IAccessControlContext;
 }
 
 export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     dataProvider,
+    authProvider,
+    resources,
     notificationProvider,
+    accessControlProvider,
 }) => {
     // eslint-disable-next-line react/display-name
     return ({ children }): React.ReactElement => {
@@ -52,8 +60,10 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
                 <Refine
                     dataProvider={dataProvider ?? MockJSONServer}
                     routerProvider={MockRouterProvider}
+                    authProvider={authProvider}
                     notificationProvider={notificationProvider}
-                    resources={[{ name: "posts", list: List }]}
+                    resources={resources ?? [{ name: "posts", list: List }]}
+                    accessControlProvider={accessControlProvider}
                 >
                     {children}
                 </Refine>

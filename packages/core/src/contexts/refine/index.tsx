@@ -1,14 +1,7 @@
 import React from "react";
 
 import { IRefineContext, IRefineContextProvider } from "./IRefineContext";
-import {
-    Layout as DefaultLayout,
-    Header as DefaultHeader,
-    Sider as DefaultSider,
-    Footer as DefaultFooter,
-    OffLayoutArea as DefaultOffLayoutArea,
-    Title as DefaultTitle,
-} from "@components/layoutWrapper/components";
+import { DefaultLayout } from "@components/layoutWrapper/defaultLayout";
 
 import { LoginPage as DefaultLoginPage } from "@components/pages";
 
@@ -18,12 +11,12 @@ export const RefineContext = React.createContext<IRefineContext>({
     warnWhenUnsavedChanges: false,
     syncWithLocation: false,
     undoableTimeout: 5000,
-    Title: DefaultTitle,
-    Sider: DefaultSider,
-    Header: DefaultHeader,
-    Footer: DefaultFooter,
+    Title: () => null,
+    Sider: () => null,
+    Header: () => null,
+    Footer: () => null,
     Layout: DefaultLayout,
-    OffLayoutArea: DefaultOffLayoutArea,
+    OffLayoutArea: () => null,
     liveMode: "off",
     onLiveEvent: undefined,
 });
@@ -36,12 +29,12 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
     undoableTimeout,
     children,
     DashboardPage,
-    Title = DefaultTitle,
+    Title = () => null,
     Layout = DefaultLayout,
-    Header = DefaultHeader,
-    Sider = DefaultSider,
-    Footer = DefaultFooter,
-    OffLayoutArea = DefaultOffLayoutArea,
+    Header = () => null,
+    Sider = () => null,
+    Footer = () => null,
+    OffLayoutArea = () => null,
     LoginPage = DefaultLoginPage,
     catchAll,
     liveMode = "off",
