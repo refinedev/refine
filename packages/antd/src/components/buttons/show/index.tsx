@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { Button, ButtonProps } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
 
@@ -8,8 +8,8 @@ import {
     useResourceWithRoute,
     useRouterContext,
     useTranslate,
-} from "@hooks";
-import { ResourceRouterParams } from "../../../interfaces";
+    ResourceRouterParams,
+} from "@pankod/refine-core";
 
 type ShowButtonProps = ButtonProps & {
     resourceName?: string;
@@ -25,7 +25,7 @@ type ShowButtonProps = ButtonProps & {
  *
  * @see {@link https://refine.dev/docs/api-references/components/buttons/show-button} for more details.
  */
-export const ShowButton: FC<ShowButtonProps> = ({
+export const ShowButton: React.FC<ShowButtonProps> = ({
     resourceName: propResourceName,
     recordItemId,
     hideText = false,

@@ -1,17 +1,16 @@
-import React, { FC } from "react";
+import React from "react";
 import { Button, ButtonProps } from "antd";
-import { PlusSquareOutlined } from "@ant-design/icons";
-
+import { EditOutlined } from "@ant-design/icons";
 import {
     useCan,
     useNavigation,
     useResourceWithRoute,
     useRouterContext,
     useTranslate,
-} from "@hooks";
-import { ResourceRouterParams } from "../../../interfaces";
+    ResourceRouterParams,
+} from "@pankod/refine-core";
 
-type CloneButtonProps = ButtonProps & {
+type EditButtonProps = ButtonProps & {
     resourceName?: string;
     recordItemId?: string;
     hideText?: boolean;
@@ -19,13 +18,13 @@ type CloneButtonProps = ButtonProps & {
 };
 
 /**
- * `<CloneButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button> component`}.
- * It uses the {@link https://refine.dev/docs/api-references/hooks/navigation/useNavigation#clone `clone`} method from {@link https://refine.dev/docs/api-references/hooks/navigation/useNavigation useNavigation} under the hood.
- * It can be useful when redirecting the app to the create page with the record id route of resource.
+ * `<EditButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} component.
+ * It uses the {@link https://refine.dev/docs/api-references/hooks/navigation/useNavigation#edit `edit`} method from {@link https://refine.dev/docs/api-references/hooks/navigation/useNavigation `useNavigation`} under the hood.
+ * It can be useful when redirecting the app to the edit page with the record id route of resource}.
  *
- * @see {@link https://refine.dev/docs/api-references/components/buttons/clone-button} for more details.
+ * @see {@link https://refine.dev/docs/api-references/components/buttons/edit-button} for more details.
  */
-export const CloneButton: FC<CloneButtonProps> = ({
+export const EditButton: React.FC<EditButtonProps> = ({
     resourceName: propResourceName,
     recordItemId,
     hideText = false,
@@ -34,8 +33,6 @@ export const CloneButton: FC<CloneButtonProps> = ({
     ...rest
 }) => {
     const resourceWithRoute = useResourceWithRoute();
-
-    const { clone } = useNavigation();
 
     const translate = useTranslate();
 
@@ -48,15 +45,13 @@ export const CloneButton: FC<CloneButtonProps> = ({
 
     const resourceName = propResourceName ?? resource.name;
 
-    const id = recordItemId ?? idFromRoute;
+    const { edit } = useNavigation();
 
-    const onButtonClick = () => {
-        clone(routeResourceName, id!);
-    };
+    const id = recordItemId ?? idFromRoute;
 
     const { data } = useCan({
         resource: resourceName,
-        action: "create",
+        action: "edit",
         params: { id },
         queryOptions: {
             enabled: !ignoreAccessControlProvider,
@@ -75,13 +70,15 @@ export const CloneButton: FC<CloneButtonProps> = ({
 
     return (
         <Button
-            onClick={onButtonClick}
-            icon={<PlusSquareOutlined />}
+            onClick={(): void => {
+                edit(routeResourceName, id!);
+            }}
+            icon={<EditOutlined />}
             disabled={data?.can === false}
             title={createButtonDisabledTitle()}
             {...rest}
         >
-            {!hideText && (children ?? translate("buttons.clone", "Clone"))}
+            {!hideText && (children ?? translate("buttons.edit", "Edit"))}
         </Button>
     );
 };

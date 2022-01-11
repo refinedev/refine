@@ -1,8 +1,7 @@
-import React, { FC } from "react";
+import React from "react";
 import { Button, ButtonProps } from "antd";
 import { ExportOutlined } from "@ant-design/icons";
-
-import { useTranslate } from "@hooks";
+import { useTranslate } from "@pankod/refine-core";
 
 type ExportButtonProps = ButtonProps & {
     hideText?: boolean;
@@ -14,7 +13,7 @@ type ExportButtonProps = ButtonProps & {
  *
  * @see {@link https://refine.dev/docs/api-references/components/buttons/export-button} for more details.
  */
-export const ExportButton: FC<ExportButtonProps> = ({
+export const ExportButton: React.FC<ExportButtonProps> = ({
     hideText = false,
     children,
     ...rest

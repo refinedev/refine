@@ -1,8 +1,7 @@
-import React, { FC } from "react";
+import React from "react";
 import { Button, ButtonProps } from "antd";
 import { SaveOutlined } from "@ant-design/icons";
-
-import { useTranslate } from "@hooks";
+import { useTranslate } from "@pankod/refine-core";
 
 type SaveButtonProps = ButtonProps & {
     hideText?: boolean;
@@ -14,7 +13,7 @@ type SaveButtonProps = ButtonProps & {
  *
  * @see {@link https://refine.dev/docs/api-references/components/buttons/save-button} for more details.
  */
-export const SaveButton: FC<SaveButtonProps> = ({
+export const SaveButton: React.FC<SaveButtonProps> = ({
     hideText = false,
     children,
     ...rest

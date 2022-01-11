@@ -1,7 +1,6 @@
-import React, { FC } from "react";
+import React from "react";
 import { Button, ButtonProps, Popconfirm } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
-
 import {
     useDelete,
     useResourceWithRoute,
@@ -9,14 +8,12 @@ import {
     useMutationMode,
     useRouterContext,
     useCan,
-} from "@hooks";
-import {
-    DeleteOneResponse,
     ResourceRouterParams,
     MutationMode,
     SuccessErrorNotification,
     MetaDataQuery,
-} from "../../../interfaces";
+} from "@pankod/refine-core";
+import { DeleteOneResponse } from "@pankod/refine-core/dist/interfaces";
 
 export type DeleteButtonProps = ButtonProps & {
     resourceName?: string;
@@ -34,7 +31,7 @@ export type DeleteButtonProps = ButtonProps & {
  *
  * @see {@link https://refine.dev/docs/api-references/components/buttons/delete-button} for more details.
  */
-export const DeleteButton: FC<DeleteButtonProps> = ({
+export const DeleteButton: React.FC<DeleteButtonProps> = ({
     resourceName: propResourceName,
     recordItemId,
     onSuccess,

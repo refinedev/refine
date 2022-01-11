@@ -1,14 +1,14 @@
-import React, { FC } from "react";
+import React from "react";
 import { Button, ButtonProps } from "antd";
 import { RedoOutlined } from "@ant-design/icons";
-
 import {
     useOne,
     useResourceWithRoute,
     useRouterContext,
     useTranslate,
-} from "@hooks";
-import { MetaDataQuery, ResourceRouterParams } from "../../../interfaces";
+    MetaDataQuery,
+    ResourceRouterParams,
+} from "@pankod/refine-core";
 
 type RefreshButtonProps = ButtonProps & {
     resourceName?: string;
@@ -23,7 +23,7 @@ type RefreshButtonProps = ButtonProps & {
  *
  * @see {@link https://refine.dev/docs/api-references/components/buttons/refresh-button} for more details.
  */
-export const RefreshButton: FC<RefreshButtonProps> = ({
+export const RefreshButton: React.FC<RefreshButtonProps> = ({
     resourceName: propResourceName,
     recordItemId,
     hideText = false,
