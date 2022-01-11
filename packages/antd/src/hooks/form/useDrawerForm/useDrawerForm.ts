@@ -2,15 +2,16 @@ import { useCallback, useEffect, useState } from "react";
 import { UseFormConfig } from "sunflower-antd";
 import { FormInstance, FormProps, DrawerProps, ButtonProps } from "antd";
 import {
-    DeleteButtonProps,
     useMutationMode,
     useTranslate,
     useWarnAboutChange,
     useFormProps,
 } from "@pankod/refine-core";
 import { HttpError } from "@pankod/refine-core";
-import { useForm, UseFormReturnType } from "../useForm";
 import { BaseRecord, LiveModeProps } from "@pankod/refine-core/dist/interfaces";
+
+import { useForm, UseFormReturnType } from "../useForm";
+import { DeleteButtonProps } from "@components";
 
 export interface UseDrawerFormConfig extends UseFormConfig {
     action: "show" | "edit" | "create" | "clone";
