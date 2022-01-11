@@ -8,14 +8,17 @@ import {
     PageHeaderProps,
     Spin,
 } from "antd";
-
 import {
     useResourceWithRoute,
     useMutationMode,
     useNavigation,
     useTranslate,
     useRouterContext,
-} from "@hooks";
+    userFriendlyResourceName,
+    MutationMode,
+    ResourceRouterParams,
+} from "@pankod/refine-core";
+
 import {
     DeleteButton,
     RefreshButton,
@@ -23,8 +26,6 @@ import {
     DeleteButtonProps,
     SaveButton,
 } from "@components";
-import { userFriendlyResourceName } from "@definitions";
-import { MutationMode, ResourceRouterParams } from "../../../interfaces";
 
 export interface EditProps {
     title?: string;

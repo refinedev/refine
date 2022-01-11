@@ -1,20 +1,20 @@
 import React from "react";
 import { Card, PageHeader, PageHeaderProps, Space, Spin } from "antd";
+import {
+    useNavigation,
+    useResourceWithRoute,
+    useRouterContext,
+    useTranslate,
+    ResourceRouterParams,
+    userFriendlyResourceName,
+} from "@pankod/refine-core";
 
-import { ResourceRouterParams } from "../../../interfaces";
 import {
     EditButton,
     DeleteButton,
     RefreshButton,
     ListButton,
 } from "@components";
-import {
-    useNavigation,
-    useResourceWithRoute,
-    useRouterContext,
-    useTranslate,
-} from "@hooks";
-import { userFriendlyResourceName } from "@definitions";
 
 export interface ShowProps {
     title?: string;

@@ -1,10 +1,14 @@
 import React, { ReactNode } from "react";
 import { PageHeader, PageHeaderProps } from "antd";
+import {
+    useResourceWithRoute,
+    useRouterContext,
+    useTranslate,
+    userFriendlyResourceName,
+    ResourceRouterParams,
+} from "@pankod/refine-core";
 
-import { useResourceWithRoute, useRouterContext, useTranslate } from "@hooks";
-import { CreateButton } from "@components";
-import { userFriendlyResourceName } from "@definitions";
-import { ResourceRouterParams, CreateButtonProps } from "../../../interfaces";
+import { CreateButton, CreateButtonProps } from "@components";
 
 export interface ListProps {
     canCreate?: boolean;

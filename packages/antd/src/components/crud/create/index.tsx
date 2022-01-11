@@ -8,16 +8,16 @@ import {
     Tag,
     Spin,
 } from "antd";
-
 import {
     useNavigation,
     useResourceWithRoute,
     useRouterContext,
     useTranslate,
-} from "@hooks";
+    userFriendlyResourceName,
+    ResourceRouterParams,
+} from "@pankod/refine-core";
+
 import { SaveButton } from "@components";
-import { userFriendlyResourceName } from "@definitions";
-import { ResourceRouterParams } from "../../../interfaces";
 
 export interface CreateProps {
     title?: string;
