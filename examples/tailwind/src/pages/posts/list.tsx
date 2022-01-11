@@ -7,6 +7,8 @@ import {
     useSelect,
     useOne,
     DeleteButton,
+    useImport,
+    CreateButton,
 } from "@pankod/refine-core";
 import {
     useTable,
@@ -17,6 +19,7 @@ import {
 } from "@pankod/refine-react-table";
 
 import { IPost, ICategory } from "interfaces";
+import { Space } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const columns: Array<Column> = React.useMemo(
@@ -101,8 +104,47 @@ export const PostList: React.FC = () => {
         resource: "categories",
     });
 
+    const { handleChange } = useImport({
+        mapData: (item) => {
+            return {
+                title: item.title,
+                content: item.content,
+                status: item.status,
+                category: {
+                    id: item.categoryId,
+                },
+                user: {
+                    id: item.userId,
+                },
+            };
+        },
+        onProgress: ({ processedAmount, totalAmount }) => {
+            console.log({ processedAmount, totalAmount });
+        },
+        batchSize: 1,
+    });
+
     return (
-        <List>
+        <List
+            pageHeaderProps={{
+                extra: (
+                    <Space>
+                        <input
+                            type="file"
+                            onChange={(event) => {
+                                console.log({ event: event.target.files });
+                                if (event.target.files) {
+                                    handleChange({
+                                        file: event.target.files[0],
+                                    });
+                                }
+                            }}
+                        />
+                        <CreateButton />
+                    </Space>
+                ),
+            }}
+        >
             <div className="flex">
                 <div className="w-1/4 pr-8">
                     <label
