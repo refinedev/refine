@@ -79,10 +79,7 @@ describe("useSimpleList Hook", () => {
             {
                 wrapper: TestWrapper({
                     dataProvider: MockJSONServer,
-                    resources: [
-                        { name: "posts", route: "posts" },
-                        { name: "categories", route: "categories" },
-                    ],
+                    resources: [{ name: "posts" }, { name: "categories" }],
                 }),
             },
         );

@@ -11,3 +11,4 @@ export { Title } from "./layout/title";
 export * from "./buttons";
 export * from "./crud";
 export * from "./fields";
+export * from "./table";

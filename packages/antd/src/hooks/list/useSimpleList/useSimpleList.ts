@@ -10,9 +10,6 @@ import {
     useSyncWithLocation,
     useNavigation,
     useRouterContext,
-} from "@hooks";
-
-import {
     ResourceRouterParams,
     BaseRecord,
     CrudFilters,
@@ -22,7 +19,8 @@ import {
     HttpError,
     MetaDataQuery,
     LiveModeProps,
-} from "../../../interfaces";
+} from "@pankod/refine-core";
+
 import {
     parseTableParams,
     stringifyTableParams,

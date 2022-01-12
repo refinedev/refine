@@ -1,5 +1,4 @@
 import React from "react";
-import { Row, Table } from "antd";
 
 import { render, MockJSONServer, MockRouterProvider, TestWrapper } from "@test";
 
@@ -46,13 +45,9 @@ describe("Refine Container", () => {
     it("should render correctly readyPage with ready prop", async () => {
         const readyPage = () => {
             return (
-                <Row
-                    align="middle"
-                    justify="center"
-                    data-testid="readyContainer"
-                >
+                <div data-testid="readyContainer">
                     <p>readyPage rendered with ready prop</p>
-                </Row>
+                </div>
             );
         };
         const { getByTestId, getByText } = render(
@@ -72,13 +67,10 @@ describe("Refine Container", () => {
             return (
                 <>
                     <h1>Posts</h1>
-                    <Table rowKey="id">
-                        <Table.Column
-                            key="title"
-                            title="Title"
-                            dataIndex="title"
-                        />
-                    </Table>
+                    <table>
+                        <td>foo</td>
+                        <tr>bar</tr>
+                    </table>
                 </>
             );
         };

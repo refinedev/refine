@@ -10,3 +10,6 @@ export {
     useModalFormFromSFReturnType,
     useStepsFormFromSFReturnType,
 } from "../types/sunflower";
+
+// antd filterDropDownProps (using for <FilterDropDown> component)
+export { FilterDropdownProps } from "antd/lib/table/interface";

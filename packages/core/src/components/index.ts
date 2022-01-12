@@ -1,4 +1,3 @@
-export * from "./table";
 export * from "./pages";
 export * from "./containers";
 export * from "./notification";
