@@ -3,7 +3,7 @@ import { render, TestWrapper, MockJSONServer } from "@test";
 import { act, Simulate } from "react-dom/test-utils";
 import { renderHook } from "@testing-library/react-hooks";
 
-import { ImportButton } from ".";
+import { ImportButton } from "./index";
 import { useImport } from "@hooks/import";
 
 const parseMock = jest.fn();
