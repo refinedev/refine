@@ -137,10 +137,7 @@ describe("Create Button", () => {
             </Route>,
             {
                 wrapper: TestWrapper({
-                    resources: [
-                        { name: "posts" },
-                        { name: "categories", route: "categories" },
-                    ],
+                    resources: [{ name: "posts" }, { name: "categories" }],
                     routerInitialEntries: ["/posts"],
                 }),
             },
@@ -158,7 +155,7 @@ describe("Create Button", () => {
             </Route>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts", route: "posts" }],
+                    resources: [{ name: "posts" }],
                     routerInitialEntries: ["/posts"],
                 }),
             },

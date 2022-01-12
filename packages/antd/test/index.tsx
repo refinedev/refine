@@ -10,7 +10,6 @@ import {
     IAuthContext,
     IDataContext,
     INotificationProviderContext,
-    IResourceItem,
     ResourceProps,
 } from "@pankod/refine-core/dist/interfaces";
 
@@ -38,11 +37,10 @@ const queryClient = new QueryClient({
 const List = () => {
     return <div>hede</div>;
 };
-interface IResource extends IResourceItem, ResourceProps {}
 interface ITestWrapperProps {
     dataProvider?: IDataContext;
     authProvider?: IAuthContext;
-    resources?: IResource[];
+    resources?: ResourceProps[];
     notificationProvider?: INotificationProviderContext;
     accessControlProvider?: IAccessControlContext;
     routerInitialEntries?: string[];

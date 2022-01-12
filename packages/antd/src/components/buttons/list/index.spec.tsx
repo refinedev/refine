@@ -1,4 +1,5 @@
 import React from "react";
+import { Route } from "react-router-dom";
 
 import { fireEvent, render, TestWrapper, waitFor } from "@test";
 import { ListButton } from "./";
@@ -22,11 +23,17 @@ describe("List Button", () => {
     });
 
     it("should render label as children if specified", async () => {
-        const { container, getByText } = render(<ListButton />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts", options: { label: "test" } }],
-            }),
-        });
+        const { container, getByText } = render(
+            <Route path="/:resource">
+                <ListButton />
+            </Route>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts", options: { label: "test" } }],
+                    routerInitialEntries: ["/posts"],
+                }),
+            },
+        );
 
         expect(container).toBeTruthy();
         getByText("Tests");

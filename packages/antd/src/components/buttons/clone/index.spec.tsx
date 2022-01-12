@@ -198,10 +198,7 @@ describe("Clone Button", () => {
             </Route>,
             {
                 wrapper: TestWrapper({
-                    resources: [
-                        { name: "posts", route: "posts" },
-                        { name: "categories", route: "categories" },
-                    ],
+                    resources: [{ name: "posts" }, { name: "categories" }],
                     routerInitialEntries: ["/posts"],
                 }),
             },

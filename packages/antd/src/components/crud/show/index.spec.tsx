@@ -148,7 +148,7 @@ describe("Show", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        resources: [{ name: "posts", canEdit: true }],
+                        resources: [{ name: "posts", edit: () => null }],
                         routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
@@ -166,7 +166,7 @@ describe("Show", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        resources: [{ name: "posts", canEdit: false }],
+                        resources: [{ name: "posts" }],
                         routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
@@ -184,7 +184,7 @@ describe("Show", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        resources: [{ name: "posts", canEdit: true }],
+                        resources: [{ name: "posts", edit: () => null }],
                         routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
@@ -200,7 +200,7 @@ describe("Show", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        resources: [{ name: "posts", canEdit: false }],
+                        resources: [{ name: "posts" }],
                         routerInitialEntries: ["/posts/show/1"],
                     }),
                 },
@@ -216,7 +216,7 @@ describe("Show", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        resources: [{ name: "posts", canEdit: true }],
+                        resources: [{ name: "posts", edit: () => null }],
                         routerInitialEntries: ["/posts/show/1"],
                     }),
                 },

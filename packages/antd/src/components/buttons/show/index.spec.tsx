@@ -153,7 +153,7 @@ describe("Show Button", () => {
             </Route>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts", route: "posts" }],
+                    resources: [{ name: "posts" }],
                     routerInitialEntries: ["/posts"],
                 }),
             },
@@ -171,7 +171,7 @@ describe("Show Button", () => {
             </Route>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts", route: "posts" }],
+                    resources: [{ name: "posts" }],
                     routerInitialEntries: ["/posts/1"],
                 }),
             },
@@ -189,10 +189,7 @@ describe("Show Button", () => {
             </Route>,
             {
                 wrapper: TestWrapper({
-                    resources: [
-                        { name: "posts" },
-                        { name: "categories", route: "categories" },
-                    ],
+                    resources: [{ name: "posts" }, { name: "categories" }],
                     routerInitialEntries: ["/posts"],
                 }),
             },

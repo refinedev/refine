@@ -183,9 +183,7 @@ describe("Edit", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        resources: [
-                            { name: "posts", route: "posts", canDelete: false },
-                        ],
+                        resources: [{ name: "posts", canDelete: false }],
                         routerInitialEntries: ["/posts/edit/1"],
                     }),
                 },

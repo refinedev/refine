@@ -81,7 +81,7 @@ describe("<List/>", () => {
                             resources: [
                                 {
                                     name: "posts",
-                                    canCreate: true,
+                                    create: () => null,
                                 },
                             ],
                             routerInitialEntries: ["/posts"],
@@ -104,7 +104,6 @@ describe("<List/>", () => {
                             resources: [
                                 {
                                     name: "posts",
-                                    canCreate: false,
                                 },
                             ],
                             routerInitialEntries: ["/posts"],
@@ -144,7 +143,7 @@ describe("<List/>", () => {
                             resources: [
                                 {
                                     name: "posts",
-                                    canCreate: true,
+                                    create: () => null,
                                 },
                             ],
                             routerInitialEntries: ["/posts"],
@@ -167,7 +166,7 @@ describe("<List/>", () => {
                             resources: [
                                 {
                                     name: "posts",
-                                    canCreate: true,
+                                    create: () => null,
                                 },
                             ],
                             routerInitialEntries: ["/posts"],
@@ -188,7 +187,6 @@ describe("<List/>", () => {
                             resources: [
                                 {
                                     name: "posts",
-                                    canCreate: false,
                                 },
                             ],
                             routerInitialEntries: ["/posts"],

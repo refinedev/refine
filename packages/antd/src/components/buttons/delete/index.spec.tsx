@@ -204,13 +204,16 @@ describe("Delete Button", () => {
             const onSuccessMock = jest.fn();
 
             const { getByText, getAllByText } = render(
-                <DeleteButton onSuccess={onSuccessMock} />,
+                <Route path="/:resource/:action/:id">
+                    <DeleteButton onSuccess={onSuccessMock} />
+                </Route>,
                 {
                     wrapper: TestWrapper({
                         dataProvider: {
                             ...MockJSONServer,
                             deleteOne: deleteOneMock,
                         },
+                        routerInitialEntries: ["/posts/edit/1"],
                     }),
                 },
             );
@@ -227,6 +230,7 @@ describe("Delete Button", () => {
             await act(async () => {
                 fireEvent.click(deleteButtons[1]);
             });
+
             expect(deleteOneMock).toBeCalledTimes(1);
             expect(onSuccessMock).toBeCalledTimes(1);
         });
@@ -239,7 +243,7 @@ describe("Delete Button", () => {
             </Route>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts", route: "posts" }],
+                    resources: [{ name: "posts" }],
                     routerInitialEntries: ["/posts"],
                 }),
             },
@@ -255,10 +259,7 @@ describe("Delete Button", () => {
             </Route>,
             {
                 wrapper: TestWrapper({
-                    resources: [
-                        { name: "posts", route: "posts" },
-                        { name: "categories", route: "categories" },
-                    ],
+                    resources: [{ name: "posts" }, { name: "categories" }],
                     routerInitialEntries: ["/posts"],
                 }),
             },
