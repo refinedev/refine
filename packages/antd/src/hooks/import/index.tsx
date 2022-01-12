@@ -36,7 +36,7 @@ export const useImport = <
     onFinish,
     metaData,
     onProgress: onProgressFromProp,
-}: ImportOptions<TItem, TVariables, TData>): Omit<
+}: ImportOptions<TItem, TVariables, TData> = {}): Omit<
     UseImportReturnType<TData, TVariables, TError>,
     "handleChange"
 > & {
