@@ -19,9 +19,6 @@ export * from "../contexts/router/IRouterContext";
 export * from "../contexts/accessControl/IAccessControlContext";
 export * from "../contexts/notificationProvider/INotificationProvider";
 
-// buttons
-export { CreateButtonProps } from "../components/buttons/create/index";
-
 export * from "../components/pages/login";
 
 // notification

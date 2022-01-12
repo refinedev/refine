@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Edit, IResourceComponentsProps, useSelect } from "@pankod/refine-core";
+import { IResourceComponentsProps, useSelect } from "@pankod/refine-core";
+import { Edit } from "@pankod/refine-antd";
 import { useForm, Controller } from "@pankod/refine-react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 

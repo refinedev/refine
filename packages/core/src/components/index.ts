@@ -1,6 +1,4 @@
 export * from "./table";
-export * from "./crud";
-export * from "./buttons";
 export * from "./pages";
 export * from "./containers";
 export * from "./notification";

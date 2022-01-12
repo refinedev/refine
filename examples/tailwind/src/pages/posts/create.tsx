@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import {
-    Create,
-    IResourceComponentsProps,
-    useSelect,
-} from "@pankod/refine-core";
+import { IResourceComponentsProps, useSelect } from "@pankod/refine-core";
 import { useForm, Controller } from "@pankod/refine-react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
+import { Create } from "@pankod/refine-antd";
 // import Select from "react-select";
 
 import ReactMarkdown from "react-markdown";
@@ -38,7 +35,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
         },
     });
 
-    const { queryResult, defaultValueQueryResult, onSearch, options } =
+    const { queryResult, defaultValueQueryResult, options } =
         useSelect<ICategory>({
             resource: "categories",
             defaultValue: queryResultForm?.data?.data.category.id,
