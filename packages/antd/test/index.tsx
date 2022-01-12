@@ -1,5 +1,4 @@
 import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 
 import { Refine } from "@pankod/refine-core";
@@ -13,15 +12,6 @@ import {
     INotificationProviderContext,
     ResourceProps,
 } from "@pankod/refine-core/dist/interfaces";
-
-const queryClient = new QueryClient({
-    defaultOptions: {
-        queries: {
-            cacheTime: 0,
-            retry: 0,
-        },
-    },
-});
 
 /* interface ITestWrapperProps {
     authProvider?: IAuthContext;
