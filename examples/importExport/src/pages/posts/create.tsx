@@ -1,13 +1,7 @@
 import React, { useState } from "react";
-import {
-    Create,
-    Form,
-    Input,
-    IResourceComponentsProps,
-    Select,
-    useForm,
-    useSelect,
-} from "@pankod/refine";
+import { Create, IResourceComponentsProps } from "@pankod/refine-core";
+
+import { useForm, useSelect, Form, Input, Select } from "@pankod/refine-antd";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
