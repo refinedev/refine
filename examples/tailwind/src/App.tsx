@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 
 import { Layout, Header, Sider, Title } from "@pankod/refine-antd";
 
-import "@pankod/refine-core/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 import "react-toastify/dist/ReactToastify.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";

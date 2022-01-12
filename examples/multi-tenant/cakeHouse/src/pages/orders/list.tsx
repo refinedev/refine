@@ -65,7 +65,10 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         return (
                             <ImageField
                                 value={productData?.data
-                                    .find((item) => item.id === value)
+                                    .find(
+                                        (item) =>
+                                            item.id === value && item.image,
+                                    )
                                     ?.image.map((img: any) => img.url)}
                                 width={72}
                                 preview={{ mask: <></> }}

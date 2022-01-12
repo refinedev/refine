@@ -55,6 +55,14 @@ const siteConfig = {
             indexName: "refine",
             contextualSearch: true,
         },
+        announcementBar: {
+            id: "support",
+            backgroundColor: "#0B82F0",
+            textColor: "#fff",
+            isCloseable: false,
+            content:
+                '⭐️ &nbsp; If you like refine, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/pankod/refine">GitHub</a>! ⭐️',
+        },
         navbar: {
             logo: {
                 alt: "refine",
@@ -74,13 +82,18 @@ const siteConfig = {
                     position: "left",
                 },
                 {
-                    to: "/docs/api-references/providers/auth-provider",
+                    to: "/docs/api-references/providers/data-provider",
                     label: "API",
                     position: "left",
                 },
                 {
-                    to: "docs/guides-and-concepts/upload/multipart-upload",
+                    to: "docs/guides-and-concepts/ssr-nextjs",
                     label: "Guides",
+                    position: "left",
+                },
+                {
+                    to: "docs/examples/tutorial",
+                    label: "Examples",
                     position: "left",
                 },
                 { to: "blog", label: "Blog", position: "left" },
