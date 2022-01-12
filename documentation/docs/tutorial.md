@@ -426,7 +426,7 @@ import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-next-line
-import { PostList } from "./pages";
+import { PostList } from "./pages/posts";
 
 export const App: React.FC = () => {
     return (
@@ -767,7 +767,7 @@ import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-next-line
-import { PostList, PostShow } from "./pages";
+import { PostList, PostShow } from "./pages/posts";
 
 export const App: React.FC = () => {
     return (
@@ -981,7 +981,7 @@ import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-next-line
-import { PostList, PostShow, PostEdit } from "./pages";
+import { PostList, PostShow, PostEdit } from "./pages/posts";
 
 export const App: React.FC = () => {
     return (
@@ -1224,7 +1224,7 @@ import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 
 // highlight-next-line
-import { PostList, PostShow, PostEdit, PostCreate } from "./pages";
+import { PostList, PostShow, PostEdit, PostCreate } from "./pages/posts";
 
 export const App: React.FC = () => {
     return (
@@ -1403,7 +1403,7 @@ import { Refine, Resource } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import { PostList, PostShow, PostEdit, PostCreate } from "./pages";
+import { PostList, PostShow, PostEdit, PostCreate } from "./pages/posts";
 
 export const App: React.FC = () => {
     return (

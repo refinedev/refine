@@ -1,6 +1,6 @@
 {
     "name": "i18n-next",
-    "version": "2.5.4",
+    "version": "2.5.6",
     "private": true,
     "scripts": {
         "start": "NODE_OPTIONS=--max_old_space_size=4096 next dev -p 3001",
