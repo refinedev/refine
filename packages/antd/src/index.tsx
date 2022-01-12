@@ -13,3 +13,5 @@ export {
 
 // antd filterDropDownProps (using for <FilterDropDown> component)
 export { FilterDropdownProps } from "antd/lib/table/interface";
+
+export * from "./interfaces";

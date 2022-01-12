@@ -6,6 +6,7 @@ import { Refine } from "@pankod/refine-core";
 
 import { MockRouterProvider, MockJSONServer } from "@test";
 import {
+    I18nProvider,
     IAccessControlContext,
     IAuthContext,
     IDataContext,
@@ -43,7 +44,9 @@ interface ITestWrapperProps {
     resources?: ResourceProps[];
     notificationProvider?: INotificationProviderContext;
     accessControlProvider?: IAccessControlContext;
+    i18nProvider?: I18nProvider;
     routerInitialEntries?: string[];
+    DashboardPage?: React.FC;
 }
 
 export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
@@ -53,6 +56,8 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     notificationProvider,
     accessControlProvider,
     routerInitialEntries,
+    DashboardPage,
+    i18nProvider,
 }) => {
     // eslint-disable-next-line react/display-name
     return ({ children }): React.ReactElement => {
@@ -60,11 +65,13 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
             <MemoryRouter initialEntries={routerInitialEntries}>
                 <Refine
                     dataProvider={dataProvider ?? MockJSONServer}
+                    i18nProvider={i18nProvider}
                     routerProvider={MockRouterProvider}
                     authProvider={authProvider}
                     notificationProvider={notificationProvider}
                     resources={resources ?? [{ name: "posts", list: List }]}
                     accessControlProvider={accessControlProvider}
+                    DashboardPage={DashboardPage ?? null}
                 >
                     {children}
                 </Refine>

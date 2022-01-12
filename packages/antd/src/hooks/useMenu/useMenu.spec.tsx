@@ -1,8 +1,10 @@
+import React from "react";
 import { renderHook } from "@testing-library/react-hooks";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
 import { useMenu } from "./";
+const DashboardPage = () => <div>dashboard</div>;
 
 describe("useMenu Hook", () => {
     it("returns menuItems", async () => {
@@ -17,8 +19,8 @@ describe("useMenu Hook", () => {
             expect.arrayContaining([
                 expect.objectContaining({
                     name: "posts",
-                    route: "/undefined",
-                    key: "/undefined",
+                    route: "/posts",
+                    key: "/posts",
                     label: "Posts",
                 }),
             ]),
@@ -30,13 +32,7 @@ describe("useMenu Hook", () => {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
                 resources: [{ name: "posts" }],
-                refineProvider: {
-                    mutationMode: "pessimistic",
-                    warnWhenUnsavedChanges: false,
-                    syncWithLocation: false,
-                    undoableTimeout: 20000,
-                    hasDashboard: true,
-                },
+                DashboardPage,
             }),
         });
 
@@ -44,8 +40,8 @@ describe("useMenu Hook", () => {
             expect.arrayContaining([
                 expect.objectContaining({
                     name: "posts",
-                    route: "/undefined",
-                    key: "/undefined",
+                    route: "/posts",
+                    key: "/posts",
                     label: "Posts",
                 }),
                 expect.objectContaining({
@@ -62,13 +58,6 @@ describe("useMenu Hook", () => {
         const { result } = renderHook(() => useMenu(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
-                refineProvider: {
-                    mutationMode: "pessimistic",
-                    warnWhenUnsavedChanges: false,
-                    syncWithLocation: false,
-                    undoableTimeout: 20000,
-                    hasDashboard: false,
-                },
             }),
         });
 
@@ -103,17 +92,18 @@ describe("useMenu Hook", () => {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
                 i18nProvider,
-                refineProvider: {
-                    mutationMode: "pessimistic",
-                    warnWhenUnsavedChanges: false,
-                    syncWithLocation: false,
-                    undoableTimeout: 20000,
-                    hasDashboard: false,
-                },
                 resources: [
                     { name: "posts" },
-                    { name: "categories", label: "categories label text" },
-                    { name: "users", label: "users label text" },
+                    {
+                        name: "categories",
+                        options: { label: "categories label text" },
+                    },
+                    {
+                        name: "users",
+                        options: {
+                            label: "users label text",
+                        },
+                    },
                 ],
             }),
         });
@@ -122,20 +112,20 @@ describe("useMenu Hook", () => {
             expect.arrayContaining([
                 expect.objectContaining({
                     name: "posts",
-                    route: "/undefined",
-                    key: "/undefined",
+                    route: "/posts",
+                    key: "/posts",
                     label: "Dummy Label",
                 }),
                 expect.objectContaining({
                     name: "categories",
-                    route: "/undefined",
-                    key: "/undefined",
+                    route: "/categories",
+                    key: "/categories",
                     label: "categories label text",
                 }),
                 expect.objectContaining({
                     name: "users",
-                    route: "/undefined",
-                    key: "/undefined",
+                    route: "/users",
+                    key: "/users",
                     label: "users label text",
                 }),
             ]),

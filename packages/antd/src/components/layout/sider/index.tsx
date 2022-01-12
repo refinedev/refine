@@ -3,13 +3,14 @@ import { Layout, Menu, Grid } from "antd";
 import { RightOutlined, LogoutOutlined } from "@ant-design/icons";
 import {
     useTranslate,
-    useMenu,
     useLogout,
     useTitle,
     useNavigation,
     CanAccess,
     useIsExistAuthentication,
 } from "@pankod/refine-core";
+
+import { useMenu } from "@hooks";
 
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 

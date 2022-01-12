@@ -1,10 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import { DashboardOutlined, UnorderedListOutlined } from "@ant-design/icons";
 
-import { RefineContext } from "@contexts/refine";
-import { IRefineContext, IMenuItem } from "../../../interfaces";
-import { useTranslate, useResource, useRouterContext } from "@hooks";
-import { userFriendlyResourceName } from "@definitions";
+import { IMenuItem } from "../../interfaces";
+import {
+    useRefineContext,
+    useTranslate,
+    useResource,
+    useRouterContext,
+    userFriendlyResourceName,
+} from "@pankod/refine-core";
 
 type useMenuReturnType = {
     selectedKey: string;
@@ -27,7 +31,7 @@ export const useMenu: () => useMenuReturnType = () => {
     const location = useLocation();
     const params = useParams<{ resource: string }>();
 
-    const { hasDashboard } = useContext<IRefineContext>(RefineContext);
+    const { hasDashboard } = useRefineContext();
 
     let selectedResource = resources.find((el) =>
         location?.pathname?.startsWith(`/${el.route}`),
