@@ -12,9 +12,11 @@ type ProductItemProps = {
 const { Meta } = Card;
 
 export const ProductItem: React.FC<ProductItemProps> = ({ item, editShow }) => {
-    const image = item.image.map((img: any) => {
-        return img.url;
-    });
+    const image = item?.image
+        ? item.image.map((img: any) => {
+              return img.url;
+          })
+        : "./error.png";
 
     return (
         <Card

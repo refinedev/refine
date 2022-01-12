@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, ButtonProps, Upload, UploadProps } from "antd";
 import { ImportOutlined } from "@ant-design/icons";
-import { useTranslate } from "@hooks";
+import { useTranslate } from "@pankod/refine-core";
 
 type ImportButtonProps = {
     uploadProps: UploadProps;

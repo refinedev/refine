@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Refine } from "@pankod/refine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
@@ -19,7 +18,8 @@ import {
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    const [role, setRole] = useState("admin");
+    const role = localStorage.getItem("role") ?? "admin";
+
     return (
         <Refine
             routerProvider={routerProvider}
@@ -78,7 +78,7 @@ const App: React.FC = () => {
                     show: CategoryShow,
                 },
             ]}
-            Header={() => <Header role={role} setRole={setRole} />}
+            Header={() => <Header role={role} />}
         />
     );
 };
