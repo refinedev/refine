@@ -60,9 +60,7 @@
         "pluralize": "^8.0.0",
         "qs": "^6.10.1",
         "react-csv": "^2.0.3",
-        "react-markdown": "^6.0.1",
         "react-query": "^3.19.2",
-        "remark-gfm": "^1.0.0",
         "tslib": "^2.3.1"
     },
     "author": "Pankod",

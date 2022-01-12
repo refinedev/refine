@@ -6,6 +6,7 @@ import { INotification } from "../../interfaces";
 
 import { userFriendlySecond } from "@definitions/helpers";
 
+// TODO: rename Notification to UndoableQueue
 export const Notification: React.FC<{
     notifications: INotification[];
 }> = ({ notifications }) => {

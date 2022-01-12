@@ -15,6 +15,7 @@ import {
     SorterResult,
 } from "antd/lib/table/interface";
 
+// TODO: check and remove unused functions
 export const parseTableParams = (url: string) => {
     const { current, pageSize, sort, order, ...filters } = qs.parse(
         url.substring(1), // remove first ? character

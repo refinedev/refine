@@ -11,6 +11,7 @@ export const defaultNotificationProvider: INotificationProviderContext = {
     },
 };
 
+// TODO: rename NotificationProvider to Notification
 export const NotificationProviderContext =
     createContext<INotificationProviderContext>(defaultNotificationProvider);
 

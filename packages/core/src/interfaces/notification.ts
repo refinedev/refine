@@ -1,3 +1,4 @@
+// TODO: rename to INotificationQueue
 export interface INotification {
     id: string;
     resource: string;

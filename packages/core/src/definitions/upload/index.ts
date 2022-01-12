@@ -1,5 +1,6 @@
 import { UploadFile, UploadChangeParam } from "antd/lib/upload/interface";
 
+// TODO: Remove
 export const getValueFromEvent = (event: UploadChangeParam): UploadFile[] => {
     const { fileList } = event;
 

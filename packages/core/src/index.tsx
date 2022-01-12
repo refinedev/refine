@@ -55,7 +55,7 @@ export {
 export { defaultConfigProviderProps } from "./definitions/config";
 
 // antd upload (useStrapiUpload)
+// move to antd package
 export { RcFile, UploadFile } from "antd/lib/upload/interface";
 
-export { userFriendlyResourceName } from "./definitions";
-export { importCSVMapper } from "./definitions";
+export { userFriendlyResourceName, importCSVMapper } from "./definitions";

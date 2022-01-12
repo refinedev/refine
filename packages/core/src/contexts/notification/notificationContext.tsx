@@ -13,6 +13,7 @@ export const NotificationContext = React.createContext<INotificationContext>({
 
 const initialState: INotification[] = [];
 
+// TODO: rename Notification to UndoableQueue
 export const notificationReducer = (state: INotification[], action: any) => {
     switch (action.type) {
         case ActionTypes.ADD:

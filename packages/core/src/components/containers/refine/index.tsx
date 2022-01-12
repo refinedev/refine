@@ -54,6 +54,7 @@ interface QueryClientConfig {
     defaultOptions?: DefaultOptions;
 }
 
+// TODO: remove IResourceItem
 interface IResource extends IResourceItem, ResourceProps {}
 export interface RefineProps {
     authProvider?: IAuthContext;
@@ -71,6 +72,7 @@ export interface RefineProps {
     mutationMode?: MutationMode;
     syncWithLocation?: boolean;
     warnWhenUnsavedChanges?: boolean;
+    // TODO: check if this is needed
     configProviderProps?: ConfigProviderProps;
     undoableTimeout?: number;
     Layout?: React.FC<LayoutProps>;
