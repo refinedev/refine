@@ -17,11 +17,8 @@ import {
     useFormProps,
 } from "@pankod/refine-core";
 import { useForm, UseFormReturnType } from "../useForm";
-import {
-    BaseRecord,
-    LiveModeProps,
-    useModalFormFromSFReturnType,
-} from "@pankod/refine-core/dist/interfaces";
+import { BaseRecord, LiveModeProps } from "@pankod/refine-core/dist/interfaces";
+import { useModalFormFromSFReturnType } from "../../../../types/sunflower";
 
 type useModalFormConfig = {
     action: "show" | "edit" | "create" | "clone";
