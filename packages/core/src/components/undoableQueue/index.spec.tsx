@@ -3,7 +3,7 @@ import React from "react";
 import { render, TestWrapper } from "@test";
 
 import { UndoableQueue } from "./index";
-import { NotificationContext } from "@contexts/undoableQueue";
+import { UndoableQueueContext } from "@contexts/undoableQueue";
 
 const doMutation = jest.fn();
 const cancelMutation = jest.fn();
@@ -30,14 +30,14 @@ jest.useFakeTimers();
 describe("Cancel Notification", () => {
     it("should trigger notification open function", async () => {
         render(
-            <NotificationContext.Provider
+            <UndoableQueueContext.Provider
                 value={{
                     notificationDispatch,
                     notifications: mockNotification,
                 }}
             >
                 <UndoableQueue notifications={mockNotification} />
-            </NotificationContext.Provider>,
+            </UndoableQueueContext.Provider>,
             {
                 wrapper: TestWrapper({
                     notificationProvider: {
