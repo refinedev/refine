@@ -1,11 +1,8 @@
 export * from "./hooks";
 export * from "./providers";
-
 export * from "./components/antd";
-
 export * from "./components";
 
-// sunflower types
 export {
     useModalFormFromSFReturnType,
     useStepsFormFromSFReturnType,
@@ -13,7 +10,7 @@ export {
 
 // antd filterDropDownProps (using for <FilterDropDown> component)
 export { FilterDropdownProps } from "antd/lib/table/interface";
-
+export { RcFile, UploadFile } from "antd/lib/upload/interface";
 export * from "./interfaces";
 
 export {
@@ -22,3 +19,4 @@ export {
     mapAntdSorterToCrudSorting,
     mapAntdFilterToCrudFilter,
 } from "./definitions/table";
+export { file2Base64, getValueFromEvent } from "./definitions/upload";

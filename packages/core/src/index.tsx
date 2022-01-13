@@ -45,7 +45,6 @@ export {
     OpenNotificationParams,
 } from "./interfaces";
 
-export * from "./definitions/upload";
 export {
     parseTableParams,
     parseTableParamsFromQuery,
@@ -53,9 +52,7 @@ export {
     unionFilters,
     setInitialFilters,
 } from "./definitions/table";
-
-// antd upload (useStrapiUpload)
-// move to antd package
-export { RcFile, UploadFile } from "antd/lib/upload/interface";
-
-export { userFriendlyResourceName, importCSVMapper } from "./definitions";
+export {
+    userFriendlyResourceName,
+    importCSVMapper,
+} from "./definitions/helpers";
