@@ -660,8 +660,18 @@
           ]
         },
         {
-          "type": "doc",
-          "id": "version-2.xx.xx/guides-and-concepts/multi-tenancy"
+          "type": "category",
+          "label": "Multitenancy",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/guides-and-concepts/multi-tenant/multi-tenancy"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/guides-and-concepts/multi-tenant/multi-tenancy-strapi"
+            }
+          ]
         },
         {
           "type": "doc",
