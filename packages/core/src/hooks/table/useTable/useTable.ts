@@ -219,10 +219,7 @@ export const useTable = <
 
         // Map Antd:Sorter -> refine:CrudSorting
         const crudSorting = mapAntdSorterToCrudSorting(sorter);
-        console.log("crudSorting", crudSorting);
         setSorter(() => unionSorters(permanentSorter, crudSorting, []));
-
-        console.log("sorter", { sorter });
 
         tablePropsSunflower.onChange(pagination, filters, sorter);
     };
