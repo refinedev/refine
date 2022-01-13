@@ -23,6 +23,8 @@ import {
     mapAntdFilterToCrudFilter,
     unionFilters,
     setInitialFilters,
+    setInitialSorters,
+    unionSorters,
 } from "@definitions/table";
 
 import {
@@ -38,12 +40,13 @@ import {
 } from "../../../interfaces";
 
 export type useTableProps<TData, TError, TSearchVariables = unknown> = {
-    permanentFilter?: CrudFilters;
     resource?: string;
     initialCurrent?: number;
     initialPageSize?: number;
     initialSorter?: CrudSorting;
+    permanentSorter?: CrudSorting;
     initialFilter?: CrudFilters;
+    permanentFilter?: CrudFilters;
     syncWithLocation?: boolean;
     onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
@@ -71,6 +74,7 @@ export type useTableReturnType<
  */
 
 const defaultPermanentFilter: CrudFilters = [];
+const defaultPermanentSorter: CrudSorting = [];
 
 export const useTable = <
     TData extends BaseRecord = BaseRecord,
@@ -78,11 +82,12 @@ export const useTable = <
     TSearchVariables = unknown,
 >({
     onSearch,
-    permanentFilter = defaultPermanentFilter,
     initialCurrent = 1,
     initialPageSize = 10,
     initialSorter,
     initialFilter,
+    permanentSorter = defaultPermanentSorter,
+    permanentFilter = defaultPermanentFilter,
     syncWithLocation: syncWithLocationProp,
     resource: resourceFromProp,
     successNotification,
@@ -140,7 +145,9 @@ export const useTable = <
 
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
-    const [sorter, setSorter] = useState<CrudSorting>(defaultSorter || []);
+    const [sorter, setSorter] = useState<CrudSorting>(
+        setInitialSorters(permanentSorter, defaultSorter ?? []),
+    );
     const [filters, setFilters] = useState<CrudFilters>(
         setInitialFilters(permanentFilter, defaultFilter ?? []),
     );
@@ -183,7 +190,7 @@ export const useTable = <
                 pageSize: pageSizeSF,
             },
             filters: unionFilters(permanentFilter, [], filters),
-            sort: sorter,
+            sort: unionSorters(permanentSorter, sorter),
         },
         queryOptions,
         successNotification,
@@ -212,7 +219,7 @@ export const useTable = <
 
         // Map Antd:Sorter -> refine:CrudSorting
         const crudSorting = mapAntdSorterToCrudSorting(sorter);
-        setSorter(crudSorting);
+        setSorter(() => unionSorters(permanentSorter, crudSorting));
 
         tablePropsSunflower.onChange(pagination, filters, sorter);
     };
