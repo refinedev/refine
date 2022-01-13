@@ -1,7 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 import { UploadChangeParam } from "antd/lib/upload";
 
-// TODO: move to antd package
 export type UseFileUploadStateType = () => {
     isLoading: boolean;
     onChange: (info: UploadChangeParam) => void;

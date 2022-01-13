@@ -2,7 +2,7 @@ import { renderHook } from "@testing-library/react-hooks";
 
 import { MockJSONServer, TestWrapper, act } from "@test";
 
-import { useFileUploadState } from "./useFileUploadState";
+import { useFileUploadState } from "./index";
 
 describe("useFileUploadState Hook", () => {
     it("isLoading false", async () => {
