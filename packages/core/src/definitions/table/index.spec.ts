@@ -520,19 +520,9 @@ describe("definitions/table", () => {
                         order: "asc",
                     },
                 ],
-                [
-                    {
-                        field: "baz",
-                        order: "asc",
-                    },
-                ],
             ),
         ).toMatchInlineSnapshot(`
             Array [
-              Object {
-                "field": "baz",
-                "order": "asc",
-              },
               Object {
                 "field": "bar",
                 "order": "asc",
@@ -564,23 +554,9 @@ describe("definitions/table", () => {
                         order: "asc",
                     },
                 ],
-                [
-                    {
-                        field: "bar",
-                        order: "asc",
-                    },
-                    {
-                        field: "baz",
-                        order: "asc",
-                    },
-                ],
             ),
         ).toMatchInlineSnapshot(`
             Array [
-              Object {
-                "field": "baz",
-                "order": "asc",
-              },
               Object {
                 "field": "bar",
                 "order": "asc",
@@ -607,23 +583,9 @@ describe("definitions/table", () => {
                         order: "asc",
                     },
                 ],
-                [
-                    {
-                        field: "bar",
-                        order: "asc",
-                    },
-                    {
-                        field: "baz",
-                        order: "asc",
-                    },
-                ],
             ),
         ).toMatchInlineSnapshot(`
             Array [
-              Object {
-                "field": "baz",
-                "order": "asc",
-              },
               Object {
                 "field": "bar",
                 "order": "asc",
@@ -636,7 +598,7 @@ describe("definitions/table", () => {
         `);
     });
 
-    it("compareSorters sorters are the same if their field and order are the same", () => {
+    it("compareSorters sorters are the same if their field are the same", () => {
         expect(
             compareSorters(
                 {
@@ -661,6 +623,6 @@ describe("definitions/table", () => {
                     order: "desc",
                 },
             ),
-        ).toBe(false);
+        ).toBe(true);
     });
 });

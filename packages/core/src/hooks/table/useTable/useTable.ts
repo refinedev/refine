@@ -190,7 +190,7 @@ export const useTable = <
                 pageSize: pageSizeSF,
             },
             filters: unionFilters(permanentFilter, [], filters),
-            sort: unionSorters(permanentSorter, [], sorter),
+            sort: unionSorters(permanentSorter, sorter),
         },
         queryOptions,
         successNotification,
@@ -219,7 +219,7 @@ export const useTable = <
 
         // Map Antd:Sorter -> refine:CrudSorting
         const crudSorting = mapAntdSorterToCrudSorting(sorter);
-        setSorter(() => unionSorters(permanentSorter, crudSorting, []));
+        setSorter(() => unionSorters(permanentSorter, crudSorting));
 
         tablePropsSunflower.onChange(pagination, filters, sorter);
     };

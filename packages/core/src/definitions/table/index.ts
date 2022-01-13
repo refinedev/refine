@@ -190,7 +190,7 @@ export const compareFilters = (left: CrudFilter, right: CrudFilter): boolean =>
     left.field == right.field && left.operator == right.operator;
 
 export const compareSorters = (left: CrudSort, right: CrudSort): boolean =>
-    left.field == right.field && left.order == right.order;
+    left.field == right.field;
 
 // Keep only one CrudFilter per type according to compareFilters
 // Items in the array that is passed first to unionWith have higher priority
@@ -212,11 +212,8 @@ export const unionFilters = (
 export const unionSorters = (
     permanentSorter: CrudSorting,
     newSorters: CrudSorting,
-    prevSorters: CrudSorting,
 ): CrudSorting =>
-    reverse(
-        unionWith(permanentSorter, newSorters, prevSorters, compareSorters),
-    ).filter(
+    reverse(unionWith(permanentSorter, newSorters, compareSorters)).filter(
         (crudSorter) =>
             crudSorter.order !== undefined && crudSorter.order !== null,
     );
