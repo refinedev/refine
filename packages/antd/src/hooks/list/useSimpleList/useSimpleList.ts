@@ -19,14 +19,11 @@ import {
     HttpError,
     MetaDataQuery,
     LiveModeProps,
-} from "@pankod/refine-core";
-
-import {
     parseTableParams,
     stringifyTableParams,
     unionFilters,
     setInitialFilters,
-} from "@definitions/table";
+} from "@pankod/refine-core";
 
 export type useSimpleListProps<TData, TError, TSearchVariables = unknown> =
     ListProps<TData> & {

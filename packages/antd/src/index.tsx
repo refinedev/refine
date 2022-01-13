@@ -15,3 +15,10 @@ export {
 export { FilterDropdownProps } from "antd/lib/table/interface";
 
 export * from "./interfaces";
+
+export {
+    getDefaultSortOrder,
+    getDefaultFilter,
+    mapAntdSorterToCrudSorting,
+    mapAntdFilterToCrudFilter,
+} from "./definitions/table";

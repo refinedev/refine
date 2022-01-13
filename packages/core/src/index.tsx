@@ -47,10 +47,11 @@ export {
 
 export * from "./definitions/upload";
 export {
-    getDefaultSortOrder,
-    getDefaultFilter,
     parseTableParams,
     parseTableParamsFromQuery,
+    stringifyTableParams,
+    unionFilters,
+    setInitialFilters,
 } from "./definitions/table";
 
 // antd upload (useStrapiUpload)

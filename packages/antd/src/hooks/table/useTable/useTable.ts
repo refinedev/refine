@@ -16,13 +16,13 @@ import {
     HttpError,
     MetaDataQuery,
     LiveModeProps,
+    unionFilters,
     useTable as useTableCore,
 } from "@pankod/refine-core";
 
 import {
     mapAntdSorterToCrudSorting,
     mapAntdFilterToCrudFilter,
-    unionFilters,
 } from "../../../definitions/table";
 
 export type useTableProps<TData, TError, TSearchVariables = unknown> = {
