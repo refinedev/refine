@@ -11,6 +11,7 @@ import {
 } from "./";
 import { TablePaginationConfig } from "@components/antd";
 import { CrudSorting, CrudFilters } from "../../interfaces";
+import { compareSorters, unionSorters } from "..";
 
 describe("definitions/table", () => {
     it("stringify table params correctly", async () => {
@@ -76,7 +77,7 @@ describe("definitions/table", () => {
         ]);
     });
 
-    fit("parse table params with advanced query object", async () => {
+    it("parse table params with advanced query object", async () => {
         const query = {
             current: "1",
             pageSize: "10",
@@ -502,5 +503,126 @@ describe("definitions/table", () => {
                 },
             ),
         ).toBe(false);
+    });
+
+    it("unionSorters puts higher priority sorter at the end", () => {
+        expect(
+            unionSorters(
+                [
+                    {
+                        field: "foo",
+                        order: "asc",
+                    },
+                ],
+                [
+                    {
+                        field: "bar",
+                        order: "asc",
+                    },
+                ],
+            ),
+        ).toMatchInlineSnapshot(`
+            Array [
+              Object {
+                "field": "bar",
+                "order": "asc",
+              },
+              Object {
+                "field": "foo",
+                "order": "asc",
+              },
+            ]
+        `);
+    });
+
+    it("unionSorters should override same sorter", () => {
+        expect(
+            unionSorters(
+                [
+                    {
+                        field: "foo",
+                        order: "asc",
+                    },
+                ],
+                [
+                    {
+                        field: "foo",
+                        order: "asc",
+                    },
+                    {
+                        field: "bar",
+                        order: "asc",
+                    },
+                ],
+            ),
+        ).toMatchInlineSnapshot(`
+            Array [
+              Object {
+                "field": "bar",
+                "order": "asc",
+              },
+              Object {
+                "field": "foo",
+                "order": "asc",
+              },
+            ]
+        `);
+    });
+
+    it("unionSorters should override even when sorter value is null but should not keep it in the end result", () => {
+        expect(
+            unionSorters(
+                [],
+                [
+                    {
+                        field: "foo",
+                        order: "asc",
+                    },
+                    {
+                        field: "bar",
+                        order: "asc",
+                    },
+                ],
+            ),
+        ).toMatchInlineSnapshot(`
+            Array [
+              Object {
+                "field": "bar",
+                "order": "asc",
+              },
+              Object {
+                "field": "foo",
+                "order": "asc",
+              },
+            ]
+        `);
+    });
+
+    it("compareSorters sorters are the same if their field are the same", () => {
+        expect(
+            compareSorters(
+                {
+                    field: "foo",
+                    order: "asc",
+                },
+                {
+                    field: "foo",
+                    order: "asc",
+                },
+            ),
+        ).toBe(true);
+
+        expect(
+            compareSorters(
+                {
+                    field: "foo",
+                    order: "asc",
+                },
+                {
+                    field: "foo",
+                    order: "desc",
+                },
+            ),
+        ).toBe(true);
     });
 });
