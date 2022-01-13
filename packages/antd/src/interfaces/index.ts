@@ -15,5 +15,5 @@ export type IMenuItem = IResourceItem & {
     route: string;
 };
 
-// field
 export * from "./field";
+export * from "./upload";

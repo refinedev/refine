@@ -1,4 +1,3 @@
-// TODO: move to antd package
 export interface UploadedFile {
     uid: string;
     name: string;

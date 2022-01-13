@@ -41,9 +41,6 @@ export * from "./resourceErrorRouterParams";
 // redirection
 export * from "./redirectionTypes";
 
-// upload
-export * from "./upload";
-
 // mapData
 export * from "./mapDataFn";
 
