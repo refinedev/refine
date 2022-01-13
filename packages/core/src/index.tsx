@@ -52,7 +52,6 @@ export {
     parseTableParams,
     parseTableParamsFromQuery,
 } from "./definitions/table";
-export { defaultConfigProviderProps } from "./definitions/config";
 
 // antd upload (useStrapiUpload)
 // move to antd package

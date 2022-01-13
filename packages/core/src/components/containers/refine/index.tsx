@@ -1,6 +1,4 @@
 import React from "react";
-import { ConfigProvider } from "antd";
-import { ConfigProviderProps } from "antd/lib/config-provider";
 import {
     QueryClientProvider,
     QueryClient,
@@ -32,7 +30,6 @@ import {
     defaultNotificationProvider,
 } from "@contexts/notificationProvider";
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
-import { defaultConfigProviderProps } from "@definitions";
 import {
     MutationMode,
     IDataContextProvider,
@@ -69,8 +66,6 @@ export interface RefineProps {
     mutationMode?: MutationMode;
     syncWithLocation?: boolean;
     warnWhenUnsavedChanges?: boolean;
-    // TODO: check if this is needed
-    configProviderProps?: ConfigProviderProps;
     undoableTimeout?: number;
     Layout?: React.FC<LayoutProps>;
     Sider?: React.FC;
@@ -108,7 +103,6 @@ export const Refine: React.FC<RefineProps> = ({
     mutationMode = "pessimistic",
     syncWithLocation = false,
     warnWhenUnsavedChanges = false,
-    configProviderProps = defaultConfigProviderProps,
     undoableTimeout = 5000,
     Title,
     Layout,
@@ -175,59 +169,51 @@ export const Refine: React.FC<RefineProps> = ({
                                         <AccessControlContextProvider
                                             {...accessControlProvider}
                                         >
-                                            <ConfigProvider
-                                                {...configProviderProps}
-                                            >
-                                                <NotificationContextProvider>
-                                                    <RefineContextProvider
-                                                        mutationMode={
-                                                            mutationMode
-                                                        }
-                                                        warnWhenUnsavedChanges={
-                                                            warnWhenUnsavedChanges
-                                                        }
-                                                        syncWithLocation={
-                                                            syncWithLocation
-                                                        }
-                                                        Title={Title}
-                                                        undoableTimeout={
-                                                            undoableTimeout
-                                                        }
-                                                        catchAll={catchAll}
-                                                        DashboardPage={
-                                                            DashboardPage
-                                                        }
-                                                        LoginPage={LoginPage}
-                                                        Layout={Layout}
-                                                        Sider={Sider}
-                                                        Footer={Footer}
-                                                        Header={Header}
-                                                        OffLayoutArea={
-                                                            OffLayoutArea
-                                                        }
-                                                        hasDashboard={
-                                                            !!DashboardPage
-                                                        }
-                                                        liveMode={liveMode}
-                                                        onLiveEvent={
-                                                            onLiveEvent
-                                                        }
-                                                    >
-                                                        <UnsavedWarnContextProvider>
-                                                            <>
-                                                                {children}
-                                                                {RouterComponent ? (
-                                                                    <RouterComponent>
-                                                                        <RouteChangeHandler />
-                                                                    </RouterComponent>
-                                                                ) : (
+                                            <NotificationContextProvider>
+                                                <RefineContextProvider
+                                                    mutationMode={mutationMode}
+                                                    warnWhenUnsavedChanges={
+                                                        warnWhenUnsavedChanges
+                                                    }
+                                                    syncWithLocation={
+                                                        syncWithLocation
+                                                    }
+                                                    Title={Title}
+                                                    undoableTimeout={
+                                                        undoableTimeout
+                                                    }
+                                                    catchAll={catchAll}
+                                                    DashboardPage={
+                                                        DashboardPage
+                                                    }
+                                                    LoginPage={LoginPage}
+                                                    Layout={Layout}
+                                                    Sider={Sider}
+                                                    Footer={Footer}
+                                                    Header={Header}
+                                                    OffLayoutArea={
+                                                        OffLayoutArea
+                                                    }
+                                                    hasDashboard={
+                                                        !!DashboardPage
+                                                    }
+                                                    liveMode={liveMode}
+                                                    onLiveEvent={onLiveEvent}
+                                                >
+                                                    <UnsavedWarnContextProvider>
+                                                        <>
+                                                            {children}
+                                                            {RouterComponent ? (
+                                                                <RouterComponent>
                                                                     <RouteChangeHandler />
-                                                                )}
-                                                            </>
-                                                        </UnsavedWarnContextProvider>
-                                                    </RefineContextProvider>
-                                                </NotificationContextProvider>
-                                            </ConfigProvider>
+                                                                </RouterComponent>
+                                                            ) : (
+                                                                <RouteChangeHandler />
+                                                            )}
+                                                        </>
+                                                    </UnsavedWarnContextProvider>
+                                                </RefineContextProvider>
+                                            </NotificationContextProvider>
                                         </AccessControlContextProvider>
                                     </TranslationContextProvider>
                                 </ResourceContextProvider>

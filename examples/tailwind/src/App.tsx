@@ -2,6 +2,7 @@ import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 import { ToastContainer } from "react-toastify";
+import { ConfigProvider } from "@pankod/refine-antd";
 
 import {
     Layout,
@@ -33,7 +34,7 @@ const mockUsers = [
 
 const App: React.FC = () => {
     return (
-        <>
+        <ConfigProvider componentSize="large">
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}
@@ -105,7 +106,7 @@ const App: React.FC = () => {
                 // LoginPage={LoginPage}
             />
             <ToastContainer />
-        </>
+        </ConfigProvider>
     );
 };
 
