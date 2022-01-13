@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 
 import { AuthContextProvider } from "@contexts/auth";
-import { NotificationContextProvider } from "@contexts/notification";
+import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import {
@@ -116,9 +116,9 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
         );
 
         const withNotification = (
-            <NotificationContextProvider>
+            <UndoableQueueContextProvider>
                 {withTranslation}
-            </NotificationContextProvider>
+            </UndoableQueueContextProvider>
         );
 
         const withAuth = authProvider ? (

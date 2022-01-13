@@ -12,7 +12,7 @@ import {
     usePublish,
     useHandleNotification,
 } from "@hooks";
-import { ActionTypes } from "@contexts/notification";
+import { ActionTypes } from "@contexts/undoableQueue";
 import {
     IDataContext,
     BaseRecord,

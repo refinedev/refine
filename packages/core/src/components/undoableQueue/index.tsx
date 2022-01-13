@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 
-import { ActionTypes } from "@contexts/notification";
+import { ActionTypes } from "@contexts/undoableQueue";
 import { useCancelNotification, useNotification, useTranslate } from "@hooks";
-import { INotification } from "../../interfaces";
+import { IUndoableQueue } from "../../interfaces";
 
 import { userFriendlySecond } from "@definitions/helpers";
 
-// TODO: rename Notification to UndoableQueue
-export const Notification: React.FC<{
-    notifications: INotification[];
+export const UndoableQueue: React.FC<{
+    notifications: IUndoableQueue[];
 }> = ({ notifications }) => {
     const translate = useTranslate();
 
@@ -16,7 +15,7 @@ export const Notification: React.FC<{
     const { open } = useNotification();
 
     const cancelNotification = () => {
-        notifications.forEach((notificationItem: INotification) => {
+        notifications.forEach((notificationItem: IUndoableQueue) => {
             if (notificationItem.isRunning === true) {
                 if (notificationItem.seconds === 0) {
                     notificationItem.doMutation();

@@ -1,25 +1,24 @@
 import React, { useReducer } from "react";
 import { createPortal } from "react-dom";
 
-import { Notification } from "@components";
+import { UndoableQueue } from "@components";
 
-import { INotification, INotificationContext } from "../../interfaces";
+import { IUndoableQueue, IUndoableQueueContext } from "../../interfaces";
 import { ActionTypes } from "./actionTypes";
 
-export const NotificationContext = React.createContext<INotificationContext>({
+export const UndoableQueueContext = React.createContext<IUndoableQueueContext>({
     notifications: [],
     notificationDispatch: () => false,
 });
 
-const initialState: INotification[] = [];
+const initialState: IUndoableQueue[] = [];
 
-// TODO: rename Notification to UndoableQueue
-export const notificationReducer = (state: INotification[], action: any) => {
+export const undoableQueueReducer = (state: IUndoableQueue[], action: any) => {
     switch (action.type) {
         case ActionTypes.ADD:
             return [
                 ...state.filter(
-                    (notificationItem: INotification) =>
+                    (notificationItem: IUndoableQueue) =>
                         notificationItem.id.toString() !==
                             action.payload.id.toString() &&
                         notificationItem.resource === action.payload.resource,
@@ -31,13 +30,13 @@ export const notificationReducer = (state: INotification[], action: any) => {
             ];
         case ActionTypes.REMOVE:
             return state.filter(
-                (notificationItem: INotification) =>
+                (notificationItem: IUndoableQueue) =>
                     notificationItem.id.toString() !==
                         action.payload.id.toString() &&
                     notificationItem.resource === action.payload.resource,
             );
         case ActionTypes.DECREASE_NOTIFICATION_SECOND:
-            return state.map((notificationItem: INotification) => {
+            return state.map((notificationItem: IUndoableQueue) => {
                 if (
                     notificationItem.id.toString() ===
                         action.payload.id.toString() &&
@@ -55,22 +54,22 @@ export const notificationReducer = (state: INotification[], action: any) => {
     }
 };
 
-export const NotificationContextProvider: React.FC = ({ children }) => {
+export const UndoableQueueContextProvider: React.FC = ({ children }) => {
     const [notifications, notificationDispatch] = useReducer(
-        notificationReducer,
+        undoableQueueReducer,
         initialState,
     );
 
     const notificationData = { notifications, notificationDispatch };
 
     return (
-        <NotificationContext.Provider value={notificationData}>
+        <UndoableQueueContext.Provider value={notificationData}>
             {children}
             {typeof window !== "undefined" &&
                 createPortal(
-                    <Notification notifications={notifications} />,
+                    <UndoableQueue notifications={notifications} />,
                     document.body,
                 )}
-        </NotificationContext.Provider>
+        </UndoableQueueContext.Provider>
     );
 };

@@ -25,7 +25,7 @@ import {
     usePublish,
     useHandleNotification,
 } from "@hooks";
-import { ActionTypes } from "@contexts/notification";
+import { ActionTypes } from "@contexts/undoableQueue";
 
 type DeleteManyParams = {
     ids: string[];

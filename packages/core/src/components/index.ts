@@ -1,6 +1,6 @@
 export * from "./pages";
 export * from "./containers";
-export * from "./notification";
+export * from "./undoableQueue";
 
 export { LayoutWrapper } from "./layoutWrapper";
 export { Authenticated } from "./authenticated";

@@ -18,7 +18,7 @@ import {
 } from "@contexts/translation";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { RefineContextProvider } from "@contexts/refine";
-import { NotificationContextProvider } from "@contexts/notification";
+import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 import { UnsavedWarnContextProvider } from "@contexts/unsavedWarn";
 import { RouterContextProvider } from "@contexts/router";
 import {
@@ -169,7 +169,7 @@ export const Refine: React.FC<RefineProps> = ({
                                         <AccessControlContextProvider
                                             {...accessControlProvider}
                                         >
-                                            <NotificationContextProvider>
+                                            <UndoableQueueContextProvider>
                                                 <RefineContextProvider
                                                     mutationMode={mutationMode}
                                                     warnWhenUnsavedChanges={
@@ -213,7 +213,7 @@ export const Refine: React.FC<RefineProps> = ({
                                                         </>
                                                     </UnsavedWarnContextProvider>
                                                 </RefineContextProvider>
-                                            </NotificationContextProvider>
+                                            </UndoableQueueContextProvider>
                                         </AccessControlContextProvider>
                                     </TranslationContextProvider>
                                 </ResourceContextProvider>

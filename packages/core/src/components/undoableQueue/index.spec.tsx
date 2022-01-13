@@ -2,8 +2,8 @@ import React from "react";
 
 import { render, TestWrapper } from "@test";
 
-import { Notification } from "./index";
-import { NotificationContext } from "@contexts/notification";
+import { UndoableQueue } from "./index";
+import { NotificationContext } from "@contexts/undoableQueue";
 
 const doMutation = jest.fn();
 const cancelMutation = jest.fn();
@@ -36,7 +36,7 @@ describe("Cancel Notification", () => {
                     notifications: mockNotification,
                 }}
             >
-                <Notification notifications={mockNotification} />
+                <UndoableQueue notifications={mockNotification} />
             </NotificationContext.Provider>,
             {
                 wrapper: TestWrapper({
@@ -72,7 +72,7 @@ describe("Cancel Notification", () => {
 
     it("should call doMutation on seconds zero", async () => {
         mockNotification[0].seconds = 0;
-        render(<Notification notifications={mockNotification} />);
+        render(<UndoableQueue notifications={mockNotification} />);
 
         expect(doMutation).toBeCalledTimes(1);
     });

@@ -11,7 +11,7 @@ import {
     useHandleNotification,
 } from "@hooks";
 import { DataContext } from "@contexts/data";
-import { ActionTypes } from "@contexts/notification";
+import { ActionTypes } from "@contexts/undoableQueue";
 import pluralize from "pluralize";
 import {
     DeleteOneResponse,

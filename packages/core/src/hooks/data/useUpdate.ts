@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 
 import { DataContext } from "@contexts/data";
-import { ActionTypes } from "@contexts/notification";
+import { ActionTypes } from "@contexts/undoableQueue";
 import {
     BaseRecord,
     IDataContext,
