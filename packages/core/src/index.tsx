@@ -8,7 +8,7 @@ export {
     LiveEvent,
     ITranslationContext as TranslationProvider,
     IAccessControlContext as AccessControlProvider,
-    INotificationProviderContext as NotificationProvider,
+    INotificationContext as NotificationProvider,
     I18nProvider,
     MutationMode,
     IResourceComponents,

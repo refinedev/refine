@@ -7,7 +7,7 @@ export interface OpenNotificationParams {
     undoableTimeout?: number;
 }
 
-export interface INotificationProviderContext {
+export interface INotificationContext {
     open: (params: OpenNotificationParams) => void;
     close: (key: string) => void;
 }

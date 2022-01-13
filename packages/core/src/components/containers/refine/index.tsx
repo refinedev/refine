@@ -26,9 +26,9 @@ import {
     AccessControlContextProvider,
 } from "@contexts/accessControl";
 import {
-    NotificationProviderContextProvider,
+    NotificationContextProvider,
     defaultNotificationProvider,
-} from "@contexts/notificationProvider";
+} from "@contexts/notification";
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
 import {
     MutationMode,
@@ -42,7 +42,7 @@ import {
     ILiveContext,
     LiveModeProps,
     IAccessControlContext,
-    INotificationProviderContext,
+    INotificationContext,
 } from "../../../interfaces";
 
 interface QueryClientConfig {
@@ -55,7 +55,7 @@ export interface RefineProps {
     dataProvider: IDataContextProvider;
     liveProvider?: ILiveContext;
     routerProvider: IRouterProvider;
-    notificationProvider?: INotificationProviderContext;
+    notificationProvider?: INotificationContext;
     accessControlProvider?: IAccessControlContext;
     resources?: ResourceProps[];
     i18nProvider?: I18nProvider;
@@ -154,7 +154,7 @@ export const Refine: React.FC<RefineProps> = ({
 
     return (
         <QueryClientProvider client={queryClient}>
-            <NotificationProviderContextProvider {...notificationProvider}>
+            <NotificationContextProvider {...notificationProvider}>
                 <AuthContextProvider
                     {...authProvider}
                     isProvided={!!authProvider}
@@ -221,7 +221,7 @@ export const Refine: React.FC<RefineProps> = ({
                         </LiveContextProvider>
                     </DataContextProvider>
                 </AuthContextProvider>
-            </NotificationProviderContextProvider>
+            </NotificationContextProvider>
             <ReactQueryDevtools
                 initialIsOpen={false}
                 position="bottom-right"

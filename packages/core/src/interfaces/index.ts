@@ -16,7 +16,7 @@ export * from "../contexts/resource/IResourceContext";
 export * from "../contexts/unsavedWarn/IUnsavedWarnContext";
 export * from "../contexts/router/IRouterContext";
 export * from "../contexts/accessControl/IAccessControlContext";
-export * from "../contexts/notificationProvider/INotificationProvider";
+export * from "../contexts/notification/INotificationContext";
 
 export * from "../components/pages/login";
 

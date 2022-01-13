@@ -12,7 +12,7 @@ import {
     I18nProvider,
     IAccessControlContext,
     ILiveContext,
-    INotificationProviderContext,
+    INotificationContext,
 } from "../src/interfaces";
 import { TranslationContextProvider } from "@contexts/translation";
 import { RefineContextProvider } from "@contexts/refine";
@@ -20,7 +20,7 @@ import { IRefineContextProvider } from "@contexts/refine/IRefineContext";
 import { RouterContextProvider } from "@contexts/router";
 import { AccessControlContextProvider } from "@contexts/accessControl";
 import { LiveContextProvider } from "@contexts/live";
-import { NotificationProviderContextProvider } from "@contexts/notificationProvider";
+import { NotificationContextProvider } from "@contexts/notification";
 
 import {
     MockRouterProvider,
@@ -41,7 +41,7 @@ interface ITestWrapperProps {
     authProvider?: IAuthContext;
     dataProvider?: IDataContext;
     i18nProvider?: I18nProvider;
-    notificationProvider?: INotificationProviderContext;
+    notificationProvider?: INotificationContext;
     accessControlProvider?: IAccessControlContext;
     liveProvider?: ILiveContext;
     resources?: IResourceItem[];
@@ -80,9 +80,9 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
         );
 
         const withNotificationProvider = notificationProvider ? (
-            <NotificationProviderContextProvider {...notificationProvider}>
+            <NotificationContextProvider {...notificationProvider}>
                 {withData}
-            </NotificationProviderContextProvider>
+            </NotificationContextProvider>
         ) : (
             withData
         );
