@@ -15,7 +15,6 @@ export {
     IResourceComponentsProps,
     ILoginForm,
     HttpError,
-    UploadedFile,
     LayoutProps,
     TitleProps,
     CrudFilter,

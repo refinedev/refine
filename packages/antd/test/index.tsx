@@ -9,7 +9,7 @@ import {
     IAccessControlContext,
     IAuthContext,
     IDataContext,
-    INotificationProviderContext,
+    INotificationContext,
     ResourceProps,
 } from "@pankod/refine-core/dist/interfaces";
 
@@ -32,7 +32,7 @@ interface ITestWrapperProps {
     dataProvider?: IDataContext;
     authProvider?: IAuthContext;
     resources?: ResourceProps[];
-    notificationProvider?: INotificationProviderContext;
+    notificationProvider?: INotificationContext;
     accessControlProvider?: IAccessControlContext;
     i18nProvider?: I18nProvider;
     routerInitialEntries?: string[];

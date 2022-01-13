@@ -28,15 +28,18 @@ import {
     stringifyTableParams,
     unionFilters,
     setInitialFilters,
+    setInitialSorters,
+    unionSorters,
 } from "@definitions/table";
 
 export type useSimpleListProps<TData, TError, TSearchVariables = unknown> =
     ListProps<TData> & {
-        permanentFilter?: CrudFilters;
         syncWithLocation?: boolean;
         resource?: string;
         initialFilter?: CrudFilters;
+        permanentFilter?: CrudFilters;
         initialSorter?: CrudSorting;
+        permanentSorter?: CrudSorting;
         onSearch?: (
             data: TSearchVariables,
         ) => CrudFilters | Promise<CrudFilters>;
@@ -76,6 +79,7 @@ export const useSimpleList = <
     initialSorter,
     initialFilter,
     permanentFilter = [],
+    permanentSorter = [],
     onSearch,
     queryOptions,
     syncWithLocation: syncWithLocationProp,
@@ -140,7 +144,9 @@ export const useSimpleList = <
     const [filters, setFilters] = useState<CrudFilters>(
         setInitialFilters(permanentFilter, defaultFilter ?? []),
     );
-    const [sorter, setSorter] = useState<CrudSorting>(defaultSorter ?? []);
+    const [sorter, setSorter] = useState<CrudSorting>(
+        setInitialSorters(permanentSorter, defaultSorter ?? []),
+    );
 
     useEffect(() => {
         if (syncWithLocation) {
@@ -165,7 +171,7 @@ export const useSimpleList = <
                 pageSize,
             },
             filters: unionFilters(permanentFilter, [], filters),
-            sort: sorter,
+            sort: unionSorters(permanentSorter, sorter),
         },
         queryOptions,
         successNotification,
