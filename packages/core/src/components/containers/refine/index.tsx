@@ -53,9 +53,6 @@ interface QueryClientConfig {
     mutationCache?: MutationCache;
     defaultOptions?: DefaultOptions;
 }
-
-// TODO: remove IResourceItem
-interface IResource extends IResourceItem, ResourceProps {}
 export interface RefineProps {
     authProvider?: IAuthContext;
     dataProvider: IDataContextProvider;
@@ -63,7 +60,7 @@ export interface RefineProps {
     routerProvider: IRouterProvider;
     notificationProvider?: INotificationProviderContext;
     accessControlProvider?: IAccessControlContext;
-    resources?: IResource[];
+    resources?: ResourceProps[];
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
     LoginPage?: React.FC;
