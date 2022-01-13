@@ -12,7 +12,6 @@ import {
 import { DataContext } from "@contexts/data";
 import { userFriendlyResourceName } from "@definitions";
 import { ExportToCsv, Options } from "export-to-csv";
-import dayjs from "dayjs";
 
 type UseExportOptionsType<
     TData extends BaseRecord = BaseRecord,
@@ -68,11 +67,10 @@ export const useExport = <
         resource = resourceName;
     }
 
-    // TODO: refactor to native Date Object and remove dayjs dependency
     const filename = `${userFriendlyResourceName(
         resource,
         "plural",
-    )}-${dayjs().format("YYYY-MM-DD-HH-mm-ss")}`;
+    )}-${new Date().toLocaleString()}`;
 
     const { getList } = useContext<IDataContext>(DataContext);
 
