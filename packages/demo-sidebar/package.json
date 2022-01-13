@@ -1,7 +1,7 @@
 {
   "name": "@pankod/refine-demo-sidebar",
   "description": "refine demo sidebar. refine is a React-based framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
-  "version": "2.6.0",
+  "version": "2.5.6",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -49,7 +49,8 @@
     "typescript": "^4.4.3"
   },
   "dependencies": {
-    "@pankod/refine": "^2.6.0"
+    "@pankod/refine-antd": "^2.0.0",
+    "@pankod/refine-core": "^2.0.0"
   },
   "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
   "publishConfig": {
