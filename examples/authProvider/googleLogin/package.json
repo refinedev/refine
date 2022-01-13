@@ -1,11 +1,11 @@
 {
   "name": "refine-google-login-example",
-  "version": "2.5.6",
+  "version": "2.6.0",
   "private": true,
   "dependencies": {
-    "@pankod/refine-core": "^2.0.7",
-    "@pankod/refine-react-router": "^2.0.7",
-    "@pankod/refine-simple-rest": "^2.0.7",
+    "@pankod/refine": "^2.6.0",
+    "@pankod/refine-react-router": "^2.6.0",
+    "@pankod/refine-simple-rest": "^2.6.0",
     "@types/node": "^12.20.11",
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.4",

@@ -1,11 +1,11 @@
 {
   "name": "refine-strapi-example",
-  "version": "2.5.6",
+  "version": "2.6.0",
   "private": true,
   "dependencies": {
-    "@pankod/refine-core": "^2.0.7",
-    "@pankod/refine-react-router": "^2.0.7",
-    "@pankod/refine-strapi": "^2.0.7",
+    "@pankod/refine": "^2.6.0",
+    "@pankod/refine-react-router": "^2.6.0",
+    "@pankod/refine-strapi": "^2.6.0",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
