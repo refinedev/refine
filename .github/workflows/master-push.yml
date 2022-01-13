@@ -145,6 +145,7 @@ jobs:
         env:
           USE_SSH: true
           GIT_USER: pankod-bot
+          NODE_ENV: production
         run: |
           cd documentation
           git config --global user.email "bot@pankod.com"

@@ -6,7 +6,7 @@ title: Supabase
 [View Source](https://github.com/pankod/refine/tree/master/examples/dataProvider/supabase)
 
 :::note
-Codesandbox enviroment does not allow real-time features to work.
+Codesandbox environment does not allow real-time features to work.
 :::
 
 <iframe src="https://codesandbox.io/embed/refine-supabase-example-2zhty?autoresize=1&fontsize=14&theme=dark&view=preview"
