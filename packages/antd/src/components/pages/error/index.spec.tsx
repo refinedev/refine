@@ -42,7 +42,7 @@ describe("ErrorComponent", () => {
     });
 
     it("renders error messages if resources action's not found", async () => {
-        const { getByText } = render(
+        const { getByTestId, findByText } = render(
             <Route path="/:resource?/:action?">
                 <ErrorComponent />
             </Route>,
@@ -53,9 +53,13 @@ describe("ErrorComponent", () => {
             },
         );
 
-        getByText(
-            `You may have forgotten to add the "create" component to "posts" resource.`,
-        );
+        fireEvent.mouseOver(getByTestId("error-component-tooltip"));
+
+        expect(
+            await findByText(
+                `You may have forgotten to add the "create" component to "posts" resource.`,
+            ),
+        ).toBeInTheDocument();
     });
 
     it("renders error messages if resource action's is different from 'create, edit, show'", () => {
@@ -65,7 +69,6 @@ describe("ErrorComponent", () => {
             </Route>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts", route: "posts" }],
                     routerInitialEntries: ["/posts/invalidActionType"],
                 }),
             },
