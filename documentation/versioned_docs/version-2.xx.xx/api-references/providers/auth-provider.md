@@ -30,6 +30,16 @@ const authProvider = {
 Authorization hooks are used to manage authentication and authorization operations like login, logout and catching **HTTP** errors etc.
 :::
 
+
+:::tip
+You can find auth provider examples made with **refine**
+
+-   **Auth0** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/authProvider/auth0/) - [Demo](examples/auth-provider/auth0.md)
+-   **Google** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/authProvider/googleLogin) - [Demo](examples/auth-provider/google-auth.md)
+-   **OTP Login** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/authProvider/otpLogin) - [Demo](examples/auth-provider/otpLogin.md)
+
+:::
+
 ## Usage
 
 To use `authProvider` in **refine**, we have to pass the `authProvider` to the `<Refine />` component.
