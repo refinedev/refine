@@ -296,8 +296,8 @@ module.exports = {
                     type: "category",
                     label: "Multitenancy",
                     items: [
-                        "guides-and-concepts/multi-tenant/appwrite",
-                        "guides-and-concepts/multi-tenant/strapi-v4",
+                        "guides-and-concepts/multi-tenancy/appwrite",
+                        "guides-and-concepts/multi-tenancy/strapi-v4",
                     ],
                 },
                 "guides-and-concepts/mutation-mode",
@@ -446,8 +446,8 @@ module.exports = {
                     type: "category",
                     label: "Multitenancy",
                     items: [
-                        "examples/multi-tenant/appwrite",
-                        "examples/multi-tenant/strapi-v4",
+                        "examples/multi-tenancy/appwrite",
+                        "examples/multi-tenancy/strapi-v4",
                     ],
                 },
                 "examples/import-export",
