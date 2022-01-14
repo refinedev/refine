@@ -33,14 +33,14 @@ export const useMenu: () => useMenuReturnType = () => {
 
     const { hasDashboard } = useRefineContext();
 
-    let selectedResource = resources.find((el) =>
-        location?.pathname?.startsWith(`/${el.route}`),
+    let selectedResource = resources.find(
+        (el) => location?.pathname === `/${el.route}`,
     );
 
     // for no ssr
     if (!selectedResource) {
-        selectedResource = resources.find((el) =>
-            params?.resource?.startsWith(el.route as string),
+        selectedResource = resources.find(
+            (el) => params?.resource === (el.route as string),
         );
     }
 
@@ -50,7 +50,7 @@ export const useMenu: () => useMenuReturnType = () => {
     } else if (location.pathname === "/") {
         selectedKey = "/";
     } else {
-        selectedKey = "notfound";
+        selectedKey = location?.pathname;
     }
 
     const menuItems: IMenuItem[] = React.useMemo(
