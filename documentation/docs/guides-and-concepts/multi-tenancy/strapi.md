@@ -6,6 +6,9 @@ title: Strapi-v4
 import sider from '@site/static/img/guides-and-concepts/multi-tenant/strapi/sider.png';
 import store_filter from '@site/static/img/guides-and-concepts/multi-tenant/strapi/store-filter.gif';
 import create from '@site/static/img/guides-and-concepts/multi-tenant/strapi/create.gif';
+import stores from '@site/static/img/guides-and-concepts/multi-tenant/strapi/stores.png';
+import products from '@site/static/img/guides-and-concepts/multi-tenant/strapi/products.png';
+import orders from '@site/static/img/guides-and-concepts/multi-tenant/strapi/orders.png';
 
 ## What is Multitenancy?
 
@@ -34,12 +37,11 @@ import { Refine } from "@pankod/refine";
 import { DataProvider } from "@pankod/refine-strapi-v4";
 import routerProvider from "@pankod/refine-react-router";
 
-import { TOKEN_KEY, API_URL } from "./constants";
 import { authProvider, axiosInstance } from "./authProvider";
 
-const App: React.FC = () => {
-    const axiosInstance = axios.create();
+const API_URL = "YOUR_API_URL";
 
+const App: React.FC = () => {
     return (
         <Refine
             //highlight-start
@@ -51,6 +53,10 @@ const App: React.FC = () => {
     );
 };
 ```
+
+:::tip
+You can find detailed usage information and the source code [here](https://github.com/pankod/refine/tree/master/examples/multi-tenancy/strapi).
+:::
 
 ## Create Collections
 
@@ -69,26 +75,58 @@ We created three collections on Strapi as store, product and order and added a r
 }
 ```
 
-`stores`
+`Stores`
 
 -   Title: Text
+-   Relation with Products
+-   Relation with Orders
 
-`products`
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={stores} alt="stores" />
+</div>
+<br/>
+
+`Products`
 
 -   Title: Text
 -   Description: Text
 -   Image: Media
--   Reletion with Stores
--   Releation with Orders
+-   Relation with Stores
+-   Relation with Orders
 
-`orders`
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={products} alt="products" />
+</div>
+<br/>
+
+`Orders`
 
 -   Status: Text
 -   Customer Name: Text
 -   Customer Address: Text
 -   Quantity: Number
--   Reletion with Stores
--   Releation with Orders
+-   Relation with Stores
+-   Relation with Product
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={orders} alt="orders" />
+</div>
+<br/>
 
 Now that we have completed the setup and our collections, we can now log in with the **refine** and start the listing processes.
 
@@ -115,12 +153,11 @@ import { Refine } from "@pankod/refine";
 import { DataProvider } from "@pankod/refine-strapi-v4";
 import routerProvider from "@pankod/refine-react-router";
 
-import { TOKEN_KEY, API_URL } from "./constants";
 import { authProvider, axiosInstance } from "./authProvider";
 
-const App: React.FC = () => {
-    const axiosInstance = axios.create();
+const API_URL = "YOUR_API_URL";
 
+const App: React.FC = () => {
     return (
         //highlight-start
         <StoreProvider>
