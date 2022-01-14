@@ -1,11 +1,11 @@
 {
   "name": "signin-with-ethereum",
-  "version": "2.6.1",
+  "version": "2.6.2",
   "private": true,
   "dependencies": {
-    "@pankod/refine": "^2.6.1",
-    "@pankod/refine-react-router": "^2.6.1",
-    "@pankod/refine-simple-rest": "^2.6.1",
+    "@pankod/refine": "^2.6.2",
+    "@pankod/refine-react-router": "^2.6.2",
+    "@pankod/refine-simple-rest": "^2.6.2",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",

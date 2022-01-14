@@ -34,9 +34,8 @@ const mapOperator = (operator: CrudOperators): string => {
         case "contains":
             return "_like";
         case "eq":
-            return "";
         default:
-            throw Error(`Operator ${operator} is not supported`);
+            return "";
     }
 };
 
