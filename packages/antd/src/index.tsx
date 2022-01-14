@@ -19,4 +19,4 @@ export {
     mapAntdSorterToCrudSorting,
     mapAntdFilterToCrudFilter,
 } from "./definitions/table";
-export { file2Base64, getValueFromEvent } from "./definitions/upload";
+export { getValueFromEvent } from "./definitions/upload";

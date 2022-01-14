@@ -1,12 +1,4 @@
-import { UploadFile, UploadChangeParam } from "antd/lib/upload/interface";
-
-export const getValueFromEvent = (event: UploadChangeParam): UploadFile[] => {
-    const { fileList } = event;
-
-    return [...fileList];
-};
-
-export function file2Base64(file: UploadFile): Promise<string> {
+export const file2Base64 = (file: any): Promise<string> => {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
 
@@ -26,4 +18,4 @@ export function file2Base64(file: UploadFile): Promise<string> {
             return reject(error);
         };
     });
-}
+};
