@@ -67,7 +67,7 @@ describe("<ImportButton /> usage with useImport", () => {
             { type: "text/csv" },
         );
         const hiddenFileInput = container.querySelector('input[type="file"]');
-        const files = { files: [file] } as unknown as EventTarget; // TODO: töbe töbe
+        const files = { files: [file] } as unknown as EventTarget;
         await act(async () => {
             Simulate.change(hiddenFileInput as Element, {
                 target: files,
