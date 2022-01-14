@@ -3,7 +3,7 @@ id: strapi-v4
 title: Strapi-v4
 ---
 
-<!-- [View Source](https://github.com/pankod/refine/tree/master/examples/multi-tenant/cakeHouse) -->
+[View Source](https://github.com/pankod/refine/tree/master/examples/multi-tenant/strapi)
 
 Username: `refine-demo`
 
