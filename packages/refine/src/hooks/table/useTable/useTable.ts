@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Grid } from "antd";
-import { useFormTable } from "sunflower-antd";
+import { useFormTable, useForm as useFormSF } from "sunflower-antd";
+
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
 import { FormProps } from "antd/lib/form";
 import { QueryObserverResult, UseQueryOptions } from "react-query";
@@ -101,6 +102,9 @@ export const useTable = <
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
     const [form] = useForm<TSearchVariables>();
+    const formSF = useFormSF<any, TSearchVariables>({
+        form: form,
+    });
 
     const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
 
@@ -234,7 +238,7 @@ export const useTable = <
 
     return {
         searchFormProps: {
-            ...form,
+            ...formSF,
             onFinish,
         },
         tableProps: {
