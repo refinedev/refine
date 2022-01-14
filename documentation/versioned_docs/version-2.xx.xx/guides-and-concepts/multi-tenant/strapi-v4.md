@@ -5,6 +5,7 @@ title: Strapi-v4
 
 import sider from '@site/static/img/guides-and-concepts/multi-tenant/strapi/sider.png';
 import store_filter from '@site/static/img/guides-and-concepts/multi-tenant/strapi/store-filter.gif';
+import create from '@site/static/img/guides-and-concepts/multi-tenant/strapi/create.gif';
 
 ## What is Multitenancy?
 
@@ -242,6 +243,7 @@ export const CustomSider: React.FC = () => {
                     push(key as string);
                 }}
             >
+                //highlight-start
                 <Menu.Item
                     key={selectedKey}
                     icon={<Icons.AppstoreAddOutlined />}
@@ -252,7 +254,7 @@ export const CustomSider: React.FC = () => {
                         }}
                     />
                 </Menu.Item>
-
+                //highlight-end
                 {menuItems.map(({ icon, label, route }) => {
                     const isSelected = route === selectedKey;
                     return (
@@ -386,7 +388,7 @@ Now let's see how we can create store-specific products. Which store we choose i
 By overriding the `onFinish` method of the `form` and sending the selected store information, we specify which store it will be the product of.
 
 ```tsx
-//highligt-start
+//highlight-start
 const [store, setStore] = useContext(StoreContext);
 //highlight-end
 
@@ -534,6 +536,17 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
 
 </p>
 </details>
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={create} alt="Create Product" />
+</div>
+<br/>
+
 
 ## Conclusion
 
