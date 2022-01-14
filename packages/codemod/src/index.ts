@@ -88,6 +88,7 @@ export function runTransform({ files, flags, transformer }) {
     args.push("--verbose=2");
 
     args.push("--ignore-pattern=**/node_modules/**");
+    args.push("--ignore-pattern=**/build/**");
 
     args.push("--extensions=tsx,ts,jsx,js");
     args.push("--parser=tsx");
