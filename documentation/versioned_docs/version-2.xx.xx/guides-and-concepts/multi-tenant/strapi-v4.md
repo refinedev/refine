@@ -1,5 +1,5 @@
 ---
-id: multi-tenancy-strapi
+id: strapi-v4
 title: Strapi-v4
 ---
 
@@ -10,6 +10,10 @@ import create from '@site/static/img/guides-and-concepts/multi-tenant/strapi/cre
 ## What is Multitenancy?
 
 Multitenancy refers to a kind of architecture where a single instance of software runs on a server and serves multiple customers. In a multi-tenant environment, separate customers tap into the same hardware and data storage, creating a dedicated instance for each customer. Each tenant’s data is isolated and remains invisible to others, but is running on the same server.
+
+## Introduction​
+
+In this guide, we will create an application with you in the logic of Multi Tenant(Multitenancy). We can say multi tenant application is to separate and manage multiple contents independently from each other in a single application.
 
 We will make a Cake House application using **refine** and [Strapi-v4](https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html). Our Cake House will consist of two separate stores and there will be special products for these stores. We will explain step by step how to manage these stores, products and orders separately.
 
@@ -547,7 +551,19 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
 </div>
 <br/>
 
-
 ## Conclusion
 
 In this guide and in our example app, we talked about how we can build Multitenancy apps with **refine**. Developing a Multitenancy application with **refine** is quite simple. By creating a context and with the hooks that **refine** provides, you can quickly and easily produce similar applications in this logic.
+
+## Live Codesandbox Example
+
+Username: `refine-demo`
+
+Password: `demodemo`
+
+<iframe src="https://codesandbox.io/embed/strapi-multi-tenant-example-jgr0g?fautoresize=1&fontsize=14&theme=dark&view=preview"
+     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+     title="strapi-multi-tenant-example"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>

@@ -1,5 +1,5 @@
 ---
-id: multi-tenancy
+id: appwrite
 title: Appwrite
 ---
 
