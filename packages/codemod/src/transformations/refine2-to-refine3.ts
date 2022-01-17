@@ -16,7 +16,7 @@ import checkPackageLock from "../helpers/checkPackageLock";
 
 export const parser = "tsx";
 
-const availableRefineAntdImports = [
+const availableCoreAntdImports = [
     "Authenticated",
     "AuthenticatedProps",
     "CanAccess",
@@ -250,7 +250,7 @@ function updateRefineImports(j: JSCodeshift, root: Collection<any>) {
     if (refineCoreImports.length === 0) {
         const coreImports: ImportSpecifier[] = [];
         const antdImports: ImportSpecifier[] = [];
-        // Import refine core
+
         const refineImport = root.find(j.ImportDeclaration, {
             source: {
                 value: "@pankod/refine",
@@ -259,7 +259,7 @@ function updateRefineImports(j: JSCodeshift, root: Collection<any>) {
 
         refineImport.replaceWith((path) => {
             for (const item of path.node.specifiers) {
-                if (!availableRefineAntdImports.includes(item.local.name)) {
+                if (availableCoreAntdImports.includes(item.local.name)) {
                     coreImports.push(item as ImportSpecifier);
                 } else {
                     antdImports.push(item as ImportSpecifier);
@@ -323,6 +323,17 @@ function updateRefineImports(j: JSCodeshift, root: Collection<any>) {
         if (coreImports.length === 0) {
             refineImport.remove();
         }
+
+        const refineCSSImport = root.find(j.ImportDeclaration, {
+            source: {
+                value: "@pankod/refine/dist/styles.min.css",
+            },
+        });
+
+        refineCSSImport.forEach((refineCSSImport) => {
+            refineCSSImport.value.source.value =
+                "@pankod/refine-antd/dist/styles.min.css";
+        });
     } else {
         console.log(
             "WARNING: A refine core package from @pankod/refine-core is already imported. This tool will not make any migration for refine core.",

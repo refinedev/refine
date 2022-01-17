@@ -1,8 +1,9 @@
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import { notificationProvider } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import { liveProvider } from "@pankod/refine-ably";
 import routerProvider from "@pankod/refine-react-router";
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { ablyClient } from "utility";
 import { CustomSider } from "components";
@@ -41,6 +42,7 @@ const App: React.FC = () => {
             ]}
             liveMode="auto"
             Sider={CustomSider}
+            notificationProvider={notificationProvider}
         />
     );
 };
