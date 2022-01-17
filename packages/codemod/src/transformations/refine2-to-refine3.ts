@@ -238,6 +238,7 @@ const availableCoreAntdImports = [
     "ResourceRouterParams",
     "SuccessErrorNotification",
     "OpenNotificationParams",
+    "AuthProvider",
 ];
 
 function updateRefineImports(j: JSCodeshift, root: Collection<any>) {
@@ -274,16 +275,6 @@ function updateRefineImports(j: JSCodeshift, root: Collection<any>) {
 
             return path.node;
         });
-
-        const configProviderJSXAttribute = root.find(j.JSXAttribute, {
-            name: {
-                name: "configProviderProps",
-            },
-        });
-
-        if (configProviderJSXAttribute.length > 0) {
-            antdImports.push(j.importSpecifier(j.identifier("ConfigProvider")));
-        }
 
         const refineElement = root.find(j.JSXElement, {
             openingElement: {
@@ -381,6 +372,21 @@ const moveConfigProvider = (j: JSCodeshift, root: Collection<any>) => {
     });
 
     if (configProviderJSXAttribute.length > 0) {
+        // Import ConfigProvider from @pankod/refine-antd
+        const refineAntdImport = root.find(j.ImportDeclaration, {
+            source: {
+                value: "@pankod/refine-antd",
+            },
+        });
+
+        if (refineAntdImport.length > 0) {
+            refineAntdImport.forEach((path) => {
+                path.node.specifiers.push(
+                    j.importSpecifier(j.identifier("ConfigProvider")),
+                );
+            });
+        }
+
         const configProviderValue = (
             (
                 configProviderJSXAttribute.nodes()[0]
@@ -405,6 +411,150 @@ const moveConfigProvider = (j: JSCodeshift, root: Collection<any>) => {
         refineElement.replaceWith(newConfigProviderElement);
 
         configProviderJSXAttribute.remove();
+    }
+};
+
+const defaultLoginPage = (j: JSCodeshift, root: Collection<any>) => {
+    const refineElement = root.find(j.JSXElement, {
+        openingElement: {
+            name: {
+                name: "Refine",
+            },
+        },
+    });
+
+    if (refineElement.length === 0) {
+        return;
+    }
+
+    const authProviderJSXAttribute = root.find(j.JSXAttribute, {
+        name: {
+            name: "authProvider",
+        },
+    });
+
+    const loginPageJSXAttribute = root.find(j.JSXAttribute, {
+        name: {
+            name: "LoginPage",
+        },
+    });
+
+    if (
+        authProviderJSXAttribute.length > 0 &&
+        loginPageJSXAttribute.length === 0
+    ) {
+        refineElement.forEach((path) => {
+            path.node.openingElement.attributes.push(
+                j.jsxAttribute(
+                    j.jsxIdentifier("LoginPage"),
+                    j.jsxExpressionContainer(j.identifier("LoginPage")),
+                ),
+            );
+        });
+
+        const refineAntdImport = root.find(j.ImportDeclaration, {
+            source: {
+                value: "@pankod/refine-antd",
+            },
+        });
+
+        if (refineAntdImport.length > 0) {
+            refineAntdImport.forEach((path) => {
+                path.node.specifiers.push(
+                    j.importSpecifier(j.identifier("LoginPage")),
+                );
+            });
+        }
+    }
+};
+
+const defaultLayout = (j: JSCodeshift, root: Collection<any>) => {
+    const refineElement = root.find(j.JSXElement, {
+        openingElement: {
+            name: {
+                name: "Refine",
+            },
+        },
+    });
+
+    if (refineElement.length === 0) {
+        return;
+    }
+
+    const layoutJSXAttribute = root.find(j.JSXAttribute, {
+        name: {
+            name: "Layout",
+        },
+    });
+
+    if (layoutJSXAttribute.length === 0) {
+        refineElement.forEach((path) => {
+            path.node.openingElement.attributes.push(
+                j.jsxAttribute(
+                    j.jsxIdentifier("Layout"),
+                    j.jsxExpressionContainer(j.identifier("Layout")),
+                ),
+            );
+        });
+
+        const refineAntdImport = root.find(j.ImportDeclaration, {
+            source: {
+                value: "@pankod/refine-antd",
+            },
+        });
+
+        if (refineAntdImport.length > 0) {
+            refineAntdImport.forEach((path) => {
+                path.node.specifiers.push(
+                    j.importSpecifier(j.identifier("Layout")),
+                );
+            });
+        }
+    }
+};
+
+const defaultCatchAllPage = (j: JSCodeshift, root: Collection<any>) => {
+    const refineElement = root.find(j.JSXElement, {
+        openingElement: {
+            name: {
+                name: "Refine",
+            },
+        },
+    });
+
+    if (refineElement.length === 0) {
+        return;
+    }
+
+    const catchAllJSXAttribute = root.find(j.JSXAttribute, {
+        name: {
+            name: "catchAll",
+        },
+    });
+
+    if (catchAllJSXAttribute.length === 0) {
+        refineElement.forEach((path) => {
+            path.node.openingElement.attributes.push(
+                j.jsxAttribute(
+                    j.jsxIdentifier("catchAll"),
+                    j.jsxExpressionContainer(j.identifier("ErrorComponent")),
+                ),
+            );
+        });
+
+        const refineAntdImport = root.find(j.ImportDeclaration, {
+            source: {
+                value: "@pankod/refine-antd",
+            },
+        });
+
+        if (refineAntdImport.length > 0) {
+            refineAntdImport.forEach((path) => {
+                path.node.specifiers.push(
+                    j.importSpecifier(j.identifier("ErrorComponent")),
+                );
+            });
+        }
     }
 };
 
@@ -521,6 +671,9 @@ export default function transformer(file: FileInfo, api: API): string {
     updateRefineImports(j, source);
     moveConfigProvider(j, source);
     updateSetEditIdToSetId(j, source);
+    defaultLoginPage(j, source);
+    defaultLayout(j, source);
+    defaultCatchAllPage(j, source);
 
     return source.toSource();
 }
