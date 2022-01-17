@@ -26,6 +26,7 @@ const liveProvider = {
 
 -   **Ably** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/s/refine-ably-example-u9wg9)
 -   **Supabase** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/supabase/src/index.ts#L187)
+-   **Appwrite** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/appwrite/src/index.ts#L252)
 
 :::
 

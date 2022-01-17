@@ -660,8 +660,18 @@
           ]
         },
         {
-          "type": "doc",
-          "id": "version-2.xx.xx/guides-and-concepts/multi-tenancy"
+          "type": "category",
+          "label": "Multitenancy",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/guides-and-concepts/multi-tenancy/appwrite"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/guides-and-concepts/multi-tenancy/strapi-v4"
+            }
+          ]
         },
         {
           "type": "doc",
@@ -1006,8 +1016,18 @@
           ]
         },
         {
-          "type": "doc",
-          "id": "version-2.xx.xx/examples/multi-tenant/multiTenant"
+          "type": "category",
+          "label": "Multitenancy",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/examples/multi-tenancy/appwrite"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.xx.xx/examples/multi-tenancy/strapi-v4"
+            }
+          ]
         },
         {
           "type": "doc",

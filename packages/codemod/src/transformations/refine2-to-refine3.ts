@@ -4,10 +4,15 @@ import {
     Collection,
     FileInfo,
     ImportSpecifier,
+    JSXExpressionContainer,
+    ObjectExpression,
+    JSXOpeningElement,
+    ObjectProperty,
+    Identifier,
 } from "jscodeshift";
 import fs from "fs";
 import path from "path";
-import { install } from "../helpers";
+import { install, remove } from "../helpers";
 import checkPackageLock from "../helpers/checkPackageLock";
 
 export const parser = "tsx";
@@ -83,9 +88,53 @@ const availableRefineAntdImports = [
     "useCheckboxGroup",
     "useRadioGroup",
     "useImport",
+    "List",
+    "BooleanField",
+    "SaveButton",
+    "NumberField",
+    "DateField",
+    "TextField",
+    "TagField",
+    "EmailField",
+    "ImageField",
+    "DateField",
+    "FileField",
+    "UrlField",
+    "NumberField",
+    "MarkdownField",
+    "getDefaultSortOrder",
+    "getDefaultFilter",
+    "useSimpleList",
+    "CreateButton",
+    "EditButton",
+    "CreateButtonProps",
+    "DeleteButton",
+    "DeleteButtonProps",
+    "RefreshButton",
+    "ShowButton",
+    "ListButton",
+    "ExportButton",
+    "SaveButton",
+    "CloneButton",
+    "ImportButton",
+    "useDrawerForm",
+    "useStepsForm",
+    "useModalForm",
+    "FormProps",
+    "getValueFromEvent",
+    "DatePicker",
+    "InputProps",
+    "Icon",
+    "Edit",
+    "Create",
+    "Show",
+    "DrawerProps",
+    "ButtonProps",
+    "ModalProps",
+    "useModal",
 ];
 
-function addRouterProvider(j: JSCodeshift, root: Collection<any>) {
+function updateRefineImports(j: JSCodeshift, root: Collection<any>) {
     const refineCoreImports = root.find(j.ImportDeclaration, {
         source: {
             value: "@pankod/refine-core",
@@ -101,8 +150,6 @@ function addRouterProvider(j: JSCodeshift, root: Collection<any>) {
                 value: "@pankod/refine",
             },
         });
-
-        console.log("refineImport", refineImport);
 
         refineImport.replaceWith((path) => {
             for (const item of path.node.specifiers) {
@@ -122,7 +169,15 @@ function addRouterProvider(j: JSCodeshift, root: Collection<any>) {
             return path.node;
         });
 
-        console.log(antdImports[0]);
+        const configProviderJSXAttribute = root.find(j.JSXAttribute, {
+            name: {
+                name: "configProviderProps",
+            },
+        });
+
+        if (configProviderJSXAttribute.length > 0) {
+            antdImports.push(j.importSpecifier(j.identifier("ConfigProvider")));
+        }
 
         root.find(j.ImportDeclaration, {
             source: {
@@ -133,104 +188,14 @@ function addRouterProvider(j: JSCodeshift, root: Collection<any>) {
         );
     } else {
         console.log(
-            "WARNING: A router provider from @pankod/refine-react-router is already imported. This tool will not make any migration for router provider.",
+            "WARNING: A refine core package from @pankod/refine-core is already imported. This tool will not make any migration for refine core.",
         );
         return;
     }
-
-    const refineRoots = root.find(j.JSXElement, {
-        openingElement: {
-            name: {
-                name: "Refine",
-            },
-        },
-    });
-
-    refineRoots.replaceWith((path) => {
-        const openingElement = path.node.openingElement;
-
-        let routesExpression: any;
-
-        const routesAttributeIndex = openingElement.attributes?.findIndex(
-            (attribute) =>
-                attribute.type === "JSXAttribute" &&
-                attribute.name.type === "JSXIdentifier" &&
-                attribute.name.name === "routes",
-        );
-
-        const routerProviderAttributeIndex =
-            openingElement.attributes?.findIndex(
-                (attribute) =>
-                    attribute.type === "JSXAttribute" &&
-                    attribute.name.type === "JSXIdentifier" &&
-                    attribute.name.name === "routerProvider",
-            );
-
-        if (routerProviderAttributeIndex > -1) {
-            console.log(
-                "WARNING: There is already a `routerProvider` attribute on Refine component. This tool will not make any migration for router provider.",
-            );
-            return;
-        }
-
-        if (routesAttributeIndex > -1) {
-            const routesAttribute =
-                openingElement.attributes?.[routesAttributeIndex];
-
-            if (routesAttribute?.type === "JSXAttribute") {
-                const attributeValue = routesAttribute.value;
-
-                if (attributeValue?.type === "JSXExpressionContainer") {
-                    routesExpression = attributeValue.expression;
-                }
-            }
-        }
-
-        if (routesExpression) {
-            openingElement.attributes?.push(
-                j.jsxAttribute(
-                    j.jsxIdentifier("routerProvider"),
-                    j.jsxExpressionContainer(
-                        j.objectExpression([
-                            j.spreadElement(j.identifier("routerProvider")),
-                            j.property(
-                                "init",
-                                j.identifier("routes"),
-                                routesExpression,
-                            ),
-                        ]),
-                    ),
-                ),
-            );
-
-            if (routesAttributeIndex > -1) {
-                openingElement.attributes?.splice(routesAttributeIndex, 1);
-            }
-        } else {
-            openingElement.attributes?.push(
-                j.jsxAttribute(
-                    j.jsxIdentifier("routerProvider"),
-                    j.jsxExpressionContainer(j.identifier("routerProvider")),
-                ),
-            );
-        }
-
-        return path.node;
-    });
 }
 
-const moveResources = (j: JSCodeshift, root: Collection<any>) => {
-    const newResources: { [key: string]: any }[] = [];
-
-    const resourceElements = root.find(j.JSXElement, {
-        openingElement: {
-            name: {
-                name: "Resource",
-            },
-        },
-    });
-
-    const rootElements = root.find(j.JSXElement, {
+const moveConfigProvider = (j: JSCodeshift, root: Collection<any>) => {
+    const refineElement = root.find(j.JSXElement, {
         openingElement: {
             name: {
                 name: "Refine",
@@ -238,93 +203,70 @@ const moveResources = (j: JSCodeshift, root: Collection<any>) => {
         },
     });
 
-    const resourceImportSpecifiers = root.find(j.ImportSpecifier, {
-        imported: {
-            name: "Resource",
-        },
-    });
+    console.log(refineElement.nodes()[0]);
 
-    if (resourceElements.length === 0) {
+    if (refineElement.length === 0) {
         return;
     }
 
-    // Get resources data
-    resourceElements.forEach((resources) => {
-        const newResource: { [key: string]: any } = {};
-
-        resources.node.openingElement.attributes?.forEach((resource) => {
-            if (
-                resource.type === "JSXAttribute" &&
-                resource.name.type === "JSXIdentifier" &&
-                resource.value
-            ) {
-                newResource[resource.name.name] = resource.value;
-            }
-        });
-
-        newResources.push(newResource);
+    const configProviderJSXAttribute = root.find(j.JSXAttribute, {
+        name: {
+            name: "configProviderProps",
+        },
     });
 
-    // Construct a resources attribute with the resources data
-    const newAttributes = j.jsxAttribute(
-        j.jsxIdentifier("resources"),
-        j.jsxExpressionContainer(
-            j.arrayExpression(
-                newResources.map((resource) => {
-                    const newValue = j.objectExpression(
-                        Object.entries(resource).map(([key, value]) => {
-                            const valueToPut = value.expression
-                                ? value.expression
-                                : value;
-                            return j.property(
-                                "init",
-                                j.identifier(key),
-                                valueToPut as any,
-                            );
-                        }),
-                    );
+    if (configProviderJSXAttribute.length === 0) {
+        return;
+    }
 
-                    return newValue;
-                }),
+    const configProviderValue = (
+        (configProviderJSXAttribute.nodes()[0].value as JSXExpressionContainer)
+            .expression as ObjectExpression
+    ).properties;
+
+    const newConfigProviderElement = j.jsxElement(
+        j.jsxOpeningElement(
+            j.jsxIdentifier("ConfigProvider"),
+            configProviderValue.map((p: ObjectProperty) =>
+                j.jsxAttribute(
+                    j.jsxIdentifier((p.key as Identifier).name),
+                    j.jsxExpressionContainer(p.value as any),
+                ),
             ),
         ),
+        j.jsxClosingElement(j.jsxIdentifier("ConfigProvider")),
+        refineElement.nodes(),
     );
 
-    // Add resources attribute
-    rootElements.replaceWith((path) => {
-        const attributes = path.node.openingElement.attributes;
+    refineElement.replaceWith(newConfigProviderElement);
 
-        const resourcesAttributeIndex = attributes.findIndex(
-            (attribute) =>
-                attribute.type === "JSXAttribute" &&
-                attribute.name.name === "resources",
-        );
+    configProviderJSXAttribute.remove();
+};
 
-        if (resourcesAttributeIndex !== -1) {
-            console.log(
-                "WARNING: There is already a 'resources' attribute on Refine component. This tool will not touch it.",
+const updateSetEditIdToSetId = (j: JSCodeshift, root: Collection<any>) => {
+    const updatedFormHooks = [
+        "useEditableTable",
+        "useModalForm",
+        "useDrawerForm",
+    ];
+
+    for (const formHook of updatedFormHooks) {
+        const useEditableTableHook = root.find(j.CallExpression, {
+            callee: {
+                name: formHook,
+            },
+        });
+
+        useEditableTableHook.forEach((path) => {
+            const setEditIdProperty = path.parentPath.node.id.properties.find(
+                (p) => p.value.name === "setEditId",
             );
 
-            return path.node;
-        }
-
-        attributes?.push(newAttributes);
-
-        return path.node;
-    });
-
-    resourceElements.remove();
-    resourceImportSpecifiers.remove();
-
-    // Clear the body of Refine component
-    rootElements.replaceWith((path) => {
-        const openingElement = path.node.openingElement;
-
-        path.node.closingElement = null;
-        openingElement.selfClosing = true;
-
-        return path.node;
-    });
+            if (setEditIdProperty) {
+                setEditIdProperty.value.name = "setId: setEditId";
+            }
+        });
+    }
 };
 
 const packagesToUpdate = [
@@ -339,6 +281,9 @@ const packagesToUpdate = [
     "@pankod/refine-strapi",
     "@pankod/refine-strapi-graphql",
     "@pankod/refine-supabase",
+    "@pankod/refine-appwrite",
+    "@pankod/refine-ably",
+    "@pankod/@pankod/refine-strapi-v4",
 ];
 
 export async function postTransform(files: any, flags: any) {
@@ -360,12 +305,12 @@ export async function postTransform(files: any, flags: any) {
         version: string;
     }> = [
         {
-            name: "@pankod/refine",
-            version: "2.x.x",
+            name: "@pankod/refine-core",
+            version: "3.x.x",
         },
         {
-            name: "@pankod/refine-react-router",
-            version: "2.x.x",
+            name: "@pankod/refine-antd",
+            version: "3.x.x",
         },
     ];
 
@@ -373,7 +318,7 @@ export async function postTransform(files: any, flags: any) {
         if (packagesToUpdate.includes(key)) {
             dependenciesToInstall.push({
                 name: key,
-                version: "2.x.x",
+                version: "3.x.x",
             });
         }
     }
@@ -387,6 +332,10 @@ export async function postTransform(files: any, flags: any) {
                 isOnline: true,
             },
         );
+
+        await remove(rootDir, ["@pankod/refine"], {
+            useYarn,
+        });
     }
 }
 
@@ -394,20 +343,19 @@ export default function transformer(file: FileInfo, api: API): string {
     const j = api.jscodeshift;
     const source = j(file.source);
 
-    /*     const rootElement = source.find(j.JSXElement, {
-        openingElement: {
-            name: {
-                name: "Refine",
-            },
+    const refineImports = source.find(j.ImportDeclaration, {
+        source: {
+            value: "@pankod/refine",
         },
     });
 
-    if (rootElement.length === 0) {
+    if (refineImports.length === 0) {
         return;
     }
- */
-    addRouterProvider(j, source);
-    //moveResources(j, source);
+
+    updateRefineImports(j, source);
+    moveConfigProvider(j, source);
+    updateSetEditIdToSetId(j, source);
 
     return source.toSource();
 }

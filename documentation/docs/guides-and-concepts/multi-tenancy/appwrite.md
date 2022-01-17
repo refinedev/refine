@@ -1,12 +1,12 @@
 ---
-id: multi-tenancy
-title: Multitenancy
+id: appwrite
+title: Appwrite
 ---
 
-import collections from '@site/static/img/guides-and-concepts/multi-tenant/collections.png';
-import sider from '@site/static/img/guides-and-concepts/multi-tenant/sider.png';
-import store_filter from '@site/static/img/guides-and-concepts/multi-tenant/store-filter.gif';
-import create from '@site/static/img/guides-and-concepts/multi-tenant/create.gif';
+import collections from '@site/static/img/guides-and-concepts/multi-tenant/appwrite/collections.png';
+import sider from '@site/static/img/guides-and-concepts/multi-tenant/appwrite/sider.png';
+import store_filter from '@site/static/img/guides-and-concepts/multi-tenant/appwrite/store-filter.gif';
+import create from '@site/static/img/guides-and-concepts/multi-tenant/appwrite/create.gif';
 
 ## What is Multitenancy?
 

@@ -2,6 +2,7 @@ import { Grid } from "antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
 import { FormProps } from "antd/lib/form";
 import { QueryObserverResult, UseQueryOptions } from "react-query";
+import { useForm as useFormSF } from "sunflower-antd";
 
 import { useForm } from "antd/lib/form/Form";
 import { SorterResult } from "antd/lib/table/interface";
@@ -115,6 +116,9 @@ export const useTable = <
     const breakpoint = Grid.useBreakpoint();
 
     const [form] = useForm<TSearchVariables>();
+    const formSF = useFormSF<any, TSearchVariables>({
+        form: form,
+    });
 
     const liveMode = useLiveMode(liveModeFromProp);
 
@@ -157,7 +161,7 @@ export const useTable = <
 
     return {
         searchFormProps: {
-            ...form,
+            ...formSF,
             onFinish,
         },
         tableProps: {
