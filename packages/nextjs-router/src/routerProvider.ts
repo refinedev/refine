@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import qs from "qs";
 
-import type { IRouterProvider } from "@pankod/refine";
+import type { IRouterProvider } from "@pankod/refine-core";
 
 import { Prompt } from "./prompt";
 

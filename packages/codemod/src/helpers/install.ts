@@ -18,6 +18,13 @@ interface InstallArgs {
     devDependencies?: boolean;
 }
 
+interface RemoveArgs {
+    /**
+     * Indicate whether to install packages using Yarn.
+     */
+    useYarn: boolean;
+}
+
 /**
  * Spawn a package manager installation with either Yarn or NPM.
  *
@@ -84,6 +91,73 @@ export function install(
                     console.log(chalk.yellow("You appear to be offline."));
                     console.log();
                 }
+            }
+        }
+        /**
+         * Add any package manager-specific flags.
+         */
+        if (useYarn) {
+            args.push(...yarnFlags);
+        } else {
+            args.push(...npmFlags);
+        }
+        /**
+         * Spawn the installation process.
+         */
+        const child = spawn(command, args, {
+            stdio: "inherit",
+            env: { ...process.env, ADBLOCK: "1", DISABLE_OPENCOLLECTIVE: "1" },
+        });
+        child.on("close", (code) => {
+            if (code !== 0) {
+                reject({ command: `${command} ${args.join(" ")}` });
+                return;
+            }
+            resolve();
+        });
+    });
+}
+
+/**
+ * Spawn a package manager removing with either Yarn or NPM.
+ *
+ * @returns A Promise that resolves once the removing is finished.
+ */
+export function remove(
+    root: string,
+    dependencies: string[] | null,
+    { useYarn }: RemoveArgs,
+): Promise<void> {
+    /**
+     * NPM-specific command-line flags.
+     */
+    const npmFlags: string[] = [];
+    /**
+     * Yarn-specific command-line flags.
+     */
+    const yarnFlags: string[] = [];
+    /**
+     * Return a Promise that resolves once the installation is finished.
+     */
+    return new Promise((resolve, reject) => {
+        let args: string[];
+        const command: string = useYarn ? "yarnpkg" : "npm";
+
+        if (dependencies && dependencies.length) {
+            /**
+             * If there are dependencies, run a variation of `{displayCommand} remove`.
+             */
+            if (useYarn) {
+                /**
+                 * Call `yarn remove --exact (--offline)? (-D)? ...`.
+                 */
+                args = ["remove", "--exact"];
+            } else {
+                /**
+                 * Call `npm remove [--save|--save-dev] ...`.
+                 */
+                args = ["remove", "--save-exact --save"];
+                args.push(...dependencies);
             }
         }
         /**

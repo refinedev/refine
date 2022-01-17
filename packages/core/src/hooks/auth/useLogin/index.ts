@@ -1,12 +1,11 @@
 import React from "react";
 import { useMutation, UseMutationResult } from "react-query";
-import { notification } from "antd";
 import qs from "qs";
 
 import { AuthContext } from "@contexts/auth";
 
 import { IAuthContext } from "../../../interfaces";
-import { useNavigation, useRouterContext } from "@hooks";
+import { useNavigation, useRouterContext, useNotification } from "@hooks";
 
 export type UseLoginReturnType<TData, TVariables = {}> = UseMutationResult<
     TData,
@@ -33,6 +32,7 @@ export const useLogin = <TData, TVariables = {}>(): UseLoginReturnType<
 
     const { useLocation } = useRouterContext();
     const { search } = useLocation();
+    const { close, open } = useNotification();
 
     const { to } = qs.parse(search?.substring(1));
 
@@ -42,13 +42,14 @@ export const useLogin = <TData, TVariables = {}>(): UseLoginReturnType<
         {
             onSuccess: () => {
                 replace((to as string) ?? "/");
-                notification.close("login-error");
+                close("login-error");
             },
             onError: (error: any) => {
-                notification.error({
+                open({
                     message: error?.name || "Login Error",
                     description: error?.message || "Invalid credentials",
                     key: "login-error",
+                    type: "error",
                 });
             },
         },

@@ -3,7 +3,7 @@ import {
     LiveProvider,
     CrudFilter,
     LiveEvent,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
 import {
     createClient,
     RealtimeSubscription,

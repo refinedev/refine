@@ -5,7 +5,7 @@ import {
     CrudFilters,
     CrudSorting,
     CrudOperators,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
 import { stringify, parse } from "qs";
 
 const axiosInstance = axios.create();

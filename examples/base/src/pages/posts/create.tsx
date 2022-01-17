@@ -5,9 +5,9 @@ import {
     Input,
     IResourceComponentsProps,
     Select,
-    useForm,
-    useSelect,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
+
+import { useForm, useSelect } from "@pankod/refine-antd";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
@@ -17,7 +17,9 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "interfaces";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+    const { formProps, saveButtonProps } = useForm<IPost>({
+        // warnWhenUnsavedChanges: true,
+    });
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",

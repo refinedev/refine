@@ -1,7 +1,4 @@
 import React from "react";
-import { ConfigProvider, notification } from "antd";
-import { ConfigProviderProps } from "antd/lib/config-provider";
-import { ConfigProps } from "antd/lib/notification";
 import {
     QueryClientProvider,
     QueryClient,
@@ -21,15 +18,18 @@ import {
 } from "@contexts/translation";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { RefineContextProvider } from "@contexts/refine";
-import { NotificationContextProvider } from "@contexts/notification";
+import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 import { UnsavedWarnContextProvider } from "@contexts/unsavedWarn";
 import { RouterContextProvider } from "@contexts/router";
 import {
     defaultAccessControlContext,
     AccessControlContextProvider,
 } from "@contexts/accessControl";
+import {
+    NotificationContextProvider,
+    defaultNotificationProvider,
+} from "@contexts/notification";
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
-import { defaultConfigProviderProps } from "@definitions";
 import {
     MutationMode,
     IDataContextProvider,
@@ -42,6 +42,7 @@ import {
     ILiveContext,
     LiveModeProps,
     IAccessControlContext,
+    INotificationContext,
 } from "../../../interfaces";
 
 interface QueryClientConfig {
@@ -49,15 +50,14 @@ interface QueryClientConfig {
     mutationCache?: MutationCache;
     defaultOptions?: DefaultOptions;
 }
-
-interface IResource extends IResourceItem, ResourceProps {}
 export interface RefineProps {
     authProvider?: IAuthContext;
     dataProvider: IDataContextProvider;
     liveProvider?: ILiveContext;
     routerProvider: IRouterProvider;
+    notificationProvider?: INotificationContext;
     accessControlProvider?: IAccessControlContext;
-    resources?: IResource[];
+    resources?: ResourceProps[];
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
     LoginPage?: React.FC;
@@ -66,7 +66,6 @@ export interface RefineProps {
     mutationMode?: MutationMode;
     syncWithLocation?: boolean;
     warnWhenUnsavedChanges?: boolean;
-    configProviderProps?: ConfigProviderProps;
     undoableTimeout?: number;
     Layout?: React.FC<LayoutProps>;
     Sider?: React.FC;
@@ -75,7 +74,6 @@ export interface RefineProps {
     OffLayoutArea?: React.FC;
     Title?: React.FC<TitleProps>;
     reactQueryClientConfig?: QueryClientConfig;
-    notificationConfig?: ConfigProps;
     reactQueryDevtoolConfig?: any;
     liveMode?: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
@@ -92,6 +90,7 @@ export const Refine: React.FC<RefineProps> = ({
     authProvider,
     dataProvider,
     routerProvider,
+    notificationProvider = defaultNotificationProvider,
     accessControlProvider = defaultAccessControlContext,
     resources: resourcesFromProps,
     DashboardPage,
@@ -104,7 +103,6 @@ export const Refine: React.FC<RefineProps> = ({
     mutationMode = "pessimistic",
     syncWithLocation = false,
     warnWhenUnsavedChanges = false,
-    configProviderProps = defaultConfigProviderProps,
     undoableTimeout = 5000,
     Title,
     Layout,
@@ -114,7 +112,6 @@ export const Refine: React.FC<RefineProps> = ({
     OffLayoutArea,
     reactQueryClientConfig,
     reactQueryDevtoolConfig,
-    notificationConfig,
     liveMode,
     onLiveEvent,
 }) => {
@@ -129,8 +126,6 @@ export const Refine: React.FC<RefineProps> = ({
             },
         },
     });
-
-    notification.config({ ...notificationConfig });
 
     const resources: IResourceItem[] = [];
 
@@ -159,21 +154,22 @@ export const Refine: React.FC<RefineProps> = ({
 
     return (
         <QueryClientProvider client={queryClient}>
-            <AuthContextProvider {...authProvider} isProvided={!!authProvider}>
-                <DataContextProvider {...dataProvider}>
-                    <LiveContextProvider liveProvider={liveProvider}>
-                        <RouterContextProvider {...routerProvider}>
-                            <ResourceContextProvider resources={resources}>
-                                <TranslationContextProvider
-                                    i18nProvider={i18nProvider}
-                                >
-                                    <AccessControlContextProvider
-                                        {...accessControlProvider}
+            <NotificationContextProvider {...notificationProvider}>
+                <AuthContextProvider
+                    {...authProvider}
+                    isProvided={!!authProvider}
+                >
+                    <DataContextProvider {...dataProvider}>
+                        <LiveContextProvider liveProvider={liveProvider}>
+                            <RouterContextProvider {...routerProvider}>
+                                <ResourceContextProvider resources={resources}>
+                                    <TranslationContextProvider
+                                        i18nProvider={i18nProvider}
                                     >
-                                        <ConfigProvider
-                                            {...configProviderProps}
+                                        <AccessControlContextProvider
+                                            {...accessControlProvider}
                                         >
-                                            <NotificationContextProvider>
+                                            <UndoableQueueContextProvider>
                                                 <RefineContextProvider
                                                     mutationMode={mutationMode}
                                                     warnWhenUnsavedChanges={
@@ -217,15 +213,15 @@ export const Refine: React.FC<RefineProps> = ({
                                                         </>
                                                     </UnsavedWarnContextProvider>
                                                 </RefineContextProvider>
-                                            </NotificationContextProvider>
-                                        </ConfigProvider>
-                                    </AccessControlContextProvider>
-                                </TranslationContextProvider>
-                            </ResourceContextProvider>
-                        </RouterContextProvider>
-                    </LiveContextProvider>
-                </DataContextProvider>
-            </AuthContextProvider>
+                                            </UndoableQueueContextProvider>
+                                        </AccessControlContextProvider>
+                                    </TranslationContextProvider>
+                                </ResourceContextProvider>
+                            </RouterContextProvider>
+                        </LiveContextProvider>
+                    </DataContextProvider>
+                </AuthContextProvider>
+            </NotificationContextProvider>
             <ReactQueryDevtools
                 initialIsOpen={false}
                 position="bottom-right"

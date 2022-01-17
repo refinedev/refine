@@ -12,7 +12,7 @@ import {
     useRefineContext,
     useRouterContext,
     CanAccess,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
 
 type IRoutesProps = RouteProps & { routes?: RouteProps[] };
 

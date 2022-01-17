@@ -1,9 +1,10 @@
 {
   "name": "refineflix",
-  "version": "2.5.4",
+  "version": "3.0.0",
   "private": true,
   "dependencies": {
     "@pankod/refine": "^1.0.76",
+    "@pankod/refine-core": "^1.0.76",
     "@pankod/refine-supabase": "^0.1.0",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",

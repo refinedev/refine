@@ -5,8 +5,8 @@ import {
     HttpError,
     CrudOperators,
     CrudFilters,
-} from "@pankod/refine";
-import { CrudSorting } from "@pankod/refine/dist/interfaces";
+    CrudSorting,
+} from "@pankod/refine-core";
 
 const axiosInstance = axios.create();
 

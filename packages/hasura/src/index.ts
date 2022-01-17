@@ -5,7 +5,7 @@ import {
     CrudFilters,
     CrudSorting,
     DataProvider,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
 
 export type HasuraSortingType = Record<string, "asc" | "desc">;
 

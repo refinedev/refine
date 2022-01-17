@@ -10,8 +10,9 @@ import {
     useMutationMode,
     useTranslate,
     usePublish,
+    useHandleNotification,
 } from "@hooks";
-import { ActionTypes } from "@contexts/notification";
+import { ActionTypes } from "@contexts/undoableQueue";
 import {
     IDataContext,
     BaseRecord,
@@ -24,7 +25,6 @@ import {
     SuccessErrorNotification,
     MetaDataQuery,
 } from "../../interfaces";
-import { handleNotification } from "@definitions/helpers";
 
 type UpdateManyParams<TVariables> = {
     ids: string[];
@@ -75,6 +75,7 @@ export const useUpdateMany = <
 
     const { notificationDispatch } = useCancelNotification();
     const publish = usePublish();
+    const handleNotification = useHandleNotification();
 
     const getAllQueries = useCacheQueries();
 
@@ -255,8 +256,11 @@ export const useUpdateMany = <
 
                 handleNotification(successNotification, {
                     key: `${ids}-${resource}-notification`,
-                    message: translate("notifications.success", "Successful"),
                     description: translate(
+                        "notifications.success",
+                        "Successful",
+                    ),
+                    message: translate(
                         "notifications.editSuccess",
                         {
                             resource: translate(
