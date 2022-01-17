@@ -50,6 +50,8 @@ export {
     stringifyTableParams,
     unionFilters,
     setInitialFilters,
+    unionSorters,
+    setInitialSorters,
 } from "./definitions/table";
 export {
     userFriendlyResourceName,

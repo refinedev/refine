@@ -1,4 +1,4 @@
-import { file2Base64, getValueFromEvent } from "./";
+import { getValueFromEvent } from "./";
 
 class FileReaderMock {
     DONE = FileReader.DONE;
@@ -29,18 +29,6 @@ describe("definitions/upload", () => {
 
     beforeEach(() => {
         jest.clearAllMocks();
-    });
-
-    it("file2Base64 success", async () => {
-        const fileReader = new FileReaderMock();
-        jest.spyOn(window, "FileReader").mockImplementation(() => fileReader);
-
-        fileReader.result = "file content";
-        fileReader.addEventListener.mockImplementation((_, fn) => fn());
-
-        const content = await file2Base64({ ...file, uid: "uid" });
-
-        expect(content).toBe("file content");
     });
 
     it("getValueFromEvent", async () => {
