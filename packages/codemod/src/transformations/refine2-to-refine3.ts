@@ -6,7 +6,6 @@ import {
     ImportSpecifier,
     JSXExpressionContainer,
     ObjectExpression,
-    JSXOpeningElement,
     ObjectProperty,
     Identifier,
 } from "jscodeshift";
@@ -179,13 +178,44 @@ function updateRefineImports(j: JSCodeshift, root: Collection<any>) {
             antdImports.push(j.importSpecifier(j.identifier("ConfigProvider")));
         }
 
-        root.find(j.ImportDeclaration, {
-            source: {
-                value: "@pankod/refine-core",
+        const refineElement = root.find(j.JSXElement, {
+            openingElement: {
+                name: {
+                    name: "Refine",
+                },
             },
-        }).insertAfter(
-            j.importDeclaration(antdImports, j.literal("@pankod/refine-antd")),
-        );
+        });
+
+        if (refineElement.length > 0) {
+            const notificationProviderJSXAttribute = root.find(j.JSXAttribute, {
+                name: {
+                    name: "notificationProvider",
+                },
+            });
+
+            if (notificationProviderJSXAttribute.length === 0) {
+                antdImports.push(
+                    j.importSpecifier(j.identifier("notificationProvider")),
+                );
+            }
+        }
+
+        if (antdImports.length > 0) {
+            root.find(j.ImportDeclaration, {
+                source: {
+                    value: "@pankod/refine-core",
+                },
+            }).insertAfter(
+                j.importDeclaration(
+                    antdImports,
+                    j.literal("@pankod/refine-antd"),
+                ),
+            );
+        }
+
+        if (coreImports.length === 0) {
+            refineImport.remove();
+        }
     } else {
         console.log(
             "WARNING: A refine core package from @pankod/refine-core is already imported. This tool will not make any migration for refine core.",
@@ -203,10 +233,27 @@ const moveConfigProvider = (j: JSCodeshift, root: Collection<any>) => {
         },
     });
 
-    console.log(refineElement.nodes()[0]);
-
     if (refineElement.length === 0) {
         return;
+    }
+
+    const notificationProviderJSXAttribute = root.find(j.JSXAttribute, {
+        name: {
+            name: "notificationProvider",
+        },
+    });
+
+    if (notificationProviderJSXAttribute.length === 0) {
+        refineElement.forEach((path) => {
+            path.node.openingElement.attributes.push(
+                j.jsxAttribute(
+                    j.jsxIdentifier("notificationProvider"),
+                    j.jsxExpressionContainer(
+                        j.identifier("notificationProvider"),
+                    ),
+                ),
+            );
+        });
     }
 
     const configProviderJSXAttribute = root.find(j.JSXAttribute, {
@@ -215,32 +262,32 @@ const moveConfigProvider = (j: JSCodeshift, root: Collection<any>) => {
         },
     });
 
-    if (configProviderJSXAttribute.length === 0) {
-        return;
-    }
+    if (configProviderJSXAttribute.length > 0) {
+        const configProviderValue = (
+            (
+                configProviderJSXAttribute.nodes()[0]
+                    .value as JSXExpressionContainer
+            ).expression as ObjectExpression
+        ).properties;
 
-    const configProviderValue = (
-        (configProviderJSXAttribute.nodes()[0].value as JSXExpressionContainer)
-            .expression as ObjectExpression
-    ).properties;
-
-    const newConfigProviderElement = j.jsxElement(
-        j.jsxOpeningElement(
-            j.jsxIdentifier("ConfigProvider"),
-            configProviderValue.map((p: ObjectProperty) =>
-                j.jsxAttribute(
-                    j.jsxIdentifier((p.key as Identifier).name),
-                    j.jsxExpressionContainer(p.value as any),
+        const newConfigProviderElement = j.jsxElement(
+            j.jsxOpeningElement(
+                j.jsxIdentifier("ConfigProvider"),
+                configProviderValue.map((p: ObjectProperty) =>
+                    j.jsxAttribute(
+                        j.jsxIdentifier((p.key as Identifier).name),
+                        j.jsxExpressionContainer(p.value as any),
+                    ),
                 ),
             ),
-        ),
-        j.jsxClosingElement(j.jsxIdentifier("ConfigProvider")),
-        refineElement.nodes(),
-    );
+            j.jsxClosingElement(j.jsxIdentifier("ConfigProvider")),
+            refineElement.nodes(),
+        );
 
-    refineElement.replaceWith(newConfigProviderElement);
+        refineElement.replaceWith(newConfigProviderElement);
 
-    configProviderJSXAttribute.remove();
+        configProviderJSXAttribute.remove();
+    }
 };
 
 const updateSetEditIdToSetId = (j: JSCodeshift, root: Collection<any>) => {
