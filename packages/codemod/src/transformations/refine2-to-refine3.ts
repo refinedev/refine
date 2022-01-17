@@ -4,6 +4,11 @@ import {
     Collection,
     FileInfo,
     ImportSpecifier,
+    JSXExpressionContainer,
+    ObjectExpression,
+    JSXOpeningElement,
+    ObjectProperty,
+    Identifier,
 } from "jscodeshift";
 import fs from "fs";
 import path from "path";
@@ -129,7 +134,7 @@ const availableRefineAntdImports = [
     "useModal",
 ];
 
-function addRouterProvider(j: JSCodeshift, root: Collection<any>) {
+function updateRefineImports(j: JSCodeshift, root: Collection<any>) {
     const refineCoreImports = root.find(j.ImportDeclaration, {
         source: {
             value: "@pankod/refine-core",
@@ -164,6 +169,16 @@ function addRouterProvider(j: JSCodeshift, root: Collection<any>) {
             return path.node;
         });
 
+        const configProviderJSXAttribute = root.find(j.JSXAttribute, {
+            name: {
+                name: "configProviderProps",
+            },
+        });
+
+        if (configProviderJSXAttribute.length > 0) {
+            antdImports.push(j.importSpecifier(j.identifier("ConfigProvider")));
+        }
+
         root.find(j.ImportDeclaration, {
             source: {
                 value: "@pankod/refine-core",
@@ -178,6 +193,82 @@ function addRouterProvider(j: JSCodeshift, root: Collection<any>) {
         return;
     }
 }
+
+const moveConfigProvider = (j: JSCodeshift, root: Collection<any>) => {
+    const refineElement = root.find(j.JSXElement, {
+        openingElement: {
+            name: {
+                name: "Refine",
+            },
+        },
+    });
+
+    console.log(refineElement.nodes()[0]);
+
+    if (refineElement.length === 0) {
+        console.log("not found Refine");
+        return;
+    }
+
+    const configProviderJSXAttribute = root.find(j.JSXAttribute, {
+        name: {
+            name: "configProviderProps",
+        },
+    });
+
+    if (configProviderJSXAttribute.length === 0) {
+        return;
+    }
+
+    const configProviderValue = (
+        (configProviderJSXAttribute.nodes()[0].value as JSXExpressionContainer)
+            .expression as ObjectExpression
+    ).properties;
+
+    const newConfigProviderElement = j.jsxElement(
+        j.jsxOpeningElement(
+            j.jsxIdentifier("ConfigProvider"),
+            configProviderValue.map((p: ObjectProperty) =>
+                j.jsxAttribute(
+                    j.jsxIdentifier((p.key as Identifier).name),
+                    j.jsxExpressionContainer(p.value as any),
+                ),
+            ),
+        ),
+        j.jsxClosingElement(j.jsxIdentifier("ConfigProvider")),
+        refineElement.nodes(),
+    );
+
+    refineElement.replaceWith(newConfigProviderElement);
+
+    configProviderJSXAttribute.remove();
+};
+
+const updateSetEditIdToSetId = (j: JSCodeshift, root: Collection<any>) => {
+    const updatedFormHooks = [
+        "useEditableTable",
+        "useModalForm",
+        "useDrawerForm",
+    ];
+
+    for (const formHook of updatedFormHooks) {
+        const useEditableTableHook = root.find(j.CallExpression, {
+            callee: {
+                name: formHook,
+            },
+        });
+
+        useEditableTableHook.forEach((path) => {
+            const setEditIdProperty = path.parentPath.node.id.properties.find(
+                (p) => p.value.name === "setEditId",
+            );
+
+            if (setEditIdProperty) {
+                setEditIdProperty.value.name = "setId: setEditId";
+            }
+        });
+    }
+};
 
 const packagesToUpdate = [
     "@pankod/refine-airtable",
@@ -257,8 +348,9 @@ export default function transformer(file: FileInfo, api: API): string {
         return;
     }
 
-    addRouterProvider(j, source);
-    //moveResources(j, source);
+    updateRefineImports(j, source);
+    moveConfigProvider(j, source);
+    updateSetEditIdToSetId(j, source);
 
     return source.toSource();
 }
