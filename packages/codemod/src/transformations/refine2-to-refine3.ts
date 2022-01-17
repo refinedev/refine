@@ -12,7 +12,7 @@ import {
 } from "jscodeshift";
 import fs from "fs";
 import path from "path";
-import { install } from "../helpers";
+import { install, remove } from "../helpers";
 import checkPackageLock from "../helpers/checkPackageLock";
 
 export const parser = "tsx";
@@ -188,7 +188,7 @@ function updateRefineImports(j: JSCodeshift, root: Collection<any>) {
         );
     } else {
         console.log(
-            "WARNING: A router provider from @pankod/refine-react-router is already imported. This tool will not make any migration for router provider.",
+            "WARNING: A refine core package from @pankod/refine-core is already imported. This tool will not make any migration for refine core.",
         );
         return;
     }
@@ -206,7 +206,6 @@ const moveConfigProvider = (j: JSCodeshift, root: Collection<any>) => {
     console.log(refineElement.nodes()[0]);
 
     if (refineElement.length === 0) {
-        console.log("not found Refine");
         return;
     }
 
@@ -282,10 +281,12 @@ const packagesToUpdate = [
     "@pankod/refine-strapi",
     "@pankod/refine-strapi-graphql",
     "@pankod/refine-supabase",
+    "@pankod/refine-appwrite",
+    "@pankod/refine-ably",
+    "@pankod/@pankod/refine-strapi-v4",
 ];
 
 export async function postTransform(files: any, flags: any) {
-    return;
     const rootDir = path.join(process.cwd(), files[0]);
     const packageJsonPath = path.join(rootDir, "package.json");
     const useYarn = checkPackageLock(rootDir) === "yarn.lock";
@@ -304,12 +305,12 @@ export async function postTransform(files: any, flags: any) {
         version: string;
     }> = [
         {
-            name: "@pankod/refine",
-            version: "2.x.x",
+            name: "@pankod/refine-core",
+            version: "3.x.x",
         },
         {
-            name: "@pankod/refine-react-router",
-            version: "2.x.x",
+            name: "@pankod/refine-antd",
+            version: "3.x.x",
         },
     ];
 
@@ -317,7 +318,7 @@ export async function postTransform(files: any, flags: any) {
         if (packagesToUpdate.includes(key)) {
             dependenciesToInstall.push({
                 name: key,
-                version: "2.x.x",
+                version: "3.x.x",
             });
         }
     }
@@ -331,6 +332,10 @@ export async function postTransform(files: any, flags: any) {
                 isOnline: true,
             },
         );
+
+        await remove(rootDir, ["@pankod/refine"], {
+            useYarn,
+        });
     }
 }
 

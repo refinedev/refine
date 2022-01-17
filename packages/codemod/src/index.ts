@@ -29,7 +29,10 @@ export const transformerDirectory = path.join(
     "dist/transformations",
 );
 
-const transformsWithPostTransform = ["refine1-to-refine2"];
+const transformsWithPostTransform = [
+    "refine1-to-refine2",
+    "refine2-to-refine3",
+];
 
 export function checkGitStatus(force) {
     let clean = false;
