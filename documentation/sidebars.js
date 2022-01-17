@@ -292,7 +292,14 @@ module.exports = {
                     label: "Web3",
                     items: ["guides-and-concepts/web3/ethereum-signin"],
                 },
-                "guides-and-concepts/multi-tenancy",
+                {
+                    type: "category",
+                    label: "Multitenancy",
+                    items: [
+                        "guides-and-concepts/multi-tenancy/appwrite",
+                        "guides-and-concepts/multi-tenancy/strapi-v4",
+                    ],
+                },
                 "guides-and-concepts/mutation-mode",
                 "guides-and-concepts/custom-layout",
                 "guides-and-concepts/custom-pages",
@@ -435,7 +442,14 @@ module.exports = {
                     label: "Web3",
                     items: ["examples/web3/web3Login"],
                 },
-                "examples/multi-tenant/multiTenant",
+                {
+                    type: "category",
+                    label: "Multitenancy",
+                    items: [
+                        "examples/multi-tenancy/appwrite",
+                        "examples/multi-tenancy/strapi-v4",
+                    ],
+                },
                 "examples/import-export",
                 "examples/e2e-testing",
                 "examples/customPages",
