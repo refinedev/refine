@@ -1,3 +1,5 @@
+import { useLogin, useTranslate } from "@pankod/refine-core";
+
 import {
     Row,
     Col,
@@ -8,9 +10,7 @@ import {
     Input,
     Button,
     Checkbox,
-    useLogin,
-    useTranslate,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { Trans } from "react-i18next";
 

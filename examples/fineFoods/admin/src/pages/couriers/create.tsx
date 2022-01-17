@@ -1,15 +1,18 @@
 import {
+    IResourceComponentsProps,
+    useTranslate,
+    useApiUrl,
+} from "@pankod/refine-core";
+
+import {
     Form,
     Create,
     Select,
     Upload,
     Input,
-    IResourceComponentsProps,
     Button,
     SaveButton,
     Steps,
-    useTranslate,
-    useApiUrl,
     getValueFromEvent,
     useStepsForm,
     useSelect,
@@ -19,7 +22,8 @@ import {
     Row,
     Col,
     InputProps,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
+
 import InputMask from "react-input-mask";
 
 const { Text } = Typography;

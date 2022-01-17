@@ -1,12 +1,6 @@
 import { useMemo, useState } from "react";
-import {
-    Typography,
-    useApiUrl,
-    useCustom,
-    DatePicker,
-    NumberField,
-    useTranslate,
-} from "@pankod/refine";
+import { useApiUrl, useCustom, useTranslate } from "@pankod/refine-core";
+import { Typography, DatePicker, NumberField } from "@pankod/refine-antd";
 import { Line } from "@ant-design/charts";
 import { LineConfig } from "@ant-design/plots/lib/components/line";
 import dayjs, { Dayjs } from "dayjs";

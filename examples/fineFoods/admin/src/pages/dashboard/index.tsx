@@ -1,4 +1,4 @@
-import { Row, Col, Card, Typography } from "@pankod/refine";
+import { Row, Col, Card, Typography } from "@pankod/refine-antd";
 import { useTranslation } from "react-i18next";
 
 import {

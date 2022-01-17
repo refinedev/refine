@@ -1,4 +1,4 @@
-import { Icons } from "@pankod/refine";
+import { Icons } from "@pankod/refine-antd";
 
 import "./style.less";
 

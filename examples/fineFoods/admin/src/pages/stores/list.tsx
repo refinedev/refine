@@ -1,19 +1,22 @@
 import {
+    useTranslate,
+    IResourceComponentsProps,
+    useNavigation,
+    useShow,
+} from "@pankod/refine-core";
+
+import {
     List,
     Table,
     useTable,
-    useTranslate,
-    IResourceComponentsProps,
     DateField,
     Dropdown,
     BooleanField,
     Menu,
     Icons,
     Avatar,
-    useNavigation,
     useModal,
-    useShow,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 const { FormOutlined } = Icons;
 

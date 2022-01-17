@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { useList, useTranslate, Button, Space, Skeleton } from "@pankod/refine";
+import { useList, useTranslate } from "@pankod/refine-core";
+
+import { Button, Space, Skeleton } from "@pankod/refine-antd";
 
 import { ICategory } from "interfaces";
 

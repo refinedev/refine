@@ -1,10 +1,15 @@
 import {
+    useTranslate,
+    IResourceComponentsProps,
+    CrudFilters,
+    HttpError,
+} from "@pankod/refine-core";
+
+import {
     List,
     Table,
     Avatar,
     useTable,
-    useTranslate,
-    IResourceComponentsProps,
     DateField,
     BooleanField,
     Card,
@@ -13,14 +18,12 @@ import {
     Form,
     DatePicker,
     Button,
-    CrudFilters,
     Select,
     FormProps,
     Row,
     Col,
-    HttpError,
     ShowButton,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IUser, IUserFilterVariables } from "interfaces";
 
