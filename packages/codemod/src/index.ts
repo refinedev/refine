@@ -31,7 +31,7 @@ export const transformerDirectory = path.join(
 
 const transformsWithPostTransform = [
     "refine1-to-refine2",
-    //"refine2-to-refine3",
+    "refine2-to-refine3",
 ];
 
 export function checkGitStatus(force) {

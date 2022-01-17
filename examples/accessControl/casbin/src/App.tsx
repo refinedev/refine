@@ -1,8 +1,9 @@
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import { notificationProvider } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 import { newEnforcer } from "casbin.js";
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { model, adapter } from "accessControl";
 import { Header } from "components/header";
@@ -79,6 +80,7 @@ const App: React.FC = () => {
                 },
             ]}
             Header={() => <Header role={role} />}
+            notificationProvider={notificationProvider}
         />
     );
 };
