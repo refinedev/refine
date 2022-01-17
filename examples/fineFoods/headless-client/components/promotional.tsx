@@ -6,7 +6,7 @@ export const Promotional: React.FC = () => {
     return (
         <div className="flex flex-wrap items-center justify-between ">
             <div className="flex flex-col gap-8">
-                <div className=" text-white font-[Montserrat]">
+                <div className=" text-white">
                     <h1 className="text-7xl font-bold leading-[64px]">
                         Delight <br /> in every bite!
                     </h1>
