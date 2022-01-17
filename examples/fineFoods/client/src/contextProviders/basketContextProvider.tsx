@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import { useMany } from "@pankod/refine";
+import { useMany } from "@pankod/refine-core";
 
 import { IBasketOrder, IProduct } from "@interfaces";
 import { OrdersModalContextProvider } from "@contextProviders";

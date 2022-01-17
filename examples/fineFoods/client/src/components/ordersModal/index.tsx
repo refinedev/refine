@@ -1,5 +1,7 @@
 import { useBasketContext } from "@hooks/useBasketContext";
 import { useOrdesModalContext } from "@hooks/useOrdersModalContext";
+import { useCreate, useNavigation } from "@pankod/refine-core";
+
 import {
     AntdList as List,
     Col,
@@ -8,9 +10,7 @@ import {
     Typography,
     NumberField,
     Button,
-    useCreate,
-    useNavigation,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { OrderIcon, OrderModalProductItem } from "@components";
 import { IOrder } from "@interfaces";

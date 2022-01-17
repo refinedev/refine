@@ -6,7 +6,7 @@ import {
     InputNumber,
     Icons,
     NumberField,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { useBasketContext } from "@hooks";
 import { useState } from "react";

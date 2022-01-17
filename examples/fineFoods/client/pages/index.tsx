@@ -1,5 +1,6 @@
 import { GetServerSideProps } from "next";
-import { Row, Col, LayoutWrapper, Card, Typography } from "@pankod/refine";
+import { LayoutWrapper } from "@pankod/refine-core";
+import { Row, Col, Card, Typography } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import { API_URL } from "../src/constants";

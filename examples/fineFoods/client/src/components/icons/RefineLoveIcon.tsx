@@ -1,4 +1,4 @@
-import { Icon } from "@pankod/refine";
+import { Icon } from "@pankod/refine-antd";
 
 const SvgRefineLoveIcon = (props: React.SVGProps<SVGSVGElement>) => {
     return (

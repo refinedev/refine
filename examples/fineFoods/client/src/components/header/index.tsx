@@ -1,10 +1,6 @@
-import {
-    AntdLayout,
-    Row,
-    Typography,
-    NumberField,
-    useRouterContext,
-} from "@pankod/refine";
+import { useRouterContext } from "@pankod/refine-core";
+
+import { AntdLayout, Row, Typography, NumberField } from "@pankod/refine-antd";
 
 import { MotorcycleIcon, FinefoodsIcon, BasketIcon } from "@components";
 

@@ -2,7 +2,8 @@ import React from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
 
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import { notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-nextjs-router";
 
@@ -25,6 +26,8 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             Footer={Footer}
             resources={[{ name: "users" }]}
             warnWhenUnsavedChanges={true}
+            notificationProvider={notificationProvider}
+            catchAll={ErrorComponent}
         >
             <Head>
                 <title>finefoods client example - refine</title>

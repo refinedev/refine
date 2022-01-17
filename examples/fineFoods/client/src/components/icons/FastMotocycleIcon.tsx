@@ -1,4 +1,4 @@
-import { Icon } from "@pankod/refine";
+import { Icon } from "@pankod/refine-antd";
 
 const SvgFastMotoCycleIcon: React.FC<React.SVGProps<SVGSVGElement>> = () => (
     <svg
