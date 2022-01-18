@@ -135,10 +135,7 @@ const availableCoreAntdImports = [
     "useExport",
     "Authenticated",
     "CanAccess",
-    "ErrorComponent",
     "LayoutWrapper",
-    "LoginPage",
-    "ReadyPage",
     "Refine",
     "RouteChangeHandler",
     "UndoableQueue",
@@ -532,30 +529,39 @@ const defaultCatchAllPage = (j: JSCodeshift, root: Collection<any>) => {
         },
     });
 
-    if (catchAllJSXAttribute.length === 0) {
-        refineElement.forEach((path) => {
-            path.node.openingElement.attributes.push(
-                j.jsxAttribute(
-                    j.jsxIdentifier("catchAll"),
-                    j.jsxExpressionContainer(j.identifier("ErrorComponent")),
+    if (catchAllJSXAttribute.length > 0) {
+        return;
+    }
+
+    refineElement.forEach((path) => {
+        path.node.openingElement.attributes.push(
+            j.jsxAttribute(
+                j.jsxIdentifier("catchAll"),
+                j.jsxExpressionContainer(
+                    j.jsxElement(
+                        j.jsxOpeningElement(
+                            j.jsxIdentifier("ErrorComponent"),
+                            [],
+                            true,
+                        ),
+                    ),
                 ),
+            ),
+        );
+    });
+
+    const refineAntdImport = root.find(j.ImportDeclaration, {
+        source: {
+            value: "@pankod/refine-antd",
+        },
+    });
+
+    if (refineAntdImport.length > 0) {
+        refineAntdImport.forEach((path) => {
+            path.node.specifiers.push(
+                j.importSpecifier(j.identifier("ErrorComponent")),
             );
         });
-
-        const refineAntdImport = root.find(j.ImportDeclaration, {
-            source: {
-                value: "@pankod/refine-antd",
-            },
-        });
-
-        // Fix convert to component
-        if (refineAntdImport.length > 0) {
-            refineAntdImport.forEach((path) => {
-                path.node.specifiers.push(
-                    j.importSpecifier(j.identifier("ErrorComponent")),
-                );
-            });
-        }
     }
 };
 

@@ -69,7 +69,6 @@ const App: React.FC = () => {
                 Title={Title}
                 Header={Header}
                 Layout={Layout}
-                catchAll={<ErrorComponent />}
                 syncWithLocation
                 warnWhenUnsavedChanges
                 resources={[
@@ -117,6 +116,7 @@ const App: React.FC = () => {
                     },
                 ]}
                 notificationProvider={notificationProvider}
+                catchAll={<ErrorComponent />}
             ></Refine>
         </ConfigProvider>
     );
