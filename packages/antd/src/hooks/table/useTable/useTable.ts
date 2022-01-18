@@ -15,10 +15,11 @@ import {
     GetListResponse,
     SuccessErrorNotification,
     HttpError,
-    MetaDataQuery,
     LiveModeProps,
     unionFilters,
     useTable as useTableCore,
+    unionSorters,
+    useTableProps as useTablePropsCore,
 } from "@pankod/refine-core";
 
 import {
@@ -26,19 +27,10 @@ import {
     mapAntdFilterToCrudFilter,
 } from "../../../definitions/table";
 
-export type useTableProps<TData, TError, TSearchVariables = unknown> = {
-    permanentFilter?: CrudFilters;
-    resource?: string;
-    initialCurrent?: number;
-    initialPageSize?: number;
-    initialSorter?: CrudSorting;
-    initialFilter?: CrudFilters;
-    syncWithLocation?: boolean;
-    onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
-    queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
-    metaData?: MetaDataQuery;
-} & SuccessErrorNotification &
-    LiveModeProps;
+export type useTableProps<TData, TError, TSearchVariables = unknown> =
+    useTablePropsCore<TData, TError, TSearchVariables> &
+        SuccessErrorNotification &
+        LiveModeProps;
 
 export type useTableReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -67,11 +59,12 @@ export const useTable = <
     TSearchVariables = unknown,
 >({
     onSearch,
-    permanentFilter,
     initialCurrent,
     initialPageSize,
     initialSorter,
+    permanentSorter,
     initialFilter,
+    permanentFilter,
     syncWithLocation: syncWithLocationProp,
     resource: resourceFromProp,
     successNotification,
@@ -141,7 +134,7 @@ export const useTable = <
 
         // Map Antd:Sorter -> refine:CrudSorting
         const crudSorting = mapAntdSorterToCrudSorting(sorter);
-        setSorter(crudSorting);
+        setSorter(() => unionSorters(permanentSorter, crudSorting));
 
         // tablePropsSunflower.onChange(pagination, filters, sorter);
         setCurrent(pagination.current);

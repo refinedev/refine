@@ -5,7 +5,7 @@ import {
     ModalProps,
     FormProps,
     Upload,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import {
     useStrapiUpload,

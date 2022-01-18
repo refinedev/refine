@@ -14,6 +14,8 @@ import {
     parseTableParams,
     unionFilters,
     setInitialFilters,
+    setInitialSorters,
+    unionSorters,
 } from "@definitions/table";
 
 import {
@@ -29,12 +31,13 @@ import {
 } from "../../interfaces";
 
 export type useTableProps<TData, TError, TSearchVariables = unknown> = {
-    permanentFilter?: CrudFilters;
     resource?: string;
     initialCurrent?: number;
     initialPageSize?: number;
     initialSorter?: CrudSorting;
+    permanentSorter?: CrudSorting;
     initialFilter?: CrudFilters;
+    permanentFilter?: CrudFilters;
     syncWithLocation?: boolean;
     onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
@@ -68,17 +71,19 @@ export type useTableReturnType<
  */
 
 const defaultPermanentFilter: CrudFilters = [];
+const defaultPermanentSorter: CrudSorting = [];
 
 export const useTable = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
 >({
-    permanentFilter = defaultPermanentFilter,
     initialCurrent = 1,
     initialPageSize = 10,
     initialSorter,
+    permanentSorter = defaultPermanentSorter,
     initialFilter,
+    permanentFilter = defaultPermanentFilter,
     syncWithLocation: syncWithLocationProp,
     resource: resourceFromProp,
     successNotification,
@@ -122,7 +127,10 @@ export const useTable = <
 
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
-    const [sorter, setSorter] = useState<CrudSorting>(defaultSorter || []);
+    const [sorter, setSorter] = useState<CrudSorting>(
+        setInitialSorters(permanentSorter, defaultSorter ?? []),
+    );
+
     const [filters, setFilters] = useState<CrudFilters>(
         setInitialFilters(permanentFilter, defaultFilter ?? []),
     );
@@ -153,7 +161,7 @@ export const useTable = <
                 pageSize,
             },
             filters: unionFilters(permanentFilter, [], filters),
-            sort: sorter,
+            sort: unionSorters(permanentSorter, sorter),
         },
         queryOptions,
         successNotification,

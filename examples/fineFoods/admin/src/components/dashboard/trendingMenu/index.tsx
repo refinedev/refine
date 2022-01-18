@@ -5,7 +5,7 @@ import {
     NumberField,
     useSimpleList,
     AntdList,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 import "./style.less";
 
 import { IOrder } from "interfaces";

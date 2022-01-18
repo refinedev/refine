@@ -1,4 +1,4 @@
-import { Grid } from "@pankod/refine";
+import { Grid } from "@pankod/refine-antd";
 
 const { useBreakpoint } = Grid;
 

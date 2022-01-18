@@ -1,3 +1,5 @@
+import { useTranslate } from "@pankod/refine-core";
+
 import {
     Avatar,
     Card,
@@ -8,8 +10,7 @@ import {
     Menu,
     NumberField,
     Typography,
-    useTranslate,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 const { Text, Paragraph } = Typography;
 const { CloseCircleOutlined, FormOutlined } = Icons;

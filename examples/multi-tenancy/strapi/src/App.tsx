@@ -1,8 +1,14 @@
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import {
+    notificationProvider,
+    LoginPage,
+    Layout,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import { DataProvider } from "@pankod/refine-strapi-v4";
 import routerProvider from "@pankod/refine-react-router";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { StoreProvider } from "context/store";
 import { CustomSider } from "components/sider";
@@ -31,6 +37,10 @@ const App: React.FC = () => {
                         edit: OrderEdit,
                     },
                 ]}
+                notificationProvider={notificationProvider}
+                LoginPage={LoginPage}
+                Layout={Layout}
+                catchAll={ErrorComponent}
             />
         </StoreProvider>
     );

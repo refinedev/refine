@@ -6,7 +6,6 @@ import {
     ImportSpecifier,
     JSXExpressionContainer,
     ObjectExpression,
-    JSXOpeningElement,
     ObjectProperty,
     Identifier,
 } from "jscodeshift";
@@ -17,121 +16,229 @@ import checkPackageLock from "../helpers/checkPackageLock";
 
 export const parser = "tsx";
 
-const availableRefineAntdImports = [
-    "Affix",
-    "Anchor",
-    "AutoComplete",
-    "Alert",
-    "Avatar",
-    "BackTop",
-    "Badge",
-    "Breadcrumb",
-    "Button",
-    "Card",
-    "Collapse",
-    "Carousel",
-    "Cascader",
-    "Checkbox",
-    "Col",
-    "Comment",
-    "ConfigProvider",
-    "Descriptions",
-    "Divider",
-    "Dropdown",
-    "Drawer",
-    "Empty",
-    "Form",
-    "Grid",
-    "Input",
-    "Image",
-    "InputNumber",
-    "AntdLayout",
-    "AntdList",
-    "message",
-    "Menu",
-    "Mentions",
-    "Modal",
-    "Statistic",
-    "notification",
-    "PageHeader",
+const availableCoreAntdImports = [
+    "Authenticated",
+    "AuthenticatedProps",
+    "CanAccess",
+    "CanAccessProps",
+    "Refine",
+    "RefineProps",
+    "LayoutWrapperProps",
+    "LayoutWrapper",
+    "DefaultLayout",
+    "RouteChangeHandler",
+    "UndoableQueue",
+    "defaultAccessControlContext",
+    "AccessControlContext",
+    "AccessControlContextProvider",
+    "CanParams",
+    "CanReturnType",
+    "IAccessControlContext",
+    "TLogoutVariables",
+    "TLogoutData",
+    "IAuthContext",
     "Pagination",
-    "Popconfirm",
-    "Popover",
-    "Progress",
-    "Radio",
-    "Rate",
-    "Result",
-    "Row",
-    "Select",
-    "Skeleton",
-    "Slider",
-    "Space",
-    "Spin",
-    "Steps",
-    "Switch",
-    "Table",
-    "Transfer",
-    "Tree",
-    "TreeSelect",
-    "Tabs",
-    "Tag",
-    "Timeline",
-    "Tooltip",
-    "Typography",
-    "Upload",
-    "version",
-    "Icons",
-    "useTable",
-    "useEditableTable",
-    "useForm",
-    "useSelect",
-    "useCheckboxGroup",
-    "useRadioGroup",
+    "Search",
+    "CrudOperators",
+    "CrudFilter",
+    "CrudSort",
+    "CrudFilters",
+    "CrudSorting",
+    "CustomResponse",
+    "GetListResponse",
+    "CreateResponse",
+    "CreateManyResponse",
+    "UpdateResponse",
+    "UpdateManyResponse",
+    "GetOneResponse",
+    "GetManyResponse",
+    "DeleteOneResponse",
+    "DeleteManyResponse",
+    "IDataContext",
+    "IDataContextProvider",
+    "defaultDataProvider",
+    "DataContext",
+    "DataContextProvider",
+    "ILiveContext",
+    "ILiveContextProvider",
+    "LiveContext",
+    "LiveContextProvider",
+    "defaultNotificationProvider",
+    "NotificationContext",
+    "NotificationContextProvider",
+    "RefineContext",
+    "RefineContextProvider",
+    "ResourceContext",
+    "ResourceContextProvider",
+    "IResourceContext",
+    "OptionsProps",
+    "ResourceProps",
+    "IResourceComponentsProps",
+    "IResourceComponents",
+    "IResourceItem",
+    "RouterContext",
+    "RouterContextProvider",
+    "IRouterProvider",
+    "IRouterContext",
+    "PromptProps",
+    "TranslationContext",
+    "TranslationContextProvider",
+    "Translate",
+    "I18nProvider",
+    "ITranslationContext",
+    "UnsavedWarnContext",
+    "UnsavedWarnContextProvider",
+    "IUnsavedWarnContext",
+    "importCSVMapper",
+    "userFriendlyResourceName",
+    "userFriendlySecond",
+    "parseTableParams",
+    "parseTableParamsFromQuery",
+    "stringifyTableParams",
+    "compareFilters",
+    "unionFilters",
+    "setInitialFilters",
+    "file2Base64",
+    "UseCanProps",
+    "useCan",
+    "useCanWithoutCache",
+    "useAuthenticated",
+    "useCheckError",
+    "useGetIdentity",
+    "useIsAuthenticated",
+    "UseLoginReturnType",
+    "useLogin",
+    "useLogout",
+    "usePermissions",
+    "useIsExistAuthentication",
+    "unionFilters",
+    "useApiUrl",
+    "UseCreateReturnType",
+    "useCreate",
+    "UseCreateManyReturnType",
+    "useCreateMany",
+    "UseCustomProps",
+    "useCustom",
+    "useDelete",
+    "useDeleteMany",
+    "UseListProps",
+    "useList",
+    "UseManyProps",
+    "useMany",
+    "UseOneProps",
+    "useOne",
+    "UseUpdateReturnType",
+    "useUpdate",
+    "useUpdateMany",
+    "CSVDownloadProps",
+    "LabelKeyObject",
+    "useExport",
+    "Authenticated",
+    "CanAccess",
+    "ErrorComponent",
+    "LayoutWrapper",
+    "LoginPage",
+    "ReadyPage",
+    "Refine",
+    "RouteChangeHandler",
+    "UndoableQueue",
+    "file2Base64",
+    "importCSVMapper",
+    "parseTableParams",
+    "parseTableParamsFromQuery",
+    "setInitialFilters",
+    "stringifyTableParams",
+    "unionFilters",
+    "useApiUrl",
+    "useAuthenticated",
+    "useCacheQueries",
+    "useCan",
+    "useCanWithoutCache",
+    "useCancelNotification",
+    "useCheckError",
+    "useCreate",
+    "useCreateMany",
+    "useCustom",
+    "useDelete",
+    "useDeleteMany",
+    "useExport",
+    "useGetIdentity",
+    "useGetLocale",
+    "useGetManyQueries",
+    "useGetOneQueries",
+    "useHandleNotification",
     "useImport",
-    "List",
-    "BooleanField",
-    "SaveButton",
-    "NumberField",
-    "DateField",
-    "TextField",
-    "TagField",
-    "EmailField",
-    "ImageField",
-    "DateField",
-    "FileField",
-    "UrlField",
-    "NumberField",
-    "MarkdownField",
-    "getDefaultSortOrder",
-    "getDefaultFilter",
-    "useSimpleList",
-    "CreateButton",
-    "EditButton",
-    "CreateButtonProps",
-    "DeleteButton",
-    "DeleteButtonProps",
-    "RefreshButton",
-    "ShowButton",
-    "ListButton",
-    "ExportButton",
-    "SaveButton",
-    "CloneButton",
-    "ImportButton",
-    "useDrawerForm",
-    "useStepsForm",
-    "useModalForm",
-    "FormProps",
-    "getValueFromEvent",
-    "DatePicker",
-    "InputProps",
-    "Icon",
-    "Edit",
-    "Create",
-    "Show",
-    "DrawerProps",
-    "ButtonProps",
-    "ModalProps",
-    "useModal",
+    "useIsAuthenticated",
+    "useIsExistAuthentication",
+    "useList",
+    "useListResourceQueries",
+    "useLiveMode",
+    "useLogin",
+    "useLogout",
+    "useMany",
+    "useMutationMode",
+    "useNavigation",
+    "useNotification",
+    "useOne",
+    "usePermissions",
+    "usePublish",
+    "useRedirectionAfterSubmission",
+    "useRefineContext",
+    "useResource",
+    "useResourceSubscription",
+    "useResourceWithRoute",
+    "useRouterContext",
+    "useSetLocale",
+    "useShow",
+    "useSubscription",
+    "useSyncWithLocation",
+    "useTitle",
+    "useTranslate",
+    "useUpdate",
+    "useUpdateMany",
+    "useWarnAboutChange",
+    "userFriendlyResourceName",
+    "AuthenticatedProps",
+    "CanAccessProps",
+    "RefineProps",
+    "LayoutWrapperProps",
+    "LiveModeProps",
+    "UseResourceSubscriptionProps",
+    "PublishType",
+    "UseSubscriptionProps",
+    "LiveEvent",
+    "HistoryType",
+    "UseRedirectionAfterSubmissionType",
+    "UseWarnAboutChangeType",
+    "UseMutationModeType",
+    "useRefineContext",
+    "UseSyncWithLocationType",
+    "TitleProps",
+    "UseResourceType",
+    "useResourceWithRoute",
+    "useShowReturnType",
+    "useShowProps",
+    "UseGetLocaleType",
+    "Fields",
+    "NestedField",
+    "QueryBuilderOptions",
+    "MetaDataQuery",
+    "VariableOptions",
+    "HttpError",
+    "BaseRecord",
+    "Option",
+    "IState",
+    "IAuthUserReducer",
+    "IResourceReducer",
+    "MapDataFn",
+    "MutationMode",
+    "IUndoableQueue",
+    "RedirectionTypes",
+    "ResourceErrorRouterParams",
+    "ResourceRouterParams",
+    "SuccessErrorNotification",
+    "OpenNotificationParams",
+    "AuthProvider",
 ];
 
 function updateRefineImports(j: JSCodeshift, root: Collection<any>) {
@@ -144,7 +251,7 @@ function updateRefineImports(j: JSCodeshift, root: Collection<any>) {
     if (refineCoreImports.length === 0) {
         const coreImports: ImportSpecifier[] = [];
         const antdImports: ImportSpecifier[] = [];
-        // Import refine core
+
         const refineImport = root.find(j.ImportDeclaration, {
             source: {
                 value: "@pankod/refine",
@@ -153,7 +260,7 @@ function updateRefineImports(j: JSCodeshift, root: Collection<any>) {
 
         refineImport.replaceWith((path) => {
             for (const item of path.node.specifiers) {
-                if (!availableRefineAntdImports.includes(item.local.name)) {
+                if (availableCoreAntdImports.includes(item.local.name)) {
                     coreImports.push(item as ImportSpecifier);
                 } else {
                     antdImports.push(item as ImportSpecifier);
@@ -169,23 +276,55 @@ function updateRefineImports(j: JSCodeshift, root: Collection<any>) {
             return path.node;
         });
 
-        const configProviderJSXAttribute = root.find(j.JSXAttribute, {
-            name: {
-                name: "configProviderProps",
+        const refineElement = root.find(j.JSXElement, {
+            openingElement: {
+                name: {
+                    name: "Refine",
+                },
             },
         });
 
-        if (configProviderJSXAttribute.length > 0) {
-            antdImports.push(j.importSpecifier(j.identifier("ConfigProvider")));
+        if (refineElement.length > 0) {
+            const notificationProviderJSXAttribute = root.find(j.JSXAttribute, {
+                name: {
+                    name: "notificationProvider",
+                },
+            });
+
+            if (notificationProviderJSXAttribute.length === 0) {
+                antdImports.push(
+                    j.importSpecifier(j.identifier("notificationProvider")),
+                );
+            }
         }
 
-        root.find(j.ImportDeclaration, {
+        if (antdImports.length > 0) {
+            root.find(j.ImportDeclaration, {
+                source: {
+                    value: "@pankod/refine-core",
+                },
+            }).insertAfter(
+                j.importDeclaration(
+                    antdImports,
+                    j.literal("@pankod/refine-antd"),
+                ),
+            );
+        }
+
+        if (coreImports.length === 0) {
+            refineImport.remove();
+        }
+
+        const refineCSSImport = root.find(j.ImportDeclaration, {
             source: {
-                value: "@pankod/refine-core",
+                value: "@pankod/refine/dist/styles.min.css",
             },
-        }).insertAfter(
-            j.importDeclaration(antdImports, j.literal("@pankod/refine-antd")),
-        );
+        });
+
+        refineCSSImport.forEach((refineCSSImport) => {
+            refineCSSImport.value.source.value =
+                "@pankod/refine-antd/dist/styles.min.css";
+        });
     } else {
         console.log(
             "WARNING: A refine core package from @pankod/refine-core is already imported. This tool will not make any migration for refine core.",
@@ -203,10 +342,27 @@ const moveConfigProvider = (j: JSCodeshift, root: Collection<any>) => {
         },
     });
 
-    console.log(refineElement.nodes()[0]);
-
     if (refineElement.length === 0) {
         return;
+    }
+
+    const notificationProviderJSXAttribute = root.find(j.JSXAttribute, {
+        name: {
+            name: "notificationProvider",
+        },
+    });
+
+    if (notificationProviderJSXAttribute.length === 0) {
+        refineElement.forEach((path) => {
+            path.node.openingElement.attributes.push(
+                j.jsxAttribute(
+                    j.jsxIdentifier("notificationProvider"),
+                    j.jsxExpressionContainer(
+                        j.identifier("notificationProvider"),
+                    ),
+                ),
+            );
+        });
     }
 
     const configProviderJSXAttribute = root.find(j.JSXAttribute, {
@@ -215,32 +371,192 @@ const moveConfigProvider = (j: JSCodeshift, root: Collection<any>) => {
         },
     });
 
-    if (configProviderJSXAttribute.length === 0) {
+    if (configProviderJSXAttribute.length > 0) {
+        // Import ConfigProvider from @pankod/refine-antd
+        const refineAntdImport = root.find(j.ImportDeclaration, {
+            source: {
+                value: "@pankod/refine-antd",
+            },
+        });
+
+        if (refineAntdImport.length > 0) {
+            refineAntdImport.forEach((path) => {
+                path.node.specifiers.push(
+                    j.importSpecifier(j.identifier("ConfigProvider")),
+                );
+            });
+        }
+
+        const configProviderValue = (
+            (
+                configProviderJSXAttribute.nodes()[0]
+                    .value as JSXExpressionContainer
+            ).expression as ObjectExpression
+        ).properties;
+
+        const newConfigProviderElement = j.jsxElement(
+            j.jsxOpeningElement(
+                j.jsxIdentifier("ConfigProvider"),
+                configProviderValue.map((p: ObjectProperty) =>
+                    j.jsxAttribute(
+                        j.jsxIdentifier((p.key as Identifier).name),
+                        j.jsxExpressionContainer(p.value as any),
+                    ),
+                ),
+            ),
+            j.jsxClosingElement(j.jsxIdentifier("ConfigProvider")),
+            refineElement.nodes(),
+        );
+
+        refineElement.replaceWith(newConfigProviderElement);
+
+        configProviderJSXAttribute.remove();
+    }
+};
+
+const defaultLoginPage = (j: JSCodeshift, root: Collection<any>) => {
+    const refineElement = root.find(j.JSXElement, {
+        openingElement: {
+            name: {
+                name: "Refine",
+            },
+        },
+    });
+
+    if (refineElement.length === 0) {
         return;
     }
 
-    const configProviderValue = (
-        (configProviderJSXAttribute.nodes()[0].value as JSXExpressionContainer)
-            .expression as ObjectExpression
-    ).properties;
+    const authProviderJSXAttribute = root.find(j.JSXAttribute, {
+        name: {
+            name: "authProvider",
+        },
+    });
 
-    const newConfigProviderElement = j.jsxElement(
-        j.jsxOpeningElement(
-            j.jsxIdentifier("ConfigProvider"),
-            configProviderValue.map((p: ObjectProperty) =>
+    const loginPageJSXAttribute = root.find(j.JSXAttribute, {
+        name: {
+            name: "LoginPage",
+        },
+    });
+
+    if (
+        authProviderJSXAttribute.length > 0 &&
+        loginPageJSXAttribute.length === 0
+    ) {
+        refineElement.forEach((path) => {
+            path.node.openingElement.attributes.push(
                 j.jsxAttribute(
-                    j.jsxIdentifier((p.key as Identifier).name),
-                    j.jsxExpressionContainer(p.value as any),
+                    j.jsxIdentifier("LoginPage"),
+                    j.jsxExpressionContainer(j.identifier("LoginPage")),
                 ),
-            ),
-        ),
-        j.jsxClosingElement(j.jsxIdentifier("ConfigProvider")),
-        refineElement.nodes(),
-    );
+            );
+        });
 
-    refineElement.replaceWith(newConfigProviderElement);
+        const refineAntdImport = root.find(j.ImportDeclaration, {
+            source: {
+                value: "@pankod/refine-antd",
+            },
+        });
 
-    configProviderJSXAttribute.remove();
+        if (refineAntdImport.length > 0) {
+            refineAntdImport.forEach((path) => {
+                path.node.specifiers.push(
+                    j.importSpecifier(j.identifier("LoginPage")),
+                );
+            });
+        }
+    }
+};
+
+const defaultLayout = (j: JSCodeshift, root: Collection<any>) => {
+    const refineElement = root.find(j.JSXElement, {
+        openingElement: {
+            name: {
+                name: "Refine",
+            },
+        },
+    });
+
+    if (refineElement.length === 0) {
+        return;
+    }
+
+    const layoutJSXAttribute = root.find(j.JSXAttribute, {
+        name: {
+            name: "Layout",
+        },
+    });
+
+    if (layoutJSXAttribute.length === 0) {
+        refineElement.forEach((path) => {
+            path.node.openingElement.attributes.push(
+                j.jsxAttribute(
+                    j.jsxIdentifier("Layout"),
+                    j.jsxExpressionContainer(j.identifier("Layout")),
+                ),
+            );
+        });
+
+        const refineAntdImport = root.find(j.ImportDeclaration, {
+            source: {
+                value: "@pankod/refine-antd",
+            },
+        });
+
+        if (refineAntdImport.length > 0) {
+            refineAntdImport.forEach((path) => {
+                path.node.specifiers.push(
+                    j.importSpecifier(j.identifier("Layout")),
+                );
+            });
+        }
+    }
+};
+
+const defaultCatchAllPage = (j: JSCodeshift, root: Collection<any>) => {
+    const refineElement = root.find(j.JSXElement, {
+        openingElement: {
+            name: {
+                name: "Refine",
+            },
+        },
+    });
+
+    if (refineElement.length === 0) {
+        return;
+    }
+
+    const catchAllJSXAttribute = root.find(j.JSXAttribute, {
+        name: {
+            name: "catchAll",
+        },
+    });
+
+    if (catchAllJSXAttribute.length === 0) {
+        refineElement.forEach((path) => {
+            path.node.openingElement.attributes.push(
+                j.jsxAttribute(
+                    j.jsxIdentifier("catchAll"),
+                    j.jsxExpressionContainer(j.identifier("ErrorComponent")),
+                ),
+            );
+        });
+
+        const refineAntdImport = root.find(j.ImportDeclaration, {
+            source: {
+                value: "@pankod/refine-antd",
+            },
+        });
+
+        // Fix convert to component
+        if (refineAntdImport.length > 0) {
+            refineAntdImport.forEach((path) => {
+                path.node.specifiers.push(
+                    j.importSpecifier(j.identifier("ErrorComponent")),
+                );
+            });
+        }
+    }
 };
 
 const updateSetEditIdToSetId = (j: JSCodeshift, root: Collection<any>) => {
@@ -356,6 +672,9 @@ export default function transformer(file: FileInfo, api: API): string {
     updateRefineImports(j, source);
     moveConfigProvider(j, source);
     updateSetEditIdToSetId(j, source);
+    defaultLoginPage(j, source);
+    defaultLayout(j, source);
+    defaultCatchAllPage(j, source);
 
     return source.toSource();
 }

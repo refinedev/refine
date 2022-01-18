@@ -1,13 +1,7 @@
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import {
-    LayoutWrapper,
-    Card,
-    Typography,
-    useSimpleList,
-    AntdList,
-    GetListResponse,
-} from "@pankod/refine";
+import { LayoutWrapper, GetListResponse } from "@pankod/refine-core";
+import { Card, Typography, useSimpleList, AntdList } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import { API_URL } from "../../../src/constants";

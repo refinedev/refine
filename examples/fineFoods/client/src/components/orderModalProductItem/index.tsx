@@ -1,6 +1,6 @@
 import { useBasketContext } from "@hooks/useBasketContext";
 import { IBasketOrder } from "@interfaces";
-import { Avatar, NumberField, Row, Typography } from "@pankod/refine";
+import { Avatar, NumberField, Row, Typography } from "@pankod/refine-antd";
 
 const { Text } = Typography;
 

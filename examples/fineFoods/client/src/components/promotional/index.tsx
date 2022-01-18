@@ -1,4 +1,6 @@
-import { Button, Typography, useNavigation } from "@pankod/refine";
+import { useNavigation } from "@pankod/refine-core";
+
+import { Button, Typography } from "@pankod/refine-antd";
 
 import { PlateIcon } from "@components/icons";
 

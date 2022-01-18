@@ -1,6 +1,9 @@
 import React from "react";
 import { Layout as AntLayout, Grid } from "antd";
-import { LayoutProps } from "@pankod/refine-core";
+import { LayoutProps, useRefineContext } from "@pankod/refine-core";
+
+import { Sider as DefaultSider } from "./sider";
+import { Header as DefaultHeader } from "./header";
 
 export const Layout: React.FC<LayoutProps> = ({
     children,
@@ -11,11 +14,14 @@ export const Layout: React.FC<LayoutProps> = ({
 }) => {
     const breakpoint = Grid.useBreakpoint();
 
+    const SiderToRender = Sider ?? DefaultSider;
+    const HeaderToRender = Header ?? DefaultHeader;
+
     return (
         <AntLayout style={{ minHeight: "100vh", flexDirection: "row" }}>
-            <Sider />
+            <SiderToRender />
             <AntLayout>
-                <Header />
+                <HeaderToRender />
                 <AntLayout.Content>
                     <div
                         style={{
@@ -25,9 +31,9 @@ export const Layout: React.FC<LayoutProps> = ({
                     >
                         {children}
                     </div>
-                    <OffLayoutArea />
+                    {OffLayoutArea && <OffLayoutArea />}
                 </AntLayout.Content>
-                <Footer />
+                {Footer && <Footer />}
             </AntLayout>
         </AntLayout>
     );

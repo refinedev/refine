@@ -5,7 +5,7 @@ import {
     InputNumber,
     Button,
     Icons,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IProduct } from "@interfaces";
 import { useState } from "react";

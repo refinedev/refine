@@ -1,6 +1,6 @@
 import React, { useRef, useLayoutEffect, useState } from "react";
+import { LayoutWrapper } from "@pankod/refine-core";
 import {
-    LayoutWrapper,
     Card,
     Space,
     DateField,
@@ -9,7 +9,7 @@ import {
     Avatar,
     Typography,
     Button,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 import { gsap, Power3 } from "gsap";
 require("./style.less");
 

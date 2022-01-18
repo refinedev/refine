@@ -1,4 +1,6 @@
-import { Tag, useTranslate } from "@pankod/refine";
+import { useTranslate } from "@pankod/refine-core";
+
+import { Tag } from "@pankod/refine-antd";
 
 type OrderStatusProps = {
     status: "Pending" | "Ready" | "On The Way" | "Delivered" | "Cancelled";

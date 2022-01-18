@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Card, Typography } from "@pankod/refine";
+import { Card, Typography } from "@pankod/refine-antd";
 
 const { Title } = Typography;
 

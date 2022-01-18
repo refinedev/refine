@@ -1,23 +1,26 @@
 import {
+    useTranslate,
+    IResourceComponentsProps,
+    useShow,
+    useNavigation,
+    HttpError,
+} from "@pankod/refine-core";
+
+import {
     List,
     Table,
     useTable,
-    useTranslate,
-    IResourceComponentsProps,
     Card,
     Icons,
     Button,
     Space,
-    useShow,
     Row,
     Col,
     Grid,
-    useNavigation,
     Typography,
     Rate,
-    HttpError,
     Avatar,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { ICourier, IOrder, IOrderFilterVariables } from "interfaces";
 

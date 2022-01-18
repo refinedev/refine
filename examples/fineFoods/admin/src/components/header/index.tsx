@@ -1,5 +1,13 @@
 import { useState, useEffect } from "react";
 import {
+    useGetLocale,
+    useSetLocale,
+    useGetIdentity,
+    useTranslate,
+    useList,
+} from "@pankod/refine-core";
+
+import {
     AntdLayout,
     Menu,
     Icons,
@@ -12,12 +20,8 @@ import {
     Row,
     Col,
     AutoComplete,
-    useGetLocale,
-    useSetLocale,
-    useGetIdentity,
-    useTranslate,
-    useList,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
+
 import RefineReactRouter from "@pankod/refine-react-router";
 
 import { useTranslation } from "react-i18next";

@@ -1,5 +1,5 @@
 import React from "react";
-import { LayoutProps, AntdLayout } from "@pankod/refine";
+import { LayoutProps, AntdLayout } from "@pankod/refine-antd";
 
 import { OrdersModal } from "@components";
 

@@ -1,16 +1,19 @@
 import {
     useShow,
+    HttpError,
+    IResourceComponentsProps,
+    useTranslate,
+} from "@pankod/refine-core";
+
+import {
     Typography,
     useTable,
     Avatar,
-    HttpError,
     Row,
     Col,
     Card,
     Space,
     Icons,
-    IResourceComponentsProps,
-    useTranslate,
     List,
     Table,
     Grid,
@@ -19,7 +22,8 @@ import {
     NumberField,
     Popover,
     DateField,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
+
 import { OrderStatus } from "components";
 
 import { IUser, IOrder, IOrderFilterVariables } from "interfaces";
