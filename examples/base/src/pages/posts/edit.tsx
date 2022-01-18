@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import {
-    Edit,
-    Form,
-    Input,
-    IResourceComponentsProps,
-    Select,
-} from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@pankod/refine-core";
+
+import { Edit, Form, Input, Select } from "@pankod/refine-antd";
 
 import { useForm, useSelect } from "@pankod/refine-antd";
 
