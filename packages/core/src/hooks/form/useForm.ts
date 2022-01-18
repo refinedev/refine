@@ -137,7 +137,12 @@ export const useForm = <
     const isEdit = action === "edit";
     const isClone = action === "clone";
 
-    const redirect = redirectFromProps ?? isEdit ? "list" : "edit";
+    const redirect =
+        redirectFromProps !== undefined
+            ? redirectFromProps
+            : isEdit
+            ? "list"
+            : "edit";
 
     const enableQuery = id !== undefined && (isEdit || isClone);
 
