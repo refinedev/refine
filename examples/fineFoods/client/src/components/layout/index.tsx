@@ -1,11 +1,13 @@
 import React from "react";
-import { LayoutProps, AntdLayout } from "@pankod/refine-antd";
+import { LayoutProps } from "@pankod/refine-core";
+import { AntdLayout } from "@pankod/refine-antd";
 
 import { OrdersModal } from "@components";
 
 require("./style.less");
 
-export const Layout: React.FC<LayoutProps> = ({
+// TODO: fix me
+export const Layout: React.FC<any> = ({
     children,
     Header,
     Footer,
