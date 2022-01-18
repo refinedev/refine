@@ -100,7 +100,7 @@ export const useForm = <
     resource: resourceFromProps,
     onMutationSuccess,
     onMutationError,
-    redirect = "edit",
+    redirect: redirectFromProps,
     successNotification,
     errorNotification,
     metaData,
@@ -124,8 +124,6 @@ export const useForm = <
     // id state is needed to determine selected record in a context for example useModal
     const [id, setId] = React.useState<string | undefined>(idFromRoute);
 
-    console.log({ id });
-
     const resourceName = resourceFromProps ?? resourceFromRoute;
     const action = actionFromProps ?? actionFromRoute;
 
@@ -138,6 +136,8 @@ export const useForm = <
     const isCreate = action === "create";
     const isEdit = action === "edit";
     const isClone = action === "clone";
+
+    const redirect = redirectFromProps ?? isEdit ? "list" : "edit";
 
     const enableQuery = id !== undefined && (isEdit || isClone);
 
