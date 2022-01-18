@@ -1,12 +1,12 @@
+import { useShow, IResourceComponentsProps } from "@pankod/refine-core";
+
 import {
-    useShow,
     Show,
     Typography,
-    IResourceComponentsProps,
     EmailField,
     ImageField,
     Space,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IUser } from "interfaces";
 
