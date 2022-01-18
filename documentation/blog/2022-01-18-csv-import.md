@@ -11,7 +11,7 @@ hide_table_of_contents: false
 import console from '@site/static/img/blog/2022-01-18-csv-import/console.gif';
 import overview from '@site/static/img/blog/2022-01-18-csv-import/overview.gif';
 
-In this guide, we will learn how to import any CSV file received from the user with React. Our application will consist of two parts. We will create a form for the user to select a file. Next, we will do some operations with Javascript to be able to view this CSV file. Let's start our example.
+In this guide, we will learn how to import any CSV file received from the user with React. Our application will consist of two parts. We will create a form for the user to select a file. Next, we will do some operations with JavaScript to be able to view this CSV file. Let's start with our example.
 
 <!--truncate-->
 
