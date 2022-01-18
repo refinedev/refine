@@ -5,3 +5,4 @@ export * from "./offLayoutArea";
 export * from "./promotional";
 export * from "./categoryCard";
 export * from "./productCard";
+export * from "./productListItem";
