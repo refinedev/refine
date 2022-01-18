@@ -10,6 +10,7 @@ hide_table_of_contents: false
 
 import console from '@site/static/img/blog/2022-01-18-csv-import/console.gif';
 import overview from '@site/static/img/blog/2022-01-18-csv-import/overview.gif';
+import importing from '@site/static/img/blog/2022-01-18-csv-import/importing.gif';
 
 In this guide, we will learn how to import any CSV file received from the user with React. Our application will consist of two parts. We will create a form for the user to select a file. Next, we will do some operations with Javascript to be able to view this CSV file. Let's start our example.
 
@@ -242,28 +243,17 @@ The CSV import with **refine** is very simple and out-of-the-box feature. How to
 
 ## Refine CSV Import Usage
 
-Importing CSV files is simple and fast using the [`useImport`](https://refine.dev/docs/api-references/hooks/import-export/useImport/) hook and [`ImportButton`](https://refine.dev/docs/api-references/components/buttons/import-button/) provided by Refine.
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={importing} alt="importing_csv" />
+</div>
+<br />
 
-```text title="sample.csv"
-"title","categoryId"
-"dummy title 1","3"
-"dummy title 2","44"
-```
-
-This file should be parsed as:
-
-```tsx
-[
-    {
-        title: "dummy title 1",
-        categoryId: "3",
-    },
-    {
-        title: "dummy title 2",
-        categoryId: "44",
-    },
-];
-```
+Importing CSV files is simple and fast using the [`useImport`](https://refine.dev/docs/api-references/hooks/import-export/useImport/) hook and [`ImportButton`](https://refine.dev/docs/api-references/components/buttons/import-button/) provided by **refine**.
 
 ```tsx
 import {
