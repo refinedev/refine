@@ -25,6 +25,7 @@ const availableCoreAntdImports = [
     "RefineProps",
     "LayoutWrapperProps",
     "LayoutWrapper",
+    "LayoutProps",
     "DefaultLayout",
     "RouteChangeHandler",
     "UndoableQueue",

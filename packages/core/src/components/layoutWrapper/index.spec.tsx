@@ -44,16 +44,18 @@ describe("LayoutWrapper", () => {
             OffLayoutArea,
             Title,
             children,
-        }) => (
-            <div>
-                <Header />
-                <Title collapsed={true} />
-                <Sider />
-                {children}
-                <Footer />
-                <OffLayoutArea />
-            </div>
-        );
+        }) => {
+            return (
+                <div>
+                    {Header && <Header />}
+                    {Title && <Title collapsed={true} />}
+                    {Sider && <Sider />}
+                    {children}
+                    {Footer && <Footer />}
+                    {OffLayoutArea && <OffLayoutArea />}
+                </div>
+            );
+        };
 
         const { getByText } = renderWithRefineContext(<LayoutWrapper />, {
             warnWhenUnsavedChanges: false,
@@ -124,12 +126,12 @@ describe("LayoutWrapper", () => {
             children,
         }) => (
             <div>
-                <Header />
-                <Sider />
+                {Header && <Header />}
+                {Sider && <Sider />}
                 {children}
                 <div>custom layout</div>
-                <Footer />
-                <OffLayoutArea />
+                {Footer && <Footer />}
+                {OffLayoutArea && <OffLayoutArea />}
             </div>
         );
 

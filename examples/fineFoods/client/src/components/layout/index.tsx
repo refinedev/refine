@@ -6,8 +6,7 @@ import { OrdersModal } from "@components";
 
 require("./style.less");
 
-// TODO: fix me
-export const Layout: React.FC<any> = ({
+export const Layout: React.FC<LayoutProps> = ({
     children,
     Header,
     Footer,
@@ -16,14 +15,14 @@ export const Layout: React.FC<any> = ({
     return (
         <>
             <AntdLayout style={{ minHeight: "100vh" }}>
-                <Header />
+                {Header && <Header />}
                 <AntdLayout className="inner">
                     <AntdLayout.Content>
                         {children}
-                        <OffLayoutArea />
+                        {OffLayoutArea && <OffLayoutArea />}
                     </AntdLayout.Content>
                 </AntdLayout>
-                <Footer />
+                {Footer && <Footer />}
             </AntdLayout>
             <OrdersModal />
         </>
