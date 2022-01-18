@@ -238,7 +238,82 @@ The CSV import with **refine** is very simple and out-of-the-box feature. How to
 
 [Refer to the **refine** CSV import guide for more information. →](https://refine.dev/docs/guides-and-concepts/import-export/csv-import/)
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/importExport)
+[View Source](https://github.com/pankod/refine/blob/master/examples/importExport/src/pages/posts/list.tsx#L32)
+
+## Refine CSV Import Usage
+
+Importing CSV files is simple and fast using the [`useImport`](https://refine.dev/docs/api-references/hooks/import-export/useImport/) hook and [`ImportButton`](https://refine.dev/docs/api-references/components/buttons/import-button/) provided by Refine.
+
+```text title="sample.csv"
+"title","categoryId"
+"dummy title 1","3"
+"dummy title 2","44"
+```
+
+This file should be parsed as:
+
+```tsx
+[
+    {
+        title: "dummy title 1",
+        categoryId: "3",
+    },
+    {
+        title: "dummy title 2",
+        categoryId: "44",
+    },
+];
+```
+
+```tsx
+import {
+    List,
+    Table,
+    useTable,
+    //highlight-start
+    useImport,
+    ImportButton,
+    //highlight-end
+} from "@pankod/refine";
+
+export const PostList: React.FC = () => {
+    const { tableProps } = useTable<IPost>();
+
+    //highlight-start
+    const importProps = useImport<IPostFile>();
+    //highlight-end
+
+    return (
+        <List
+            pageHeaderProps={{
+                //highlight-start
+                extra: <ImportButton {...importProps} />,
+                //highlight-end
+            }}
+        >
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column dataIndex="status" title="Status" />
+            </Table>
+        </List>
+    );
+};
+
+interface IPostFile {
+    title: string;
+    categoryId: string;
+}
+interface IPost {
+    id: string;
+    title: string;
+    status: string;
+}
+```
+
+You can also divide the data into chunk with the `batchSize` option while performing the insertion process.
+
+[Refer to the **refine** CSV Import API References for more information. →](https://refine.dev/docs/api-references/hooks/import-export/useImport/#api-reference)
 
 ## Refine CSV Import Live Codesandbox Example
 
