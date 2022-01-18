@@ -4,7 +4,8 @@ import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-nextjs-router";
 
-import { Layout, Footer, Header, OffLayoutArea } from "../components";
+import { Layout } from "../components";
+import { BasketContextProvider } from "../context";
 import { API_URL } from "../constants";
 
 import "../styles/globals.css";
@@ -15,9 +16,6 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
             Layout={Layout}
-            Header={Header}
-            Footer={Footer}
-            OffLayoutArea={OffLayoutArea}
             resources={[{ name: "users" }]}
         >
             <Head>
@@ -28,7 +26,9 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                 />
                 <link rel="icon" type="image/png" href="/favicon.ico" />
             </Head>
-            <Component {...pageProps} />
+            <BasketContextProvider>
+                <Component {...pageProps} />
+            </BasketContextProvider>
         </Refine>
     );
 }

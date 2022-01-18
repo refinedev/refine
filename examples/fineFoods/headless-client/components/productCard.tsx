@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { PlusSquare, ChevronUp, ChevronDown } from "../components/icons";
+import { useBasketContext } from "../hooks";
 
 export type ProductCardProps = {
     productImg: string;
@@ -22,6 +23,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     productId,
     ...props
 }) => {
+    const { dispatch } = useBasketContext();
     const [amount, setAmount] = useState(1);
 
     return (
@@ -49,16 +51,32 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                     <div className="relative h-8">
                         <input
                             className="pl-2 border w-16 rounded-md h-full"
-                            value={102}
+                            value={amount}
+                            onChange={(event) => {
+                                setAmount(Number(event.target.value));
+                            }}
                         />
                         <button className="border absolute right-0 top-0 h-1/2">
-                            <ChevronUp className="text-primary w-4 h-full" />
+                            <ChevronUp
+                                onClick={() => setAmount((prev) => prev + 1)}
+                                className="text-primary w-4 h-full"
+                            />
                         </button>
                         <button className="border absolute right-0 bottom-0 h-1/2">
-                            <ChevronDown className="text-primary w-4 h-full" />
+                            <ChevronDown
+                                onClick={() => setAmount((prev) => prev - 1)}
+                                className="text-primary w-4 h-full"
+                            />
                         </button>
                     </div>
-                    <button>
+                    <button
+                        onClick={() =>
+                            dispatch({
+                                type: "addProduct",
+                                payload: { productId, amount },
+                            })
+                        }
+                    >
                         <PlusSquare className="text-primary w-6 h-6" />
                     </button>
                 </div>

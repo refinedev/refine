@@ -3,6 +3,7 @@ export { default as ChevronDown } from "./ChevronDown";
 export { default as ChevronLeft } from "./ChevronLeft";
 export { default as ChevronRight } from "./ChevronRight";
 export { default as ChevronUp } from "./ChevronUp";
+export { default as Close } from "./Close";
 export { default as FastMotocycle } from "./FastMotocycle";
 export { default as FinefoodsIcon } from "./FinefoodsIcon";
 export { default as MotorcycleIcon } from "./MotorcycleIcon";
