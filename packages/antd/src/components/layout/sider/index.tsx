@@ -10,6 +10,8 @@ import {
     useIsExistAuthentication,
 } from "@pankod/refine-core";
 
+import { Title as DefaultTitle } from "@components";
+
 import { useMenu } from "@hooks";
 
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
@@ -26,6 +28,8 @@ export const Sider: React.FC = () => {
 
     const isMobile = !breakpoint.lg;
 
+    const RenderToTitle = Title ?? DefaultTitle;
+
     return (
         <Layout.Sider
             collapsible
@@ -35,7 +39,7 @@ export const Sider: React.FC = () => {
             breakpoint="lg"
             style={isMobile ? antLayoutSiderMobile : antLayoutSider}
         >
-            <Title collapsed={collapsed} />
+            <RenderToTitle collapsed={collapsed} />
             <Menu
                 selectedKeys={[selectedKey]}
                 mode="inline"

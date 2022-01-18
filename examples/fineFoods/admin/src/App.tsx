@@ -5,6 +5,8 @@ import {
     Icons,
     ConfigProvider,
     notificationProvider,
+    Layout,
+    ErrorComponent,
 } from "@pankod/refine-antd";
 import jsonServerDataProvider from "@pankod/refine-simple-rest";
 import de_DE from "antd/lib/locale/de_DE";
@@ -61,11 +63,13 @@ const App: React.FC = () => {
                 dataProvider={dataProvider}
                 authProvider={authProvider}
                 i18nProvider={i18nProvider}
-                Header={Header}
-                Title={Title}
                 OffLayoutArea={OffLayoutArea}
                 DashboardPage={DashboardPage}
                 LoginPage={LoginPage}
+                Title={Title}
+                Header={Header}
+                Layout={Layout}
+                catchAll={<ErrorComponent />}
                 syncWithLocation
                 warnWhenUnsavedChanges
                 resources={[

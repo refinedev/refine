@@ -548,6 +548,7 @@ const defaultCatchAllPage = (j: JSCodeshift, root: Collection<any>) => {
             },
         });
 
+        // Fix convert to component
         if (refineAntdImport.length > 0) {
             refineAntdImport.forEach((path) => {
                 path.node.specifiers.push(
