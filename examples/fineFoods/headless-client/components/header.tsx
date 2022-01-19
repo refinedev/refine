@@ -14,8 +14,8 @@ export const Header: React.FC = () => {
             <div className="container flex justify-between items-center h-full px-2 md:px-0">
                 <Link href="/">
                     <a className="flex gap-4">
-                        <MotorcycleIcon />
-                        <FinefoodsIcon width={200} />
+                        <MotorcycleIcon className="hidden md:block" />
+                        <FinefoodsIcon className="w-32 md:w-48" />
                     </a>
                 </Link>
                 <div
