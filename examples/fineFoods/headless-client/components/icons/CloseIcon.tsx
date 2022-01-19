@@ -1,7 +1,7 @@
 import * as React from "react";
 import { SVGProps } from "react";
 
-const SvgChevronLeft = (props: SVGProps<SVGSVGElement>) => (
+const SvgCloseIcon = (props: SVGProps<SVGSVGElement>) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -10,11 +10,11 @@ const SvgChevronLeft = (props: SVGProps<SVGSVGElement>) => (
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="chevron-left_svg__feather chevron-left_svg__feather-chevron-left"
+        className="closeIcon_svg__feather closeIcon_svg__feather-x"
         {...props}
     >
-        <path d="m15 18-6-6 6-6" />
+        <path d="M18 6 6 18M6 6l12 12" />
     </svg>
 );
 
-export default SvgChevronLeft;
+export default SvgCloseIcon;

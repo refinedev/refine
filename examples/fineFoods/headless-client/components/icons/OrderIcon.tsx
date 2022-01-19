@@ -1,7 +1,7 @@
 import * as React from "react";
 import { SVGProps } from "react";
 
-const SvgOrderSuccess = (props: SVGProps<SVGSVGElement>) => (
+const SvgOrderIcon = (props: SVGProps<SVGSVGElement>) => (
     <svg
         width={144}
         height={120}
@@ -32,4 +32,4 @@ const SvgOrderSuccess = (props: SVGProps<SVGSVGElement>) => (
     </svg>
 );
 
-export default SvgOrderSuccess;
+export default SvgOrderIcon;

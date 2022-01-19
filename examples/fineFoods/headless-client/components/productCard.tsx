@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 
-import { PlusSquare, ChevronUp, ChevronDown } from "../components/icons";
+import {
+    PlusSquareIcon,
+    ChevronUpIcon,
+    ChevronDownIcon,
+} from "../components/icons";
 import { useBasketContext } from "../hooks";
 
 export type ProductCardProps = {
@@ -57,13 +61,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                             }}
                         />
                         <button className="border absolute right-0 top-0 h-1/2">
-                            <ChevronUp
+                            <ChevronUpIcon
                                 onClick={() => setAmount((prev) => prev + 1)}
                                 className="text-primary w-4 h-full"
                             />
                         </button>
                         <button className="border absolute right-0 bottom-0 h-1/2">
-                            <ChevronDown
+                            <ChevronDownIcon
                                 onClick={() => setAmount((prev) => prev - 1)}
                                 className="text-primary w-4 h-full"
                             />
@@ -77,7 +81,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                             })
                         }
                     >
-                        <PlusSquare className="text-primary w-6 h-6" />
+                        <PlusSquareIcon className="text-primary w-6 h-6" />
                     </button>
                 </div>
             </div>

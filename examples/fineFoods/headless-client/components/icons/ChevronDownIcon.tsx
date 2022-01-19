@@ -1,7 +1,7 @@
 import * as React from "react";
 import { SVGProps } from "react";
 
-const SvgChevronDown = (props: SVGProps<SVGSVGElement>) => (
+const SvgChevronDownIcon = (props: SVGProps<SVGSVGElement>) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -10,11 +10,11 @@ const SvgChevronDown = (props: SVGProps<SVGSVGElement>) => (
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="chevron-down_svg__feather chevron-down_svg__feather-chevron-down"
+        className="chevronDownIcon_svg__feather chevronDownIcon_svg__feather-chevron-down"
         {...props}
     >
         <path d="m6 9 6 6 6-6" />
     </svg>
 );
 
-export default SvgChevronDown;
+export default SvgChevronDownIcon;

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { SVGProps } from "react";
 
-const SvgFastMotocycle = (props: SVGProps<SVGSVGElement>) => (
+const SvgFastMotocycleIcon = (props: SVGProps<SVGSVGElement>) => (
     <svg
         width={70}
         height={34}
@@ -20,4 +20,4 @@ const SvgFastMotocycle = (props: SVGProps<SVGSVGElement>) => (
     </svg>
 );
 
-export default SvgFastMotocycle;
+export default SvgFastMotocycleIcon;

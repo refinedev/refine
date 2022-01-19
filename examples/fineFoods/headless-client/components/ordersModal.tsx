@@ -8,7 +8,7 @@ import {
 } from "../hooks";
 
 import { OrderModalProductItem } from "../components";
-import { OrderSuccess, Close } from "../components/icons";
+import { OrderIcon, CloseIcon } from "../components/icons";
 import { IOrder } from "../interfaces";
 
 export const OrdersModal = () => {
@@ -33,9 +33,9 @@ export const OrdersModal = () => {
                             className="absolute top-2 right-2"
                             onClick={() => setOrdersModalVisible(false)}
                         >
-                            <Close className="w-6 h-6 text-white" />
+                            <CloseIcon className="w-6 h-6 text-white" />
                         </button>
-                        <OrderSuccess className="bg-primary" />
+                        <OrderIcon className="bg-primary" />
                     </div>
                     <div className="p-4">
                         <div className="flex flex-col gap-2">
