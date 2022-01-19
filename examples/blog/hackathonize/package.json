@@ -1,6 +1,6 @@
 {
   "name": "hackathonize",
-  "version": "2.5.4",
+  "version": "2.6.3",
   "private": true,
   "dependencies": {
     "@pankod/refine": "2.0.12",

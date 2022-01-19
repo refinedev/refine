@@ -1,11 +1,11 @@
 {
   "name": "cake-house",
-  "version": "2.6.2",
+  "version": "2.6.3",
   "private": true,
   "dependencies": {
-    "@pankod/refine": "^2.6.2",
-    "@pankod/refine-appwrite": "^2.6.2",
-    "@pankod/refine-react-router": "^2.6.2",
+    "@pankod/refine": "^2.6.3",
+    "@pankod/refine-appwrite": "^2.6.3",
+    "@pankod/refine-react-router": "^2.6.3",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
