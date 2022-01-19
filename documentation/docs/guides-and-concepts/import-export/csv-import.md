@@ -4,6 +4,7 @@ title: CSV Import
 ---
 
 import importButton from '@site/static/img/guides-and-concepts/csv-import/import-button.png';
+import importing from '@site/static/img/guides-and-concepts/csv-import/importing.gif';
 
 You can easily import CSV files for any resource by using **refine**'s customizable `useImport` hook, optionally with `<ImportButton>` component. `useImport` hook returns the necessary props for `<ImportButton>` component. **refine** uses [Papa Parse][Papa Parse] parser under the hood to parse CSV files.
 
@@ -150,6 +151,16 @@ And it's done. When you click on the button and provide a CSV file of the header
     }
 }
 ```
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={importing} alt="Importing CSV" />
+</div>
+<br />
 
 Depending on the [`batchSize`][batchSize] option, posts can get sent one by one or as batches. By default, all records are sent in one [`createMany`][createMany] call.
 
