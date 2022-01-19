@@ -40,10 +40,10 @@ export const Home: React.FC<HomePageProps> = ({ categories, products }) => {
 
     return (
         <LayoutWrapper>
-            <div className="container mx-auto">
+            <div className="container">
                 <Promotional />
-                <div className="bg-white p-8 rounded-lg">
-                    <div className="grid grid-cols-3 gap-10">
+                <div className="bg-white p-4 md:p-8 rounded-lg">
+                    <div className="flex flex-wrap justify-center md:justify-between">
                         {categories.map((category) => (
                             <CategoryCard
                                 key={category.id}
@@ -58,17 +58,25 @@ export const Home: React.FC<HomePageProps> = ({ categories, products }) => {
                         Deals of the day
                     </h1>
                     <br />
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="flex flex-wrap">
                         {dealsOfDayProducts.map((product, index) => (
-                            <ProductCard
+                            <div
                                 key={product.id}
-                                productImg={product.images[0].url}
-                                title={product.name}
-                                description={product.description}
-                                price={product.price}
-                                productId={product.id}
-                                {...getBadgeProps(index)}
-                            />
+                                className={
+                                    index === 2
+                                        ? "w-full lg:w-1/3"
+                                        : "w-full md:w-1/2 lg:w-1/3"
+                                }
+                            >
+                                <ProductCard
+                                    productImg={product.images[0].url}
+                                    title={product.name}
+                                    description={product.description}
+                                    price={product.price}
+                                    productId={product.id}
+                                    {...getBadgeProps(index)}
+                                />
+                            </div>
                         ))}
                     </div>
                     <br />
@@ -76,17 +84,18 @@ export const Home: React.FC<HomePageProps> = ({ categories, products }) => {
                         Fast & delicious
                     </h1>
                     <br />
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="flex flex-wrap">
                         {fastAndDeliciousProducts.map((product) => (
-                            <ProductCard
-                                key={product.id}
-                                productImg={product.images[0].url}
-                                title={product.name}
-                                description={product.description}
-                                price={product.price}
-                                badgeTitle="taste in less than 30 minutes"
-                                productId={product.id}
-                            />
+                            <div key={product.id} className="w-full md:w-1/2">
+                                <ProductCard
+                                    productImg={product.images[0].url}
+                                    title={product.name}
+                                    description={product.description}
+                                    price={product.price}
+                                    badgeTitle="taste in less than 30 minutes"
+                                    productId={product.id}
+                                />
+                            </div>
                         ))}
                     </div>
                 </div>

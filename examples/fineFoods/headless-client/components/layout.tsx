@@ -10,7 +10,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         <>
             <div className="grid grid-rows-[64px_1fr_auto] min-h-screen">
                 <Header />
-                <main className="bg-primary">{children}</main>
+                <main className="bg-primary py-8 px-2 lg:px-0">{children}</main>
                 <Footer />
             </div>
             {ordersModalVisible && <OrdersModal />}

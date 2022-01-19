@@ -1,13 +1,9 @@
-import React from "react";
-
-import { PlateIcon } from "../components/icons";
-
 export const Promotional: React.FC = () => {
     return (
-        <div className="flex flex-wrap items-center justify-between ">
+        <div className="flex gap-4 flex-wrap md:flex-nowrap items-center justify-center md:justify-between px-2 sm:px-0">
             <div className="flex flex-col gap-8">
                 <div className=" text-white">
-                    <h1 className="text-7xl font-bold leading-[64px]">
+                    <h1 className="text-5xl md:shrink-0 lg:text-7xl font-bold lg:leading-[64px]">
                         Delight <br /> in every bite!
                     </h1>
                     <h3 className="text-3xl">
@@ -18,11 +14,17 @@ export const Promotional: React.FC = () => {
                         .
                     </h3>
                 </div>
-                <button className="w-48 bg-white hover:bg-gray-100 text-primary text-xl font-bold py-2 px-4 border border-primary rounded-md">
+                <button className="w-48 bg-white hover:bg-gray-100 text-primary text-xl font-bold py-2 px-4 border border-white hover:border-primary rounded-md transition-all duration-300">
                     Explore Menu
                 </button>
             </div>
-            <PlateIcon height={400} />
+            <div>
+                <img
+                    className="w-full max-h-96"
+                    src="./images/plate.png"
+                    alt="Plate with pasta"
+                />
+            </div>
         </div>
     );
 };

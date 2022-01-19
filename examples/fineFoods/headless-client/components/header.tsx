@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 import { MotorcycleIcon, FinefoodsIcon, BasketIcon } from "../components/icons";
 import { useBasketContext, useOrdesModalContext } from "../hooks";
@@ -10,11 +11,13 @@ export const Header: React.FC = () => {
 
     return (
         <header className="sticky top-0 bg-primary shadow-md z-50">
-            <div className="container flex justify-between items-center h-full mx-auto px-2 md:px-0">
-                <div className="flex gap-4">
-                    <MotorcycleIcon />
-                    <FinefoodsIcon width={200} />
-                </div>
+            <div className="container flex justify-between items-center h-full px-2 md:px-0">
+                <Link href="/">
+                    <a className="flex gap-4">
+                        <MotorcycleIcon />
+                        <FinefoodsIcon width={200} />
+                    </a>
+                </Link>
                 <div
                     className="flex items-center gap-4 cursor-pointer"
                     onClick={() =>
@@ -29,7 +32,7 @@ export const Header: React.FC = () => {
                             </span>
                         </div>
                     )}
-                    <BasketIcon />
+                    <BasketIcon className="w-6 h-6" />
                 </div>
             </div>
         </header>
