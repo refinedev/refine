@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 
-import {
-    PlusSquareIcon,
-    ChevronUpIcon,
-    ChevronDownIcon,
-} from "../components/icons";
+import { NumberInput } from "./index";
+import { PlusSquareIcon } from "../components/icons";
 import { useBasketContext } from "../hooks";
 
 export type ProductCardProps = {
@@ -45,39 +42,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                         alt={title}
                     />
                 </div>
-                <div className="flex-auto pt-8 pb-4 px-4">
+                <div className="flex-auto pt-8 pb-4 px-2 h-full">
                     <h3 className="font-bold text-gray-800">{title}</h3>
                     <p className="text-sm">{description}</p>
                     <span className="font-bold text-gray-800 text-lg">
                         ${price / 100}
                     </span>
-                    <div className="flex gap-1 items-center justify-end">
-                        <div className="relative h-8">
-                            <input
-                                className="pl-2 border w-16 rounded-md h-full"
-                                value={amount}
-                                onChange={(event) => {
-                                    setAmount(Number(event.target.value));
-                                }}
-                            />
-                            <button className="border absolute right-0 top-0 h-1/2">
-                                <ChevronUpIcon
-                                    onClick={() =>
-                                        setAmount((prev) => prev + 1)
-                                    }
-                                    className="text-primary w-4 h-full"
-                                />
-                            </button>
-                            <button className="border absolute right-0 bottom-0 h-1/2">
-                                <ChevronDownIcon
-                                    onClick={() =>
-                                        setAmount((prev) => prev - 1)
-                                    }
-                                    className="text-primary w-4 h-full"
-                                />
-                            </button>
-                        </div>
+                    <div className="flex flex-grow gap-1 justify-end">
+                        <NumberInput value={amount} setValue={setAmount} />
                         <button
+                            className="hover:bg-gray-50 active:scale-95 transition-all"
                             onClick={() =>
                                 dispatch({
                                     type: "addProduct",

@@ -7,3 +7,4 @@ export * from "./productCard";
 export * from "./productListItem";
 export * from "./ordersModal";
 export * from "./orderModalProductItem";
+export * from "./numberInput";
