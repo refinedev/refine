@@ -9,7 +9,7 @@ export const Header: React.FC = () => {
     const isBasketHaveOrders = orders.length > 0;
 
     return (
-        <header className="bg-primary">
+        <header className="sticky top-0 bg-primary shadow-md z-50">
             <div className="container flex justify-between items-center h-full mx-auto px-2 md:px-0">
                 <div className="flex gap-4">
                     <MotorcycleIcon />
