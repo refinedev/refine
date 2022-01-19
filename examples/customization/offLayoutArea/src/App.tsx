@@ -1,8 +1,15 @@
-import { Refine, BackTop, AntdLayout, Grid } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import {
+    BackTop,
+    AntdLayout,
+    Grid,
+    notificationProvider,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList } from "pages/posts";
 import { FixedSider } from "components";
@@ -21,7 +28,7 @@ const App: React.FC = () => {
                 >
                     <FixedSider />
                     <AntdLayout style={{ marginLeft: 200 }}>
-                        <Header />
+                        {Header && <Header />}
                         <AntdLayout.Content>
                             <div
                                 style={{
@@ -32,9 +39,9 @@ const App: React.FC = () => {
                                 {children}
                             </div>
                         </AntdLayout.Content>
-                        <Footer />
+                        {Footer && <Footer />}
                     </AntdLayout>
-                    <OffLayoutArea />
+                    {OffLayoutArea && <OffLayoutArea />}
                 </AntdLayout>
             )}
             OffLayoutArea={() => (
@@ -48,6 +55,8 @@ const App: React.FC = () => {
                     list: PostList,
                 },
             ]}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
         />
     );
 };
