@@ -1,4 +1,4 @@
-import { Card, Icons, ShowButton, DeleteButton } from "@pankod/refine";
+import { Card, Icons, ShowButton } from "@pankod/refine";
 
 import { IProduct } from "interfaces";
 
@@ -26,12 +26,6 @@ export const ProductItem: React.FC<ProductItemProps> = ({ item, editShow }) => {
                 <EditOutlined key="edit" onClick={() => editShow(item.id)} />,
                 <ShowButton
                     key="show"
-                    size="small"
-                    hideText
-                    recordItemId={item.id}
-                />,
-                <DeleteButton
-                    key="delete"
                     size="small"
                     hideText
                     recordItemId={item.id}
