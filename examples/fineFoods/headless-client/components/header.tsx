@@ -19,7 +19,7 @@ export const Header: React.FC = () => {
                     </a>
                 </Link>
                 <div
-                    className="flex items-center gap-4 cursor-pointer"
+                    className="flex items-center gap-2 cursor-pointer"
                     onClick={() =>
                         setOrdersModalVisible((prev: boolean) => !prev)
                     }

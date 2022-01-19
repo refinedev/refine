@@ -4,7 +4,7 @@ import dataProvider from "@pankod/refine-simple-rest";
 
 import { API_URL, TRANSLATIONS_BON_APPETIT } from "../../../constants";
 import { IOrder } from "../../../interfaces";
-import { FastMotocycle, OrderSuccess } from "../../../components/icons";
+import { FastMotocycleIcon, OrderIcon } from "../../../components/icons";
 
 type OrderPageProps = {
     order: IOrder;
@@ -15,7 +15,7 @@ export const OrderDetail: React.FC<OrderPageProps> = ({ order }) => {
         <LayoutWrapper>
             <div className="container mx-auto bg-white overflow-hidden rounded-xl">
                 <div className="flex items-center gap-8 py-4 px-8 bg-green-600 text-white">
-                    <OrderSuccess />
+                    <OrderIcon />
                     <h1 className="main-title text-5xl font-bold uppercase">
                         Order received
                     </h1>

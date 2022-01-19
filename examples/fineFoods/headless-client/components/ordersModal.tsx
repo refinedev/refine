@@ -11,7 +11,7 @@ import { OrderModalProductItem } from "../components";
 import { OrderIcon, CloseIcon } from "../components/icons";
 import { IOrder } from "../interfaces";
 
-export const OrdersModal = () => {
+export const OrdersModal: React.FC = () => {
     const ref = useRef(null);
     const { replace } = useNavigation();
     const { setOrdersModalVisible } = useOrdesModalContext();
@@ -27,15 +27,18 @@ export const OrdersModal = () => {
         <>
             <div className="fixed inset-0 z-50 opacity-40 bg-black"></div>
             <div className="fixed inset-0 z-50 flex items-center">
-                <div ref={ref} className="w-[500px] bg-white mx-auto">
+                <div
+                    ref={ref}
+                    className="w-[500px] bg-white mx-auto overflow-auto max-h-[95%] rounded-lg shadow-lg"
+                >
                     <div className="relative bg-primary p-2">
                         <button
-                            className="absolute top-2 right-2"
+                            className="absolute top-2 right-2 p-1 hover:bg-orange-500 active:scale-90 transition-all"
                             onClick={() => setOrdersModalVisible(false)}
                         >
                             <CloseIcon className="w-6 h-6 text-white" />
                         </button>
-                        <OrderIcon className="bg-primary" />
+                        <OrderIcon />
                     </div>
                     <div className="p-4">
                         <div className="flex flex-col gap-2">
@@ -46,7 +49,7 @@ export const OrdersModal = () => {
                                 />
                             ))}
                         </div>
-                        <div className="flex flex-col items-end gap-2">
+                        <div className="flex flex-col items-end gap-2 mt-2">
                             <div className="flex justify-center items-center gap-2">
                                 Total:
                                 <span className="font-bold text-lg text-gray-800">
@@ -78,7 +81,7 @@ export const OrdersModal = () => {
                                         },
                                     )
                                 }
-                                className="bg-primary text-white hover:bg-orange-600 text-lg px-4 font-bold border border-primary rounded-md"
+                                className="bg-primary text-white hover:bg-orange-500 text-lg px-4 font-bold border border-primary rounded-md active:scale-95 transition-all"
                             >
                                 Order
                             </button>

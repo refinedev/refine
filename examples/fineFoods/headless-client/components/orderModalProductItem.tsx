@@ -16,7 +16,7 @@ export const OrderModalProductItem: React.FC<{ order: IBasketOrder }> = ({
                     src={product?.images[0].url}
                     alt={product?.name}
                 />
-                <div>{product?.name}</div>
+                <p>{product?.name}</p>
             </div>
             <div className="flex-none">
                 <span className="font-semibold">

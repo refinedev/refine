@@ -7,7 +7,7 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { useTable, Column, usePagination } from "@pankod/refine-react-table";
 
 import { ProductListItem } from "../../../components/productListItem";
-import { ChevronLeft, ChevronRight } from "../../../components/icons";
+import { ChevronLeftIcon, ChevronRightIcon } from "../../../components/icons";
 import { API_URL } from "../../../constants";
 import { ICategory, IProduct } from "../../../interfaces";
 
@@ -68,7 +68,7 @@ const Category: React.FC<CategoryPageProps> = ({ category, products }) => {
         <LayoutWrapper>
             <div className="container mx-auto overflow-hidden rounded-xl bg-white">
                 <div
-                    className="flex items-center h-36 bg-cover bg-center bg-no-repeat pl-6"
+                    className="flex items-center h-48 bg-cover bg-center bg-no-repeat pl-6"
                     style={{
                         backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${category.cover})`,
                     }}
@@ -108,7 +108,7 @@ const Category: React.FC<CategoryPageProps> = ({ category, products }) => {
                         onClick={() => previousPage()}
                         disabled={!canPreviousPage}
                     >
-                        <ChevronLeft className="h-5 w-5 text-primary" />
+                        <ChevronLeftIcon className="h-5 w-5 text-primary" />
                     </button>
                     {pageOptions.map((page) => (
                         <button
@@ -123,7 +123,7 @@ const Category: React.FC<CategoryPageProps> = ({ category, products }) => {
                         onClick={() => nextPage()}
                         disabled={!canNextPage}
                     >
-                        <ChevronRight className="h-5 w-5 text-primary" />
+                        <ChevronRightIcon className="h-5 w-5 text-primary" />
                     </button>
                 </div>
             </div>
