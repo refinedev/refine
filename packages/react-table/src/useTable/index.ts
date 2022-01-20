@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 import {
     BaseRecord,
+    CrudFilters,
     CrudOperators,
     HttpError,
+    unionFilters,
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
 } from "@pankod/refine-core";
@@ -90,18 +92,27 @@ export const useTable = <
     }, [sortBy]);
 
     useEffect(() => {
-        setFilters(
-            filters.map((filter) => {
-                const operator = reactTableResult.columns.find(
-                    (c) => c.id === filter.id,
-                )?.filter as CrudOperators;
+        const crudFilters: CrudFilters = [];
 
-                return {
-                    field: filter.id,
-                    value: filter.value,
-                    operator,
-                };
-            }),
+        filters.map((filter) => {
+            const operator = reactTableResult.columns.find(
+                (c) => c.id === filter.id,
+            )?.filter as CrudOperators;
+
+            crudFilters.push({
+                field: filter.id,
+                value: filter.value,
+                operator:
+                    operator ?? (Array.isArray(filter.value) ? "in" : "eq"),
+            });
+        });
+
+        setFilters((prevFilters) =>
+            unionFilters(
+                refineTableProps?.permanentFilter || [],
+                crudFilters,
+                prevFilters,
+            ),
         );
     }, [filters]);
 
