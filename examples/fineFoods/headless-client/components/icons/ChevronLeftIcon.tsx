@@ -10,10 +10,10 @@ const SvgChevronLeftIcon = (props: SVGProps<SVGSVGElement>) => (
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="chevronLeftIcon_svg__feather chevronLeftIcon_svg__feather-chevron-left"
+        className="feather feather-chevron-left"
         {...props}
     >
-        <path d="m15 18-6-6 6-6" />
+        <polyline points="15 18 9 12 15 6" />
     </svg>
 );
 
