@@ -8,7 +8,7 @@ import {
     DatePicker,
     Icons,
     Button,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { ITask, IPriority, IStatus, IAuthUser } from "interfaces";
 

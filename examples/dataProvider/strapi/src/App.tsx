@@ -1,10 +1,16 @@
-import { Refine, AuthProvider } from "@pankod/refine";
+import { Refine, AuthProvider } from "@pankod/refine-core";
+import {
+    notificationProvider,
+    LoginPage,
+    Layout,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import { DataProvider, AuthHelper } from "@pankod/refine-strapi";
 import routerProvider from "@pankod/refine-react-router";
 
 import axios from "axios";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit } from "pages/posts";
 import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
@@ -90,6 +96,10 @@ const App: React.FC = () => {
                     edit: CategoryEdit,
                 },
             ]}
+            notificationProvider={notificationProvider}
+            LoginPage={LoginPage}
+            Layout={Layout}
+            catchAll={<ErrorComponent />}
         />
     );
 };

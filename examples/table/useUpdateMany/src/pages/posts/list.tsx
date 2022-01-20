@@ -1,17 +1,20 @@
 import * as React from "react";
 import {
+    IResourceComponentsProps,
+    useMany,
+    useUpdateMany,
+} from "@pankod/refine-core";
+
+import {
     List,
     Table,
     TextField,
     useTable,
-    IResourceComponentsProps,
     Space,
     EditButton,
     ShowButton,
-    useMany,
-    useUpdateMany,
     Button,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
 

@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
+import { useList } from "@pankod/refine-core";
 import {
     AntdLayout,
     AutoComplete,
     Input,
     Icons,
     Typography,
-    useList,
-    Link,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
+import routerProvider from "@pankod/refine-react-router";
 import debounce from "lodash/debounce";
 
+const { Link } = routerProvider;
 const { Text } = Typography;
 const { SearchOutlined } = Icons;
 

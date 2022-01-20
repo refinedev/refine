@@ -33,7 +33,10 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
     const { pathname } = useLocation();
     const { DashboardPage, catchAll, LoginPage } = useRefineContext();
 
-    const resource = resources.find((res) => res.route === routeResourceName);
+    const resource = resources.find(
+        (res) =>
+            res.name === routeResourceName || res.route === routeResourceName,
+    );
 
     const isServer = typeof window !== "undefined";
 

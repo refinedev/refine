@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import routerProvider from "@pankod/refine-react-router";
-import { Refine } from "@pankod/refine-core";
+import { Refine, useResource } from "@pankod/refine-core";
 import {
     Icons,
     ConfigProvider,
@@ -69,7 +69,6 @@ const App: React.FC = () => {
                 Title={Title}
                 Header={Header}
                 Layout={Layout}
-                catchAll={<ErrorComponent />}
                 syncWithLocation
                 warnWhenUnsavedChanges
                 resources={[
@@ -117,6 +116,7 @@ const App: React.FC = () => {
                     },
                 ]}
                 notificationProvider={notificationProvider}
+                catchAll={<ErrorComponent />}
             ></Refine>
         </ConfigProvider>
     );

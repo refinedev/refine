@@ -1,8 +1,13 @@
-import { Refine, AntdLayout } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import {
+    AntdLayout,
+    notificationProvider,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList } from "pages/posts";
 import { CustomSider } from "components";
@@ -27,9 +32,9 @@ const App: React.FC = () => {
                                 {children}
                             </div>
                         </AntdLayout.Content>
-                        <Footer />
+                        {Footer && <Footer />}
                     </AntdLayout.Content>
-                    <OffLayoutArea />
+                    {OffLayoutArea && <OffLayoutArea />}
                 </AntdLayout>
             )}
             Title={() => (
@@ -47,6 +52,8 @@ const App: React.FC = () => {
                     list: PostList,
                 },
             ]}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
         />
     );
 };

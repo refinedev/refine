@@ -1,6 +1,6 @@
 {
   "name": "refineflix",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "private": true,
   "dependencies": {
     "@pankod/refine": "^1.0.76",

@@ -1,3 +1,5 @@
+import { IResourceComponentsProps } from "@pankod/refine-core";
+
 import {
     useForm,
     Form,
@@ -5,8 +7,7 @@ import {
     Select,
     Edit,
     useSelect,
-    IResourceComponentsProps,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { ITask, IPriority, IStatus, IAuthUser } from "interfaces";
 

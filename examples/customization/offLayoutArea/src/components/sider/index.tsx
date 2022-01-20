@@ -1,12 +1,7 @@
 import React, { useState } from "react";
-import {
-    AntdLayout,
-    Menu,
-    Icons,
-    useMenu,
-    useTitle,
-    useNavigation,
-} from "@pankod/refine";
+import { useTitle, useNavigation } from "@pankod/refine-core";
+
+import { AntdLayout, Menu, Icons, useMenu } from "@pankod/refine-antd";
 
 export const FixedSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
@@ -26,7 +21,8 @@ export const FixedSider: React.FC = () => {
                 left: 0,
             }}
         >
-            <Title collapsed={collapsed} />
+            {Title && <Title collapsed={collapsed} />}
+
             <Menu
                 selectedKeys={[selectedKey]}
                 mode="inline"

@@ -1,11 +1,6 @@
-import {
-    useShow,
-    Show,
-    IResourceComponentsProps,
-    Typography,
-    Space,
-    ImageField,
-} from "@pankod/refine";
+import { useShow, IResourceComponentsProps } from "@pankod/refine-core";
+
+import { Show, Typography, Space, ImageField } from "@pankod/refine-antd";
 
 import { IProduct } from "interfaces";
 

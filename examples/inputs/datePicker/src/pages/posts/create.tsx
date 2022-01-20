@@ -1,14 +1,14 @@
 import React, { useState } from "react";
+import { IResourceComponentsProps } from "@pankod/refine-core";
 import {
     Create,
     DatePicker,
     Form,
     Input,
-    IResourceComponentsProps,
     Select,
     useForm,
     useSelect,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 import dayjs from "dayjs";
 
 import ReactMarkdown from "react-markdown";

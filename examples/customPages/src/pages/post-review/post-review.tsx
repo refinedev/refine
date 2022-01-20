@@ -1,13 +1,12 @@
+import { useList, useOne, useUpdate } from "@pankod/refine-core";
+
 import {
     Typography,
     Button,
     Show,
     Space,
-    useList,
     MarkdownField,
-    useOne,
-    useUpdate,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
 

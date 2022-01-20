@@ -1,7 +1,13 @@
 import React from "react";
 import {
-    useTable,
     useMany,
+    IResourceComponentsProps,
+    HttpError,
+    CrudFilters,
+} from "@pankod/refine-core";
+
+import {
+    useTable,
     List,
     Table,
     TextField,
@@ -11,13 +17,10 @@ import {
     ShowButton,
     EditButton,
     DeleteButton,
-    IResourceComponentsProps,
-    HttpError,
-    CrudFilters,
     Row,
     Col,
     Card,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import {
     ILabel,

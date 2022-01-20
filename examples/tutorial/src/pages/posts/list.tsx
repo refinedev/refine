@@ -1,3 +1,5 @@
+import { IResourceComponentsProps, useMany } from "@pankod/refine-core";
+
 import {
     List,
     TextField,
@@ -5,16 +7,14 @@ import {
     DateField,
     Table,
     useTable,
-    IResourceComponentsProps,
     Space,
     EditButton,
     ShowButton,
-    useMany,
     FilterDropdown,
     Select,
     useSelect,
     DeleteButton,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
 

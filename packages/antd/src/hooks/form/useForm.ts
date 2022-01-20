@@ -47,7 +47,7 @@ export const useForm = <
     onMutationError,
     submitOnEnter = false,
     warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
-    redirect = "edit",
+    redirect,
     successNotification,
     errorNotification,
     metaData,
@@ -65,8 +65,6 @@ export const useForm = <
         values,
         context,
     ) => {
-        form.resetFields();
-
         onMutationSuccessProp?.(data, values, context);
     };
 
