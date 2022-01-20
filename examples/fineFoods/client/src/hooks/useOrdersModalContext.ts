@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { OrdersModalContext } from "@contextProviders";
+import { OrdersModalContext } from "@context";
 
 export const useOrdesModalContext = () => {
     const { ordersModalVisible, setOrdersModalVisible } =
