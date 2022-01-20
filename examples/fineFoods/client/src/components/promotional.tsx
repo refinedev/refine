@@ -17,7 +17,7 @@ export const Promotional: React.FC = () => {
                     </h3>
                 </div>
                 <Link href="/1/Starters">
-                    <a className="w-48 bg-white hover:bg-gray-100 text-primary text-xl font-bold py-2 px-4 border border-white hover:border-primary rounded-md transition-all duration-300">
+                    <a className="w-max bg-white hover:bg-gray-100 text-primary text-xl font-bold py-2 px-4 border border-white hover:border-primary rounded-md transition-all duration-300">
                         Explore Menu
                     </a>
                 </Link>
