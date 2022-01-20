@@ -25,14 +25,14 @@ const SvgRefineLoveIcon = (props: SVGProps<SVGSVGElement>) => (
         <defs>
             <filter
                 id="refineLoveIcon_svg__a"
-                x="{26.373}"
-                y="{15}"
-                width="{81.626}"
-                height="{43.416}"
+                x={26.373}
+                y={15}
+                width={81.626}
+                height={43.416}
                 filterUnits="userSpaceOnUse"
             >
                 <feFlood result="BackgroundImageFix" />
-                <feGaussianBlur in="BackgroundImage" stdDeviation="{4}" />
+                <feGaussianBlur in="BackgroundImage" stdDeviation={4} />
                 <feComposite
                     in2="SourceAlpha"
                     operator="in"
