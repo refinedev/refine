@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const Promotional: React.FC = () => {
     return (
         <div className="flex gap-4 flex-wrap md:flex-nowrap items-center justify-center md:justify-between px-2 sm:px-0">
@@ -14,9 +16,11 @@ export const Promotional: React.FC = () => {
                         .
                     </h3>
                 </div>
-                <button className="w-48 bg-white hover:bg-gray-100 text-primary text-xl font-bold py-2 px-4 border border-white hover:border-primary rounded-md transition-all duration-300">
-                    Explore Menu
-                </button>
+                <Link href="/1/Starters">
+                    <a className="w-48 bg-white hover:bg-gray-100 text-primary text-xl font-bold py-2 px-4 border border-white hover:border-primary rounded-md transition-all duration-300">
+                        Explore Menu
+                    </a>
+                </Link>
             </div>
             <div>
                 <img
