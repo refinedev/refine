@@ -23,8 +23,7 @@ const Category: React.FC<CategoryPageProps> = ({ category, products }) => {
     const columns: Array<Column> = React.useMemo(
         () => [
             {
-                id: "category.id",
-                filter: "eq",
+                id: "product",
                 accessor: (row: any) => row,
                 // eslint-disable-next-line react/display-name
                 Cell: ({ value }) => <ProductListItem product={value} />,
@@ -44,6 +43,7 @@ const Category: React.FC<CategoryPageProps> = ({ category, products }) => {
         gotoPage,
         nextPage,
         previousPage,
+        state: { pageIndex },
     } = useTable<IProduct>(
         {
             columns,
@@ -113,7 +113,10 @@ const Category: React.FC<CategoryPageProps> = ({ category, products }) => {
                     </button>
                     {pageOptions.map((page) => (
                         <button
-                            className="px-4 py-2 border text-sm font-medium hover:bg-gray-50"
+                            key={page}
+                            className={`px-4 py-2 border text-sm font-medium hover:bg-gray-50 ${
+                                pageIndex === page ? "text-primary" : ""
+                            }`}
                             onClick={() => gotoPage(page)}
                         >
                             {page + 1}
