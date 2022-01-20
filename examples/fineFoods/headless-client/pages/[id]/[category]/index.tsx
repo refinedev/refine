@@ -23,7 +23,8 @@ const Category: React.FC<CategoryPageProps> = ({ category, products }) => {
     const columns: Array<Column> = React.useMemo(
         () => [
             {
-                id: "product",
+                id: "category.id",
+                filter: "eq",
                 accessor: (row: any) => row,
                 // eslint-disable-next-line react/display-name
                 Cell: ({ value }) => <ProductListItem product={value} />,
