@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useShow, IResourceComponentsProps } from "@pankod/refine-core";
+
 import {
     List,
     Create,
@@ -15,10 +17,8 @@ import {
     ShowButton,
     DeleteButton,
     useTable,
-    useShow,
     useDrawerForm,
-    IResourceComponentsProps,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost } from "../../interfaces";
 
