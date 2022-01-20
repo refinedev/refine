@@ -41,12 +41,18 @@ export const OrdersModal: React.FC = () => {
                     </div>
                     <div className="p-4">
                         <div className="flex flex-col gap-2">
-                            {orders.map((order, index) => (
-                                <OrderModalProductItem
-                                    key={index}
-                                    order={order}
-                                />
-                            ))}
+                            {orders.length ? (
+                                orders.map((order, index) => (
+                                    <OrderModalProductItem
+                                        key={index}
+                                        order={order}
+                                    />
+                                ))
+                            ) : (
+                                <p className="h-48 flex items-center justify-center text-xl font-bold text-gray-500">
+                                    No have any items.
+                                </p>
+                            )}
                         </div>
                         <div className="flex flex-col items-end gap-2 mt-2">
                             <div className="flex justify-center items-center gap-2">
