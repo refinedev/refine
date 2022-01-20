@@ -9,7 +9,7 @@ import {
     Upload,
     Grid,
     RcFile,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { appwriteClient, normalizeFile } from "utility";
 import { StoreContext } from "context/store";
