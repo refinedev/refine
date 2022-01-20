@@ -1,3 +1,5 @@
+import { IResourceComponentsProps } from "@pankod/refine-core";
+
 import {
     useForm,
     Create,
@@ -5,8 +7,7 @@ import {
     Input,
     Select,
     useSelect,
-    IResourceComponentsProps,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost } from "interfaces";
 
