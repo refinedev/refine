@@ -30,7 +30,7 @@ Let's make a use case. Lets say that we need to verify that the header in the po
 ```
 
 ```tsx
-import { useCustom, useApiUrl } from "@pankod/refine";
+import { useCustom, useApiUrl } from "@pankod/refine-core";
 
 interface PostUniqueCheckResponse {
     isAvailable: boolean;
