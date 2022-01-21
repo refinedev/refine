@@ -43,7 +43,7 @@ type CategoryMutationResult = {
     title: string;
 };
 
-import { useUpdate } from "@pankod/refine";
+import { useUpdate } from "@pankod/refine-core";
 
 const { mutate } = useUpdate<CategoryMutationResult>();
 
@@ -110,7 +110,7 @@ Values passed to `mutate` must have these types.
 Mutation mode determines which mode mutation runs with.
 
 ```tsx
-import { useUpdate } from "@pankod/refine";
+import { useUpdate } from "@pankod/refine-core";
 
 const { mutate } = useUpdate();
 
@@ -137,7 +137,7 @@ Default behaviour on undo action includes notifications. If a custom callback is
 Passed callback will receive a function that actually cancels the mutation. Don't forget to run this function to cancel the mutation on `undoable` mode.
 
 ```tsx
-import { useUpdate } from "@pankod/refine";
+import { useUpdate } from "@pankod/refine-core";
 
 // highlight-start
 const customOnCancel = (cancelMutation: () => void) => {
