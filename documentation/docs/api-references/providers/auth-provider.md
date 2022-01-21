@@ -45,7 +45,7 @@ You can find auth provider examples made with **refine**
 To use `authProvider` in **refine**, we have to pass the `authProvider` to the `<Refine />` component.
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -114,7 +114,7 @@ const authProvider = {
 `login` method will be accessible via `useLogin` auth hook.
 
 ```tsx
-import { useLogin } from "@pankod/refine";
+import { useLogin } from "@pankod/refine-core";
 
 const { mutate: login } = useLogin();
 
@@ -196,7 +196,7 @@ const authProvider = {
 `logout` method will be accessible via the `useLogout` auth hook.
 
 ```tsx
-import { useLogout } from "@pankod/refine";
+import { useLogout } from "@pankod/refine-core";
 
 const { mutate: logout } = useLogout();
 
@@ -281,7 +281,7 @@ const authProvider = {
 `checkError` method will be accessible via the `useCheckError` auth hook.
 
 ```tsx
-import { useCheckError } from "@pankod/refine";
+import { useCheckError } from "@pankod/refine-core";
 
 const { mutate: checkError } = useCheckError();
 
@@ -356,7 +356,7 @@ const authProvider = {
 `checkAuth` method will be accessible via `useAuthenticated` auth hook.
 
 ```tsx
-import { useAuthenticated } from "@pankod/refine";
+import { useAuthenticated } from "@pankod/refine-core";
 
 const {
     isSuccess,
@@ -414,7 +414,8 @@ For example let's say that only the admins must be able to create new posts from
 `<List>` can show a button for creating new posts. If it's required that only admins can create new posts, this button must be only accessible to users who has the `"admin"` role.
 
 ```tsx title="pages/post/list"
-import { List, usePermissions } from "@pankod/refine";
+import { usePermissions } from "@pankod/refine-core";
+import { List } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { data: permissionsData } = usePermissions();
@@ -453,7 +454,7 @@ const authProvider = {
 The resolved data can be acquired using the [`useGetIdentity`](api-references/hooks/auth/useGetIdentity.md) hook.
 
 ```tsx
-import { useGetIdentity } from "@pankod/refine";
+import { useGetIdentity } from "@pankod/refine-core";
 
 const { data: userIdentity } = useGetIdentity<string>();
 // userIdentity: "admin"
