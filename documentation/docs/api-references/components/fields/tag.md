@@ -12,14 +12,15 @@ This field lets you display a value in a tag. It uses Ant Design's [`<Tag>`](htt
 Let's see how we can use it in a basic list page:
 
 ```tsx  title="pages/posts/list.tsx"
+import { IResourceComponentsProps } from "@pankod/refine-core";
+
 import {
     List,
     // highlight-next-line
     TagField,
     Table,
     useTable,
-    IResourceComponentsProps,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();

@@ -17,7 +17,7 @@ import {
     useTable,
     // highlight-next-line
     CloneButton,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -65,7 +65,7 @@ Will look like this:
 `recordItemId` is used to append the record id to the end of the route path.
 
 ```tsx 
-import { CloneButton } from "@pankod/refine";
+import { CloneButton } from "@pankod/refine-antd";
 
 export const MyCloneComponent = () => {
     return <CloneButton resourceName="posts" recordItemId="1" />;
@@ -83,7 +83,7 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/api-re
 It is used to redirect the app to the `/clone` endpoint of the given resource name. By default, the app redirects to a URL with `/clone` defined by the name property of the resource object.
 
 ```tsx 
-import { CloneButton } from "@pankod/refine";
+import { CloneButton } from "@pankod/refine-antd";
 
 export const MyCloneComponent = () => {
     return <CloneButton resourceName="categories" recordItemId="2" />;
@@ -97,7 +97,7 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/api-re
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx 
-import { CloneButton } from "@pankod/refine";
+import { CloneButton } from "@pankod/refine-antd";
 
 export const MyCloneComponent = () => {
     return <CloneButton hideText />;
@@ -109,7 +109,7 @@ export const MyCloneComponent = () => {
 It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/api-references/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-references/components/refine-config.md)
 
 ```tsx 
-import { CloneButton } from "@pankod/refine";
+import { CloneButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
     return <CloneButton ignoreAccessControlProvider />;

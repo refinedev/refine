@@ -17,7 +17,7 @@ An example use in a custom page may look like this:
 
 ```tsx title="App.tsx"
 // highlight-next-line
-import { Refine, Authenticated, LayoutWrapper } from "@pankod/refine";
+import { Refine, Authenticated, LayoutWrapper } from "@pankod/refine-core";
 
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";

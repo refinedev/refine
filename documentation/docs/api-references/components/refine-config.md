@@ -11,7 +11,7 @@ import warnwhen from '@site/static/img/warnwhen.png';
 [`dataProvider`](api-references/providers/data-provider.md) and [`routerProvider`](#routerprovider) are required to bootstrap the app. After adding them, [`resources`](#resources) can be added as property.
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -72,7 +72,7 @@ Page components that are for interacting with the CRUD API operations are passed
 <br />
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-json-server";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -569,7 +569,8 @@ The component wanted to be placed out of app layout structure can be set by pass
 
 ```tsx title="App.tsx"
 // highlight-next-line
-import { Refine, BackTop } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import { BackTop } from "@pankod/refine-antd";
 
 const App: React.FC = () => (
     <Refine

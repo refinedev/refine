@@ -10,15 +10,14 @@ This field lets you show basic text. It uses Ant Design's [`<Typography.Text>`](
 Let's see how to use it in a basic list page:
 
 ```tsx  title="src/pages/posts/list.tsx"
+import { IResourceComponentsProps, useMany } from "@pankod/refine-core";
 import {
     List,
     // highlight-next-line
     TextField,
     Table,
     useTable,
-    IResourceComponentsProps,
-    useMany,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC<IResourceComponentsProps> = (props) => {
     const { tableProps } = useTable<IPost>();

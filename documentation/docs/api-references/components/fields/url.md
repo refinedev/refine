@@ -18,7 +18,7 @@ import {
     useTable,
     // highlight-next-line
     UrlField 
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();

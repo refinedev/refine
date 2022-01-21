@@ -16,7 +16,7 @@ import {
     List,
     Table,
     useTable,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -56,7 +56,7 @@ Will look like this:
 It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of resource object.
 
 ```tsx 
-import { CreateButton } from "@pankod/refine";
+import { CreateButton } from "@pankod/refine-antd";
 
 export const MyCreateComponent = () => {
     return <CreateButton resourceName="posts" />;
@@ -70,7 +70,7 @@ Clicking the button will trigger the `create` method of [`useNavigation`](/api-r
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx 
-import { CreateButton } from "@pankod/refine";
+import { CreateButton } from "@pankod/refine-antd";
 
 export const MyCreateComponent = () => {
     return <CreateButton hideText />;
@@ -82,7 +82,7 @@ export const MyCreateComponent = () => {
 It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/api-references/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-references/components/refine-config.md)
 
 ```tsx 
-import { CreateButton } from "@pankod/refine";
+import { CreateButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
     return <CreateButton ignoreAccessControlProvider />;

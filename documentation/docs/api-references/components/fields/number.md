@@ -15,7 +15,7 @@ If Intl is not available, `<NumberField>` outputs numbers as is (and ignores the
 
 ```tsx
 // highlight-next-line
-import { List, Table, NumberField } from "@pankod/refine";
+import { List, Table, NumberField } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     return (

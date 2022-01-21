@@ -19,7 +19,7 @@ import {
     useImport,
     ImportButton,
     // highlight-end
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -71,7 +71,7 @@ Will look like this:
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx 
-import { ImportButton, useImport } from "@pankod/refine";
+import { ImportButton, useImport } from "@pankod/refine-antd";
 
 export const MyRefreshComponent = () => {
     const importProps = useImport();

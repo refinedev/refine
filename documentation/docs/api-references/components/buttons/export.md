@@ -14,14 +14,14 @@ import exportButton from '@site/static/img/guides-and-concepts/components/button
 Use it like any other Ant Design [`<Button>`][button]. You can use it with [useExport][useexport]:
 
 ```tsx  title="/src/pages/posts/list.tsx"
+import { useExport } from "@pankod/refine-core";
 import {
     List,
     Table,
     useTable,
-    useExport,
     // highlight-next-line
     ExportButton,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -73,7 +73,7 @@ It looks like this:
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx 
-import { ExportButton } from "@pankod/refine";
+import { ExportButton } from "@pankod/refine-antd";
 
 export const MyRefreshComponent = () => {
     return <ExportButton hideText />;
