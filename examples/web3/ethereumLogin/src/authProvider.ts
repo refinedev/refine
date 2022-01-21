@@ -1,4 +1,4 @@
-import { AuthProvider } from "@pankod/refine";
+import { AuthProvider } from "@pankod/refine-core";
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 

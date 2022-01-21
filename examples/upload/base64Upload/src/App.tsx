@@ -1,8 +1,13 @@
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import {
+    notificationProvider,
+    Layout,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { UserList, UserCreate, UserEdit, UserShow } from "pages/users";
 
@@ -22,6 +27,9 @@ const App: React.FC = () => {
                     show: UserShow,
                 },
             ]}
+            notificationProvider={notificationProvider}
+            Layout={Layout}
+            catchAll={<ErrorComponent />}
         />
     );
 };
