@@ -9,7 +9,7 @@ Username: `refine-demo`
 
 Password: `demodemo`
 
-<iframe src="https://codesandbox.io/embed/strapi-multi-tenant-example-jgr0g?fautoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/strapi-multi-tenant-example-t5d8x?fautoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="strapi-multi-tenant-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
