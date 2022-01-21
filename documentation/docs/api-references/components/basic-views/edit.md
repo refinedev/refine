@@ -21,7 +21,8 @@ When clicked on, the delete button executes the `useDelete` method provided by t
 [Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](/api-references/components/buttons/delete.md)
 
 ```tsx 
-import { Edit, usePermissions } from "@pankod/refine";
+import { usePermissions } from "@pankod/refine-core";
+import { Edit } from "@pankod/refine-antd";
 
 export const EditPage: React.FC = () => {
     const { data } = usePermissions<string>();
@@ -48,7 +49,7 @@ Clicking on the save button will submit your form.
 [Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-references/components/buttons/save.md)
 
 ```tsx 
-import { Edit } from "@pankod/refine";
+import { Edit } from "@pankod/refine-antd";
 
 export const EditPage: React.FC = () => {
     return <Edit saveButtonProps={{ size: "small" }}>...</Edit>;
@@ -60,7 +61,7 @@ export const EditPage: React.FC = () => {
 It allows adding titles inside the `<Edit>` component. if you don't pass title props it uses the "Edit" prefix and singular resource name by default. For example, for the "posts" resource, it will be "Edit post".
 
 ```tsx 
-import { Edit } from "@pankod/refine";
+import { Edit } from "@pankod/refine-antd";
 
 export const EditPage: React.FC = () => {
     return <Edit title="Custom Title">...</Edit>;
@@ -72,7 +73,7 @@ export const EditPage: React.FC = () => {
 `<Edit>` uses the Ant Design [`<Card>`](https://ant.design/components/card) component. The `action` property of the `<Card>` component shows `<SaveButton>` or `<DeleteButton>` based on your resource definition in the `resources` property you pass to `<Refine>`. If you want to use other things instead of these buttons, you can use the `actionButton` property like the code below.
 
 ```tsx 
-import { Edit, Button } from "@pankod/refine";
+import { Edit, Button } from "@pankod/refine-antd";
 
 export const EditPage: React.FC = () => {
     return (
@@ -107,7 +108,7 @@ export const EditPage: React.FC = () => {
 By default, the `extra` property of the `<PageHeader>` component shows `<RefreshButton>` or `<ListButton>` based on your resource definition in the `resources` property you pass to `<Refine>`.
 
 ```tsx 
-import { Edit } from "@pankod/refine";
+import { Edit } from "@pankod/refine-antd";
 
 export const EditPage: React.FC = () => {
     return (
@@ -139,7 +140,7 @@ export const EditPage: React.FC = () => {
 The `<Edit>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL(when used on a custom page, modal or drawer).
 
 ```tsx 
-import { Edit, Modal, useModalForm } from "@pankod/refine";
+import { Edit, Modal, useModalForm } from "@pankod/refine-antd";
 
 export const EditPage: React.FC = () => {
     const { modalProps, editId } = useModalForm({
@@ -168,7 +169,7 @@ Determines which mode mutation will have while executing `<DeleteButton>` .
 [Refer to the mutation mode docs for further information. &#8594](guides-and-concepts/mutation-mode.md)
 
 ```tsx 
-import { Edit } from "@pankod/refine";
+import { Edit } from "@pankod/refine-antd";
 
 export const EditPage: React.FC = () => {
     return <Edit mutationMode="undoable">...</Edit>;
@@ -182,7 +183,8 @@ export const EditPage: React.FC = () => {
 [Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
 ```tsx
-import { Refine, Edit } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import { Edit } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
