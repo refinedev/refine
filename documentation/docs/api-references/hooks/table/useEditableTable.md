@@ -16,7 +16,7 @@ Let's say that we want to make the `Post` data where we show the `id` and `title
 This time, to add the edit feature, we have to cover the `<Table>` component with a `<Form>`component and pass the properties coming from `useEditableTable` to the corresponding components:
 
 ```tsx  title="/pages/posts/list.tsx"
-import { List, Table, useEditableTable, Form, TextField } from "@pankod/refine";
+import { List, Table, useEditableTable, Form, TextField } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
 // highlight-next-line
@@ -58,7 +58,7 @@ import {
     EditButton,
 // highlight-end
     useEditableTable,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const {
@@ -140,7 +140,7 @@ import {
     TextField,
 // highlight-end
     useEditableTable,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const {
@@ -247,7 +247,7 @@ import {
     Input,
     TextField,
     useEditableTable,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
 // highlight-start
