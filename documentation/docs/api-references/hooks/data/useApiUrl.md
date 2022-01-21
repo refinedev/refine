@@ -16,7 +16,7 @@ import {
     // highlight-next-line
     useCustom,
     useApiUrl
-} from "@pankod/refine";
+} from "@pankod/refine-core";
 
 interface PostUniqueCheckResponse {
     isAvailable: boolean;
