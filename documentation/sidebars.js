@@ -16,7 +16,7 @@ module.exports = {
         },
         {
             type: "category",
-            label: "API References",
+            label: "Core",
             items: [
                 {
                     type: "category",
@@ -81,30 +81,18 @@ module.exports = {
                         {
                             type: "category",
                             label: "Form",
-                            items: [
-                                "api-references/hooks/form/useForm",
-                                "api-references/hooks/form/useModalForm",
-                                "api-references/hooks/form/useDrawerForm",
-                                "api-references/hooks/form/useStepsForm",
-                            ],
+                            items: ["api-references/hooks/form/useForm"],
                         },
                         {
                             type: "category",
                             label: "Table",
-                            items: [
-                                "api-references/hooks/table/useTable",
-                                "api-references/hooks/table/useEditableTable",
-                            ],
+                            items: ["api-references/hooks/table/useTable"],
                         },
 
                         {
                             type: "category",
                             label: "Field",
-                            items: [
-                                "api-references/hooks/field/useCheckboxGroup",
-                                "api-references/hooks/field/useSelect",
-                                "api-references/hooks/field/useRadioGroup",
-                            ],
+                            items: ["api-references/hooks/field/useSelect"],
                         },
                         {
                             type: "category",
@@ -127,14 +115,8 @@ module.exports = {
                         },
                         {
                             type: "category",
-                            label: "List",
-                            items: ["api-references/hooks/show/useSimpleList"],
-                        },
-                        {
-                            type: "category",
                             label: "Resource",
                             items: [
-                                "api-references/hooks/resource/useMenu",
                                 "api-references/hooks/resource/useResource",
                                 "api-references/hooks/resource/useResourceWithRoute",
                             ],
@@ -167,17 +149,6 @@ module.exports = {
                     items: [
                         "api-references/components/refine-config",
                         "api-references/components/layout-wrapper",
-                        "api-references/components/filter-dropdown",
-                        {
-                            type: "category",
-                            label: "Basic Views",
-                            items: [
-                                "api-references/components/basic-views/list",
-                                "api-references/components/basic-views/create",
-                                "api-references/components/basic-views/show",
-                                "api-references/components/basic-views/edit",
-                            ],
-                        },
                         {
                             type: "category",
                             label: "Authorization",
@@ -192,48 +163,118 @@ module.exports = {
                                 "api-references/components/accessControl/can-access",
                             ],
                         },
+                    ],
+                },
+                "api-references/interfaceReferences",
+            ],
+        },
+        {
+            type: "category",
+            label: "UI Frameworks",
+            items: [
+                {
+                    type: "category",
+                    label: "Ant Design",
+                    items: [
                         {
                             type: "category",
-                            label: "Buttons",
+                            label: "Hooks",
                             items: [
-                                "api-references/components/buttons/list-button",
-                                "api-references/components/buttons/create-button",
-                                "api-references/components/buttons/edit-button",
-                                "api-references/components/buttons/show-button",
-                                "api-references/components/buttons/delete-button",
-                                "api-references/components/buttons/clone-button",
-                                "api-references/components/buttons/refresh-button",
-                                "api-references/components/buttons/save-button",
-                                "api-references/components/buttons/import-button",
-                                "api-references/components/buttons/export-button",
+                                {
+                                    type: "category",
+                                    label: "Form",
+                                    items: [
+                                        "api-references/hooks/form/useForm",
+                                        "api-references/hooks/form/useModalForm",
+                                        "api-references/hooks/form/useDrawerForm",
+                                        "api-references/hooks/form/useStepsForm",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Table",
+                                    items: [
+                                        "api-references/hooks/table/useTable",
+                                        "api-references/hooks/table/useEditableTable",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Field",
+                                    items: [
+                                        "api-references/hooks/field/useCheckboxGroup",
+                                        "api-references/hooks/field/useSelect",
+                                        "api-references/hooks/field/useRadioGroup",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "List",
+                                    items: [
+                                        "api-references/hooks/show/useSimpleList",
+                                    ],
+                                },
+                                "api-references/hooks/resource/useMenu",
                             ],
                         },
                         {
                             type: "category",
-                            label: "Inputs",
+                            label: "Components",
                             items: [
-                                "api-references/components/inputs/custom-inputs",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Fields",
-                            items: [
-                                "api-references/components/fields/boolean",
-                                "api-references/components/fields/url",
-                                "api-references/components/fields/image",
-                                "api-references/components/fields/file",
-                                "api-references/components/fields/date",
-                                "api-references/components/fields/email",
-                                "api-references/components/fields/markdown",
-                                "api-references/components/fields/tag",
-                                "api-references/components/fields/text",
-                                "api-references/components/fields/number",
+                                "api-references/components/filter-dropdown",
+                                {
+                                    type: "category",
+                                    label: "Basic Views",
+                                    items: [
+                                        "api-references/components/basic-views/list",
+                                        "api-references/components/basic-views/create",
+                                        "api-references/components/basic-views/show",
+                                        "api-references/components/basic-views/edit",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Buttons",
+                                    items: [
+                                        "api-references/components/buttons/list-button",
+                                        "api-references/components/buttons/create-button",
+                                        "api-references/components/buttons/edit-button",
+                                        "api-references/components/buttons/show-button",
+                                        "api-references/components/buttons/delete-button",
+                                        "api-references/components/buttons/clone-button",
+                                        "api-references/components/buttons/refresh-button",
+                                        "api-references/components/buttons/save-button",
+                                        "api-references/components/buttons/import-button",
+                                        "api-references/components/buttons/export-button",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Inputs",
+                                    items: [
+                                        "api-references/components/inputs/custom-inputs",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Fields",
+                                    items: [
+                                        "api-references/components/fields/boolean",
+                                        "api-references/components/fields/url",
+                                        "api-references/components/fields/image",
+                                        "api-references/components/fields/file",
+                                        "api-references/components/fields/date",
+                                        "api-references/components/fields/email",
+                                        "api-references/components/fields/markdown",
+                                        "api-references/components/fields/tag",
+                                        "api-references/components/fields/text",
+                                        "api-references/components/fields/number",
+                                    ],
+                                },
                             ],
                         },
                     ],
                 },
-                "api-references/interfaceReferences",
             ],
         },
         {

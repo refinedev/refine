@@ -179,6 +179,21 @@ const siteConfig = {
         //     },
         //     copyright: `Copyright © ${new Date().getFullYear()} Pankod, Inc.`,
         // },
+        /* plugins: [
+            [
+                "@docusaurus/plugin-client-redirects",
+                {
+                    redirects: [
+                        {
+                            to: "/docs/newDocPath", // string
+                            from: [
+                                "/docs/api-references/providers/auth-provider/",
+                            ],
+                        },
+                    ],
+                },
+            ],
+        ], */
     },
 };
 
