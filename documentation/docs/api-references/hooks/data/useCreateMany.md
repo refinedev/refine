@@ -41,7 +41,7 @@ type CategoryMutationResult = {
     title: string;
 };
 
-import { useCreateMany } from "@pankod/refine";
+import { useCreateMany } from "@pankod/refine-core";
 
 const { mutate } = useCreateMany<CategoryMutationResult>();
 
