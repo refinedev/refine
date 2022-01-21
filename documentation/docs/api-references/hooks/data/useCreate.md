@@ -45,7 +45,7 @@ type CategoryMutationResult = {
     title: string;
 }
 
-import { useCreate } from "@pankod/refine";
+import { useCreate } from "@pankod/refine-core";
 
 const { mutate } = useCreate<CategoryMutationResult>();
 
