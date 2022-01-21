@@ -1,5 +1,5 @@
 import { Refine } from "@pankod/refine-core";
-import { notificationProvider } from "@pankod/refine-antd";
+import { notificationProvider, Layout } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import { liveProvider } from "@pankod/refine-ably";
 import routerProvider from "@pankod/refine-react-router";
@@ -43,6 +43,7 @@ const App: React.FC = () => {
             liveMode="auto"
             Sider={CustomSider}
             notificationProvider={notificationProvider}
+            Layout={Layout}
         />
     );
 };

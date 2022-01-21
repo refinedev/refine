@@ -1,5 +1,9 @@
 import { Refine } from "@pankod/refine-core";
-import { notificationProvider } from "@pankod/refine-antd";
+import {
+    notificationProvider,
+    Layout,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 import { newEnforcer } from "casbin.js";
@@ -81,6 +85,8 @@ const App: React.FC = () => {
             ]}
             Header={() => <Header role={role} />}
             notificationProvider={notificationProvider}
+            Layout={Layout}
+            catchAll={<ErrorComponent />}
         />
     );
 };
