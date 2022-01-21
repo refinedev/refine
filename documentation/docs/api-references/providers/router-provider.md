@@ -60,7 +60,7 @@ values={[
 <TabItem value="react-router">
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 
 const App: React.FC = () => {
@@ -72,7 +72,7 @@ const App: React.FC = () => {
 <TabItem value="react-location">
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-location";
 
 const App: React.FC = () => {
@@ -84,7 +84,7 @@ const App: React.FC = () => {
 <TabItem value="nextjs">
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-nextjs-router";
 
 const App: React.FC = () => {
@@ -115,7 +115,7 @@ values={[
 <TabItem value="react-useHistory">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine";
+import { IRouterProvider } from "@pankod/refine-core";
 // highlight-next-line
 import { useHistory } from "react-router-dom";
 
@@ -131,7 +131,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="react-location-useHistory">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine";
+import { IRouterProvider } from "@pankod/refine-core";
 // highlight-next-line
 import { useHistory, useLocation } from "react-location";
 
@@ -168,7 +168,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="nextjs-useHistory">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine";
+import { IRouterProvider } from "@pankod/refine-core";
 // highlight-next-line
 import { useRouter } from "next/router";
 
@@ -206,7 +206,7 @@ values={[
 <TabItem value="react-useLocation">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine";
+import { IRouterProvider } from "@pankod/refine-core";
 // highlight-next-line
 import { useLocation } from "react-router-dom";
 
@@ -222,7 +222,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="react-location-useLocation">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine";
+import { IRouterProvider } from "@pankod/refine-core";
 // highlight-next-line
 import { useLocation } from "react-location";
 
@@ -245,7 +245,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="nextjs-useLocation">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine";
+import { IRouterProvider } from "@pankod/refine-core";
 // highlight-start
 import { useRouter } from "next/router";
 import qs from "qs";
@@ -287,7 +287,7 @@ values={[
 <TabItem value="react-useParams">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine";
+import { IRouterProvider } from "@pankod/refine-core";
 // highlight-next-line
 import { useParams } from "react-router-dom";
 
@@ -304,7 +304,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="react-location-useParams">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine";
+import { IRouterProvider } from "@pankod/refine-core";
 // highlight-next-line
 import { useMatch } from "react-location";
 
@@ -326,7 +326,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="nextjs-useParams">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine";
+import { IRouterProvider } from "@pankod/refine-core";
 // highlight-next-line
 import { useRouter } from "next/router";
 
@@ -361,7 +361,7 @@ values={[
 <TabItem value="react-prompt">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine";
+import { IRouterProvider } from "@pankod/refine-core";
 // highlight-next-line
 import { Prompt } from "react-router-dom";
 
@@ -381,7 +381,7 @@ import { useEffect } from "react";
 // highlight-next-line
 import { useLocation } from "react-location";
 
-import type { PromptProps } from "@pankod/refine";
+import type { PromptProps } from "@pankod/refine-core";
 
 export const Prompt: React.FC<PromptProps> = ({
     message,
@@ -410,7 +410,7 @@ export const Prompt: React.FC<PromptProps> = ({
 ```
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine";
+import { IRouterProvider } from "@pankod/refine-core";
 
 // highlight-next-line
 import { Prompt } from "./prompt";
@@ -430,7 +430,7 @@ const routerProvider: IRouterProvider = {
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-import type { PromptProps } from "@pankod/refine";
+import type { PromptProps } from "@pankod/refine-core";
 
 export const Prompt: React.FC<PromptProps> = ({
     message,
@@ -460,7 +460,7 @@ export const Prompt: React.FC<PromptProps> = ({
 ```
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine";
+import { IRouterProvider } from "@pankod/refine-core";
 
 // highlight-next-line
 import { Prompt } from "./prompt";
@@ -490,7 +490,7 @@ values={[
 <TabItem value="react-link">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine";
+import { IRouterProvider } from "@pankod/refine-core";
 // highlight-next-line
 import { Link } from "react-router-dom";
 
@@ -506,7 +506,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="react-location-link">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine";
+import { IRouterProvider } from "@pankod/refine-core";
 // highlight-next-line
 import { Link } from "react-location";
 
@@ -522,7 +522,7 @@ const routerProvider: IRouterProvider = {
 <TabItem value="nextjs-link">
 
 ```ts title="routerProvider.ts"
-import { IRouterProvider } from "@pankod/refine";
+import { IRouterProvider } from "@pankod/refine-core";
 // highlight-next-line
 import { Link } from "next/link";
 
@@ -590,7 +590,7 @@ The [`<RouterComponent>`][routercomponent] in the [react-router][react-router] p
 In the example below you can see how to serve the application in a subdirectory.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 // highlight-next-line
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -643,7 +643,7 @@ The [`<RouterComponent>`][routercomponent] in the [react-location][react-locatio
 In the example below you can see how to serve the application in a subdirectory.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 // highlight-next-line
 import routerProvider from "@pankod/refine-react-location";
 import dataProvider from "@pankod/refine-simple-rest";
