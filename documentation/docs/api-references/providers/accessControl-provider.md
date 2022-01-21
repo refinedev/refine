@@ -60,7 +60,7 @@ You can pass a `reason` along with `can`. It will be accessible using `useCan`. 
 :::tip
 You can find access control examples made with **refine**
 
--   **Casbin** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/casbin) - [Demo](https://codesandbox.io/s/access-control-casbin-react-l1ne3)
+-   **Casbin** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/casbin) - [Demo](https://codesandbox.io/s/access-control-casbin-react-l06vy)
 -   **Cerbos** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/cerbos) - [Demo](https://codesandbox.io/s/access-control-cerbos-react-mbhei)
 
 :::
@@ -171,7 +171,7 @@ These buttons will be disabled if access control returns `{ can: false }`
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/access-control-casbin-react-l1ne3?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/access-control-casbin-react-l06vy?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="access-control-casbin-react"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
