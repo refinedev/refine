@@ -33,7 +33,7 @@ Let's say that we have a resource named `categories`.
 ```
 
 ```tsx 
-import { useMany } from "@pankod/refine";
+import { useMany } from "@pankod/refine-core";
 
 type ICategory = {
     id: string;
