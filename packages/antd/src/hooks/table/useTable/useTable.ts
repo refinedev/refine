@@ -88,6 +88,7 @@ export const useTable = <
         setSorter,
     } = useTableCore({
         onSearch,
+        permanentSorter,
         permanentFilter,
         initialCurrent,
         initialPageSize,
