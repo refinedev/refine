@@ -15,7 +15,7 @@ Data that is resolved from the `checkError` will be returned as the `data` in th
 Imagine that we make a payment request which is declined by the API. If error status code is `418`, user will be logged out for security reasons.
 
 ```tsx
-import { useCheckError } from "@pankod/refine";
+import { useCheckError } from "@pankod/refine-core";
 
 // highlight-next-line
 const { mutate: checkError } = useCheckError();
