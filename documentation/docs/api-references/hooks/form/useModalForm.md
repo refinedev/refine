@@ -9,7 +9,7 @@ import editGif from '@site/static/img/hooks/useModalForm/edit.gif';
 `useModalForm` hook allows you to manage a form within a modal. It returns Ant Design [Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) components props.
 
 ```ts
-import { useModalForm } from "@pankod/refine";
+import { useModalForm } from "@pankod/refine-antd";
 
 const { modalProps, formProps } = useModalForm<IPost>({
     action: "create", // or "edit"
@@ -27,7 +27,7 @@ We'll show two examples, one for creating and one for editing a post. Let's see 
 In this example, we will show you how to create a record with `useModalForm`.
 
 ```tsx title="pages/posts/list.tsx"
-import { useModalForm, Modal, Form, Create, Radio, List, Input } from "@pankod/refine";
+import { useModalForm, Modal, Form, Create, Radio, List, Input } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
 // highlight-start
@@ -116,7 +116,7 @@ import {
     Table,
     EditButton,
     Input
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const {
