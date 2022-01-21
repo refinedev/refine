@@ -37,7 +37,7 @@ You can access identity data like below.
 
 ```tsx
 // highlight-next-line
-import { useGetIdentity } from "@pankod/refine";
+import { useGetIdentity } from "@pankod/refine-core";
 
 export const User: React.FC = () => {
     // highlight-next-line
