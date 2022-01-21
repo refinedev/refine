@@ -1,10 +1,9 @@
 import React from "react";
+import { Refine } from "@pankod/refine-core";
 import { AppProps } from "next/app";
-import "@styles/global.css";
 
 import { appWithTranslation, useTranslation } from "next-i18next";
 
-import { Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     LoginPage,
@@ -18,6 +17,7 @@ import { PostList, PostCreate, PostEdit, PostShow, Header } from "@components";
 import { authProvider } from "src/authProvider";
 
 import "@pankod/refine-antd/dist/styles.min.css";
+import "@styles/global.css";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
