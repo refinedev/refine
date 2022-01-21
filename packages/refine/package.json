@@ -2,7 +2,7 @@
     "name": "@pankod/refine",
     "version": "3.0.1",
     "description": "refine is a React-based framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
-    "private": false,
+    "private": true,
     "main": "dist/index.js",
     "module": "dist/refine.esm.js",
     "typings": "dist/index.d.ts",
