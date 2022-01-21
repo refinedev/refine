@@ -1,1 +1,0 @@
-export { useSimpleList } from "./useSimpleList";
