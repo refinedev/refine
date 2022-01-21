@@ -40,8 +40,12 @@ Hooks and components that support `MetaDataQuery`:
 ## Setup
 
 ```bash
-npm i @pankod/refine @pankod/refine-strapi-graphql graphql-request
+npm i @pankod/refine-core @pankod/refine-antd @pankod/refine-strapi-graphql graphql-request
 ```
+
+:::caution
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
+:::
 
 :::info
 We used [strapi-graphql](https://github.com/pankod/refine/tree/master/packages/strapi-graphql) server for this guide. You can customize your data provider for your own GraphQL server.
@@ -52,7 +56,7 @@ We used [strapi-graphql](https://github.com/pankod/refine/tree/master/packages/s
 To activate data provider in `@pankod/refine-strapi-graphql`, we have to pass the API address with `GraphQLClient`.
 
 ```tsx  title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 // highlight-start
 import dataProvider from "@pankod/refine-strapi-graphql";

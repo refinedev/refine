@@ -18,6 +18,10 @@ npm i @pankod/refine @pankod/refine-nextjs-router
 We recommend [**superplate**][superplate] to initialize your refine projects. It configures the project according to your needs including SSR with Next.js.
 :::
 
+:::caution
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
+:::
+
 ## Usage
 
 [`<Refine>`][refine] must wrap your pages in a [custom App][NextjsCustomApp] component. This way your [pages][NextjsPages] are integrated to refine.
@@ -25,7 +29,7 @@ We recommend [**superplate**][superplate] to initialize your refine projects. It
 ```tsx title="pages/_app.tsx"
 import { AppProps } from "next/app";
 
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-nextjs-router";
 
@@ -52,12 +56,12 @@ export default MyApp;
 Let's say we want to show a list of users in `/users`. After creating `users.tsx` under `pages` in your Nextjs app, we can use the `useTable` hook to list the users in a table:
 
 ```tsx title="pages/users.tsx"
+import { LayoutWrapper } from "@pankod/refine-core";
 import {
     useTable,
     List,
     Table,
-    LayoutWrapper,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 // highlight-start
@@ -103,13 +107,15 @@ We also used `<LayoutWrapper>` to show the page in the layout provided to [`<Ref
 import { GetServerSideProps } from "next";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    useTable,
-    List,
-    Table,
     LayoutWrapper,
 // highlight-next-line
     GetListResponse,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
+import {
+    useTable,
+    List,
+    Table,
+} from "@pankod/refine-antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 // highlight-start
@@ -241,13 +247,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 And in the `list` component for a `resource` e.g. "posts":
 
 ```tsx title="src/components/posts/list.tsx"
+import { GetListResponse, IResourceComponentsProps } from "@pankod/refine-core";
 import {
     useTable,
     List,
     Table,
-    GetListResponse,
-} from "@pankod/refine";
-import type { IResourceComponentsProps } from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC<
     IResourceComponentsProps<GetListResponse<IPost>>
@@ -320,7 +325,7 @@ If `syncWithLocation` is enabled, query parameters must be handled while doing S
 ```tsx title="pages/users.tsx"
 import { GetServerSideProps } from "next";
 // highlight-next-line
-import { parseTableParamsFromQuery } from "@pankod/refine";
+import { parseTableParamsFromQuery } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 
 const API_URL = "https://api.fake-rest.refine.dev";

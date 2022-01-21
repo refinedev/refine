@@ -27,7 +27,9 @@ We need to install Casbin.
 ```bash
 npm install casbin.js --save
 ```
-
+:::caution
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
+:::
 ## Setup
 
 The app will have three resources: **posts**, **users** and **categories** with CRUD pages(list, create, edit and show).
@@ -37,7 +39,7 @@ The app will have three resources: **posts**, **users** and **categories** with 
 `App.tsx` will look like this before we begin implementing access control:
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 import "@pankod/refine/dist/styles.min.css";
@@ -235,7 +237,7 @@ export default App;
 <summary>Header Component</summary>
 
 ```tsx title="src/components/header.tsx"
-import { AntdLayout, Radio } from "@pankod/refine";
+import { AntdLayout, Radio } from "@pankod/refine-antd";
 
 interface HeaderProps {
     role: string;
@@ -466,7 +468,7 @@ Then it can be used with [`useCan`](api-references/hooks/accessControl/useCan.md
 import {
     // ...
     useCan,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
 
 export const PostList: React.FC = () => {
     // ...

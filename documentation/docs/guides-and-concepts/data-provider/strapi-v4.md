@@ -45,10 +45,12 @@ You can handle features such as Sorting, Pagination and Filters with Dataprovide
 ```bash
 npm i @pankod/refine-strapi-v4
 ```
-
+:::caution
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
+:::
 ## Usage
 ```tsx title="App.tsx"
-import { Refine, AuthProvider } from "@pankod/refine";
+import { Refine, AuthProvider } from "@pankod/refine-core";
 //highlight-start
 import { DataProvider } from "@pankod/refine-strapi-v4";
 //highlight-end
@@ -115,11 +117,11 @@ When sending the request, we can specify which fields will come, so we send `fie
 
 ```tsx title="PostList.tsx"
 import { useState } from "react";
+import { IResourceComponentsProps } from "@pankod/core";
 import {
     List,
     Table,
     useTable,
-    IResourceComponentsProps,
     getDefaultSortOrder,
     FilterDropdown,
     Select,
@@ -127,7 +129,7 @@ import {
     Space,
     EditButton,
     DeleteButton,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost } from "interfaces";
 
@@ -228,11 +230,12 @@ In order to pull the `categories` related to the posts, we can now show the cate
 
 ```tsx title="PostList.tsx"
 import { useState } from "react";
+
+import { IResourceComponentsProps } from "@pankod/refine-core";
 import {
     List,
     Table,
     useTable,
-    IResourceComponentsProps,
     getDefaultSortOrder,
     FilterDropdown,
     Select,
@@ -245,7 +248,7 @@ import {
     Form,
     Radio,
     Tag,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost } from "interfaces";
 
@@ -368,11 +371,12 @@ We can list the posts separately according to the `published` or `draft` informa
 
 ```tsx title="PostList"
 import { useState } from "react";
+
+import { IResourceComponentsProps } from "@pankod/refine-core";
 import {
     List,
     Table,
     useTable,
-    IResourceComponentsProps,
     getDefaultSortOrder,
     FilterDropdown,
     Select,
@@ -385,7 +389,7 @@ import {
     Form,
     Radio,
     Tag,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost } from "interfaces";
 
@@ -538,11 +542,12 @@ With the local parameter feature, we can fetch posts and categories created acco
 
 ```tsx
 import { useState } from "react";
+
+import { IResourceComponentsProps } from "@pankod/refine-core";
 import {
     List,
     Table,
     useTable,
-    IResourceComponentsProps,
     getDefaultSortOrder,
     FilterDropdown,
     Select,
@@ -553,7 +558,7 @@ import {
     Form,
     Radio,
     Tag,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost } from "interfaces";
 
