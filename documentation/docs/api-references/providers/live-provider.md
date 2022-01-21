@@ -35,7 +35,7 @@ const liveProvider = {
 You must pass a live provider to the `liveProvider` prop of `<Refine>`.
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 
 import liveProvider from "./liveProvider";
 
@@ -53,7 +53,7 @@ We will build **"Ably Live Provider"** of [`@pankod/refine-ably`](https://github
 This method is used to subscribe to a Realtime channel. **refine** subscribes to the related channels using subscribe method in supported hooks. This way it can be aware of data changes.
 
 ```ts title="liveProvider.ts"
-import { LiveProvider, LiveEvent } from "@pankod/refine";
+import { LiveProvider, LiveEvent } from "@pankod/refine-core";
 import Ably from "ably/promises";
 import { Types } from "ably";
 
@@ -121,7 +121,7 @@ The values returned from the `subscribe` method are passed to the `unsubscribe` 
 **refine** will use this subscribe method in the [`useSubscription`](/api-references/hooks/live/useSubscription.md) hook.
 
 ```ts
-import { useSubscription } from "@pankod/refine";
+import { useSubscription } from "@pankod/refine-core";
 
 useSubscription({
     channel: "channel-name",
@@ -214,7 +214,7 @@ If `publish` is used on client side you must handle the security of it by yourse
 **refine** will provide this publish method via the [`usePublish`](/api-references/hooks/live/usePublish.md) hook.
 
 ```ts
-import { usePublish } from "@pankod/refine";
+import { usePublish } from "@pankod/refine-core";
 
 const publish = usePublish();
 ```
