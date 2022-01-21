@@ -19,7 +19,8 @@ We will show what `<List>` does using properties with examples.
 Create button redirects to the create page of the resource according to the value it reads from the URL.
 
 ```tsx 
-import { List, usePermissions } from "@pankod/refine";
+import { usePermissions } from "@pankod/refine-core";
+import { List } from "@pankod/refine-antd";
 
 export const ListPage: React.FC = () => {
     const { data } = usePermissions<string>();
@@ -42,7 +43,7 @@ export const ListPage: React.FC = () => {
 It allows adding a title for the `<List>` component. if you don't pass title props, it uses plural from of resource name by default.
 
 ```tsx 
-import { List } from "@pankod/refine";
+import { List } from "@pankod/refine-antd";
 
 export const ListPage: React.FC = () => {
     return <List title="Custom Title">...</List>;
@@ -56,7 +57,7 @@ export const ListPage: React.FC = () => {
 [Refer to the `<PageHeader>` documentation for detailed usage. &#8594](https://ant.design/components/page-header/#API)
 
 ```tsx 
-import { List } from "@pankod/refine";
+import { List } from "@pankod/refine-antd";
 
 export const ListPage: React.FC = () => {
     return (
@@ -91,7 +92,8 @@ export const ListPage: React.FC = () => {
 [Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
 
 ```tsx
-import { Refine, List } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import { List } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
