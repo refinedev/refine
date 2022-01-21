@@ -18,7 +18,8 @@ Normally refine provides a default login page. If you prefer to use this default
 If we want to build a custom login page instead of default one that comes with refine, `useLogin` can be used like this:
 
 ```tsx title="pages/customLoginPage"
-import { useLogin, Form } from "@pankod/refine";
+import { useLogin } from "@pankod/refine-core";
+import { Form } from "@pankod/refine-antd";
 
 type LoginVariables = {
     username: string;
