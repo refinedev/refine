@@ -41,7 +41,7 @@ export const Footer: React.FC = () => {
                         </Link>
                     </div>
                 </div>
-                <RefineLoveIcon height={72} />
+                <RefineLoveIcon />
             </div>
         </footer>
     );
