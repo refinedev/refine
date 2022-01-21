@@ -1,3 +1,4 @@
+import { useGetLocale } from "@pankod/refine-core";
 import {
     AntdLayout,
     Space,
@@ -6,8 +7,7 @@ import {
     Icons,
     Dropdown,
     Avatar,
-    useGetLocale,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 import NextRouter from "@pankod/refine-nextjs-router";
 import { useRouter } from "next/router";
 
