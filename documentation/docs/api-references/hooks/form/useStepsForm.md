@@ -8,7 +8,7 @@ import useStepsFormExample from '@site/static/img/hooks/useStepsForm/example.gif
 `useStepsForm` hook allows you to split your form under an Ant Design based [Steps](https://ant.design/components/steps/) component and provides you with a few useful functionalities that will help you manage your form.
 
 ```ts
-import { useStepsForm } from "@pankod/refine";
+import { useStepsForm } from "@pankod/refine-antd";
 
 const { stepsProps, formProps } = useStepsForm<IPost>();
 ```
@@ -26,7 +26,7 @@ For the sake of simplicity, in this example we're going to build a `Post` create
 To split your form items under a `<Steps>` component, first import and use `useStepsForm` hook in your page:
 
 ```tsx  title="pages/posts/create.tsx"
-import { useStepsForm } from "@pankod/refine";
+import { useStepsForm } from "@pankod/refine-antd";
 
 export const PostCreate: React.FC = () => {
 // highlight-start
@@ -63,7 +63,7 @@ Here, each item of `formList` corresponds to one step in form:
 
 ```tsx  title="pages/posts/create.tsx"
 // highlight-next-line
-import { useStepsForm, useSelect, Form, Input, Select } from "@pankod/refine";
+import { useStepsForm, useSelect, Form, Input, Select } from "@pankod/refine-antd";
 
 export const PostCreate: React.FC = () => {
     // highlight-start
@@ -137,7 +137,7 @@ import {
     Create,
     Steps,
 // highlight-end
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostCreate: React.FC = () => {
     const {
@@ -219,7 +219,7 @@ import {
     Button,
     SaveButton,
 // highlight-end
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostCreate: React.FC = () => {
     const {
@@ -336,7 +336,7 @@ import {
     SaveButton,
 // highlight-next-line
     Edit,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostCreate: React.FC = () => {
     const {
