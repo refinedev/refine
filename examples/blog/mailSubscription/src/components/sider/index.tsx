@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Layout, Menu, Grid } from "antd";
 import { RightOutlined } from "@ant-design/icons";
 
-import { useMenu, useLogout, useTitle, useNavigation } from "@pankod/refine";
+import { useLogout, useTitle, useNavigation } from "@pankod/refine-core";
+import { useMenu } from "@pankod/refine-antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 export const Sider: React.FC = () => {

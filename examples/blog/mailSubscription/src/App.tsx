@@ -1,8 +1,14 @@
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+
+import {
+    notificationProvider,
+    LoginPage,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 
 import routerProvider from "@pankod/refine-react-router";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 import { DataProvider } from "@pankod/refine-strapi";
 import strapiAuthProvider from "authProvider";
 import { Header, Layout, OffLayoutArea } from "components";
@@ -34,6 +40,9 @@ function App() {
                     create: MailCreate,
                 },
             ]}
+            notificationProvider={notificationProvider}
+            LoginPage={LoginPage}
+            catchAll={<ErrorComponent />}
         />
     );
 }
