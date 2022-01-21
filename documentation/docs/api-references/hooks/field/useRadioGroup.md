@@ -31,7 +31,7 @@ We will demonstrate how to get data at `/languages` endpoint from the `https://a
 ```
 
 ```tsx  title="pages/posts/create.tsx"
-import { Form, Radio, useRadioGroup } from "@pankod/refine";
+import { Form, Radio, useRadioGroup } from "@pankod/refine-antd";
 
 export const PostCreate = () => {
     // highlight-start
