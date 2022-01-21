@@ -83,7 +83,7 @@ type AuthenticatedProps = {
 Now, only authenticated users can see the price field.
 
 ```tsx title="components/postShow"
-import { Typography, Show } from "@pankod/refine";
+import { Typography, Show } from "@pankod/refine-antd";
 
 // highlight-next-line
 import { Authenticated } from "components/authenticated"
