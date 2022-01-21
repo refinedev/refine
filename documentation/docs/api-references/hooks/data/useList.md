@@ -42,7 +42,7 @@ Let's say that we have a resource named `posts`
 First of all, we will use `useList` without passing any query configurations.
 
 ```tsx 
-import { useList } from "@pankod/refine";
+import { useList } from "@pankod/refine-core";
 
 type IPost = {
     id: string;
@@ -113,7 +113,7 @@ Allows us to set page and items per page values.
 For example imagine that we have 1000 post records:
 
 ```ts
-import { useList } from "@pankod/refine";
+import { useList } from "@pankod/refine-core";
 
 const postListQueryResult = useList<IPost>({
     resource: "posts",
@@ -132,7 +132,7 @@ const postListQueryResult = useList<IPost>({
 Allows us to sort records by the speficified order and field.
 
 ```ts
-import { useList } from "@pankod/refine";
+import { useList } from "@pankod/refine-core";
 
 const postListQueryResult = useList<IPost>({
     resource: "posts",
@@ -174,7 +174,7 @@ const postListQueryResult = useList<IPost>({
 Allows us to filter queries using refine's filter operators. It is configured via `field`, `operator` and `value` properites.
 
 ```ts
-import { useList } from "@pankod/refine";
+import { useList } from "@pankod/refine-core";
 
 const postListQueryResult = useList<IPost>({
     resource: "posts",
@@ -234,7 +234,7 @@ const postListQueryResult = useList<IPost>({
 -   For example, to disable query from running automatically you can set `enabled` to `false`.
 
 ```ts
-import { useList } from "@pankod/refine";
+import { useList } from "@pankod/refine-core";
 
 const postListQueryResult = useList<IPost>({
     resource: "posts",
