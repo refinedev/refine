@@ -1,3 +1,5 @@
+import { IResourceComponentsProps } from "@pankod/refine-core";
+
 import {
     List,
     Table,
@@ -8,10 +10,8 @@ import {
     EditButton,
     Input,
     TextField,
-    IResourceComponentsProps,
-} from "@pankod/refine-core";
-
-import { useEditableTable } from "@pankod/refine-antd";
+    useEditableTable,
+} from "@pankod/refine-antd";
 
 import { IPost } from "interfaces";
 
@@ -20,7 +20,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         tableProps,
         formProps,
         isEditing,
-        setId,
+        setId: setEditId,
         saveButtonProps,
         cancelButtonProps,
         editButtonProps,
@@ -35,7 +35,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     onRow={(record) => ({
                         onClick: (event: any) => {
                             if (event.target.nodeName === "TD") {
-                                setId && setId(record.id);
+                                setEditId && setEditId(record.id);
                             }
                         },
                     })}
