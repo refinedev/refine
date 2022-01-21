@@ -21,7 +21,7 @@ import {
     Select,
     // highlight-end
     useTable,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 const PostList: React.FC = (props) => {
     const { tableProps } = useTable<IPost>();
@@ -112,7 +112,7 @@ import {
     Select,
     useSelect,
     getDefaultFilter,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 const { tableProps, filters } = useTable<IPost>({
     initialFilter: [
