@@ -23,6 +23,7 @@ First we define `<CustomMenu>`:
 
 ```tsx  title="src/CustomMenu.tsx"
 import { useState, CSSProperties } from "react";
+import { useTitle } from "@pankod/refine-core";
 import {
     AntdLayout,
     Menu,
@@ -30,8 +31,7 @@ import {
     Link,
 // highlight-next-line
     useMenu,
-    useTitle,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const CustomMenu: React.FC = () => {
     const Title = useTitle();
@@ -83,7 +83,7 @@ const antLayoutSiderMobile: CSSProperties = {
 We can override the default sider and show the custom menu we implemented in its place by passing a the custom component to `<Refine>`s `Sider` prop:
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
@@ -114,6 +114,7 @@ We can also add a logout button:
 
 ```tsx  title="src/CustomMenu.tsx"
 import { useState, CSSProperties } from "react";
+import { useTitle } from "@pankod/refine-core";
 import {
     AntdLayout,
     Menu,
@@ -125,8 +126,7 @@ import {
     useLogout,
 // highlight-end
     useMenu,
-    useTitle,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const CustomMenu: React.FC = () => {
     const Title = useTitle();
