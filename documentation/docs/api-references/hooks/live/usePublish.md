@@ -12,7 +12,7 @@ This hook can only be used if `liveProvider`'s `publish` method is provided.
 :::
 
 ```tsx
-import { usePublish } from "@pankod/refine";
+import { usePublish } from "@pankod/refine-core";
 
 const publish = usePublish();
 

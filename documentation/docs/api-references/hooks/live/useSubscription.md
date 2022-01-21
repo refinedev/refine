@@ -12,7 +12,7 @@ This hook can only be used if `liveProvider` is provided.
 :::
 
 ```tsx
-import { useSubscription } from "@pankod/refine";
+import { useSubscription } from "@pankod/refine-core";
 
 useSubscription({
     channel: "channel-name",
