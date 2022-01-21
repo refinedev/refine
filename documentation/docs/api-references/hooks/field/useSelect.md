@@ -32,7 +32,7 @@ We'll demonstrate how to get data at `/categories` endpoint from `https://api.fa
 ```
 
 ```tsx  title="pages/posts/create.tsx"
-import { Form, Select, useSelect } from "@pankod/refine";
+import { Form, Select, useSelect } from "@pankod/refine-antd";
 
 export const PostCreate = () => {
 // highlight-start
