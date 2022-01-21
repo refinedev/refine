@@ -8,7 +8,7 @@ title: useExport
 This hook accepts [`export-to-csv`][export-to-csv]'s options to create `CSV` files.
 
 ```ts
-import { useExport } from "@pankod/refine";
+import { useExport } from "@pankod/refine-core";
 
 const { triggerExport, isLoading } = useExport(options);
 ```
@@ -41,14 +41,17 @@ To enable export functionality for this endpoint, we can use the `useExport` hoo
 
 ```tsx  title="src/pages/posts/list.tsx"
 import {
-    List,
-    Table,
-    useTable,
 // highlight-start
     useExport,
     ExportButton,
 // highlight-end
-} from "@pankod/refine";
+} from "@pankod/refine-core";
+
+import {
+    List,
+    Table,
+    useTable,
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
