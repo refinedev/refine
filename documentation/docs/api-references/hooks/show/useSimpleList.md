@@ -49,7 +49,7 @@ import {
     useSimpleList,
     NumberField,
     Space,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { Text } = Typography;
