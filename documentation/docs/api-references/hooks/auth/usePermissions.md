@@ -18,6 +18,8 @@ Imagine that you want to allow only users with the admin role to see the create 
 - We have a logic in [`authProvider`](/docs/api-references/providers/auth-provider)'s `getPermissions` method like below.
 
 ```tsx
+import { AuthProvider } from "@pankod/refine-core";
+
 const authProvider: AuthProvider = {
   ...
     // highlight-start
@@ -34,7 +36,8 @@ const authProvider: AuthProvider = {
 
 ```tsx  title="pages/post/list"
 // highlight-next-line
-import { List, usePermissions } from "@pankod/refine";
+import { usePermissions } from "@pankod/refine-core";
+import { List } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     // highlight-next-line
