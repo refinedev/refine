@@ -18,7 +18,7 @@ import {
     List,
     Table,
     useTable,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -77,7 +77,7 @@ When clicked, it opens the confirmation window like this:
 `recordItemId` allows us to manage which record will be deleted.
 
 ```tsx 
-import { DeleteButton } from "@pankod/refine";
+import { DeleteButton } from "@pankod/refine-antd";
 
 export const MyDeleteComponent = () => {
     return <DeleteButton resourceName="posts" recordItemId="1" />;
@@ -95,7 +95,7 @@ Clicking the button will trigger the [`useDelete`](api-references/hooks/data/use
 `resourceName` allows us to manage which resource's record is going to be deleted.
 
 ```tsx 
-import { DeleteButton } from "@pankod/refine";
+import { DeleteButton } from "@pankod/refine-antd";
 
 export const MyDeleteComponent = () => {
     return <DeleteButton resourceName="categories" recordItemId="2" />;
@@ -115,7 +115,7 @@ Clicking the button will trigger the [`useDelete`](api-references/hooks/data/use
 For example, let's `console.log` after deletion:
 
 ```tsx
-import { List, Table, DeleteButton, useTable } from "@pankod/refine";
+import { List, Table, DeleteButton, useTable } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -153,7 +153,7 @@ Determines which mode mutation will have while executing `<DeleteButton>`.
 [Refer to the mutation mode docs for further information. &#8594](guides-and-concepts/mutation-mode.md)
 
 ```tsx
-import { List, Table, DeleteButton, useTable } from "@pankod/refine";
+import { List, Table, DeleteButton, useTable } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -186,7 +186,7 @@ export const PostList: React.FC = () => {
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx 
-import { DeleteButton } from "@pankod/refine";
+import { DeleteButton } from "@pankod/refine-antd";
 
 export const MyDeleteComponent = () => {
     return <DeleteButton hideText />;
@@ -198,7 +198,7 @@ export const MyDeleteComponent = () => {
 It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/api-references/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-references/components/refine-config.md)
 
 ```tsx 
-import { DeleteButton } from "@pankod/refine";
+import { DeleteButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
     return <DeleteButton ignoreAccessControlProvider />;

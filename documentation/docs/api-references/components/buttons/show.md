@@ -16,7 +16,7 @@ import {
     useTable,
     // highlight-next-line
     ShowButton,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -63,7 +63,7 @@ Will look like this:
 `recordItemId` is used to append the record id to the end of the route path.
 
 ```tsx 
-import { ShowButton } from "@pankod/refine";
+import { ShowButton } from "@pankod/refine-antd";
 
 export const MyShowComponent = () => {
     return <ShowButton resourceName="posts" recordItemId="1" />;
@@ -81,7 +81,7 @@ Clicking the button will trigger the `show` method of [`useNavigation`](/api-ref
 Redirection endpoint(`resourceName/show`) is defined by `resourceName` property. By default, `<ShowButton>` uses `name` property of the resource object as an endpoint to redirect after clicking.
 
 ```tsx 
-import { ShowButton } from "@pankod/refine";
+import { ShowButton } from "@pankod/refine-antd";
 
 export const MyShowComponent = () => {
     return <ShowButton resourceName="categories" recordItemId="2" />;
@@ -95,7 +95,7 @@ Clicking the button will trigger the `show` method of [`useNavigation`](/api-ref
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx 
-import { ShowButton } from "@pankod/refine";
+import { ShowButton } from "@pankod/refine-antd";
 
 export const MyShowComponent = () => {
     return <ShowButton hideText />;
@@ -107,7 +107,7 @@ export const MyShowComponent = () => {
 It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/api-references/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-references/components/refine-config.md)
 
 ```tsx 
-import { ListButton } from "@pankod/refine";
+import { ListButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
     return <ListButton ignoreAccessControlProvider />;

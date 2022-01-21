@@ -10,13 +10,13 @@ import listButton from '@site/static/img/guides-and-concepts/components/buttons/
 ## Usage
 
 ```tsx
+import { useShow } from "@pankod/refine-core";
 import {
-    useShow,
     Show,
     Typography,
     // highlight-next-line
     ListButton,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 const { Title, Text } = Typography;
 
@@ -66,7 +66,7 @@ The button text is defined automatically by **refine** based on _resource_ objec
 Redirection endpoint(`resourceName/list`) is defined by `resourceName` property. By default, `<ListButton>` uses `name` property of the resource object as the endpoint to redirect after clicking.
 
 ```tsx 
-import { ListButton } from "@pankod/refine";
+import { ListButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
     return <ListButton resourceName="categories" />;
@@ -80,7 +80,7 @@ Clicking the button will trigger the `list` method of [`useNavigation`](api-refe
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx 
-import { ListButton } from "@pankod/refine";
+import { ListButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
     return <ListButton hideText />;
@@ -92,7 +92,7 @@ export const MyListComponent = () => {
 It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/api-references/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-references/components/refine-config.md)
 
 ```tsx 
-import { ListButton } from "@pankod/refine";
+import { ListButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
     return <ListButton ignoreAccessControlProvider />;
