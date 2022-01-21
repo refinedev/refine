@@ -27,7 +27,7 @@ import {
     Modal,
 // highlight-end
     Button,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
