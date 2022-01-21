@@ -41,7 +41,7 @@ type PostMutationResult = {
     status: "published" | "draft" | "rejected";
 };
 
-import { useUpdateMany } from "@pankod/refine";
+import { useUpdateMany } from "@pankod/refine-core";
 
 const { mutate } = useUpdateMany<PostMutationResult>();
 
@@ -109,7 +109,7 @@ Values passed to `mutate` must have these types:
 Mutation mode determines the mode which mutation runs with.
 
 ```tsx
-import { useUpdateMany } from "@pankod/refine";
+import { useUpdateMany } from "@pankod/refine-core";
 
 const { mutate } = useUpdateMany();
 
@@ -136,7 +136,7 @@ Default behaviour on undo action includes notifications. If a custom callback is
 Passed callback will receive a function that actually cancels the mutation. Don't forget to run this function to cancel the mutation on `undoable` mode.
 
 ```tsx
-import { useUpdateMany } from "@pankod/refine";
+import { useUpdateMany } from "@pankod/refine-core";
 
 // highlight-start
 const customOnCancel = (cancelMutation: () => void) => {
