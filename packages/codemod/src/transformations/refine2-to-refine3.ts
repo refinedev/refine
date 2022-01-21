@@ -16,7 +16,7 @@ import checkPackageLock from "../helpers/checkPackageLock";
 
 export const parser = "tsx";
 
-const availableCoreAntdImports = [
+const availableCoreImports = [
     "Authenticated",
     "AuthenticatedProps",
     "CanAccess",
@@ -165,7 +165,6 @@ const availableCoreAntdImports = [
     "useGetManyQueries",
     "useGetOneQueries",
     "useHandleNotification",
-    "useImport",
     "useIsAuthenticated",
     "useIsExistAuthentication",
     "useList",
@@ -258,7 +257,7 @@ function updateRefineImports(j: JSCodeshift, root: Collection<any>) {
 
         refineImport.replaceWith((path) => {
             for (const item of path.node.specifiers) {
-                if (availableCoreAntdImports.includes(item.local.name)) {
+                if (availableCoreImports.includes(item.local.name)) {
                     coreImports.push(item as ImportSpecifier);
                 } else {
                     antdImports.push(item as ImportSpecifier);
