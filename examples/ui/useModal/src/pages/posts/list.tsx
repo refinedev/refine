@@ -1,3 +1,5 @@
+import { IResourceComponentsProps } from "@pankod/refine-core";
+
 import {
     List,
     Table,
@@ -5,8 +7,7 @@ import {
     useModal,
     Modal,
     Button,
-    IResourceComponentsProps,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost } from "interfaces";
 
