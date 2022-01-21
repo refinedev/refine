@@ -8,7 +8,7 @@ title: useImport
 It's return type is compatible with [`<ImportButton>`][ImportButton]. It can also be further customized by using it with Ant Design's [`<Upload>`][Upload] and [`<Button>`][Button] props.
 
 ```ts
-import { useImport } from "@pankod/refine";
+import { useImport } from "@pankod/refine-antd";
 
 const { uploadProps, buttonProps, mutationResult } = useImport(options);
 ```
@@ -49,7 +49,7 @@ import {
     useImport,
     ImportButton,
 // highlight-end
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -102,7 +102,7 @@ import {
     Icons,
     Upload,
 // highlight-end
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 const { ImportOutlined } = Icons;
 
