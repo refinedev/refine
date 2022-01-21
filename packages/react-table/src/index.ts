@@ -1,114 +1,161 @@
-import { useEffect } from "react";
-import {
-    BaseRecord,
-    CrudOperators,
-    HttpError,
-    useTable as useTableCore,
-    useTableProps as useTablePropsCore,
-} from "@pankod/refine-core";
-import { useTable as useTableRT, PluginHook, TableOptions } from "react-table";
+export { useTable, UseTableProps, UseTableReturnType } from "./useTable";
 
-export type UseTableReturnType = ReturnType<typeof useTableRT> & {
-    useTableCore: ReturnType<typeof useTableCore>;
-};
+export type {
+    Accessor,
+    ActionType,
+    AggregatedValue,
+    Aggregator,
+    AggregatorFn,
+    Cell,
+    CellPropGetter,
+    CellProps,
+    CellValue,
+    Column,
+    ColumnGroup,
+    ColumnGroupInterface,
+    ColumnInstance,
+    ColumnInterface,
+    ColumnInterfaceBasedOnValue,
+    ColumnWithLooseAccessor,
+    ColumnWithStrictAccessor,
+    DefaultAggregators,
+    DefaultFilterTypes,
+    DefaultSortTypes,
+    FilterProps,
+    FilterType,
+    FilterValue,
+    FilterTypes,
+    Filters,
+    FooterGroupPropGetter,
+    FooterPropGetter,
+    FooterProps,
+    HeaderGroupPropGetter,
+    HeaderGroup,
+    HeaderPropGetter,
+    HeaderProps,
+    Hooks,
+    IdType,
+    Meta,
+    MetaBase,
+    PluginHook,
+    PropGetter,
+    ReducerTableState,
+    Renderer,
+    Row,
+    RowPropGetter,
+    SortByFn,
+    SortingRule,
+    StringKey,
+    TableBodyPropGetter,
+    TableBodyProps,
+    TableCellProps,
+    TableCommonProps,
+    TableDispatch,
+    TableExpandedToggleProps,
+    TableFooterGroupProps,
+    TableFooterProps,
+    TableGroupByToggleProps,
+    TableHeaderGroupProps,
+    TableHeaderProps,
+    TableInstance,
+    TableKeyedProps,
+    TableOptions,
+    TablePropGetter,
+    TableProps,
+    TableResizerProps,
+    TableRowProps,
+    TableSortByToggleProps,
+    TableState,
+    TableToggleAllRowsSelectedProps,
+    TableToggleCommonProps,
+    TableToggleHideAllColumnProps,
+    TableToggleRowsSelectedProps,
+    UseColumnOrderInstanceProps,
+    UseColumnOrderState,
+    UseExpandedHooks,
+    UseExpandedInstanceProps,
+    UseExpandedOptions,
+    UseExpandedRowProps,
+    UseExpandedState,
+    UseFiltersColumnOptions,
+    UseFiltersColumnProps,
+    UseFiltersInstanceProps,
+    UseFiltersOptions,
+    UseFiltersState,
+    UseGlobalFiltersColumnOptions,
+    UseGlobalFiltersInstanceProps,
+    UseGlobalFiltersOptions,
+    UseGlobalFiltersState,
+    UseGroupByCellProps,
+    UseGroupByColumnOptions,
+    UseGroupByColumnProps,
+    UseGroupByHooks,
+    UseGroupByInstanceProps,
+    UseGroupByOptions,
+    UseGroupByRowProps,
+    UseGroupByState,
+    UsePaginationInstanceProps,
+    UsePaginationOptions,
+    UsePaginationState,
+    UseResizeColumnsColumnOptions,
+    UseResizeColumnsColumnProps,
+    UseResizeColumnsOptions,
+    UseResizeColumnsState,
+    UseRowSelectHooks,
+    UseRowSelectInstanceProps,
+    UseRowSelectOptions,
+    UseRowSelectRowProps,
+    UseRowSelectState,
+    UseRowStateCellProps,
+    UseRowStateInstanceProps,
+    UseRowStateLocalState,
+    UseRowStateOptions,
+    UseRowStateRowProps,
+    UseRowStateState,
+    UseRowUpdater,
+    UseSortByColumnOptions,
+    UseSortByColumnProps,
+    UseSortByHooks,
+    UseSortByInstanceProps,
+    UseSortByOptions,
+    UseSortByState,
+    UseTableCellProps,
+    UseTableColumnOptions,
+    UseTableColumnProps,
+    UseTableHeaderGroupProps,
+    UseTableHooks,
+    UseTableInstanceProps,
+    UseTableOptions,
+    UseTableRowProps,
+} from "react-table";
 
-export type UseTableProps<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    // D extends object = {},
-> = {
-    refineTableProps?: useTablePropsCore<TData, TError>;
-} & TableOptions<{}>;
-
-export const useTable = <
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    // D extends object = {},
->(
-    { refineTableProps, ...rest }: UseTableProps<TData, TError /* D */>,
-    ...plugins: Array<PluginHook<{}>>
-): UseTableReturnType => {
-    const useTableResult = useTableCore<TData, TError>({
-        ...refineTableProps,
-    });
-
-    const {
-        tableQueryResult,
-        current,
-        setCurrent,
-        pageSize: pageSizeCore,
-        setPageSize: setPageSizeCore,
-        sorter,
-        setSorter,
-        filters: filtersCore,
-        setFilters,
-    } = useTableResult;
-
-    const { data } = tableQueryResult;
-
-    const reactTableResult = useTableRT(
-        {
-            data: data?.data || [],
-            initialState: {
-                pageIndex: current - 1,
-                pageSize: pageSizeCore,
-                sortBy: sorter.map((sorting) => ({
-                    id: sorting.field,
-                    desc: sorting.order === "desc",
-                })),
-                filters: filtersCore.map((filter) => ({
-                    id: filter.field,
-                    value: filter.value,
-                })),
-            },
-            pageCount: Math.ceil((data?.total || 0) / pageSizeCore),
-            manualPagination: true,
-            manualSortBy: true,
-            manualFilters: true,
-            ...rest,
-        },
-        ...plugins,
-    );
-
-    const { pageIndex, pageSize, sortBy, filters } = reactTableResult.state;
-
-    useEffect(() => {
-        setCurrent(pageIndex + 1);
-    }, [pageIndex]);
-
-    useEffect(() => {
-        setPageSizeCore(pageSize);
-    }, [pageSize]);
-
-    useEffect(() => {
-        setSorter(
-            sortBy.map((sorting) => ({
-                field: sorting.id,
-                order: sorting.desc ? "desc" : "asc",
-            })),
-        );
-    }, [sortBy]);
-
-    useEffect(() => {
-        setFilters(
-            filters.map((filter) => {
-                const operator = reactTableResult.columns.find(
-                    (c) => c.id === filter.id,
-                )?.filter as CrudOperators;
-
-                return {
-                    field: filter.id,
-                    value: filter.value,
-                    operator,
-                };
-            }),
-        );
-    }, [filters]);
-
-    return {
-        ...reactTableResult,
-        useTableCore: useTableResult,
-    };
-};
-
-export * from "react-table";
+export {
+    actions,
+    defaultColumn,
+    defaultGroupByFn,
+    defaultOrderByFn,
+    ensurePluginOrder,
+    functionalUpdate,
+    loopHooks,
+    makePropGetter,
+    makeRenderer,
+    reduceHooks,
+    safeUseLayoutEffect,
+    useAbsoluteLayout,
+    useAsyncDebounce,
+    useBlockLayout,
+    useColumnOrder,
+    useExpanded,
+    useFilters,
+    useFlexLayout,
+    useGetLatest,
+    useGlobalFilter,
+    useGridLayout,
+    useGroupBy,
+    useMountedLayoutEffect,
+    usePagination,
+    useResizeColumns,
+    useRowSelect,
+    useRowState,
+    useSortBy,
+} from "react-table";

@@ -1,19 +1,14 @@
-import React from "react";
-import { AppProps } from "next/app";
+import type { AppProps } from "next/app";
 import Head from "next/head";
-
 import { Refine } from "@pankod/refine-core";
-import { notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-nextjs-router";
 
-import { Layout, Header, Footer, OffLayoutArea } from "@components";
-import { BasketContextProvider } from "@contextProviders";
+import { Layout } from "@components";
+import { BasketContextProvider } from "@context";
+import { API_URL } from "src/constants";
 
-require("antd/dist/antd.less");
-require("@styles/global.less");
-
-import { API_URL } from "../src/constants";
+import "src/styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
@@ -21,13 +16,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
             Layout={Layout}
-            Header={Header}
-            OffLayoutArea={OffLayoutArea}
-            Footer={Footer}
             resources={[{ name: "users" }]}
-            warnWhenUnsavedChanges={true}
-            notificationProvider={notificationProvider}
-            catchAll={ErrorComponent}
         >
             <Head>
                 <title>finefoods client example - refine</title>
