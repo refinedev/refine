@@ -38,7 +38,7 @@ Let's say that we have a resource named `categories`.
 ```
 
 ```tsx 
-import { useDelete } from "@pankod/refine";
+import { useDelete } from "@pankod/refine-core";
 
 const { mutate } = useDelete();
 
@@ -98,7 +98,7 @@ Variables passed to `mutate` must have these types.
 Mutation mode determines the mode which the mutation runs with.
 
 ```tsx
-import { useDelete } from "@pankod/refine";
+import { useDelete } from "@pankod/refine-core";
 
 const { mutate } = useDelete();
 
@@ -124,7 +124,7 @@ Default behaviour on undo action includes notifications. If a custom callback is
 Passed callback will receive a function that actually cancels the mutation. Don't forget to run this function to cancel the mutation on the `undoable` mode.
 
 ```tsx
-import { useDelete } from "@pankod/refine";
+import { useDelete } from "@pankod/refine-core";
 
 // highlight-start
 const customOnCancel = (cancelMutation: () => void) => {
