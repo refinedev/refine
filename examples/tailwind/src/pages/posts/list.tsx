@@ -44,7 +44,7 @@ export const PostList: React.FC = () => {
                     });
                     return data?.data.title || "loading";
                 },
-                filter: "in",
+                filter: "eq",
             },
             {
                 id: "status",
@@ -172,9 +172,9 @@ export const PostList: React.FC = () => {
                         id="category"
                         className="appearance-none w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
                         aria-label="Category select"
-                        onChange={(event) =>
-                            setFilter("category.id", event.target.value)
-                        }
+                        onChange={(event) => {
+                            setFilter("category.id", event.target.value);
+                        }}
                         value={
                             filters.find(
                                 (filter) => filter.id === "category.id",

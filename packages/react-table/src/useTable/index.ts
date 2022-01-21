@@ -4,7 +4,6 @@ import {
     CrudFilters,
     CrudOperators,
     HttpError,
-    unionFilters,
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
 } from "@pankod/refine-core";
@@ -17,7 +16,6 @@ export type UseTableReturnType = ReturnType<typeof useTableRT> & {
 export type UseTableProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    // D extends object = {},
 > = {
     refineTableProps?: useTablePropsCore<TData, TError>;
 } & TableOptions<{}>;
@@ -25,7 +23,6 @@ export type UseTableProps<
 export const useTable = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    // D extends object = {},
 >(
     { refineTableProps, ...rest }: UseTableProps<TData, TError /* D */>,
     ...plugins: Array<PluginHook<{}>>
@@ -107,13 +104,7 @@ export const useTable = <
             });
         });
 
-        setFilters((prevFilters) =>
-            unionFilters(
-                refineTableProps?.permanentFilter || [],
-                crudFilters,
-                prevFilters,
-            ),
-        );
+        setFilters(crudFilters);
     }, [filters]);
 
     return {

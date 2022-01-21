@@ -1,7 +1,7 @@
 import { Grid } from "antd";
 import { TablePaginationConfig, TableProps } from "antd/lib/table";
 import { FormProps } from "antd/lib/form";
-import { QueryObserverResult, UseQueryOptions } from "react-query";
+import { QueryObserverResult } from "react-query";
 import { useForm as useFormSF } from "sunflower-antd";
 
 import { useForm } from "antd/lib/form/Form";
@@ -16,9 +16,7 @@ import {
     SuccessErrorNotification,
     HttpError,
     LiveModeProps,
-    unionFilters,
     useTable as useTableCore,
-    unionSorters,
     useTableProps as useTablePropsCore,
 } from "@pankod/refine-core";
 
@@ -127,14 +125,11 @@ export const useTable = <
     ) => {
         // Map Antd:Filter -> refine:CrudFilter
         const crudFilters = mapAntdFilterToCrudFilter(tableFilters, filters);
-
-        setFilters((prevFilters) =>
-            unionFilters(permanentFilter, crudFilters, prevFilters),
-        );
+        setFilters(crudFilters);
 
         // Map Antd:Sorter -> refine:CrudSorting
         const crudSorting = mapAntdSorterToCrudSorting(sorter);
-        setSorter(() => unionSorters(permanentSorter, crudSorting));
+        setSorter(crudSorting);
 
         // tablePropsSunflower.onChange(pagination, filters, sorter);
         setCurrent(pagination.current);
@@ -144,10 +139,7 @@ export const useTable = <
     const onFinish = async (value: TSearchVariables) => {
         if (onSearch) {
             const searchFilters = await onSearch(value);
-            setFilters((prevFilters) =>
-                unionFilters(permanentFilter, searchFilters, prevFilters),
-            );
-
+            setFilters(searchFilters);
             setCurrent(1);
         }
     };
