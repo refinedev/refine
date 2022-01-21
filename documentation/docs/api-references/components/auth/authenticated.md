@@ -5,6 +5,14 @@ title: <Authenticated>
 
 `<Authenticated>` is the component form of [`useAuthenticated`][useAuthenticated]. It internally uses [`useAuthenticated`][useAuthenticated] to provide it's functionality.
 
+```tsx
+import { Authenticated } from "@pankod/refine-core"
+
+<Authenticated>
+    <YourComponent />
+</Authenticated>
+```
+
 For an example use, see [Custom Pages Example][Custom Pages Example] and [it's explanation][Custom Pages Explanation].
 
 ## API Reference
