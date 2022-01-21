@@ -19,7 +19,7 @@ import {
     BooleanField,
     Icons
     // highlight-end
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     // highlight-next-line

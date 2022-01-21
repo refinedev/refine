@@ -12,14 +12,13 @@ This field lets you display markdown content. It supports [GitHub Flavored Markd
 Let's see how we can use `<MarkdownField>` in a show page.
 
 ```tsx  title="pages/posts/show.tsx"
+import { useShow, IResourceComponentsProps } from "@pankod/refine-core";
 import {
-    useShow,
     Show,
     Typography,
-    IResourceComponentsProps,
     // highlight-next-line
     MarkdownField,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 const { Title, Text } = Typography;
 

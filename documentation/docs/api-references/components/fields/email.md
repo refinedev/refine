@@ -17,7 +17,7 @@ import {
     Table,
     // highlight-next-line
     EmailField
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const UserList: React.FC = () => {
 

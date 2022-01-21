@@ -17,7 +17,7 @@ import {
     Table,
     // highlight-next-line
     ImageField,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     return (
