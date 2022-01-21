@@ -11,7 +11,7 @@ We'll show the basic usage of `useForm` by adding an editing form.
 
 ```tsx  title="pages/posts/edit.tsx"
 // highlight-next-line
-import { Edit, Form, Input, useForm, Select } from "@pankod/refine";
+import { Edit, Form, Input, useForm, Select } from "@pankod/refine-antd";
 
 export const PostEdit: React.FC = () => {
 // highlight-next-line
