@@ -1,3 +1,4 @@
+import { useMany, useTranslate } from "@pankod/refine-core";
 import {
     useTable,
     List,
@@ -5,10 +6,8 @@ import {
     Space,
     EditButton,
     ShowButton,
-    useMany,
     TextField,
-    useTranslate,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 import { ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
