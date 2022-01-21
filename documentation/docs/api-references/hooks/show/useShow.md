@@ -20,7 +20,8 @@ First, we'll create a page to show the records. Then we'll use this page for the
 
 ```tsx  title="src/pages/posts/show.tsx"
 // highlight-next-line
-import { useShow, Show, Typography } from "@pankod/refine";
+import { useShow } from "@pankod/refine-core";
+import { Show, Typography } from "@pankod/refine-antd";
 
 const { Title, Text } = Typography;
 
@@ -50,7 +51,7 @@ interface IPost {
 We didn't give any property to `useShow` because it can read `resource` and `id` information from the route.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-json-server";
 
@@ -85,7 +86,7 @@ In the next example, we'll show how it is used for the modal.
 Let's simply create a post list showing posts.
 
 ```tsx  title="src/pages/posts/list.tsx"
-import { List, Table, useTable } from "@pankod/refine";
+import { List, Table, useTable } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -104,6 +105,8 @@ export const PostList: React.FC = () => {
 Let's add our modal.
 
 ```tsx  title="src/pages/posts/list.tsx"
+// highlight-next-line
+import { List, Table, useTable } from "@pankod/refine-core";
 import {
     List,
     Table,
@@ -113,9 +116,8 @@ import {
     Show,
     ShowButton,
     Typography,
-    useShow,
 // highlight-end
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 const { Title, Text } = Typography;
 
@@ -173,7 +175,7 @@ export const PostList: React.FC = () => {
 Finally, let's pass this page to the `resources` as a list component.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-json-server";
 
