@@ -29,7 +29,7 @@ Let's say that we have a resource named `posts`.
 ```
 
 ```tsx 
-import { useOne } from "@pankod/refine";
+import { useOne } from "@pankod/refine-core";
 
 type ICategory = {
     id: string;
