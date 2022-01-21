@@ -31,7 +31,7 @@ We will demonstrate how to get data at the `/tags` endpoint from the `https://ap
 ```
 
 ```tsx  title="pages/posts/create.tsx"
-import { Form, Checkbox, useCheckboxGroup } from "@pankod/refine";
+import { Form, Checkbox, useCheckboxGroup } from "@pankod/refine-antd";
 
 export const PostCreate: React.FC = () => {
     // highlight-start
