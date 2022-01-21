@@ -31,7 +31,7 @@ const i18nProvider = {
 After creating a `i18nProvider`, you can pass it to the `<Refine>` component.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -129,7 +129,7 @@ We use `React.Suspense` because it improves performance by preventing the app fr
 Next, we will include the i18n instance and create the `i18nProvider` using `react-i18next`.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 // highlight-next-line
@@ -432,6 +432,7 @@ We can override refine's default texts by changing the `common.json` files in th
 Next, we will create a `<Header>` component. This component will allow us to change the language.
 
 ```tsx title="src/components/header.tsx"
+import { useGetLocale, useSetLocale } from "@pankod/refine-core";
 import {
     AntdLayout,
     Space,
@@ -440,9 +441,7 @@ import {
     Icons,
     Dropdown,
     Avatar,
-    useGetLocale,
-    useSetLocale,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 import { useTranslation } from "react-i18next";
 
 const { DownOutlined } = Icons;
@@ -508,7 +507,7 @@ export const Header: React.FC = () => {
 Then, we will pass `<Header>` to the `<Refine>` component as a property.
 
 ```tsx title="src/App.tsx"
-import { Refine, Resource } from "@pankod/refine";
+import { Refine, Resource } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 import { useTranslation } from "react-i18next";
@@ -546,6 +545,11 @@ const App: React.FC = () => {
 Finally, we will create the `<PostList>` page and then we will translate texts using `useTranslate`.
 
 ```tsx title="src/App.tsx"
+import { 
+    // highlight-next-line
+    useTranslate,
+    useMany,
+ } from "@pankod/refine-core";
 import {
     List,
     Table,
@@ -554,10 +558,7 @@ import {
     Space,
     EditButton,
     ShowButton,
-    useMany,
-// highlight-next-line
-    useTranslate,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
 
