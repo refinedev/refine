@@ -33,7 +33,7 @@ Lets say that the data we are going to show on the table came like this from the
 If we want to make a sorting page where we show the `id`, `title` and `content` values:
 
 ```tsx  title="/src/pages/posts/list.tsx"
-import { List, Table, TextField, useTable } from "@pankod/refine";
+import { List, Table, TextField, useTable } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
 // highlight-next-line
@@ -100,7 +100,7 @@ const { tableProps } = useTable<IPost>();
 If we want to give a column the sorting property, the corresponding `<Table.Column>` component must be given the [sorter](https://ant.design/components/table/#components-table-demo-head) property.
 
 ```tsx  title="/src/pages/posts/list.tsx"
-import { List, Table, TextField, useTable } from "@pankod/refine";
+import { List, Table, TextField, useTable } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -186,7 +186,7 @@ import {
     TagField,
     useTable,
     getDefaultSortOrder,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { tableProps, sorter } = useTable<IPost>({
@@ -279,7 +279,7 @@ import {
     getDefaultFilter,
     useTable,
     getDefaultSortOrder,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { tableProps, sorter, filters } = useTable<IPost>({
