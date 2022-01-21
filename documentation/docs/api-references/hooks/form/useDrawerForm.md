@@ -9,7 +9,7 @@ import editGif from '@site/static/img/hooks/useDrawerForm/edit.gif';
 `useDrawerForm` hook allows you to manage a form within a Drawer. It returns Ant Design [Form](https://ant.design/components/form/) and [Drawer](https://ant.design/components/drawer/) components props.
 
 ```ts
-import { useDrawerForm } from "@pankod/refine";
+import { useDrawerForm } from "@pankod/refine-antd";
 
 const { drawerProps, formProps } = useDrawerForm<IPost>({
     action: "create", // or "edit"
@@ -25,7 +25,7 @@ We'll do two examples, one for creating and one for editing a post. Let's see ho
 ### Create Drawer
 
 ```tsx  title="pages/posts/list.tsx"
-import { useDrawerForm, Drawer, Form, Create, Radio, List, Input } from "@pankod/refine";
+import { useDrawerForm, Drawer, Form, Create, Radio, List, Input } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
 // highlight-start
@@ -123,7 +123,7 @@ import {
     Table,
     EditButton,
     Input
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const {
