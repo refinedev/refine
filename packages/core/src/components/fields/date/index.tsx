@@ -1,6 +1,7 @@
 import React from "react";
 import dayjs, { ConfigType } from "dayjs";
 import { Typography } from "antd";
+import { TextProps } from "antd/lib/typography/Text";
 
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
 
@@ -13,7 +14,7 @@ type DateProps = {
     format?: string;
 };
 
-export type DateFieldProps = FieldProps<ConfigType> & DateProps;
+export type DateFieldProps = FieldProps<ConfigType> & DateProps & TextProps;
 
 /**
  * This field is used to display dates. It uses {@link https://day.js.org/docs/en/display/format `Day.js`} to display date format.
@@ -23,8 +24,9 @@ export type DateFieldProps = FieldProps<ConfigType> & DateProps;
 export const DateField: React.FC<DateFieldProps> = ({
     value,
     format: dateFormat = "L",
+    ...rest
 }) => {
     const { Text } = Typography;
 
-    return <Text>{dayjs(value).format(dateFormat)}</Text>;
+    return <Text {...rest}>{dayjs(value).format(dateFormat)}</Text>;
 };
