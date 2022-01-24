@@ -24,7 +24,7 @@ export const useTable = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
 >(
-    { refineTableProps, ...rest }: UseTableProps<TData, TError /* D */>,
+    { refineTableProps, ...rest }: UseTableProps<TData, TError>,
     ...plugins: Array<PluginHook<{}>>
 ): UseTableReturnType => {
     const useTableResult = useTableCore<TData, TError>({
@@ -98,9 +98,9 @@ export const useTable = <
 
             crudFilters.push({
                 field: filter.id,
-                value: filter.value,
                 operator:
                     operator ?? (Array.isArray(filter.value) ? "in" : "eq"),
+                value: filter.value,
             });
         });
 
