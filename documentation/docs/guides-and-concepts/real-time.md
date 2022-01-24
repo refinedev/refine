@@ -21,6 +21,10 @@ We need to install Ably live provider package from **refine**.
 npm install @pankod/refine-ably
 ```
 
+:::caution
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
+:::
+
 ## Setup
 
 Since we will need `apiKey` from Ably, you must first register and get the key from [Ably](https://ably.com).
@@ -42,7 +46,7 @@ export const ablyClient = new Ably.Realtime("your-api-key");
 Then pass `liveProvider` from [`@pankod/refine-ably`](https://github.com/pankod/refine/tree/master/packages/ably) to `<Refine>`.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 //highlight-next-line
@@ -192,15 +196,8 @@ Firstly, let's implement a custom sider like in [this example](/examples/customi
 
 ```tsx title="src/components/sider.tsx"
 import React, { useState } from "react";
-import {
-    AntdLayout,
-    Menu,
-    useMenu,
-    useTitle,
-    useNavigation,
-    Grid,
-    Icons,
-} from "@pankod/refine";
+import { useTitle, useNavigation } from "@pankod/refine-core";
+import { AntdLayout, Menu, useMenu, Grid, Icons } from "@pankod/refine-antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 export const CustomSider: React.FC = () => {
@@ -271,16 +268,20 @@ Now, let's add a badge for number of create and update events for **_posts_** me
 ```tsx
 import React, { useState } from "react";
 import {
+    useTitle,
+    useNavigation,
+    //highlight-start
+    useSubscription,
+    //highlight-end
+} from "@pankod/refine-core";
+import {
     AntdLayout,
     Menu,
     useMenu,
-    useTitle,
-    useNavigation,
     Grid,
     Icons,
     //highlight-start
     Badge,
-    useSubscription,
     //highlight-end
 } from "@pankod/refine";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
