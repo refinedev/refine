@@ -14,6 +14,7 @@
   "scripts": {
     "start": "tsdx watch --tsconfig tsconfig.json --verbose --noClean",
     "build": "tsdx build --tsconfig tsconfig.json",
+    "test": "tsdx test --passWithNoTests --runInBand",
     "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why"
@@ -37,6 +38,7 @@
     "react-table": "^7.7.0"
   },
   "devDependencies": {
+    "react-router-dom": "^5.3.0",
     "@size-limit/preset-small-lib": "^5.0.5",
     "@types/react-table": "^7.7.9",
     "size-limit": "^5.0.5",

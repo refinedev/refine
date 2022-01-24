@@ -47,15 +47,12 @@ export type useTableProps<TData, TError, TSearchVariables = unknown> = {
 
 type ReactSetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
-export type useTableReturnType<
-    TData extends BaseRecord = BaseRecord,
-    TSearchVariables = unknown,
-> = {
+export type useTableReturnType<TData extends BaseRecord = BaseRecord> = {
     tableQueryResult: QueryObserverResult<GetListResponse<TData>>;
     sorter: CrudSorting;
-    setSorter: ReactSetState<useTableReturnType["sorter"]>;
+    setSorter: (sorter: CrudSorting) => void;
     filters: CrudFilters;
-    setFilters: ReactSetState<useTableReturnType["filters"]>;
+    setFilters: (filters: CrudFilters) => void;
     current: number;
     setCurrent: ReactSetState<useTableReturnType["current"]>;
     pageSize: number;
@@ -76,7 +73,6 @@ const defaultPermanentSorter: CrudSorting = [];
 export const useTable = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TSearchVariables = unknown,
 >({
     initialCurrent = 1,
     initialPageSize = 10,
@@ -93,10 +89,7 @@ export const useTable = <
     onLiveEvent,
     liveParams,
     metaData,
-}: useTableProps<TData, TError, TSearchVariables> = {}): useTableReturnType<
-    TData,
-    TSearchVariables
-> => {
+}: useTableProps<TData, TError> = {}): useTableReturnType<TData> => {
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
     const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
@@ -172,12 +165,22 @@ export const useTable = <
         onLiveEvent,
     });
 
+    const setFiltersWithUnion = (newFilters: CrudFilters) => {
+        setFilters((prevFilters) =>
+            unionFilters(permanentFilter, newFilters, prevFilters),
+        );
+    };
+
+    const setSortWithUnion = (newSorter: CrudSorting) => {
+        setSorter(() => unionSorters(permanentSorter, newSorter));
+    };
+
     return {
         tableQueryResult: queryResult,
         sorter,
-        setSorter,
+        setSorter: setSortWithUnion,
         filters,
-        setFilters,
+        setFilters: setFiltersWithUnion,
         current,
         setCurrent,
         pageSize,

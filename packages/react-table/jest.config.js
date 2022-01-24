@@ -3,5 +3,10 @@ module.exports = {
     rootDir: "./",
     name: "react-table",
     displayName: "react-table",
-    setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
+    globals: {
+        "ts-jest": {
+            tsconfig: "<rootDir>/tsconfig.test.json",
+        },
+    },
+    testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/dist/"],
 };
