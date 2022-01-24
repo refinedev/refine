@@ -24,6 +24,10 @@ npm install web3
 npm install --save web3modal
 ```
 
+:::caution
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
+:::
+
 ## Configure Refine Authprovider
 
 First, we need to define a web3modal and create a provider. We can get information about the wallet by connecting this provider that we have created to web3.
