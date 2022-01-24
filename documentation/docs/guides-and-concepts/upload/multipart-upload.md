@@ -30,7 +30,7 @@ import {
     Form,
     Input,
     useForm,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
@@ -198,7 +198,7 @@ import {
     Form,
     Input,
     useForm,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostEdit: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
@@ -313,7 +313,7 @@ import {
     Form,
     Input,
     useForm,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
