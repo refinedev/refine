@@ -21,7 +21,7 @@ We will now examine how to search within the application with this component.
 To do this, let's first create our `<Header>` component.
 
 ```tsx  title="src/components/header.tsx"
-import { AntdLayout, AutoComplete, Input, Icons } from "@pankod/refine";
+import { AntdLayout, AutoComplete, Input, Icons } from "@pankod/refine-antd";
 
 const { SearchOutlined } = Icons;
 
@@ -56,11 +56,11 @@ We created the `<Header>` component as we want it to appear. We have not done an
 Let's not forget to pass the `<Header>` component to the `<Refine>` component in `App.tsx` as below.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 // highlight-next-line
 import { Header } from "components";
@@ -113,16 +113,17 @@ export interface IOptions {
 
 ```tsx title="src/components/header.tsx"
 import { useState, useEffect } from "react";
+import { useList } from "@pankod/refine-core";
 import {
     AntdLayout,
     AutoComplete,
     Input,
     Icons,
-    useList,
     Typography,
-    Link,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
+import routerProvider from "@pankod/refine-react-router";
 
+const { Link } = routerProvider;
 const { Text } = Typography;
 const { SearchOutlined } = Icons;
 
