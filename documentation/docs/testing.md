@@ -11,7 +11,7 @@ We strongly recommend that you write end-to-end tests of your application. **ref
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-e2e-testing-gfhy6?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-e2e-testing-bg3xt?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-e2e-testing"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
