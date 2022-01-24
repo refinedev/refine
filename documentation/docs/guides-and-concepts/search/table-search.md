@@ -24,7 +24,7 @@ import {
     DatePicker,
     Space,
     Input,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 const { RangePicker } = DatePicker;
 
