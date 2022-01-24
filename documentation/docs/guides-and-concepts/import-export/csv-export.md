@@ -13,13 +13,15 @@ Let's see an example:
 
 ```tsx  title="pages/posts/list.tsx"
 import {
+    // highlight-next-line
+    useExport,
+} from "@pankod/refine-core";
+import {
     List,
     Table,
     useTable,
-// highlight-start
-    useExport,
+// highlight-next-line
     ExportButton,
-// highlight-end
 } from "@pankod/refine";
 
 export const PostList: React.FC = () => {
