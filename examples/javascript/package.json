@@ -1,11 +1,11 @@
 {
   "name": "javascript-example",
-  "version": "2.6.3",
+  "version": "2.7.0",
   "private": true,
   "dependencies": {
-    "@pankod/refine": "^2.6.3",
-    "@pankod/refine-react-router": "^2.6.3",
-    "@pankod/refine-simple-rest": "^2.6.3",
+    "@pankod/refine": "^2.7.0",
+    "@pankod/refine-react-router": "^2.7.0",
+    "@pankod/refine-simple-rest": "^2.7.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-markdown": "^6.0.1",
