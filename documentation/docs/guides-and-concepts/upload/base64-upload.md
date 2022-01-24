@@ -11,6 +11,12 @@ Now let's make a small example to see how its done. In this example, the file we
 
 ```tsx  title="pages/users/create.tsx"
 import {
+    //highlight-start
+    file2Base64,
+    //highlight-end
+} from "@pankod/refine-core";
+
+import {
     Create,
     Form,
     Upload,
@@ -18,9 +24,8 @@ import {
     useForm,
 // highlight-start
     getValueFromEvent,
-    file2Base64,
 // highlight-end
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const UserCreate: React.FC = () => {
     const { form, formProps, saveButtonProps } = useForm<IUser>();
