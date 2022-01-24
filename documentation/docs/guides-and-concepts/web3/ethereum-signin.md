@@ -33,7 +33,7 @@ In this example we will show the login with Metamask Wallet. If you want, you ca
 :::
 
 ```tsx title="/src/authprovider.ts"
-import { AuthProvider } from "@pankod/refine";
+import { AuthProvider } from "@pankod/refine-core";
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 
@@ -122,7 +122,8 @@ export const getBalance = async (account: string): Promise<string> => {
 We need to override the refine login page. In this way, we will redirect it to the Metamask Wallet login page. We create a login.tsx file in the /pages folder.
 
 ```tsx title="/src/page/login.tsx"
-import { AntdLayout, Button, useLogin, Icon, Row, Col } from "@pankod/refine";
+import { useLogin } from "@pankod/refine-core";
+import { AntdLayout, Button, Icon, Row, Col } from "@pankod/refine-antd";
 
 export const Login: React.FC = () => {
   const { mutate: login, isLoading } = useLogin();
@@ -191,6 +192,7 @@ After connecting with our account, we can now retrieve account information. We w
 
 ```tsx title="src/pages/dashboard"
 import React from "react";
+import { useGetIdentity } from "@pankod/refine-core";
 import {
   Row,
   Col,
@@ -202,7 +204,7 @@ import {
   useModal,
   Form,
   Input,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 const { Text } = Typography;
 
@@ -275,6 +277,7 @@ export const sendEthereum = async (
 
 ```tsx title"src/pages/dashboard.tsx"
 import React, { useState } from "react";
+import { useGetIdentity } from "@pankod/refine-core";
 import {
   Row,
   Col,
@@ -287,8 +290,7 @@ import {
   Form,
   Input,
   notification,
-  useGetIdentity,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { sendEthereum } from "../utility";
 
