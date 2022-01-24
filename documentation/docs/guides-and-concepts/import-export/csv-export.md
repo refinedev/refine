@@ -9,6 +9,10 @@ With **refine**, you can easily add export functionality to dump resources' reco
 
 ## Usage
 
+:::caution
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
+:::
+
 Let's see an example:
 
 ```tsx  title="pages/posts/list.tsx"
@@ -22,7 +26,7 @@ import {
     useTable,
 // highlight-next-line
     ExportButton,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
