@@ -283,7 +283,7 @@ import {
     //highlight-start
     Badge,
     //highlight-end
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 export const CustomSider: React.FC = () => {
