@@ -15,15 +15,15 @@ You can call the `useImport` hook and add an `<ImportButton>` with properties re
 Let's look at an example of adding a custom import button:
 
 ```tsx  title="pages/posts/list.tsx"
+import { useMany } from "@pankod/refine-core";
 import {
     List,
     useTable,
-    useMany,
 // highlight-start
     useImport,
     ImportButton,
 // highlight-end
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
