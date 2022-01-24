@@ -48,9 +48,10 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
         useParams<ResourceRouterParams>();
 
     const [showId, setShowId] = useState<string | undefined>(
-        id ?? idFromRoute !== undefined
-            ? decodeURIComponent(idFromRoute)
-            : undefined,
+        id ??
+            (idFromRoute !== undefined
+                ? decodeURIComponent(idFromRoute)
+                : undefined),
     );
 
     const resourceWithRoute = useResourceWithRoute();
