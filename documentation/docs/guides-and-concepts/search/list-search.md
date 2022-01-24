@@ -11,17 +11,20 @@ We will examine how to make an extensive search and filtering with the [`useSimp
 To do this, let's list posts using the posts resource.
 
 ```tsx title="pages/posts/list.tsx"
+import { 
+    // highlight-next-line
+    useMany 
+} from "@pankod/refine-core";
 import {
     List,
     // highlight-start
     useSimpleList,
-    useMany,
     // highlight-end
     AntdList,
     Typography,
     Space,
     NumberField,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 const { Text } = Typography;
 
@@ -91,11 +94,11 @@ interface IPost {
 After creating the `<PostList>` component, add it to resource with `list` prop:
 
 ```tsx
-import { Refine, Resource } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 // highlight-next-line
 import { PostList } from "pages/posts";
@@ -107,8 +110,14 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
-            // highlight-next-line
-            resources={[{ name: "posts", list: PostList }]}
+            // highlight-start
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                },
+            ]}
+            //highlight-end
         />
     );
 };
@@ -135,7 +144,7 @@ import {
     ...
 // highlight-next-line
     CrudFilters,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
 
 export const PostList: React.FC = () => {
 // highlight-start
