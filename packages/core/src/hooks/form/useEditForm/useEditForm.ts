@@ -110,7 +110,10 @@ export const useEditForm = <
 
     const { id: idFromRoute, action: actionFromRoute } =
         useParams<ResourceRouterParams>();
-    const [editId, setEditId] = React.useState<string | undefined>(idFromRoute);
+
+    const [editId, setEditId] = React.useState<string | undefined>(
+        idFromRoute !== undefined ? decodeURIComponent(idFromRoute) : undefined,
+    );
 
     const action = actionFromParams ?? actionFromRoute;
 

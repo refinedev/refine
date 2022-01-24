@@ -102,7 +102,9 @@ export const Edit: React.FC<EditProps> = ({
                     )}
                     <RefreshButton
                         resourceName={resource.name}
-                        recordItemId={recordItemId ?? idFromRoute}
+                        recordItemId={
+                            recordItemId ?? encodeURIComponent(idFromRoute)
+                        }
                     />
                 </Space>
             }
