@@ -122,7 +122,9 @@ export const useForm = <
     } = useParams<ResourceRouterParams>();
 
     // id state is needed to determine selected record in a context for example useModal
-    const [id, setId] = React.useState<string | undefined>(idFromRoute);
+    const [id, setId] = React.useState<string | undefined>(
+        idFromRoute !== undefined ? decodeURIComponent(idFromRoute) : undefined,
+    );
 
     const resourceName = resourceFromProps ?? resourceFromRoute;
     const action = actionFromProps ?? actionFromRoute;

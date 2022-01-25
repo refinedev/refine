@@ -47,7 +47,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
 
     const { edit } = useNavigation();
 
-    const id = recordItemId ?? idFromRoute;
+    const id = recordItemId ?? decodeURIComponent(idFromRoute);
 
     const { data } = useCan({
         resource: resourceName,

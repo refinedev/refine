@@ -77,7 +77,9 @@ const RouteProviderBase: React.FC = () => {
                     <CanAccess
                         resource={name}
                         action="create"
-                        params={{ id: props.match.params.id }}
+                        params={{
+                            id: decodeURIComponent(props.match.params.id),
+                        }}
                         fallback={catchAll ?? <ErrorComponent />}
                     >
                         <CreateComponent
@@ -100,7 +102,9 @@ const RouteProviderBase: React.FC = () => {
                     <CanAccess
                         resource={name}
                         action="edit"
-                        params={{ id: props.match.params.id }}
+                        params={{
+                            id: decodeURIComponent(props.match.params.id),
+                        }}
                         fallback={catchAll ?? <ErrorComponent />}
                     >
                         <EditComponent
@@ -123,7 +127,9 @@ const RouteProviderBase: React.FC = () => {
                     <CanAccess
                         resource={name}
                         action="show"
-                        params={{ id: props.match.params.id }}
+                        params={{
+                            id: decodeURIComponent(props.match.params.id),
+                        }}
                         fallback={catchAll ?? <ErrorComponent />}
                     >
                         <ShowComponent

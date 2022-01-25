@@ -40,36 +40,66 @@ describe("useNavigation Hook", () => {
         result.current.edit("posts", "1", "push");
 
         expect(mHistory.push).toBeCalledWith("/posts/edit/1");
+
+        mHistory.push.mockReset();
+        result.current.edit("posts", "foo/1", "push");
+
+        expect(mHistory.push).toBeCalledWith("/posts/edit/foo%2F1");
     });
 
     it("navigation edit with replace", async () => {
         result.current.edit("posts", "1", "replace");
 
         expect(mHistory.replace).toBeCalledWith("/posts/edit/1");
+
+        mHistory.replace.mockReset();
+        result.current.edit("posts", "foo/1", "replace");
+
+        expect(mHistory.replace).toBeCalledWith("/posts/edit/foo%2F1");
     });
 
     it("navigation clone with push", async () => {
         result.current.clone("posts", "1", "push");
 
         expect(mHistory.push).toBeCalledWith("/posts/clone/1");
+
+        mHistory.push.mockReset();
+        result.current.clone("posts", "foo/1", "push");
+
+        expect(mHistory.push).toBeCalledWith("/posts/clone/foo%2F1");
     });
 
     it("navigation clone with replace", async () => {
         result.current.clone("posts", "1", "replace");
 
         expect(mHistory.replace).toBeCalledWith("/posts/clone/1");
+
+        mHistory.replace.mockReset();
+        result.current.clone("posts", "foo/1", "replace");
+
+        expect(mHistory.replace).toBeCalledWith("/posts/clone/foo%2F1");
     });
 
     it("navigation show with push", async () => {
         result.current.show("posts", "1", "push");
 
         expect(mHistory.push).toBeCalledWith("/posts/show/1");
+
+        mHistory.push.mockReset();
+        result.current.show("posts", "foo/1", "push");
+
+        expect(mHistory.push).toBeCalledWith("/posts/show/foo%2F1");
     });
 
     it("navigation show with replace", async () => {
         result.current.show("posts", "1", "replace");
 
         expect(mHistory.replace).toBeCalledWith("/posts/show/1");
+
+        mHistory.replace.mockReset();
+        result.current.show("posts", "foo/1", "replace");
+
+        expect(mHistory.replace).toBeCalledWith("/posts/show/foo%2F1");
     });
 
     it("navigation list with push", async () => {

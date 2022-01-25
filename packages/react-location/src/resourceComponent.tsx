@@ -18,8 +18,10 @@ export const ResourceComponentWrapper: React.FC = () => {
     const {
         resource: routeResourceName,
         action,
-        id,
+        id: idFromRoute,
     } = useParams<ResourceRouterParams>();
+
+    const id = decodeURIComponent(idFromRoute);
 
     const resource = resources.find((res) => res.route === routeResourceName);
 
