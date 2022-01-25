@@ -16,18 +16,25 @@ Both of these components can accept the listed props for customization. [`<Refin
 
 ## Usage
 
+:::caution
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
+:::
+
 Let's look at an example of modifying the default layout to have a top menu layout.
 
 ```tsx title="/src/App.tsx"
-import { Refine, AntdLayout, Link } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import { AntdLayout } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
-import "@pankod/refine/dist/styles.min.css";
+
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList } from "pages/posts";
-
 // highlight-next-line
 import { CustomSider } from "components";
+
+const { Link } = routerProvider;
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -71,7 +78,11 @@ Here, we override the [`<Title>`][title] and [`<Layout>`][layout] components. Wh
 So, we just provided a custom [`<Sider>`][sider]. Here's our custom sider that looks horizontal, instead of the default vertical one:
 
 ```tsx  title="/src/components/sider/index.tsx"
-import { Link, Menu, useMenu, useTitle } from "@pankod/refine";
+import { useTitle } from "@pankod/refine-core";
+import { Menu, useMenu } from "@pankod/refine-antd";
+import routerProvider from "@pankod/refine-react-router";
+
+const { Link } = routerProvider;
 
 export const CustomSider: React.FC = () => {
 // highlight-start
