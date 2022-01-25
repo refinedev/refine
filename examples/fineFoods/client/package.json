@@ -1,6 +1,6 @@
 {
   "name": "fine-foods-client",
-  "version": "3.0.1",
+  "version": "3.0.3",
   "private": true,
   "scripts": {
     "start": "next dev",
@@ -9,15 +9,15 @@
     "svgr": "npx @svgr/cli src/icons -d src/components/icons --typescript --no-svgo"
   },
   "dependencies": {
+    "@pankod/refine-core": "^3.0.3",
+    "@pankod/refine-nextjs-router": "^3.0.3",
+    "@pankod/refine-react-table": "^3.0.3",
+    "@pankod/refine-simple-rest": "^3.0.3",
+    "gsap": "^3.8.0",
+    "js-confetti": "^0.9.0",
     "next": "^12.0.3",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "@pankod/refine-core": "^3.0.2",
-    "@pankod/refine-nextjs-router": "^3.0.2",
-    "@pankod/refine-simple-rest": "^3.0.2",
-    "@pankod/refine-react-table": "^3.0.2",
-    "gsap": "^3.8.0",
-    "js-confetti": "^0.9.0"
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@types/node": "17.0.4",
