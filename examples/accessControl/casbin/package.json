@@ -1,11 +1,11 @@
 {
   "name": "access-control-casbin-react",
-  "version": "2.7.0",
+  "version": "2.7.1",
   "private": true,
   "dependencies": {
-    "@pankod/refine": "^2.7.0",
-    "@pankod/refine-react-router": "^2.7.0",
-    "@pankod/refine-simple-rest": "^2.7.0",
+    "@pankod/refine": "^2.7.1",
+    "@pankod/refine-react-router": "^2.7.1",
+    "@pankod/refine-simple-rest": "^2.7.1",
     "@types/node": "^14.14.13",
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.4",
