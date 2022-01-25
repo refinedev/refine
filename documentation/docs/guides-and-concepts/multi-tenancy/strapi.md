@@ -30,6 +30,10 @@ This guide has been prepared assuming you know the basics of **refine**. If you 
 npm i @pankod/refine-strapi-v4
 ```
 
+:::caution
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
+:::
+
 ## Usage
 
 ### AuthProvider
@@ -39,7 +43,7 @@ npm i @pankod/refine-strapi-v4
 <p>
 
 ```tsx title="src/authProvider.ts"
-import { AuthProvider } from "@pankod/refine";
+import { AuthProvider } from "@pankod/refine-core";
 import { AuthHelper } from "@pankod/refine-strapi-v4";
 import axios from "axios";
 
@@ -109,7 +113,7 @@ export const authProvider: AuthProvider = {
 </details>
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import { DataProvider } from "@pankod/refine-strapi-v4";
 import routerProvider from "@pankod/refine-react-router";
 
@@ -225,7 +229,7 @@ export const StoreProvider = (props: any) => {
 ```
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import { DataProvider } from "@pankod/refine-strapi-v4";
 import routerProvider from "@pankod/refine-react-router";
 
@@ -254,7 +258,7 @@ We will create a select component in the Sider Menu where the user will select t
 
 ```tsx title="scr/components/select/StoreSelect.tsx"
 import { useContext } from "react";
-import { Select, useSelect } from "@pankod/refine";
+import { Select, useSelect } from "@pankod/refine-antd";
 
 import { StoreContext } from "context/store";
 import { IStore } from "interfaces";
@@ -321,15 +325,8 @@ Let's define the select component in the **refine** Sider Menu. First, we need t
 
 ```tsx title="src/components/sider/CustomSider.tsx"
 import React, { useState } from "react";
-import {
-    AntdLayout,
-    Menu,
-    useMenu,
-    useTitle,
-    useNavigation,
-    Grid,
-    Icons,
-} from "@pankod/refine";
+import { useTitle, useNavigation } from "@pankod/refine-core";
+import { AntdLayout, Menu, useMenu, Grid, Icons } from "@pankod/refine-antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 import { StoreSelect } from "components/select";
@@ -433,16 +430,15 @@ const { listProps } = useSimpleList<IProduct>({
 
 ```tsx title=src/pages/ProductList.tsx
 import { useContext } from "react";
+import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
 import {
-    IResourceComponentsProps,
     useSimpleList,
     AntdList,
     useModalForm,
     useDrawerForm,
     CreateButton,
     List,
-    HttpError,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IProduct } from "interfaces";
 
@@ -530,6 +526,8 @@ const [store, setStore] = useContext(StoreContext);
 <p>
 
 ```tsx title="CreateProduct"
+import { useContext } from "react";
+import { useApiUrl } from "@pankod/refine-core";
 import {
     Create,
     Drawer,
@@ -540,11 +538,9 @@ import {
     ButtonProps,
     Upload,
     Grid,
-    useApiUrl,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { StoreContext } from "context/store";
-import { useContext } from "react";
 
 import {
     useStrapiUpload,
