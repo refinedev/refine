@@ -186,11 +186,11 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 Replace the contents of `App.tsx` with the following code:
 
 ```tsx  title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 const App: React.FC = () => {
     return (
@@ -288,7 +288,7 @@ Let's add **/posts/** endpoint from our API as a resource. First take a look to 
 Now, add the highlighted code to your `App.tsx` to connect to the endpoint.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -361,7 +361,7 @@ import {
     DateField,
     Table,
     useTable,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost } from "interfaces";
 
@@ -421,7 +421,7 @@ The example uses `<TagField>` and `<DateField>` components. To get the full list
 Finally, we are ready to add `<PostList>` to our resource. Add the highlighted line to your `App.tsx`
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -512,6 +512,8 @@ export interface IPost {
 So we can update our `list.tsx` with the highlighted lines:
 
 ```tsx title="pages/posts/list.tsx"
+// highlight-next-line
+import { useMany } from "@pankod/refine-core";
 import {
     List,
     TextField,
@@ -519,9 +521,7 @@ import {
     DateField,
     Table,
     useTable,
-    // highlight-next-line
-    useMany,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 // highlight-next-line
 import { IPost, ICategory } from "interfaces";
@@ -615,6 +615,7 @@ We're done with displaying `post` records on our `<Table>`. Let's add search and
 We are going to use `<Table.Column>`'s [`filterDropdown`](https://ant.design/components/table/#Column) property and `<FilterDropdown>` component as following:
 
 ```tsx title="pages/posts/list.tsx"
+import { useMany } from "@pankod/refine-core";
 import {
     List,
     TextField,
@@ -622,13 +623,12 @@ import {
     DateField,
     Table,
     useTable,
-    useMany,
     FilterDropdown,
     // highlight-start
     Select,
     useSelect,
     // highlight-end
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -722,7 +722,9 @@ At this point we are able to list all _post_ records on the table component with
 Let's create a `<PostShow>` component on `/pages/posts` folder:
 
 ```tsx title="pages/posts/show.tsx"
-import { Show, useShow, Typography, Tag, useOne } from "@pankod/refine";
+import { useShow, useOne } from "@pankod/refine-core";
+import { Show, Typography, Tag } from "@pankod/refine-antd";
+
 import { IPost, ICategory } from "interfaces";
 
 const { Title, Text } = Typography;
@@ -762,7 +764,7 @@ export const PostShow = () => {
 Now we can add the newly created component to our resource with `show` prop:
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -793,6 +795,7 @@ export const App: React.FC = () => {
 And then we can add a `<ShowButton>` on the list page to make it possible for users to navigate to detail pages:
 
 ```tsx title="src/pages/posts/list.tsx"
+import { useMany } from "@pankod/refine-core";
 import {
     List,
     TextField,
@@ -800,13 +803,12 @@ import {
     DateField,
     Table,
     useTable,
-    useMany,
     FilterDropdown,
     Select,
     // highlight-next-line
     ShowButton,
     useSelect,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -927,7 +929,7 @@ Until this point, we were basically working with read operations such as fetchin
 Let's start by creating a new `<PostEdit>` page responsible for editing a single record:
 
 ```tsx title="pages/posts/edit.tsx"
-import { useForm, Form, Input, Select, Edit, useSelect } from "@pankod/refine";
+import { useForm, Form, Input, Select, Edit, useSelect } from "@pankod/refine-antd";
 import { IPost } from "interfaces";
 
 export const PostEdit: React.FC = () => {
@@ -976,7 +978,7 @@ export const PostEdit: React.FC = () => {
 Now we can add the newly created component to our resource with `edit` prop:
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -1006,6 +1008,7 @@ export const App: React.FC = () => {
 We are going to need an _edit_ button on each row to diplay the `<PostEdit>` component. **refine** doesn't automatically add one, so we have to update our `<PostList>` component to add a `<EditButton>` for each record:
 
 ```tsx title="components/pages/posts.tsx"
+import { useMany } from "@pankod/refine-core";
 import {
     List,
     TextField,
@@ -1013,7 +1016,6 @@ import {
     DateField,
     Table,
     useTable,
-    useMany,
     FilterDropdown,
     Select,
     ShowButton,
@@ -1022,7 +1024,7 @@ import {
     Space,
     EditButton,
     // highlight-end
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -1167,7 +1169,7 @@ import {
     Select,
     useForm,
     useSelect,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost } from "interfaces";
 
@@ -1219,7 +1221,7 @@ After creating the `<PostCreate>` component, add it to resource with `create` pr
 <br />
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 
@@ -1279,6 +1281,7 @@ Deleting a record can be done in two ways.
 First way is adding an delete button on each row since _refine_ doesn't automatically add one, so we have to update our `<PostList>` component to add a `<DeleteButton>` for each record:
 
 ```tsx title="components/pages/posts.tsx"
+import { useMany } from "@pankod/refine-core";
 import {
     List,
     TextField,
@@ -1286,7 +1289,6 @@ import {
     DateField,
     Table,
     useTable,
-    useMany,
     FilterDropdown,
     Select,
     ShowButton,
@@ -1295,7 +1297,7 @@ import {
     EditButton,
     // highlight-next-line
     DeleteButton,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "../../interfaces";
 
@@ -1399,7 +1401,7 @@ Now you can try deleting records yourself. Just click on the delete button of th
 The second way is showing delete button in `<PostEdit>` component. To show delete button in edit page, `canDelete` prop needs to be passed to resource object.
 
 ```tsx title="src/App.tsx"
-import { Refine, Resource } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
