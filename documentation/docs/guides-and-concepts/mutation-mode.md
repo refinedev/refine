@@ -92,7 +92,7 @@ Mutation mode can be set application-wide in [`<Refine>`](/api-references/compon
 It can also be set in supported [data hooks](https://docs-mu-doc-refine.pankod.com/docs/api-references/hooks/data/useUpdate#mutation-mode) and [form hooks](https://docs-mu-doc-refine.pankod.com/docs/api-references/hooks/form/useForm#properties) for fine-grained configuration.
 
 ```tsx
-import { useUpdate } from "@pankod/refine";
+import { useUpdate } from "@pankod/refine-core";
 
 const { mutate } = useUpdate();
 
