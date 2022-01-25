@@ -30,7 +30,7 @@ import {
     LiveModeProps,
 } from "../../interfaces";
 
-export type useTableProps<TData, TError, TSearchVariables = unknown> = {
+export type useTableProps<TData, TError> = {
     resource?: string;
     initialCurrent?: number;
     initialPageSize?: number;
@@ -39,7 +39,6 @@ export type useTableProps<TData, TError, TSearchVariables = unknown> = {
     initialFilter?: CrudFilters;
     permanentFilter?: CrudFilters;
     syncWithLocation?: boolean;
-    onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     metaData?: MetaDataQuery;
 } & SuccessErrorNotification &

@@ -86,7 +86,7 @@ module.exports = {
                         {
                             type: "category",
                             label: "Table",
-                            items: ["api-references/hooks/table/useTable"],
+                            items: ["core/hooks/useTable"],
                         },
 
                         {
