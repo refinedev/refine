@@ -21,7 +21,7 @@ export const ResourceComponentWrapper: React.FC = () => {
         id: idFromRoute,
     } = useParams<ResourceRouterParams>();
 
-    const id = decodeURIComponent(idFromRoute);
+    const id = idFromRoute ? decodeURIComponent(idFromRoute) : undefined;
 
     const resource = resources.find((res) => res.route === routeResourceName);
 

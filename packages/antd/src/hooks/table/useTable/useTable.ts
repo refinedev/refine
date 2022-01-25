@@ -26,9 +26,13 @@ import {
 } from "../../../definitions/table";
 
 export type useTableProps<TData, TError, TSearchVariables = unknown> =
-    useTablePropsCore<TData, TError, TSearchVariables> &
+    useTablePropsCore<TData, TError> &
         SuccessErrorNotification &
-        LiveModeProps;
+        LiveModeProps & {
+            onSearch?: (
+                data: TSearchVariables,
+            ) => CrudFilters | Promise<CrudFilters>;
+        };
 
 export type useTableReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -87,7 +91,6 @@ export const useTable = <
         sorter,
         setSorter,
     } = useTableCore({
-        onSearch,
         permanentSorter,
         permanentFilter,
         initialCurrent,
