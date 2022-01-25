@@ -85,7 +85,7 @@ Create a less file and import antd styles from `node_modules/antd`:
 And import the `less` file in `App.tsx`:
 
 ```tsx title="App.tsx"
-import { Refine, Resource } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-next-line
