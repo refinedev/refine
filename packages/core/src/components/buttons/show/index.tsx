@@ -48,7 +48,7 @@ export const ShowButton: FC<ShowButtonProps> = ({
 
     const resourceName = propResourceName ?? resource.name;
 
-    const id = recordItemId ?? idFromRoute;
+    const id = recordItemId ?? decodeURIComponent(idFromRoute);
 
     const { data } = useCan({
         resource: resourceName,

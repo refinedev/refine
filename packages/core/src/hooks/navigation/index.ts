@@ -25,9 +25,11 @@ export const useNavigation = () => {
     const edit = (resource: string, id: string, type: HistoryType = "push") => {
         const resourceName = resourceWithRoute(resource);
 
+        const encodedId = encodeURIComponent(id);
+
         type === "push"
-            ? history.push(`/${resourceName.route}/edit/${id}`)
-            : history.replace(`/${resourceName.route}/edit/${id}`);
+            ? history.push(`/${resourceName.route}/edit/${encodedId}`)
+            : history.replace(`/${resourceName.route}/edit/${encodedId}`);
     };
 
     const clone = (
@@ -37,17 +39,21 @@ export const useNavigation = () => {
     ) => {
         const resourceName = resourceWithRoute(resource);
 
+        const encodedId = encodeURIComponent(id);
+
         type === "push"
-            ? history.push(`/${resourceName.route}/clone/${id}`)
-            : history.replace(`/${resourceName.route}/clone/${id}`);
+            ? history.push(`/${resourceName.route}/clone/${encodedId}`)
+            : history.replace(`/${resourceName.route}/clone/${encodedId}`);
     };
 
     const show = (resource: string, id: string, type: HistoryType = "push") => {
         const resourceName = resourceWithRoute(resource);
 
+        const encodedId = encodeURIComponent(id);
+
         type === "push"
-            ? history.push(`/${resourceName.route}/show/${id}`)
-            : history.replace(`/${resourceName.route}/show/${id}`);
+            ? history.push(`/${resourceName.route}/show/${encodedId}`)
+            : history.replace(`/${resourceName.route}/show/${encodedId}`);
     };
 
     const list = (resource: string, type: HistoryType = "push") => {

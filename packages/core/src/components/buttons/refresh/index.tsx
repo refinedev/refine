@@ -45,7 +45,7 @@ export const RefreshButton: FC<RefreshButtonProps> = ({
 
     const { refetch, isFetching } = useOne({
         resource: resource.name,
-        id: `${recordItemId ?? idFromRoute}`,
+        id: `${recordItemId ?? decodeURIComponent(idFromRoute)}`,
         queryOptions: {
             enabled: false,
         },

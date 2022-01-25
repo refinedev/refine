@@ -66,7 +66,7 @@ export const useCloneForm = <
     const { id: idFromRoute, action: actionFromRoute } =
         useParams<ResourceRouterParams>();
 
-    const id = props.cloneId ?? idFromRoute;
+    const id = props.cloneId ?? decodeURIComponent(idFromRoute);
 
     const action = props.action ?? actionFromRoute;
     // Check if clone process comes from useParams or modal

@@ -63,6 +63,8 @@ export const Show: React.FC<ShowProps> = ({
     const isDeleteButtonVisible = canDelete ?? resource.canDelete;
     const isEditButtonVisible = canEdit ?? resource.canEdit;
 
+    const id = recordItemId ?? encodeURIComponent(idFromRoute);
+
     return (
         <PageHeader
             ghost={false}
@@ -90,14 +92,14 @@ export const Show: React.FC<ShowProps> = ({
                             disabled={isLoading}
                             data-testid="show-edit-button"
                             resourceName={resource.name}
-                            recordItemId={recordItemId ?? idFromRoute}
+                            recordItemId={id}
                         />
                     )}
                     {isDeleteButtonVisible && (
                         <DeleteButton
                             resourceName={resource.name}
                             data-testid="show-delete-button"
-                            recordItemId={recordItemId ?? idFromRoute}
+                            recordItemId={id}
                             onSuccess={() =>
                                 list(resource.route ?? resource.name)
                             }
@@ -105,7 +107,7 @@ export const Show: React.FC<ShowProps> = ({
                     )}
                     <RefreshButton
                         resourceName={resource.name}
-                        recordItemId={recordItemId ?? idFromRoute}
+                        recordItemId={id}
                     />
                 </Space>
             }
