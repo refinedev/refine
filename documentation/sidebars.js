@@ -279,6 +279,11 @@ module.exports = {
         },
         {
             type: "category",
+            label: "Packages",
+            items: ["packages/react-table"],
+        },
+        {
+            type: "category",
             label: "Guides & Concepts",
             items: [
                 {
