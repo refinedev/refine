@@ -22,7 +22,7 @@ This document is related to how to create custom pages for **react** application
 Allows creating custom pages that everyone can access via path.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 
 // highlight-next-line
@@ -59,7 +59,7 @@ Allows creating custom pages that only authenticated users can access via path.
 
 ```tsx title="src/App.tsx"
 // highlight-start
-import { Refine, Authenticated, AuthProvider } from "@pankod/refine";
+import { Refine, Authenticated, AuthProvider } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 // highlight-end
 
@@ -173,10 +173,11 @@ Before starting the example, let's assume that our [`dataProvider`](/api-referen
 First, we will create the post's CRUD pages and bootstrap the app.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
-import "@pankod/refine/dist/styles.min.css";
+
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -206,7 +207,7 @@ Now, let's create the custom page with the name `<PostReview>`. We will use the 
 [Refer to the `useList` documentation for detailed usage. &#8594](/api-references/hooks/data/useList.md)
 
 ```tsx  title="src/pages/post-review.tsx"
-import { useList } from "@pankod/refine";
+import { useList } from "@pankod/refine-core";
 
 const PostReview = () => {
     const { data, isLoading } = useList<IPost>({
@@ -246,7 +247,7 @@ Post's category is relational. So we will use the post's category "id" to get th
 
 ```tsx  title="src/pages/post-review.tsx"
 // highlight-next-line
-import { useList, useOne } from "@pankod/refine";
+import { useList, useOne } from "@pankod/refine-core";
 
 export const PostReview = () => {
     const { data, isLoading } = useList<IPost>({
@@ -285,15 +286,14 @@ Now we have the data to display the post as we want. Let's use the `<Show>` comp
 :::
 
 ```tsx  title="src/pages/post-review.tsx"
+import { useOne, useList } from "@pankod/refine-core";
 import {
 // highlight-start
     Typography,
     Show,
     MarkdownField,
 // highlight-end
-    useOne,
-    useList,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 // highlight-next-line
 const { Title, Text } = Typography;
@@ -351,10 +351,11 @@ export const PostReview = () => {
 Then, pass this `<PostReview>` as the routes property in the `<Refine>` component:
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
-import "@pankod/refine/dist/styles.min.css";
+
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -411,6 +412,12 @@ Now let's put in approve and reject buttons to change the status of the post sho
 [Refer to the `useUpdate` documentation for detailed usage. &#8594](/api-references/hooks/data/useUpdate.md)
 
 ```tsx  title="src/pages/post-review.tsx"
+import { 
+    useList, 
+    useOne, 
+    //highlight-next-line
+    useUpdate 
+} from "@pankod/refine-core";
 import {
     Typography,
     Show,
@@ -418,11 +425,8 @@ import {
 // highlight-start
     Space,
     Button,
-    useUpdate,
 // highlight-end
-    useOne,
-    useList,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 const { Title, Text } = Typography;
 
