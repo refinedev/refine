@@ -119,8 +119,8 @@ export const PostList: React.FC = () => {
     //highlight-end
 
     //highlight-next-line
-    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-        useTable<IPost>({ columns });
+    const { getTableProps, getTableBodyProps, headerGroups, prepareRow, rows } =
+        useTable({ columns });
 
     return (
         //highlight-start
@@ -162,7 +162,143 @@ export const PostList: React.FC = () => {
 This example is the same as the basic example in the [React Table](#react-table) documentation.
 
 [Refer to the basic example of React Table. &#8594](https://react-table.tanstack.com/docs/examples/basic)
-
 :::
 
 ## Pagination
+
+`@pankod/refine-react-table` provides all the features of the [React Table](#react-table) library and it's also possible to use the pagination feature. To use it, we need to import the `usePagination` plugin and inject it into the `useTable` hook.
+
+[Refer to the `usePagination` documentation for detailed information. &#8594](https://react-table.tanstack.com/docs/api/usePagination#usepagination)
+
+:::info
+By default, `@pankod/refine-react-table` uses server-side pagination.
+:::
+
+```tsx title="src/posts/list.tsx"
+//highlight-next-line
+import { useTable, Column, usePagination } from "@pankod/refine-react-table";
+
+export const PostList: React.FC = () => {
+    const columns: Array<Column> = React.useMemo(...); // Defined in the previous section
+
+    const {
+        getTableProps,
+        getTableBodyProps,
+        headerGroups,
+        prepareRow,
+        //highlight-next-line
+        page, // Instead of using 'rows', we'll use page,
+        //highlight-start
+        canPreviousPage,
+        canNextPage,
+        pageOptions,
+        pageCount,
+        gotoPage,
+        nextPage,
+        previousPage,
+        setPageSize,
+        state: { pageIndex, pageSize },
+        //highlight-end
+        //highlight-next-line
+    } = useTable({ columns }, usePagination);
+
+    return (
+        <>
+            <table {...getTableProps()}>
+                <thead>
+                    {headerGroups.map((headerGroup) => (
+                        <tr {...headerGroup.getHeaderGroupProps()}>
+                            {headerGroup.headers.map((column) => (
+                                <th {...column.getHeaderProps()}>
+                                    {column.render("Header")}
+                                </th>
+                            ))}
+                        </tr>
+                    ))}
+                </thead>
+                <tbody {...getTableBodyProps()}>
+                    //highlight-next-line
+                    {page.map((row, i) => {
+                        prepareRow(row);
+                        return (
+                            <tr {...row.getRowProps()}>
+                                {row.cells.map((cell) => {
+                                    return (
+                                        <td {...cell.getCellProps()}>
+                                            {cell.render("Cell")}
+                                        </td>
+                                    );
+                                })}
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+
+            //highlight-start
+            <div className="pagination">
+                <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+                    {"<<"}
+                </button>
+                <button
+                    onClick={() => previousPage()}
+                    disabled={!canPreviousPage}
+                >
+                    {"<"}
+                </button>
+                <button onClick={() => nextPage()} disabled={!canNextPage}>
+                    {">"}
+                </button>
+                <button
+                    onClick={() => gotoPage(pageCount - 1)}
+                    disabled={!canNextPage}
+                >
+                    {">>"}
+                </button>
+                <span>
+                    Page
+                    <strong>
+                        {pageIndex + 1} of {pageOptions.length}
+                    </strong>
+                </span>
+                <span>
+                    | Go to page:
+                    <input
+                        type="number"
+                        defaultValue={pageIndex + 1}
+                        onChange={(e) => {
+                            const page = e.target.value
+                                ? Number(e.target.value) - 1
+                                : 0;
+                            gotoPage(page);
+                        }}
+                        style={{ width: "100px" }}
+                    />
+                </span> <select
+                    value={pageSize}
+                    onChange={(e) => {
+                        setPageSize(Number(e.target.value));
+                    }}
+                >
+                    {[10, 20, 30, 40, 50].map((pageSize) => (
+                        <option key={pageSize} value={pageSize}>
+                            Show {pageSize}
+                        </option>
+                    ))}
+                </select>
+            </div>
+            //highlight-end
+        </>
+    );
+};
+```
+
+:::note
+This example is the same as the basic example in the [React Table](#react-table) documentation.
+
+[Refer to the pagination example of React Table. &#8594](https://react-table.tanstack.com/docs/examples/pagination)
+:::
+
+## Sorter
+
+
