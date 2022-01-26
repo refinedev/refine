@@ -192,7 +192,7 @@ An icon element can be passed as properties for the icon in the menu.
         {
             ...
             // highlight-next-line
-            icon={<CustomIcon />}
+            icon: <CustomIcon />
         },
     ]}
 />
@@ -209,7 +209,7 @@ Menu item name and route on clicking can be customized.
         {
             ...
             // highlight-next-line
-            options={{ label: "custom", route: "/custom" }}
+            options: { label: "custom", route: "/custom" }
         },
     ]}
 />
