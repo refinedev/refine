@@ -3,7 +3,23 @@ id: react-table
 title: React Table
 ---
 
-**refine** offers a [React Table](#) adapter([@pankod/refine-react-table](#)) that allows you to use the React Table library with **refine**. Thus, it works in perfect harmony with the React Table library. All of React Table's features are supported and you can use all of the React Table's examples with no changes just copy and paste them into your project.
+**refine** offers a [React Table][react-table] adapter([@pankod/refine-react-table][refine-react-table]) that allows you to use the React Table library with **refine**. Thus, you can manage your server-side data fetching operations.
+
+All of React Table's features are supported and you can use all of the React Table's examples with no changes just copy and paste them into your project.
+
+## Installation
+
+Install the [`@pankod/refine-react-table`][refine-react-table] library.
+
+```bash
+npm i @pankod/refine-react-table
+```
+
+:::caution
+For typescript users, you need to add React Table types to your project.
+:::
+
+## Basic Usage
 
 In this documentation, we'll step-by-step create an example of a headless table with sorting, filtering, and pagination capabilities.
 
@@ -28,19 +44,9 @@ Let's say you have a endpoint that returns the following data.
 ]
 ```
 
-## Basic Usage
-
-### Installation
-
-Install the [`@pankod/refine-react-table`](#) library.
-
-```bash
-npm i @pankod/refine-react-table
-```
-
 ### Create `<PostList>` component
 
-We simply create a `<PostList>` component and pass to the `<Refine>` component as resource. All the implementation we will do from now on will be in the `<PostList>` component.
+We simply create a `<PostList>` component and pass to the `<Refine>` component as a resource. All the implementation we will do from now on will be in the `<PostList>` component.
 
 ```tsx title="src/posts/list.tsx"
 export const PostList: React.FC = () => {
@@ -83,7 +89,11 @@ export const PostList: React.FC = () => {
 };
 ```
 
-Define columns what we want to display in the table. Then, return the headless table.
+Define columns what we want to display in the table. Then, return the headless table with using the `useTable` hook.
+
+:::info
+`useTable` does not expect any data to be passed to it. It will fetch data from the data provider by resource.
+:::
 
 ```tsx title="src/posts/list.tsx"
 //highlight-next-line
@@ -159,20 +169,16 @@ export const PostList: React.FC = () => {
 ```
 
 :::note
-This example is the same as the basic example in the [React Table](#react-table) documentation.
+This example is the same as the basic example in the [React Table][react-table] documentation.
 
 [Refer to the basic example of React Table. &#8594](https://react-table.tanstack.com/docs/examples/basic)
 :::
 
 ## Pagination
 
-`@pankod/refine-react-table` provides all the features of the [React Table](#react-table) library and it's also possible to use the pagination feature. To use it, we need to import the `usePagination` plugin and inject it into the `useTable` hook.
+We need to import the `usePagination` plugin and inject it into the `useTable` hook in order to use the pagination feature. React Table provides a bunch of methods that we can use to control the pagination. For example, we can use the `setPageSize` method to set the current `pageSize`. Every change in the `pageSize` and `pageIndex` will trigger a new request to the data provider.
 
 [Refer to the `usePagination` documentation for detailed information. &#8594](https://react-table.tanstack.com/docs/api/usePagination#usepagination)
-
-:::info
-By default, `@pankod/refine-react-table` uses server-side pagination.
-:::
 
 ```tsx title="src/posts/list.tsx"
 //highlight-next-line
@@ -187,7 +193,7 @@ export const PostList: React.FC = () => {
         headerGroups,
         prepareRow,
         //highlight-next-line
-        page, // Instead of using 'rows', we'll use page,
+        page, // Instead of using 'rows', we'll use page
         //highlight-start
         canPreviousPage,
         canNextPage,
@@ -296,20 +302,16 @@ export const PostList: React.FC = () => {
 ```
 
 :::note
-This example is the same as the pagination example in the [React Table](#react-table) documentation.
+This example is the same as the pagination example in the [React Table][react-table] documentation.
 
 [Refer to the pagination example of React Table. &#8594](https://react-table.tanstack.com/docs/examples/pagination)
 :::
 
 ## Sorting
 
-`@pankod/refine-react-table` has also the ability to sort the data. To use it, we need to import the `useSortBy` plugin and inject it into the `useTable` hook.
+We need to import the `useSortBy` plugin and inject it into the `useTable` hook in order to use the sorting feature. React Table provides a bunch of methods that we can use to control the sorting. For example, we can use the `toggleSortBy` method to set the current `sortBy` value. Every change in the `sortBy` will trigger a new request to the data provider.
 
 [Refer to the `useSortBy` documentation for detailed information. &#8594](https://react-table.tanstack.com/docs/api/useSortBy#usesortby)
-
-:::info
-By default, `@pankod/refine-react-table` uses server-side sorting.
-:::
 
 ```tsx title="src/posts/list.tsx"
 import {
@@ -394,14 +396,14 @@ export const PostList: React.FC = () => {
 ```
 
 :::note
-This example is the same as the sorting example in the [React Table](#react-table) documentation.
+This example is the same as the sorting example in the [React Table][react-table] documentation.
 
 [Refer to the pagination example of React Table. &#8594](https://react-table.tanstack.com/docs/examples/pagination)
 :::
 
 ## Filtering
 
-We need to import the `useFilters` plugin and inject it into the `useTable` hook in order to use filtering. React Table provides a `setFilter` method that can be used to set the filter value. To specify which column to filter, we need to pass the `filter` prop to the related column. This `filter` prop type must be [`CrudOperators`](api-references/interfaceReferences#crudoperators) type. Every change in the filter value will trigger a new fetch.
+We need to import the `useFilters` plugin and inject it into the `useTable` hook in order to use filtering. React Table provides a bunch of methods that we can use to control the filtering. For example, we can use the `setFilter` method to set the current `filter` value. However, with which column we are going to filter, we need to specify the `filter` prop for that column. This `filter` prop must be [`CrudOperators`](/api-references/interfaces.md#crudoperators) type. Every change in the `filter` will trigger a new request to the data provider.
 
 ```tsx title="src/posts/list.tsx"
 import {
@@ -477,7 +479,6 @@ export const PostList: React.FC = () => {
                 />
             </div>
             //highlight-end
-
             <table {...getTableProps()}>
                 <thead>
                     {headerGroups.map((headerGroup) => (
@@ -518,7 +519,6 @@ export const PostList: React.FC = () => {
                     })}
                 </tbody>
             </table>
-
             <div className="pagination">
                 // Pagination defined in the previous section
             </div>
@@ -526,3 +526,6 @@ export const PostList: React.FC = () => {
     );
 };
 ```
+
+[react-table]: https://react-table.tanstack.com
+[refine-react-table]: https://github.com/pankod/refine/tree/master/packages/react-table
