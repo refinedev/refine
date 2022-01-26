@@ -30,7 +30,15 @@ Let's say you have a endpoint that returns the following data.
 
 ## Basic Usage
 
-### Step 1: Create `<PostList>` component
+### Installation
+
+Install the [`@pankod/refine-react-table`](#) library.
+
+```bash
+npm i @pankod/refine-react-table
+```
+
+### Create `<PostList>` component
 
 We simply create a `<PostList>` component and pass to the `<Refine>` component as resource. All the implementation we will do from now on will be in the `<PostList>` component.
 
@@ -62,17 +70,9 @@ const App: React.FC = () => {
 export default App;
 ```
 
-### Step 2: Install @pankod/refine-react-table package
+### Create basic table
 
-Install the package.
-
-```bash
-npm i @pankod/refine-react-table
-```
-
-### Step 3: Show data in the table
-
-#### Import `useTable` hook
+Firts, we need to import the `useTable` hook from the `@pankod/refine-react-table` library.
 
 ```tsx title="src/posts/list.tsx"
 //highlight-next-line
@@ -83,7 +83,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-#### Define columns to show data in the table
+Define columns what we want to display in the table. Then, return the headless table.
 
 ```tsx title="src/posts/list.tsx"
 //highlight-next-line
@@ -117,45 +117,6 @@ export const PostList: React.FC = () => {
         [],
     );
     //highlight-end
-
-    //highlight-next-line
-    const {} = useTable<IPost>({ columns });
-
-    return <></>;
-};
-```
-
-#### Render table
-
-```tsx title="src/posts/list.tsx"
-import { useTable, Column } from "@pankod/refine-react-table";
-
-export const PostList: React.FC = () => {
-    const columns: Array<Column> = React.useMemo(
-        () => [
-            {
-                id: "id",
-                Header: "ID",
-                accessor: "id",
-            },
-            {
-                id: "title",
-                Header: "Title",
-                accessor: "title",
-            },
-            {
-                id: "status",
-                Header: "Status",
-                accessor: "status",
-            },
-            {
-                id: "createdAt",
-                Header: "CreatedAt",
-                accessor: "createdAt",
-            },
-        ],
-        [],
-    );
 
     //highlight-next-line
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
@@ -196,3 +157,12 @@ export const PostList: React.FC = () => {
     );
 };
 ```
+
+:::note
+This example is the same as the basic example in the [React Table](#react-table) documentation.
+
+[Refer to the basic example of React Table. &#8594](https://react-table.tanstack.com/docs/examples/basic)
+
+:::
+
+## Pagination
