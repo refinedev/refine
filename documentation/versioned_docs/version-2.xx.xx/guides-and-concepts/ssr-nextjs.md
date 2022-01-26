@@ -87,11 +87,11 @@ export default UserList;
 ```
 
 :::important
-Notice how we passed `resource` prop to [`useTable`][useTable]. This is necessary since for `useTable` to be able get `resource` name from route it needs to be a route parameter in a dynamic route. [Refer here](#standart-crud-page) where standart CRUD pages can be built with dynamic routing.
+Notice how we passed `resource` prop to [`useTable`][useTable]. This is necessary since for `useTable` to be able to get `resource` name from route, it needs to be a route parameter in a dynamic route. [Refer here](#standard-crud-page) where standard CRUD pages can be built with dynamic routing.
 :::
 
 :::important
-We also used `<LayoutWrapper>` to show the page in the layout provided to [`<Refine>`][refine]. This is deliberately opt-in to provide flexibility. [If you're building a standart CRUD page layout can be baked in automatically](#standart-crud-page).
+We also used `<LayoutWrapper>` to show the page in the layout provided to [`<Refine>`][refine]. This is deliberately opt-in to provide flexibility. [If you're building a standard CRUD page layout can be baked in automatically](#standart-crud-page).
 :::
 
 ### SSR
@@ -164,7 +164,7 @@ We use the [`getList`][getList] method from our [`dataProvider`][dataProvider] t
 We used `getList` from `dataProvider` but data can be fetched in any way you desire.
 :::
 
-## Standart CRUD Page
+## Standard CRUD Page
 
 **nextjs-router** package provides `NextRouteComponent` for pages with the dynamic route `/[resource]/[action]/[id]` and root `/`. Simply export the component from the page and add a [data fetching function][dataFetching]
 
@@ -177,10 +177,10 @@ export const getServerSideProps: GetServerSideProps = async () => {
 ```
 
 :::warning
-`NextRouteComponent` doesn't support [automatic static optimization][autoStaticOpt] currently since it requires route paramaters thus a data fetching function must be defined.
+`NextRouteComponent` doesn't support [automatic static optimization][autoStaticOpt] currently, since it requires route parameters thus a data fetching function must be defined.
 :::
 
-`NextRouteComponent` can be used in the following pages
+`NextRouteComponent` can be used in the following pages:
 - `pages/[resource].tsx`
 - `pages/[resource]/[action].tsx`
 - `pages/[resource]/[action]/[id].tsx`
@@ -311,7 +311,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 ```
 
-`checkAuthentication` expects your `authProvider` and **getServerSideProps**'s `context`. It uses the `checkAuth` from the `authProvider` to check for authentication and returns `isAuthenticated` accordingly. It also returns a `redirect` object to handle unauthenticated case. It redirects to `/login` while keeping the original route to be navigated to after succesful login.
+`checkAuthentication` expects your `authProvider` and **getServerSideProps**'s `context`. It uses the `checkAuth` from the `authProvider` to check for authentication and returns `isAuthenticated` accordingly. It also returns a `redirect` object to handle unauthenticated case. It redirects to `/login` while keeping the original route to be navigated to after successful login.
 
 ## `syncWithLocation` and Query Parameters in SSR
 
