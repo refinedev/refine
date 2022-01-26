@@ -238,7 +238,7 @@ export const PostList: React.FC = () => {
             // Pagination can be built however you'd like.
             // This is just a very basic UI implementation:
             //highlight-start
-            <div>
+            <div className="pagination">
                 <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
                     {"<<"}
                 </button>
@@ -385,7 +385,7 @@ export const PostList: React.FC = () => {
                 </tbody>
             </table>
 
-            <div>
+            <div className="pagination">
                 // Pagination defined in the previous section
             </div>
         </>
@@ -399,3 +399,130 @@ This example is the same as the sorting example in the [React Table](#react-tabl
 [Refer to the pagination example of React Table. &#8594](https://react-table.tanstack.com/docs/examples/pagination)
 :::
 
+## Filtering
+
+We need to import the `useFilters` plugin and inject it into the `useTable` hook in order to use filtering. React Table provides a `setFilter` method that can be used to set the filter value. To specify which column to filter, we need to pass the `filter` prop to the related column. This `filter` prop type must be [`CrudOperators`](api-references/interfaceReferences#crudoperators) type. Every change in the filter value will trigger a new fetch.
+
+```tsx title="src/posts/list.tsx"
+import {
+    useTable,
+    Column,
+    usePagination,
+    useSortBy,
+    //highlight-next-line
+    useFilters,
+} from "@pankod/refine-react-table";
+
+export const PostList: React.FC = () => {
+    const columns: Array<Column> = React.useMemo(
+        () => [
+            {
+                id: "id",
+                Header: "ID",
+                accessor: "id",
+            },
+            {
+                id: "title",
+                Header: "Title",
+                accessor: "title",
+                //highlight-next-line
+                filter: "contains",
+            },
+            {
+                id: "status",
+                Header: "Status",
+                accessor: "status",
+            },
+            {
+                id: "createdAt",
+                Header: "CreatedAt",
+                accessor: "createdAt",
+            },
+        ],
+        [],
+    );
+
+    const {
+        getTableProps,
+        getTableBodyProps,
+        headerGroups,
+        prepareRow,
+        page,
+        canPreviousPage,
+        canNextPage,
+        pageOptions,
+        pageCount,
+        gotoPage,
+        nextPage,
+        previousPage,
+        setPageSize,
+        //highlight-start
+        setFilter,
+        state: { pageIndex, pageSize, filters },
+    } = useTable({ columns }, useFilters, useSortBy, usePagination);
+    //highlight-end
+
+    return (
+        <>
+            //highlight-start
+            <div className="filtering">
+                <label htmlFor="title">Title</label>
+                <input
+                    id="title"
+                    type="text"
+                    value={
+                        filters.find((filter) => filter.id === "title")?.value
+                    }
+                    onChange={(event) => setFilter("title", event.target.value)}
+                />
+            </div>
+            //highlight-end
+
+            <table {...getTableProps()}>
+                <thead>
+                    {headerGroups.map((headerGroup) => (
+                        <tr {...headerGroup.getHeaderGroupProps()}>
+                            {headerGroup.headers.map((column) => (
+                                <th
+                                    {...column.getHeaderProps(
+                                        column.getSortByToggleProps(),
+                                    )}
+                                >
+                                    {column.render("Header")}
+                                    <span>
+                                        {column.isSorted
+                                            ? column.isSortedDesc
+                                                ? " 🔽"
+                                                : " 🔼"
+                                            : ""}
+                                    </span>
+                                </th>
+                            ))}
+                        </tr>
+                    ))}
+                </thead>
+                <tbody {...getTableBodyProps()}>
+                    {page.map((row, i) => {
+                        prepareRow(row);
+                        return (
+                            <tr {...row.getRowProps()}>
+                                {row.cells.map((cell) => {
+                                    return (
+                                        <td {...cell.getCellProps()}>
+                                            {cell.render("Cell")}
+                                        </td>
+                                    );
+                                })}
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+
+            <div className="pagination">
+                // Pagination defined in the previous section
+            </div>
+        </>
+    );
+};
+```
