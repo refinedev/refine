@@ -235,8 +235,10 @@ export const PostList: React.FC = () => {
                 </tbody>
             </table>
 
+            // Pagination can be built however you'd like.
+            // This is just a very basic UI implementation:
             //highlight-start
-            <div className="pagination">
+            <div>
                 <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
                     {"<<"}
                 </button>
@@ -294,11 +296,106 @@ export const PostList: React.FC = () => {
 ```
 
 :::note
-This example is the same as the basic example in the [React Table](#react-table) documentation.
+This example is the same as the pagination example in the [React Table](#react-table) documentation.
 
 [Refer to the pagination example of React Table. &#8594](https://react-table.tanstack.com/docs/examples/pagination)
 :::
 
-## Sorter
+## Sorting
 
+`@pankod/refine-react-table` has also the ability to sort the data. To use it, we need to import the `useSortBy` plugin and inject it into the `useTable` hook.
+
+[Refer to the `useSortBy` documentation for detailed information. &#8594](https://react-table.tanstack.com/docs/api/useSortBy#usesortby)
+
+:::info
+By default, `@pankod/refine-react-table` uses server-side sorting.
+:::
+
+```tsx title="src/posts/list.tsx"
+import {
+    useTable,
+    Column,
+    usePagination,
+    //highlight-next-line
+    useSortBy,
+} from "@pankod/refine-react-table";
+
+export const PostList: React.FC = () => {
+    const columns: Array<Column> = React.useMemo(...); // Defined in the previous section
+
+    const {
+        getTableProps,
+        getTableBodyProps,
+        headerGroups,
+        prepareRow,
+        page
+        canPreviousPage,
+        canNextPage,
+        pageOptions,
+        pageCount,
+        gotoPage,
+        nextPage,
+        previousPage,
+        setPageSize,
+        state: { pageIndex, pageSize },
+        //highlight-next-line
+    } = useTable({ columns }, useSortBy, usePagination);
+
+    return (
+        <>
+            <table {...getTableProps()}>
+                <thead>
+                    {headerGroups.map((headerGroup) => (
+                        <tr {...headerGroup.getHeaderGroupProps()}>
+                            {headerGroup.headers.map((column) => (
+                                // Add the sorting props to control sorting. For this example
+                                // we can add them into the header props
+                                //highlight-start
+                                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                                    {column.render("Header")}
+                                    // Add a sort direction indicator
+                                    <span>
+                                    {column.isSorted
+                                        ? column.isSortedDesc
+                                        ? ' 🔽'
+                                        : ' 🔼'
+                                        : ''}
+                                    </span>
+                                </th>
+                                //highlight-end
+                            ))}
+                        </tr>
+                    ))}
+                </thead>
+                <tbody {...getTableBodyProps()}>
+                    {page.map((row, i) => {
+                        prepareRow(row);
+                        return (
+                            <tr {...row.getRowProps()}>
+                                {row.cells.map((cell) => {
+                                    return (
+                                        <td {...cell.getCellProps()}>
+                                            {cell.render("Cell")}
+                                        </td>
+                                    );
+                                })}
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+
+            <div>
+                // Pagination defined in the previous section
+            </div>
+        </>
+    );
+};
+```
+
+:::note
+This example is the same as the sorting example in the [React Table](#react-table) documentation.
+
+[Refer to the pagination example of React Table. &#8594](https://react-table.tanstack.com/docs/examples/pagination)
+:::
 
