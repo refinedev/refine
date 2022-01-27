@@ -279,6 +279,11 @@ module.exports = {
         },
         {
             type: "category",
+            label: "Packages",
+            items: ["packages/react-table"],
+        },
+        {
+            type: "category",
             label: "Guides & Concepts",
             items: [
                 {
@@ -425,6 +430,11 @@ module.exports = {
                         "examples/table/advancedTable",
                         "examples/table/tableFilter",
                     ],
+                },
+                {
+                    type: "category",
+                    label: "React Table",
+                    items: ["examples/react-table/react-table"],
                 },
                 {
                     type: "category",
