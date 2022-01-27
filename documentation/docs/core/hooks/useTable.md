@@ -72,7 +72,7 @@ setCurrent(2);
 console.log(current); // 2
 ```
 
-## Sorter
+## Sorting
 
 `useTable` has a sorter feature. The sorter is done by using the `sorter` state. The `sorter` state is a [`CrudSorting`][crudsorting] type that contains the field and the order of the sort. You can change the sorter state by using the `setSorter` function. Every change will trigger a new fetch.
 
@@ -109,7 +109,7 @@ setSorter([
 console.log(sorter); // [{ field: "createdAt", order: "desc" }, { field: "id", order: "desc" }]
 ```
 
-## Filter
+## Filtering
 
 `useTable` has a filter feature. The filter is done by using the `filters` state. The `filters` state is a [`CrudFilters`][crudfilters] type that contains the field, the operator and the value of the filter. You can change the filter state by using the `setFilters` function. Every change will trigger a new fetch.
 
