@@ -433,6 +433,11 @@ module.exports = {
                 },
                 {
                     type: "category",
+                    label: "React Table",
+                    items: ["examples/react-table/react-table"],
+                },
+                {
+                    type: "category",
                     label: "List",
                     items: ["examples/list/useSimpleList"],
                 },
