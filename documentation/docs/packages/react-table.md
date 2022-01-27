@@ -527,5 +527,54 @@ export const PostList: React.FC = () => {
 };
 ```
 
+## API
+
+### Properties
+
+Supports all the properties supported by the `useTable` hook are available in the [React Table][react-table] documentation. Also, we added the following property:
+
+`refineTableProps`: You can define all properties provided by [`useTable`][react-table-core] here. You can see all of them in [here](/core/hooks/useTable.md#properties).
+
+> For example, we can define the `refineTableProps` property in the `useTable` hook as:
+
+```tsx
+import { useTable } from "@pankod/refine-react-table";
+
+const { ... } = useTable({
+    ...,
+    refineTableProps: {
+        resource: "posts",
+        syncWithLocation: true,
+        // You can define all properties provided by refine useTable
+    },
+});
+```
+
+### Type Parameters
+
+| Property | Desription                                                   | Type                       | Default                    |
+| -------- | ------------------------------------------------------------ | -------------------------- | -------------------------- |
+| TData    | Result data of the query. Extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError   | Custom error object that extends [`HttpError`][httperror]    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+
+### Return values
+
+Returns all the properties returned by [React Table][react-table] of the `useTable` hook. Also, we added the following return values:
+
+`useTableCore`: Returns all values returned by [`useTable`][react-table-core]. You can see all of them in [here](/core/hooks/useTable.md##return-values).
+
+> For example, we can access the `useTableCore` return value in the `useTable` hook as:
+
+```tsx
+import { useTable } from "@pankod/refine-react-table";
+
+const {
+    useTableCore: { tableQueryResult, ... },
+} = useTable({ ... });
+```
+
 [react-table]: https://react-table.tanstack.com
 [refine-react-table]: https://github.com/pankod/refine/tree/master/packages/react-table
+[react-table-core]: /core/hooks/useTable.md
+[baserecord]: /api-references/interfaces.md#baserecord
+[httperror]: /api-references/interfaces.md#httperror
