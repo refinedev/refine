@@ -3,6 +3,11 @@ id: react-table
 title: React Table
 ---
 
+import basicTable from '@site/static/img/packages/react-table/basic.png';
+import pagination from '@site/static/img/packages/react-table/pagination.gif';
+import sorting from '@site/static/img/packages/react-table/sorting.gif';
+import filtering from '@site/static/img/packages/react-table/filtering.gif';
+
 **refine** offers a [React Table][react-table] adapter([@pankod/refine-react-table][refine-react-table]) that allows you to use the React Table library with **refine**. Thus, you can manage your server-side data fetching operations.
 
 All of React Table's features are supported and you can use all of the React Table's examples with no changes just copy and paste them into your project.
@@ -58,6 +63,7 @@ export const PostList: React.FC = () => {
 import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
+import "./App.css";
 
 //highlight-next-line
 import { PostList } from "pages/posts/list";
@@ -75,6 +81,45 @@ const App: React.FC = () => {
 
 export default App;
 ```
+
+<details>
+<summary>Show basic table style</summary>
+<p>
+
+```css title="src/App.css"
+table {
+    border-spacing: 0;
+    border: 1px solid black;
+}
+
+table th,
+td {
+    margin: 0;
+    padding: 0.5rem;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+
+table tr:last-child td {
+    border-bottom: 0;
+}
+
+table th,
+td {
+    margin: 0;
+    padding: 0.5rem;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+
+table th:last-child,
+td:last-child {
+    border-right: 0;
+}
+```
+
+</p>
+</details>
 
 ### Create basic table
 
@@ -128,9 +173,10 @@ export const PostList: React.FC = () => {
     );
     //highlight-end
 
-    //highlight-next-line
+    //highlight-start
     const { getTableProps, getTableBodyProps, headerGroups, prepareRow, rows } =
         useTable({ columns });
+    //highlight-end
 
     return (
         //highlight-start
@@ -173,6 +219,17 @@ This example is the same as the basic example in the [React Table][react-table] 
 
 [Refer to the basic example of React Table. &#8594](https://react-table.tanstack.com/docs/examples/basic)
 :::
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={basicTable} alt="Basic Table" />
+</div>
+
+<br/>
 
 ## Pagination
 
@@ -307,6 +364,17 @@ This example is the same as the pagination example in the [React Table][react-ta
 [Refer to the pagination example of React Table. &#8594](https://react-table.tanstack.com/docs/examples/pagination)
 :::
 
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={pagination} alt="Pagination Table" />
+</div>
+
+<br/>
+
 ## Sorting
 
 We need to import the `useSortBy` plugin and inject it into the `useTable` hook in order to use the sorting feature. React Table provides a bunch of methods that we can use to control the sorting. For example, we can use the `toggleSortBy` method to set the current `sortBy` value. Every change in the `sortBy` will trigger a new request to the data provider.
@@ -400,6 +468,17 @@ This example is the same as the sorting example in the [React Table][react-table
 
 [Refer to the pagination example of React Table. &#8594](https://react-table.tanstack.com/docs/examples/pagination)
 :::
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={sorting} alt="Sortable Table" />
+</div>
+
+<br/>
 
 ## Filtering
 
@@ -526,6 +605,17 @@ export const PostList: React.FC = () => {
     );
 };
 ```
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={filtering} alt="Filtering" />
+</div>
+
+<br/>
 
 ## API
 
