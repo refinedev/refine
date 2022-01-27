@@ -152,7 +152,7 @@ export const DataProvider = (
     update: async ({ resource, id, variables }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.put(url, { data: variables });
+        const { data } = await httpClient.put(url, { variables });
 
         return {
             data,
