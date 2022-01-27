@@ -177,8 +177,8 @@ export const DataProvider = (
         if (resource === "users") {
           dataVariables = variables;
         }
-        
-        const { data } = await httpClient.put(url, dataVariables);
+
+        const { data } = await httpClient.post(url, dataVariables);
         return {
           data,
         };
