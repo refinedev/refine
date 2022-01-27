@@ -170,7 +170,7 @@ export const DataProvider = (
     },
 
     create: async ({ resource, variables }) => {
-        const url = `${apiUrl}/${resource}/${id}`;
+        const url = `${apiUrl}/${resource}`;
     
         let dataVariables = { data: variables };
     
