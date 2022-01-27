@@ -148,7 +148,7 @@ export const DataProvider = (
             dataVariables = variables as any;
         }
 
-        const { data } = await httpClient.put(url, dataVariables);
+        const { data } = await httpClient.post(url, dataVariables);
         return {
             data,
         };
