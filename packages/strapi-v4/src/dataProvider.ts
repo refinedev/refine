@@ -140,53 +140,53 @@ export const DataProvider = (
     },
 
     create: async ({ resource, variables }) => {
-        const url = `${apiUrl}/${resource}/${id}`;
-    
+        const url = `${apiUrl}/${resource}`;
+
         let dataVariables = { data: variables };
-    
+
         if (resource === "users") {
-          dataVariables = variables;
+            dataVariables = variables as any;
         }
-        
+
         const { data } = await httpClient.put(url, dataVariables);
         return {
-          data,
+            data,
         };
-      },
-    
-      update: async ({ resource, id, variables }) => {
+    },
+
+    update: async ({ resource, id, variables }) => {
         const url = `${apiUrl}/${resource}/${id}`;
-    
+
         let dataVariables = { data: variables };
-    
+
         if (resource === "users") {
-          dataVariables = variables;
+            dataVariables = variables as any;
         }
-    
+
         const { data } = await httpClient.put(url, dataVariables);
         return {
-          data,
+            data,
         };
-      },
-    
-      updateMany: async ({ resource, ids, variables }) => {
+    },
+
+    updateMany: async ({ resource, ids, variables }) => {
         const response = await Promise.all(
-          ids.map(async (id) => {
-            const url = `${apiUrl}/${resource}/${id}`;
-    
-            let dataVariables = { data: variables };
-        
-            if (resource === "users") {
-              dataVariables = variables;
-            }
-            const { data } = await httpClient.put(url, dataVariables);
-            return data
-          })
+            ids.map(async (id) => {
+                const url = `${apiUrl}/${resource}/${id}`;
+
+                let dataVariables = { data: variables };
+
+                if (resource === "users") {
+                    dataVariables = variables as any;
+                }
+                const { data } = await httpClient.put(url, dataVariables);
+                return data;
+            }),
         );
-    
+
         return { data: response };
-      },
-      
+    },
+
     createMany: async ({ resource, variables }) => {
         const response = await Promise.all(
             variables.map(async (param) => {
