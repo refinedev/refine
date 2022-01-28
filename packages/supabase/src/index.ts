@@ -175,7 +175,7 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
         getOne: async ({ resource, id, metaData }) => {
             const { data, error } = await supabaseClient
                 .from(resource)
-                .select(metaData?.select ? metaData?.select : "*")
+                .select(metaData?.select ?? "*")
                 .match({ id });
 
             if (error) {
