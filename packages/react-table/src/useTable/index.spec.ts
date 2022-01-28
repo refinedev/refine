@@ -135,6 +135,18 @@ describe("useTable Hook", () => {
             { id: "title", value: "Hello" },
             { id: "active", value: true },
         ]);
+
+        // reset filters case
+        act(() => {
+            setFilter("title", undefined);
+        });
+
+        expect(result.current.useTableCore.filters).toEqual([
+            { field: "active", value: true, operator: "eq" },
+        ]);
+        expect(result.current.state.filters).toEqual([
+            { id: "active", value: true },
+        ]);
     });
 
     it("It should work successfully with initialSorter", async () => {
@@ -252,6 +264,17 @@ describe("useTable Hook", () => {
         ]);
         expect(result.current.state.filters).toEqual([
             { id: "title", value: "Test" },
+            { id: "category.id", value: 1 },
+        ]);
+
+        act(() => {
+            setFilter("title", undefined);
+        });
+
+        expect(result.current.useTableCore.filters).toEqual([
+            { field: "category.id", value: 1, operator: "eq" },
+        ]);
+        expect(result.current.state.filters).toEqual([
             { id: "category.id", value: 1 },
         ]);
     });

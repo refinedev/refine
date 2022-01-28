@@ -81,7 +81,7 @@ export const useTable = <
 
     useEffect(() => {
         setSorter(
-            sortBy.map((sorting) => ({
+            sortBy?.map((sorting) => ({
                 field: sorting.id,
                 order: sorting.desc ? "desc" : "asc",
             })),
@@ -91,7 +91,7 @@ export const useTable = <
     useEffect(() => {
         const crudFilters: CrudFilters = [];
 
-        filters.map((filter) => {
+        filters?.map((filter) => {
             const operator = reactTableResult.columns.find(
                 (c) => c.id === filter.id,
             )?.filter as CrudOperators;
@@ -101,6 +101,23 @@ export const useTable = <
                 operator:
                     operator ?? (Array.isArray(filter.value) ? "in" : "eq"),
                 value: filter.value,
+            });
+        });
+
+        const filteredArray = filtersCore.filter(
+            (value) =>
+                !crudFilters.some(
+                    (b) =>
+                        value.field === b.field &&
+                        value.operator === b.operator,
+                ),
+        );
+
+        filteredArray?.map((filter) => {
+            crudFilters.push({
+                field: filter.field,
+                operator: filter.operator,
+                value: undefined,
             });
         });
 
