@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import {
     BaseRecord,
     CrudFilters,
@@ -45,9 +45,10 @@ export const useTable = <
 
     const { data } = tableQueryResult;
 
+    const memoizedData = useMemo(() => data?.data ?? [], [data]);
     const reactTableResult = useTableRT(
         {
-            data: data?.data || [],
+            data: memoizedData,
             initialState: {
                 pageIndex: current - 1,
                 pageSize: pageSizeCore,
@@ -70,7 +71,6 @@ export const useTable = <
     );
 
     const { pageIndex, pageSize, sortBy, filters } = reactTableResult.state;
-
     useEffect(() => {
         setCurrent(pageIndex + 1);
     }, [pageIndex]);
