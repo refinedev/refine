@@ -225,7 +225,6 @@ export const useForm = <
                 },
                 {
                     onSuccess: (data, _, context) => {
-                        console.log("onsuccess");
                         if (onMutationSuccess) {
                             onMutationSuccess(data, values, context);
                         }
