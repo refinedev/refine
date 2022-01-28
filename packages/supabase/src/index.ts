@@ -68,7 +68,7 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
 
             const query = supabaseClient
                 .from(resource)
-                .select(metaData?.select ? metaData?.select : "*", {
+                .select(metaData?.select ?? "*", {
                     count: "exact",
                 })
                 .range((current - 1) * pageSize, current * pageSize - 1);
