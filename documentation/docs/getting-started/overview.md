@@ -13,6 +13,11 @@ import benchmarkChart from '@site/static/img/getting-started/benchmark.png';
 
 Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to _admin panels_, _B2B applications_ and _dashboards_.
 
+## What is a "headless" Framework?
+**refine** is a headless React framework, which means out of the box features(**Routing**, **Networking**, **Authentication**, **Authorization**, **State Management**, **Realtime**, **i18n** ...etc), it can be used without being tied to any UI elements or framework. You can use the providers, hooks and components provided by `refine` with the any UI you choose or create. Also, Ant Design as out-of-the-box is supported.
+
+- Customization & Extensibility -  UI is a completely customizable area and each developer uses different solutions. **refine** features does not restrict or interfere with your UI structure. **refine** allows the you to design and customizable the UI based on their unique use-case.
+
 ###
 
 ## Key features
