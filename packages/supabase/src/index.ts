@@ -96,7 +96,7 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
         getMany: async ({ resource, ids, metaData }) => {
             const { data, error } = await supabaseClient
                 .from(resource)
-                .select(metaData?.select ? metaData?.select : "*")
+                .select(metaData?.select ?? "*")
                 .in("id", ids);
 
             if (error) {
