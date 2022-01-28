@@ -62,13 +62,15 @@ const handleError = (error: PostgrestError) => {
 
 const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
     return {
-        getList: async ({ resource, pagination, filters, sort }) => {
+        getList: async ({ resource, pagination, filters, sort, metaData }) => {
             const current = pagination?.current || 1;
             const pageSize = pagination?.pageSize || 10;
 
             const query = supabaseClient
                 .from(resource)
-                .select("*", { count: "exact" })
+                .select(metaData?.select ? metaData?.select : "*", {
+                    count: "exact",
+                })
                 .range((current - 1) * pageSize, current * pageSize - 1);
 
             sort?.map((item) => {
@@ -91,10 +93,10 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        getMany: async ({ resource, ids }) => {
+        getMany: async ({ resource, ids, metaData }) => {
             const { data, error } = await supabaseClient
                 .from(resource)
-                .select("*")
+                .select(metaData?.select ? metaData?.select : "*")
                 .in("id", ids);
 
             if (error) {
@@ -170,10 +172,10 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        getOne: async ({ resource, id }) => {
+        getOne: async ({ resource, id, metaData }) => {
             const { data, error } = await supabaseClient
                 .from(resource)
-                .select("*")
+                .select(metaData?.select ? metaData?.select : "*")
                 .match({ id });
 
             if (error) {
