@@ -37,8 +37,28 @@ export const PostCreate = () => {
 };
 ```
 
+## Actions
+
+`useForm` can handle edit, create and clone actions.
+
 :::tip
-By default, `useForm` sets the `action` from the URL.
+By default, it determines the `action` from route. In the above example, the route is `/posts/create` thus this is an creating form. If the route is `/posts/edit/1`, this is an editing form.
+
+It can be overridden by passing the `action` prop where it isn't possible to determine the action from the route (e.g. when using form in a modal or using a custom route).
 :::
 
-## Action Methods
+### `action: "edit"`
+
+`action: "edit"` is used for editing an existing record. It requires the `id` for determining the record to edit. By default, it uses the `id` from the route. It can be changed with the `setId` function.
+
+It fetches the record data according to the `id` and returns the `queryResult`.
+
+`useForm` uses [`useUpdate`](../../hooks/data/useUpdate.md) under the hood for mutations on edit mode.
+
+### `action: "create"`
+
+`action: "create"`is used for creating a new record that didn't exist before.
+
+`useForm` uses [`useCreate`](../data/useCreate.md) under the hood for mutations on create mode.
+
+### `action: "clone"`
