@@ -142,8 +142,13 @@ export const DataProvider = (
     create: async ({ resource, variables }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const { data } = await httpClient.post(url, { data: variables });
+        let dataVariables = { data: variables };
 
+        if (resource === "users") {
+            dataVariables = variables as any;
+        }
+
+        const { data } = await httpClient.post(url, dataVariables);
         return {
             data,
         };
@@ -152,8 +157,13 @@ export const DataProvider = (
     update: async ({ resource, id, variables }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.put(url, { data: variables });
+        let dataVariables = { data: variables };
 
+        if (resource === "users") {
+            dataVariables = variables as any;
+        }
+
+        const { data } = await httpClient.put(url, dataVariables);
         return {
             data,
         };
@@ -162,10 +172,14 @@ export const DataProvider = (
     updateMany: async ({ resource, ids, variables }) => {
         const response = await Promise.all(
             ids.map(async (id) => {
-                const { data } = await httpClient.put(
-                    `${apiUrl}/${resource}/${id}`,
-                    { data: variables },
-                );
+                const url = `${apiUrl}/${resource}/${id}`;
+
+                let dataVariables = { data: variables };
+
+                if (resource === "users") {
+                    dataVariables = variables as any;
+                }
+                const { data } = await httpClient.put(url, dataVariables);
                 return data;
             }),
         );
