@@ -1,5 +1,4 @@
 ---
-slug: /
 id: tutorial
 title: Tutorial
 
