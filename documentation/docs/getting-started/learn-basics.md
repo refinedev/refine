@@ -42,11 +42,21 @@ This guide will help you learn and get information of basic **refine** concepts.
 
 **[Live Provider](https://refine.dev/docs/api-references/providers/live-provider/) Packages**
 
--   `@pankod/refine-ably` - Ably Live/Realtime Provider
+-   `@pankod/refine-ably` - [Ably](https://ably.com/) Live/Realtime Provider
 
-**Refine 3rd Part Integration**
+## Refine 3rd Party Integration
 
--   i18n Provider(React) - [Example](https://refine.dev/docs/examples/i18n/i18n-react/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/i18n/react/src/App.tsx#L17)
--   i18n-next Provider(NextJs) - [Example](https://refine.dev/docs/examples/i18n/i18n-nextjs/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/i18n/nextjs/pages/_app.tsx#L20)
--   Access Control Provider(Casbin) - [Example](https://refine.dev/docs/examples/access-control/casbin/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/accessControl/casbin/src/App.tsx#L27)
--   Access Control Provider(Cerbos) - [Example](https://refine.dev/docs/examples/access-control/cerbos/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/accessControl/cerbos/src/App.tsx#L37)
+**[i18n Provider](https://refine.dev/docs/api-references/providers/i18n-provider/)**
+
+-   `i18n(React)` - [Example](https://refine.dev/docs/examples/i18n/i18n-react/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/i18n/react/src/App.tsx#L17)
+-   `i18n(Next.js)` - [Example](https://refine.dev/docs/examples/i18n/i18n-nextjs/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/i18n/nextjs/pages/_app.tsx#L20)
+
+**[Access Control Provider](https://refine.dev/docs/api-references/providers/accessControl-provider/)**
+
+-   `Casbin` - [Example](https://refine.dev/docs/examples/access-control/casbin/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/accessControl/casbin/src/App.tsx#L27)
+-   `Cerbos` - [Example](https://refine.dev/docs/examples/access-control/cerbos/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/accessControl/cerbos/src/App.tsx#L37)
+
+**[Auth Provider](https://refine.dev/docs/api-references/providers/auth-provider/)**
+
+-   `Auth0` - [Example](https://refine.dev/docs/examples/auth-provider/auth0/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/authProvider/auth0/src/App.tsx#L23)
+-   `Google Auth` - [Example](https://refine.dev/docs/examples/auth-provider/google-auth/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/authProvider/googleLogin/src/App.tsx#L23)
