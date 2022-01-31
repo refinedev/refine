@@ -94,7 +94,7 @@ module.exports = {
                         {
                             type: "category",
                             label: "Field",
-                            items: ["api-references/hooks/field/useSelect"],
+                            items: ["core/hooks/useSelect"],
                         },
                         {
                             type: "category",
