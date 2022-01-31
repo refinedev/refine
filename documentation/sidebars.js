@@ -132,11 +132,8 @@ module.exports = {
                         },
                         {
                             type: "category",
-                            label: "Import - Export",
-                            items: [
-                                "api-references/hooks/import-export/useImport",
-                                "api-references/hooks/import-export/useExport",
-                            ],
+                            label: "Import",
+                            items: ["core/hooks/useImport"],
                         },
                         {
                             type: "category",
@@ -365,7 +362,10 @@ module.exports = {
                 {
                     type: "category",
                     label: "Core",
-                    items: ["examples/core/useModal"],
+                    items: [
+                        "examples/core/useModal",
+                        "examples/core/useImport",
+                    ],
                 },
                 "examples/authorization",
                 {
