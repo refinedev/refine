@@ -20,8 +20,6 @@ export const DummyList: React.FC = () => {
             <input
                 type="file"
                 onChange={(event) => {
-                    console.log({ event: event.target.files });
-
                     if (event.target.files) {
                         handleChange({
                             file: event.target.files[0],
