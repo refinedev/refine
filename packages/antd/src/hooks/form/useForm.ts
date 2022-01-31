@@ -8,10 +8,19 @@ import {
     useForm as useFormCore,
     UseFormReturnType as UseFormReturnTypeCore,
     useWarnAboutChange,
-    useFormProps,
+    UseFormProps as UseFormPropsCore,
 } from "@pankod/refine-core";
 
 import { ButtonProps } from "@components/antd";
+
+export type UseFormProps<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TVariables = {},
+> = UseFormPropsCore<TData, TError, TVariables> & {
+    submitOnEnter?: boolean;
+    warnWhenUnsavedChanges?: boolean;
+};
 
 export type UseFormReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -55,7 +64,7 @@ export const useForm = <
     liveParams,
     mutationMode,
     onLiveEvent,
-}: useFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
+}: UseFormProps<TData, TError, TVariables>): UseFormReturnType<
     TData,
     TError,
     TVariables
@@ -77,8 +86,6 @@ export const useForm = <
     const useFormCoreResult = useFormCore<TData, TError, TVariables>({
         onMutationSuccess,
         onMutationError,
-        submitOnEnter,
-        warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
         redirect,
         action,
         resource,
@@ -93,7 +100,12 @@ export const useForm = <
 
     const { formLoading, onFinish, queryResult, id } = useFormCoreResult;
 
-    const { warnWhenUnsavedChanges, setWarnWhen } = useWarnAboutChange();
+    const {
+        warnWhenUnsavedChanges: warnWhenUnsavedChangesRefine,
+        setWarnWhen,
+    } = useWarnAboutChange();
+    const warnWhenUnsavedChanges =
+        warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesRefine;
 
     const { data, isFetching } = queryResult;
 

@@ -47,8 +47,6 @@ type ActionFormProps<
         variables: TVariables,
         context: any,
     ) => void;
-    submitOnEnter?: boolean;
-    warnWhenUnsavedChanges?: boolean;
     redirect?: RedirectionTypes;
     resource?: string;
     metaData?: MetaDataQuery;
@@ -58,7 +56,7 @@ type ActionFormProps<
     ActionParams &
     LiveModeProps;
 
-export type useFormProps<
+export type UseFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
@@ -109,7 +107,7 @@ export const useForm = <
     onLiveEvent,
     liveParams,
     undoableTimeout,
-}: useFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
+}: UseFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
     TData,
     TError,
     TVariables
@@ -127,7 +125,7 @@ export const useForm = <
     );
 
     const resourceName = resourceFromProps ?? resourceFromRoute;
-    const action = actionFromProps ?? actionFromRoute;
+    const action = actionFromProps ?? actionFromRoute ?? "create";
 
     const resourceWithRoute = useResourceWithRoute();
     const resource = resourceWithRoute(resourceName);
@@ -225,7 +223,6 @@ export const useForm = <
                 },
                 {
                     onSuccess: (data, _, context) => {
-                        console.log("onsuccess");
                         if (onMutationSuccess) {
                             onMutationSuccess(data, values, context);
                         }
