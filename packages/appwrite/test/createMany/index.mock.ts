@@ -3,8 +3,8 @@ import nock from "nock";
 nock("http://localhost:80", { encodedQueryParams: true })
     .post("/v1/database/collections/6180e6efb14df/documents", {
         data: { title: "Test 2" },
-        read: ["*"],
-        write: ["*"],
+        read: ["role:all"],
+        write: ["role:all"],
     })
     .reply(
         201,
@@ -46,8 +46,8 @@ nock("http://localhost:80", { encodedQueryParams: true })
 nock("http://localhost:80", { encodedQueryParams: true })
     .post("/v1/database/collections/6180e6efb14df/documents", {
         data: { title: "Test 1" },
-        read: ["*"],
-        write: ["*"],
+        read: ["role:all"],
+        write: ["role:all"],
     })
     .reply(
         201,

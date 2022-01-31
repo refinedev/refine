@@ -3,8 +3,8 @@ import nock from "nock";
 nock("http://localhost:80", { encodedQueryParams: true })
     .patch("/v1/database/collections/6180e4315f3e7/documents/61b9dd4a6261d", {
         data: { content: "Batch updated content" },
-        read: ["*"],
-        write: ["*"],
+        read: ["role:all"],
+        write: ["role:all"],
     })
     .reply(
         200,
@@ -46,8 +46,8 @@ nock("http://localhost:80", { encodedQueryParams: true })
 nock("http://localhost:80", { encodedQueryParams: true })
     .patch("/v1/database/collections/6180e4315f3e7/documents/61b886fbd9398", {
         data: { content: "Batch updated content" },
-        read: ["*"],
-        write: ["*"],
+        read: ["role:all"],
+        write: ["role:all"],
     })
     .reply(
         200,
