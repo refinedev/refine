@@ -357,6 +357,11 @@ module.exports = {
             label: "Examples",
             items: [
                 "examples/tutorial-example",
+                {
+                    type: "category",
+                    label: "Core",
+                    items: ["examples/core/useModal"],
+                },
                 "examples/authorization",
                 {
                     type: "category",
