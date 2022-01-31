@@ -17,7 +17,9 @@ module.exports = {
         {
             type: "category",
             label: "Core",
+            collapsed: false,
             items: [
+                "core/tutorial",
                 {
                     type: "category",
                     label: "Providers",
@@ -171,11 +173,14 @@ module.exports = {
         {
             type: "category",
             label: "UI Frameworks",
+            collapsed: false,
             items: [
                 {
                     type: "category",
                     label: "Ant Design",
+                    collapsed: false,
                     items: [
+                        "ui-frameworks/antd/tutorial",
                         {
                             type: "category",
                             label: "Hooks",
