@@ -47,8 +47,6 @@ type ActionFormProps<
         variables: TVariables,
         context: any,
     ) => void;
-    submitOnEnter?: boolean;
-    warnWhenUnsavedChanges?: boolean;
     redirect?: RedirectionTypes;
     resource?: string;
     metaData?: MetaDataQuery;
@@ -127,7 +125,7 @@ export const useForm = <
     );
 
     const resourceName = resourceFromProps ?? resourceFromRoute;
-    const action = actionFromProps ?? actionFromRoute;
+    const action = actionFromProps ?? actionFromRoute ?? "create";
 
     const resourceWithRoute = useResourceWithRoute();
     const resource = resourceWithRoute(resourceName);
