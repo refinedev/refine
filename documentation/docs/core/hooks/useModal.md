@@ -9,7 +9,7 @@ title: useModal
 const { show, close, visible } = useModal();
 ```
 
-You can pass the returned `visible` as props to component and use `show` and `close` methods to hide and show it. It does not provide any functionality besides this. You can use this hook anywhere.
+You can use `visible` state to show or hide the modal. The `show` and `close` functions allow to change the `visible` state. It does not provide any functionality besides this. You can use this hook anywhere.
 
 ## Usage
 
