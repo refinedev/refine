@@ -3,8 +3,6 @@ id: useModal
 title: useModal
 ---
 
-import useModal from '@site/static/img/hooks/useModal/useModal.gif';
-
 `useModal` hook allows you to manage a modal. Since it is designed as headless, it only outputs `show` and `close` functions and `visible` for state. It expects you to handle the UI.
 
 ```ts
