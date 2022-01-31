@@ -139,7 +139,7 @@ module.exports = {
                         {
                             type: "category",
                             label: "UI",
-                            items: ["api-references/hooks/ui/useModal"],
+                            items: ["core/hooks/useModal"],
                         },
                     ],
                 },
