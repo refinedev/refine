@@ -69,3 +69,49 @@ It fetches the record data according to the `id` and returns the `queryResult` f
 `action: "clone"` is used for cloning an existing record. It requires the `id` for determining the record to clone. By default, it uses the `id` from the route. It can be changed with the `setId` function.
 
 It fetches the record data according to the `id` and returns the `queryResult` for you to fill the form.
+
+## API Reference
+
+Action that it reads from route otherwise "create" is used.
+
+### Properties
+
+| Property                                                               | Description                                                                                                                                                        | Type                                                                                     | Default                                                                                                                              |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| action                                                                 | Type of the form mode                                                                                                                                              | `"edit"` \| `"create"` \| `"clone"`                                                      | Action that it reads from route otherwise "create" is used                                                                           |
+| resource                                                               | Resource name for API data interactions                                                                                                                            | Resource name that it reads from route `string`                                          | Resource name that it reads from route                                                                                               |
+| mutationMode                                                           | [Determines when mutations are executed](guides-and-concepts/mutation-mode.md)                                                                                     | ` "pessimistic` \| `"optimistic` \| `"undoable"`                                         | `"pessimistic"`\*                                                                                                                    |
+| onMutationSuccess                                                      | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) is successful                                                                     | `(data: UpdateResponse<M>, variables: any, context: any) => void`                        |                                                                                                                                      |
+| onMutationError                                                        | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error                                                               | `(error: any, variables: any, context: any) => void`                                     |                                                                                                                                      |
+| redirect                                                               | Page to redirect after a succesfull mutation                                                                                                                       | ` "show` \| `"edit` \| `"list"` \| `false`                                               | `"list"`                                                                                                                             |
+| undoableTimeout                                                        | Duration to wait before executing mutations when `mutationMode = "undoable"`                                                                                       | `number`                                                                                 | `5000`\*                                                                                                                             |
+| successNotification                                                    | Successful Mutation notification                                                                                                                                   | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification)               | "Successfully created `resource`" or "Successfully updated `resource`"                                                               |
+| errorNotification                                                      | Unsuccessful Mutation notification                                                                                                                                 | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification)               | "There was an error creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
+| metaData                                                               | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)                           | {}                                                                                                                                   |
+| [liveMode](/api-references/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/api-references/interfaces.md#livemodeprops)         | `"off"`                                                                                                                              |
+| liveParams                                                             | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: string[]; [key: string]: any; }`](/api-references/interfaces.md#livemodeprops) | `undefined`                                                                                                                          |
+| onLiveEvent                                                            | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/api-references/interfaces.md#livemodeprops)              | `undefined`                                                                                                                          |
+
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/api-references/components/refine-config.md)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
+
+### Type Parameters
+
+| Property   | Desription                                                       | Default                    |
+| ---------- | ---------------------------------------------------------------- | -------------------------- |
+| TData      | Result data of the query that extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError     | Custom error object that extends [`HttpError`][httperror]        | [`HttpError`][httperror]   |
+| TVariables | Values for params.                                               | `{}`                       |
+
+### Return values
+
+| Property       | Description                                            | Type                                                                             |
+| -------------- | ------------------------------------------------------ | -------------------------------------------------------------------------------- |
+| onFinish       | Triggers the mutation                                  | `(values: TVariables) => Promise<void>`                                          |
+| queryResult    | Result of the query of a record                        | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)  |
+| mutationResult | Result of the mutation triggered by calling `onFinish` | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation) |
+| formLoading    | Loading state of form request                          | `boolean`                                                                        |
+| id             | Record id for `clone` and `create` action              | `"string"` \| `"number"`                                                         |
+| setId          | `id` setter                                            | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                 |
+
+[baserecord]: /api-references/interfaces.md#baserecord
+[httperror]: /api-references/interfaces.md#httperror
