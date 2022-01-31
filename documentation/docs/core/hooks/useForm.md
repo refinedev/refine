@@ -56,19 +56,21 @@ It can be overridden by passing the `action` prop where it isn't possible to det
 
 It fetches the record data according to the `id` and returns the `queryResult` for you to fill the form.
 
-`useForm` uses [`useUpdate`](../../hooks/data/useUpdate.md) under the hood for mutations on edit mode.
+`useForm` uses [`useUpdate`](api-references/hooks/data/useUpdate.md) under the hood for mutations on edit mode.
 
 ### `action: "create"`
 
 `action: "create"`is used for creating a new record that didn't exist before.
 
-`useForm` uses [`useCreate`](../data/useCreate.md) under the hood for mutations on create mode.
+`useForm` uses [`useCreate`](api-references/hooks/data/useCreate.md) under the hood for mutations on create mode.
 
 ### `action: "clone"`
 
 `action: "clone"` is used for cloning an existing record. It requires the `id` for determining the record to clone. By default, it uses the `id` from the route. It can be changed with the `setId` function.
 
 It fetches the record data according to the `id` and returns the `queryResult` for you to fill the form.
+
+`useForm` uses [`useUpdate`](api-references/hooks/data/useUpdate.md) under the hood for mutations on clone mode.
 
 ## API Reference
 
@@ -85,8 +87,8 @@ Action that it reads from route otherwise "create" is used.
 | onMutationError                                                        | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error                                                               | `(error: any, variables: any, context: any) => void`                                     |                                                                                                                                      |
 | redirect                                                               | Page to redirect after a succesfull mutation                                                                                                                       | ` "show` \| `"edit` \| `"list"` \| `false`                                               | `"list"`                                                                                                                             |
 | undoableTimeout                                                        | Duration to wait before executing mutations when `mutationMode = "undoable"`                                                                                       | `number`                                                                                 | `5000`\*                                                                                                                             |
-| successNotification                                                    | Successful Mutation notification                                                                                                                                   | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification)               | "Successfully created `resource`" or "Successfully updated `resource`"                                                               |
-| errorNotification                                                      | Unsuccessful Mutation notification                                                                                                                                 | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification)               | "There was an error creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
+| successNotification                                                    | Successful Mutation notification                                                                                                                                   | [`SuccessErrorNotification`](api-references/interfaces.md#successerrornotification)               | "Successfully created `resource`" or "Successfully updated `resource`"                                                               |
+| errorNotification                                                      | Unsuccessful Mutation notification                                                                                                                                 | [`SuccessErrorNotification`](api-references/interfaces.md#successerrornotification)               | "There was an error creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
 | metaData                                                               | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)                           | {}                                                                                                                                   |
 | [liveMode](/api-references/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/api-references/interfaces.md#livemodeprops)         | `"off"`                                                                                                                              |
 | liveParams                                                             | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: string[]; [key: string]: any; }`](/api-references/interfaces.md#livemodeprops) | `undefined`                                                                                                                          |
@@ -115,3 +117,9 @@ Action that it reads from route otherwise "create" is used.
 
 [baserecord]: /api-references/interfaces.md#baserecord
 [httperror]: /api-references/interfaces.md#httperror
+
+`useModal` hook allows you to manage a modal. Since it is designed as headless, it only outputs `show` and `close` functions and `visible` for state. It expects you to handle the UI.
+
+<!-- You can pass the returned `visible` as props to component and use `show` and `close` methods to hide and show it. It does not provide any functionality besides this. You can use this hook anywhere. -->
+
+You can use the `visible` state to show or hide the modal.
