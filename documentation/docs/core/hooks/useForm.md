@@ -3,11 +3,14 @@ id: useForm
 title: useForm
 ---
 
-`useForm` is a hook that allows to manage forms. It has some `action` methods that `create`, `edit` and `clone` the form. The hook return value comes to according to the called action and it can run different logic depending on the action.
+`useForm` is a hook that allows to manage forms. It has some `action` methods that `create`, `edit` and `clone` the form. The hook return value comes to according to the called action and it can run different logic depending on the `action`.
 
 :::info
-It doesn't handle the form state, it care of the state that is passed to the hook.
+It doesn't handle the form state, it works with values passed to the hook's `onFinish` callback.
 :::
+
+-   Returns the `mutationResult` after called the `onFinish` callback.
+-   Accepts generic type parameters. It is used to define response type of the mutation and query.
 
 ## Basic Usage
 
@@ -42,7 +45,7 @@ export const PostCreate = () => {
 `useForm` can handle edit, create and clone actions.
 
 :::tip
-By default, it determines the `action` from route. In the above example, the route is `/posts/create` thus this is an creating form. If the route is `/posts/edit/1`, this is an editing form.
+By default, it determines the `action` from route. In the above example, the route is `/posts/create` thus the hook will be called with `action: "create"`. If the route is `/posts/edit/1`, the hook will be called with `action: "edit"`.
 
 It can be overridden by passing the `action` prop where it isn't possible to determine the action from the route (e.g. when using form in a modal or using a custom route).
 :::
@@ -51,7 +54,7 @@ It can be overridden by passing the `action` prop where it isn't possible to det
 
 `action: "edit"` is used for editing an existing record. It requires the `id` for determining the record to edit. By default, it uses the `id` from the route. It can be changed with the `setId` function.
 
-It fetches the record data according to the `id` and returns the `queryResult`.
+It fetches the record data according to the `id` and returns the `queryResult` for you to fill the form.
 
 `useForm` uses [`useUpdate`](../../hooks/data/useUpdate.md) under the hood for mutations on edit mode.
 
@@ -62,3 +65,7 @@ It fetches the record data according to the `id` and returns the `queryResult`.
 `useForm` uses [`useCreate`](../data/useCreate.md) under the hood for mutations on create mode.
 
 ### `action: "clone"`
+
+`action: "clone"` is used for cloning an existing record. It requires the `id` for determining the record to clone. By default, it uses the `id` from the route. It can be changed with the `setId` function.
+
+It fetches the record data according to the `id` and returns the `queryResult` for you to fill the form.
