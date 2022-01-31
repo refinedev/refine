@@ -141,7 +141,7 @@ module.exports = {
                         {
                             type: "category",
                             label: "UI",
-                            items: ["api-references/hooks/ui/useModal"],
+                            items: ["core/hooks/useModal"],
                         },
                     ],
                 },
@@ -362,6 +362,11 @@ module.exports = {
             label: "Examples",
             items: [
                 "examples/tutorial-example",
+                {
+                    type: "category",
+                    label: "Core",
+                    items: ["examples/core/useModal"],
+                },
                 "examples/authorization",
                 {
                     type: "category",
