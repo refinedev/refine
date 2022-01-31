@@ -2,6 +2,7 @@
 id: tutorial
 title: Tutorial
 sidebar_label: Tutorial
+slug: /
 ---
 
 import readyPage from '@site/static/img/tutorial/ready-page.png';
