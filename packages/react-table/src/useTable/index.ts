@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import {
     BaseRecord,
     CrudFilters,
@@ -32,7 +32,7 @@ export const useTable = <
     });
 
     const {
-        tableQueryResult,
+        tableQueryResult: { data },
         current,
         setCurrent,
         pageSize: pageSizeCore,
@@ -43,11 +43,11 @@ export const useTable = <
         setFilters,
     } = useTableResult;
 
-    const { data } = tableQueryResult;
+    const memoizedData = useMemo(() => data?.data ?? [], [data]);
 
     const reactTableResult = useTableRT(
         {
-            data: data?.data || [],
+            data: memoizedData,
             initialState: {
                 pageIndex: current - 1,
                 pageSize: pageSizeCore,
@@ -81,7 +81,7 @@ export const useTable = <
 
     useEffect(() => {
         setSorter(
-            sortBy.map((sorting) => ({
+            sortBy?.map((sorting) => ({
                 field: sorting.id,
                 order: sorting.desc ? "desc" : "asc",
             })),
@@ -91,7 +91,7 @@ export const useTable = <
     useEffect(() => {
         const crudFilters: CrudFilters = [];
 
-        filters.map((filter) => {
+        filters?.map((filter) => {
             const operator = reactTableResult.columns.find(
                 (c) => c.id === filter.id,
             )?.filter as CrudOperators;

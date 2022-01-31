@@ -1,13 +1,15 @@
 /* eslint-disable react/jsx-key */
 import React from "react";
-import { useSelect, useOne, useImport } from "@pankod/refine-core";
+import { useOne } from "@pankod/refine-core";
+import {} from "@pankod/refine-react-hook-form";
 import {
     useTable,
     Column,
-    useFilters,
-    useSortBy,
     usePagination,
+    useExpanded,
+    useRowSelect,
 } from "@pankod/refine-react-table";
+import ReactMarkdown from "react-markdown";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -30,7 +32,7 @@ export const PostList: React.FC = () => {
                 Header: "Category",
                 accessor: "category.id",
                 Cell: ({ value }) => {
-                    const { data } = useOne({
+                    const { data } = useOne<ICategory>({
                         resource: "categories",
                         id: value,
                     });
@@ -39,20 +41,15 @@ export const PostList: React.FC = () => {
                 filter: "eq",
             },
             {
-                id: "status",
-                Header: "Status",
-                accessor: "status",
-            },
-            {
                 id: "actions",
                 Header: "Actions",
                 accessor: "id",
                 //eslint-disable-next-line react/display-name
-                Cell: ({ value }) => (
-                    <div>
-                        <button type="button">edit</button>
-                        <button type="button">show</button>
-                        <button type="button">delete</button>
+                Cell: () => (
+                    <div className="flex gap-2">
+                        <button>Edit</button>
+                        <button>Show</button>
+                        <button>Delete</button>
                     </div>
                 ),
             },
@@ -60,60 +57,90 @@ export const PostList: React.FC = () => {
         [],
     );
 
+    // eslint-disable-next-line react/display-name
+    const IndeterminateCheckbox = React.forwardRef<HTMLInputElement, any>(
+        ({ indeterminate, ...rest }, ref) => {
+            const defaultRef = React.useRef();
+            const resolvedRef: any = ref || defaultRef;
+
+            React.useEffect(() => {
+                if (resolvedRef.current) {
+                    resolvedRef.current.indeterminate = indeterminate;
+                }
+            }, [resolvedRef, indeterminate]);
+
+            return <input type="checkbox" ref={ref} {...rest} />;
+        },
+    );
+
     const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        prepareRow,
         page,
+        headerGroups,
         canPreviousPage,
         canNextPage,
         pageOptions,
         pageCount,
+        visibleColumns,
+        getTableProps,
+        getTableBodyProps,
+        prepareRow,
         gotoPage,
         nextPage,
         previousPage,
         setPageSize,
-        setFilter,
-        state: { pageIndex, pageSize, filters },
-    } = useTable<IPost>({ columns }, useFilters, useSortBy, usePagination);
-
-    const { options } = useSelect<ICategory>({
-        resource: "categories",
-    });
-
-    const { handleChange } = useImport({
-        mapData: (item) => {
-            return {
-                title: item.title,
-                content: item.content,
-                status: item.status,
-                category: {
-                    id: item.categoryId,
+        state: { pageIndex, pageSize },
+    } = useTable<IPost>(
+        { columns },
+        useExpanded,
+        usePagination,
+        useRowSelect,
+        (hooks) => {
+            hooks.visibleColumns.push((columns) => [
+                {
+                    id: "selection",
+                    // eslint-disable-next-line react/display-name
+                    Header: ({ getToggleAllPageRowsSelectedProps }) => (
+                        <div>
+                            <IndeterminateCheckbox
+                                {...getToggleAllPageRowsSelectedProps()}
+                            />
+                        </div>
+                    ),
+                    // eslint-disable-next-line react/display-name
+                    Cell: ({ row }: any) => (
+                        <div>
+                            <IndeterminateCheckbox
+                                {...row.getToggleRowSelectedProps()}
+                            />
+                            <span {...row.getToggleRowExpandedProps()}>
+                                {row.isExpanded ? "👇" : "👉"}
+                            </span>
+                        </div>
+                    ),
                 },
-                user: {
-                    id: item.userId,
-                },
-            };
+                ...columns,
+            ]);
         },
-        onProgress: ({ processedAmount, totalAmount }) => {
-            console.log({ processedAmount, totalAmount });
-        },
-        batchSize: 1,
-    });
+    );
+
+    const renderRowSubComponent = React.useCallback(
+        ({ row }) => <ReactMarkdown>{row.original.content}</ReactMarkdown>,
+        [],
+    );
 
     return (
         <div>
-            <table {...getTableProps()}>
+            <table
+                {...getTableProps()}
+                style={{
+                    border: "1px solid black",
+                }}
+            >
                 <thead>
                     {headerGroups.map((headerGroup) => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map((column) => (
-                                <th
-                                    {...column.getHeaderProps(
-                                        column.getSortByToggleProps(),
-                                    )}
-                                >
+                                <th {...column.getHeaderProps()}>
                                     {column.render("Header")}
                                     <span>
                                         {column.isSorted
@@ -131,49 +158,44 @@ export const PostList: React.FC = () => {
                     {page.map((row) => {
                         prepareRow(row);
                         return (
-                            <tr {...row.getRowProps()}>
-                                {row.cells.map((cell) => {
-                                    return (
-                                        <td {...cell.getCellProps()}>
-                                            {cell.render("Cell")}
+                            <React.Fragment {...row.getRowProps()}>
+                                <tr>
+                                    {row.cells.map((cell) => {
+                                        return (
+                                            <td {...cell.getCellProps()}>
+                                                {cell.render("Cell")}
+                                            </td>
+                                        );
+                                    })}
+                                </tr>
+
+                                {row.isExpanded ? (
+                                    <tr>
+                                        <td colSpan={visibleColumns.length}>
+                                            {renderRowSubComponent({ row })}
                                         </td>
-                                    );
-                                })}
-                            </tr>
+                                    </tr>
+                                ) : null}
+                            </React.Fragment>
                         );
                     })}
                 </tbody>
             </table>
-
-            <div>
-                <button
-                    onClick={() => {
-                        gotoPage(0);
-                    }}
-                    disabled={!canPreviousPage}
-                >
+            <div className="pagination">
+                <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
                     {"<<"}
                 </button>{" "}
                 <button
-                    onClick={() => {
-                        previousPage();
-                    }}
+                    onClick={() => previousPage()}
                     disabled={!canPreviousPage}
                 >
                     {"<"}
                 </button>{" "}
-                <button
-                    onClick={() => {
-                        nextPage();
-                    }}
-                    disabled={!canNextPage}
-                >
+                <button onClick={() => nextPage()} disabled={!canNextPage}>
                     {">"}
                 </button>{" "}
                 <button
-                    onClick={() => {
-                        gotoPage(pageCount - 1);
-                    }}
+                    onClick={() => gotoPage(pageCount - 1)}
                     disabled={!canNextPage}
                 >
                     {">>"}
@@ -195,6 +217,7 @@ export const PostList: React.FC = () => {
                                 : 0;
                             gotoPage(page);
                         }}
+                        style={{ width: "100px" }}
                     />
                 </span>{" "}
                 <select

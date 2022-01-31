@@ -1,0 +1,49 @@
+{
+    "name": "refine-advanced-react-table-example",
+    "version": "3.0.3",
+    "private": true,
+    "dependencies": {
+        "@hookform/error-message": "^2.0.0",
+        "@pankod/refine-antd": "^3.0.3",
+        "@pankod/refine-core": "^3.0.3",
+        "@pankod/refine-react-hook-form": "^3.0.3",
+        "@pankod/refine-react-router": "^3.0.3",
+        "@pankod/refine-react-table": "^3.0.3",
+        "@pankod/refine-simple-rest": "^3.0.3",
+        "@types/node": "^12.20.11",
+        "@types/react": "^17.0.4",
+        "@types/react-dom": "^17.0.4",
+        "downshift": "^6.1.7",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-markdown": "^6.0.1",
+        "react-mde": "^11.1.0",
+        "react-scripts": "^5.0.0",
+        "react-select": "^5.2.1",
+        "react-toastify": "^8.1.0",
+        "typescript": "^4.4.3",
+        "web-vitals": "^1.1.1"
+    },
+    "scripts": {
+        "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
+        "build": "react-scripts build",
+        "eject": "react-scripts eject"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.4.1",
+        "postcss": "^8.1.4",
+        "tailwindcss": "^3.0.11"
+    }
+}
