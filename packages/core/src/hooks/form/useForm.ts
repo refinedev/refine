@@ -56,7 +56,7 @@ type ActionFormProps<
     ActionParams &
     LiveModeProps;
 
-export type useFormProps<
+export type UseFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
@@ -107,7 +107,7 @@ export const useForm = <
     onLiveEvent,
     liveParams,
     undoableTimeout,
-}: useFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
+}: UseFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
     TData,
     TError,
     TVariables
