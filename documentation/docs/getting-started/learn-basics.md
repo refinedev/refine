@@ -44,7 +44,7 @@ This guide will help you learn and get information of basic **refine** concepts.
 
 -   `@pankod/refine-ably` - [Ably](https://ably.com/) Live/Realtime Provider
 
-## Refine 3rd Party Integration
+## Refine 3rd Party Integration Examples
 
 **[i18n Provider](https://refine.dev/docs/api-references/providers/i18n-provider/)**
 
