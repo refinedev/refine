@@ -5,14 +5,15 @@ sidebar_label: Tutorial
 slug: /
 ---
 
-import readyPage from '@site/static/img/tutorial/ready-page.png';
-import resourceFirst from '@site/static/img/tutorial/resource-1.png';
-import resourceSecond from '@site/static/img/tutorial/resource-2.png';
-import createGif from '@site/static/img/tutorial/create.gif';
-import editGif from '@site/static/img/tutorial/edit.gif';
-import showGif from '@site/static/img/tutorial/show.gif';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import readyPage from "@site/static/img/tutorial/ready-page.png";
+import resourceFirst from "@site/static/img/tutorial/resource-1.png";
+import resourceSecond from "@site/static/img/tutorial/resource-2.png";
+import createGif from "@site/static/img/tutorial/create.gif";
+import editGif from "@site/static/img/tutorial/edit.gif";
+import showGif from "@site/static/img/tutorial/show.gif";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Card from "@site/src/components/tutorial-card";
 
 ## Introduction
 
@@ -21,6 +22,26 @@ This tutorial will go through process of building a simple _admin panel_ for a _
 Step by step, you're going to learn how to consume a _REST API_ and add basic CRUD functionality to your panel leveraging the unique capabilities of **refine**.
 
 Let's begin by setting up a new **refine** project.
+
+<div
+    style={{
+        display: "grid",
+        "grid-template-columns": "repeat(2, minmax(0px, 1fr))",
+        gap: "16px",
+        marginTop: "24px",
+    }}
+>
+    <Card
+        iconPath={"/icons/nextjs.svg"}
+        title={"Refine Core + Next.js + Tailwind"}
+        direction={"/docs/next/core/tutorial"}
+    />
+    <Card
+        iconPath={"/icons/nextjs.svg"}
+        title={"Refine Core + CRA + Refine Antd"}
+        direction={"/docs/next/ui-frameworks/antd/tutorial"}
+    />
+</div>
 
 ## Setting up
 
@@ -176,6 +197,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 -   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
 ### Community ❤️
+
 -   [Firebase](https://github.com/rturan29/refine-firebase) by [rturan29](https://github.com/rturan29)
 
 [Refer to the `dataProvider` documentation for detailed usage. &#8594](/api-references/providers/data-provider.md)
@@ -185,7 +207,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 
 Replace the contents of `App.tsx` with the following code:
 
-```tsx  title="src/App.tsx"
+```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -204,7 +226,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-<br/>
+<br />
 
 `<Refine/>` is the root component of a **refine** application. Using the [`dataProvider`](api-references/providers/data-provider.md) prop, we made our **Simple REST Dataprovider** available to the entire application.
 
@@ -243,7 +265,7 @@ Point your browser to [http://localhost:3000](http://localhost:3000) to access i
     </div>
     <img src={readyPage} alt="Ready Page" />
 </div>
-<br/>
+<br />
 
 ## Adding Resources
 
@@ -283,7 +305,7 @@ Let's add **/posts/** endpoint from our API as a resource. First take a look to 
 </p>
 </details>
 
-<br/>
+<br />
 
 Now, add the highlighted code to your `App.tsx` to connect to the endpoint.
 
@@ -304,7 +326,7 @@ export const App: React.FC = () => {
 };
 ```
 
-<br/>
+<br />
 
 :::info
 `resources` is a property of `<Refine/>` representing API Endpoints. The `name` property of every single resource should match one of the endpoints in your API!
@@ -387,7 +409,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-<br/>
+<br />
 
 Let's break down the `<PostList/>` component to understand what's going on here:
 
@@ -459,7 +481,7 @@ On the next step, we are going to add a category field to the table which involv
 <br/>
 </>
 
-<br/>
+<br />
 
 ## Handling relationships
 
@@ -503,7 +525,7 @@ export interface IPost {
     id: string;
     title: string;
     status: "published" | "draft" | "rejected";
-// highlight-next-line
+    // highlight-next-line
     category: { id: string };
     createdAt: string;
 }
@@ -920,7 +942,7 @@ the `<Show>` component which has extra features like `list` and `refresh` button
     </div>
     <img src={showGif} alt="Show record action" />
 </div>
-<br/>
+<br />
 
 ## Editing a record
 
@@ -929,7 +951,14 @@ Until this point, we were basically working with read operations such as fetchin
 Let's start by creating a new `<PostEdit>` page responsible for editing a single record:
 
 ```tsx title="pages/posts/edit.tsx"
-import { useForm, Form, Input, Select, Edit, useSelect } from "@pankod/refine-antd";
+import {
+    useForm,
+    Form,
+    Input,
+    Select,
+    Edit,
+    useSelect,
+} from "@pankod/refine-antd";
 import { IPost } from "interfaces";
 
 export const PostEdit: React.FC = () => {
@@ -1148,7 +1177,7 @@ In edit page, `useForm` hook initializes the form with current record values.
     </div>
     <img src={editGif} alt="Edit record action" />
 </div>
-<br/>
+<br />
 
 <br />
 
@@ -1272,7 +1301,7 @@ We should notice some minor differences from the edit example:
     <img src={createGif} alt="Create record action" />
 </div>
 
-<br/>
+<br />
 
 ## Deleting a record
 
@@ -1434,8 +1463,15 @@ After adding `canDelete` prop, `<DeleteButton>` will appear in edit form.
 
 Our tutorial is complete. Below you'll find a live Codesandbox example displaying what we have done so far:
 
-<iframe src="https://codesandbox.io/embed/tutorial-ov79u?autoresize=1&fontsize=14&theme=dark&view=preview"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+<iframe
+    src="https://codesandbox.io/embed/tutorial-ov79u?autoresize=1&fontsize=14&theme=dark&view=preview"
+    style={{
+        width: "100%",
+        height: "80vh",
+        border: "0px",
+        borderRadius: "8px",
+        overflow: "hidden",
+    }}
     title="refine-tutorial"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
