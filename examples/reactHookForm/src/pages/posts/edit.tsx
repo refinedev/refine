@@ -1,17 +1,28 @@
+import { useEffect } from "react";
 import { useForm } from "@pankod/refine-react-hook-form";
 import { useSelect } from "@pankod/refine-core";
 
-export const PostCreate: React.FC = () => {
+export const PostEdit: React.FC = () => {
     const {
-        useFormCore: { onFinish, formLoading },
+        useFormCore: { onFinish, formLoading, queryResult },
         register,
         handleSubmit,
+        resetField,
         formState: { errors },
-    } = useForm();
+    } = useForm({
+        useFormCoreProps: {
+            redirect: false,
+        },
+    });
 
     const { options } = useSelect({
         resource: "categories",
+        defaultValue: queryResult?.data?.data.category.id,
     });
+
+    useEffect(() => {
+        resetField("category.id");
+    }, [options]);
 
     return (
         <form onSubmit={handleSubmit(onFinish)}>
@@ -28,12 +39,11 @@ export const PostCreate: React.FC = () => {
             <br />
             <label>Category: </label>
             <select
-                defaultValue={""}
-                {...register("category.id", { required: true })}
+                {...register("category.id", {
+                    required: true,
+                })}
+                defaultValue={queryResult?.data?.data.category.id}
             >
-                <option value={""} disabled>
-                    Please select
-                </option>
                 {options?.map((category) => (
                     <option key={category.value} value={category.value}>
                         {category.label}
