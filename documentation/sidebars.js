@@ -30,6 +30,7 @@ module.exports = {
                         "api-references/providers/accessControl-provider",
                         "api-references/providers/i18n-provider",
                         "api-references/providers/router-provider",
+                        "core/providers/notification-provider",
                     ],
                 },
                 {
@@ -139,6 +140,11 @@ module.exports = {
                             type: "category",
                             label: "UI",
                             items: ["core/hooks/useModal"],
+                        },
+                        {
+                            type: "category",
+                            label: "Notification",
+                            items: ["core/hooks/useNotification"],
                         },
                     ],
                 },
