@@ -74,9 +74,9 @@ We will build a simple `notificationProvider` from scratch to show the logic of 
 
 ### `open`
 
-**refine** calls this method when it wants to start a notification. It also helps you to get the right notification by sending some parameters to the **refine** show method. For example, `message`, `description`, etc...
+**refine** calls this method when it wants to open a notification. It also helps you to get the right notification by sending some parameters to the **refine** open method. For example, `message`, `description`, etc...
 
-Here we show a **notification** with [`react-toastify`](https://github.com/fkhadra/react-toastify).
+Here we open a **notification** with [`react-toastify`](https://github.com/fkhadra/react-toastify).
 
 ```tsx
 import { toast } from "react-toastify";
@@ -99,6 +99,10 @@ import { useNotification } from "@pankod/refine-core";
 
 const { open } = useNotification();
 
-open(values);
+open({
+    message: "Hey",
+    description: "I <3 Refine",
+    key: "unique-id"
+});
 ```
 
