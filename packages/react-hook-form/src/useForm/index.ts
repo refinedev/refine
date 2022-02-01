@@ -48,12 +48,6 @@ export const useForm = <
 > => {
     const { warnWhenUnsavedChanges, setWarnWhen } = useWarnAboutChange();
 
-    const useHookFormResult = useHookForm<TVariables, TContext>({
-        ...rest,
-    });
-
-    const { watch, setValue, reset, getValues } = useHookFormResult;
-
     const useFormCoreResult = useFormCore<TData, TError, TVariables>({
         onMutationSuccess: () => {
             reset();
@@ -61,8 +55,27 @@ export const useForm = <
         ...useFormCoreProps,
     });
 
-    const { id, queryResult } = useFormCoreResult;
-    const { data, isFetching } = queryResult ?? {};
+    const { queryResult } = useFormCoreResult;
+
+    const useHookFormResult = useHookForm<TVariables, TContext>({
+        ...rest,
+    });
+
+    const { watch, reset, getValues } = useHookFormResult;
+
+    useEffect(() => {
+        const fields: any = {};
+        const registeredFields = Object.keys(getValues());
+        Object.entries(queryResult?.data?.data || {}).forEach(
+            ([key, value]) => {
+                if (registeredFields.includes(key)) {
+                    fields[key] = value;
+                }
+            },
+        );
+
+        reset(fields as any);
+    }, [queryResult?.data]);
 
     useEffect(() => {
         const subscription = watch((values: any, { type }: { type?: any }) => {
@@ -72,22 +85,6 @@ export const useForm = <
         });
         return () => subscription.unsubscribe();
     }, [watch]);
-
-    useEffect(() => {
-        setTimeout(() => {
-            const registeredFields = Object.keys(getValues());
-            Object.entries(queryResult?.data?.data || {}).forEach(
-                ([key, value]) => {
-                    if (registeredFields.includes(key)) {
-                        setValue(key as any, value);
-                    }
-                },
-            );
-        });
-        return () => {
-            reset();
-        };
-    }, [data, id, isFetching]);
 
     const onValuesChange = (changeValues: Record<string, any>) => {
         if (warnWhenUnsavedChanges) {
