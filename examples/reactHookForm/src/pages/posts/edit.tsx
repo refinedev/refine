@@ -9,11 +9,7 @@ export const PostEdit: React.FC = () => {
         handleSubmit,
         resetField,
         formState: { errors },
-    } = useForm({
-        useFormCoreProps: {
-            redirect: false,
-        },
-    });
+    } = useForm();
 
     const { options } = useSelect({
         resource: "categories",

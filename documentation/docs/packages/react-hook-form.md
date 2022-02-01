@@ -3,6 +3,7 @@ id: react-hook-form
 title: React Hook Form
 ---
 
+import listPage from '@site/static/img/packages/react-hook-form/list-page.png';
 import createForm from '@site/static/img/packages/react-hook-form/create-form.gif';
 
 **refine** offers a [React Hook Form][react-hook-form] adapter([@pankod/refine-react-table][refine-react-hook-form]) that allows you to use the React Hook Form library with **refine**. Thus, you can manage your forms in headless way.
@@ -21,9 +22,15 @@ npm i @pankod/refine-react-hook-form
 
 In the following example, we will step-by-step create an example of a headless form with React Hook Form capabilities.
 
-### Create `<PostCreate>` and `<PostEdit>` components
+### Create resource pages
 
-We simply create a `<PostCreate>` and `<PostEdit>` component and pass to the `<Refine>` component as a resource.
+We simply create a `<PostList>`, `<PostCreate>`, and `<PostEdit>` components and pass to the `<Refine>` component as a resource.
+
+```tsx title="src/posts/list.tsx"
+export const PostList: React.FC = () => {
+    return <></>;
+};
+```
 
 ```tsx title="src/posts/create.tsx"
 export const PostCreate: React.FC = () => {
@@ -43,15 +50,23 @@ import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 //highlight-next-line
-import { PostCreate, PostEdit } from "pages/posts/list";
+import { PostList, PostCreate, PostEdit } from "pages/posts/list";
 
 const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             routerProvider={routerProvider}
-            //highlight-next-line
-            resources={[{ name: "posts", create: PostCreate, edit: PostEdit }]}
+            //highlight-start
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                },
+            ]}
+            //highlight-end
         />
     );
 };
@@ -59,7 +74,55 @@ const App: React.FC = () => {
 export default App;
 ```
 
-### Create create form
+Let's develop the `<PostList>` component for directing to the `<PostCreate>` and the `<PostEdit>` component.
+
+```tsx title="src/posts/list.tsx"
+import { useTable, useNavigation } from "@pankod/refine-core";
+
+import { IPost } from "interfaces";
+
+export const PostList: React.FC = () => {
+    const { tableQueryResult } = useTable<IPost>();
+    const { edit, create } = useNavigation();
+
+    return (
+        <div>
+            <button onClick={() => create("posts")}>Create Post</button>
+            <table>
+                <thead>
+                    <td>ID</td>
+                    <td>Title</td>
+                    <td>Actions</td>
+                </thead>
+                <tbody>
+                    {tableQueryResult.data?.data.map((post) => (
+                        <tr key={post.id}>
+                            <td>{post.id}</td>
+                            <td>{post.title}</td>
+                            <td>
+                                <button onClick={() => edit("posts", post.id)}>
+                                    Edit
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+};
+```
+
+<div class="img-container" style={{"max-width": "700px"}}>
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={listPage} alt="List Page" />
+</div>
+
+### Create Form
 
 Firts, we need to import the `useForm` hook from the `@pankod/refine-react-hook-form` library. Then we create a basic example of `post` a create form. All we have to do is to pass the `onFinish` to `handleSubmit`.
 
@@ -141,7 +204,7 @@ export const PostCreate: React.FC = () => {
     <img src={createForm} alt="Create Form" />
 </div>
 
-### Create edit form
+### Edit Form
 
 Edit form is very similar to create form. `@pankod/refine-react-hook-form` sets the default values for the form fields according to the `id` of the route and fetch the data from the server.
 
