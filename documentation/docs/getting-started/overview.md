@@ -100,14 +100,13 @@ Your **refine** application will be accessible at [http://localhost:3000](http:/
 Replace the contents of `App.tsx` with the following code:
 
 ```tsx title="App.tsx"
+import { Refine, useMany } from "@pankod/refine-core"
 import {
-    Refine,
     useTable,
     List,
     Table,
-    useMany,
     DateField,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 

@@ -10,7 +10,7 @@ import {
     HttpError,
     useForm as useFormCore,
     useWarnAboutChange,
-    UseFormProps as UseFormPropsCore,
+    UseFormProps as UseFormCoreProps,
     UseFormReturnType as UseFormReturnTypeCore,
 } from "@pankod/refine-core";
 
@@ -29,7 +29,7 @@ export type UseFormProps<
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
 > = {
-    useFormCoreProps?: UseFormPropsCore<TData, TError, TVariables>;
+    useFormCoreProps?: UseFormCoreProps<TData, TError, TVariables>;
 } & UseHookFormProps<TVariables, TContext>;
 
 export const useForm = <

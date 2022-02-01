@@ -146,8 +146,6 @@ export const useImport = <
             ) as unknown as ImportErrorResult<TVariables>[],
         };
 
-        handleCleanup();
-
         onFinish?.(result);
     };
 
@@ -156,6 +154,7 @@ export const useImport = <
     }, [totalAmount, processedAmount]);
 
     const handleChange: HandleChangeType<TVariables, TData> = ({ file }) => {
+        handleCleanup();
         return new Promise<CreatedValuesType<TVariables, TData>[]>(
             (resolve) => {
                 setIsLoading(true);
