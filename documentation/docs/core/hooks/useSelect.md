@@ -6,7 +6,7 @@ description: useSelect hook API references of @pankod/refine-core
 
 import basicUsage from '@site/static/img/core/useSelect/useSelect.png';
 
-`useModal` hook allows you to manage any `select` (like a [Html `<select>` tag](https://www.w3schools.com/tags/tag_select.asp), [React Select](https://react-select.com/home), etc...) component. Since it is designed as headless, It expects you to handle the UI.
+`useSelect` hook allows you to manage any `select` (like a [Html `<select>` tag](https://www.w3schools.com/tags/tag_select.asp), [React Select](https://react-select.com/home), etc...) component. Since it is designed as headless, It expects you to handle the UI.
 
 ## Usage
 
