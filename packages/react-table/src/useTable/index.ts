@@ -10,25 +10,25 @@ import {
 import { useTable as useTableRT, PluginHook, TableOptions } from "react-table";
 
 export type UseTableReturnType = ReturnType<typeof useTableRT> & {
-    useTableCore: ReturnType<typeof useTableCore>;
+    refineCore: ReturnType<typeof useTableCore>;
 };
 
 export type UseTableProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
 > = {
-    refineTableProps?: useTablePropsCore<TData, TError>;
+    refineCoreProps?: useTablePropsCore<TData, TError>;
 } & TableOptions<{}>;
 
 export const useTable = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
 >(
-    { refineTableProps, ...rest }: UseTableProps<TData, TError>,
+    { refineCoreProps, ...rest }: UseTableProps<TData, TError>,
     ...plugins: Array<PluginHook<{}>>
 ): UseTableReturnType => {
     const useTableResult = useTableCore<TData, TError>({
-        ...refineTableProps,
+        ...refineCoreProps,
     });
 
     const {
@@ -126,6 +126,6 @@ export const useTable = <
 
     return {
         ...reactTableResult,
-        useTableCore: useTableResult,
+        refineCore: useTableResult,
     };
 };
