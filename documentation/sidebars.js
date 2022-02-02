@@ -459,6 +459,11 @@ module.exports = {
                 },
                 {
                     type: "category",
+                    label: "React Toastfy",
+                    items: ["examples/react-toastify/react-toastify"],
+                },
+                {
+                    type: "category",
                     label: "List",
                     items: ["examples/list/useSimpleList"],
                 },
