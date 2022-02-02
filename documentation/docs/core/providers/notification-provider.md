@@ -85,6 +85,35 @@ If your app doesn't require `notification`, no further setup is necessary for th
 
 We will build a simple `notificationProvider` from scratch to show the logic of how `notificationProvider` methods interact with the app. For this, we will use the [`react-toastify`](https://github.com/fkhadra/react-toastify) package, which is very **popular** in the **React Ecosystem**. If you want to use another notification library, you can use the same approach.
 
+Before we start, we need set up the `react-toastify` requirements.
+
+```tsx
+import { Refine } from "@pankod/refine-core";
+
+//highlight-start
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+//highlight-end
+
+const App: React.FC = () => {
+    return (
+        <Refine
+            ...
+            //highlight-start
+            Layout={({ children }) => (
+                <div>
+                    {children}
+                    <ToastContainer />
+                </div>
+            )}
+            //highlight-end
+        />
+    );
+};
+
+export default App;
+
+```
 ### `open`
 
 **refine** calls this method when it wants to open a notification. It also helps you to get the right notification by sending some parameters to the **refine** open method. For example, `message`, `description`, etc...
