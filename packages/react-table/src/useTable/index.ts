@@ -10,25 +10,25 @@ import {
 import { useTable as useTableRT, PluginHook, TableOptions } from "react-table";
 
 export type UseTableReturnType = ReturnType<typeof useTableRT> & {
-    useTableCore: ReturnType<typeof useTableCore>;
+    refineCore: ReturnType<typeof useTableCore>;
 };
 
 export type UseTableProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
 > = {
-    refineTableProps?: useTablePropsCore<TData, TError>;
+    refineCoreProps?: useTablePropsCore<TData, TError>;
 } & TableOptions<{}>;
 
 export const useTable = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
 >(
-    { refineTableProps, ...rest }: UseTableProps<TData, TError>,
+    { refineCoreProps, ...rest }: UseTableProps<TData, TError>,
     ...plugins: Array<PluginHook<{}>>
 ): UseTableReturnType => {
     const useTableResult = useTableCore<TData, TError>({
-        ...refineTableProps,
+        ...refineCoreProps,
     });
 
     const {
@@ -45,6 +45,7 @@ export const useTable = <
 
     const memoizedData = useMemo(() => data?.data ?? [], [data]);
 
+    const memoizedData = useMemo(() => data?.data ?? [], [data]);
     const reactTableResult = useTableRT(
         {
             data: memoizedData,
@@ -70,7 +71,6 @@ export const useTable = <
     );
 
     const { pageIndex, pageSize, sortBy, filters } = reactTableResult.state;
-
     useEffect(() => {
         setCurrent(pageIndex + 1);
     }, [pageIndex]);
@@ -104,11 +104,28 @@ export const useTable = <
             });
         });
 
+        const filteredArray = filtersCore.filter(
+            (value) =>
+                !crudFilters.some(
+                    (b) =>
+                        value.field === b.field &&
+                        value.operator === b.operator,
+                ),
+        );
+
+        filteredArray?.map((filter) => {
+            crudFilters.push({
+                field: filter.field,
+                operator: filter.operator,
+                value: undefined,
+            });
+        });
+
         setFilters(crudFilters);
     }, [filters]);
 
     return {
         ...reactTableResult,
-        useTableCore: useTableResult,
+        refineCore: useTableResult,
     };
 };

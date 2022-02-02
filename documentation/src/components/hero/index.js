@@ -23,7 +23,7 @@ export const Hero = () => {
                 <div className="row row--justify--center">
                     <div className="col col--6">
                         <h1 className={styles.mainTitle}>
-                            <span>A React-based framework</span>
+                            <span>A React-based headless framework</span>
                             <br />
                             for building data-intensive applications in no time.
                         </h1>

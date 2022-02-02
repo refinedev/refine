@@ -15,6 +15,10 @@ import permission from '@site/static/img/guides-and-concepts/data-provider/appwr
 ## Introduction
 **refine** and [Appwrite](https://appwrite.io/) work in harmony, offering you quick development options. You can use your data (API, Database) very simply by using **refine**'s Appwrite data provider.
 
+:::info
+[Appwrite](https://appwrite.io/) version >= 0.12 is required
+:::
+
 You can only focus on your UI as we can handle your data quickly and simply.
 
 :::caution

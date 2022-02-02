@@ -3,9 +3,11 @@ import {
     LiveProvider,
     CrudFilter,
     LiveEvent,
+    HttpError,
 } from "@pankod/refine-core";
 import {
     createClient,
+    PostgrestError,
     RealtimeSubscription,
     SupabaseClient,
 } from "@supabase/supabase-js";
@@ -49,15 +51,26 @@ const generateFilter = (filter: CrudFilter, query: any) => {
     return query.filter(filter.field, filter.operator, filter.value);
 };
 
+const handleError = (error: PostgrestError) => {
+    const customError: HttpError = {
+        ...error,
+        message: error.message,
+        statusCode: parseInt(error.code),
+    };
+    return Promise.reject(customError);
+};
+
 const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
     return {
-        getList: async ({ resource, pagination, filters, sort }) => {
+        getList: async ({ resource, pagination, filters, sort, metaData }) => {
             const current = pagination?.current || 1;
             const pageSize = pagination?.pageSize || 10;
 
             const query = supabaseClient
                 .from(resource)
-                .select("*", { count: "exact" })
+                .select(metaData?.select ?? "*", {
+                    count: "exact",
+                })
                 .range((current - 1) * pageSize, current * pageSize - 1);
 
             sort?.map((item) => {
@@ -68,7 +81,11 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
                 generateFilter(item, query);
             });
 
-            const { data, count } = await query;
+            const { data, count, error } = await query;
+
+            if (error) {
+                return handleError(error);
+            }
 
             return {
                 data: data || [],
@@ -76,11 +93,15 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        getMany: async ({ resource, ids }) => {
-            const { data } = await supabaseClient
+        getMany: async ({ resource, ids, metaData }) => {
+            const { data, error } = await supabaseClient
                 .from(resource)
-                .select("*")
-                .in("id", ids);
+                .select(metaData?.select ?? "*")
+                .in(metaData?.id ?? "id", ids);
+
+            if (error) {
+                return handleError(error);
+            }
 
             return {
                 data: data || [],
@@ -88,9 +109,13 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
         },
 
         create: async ({ resource, variables }) => {
-            const { data } = await supabaseClient
+            const { data, error } = await supabaseClient
                 .from(resource)
                 .insert(variables);
+
+            if (error) {
+                return handleError(error);
+            }
 
             return {
                 data: (data || [])[0] as any,
@@ -98,33 +123,56 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
         },
 
         createMany: async ({ resource, variables }) => {
-            const { data } = await supabaseClient
+            const { data, error } = await supabaseClient
                 .from(resource)
                 .insert(variables);
+
+            if (error) {
+                return handleError(error);
+            }
 
             return {
                 data: data as any,
             };
         },
 
-        update: async ({ resource, id, variables }) => {
-            const { data } = await supabaseClient
-                .from(resource)
-                .update(variables)
-                .match({ id });
+        update: async ({ resource, id, variables, metaData }) => {
+            const query = supabaseClient.from(resource).update(variables);
+
+            if (metaData?.id) {
+                query.eq(metaData?.id, id);
+            } else {
+                query.match({ id });
+            }
+
+            const { data, error } = await query;
+            if (error) {
+                return handleError(error);
+            }
 
             return {
                 data: (data || [])[0] as any,
             };
         },
 
-        updateMany: async ({ resource, ids, variables }) => {
+        updateMany: async ({ resource, ids, variables, metaData }) => {
             const response = await Promise.all(
                 ids.map(async (id) => {
-                    const { data } = await supabaseClient
+                    const query = supabaseClient
                         .from(resource)
-                        .update(variables)
-                        .match({ id });
+                        .update(variables);
+
+                    if (metaData?.id) {
+                        query.eq(metaData?.id, id);
+                    } else {
+                        query.match({ id });
+                    }
+
+                    const { data, error } = await query;
+                    if (error) {
+                        return handleError(error);
+                    }
+
                     return (data || [])[0];
                 }),
             );
@@ -134,35 +182,62 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        getOne: async ({ resource, id }) => {
-            const { data } = await supabaseClient
+        getOne: async ({ resource, id, metaData }) => {
+            const query = supabaseClient
                 .from(resource)
-                .select("*")
-                .match({ id });
+                .select(metaData?.select ?? "*");
+
+            if (metaData?.id) {
+                query.eq(metaData?.id, id);
+            } else {
+                query.match({ id });
+            }
+
+            const { data, error } = await query;
+            if (error) {
+                return handleError(error);
+            }
 
             return {
                 data: (data || [])[0] as any,
             };
         },
 
-        deleteOne: async ({ resource, id }) => {
-            const { data } = await supabaseClient
-                .from(resource)
-                .delete()
-                .match({ id });
+        deleteOne: async ({ resource, id, metaData }) => {
+            const query = supabaseClient.from(resource).delete();
+
+            if (metaData?.id) {
+                query.eq(metaData?.id, id);
+            } else {
+                query.match({ id });
+            }
+
+            const { data, error } = await query;
+            if (error) {
+                return handleError(error);
+            }
 
             return {
                 data: (data || [])[0] as any,
             };
         },
 
-        deleteMany: async ({ resource, ids }) => {
+        deleteMany: async ({ resource, ids, metaData }) => {
             const response = await Promise.all(
                 ids.map(async (id) => {
-                    const { data } = await supabaseClient
-                        .from(resource)
-                        .delete()
-                        .match({ id });
+                    const query = supabaseClient.from(resource).delete();
+
+                    if (metaData?.id) {
+                        query.eq(metaData?.id, id);
+                    } else {
+                        query.match({ id });
+                    }
+
+                    const { data, error } = await query;
+                    if (error) {
+                        return handleError(error);
+                    }
+
                     return (data || [])[0];
                 }),
             );

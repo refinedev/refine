@@ -47,8 +47,6 @@ type ActionFormProps<
         variables: TVariables,
         context: any,
     ) => void;
-    submitOnEnter?: boolean;
-    warnWhenUnsavedChanges?: boolean;
     redirect?: RedirectionTypes;
     resource?: string;
     metaData?: MetaDataQuery;
@@ -58,7 +56,7 @@ type ActionFormProps<
     ActionParams &
     LiveModeProps;
 
-export type useFormProps<
+export type UseFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
@@ -109,7 +107,7 @@ export const useForm = <
     onLiveEvent,
     liveParams,
     undoableTimeout,
-}: useFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
+}: UseFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
     TData,
     TError,
     TVariables
@@ -121,13 +119,13 @@ export const useForm = <
         id: idFromRoute,
     } = useParams<ResourceRouterParams>();
 
+    const decodedIdFromRoute =
+        idFromRoute !== undefined ? decodeURIComponent(idFromRoute) : undefined;
     // id state is needed to determine selected record in a context for example useModal
-    const [id, setId] = React.useState<string | undefined>(
-        idFromRoute !== undefined ? decodeURIComponent(idFromRoute) : undefined,
-    );
+    const [id, setId] = React.useState<string | undefined>(decodedIdFromRoute);
 
     const resourceName = resourceFromProps ?? resourceFromRoute;
-    const action = actionFromProps ?? actionFromRoute;
+    const action = actionFromProps ?? actionFromRoute ?? "create";
 
     const resourceWithRoute = useResourceWithRoute();
     const resource = resourceWithRoute(resourceName);
@@ -225,13 +223,13 @@ export const useForm = <
                 },
                 {
                     onSuccess: (data, _, context) => {
-                        console.log("onsuccess");
                         if (onMutationSuccess) {
                             onMutationSuccess(data, values, context);
                         }
 
                         if (mutationMode === "pessimistic") {
-                            setId(undefined);
+                            // If it is in modal mode set it to undefined. Otherwise set it to current id from route.
+                            setId(decodedIdFromRoute);
                             handleSubmitWithRedirect({
                                 redirect,
                                 resource,
@@ -249,7 +247,8 @@ export const useForm = <
         });
 
         if (!(mutationMode === "pessimistic")) {
-            setId(undefined);
+            // If it is in modal mode set it to undefined. Otherwise set it to current id from route.
+            setId(decodedIdFromRoute);
             handleSubmitWithRedirect({
                 redirect,
                 resource,

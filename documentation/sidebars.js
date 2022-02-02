@@ -3,7 +3,7 @@ module.exports = {
         {
             type: "category",
             label: "Getting Started",
-            items: ["getting-started/overview"],
+            items: ["getting-started/overview", "getting-started/basics"],
         },
         {
             type: "doc",
@@ -17,7 +17,9 @@ module.exports = {
         {
             type: "category",
             label: "Core",
+            collapsed: false,
             items: [
+                "core/tutorial",
                 {
                     type: "category",
                     label: "Providers",
@@ -28,6 +30,7 @@ module.exports = {
                         "api-references/providers/accessControl-provider",
                         "api-references/providers/i18n-provider",
                         "api-references/providers/router-provider",
+                        "core/providers/notification-provider",
                     ],
                 },
                 {
@@ -81,7 +84,7 @@ module.exports = {
                         {
                             type: "category",
                             label: "Form",
-                            items: ["api-references/hooks/form/useForm"],
+                            items: ["core/hooks/useForm"],
                         },
                         {
                             type: "category",
@@ -92,7 +95,7 @@ module.exports = {
                         {
                             type: "category",
                             label: "Field",
-                            items: ["api-references/hooks/field/useSelect"],
+                            items: ["core/hooks/useSelect"],
                         },
                         {
                             type: "category",
@@ -130,16 +133,18 @@ module.exports = {
                         },
                         {
                             type: "category",
-                            label: "Import - Export",
-                            items: [
-                                "api-references/hooks/import-export/useImport",
-                                "api-references/hooks/import-export/useExport",
-                            ],
+                            label: "Import",
+                            items: ["core/hooks/useImport"],
                         },
                         {
                             type: "category",
                             label: "UI",
-                            items: ["api-references/hooks/ui/useModal"],
+                            items: ["core/hooks/useModal"],
+                        },
+                        {
+                            type: "category",
+                            label: "Notification",
+                            items: ["core/hooks/useNotification"],
                         },
                     ],
                 },
@@ -171,11 +176,14 @@ module.exports = {
         {
             type: "category",
             label: "UI Frameworks",
+            collapsed: false,
             items: [
                 {
                     type: "category",
                     label: "Ant Design",
+                    collapsed: false,
                     items: [
+                        "ui-frameworks/antd/tutorial",
                         {
                             type: "category",
                             label: "Hooks",
@@ -279,6 +287,11 @@ module.exports = {
         },
         {
             type: "category",
+            label: "Packages",
+            items: ["packages/react-table", "packages/react-hook-form"],
+        },
+        {
+            type: "category",
             label: "Guides & Concepts",
             items: [
                 {
@@ -352,6 +365,14 @@ module.exports = {
             label: "Examples",
             items: [
                 "examples/tutorial-example",
+                {
+                    type: "category",
+                    label: "Core",
+                    items: [
+                        "examples/core/useModal",
+                        "examples/core/useImport",
+                    ],
+                },
                 "examples/authorization",
                 {
                     type: "category",
@@ -425,6 +446,16 @@ module.exports = {
                         "examples/table/advancedTable",
                         "examples/table/tableFilter",
                     ],
+                },
+                {
+                    type: "category",
+                    label: "React Table",
+                    items: ["examples/react-table/react-table"],
+                },
+                {
+                    type: "category",
+                    label: "React Hook Form",
+                    items: ["examples/react-hook-form/react-hook-form"],
                 },
                 {
                     type: "category",

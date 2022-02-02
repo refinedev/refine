@@ -1,3 +1,4 @@
+import nock from "nock";
 import { dataProvider } from "../../src/index";
 import supabaseClient from "../supabaseClient";
 import "./index.mock";
@@ -11,6 +12,19 @@ describe("getList", () => {
         expect(data[0]["id"]).toBe(2);
         expect(data[0]["title"]).toBe("test title");
         expect(total).toBe(2);
+    });
+
+    it("correct response with metadata select", async () => {
+        const { data, total } = await dataProvider(supabaseClient).getList({
+            resource: "posts",
+            metaData: {
+                select: "title",
+            },
+        });
+
+        expect(Object.keys(data[0]).length).toBe(1);
+        expect(data[0]["title"]).toBe("sadasdsa333");
+        expect(total).toBe(71);
     });
 
     it("correct sorting response", async () => {

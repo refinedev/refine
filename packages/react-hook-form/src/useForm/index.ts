@@ -10,7 +10,7 @@ import {
     HttpError,
     useForm as useFormCore,
     useWarnAboutChange,
-    useFormProps,
+    UseFormProps as UseFormCoreProps,
     UseFormReturnType as UseFormReturnTypeCore,
 } from "@pankod/refine-core";
 
@@ -20,7 +20,7 @@ export type UseFormReturnType<
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
 > = UseFormReturn<TVariables, TContext> & {
-    useFormCore: UseFormReturnTypeCore<TData, TError, TVariables>;
+    refineCore: UseFormReturnTypeCore<TData, TError, TVariables>;
 };
 
 export type UseFormProps<
@@ -29,7 +29,7 @@ export type UseFormProps<
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
 > = {
-    useFormCoreProps?: useFormProps<TData, TError, TVariables>;
+    refineCoreProps?: UseFormCoreProps<TData, TError, TVariables>;
 } & UseHookFormProps<TVariables, TContext>;
 
 export const useForm = <
@@ -38,9 +38,9 @@ export const useForm = <
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
 >({
-    useFormCoreProps,
+    refineCoreProps,
     ...rest
-}: UseFormProps<TData, TError, TVariables, TContext>): UseFormReturnType<
+}: UseFormProps<TData, TError, TVariables, TContext> = {}): UseFormReturnType<
     TData,
     TError,
     TVariables,
@@ -48,21 +48,34 @@ export const useForm = <
 > => {
     const { warnWhenUnsavedChanges, setWarnWhen } = useWarnAboutChange();
 
-    const useHookFormResult = useHookForm<TVariables, TContext>({
-        ...rest,
-    });
-
-    const { watch, setValue, reset, getValues } = useHookFormResult;
-
     const useFormCoreResult = useFormCore<TData, TError, TVariables>({
         onMutationSuccess: () => {
             reset();
         },
-        ...useFormCoreProps,
+        ...refineCoreProps,
     });
 
-    const { id, queryResult } = useFormCoreResult;
-    const { data, isFetching } = queryResult ?? {};
+    const { queryResult } = useFormCoreResult;
+
+    const useHookFormResult = useHookForm<TVariables, TContext>({
+        ...rest,
+    });
+
+    const { watch, reset, getValues } = useHookFormResult;
+
+    useEffect(() => {
+        const fields: any = {};
+        const registeredFields = Object.keys(getValues());
+        Object.entries(queryResult?.data?.data || {}).forEach(
+            ([key, value]) => {
+                if (registeredFields.includes(key)) {
+                    fields[key] = value;
+                }
+            },
+        );
+
+        reset(fields as any);
+    }, [queryResult?.data]);
 
     useEffect(() => {
         const subscription = watch((values: any, { type }: { type?: any }) => {
@@ -73,22 +86,6 @@ export const useForm = <
         return () => subscription.unsubscribe();
     }, [watch]);
 
-    useEffect(() => {
-        setTimeout(() => {
-            const registeredFields = Object.keys(getValues());
-            Object.entries(queryResult?.data?.data || {}).forEach(
-                ([key, value]) => {
-                    if (registeredFields.includes(key)) {
-                        setValue(key as any, value);
-                    }
-                },
-            );
-        });
-        return () => {
-            reset();
-        };
-    }, [data, id, isFetching]);
-
     const onValuesChange = (changeValues: Record<string, any>) => {
         if (warnWhenUnsavedChanges) {
             setWarnWhen(true);
@@ -98,6 +95,6 @@ export const useForm = <
 
     return {
         ...useHookFormResult,
-        useFormCore: useFormCoreResult,
+        refineCore: useFormCoreResult,
     };
 };

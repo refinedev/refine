@@ -63,7 +63,7 @@ export const RouterComponent: React.FC<RouterProps> = ({
             <Router
                 location={locationFromProps ?? location}
                 {...rest}
-                filterRoutes={rankRoutes}
+                filterRoutes={rankRoutes as any}
                 routes={routes}
             />
         );
@@ -120,7 +120,7 @@ export const RouterComponent: React.FC<RouterProps> = ({
         <Router
             location={locationFromProps ?? location}
             {...rest}
-            filterRoutes={rankRoutes}
+            filterRoutes={rankRoutes as any}
             routes={routes}
         />
     );
