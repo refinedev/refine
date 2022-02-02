@@ -5,7 +5,7 @@ import {
     useMutationMode,
     useTranslate,
     useWarnAboutChange,
-    useFormProps,
+    UseFormProps,
 } from "@pankod/refine-core";
 import { HttpError } from "@pankod/refine-core";
 import { BaseRecord, LiveModeProps } from "@pankod/refine-core/dist/interfaces";
@@ -21,7 +21,7 @@ export type UseDrawerFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = useFormProps<TData, TError, TVariables> &
+> = UseFormProps<TData, TError, TVariables> &
     UseDrawerFormConfig &
     LiveModeProps;
 

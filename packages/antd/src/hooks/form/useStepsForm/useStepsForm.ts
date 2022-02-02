@@ -3,7 +3,7 @@ import {
     UseStepsFormConfig,
 } from "sunflower-antd";
 
-import { HttpError, useFormProps } from "@pankod/refine-core";
+import { HttpError, UseFormProps } from "@pankod/refine-core";
 
 import { useForm, UseFormReturnType } from "../useForm";
 import { BaseRecord } from "@pankod/refine-core/dist/interfaces";
@@ -20,7 +20,7 @@ export type useStepsFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = useFormProps<TData, TError, TVariables> & UseStepsFormConfig;
+> = UseFormProps<TData, TError, TVariables> & UseStepsFormConfig;
 
 /**
  * `useStepsForm` hook allows you to split your form under an Ant Design based {@link https://ant.design/components/steps/ Steps} component and provides you with a few useful functionalities that will help you manage your form.
