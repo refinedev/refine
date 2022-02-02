@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import uniqBy from "lodash/uniqBy";
 import { QueryObserverResult, UseQueryOptions } from "react-query";
 import debounce from "lodash/debounce";
@@ -156,7 +156,10 @@ export const useSelect = <
     return {
         queryResult,
         defaultValueQueryResult,
-        options: uniqBy([...options, ...selectedOptions], "value"),
+        options: useMemo(
+            () => uniqBy([...options, ...selectedOptions], "value"),
+            [options, selectedOptions],
+        ),
         onSearch: debounce(onSearch, debounceValue),
     };
 };

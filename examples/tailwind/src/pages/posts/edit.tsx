@@ -16,14 +16,14 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         useState<"write" | "preview">("write");
 
     const {
-        useFormCore: { onFinish, formLoading, queryResult: queryResultForm },
+        refineCore: { onFinish, formLoading, queryResult: queryResultForm },
         register,
         handleSubmit,
         control,
         formState: { errors },
         setValue,
     } = useForm<IPost>({
-        useFormCoreProps: {
+        refineCoreProps: {
             // warnWhenUnsavedChanges: true,
             // redirect: false,
         },

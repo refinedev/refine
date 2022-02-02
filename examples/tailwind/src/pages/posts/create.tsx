@@ -17,7 +17,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
         useState<"write" | "preview">("write");
 
     const {
-        useFormCore: { onFinish, formLoading, queryResult: queryResultForm },
+        refineCore: { onFinish, formLoading, queryResult: queryResultForm },
         register,
         handleSubmit,
         control,
@@ -29,7 +29,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
             status: "draft",
             content: "",
         },
-        useFormCoreProps: {
+        refineCoreProps: {
             // warnWhenUnsavedChanges: true,
             // redirect: false,
         },

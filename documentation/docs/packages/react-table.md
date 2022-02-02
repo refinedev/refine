@@ -623,16 +623,16 @@ export const PostList: React.FC = () => {
 
 Supports all the properties supported by the `useTable` hook are available in the [React Table][react-table] documentation. Also, we added the following property:
 
-`refineTableProps`: You can define all properties provided by [`useTable`][react-table-core] here. You can see all of them in [here](/core/hooks/useTable.md#properties).
+`refineCoreProps`: You can define all properties provided by [`useTable`][react-table-core] here. You can see all of them in [here](/core/hooks/useTable.md#properties).
 
-> For example, we can define the `refineTableProps` property in the `useTable` hook as:
+> For example, we can define the `refineCoreProps` property in the `useTable` hook as:
 
 ```tsx
 import { useTable } from "@pankod/refine-react-table";
 
 const { ... } = useTable({
     ...,
-    refineTableProps: {
+    refineCoreProps: {
         resource: "posts",
         syncWithLocation: true,
         // You can define all properties provided by refine useTable
@@ -651,15 +651,15 @@ const { ... } = useTable({
 
 Returns all the properties returned by [React Table][react-table] of the `useTable` hook. Also, we added the following return values:
 
-`useTableCore`: Returns all values returned by [`useTable`][react-table-core]. You can see all of them in [here](/core/hooks/useTable.md##return-values).
+`refineCore`: Returns all values returned by [`useTable`][react-table-core]. You can see all of them in [here](/core/hooks/useTable.md##return-values).
 
-> For example, we can access the `useTableCore` return value in the `useTable` hook as:
+> For example, we can access the `refineCore` return value in the `useTable` hook as:
 
 ```tsx
 import { useTable } from "@pankod/refine-react-table";
 
 const {
-    useTableCore: { tableQueryResult, ... },
+    refineCore: { tableQueryResult, ... },
 } = useTable({ ... });
 ```
 
