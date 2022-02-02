@@ -97,7 +97,7 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             const { data, error } = await supabaseClient
                 .from(resource)
                 .select(metaData?.select ?? "*")
-                .in("id", ids);
+                .in(metaData?.id ?? "id", ids);
 
             if (error) {
                 return handleError(error);
@@ -136,12 +136,16 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        update: async ({ resource, id, variables }) => {
-            const { data, error } = await supabaseClient
-                .from(resource)
-                .update(variables)
-                .match({ id });
+        update: async ({ resource, id, variables, metaData }) => {
+            const query = supabaseClient.from(resource).update(variables);
 
+            if (metaData?.id) {
+                query.eq(metaData?.id, id);
+            } else {
+                query.match({ id });
+            }
+
+            const { data, error } = await query;
             if (error) {
                 return handleError(error);
             }
@@ -151,14 +155,20 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        updateMany: async ({ resource, ids, variables }) => {
+        updateMany: async ({ resource, ids, variables, metaData }) => {
             const response = await Promise.all(
                 ids.map(async (id) => {
-                    const { data, error } = await supabaseClient
+                    const query = supabaseClient
                         .from(resource)
-                        .update(variables)
-                        .match({ id });
+                        .update(variables);
 
+                    if (metaData?.id) {
+                        query.eq(metaData?.id, id);
+                    } else {
+                        query.match({ id });
+                    }
+
+                    const { data, error } = await query;
                     if (error) {
                         return handleError(error);
                     }
@@ -173,11 +183,17 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
         },
 
         getOne: async ({ resource, id, metaData }) => {
-            const { data, error } = await supabaseClient
+            const query = supabaseClient
                 .from(resource)
-                .select(metaData?.select ?? "*")
-                .match({ id });
+                .select(metaData?.select ?? "*");
 
+            if (metaData?.id) {
+                query.eq(metaData?.id, id);
+            } else {
+                query.match({ id });
+            }
+
+            const { data, error } = await query;
             if (error) {
                 return handleError(error);
             }
@@ -187,12 +203,16 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        deleteOne: async ({ resource, id }) => {
-            const { data, error } = await supabaseClient
-                .from(resource)
-                .delete()
-                .match({ id });
+        deleteOne: async ({ resource, id, metaData }) => {
+            const query = supabaseClient.from(resource).delete();
 
+            if (metaData?.id) {
+                query.eq(metaData?.id, id);
+            } else {
+                query.match({ id });
+            }
+
+            const { data, error } = await query;
             if (error) {
                 return handleError(error);
             }
@@ -202,16 +222,22 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        deleteMany: async ({ resource, ids }) => {
+        deleteMany: async ({ resource, ids, metaData }) => {
             const response = await Promise.all(
                 ids.map(async (id) => {
-                    const { data, error } = await supabaseClient
-                        .from(resource)
-                        .delete()
-                        .match({ id });
+                    const query = supabaseClient.from(resource).delete();
+
+                    if (metaData?.id) {
+                        query.eq(metaData?.id, id);
+                    } else {
+                        query.match({ id });
+                    }
+
+                    const { data, error } = await query;
                     if (error) {
                         return handleError(error);
                     }
+
                     return (data || [])[0];
                 }),
             );
