@@ -139,7 +139,7 @@ import { useSelect } from "@pankod/refine-core";
 export const PostCreate: React.FC = () => {
 //highligt-start
     const {
-        useFormCore: { onFinish, formLoading },
+        refineCore: { onFinish, formLoading },
         register,
         handleSubmit,
         formState: { errors },
@@ -218,7 +218,7 @@ import { useSelect } from "@pankod/refine-core";
 
 export const PostEdit: React.FC = () => {
     const {
-        useFormCore: { onFinish, formLoading, queryResult },
+        refineCore: { onFinish, formLoading, queryResult },
         register,
         handleSubmit,
         resetField,
@@ -297,16 +297,16 @@ export const PostEdit: React.FC = () => {
 
 Supports all the properties supported by the `useForm` hook are available in the [React Hook Form][react-hook-form] documentation. Also, we added the following property:
 
-`useFormCoreProps`: You can define all properties provided by [`useForm`][use-form-core] here. You can see all of them in [here](/core/hooks/useForm.md#properties).
+`refineCoreProps`: You can define all properties provided by [`useForm`][use-form-core] here. You can see all of them in [here](/core/hooks/useForm.md#properties).
 
-> For example, we can define the `useFormCoreProps` property in the `useForm` hook as:
+> For example, we can define the `refineCoreProps` property in the `useForm` hook as:
 
 ```tsx
 import { useForm } from "@pankod/refine-react-hook-form";
 
 const { ... } = useForm({
     ...,
-    useFormCoreProps: {
+    refineCoreProps: {
         resource: "posts",
         redirect: false,
         // You can define all properties provided by refine useForm
@@ -318,15 +318,15 @@ const { ... } = useForm({
 
 Returns all the properties returned by [React Hook Form][react-hook-form] of the `useForm` hook. Also, we added the following return values:
 
-`useFormCore`: Returns all values returned by [`useFormCore`][use-form-core]. You can see all of them in [here](/core/hooks/useForm.md##return-values).
+`refineCore`: Returns all values returned by [`refineCore`][use-form-core]. You can see all of them in [here](/core/hooks/useForm.md##return-values).
 
-> For example, we can access the `useFormCore` return value in the `useForm` hook as:
+> For example, we can access the `refineCore` return value in the `useForm` hook as:
 
 ```tsx
 import { useForm } from "@pankod/refine-react-hook-form";
 
 const {
-    useFormCore: { queryResult, ... },
+    refineCore: { queryResult, ... },
 } = useForm({ ... });
 ```
 

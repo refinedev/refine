@@ -4,7 +4,7 @@ import { useSelect } from "@pankod/refine-core";
 
 export const PostEdit: React.FC = () => {
     const {
-        useFormCore: { onFinish, formLoading, queryResult },
+        refineCore: { onFinish, formLoading, queryResult },
         register,
         handleSubmit,
         resetField,

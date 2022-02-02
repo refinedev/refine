@@ -20,7 +20,7 @@ export type UseFormReturnType<
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
 > = UseFormReturn<TVariables, TContext> & {
-    useFormCore: UseFormReturnTypeCore<TData, TError, TVariables>;
+    refineCore: UseFormReturnTypeCore<TData, TError, TVariables>;
 };
 
 export type UseFormProps<
@@ -29,7 +29,7 @@ export type UseFormProps<
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
 > = {
-    useFormCoreProps?: UseFormCoreProps<TData, TError, TVariables>;
+    refineCoreProps?: UseFormCoreProps<TData, TError, TVariables>;
 } & UseHookFormProps<TVariables, TContext>;
 
 export const useForm = <
@@ -38,7 +38,7 @@ export const useForm = <
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
 >({
-    useFormCoreProps,
+    refineCoreProps,
     ...rest
 }: UseFormProps<TData, TError, TVariables, TContext> = {}): UseFormReturnType<
     TData,
@@ -52,7 +52,7 @@ export const useForm = <
         onMutationSuccess: () => {
             reset();
         },
-        ...useFormCoreProps,
+        ...refineCoreProps,
     });
 
     const { queryResult } = useFormCoreResult;
@@ -95,6 +95,6 @@ export const useForm = <
 
     return {
         ...useHookFormResult,
-        useFormCore: useFormCoreResult,
+        refineCore: useFormCoreResult,
     };
 };

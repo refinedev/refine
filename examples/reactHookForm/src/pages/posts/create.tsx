@@ -3,7 +3,7 @@ import { useSelect } from "@pankod/refine-core";
 
 export const PostCreate: React.FC = () => {
     const {
-        useFormCore: { onFinish, formLoading },
+        refineCore: { onFinish, formLoading },
         register,
         handleSubmit,
         formState: { errors },
