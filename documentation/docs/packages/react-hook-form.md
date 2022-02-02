@@ -150,6 +150,7 @@ export const PostCreate: React.FC = () => {
     });
 
     return (
+// highligt-next-line
         <form onSubmit={handleSubmit(onFinish)}>
             <label>Title: </label>
             <input {...register("title", { required: true })} />
