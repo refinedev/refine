@@ -7,7 +7,7 @@ import listPage from '@site/static/img/packages/react-hook-form/list-page.png';
 import createForm from '@site/static/img/packages/react-hook-form/create-form.gif';
 import editForm from '@site/static/img/packages/react-hook-form/edit-form.gif';
 
-**refine** offers a [React Hook Form][react-hook-form] adapter([@pankod/refine-react-table][refine-react-hook-form]) that allows you to use the React Hook Form library with **refine**. Thus, you can manage your forms in headless way.
+**refine** offers a [React Hook Form][react-hook-form] adapter([@pankod/refine-react-hook-form][refine-react-hook-form]) that allows you to use the React Hook Form library with **refine**. Thus, you can manage your forms in headless way.
 
 All of React Hook Form's features are supported and you can use all of the React Hook Form's examples with no changes just copy and paste them into your project.
 
@@ -129,25 +129,29 @@ Firts, we need to import the `useForm` hook from the `@pankod/refine-react-hook-
 
 We also use `useSelect` to fetch category options.
 
-[Refer to the `useSelect` documentation for detailed information. &#8594](#)
+[Refer to the `useSelect` documentation for detailed information. &#8594](/core/hooks/useSelect.md)
 
 ```tsx title="src/posts/create.tsx"
+// highligt-next-line
 import { useForm } from "@pankod/refine-react-hook-form";
 import { useSelect } from "@pankod/refine-core";
 
 export const PostCreate: React.FC = () => {
+//highligt-start
     const {
         useFormCore: { onFinish, formLoading },
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
+//highligt-end
 
     const { options } = useSelect({
         resource: "categories",
     });
 
     return (
+// highligt-next-line
         <form onSubmit={handleSubmit(onFinish)}>
             <label>Title: </label>
             <input {...register("title", { required: true })} />
@@ -221,14 +225,18 @@ export const PostEdit: React.FC = () => {
         formState: { errors },
     } = useForm();
 
+// highligt-start
     const { options } = useSelect({
         resource: "categories",
         defaultValue: queryResult?.data?.data.category.id,
     });
+// highligt-end
 
+// highligt-start
     useEffect(() => {
         resetField("category.id");
     }, [options]);
+// highligt-end
 
     return (
         <form onSubmit={handleSubmit(onFinish())}>
