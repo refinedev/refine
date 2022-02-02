@@ -7,7 +7,7 @@ description: useUpdate data hook from refine is a modified version of react-quer
 
 `useUpdate` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for update mutations.
 
-It uses `update` method as mutation function from the [`dataProvider`](api-references/providers/data-provider.md) which is passed to `<Refine>`.
+It uses `update` method as mutation function from the [`dataProvider`](/core/providers/data-provider.md) which is passed to `<Refine>`.
 
 ## Features
 

@@ -7,7 +7,7 @@ description: useMany data hook from refine is a modified version of react-query'
 
 `useMany` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/guides/queries) used for retrieving multiple items from a `resource`.
 
-It uses `getMany` method as query function from the [`dataProvider`](api-references/providers/data-provider.md) which is passed to `<Refine>`.
+It uses `getMany` method as query function from the [`dataProvider`](/core/providers/data-provider.md) which is passed to `<Refine>`.
 
 ## Usage
 

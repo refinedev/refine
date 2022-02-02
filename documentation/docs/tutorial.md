@@ -200,7 +200,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 
 -   [Firebase](https://github.com/rturan29/refine-firebase) by [rturan29](https://github.com/rturan29)
 
-[Refer to the `dataProvider` documentation for detailed usage. &#8594](/api-references/providers/data-provider.md)
+[Refer to the `dataProvider` documentation for detailed usage. &#8594](/core/providers/data-provider.md)
 :::
 
 ## Bootstrapping the Application
@@ -228,7 +228,7 @@ export default App;
 
 <br />
 
-`<Refine/>` is the root component of a **refine** application. Using the [`dataProvider`](api-references/providers/data-provider.md) prop, we made our **Simple REST Dataprovider** available to the entire application.
+`<Refine/>` is the root component of a **refine** application. Using the [`dataProvider`](/core/providers/data-provider.md) prop, we made our **Simple REST Dataprovider** available to the entire application.
 
 Run the following command to install the required package:
 
@@ -1165,7 +1165,7 @@ In edit page, `useForm` hook initializes the form with current record values.
 
 ✳️ Form data is set automatically, whenever children inputs `<Form.Item>`'s are edited.
 
-✳️ Save button submits the form by executing the `useUpdate` method provided by the [`dataProvider`](api-references/providers/data-provider.md). After a succesfull response, the application will be redirected to the listing page.
+✳️ Save button submits the form by executing the `useUpdate` method provided by the [`dataProvider`](/core/providers/data-provider.md). After a succesfull response, the application will be redirected to the listing page.
 
 <br />
 
@@ -1286,7 +1286,7 @@ We should notice some minor differences from the edit example:
 
 ✳️ `<Form>` is wrapped with `<Create>` component.
 
-✳️ Save button submits the form by executing the `useCreate` method provided by the [`dataProvider`](api-references/providers/data-provider.md).
+✳️ Save button submits the form by executing the `useCreate` method provided by the [`dataProvider`](/core/providers/data-provider.md).
 
 ✳️ No `defaultValue` is passed to `useSelect`.
 
@@ -1481,7 +1481,7 @@ Our tutorial is complete. Below you'll find a live Codesandbox example displayin
 
 -   [Read about the authProvider to implement authentication for your refine application. &#8594](core/providers/auth-provider.md)
 
--   [Read about the dataProvider to consume custom API's &#8594](api-references/providers/data-provider)
+-   [Read about the dataProvider to consume custom API's &#8594](/core/providers/data-provider.md)
 
 -   [Read about the i18nProvider to add language support. &#8594](/core/providers/i18n-provider.md)
 

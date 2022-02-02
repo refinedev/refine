@@ -7,7 +7,7 @@ description: useCreateMany data hook from refine is a modified version of react-
 
 `useCreateMany` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for multiple create mutations.
 
-It uses `createMany` method as mutation function from the [`dataProvider`](api-references/providers/data-provider.md) which is passed to `<Refine>`.
+It uses `createMany` method as mutation function from the [`dataProvider`](/core/providers/data-provider.md) which is passed to `<Refine>`.
 
 ## Features
 

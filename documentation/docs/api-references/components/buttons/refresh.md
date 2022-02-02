@@ -5,7 +5,7 @@ title: Refresh
 
 import refreshButton from '@site/static/img/guides-and-concepts/components/buttons/refresh/refresh.png';
 
-`<RefreshButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component to update the data shown on the page via the [`useOne`](api-references/hooks/data/useOne.md) method provided by your [`dataProvider`](api-references/providers/data-provider.md).
+`<RefreshButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component to update the data shown on the page via the [`useOne`](api-references/hooks/data/useOne.md) method provided by your [`dataProvider`](/core/providers/data-provider.md).
 
 ## Usage
 

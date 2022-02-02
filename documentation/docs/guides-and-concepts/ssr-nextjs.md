@@ -376,8 +376,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 [useTable]: /api-references/hooks/table/useTable.md
 [ReactQuerySSR]: https://react-query.tanstack.com/guides/ssr#using-initialdata
 [ReactQuery]: https://react-query.tanstack.com/
-[getList]: /api-references/providers/data-provider.md#getlist
-[dataProvider]: /api-references/providers/data-provider.md
+[getList]: /core/providers/data-provider.md#getlist
+[dataProvider]: /core/providers/data-provider.md
 [useTable]: /api-references/hooks/table/useTable.md
 [interfaces]: /api-references/interfaces.md/#crudfilters
 [autoStaticOpt]: https://nextjs.org/docs/advanced-features/automatic-static-optimization

@@ -19,6 +19,10 @@
         {
             "from": "/docs/next/api-references/providers/router-provider",
             "to": "/docs/next/core/providers/router-provider"
+        },
+        {
+            "from": "/docs/next/api-references/providers/data-provider",
+            "to": "/docs/next/core/providers/data-provider"
         }
     ]
 }

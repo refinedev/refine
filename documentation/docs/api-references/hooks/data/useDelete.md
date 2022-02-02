@@ -7,7 +7,7 @@ description: useDelete data hook from refine is a modified version of react-quer
 
 `useDelete` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for delete mutations.
 
-It uses `deleteOne` method as mutation function from the [`dataProvider`](api-references/providers/data-provider.md) which is passed to `<Refine>`.
+It uses `deleteOne` method as mutation function from the [`dataProvider`](/core/providers/data-provider.md) which is passed to `<Refine>`.
 
 ## Features
 

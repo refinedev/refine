@@ -17,7 +17,7 @@ We will show what `<Show>` does using properties with examples.
 
 `canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the resource has `canDelete` or `canEdit` property refine adds the buttons by default.
 
-When clicked on, delete button executes the `useDelete` method provided by the [`dataProvider`](api-references/providers/data-provider.md) and the edit button redirects the user to the record edit page.
+When clicked on, delete button executes the `useDelete` method provided by the [`dataProvider`](/core/providers/data-provider.md) and the edit button redirects the user to the record edit page.
 
 Refer to the [`<DeleteButton>`](api-references/components/buttons/delete.md) and the [`<EditButton>`](api-references/components/buttons/edit.md) documentation for detailed usage.
 

@@ -95,7 +95,7 @@ const { selectProps } = useSelect({
 });
 ```
 
-`resource` property determines API resource endpoint to fetch records from [`dataProvider`](api-references/providers/data-provider.md). It returns properly configured `options` values for select options.
+`resource` property determines API resource endpoint to fetch records from [`dataProvider`](/core/providers/data-provider.md). It returns properly configured `options` values for select options.
 
 [Refer to Ant Design `Select` component documentation for detailed info for `options`. &#8594](https://ant.design/components/select)
 

@@ -7,7 +7,7 @@ description: useList data hook from refine is a modified version of react-query'
 
 `useList` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/guides/queries) used for retrieving items from a `resource` with pagination, sort, and filter configurations.
 
-It uses the `getList` method as the query function from the [`dataProvider`](api-references/providers/data-provider.md) which is passed to `<Refine>`.
+It uses the `getList` method as the query function from the [`dataProvider`](/core/providers/data-provider.md) which is passed to `<Refine>`.
 
 ## Usage
 
@@ -37,7 +37,7 @@ Let's say that we have a resource named `posts`
 
 <br />
 
-`useList` passes the query configuration to `getList` method from the [`dataProvider`](api-references/providers/data-provider.md). We will be using the [`dataProvider`](api-references/providers/data-provider.md) from [`@pankod/refine-simple-rest`](https://www.npmjs.com/package/@pankod/refine-simple-rest)
+`useList` passes the query configuration to `getList` method from the [`dataProvider`](/core/providers/data-provider.md). We will be using the [`dataProvider`](/core/providers/data-provider.md) from [`@pankod/refine-simple-rest`](https://www.npmjs.com/package/@pankod/refine-simple-rest)
 
 First of all, we will use `useList` without passing any query configurations.
 

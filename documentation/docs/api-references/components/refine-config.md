@@ -8,7 +8,7 @@ import warnwhen from '@site/static/img/warnwhen.png';
 
 `<Refine>` component is the entry point of a **refine** app. It is where the highest level of configuration of the app occurs.
 
-[`dataProvider`](api-references/providers/data-provider.md) and [`routerProvider`](#routerprovider) are required to bootstrap the app. After adding them, [`resources`](#resources) can be added as property.
+[`dataProvider`](/core/providers/data-provider.md) and [`routerProvider`](#routerprovider) are required to bootstrap the app. After adding them, [`resources`](#resources) can be added as property.
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine-core";
@@ -44,11 +44,11 @@ export default App;
 <br/>
 <br/>
 
-A [`dataProvider`](api-references/providers/data-provider.md) is the place where a refine app communicates with an API.
+A [`dataProvider`](/core/providers/data-provider.md) is the place where a refine app communicates with an API.
 Data providers also act as adapters for refine, making it possible for it to consume different API's and data services.  
-A [`dataProvider`](api-references/providers/data-provider.md) makes HTTP requests and returns response data back using predefined methods.
+A [`dataProvider`](/core/providers/data-provider.md) makes HTTP requests and returns response data back using predefined methods.
 
-[Refer to the Data Provider documentation for detailed information. &#8594](api-references/providers/data-provider.md)
+[Refer to the Data Provider documentation for detailed information. &#8594](/core/providers/data-provider.md)
 
 <br />
 

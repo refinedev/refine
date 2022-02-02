@@ -73,7 +73,7 @@ const { options } = useSelect({
 });
 ```
 
-`resource` property determines API resource endpoint to fetch records from [`dataProvider`](api-references/providers/data-provider.md). It returns properly configured `options` values for select options.
+`resource` property determines API resource endpoint to fetch records from [`dataProvider`](/core/providers/data-provider.md). It returns properly configured `options` values for select options.
 
 ### `defaultValue`
 

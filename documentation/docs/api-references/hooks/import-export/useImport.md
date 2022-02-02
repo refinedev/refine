@@ -231,7 +231,7 @@ Now, parsed data is mapped to conform our APIs requirements.
 [ImportButton]: /api-references/components/buttons/import.md
 [useCreate]: /api-references/hooks/data/useCreate.md
 [useCreateMany]: /api-references/hooks/data/useCreateMany.md
-[DataProvider]: /api-references/providers/data-provider.md
+[DataProvider]: /core/providers/data-provider.md
 [BaseRecord]: /api-references/interfaces.md#baserecord
 [HttpError]: /api-references/interfaces.md#httperror
 [papaparse]: https://www.papaparse.com/docs

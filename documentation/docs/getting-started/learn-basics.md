@@ -20,7 +20,7 @@ This guide will help you learn and get information of basic **refine** concepts.
 
 -   `@pankod/refine-antd` - a fully featured [Ant Design](https://ant.design/) System UI Framework. Includes +20 Table, Form, Select, Menu, Layout, Notification and CRUD components and hooks.
 
-**[Data Provider](https://refine.dev/docs/api-references/providers/data-provider/) Packages:**
+**[Data Provider](https://refine.dev/docs/core/providers/data-provider/) Packages:**
 
 -   `@pankod/refine-simple-rest` - a fully featured REST API Data Provider
 -   `@pankod/refine-graphql` - a fully featured GraphQL Data Provider
