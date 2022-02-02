@@ -229,9 +229,11 @@ export const PostEdit: React.FC = () => {
         defaultValue: queryResult?.data?.data.category.id,
     });
 
+// highligt-start
     useEffect(() => {
         resetField("category.id");
     }, [options]);
+// highligt-end
 
     return (
         <form onSubmit={handleSubmit(onFinish())}>
