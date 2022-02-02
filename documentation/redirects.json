@@ -1,12 +1,16 @@
 {
     "redirects": [
         {
-            "from": "/docs/api-references/providers/auth-provider",
-            "to": "/docs/core/providers/auth-provider"
+            "from": "/docs/next/api-references/providers/auth-provider",
+            "to": "/docs/next/core/providers/auth-provider"
         },
         {
-            "from": "/docs/api-references/providers/accessControl-provider",
-            "to": "/docs/core/providers/accessControl-provider"
+            "from": "/docs/next/api-references/providers/accessControl-provider",
+            "to": "/docs/next/core/providers/accessControl-provider"
+        },
+        {
+            "from": "/docs/next/api-references/providers/i18n-provider",
+            "to": "/docs/next/core/providers/i18n-provider"
         }
     ]
 }

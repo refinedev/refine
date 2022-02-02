@@ -1483,7 +1483,7 @@ Our tutorial is complete. Below you'll find a live Codesandbox example displayin
 
 -   [Read about the dataProvider to consume custom API's &#8594](api-references/providers/data-provider)
 
--   [Read about the i18nProvider to add language support. &#8594](api-references/providers/i18n-provider)
+-   [Read about the i18nProvider to add language support. &#8594](/core/providers/i18n-provider.md)
 
 -   [Check the Guides & Concept section to learn generic solutions to common problems &#8594](guides-and-concepts/upload/multipart-upload)
 

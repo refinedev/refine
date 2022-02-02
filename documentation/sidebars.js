@@ -28,7 +28,7 @@ module.exports = {
                         "api-references/providers/data-provider",
                         "api-references/providers/live-provider",
                         "core/providers/accessControl-provider",
-                        "api-references/providers/i18n-provider",
+                        "core/providers/i18n-provider",
                         "api-references/providers/router-provider",
                         "core/providers/notification-provider",
                     ],

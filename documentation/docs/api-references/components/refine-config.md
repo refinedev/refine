@@ -237,7 +237,7 @@ Custom route name
 
 `i18nProvider` property lets you add i18n support to your app. Making you able to use any i18n framework.
 
-[Refer to i18n documentation for detailed information. &#8594](api-references/providers/i18n-provider.md)
+[Refer to i18n documentation for detailed information. &#8594](/core/providers/i18n-provider.md)
 
 <br />
 

@@ -46,7 +46,7 @@ This guide will help you learn and get information of basic **refine** concepts.
 
 ## Refine 3rd Party Integration Examples
 
-**[i18n Provider](https://refine.dev/docs/api-references/providers/i18n-provider/)**
+**[i18n Provider](https://refine.dev/docs/core/providers/i18n-provider/)**
 
 -   `i18n(React)` - [Example](https://refine.dev/docs/examples/i18n/i18n-react/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/i18n/react/src/App.tsx#L17)
 -   `i18n(Next.js)` - [Example](https://refine.dev/docs/examples/i18n/i18n-nextjs/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/i18n/nextjs/pages/_app.tsx#L20)
