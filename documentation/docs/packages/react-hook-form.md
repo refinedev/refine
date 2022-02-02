@@ -7,7 +7,7 @@ import listPage from '@site/static/img/packages/react-hook-form/list-page.png';
 import createForm from '@site/static/img/packages/react-hook-form/create-form.gif';
 import editForm from '@site/static/img/packages/react-hook-form/edit-form.gif';
 
-**refine** offers a [React Hook Form][react-hook-form] adapter([@pankod/refine-react-table][refine-react-hook-form]) that allows you to use the React Hook Form library with **refine**. Thus, you can manage your forms in headless way.
+**refine** offers a [React Hook Form][react-hook-form] adapter([@pankod/refine-react-hook-form][refine-react-hook-form]) that allows you to use the React Hook Form library with **refine**. Thus, you can manage your forms in headless way.
 
 All of React Hook Form's features are supported and you can use all of the React Hook Form's examples with no changes just copy and paste them into your project.
 
