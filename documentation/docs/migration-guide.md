@@ -168,5 +168,5 @@ const Link = routerProvider.Link;
 [refine-codemod]: https://github.com/pankod/refine/tree/master/packages/codemod
 [refine]: /api-references/components/refine-config.md
 [resources]: /api-references/components/refine-config.md#resources
-[routerProvider]: /api-references/providers/router-provider.md
+[routerProvider]: /core/providers/router-provider.md
 [customPages]: /guides-and-concepts/custom-pages.md

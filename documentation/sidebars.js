@@ -29,7 +29,7 @@ module.exports = {
                         "core/providers/live-provider",
                         "core/providers/accessControl-provider",
                         "core/providers/i18n-provider",
-                        "api-references/providers/router-provider",
+                        "core/providers/router-provider",
                         "core/providers/notification-provider",
                     ],
                 },

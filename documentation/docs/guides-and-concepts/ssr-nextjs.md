@@ -368,7 +368,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 [Nextjs]: https://nextjs.org/docs/getting-started
 [NextjsRouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router
-[routerProvider]: /api-references/providers/router-provider.md
+[routerProvider]: /core/providers/router-provider.md
 [superplate]: https://github.com/pankod/superplate
 [NextjsCustomApp]: https://nextjs.org/docs/advanced-features/custom-app
 [refine]: /api-references/components/refine-config.md

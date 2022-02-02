@@ -685,4 +685,4 @@ const App: React.FC = () => (
 );
 ```
 
-[routerProvider]: /api-references/providers/router-provider.md
+[routerProvider]: /core/providers/router-provider.md
