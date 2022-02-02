@@ -26,7 +26,7 @@ const authProvider = {
 ```
 
 :::important
-**refine** consumes these methods using [authorization hooks](api-references/hooks/auth/useLogin.md).
+**refine** consumes these methods using [authorization hooks](/core/hooks/auth/useLogin.md).
 Authorization hooks are used to manage authentication and authorization operations like login, logout and catching **HTTP** errors etc.
 :::
 
@@ -131,7 +131,7 @@ const { mutate: login } =
 
 :::
 
-> [Refer to useLogin documentation for more information. &#8594](api-references/hooks/auth/useLogin.md)
+> [Refer to useLogin documentation for more information. &#8594](/core/hooks/auth/useLogin.md)
 
 <br />
 
@@ -206,7 +206,7 @@ logout();
 `mutate` acquired from `useLogout` can accept any kind of object for values since `logout` method from `authProvider` doesn't have a restriction on its parameters.  
 :::
 
-> [Refer to useLogout documentation for more information. &#8594](api-references/hooks/auth/useLogout.md)
+> [Refer to useLogout documentation for more information. &#8594](/core/hooks/auth/useLogout.md)
 
 <br />
 
@@ -291,7 +291,7 @@ checkError(error);
 `mutate` acquired from `useLogout` can accept any kind of object for values since `logout` method from `authProvider` doesn't have a restriction on its parameters.  
 :::
 
-> [Refer to useCheckError documentation for more information. &#8594](api-references/hooks/auth/useCheckError.md)
+> [Refer to useCheckError documentation for more information. &#8594](/core/hooks/auth/useCheckError.md)
 
 <br />
 
@@ -365,7 +365,7 @@ const {
 } = useAuthenticated();
 ```
 
-> [Refer to useAuthenticated documentation for more information. &#8594](api-references/hooks/auth/useAuthenticated.md)
+> [Refer to useAuthenticated documentation for more information. &#8594](/core/hooks/auth/useAuthenticated.md)
 
 <br />
 
@@ -407,7 +407,7 @@ const authProvider = {
 
 <br/>
 
-Data that `getPermissions` resolves with is accesible by the [`usePermissions`](api-references/hooks/auth/usePermissions.md) hook.
+Data that `getPermissions` resolves with is accesible by the [`usePermissions`](/core/hooks/auth/usePermissions.md) hook.
 
 For example let's say that only the admins must be able to create new posts from the list page.
 `<List>` can show a button for creating new posts. If it's required that only admins can create new posts, this button must be only accessible to users who has the `"admin"` role.
@@ -423,7 +423,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-> [Refer to usePermissions documentation for more information. &#8594](api-references/hooks/auth/usePermissions.md)
+> [Refer to usePermissions documentation for more information. &#8594](/core/hooks/auth/usePermissions.md)
 
 <br/>
 
@@ -450,7 +450,7 @@ const authProvider = {
 
 <br />
 
-The resolved data can be acquired using the [`useGetIdentity`](api-references/hooks/auth/useGetIdentity.md) hook.
+The resolved data can be acquired using the [`useGetIdentity`](/core/hooks/auth/useGetIdentity.md) hook.
 
 ```tsx
 import { useGetIdentity } from "@pankod/refine-core";
@@ -459,7 +459,7 @@ const { data: userIdentity } = useGetIdentity<string>();
 // userIdentity: "admin"
 ```
 
-> [Refer to useGetIdentity documentation for more information. &#8594](api-references/hooks/auth/useGetIdentity.md)
+> [Refer to useGetIdentity documentation for more information. &#8594](/core/hooks/auth/useGetIdentity.md)
 
 <br />
 
@@ -559,12 +559,12 @@ We recommend using **axios** as the **HTTP** client with the **@pankod/refine-si
 
 These hooks can be used with the `authProvider` authentication and authorization operations.
 
--   [useAuthenticated](/api-references/hooks/auth/useAuthenticated.md)
--   [useCheckError](/api-references/hooks/auth/useCheckError.md)
--   [useGetIdentity](/api-references/hooks/auth/useGetIdentity.md)
--   [useLogin](/api-references/hooks/auth/useLogin.md)
--   [useLogout](/api-references/hooks/auth/useLogout.md)
--   [usePermissions](/api-references/hooks/auth/usePermissions.md)
+-   [useAuthenticated](/core/hooks/auth/useAuthenticated.md)
+-   [useCheckError](/core/hooks/auth/useCheckError.md)
+-   [useGetIdentity](/core/hooks/auth/useGetIdentity.md)
+-   [useLogin](/core/hooks/auth/useLogin.md)
+-   [useLogout](/core/hooks/auth/useLogout.md)
+-   [usePermissions](/core/hooks/auth/usePermissions.md)
 -   [`<Authenticated />`](/api-references/components/auth/authenticated.md)
 
 <br />

@@ -36,7 +36,7 @@ export const ListPage: React.FC = () => {
 };
 ```
 
-[Refer to the `usePermission` documentation for detailed usage. &#8594](/api-references/hooks/auth/usePermissions.md)
+[Refer to the `usePermission` documentation for detailed usage. &#8594](/core/hooks/auth/usePermissions.md)
 
 ### `title`
 

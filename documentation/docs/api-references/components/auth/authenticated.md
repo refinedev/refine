@@ -24,6 +24,6 @@ For an example use, see [Custom Pages Example][Custom Pages Example] and [it's e
 | fallback | Content to show if user is not logged in. If undefined, routes to `/` | `ReactNode` |         |
 | loading  | Content to show while checking whether user is logged in              | `ReactNode` |         |
 
-[useAuthenticated]: /api-references/hooks/auth/useAuthenticated.md
+[useAuthenticated]: /core/hooks/auth/useAuthenticated.md
 [Custom Pages Explanation]: /guides-and-concepts/custom-pages.md#authenticated-custom-pages
 [Custom Pages Example]: /examples/custom-pages.md

@@ -8,7 +8,7 @@ export type AuthenticatedProps = {
 };
 
 /**
- * `<Authenticated>` is the component form of {@link https://refine.dev/docs/api-references/hooks/auth/useAuthenticated `useAuthenticated`}. It internally uses `useAuthenticated` to provide it's functionality.
+ * `<Authenticated>` is the component form of {@link https://refine.dev/docs/core/hooks/auth/useAuthenticated `useAuthenticated`}. It internally uses `useAuthenticated` to provide it's functionality.
  *
  * @see {@link https://refine.dev/docs/api-references/components/auth/authenticated `<Authenticated>`} component for more details.
  */

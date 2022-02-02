@@ -23,6 +23,30 @@
         {
             "from": "/docs/next/api-references/providers/data-provider",
             "to": "/docs/next/core/providers/data-provider"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/auth/useAuthenticated",
+            "to": "/docs/next/core/hooks/auth/useAuthenticated/"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/auth/usePermissions",
+            "to": "/docs/next/core/hooks/auth/usePermissions"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/auth/useLogin",
+            "to": "/docs/next/core/hooks/auth/useLogin"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/auth/useLogout",
+            "to": "/docs/next/core/hooks/auth/useLogout"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/auth/useCheckError",
+            "to": "/docs/next/core/hooks/auth/useCheckError"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/auth/useGetIdentity",
+            "to": "/docs/next/core/hooks/auth/useGetIdentity"
         }
     ]
 }

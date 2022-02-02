@@ -58,12 +58,12 @@ module.exports = {
                             type: "category",
                             label: "Authorization",
                             items: [
-                                "api-references/hooks/auth/useLogin",
-                                "api-references/hooks/auth/useLogout",
-                                "api-references/hooks/auth/useCheckError",
-                                "api-references/hooks/auth/useAuthenticated",
-                                "api-references/hooks/auth/useGetIdentity",
-                                "api-references/hooks/auth/usePermissions",
+                                "core/hooks/auth/useLogin",
+                                "core/hooks/auth/useLogout",
+                                "core/hooks/auth/useCheckError",
+                                "core/hooks/auth/useAuthenticated",
+                                "core/hooks/auth/useGetIdentity",
+                                "core/hooks/auth/usePermissions",
                             ],
                         },
                         {
