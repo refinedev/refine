@@ -448,6 +448,11 @@ module.exports = {
                 },
                 {
                     type: "category",
+                    label: "React Hook Form",
+                    items: ["examples/react-hook-form/react-hook-form"],
+                },
+                {
+                    type: "category",
                     label: "List",
                     items: ["examples/list/useSimpleList"],
                 },
