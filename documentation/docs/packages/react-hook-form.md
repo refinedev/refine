@@ -129,7 +129,7 @@ Firts, we need to import the `useForm` hook from the `@pankod/refine-react-hook-
 
 We also use `useSelect` to fetch category options.
 
-[Refer to the `useSelect` documentation for detailed information. &#8594](#)
+[Refer to the `useSelect` documentation for detailed information. &#8594](/core/hooks/useSelect.md)
 
 ```tsx title="src/posts/create.tsx"
 import { useForm } from "@pankod/refine-react-hook-form";
