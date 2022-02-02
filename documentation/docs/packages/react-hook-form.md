@@ -5,6 +5,7 @@ title: React Hook Form
 
 import listPage from '@site/static/img/packages/react-hook-form/list-page.png';
 import createForm from '@site/static/img/packages/react-hook-form/create-form.gif';
+import editForm from '@site/static/img/packages/react-hook-form/edit-form.gif';
 
 **refine** offers a [React Hook Form][react-hook-form] adapter([@pankod/refine-react-table][refine-react-hook-form]) that allows you to use the React Hook Form library with **refine**. Thus, you can manage your forms in headless way.
 
@@ -140,11 +141,7 @@ export const PostCreate: React.FC = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({
-        useFormCoreProps: {
-            redirect: false,
-        },
-    });
+    } = useForm();
 
     const { options } = useSelect({
         resource: "categories",
@@ -283,7 +280,7 @@ export const PostEdit: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={createForm} alt="Create Form" />
+    <img src={editForm} alt="Edit Form" />
 </div>
 
 [react-hook-form]: https://react-hook-form.com
