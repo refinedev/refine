@@ -136,12 +136,14 @@ import { useForm } from "@pankod/refine-react-hook-form";
 import { useSelect } from "@pankod/refine-core";
 
 export const PostCreate: React.FC = () => {
+//highligt-start
     const {
         useFormCore: { onFinish, formLoading },
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
+//highligt-end
 
     const { options } = useSelect({
         resource: "categories",
