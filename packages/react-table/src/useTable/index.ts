@@ -44,8 +44,6 @@ export const useTable = <
     } = useTableResult;
 
     const memoizedData = useMemo(() => data?.data ?? [], [data]);
-
-    const memoizedData = useMemo(() => data?.data ?? [], [data]);
     const reactTableResult = useTableRT(
         {
             data: memoizedData,
