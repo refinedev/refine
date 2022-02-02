@@ -196,7 +196,7 @@ const antLayoutSiderMobile: CSSProperties = {
 
 :::caution
 `useLogout` hook can only be used if the `authProvider` is provided.  
-[Refer to authProvider docs for more detailed information. &#8594](../../providers/auth-provider.md)  
+[Refer to authProvider docs for more detailed information. &#8594](/core/providers/auth-provider.md)  
 [Refer to useLogout docs for more detailed information. &#8594](api-references/hooks/auth/useLogout.md)
 :::
 

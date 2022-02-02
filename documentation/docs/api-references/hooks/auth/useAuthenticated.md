@@ -5,7 +5,7 @@ siderbar_label: useAuthenticated
 description: useAuthenticated data hook from refine is a modified version of react-query's useMutation for create mutations
 ---
 
-`useAuthenticated` calls the `checkAuth` method from the[`authProvider`](/docs/api-references/providers/auth-provider) under the hood. 
+`useAuthenticated` calls the `checkAuth` method from the[`authProvider`](/core/providers/auth-provider.md) under the hood. 
 
 It returns the result of `react-query`'s `useQuery` which includes many properties, some of which being `isSuccess` and `isError`.  
 Data that is resolved from the `useAuthenticated` will be returned as the `data` in the query result.
@@ -13,13 +13,13 @@ Data that is resolved from the `useAuthenticated` will be returned as the `data`
 
 ## Usage
 
-`useAuthenticated` can be useful when you want to ask for authentication to grant access to [custom pages](/docs/guides-and-concepts/custom-pages) manually.
+`useAuthenticated` can be useful when you want to ask for authentication to grant access to [custom pages](/guides-and-concepts/custom-pages.md) manually.
 
 We have used this hook in refine's [`<Authenticated>`](/api-references/components/auth/authenticated.md) component which allows only authenticated users to access the page or any part of the code.
 
 We will demonstrate a similar basic implementation below. Imagine that you have public page but you want to make some specific fields private.
 
-We have a logic in [`authProvider`](/docs/api-references/providers/auth-provider)'s `checkAuth` method like below.
+We have a logic in [`authProvider`](/core/providers/auth-provider.md)'s `checkAuth` method like below.
 
 ```tsx
 const authProvider: AuthProvider = {

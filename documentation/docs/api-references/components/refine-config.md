@@ -229,7 +229,7 @@ Custom route name
 
 `authProvider` handles authentication logic like login, logout flow and checking user credentials. It is an object with methods that refine uses when necessary.
 
-[Refer to the Auth Provider documentation for detailed information. &#8594](api-references/providers/auth-provider.md)
+[Refer to the Auth Provider documentation for detailed information. &#8594](core/providers/auth-provider.md)
 
 <br />
 
@@ -245,7 +245,7 @@ Custom route name
 
 `accessControlProvider` is the entry point for implementing access control for **refine** apps.
 
-[Refer to access control documentation for detailed information. &#8594](api-references/providers/accessControl-provider.md)
+[Refer to access control documentation for detailed information. &#8594](/core/providers/accessControl-provider.md)
 
 <br />
 

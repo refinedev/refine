@@ -5,7 +5,7 @@ siderbar_label: useGetIdentity
 description: useGetIdentity data hook from refine is a modified version of react-query's useQuery for retrieving user data
 ---
 
-`useGetIdentity` calls the `getUserIdentity` method from the [`authProvider`](/docs/api-references/providers/auth-provider) under the hood.
+`useGetIdentity` calls the `getUserIdentity` method from the [`authProvider`](/core/providers/auth-provider.md) under the hood.
 
 It returns the result of `react-query`'s `useQuery`  which includes many properties, some of which being `isSuccess` and `isError`. Data that is resolved from the `getUserIdentity` will be returned as the `data` in the query result.
 
@@ -15,7 +15,7 @@ It returns the result of `react-query`'s `useQuery`  which includes many propert
 
 Let's say that you want to show the user's name.
 
-We have a logic in [`authProvider`](/docs/api-references/providers/auth-provider)'s `getUserIdentity` method like below.
+We have a logic in [`authProvider`](/core/providers/auth-provider.md)'s `getUserIdentity` method like below.
 
 ```tsx
 const authProvider: AuthProvider = {

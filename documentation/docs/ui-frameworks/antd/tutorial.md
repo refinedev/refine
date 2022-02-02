@@ -1441,7 +1441,7 @@ Our tutorial is complete. Below you'll find a live Codesandbox example displayin
 
 ## Next Steps
 
--   [Read about the authProvider to implement authentication for your refine application. &#8594](/api-references/providers/auth-provider.md)
+-   [Read about the authProvider to implement authentication for your refine application. &#8594](/core/providers/auth-provider.md)
 
 -   [Read about the dataProvider to consume custom API's &#8594](/api-references/providers/data-provider.md)
 

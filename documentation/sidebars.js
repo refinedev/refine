@@ -24,10 +24,10 @@ module.exports = {
                     type: "category",
                     label: "Providers",
                     items: [
-                        "api-references/providers/auth-provider",
+                        "core/providers/auth-provider",
                         "api-references/providers/data-provider",
                         "api-references/providers/live-provider",
-                        "api-references/providers/accessControl-provider",
+                        "core/providers/accessControl-provider",
                         "api-references/providers/i18n-provider",
                         "api-references/providers/router-provider",
                         "core/providers/notification-provider",

@@ -5,7 +5,7 @@ siderbar_label: useLogout
 description: useLogout data hook from refine is a modified version of react-query's useMutation for unauthentication.
 ---
 
-`useLogout` calls the `logout` method from the [`authProvider`](/docs/api-references/providers/auth-provider) under the hood.  
+`useLogout` calls the `logout` method from the [`authProvider`](/core/providers/auth-provider.md) under the hood.  
 It unauthenticates the app if the `logout` method from the `authProvider` resolves and if it rejects, it keeps authentication state the same.
 
 It returns the result of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation). 
@@ -48,7 +48,7 @@ logout({ redirectPath:"/custom-url" });
 
 <br/>
 
-- A custom url can be resolved from the promise returned from the `logout` method of the [authProvider](/docs/api-references/providers/auth-provider).
+- A custom url can be resolved from the promise returned from the `logout` method of the [authProvider](/core/providers/auth-provider.md).
 
 ```tsx
 const authProvider: AuthProvider = {
@@ -61,7 +61,7 @@ const authProvider: AuthProvider = {
 ```
 <br/>
 
-- If promise returned from the `logout` method of the [authProvider](/docs/api-references/providers/auth-provider) gets resolved with `false` no redirection will occur.
+- If promise returned from the `logout` method of the [authProvider](/core/providers/auth-provider.md) gets resolved with `false` no redirection will occur.
 
 ```tsx
 const authProvider: AuthProvider = {

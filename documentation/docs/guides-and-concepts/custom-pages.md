@@ -126,7 +126,7 @@ Only authenticated users can access this page via `/custom-page` path.
 :::caution attention
 For authenticated custom page, your application needs an `authProvider`.
 
-[Refer to the `authProvider` for more detailed information. &#8594](/api-references/providers/auth-provider.md)
+[Refer to the `authProvider` for more detailed information. &#8594](/core/providers/auth-provider.md)
 
 :::
 
