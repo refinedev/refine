@@ -224,10 +224,12 @@ export const PostEdit: React.FC = () => {
         formState: { errors },
     } = useForm();
 
+// highligt-start
     const { options } = useSelect({
         resource: "categories",
         defaultValue: queryResult?.data?.data.category.id,
     });
+// highligt-end
 
 // highligt-start
     useEffect(() => {
