@@ -283,6 +283,56 @@ export const PostEdit: React.FC = () => {
     <img src={editForm} alt="Edit Form" />
 </div>
 
+## API
+
+### Properties
+
+Supports all the properties supported by the `useForm` hook are available in the [React Hook Form][react-hook-form] documentation. Also, we added the following property:
+
+`useFormCoreProps`: You can define all properties provided by [`useForm`][use-form-core] here. You can see all of them in [here](/core/hooks/useForm.md#properties).
+
+> For example, we can define the `useFormCoreProps` property in the `useForm` hook as:
+
+```tsx
+import { useForm } from "@pankod/refine-react-hook-form";
+
+const { ... } = useForm({
+    ...,
+    useFormCoreProps: {
+        resource: "posts",
+        redirect: false,
+        // You can define all properties provided by refine useForm
+    },
+});
+```
+
+### Return values
+
+Returns all the properties returned by [React Hook Form][react-hook-form] of the `useForm` hook. Also, we added the following return values:
+
+`useFormCore`: Returns all values returned by [`useFormCore`][use-form-core]. You can see all of them in [here](/core/hooks/useForm.md##return-values).
+
+> For example, we can access the `useFormCore` return value in the `useForm` hook as:
+
+```tsx
+import { useForm } from "@pankod/refine-react-hook-form";
+
+const {
+    useFormCore: { queryResult, ... },
+} = useForm({ ... });
+```
+
+### Type Parameters
+
+| Property   | Desription                                                   | Type                       | Default                    |
+| ---------- | ------------------------------------------------------------ | -------------------------- | -------------------------- |
+| TData      | Result data of the query. Extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError     | Custom error object that extends [`HttpError`][httperror]    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+| TVariables | Field Values for mutation function                           | `{}`                       | `{}`                       |
+| TContext   | Second generic type of the `useForm` of the React Hook Form. | `{}`                       | `{}`                       |
+
 [react-hook-form]: https://react-hook-form.com
 [refine-react-hook-form]: https://github.com/pankod/refine/tree/master/packages/react-hook-form
-[react-hook-form-core]: /core/hooks/useForm.md
+[use-form-core]: /core/hooks/useForm.md
+[baserecord]: /api-references/interfaces.md#baserecord
+[httperror]: /api-references/interfaces.md#httperror
