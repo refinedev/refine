@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
-import React from "react";
-import { useOne } from "@pankod/refine-core";
-import {} from "@pankod/refine-react-hook-form";
+import React, { useState, useCallback } from "react";
+import { useDeleteMany, useOne, useSelect } from "@pankod/refine-core";
+import { useForm, Controller } from "@pankod/refine-react-hook-form";
 import {
     useTable,
     Column,
@@ -10,10 +10,42 @@ import {
     useRowSelect,
 } from "@pankod/refine-react-table";
 import ReactMarkdown from "react-markdown";
+import ReactMde from "react-mde";
 
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
+    const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>(
+        [],
+    );
+    const [selectedTab, setSelectedTab] =
+        useState<"write" | "preview">("write");
+
+    const {
+        useFormCore: { onFinish, id, setId },
+        register,
+        handleSubmit,
+        reset,
+        control,
+    } = useForm<IPost>({
+        useFormCoreProps: {
+            redirect: false,
+            action: "edit",
+        },
+    });
+
+    const { options } = useSelect<ICategory>({
+        resource: "categories",
+    });
+    const { mutate } = useDeleteMany<IPost>();
+
+    const deleteSelectedItems = (ids: string[]) => {
+        mutate({
+            resource: "posts",
+            ids,
+        });
+    };
+
     const columns: Array<Column> = React.useMemo(
         () => [
             {
@@ -45,13 +77,22 @@ export const PostList: React.FC = () => {
                 Header: "Actions",
                 accessor: "id",
                 //eslint-disable-next-line react/display-name
-                Cell: () => (
-                    <div className="flex gap-2">
-                        <button>Edit</button>
-                        <button>Show</button>
-                        <button>Delete</button>
-                    </div>
-                ),
+                Cell: ({ value }) => {
+                    return (
+                        <div className="flex gap-2">
+                            <button
+                                onClick={() => handleEditButtonClick(value)}
+                            >
+                                Edit
+                            </button>
+                            <button
+                                onClick={() => deleteSelectedItems([value])}
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    );
+                },
             },
         ],
         [],
@@ -123,13 +164,115 @@ export const PostList: React.FC = () => {
         },
     );
 
-    const renderRowSubComponent = React.useCallback(
+    const renderRowSubComponent = useCallback(
         ({ row }) => <ReactMarkdown>{row.original.content}</ReactMarkdown>,
         [],
     );
 
+    const handleEditButtonClick = (editId: string) => {
+        setId(editId);
+        reset();
+    };
+
+    const editRow = useCallback(
+        (row) => {
+            const { id, title, content } = row.original;
+
+            return (
+                <>
+                    <tr>
+                        <td>
+                            <div>
+                                <span {...row.getToggleRowExpandedProps()}>
+                                    {row.isExpanded ? "👇" : "👉"}
+                                </span>
+                            </div>
+                        </td>
+                        <td>
+                            <span>{id}</span>
+                        </td>
+                        <td>
+                            <input
+                                id="title"
+                                type="text"
+                                defaultValue={title}
+                                {...register("title", {
+                                    required: "Title is required",
+                                })}
+                            />
+                        </td>
+                        <td>
+                            <select
+                                id="category.id"
+                                {...register("category.id", {
+                                    required: "Category title is required",
+                                })}
+                            >
+                                {options?.map((category) => {
+                                    console.log("category", category);
+
+                                    return (
+                                        <option
+                                            defaultValue={
+                                                row.original.category.id
+                                            }
+                                            key={category.value}
+                                            value={category.value}
+                                        >
+                                            {category.label}
+                                        </option>
+                                    );
+                                })}
+                            </select>
+                        </td>
+
+                        <td>
+                            <button type="submit">Save</button>
+                            <button onClick={() => setId(undefined)}>
+                                Cancel
+                            </button>
+                        </td>
+                    </tr>
+                    {row.isExpanded && (
+                        <tr>
+                            <td colSpan={visibleColumns.length}>
+                                <Controller
+                                    defaultValue={content}
+                                    control={control}
+                                    name="content"
+                                    rules={{ required: "Content is required" }}
+                                    render={({
+                                        field: { onChange, ref, value },
+                                    }) => (
+                                        <ReactMde
+                                            ref={ref}
+                                            value={value}
+                                            onChange={onChange}
+                                            selectedTab={selectedTab}
+                                            onTabChange={setSelectedTab}
+                                            generateMarkdownPreview={(
+                                                markdown,
+                                            ) =>
+                                                Promise.resolve(
+                                                    <ReactMarkdown>
+                                                        {markdown}
+                                                    </ReactMarkdown>,
+                                                )
+                                            }
+                                        />
+                                    )}
+                                />
+                            </td>
+                        </tr>
+                    )}
+                </>
+            );
+        },
+        [options],
+    );
+
     return (
-        <div>
+        <form onSubmit={handleSubmit(onFinish)}>
             <table
                 {...getTableProps()}
                 style={{
@@ -157,30 +300,36 @@ export const PostList: React.FC = () => {
                 <tbody {...getTableBodyProps()}>
                     {page.map((row) => {
                         prepareRow(row);
-                        return (
-                            <React.Fragment {...row.getRowProps()}>
-                                <tr>
-                                    {row.cells.map((cell) => {
-                                        return (
-                                            <td {...cell.getCellProps()}>
-                                                {cell.render("Cell")}
-                                            </td>
-                                        );
-                                    })}
-                                </tr>
-
-                                {row.isExpanded ? (
+                        if (id === (row.original as any).id) {
+                            return editRow(row);
+                        } else
+                            return (
+                                <React.Fragment key={row.getRowProps().key}>
                                     <tr>
-                                        <td colSpan={visibleColumns.length}>
-                                            {renderRowSubComponent({ row })}
-                                        </td>
+                                        {row.cells.map((cell) => {
+                                            return (
+                                                <td {...cell.getCellProps()}>
+                                                    {cell.render("Cell")}
+                                                </td>
+                                            );
+                                        })}
                                     </tr>
-                                ) : null}
-                            </React.Fragment>
-                        );
+
+                                    {row.isExpanded ? (
+                                        <tr>
+                                            <td colSpan={visibleColumns.length}>
+                                                {renderRowSubComponent({
+                                                    row,
+                                                })}
+                                            </td>
+                                        </tr>
+                                    ) : null}
+                                </React.Fragment>
+                            );
                     })}
                 </tbody>
             </table>
+
             <div className="pagination">
                 <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
                     {"<<"}
@@ -233,6 +382,6 @@ export const PostList: React.FC = () => {
                     ))}
                 </select>
             </div>
-        </div>
+        </form>
     );
 };
