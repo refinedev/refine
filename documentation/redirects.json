@@ -11,6 +11,10 @@
         {
             "from": "/docs/next/api-references/providers/i18n-provider",
             "to": "/docs/next/core/providers/i18n-provider"
+        },
+        {
+            "from": "/docs/next/api-references/providers/live-provider",
+            "to": "/docs/next/core/providers/live-provider"
         }
     ]
 }

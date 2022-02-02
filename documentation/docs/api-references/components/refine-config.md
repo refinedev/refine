@@ -253,7 +253,7 @@ Custom route name
 
 **refine** lets you add Realtime support to your app via `liveProvider`. It can be used to update and show data in Realtime throughout your app.
 
-[Refer to live provider documentation for detailed information. &#8594](api-references/providers/live-provider.md)
+[Refer to live provider documentation for detailed information. &#8594](/core/providers/live-provider.md)
 
 <br />
 
@@ -361,14 +361,14 @@ Default value is `false`.
 
 Whether to update data automatically (`auto`) or not (`manual`) if a related live event is received. The `off` value is used to avoid creating a subscription.
 
-[Refer to live provider documentation for detailed information. &#8594](api-references/providers/live-provider.md#livemode)
+[Refer to live provider documentation for detailed information. &#8594](/core/providers/live-provider.md#livemode)
 
 
 ## `onLiveEvent`
 
 Callback to handle all live events.
 
-[Refer to live provider documentation for detailed information. &#8594](api-references/providers/live-provider.md#refine)
+[Refer to live provider documentation for detailed information. &#8594](/core/providers/live-provider.md#refine)
 
 ## `configProviderProps`
 

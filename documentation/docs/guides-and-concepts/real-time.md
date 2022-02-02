@@ -9,7 +9,7 @@ import customSider from '@site/static/img/guides-and-concepts/real-time/custom-s
 
 **refine** lets you add Realtime support to your app via `liveProvider` prop for [`<Refine>`](api-references/components/refine-config.md). It can be used to update and show data in Realtime throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), etc.) to be integrated.
 
-[Refer to the Live Provider documentation for detailed information. &#8594](api-references/providers/live-provider.md)
+[Refer to the Live Provider documentation for detailed information. &#8594](/core/providers/live-provider.md)
 
 We will be using [Ably](https://ably.com) in this guide to provide Realtime features.
 
@@ -86,7 +86,7 @@ export default App;
 
 For live features to work automatically we also added `liveMode="auto"`.
 
-[Refer to the Live Provider documentation for detailed information. &#8594](api-references/providers/live-provider.md#livemode)
+[Refer to the Live Provider documentation for detailed information. &#8594](/core/providers/live-provider.md#livemode)
 :::
 
 <br/>

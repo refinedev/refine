@@ -201,5 +201,5 @@ console.log(filters); // [{ field: "title", operator: "contains", value: "A" }, 
 [httperror]: /api-references/interfaces.md#httperror
 [table search]: /guides-and-concepts/search/table-search.md
 [refine swl]: /api-references/components/refine-config.md#syncwithlocation
-[live mode]: /api-references/providers/live-provider.md#usage-in-a-hook
+[live mode]: /core/providers/live-provider.md#usage-in-a-hook
 [live mod props]: /api-references/interfaces.md#livemodeprops

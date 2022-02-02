@@ -3,7 +3,7 @@ id: useSubscription
 title: useSubscription
 ---
 
-It is used to subscribe to a Realtime channel. It returns the `subscribe` method from [`liveProvider`](/api-references/providers/live-provider.md#subscribe) under the hood.
+It is used to subscribe to a Realtime channel. It returns the `subscribe` method from [`liveProvider`](/core/providers/live-provider.md#subscribe) under the hood.
 
 ## Usage
 

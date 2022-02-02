@@ -40,7 +40,7 @@ This guide will help you learn and get information of basic **refine** concepts.
 -   `@pankod/refine-nextjs-router` - Router Provider for [Next.js](https://nextjs.org/docs/api-reference/next/router#userouter)
 -   `@pankod/refine-react-location` - Router Provider for [React Location](https://github.com/tannerlinsley/react-location)
 
-**[Live Provider](https://refine.dev/docs/api-references/providers/live-provider/) Packages**
+**[Live Provider](https://refine.dev/docs/core/providers/live-provider/) Packages**
 
 -   `@pankod/refine-ably` - [Ably](https://ably.com/) Live/Realtime Provider
 

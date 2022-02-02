@@ -26,7 +26,7 @@ module.exports = {
                     items: [
                         "core/providers/auth-provider",
                         "api-references/providers/data-provider",
-                        "api-references/providers/live-provider",
+                        "core/providers/live-provider",
                         "core/providers/accessControl-provider",
                         "core/providers/i18n-provider",
                         "api-references/providers/router-provider",
