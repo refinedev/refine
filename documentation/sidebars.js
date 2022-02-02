@@ -450,7 +450,10 @@ module.exports = {
                 {
                     type: "category",
                     label: "React Table",
-                    items: ["examples/react-table/react-table"],
+                    items: [
+                        "examples/react-table/react-table",
+                        "examples/react-table/advanced-react-table",
+                    ],
                 },
                 {
                     type: "category",
