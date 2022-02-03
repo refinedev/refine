@@ -118,8 +118,8 @@ module.exports = {
                             type: "category",
                             label: "Resource",
                             items: [
-                                "api-references/hooks/resource/useResource",
-                                "api-references/hooks/resource/useResourceWithRoute",
+                                "core/hooks/resource/useResource",
+                                "core/hooks/resource/useResourceWithRoute",
                             ],
                         },
                         {

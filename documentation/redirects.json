@@ -123,6 +123,14 @@
         {
             "from": "/docs/next/api-references/hooks/show/useShow",
             "to": "/docs/next/core/hooks/show/useShow"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/resource/useResource",
+            "to": "/docs/next/core/hooks/resource/useResource"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/resource/useResourceWithRoute",
+            "to": "/docs/next/core/hooks/resource/useResourceWithRoute"
         }
     ]
 }

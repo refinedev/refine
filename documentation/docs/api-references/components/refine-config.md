@@ -124,7 +124,7 @@ The values of `canCreate`, `canEdit` and `canShow` are determined by whether ass
 `name` and `canDelete` are the values passed to the `resources`.
 
 :::tip
-This props can be get by using the [useResource](api-references/hooks/resource/useResource.md) hook.
+This props can be get by using the [useResource](/core/hooks/resource/useResource.md) hook.
 :::
 
 ### `name`
