@@ -1,9 +1,9 @@
 {
   "name": "refine-table-filter-example",
-  "version": "3.0.6",
+  "version": "3.0.8",
   "private": true,
   "dependencies": {
-    "@pankod/refine-antd": "^3.0.6",
+    "@pankod/refine-antd": "^3.0.8",
     "@pankod/refine-core": "^3.0.5",
     "@pankod/refine-react-router": "^3.0.5",
     "@pankod/refine-simple-rest": "^3.0.5",
