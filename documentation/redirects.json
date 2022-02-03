@@ -135,6 +135,10 @@
         {
             "from": "/docs/next/api-references/hooks/navigation/useNavigation",
             "to": "/docs/next/core/hooks/navigation/useNavigation"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/ui/useModal",
+            "to": "/docs/next/core/hooks/ui/useModal/"
         }
     ]
 }

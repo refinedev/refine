@@ -135,7 +135,7 @@ module.exports = {
                         {
                             type: "category",
                             label: "UI",
-                            items: ["core/hooks/useModal"],
+                            items: ["core/hooks/ui/useModal"],
                         },
                         {
                             type: "category",
