@@ -139,6 +139,10 @@
         {
             "from": "/docs/next/api-references/hooks/ui/useModal",
             "to": "/docs/next/core/hooks/ui/useModal/"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/form/useForm",
+            "to": "/docs/next/core/hooks/useForm"
         }
     ]
 }

@@ -23,7 +23,7 @@ Hooks and components that support `MetaDataQuery`:
 
 | Supported data hooks                                                 | Supported other hooks                                                       | Supported components                                                   |
 | -------------------------------------------------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`useUpdate` &#8594](/core/hooks/data/useUpdate.md)         | [`useForm` &#8594](api-references/hooks/form/useForm.md)                    | [`DeleteButton` &#8594](api-references/components/buttons/delete.md)   |
+| [`useUpdate` &#8594](/core/hooks/data/useUpdate.md)         | [`useForm` &#8594](/core/hooks/useForm.md)                    | [`DeleteButton` &#8594](api-references/components/buttons/delete.md)   |
 | [`useUpdateMany` &#8594](/core/hooks/data/useUpdateMany.md) | [`useModalForm` &#8594](api-references/hooks/form/useModalForm.md)          | [`RefreshButton` &#8594](api-references/components/buttons/refresh.md) |
 | [`useDelete` &#8594](/core/hooks/data/useDelete.md)         | [`useDrawerForm` &#8594](api-references/hooks/form/useDrawerForm.md)        |                                                                        |
 | [`useDeleteMany` &#8594](/core/hooks/data/useDeleteMany.md) | [`useStepsForm` &#8594](api-references/hooks/form/useStepsForm.md)          |                                                                        |

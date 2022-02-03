@@ -1157,7 +1157,7 @@ On the example it returns `formProps` and `saveButtonProps`, where the former in
 :::caution Attention
 In edit page, `useForm` hook initializes the form with current record values.
 
-[Refer to the `useForm` documentation for detailed usage information . &#8594](api-references/hooks/form/useForm.md)
+[Refer to the `useForm` documentation for detailed usage information . &#8594](/core/hooks/useForm.md)
 
 ✳️ `<Form>` and `<Form.Item>` are Ant Design components to build form inputs.
 

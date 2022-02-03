@@ -9,7 +9,7 @@ import saveButton from '@site/static/img/guides-and-concepts/components/buttons/
 
 ## Usage
 
-For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](api-references/hooks/form/useForm.md) hook.
+For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/ui-frameworks/antd/hooks/form/useForm.md) hook.
 
 ```tsx
 import { Edit, Form, Input, useForm } from "@pankod/refine-antd";
@@ -56,7 +56,7 @@ Will look like this:
 </div>
 <br/>
 
-The [`useForm`](api-references/hooks/form/useForm.md) hook exposes `saveButtonProps` to be passed to `<SaveButton>` component which includes submitting the form action, button loading, and disable states.
+The [`useForm`](/ui-frameworks/antd/hooks/form/useForm.md) hook exposes `saveButtonProps` to be passed to `<SaveButton>` component which includes submitting the form action, button loading, and disable states.
 
 ## Properties
 

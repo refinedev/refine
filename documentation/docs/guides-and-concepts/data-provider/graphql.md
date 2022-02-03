@@ -24,7 +24,7 @@ Hooks and components that support `MetaDataQuery`:
 
 | Supported data hooks                                                 | Supported other hooks                                                       | Supported components                                                   |
 | -------------------------------------------------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`useUpdate` &#8594](/core/hooks/data/useUpdate.md)         | [`useForm` &#8594](api-references/hooks/form/useForm.md)                    | [`DeleteButton` &#8594](api-references/components/buttons/delete.md)   |
+| [`useUpdate` &#8594](/core/hooks/data/useUpdate.md)         | [`useForm` &#8594](/core/hooks/useForm.md)                    | [`DeleteButton` &#8594](api-references/components/buttons/delete.md)   |
 | [`useUpdateMany` &#8594](/core/hooks/data/useUpdateMany.md) | [`useModalForm` &#8594](api-references/hooks/form/useModalForm.md)          | [`RefreshButton` &#8594](api-references/components/buttons/refresh.md) |
 | [`useDelete` &#8594](/core/hooks/data/useDelete.md)         | [`useDrawerForm` &#8594](api-references/hooks/form/useDrawerForm.md)        |                                                                        |
 | [`useDeleteMany` &#8594](/core/hooks/data/useDeleteMany.md) | [`useStepsForm` &#8594](api-references/hooks/form/useStepsForm.md)          |                                                                        |
@@ -230,7 +230,7 @@ query ($sort: String, $where: JSON, $start: Int, $limit: Int) {
 
 ## Edit Page
 
-On the edit page [`useForm`](api-references/hooks/form/useForm.md) sends a request with the record id to fill the form. `fields` must be sent in `metaData` to determine which fields will come in this request.
+On the edit page [`useForm`](/core/hooks/useForm.md) sends a request with the record id to fill the form. `fields` must be sent in `metaData` to determine which fields will come in this request.
 
 <Tabs
 defaultValue="usage"
@@ -335,7 +335,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
 ```
 
 :::info
-The create page is largely the same as the edit page, there is no need to pass `metaData` to [`useForm`](api-references/hooks/form/useForm.md) on the create page. If you want to use the created record as a response after the request, you can pass the `fields` with `metaData`.
+The create page is largely the same as the edit page, there is no need to pass `metaData` to [`useForm`](/core/hooks/useForm.md) on the create page. If you want to use the created record as a response after the request, you can pass the `fields` with `metaData`.
 :::
 
 </TabItem>
