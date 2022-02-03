@@ -10,13 +10,11 @@ import {
     useWarnAboutChange,
     useResourceWithRoute,
     useRouterContext,
-} from "@pankod/refine-core";
-import {
     HttpError,
     ResourceRouterParams,
-    UseFormProps,
+    UseFormProps as UseFormPropsCore,
 } from "@pankod/refine-core";
-import { useForm, UseFormReturnType } from "../useForm";
+import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 import { BaseRecord, LiveModeProps } from "@pankod/refine-core/dist/interfaces";
 import { useModalFormFromSFReturnType } from "../../../../types/sunflower";
 
@@ -38,7 +36,8 @@ export type useModalFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = UseFormProps<TData, TError, TVariables> &
+> = UseFormPropsCore<TData, TError, TVariables> &
+    UseFormProps &
     UseModalFormConfigSF &
     useModalFormConfig &
     LiveModeProps;
