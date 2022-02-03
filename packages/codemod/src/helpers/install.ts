@@ -58,7 +58,7 @@ export function install(
                 /**
                  * Call `yarn add --exact (--offline)? (-D)? ...`.
                  */
-                args = ["add", "--exact"];
+                args = ["add"];
                 if (!isOnline) args.push("--offline");
                 args.push("--cwd", root);
                 if (devDependencies) args.push("--dev");
@@ -67,7 +67,7 @@ export function install(
                 /**
                  * Call `npm install [--save|--save-dev] ...`.
                  */
-                args = ["install", "--save-exact"];
+                args = ["install"];
                 args.push(devDependencies ? "--save-dev" : "--save");
                 args.push(...dependencies);
             }
