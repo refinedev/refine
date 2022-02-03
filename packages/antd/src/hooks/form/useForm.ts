@@ -64,7 +64,7 @@ export const useForm = <
     liveParams,
     mutationMode,
     onLiveEvent,
-}: UseFormProps<TData, TError, TVariables>): UseFormReturnType<
+}: UseFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
     TData,
     TError,
     TVariables
