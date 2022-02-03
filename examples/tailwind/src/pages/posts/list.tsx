@@ -147,7 +147,7 @@ export const PostList: React.FC = () => {
                 <div className="w-1/4 pr-8">
                     <label
                         htmlFor="title"
-                        className="inline-block mb-2 text-gray-700 font-bold"
+                        className="mb-2 inline-block font-bold text-gray-700"
                     >
                         Title
                     </label>
@@ -160,17 +160,17 @@ export const PostList: React.FC = () => {
                         onChange={(event) =>
                             setFilter("title", event.target.value)
                         }
-                        className="w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
+                        className="w-full rounded border border-solid border-gray-300 bg-white px-3 py-1.5 text-gray-700 transition ease-in-out focus:border-green-600 focus:bg-white focus:text-gray-700 focus:outline-none"
                     />
                     <label
                         htmlFor="Category"
-                        className="inline-block my-2 text-gray-700 font-bold"
+                        className="my-2 inline-block font-bold text-gray-700"
                     >
                         Category
                     </label>
                     <select
                         id="category"
-                        className="appearance-none w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
+                        className="w-full appearance-none rounded border border-solid border-gray-300 bg-white px-3 py-1.5 text-gray-700 transition ease-in-out focus:border-green-600 focus:bg-white focus:text-gray-700 focus:outline-none"
                         aria-label="Category select"
                         onChange={(event) => {
                             setFilter("category.id", event.target.value);
@@ -194,7 +194,7 @@ export const PostList: React.FC = () => {
                 </div>
                 <div className="w-3/4 overflow-x-auto">
                     <table {...getTableProps()}>
-                        <thead className="bg-white border-b ">
+                        <thead className="border-b bg-white ">
                             {headerGroups.map((headerGroup) => (
                                 <tr {...headerGroup.getHeaderGroupProps()}>
                                     {headerGroup.headers.map((column) => (
@@ -202,7 +202,7 @@ export const PostList: React.FC = () => {
                                             {...column.getHeaderProps(
                                                 column.getSortByToggleProps(),
                                             )}
-                                            className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                                            className="px-6 py-4 text-left text-sm font-medium text-gray-900"
                                         >
                                             {column.render("Header")}
                                             <span>
@@ -223,13 +223,13 @@ export const PostList: React.FC = () => {
                                 return (
                                     <tr
                                         {...row.getRowProps()}
-                                        className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
+                                        className="border-b bg-white transition duration-300 ease-in-out hover:bg-gray-100"
                                     >
                                         {row.cells.map((cell) => {
                                             return (
                                                 <td
                                                     {...cell.getCellProps()}
-                                                    className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                                                    className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900"
                                                 >
                                                     {cell.render("Cell")}
                                                 </td>
@@ -247,7 +247,7 @@ export const PostList: React.FC = () => {
                                 gotoPage(0);
                             }}
                             disabled={!canPreviousPage}
-                            className="px-2.5 py-2.5 bg-transparent text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:text-blue-700 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:ring-0 active:bg-gray-300 transition duration-150 ease-in-out disabled:opacity-60 disabled:cursor-default"
+                            className="rounded bg-transparent px-2.5 py-2.5 text-xs font-medium uppercase leading-tight text-blue-600 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-blue-700 focus:bg-gray-200 focus:outline-none focus:ring-0 active:bg-gray-300 disabled:cursor-default disabled:opacity-60"
                         >
                             {"<<"}
                         </button>{" "}
@@ -256,7 +256,7 @@ export const PostList: React.FC = () => {
                                 previousPage();
                             }}
                             disabled={!canPreviousPage}
-                            className="px-2.5 py-2.5 bg-transparent text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:text-blue-700 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:ring-0 active:bg-gray-300 transition duration-150 ease-in-out disabled:opacity-60 disabled:cursor-default"
+                            className="rounded bg-transparent px-2.5 py-2.5 text-xs font-medium uppercase leading-tight text-blue-600 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-blue-700 focus:bg-gray-200 focus:outline-none focus:ring-0 active:bg-gray-300 disabled:cursor-default disabled:opacity-60"
                         >
                             {"<"}
                         </button>{" "}
@@ -265,7 +265,7 @@ export const PostList: React.FC = () => {
                                 nextPage();
                             }}
                             disabled={!canNextPage}
-                            className="px-2.5 py-2.5 bg-transparent text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:text-blue-700 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:ring-0 active:bg-gray-300 transition duration-150 ease-in-out disabled:opacity-60 disabled:cursor-default"
+                            className="rounded bg-transparent px-2.5 py-2.5 text-xs font-medium uppercase leading-tight text-blue-600 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-blue-700 focus:bg-gray-200 focus:outline-none focus:ring-0 active:bg-gray-300 disabled:cursor-default disabled:opacity-60"
                         >
                             {">"}
                         </button>{" "}
@@ -274,7 +274,7 @@ export const PostList: React.FC = () => {
                                 gotoPage(pageCount - 1);
                             }}
                             disabled={!canNextPage}
-                            className="px-2.5 py-2.5 bg-transparent text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:text-blue-700 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:ring-0 active:bg-gray-300 transition duration-150 ease-in-out disabled:opacity-60 disabled:cursor-default"
+                            className="rounded bg-transparent px-2.5 py-2.5 text-xs font-medium uppercase leading-tight text-blue-600 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-blue-700 focus:bg-gray-200 focus:outline-none focus:ring-0 active:bg-gray-300 disabled:cursor-default disabled:opacity-60"
                         >
                             {">>"}
                         </button>{" "}
@@ -295,7 +295,7 @@ export const PostList: React.FC = () => {
                                         : 0;
                                     gotoPage(page);
                                 }}
-                                className="w-16 px-2 py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                className="m-0 w-16 rounded border border-solid border-gray-300 bg-white bg-clip-padding px-2 py-1 text-sm font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
                             />
                         </span>{" "}
                         <select
@@ -303,7 +303,7 @@ export const PostList: React.FC = () => {
                             onChange={(e) => {
                                 setPageSize(Number(e.target.value));
                             }}
-                            className="px-2 py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                            className="m-0 rounded border border-solid border-gray-300 bg-white bg-clip-padding bg-no-repeat px-2 py-1 text-sm font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
                         >
                             {[10, 20, 30, 40, 50].map((pageSize) => (
                                 <option key={pageSize} value={pageSize}>

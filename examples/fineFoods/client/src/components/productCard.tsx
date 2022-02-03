@@ -26,11 +26,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     const [amount, setAmount] = useState(1);
 
     return (
-        <div className="p-2 h-full">
-            <div className="flex flex-col justify-between border border-gray-200 shadow-md rounded-lg overflow-hidden relative p-2 pt-0 md:pt-8 lg:pt-2 h-full">
-                <div className="flex flex-row md:flex-col lg:flex-row justify-center items-center">
+        <div className="h-full p-2">
+            <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-lg border border-gray-200 p-2 pt-0 shadow-md md:pt-8 lg:pt-2">
+                <div className="flex flex-row items-center justify-center md:flex-col lg:flex-row">
                     <span
-                        className="absolute top-0 right-0 text-white rounded-bl-2xl py-0.5 px-3 bg-primary font-bold uppercase z-10"
+                        className="bg-primary absolute top-0 right-0 z-10 rounded-bl-2xl py-0.5 px-3 font-bold uppercase text-white"
                         style={{ backgroundColor: badgeBgColor }}
                     >
                         {badgeTitle}
@@ -42,10 +42,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                             alt={title}
                         />
                     </div>
-                    <div className="flex-auto pt-8 px-2 h-full">
+                    <div className="h-full flex-auto px-2 pt-8">
                         <h3 className="font-bold text-gray-800">{title}</h3>
                         <p className="text-sm">{description}</p>
-                        <span className="font-bold text-gray-800 text-lg">
+                        <span className="text-lg font-bold text-gray-800">
                             ${price / 100}
                         </span>
                     </div>
@@ -53,7 +53,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 <div className="flex gap-1 self-end">
                     <NumberInput value={amount} setValue={setAmount} />
                     <button
-                        className="hover:bg-gray-50 active:scale-95 transition-all"
+                        className="transition-all hover:bg-gray-50 active:scale-95"
                         onClick={() =>
                             dispatch({
                                 type: "addProduct",
@@ -61,7 +61,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                             })
                         }
                     >
-                        <PlusSquareIcon className="text-primary w-6 h-6" />
+                        <PlusSquareIcon className="text-primary h-6 w-6" />
                     </button>
                 </div>
             </div>

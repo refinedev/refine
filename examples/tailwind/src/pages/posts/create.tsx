@@ -65,14 +65,14 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                 <br />
                 <label
                     htmlFor="title"
-                    className="inline-block mb-2 text-gray-700 font-bold"
+                    className="mb-2 inline-block font-bold text-gray-700"
                 >
                     Title
                 </label>
                 <input
                     id="title"
                     type="text"
-                    className="w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
+                    className="w-full rounded border border-solid border-gray-300 bg-white px-3 py-1.5 text-gray-700 transition ease-in-out focus:border-green-600 focus:bg-white focus:text-gray-700 focus:outline-none"
                     {...register("title", { required: "Title is required" })}
                 />
                 <ErrorMessage
@@ -85,14 +85,14 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
 
                 <label
                     htmlFor="category"
-                    className="inline-block mb-2 text-gray-700 font-bold mt-4"
+                    className="mb-2 mt-4 inline-block font-bold text-gray-700"
                 >
                     Category
                 </label>
                 {!queryResult.isLoading && !defaultValueQueryResult.isLoading && (
                     <select
                         id="category"
-                        className="appearance-none w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
+                        className="w-full appearance-none rounded border border-solid border-gray-300 bg-white px-3 py-1.5 text-gray-700 transition ease-in-out focus:border-green-600 focus:bg-white focus:text-gray-700 focus:outline-none"
                         aria-label="Category select"
                         {...register("category.id", {
                             required: "Category is required",
@@ -119,13 +119,13 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
 
                 <label
                     htmlFor="status"
-                    className="inline-block mb-2 text-gray-700 font-bold mt-4"
+                    className="mb-2 mt-4 inline-block font-bold text-gray-700"
                 >
                     Status
                 </label>
                 <select
                     id="status"
-                    className="appearance-none w-full px-3 py-1.5 text-gray-700 bg-white border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
+                    className="w-full appearance-none rounded border border-solid border-gray-300 bg-white px-3 py-1.5 text-gray-700 transition ease-in-out focus:border-green-600 focus:bg-white focus:text-gray-700 focus:outline-none"
                     aria-label="Status select"
                     {...register("status", { required: "Status is required" })}
                 >
@@ -141,7 +141,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                     )}
                 />
 
-                <label className="inline-block mb-2 text-gray-700 font-bold mt-4">
+                <label className="mb-2 mt-4 inline-block font-bold text-gray-700">
                     Content
                 </label>
                 <Controller

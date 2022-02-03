@@ -17,7 +17,7 @@ export const UndoableNotification = ({
                     cancelMutation?.();
                     closeToast?.();
                 }}
-                className="px-2 font-semibold text-sm bg-blue-400 text-white rounded-sm shadow-sm hover:bg-blue-500"
+                className="rounded-sm bg-blue-400 px-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500"
             >
                 Undo
             </button>
