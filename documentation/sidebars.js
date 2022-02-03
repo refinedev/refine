@@ -98,7 +98,7 @@ module.exports = {
                         {
                             type: "category",
                             label: "Refine",
-                            items: ["api-references/hooks/refine/useTitle"],
+                            items: ["core/hooks/refine/useTitle"],
                         },
                         {
                             type: "category",

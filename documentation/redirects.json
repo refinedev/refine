@@ -95,6 +95,10 @@
         {
             "from": "/docs/next/api-references/hooks/accessControl/useCan",
             "to": "/docs/next/core/hooks/accessControl/useCan"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/refine/useTitle",
+            "to": "/docs/next/core/hooks/refine/useTitle"
         }
     ]
 }

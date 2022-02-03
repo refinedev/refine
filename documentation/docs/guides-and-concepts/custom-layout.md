@@ -140,4 +140,4 @@ Here's how it looks in the end:
 [custom page example code]: /examples/customization/topMenuLayout.md
 [antdlayout]: https://ant.design/components/layout/
 [usemenu]: /api-references/hooks/resource/useMenu.md
-[usetitle]: /api-references/hooks/refine/useTitle.md
+[usetitle]: /core/hooks/refine/useTitle.md
