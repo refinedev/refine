@@ -1,11 +1,11 @@
 {
   "name": "refine-example-mutation-mode",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "private": true,
   "dependencies": {
-    "@pankod/refine-antd": "^3.0.5",
+    "@pankod/refine-antd": "^3.0.6",
     "@pankod/refine-core": "^3.0.5",
-    "@pankod/refine-demo-sidebar": "^3.0.5",
+    "@pankod/refine-demo-sidebar": "^3.0.6",
     "@pankod/refine-react-router": "^3.0.5",
     "@pankod/refine-simple-rest": "^3.0.5",
     "@types/node": "^12.20.11",

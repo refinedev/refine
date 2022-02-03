@@ -1,11 +1,11 @@
 {
   "name": "refine-supabase-issue-tracker",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "private": true,
   "dependencies": {
     "@ant-design/charts": "^1.2.14",
     "@pankod/refine": "2.0.11",
-    "@pankod/refine-antd": "^3.0.5",
+    "@pankod/refine-antd": "^3.0.6",
     "@pankod/refine-core": "^3.0.5",
     "@pankod/refine-react-router": "^3.0.5",
     "@pankod/refine-supabase": "^3.0.5",
