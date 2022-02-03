@@ -429,7 +429,7 @@ This is the point where the ✨real magic✨ happens!
 
 :::note
 **refine** depends heavily on hooks and `useTable()` is only one among many others.
-On [useTable() Documentation](api-references/hooks/table/useTable.md) you may find more information about the usage of this hook.
+On [useTable() Documentation](/core/hooks/useTable.md) you may find more information about the usage of this hook.
 :::
 
 ✳️ `<Table.Column>` components are used for mapping and formatting each field shown on the `<Table/>`. `dataIndex` prop maps the field to a matching key from the API response. `render` prop is used to choose the appropriate **Field** component for the given data type.

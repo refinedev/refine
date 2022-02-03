@@ -143,6 +143,10 @@
         {
             "from": "/docs/next/api-references/hooks/form/useForm",
             "to": "/docs/next/core/hooks/useForm"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/table/useTable",
+            "to": "/docs/next/core/hooks/useTable"
         }
     ]
 }

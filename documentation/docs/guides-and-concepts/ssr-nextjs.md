@@ -373,12 +373,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 [NextjsCustomApp]: https://nextjs.org/docs/advanced-features/custom-app
 [refine]: /api-references/components/refine-config.md
 [NextjsPages]: https://nextjs.org/docs/basic-features/pages
-[useTable]: /api-references/hooks/table/useTable.md
+[useTable]: /core/hooks/useTable.md
 [ReactQuerySSR]: https://react-query.tanstack.com/guides/ssr#using-initialdata
 [ReactQuery]: https://react-query.tanstack.com/
 [getList]: /core/providers/data-provider.md#getlist
 [dataProvider]: /core/providers/data-provider.md
-[useTable]: /api-references/hooks/table/useTable.md
+[useTable]: /core/hooks/useTable.md
 [interfaces]: /core/interfaces.md/#crudfilters
 [autoStaticOpt]: https://nextjs.org/docs/advanced-features/automatic-static-optimization
 [dataFetching]: https://nextjs.org/docs/basic-features/data-fetching

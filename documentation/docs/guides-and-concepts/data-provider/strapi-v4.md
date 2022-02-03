@@ -27,7 +27,7 @@ Hooks and components that support `MetaDataQuery`:
 | [`useUpdateMany` &#8594](/core/hooks/data/useUpdateMany.md) | [`useModalForm` &#8594](api-references/hooks/form/useModalForm.md)          | [`RefreshButton` &#8594](api-references/components/buttons/refresh.md) |
 | [`useDelete` &#8594](/core/hooks/data/useDelete.md)         | [`useDrawerForm` &#8594](api-references/hooks/form/useDrawerForm.md)        |                                                                        |
 | [`useDeleteMany` &#8594](/core/hooks/data/useDeleteMany.md) | [`useStepsForm` &#8594](api-references/hooks/form/useStepsForm.md)          |                                                                        |
-| [`useCreate` &#8594](/core/hooks/data/useCreate.md)         | [`useTable` &#8594](api-references/hooks/table/useTable.md)                 |                                                                        |
+| [`useCreate` &#8594](/core/hooks/data/useCreate.md)         | [`useTable` &#8594](/core/hooks/useTable.md)                 |                                                                        |
 | [`useCreateMany` &#8594](/core/hooks/data/useCreateMany.md) | [`useEditableTable` &#8594](api-references/hooks/table/useEditableTable.md) |                                                                        |
 | [`useList` &#8594](/core/hooks/data/useList.md)             | [`useSimpleList` &#8594](api-references/hooks/show/useSimpleList.md)        |                                                                        |
 | [`useOne` &#8594](/core/hooks/data/useOne.md)               | [`useShow` &#8594](/core/hooks/show/useShow.md)                    |                                                                        |

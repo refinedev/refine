@@ -370,7 +370,7 @@ export const PostList: React.FC = () => {
 
 [table]: https://ant.design/components/table/#API
 [form]: https://ant.design/components/form/#API
-[usetable]: /api-references/hooks/table/useTable.md
+[usetable]: /ui-frameworks/antd/hooks/table/useTable.md
 [usequery]: https://react-query.tanstack.com/reference/useQuery
 [usemutation]: https://react-query.tanstack.com/reference/useMutation
 [baserecord]: /core/interfaces.md#baserecord

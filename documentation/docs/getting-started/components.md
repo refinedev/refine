@@ -60,7 +60,7 @@ Feature/Capability Key:
 | [Card](https://ant.design/components/card/)                 |     [🔵](https://ant.design/components/card/)     | [Timeline](https://ant.design/components/timeline/)   | [🔵](https://ant.design/components/timeline/)  |
 | [Calendar](https://ant.design/components/calendar/)         |   [🔵](https://ant.design/components/calendar/)   | [Tag](https://ant.design/components/tag/)             |    [🔵](https://ant.design/components/tag/)    |
 | [Descriptions](https://ant.design/components/descriptions/) | [🔵](https://ant.design/components/descriptions/) | [Tabs](https://ant.design/components/tabs/)           |   [🔵](https://ant.design/components/tabs/)    |
-| [Empty](https://ant.design/components/empty/)               |    [🔵](https://ant.design/components/empty/)     | [Table](https://ant.design/components/table/)         |        [✅](../api-references/hooks/table/useTable.md)        |
+| [Empty](https://ant.design/components/empty/)               |    [🔵](https://ant.design/components/empty/)     | [Table](https://ant.design/components/table/)         |        [✅](/core/hooks/useTable.md)        |
 | [Image](https://ant.design/components/image/)               |    [🔵](https://ant.design/components/image/)     |
 
 ### Feedback
