@@ -104,9 +104,9 @@ module.exports = {
                             type: "category",
                             label: "Translate",
                             items: [
-                                "api-references/hooks/translate/useTranslate",
-                                "api-references/hooks/translate/useSetLocale",
-                                "api-references/hooks/translate/useGetLocale",
+                                "core/hooks/translate/useTranslate",
+                                "core/hooks/translate/useSetLocale",
+                                "core/hooks/translate/useGetLocale",
                             ],
                         },
                         {

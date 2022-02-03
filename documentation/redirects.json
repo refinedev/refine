@@ -107,6 +107,18 @@
         {
             "from": "/docs/next/api-references/hooks/live/useSubscription",
             "to": "/docs/next/core/hooks/live/useSubscription"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/translate/useGetLocale",
+            "to": "/docs/next/core/hooks/translate/useGetLocale"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/translate/useSetLocale",
+            "to": "/docs/next/core/hooks/translate/useSetLocale"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/translate/useTranslate",
+            "to": "/docs/next/core/hooks/translate/useTranslate"
         }
     ]
 }
