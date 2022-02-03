@@ -31,7 +31,7 @@ export type UseOneProps<TData, TError> = {
  *
  * It uses `getOne` method as query function from the `dataProvider` which is passed to `<Refine>`.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/data/useOne} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/data/useOne} for more details.
  *
  * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}

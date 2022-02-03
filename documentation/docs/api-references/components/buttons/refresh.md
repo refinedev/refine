@@ -5,7 +5,7 @@ title: Refresh
 
 import refreshButton from '@site/static/img/guides-and-concepts/components/buttons/refresh/refresh.png';
 
-`<RefreshButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component to update the data shown on the page via the [`useOne`](api-references/hooks/data/useOne.md) method provided by your [`dataProvider`](/core/providers/data-provider.md).
+`<RefreshButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component to update the data shown on the page via the [`useOne`](/core/hooks/data/useOne.md) method provided by your [`dataProvider`](/core/providers/data-provider.md).
 
 ## Usage
 
@@ -71,7 +71,7 @@ export const MyRefreshComponent = () => {
 };
 ```
 
-Clicking the button will trigger the [`useOne`](api-references/hooks/data/useOne.md) method and then fetches the record whose resource is "post" and whose id is "1".
+Clicking the button will trigger the [`useOne`](/core/hooks/data/useOne.md) method and then fetches the record whose resource is "post" and whose id is "1".
 
 :::note
 `<RefreshButton>` component reads the id information from the route by default.
@@ -89,7 +89,7 @@ export const MyRefreshComponent = () => {
 };
 ```
 
-Clicking the button will trigger the [`useOne`](api-references/hooks/data/useOne.md) method and then fetches the record whose resource is "categories" and whose id is "2".
+Clicking the button will trigger the [`useOne`](/core/hooks/data/useOne.md) method and then fetches the record whose resource is "categories" and whose id is "2".
 
 :::note
 `<RefreshButton>` component reads the resource name from the route by default.
@@ -119,5 +119,5 @@ export const MyRefreshComponent = () => {
 | hideText     | Allows to hide button text                   | `boolean`                                                                                                                            | `false`                                                                        |
 | children     | Sets the button text                         | `ReactNode`                                                                                                                          | `"Refresh"`                                                                    |
 | icon         | Sets the icon component of button            | `ReactNode`                                                                                                                          | [`<RedoOutlined />`](https://ant.design/components/icon/)                      |
-| onClick      | Sets the handler to handle the click event   | `(event) => void`                                                                                                                    | trigger the [`useOne`](api-references/hooks/data/useOne.md) method for refresh |
-| metaData     | Metadata query for `dataProvider`            | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)                                                                     | {}                                                                             |
+| onClick      | Sets the handler to handle the click event   | `(event) => void`                                                                                                                    | trigger the [`useOne`](/core/hooks/data/useOne.md) method for refresh |
+| metaData     | Metadata query for `dataProvider`            | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                                                                     | {}                                                                             |

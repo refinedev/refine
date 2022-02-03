@@ -104,7 +104,7 @@ const liveProvider = (client: Ably.Realtime): LiveProvider => {
 | params   | `{ids?: string[]; [key: string]: any;}`                               |         |
 | callback | `(event: LiveEvent) => void;`                                         |         |
 
-> [`LiveEvent`](api-references/interfaces.md#liveevent)
+> [`LiveEvent`](/core/interfaces.md#liveevent)
 
 #### Return Type
 
@@ -201,7 +201,7 @@ If `publish` is used on client side you must handle the security of it by yourse
 | ----- | ----------- |
 | event | `LiveEvent` |
 
-> [`LiveEvent`](api-references/interfaces.md#liveevent)
+> [`LiveEvent`](/core/interfaces.md#liveevent)
 
 #### Return Type
 
@@ -297,9 +297,9 @@ const { data } = useList({
 
 | Supported data hooks                                     | Supported form hooks                                                 | Supported other hooks                                                       |
 | -------------------------------------------------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| [`useList` &#8594](api-references/hooks/data/useList.md) | [`useForm` &#8594](api-references/hooks/form/useForm.md)             | [`useTable` &#8594](api-references/hooks/table/useTable.md)                 |
-| [`useOne` &#8594](api-references/hooks/data/useOne.md)   | [`useModalForm` &#8594](api-references/hooks/form/useModalForm.md)   | [`useEditableTable` &#8594](api-references/hooks/table/useEditableTable.md) |
-| [`useMany` &#8594](api-references/hooks/data/useMany.md) | [`useDrawerForm` &#8594](api-references/hooks/form/useDrawerForm.md) | [`useSimpleList` &#8594](api-references/hooks/show/useSimpleList.md)        |
+| [`useList` &#8594](/core/hooks/data/useList.md) | [`useForm` &#8594](api-references/hooks/form/useForm.md)             | [`useTable` &#8594](api-references/hooks/table/useTable.md)                 |
+| [`useOne` &#8594](/core/hooks/data/useOne.md)   | [`useModalForm` &#8594](api-references/hooks/form/useModalForm.md)   | [`useEditableTable` &#8594](api-references/hooks/table/useEditableTable.md) |
+| [`useMany` &#8594](/core/hooks/data/useMany.md) | [`useDrawerForm` &#8594](api-references/hooks/form/useDrawerForm.md) | [`useSimpleList` &#8594](api-references/hooks/show/useSimpleList.md)        |
 |                                                          | [`useStepsForm` &#8594](api-references/hooks/form/useStepsForm.md)   | [`useShow` &#8594](api-references/hooks/show/useShow.md)                    |
 |                                                          |                                                                      | [`useCheckboxGroup` &#8594](api-references/hooks/field/useCheckboxGroup.md) |
 |                                                          |                                                                      | [`useSelect` &#8594](api-references/hooks/field/useSelect.md)               |

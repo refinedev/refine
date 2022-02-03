@@ -81,7 +81,7 @@ interface IPost {
 
 <br />
 
-When the form is submitted, the `onSearch` method runs and we get the search form values. We have to return an object of type [`CrudFilters`](../../api-references/interfaces.md#crudfilters) for this method.
+When the form is submitted, the `onSearch` method runs and we get the search form values. We have to return an object of type [`CrudFilters`](/core/interfaces.md#crudfilters) for this method.
 
 ```tsx title="pages/list.tsx"
 ...

@@ -109,10 +109,10 @@ mutate({
 
 ### Supported data hooks
 
--   [`useUpdate` &#8594](api-references/hooks/data/useUpdate.md)
--   [`useUpdateMany` &#8594](api-references/hooks/data/useUpdateMany.md)
--   [`useDelete` &#8594](api-references/hooks/data/useDelete.md)
--   [`useDeleteMany` &#8594](api-references/hooks/data/useDeleteMany.md)
+-   [`useUpdate` &#8594](/core/hooks/data/useUpdate.md)
+-   [`useUpdateMany` &#8594](/core/hooks/data/useUpdateMany.md)
+-   [`useDelete` &#8594](/core/hooks/data/useDelete.md)
+-   [`useDeleteMany` &#8594](/core/hooks/data/useDeleteMany.md)
 
 ### Supported form hooks
 

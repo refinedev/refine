@@ -482,7 +482,7 @@ This example is the same as the sorting example in the [React Table][react-table
 
 ## Filtering
 
-We need to import the `useFilters` plugin and inject it into the `useTable` hook in order to use filtering. React Table provides a bunch of methods that we can use to control the filtering. For example, we can use the `setFilter` method to set the current `filter` value. However, with which column we are going to filter, we need to specify the `filter` prop for that column. This `filter` prop must be [`CrudOperators`](/api-references/interfaces.md#crudoperators) type. Every change in the `filter` will trigger a new request to the data provider.
+We need to import the `useFilters` plugin and inject it into the `useTable` hook in order to use filtering. React Table provides a bunch of methods that we can use to control the filtering. For example, we can use the `setFilter` method to set the current `filter` value. However, with which column we are going to filter, we need to specify the `filter` prop for that column. This `filter` prop must be [`CrudOperators`](/core/interfaces.md#crudoperators) type. Every change in the `filter` will trigger a new request to the data provider.
 
 ```tsx title="src/posts/list.tsx"
 import {
@@ -675,5 +675,5 @@ const {
 [react-table]: https://react-table.tanstack.com
 [refine-react-table]: https://github.com/pankod/refine/tree/master/packages/react-table
 [react-table-core]: /core/hooks/useTable.md
-[baserecord]: /api-references/interfaces.md#baserecord
-[httperror]: /api-references/interfaces.md#httperror
+[baserecord]: /core/interfaces.md#baserecord
+[httperror]: /core/interfaces.md#httperror

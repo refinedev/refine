@@ -202,7 +202,7 @@ You can pass more options to further customize the exporting process.
 | sorter        | Sorts  records                                                                                                             | [`CrudSorting`][CrudSorting] \| `undefined`                                      |    |
 | filter        | Filters records                                                                                                            | [`CrudFilters`][CrudFilters] \| `undefined`                                      |    |
 | exportOptions | Used for exporting options                                                                                                 | [`Options`][export-to-csv#api] \| `undefined`                                    |    |
-| metaData      | Metadata query for `dataProvider`                                                                                          | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)                 | {} |
+| metaData      | Metadata query for `dataProvider`                                                                                          | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                 | {} |
 
 ### `useExport` Return Values
 
@@ -224,6 +224,6 @@ You can pass more options to further customize the exporting process.
 [useImport#handling-relational-data]: api-references/hooks/import-export/useImport.md#handling-relational-data
 [export-to-csv]: https://github.com/alexcaza/export-to-csv
 [export-to-csv#api]: https://github.com/alexcaza/export-to-csv#api
-[BaseRecord]: /api-references/interfaces.md#baserecord
-[CrudSorting]: /api-references/interfaces.md#crudsorting
-[CrudFilters]: /api-references/interfaces.md#crudfilters
+[BaseRecord]: /core/interfaces.md#baserecord
+[CrudSorting]: /core/interfaces.md#crudsorting
+[CrudFilters]: /core/interfaces.md#crudfilters

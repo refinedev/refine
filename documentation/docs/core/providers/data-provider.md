@@ -61,7 +61,7 @@ const dataProvider = {
 <br/>
 
 :::important
-**refine** consumes this methods using [data hooks](api-references/hooks/data/useCreate.md).
+**refine** consumes this methods using [data hooks](/core/hooks/data/useCreate.md).
 
 Data hooks are used to operate CRUD actions like creating a new record, listing a resource or deleting a record etc..
 :::
@@ -180,7 +180,7 @@ const SimpleRestDataProvider = (
 | resource  | `string`     |         |
 | variables | `TVariables` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useCreate`](/docs/api-references/hooks/data/useCreate#type-parameters) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useCreate`](/docs/next/core/hooks/data/useCreate#type-parameters) to type `variables`
 
 <br/>
 
@@ -199,7 +199,7 @@ mutate({
 });
 ```
 
-> [Refer to the useCreate documentation for more information. &#8594](api-references/hooks/data/useCreate.md)
+> [Refer to the useCreate documentation for more information. &#8594](/core/hooks/data/useCreate.md)
 
 <br />
 
@@ -239,7 +239,7 @@ const SimpleRestDataProvider = (
 | resource  | `string`       |         |
 | variables | `TVariables[]` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useCreateMany`](/docs/api-references/hooks/data/useCreateMany) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useCreateMany`](/core/hooks/data/useCreateMany.md) to type `variables`
 
 <br/>
 
@@ -263,7 +263,7 @@ mutate({
 });
 ```
 
-> [Refer to the useCreateMany documentation for more information. &#8594](api-references/hooks/data/useCreateMany.md)
+> [Refer to the useCreateMany documentation for more information. &#8594](/core/hooks/data/useCreateMany.md)
 
 <br />
 
@@ -311,7 +311,7 @@ const { mutate } = useDelete();
 mutate({ resource: "categories", id: "2" });
 ```
 
-> [Refer to the useDelete documentation for more information. &#8594](api-references/hooks/data/useDelete.md)
+> [Refer to the useDelete documentation for more information. &#8594](/core/hooks/data/useDelete.md)
 
 <br />
 
@@ -364,7 +364,7 @@ mutate({
 });
 ```
 
-> [Refer to the useDeleteMany documentation for more information. &#8594](api-references/hooks/data/useDeleteMany.md)
+> [Refer to the useDeleteMany documentation for more information. &#8594](/core/hooks/data/useDeleteMany.md)
 
 <br />
 
@@ -401,7 +401,7 @@ const SimpleRestDataProvider = (
 | id        | `string`     |         |
 | variables | `TVariables` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/api-references/hooks/data/useUpdate#type-parameters) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/next/core/hooks/data/useUpdate#type-parameters) to type `variables`
 
 <br/>
 
@@ -419,7 +419,7 @@ mutate({
 });
 ```
 
-> [Refer to the useUpdate documentation for more information. &#8594](api-references/hooks/data/useUpdate.md)
+> [Refer to the useUpdate documentation for more information. &#8594](/core/hooks/data/useUpdate.md)
 
 <br />
 
@@ -460,7 +460,7 @@ const SimpleRestDataProvider = (
 | ids       | `string[]`   |         |
 | variables | `TVariables` | `{}`    |
 
-> TVariables is a user defined type which can be passed to [`useUpdateMany`](/docs/api-references/hooks/data/useUpdateMany#type-parameters) to type `variables`
+> TVariables is a user defined type which can be passed to [`useUpdateMany`](/docs/next/core/hooks/data/useUpdateMany#type-parameters) to type `variables`
 
 <br/>
 
@@ -478,7 +478,7 @@ mutate({
 });
 ```
 
-> [Refer to the useUpdateMany documentation for more information. &#8594](api-references/hooks/data/useUpdateMany.md)
+> [Refer to the useUpdateMany documentation for more information. &#8594](/core/hooks/data/useUpdateMany.md)
 
 <br />
 
@@ -524,7 +524,7 @@ import { useOne } from "@pankod/refine-core";
 const { data } = useOne<ICategory>({ resource: "categories", id: "1" });
 ```
 
-> [Refer to the useOne documentation for more information. &#8594](api-references/hooks/data/useOne.md)
+> [Refer to the useOne documentation for more information. &#8594](/core/hooks/data/useOne.md)
 
 <br/>
 
@@ -570,7 +570,7 @@ import { useMany } from "@pankod/refine-core";
 const { data } = useMany({ resource: "categories", ids: ["1", "2"] });
 ```
 
-> [Refer to the useMany documentation for more information. &#8594](api-references/hooks/data/useMany.md)
+> [Refer to the useMany documentation for more information. &#8594](/core/hooks/data/useMany.md)
 
 <br />
 
@@ -607,9 +607,9 @@ const SimpleRestDataProvider = (
 | Name        | Type                                                             |
 | ----------- | ---------------------------------------------------------------- |
 | resource    | `string`                                                         |
-| pagination? | [`Pagination`](../../api-references/interfaces.md#pagination);   |
-| sort?       | [`CrudSorting`](../../api-references/interfaces.md#crudsorting); |
-| filters?    | [`CrudFilters`](../../api-references/interfaces.md#crudfilters); |
+| pagination? | [`Pagination`](/core/interfaces.md#pagination);   |
+| sort?       | [`CrudSorting`](/core/interfaces.md#crudsorting); |
+| filters?    | [`CrudFilters`](/core/interfaces.md#crudfilters); |
 
 <br/>
 
@@ -621,7 +621,7 @@ import { useList } from "@pankod/refine-core";
 const { data } = useList({ resource: "posts" });
 ```
 
-> [Refer to the useList documentation for more information. &#8594](api-references/hooks/data/useList.md)
+> [Refer to the useList documentation for more information. &#8594](/core/hooks/data/useList.md)
 
 <br />
 
@@ -963,8 +963,8 @@ const SimpleRestDataProvider = (
 | -------- | ---------------------------------------------------------------- |
 | url      | `string`                                                         |
 | method   | `get`, `delete`, `head`, `options`, `post`, `put`, `patch`       |
-| sort?    | [`CrudSorting`](../../api-references/interfaces.md#crudsorting); |
-| filters? | [`CrudFilters`](../../api-references/interfaces.md#crudfilters); |
+| sort?    | [`CrudSorting`](/core/interfaces.md#crudsorting); |
+| filters? | [`CrudFilters`](/core/interfaces.md#crudfilters); |
 | payload? | `{}`                                                             |
 | query?   | `{}`                                                             |
 | headers? | `{}`                                                             |
@@ -987,11 +987,11 @@ const { data, isLoading } = useCustom({
 });
 ```
 
-> [Refer to the useCustom documentation for more information. &#8594](api-references/hooks/data/useCustom.md)
+> [Refer to the useCustom documentation for more information. &#8594](/core/hooks/data/useCustom.md)
 
 ### Error Format
 
-**refine** expects errors to be extended from [`HttpError`](../../api-references/interfaces.md#httperror).  
+**refine** expects errors to be extended from [`HttpError`](/core/interfaces.md#httperror).  
 Axios interceptor can be used to transform the error from response before Axios returns the response to your code. Interceptors are methods which are triggered before the main method.
 
 ```ts title="dataProvider.ts"

@@ -28,7 +28,7 @@ const routerProvider = {
 };
 ```
 
-> `*`: Too see &#8594 [`<PromptProps>`](/api-references/interfaces.md#promptprops)
+> `*`: Too see &#8594 [`<PromptProps>`](/core/interfaces.md#promptprops)
 
 :::info
 

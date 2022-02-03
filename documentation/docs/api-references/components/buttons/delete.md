@@ -7,7 +7,7 @@ import deleteButton from '@site/static/img/guides-and-concepts/components/button
 import confirmation from '@site/static/img/guides-and-concepts/components/buttons/delete/confirmation.gif';
 
 `<DeleteButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) and [`<Popconfirm>`](https://ant.design/components/popconfirm/) components.
-When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](api-references/hooks/data/useDelete.md) method provided by your [`dataProvider`](/core/providers/data-provider.md).
+When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/core/hooks/data/useDelete.md) method provided by your [`dataProvider`](/core/providers/data-provider.md).
 
 ## Usage
 
@@ -84,7 +84,7 @@ export const MyDeleteComponent = () => {
 };
 ```
 
-Clicking the button will trigger the [`useDelete`](api-references/hooks/data/useDelete.md) method and then the record whose resource is "post" and whose id is "1" gets deleted.
+Clicking the button will trigger the [`useDelete`](/core/hooks/data/useDelete.md) method and then the record whose resource is "post" and whose id is "1" gets deleted.
 
 :::note
 **`<DeleteButton>`** component reads the id information from the route by default.
@@ -102,7 +102,7 @@ export const MyDeleteComponent = () => {
 };
 ```
 
-Clicking the button will trigger the [`useDelete`](api-references/hooks/data/useDelete.md) method and then the record whose resource is "categories" and whose id is "2" gets deleted.
+Clicking the button will trigger the [`useDelete`](/core/hooks/data/useDelete.md) method and then the record whose resource is "categories" and whose id is "2" gets deleted.
 
 :::note
 **`<DeleteButton>`** component reads the resource name from the route by default.
@@ -211,7 +211,7 @@ export const MyListComponent = () => {
 
 | Property                    | Description                                                                                  | Type                                                                                                                        | Default                                                                              |
 | --------------------------- | -------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| props                       | Ant Design button properties                                                                 | [`ButtonProps`](https://ant.design/components/button/#API) & [`DeleteButtonProps`](../../interfaces.md#delete-button-props) |                                                                                      |
+| props                       | Ant Design button properties                                                                 | [`ButtonProps`](https://ant.design/components/button/#API) & [`DeleteButtonProps`](/core/interfaces.md#delete-button-props) |                                                                                      |
 | resourceName                | Determines which resource to use for deletion                                                | `string`                                                                                                                    | Resource name that it reads from route                                               |
 | recordItemId                | Determines which id to use for deletion                                                      | `string`                                                                                                                    | Record id that it reads from route                                                   |
 | onSuccess                   | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful | `(value: DeleteOneResponse) => void`                                                                                        |                                                                                      |
@@ -222,4 +222,4 @@ export const MyListComponent = () => {
 | icon                        | Sets the icon component of the button                                                        | `ReactNode`                                                                                                                 | [`<DeleteOutlined />`](https://ant.design/components/icon/)                          |
 | danger                      | Sets the danger status of the button                                                         | `boolean`                                                                                                                   | `true`                                                                               |
 | loading                     | Sets the loading status of the button                                                        | `boolean`                                                                                                                   | When the request is not completed, loading is `true`, when it completes it's `false` |
-| metaData                    | Metadata query for `dataProvider`                                                            | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)                                                              | {}                                                                                   |
+| metaData                    | Metadata query for `dataProvider`                                                            | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                                                              | {}                                                                                   |

@@ -47,6 +47,50 @@
         {
             "from": "/docs/next/api-references/hooks/auth/useGetIdentity",
             "to": "/docs/next/core/hooks/auth/useGetIdentity"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/data/useApiUrl",
+            "to": "/docs/next/core/hooks/data/useApiUrl"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/data/useCreate",
+            "to": "/docs/next/core/hooks/data/useCreate"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/data/useCreateMany",
+            "to": "/docs/next/core/hooks/data/useCreateMany"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/data/useCustom",
+            "to": "/docs/next/core/hooks/data/useCustom"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/data/useDelete",
+            "to": "/docs/next/core/hooks/data/useDelete"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/data/useDeleteMany",
+            "to": "/docs/next/core/hooks/data/useDeleteMany"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/data/useList",
+            "to": "/docs/next/core/hooks/data/useList"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/data/useMany",
+            "to": "/docs/next/core/hooks/data/useMany"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/data/useOne",
+            "to": "/docs/next/core/hooks/data/useOne"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/data/useUpdate",
+            "to": "/docs/next/core/hooks/data/useUpdate"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/data/useUpdateMany",
+            "to": "/docs/next/core/hooks/data/useUpdateMany"
         }
     ]
 }

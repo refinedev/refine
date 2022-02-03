@@ -94,7 +94,7 @@ const useCan: ({
 }) => UseQueryResult<CanReturnType*>
 ```
 
-> `*`: Too see &#8594 [`CanParams`](/api-references/interfaces.md#canparams), [`CanReturnType`](/api-references/interfaces.md#canreturntype)
+> `*`: Too see &#8594 [`CanParams`](/core/interfaces.md#canparams), [`CanReturnType`](/core/interfaces.md#canreturntype)
 
 ### `<CanAccess />`
 

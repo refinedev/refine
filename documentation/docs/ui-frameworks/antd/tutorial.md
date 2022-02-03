@@ -604,7 +604,7 @@ enabled: categoryIds.length > 0;
 Here, we set a condition to start fetching only when data is available.
 :::
 
-To get more detailed information about this hook, please refer the [useMany Documentation](/api-references/hooks/data/useMany.md).
+To get more detailed information about this hook, please refer the [useMany Documentation](/core/hooks/data/useMany.md).
 
 ## Adding search and filters
 
@@ -897,7 +897,7 @@ export const PostList: React.FC = () => {
 
 ✳️ To retrieve the category title, again we need to make a call to `/categories` endpoint. This time we used `useOne()` hook to get a single record from another resource.
 
-[Refer to the `useOne` documentation for detailed usage information. &#8594](/api-references/hooks/data/useOne.md)
+[Refer to the `useOne` documentation for detailed usage information. &#8594](/core/hooks/data/useOne.md)
 
 :::caution attention
 `useShow()` is the preferred hook for fetching data from current resource. For query foreign resources you may use the low-level `useOne()` hook.

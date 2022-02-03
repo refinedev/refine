@@ -159,10 +159,10 @@ You can use `AntdList.Item` and `AntdList.Item.Meta` like `<List>` component fro
 | syncWithLocation | Sortings, filters, page index and records shown per page are tracked by browser history                                 | `boolean`                                                        | Value set in [Refine][refine swl]. If a custom resource is given, it will be `false` |
 | onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. See here to create a [search form][list search] | `Function`                                                       |                                                                                      |
 | queryOptions     | `react-query`'s `useQuery` options                                                                                      | ` UseQueryOptions<{ data: TData[] }, TError>`                    |
-| metaData         | Metadata query for `dataProvider`                                                                                       | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery) | {}                                                                                   |
-| [liveMode](/core/providers/live-provider.md#usage-in-a-hook)                                                                                            | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/api-references/interfaces.md#livemodeprops)       | `"off"`                             |
-| liveParams                                                                                          | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                     | [`{ ids?: string[]; [key: string]: any; }`](/api-references/interfaces.md#livemodeprops) | `undefined`                         |
-| onLiveEvent                                                                                         | Callback to handle all related live events of this hook.                                                                                                                                   | [`(event: LiveEvent) => void`](/api-references/interfaces.md#livemodeprops)                           | `undefined`                                  |
+| metaData         | Metadata query for `dataProvider`                                                                                       | [`MetaDataQuery`](/core/interfaces.md#metadataquery) | {}                                                                                   |
+| [liveMode](/core/providers/live-provider.md#usage-in-a-hook)                                                                                            | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)       | `"off"`                             |
+| liveParams                                                                                          | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                     | [`{ ids?: string[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | `undefined`                         |
+| onLiveEvent                                                                                         | Callback to handle all related live events of this hook.                                                                                                                                   | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)                           | `undefined`                                  |
 
 ### Type Parameters
 
@@ -181,13 +181,13 @@ You can use `AntdList.Item` and `AntdList.Item.Meta` like `<List>` component fro
 | listProps       | Ant design List props           | [`List`][list]                                     |
 | filters         | Current filters state           | [`CrudFilters`][crudfilters]                       |
 
-[crudfilters]: /api-references/interfaces.md#crudfilters
-[crudsorting]: /api-references/interfaces.md#crudsorting
+[crudfilters]: /core/interfaces.md#crudfilters
+[crudsorting]: /core/interfaces.md#crudsorting
 [form]: https://ant.design/components/form/#API
 [list]: https://ant.design/components/list/#API
 [usequery]: https://react-query.tanstack.com/reference/useQuery
 [list search]: /guides-and-concepts/search/list-search.md
-[baserecord]: /api-references/interfaces.md#baserecord
-[httperror]: /api-references/interfaces.md#httperror
+[baserecord]: /core/interfaces.md#baserecord
+[httperror]: /core/interfaces.md#httperror
 [header]: https://ant.design/components/list/#header
 [refine swl]: /api-references/components/refine-config.md#syncwithlocation

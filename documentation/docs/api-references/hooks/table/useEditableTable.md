@@ -320,10 +320,10 @@ export const PostList: React.FC = () => {
 | syncWithLocation                              | Sortings, filters, page index and records shown per page are tracked by browser history.                                                                           | `boolean`                                                                                |
 | onSearch                                      | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][table search] to learn how to create a search form.                 | `Function`                                                                               |
 | queryOptions                                  | `react-query`'s `useQuery` options                                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                              |
-| metaData                                      | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)                           |
-| [liveMode](/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/api-references/interfaces.md#livemodeprops)       |
-| liveParams                                    | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: string[]; [key: string]: any; }`](/api-references/interfaces.md#livemodeprops) | 
-| onLiveEvent                                   | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/api-references/interfaces.md#livemodeprops)              |
+| metaData                                      | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                           |
+| [liveMode](/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)       |
+| liveParams                                    | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: string[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | 
+| onLiveEvent                                   | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)              |
 
 ### Type Parameters
 
@@ -373,10 +373,10 @@ export const PostList: React.FC = () => {
 [usetable]: /api-references/hooks/table/useTable.md
 [usequery]: https://react-query.tanstack.com/reference/useQuery
 [usemutation]: https://react-query.tanstack.com/reference/useMutation
-[baserecord]: /api-references/interfaces.md#baserecord
-[crudsorting]: /api-references/interfaces.md#crudsorting
-[crudfilters]: /api-references/interfaces.md#crudfilters
-[httperror]: /api-references/interfaces.md#httperror
+[baserecord]: /core/interfaces.md#baserecord
+[crudsorting]: /core/interfaces.md#crudsorting
+[crudfilters]: /core/interfaces.md#crudfilters
+[httperror]: /core/interfaces.md#httperror
 [table search]: /guides-and-concepts/search/table-search.md
 [table.column]: https://ant.design/components/table/#Column
 [forminstance]: https://ant.design/components/form/#FormInstance

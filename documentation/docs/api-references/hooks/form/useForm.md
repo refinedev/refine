@@ -87,13 +87,13 @@ const { formProps, saveButtonProps } = useForm({ action: "edit" });
 
 `action: "edit"` is used for editing an existing record. Form will initially be filled with the data of the record.
 
-`useForm` uses [`useUpdate`](../../hooks/data/useUpdate.md) under the hood for mutations on edit mode.
+`useForm` uses [`useUpdate`](/core/hooks/data/useUpdate.md) under the hood for mutations on edit mode.
 
 ### `action: "create"`
 
 `action: "create"`is used for creating a new record that didn't exist before.
 
-`useForm` uses [`useCreate`](../data/useCreate.md) under the hood for mutations on create mode.
+`useForm` uses [`useCreate`](/core/hooks/data/useCreate.md) under the hood for mutations on create mode.
 
 ### Clone mode
 
@@ -142,12 +142,12 @@ const { clone } = useNavigation();
 | warnWhenUnsavedChanges | Shows notification when unsaved changes exist                                                        | `boolean`                                                                  | `false`\*                                                                                                                            |
 | redirect               | Page to redirect after a succesfull mutation                                                         | ` "show` \| `"edit` \| `"list"` \| `false`                                 | `"list"`                                                                                                                             |
 | undoableTimeout        | Duration to wait before executing mutations when `mutationMode = "undoable"`                         | `number`                                                                   | `5000`\*                                                                                                                             |
-| successNotification    | Successful Mutation notification                                                                     | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "Successfully created `resource`" or "Successfully updated `resource`"                                                               |
-| errorNotification      | Unsuccessful Mutation notification                                                                   | [`SuccessErrorNotification`](../../interfaces.md#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
-| metaData                                            | Metadata query for `dataProvider`                                              | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)           | {}                                                                   |
-| [liveMode](/core/providers/live-provider.md#usage-in-a-hook)                                                                                            | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/api-references/interfaces.md#livemodeprops)       | `"off"`                             |
-| liveParams                                                                                          | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                     | [`{ ids?: string[]; [key: string]: any; }`](/api-references/interfaces.md#livemodeprops) | `undefined`                         |
-| onLiveEvent                                                                                         | Callback to handle all related live events of this hook.                                                                                                                                   | [`(event: LiveEvent) => void`](/api-references/interfaces.md#livemodeprops)                           | `undefined`                                  |
+| successNotification    | Successful Mutation notification                                                                     | [`SuccessErrorNotification`](/core/interfaces.md#successerrornotification) | "Successfully created `resource`" or "Successfully updated `resource`"                                                               |
+| errorNotification      | Unsuccessful Mutation notification                                                                   | [`SuccessErrorNotification`](/core/interfaces.md#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
+| metaData                                            | Metadata query for `dataProvider`                                              | [`MetaDataQuery`](/core/interfaces.md#metadataquery)           | {}                                                                   |
+| [liveMode](/core/providers/live-provider.md#usage-in-a-hook)                                                                                            | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)       | `"off"`                             |
+| liveParams                                                                                          | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                     | [`{ ids?: string[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | `undefined`                         |
+| onLiveEvent                                                                                         | Callback to handle all related live events of this hook.                                                                                                                                   | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)                           | `undefined`                                  |
 
 > `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/api-references/components/refine-config.md)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
@@ -185,5 +185,5 @@ const { clone } = useNavigation();
     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
-[BaseRecord]: /api-references/interfaces.md#baserecord
-[HttpError]: /api-references/interfaces.md#httperror
+[BaseRecord]: /core/interfaces.md#baserecord
+[HttpError]: /core/interfaces.md#httperror

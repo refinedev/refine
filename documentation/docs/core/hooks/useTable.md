@@ -164,7 +164,7 @@ console.log(filters); // [{ field: "title", operator: "contains", value: "A" }, 
 | permanentFilter       | Default and unchangeable filter state                                                                                                                              | [`CrudFilters`][crudfilters]                                   | `[]`                                                                                 |
 | syncWithLocation      | Sortings, filters, page index and records shown per page are tracked by browser history                                                                            | `boolean`                                                      | Value set in [Refine][refine swl]. If a custom resource is given, it will be `false` |
 | queryOptions          | `react-query`'s `useQuery` options                                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`    |
-| metaData              | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery) | {}                                                                                   |
+| metaData              | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery) | {}                                                                                   |
 | [liveMode][live mode] | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`][live mod props]            | `"off"`                                                                              |
 | liveParams            | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: string[]; [key: string]: any; }`][live mod props]    | `undefined`                                                                          |
 | onLiveEvent           | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`][live mod props]                 | `undefined`                                                                          |
@@ -195,11 +195,11 @@ console.log(filters); // [{ field: "title", operator: "contains", value: "A" }, 
 [table]: https://ant.design/components/table/#API
 [form]: https://ant.design/components/form/#API
 [usequery]: https://react-query.tanstack.com/reference/useQuery
-[baserecord]: /api-references/interfaces.md#baserecord
-[crudsorting]: /api-references/interfaces.md#crudsorting
-[crudfilters]: /api-references/interfaces.md#crudfilters
-[httperror]: /api-references/interfaces.md#httperror
+[baserecord]: /core/interfaces.md#baserecord
+[crudsorting]: /core/interfaces.md#crudsorting
+[crudfilters]: /core/interfaces.md#crudfilters
+[httperror]: /core/interfaces.md#httperror
 [table search]: /guides-and-concepts/search/table-search.md
 [refine swl]: /api-references/components/refine-config.md#syncwithlocation
 [live mode]: /core/providers/live-provider.md#usage-in-a-hook
-[live mod props]: /api-references/interfaces.md#livemodeprops
+[live mod props]: /core/interfaces.md#livemodeprops
