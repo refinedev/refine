@@ -7,7 +7,7 @@ export type HistoryType = "push" | "replace";
  * It allows you to manage your routing operations in refine.
  * Using this hook, you can manage all the routing operations of your application very easily.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/navigation/useNavigation} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/navigation/useNavigation} for more details.
  */
 export const useNavigation = () => {
     const { useHistory } = useRouterContext();

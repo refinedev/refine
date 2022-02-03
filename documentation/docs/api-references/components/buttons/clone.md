@@ -5,7 +5,7 @@ title: Clone
 
 import cloneButton from '@site/static/img/guides-and-concepts/components/buttons/clone/clone.png';
 
-`<CloneButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `clone` method from [useNavigation](/api-references/hooks/navigation/useNavigation.md) under the hood.
+`<CloneButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `clone` method from [useNavigation](/core/hooks/navigation/useNavigation.md) under the hood.
 It can be useful when redirecting the app to the create page with the record id route of resource.
 
 ## Usage
@@ -72,7 +72,7 @@ export const MyCloneComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect the app to `/posts/clone/1`.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/core/hooks/navigation/useNavigation.md) and then redirect the app to `/posts/clone/1`.
 
 :::note
 **`<CloneButton>`** component reads the id information from the route by default.
@@ -90,7 +90,7 @@ export const MyCloneComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/clone/2`.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/clone/2`.
 
 ### `hideText`
 

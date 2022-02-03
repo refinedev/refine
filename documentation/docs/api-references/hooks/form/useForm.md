@@ -117,7 +117,7 @@ If you want to show a form in a modal or drawer where necessary route params mig
 <CloneButton recordItemId={record.id} />
 ```
 
-Also the `clone` method from the [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) hook can be used as well.
+Also the `clone` method from the [`useNavigation`](/core/hooks/navigation/useNavigation.md) hook can be used as well.
 
 ```tsx 
 const { clone } = useNavigation();

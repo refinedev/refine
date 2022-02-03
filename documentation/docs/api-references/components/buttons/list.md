@@ -5,7 +5,7 @@ title: List
 
 import listButton from '@site/static/img/guides-and-concepts/components/buttons/list/list.png';
 
-`<ListButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `list` method from [`useNavigation`](api-references/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
+`<ListButton>` is using Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `list` method from [`useNavigation`](/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
 
 ## Usage
 
@@ -73,7 +73,7 @@ export const MyListComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `list` method of [`useNavigation`](api-references/hooks/navigation/useNavigation.md) and then redirect to `/categories`.
+Clicking the button will trigger the `list` method of [`useNavigation`](/core/hooks/navigation/useNavigation.md) and then redirect to `/categories`.
 
 ### `hideText`
 

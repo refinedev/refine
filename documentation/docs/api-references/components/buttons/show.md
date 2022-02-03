@@ -5,7 +5,7 @@ title: Show
 
 import showButton from '@site/static/img/guides-and-concepts/components/buttons/show/show.png';
 
-`<ShowButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `show` method from [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
+`<ShowButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `show` method from [`useNavigation`](/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
 
 ## Usage
 
@@ -70,7 +70,7 @@ export const MyShowComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `show` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect the app to `/posts/show/1`.
+Clicking the button will trigger the `show` method of [`useNavigation`](/core/hooks/navigation/useNavigation.md) and then redirect the app to `/posts/show/1`.
 
 :::note
 `<ShowButton>` component reads the id information from the route by default.
@@ -88,7 +88,7 @@ export const MyShowComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `show` method of [`useNavigation`](/api-references/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/show/2`.
+Clicking the button will trigger the `show` method of [`useNavigation`](/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/show/2`.
 
 ### `hideText`
 

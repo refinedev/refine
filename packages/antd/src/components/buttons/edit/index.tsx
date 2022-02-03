@@ -19,7 +19,7 @@ type EditButtonProps = ButtonProps & {
 
 /**
  * `<EditButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} component.
- * It uses the {@link https://refine.dev/docs/api-references/hooks/navigation/useNavigation#edit `edit`} method from {@link https://refine.dev/docs/api-references/hooks/navigation/useNavigation `useNavigation`} under the hood.
+ * It uses the {@link https://refine.dev/docs/core/hooks/navigation/useNavigation#edit `edit`} method from {@link https://refine.dev/docs/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when redirecting the app to the edit page with the record id route of resource}.
  *
  * @see {@link https://refine.dev/docs/api-references/components/buttons/edit-button} for more details.

@@ -125,9 +125,7 @@ module.exports = {
                         {
                             type: "category",
                             label: "Navigation",
-                            items: [
-                                "api-references/hooks/navigation/useNavigation",
-                            ],
+                            items: ["core/hooks/navigation/useNavigation"],
                         },
                         {
                             type: "category",

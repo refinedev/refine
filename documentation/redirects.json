@@ -131,6 +131,10 @@
         {
             "from": "/docs/next/api-references/hooks/resource/useResourceWithRoute",
             "to": "/docs/next/core/hooks/resource/useResourceWithRoute"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/navigation/useNavigation",
+            "to": "/docs/next/core/hooks/navigation/useNavigation"
         }
     ]
 }
