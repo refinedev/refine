@@ -1,12 +1,12 @@
 {
   "name": "strapi-multi-tenant",
-  "version": "2.7.4",
+  "version": "2.7.8",
   "private": true,
   "dependencies": {
-    "@pankod/refine": "^2.7.1",
-    "@pankod/refine-react-router": "^2.7.1",
-    "@pankod/refine-strapi": "^2.7.1",
-    "@pankod/refine-strapi-v4": "^2.7.4",
+    "@pankod/refine": "^2.7.8",
+    "@pankod/refine-react-router": "^2.7.8",
+    "@pankod/refine-strapi": "^2.7.8",
+    "@pankod/refine-strapi-v4": "^2.7.8",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
