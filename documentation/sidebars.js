@@ -112,7 +112,7 @@ module.exports = {
                         {
                             type: "category",
                             label: "Show",
-                            items: ["api-references/hooks/show/useShow"],
+                            items: ["core/hooks/show/useShow"],
                         },
                         {
                             type: "category",

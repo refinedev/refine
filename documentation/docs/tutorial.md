@@ -917,7 +917,7 @@ export const PostList: React.FC = () => {
 
 ✳️ `useShow()` is a **refine** hook used to fetch a single record data. The `queryResult` has the response and also `isLoading` state.
 
-[Refer to the `useShow` documentation for detailed usage information. &#8594](api-references/hooks/show/useShow.md)
+[Refer to the `useShow` documentation for detailed usage information. &#8594](/core/hooks/show/useShow.md)
 
 ✳️ To retrieve the category title, again we need to make a call to `/categories` endpoint. This time we used `useOne()` hook to get a single record from another resource.
 

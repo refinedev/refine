@@ -119,6 +119,10 @@
         {
             "from": "/docs/next/api-references/hooks/translate/useTranslate",
             "to": "/docs/next/core/hooks/translate/useTranslate"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/show/useShow",
+            "to": "/docs/next/core/hooks/show/useShow"
         }
     ]
 }

@@ -300,7 +300,7 @@ const { data } = useList({
 | [`useList` &#8594](/core/hooks/data/useList.md) | [`useForm` &#8594](api-references/hooks/form/useForm.md)             | [`useTable` &#8594](api-references/hooks/table/useTable.md)                 |
 | [`useOne` &#8594](/core/hooks/data/useOne.md)   | [`useModalForm` &#8594](api-references/hooks/form/useModalForm.md)   | [`useEditableTable` &#8594](api-references/hooks/table/useEditableTable.md) |
 | [`useMany` &#8594](/core/hooks/data/useMany.md) | [`useDrawerForm` &#8594](api-references/hooks/form/useDrawerForm.md) | [`useSimpleList` &#8594](api-references/hooks/show/useSimpleList.md)        |
-|                                                          | [`useStepsForm` &#8594](api-references/hooks/form/useStepsForm.md)   | [`useShow` &#8594](api-references/hooks/show/useShow.md)                    |
+|                                                          | [`useStepsForm` &#8594](api-references/hooks/form/useStepsForm.md)   | [`useShow` &#8594](/core/hooks/show/useShow.md)                    |
 |                                                          |                                                                      | [`useCheckboxGroup` &#8594](api-references/hooks/field/useCheckboxGroup.md) |
 |                                                          |                                                                      | [`useSelect` &#8594](api-references/hooks/field/useSelect.md)               |
 |                                                          |                                                                      | [`useRadioGroup` &#8594](api-references/hooks/field/useRadioGroup.md)       |
@@ -355,7 +355,7 @@ Following hooks uses `useOne` under the hood and subscribe to same event.
 -   [`useModalForm`](api-references/hooks/form/useModalForm.md)
 -   [`useDrawerForm`](api-references/hooks/form/useDrawerForm.md)
 -   [`useStepsForm`](api-references/hooks/form/useStepsForm.md)
--   [`useShow`](api-references/hooks/show/useShow.md)
+-   [`useShow`](/core/hooks/show/useShow.md)
 
 :::
 
