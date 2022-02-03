@@ -23,5 +23,5 @@ useSubscription({
 
 :::info
 
-You can publish events with [`usePublish`](/api-references/hooks/live/usePublish.md).
+You can publish events with [`usePublish`](/core/hooks/live/usePublish.md).
 :::

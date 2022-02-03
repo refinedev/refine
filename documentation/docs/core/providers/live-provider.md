@@ -18,7 +18,7 @@ const liveProvider = {
 ```
 
 :::note
-**refine** uses these methods in [`useSubscription`](/api-references/hooks/live/useSubscription.md) and [`usePublish`](/api-references/hooks/live/usePublish.md).
+**refine** uses these methods in [`useSubscription`](/core/hooks/live/useSubscription.md) and [`usePublish`](/core/hooks/live/usePublish.md).
 :::
 
 :::tip
@@ -118,7 +118,7 @@ The values returned from the `subscribe` method are passed to the `unsubscribe` 
 
 <br/>
 
-**refine** will use this subscribe method in the [`useSubscription`](/api-references/hooks/live/useSubscription.md) hook.
+**refine** will use this subscribe method in the [`useSubscription`](/core/hooks/live/useSubscription.md) hook.
 
 ```ts
 import { useSubscription } from "@pankod/refine-core";
@@ -129,7 +129,7 @@ useSubscription({
 });
 ```
 
-> [Refer to the useSubscription documentation for more information. &#8594](/api-references/hooks/live/useSubscription.md)
+> [Refer to the useSubscription documentation for more information. &#8594](/core/hooks/live/useSubscription.md)
 
 <br />
 
@@ -175,7 +175,7 @@ If you don't handle unsubscription it could lead to memory leaks.
 
 This method is used to publish an event on client side. Beware that publishing events on client side is not recommended and best practice is to publish events from server side. You can refer [Publish Events from API](#publish-events-from-api) to see which events must be published from the server.
 
-This `publish` is used in [realated hooks](#publish-events-from-hooks). When `publish` is used, subscribers to these events are notifyed. You can also publish your custom events using [`usePublish`](/api-references/hooks/live/usePublish.md).
+This `publish` is used in [realated hooks](#publish-events-from-hooks). When `publish` is used, subscribers to these events are notifyed. You can also publish your custom events using [`usePublish`](/core/hooks/live/usePublish.md).
 
 ```ts title="liveProvider.ts"
 const liveProvider = (client: Ably.Realtime): LiveProvider => {
@@ -211,7 +211,7 @@ If `publish` is used on client side you must handle the security of it by yourse
 
 <br/>
 
-**refine** will provide this publish method via the [`usePublish`](/api-references/hooks/live/usePublish.md) hook.
+**refine** will provide this publish method via the [`usePublish`](/core/hooks/live/usePublish.md) hook.
 
 ```ts
 import { usePublish } from "@pankod/refine-core";
@@ -219,7 +219,7 @@ import { usePublish } from "@pankod/refine-core";
 const publish = usePublish();
 ```
 
-> [Refer to the usePublish documentation for more information. &#8594](/api-references/hooks/live/usePublish.md)
+> [Refer to the usePublish documentation for more information. &#8594](/core/hooks/live/usePublish.md)
 
 ## `liveMode`
 

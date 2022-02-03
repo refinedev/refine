@@ -28,5 +28,5 @@ publish({
 
 :::info
 
-You can subscribe to event with [`useSubscription`](/api-references/hooks/live/useSubscription.md).
+You can subscribe to event with [`useSubscription`](/core/hooks/live/useSubscription.md).
 :::

@@ -99,6 +99,14 @@
         {
             "from": "/docs/next/api-references/hooks/refine/useTitle",
             "to": "/docs/next/core/hooks/refine/useTitle"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/live/usePublish",
+            "to": "/docs/next/core/hooks/live/usePublish"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/live/useSubscription",
+            "to": "/docs/next/core/hooks/live/useSubscription"
         }
     ]
 }

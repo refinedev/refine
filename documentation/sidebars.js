@@ -75,8 +75,8 @@ module.exports = {
                             type: "category",
                             label: "Live",
                             items: [
-                                "api-references/hooks/live/useSubscription",
-                                "api-references/hooks/live/usePublish",
+                                "core/hooks/live/useSubscription",
+                                "core/hooks/live/usePublish",
                             ],
                         },
                         {
