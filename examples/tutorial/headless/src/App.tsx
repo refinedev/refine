@@ -2,6 +2,7 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
+import { Layout } from "components";
 import { PostList, PostCreate, PostEdit } from "pages/posts";
 
 const App: React.FC = () => {
@@ -17,6 +18,7 @@ const App: React.FC = () => {
                     edit: PostEdit,
                 },
             ]}
+            Layout={Layout}
         />
     );
 };
