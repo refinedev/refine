@@ -462,7 +462,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-Then it can be used with [`useCan`](api-references/hooks/accessControl/useCan.md) in the related area:
+Then it can be used with [`useCan`](core/hooks/accessControl/useCan.md) in the related area:
 
 ```tsx title="src/pages/posts/list.tsx"
 import {

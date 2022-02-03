@@ -69,9 +69,7 @@ module.exports = {
                         {
                             type: "category",
                             label: "Access Control",
-                            items: [
-                                "api-references/hooks/accessControl/useCan",
-                            ],
+                            items: ["core/hooks/accessControl/useCan"],
                         },
                         {
                             type: "category",

@@ -91,6 +91,10 @@
         {
             "from": "/docs/next/api-references/hooks/data/useUpdateMany",
             "to": "/docs/next/core/hooks/data/useUpdateMany"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/accessControl/useCan",
+            "to": "/docs/next/core/hooks/accessControl/useCan"
         }
     ]
 }
