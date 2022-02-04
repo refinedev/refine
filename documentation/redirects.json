@@ -159,6 +159,10 @@
         {
             "from": "/docs/next/api-references/hooks/import-export/useExport",
             "to": "/docs/next/core/hooks/import-export/useExport"
+        },
+        {
+            "from": "/docs/next/api-references/components/auth/authenticated",
+            "to": "/docs/next/core/components/auth/authenticated"
         }
     ]
 }

@@ -565,7 +565,7 @@ These hooks can be used with the `authProvider` authentication and authorization
 -   [useLogin](/core/hooks/auth/useLogin.md)
 -   [useLogout](/core/hooks/auth/useLogout.md)
 -   [usePermissions](/core/hooks/auth/usePermissions.md)
--   [`<Authenticated />`](/api-references/components/auth/authenticated.md)
+-   [`<Authenticated />`](/core/components/auth/authenticated.md)
 
 <br />
 

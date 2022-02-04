@@ -156,9 +156,7 @@ module.exports = {
                         {
                             type: "category",
                             label: "Authorization",
-                            items: [
-                                "api-references/components/auth/authenticated",
-                            ],
+                            items: ["core/components/auth/authenticated"],
                         },
                         {
                             type: "category",
