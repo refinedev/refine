@@ -275,6 +275,46 @@
         {
             "from": "/docs/next/api-references/components/filter-dropdown",
             "to": "/docs/next/ui-frameworks/antd/components/filter-dropdown"
+        },
+        {
+            "from": "/docs/next/api-references/components/fields/boolean",
+            "to": "/docs/next/ui-frameworks/antd/components/fields/boolean"
+        },
+        {
+            "from": "/docs/next/api-references/components/fields/url",
+            "to": "/docs/next/ui-frameworks/antd/components/fields/url"
+        },
+        {
+            "from": "/docs/next/api-references/components/fields/image",
+            "to": "/docs/next/ui-frameworks/antd/components/fields/image"
+        },
+        {
+            "from": "/docs/next/api-references/components/fields/file",
+            "to": "/docs/next/ui-frameworks/antd/components/fields/file"
+        },
+        {
+            "from": "/docs/next/api-references/components/fields/date",
+            "to": "/docs/next/ui-frameworks/antd/components/fields/date"
+        },
+        {
+            "from": "/docs/next/api-references/components/fields/email",
+            "to": "/docs/next/ui-frameworks/antd/components/fields/email"
+        },
+        {
+            "from": "/docs/next/api-references/components/fields/markdown",
+            "to": "/docs/next/ui-frameworks/antd/components/fields/markdown"
+        },
+        {
+            "from": "/docs/next/api-references/components/fields/tag",
+            "to": "/docs/next/ui-frameworks/antd/components/fields/tag"
+        },
+        {
+            "from": "/docs/next/api-references/components/fields/text",
+            "to": "/docs/next/ui-frameworks/antd/components/fields/text"
+        },
+        {
+            "from": "/docs/next/api-references/components/fields/number",
+            "to": "/docs/next/ui-frameworks/antd/components/fields/number"
         }
     ]
 }

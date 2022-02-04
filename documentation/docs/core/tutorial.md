@@ -411,7 +411,7 @@ On [useTable() Documentation](/core/hooks/useTable.md) you may find more informa
 ✳️ `<Table.Column>` components are used for mapping and formatting each field shown on the `<Table/>`. `dataIndex` prop maps the field to a matching key from the API response. `render` prop is used to choose the appropriate **Field** component for the given data type.
 
 :::note
-The example uses `<TagField>` and `<DateField>` components. To get the full list of available components, you may refer to the [Field Components Documentation](/api-references/components/fields/boolean.md).
+The example uses `<TagField>` and `<DateField>` components. To get the full list of available components, you may refer to the [Field Components Documentation](/ui-frameworks/antd/components/fields/boolean.md).
 :::
 
 ✳️ `<List>` is a **refine** component. It acts as a wrapper to `<Table>` to add some extras like _Create Button_ and _title_.
