@@ -507,7 +507,7 @@ export const PostList: React.FC = () => {
 ```
 
 :::tip
-[`<CanAccess />`](api-references/components/accessControl/canAccess.md) can be used too to check access control in custom places in your app.
+[`<CanAccess />`](/core/components/accessControl/canAccess.md) can be used too to check access control in custom places in your app.
 :::
 
 <br/>

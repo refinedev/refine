@@ -161,9 +161,7 @@ module.exports = {
                         {
                             type: "category",
                             label: "Access Control",
-                            items: [
-                                "api-references/components/accessControl/can-access",
-                            ],
+                            items: ["core/components/accessControl/can-access"],
                         },
                     ],
                 },
