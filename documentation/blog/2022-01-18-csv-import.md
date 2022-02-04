@@ -253,7 +253,7 @@ The CSV import with **refine** is very simple and out-of-the-box feature. How to
 </div>
 <br />
 
-Importing CSV files is simple and fast using the [`useImport`](https://refine.dev/docs/api-references/hooks/import-export/useImport/) hook and [`ImportButton`](https://refine.dev/docs/api-references/components/buttons/import-button/) provided by **refine**.
+Importing CSV files is simple and fast using the [`useImport`](https://refine.dev/docs/core/hooks/import-export/useImport/) hook and [`ImportButton`](https://refine.dev/docs/api-references/components/buttons/import-button/) provided by **refine**.
 
 ```tsx
 import {
@@ -303,7 +303,7 @@ interface IPost {
 
 You can also divide the data into chunk with the `batchSize` option while performing the insertion process.
 
-[Refer to the **refine** CSV Import API References for more information. →](https://refine.dev/docs/api-references/hooks/import-export/useImport/#api-reference)
+[Refer to the **refine** CSV Import API References for more information. →](https://refine.dev/docs/core/hooks/import-export/useImport/#api-reference)
 
 ## Refine CSV Import Live Codesandbox Example
 

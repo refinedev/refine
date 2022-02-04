@@ -129,8 +129,8 @@ module.exports = {
                         },
                         {
                             type: "category",
-                            label: "Import",
-                            items: ["core/hooks/useImport"],
+                            label: "Import-Export",
+                            items: ["core/hooks/import-export/useImport"],
                         },
                         {
                             type: "category",
@@ -216,6 +216,13 @@ module.exports = {
                                     label: "List",
                                     items: [
                                         "api-references/hooks/show/useSimpleList",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Import",
+                                    items: [
+                                        "ui-frameworks/antd/hooks/import/useImport",
                                     ],
                                 },
                                 "api-references/hooks/resource/useMenu",

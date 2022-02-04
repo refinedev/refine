@@ -151,6 +151,10 @@
         {
             "from": "/docs/next/api-references/hooks/field/useSelect",
             "to": "/docs/next/core/hooks/useSelect"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/import-export/useImport",
+            "to": "/docs/next/core/hooks/import-export/useImport"
         }
     ]
 }

@@ -90,6 +90,6 @@ export const MyRefreshComponent = () => {
 | hideText    | Allows to hide button text        | `boolean`                                                  | `false`    |
 | children    | Sets the button text              | `ReactNode`                                                | `"Import"` |
 
-[useimport]: /api-references/hooks/import-export/useImport.md
+[useimport]: /ui-frameworks/antd/hooks/import/useImport.md
 [button]: https://ant.design/components/button/
 [upload]: https://ant.design/components/upload/
