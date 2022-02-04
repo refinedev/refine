@@ -136,7 +136,7 @@ In addition to **shorter development** times and **overall performance gains**, 
 Run the **superplate** tool with the following command:
 
 ```
-npx superplate-cli tutorial
+npx superplate-cli -p refine-react tutorial
 ```
 
 Follow the _CLI wizard_ to select options and start creating your project.
