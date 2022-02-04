@@ -701,7 +701,7 @@ export const PostList: React.FC = () => {
 
 ✳️ `<FilterDropdown>` component serves as a bridge between its child input and **refine**'s `useTable` hook. It passes childs input value to `useTable` using `filterDropdown`'s embedded props and provides a filter button.
 
-[Refer to the `<FilterDropdown>` documentation for detailed usage. &#8594](/api-references/components/filter-dropdown.md)
+[Refer to the `<FilterDropdown>` documentation for detailed usage. &#8594](/ui-frameworks/antd/components/filter-dropdown.md)
 
 ✳️ `useSelect` hook populates props for `<Select>` component from a given resource.
 

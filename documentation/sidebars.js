@@ -237,7 +237,7 @@ module.exports = {
                             type: "category",
                             label: "Components",
                             items: [
-                                "api-references/components/filter-dropdown",
+                                "ui-frameworks/antd/components/filter-dropdown",
                                 {
                                     type: "category",
                                     label: "Basic Views",
