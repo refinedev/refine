@@ -139,5 +139,5 @@ Here's how it looks in the end:
 [custom page example]: /guides-and-concepts/custom-pages.md
 [custom page example code]: /examples/customization/topMenuLayout.md
 [antdlayout]: https://ant.design/components/layout/
-[usemenu]: /api-references/hooks/resource/useMenu.md
+[usemenu]: /ui-frameworks/antd/hooks/resource/useMenu.md
 [usetitle]: /core/hooks/refine/useTitle.md

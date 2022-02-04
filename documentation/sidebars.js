@@ -224,7 +224,13 @@ module.exports = {
                                         "ui-frameworks/antd/hooks/import/useImport",
                                     ],
                                 },
-                                "api-references/hooks/resource/useMenu",
+                                {
+                                    type: "category",
+                                    label: "Resource",
+                                    items: [
+                                        "ui-frameworks/antd/hooks/resource/useMenu",
+                                    ],
+                                },
                             ],
                         },
                         {

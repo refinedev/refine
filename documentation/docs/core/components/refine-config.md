@@ -462,7 +462,7 @@ The default sidebar can be customized by using refine hooks and passing custom c
 
 **refine** uses [Ant Design Sider](https://ant.design/components/layout/#Layout.Sider) component by default.
 
-[Refer to the useMenu hook documentation for detailed sidebar customization. &#8594](api-references/hooks/resource/useMenu.md)
+[Refer to the useMenu hook documentation for detailed sidebar customization. &#8594](/ui-frameworks/antd/hooks/resource/useMenu.md)
 
 <br />
 

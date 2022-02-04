@@ -191,6 +191,10 @@
         {
             "from": "/docs/next/api-references/hooks/form/useStepsForm",
             "to": "/docs/next/ui-frameworks/antd/hooks/form/useStepsForm"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/resource/useMenu",
+            "to": "/docs/next/ui-frameworks/antd/hooks/resource/useMenu"
         }
     ]
 }
