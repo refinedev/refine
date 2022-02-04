@@ -398,4 +398,4 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 [crudfilters]: /core/interfaces.md#crudfilters
 [httperror]: /core/interfaces.md#httperror
 [table search]: /guides-and-concepts/search/table-search.md
-[refine swl]: /api-references/components/refine-config.md#syncwithlocation
+[refine swl]: /core/components/refine-config.md#syncwithlocation

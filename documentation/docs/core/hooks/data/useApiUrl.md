@@ -45,6 +45,6 @@ const { data, isLoading } = useCustom<PostUniqueCheckResponse>({
 | ----------- | -------- |
 | API URL     | `string` |
 
-[Refine]: /api-references/components/refine-config.md
+[Refine]: /core/components/refine-config.md
 [Data Provider]: /core/providers/data-provider.md
 [useCustom]: /core/hooks/data/useCustom.md

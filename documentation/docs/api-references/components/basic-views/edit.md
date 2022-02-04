@@ -236,4 +236,4 @@ export const App: React.FC = () => {
 | mutationMode      | [Determines when mutations are executed](/guides-and-concepts/mutation-mode.md) | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  | `"pessimistic"`\*                                                              |
 | resource          | Resource name for API data interactions                                         | `string`                                                          | Resource name that it reads from the URL.                                      |
 
-> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/api-references/components/refine-config.md)>** component.
+> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/core/components/refine-config.md)>** component.

@@ -190,4 +190,4 @@ You can use `AntdList.Item` and `AntdList.Item.Meta` like `<List>` component fro
 [baserecord]: /core/interfaces.md#baserecord
 [httperror]: /core/interfaces.md#httperror
 [header]: https://ant.design/components/list/#header
-[refine swl]: /api-references/components/refine-config.md#syncwithlocation
+[refine swl]: /core/components/refine-config.md#syncwithlocation

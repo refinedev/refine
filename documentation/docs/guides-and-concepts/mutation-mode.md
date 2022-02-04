@@ -79,7 +79,7 @@ The mutation is applied locally, redirection and UI updates are executed immedia
 
 ## Usage
 
-Mutation mode can be set application-wide in [`<Refine>`](/api-references/components/refine-config.md#mutationmode) component.
+Mutation mode can be set application-wide in [`<Refine>`](/core/components/refine-config.md#mutationmode) component.
 
 ```tsx title="App.tsx"
 <Refine ... mutationMode="optimistic" />

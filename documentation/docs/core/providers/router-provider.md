@@ -349,7 +349,7 @@ const routerProvider: IRouterProvider = {
 
 ### `Prompt`
 
-**refine** uses `<Prompt>` to display the alert when [warnWhenUnsavedChanges](/api-references/components/refine-config.md#warnwhenunsavedchanges) is `true`.
+**refine** uses `<Prompt>` to display the alert when [warnWhenUnsavedChanges](/core/components/refine-config.md#warnwhenunsavedchanges) is `true`.
 
 <Tabs
 defaultValue="react-prompt"

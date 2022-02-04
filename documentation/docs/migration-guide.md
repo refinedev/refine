@@ -166,7 +166,7 @@ const Link = routerProvider.Link;
 `routes` prop of `<Refine/>` is deprecated. Custom routes must be handled by the router provider you choose. [Refer to Custom Pages documentation for a detailed guide][customPages]
 
 [refine-codemod]: https://github.com/pankod/refine/tree/master/packages/codemod
-[refine]: /api-references/components/refine-config.md
-[resources]: /api-references/components/refine-config.md#resources
+[refine]: /core/components/refine-config.md
+[resources]: /core/components/refine-config.md#resources
 [routerProvider]: /core/providers/router-provider.md
 [customPages]: /guides-and-concepts/custom-pages.md

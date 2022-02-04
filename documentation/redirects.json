@@ -167,6 +167,10 @@
         {
             "from": "/docs/next/api-references/components/accessControl/can-access",
             "to": "/docs/next/core/components/accessControl/can-access"
+        },
+        {
+            "from": "/docs/next/api-references/components/refine-config",
+            "to": "/docs/next/core/components/refine-config"
         }
     ]
 }

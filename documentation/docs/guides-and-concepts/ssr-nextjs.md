@@ -371,7 +371,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 [routerProvider]: /core/providers/router-provider.md
 [superplate]: https://github.com/pankod/superplate
 [NextjsCustomApp]: https://nextjs.org/docs/advanced-features/custom-app
-[refine]: /api-references/components/refine-config.md
+[refine]: /core/components/refine-config.md
 [NextjsPages]: https://nextjs.org/docs/basic-features/pages
 [useTable]: /core/hooks/useTable.md
 [ReactQuerySSR]: https://react-query.tanstack.com/guides/ssr#using-initialdata

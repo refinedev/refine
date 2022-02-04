@@ -181,5 +181,5 @@ These buttons will be disabled if access control returns `{ can: false }`
 [nextjsrouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router
 [reactrouter]: https://www.npmjs.com/package/@pankod/refine-react-router
 [reactlocation]: https://www.npmjs.com/package/@pankod/refine-react-location
-[catchall]: /api-references/components/refine-config.md#catchall
+[catchall]: /core/components/refine-config.md#catchall
 [listbtn]: /api-references/components/buttons/list.md

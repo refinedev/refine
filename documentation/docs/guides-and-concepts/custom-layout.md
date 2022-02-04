@@ -128,13 +128,13 @@ Here's how it looks in the end:
     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
-[refine]: /api-references/components/refine-config.md
-[layout]: /api-references/components/refine-config.md#layout
-[sider]: /api-references/components/refine-config.md#sider
-[footer]: /api-references/components/refine-config.md#footer
-[header]: /api-references/components/refine-config.md#header
-[offlayoutarea]: /api-references/components/refine-config.md#offlayoutarea
-[title]: /api-references/components/refine-config.md#title
+[refine]: /core/components/refine-config.md
+[layout]: /core/components/refine-config.md#layout
+[sider]: /core/components/refine-config.md#sider
+[footer]: /core/components/refine-config.md#footer
+[header]: /core/components/refine-config.md#header
+[offlayoutarea]: /core/components/refine-config.md#offlayoutarea
+[title]: /core/components/refine-config.md#title
 [layoutwrapper]: /api-references/components/layout-wrapper.md
 [custom page example]: /guides-and-concepts/custom-pages.md
 [custom page example code]: /examples/customization/topMenuLayout.md

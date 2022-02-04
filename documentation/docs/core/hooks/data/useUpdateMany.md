@@ -180,7 +180,7 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 | errorNotification                                                                                   | Unsuccessful Mutation notification                                              | [`SuccessErrorNotification`](/core/interfaces.md#successerrornotification) | "Error when updating `resource` (status code: `statusCode`)" |
 | metaData                                                                                            | Metadata query for `dataProvider`                                               | [`MetaDataQuery`](/core/interfaces.md#metadataquery)             | {}                                                           |
 
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](api-references/components/refine-config.md))>** component. `useUpdateMany` will use what is passed to `<Refine>` as default but a local value will override it.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/core/components/refine-config.md))>** component. `useUpdateMany` will use what is passed to `<Refine>` as default but a local value will override it.
 
 <br/>
 

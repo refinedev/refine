@@ -151,7 +151,7 @@ module.exports = {
                     type: "category",
                     label: "Components",
                     items: [
-                        "api-references/components/refine-config",
+                        "core/components/refine-config",
                         "api-references/components/layout-wrapper",
                         {
                             type: "category",
