@@ -48,7 +48,7 @@ export const PostList: React.FC = () => {
 ```
 
 
-> [Refer to the `<List>` documentation for detailed usage. &#8594](api-references/components/basic-views/list.md)
+> [Refer to the `<List>` documentation for detailed usage. &#8594](/ui-frameworks/antd/components/basic-views/list.md)
 
 
 :::caution

@@ -211,6 +211,22 @@
         {
             "from": "/docs/next/api-references/hooks/field/useCheckboxGroup",
             "to": "/docs/next/ui-frameworks/antd/hooks/field/useCheckboxGroup"
+        },
+        {
+            "from": "/docs/next/api-references/components/basic-views/create",
+            "to": "/docs/next/ui-frameworks/antd/components/basic-views/create"
+        },
+        {
+            "from": "/docs/next/api-references/components/basic-views/edit",
+            "to": "/docs/next/ui-frameworks/antd/components/basic-views/edit"
+        },
+        {
+            "from": "/docs/next/api-references/components/basic-views/list",
+            "to": "/docs/next/ui-frameworks/antd/components/basic-views/list"
+        },
+        {
+            "from": "/docs/next/api-references/components/basic-views/show",
+            "to": "/docs/next/ui-frameworks/antd/components/basic-views/show"
         }
     ]
 }

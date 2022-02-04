@@ -178,7 +178,7 @@ The component passed to `show` will be rendered on the `/posts/show/:id` route.
 This value will be passed to all CRUD pages defined to as the `resources` element.
 
 :::tip
-**refine**'s <[Edit](api-references/components/basic-views/edit.md)> component uses `canDelete` value to whether show delete button in the edit form or not.
+**refine**'s <[Edit](/ui-frameworks/antd/components/basic-views/edit.md)> component uses `canDelete` value to whether show delete button in the edit form or not.
 :::
 
 ### `icon`

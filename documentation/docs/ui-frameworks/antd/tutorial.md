@@ -906,7 +906,7 @@ export const PostList: React.FC = () => {
 Since we've got access to raw data returning from `useShow()`, there is no restriction how it's displayed on your components. If you prefer presenting your content with a nicer wrapper, **refine** provides you
 the `<Show>` component which has extra features like `list` and `refresh` buttons.
 
-[Refer to the `<Show>` documentation for detailed usage information. &#8594](/api-references/components/basic-views/show.md)
+[Refer to the `<Show>` documentation for detailed usage information. &#8594](/ui-frameworks/antd/components/basic-views/show.md)
 
 <br />
 

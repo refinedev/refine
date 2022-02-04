@@ -242,10 +242,10 @@ module.exports = {
                                     type: "category",
                                     label: "Basic Views",
                                     items: [
-                                        "api-references/components/basic-views/list",
-                                        "api-references/components/basic-views/create",
-                                        "api-references/components/basic-views/show",
-                                        "api-references/components/basic-views/edit",
+                                        "ui-frameworks/antd/components/basic-views/list",
+                                        "ui-frameworks/antd/components/basic-views/create",
+                                        "ui-frameworks/antd/components/basic-views/show",
+                                        "ui-frameworks/antd/components/basic-views/edit",
                                     ],
                                 },
                                 {
