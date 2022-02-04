@@ -171,6 +171,10 @@
         {
             "from": "/docs/next/api-references/components/refine-config",
             "to": "/docs/next/core/components/refine-config"
+        },
+        {
+            "from": "/docs/next/api-references/components/layout-wrapper",
+            "to": "/docs/next/core/components/layout-wrapper"
         }
     ]
 }

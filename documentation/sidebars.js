@@ -152,7 +152,7 @@ module.exports = {
                     label: "Components",
                     items: [
                         "core/components/refine-config",
-                        "api-references/components/layout-wrapper",
+                        "core/components/layout-wrapper",
                         {
                             type: "category",
                             label: "Authorization",

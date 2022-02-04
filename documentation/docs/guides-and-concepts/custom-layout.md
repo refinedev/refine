@@ -135,7 +135,7 @@ Here's how it looks in the end:
 [header]: /core/components/refine-config.md#header
 [offlayoutarea]: /core/components/refine-config.md#offlayoutarea
 [title]: /core/components/refine-config.md#title
-[layoutwrapper]: /api-references/components/layout-wrapper.md
+[layoutwrapper]: /core/components/layout-wrapper.md
 [custom page example]: /guides-and-concepts/custom-pages.md
 [custom page example code]: /examples/customization/topMenuLayout.md
 [antdlayout]: https://ant.design/components/layout/

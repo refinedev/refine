@@ -133,7 +133,7 @@ For authenticated custom page, your application needs an `authProvider`.
 :::info
 By default, custom pages don't have any layout. If you want to show your custom page in a layout, you can use `<LayoutWrapper>` component.
 
-[Refer to the `<LayoutWrapper>` for more detailed information. &#8594](/api-references/components/layout-wrapper.md)
+[Refer to the `<LayoutWrapper>` for more detailed information. &#8594](/core/components/layout-wrapper.md)
 :::
 
 ## Example
