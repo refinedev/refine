@@ -204,7 +204,7 @@ export const PostList: React.FC = () => {
                     <button
                         onClick={() => gotoPage(0)}
                         disabled={!canPreviousPage}
-                        className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                        className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -224,7 +224,7 @@ export const PostList: React.FC = () => {
                     <button
                         onClick={() => previousPage()}
                         disabled={!canPreviousPage}
-                        className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                        className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -243,7 +243,7 @@ export const PostList: React.FC = () => {
                     <button
                         onClick={() => nextPage()}
                         disabled={!canNextPage}
-                        className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                        className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -262,7 +262,7 @@ export const PostList: React.FC = () => {
                     <button
                         onClick={() => gotoPage(pageCount - 1)}
                         disabled={!canNextPage}
-                        className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                        className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
