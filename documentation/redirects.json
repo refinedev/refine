@@ -199,6 +199,10 @@
         {
             "from": "/docs/next/api-references/hooks/table/useEditableTable",
             "to": "/docs/next/ui-frameworks/antd/hooks/table/useEditableTable"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/show/useSimpleList",
+            "to": "/docs/next/ui-frameworks/antd/hooks/list/useSimpleList"
         }
     ]
 }

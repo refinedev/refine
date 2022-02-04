@@ -214,7 +214,7 @@ module.exports = {
                                     type: "category",
                                     label: "List",
                                     items: [
-                                        "api-references/hooks/show/useSimpleList",
+                                        "ui-frameworks/antd/hooks/list/useSimpleList",
                                     ],
                                 },
                                 {

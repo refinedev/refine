@@ -299,7 +299,7 @@ const { data } = useList({
 | -------------------------------------------------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | [`useList` &#8594](/core/hooks/data/useList.md) | [`useForm` &#8594](/core/hooks/useForm.md)             | [`useTable` &#8594](/core/hooks/useTable.md)                 |
 | [`useOne` &#8594](/core/hooks/data/useOne.md)   | [`useModalForm` &#8594](/ui-frameworks/antd/hooks/form/useModalForm.md)   | [`useEditableTable` &#8594](/ui-frameworks/antd/hooks/table/useEditableTable.md) |
-| [`useMany` &#8594](/core/hooks/data/useMany.md) | [`useDrawerForm` &#8594](/ui-frameworks/antd/hooks/form/useDrawerForm.md) | [`useSimpleList` &#8594](api-references/hooks/show/useSimpleList.md)        |
+| [`useMany` &#8594](/core/hooks/data/useMany.md) | [`useDrawerForm` &#8594](/ui-frameworks/antd/hooks/form/useDrawerForm.md) | [`useSimpleList` &#8594](/ui-frameworks/antd/hooks/list/useSimpleList.md)        |
 |                                                          | [`useStepsForm` &#8594](/ui-frameworks/antd/hooks/form/useStepsForm.md)   | [`useShow` &#8594](/core/hooks/show/useShow.md)                    |
 |                                                          |                                                                      | [`useCheckboxGroup` &#8594](api-references/hooks/field/useCheckboxGroup.md) |
 |                                                          |                                                                      | [`useSelect` &#8594](/core/hooks/useSelect.md)               |
@@ -327,7 +327,7 @@ Following hooks uses `useList` under the hood and subscribe to same event.
 
 -   [`useTable`](/core/hooks/useTable.md)
 -   [`useEditableTable`](/ui-frameworks/antd/hooks/table/useEditableTable.md)
--   [`useSimpleList`](api-references/hooks/show/useSimpleList.md)
+-   [`useSimpleList`](/ui-frameworks/antd/hooks/list/useSimpleList.md)
 -   [`useCheckboxGroup`](api-references/hooks/field/useCheckboxGroup.md)
 -   [`useSelect`](/core/hooks/useSelect.md)
 -   [`useRadioGroup`](api-references/hooks/field/useRadioGroup.md)
