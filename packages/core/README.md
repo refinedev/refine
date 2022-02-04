@@ -152,32 +152,24 @@ Your **refine** application will be accessible at [http://localhost:3000](http:/
 Replace the contents of `App.tsx` with the following code:
 
 ```tsx title="App.tsx"
-import React from "react";
+mport { Refine, useMany } from "@pankod/refine-core";
 import {
-    Refine,
-    Resource,
     useTable,
     List,
     Table,
-    useMany,
     DateField,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 const App: React.FC = () => {
     return (
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
+            resources={[{ name: "posts", list: PostList }]}
         />
     );
 };
