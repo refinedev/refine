@@ -37,7 +37,7 @@ type useEditableTableProps<
  * `useEditableTable` return properties that can be used on Ant Design's {@link https://ant.design/components/table/ `<Table>`}
  * and {@link https://ant.design/components/form/ `<Form>`} components.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/table/useEditableTable} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/antd/hooks/table/useEditableTable} for more details.
  */
 export const useEditableTable = <
     TData extends BaseRecord = BaseRecord,
