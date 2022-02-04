@@ -188,9 +188,9 @@ module.exports = {
                                     label: "Form",
                                     items: [
                                         "ui-frameworks/antd/hooks/form/useForm",
-                                        "api-references/hooks/form/useModalForm",
-                                        "api-references/hooks/form/useDrawerForm",
-                                        "api-references/hooks/form/useStepsForm",
+                                        "ui-frameworks/antd/hooks/form/useModalForm",
+                                        "ui-frameworks/antd/hooks/form/useDrawerForm",
+                                        "ui-frameworks/antd/hooks/form/useStepsForm",
                                     ],
                                 },
                                 {

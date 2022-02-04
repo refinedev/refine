@@ -32,7 +32,7 @@ Feature/Capability Key:
 | [Menu](https://ant.design/components/menu/)              |    [🔵](https://ant.design/components/menu/)     |
 | [Pagination](https://ant.design/components/pagination/)  | [🔵](https://ant.design/components/pagination/)  |
 | [PageHeader](https://ant.design/components/page-header/) | [🔵](https://ant.design/components/page-header/) |
-| [Steps](https://ant.design/components/steps/)            |          [✅](../api-references/hooks/form/useStepsForm.md)          |
+| [Steps](https://ant.design/components/steps/)            |          [✅](/ui-frameworks/antd/hooks/form/useStepsForm.md)          |
 
 ### Data Entry
 
@@ -68,8 +68,8 @@ Feature/Capability Key:
 |                                                             |                      Hooks                       |
 | ----------------------------------------------------------- | :----------------------------------------------: |
 | [Alert](https://ant.design/components/alert/)               |    [🔵](https://ant.design/components/alert/)     |
-| [Drawer](https://ant.design/components/drawer/)             |       [✅](../api-references/hooks/form/useDrawerForm.md)        |
-| [Modal](https://ant.design/components/modal/)               |        [✅](../api-references/hooks/form/useModalForm.md)        |
+| [Drawer](https://ant.design/components/drawer/)             |       [✅](/ui-frameworks/antd/hooks/form/useDrawerForm.md)        |
+| [Modal](https://ant.design/components/modal/)               |        [✅](/ui-frameworks/antd/hooks/form/useModalForm.md)        |
 | [Message](https://ant.design/components/message/)           |   [🔵](https://ant.design/components/message/)    |
 | [Notification](https://ant.design/components/notification/) | [🔵](https://ant.design/components/notification/) |
 | [Progress](https://ant.design/components/progress/)         |   [🔵](https://ant.design/components/progress/)   |

@@ -179,6 +179,18 @@
         {
             "from": "/docs/next/api-references/interfaceReferences",
             "to": "/docs/next/core/interfaceReferences"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/form/useDrawerForm",
+            "to": "/docs/next/ui-frameworks/antd/hooks/form/useDrawerForm"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/form/useModalForm",
+            "to": "/docs/next/ui-frameworks/antd/hooks/form/useModalForm"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/form/useStepsForm",
+            "to": "/docs/next/ui-frameworks/antd/hooks/form/useStepsForm"
         }
     ]
 }
