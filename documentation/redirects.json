@@ -267,6 +267,10 @@
         {
             "from": "/docs/next/api-references/components/buttons/export-button",
             "to": "/docs/next/ui-frameworks/antd/components/buttons/export-button"
+        },
+        {
+            "from": "/docs/next/api-references/components/inputs/custom-inputs",
+            "to": "/docs/next/ui-frameworks/antd/components/inputs/custom-inputs"
         }
     ]
 }

@@ -268,7 +268,7 @@ module.exports = {
                                     type: "category",
                                     label: "Inputs",
                                     items: [
-                                        "api-references/components/inputs/custom-inputs",
+                                        "ui-frameworks/antd/components/inputs/custom-inputs",
                                     ],
                                 },
                                 {
