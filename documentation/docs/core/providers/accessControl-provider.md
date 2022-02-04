@@ -160,12 +160,12 @@ For example if your app has resource `posts` it will be checked with `{ resource
 These buttons will check for access control.
 Let's say these buttons are rendered where `resource` is `posts` and `id` is `1` where applicable.
 
--   [**List**](/api-references/components/buttons/list.md): `{ resource: "posts, action: "list" }`
--   [**Create**](/api-references/components/buttons/create.md): `{ resource: "posts, action: "create" }`
--   [**Clone**](/api-references/components/buttons/clone.md): `{ resource: "posts, action: "create", params: { id: 1 } }`
--   [**Edit**](/api-references/components/buttons/edit.md): `{ resource: "posts, action: "edit", params: { id: 1 } }`
--   [**Delete**](/api-references/components/buttons/delete.md): `{ resource: "posts, action: "delete", params: { id: 1 } }`
--   [**Show**](/api-references/components/buttons/show.md): `{ resource: "posts, action: "show", params: { id: 1 } }`
+-   [**List**](/ui-frameworks/antd/components/buttons/list.md): `{ resource: "posts, action: "list" }`
+-   [**Create**](/ui-frameworks/antd/components/buttons/create.md): `{ resource: "posts, action: "create" }`
+-   [**Clone**](/ui-frameworks/antd/components/buttons/clone.md): `{ resource: "posts, action: "create", params: { id: 1 } }`
+-   [**Edit**](/ui-frameworks/antd/components/buttons/edit.md): `{ resource: "posts, action: "edit", params: { id: 1 } }`
+-   [**Delete**](/ui-frameworks/antd/components/buttons/delete.md): `{ resource: "posts, action: "delete", params: { id: 1 } }`
+-   [**Show**](/ui-frameworks/antd/components/buttons/show.md): `{ resource: "posts, action: "show", params: { id: 1 } }`
 
 These buttons will be disabled if access control returns `{ can: false }`
 
@@ -182,4 +182,4 @@ These buttons will be disabled if access control returns `{ can: false }`
 [reactrouter]: https://www.npmjs.com/package/@pankod/refine-react-router
 [reactlocation]: https://www.npmjs.com/package/@pankod/refine-react-location
 [catchall]: /core/components/refine-config.md#catchall
-[listbtn]: /api-references/components/buttons/list.md
+[listbtn]: /ui-frameworks/antd/components/buttons/list.md

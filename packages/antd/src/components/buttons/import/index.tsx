@@ -14,7 +14,7 @@ type ImportButtonProps = {
  * It uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} and {@link https://ant.design/components/upload/ `<Upload>`} components.
  * It wraps a `<Button>` component with an `<Upload>` component and accepts properties for `<Button>` and `<Upload>` components separately.
  *
- * @see {@link https://refine.dev/docs/api-references/components/buttons/import-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/buttons/import-button} for more details.
  */
 export const ImportButton: React.FC<ImportButtonProps> = ({
     uploadProps,

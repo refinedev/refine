@@ -227,6 +227,46 @@
         {
             "from": "/docs/next/api-references/components/basic-views/show",
             "to": "/docs/next/ui-frameworks/antd/components/basic-views/show"
+        },
+        {
+            "from": "/docs/next/api-references/components/buttons/clone-button",
+            "to": "/docs/next/ui-frameworks/antd/components/buttons/clone-button"
+        },
+        {
+            "from": "/docs/next/api-references/components/buttons/list-button",
+            "to": "/docs/next/ui-frameworks/antd/components/buttons/list-button"
+        },
+        {
+            "from": "/docs/next/api-references/components/buttons/create-button",
+            "to": "/docs/next/ui-frameworks/antd/components/buttons/create-button"
+        },
+        {
+            "from": "/docs/next/api-references/components/buttons/edit-button",
+            "to": "/docs/next/ui-frameworks/antd/components/buttons/edit-button"
+        },
+        {
+            "from": "/docs/next/api-references/components/buttons/show-button",
+            "to": "/docs/next/ui-frameworks/antd/components/buttons/show-button"
+        },
+        {
+            "from": "/docs/next/api-references/components/buttons/delete-button",
+            "to": "/docs/next/ui-frameworks/antd/components/buttons/delete-button"
+        },
+        {
+            "from": "/docs/next/api-references/components/buttons/refresh-button",
+            "to": "/docs/next/ui-frameworks/antd/components/buttons/refresh-button"
+        },
+        {
+            "from": "/docs/next/api-references/components/buttons/save-button",
+            "to": "/docs/next/ui-frameworks/antd/components/buttons/save-button"
+        },
+        {
+            "from": "/docs/next/api-references/components/buttons/import-button",
+            "to": "/docs/next/ui-frameworks/antd/components/buttons/import-button"
+        },
+        {
+            "from": "/docs/next/api-references/components/buttons/export-button",
+            "to": "/docs/next/ui-frameworks/antd/components/buttons/export-button"
         }
     ]
 }

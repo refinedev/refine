@@ -89,4 +89,4 @@ Manually running the `triggerExport` function is another option.
 
 [Button]: https://ant.design/components/button/
 [useExport]: /core/hooks/import-export/useExport.md
-[ExportButton]: api-references/components/buttons/export.md
+[ExportButton]: /ui-frameworks/antd/components/buttons/export.md

@@ -18,7 +18,7 @@ We will show what `<Edit>` does using properties with examples.
 
 When clicked on, the delete button executes the `useDelete` method provided by the `dataProvider`.
 
-[Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](/api-references/components/buttons/delete.md)
+[Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](/ui-frameworks/antd/components/buttons/delete.md)
 
 ```tsx 
 import { usePermissions } from "@pankod/refine-core";
@@ -46,7 +46,7 @@ The `<Edit>` component has a save button by default. If you want to customize th
 
 Clicking on the save button will submit your form.
 
-[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-references/components/buttons/save.md)
+[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/ui-frameworks/antd/components/buttons/save.md)
 
 ```tsx 
 import { Edit } from "@pankod/refine-antd";

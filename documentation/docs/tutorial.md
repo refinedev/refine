@@ -1145,7 +1145,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-[Refer to the `<EditButton>` documentation for detailed usage information. &#8594](api-references/components/buttons/edit.md)
+[Refer to the `<EditButton>` documentation for detailed usage information. &#8594](/ui-frameworks/antd/components/buttons/edit.md)
 
 You can try using edit buttons which will trigger the edit forms for each record, allowing you to update the record data.
 
@@ -1423,7 +1423,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-[Refer to the `<DeleteButton>` documentation for detailed usage information. &#8594](api-references/components/buttons/delete.md)
+[Refer to the `<DeleteButton>` documentation for detailed usage information. &#8594](/ui-frameworks/antd/components/buttons/delete.md)
 
 Now you can try deleting records yourself. Just click on the delete button of the record you want to delete and confirm.
 

@@ -24,8 +24,8 @@ Hooks and components that support `MetaDataQuery`:
 
 | Supported data hooks                                                 | Supported other hooks                                                       | Supported components                                                   |
 | -------------------------------------------------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`useUpdate` &#8594](/core/hooks/data/useUpdate.md)         | [`useForm` &#8594](/core/hooks/useForm.md)                    | [`DeleteButton` &#8594](api-references/components/buttons/delete.md)   |
-| [`useUpdateMany` &#8594](/core/hooks/data/useUpdateMany.md) | [`useModalForm` &#8594](/ui-frameworks/antd/hooks/form/useModalForm.md)          | [`RefreshButton` &#8594](api-references/components/buttons/refresh.md) |
+| [`useUpdate` &#8594](/core/hooks/data/useUpdate.md)         | [`useForm` &#8594](/core/hooks/useForm.md)                    | [`DeleteButton` &#8594](/ui-frameworks/antd/components/buttons/delete.md)   |
+| [`useUpdateMany` &#8594](/core/hooks/data/useUpdateMany.md) | [`useModalForm` &#8594](/ui-frameworks/antd/hooks/form/useModalForm.md)          | [`RefreshButton` &#8594](/ui-frameworks/antd/components/buttons/refresh.md) |
 | [`useDelete` &#8594](/core/hooks/data/useDelete.md)         | [`useDrawerForm` &#8594](/ui-frameworks/antd/hooks/form/useDrawerForm.md)        |                                                                        |
 | [`useDeleteMany` &#8594](/core/hooks/data/useDeleteMany.md) | [`useStepsForm` &#8594](/ui-frameworks/antd/hooks/form/useStepsForm.md)          |                                                                        |
 | [`useCreate` &#8594](/core/hooks/data/useCreate.md)         | [`useTable` &#8594](/core/hooks/useTable.md)                 |                                                                        |
@@ -365,7 +365,7 @@ mutation ($input: updatePostInput) {
 
 ## Show Page
 
-Show component includes the [`<RefreshButton>`](api-references/components/buttons/refresh.md) by default. We can pass `refetch` method of `queryResult` to it's `onClick`. This method repeats the last request made by the query. So it refreshes the data that is shown in page.
+Show component includes the [`<RefreshButton>`](/ui-frameworks/antd/components/buttons/refresh.md) by default. We can pass `refetch` method of `queryResult` to it's `onClick`. This method repeats the last request made by the query. So it refreshes the data that is shown in page.
 
 <Tabs
 defaultValue="usage"

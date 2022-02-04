@@ -28,7 +28,7 @@ export const CreatePage: React.FC = () => {
 
 `<Create>` component has a default button that submits the form. If you want to customize this button you can use the `saveButtonProps` property like the code below.
 
-[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-references/components/buttons/save.md)
+[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/ui-frameworks/antd/components/buttons/save.md)
 
 ```tsx 
 import { Create } from "@pankod/refine-antd";

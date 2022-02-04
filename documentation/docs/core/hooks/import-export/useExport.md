@@ -219,7 +219,7 @@ You can pass more options to further customize the exporting process.
 | TVariables | Values for params                                                          | `any`                      |
 
 [Button]: https://ant.design/components/button/
-[ExportButton]: api-references/components/buttons/export.md
+[ExportButton]: /ui-frameworks/antd/components/buttons/export.md
 [useImport]: /core/hooks/import-export/useImport.md
 [useImport#handling-relational-data]: /core/hooks/import-export/useImport.md#handling-relational-data
 [export-to-csv]: https://github.com/alexcaza/export-to-csv

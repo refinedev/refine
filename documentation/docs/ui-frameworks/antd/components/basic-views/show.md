@@ -19,7 +19,7 @@ We will show what `<Show>` does using properties with examples.
 
 When clicked on, delete button executes the `useDelete` method provided by the [`dataProvider`](/core/providers/data-provider.md) and the edit button redirects the user to the record edit page.
 
-Refer to the [`<DeleteButton>`](api-references/components/buttons/delete.md) and the [`<EditButton>`](api-references/components/buttons/edit.md) documentation for detailed usage.
+Refer to the [`<DeleteButton>`](/ui-frameworks/antd/components/buttons/delete.md) and the [`<EditButton>`](/ui-frameworks/antd/components/buttons/edit.md) documentation for detailed usage.
 
 ```tsx 
 import { usePermissions } from "@pankod/refine-core";

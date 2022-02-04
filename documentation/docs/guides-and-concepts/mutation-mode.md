@@ -123,7 +123,7 @@ mutate({
 
 ### Supported components
 
--   [`DeleteButton` &#8594](api-references/components/buttons/delete.md)
+-   [`DeleteButton` &#8594](/ui-frameworks/antd/components/buttons/delete.md)
 
 <br />
 

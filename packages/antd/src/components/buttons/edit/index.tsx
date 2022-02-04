@@ -22,7 +22,7 @@ type EditButtonProps = ButtonProps & {
  * It uses the {@link https://refine.dev/docs/core/hooks/navigation/useNavigation#edit `edit`} method from {@link https://refine.dev/docs/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when redirecting the app to the edit page with the record id route of resource}.
  *
- * @see {@link https://refine.dev/docs/api-references/components/buttons/edit-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/buttons/edit-button} for more details.
  */
 export const EditButton: React.FC<EditButtonProps> = ({
     resourceName: propResourceName,
