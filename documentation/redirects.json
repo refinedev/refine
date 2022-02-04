@@ -203,6 +203,14 @@
         {
             "from": "/docs/next/api-references/hooks/show/useSimpleList",
             "to": "/docs/next/ui-frameworks/antd/hooks/list/useSimpleList"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/field/useRadioGroup",
+            "to": "/docs/next/ui-frameworks/antd/hooks/field/useRadioGroup"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/field/useCheckboxGroup",
+            "to": "/docs/next/ui-frameworks/antd/hooks/field/useCheckboxGroup"
         }
     ]
 }

@@ -205,9 +205,9 @@ module.exports = {
                                     type: "category",
                                     label: "Field",
                                     items: [
-                                        "api-references/hooks/field/useCheckboxGroup",
+                                        "ui-frameworks/antd/hooks/field/useCheckboxGroup",
                                         "ui-frameworks/antd/hooks/field/useSelect",
-                                        "api-references/hooks/field/useRadioGroup",
+                                        "ui-frameworks/antd/hooks/field/useRadioGroup",
                                     ],
                                 },
                                 {
