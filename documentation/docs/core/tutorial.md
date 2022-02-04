@@ -3,8 +3,8 @@ id: tutorial
 title: Tutorial
 ---
 
-import readyPage from '@site/static/img/tutorial/ready-page.png';
-import resourceFirst from '@site/static/img/tutorial/resource-1.png';
+import readyPage from '@site/static/img/core/tutorial/ready-page.png';
+import resourceFirst from '@site/static/img/core/tutorial/resource-1.png';
 import resourceSecond from '@site/static/img/tutorial/resource-2.png';
 import createGif from '@site/static/img/tutorial/create.gif';
 import editGif from '@site/static/img/tutorial/edit.gif';
@@ -14,7 +14,7 @@ import TabItem from '@theme/TabItem';
 
 ## Introduction
 
-This tutorial will go through process of building a simple _admin panel_ for a _CMS-like_ application.
+This tutorial will go through process of building a simple _admin panel_ for a _CMS-like_ application with headless.
 
 Step by step, you're going to learn how to consume a _REST API_ and add basic CRUD functionality to your panel leveraging the unique capabilities of **refine**.
 
@@ -88,7 +88,7 @@ Select the following options to complete the _CLI wizard_:
 
 ```
 ? Select your project type:
-❯ refine
+❯ refine-react
 
 ? What will be the name of your app:
 tutorial
@@ -96,17 +96,14 @@ tutorial
 ? Package manager:
 ❯ Npm
 
-? Do you want to customize the theme?:
-❯ No (Ant Design default theme)
+? Do you want to using UI Framework?:
+❯ No (headless)
 
 ? Data Provider :
 ❯ REST API
 
 ? Auth Provider :
 ❯ None
-
-? Do you want to add an example page?:
-❯ No
 
 ? i18n - Internationalization:
 ❯ No
@@ -174,6 +171,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 -   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
 ### Community ❤️
+
 -   [Firebase](https://github.com/rturan29/refine-firebase) by [rturan29](https://github.com/rturan29)
 
 [Refer to the `dataProvider` documentation for detailed usage. &#8594](/api-references/providers/data-provider.md)
@@ -181,14 +179,12 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 
 ## Bootstrapping the Application
 
-Replace the contents of `App.tsx` with the following code:
+If you don't use _superplate_ replace the contents of `App.tsx` with the following code:
 
-```tsx  title="src/App.tsx"
+```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
-
-import "@pankod/refine-antd/dist/styles.min.css";
 
 const App: React.FC = () => {
     return (
@@ -243,6 +239,10 @@ Point your browser to [http://localhost:3000](http://localhost:3000) to access i
 </div>
 <br/>
 
+:::info
+The ready page is displayed when there are no resources in the **refine** app. You can change it with the [`ReadyPage`](api-references/components/refine-config.md#readypage) prop.
+:::
+
 ## Adding Resources
 
 Now we are ready to start connecting to our API by adding a resource to our application.
@@ -281,8 +281,6 @@ Let's add **/posts/** endpoint from our API as a resource. First take a look to 
 </p>
 </details>
 
-<br/>
-
 Now, add the highlighted code to your `App.tsx` to connect to the endpoint.
 
 ```tsx title="src/App.tsx"
@@ -302,15 +300,11 @@ export const App: React.FC = () => {
 };
 ```
 
-<br/>
-
 :::info
 `resources` is a property of `<Refine/>` representing API Endpoints. The `name` property of every single resource should match one of the endpoints in your API!
 :::
 
 Instead of showing the welcome page, the application should redirect now? to an URL defined by the `name` property. Open your application to check that the URL is routed to **/posts**:
-
-<>
 
 <div class="img-container">
     <div class="window">
@@ -321,7 +315,10 @@ Instead of showing the welcome page, the application should redirect now? to an 
     <img src={resourceFirst} alt="Resource only with name" />
 </div>
 <br/>
-</>
+
+:::info
+You can change the **404** error page with the [`catchAll`](api-references/components/refine-config.md#catchall) prop.
+:::
 
 You'll still see a **404** error page because no **Page** component is assigned to our resource yet.
 
@@ -501,7 +498,7 @@ export interface IPost {
     id: string;
     title: string;
     status: "published" | "draft" | "rejected";
-// highlight-next-line
+    // highlight-next-line
     category: { id: string };
     createdAt: string;
 }
@@ -927,7 +924,14 @@ Until this point, we were basically working with read operations such as fetchin
 Let's start by creating a new `<PostEdit>` page responsible for editing a single record:
 
 ```tsx title="pages/posts/edit.tsx"
-import { useForm, Form, Input, Select, Edit, useSelect } from "@pankod/refine-antd";
+import {
+    useForm,
+    Form,
+    Input,
+    Select,
+    Edit,
+    useSelect,
+} from "@pankod/refine-antd";
 import { IPost } from "interfaces";
 
 export const PostEdit: React.FC = () => {
