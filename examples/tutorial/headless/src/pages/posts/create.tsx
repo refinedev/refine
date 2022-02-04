@@ -14,6 +14,46 @@ export const PostCreate: React.FC = () => {
     });
 
     return (
+        // <form onSubmit={handleSubmit(onFinish)}>
+        //     <label>Title: </label>
+        //     <input {...register("title", { required: true })} />
+        //     {errors.title && <span>This field is required</span>}
+        //     <br />
+        //     <label>Status: </label>
+        //     <select {...register("status")}>
+        //         <option value="published">published</option>
+        //         <option value="draft">draft</option>
+        //         <option value="rejected">rejected</option>
+        //     </select>
+        //     <br />
+        //     <label>Category: </label>
+        //     <select
+        //         defaultValue={""}
+        //         {...register("category.id", { required: true })}
+        //     >
+        //         <option value={""} disabled>
+        //             Please select
+        //         </option>
+        //         {options?.map((category) => (
+        //             <option key={category.value} value={category.value}>
+        //                 {category.label}
+        //             </option>
+        //         ))}
+        //     </select>
+        //     {errors.category && <span>This field is required</span>}
+        //     <br />
+        //     <label>Content: </label>
+        //     <br />
+        //     <textarea
+        //         {...register("content", { required: true })}
+        //         rows={10}
+        //         cols={50}
+        //     />
+        //     {errors.content && <span>This field is required</span>}
+        //     <br />
+        //     <input type="submit" value="Submit" />
+        //     {formLoading && <p>Loading</p>}
+        // </form>
         <div className="container mx-auto">
             <br />
             <form onSubmit={handleSubmit(onFinish)}>
@@ -25,6 +65,7 @@ export const PostCreate: React.FC = () => {
                         Title
                     </label>
                     <input
+                        {...register("title", { required: true })}
                         type="text"
                         id="title"
                         className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm "
@@ -90,6 +131,7 @@ export const PostCreate: React.FC = () => {
                         Content
                     </label>
                     <textarea
+                        {...register("content", { required: true })}
                         id="content"
                         className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm "
                         placeholder="Content"
