@@ -1,5 +1,5 @@
 {
-  "version": "3.0.3",
+  "version": "3.0.5",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -40,7 +40,7 @@
     "tslib": "^2.3.1"
   },
   "dependencies": {
-    "@pankod/refine-core": "^3.0.3",
+    "@pankod/refine-core": "^3.0.5",
     "appwrite": "^4.0.4"
   },
   "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",

@@ -119,10 +119,10 @@ export const useForm = <
         id: idFromRoute,
     } = useParams<ResourceRouterParams>();
 
+    const decodedIdFromRoute =
+        idFromRoute !== undefined ? decodeURIComponent(idFromRoute) : undefined;
     // id state is needed to determine selected record in a context for example useModal
-    const [id, setId] = React.useState<string | undefined>(
-        idFromRoute !== undefined ? decodeURIComponent(idFromRoute) : undefined,
-    );
+    const [id, setId] = React.useState<string | undefined>(decodedIdFromRoute);
 
     const resourceName = resourceFromProps ?? resourceFromRoute;
     const action = actionFromProps ?? actionFromRoute ?? "create";
@@ -228,7 +228,8 @@ export const useForm = <
                         }
 
                         if (mutationMode === "pessimistic") {
-                            setId(undefined);
+                            // If it is in modal mode set it to undefined. Otherwise set it to current id from route.
+                            setId(decodedIdFromRoute);
                             handleSubmitWithRedirect({
                                 redirect,
                                 resource,
@@ -246,7 +247,8 @@ export const useForm = <
         });
 
         if (!(mutationMode === "pessimistic")) {
-            setId(undefined);
+            // If it is in modal mode set it to undefined. Otherwise set it to current id from route.
+            setId(decodedIdFromRoute);
             handleSubmitWithRedirect({
                 redirect,
                 resource,

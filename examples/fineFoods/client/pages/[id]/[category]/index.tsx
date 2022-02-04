@@ -50,7 +50,7 @@ const Category: React.FC<CategoryPageProps> = ({ category, products }) => {
     } = useTable<IProduct>(
         {
             columns,
-            refineTableProps: {
+            refineCoreProps: {
                 resource: "products",
                 queryOptions: {
                     initialData: products,

@@ -20,7 +20,6 @@ export type {
     Field,
     FieldArray,
     FieldArrayMethodProps,
-    FieldArrayName,
     FieldArrayWithId,
     FieldElement,
     FieldError,

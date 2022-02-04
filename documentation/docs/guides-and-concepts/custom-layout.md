@@ -55,9 +55,9 @@ const App: React.FC = () => {
                                 {children}
                             </div>
                         </AntdLayout.Content>
-                        <Footer />
+                        {Footer && <Footer />}
                     </AntdLayout.Content>
-                    <OffLayoutArea />
+                    {OffLayoutArea && <OffLayoutArea />}
                 </AntdLayout>
             )}
 // highlight-end
@@ -93,7 +93,7 @@ export const CustomSider: React.FC = () => {
     return (
         <>
 // highlight-start
-            <Title collapsed={false} />
+            {Title && <Title collapsed={false} />}
             <Menu selectedKeys={[selectedKey]} mode="horizontal">
                 {menuItems.map(({ icon, route, label }) => (
                     <Menu.Item key={route} icon={icon}>

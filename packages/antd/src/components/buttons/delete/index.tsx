@@ -63,7 +63,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
 
     const { mutate, isLoading, variables } = useDelete();
 
-    const id = recordItemId ?? decodeURIComponent(idFromRoute);
+    const id = decodeURIComponent(recordItemId ?? idFromRoute);
 
     const { data } = useCan({
         resource: resource.name,

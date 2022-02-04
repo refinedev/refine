@@ -26,13 +26,13 @@ describe("useTable Hook", () => {
         });
 
         await waitFor(() => {
-            return !result.current.useTableCore.tableQueryResult.isLoading;
+            return !result.current.refineCore.tableQueryResult.isLoading;
         });
 
         const {
             pageCount,
             state: { pageIndex, pageSize, filters, sortBy },
-            useTableCore: { tableQueryResult },
+            refineCore: { tableQueryResult },
         } = result.current;
 
         expect(pageIndex).toBe(0);
@@ -49,7 +49,7 @@ describe("useTable Hook", () => {
             () =>
                 useTable({
                     columns,
-                    refineTableProps: {
+                    refineCoreProps: {
                         initialCurrent: 2,
                         initialPageSize: 1,
                     },
@@ -60,11 +60,11 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.useTableCore.tableQueryResult.isLoading;
+            return !result.current.refineCore.tableQueryResult.isLoading;
         });
 
         const {
-            useTableCore: { pageSize: corePageSize, current },
+            refineCore: { pageSize: corePageSize, current },
             state: { pageIndex, pageSize },
             pageCount,
         } = result.current;
@@ -82,7 +82,7 @@ describe("useTable Hook", () => {
                 useTable(
                     {
                         columns,
-                        refineTableProps: {
+                        refineCoreProps: {
                             initialFilter: [
                                 {
                                     field: "title",
@@ -105,12 +105,12 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.useTableCore.tableQueryResult.isLoading;
+            return !result.current.refineCore.tableQueryResult.isLoading;
         });
 
         const {
             setFilter,
-            useTableCore: { filters: filtersCore },
+            refineCore: { filters: filtersCore },
             state: { filters },
         } = result.current;
 
@@ -127,7 +127,7 @@ describe("useTable Hook", () => {
             setFilter("title", "Hello");
         });
 
-        expect(result.current.useTableCore.filters).toEqual([
+        expect(result.current.refineCore.filters).toEqual([
             { field: "active", value: true, operator: "eq" },
             { field: "title", value: "Hello", operator: "contains" },
         ]);
@@ -141,7 +141,7 @@ describe("useTable Hook", () => {
             setFilter("title", undefined);
         });
 
-        expect(result.current.useTableCore.filters).toEqual([
+        expect(result.current.refineCore.filters).toEqual([
             { field: "active", value: true, operator: "eq" },
         ]);
         expect(result.current.state.filters).toEqual([
@@ -155,7 +155,7 @@ describe("useTable Hook", () => {
                 useTable(
                     {
                         columns,
-                        refineTableProps: {
+                        refineCoreProps: {
                             initialSorter: [
                                 { field: "title", order: "desc" },
                                 { field: "id", order: "asc" },
@@ -170,12 +170,12 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.useTableCore.tableQueryResult.isLoading;
+            return !result.current.refineCore.tableQueryResult.isLoading;
         });
 
         const {
             setSortBy,
-            useTableCore: { sorter },
+            refineCore: { sorter },
             state: { sortBy },
         } = result.current;
 
@@ -195,7 +195,7 @@ describe("useTable Hook", () => {
             ]);
         });
 
-        expect(result.current.useTableCore.sorter).toEqual([
+        expect(result.current.refineCore.sorter).toEqual([
             { field: "id", order: "desc" },
             { field: "title", order: "asc" },
         ]);
@@ -211,7 +211,7 @@ describe("useTable Hook", () => {
                 useTable(
                     {
                         columns,
-                        refineTableProps: {
+                        refineCoreProps: {
                             initialFilter: [
                                 {
                                     field: "title",
@@ -236,12 +236,12 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.useTableCore.tableQueryResult.isLoading;
+            return !result.current.refineCore.tableQueryResult.isLoading;
         });
 
         const {
             setFilter,
-            useTableCore: { filters: filtersCore },
+            refineCore: { filters: filtersCore },
             state: { filters },
         } = result.current;
 
@@ -258,7 +258,7 @@ describe("useTable Hook", () => {
             setFilter("title", "Test");
         });
 
-        expect(result.current.useTableCore.filters).toEqual([
+        expect(result.current.refineCore.filters).toEqual([
             { field: "title", value: "Test", operator: "contains" },
             { field: "category.id", value: 1, operator: "eq" },
         ]);
@@ -271,7 +271,7 @@ describe("useTable Hook", () => {
             setFilter("title", undefined);
         });
 
-        expect(result.current.useTableCore.filters).toEqual([
+        expect(result.current.refineCore.filters).toEqual([
             { field: "category.id", value: 1, operator: "eq" },
         ]);
         expect(result.current.state.filters).toEqual([
@@ -285,7 +285,7 @@ describe("useTable Hook", () => {
                 useTable(
                     {
                         columns,
-                        refineTableProps: {
+                        refineCoreProps: {
                             initialSorter: [
                                 {
                                     field: "title",
@@ -308,12 +308,12 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.useTableCore.tableQueryResult.isLoading;
+            return !result.current.refineCore.tableQueryResult.isLoading;
         });
 
         const {
             toggleSortBy,
-            useTableCore: { sorter },
+            refineCore: { sorter },
             state: { sortBy },
         } = result.current;
 
@@ -330,7 +330,7 @@ describe("useTable Hook", () => {
             toggleSortBy("title", true, true);
         });
 
-        expect(result.current.useTableCore.sorter).toEqual([
+        expect(result.current.refineCore.sorter).toEqual([
             { field: "title", order: "desc" },
             { field: "category.id", order: "desc" },
         ]);

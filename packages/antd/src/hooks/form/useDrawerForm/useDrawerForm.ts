@@ -5,12 +5,12 @@ import {
     useMutationMode,
     useTranslate,
     useWarnAboutChange,
-    UseFormProps,
+    UseFormProps as UseFormPropsCore,
+    HttpError,
 } from "@pankod/refine-core";
-import { HttpError } from "@pankod/refine-core";
 import { BaseRecord, LiveModeProps } from "@pankod/refine-core/dist/interfaces";
 
-import { useForm, UseFormReturnType } from "../useForm";
+import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 import { DeleteButtonProps } from "@components";
 
 export interface UseDrawerFormConfig extends UseFormConfig {
@@ -21,7 +21,8 @@ export type UseDrawerFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = UseFormProps<TData, TError, TVariables> &
+> = UseFormPropsCore<TData, TError, TVariables> &
+    UseFormProps &
     UseDrawerFormConfig &
     LiveModeProps;
 

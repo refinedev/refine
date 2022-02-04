@@ -4,6 +4,7 @@ module.exports = {
             type: "category",
             label: "Getting Started",
             items: ["getting-started/overview", "getting-started/basics"],
+            collapsed: false,
         },
         {
             type: "doc",
@@ -17,7 +18,6 @@ module.exports = {
         {
             type: "category",
             label: "Core",
-            collapsed: false,
             items: [
                 "core/tutorial",
                 {
@@ -171,7 +171,6 @@ module.exports = {
         {
             type: "category",
             label: "UI Frameworks",
-            collapsed: false,
             items: [
                 {
                     type: "category",
@@ -296,7 +295,7 @@ module.exports = {
         {
             type: "category",
             label: "Packages",
-            items: ["packages/react-table"],
+            items: ["packages/react-table", "packages/react-hook-form"],
         },
         {
             type: "category",
@@ -375,31 +374,6 @@ module.exports = {
                 "examples/tutorial-example",
                 {
                     type: "category",
-                    label: "Core",
-                    items: [
-                        "examples/core/useModal",
-                        "examples/core/useImport",
-                    ],
-                },
-                "examples/authorization",
-                {
-                    type: "category",
-                    label: "Access Control",
-                    items: [
-                        "examples/access-control/casbin",
-                        "examples/access-control/cerbos",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "i18n",
-                    items: [
-                        "examples/i18n/i18n-react",
-                        "examples/i18n/i18n-nextjs",
-                    ],
-                },
-                {
-                    type: "category",
                     label: "Data Provider",
                     items: [
                         "examples/data-provider/strapi",
@@ -422,6 +396,23 @@ module.exports = {
                         "examples/auth-provider/google-auth",
                     ],
                 },
+                "examples/authorization",
+                {
+                    type: "category",
+                    label: "Access Control",
+                    items: [
+                        "examples/access-control/casbin",
+                        "examples/access-control/cerbos",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "i18n",
+                    items: [
+                        "examples/i18n/i18n-react",
+                        "examples/i18n/i18n-nextjs",
+                    ],
+                },
                 {
                     type: "category",
                     label: "Live Provider",
@@ -431,6 +422,19 @@ module.exports = {
                     type: "category",
                     label: "Router Provider",
                     items: ["examples/router-provider/react-location"],
+                },
+                {
+                    type: "category",
+                    label: "Notification Provider",
+                    items: ["examples/notification-provider/react-toastify"],
+                },
+                {
+                    type: "category",
+                    label: "Core",
+                    items: [
+                        "examples/core/useModal",
+                        "examples/core/useImport",
+                    ],
                 },
                 {
                     type: "category",
@@ -458,7 +462,15 @@ module.exports = {
                 {
                     type: "category",
                     label: "React Table",
-                    items: ["examples/react-table/react-table"],
+                    items: [
+                        "examples/react-table/react-table",
+                        "examples/react-table/advanced-react-table",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "React Hook Form",
+                    items: ["examples/react-hook-form/react-hook-form"],
                 },
                 {
                     type: "category",

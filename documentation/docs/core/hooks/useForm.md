@@ -6,7 +6,11 @@ title: useForm
 `useForm` is a hook that allows to manage forms. It has some `action` methods that `create`, `edit` and `clone` the form. The hook return value comes to according to the called action and it can run different logic depending on the `action`.
 
 :::info
-It doesn't handle the form state, it works with values passed to the hook's `onFinish` callback.
+If you're looking for a complete form library, Refine supports two form libraries out-of-the-box.
+
+Refine supports two hook libraries as out-of-the-box.
+- [React Hook Form](https://react-hook-form.com/) (for Headless users) - [Documentation](/packages/react-hook-form.md) - [Example](/examples/react-hook-form/react-hook-form.md)
+- [Ant Design Form](https://ant.design/components/form/#header) (for Ant Design users) - [Documentation](/core/hooks/useForm.md) - [Example](/examples/form/useForm.md)
 :::
 
 -   Returns the `mutationResult` after called the `onFinish` callback.
