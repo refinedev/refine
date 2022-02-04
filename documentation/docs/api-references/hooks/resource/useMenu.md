@@ -52,7 +52,7 @@ export const CustomMenu: React.FC = () => {
             breakpoint="lg"
             style={isMobile ? antLayoutSiderMobile : antLayoutSider}
         >
-            <Title collapsed={collapsed} />
+            {Title && <Title collapsed={collapsed} />}
 // highlight-start
             <Menu selectedKeys={[selectedKey]} mode="inline">
                 {menuItems.map(({ icon, route, label }) => (
@@ -151,7 +151,7 @@ export const CustomMenu: React.FC = () => {
             breakpoint="lg"
             style={isMobile ? antLayoutSiderMobile : antLayoutSider}
         >
-            <Title collapsed={collapsed} />
+            {Title && <Title collapsed={collapsed} />}
             <Menu
                 selectedKeys={[selectedKey]}
                 mode="inline"

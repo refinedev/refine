@@ -257,6 +257,14 @@ Custom route name
 
 <br />
 
+## `notificationProvider`
+
+`notificationProvider` handles notification logics. It is an object with methods that refine uses when necessary.
+
+[Refer to the Notification Provider documentation for detailed information. &#8594](/core/providers/notification-provider.md)
+
+<br />
+
 ## `catchAll`
 
 When the app is navigated to a non-existent route, **refine** shows a default error page. A custom error component can be used for this error page by passing the customized component to `catchAll` property:
@@ -519,17 +527,17 @@ const App: React.FC = () => (
         // highlight-start
         Layout={({ children, Sider, Footer, Header, OffLayoutArea }) => (
             <AntdLayout style={{ minHeight: "100vh", flexDirection: "row" }}>
-                <Sider />
+                {Sider && <Sider />}
                 <AntdLayout>
-                    <Header />
+                    {Header && <Header />}
                     <AntdLayout.Content>
                         <div style={{ padding: 24, minHeight: 360 }}>
                             {children}
                         </div>
                     </AntdLayout.Content>
-                    <Footer />
+                    {Footer && <Footer />}
                 </AntdLayout>
-                <OffLayoutArea />
+                {OffLayoutArea && <OffLayoutArea />}
             </AntdLayout>
         )}
         // highlight-end
@@ -664,25 +672,6 @@ const App: React.FC = () =>
          ...
         </Refine>
     );
-```
-
-## `notificationConfig`
-
-Config for Ant Design [notification](https://ant.design/components/notification/) that **refine** uses.
-
-```tsx
-const App: React.FC = () => (
-    <Refine
-        ...
-        // highlight-start
-        notificationConfig={{
-            placement: "bottomRight",
-            bottom: 40,
-            closeIcon: <CloseOutlined />,
-        }}
-        // highlight-end
-    />
-);
 ```
 
 [routerProvider]: /api-references/providers/router-provider.md

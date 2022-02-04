@@ -32,7 +32,7 @@ export const useTable = <
     });
 
     const {
-        tableQueryResult,
+        tableQueryResult: { data },
         current,
         setCurrent,
         pageSize: pageSizeCore,
@@ -42,8 +42,6 @@ export const useTable = <
         filters: filtersCore,
         setFilters,
     } = useTableResult;
-
-    const { data } = tableQueryResult;
 
     const memoizedData = useMemo(() => data?.data ?? [], [data]);
     const reactTableResult = useTableRT(
