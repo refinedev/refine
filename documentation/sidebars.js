@@ -4,6 +4,7 @@ module.exports = {
             type: "category",
             label: "Getting Started",
             items: ["getting-started/overview", "getting-started/basics"],
+            collapsed: false,
         },
         {
             type: "doc",
@@ -17,7 +18,6 @@ module.exports = {
         {
             type: "category",
             label: "Core",
-            collapsed: false,
             items: [
                 "core/tutorial",
                 {
@@ -176,7 +176,6 @@ module.exports = {
         {
             type: "category",
             label: "UI Frameworks",
-            collapsed: false,
             items: [
                 {
                     type: "category",
