@@ -217,11 +217,31 @@ You can further customize the Sider and its appearance.
 #### Interfaces
 
 ```ts
-interface IResourceItem {
+interface IResourceItem extends IResourceComponents {
     name: string;
     label?: string;
     route?: string;
     icon?: ReactNode;
+    canCreate?: boolean;
+    canEdit?: boolean;
+    canShow?: boolean;
+    canDelete?: boolean;
+}
+
+interface IResourceComponents {
+    list?: React.FunctionComponent<IResourceComponentsProps>;
+    create?: React.FunctionComponent<IResourceComponentsProps>;
+    edit?: React.FunctionComponent<IResourceComponentsProps>;
+    show?: React.FunctionComponent<IResourceComponentsProps>;
+}
+
+interface IResourceComponentsProps<TCrudData = any> {
+    canCreate?: boolean;
+    canEdit?: boolean;
+    canDelete?: boolean;
+    canShow?: boolean;
+    name?: string;
+    initialData?: TCrudData;
 }
 
 type IMenuItem = IResourceItem & {
