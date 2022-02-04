@@ -15,16 +15,17 @@ This comparison table strives to be as accurate and as unbiased as possible. If 
 | Features                       | Refine                                                              | React-Admin [_(Website)_][react-admin]     | AdminBro[_(Website)_][adminjs]   | Retool[_(Website)_][retool]     |
 | ------------------------------ | ------------------------------------------------------------------- | ------------------------------------------ | -------------------------------- | ------------------------------- |
 | Github Repo / Stars            | [![][stars-refine]][gh-refine]                                      | [![][stars-react-admin]][gh-react-admin]   | [![][stars-adminjs]][gh-adminjs] | -                               |
-| Bundle Size                    | [![][bp-refine]][bpl-refine]                                        | [![][bp-react-admin]][bpl-react-admin]     | [![][bp-adminjs]][bpl-adminjs]   | -                               |
+| Bundle Size                    | [![][bp-refine]][bpl-refine] 🚀                                         | [![][bp-react-admin]][bpl-react-admin]     | [![][bp-adminjs]][bpl-adminjs]   | -                               |
 | Pricing                        | Open Source                                                         | Open Source / Enterprise Edition           | Open Source                      | [_Pricing_][retool-pricing]     |
 | Platform Requirements          | React                                                               | React                                      | Node.js - React                  | Cloud / Self-hosted             |
-| Access Control                 | **RBAC, LDAP, ACL, ABAC, ...etc**                                   | RBAC                                       | RBAC                             | RBAC                            |
+| Supported UI Frameworks        | **Ant Design, Material UI, Tailwind, anyting...**🚀                  | Material-UI                                | Own UIs                          | Own UIs                         |
+| Headless                       | **Yes**🚀                                                           | No                                         | No                               | No                              |
+| Access Control                 | **RBAC, LDAP, ACL, ABAC, etc.**🚀                                    | RBAC                                       | RBAC                             | RBAC                            |
+| SSR Support                    | **Yes** 🚀                                                           | No                                         | No                               | No                              |
 | Live/Realtime                  | Yes with two mode `auto` and `manual`                               | Yes - just Immediately(Enterprise Edition) | No                               | No                              |
 | Audit Log                      | No - Coming Soon                                                    | Yes - Enterprise Edition                   | No                               | Yes                             |
-| SSR Support                    | **Yes** 🚀                                                           | No                                         | No                               | No                              |
 | State Management               | React Query                                                         | Redux - Redux Saga                         | Redux                            | -                               |
 | Routing                        | React Router, React Location, Next.js Router or Any Routing Library | React Router                               | React Router                     | -                               |
-| UI                             | Ant Design                                                          | Material-UI                                | Styled-Components                | Own Design Model(drag-and-drop) |
 | Devtools                       | Yes - React Query Devtool                                           | Yes - Redux DevTools                       | No                               | No                              |
 | Own Advanced Tutorial Examples | Yes - 50+ Examples                                                  | Yes - Few Examples                         | No                               | No                              |
 | Architecture                   | Hooks Based                                                         | Component Based                            | Hooks Based                      | -                               |
@@ -54,8 +55,8 @@ This comparison table strives to be as accurate and as unbiased as possible. If 
 
 [stars-refine]: https://img.shields.io/github/stars/pankod/refine?label=%F0%9F%8C%9F
 [gh-refine]: https://github.com/pankod/refine
-[bpl-refine]: https://bundlephobia.com/result?p=@pankod/refine
-[bp-refine]: https://badgen.net/bundlephobia/minzip/@pankod/refine?label=💾
+[bpl-refine]: https://bundlephobia.com/result?p=@pankod/refine-core
+[bp-refine]: https://badgen.net/bundlephobia/minzip/@pankod/refine-core?label=💾
 [pankod-superplate]: https://pankod.github.io/superplate/
 
 <!-- -->
