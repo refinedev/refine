@@ -130,7 +130,10 @@ module.exports = {
                         {
                             type: "category",
                             label: "Import-Export",
-                            items: ["core/hooks/import-export/useImport"],
+                            items: [
+                                "core/hooks/import-export/useImport",
+                                "core/hooks/import-export/useExport",
+                            ],
                         },
                         {
                             type: "category",

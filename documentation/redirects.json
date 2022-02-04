@@ -155,6 +155,10 @@
         {
             "from": "/docs/next/api-references/hooks/import-export/useImport",
             "to": "/docs/next/core/hooks/import-export/useImport"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/import-export/useExport",
+            "to": "/docs/next/core/hooks/import-export/useExport"
         }
     ]
 }

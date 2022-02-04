@@ -92,4 +92,4 @@ export const MyRefreshComponent = () => {
 | icon     | Sets the icon component of button | `ReactNode`                                                                            | [`<ExportOutlined />`](https://ant.design/components/icon/) |
 
 [button]: https://ant.design/components/button/
-[useexport]: api-references/hooks/import-export/useExport.md
+[useexport]: /core/hooks/import-export/useExport.md
