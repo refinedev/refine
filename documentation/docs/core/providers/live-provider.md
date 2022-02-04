@@ -302,7 +302,7 @@ const { data } = useList({
 | [`useMany` &#8594](/core/hooks/data/useMany.md) | [`useDrawerForm` &#8594](api-references/hooks/form/useDrawerForm.md) | [`useSimpleList` &#8594](api-references/hooks/show/useSimpleList.md)        |
 |                                                          | [`useStepsForm` &#8594](api-references/hooks/form/useStepsForm.md)   | [`useShow` &#8594](/core/hooks/show/useShow.md)                    |
 |                                                          |                                                                      | [`useCheckboxGroup` &#8594](api-references/hooks/field/useCheckboxGroup.md) |
-|                                                          |                                                                      | [`useSelect` &#8594](api-references/hooks/field/useSelect.md)               |
+|                                                          |                                                                      | [`useSelect` &#8594](/core/hooks/useSelect.md)               |
 |                                                          |                                                                      | [`useRadioGroup` &#8594](api-references/hooks/field/useRadioGroup.md)       |
 
 ## Supported Hooks Subscriptions
@@ -329,7 +329,7 @@ Following hooks uses `useList` under the hood and subscribe to same event.
 -   [`useEditableTable`](api-references/hooks/table/useEditableTable.md)
 -   [`useSimpleList`](api-references/hooks/show/useSimpleList.md)
 -   [`useCheckboxGroup`](api-references/hooks/field/useCheckboxGroup.md)
--   [`useSelect`](api-references/hooks/field/useSelect.md)
+-   [`useSelect`](/core/hooks/useSelect.md)
 -   [`useRadioGroup`](api-references/hooks/field/useRadioGroup.md)
 
 :::
@@ -376,7 +376,7 @@ useMany({ resource: "posts", ids: ["1", "2"] });
 :::tip
 Following hooks uses `useMany` under the hood and subscribe to same event.
 
--   [`useSelect`](api-references/hooks/field/useSelect.md)
+-   [`useSelect`](/core/hooks/useSelect.md)
 
 :::
 

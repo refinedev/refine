@@ -707,7 +707,7 @@ export const PostList: React.FC = () => {
 
 [Refer to the `Select` documentation for detailed usage information. &#8594](https://ant.design/components/select/)
 
-[Refer to the `useSelect` documentation for detailed usage information. &#8594](/api-references/hooks/field/useSelect.md)
+[Refer to the `useSelect` documentation for detailed usage information. &#8594](/ui-frameworks/antd/hooks/field/useSelect.md)
 
 :::note
 `defaultValue` is used to get the value for the current item. It's not affected by search, sort and filter parameters.

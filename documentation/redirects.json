@@ -147,6 +147,10 @@
         {
             "from": "/docs/next/api-references/hooks/table/useTable",
             "to": "/docs/next/core/hooks/useTable"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/field/useSelect",
+            "to": "/docs/next/core/hooks/useSelect"
         }
     ]
 }

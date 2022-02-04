@@ -118,7 +118,7 @@ export const PostCreate: React.FC = () => {
 :::tip
 Since `category` is a relational data, we use `useSelect` to fetch its data.
 
-[Refer to `useSelect` documentation for detailed usage. &#8594](../field/useSelect.md)
+[Refer to `useSelect` documentation for detailed usage. &#8594](/ui-frameworks/antd/hooks/field/useSelect.md)
 
 :::
 

@@ -78,7 +78,7 @@ Selecting categories from dropdown will send the id's of categories as filtering
 <br/>
 
 :::tip
-We added category options for `<Select>` manually for the sake of simplicity but [useSelect](api-references/hooks/field/useSelect.md) hook can be used to populate the props of `<Select>`
+We added category options for `<Select>` manually for the sake of simplicity but [useSelect](/ui-frameworks/antd/hooks/field/useSelect.md) hook can be used to populate the props of `<Select>`
 
 ```tsx 
 const { selectProps: categorySelectProps } = useSelect<ICategory>({

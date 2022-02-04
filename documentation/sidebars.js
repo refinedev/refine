@@ -207,7 +207,7 @@ module.exports = {
                                     label: "Field",
                                     items: [
                                         "api-references/hooks/field/useCheckboxGroup",
-                                        "api-references/hooks/field/useSelect",
+                                        "ui-frameworks/antd/hooks/field/useSelect",
                                         "api-references/hooks/field/useRadioGroup",
                                     ],
                                 },
