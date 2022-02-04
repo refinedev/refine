@@ -6,7 +6,7 @@ export const Layout: React.FC = ({ children }) => {
 
     return (
         <div className="flex min-h-screen flex-col">
-            <div className="mb-2 bg-gray-100/75 py-2 shadow">
+            <div className="mb-2 border-b py-2">
                 <div className="container mx-auto">
                     <ul>
                         {resources.map(({ name }) => (

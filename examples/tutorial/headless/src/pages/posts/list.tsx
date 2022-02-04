@@ -45,7 +45,7 @@ export const PostList: React.FC = () => {
                 Cell: ({ value }) => (
                     <div className="flex gap-2">
                         <button
-                            className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
                             onClick={() => edit("posts", value)}
                         >
                             <svg
@@ -64,7 +64,7 @@ export const PostList: React.FC = () => {
                             </svg>
                         </button>
                         <button
-                            className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
                             onClick={() => show("posts", value)}
                         >
                             <svg
@@ -130,7 +130,7 @@ export const PostList: React.FC = () => {
                     />
                 </div>
                 <button
-                    className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                    className="flex items-center justify-between gap-1 rounded border border-gray-200 bg-indigo-500 p-2 text-xs font-medium leading-tight text-white transition duration-150 ease-in-out hover:bg-indigo-600"
                     onClick={() => create("posts")}
                 >
                     <svg
@@ -151,8 +151,11 @@ export const PostList: React.FC = () => {
                 </button>
             </div>
 
-            <table className="w-full border" {...getTableProps()}>
-                <thead>
+            <table
+                className="min-w-full table-fixed divide-y divide-gray-200 border"
+                {...getTableProps()}
+            >
+                <thead className="bg-gray-100">
                     {headerGroups.map((headerGroup) => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map((column) => (
@@ -160,7 +163,7 @@ export const PostList: React.FC = () => {
                                     {...column.getHeaderProps(
                                         column.getSortByToggleProps(),
                                     )}
-                                    className="border-b bg-gray-100/75 p-4 pl-2 text-left font-semibold"
+                                    className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
                                 >
                                     {column.render("Header")}
                                     <span>
@@ -175,19 +178,22 @@ export const PostList: React.FC = () => {
                         </tr>
                     ))}
                 </thead>
-                <tbody {...getTableBodyProps()}>
+                <tbody
+                    {...getTableBodyProps()}
+                    className="divide-y divide-gray-200 bg-white"
+                >
                     {page.map((row) => {
                         prepareRow(row);
                         return (
                             <tr
                                 {...row.getRowProps()}
-                                className="transition hover:bg-gray-50/50"
+                                className="transition hover:bg-gray-100"
                             >
                                 {row.cells.map((cell) => {
                                     return (
                                         <td
                                             {...cell.getCellProps()}
-                                            className="border-b border-slate-100 p-3 pl-2"
+                                            className="whitespace-nowrap py-2 px-6 text-sm font-medium text-gray-900"
                                         >
                                             {cell.render("Cell")}
                                         </td>

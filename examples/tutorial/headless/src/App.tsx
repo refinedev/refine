@@ -3,7 +3,7 @@ import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import { Layout } from "components";
-import { PostList, PostCreate, PostEdit } from "pages/posts";
+import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 const App: React.FC = () => {
     return (
@@ -16,6 +16,7 @@ const App: React.FC = () => {
                     list: PostList,
                     create: PostCreate,
                     edit: PostEdit,
+                    show: PostShow,
                 },
             ]}
             Layout={Layout}
