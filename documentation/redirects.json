@@ -175,6 +175,10 @@
         {
             "from": "/docs/next/api-references/components/layout-wrapper",
             "to": "/docs/next/core/components/layout-wrapper"
+        }, 
+        {
+            "from": "/docs/next/api-references/interfaceReferences",
+            "to": "/docs/next/core/interfaceReferences"
         }
     ]
 }

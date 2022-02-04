@@ -180,7 +180,7 @@ const SimpleRestDataProvider = (
 | resource  | `string`     |         |
 | variables | `TVariables` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useCreate`](/docs/next/core/hooks/data/useCreate#type-parameters) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useCreate`](../../core/hooks/data/useCreate.md#type-parameters) to type `variables`
 
 <br/>
 
@@ -401,7 +401,7 @@ const SimpleRestDataProvider = (
 | id        | `string`     |         |
 | variables | `TVariables` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/next/core/hooks/data/useUpdate#type-parameters) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useUpdate`](../../core/hooks/data/useUpdate.md#type-parameters) to type `variables`
 
 <br/>
 
@@ -460,7 +460,7 @@ const SimpleRestDataProvider = (
 | ids       | `string[]`   |         |
 | variables | `TVariables` | `{}`    |
 
-> TVariables is a user defined type which can be passed to [`useUpdateMany`](/docs/next/core/hooks/data/useUpdateMany#type-parameters) to type `variables`
+> TVariables is a user defined type which can be passed to [`useUpdateMany`](../../core/hooks/data/useUpdateMany.md#type-parameters) to type `variables`
 
 <br/>
 
@@ -688,7 +688,7 @@ const { data } = useList({
 
 We'll sort records by speficified order and field.
 
-> [CrudSorting](/docs/api-references/interfaceReferences#crudoperators) ?
+> [CrudSorting](/core/interfaces.md#crudoperators) ?
 
 ```tsx title="dataProvider.ts"
 // highlight-start
@@ -777,7 +777,7 @@ const { data } = useList({
 
 **Adding filtering**
 
-Filters allow you to filter queries using [refine's filter operators](/docs/api-references/interfaceReferences#crudoperators). It is configured via field, operator and value properites.
+Filters allow you to filter queries using [refine's filter operators](/core/interfaces.md#crudoperators). It is configured via field, operator and value properites.
 
 ```tsx title="dataProvider.ts"
 const generateSort = (sort?: CrudSorting) => {
@@ -870,7 +870,7 @@ Since our API accepts only certain parameter formats to filter the data, we may 
 
 So we added the `generateFilter` and `mapOperator` methods to the transform filter parameters.
 
-[Refer to the list of all filter operators &#8594](/docs/api-references/interfaceReferences#crudoperators)
+[Refer to the list of all filter operators &#8594](/core/interfaces.md#crudoperators)
 
 ```ts
 import { useList } from "@pankod/refine-core";
