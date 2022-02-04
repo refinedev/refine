@@ -29,7 +29,7 @@ Hooks and components that support `MetaDataQuery`:
 | [`useDelete` &#8594](/core/hooks/data/useDelete.md)         | [`useDrawerForm` &#8594](/ui-frameworks/antd/hooks/form/useDrawerForm.md)        |                                                                        |
 | [`useDeleteMany` &#8594](/core/hooks/data/useDeleteMany.md) | [`useStepsForm` &#8594](/ui-frameworks/antd/hooks/form/useStepsForm.md)          |                                                                        |
 | [`useCreate` &#8594](/core/hooks/data/useCreate.md)         | [`useTable` &#8594](/core/hooks/useTable.md)                 |                                                                        |
-| [`useCreateMany` &#8594](/core/hooks/data/useCreateMany.md) | [`useEditableTable` &#8594](api-references/hooks/table/useEditableTable.md) |                                                                        |
+| [`useCreateMany` &#8594](/core/hooks/data/useCreateMany.md) | [`useEditableTable` &#8594](/ui-frameworks/antd/hooks/table/useEditableTable.md) |                                                                        |
 | [`useList` &#8594](/core/hooks/data/useList.md)             | [`useSimpleList` &#8594](api-references/hooks/show/useSimpleList.md)        |                                                                        |
 | [`useOne` &#8594](/core/hooks/data/useOne.md)               | [`useShow` &#8594](/core/hooks/show/useShow.md)                    |                                                                        |
 | [`useMany` &#8594](/core/hooks/data/useMany.md)             | [`useExport` &#8594](/core/hooks/import-export/useExport.md)       |                                                                        |

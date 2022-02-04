@@ -198,7 +198,7 @@ module.exports = {
                                     label: "Table",
                                     items: [
                                         "ui-frameworks/antd/hooks/table/useTable",
-                                        "api-references/hooks/table/useEditableTable",
+                                        "ui-frameworks/antd/hooks/table/useEditableTable",
                                     ],
                                 },
                                 {

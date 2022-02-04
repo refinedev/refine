@@ -195,6 +195,10 @@
         {
             "from": "/docs/next/api-references/hooks/resource/useMenu",
             "to": "/docs/next/ui-frameworks/antd/hooks/resource/useMenu"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/table/useEditableTable",
+            "to": "/docs/next/ui-frameworks/antd/hooks/table/useEditableTable"
         }
     ]
 }
