@@ -1,5 +1,9 @@
 import { DataProvider, LiveProvider, LiveEvent } from "@pankod/refine";
-import { CrudFilters, CrudSorting } from "@pankod/refine/dist/interfaces";
+import {
+    BaseRecord,
+    CrudFilters,
+    CrudSorting,
+} from "@pankod/refine/dist/interfaces";
 import { Appwrite } from "appwrite";
 
 export * from "appwrite";
@@ -44,8 +48,8 @@ type GetAppwriteFiltersType = {
 
 type GetAppwriteSortingType = {
     (filters?: CrudSorting): {
-        orderField?: string;
-        orderType?: string;
+        orderField?: string[];
+        orderType?: string[];
     };
 };
 
@@ -70,31 +74,23 @@ export const getAppwriteFilters: GetAppwriteFiltersType = (filters) => {
     return appwriteFilters;
 };
 
-export const getAppwriteSorting: GetAppwriteSortingType = (sorting) => {
-    if (!sorting) {
-        return {
-            orderField: undefined,
-            orderType: undefined,
-        };
-    }
-
-    if (sorting.length > 1) {
-        throw new Error(
-            "Appwrite data provider does not support multiple sortings",
-        );
-    }
-
-    const orderField = sorting?.[0]?.field;
-    const orderType = sorting?.[0]?.order.toUpperCase();
-
-    return {
-        orderField: orderField === "id" ? "$id" : orderField,
-        orderType,
+export const getAppwriteSorting: GetAppwriteSortingType = (sort) => {
+    const _sort: { orderField: string[]; orderType: string[] } = {
+        orderField: [],
+        orderType: [],
     };
+    if (sort) {
+        sort.map((item) => {
+            _sort.orderField.push(item.field);
+            _sort.orderType.push(item.order);
+        });
+    }
+    return _sort;
 };
 
 export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
     return {
+        //TODO: Fix typing
         getList: async ({ resource, pagination, filters, sort }) => {
             const current = pagination?.current ?? 1;
             const pageSize = pagination?.pageSize ?? 10;
@@ -102,11 +98,13 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
             const { orderField, orderType } = getAppwriteSorting(sort);
 
             const { sum: total, documents: data } =
-                await appwriteClient.database.listDocuments(
+                await appwriteClient.database.listDocuments<any>(
                     resource,
                     appwriteFilters,
                     pageSize,
                     (current - 1) * pageSize,
+                    undefined,
+                    undefined,
                     orderField,
                     orderType,
                 );
@@ -151,6 +149,8 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
             const { $id, ...restData } =
                 await appwriteClient.database.createDocument(
                     resource,
+                    // TODO: Make this configureable
+                    "unique()",
                     variables as unknown as object,
                     metaData?.readPermissions ?? ["role:all"],
                     metaData?.writePermissions ?? ["role:all"],
@@ -168,6 +168,8 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
                 variables.map((document) =>
                     appwriteClient.database.createDocument<any>(
                         resource,
+                        // TODO: Make this configureable
+                        "unique()",
                         document as unknown as object,
                         metaData?.readPermissions ?? ["role:all"],
                         metaData?.writePermissions ?? ["role:all"],
