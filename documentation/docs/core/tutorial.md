@@ -5,7 +5,7 @@ title: Tutorial
 
 import readyPage from '@site/static/img/core/tutorial/ready-page.png';
 import resourceFirst from '@site/static/img/core/tutorial/resource-1.png';
-import resourceSecond from '@site/static/img/tutorial/resource-2.png';
+import resourceSecond from '@site/static/img/core/tutorial/resource-2.png';
 import createGif from '@site/static/img/tutorial/create.gif';
 import editGif from '@site/static/img/tutorial/edit.gif';
 import showGif from '@site/static/img/tutorial/show.gif';
@@ -470,10 +470,9 @@ export const App: React.FC = () => {
 };
 ```
 
-
 ## Creating a List Page
 
-First, we'll install `@pankod/refine-react-table` package to use the `useTable` hook.
+First, we'll install [`@pankod/refine-react-table`](#) package to use the `useTable` hook.
 
 ```bash
 npm i @pankod/refine-react-table
@@ -488,17 +487,11 @@ Next, we'll need an interface to work with the data from the API endpoint.
 Create a new folder named _"interface"_ under _"/src"_ if you don't already have one. Then create a _"index.d.ts"_ file with the following code:
 
 ```ts title="interfaces/index.d.ts"
-export interface ICategory {
-    id: string;
-    title: string;
-}
-
 export interface IPost {
     id: string;
     title: string;
     status: "published" | "draft" | "rejected";
     createdAt: string;
-    category: ICategory;
 }
 ```
 
@@ -507,69 +500,93 @@ We'll be using **id**, **title**, **status** and **createdAt** fields of every *
 Now, create a new folder named _"pages/posts"_ under _"/src"_. Under that folder, create a _"list.tsx"_ file with the following code:
 
 ```tsx title="pages/posts/list.tsx"
-import {
-    List,
-    TextField,
-    TagField,
-    DateField,
-    Table,
-    useTable,
-} from "@pankod/refine-antd";
-
-import { IPost } from "interfaces";
+import React from "react";
+import { useTable, Column } from "@pankod/refine-react-table";
 
 export const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+    const columns: Array<Column> = React.useMemo(
+        () => [
+            {
+                id: "id",
+                Header: "ID",
+                accessor: "id",
+            },
+            {
+                id: "title",
+                Header: "Title",
+                accessor: "title",
+            },
+            {
+                id: "status",
+                Header: "Status",
+                accessor: "status",
+            },
+            {
+                id: "createdAt",
+                Header: "CreatedAt",
+                accessor: "createdAt",
+            },
+        ],
+        [],
+    );
+
+    const { getTableProps, getTableBodyProps, headerGroups, prepareRow, rows } =
+        useTable({ columns });
+
     return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="title" title="title" />
-                <Table.Column
-                    dataIndex="status"
-                    title="status"
-                    render={(value) => <TagField value={value} />}
-                />
-                <Table.Column
-                    dataIndex="createdAt"
-                    title="createdAt"
-                    render={(value) => <DateField format="LLL" value={value} />}
-                />
-            </Table>
-        </List>
+        <div className="container mx-auto pb-4">
+            <table
+                className="min-w-full table-fixed divide-y divide-gray-200 border"
+                {...getTableProps()}
+            >
+                <thead className="bg-gray-100">
+                    {headerGroups.map((headerGroup) => (
+                        <tr {...headerGroup.getHeaderGroupProps()}>
+                            {headerGroup.headers.map((column) => (
+                                <th
+                                    {...column.getHeaderProps()}
+                                    className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700"
+                                >
+                                    {column.render("Header")}
+                                </th>
+                            ))}
+                        </tr>
+                    ))}
+                </thead>
+                <tbody
+                    {...getTableBodyProps()}
+                    className="divide-y divide-gray-200 bg-white"
+                >
+                    {rows.map((row) => {
+                        prepareRow(row);
+                        return (
+                            <tr
+                                {...row.getRowProps()}
+                                className="transition hover:bg-gray-100"
+                            >
+                                {row.cells.map((cell) => {
+                                    return (
+                                        <td
+                                            {...cell.getCellProps()}
+                                            className="whitespace-nowrap py-2 px-6 text-sm font-medium text-gray-900"
+                                        >
+                                            {cell.render("Cell")}
+                                        </td>
+                                    );
+                                })}
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+        </div>
     );
 };
 ```
 
-<br/>
+✳️ `@pankod/refine-react-table` hook `useTable()` fetches data from API. Normally, **react-table**'s `useTable` expects a `data` prop but `@pankod/refine-react-table` doesn't expect a `data` prop.
 
-Let's break down the `<PostList/>` component to understand what's going on here:
-
-✳️ `<Table/>` is a native **Ant Design** component. It renders records row by row as a table.
-`<Table/>` expects a `rowKey` prop as the unique key of the records.
-
-:::note
-**refine** uses [Ant Design](https://ant.design/components/overview/) components to render data.
-You may refer to [Ant Design Docs](https://ant.design/components/table/#API) for further information about the `<Table/>` component.
-:::
-
-✳️ `useTable<IPost>();` is passed to the `<Table/>` component as `{...tableProps}`.
-
-This is the point where the ✨real magic✨ happens!
-
-**refine** hook `useTable()` fetches data from API and wraps them with various helper hooks required for the `<Table/>` component. Data interaction functions like **sorting**, **filtering**, and **pagination** will be instantly available on the `<Table/>` with this single line of code.
-
-:::note
-**refine** depends heavily on hooks and `useTable()` is only one among many others.
-On [useTable() Documentation](/api-references/hooks/table/useTable.md) you may find more information about the usage of this hook.
-:::
-
-✳️ `<Table.Column>` components are used for mapping and formatting each field shown on the `<Table/>`. `dataIndex` prop maps the field to a matching key from the API response. `render` prop is used to choose the appropriate **Field** component for the given data type.
-
-:::note
-The example uses `<TagField>` and `<DateField>` components. To get the full list of available components, you may refer to the [Field Components Documentation](/api-references/components/fields/boolean.md).
-:::
-
-✳️ `<List>` is a **refine** component. It acts as a wrapper to `<Table>` to add some extras like _Create Button_ and _title_.
+To get more detailed information about this package, please refer the [@pankod/refine-react-table documentation](#).
 
 Finally, we are ready to add `<PostList>` to our resource. Add the highlighted line to your `App.tsx`
 
@@ -579,7 +596,9 @@ import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-next-line
-import { PostList } from "./pages/posts";
+import { PostList } from "pages/posts";
+import { Layout } from "components/layout";
+import { PostIcon } from "/icons";
 
 export const App: React.FC = () => {
     return (
@@ -587,7 +606,8 @@ export const App: React.FC = () => {
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             // highlight-next-line
-            resources={[{ name: "posts", list: PostList }]}
+            resources={[{ name: "posts", icon: PostIcon, list: PostList }]}
+            Layout={Layout}
         />
     );
 };
@@ -595,11 +615,13 @@ export const App: React.FC = () => {
 
 <br />
 
-Open your application in your browser. You will see **posts** are displayed correctly in a table structure and even the pagination works out-of-the box.
+Open your application in your browser. You will see **posts** are displayed correctly in a table structure.
+
+:::info
+You can check the [@pankod/refine-react-table guide](#) for **pagination**, **sorting**, **filtering** and more.
+:::
 
 On the next step, we are going to add a category field to the table which involves handling data relationships.
-
-<>
 
 <div class="img-container">
     <div class="window">
@@ -609,8 +631,6 @@ On the next step, we are going to add a category field to the table which involv
     </div>
     <img src={resourceSecond} alt="Resource only List component" />
 </div>
-<br/>
-</>
 
 <br/>
 
@@ -656,217 +676,104 @@ export interface IPost {
     id: string;
     title: string;
     status: "published" | "draft" | "rejected";
-    // highlight-next-line
-    category: { id: string };
     createdAt: string;
+    // highlight-next-line
+    category: ICategory;
 }
 ```
 
 So we can update our `list.tsx` with the highlighted lines:
 
 ```tsx title="pages/posts/list.tsx"
-// highlight-next-line
-import { useMany } from "@pankod/refine-core";
-import {
-    List,
-    TextField,
-    TagField,
-    DateField,
-    Table,
-    useTable,
-} from "@pankod/refine-antd";
-
-// highlight-next-line
-import { IPost, ICategory } from "interfaces";
+import React from "react";
+import { useTable, Column } from "@pankod/refine-react-table";
 
 export const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+    const columns: Array<Column> = React.useMemo(
+        () => [
+            {
+                id: "id",
+                Header: "ID",
+                accessor: "id",
+            },
+            {
+                id: "title",
+                Header: "Title",
+                accessor: "title",
+            },
+            {
+                id: "status",
+                Header: "Status",
+                accessor: "status",
+            },
+            {
+                id: "createdAt",
+                Header: "CreatedAt",
+                accessor: "createdAt",
+            },
+            //highlight-start
+            {
+                id: "category.id",
+                Header: "Category",
+                accessor: "category.id",
+                Cell: ({ cell }) => {
+                    const { data, isLoading } = useOne<ICategory>({
+                        resource: "categories",
+                        id: cell.value,
+                    });
 
-    // highlight-start
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data: categoriesData, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
-    // highlight-end
+                    if (isLoading) {
+                        return <p>loading..</p>;
+                    }
+
+                    return data?.data.title;
+                },
+            },
+            //highlight-end
+        ],
+        [],
+    );
+
+    const { getTableProps, getTableBodyProps, headerGroups, prepareRow, rows } =
+        useTable({ columns });
 
     return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="title" title="title" />
-                <Table.Column
-                    dataIndex="status"
-                    title="status"
-                    render={(value) => <TagField value={value} />}
-                />
-                <Table.Column
-                    dataIndex="createdAt"
-                    title="createdAt"
-                    render={(value) => <DateField format="LLL" value={value} />}
-                />
-                // highlight-start
-                <Table.Column
-                    dataIndex={["category", "id"]}
-                    title="category"
-                    render={(value) => {
-                        if (isLoading) {
-                            return <TextField value="Loading..." />;
-                        }
-
-                        return (
-                            <TextField
-                                value={
-                                    categoriesData?.data.find(
-                                        (item) => item.id === value,
-                                    )?.title
-                                }
-                            />
-                        );
-                    }}
-                />
-                // highlight-end
-            </Table>
-        </List>
+        <table {...getTableProps()}>
+            <thead>
+                {headerGroups.map((headerGroup) => (
+                    <tr {...headerGroup.getHeaderGroupProps()}>
+                        {headerGroup.headers.map((column) => (
+                            <th {...column.getHeaderProps()}>
+                                {column.render("Header")}
+                            </th>
+                        ))}
+                    </tr>
+                ))}
+            </thead>
+            <tbody {...getTableBodyProps()}>
+                {rows.map((row, i) => {
+                    prepareRow(row);
+                    return (
+                        <tr {...row.getRowProps()}>
+                            {row.cells.map((cell) => {
+                                return (
+                                    <td {...cell.getCellProps()}>
+                                        {cell.render("Cell")}
+                                    </td>
+                                );
+                            })}
+                        </tr>
+                    );
+                })}
+            </tbody>
+        </table>
     );
 };
 ```
-
-We construct an array of `categoryId`'s from `/posts` endpoint and pass it to the `useMany` hook. `categoriesData` will be filled with _id-title_ tuples to be used for rendering our component.
 
 Try the result on your browser and you'll notice that the category column is filled correctly with the matching category titles for the each record's category id's. Even the loading state is managed by **refine**.
 
-:::tip
-You can access nested properties of table data by using an array:
-
-```
- dataIndex={["category", "id"]}
-```
-
-:::
-
-<br />
-
-:::note
-
-```tsx
-enabled: categoryIds.length > 0;
-```
-
-Here, we set a condition to start fetching only when data is available.
-:::
-
 To get more detailed information about this hook, please refer the [useMany Documentation](/api-references/hooks/data/useMany.md).
-
-## Adding search and filters
-
-We're done with displaying `post` records on our `<Table>`. Let's add search and filtering capabilities to the component, so that the user can have more control over the data.
-
-We are going to use `<Table.Column>`'s [`filterDropdown`](https://ant.design/components/table/#Column) property and `<FilterDropdown>` component as following:
-
-```tsx title="pages/posts/list.tsx"
-import { useMany } from "@pankod/refine-core";
-import {
-    List,
-    TextField,
-    TagField,
-    DateField,
-    Table,
-    useTable,
-    FilterDropdown,
-    // highlight-start
-    Select,
-    useSelect,
-    // highlight-end
-} from "@pankod/refine-antd";
-
-import { IPost, ICategory } from "interfaces";
-
-export const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
-
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data: categoriesData, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
-    // highlight-start
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-    });
-    // highlight-end
-
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="title" title="title" />
-                <Table.Column
-                    dataIndex="status"
-                    title="status"
-                    render={(value) => <TagField value={value} />}
-                />
-                <Table.Column
-                    dataIndex="createdAt"
-                    title="createdAt"
-                    render={(value) => <DateField format="LLL" value={value} />}
-                />
-                <Table.Column
-                    dataIndex={["category", "id"]}
-                    title="category"
-                    render={(value) => {
-                        if (isLoading) {
-                            return <TextField value="Loading..." />;
-                        }
-
-                        return (
-                            <TextField
-                                value={
-                                    categoriesData?.data.find(
-                                        (item) => item.id === value,
-                                    )?.title
-                                }
-                            />
-                        );
-                    }}
-                    // highlight-start
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                {...categorySelectProps}
-                            />
-                        </FilterDropdown>
-                    )}
-                    // highlight-end
-                />
-            </Table>
-        </List>
-    );
-};
-```
-
-✳️ `<FilterDropdown>` component serves as a bridge between its child input and **refine**'s `useTable` hook. It passes childs input value to `useTable` using `filterDropdown`'s embedded props and provides a filter button.
-
-[Refer to the `<FilterDropdown>` documentation for detailed usage. &#8594](/api-references/components/filter-dropdown.md)
-
-✳️ `useSelect` hook populates props for `<Select>` component from a given resource.
-
-[Refer to the `Select` documentation for detailed usage information. &#8594](https://ant.design/components/select/)
-
-[Refer to the `useSelect` documentation for detailed usage information. &#8594](/api-references/hooks/field/useSelect.md)
-
-:::note
-`defaultValue` is used to get the value for the current item. It's not affected by search, sort and filter parameters.
-:::
 
 ## Showing a single record
 
