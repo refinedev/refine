@@ -212,14 +212,14 @@ values={[
 ]}>
 <TabItem value="superplate">
 
-```sh
+```bash
 npm run dev
 ```
 
   </TabItem>
   <TabItem value="create-react-app">
 
-```sh
+```bash
 npm run start
 ```
 
@@ -329,22 +329,72 @@ For basic _CRUD_ operations, there are **four** predefined props: **list**, **cr
 
 Let's create a **Page** component to fetch **posts** and display them as a table. Later, we will pass the component as the **list** prop to our resource.
 
+## Adding Tailwind CSS
+
+Install `tailwindcss` and its peer dependencies via npm, and then run the init command to generate both `tailwind.config.js` and `postcss.config.js`.
+
+```bash
+npm i -D tailwindcss postcss autoprefixer
+npx tailwindcss init
+```
+
+Add the paths to all of your template files in your `tailwind.config.js` file.
+
+```ts title="tailwind.config.js"
+module.exports = {
+    //highlight-next-line
+    content: ["./src/**/*.{js,jsx,ts,tsx}"],
+    theme: {
+        extend: {},
+    },
+    plugins: [],
+};
+```
+
+Add the `@tailwind` directives for each of Tailwind’s layers to your `src/index.css` file.
+
+```css title="src/index.css"
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+Now, you can use Tailwind to style your application.
+
+## Creating a Layout
+
 ## Creating a List Page
 
-First, we'll need an interface to work with the data from the API endpoint.
+First, we'll install `@pankod/refine-react-table` package to use the `useTable` hook.
+
+```bash
+npm i @pankod/refine-react-table
+```
+
+:::note
+We'll use the `@pankod/refine-react-table` for benefit of the [**react-table**](https://react-table.tanstack.com) library. However, you can use `useTable` without the `@pankod/refine-react-table` package.
+:::
+
+Next, we'll need an interface to work with the data from the API endpoint.
 
 Create a new folder named _"interface"_ under _"/src"_ if you don't already have one. Then create a _"index.d.ts"_ file with the following code:
 
 ```ts title="interfaces/index.d.ts"
+export interface ICategory {
+    id: string;
+    title: string;
+}
+
 export interface IPost {
     id: string;
     title: string;
     status: "published" | "draft" | "rejected";
     createdAt: string;
+    category: ICategory;
 }
 ```
 
-We'll be using **title**, **status** and **createdAt** fields of every **post** record.
+We'll be using **id**, **title**, **status** and **createdAt** fields of every **post** record.
 
 Now, create a new folder named _"pages/posts"_ under _"/src"_. Under that folder, create a _"list.tsx"_ file with the following code:
 
