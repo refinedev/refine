@@ -351,5 +351,5 @@ const {
 [react-hook-form]: https://react-hook-form.com
 [refine-react-hook-form]: https://github.com/pankod/refine/tree/master/packages/react-hook-form
 [use-form-core]: /core/hooks/useForm.md
-[baserecord]: /api-references/interfaces.md#baserecord
-[httperror]: /api-references/interfaces.md#httperror
+[baserecord]: /core/interfaces.md#baserecord
+[httperror]: /core/interfaces.md#httperror

@@ -437,11 +437,11 @@ export interface IFeedbackFilterVariables {
 
 In this component
 
-- We listed our records using the [`useSimpleList`](https://refine.dev/docs/api-references/hooks/show/useSimpleList/) and [Ant Design](https://ant.design) [`<List>`](https://ant.design/components/list) component.
+- We listed our records using the [`useSimpleList`](https://refine.dev/docs/ui-frameworks/antd/hooks/list/useSimpleList/) and [Ant Design](https://ant.design) [`<List>`](https://ant.design/components/list) component.
 - We used Antd [`<Form>`](https://ant.design/components/form/) component to filter our records.
 - We made it possible to change the `type` of our record with [`useUpdate`](https://refine.dev/docs/api-references/hooks/data/useUpdate)
 
-See detailed usage of useSimpleList for adding new filters, adding search entries, dynamic sorting operations and more [here](https://refine.dev/docs/api-references/hooks/show/useSimpleList/).
+See detailed usage of useSimpleList for adding new filters, adding search entries, dynamic sorting operations and more [here](https://refine.dev/docs/ui-frameworks/antd/hooks/list/useSimpleList/).
 
 ### Overview
 

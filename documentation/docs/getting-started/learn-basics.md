@@ -20,7 +20,7 @@ This guide will help you learn and get information of basic **refine** concepts.
 
 -   `@pankod/refine-antd` - a fully featured [Ant Design](https://ant.design/) System UI Framework. Includes +20 Table, Form, Select, Menu, Layout, Notification and CRUD components and hooks.
 
-**[Data Provider](https://refine.dev/docs/api-references/providers/data-provider/) Packages:**
+**[Data Provider](https://refine.dev/docs/core/providers/data-provider/) Packages:**
 
 -   `@pankod/refine-simple-rest` - a fully featured REST API Data Provider
 -   `@pankod/refine-graphql` - a fully featured GraphQL Data Provider
@@ -34,19 +34,19 @@ This guide will help you learn and get information of basic **refine** concepts.
 -   `@pankod/refine-airtable` - a fully featured [Airtable](https://github.com/Airtable/airtable.js) Data Provider
 -   `@pankod/refine-altogic` - a fully featured [Altogic](https://github.com/altogic/altogic-js) Data Provider
 
-**[Router Provider](https://refine.dev/docs/api-references/providers/router-provider/) Packages**
+**[Router Provider](https://refine.dev/docs/core/providers/router-provider/) Packages**
 
 -   `@pankod/refine-react-router` - Router Provider for [React Router(v5)](https://github.com/remix-run/react-router)
 -   `@pankod/refine-nextjs-router` - Router Provider for [Next.js](https://nextjs.org/docs/api-reference/next/router#userouter)
 -   `@pankod/refine-react-location` - Router Provider for [React Location](https://github.com/tannerlinsley/react-location)
 
-**[Live Provider](https://refine.dev/docs/api-references/providers/live-provider/) Packages**
+**[Live Provider](https://refine.dev/docs/core/providers/live-provider/) Packages**
 
 -   `@pankod/refine-ably` - [Ably](https://ably.com/) Live/Realtime Provider
 
 ## Refine 3rd Party Integration Examples
 
-**[i18n Provider](https://refine.dev/docs/api-references/providers/i18n-provider/)**
+**[i18n Provider](https://refine.dev/docs/core/providers/i18n-provider/)**
 
 -   `i18n(React)` - [Example](https://refine.dev/docs/examples/i18n/i18n-react/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/i18n/react/src/App.tsx#L17)
 -   `i18n(Next.js)` - [Example](https://refine.dev/docs/examples/i18n/i18n-nextjs/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/i18n/nextjs/pages/_app.tsx#L20)

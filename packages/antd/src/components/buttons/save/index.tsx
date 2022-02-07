@@ -11,7 +11,7 @@ type SaveButtonProps = ButtonProps & {
  * `<SaveButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} component.
  * It uses it for presantation purposes only. Some of the hooks that refine has adds features to this button.
  *
- * @see {@link https://refine.dev/docs/api-references/components/buttons/save-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/buttons/save-button} for more details.
  */
 export const SaveButton: React.FC<SaveButtonProps> = ({
     hideText = false,

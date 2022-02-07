@@ -10,7 +10,7 @@ If you're looking for a complete form library, Refine supports two form librarie
 
 Refine supports two hook libraries as out-of-the-box.
 - [React Hook Form](https://react-hook-form.com/) (for Headless users) - [Documentation](/packages/react-hook-form.md) - [Example](/examples/react-hook-form/react-hook-form.md)
-- [Ant Design Form](https://ant.design/components/form/#header) (for Ant Design users) - [Documentation](/api-references/hooks/form/useForm.md) - [Example](/examples/form/useForm.md)
+- [Ant Design Form](https://ant.design/components/form/#header) (for Ant Design users) - [Documentation](/core/hooks/useForm.md) - [Example](/examples/form/useForm.md)
 :::
 
 -   Returns the `mutationResult` after called the `onFinish` callback.
@@ -60,13 +60,13 @@ It can be overridden by passing the `action` prop where it isn't possible to det
 
 It fetches the record data according to the `id` and returns the `queryResult` for you to fill the form.
 
-`useForm` uses [`useUpdate`](api-references/hooks/data/useUpdate.md) under the hood for mutations on edit mode.
+`useForm` uses [`useUpdate`](/core/hooks/data/useUpdate.md) under the hood for mutations on edit mode.
 
 ### `action: "create"`
 
 `action: "create"`is used for creating a new record that didn't exist before.
 
-`useForm` uses [`useCreate`](api-references/hooks/data/useCreate.md) under the hood for mutations on create mode.
+`useForm` uses [`useCreate`](/core/hooks/data/useCreate.md) under the hood for mutations on create mode.
 
 ### `action: "clone"`
 
@@ -74,7 +74,7 @@ It fetches the record data according to the `id` and returns the `queryResult` f
 
 It fetches the record data according to the `id` and returns the `queryResult` for you to fill the form.
 
-`useForm` uses [`useUpdate`](api-references/hooks/data/useUpdate.md) under the hood for mutations on clone mode.
+`useForm` uses [`useUpdate`](/core/hooks/data/useUpdate.md) under the hood for mutations on clone mode.
 
 ## API Reference
 
@@ -90,14 +90,14 @@ It fetches the record data according to the `id` and returns the `queryResult` f
 | onMutationError                                                        | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error                                                               | `(error: any, variables: any, context: any) => void`                                     |                                                                                                                                      |
 | redirect                                                               | Page to redirect after a succesfull mutation                                                                                                                       | ` "show` \| `"edit` \| `"list"` \| `false`                                               | `"list"`                                                                                                                             |
 | undoableTimeout                                                        | Duration to wait before executing mutations when `mutationMode = "undoable"`                                                                                       | `number`                                                                                 | `5000`\*                                                                                                                             |
-| successNotification                                                    | Successful Mutation notification                                                                                                                                   | [`SuccessErrorNotification`](api-references/interfaces.md#successerrornotification)               | "Successfully created `resource`" or "Successfully updated `resource`"                                                               |
-| errorNotification                                                      | Unsuccessful Mutation notification                                                                                                                                 | [`SuccessErrorNotification`](api-references/interfaces.md#successerrornotification)               | "There was an error creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
-| metaData                                                               | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/api-references/interfaces.md#metadataquery)                           | {}                                                                                                                                   |
-| [liveMode](/api-references/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/api-references/interfaces.md#livemodeprops)         | `"off"`                                                                                                                              |
-| liveParams                                                             | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: string[]; [key: string]: any; }`](/api-references/interfaces.md#livemodeprops) | `undefined`                                                                                                                          |
-| onLiveEvent                                                            | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/api-references/interfaces.md#livemodeprops)              | `undefined`                                                                                                                          |
+| successNotification                                                    | Successful Mutation notification                                                                                                                                   | [`SuccessErrorNotification`](/core/interfaces.md#successerrornotification)               | "Successfully created `resource`" or "Successfully updated `resource`"                                                               |
+| errorNotification                                                      | Unsuccessful Mutation notification                                                                                                                                 | [`SuccessErrorNotification`](/core/interfaces.md#successerrornotification)               | "There was an error creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
+| metaData                                                               | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](//core/interfaces.md#metadataquery)                           | {}                                                                                                                                   |
+| [liveMode](/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](//core/interfaces.md#livemodeprops)         | `"off"`                                                                                                                              |
+| liveParams                                                             | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: string[]; [key: string]: any; }`](//core/interfaces.md#livemodeprops) | `undefined`                                                                                                                          |
+| onLiveEvent                                                            | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](//core/interfaces.md#livemodeprops)              | `undefined`                                                                                                                          |
 
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/api-references/components/refine-config.md)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/core/components/refine-config.md)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
 ### Type Parameters
 
@@ -118,8 +118,8 @@ It fetches the record data according to the `id` and returns the `queryResult` f
 | id             | Record id for `clone` and `create` action              | `"string"` \| `"number"`                                                         |
 | setId          | `id` setter                                            | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                 |
 
-[baserecord]: /api-references/interfaces.md#baserecord
-[httperror]: /api-references/interfaces.md#httperror
+[baserecord]: //core/interfaces.md#baserecord
+[httperror]: //core/interfaces.md#httperror
 
 `useModal` hook allows you to manage a modal. Since it is designed as headless, it only outputs `show` and `close` functions and `visible` for state. It expects you to handle the UI.
 

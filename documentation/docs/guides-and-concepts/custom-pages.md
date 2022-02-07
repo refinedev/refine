@@ -126,21 +126,21 @@ Only authenticated users can access this page via `/custom-page` path.
 :::caution attention
 For authenticated custom page, your application needs an `authProvider`.
 
-[Refer to the `authProvider` for more detailed information. &#8594](/api-references/providers/auth-provider.md)
+[Refer to the `authProvider` for more detailed information. &#8594](/core/providers/auth-provider.md)
 
 :::
 
 :::info
 By default, custom pages don't have any layout. If you want to show your custom page in a layout, you can use `<LayoutWrapper>` component.
 
-[Refer to the `<LayoutWrapper>` for more detailed information. &#8594](/api-references/components/layout-wrapper.md)
+[Refer to the `<LayoutWrapper>` for more detailed information. &#8594](/core/components/layout-wrapper.md)
 :::
 
 ## Example
 
 Let's make a custom page for posts. On this page, the editor can approve or reject the posts with the "draft" status.
 
-Before starting the example, let's assume that our [`dataProvider`](/api-references/providers/data-provider.md) has an endpoint that returns posts as following.
+Before starting the example, let's assume that our [`dataProvider`](/core/providers/data-provider.md) has an endpoint that returns posts as following.
 
 ```ts title="https://api.fake-rest.refine.dev/posts"
 {
@@ -204,7 +204,7 @@ export default App;
 
 Now, let's create the custom page with the name `<PostReview>`. We will use the properties of `useList`, `filter` and `pagination` to fetch a post with "draft" status.
 
-[Refer to the `useList` documentation for detailed usage. &#8594](/api-references/hooks/data/useList.md)
+[Refer to the `useList` documentation for detailed usage. &#8594](/core/hooks/data/useList.md)
 
 ```tsx  title="src/pages/post-review.tsx"
 import { useList } from "@pankod/refine-core";
@@ -409,7 +409,7 @@ Now our page looks like this:
 
 Now let's put in approve and reject buttons to change the status of the post shown on the page. When these buttons are clicked, we will change the status of the post using `useUpdate`.
 
-[Refer to the `useUpdate` documentation for detailed usage. &#8594](/api-references/hooks/data/useUpdate.md)
+[Refer to the `useUpdate` documentation for detailed usage. &#8594](/core/hooks/data/useUpdate.md)
 
 ```tsx  title="src/pages/post-review.tsx"
 import { 

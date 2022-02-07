@@ -79,7 +79,7 @@ The mutation is applied locally, redirection and UI updates are executed immedia
 
 ## Usage
 
-Mutation mode can be set application-wide in [`<Refine>`](/api-references/components/refine-config.md#mutationmode) component.
+Mutation mode can be set application-wide in [`<Refine>`](/core/components/refine-config.md#mutationmode) component.
 
 ```tsx title="App.tsx"
 <Refine ... mutationMode="optimistic" />
@@ -109,21 +109,21 @@ mutate({
 
 ### Supported data hooks
 
--   [`useUpdate` &#8594](api-references/hooks/data/useUpdate.md)
--   [`useUpdateMany` &#8594](api-references/hooks/data/useUpdateMany.md)
--   [`useDelete` &#8594](api-references/hooks/data/useDelete.md)
--   [`useDeleteMany` &#8594](api-references/hooks/data/useDeleteMany.md)
+-   [`useUpdate` &#8594](/core/hooks/data/useUpdate.md)
+-   [`useUpdateMany` &#8594](/core/hooks/data/useUpdateMany.md)
+-   [`useDelete` &#8594](/core/hooks/data/useDelete.md)
+-   [`useDeleteMany` &#8594](/core/hooks/data/useDeleteMany.md)
 
 ### Supported form hooks
 
--   [`useForm` &#8594](api-references/hooks/form/useForm.md)
--   [`useModalForm` &#8594](api-references/hooks/form/useModalForm.md)
--   [`useDrawerForm` &#8594](api-references/hooks/form/useDrawerForm.md)
--   [`useStepsForm` &#8594](api-references/hooks/form/useStepsForm.md)
+-   [`useForm` &#8594](/ui-frameworks/antd/hooks/form/useForm.md)
+-   [`useModalForm` &#8594](/ui-frameworks/antd/hooks/form/useModalForm.md)
+-   [`useDrawerForm` &#8594](/ui-frameworks/antd/hooks/form/useDrawerForm.md)
+-   [`useStepsForm` &#8594](/ui-frameworks/antd/hooks/form/useStepsForm.md)
 
 ### Supported components
 
--   [`DeleteButton` &#8594](api-references/components/buttons/delete.md)
+-   [`DeleteButton` &#8594](/ui-frameworks/antd/components/buttons/delete.md)
 
 <br />
 
