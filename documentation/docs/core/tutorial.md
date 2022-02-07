@@ -6,9 +6,9 @@ title: Tutorial
 import readyPage from '@site/static/img/core/tutorial/ready-page.png';
 import resourceFirst from '@site/static/img/core/tutorial/resource-1.png';
 import resourceSecond from '@site/static/img/core/tutorial/resource-2.png';
+import showGif from '@site/static/img/core/tutorial/show.gif';
 import createGif from '@site/static/img/tutorial/create.gif';
 import editGif from '@site/static/img/tutorial/edit.gif';
-import showGif from '@site/static/img/tutorial/show.gif';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -777,44 +777,66 @@ To get more detailed information about this hook, please refer the [useMany Docu
 
 ## Showing a single record
 
-At this point we are able to list all _post_ records on the table component with pagination, sorting and filtering functionality. Next, we are going to add a _details page_ to fetch and display data from a single record.
+At this point we are able to list all _post_ records on the table component. Next, we are going to add a _details page_ to fetch and display data from a single record.
 
 Let's create a `<PostShow>` component on `/pages/posts` folder:
 
 ```tsx title="pages/posts/show.tsx"
 import { useShow, useOne } from "@pankod/refine-core";
-import { Show, Typography, Tag } from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
 
-const { Title, Text } = Typography;
-
-export const PostShow = () => {
-    const { queryResult } = useShow();
-    const { data, isLoading } = queryResult;
+export const PostShow: React.FC = () => {
+    const { queryResult } = useShow<IPost>();
+    const { data } = queryResult;
     const record = data?.data;
 
     const { data: categoryData } = useOne<ICategory>({
         resource: "categories",
         id: record?.category.id || "",
         queryOptions: {
-            enabled: !!record?.category.id,
+            enabled: !!record,
         },
     });
 
     return (
-        <Show isLoading={isLoading}>
-            <Title level={5}>Title</Title>
-            <Text>{record?.title}</Text>
-
-            <Title level={5}>Status</Title>
-            <Text>
-                <Tag>{record?.status}</Tag>
-            </Text>
-
-            <Title level={5}>Category</Title>
-            <Text>{categoryData?.data.title}</Text>
-        </Show>
+        <div className="container mx-auto">
+            <div className="mb-6">
+                <label className="mb-2 block text-sm font-medium">Title</label>
+                <input
+                    value={record?.title}
+                    disabled
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
+                />
+            </div>
+            <div className="mb-6">
+                <label className="mb-2 block text-sm font-medium">Status</label>
+                <input
+                    value={record?.status}
+                    disabled
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
+                />
+            </div>
+            <div className="mb-6">
+                <label className="mb-2 block text-sm font-medium">
+                    Category
+                </label>
+                <input
+                    value={categoryData?.data.title}
+                    disabled
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
+                />
+            </div>
+            <div className="mb-6">
+                <label className="mb-2 block text-sm font-medium">Status</label>
+                <textarea
+                    value={record?.content}
+                    disabled
+                    rows={10}
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
+                />
+            </div>
+        </div>
     );
 };
 ```
@@ -830,6 +852,8 @@ import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-next-line
 import { PostList, PostShow } from "./pages/posts";
+import { Layout } from "components/layout";
+import { PostIcon } from "/icons";
 
 export const App: React.FC = () => {
     return (
@@ -840,11 +864,13 @@ export const App: React.FC = () => {
             resources={[
                 {
                     name: "posts",
+                    icon: PostIcon,
                     list: PostList,
                     show: PostShow,
                 },
             ]}
             // highlight-end
+            Layout={Layout}
         />
     );
 };
@@ -852,106 +878,157 @@ export const App: React.FC = () => {
 
 <br />
 
-And then we can add a `<ShowButton>` on the list page to make it possible for users to navigate to detail pages:
+And then we can add a button on the list page to make it possible for users to navigate to detail pages:
 
 ```tsx title="src/pages/posts/list.tsx"
-import { useMany } from "@pankod/refine-core";
-import {
-    List,
-    TextField,
-    TagField,
-    DateField,
-    Table,
-    useTable,
-    FilterDropdown,
-    Select,
-    // highlight-next-line
-    ShowButton,
-    useSelect,
-} from "@pankod/refine-antd";
+//highlight-next-line
+import { useNavigation, useOne } from "@pankod/refine-core";
+import { useTable, Column } from "@pankod/refine-react-table";
 
-import { IPost, ICategory } from "interfaces";
+import { ICategory } from "interfaces";
+//highlight-next-line
+import { ShowIcon } from "icons";
 
 export const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+    //highlight-next-line
+    const { show } = useNavigation();
 
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data: categoriesData, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
+    const columns: Array<Column> = React.useMemo(
+        () => [
+            {
+                id: "id",
+                Header: "ID",
+                accessor: "id",
+            },
+            {
+                id: "title",
+                Header: "Title",
+                accessor: "title",
+            },
+            {
+                id: "status",
+                Header: "Status",
+                accessor: "status",
+            },
+            {
+                id: "createdAt",
+                Header: "CreatedAt",
+                accessor: "createdAt",
+            },
+            {
+                id: "category.id",
+                Header: "Category",
+                accessor: "category.id",
+                Cell: ({ cell }) => {
+                    const { data, isLoading } = useOne<ICategory>({
+                        resource: "categories",
+                        id: cell.value,
+                    });
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-    });
+                    if (isLoading) {
+                        return <p>loading..</p>;
+                    }
+
+                    return data?.data.title;
+                },
+            },
+            //highlight-start
+            {
+                id: "action",
+                Header: "Action",
+                accessor: "id",
+                Cell: ({ value }) => (
+                    <button
+                        className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                        onClick={() => show("posts", value)}
+                    >
+                        {ShowIcon}
+                    </button>
+                ),
+            },
+            //highlight-end
+        ],
+        [],
+    );
+
+    const { getTableProps, getTableBodyProps, headerGroups, prepareRow, rows } =
+        useTable({ columns });
 
     return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="title" title="title" />
-                <Table.Column
-                    dataIndex="status"
-                    title="status"
-                    render={(value) => <TagField value={value} />}
-                />
-                <Table.Column
-                    dataIndex="createdAt"
-                    title="createdAt"
-                    render={(value) => <DateField format="LLL" value={value} />}
-                />
-                <Table.Column
-                    dataIndex={["category", "id"]}
-                    title="category"
-                    render={(value) => {
-                        if (isLoading) {
-                            return <TextField value="Loading..." />;
-                        }
-
+        <div className="container mx-auto pb-4">
+            <table
+                className="min-w-full table-fixed divide-y divide-gray-200 border"
+                {...getTableProps()}
+            >
+                <thead className="bg-gray-100">
+                    {headerGroups.map((headerGroup) => (
+                        <tr {...headerGroup.getHeaderGroupProps()}>
+                            {headerGroup.headers.map((column) => (
+                                <th
+                                    {...column.getHeaderProps()}
+                                    className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
+                                >
+                                    {column.render("Header")}
+                                </th>
+                            ))}
+                        </tr>
+                    ))}
+                </thead>
+                <tbody
+                    {...getTableBodyProps()}
+                    className="divide-y divide-gray-200 bg-white"
+                >
+                    {rows.map((row) => {
+                        prepareRow(row);
                         return (
-                            <TextField
-                                value={
-                                    categoriesData?.data.find(
-                                        (item) => item.id === value,
-                                    )?.title
-                                }
-                            />
+                            <tr
+                                {...row.getRowProps()}
+                                className="transition hover:bg-gray-100"
+                            >
+                                {row.cells.map((cell) => {
+                                    return (
+                                        <td
+                                            {...cell.getCellProps()}
+                                            className="whitespace-nowrap py-2 px-6 text-sm font-medium text-gray-900"
+                                        >
+                                            {cell.render("Cell")}
+                                        </td>
+                                    );
+                                })}
+                            </tr>
                         );
-                    }}
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                {...categorySelectProps}
-                            />
-                        </FilterDropdown>
-                    )}
-                />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    // highlight-start
-                    render={(_text, record): React.ReactNode => {
-                        return (
-                            <ShowButton
-                                size="small"
-                                recordItemId={record.id}
-                                hideText
-                            />
-                        );
-                    }}
-                    // highlight-end
-                />
-            </Table>
-        </List>
+                    })}
+                </tbody>
+            </table>
+        </div>
     );
 };
 ```
+
+<details><summary>Show ShowIcon</summary>
+<p>
+
+```tsx title="icons.tsx"
+export const ShowIcon = (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+        <circle cx="12" cy="12" r="3"></circle>
+    </svg>
+);
+```
+
+</p>
+</details>
 
 ✳️ `useShow()` is a **refine** hook used to fetch a single record data. The `queryResult` has the response and also `isLoading` state.
 
@@ -965,12 +1042,7 @@ export const PostList: React.FC = () => {
 `useShow()` is the preferred hook for fetching data from current resource. For query foreign resources you may use the low-level `useOne()` hook.
 :::
 
-Since we've got access to raw data returning from `useShow()`, there is no restriction how it's displayed on your components. If you prefer presenting your content with a nicer wrapper, **refine** provides you
-the `<Show>` component which has extra features like `list` and `refresh` buttons.
-
-[Refer to the `<Show>` documentation for detailed usage information. &#8594](/api-references/components/basic-views/show.md)
-
-<br />
+Since we've got access to raw data returning from `useShow()`, there is no restriction how it's displayed on your components.
 
 <div class="img-container">
     <div class="window">
@@ -980,7 +1052,6 @@ the `<Show>` component which has extra features like `list` and `refresh` button
     </div>
     <img src={showGif} alt="Show record action" />
 </div>
-<br/>
 
 ## Editing a record
 
