@@ -33,6 +33,7 @@ import {
     BaseRecord,
     CrudFilters,
     CrudSorting,
+    CrudOperators,
     GetListResponse,
     SuccessErrorNotification,
     HttpError,
@@ -64,6 +65,10 @@ export type useTableReturnType<
     tableQueryResult: QueryObserverResult<GetListResponse<TData>>;
     sorter?: CrudSorting;
     filters?: CrudFilters;
+    changeFilterOperator: (
+        field: keyof TData,
+        newOperator: CrudOperators,
+    ) => void;
 };
 
 /**
@@ -243,6 +248,21 @@ export const useTable = <
         }
     };
 
+    const changeFilterOperator = (
+        field: keyof TData,
+        newOperator: CrudOperators,
+    ) => {
+        setFilters((currentFilters) => {
+            return currentFilters.map((filter) => {
+                if (filter.field === field) {
+                    return { ...filter, operator: newOperator };
+                }
+
+                return filter;
+            });
+        });
+    };
+
     return {
         searchFormProps: {
             ...formSF,
@@ -264,5 +284,6 @@ export const useTable = <
         tableQueryResult: queryResult,
         sorter,
         filters,
+        changeFilterOperator,
     };
 };
