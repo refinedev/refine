@@ -248,3 +248,8 @@ export interface IDataContextProvider {
         metaData?: MetaDataQuery;
     }) => Promise<CustomResponse<TData>>;
 }
+
+export interface IDataMultipleContextProvider {
+    defaultProvider: IDataContextProvider;
+    [key: string]: IDataContextProvider | any;
+}

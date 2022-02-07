@@ -1,10 +1,6 @@
-import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
-
-import { DataContext } from "@contexts/data";
 import {
     GetListResponse,
-    IDataContext,
     CrudFilters,
     Pagination,
     BaseRecord,
@@ -19,6 +15,7 @@ import {
     useHandleNotification,
     useResourceSubscription,
     useTranslate,
+    useDataProvider,
 } from "@hooks";
 
 interface UseListConfig {
@@ -34,6 +31,7 @@ export type UseListProps<TData, TError> = {
     successNotification?: OpenNotificationParams | false;
     errorNotification?: OpenNotificationParams | false;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 } & LiveModeProps;
 
 /**
@@ -60,11 +58,13 @@ export const useList = <
     liveMode,
     onLiveEvent,
     liveParams,
+    dataProviderName,
 }: UseListProps<TData, TError>): QueryObserverResult<
     GetListResponse<TData>,
     TError
 > => {
-    const { getList } = useContext<IDataContext>(DataContext);
+    const { getList } = useDataProvider(dataProviderName);
+
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const handleNotification = useHandleNotification();

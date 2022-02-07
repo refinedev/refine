@@ -161,6 +161,7 @@ export const useForm = <
     const { isFetching: isFetchingQuery } = queryResult;
 
     const mutationResultCreate = useCreate<TData, TError, TVariables>();
+
     const { mutate: mutateCreate, isLoading: isLoadingCreate } =
         mutationResultCreate;
 

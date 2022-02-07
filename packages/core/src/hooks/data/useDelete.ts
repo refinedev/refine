@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
 
 import {
@@ -9,13 +8,12 @@ import {
     useCheckError,
     usePublish,
     useHandleNotification,
+    useDataProvider,
 } from "@hooks";
-import { DataContext } from "@contexts/data";
 import { ActionTypes } from "@contexts/undoableQueue";
 import pluralize from "pluralize";
 import {
     DeleteOneResponse,
-    IDataContext,
     MutationMode,
     QueryResponse,
     Context as DeleteContext,
@@ -34,6 +32,7 @@ type DeleteParams = {
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 } & SuccessErrorNotification;
 
 type UseDeleteReturnType<
@@ -64,7 +63,7 @@ export const useDelete = <
 >(): UseDeleteReturnType<TData, TError> => {
     const { mutate: checkError } = useCheckError();
     const queryClient = useQueryClient();
-    const { deleteOne } = useContext<IDataContext>(DataContext);
+
     const {
         mutationMode: mutationModeContext,
         undoableTimeout: undoableTimeoutContext,
@@ -90,6 +89,7 @@ export const useDelete = <
             resource,
             onCancel,
             metaData,
+            dataProviderName,
         }) => {
             const mutationModePropOrContext =
                 mutationMode ?? mutationModeContext;
@@ -98,13 +98,18 @@ export const useDelete = <
                 undoableTimeout ?? undoableTimeoutContext;
 
             if (!(mutationModePropOrContext === "undoable")) {
-                return deleteOne<TData>({ resource, id, metaData });
+                return useDataProvider(dataProviderName).deleteOne<TData>({
+                    resource,
+                    id,
+                    metaData,
+                });
             }
 
             const deletePromise = new Promise<DeleteOneResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        deleteOne<TData>({ resource, id, metaData })
+                        useDataProvider(dataProviderName)
+                            .deleteOne<TData>({ resource, id, metaData })
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
                     };

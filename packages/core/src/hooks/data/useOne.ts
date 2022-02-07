@@ -1,9 +1,7 @@
-import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
-import { DataContext } from "@contexts/data";
+
 import {
     GetOneResponse,
-    IDataContext,
     HttpError,
     BaseRecord,
     MetaDataQuery,
@@ -15,6 +13,7 @@ import {
     useTranslate,
     useResourceSubscription,
     useHandleNotification,
+    useDataProvider,
 } from "@hooks";
 
 export type UseOneProps<TData, TError> = {
@@ -24,6 +23,7 @@ export type UseOneProps<TData, TError> = {
     successNotification?: OpenNotificationParams | false;
     errorNotification?: OpenNotificationParams | false;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 } & LiveModeProps;
 
 /**
@@ -50,8 +50,9 @@ export const useOne = <
     liveMode,
     onLiveEvent,
     liveParams,
+    dataProviderName,
 }: UseOneProps<TData, TError>): QueryObserverResult<GetOneResponse<TData>> => {
-    const { getOne } = useContext<IDataContext>(DataContext);
+    const { getOne } = useDataProvider(dataProviderName);
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const handleNotification = useHandleNotification();

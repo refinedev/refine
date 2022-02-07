@@ -43,6 +43,7 @@ import {
     LiveModeProps,
     IAccessControlContext,
     INotificationContext,
+    IDataMultipleContextProvider,
 } from "../../../interfaces";
 
 interface QueryClientConfig {
@@ -52,7 +53,7 @@ interface QueryClientConfig {
 }
 export interface RefineProps {
     authProvider?: IAuthContext;
-    dataProvider: IDataContextProvider;
+    dataProvider: IDataContextProvider | IDataMultipleContextProvider;
     liveProvider?: ILiveContext;
     routerProvider: IRouterProvider;
     notificationProvider?: INotificationContext;
@@ -152,6 +153,13 @@ export const Refine: React.FC<RefineProps> = ({
 
     const { RouterComponent } = routerProvider;
 
+    let myDataProvider;
+    if (!dataProvider.hasOwnProperty("defaultProvider")) {
+        myDataProvider = {
+            defaultProvider: dataProvider,
+        } as IDataMultipleContextProvider;
+    } else myDataProvider = dataProvider as IDataMultipleContextProvider;
+
     return (
         <QueryClientProvider client={queryClient}>
             <NotificationContextProvider {...notificationProvider}>
@@ -159,7 +167,7 @@ export const Refine: React.FC<RefineProps> = ({
                     {...authProvider}
                     isProvided={!!authProvider}
                 >
-                    <DataContextProvider {...dataProvider}>
+                    <DataContextProvider {...myDataProvider}>
                         <LiveContextProvider liveProvider={liveProvider}>
                             <RouterContextProvider {...routerProvider}>
                                 <ResourceContextProvider resources={resources}>

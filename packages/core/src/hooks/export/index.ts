@@ -1,5 +1,9 @@
 import { useContext, useState } from "react";
-import { useResourceWithRoute, useRouterContext } from "@hooks";
+import {
+    useResourceWithRoute,
+    useRouterContext,
+    useDataProvider,
+} from "@hooks";
 import {
     ResourceRouterParams,
     IDataContext,
@@ -25,6 +29,7 @@ type UseExportOptionsType<
     pageSize?: number;
     exportOptions?: Options;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 };
 
 type UseExportReturnType = {
@@ -53,6 +58,7 @@ export const useExport = <
     mapData = (item) => item as any,
     exportOptions,
     metaData,
+    dataProviderName,
 }: UseExportOptionsType<TData, TVariables> = {}): UseExportReturnType => {
     const [isLoading, setIsLoading] = useState(false);
 
@@ -72,7 +78,7 @@ export const useExport = <
         "plural",
     )}-${new Date().toLocaleString()}`;
 
-    const { getList } = useContext<IDataContext>(DataContext);
+    const { getList } = useDataProvider(dataProviderName);
 
     const triggerExport = async () => {
         setIsLoading(true);

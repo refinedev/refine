@@ -1,9 +1,6 @@
-import { useContext } from "react";
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
 
-import { DataContext } from "@contexts/data";
 import {
-    IDataContext,
     BaseRecord,
     CreateManyResponse,
     HttpError,
@@ -15,6 +12,7 @@ import {
     useTranslate,
     usePublish,
     useHandleNotification,
+    useDataProvider,
 } from "@hooks";
 import pluralize from "pluralize";
 
@@ -22,6 +20,7 @@ type useCreateManyParams<TVariables> = {
     resource: string;
     values: TVariables[];
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 } & SuccessErrorNotification;
 
 export type UseCreateManyReturnType<
@@ -52,7 +51,6 @@ export const useCreateMany = <
     TError extends HttpError = HttpError,
     TVariables = {},
 >(): UseCreateManyReturnType<TData, TError, TVariables> => {
-    const { createMany } = useContext<IDataContext>(DataContext);
     const getAllQueries = useCacheQueries();
     const translate = useTranslate();
     const queryClient = useQueryClient();
@@ -64,8 +62,13 @@ export const useCreateMany = <
         TError,
         useCreateManyParams<TVariables>
     >(
-        ({ resource, values, metaData }: useCreateManyParams<TVariables>) =>
-            createMany<TData, TVariables>({
+        ({
+            resource,
+            values,
+            metaData,
+            dataProviderName,
+        }: useCreateManyParams<TVariables>) =>
+            useDataProvider(dataProviderName).createMany<TData, TVariables>({
                 resource,
                 variables: values,
                 metaData,

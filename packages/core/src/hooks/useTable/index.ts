@@ -41,6 +41,7 @@ export type useTableProps<TData, TError> = {
     syncWithLocation?: boolean;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 } & SuccessErrorNotification &
     LiveModeProps;
 
@@ -88,6 +89,7 @@ export const useTable = <
     onLiveEvent,
     liveParams,
     metaData,
+    dataProviderName,
 }: useTableProps<TData, TError> = {}): useTableReturnType<TData> => {
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
@@ -162,6 +164,7 @@ export const useTable = <
         liveMode,
         liveParams,
         onLiveEvent,
+        dataProviderName,
     });
 
     const setFiltersWithUnion = (newFilters: CrudFilters) => {
