@@ -288,20 +288,51 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
+// highlight-next-line
+import { PostIcon } from "icons";
+
 export const App: React.FC = () => {
     return (
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             // highlight-next-line
-            resources={[{ name: "posts" }]}
+            resources={[{ name: "posts", icon: PostIcon }]}
         />
     );
 };
 ```
 
+<details><summary>Show PostIcon</summary>
+<p>
+
+```tsx title="icons.tsx"
+export const PostIcon = (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+        <polyline points="2 17 12 22 22 17"></polyline>
+        <polyline points="2 12 12 17 22 12"></polyline>
+    </svg>
+);
+```
+
+</p>
+</details>
+
 :::info
 `resources` is a property of `<Refine/>` representing API Endpoints. The `name` property of every single resource should match one of the endpoints in your API!
+
+The `icon` property of every single resource is can be used to display the resource in whatever way you want for example in the sidebar or header. We'll use it when we'll create layout component.
 :::
 
 Instead of showing the welcome page, the application should redirect now? to an URL defined by the `name` property. Open your application to check that the URL is routed to **/posts**:
@@ -362,6 +393,83 @@ Add the `@tailwind` directives for each of Tailwind’s layers to your `src/inde
 Now, you can use Tailwind to style your application.
 
 ## Creating a Layout
+
+We will create a **Layout** component to handle the rendering of the **Page** components.
+
+Create a new folder named _"components"_ under _"/src"_ and create a new file named _"Layout.tsx"_ with the following code:
+
+```tsx title="components/Layout.tsx"
+import { useResource, useNavigation } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router";
+
+const { Link } = routerProvider;
+
+export const Layout: React.FC = ({ children }) => {
+    const { resources } = useResource();
+    const { list } = useNavigation();
+
+    return (
+        <div className="flex min-h-screen flex-col">
+            <div className="mb-2 border-b py-2">
+                <div className="container mx-auto">
+                    <div className="flex items-center gap-2">
+                        <Link to="/">
+                            <img
+                                className="w-32"
+                                src="https://refine.dev/img/refine_logo.png"
+                                alt="Logo"
+                            />
+                        </Link>
+                        <ul>
+                            {resources.map(({ name, icon }) => (
+                                <li key={name} className="float-left">
+                                    <a
+                                        className="flex cursor-pointer items-center gap-1 rounded-sm px-2 py-1 capitalize decoration-indigo-500 decoration-2 underline-offset-1 transition duration-300 ease-in-out hover:underline"
+                                        onClick={() => list(name)}
+                                    >
+                                        {icon}
+                                        <span>{name}</span>
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div className="bg-white">{children}</div>
+        </div>
+    );
+};
+```
+
+We created a header with a logo and a list of links to all resources. The links are clickable and will navigate to the corresponding resource. To do this, we used the [`useResource`](#) hook to get the resources from the `<Refine/>` and the [`useNavigation`](#) hook to used to navigate between resources.
+
+`children` is the content of the layout. In our case, it is the content of the **Page** components.
+
+Now, we can use the `<Layout>` in our application.
+
+```tsx title="src/App.tsx"
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router";
+import dataProvider from "@pankod/refine-simple-rest";
+
+// highlight-next-line
+import { Layout } from "components/layout";
+import { PostIcon } from "icons";
+
+export const App: React.FC = () => {
+    return (
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[{ name: "posts", icon: PostIcon }]}
+            // highlight-next-line
+            Layout={Layout}
+        />
+    );
+};
+```
+
 
 ## Creating a List Page
 
