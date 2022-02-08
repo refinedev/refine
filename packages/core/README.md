@@ -72,7 +72,7 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 ## Key features
 
-🔥 **Headless**: refine is a **headless** React framework, which means all out-of-the-box features, it can be used without being tied to any UI elements or framework
+🔥 **Headless** : All out-of-the-box features, it can be used without being tied to any UI elements or framework.
 
 ⚙️ **Zero-configuration**: One-line setup with [superplate](https://github.com/pankod/superplate). It takes less than a minute to start a project.
 
@@ -82,9 +82,7 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 📝 **Native Typescript Core** : You can always opt out for plain JavaScript.
 
-🔘 **Decoupled UI** : UI components are exposed directly without encapsulation. You have full control on UI elements.
-
-🐜 **Powerful UI** : Works seamlessly with integrated [Ant Design System](https://ant.design/). (It can also be used with **any** UI Framework)
+🐜 **Enterprise UI** : Works seamlessly with integrated Ant Design System. (Support for multiple UI frameworks is on the Roadmap)
 
 📝 **Boilerplate-free Code** : Keeps your codebase clean and readable.
 
