@@ -584,9 +584,9 @@ export const PostList: React.FC = () => {
 };
 ```
 
-✳️ `@pankod/refine-react-table` hook `useTable()` fetches data from API. Normally, **react-table**'s `useTable` expects a `data` prop but `@pankod/refine-react-table` doesn't expect a `data` prop.
+`@pankod/refine-react-table` hook `useTable()` fetches data from API. Normally, **react-table**'s `useTable` expects a `data` prop but `@pankod/refine-react-table` doesn't expect a `data` prop.
 
-To get more detailed information about this package, please refer the [@pankod/refine-react-table documentation](#).
+[Refer to the **@pankod/refine-react-table** for more information. →](#)
 
 Finally, we are ready to add `<PostList>` to our resource. Add the highlighted line to your `App.tsx`
 
@@ -617,10 +617,6 @@ export const App: React.FC = () => {
 
 Open your application in your browser. You will see **posts** are displayed correctly in a table structure.
 
-:::info
-You can check the [@pankod/refine-react-table guide](#) for **pagination**, **sorting**, **filtering** and more.
-:::
-
 On the next step, we are going to add a category field to the table which involves handling data relationships.
 
 <div class="img-container">
@@ -634,7 +630,7 @@ On the next step, we are going to add a category field to the table which involv
 
 <br/>
 
-## Handling relationships
+### Handling relationships
 
 Remember the records from `/posts` endpoint that had a category id field?
 
@@ -660,7 +656,7 @@ The category title data can be obtained from the `/categories` endpoint for each
 
 <br />
 
-At this point, we need to join records from different resources. For this, we're goint to use the refine hook `useMany`.
+At this point, we need to join records from different resources. For this, we're goint to use the **refine** hook `useOne`.
 
 Before we start, just edit our interface for the new `ICategory` type:
 
@@ -738,42 +734,591 @@ export const PostList: React.FC = () => {
         useTable({ columns });
 
     return (
-        <table {...getTableProps()}>
-            <thead>
-                {headerGroups.map((headerGroup) => (
-                    <tr {...headerGroup.getHeaderGroupProps()}>
-                        {headerGroup.headers.map((column) => (
-                            <th {...column.getHeaderProps()}>
-                                {column.render("Header")}
-                            </th>
-                        ))}
-                    </tr>
-                ))}
-            </thead>
-            <tbody {...getTableBodyProps()}>
-                {rows.map((row, i) => {
-                    prepareRow(row);
-                    return (
-                        <tr {...row.getRowProps()}>
-                            {row.cells.map((cell) => {
-                                return (
-                                    <td {...cell.getCellProps()}>
-                                        {cell.render("Cell")}
-                                    </td>
-                                );
-                            })}
+        <div className="container mx-auto pb-4">
+            <table
+                className="min-w-full table-fixed divide-y divide-gray-200 border"
+                {...getTableProps()}
+            >
+                <thead className="bg-gray-100">
+                    {headerGroups.map((headerGroup) => (
+                        <tr {...headerGroup.getHeaderGroupProps()}>
+                            {headerGroup.headers.map((column) => (
+                                <th
+                                    {...column.getHeaderProps()}
+                                    className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700"
+                                >
+                                    {column.render("Header")}
+                                </th>
+                            ))}
                         </tr>
-                    );
-                })}
-            </tbody>
-        </table>
+                    ))}
+                </thead>
+                <tbody
+                    {...getTableBodyProps()}
+                    className="divide-y divide-gray-200 bg-white"
+                >
+                    {rows.map((row) => {
+                        prepareRow(row);
+                        return (
+                            <tr
+                                {...row.getRowProps()}
+                                className="transition hover:bg-gray-100"
+                            >
+                                {row.cells.map((cell) => {
+                                    return (
+                                        <td
+                                            {...cell.getCellProps()}
+                                            className="whitespace-nowrap py-2 px-6 text-sm font-medium text-gray-900"
+                                        >
+                                            {cell.render("Cell")}
+                                        </td>
+                                    );
+                                })}
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+        </div>
     );
 };
 ```
 
-Try the result on your browser and you'll notice that the category column is filled correctly with the matching category titles for the each record's category id's. Even the loading state is managed by **refine**.
+Try the result on your browser and you'll notice that the category column is filled correctly with the matching category titles for the each record's category id's.
 
-To get more detailed information about this hook, please refer the [useMany Documentation](/api-references/hooks/data/useMany.md).
+To get more detailed information about this hook, please refer the [useOne Documentation](#).
+
+### Adding Pagination
+
+```tsx title="pages/posts/list.tsx"
+import React from "react";
+import { useOne } from "@pankod/refine-core";
+//highlight-next-line
+import { useTable, Column, usePagination } from "@pankod/refine-react-table";
+
+import { ICategory } from "interfaces";
+//highlight-start
+import {
+    ChevronLeftIcon,
+    ChevronRightIcon,
+    ChevronsLeftIcon,
+    ChevronsRightIcon,
+} from "icons";
+//highlight-end
+
+export const PostList: React.FC = () => {
+    const columns: Array<Column> = React.useMemo(
+        () => [
+            {
+                id: "id",
+                Header: "ID",
+                accessor: "id",
+            },
+            {
+                id: "title",
+                Header: "Title",
+                accessor: "title",
+            },
+            {
+                id: "status",
+                Header: "Status",
+                accessor: "status",
+            },
+            {
+                id: "createdAt",
+                Header: "CreatedAt",
+                accessor: "createdAt",
+            },
+            {
+                id: "category.id",
+                Header: "Category",
+                accessor: "category.id",
+                Cell: ({ cell }) => {
+                    const { data, isLoading } = useOne<ICategory>({
+                        resource: "categories",
+                        id: cell.value,
+                    });
+
+                    if (isLoading) {
+                        return <p>loading..</p>;
+                    }
+
+                    return data?.data.title;
+                },
+            },
+        ],
+        [],
+    );
+    //highlight-start
+    const {
+        getTableProps,
+        getTableBodyProps,
+        headerGroups,
+        prepareRow,
+        page,
+        canPreviousPage,
+        canNextPage,
+        pageOptions,
+        pageCount,
+        gotoPage,
+        nextPage,
+        previousPage,
+        setPageSize,
+        state: { pageIndex, pageSize },
+    } = useTable({ columns }, usePagination);
+    //highlight-end
+
+    return (
+        <div className="container mx-auto pb-4">
+            <table
+                className="min-w-full table-fixed divide-y divide-gray-200 border"
+                {...getTableProps()}
+            >
+                <thead className="bg-gray-100">
+                    {headerGroups.map((headerGroup) => (
+                        <tr {...headerGroup.getHeaderGroupProps()}>
+                            {headerGroup.headers.map((column) => (
+                                <th
+                                    {...column.getHeaderProps()}
+                                    className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
+                                >
+                                    {column.render("Header")}
+                                </th>
+                            ))}
+                        </tr>
+                    ))}
+                </thead>
+                <tbody
+                    {...getTableBodyProps()}
+                    className="divide-y divide-gray-200 bg-white"
+                >
+                    //highlight-next-line
+                    {page.map((row) => {
+                        prepareRow(row);
+                        return (
+                            <tr
+                                {...row.getRowProps()}
+                                className="transition hover:bg-gray-100"
+                            >
+                                {row.cells.map((cell) => {
+                                    return (
+                                        <td
+                                            {...cell.getCellProps()}
+                                            className="whitespace-nowrap py-2 px-6 text-sm font-medium text-gray-900"
+                                        >
+                                            {cell.render("Cell")}
+                                        </td>
+                                    );
+                                })}
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+            //highlight-start
+            <div className="mt-2 flex items-center justify-end gap-4">
+                <div className="flex gap-1">
+                    <button
+                        onClick={() => gotoPage(0)}
+                        disabled={!canPreviousPage}
+                        className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
+                    >
+                        {ChevronsLeftIcon}
+                    </button>
+                    <button
+                        onClick={() => previousPage()}
+                        disabled={!canPreviousPage}
+                        className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
+                    >
+                        {ChevronLeftIcon}
+                    </button>
+                    <button
+                        onClick={() => nextPage()}
+                        disabled={!canNextPage}
+                        className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
+                    >
+                        {ChevronRightIcon}
+                    </button>
+                    <button
+                        onClick={() => gotoPage(pageCount - 1)}
+                        disabled={!canNextPage}
+                        className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
+                    >
+                        {ChevronsRightIcon}
+                    </button>
+                </div>
+                <span>
+                    Page{" "}
+                    <strong>
+                        {pageIndex + 1} of {pageOptions.length}
+                    </strong>
+                </span>
+                <span>
+                    Go to page:
+                    <input
+                        type="number"
+                        defaultValue={pageIndex + 1}
+                        onChange={(e) => {
+                            const page = e.target.value
+                                ? Number(e.target.value) - 1
+                                : 0;
+                            gotoPage(page);
+                        }}
+                        className="w-12 rounded border border-gray-200 p-1 text-gray-700"
+                    />
+                </span>
+                <select
+                    value={pageSize}
+                    onChange={(e) => {
+                        setPageSize(Number(e.target.value));
+                    }}
+                    className="rounded border border-gray-200 p-1 text-gray-700"
+                >
+                    {[10, 20, 30, 40, 50].map((pageSize) => (
+                        <option key={pageSize} value={pageSize}>
+                            Show {pageSize}
+                        </option>
+                    ))}
+                </select>
+            </div>
+            //highlight-end
+        </div>
+    );
+};
+```
+
+<details><summary>Show Icons</summary>
+<p>
+
+```tsx title="icons.tsx"
+export const ChevronsLeftIcon = (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <polyline points="11 17 6 12 11 7"></polyline>
+        <polyline points="18 17 13 12 18 7"></polyline>
+    </svg>
+);
+
+export const ChevronLeftIcon = (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <polyline points="15 18 9 12 15 6"></polyline>
+    </svg>
+);
+
+export const ChevronRightIcon = (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+);
+
+export const ChevronsRightIcon = (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <polyline points="13 17 18 12 13 7"></polyline>
+        <polyline points="6 17 11 12 6 7"></polyline>
+    </svg>
+);
+```
+
+</p>
+</details>
+
+### Adding Sorting and Filtering
+
+```tsx
+import React from "react";
+import {
+    useTable,
+    Column,
+    usePagination,
+    //highlight-start
+    useSortBy,
+    useFilters,
+    //highlight-end
+} from "@pankod/refine-react-table";
+import { useNavigation } from "@pankod/refine-core";
+
+import { IPost } from "interfaces";
+import {
+    ChevronLeftIcon,
+    ChevronRightIcon,
+    ChevronsLeftIcon,
+    ChevronsRightIcon,
+    CreateIcon,
+} from "icons";
+
+export const PostList: React.FC = () => {
+    const { create } = useNavigation();
+
+    const columns: Array<Column> = React.useMemo(
+        () => [
+            {
+                id: "id",
+                Header: "ID",
+                accessor: "id",
+            },
+            {
+                id: "title",
+                Header: "Title",
+                accessor: "title",
+                //highlight-next-line
+                filter: "contains",
+            },
+            {
+                id: "status",
+                Header: "Status",
+                accessor: "status",
+            },
+            {
+                id: "createdAt",
+                Header: "CreatedAt",
+                accessor: "createdAt",
+            },
+        ],
+        [],
+    );
+
+    const {
+        getTableProps,
+        getTableBodyProps,
+        headerGroups,
+        prepareRow,
+        page,
+        canPreviousPage,
+        canNextPage,
+        pageOptions,
+        pageCount,
+        gotoPage,
+        nextPage,
+        previousPage,
+        setPageSize,
+        //highlight-start
+        setFilter,
+        state: { pageIndex, pageSize, filters },
+    } = useTable<IPost>({ columns }, useFilters, useSortBy, usePagination);
+    //highlight-end
+
+    return (
+        <div className="container mx-auto pb-4">
+            <div className="aflex mb-3 mt-1 items-center justify-between">
+                <h1 className="text-2xl font-bold">Posts List</h1>
+                //highlight-start
+                <div>
+                    <label className="mr-1" htmlFor="title">
+                        Title:
+                    </label>
+                    <input
+                        id="title"
+                        type="text"
+                        className="rounded border border-gray-200 p-1 text-gray-700"
+                        placeholder="Filter by title"
+                        value={
+                            filters.find((filter) => filter.id === "title")
+                                ?.value
+                        }
+                        onChange={(event) =>
+                            setFilter("title", event.target.value)
+                        }
+                    />
+                </div>
+                //highlight-end
+                <button
+                    className="flex items-center justify-between gap-1 rounded border border-gray-200 bg-indigo-500 p-2 text-xs font-medium leading-tight text-white transition duration-150 ease-in-out hover:bg-indigo-600"
+                    onClick={() => create("posts")}
+                >
+                    {CreateIcon}
+                    <span>Create Post</span>
+                </button>
+            </div>
+
+            <table
+                className="min-w-full table-fixed divide-y divide-gray-200 border"
+                {...getTableProps()}
+            >
+                <thead className="bg-gray-100">
+                    {headerGroups.map((headerGroup) => (
+                        <tr {...headerGroup.getHeaderGroupProps()}>
+                            {headerGroup.headers.map((column) => (
+                                //highlight-start
+                                <th
+                                    {...column.getHeaderProps(
+                                        column.getSortByToggleProps(),
+                                    )}
+                                    className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
+                                >
+                                    {column.render("Header")}
+                                    <span>
+                                        {column.isSorted
+                                            ? column.isSortedDesc
+                                                ? " 🔽"
+                                                : " 🔼"
+                                            : ""}
+                                    </span>
+                                </th>
+                                //highlight-end
+                            ))}
+                        </tr>
+                    ))}
+                </thead>
+                <tbody
+                    {...getTableBodyProps()}
+                    className="divide-y divide-gray-200 bg-white"
+                >
+                    {page.map((row) => {
+                        prepareRow(row);
+                        return (
+                            <tr
+                                {...row.getRowProps()}
+                                className="transition hover:bg-gray-100"
+                            >
+                                {row.cells.map((cell) => {
+                                    return (
+                                        <td
+                                            {...cell.getCellProps()}
+                                            className="whitespace-nowrap py-2 px-6 text-sm font-medium text-gray-900"
+                                        >
+                                            {cell.render("Cell")}
+                                        </td>
+                                    );
+                                })}
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+
+            <div className="mt-2 flex items-center justify-end gap-4">
+                <div className="flex gap-1">
+                    <button
+                        onClick={() => gotoPage(0)}
+                        disabled={!canPreviousPage}
+                        className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
+                    >
+                        {ChevronsLeftIcon}
+                    </button>
+                    <button
+                        onClick={() => previousPage()}
+                        disabled={!canPreviousPage}
+                        className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
+                    >
+                        {ChevronLeftIcon}
+                    </button>
+                    <button
+                        onClick={() => nextPage()}
+                        disabled={!canNextPage}
+                        className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
+                    >
+                        {ChevronRightIcon}
+                    </button>
+                    <button
+                        onClick={() => gotoPage(pageCount - 1)}
+                        disabled={!canNextPage}
+                        className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
+                    >
+                        {ChevronsRightIcon}
+                    </button>
+                </div>
+                <span>
+                    Page{" "}
+                    <strong>
+                        {pageIndex + 1} of {pageOptions.length}
+                    </strong>
+                </span>
+                <span>
+                    Go to page:
+                    <input
+                        type="number"
+                        defaultValue={pageIndex + 1}
+                        onChange={(e) => {
+                            const page = e.target.value
+                                ? Number(e.target.value) - 1
+                                : 0;
+                            gotoPage(page);
+                        }}
+                        className="w-12 rounded border border-gray-200 p-1 text-gray-700"
+                    />
+                </span>
+                <select
+                    value={pageSize}
+                    onChange={(e) => {
+                        setPageSize(Number(e.target.value));
+                    }}
+                    className="rounded border border-gray-200 p-1 text-gray-700"
+                >
+                    {[10, 20, 30, 40, 50].map((pageSize) => (
+                        <option key={pageSize} value={pageSize}>
+                            Show {pageSize}
+                        </option>
+                    ))}
+                </select>
+            </div>
+        </div>
+    );
+};
+```
+
+<details><summary>Show CreateIcon</summary>
+<p>
+
+```tsx title="icons.tsx"
+export const CreateIcon = (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+    </svg>
+);
+```
+
+</p>
+</details>
 
 ## Showing a single record
 
@@ -882,10 +1427,10 @@ And then we can add a button on the list page to make it possible for users to n
 
 ```tsx title="src/pages/posts/list.tsx"
 //highlight-next-line
-import { useNavigation, useOne } from "@pankod/refine-core";
-import { useTable, Column } from "@pankod/refine-react-table";
+...
 
-import { ICategory } from "interfaces";
+import { useNavigation } from "@pankod/refine-core";
+
 //highlight-next-line
 import { ShowIcon } from "icons";
 
@@ -895,43 +1440,7 @@ export const PostList: React.FC = () => {
 
     const columns: Array<Column> = React.useMemo(
         () => [
-            {
-                id: "id",
-                Header: "ID",
-                accessor: "id",
-            },
-            {
-                id: "title",
-                Header: "Title",
-                accessor: "title",
-            },
-            {
-                id: "status",
-                Header: "Status",
-                accessor: "status",
-            },
-            {
-                id: "createdAt",
-                Header: "CreatedAt",
-                accessor: "createdAt",
-            },
-            {
-                id: "category.id",
-                Header: "Category",
-                accessor: "category.id",
-                Cell: ({ cell }) => {
-                    const { data, isLoading } = useOne<ICategory>({
-                        resource: "categories",
-                        id: cell.value,
-                    });
-
-                    if (isLoading) {
-                        return <p>loading..</p>;
-                    }
-
-                    return data?.data.title;
-                },
-            },
+            ...
             //highlight-start
             {
                 id: "action",
@@ -951,56 +1460,10 @@ export const PostList: React.FC = () => {
         [],
     );
 
-    const { getTableProps, getTableBodyProps, headerGroups, prepareRow, rows } =
-        useTable({ columns });
+    const { ... } = useTable({ columns }, useFilters, useSortBy, usePagination);
 
     return (
-        <div className="container mx-auto pb-4">
-            <table
-                className="min-w-full table-fixed divide-y divide-gray-200 border"
-                {...getTableProps()}
-            >
-                <thead className="bg-gray-100">
-                    {headerGroups.map((headerGroup) => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column) => (
-                                <th
-                                    {...column.getHeaderProps()}
-                                    className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
-                                >
-                                    {column.render("Header")}
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody
-                    {...getTableBodyProps()}
-                    className="divide-y divide-gray-200 bg-white"
-                >
-                    {rows.map((row) => {
-                        prepareRow(row);
-                        return (
-                            <tr
-                                {...row.getRowProps()}
-                                className="transition hover:bg-gray-100"
-                            >
-                                {row.cells.map((cell) => {
-                                    return (
-                                        <td
-                                            {...cell.getCellProps()}
-                                            className="whitespace-nowrap py-2 px-6 text-sm font-medium text-gray-900"
-                                        >
-                                            {cell.render("Cell")}
-                                        </td>
-                                    );
-                                })}
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
-        </div>
+        ...
     );
 };
 ```
@@ -1060,56 +1523,159 @@ Until this point, we were basically working with read operations such as fetchin
 Let's start by creating a new `<PostEdit>` page responsible for editing a single record:
 
 ```tsx title="pages/posts/edit.tsx"
-import {
-    useForm,
-    Form,
-    Input,
-    Select,
-    Edit,
-    useSelect,
-} from "@pankod/refine-antd";
-import { IPost } from "interfaces";
+import { useEffect } from "react";
+import { useForm } from "@pankod/refine-react-hook-form";
+import { useSelect } from "@pankod/refine-core";
+
+import { LoadingIcon } from "icons";
 
 export const PostEdit: React.FC = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
+    const {
+        refineCore: { onFinish, formLoading, queryResult },
+        register,
+        handleSubmit,
+        resetField,
+        formState: { errors },
+    } = useForm();
 
-    const { selectProps: categorySelectProps } = useSelect<IPost>({
+    const { options } = useSelect({
         resource: "categories",
-        defaultValue: queryResult?.data?.data?.category.id,
+        defaultValue: queryResult?.data?.data.category.id,
     });
 
+    useEffect(() => {
+        resetField("category.id");
+    }, [options]);
+
     return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item label="Title" name="title">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Status" name="status">
-                    <Select
-                        options={[
-                            {
-                                label: "Published",
-                                value: "published",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
-                            },
-                            {
-                                label: "Rejected",
-                                value: "rejected",
-                            },
-                        ]}
+        <div className="container mx-auto">
+            <br />
+            <form onSubmit={handleSubmit(onFinish)}>
+                <div className="mb-6">
+                    <label
+                        htmlFor="title"
+                        className="mb-2 block text-sm font-medium"
+                    >
+                        Title
+                    </label>
+                    <input
+                        {...register("title", { required: true })}
+                        type="text"
+                        id="title"
+                        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm "
+                        placeholder="Title"
                     />
-                </Form.Item>
-                <Form.Item label="Category" name={["category", "id"]}>
-                    <Select {...categorySelectProps} />
-                </Form.Item>
-            </Form>
-        </Edit>
+                    {errors.title && (
+                        <p className="mt-1 text-sm text-red-600">
+                            <span className="font-medium">Oops!</span> This
+                            field is required
+                        </p>
+                    )}
+                </div>
+                <div className="mb-6">
+                    <label
+                        htmlFor="status"
+                        className="mb-2 block text-sm font-medium"
+                    >
+                        Status
+                    </label>
+                    <select
+                        {...register("status")}
+                        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
+                    >
+                        <option value="published">published</option>
+                        <option value="draft">draft</option>
+                        <option value="rejected">rejected</option>
+                    </select>
+                </div>
+                <div className="mb-6">
+                    <label
+                        htmlFor="category"
+                        className="mb-2 block text-sm font-medium"
+                    >
+                        Category
+                    </label>
+                    <select
+                        defaultValue={""}
+                        {...register("category.id", { required: true })}
+                        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
+                    >
+                        <option value={""} disabled>
+                            Please select
+                        </option>
+                        {options?.map((category) => (
+                            <option key={category.value} value={category.value}>
+                                {category.label}
+                            </option>
+                        ))}
+                    </select>
+                    {errors.category && (
+                        <p className="mt-1 text-sm text-red-600">
+                            <span className="font-medium">Oops!</span> This
+                            field is required
+                        </p>
+                    )}
+                </div>
+                <div className="mb-6">
+                    <label
+                        htmlFor="content"
+                        className="mb-2 block text-sm font-medium"
+                    >
+                        Content
+                    </label>
+                    <textarea
+                        {...register("content", { required: true })}
+                        id="content"
+                        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm "
+                        placeholder="Content"
+                        rows={10}
+                    />
+                    {errors.content && (
+                        <p className="mt-1 text-sm text-red-600">
+                            <span className="font-medium">Oops!</span> This
+                            field is required
+                        </p>
+                    )}
+                </div>
+                <button
+                    type="submit"
+                    className="flex w-full items-center rounded-lg bg-indigo-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-indigo-600 sm:w-auto"
+                >
+                    {formLoading && LoadingIcon}
+                    <span>Save</span>
+                </button>
+            </form>
+        </div>
     );
 };
 ```
+
+<details><summary>Show LoadingIcon</summary>
+<p>
+
+```tsx title="icons.tsx"
+export const LoadingIcon = (
+    <svg
+        role="status"
+        className="mr-2 h-4 w-4 animate-spin fill-blue-600 text-gray-200"
+        viewBox="0 0 100 101"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path
+            d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+            fill="currentColor"
+        />
+        <path
+            d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+            fill="currentFill"
+        />
+    </svg>
+);
+```
+
+</p>
+</details>
 
 <br />
 
@@ -1122,6 +1688,8 @@ import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-next-line
 import { PostList, PostShow, PostEdit } from "./pages/posts";
+import { Layout } from "components/layout";
+import { PostIcon } from "/icons";
 
 export const App: React.FC = () => {
     return (
@@ -1132,12 +1700,14 @@ export const App: React.FC = () => {
             resources={[
                 {
                     name: "posts",
+                    icon: PostIcon,
                     list: PostList,
-                    edit: PostEdit,
                     show: PostShow,
+                    edit: PostEdit,
                 },
             ]}
             // highlight-end
+            Layout={Layout}
         />
     );
 };
@@ -1146,113 +1716,79 @@ export const App: React.FC = () => {
 We are going to need an _edit_ button on each row to diplay the `<PostEdit>` component. **refine** doesn't automatically add one, so we have to update our `<PostList>` component to add a `<EditButton>` for each record:
 
 ```tsx title="components/pages/posts.tsx"
-import { useMany } from "@pankod/refine-core";
-import {
-    List,
-    TextField,
-    TagField,
-    DateField,
-    Table,
-    useTable,
-    FilterDropdown,
-    Select,
-    ShowButton,
-    useSelect,
-    // highlight-start
-    Space,
-    EditButton,
-    // highlight-end
-} from "@pankod/refine-antd";
+...
 
-import { IPost, ICategory } from "interfaces";
+import { useNavigation } from "@pankod/refine-core";
+
+//highlight-next-line
+import { EditIcon, ShowIcon } from "icons";
 
 export const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+    //highlight-next-line
+    const { show, edit } = useNavigation();
 
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data: categoriesData, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
+    const columns: Array<Column> = React.useMemo(
+        () => [
+            ...
+            {
+                id: "action",
+                Header: "Action",
+                accessor: "id",
+                //highlight-start
+                Cell: ({ value }) => (
+                    <div className="flex gap-2">
+                        <button
+                            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                            onClick={() => edit("posts", value)}
+                        >
+                            {EditIcon}
+                        </button>
+                        <button
+                            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                            onClick={() => show("posts", value)}
+                        >
+                            {ShowIcon}
+                        </button>
+                    </div>
+                ),
+                //highlight-end
+            },
+        ],
+        [],
+    );
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-    });
+    const { ... } = useTable({ columns }, useFilters, useSortBy, usePagination);
 
     return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="title" title="title" />
-                <Table.Column
-                    dataIndex="status"
-                    title="status"
-                    render={(value) => <TagField value={value} />}
-                />
-                <Table.Column
-                    dataIndex="createdAt"
-                    title="createdAt"
-                    render={(value) => <DateField format="LLL" value={value} />}
-                />
-                <Table.Column
-                    dataIndex={["category", "id"]}
-                    title="category"
-                    render={(value) => {
-                        if (isLoading) {
-                            return <TextField value="Loading..." />;
-                        }
-
-                        return (
-                            <TextField
-                                value={
-                                    categoriesData?.data.find(
-                                        (item) => item.id === value,
-                                    )?.title
-                                }
-                            />
-                        );
-                    }}
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                {...categorySelectProps}
-                            />
-                        </FilterDropdown>
-                    )}
-                />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    // highlight-start
-                    render={(_text, record): React.ReactNode => {
-                        return (
-                            <Space>
-                                <ShowButton
-                                    size="small"
-                                    recordItemId={record.id}
-                                    hideText
-                                />
-                                <EditButton
-                                    size="small"
-                                    recordItemId={record.id}
-                                    hideText
-                                />
-                            </Space>
-                        );
-                    }}
-                    // highlight-end
-                />
-            </Table>
-        </List>
+        ...
     );
 };
 ```
+
+<details><summary>Show EditIcon</summary>
+<p>
+
+```tsx title="icons.tsx"
+export const EditIcon = (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <path d="M12 20h9"></path>
+        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+    </svg>
+);
+```
+
+</p>
+</details>
 
 [Refer to the `<EditButton>` documentation for detailed usage information. &#8594](/api-references/components/buttons/edit.md)
 
@@ -1299,55 +1835,122 @@ Creating a record in **refine** follows a similar flow as editing records.
 First, we'll create a `<PostCreate>` page:
 
 ```tsx title="pages/posts/create.tsx"
-import {
-    // highlight-next-line
-    Create,
-    Form,
-    Input,
-    Select,
-    useForm,
-    useSelect,
-} from "@pankod/refine-antd";
+import { useForm } from "@pankod/refine-react-hook-form";
+import { useSelect } from "@pankod/refine-core";
 
-import { IPost } from "interfaces";
+import { LoadingIcon } from "icons";
 
-export const PostCreate = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
-    const { selectProps: categorySelectProps } = useSelect<IPost>({
+export const PostCreate: React.FC = () => {
+    const {
+        refineCore: { onFinish, formLoading },
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
+
+    const { options } = useSelect({
         resource: "categories",
     });
 
     return (
-        // highlight-start
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item label="Title" name="title">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Status" name="status">
-                    <Select
-                        options={[
-                            {
-                                label: "Published",
-                                value: "published",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
-                            },
-                            {
-                                label: "Rejected",
-                                value: "rejected",
-                            },
-                        ]}
+        <div className="container mx-auto">
+            <br />
+            <form onSubmit={handleSubmit(onFinish)}>
+                <div className="mb-6">
+                    <label
+                        htmlFor="title"
+                        className="mb-2 block text-sm font-medium"
+                    >
+                        Title
+                    </label>
+                    <input
+                        {...register("title", { required: true })}
+                        type="text"
+                        id="title"
+                        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm "
+                        placeholder="Title"
                     />
-                </Form.Item>
-                <Form.Item label="Category" name={["category", "id"]}>
-                    <Select {...categorySelectProps} />
-                </Form.Item>
-            </Form>
-        </Create>
-        // highlight-end
+                    {errors.title && (
+                        <p className="mt-1 text-sm text-red-600">
+                            <span className="font-medium">Oops!</span> This
+                            field is required
+                        </p>
+                    )}
+                </div>
+                <div className="mb-6">
+                    <label
+                        htmlFor="status"
+                        className="mb-2 block text-sm font-medium"
+                    >
+                        Status
+                    </label>
+                    <select
+                        {...register("status")}
+                        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
+                    >
+                        <option value="published">published</option>
+                        <option value="draft">draft</option>
+                        <option value="rejected">rejected</option>
+                    </select>
+                </div>
+                <div className="mb-6">
+                    <label
+                        htmlFor="category"
+                        className="mb-2 block text-sm font-medium"
+                    >
+                        Category
+                    </label>
+                    <select
+                        defaultValue={""}
+                        {...register("category.id", { required: true })}
+                        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
+                    >
+                        <option value={""} disabled>
+                            Please select
+                        </option>
+                        {options?.map((category) => (
+                            <option key={category.value} value={category.value}>
+                                {category.label}
+                            </option>
+                        ))}
+                    </select>
+                    {errors.category && (
+                        <p className="mt-1 text-sm text-red-600">
+                            <span className="font-medium">Oops!</span> This
+                            field is required
+                        </p>
+                    )}
+                </div>
+                <div className="mb-6">
+                    <label
+                        htmlFor="content"
+                        className="mb-2 block text-sm font-medium"
+                    >
+                        Content
+                    </label>
+                    <textarea
+                        {...register("content", { required: true })}
+                        id="content"
+                        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm "
+                        placeholder="Content"
+                        rows={10}
+                    />
+                    {errors.content && (
+                        <p className="mt-1 text-sm text-red-600">
+                            <span className="font-medium">Oops!</span> This
+                            field is required
+                        </p>
+                    )}
+                </div>
+                <button
+                    type="submit"
+                    className="flex w-full items-center rounded-lg bg-indigo-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-indigo-600 sm:w-auto"
+                >
+                    {formLoading && LoadingIcon}
+                    <span>Save</span>
+                </button>
+            </form>
+        </div>
     );
 };
 ```
@@ -1360,11 +1963,13 @@ After creating the `<PostCreate>` component, add it to resource with `create` pr
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
+import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-next-line
 import { PostList, PostShow, PostEdit, PostCreate } from "./pages/posts";
+import { Layout } from "components/layout";
+import { PostIcon } from "/icons";
 
 export const App: React.FC = () => {
     return (
@@ -1375,13 +1980,14 @@ export const App: React.FC = () => {
             resources={[
                 {
                     name: "posts",
+                    icon: PostIcon,
                     list: PostList,
                     show: PostShow,
                     edit: PostEdit,
-                    create: PostCreate,
                 },
             ]}
             // highlight-end
+            Layout={Layout}
         />
     );
 };
@@ -1419,154 +2025,97 @@ Deleting a record can be done in two ways.
 First way is adding an delete button on each row since _refine_ doesn't automatically add one, so we have to update our `<PostList>` component to add a `<DeleteButton>` for each record:
 
 ```tsx title="components/pages/posts.tsx"
-import { useMany } from "@pankod/refine-core";
-import {
-    List,
-    TextField,
-    TagField,
-    DateField,
-    Table,
-    useTable,
-    FilterDropdown,
-    Select,
-    ShowButton,
-    useSelect,
-    Space,
-    EditButton,
-    // highlight-next-line
-    DeleteButton,
-} from "@pankod/refine-antd";
+...
 
-import { IPost, ICategory } from "../../interfaces";
+//highlight-next-line
+import { useNavigation, useDelete } from "@pankod/refine-core";
+
+//highlight-next-line
+import { EditIcon, ShowIcon, DeleteIcon } from "icons";
 
 export const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+    const { show, edit } = useNavigation();
 
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data: categoriesData, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
+    //highlight-next-line
+    const { mutate } = useDelete();
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-    });
+    const columns: Array<Column> = React.useMemo(
+        () => [
+            ...
+            {
+                id: "action",
+                Header: "Action",
+                accessor: "id",
+                Cell: ({ value }) => (
+                    <div className="flex gap-2">
+                        <button
+                            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                            onClick={() => edit("posts", value)}
+                        >
+                            {EditIcon}
+                        </button>
+                        <button
+                            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                            onClick={() => show("posts", value)}
+                        >
+                            {ShowIcon}
+                        </button>
+                        //highlight-start
+                         <button
+                            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-red-500 hover:text-white"
+                            onClick={() =>
+                                mutate({ id: value, resource: "posts" })
+                            }
+                        >
+                            {DeleteIcon}
+                        </button>
+                        //highlight-end
+                    </div>
+                ),
+
+            },
+        ],
+        [],
+    );
+
+    const { ... } = useTable({ columns }, useFilters, useSortBy, usePagination);
 
     return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="title" title="title" />
-                <Table.Column
-                    dataIndex="status"
-                    title="status"
-                    render={(value) => <TagField value={value} />}
-                />
-                <Table.Column
-                    dataIndex="createdAt"
-                    title="createdAt"
-                    render={(value) => <DateField format="LLL" value={value} />}
-                />
-                <Table.Column
-                    dataIndex={["category", "id"]}
-                    title="category"
-                    render={(value) => {
-                        if (isLoading) {
-                            return <TextField value="Loading..." />;
-                        }
-
-                        return (
-                            <TextField
-                                value={
-                                    categoriesData?.data.find(
-                                        (item) => item.id === value,
-                                    )?.title
-                                }
-                            />
-                        );
-                    }}
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                {...categorySelectProps}
-                            />
-                        </FilterDropdown>
-                    )}
-                />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_text, record): React.ReactNode => {
-                        return (
-                            <Space>
-                                <ShowButton
-                                    size="small"
-                                    recordItemId={record.id}
-                                    hideText
-                                />
-                                <EditButton
-                                    size="small"
-                                    recordItemId={record.id}
-                                    hideText
-                                />
-                                // highlight-start
-                                <DeleteButton
-                                    size="small"
-                                    recordItemId={record.id}
-                                    hideText
-                                />
-                                // highlight-end
-                            </Space>
-                        );
-                    }}
-                />
-            </Table>
-        </List>
+        ...
     );
 };
 ```
+
+<details><summary>Show DeleteIcon</summary>
+<p>
+
+```tsx
+export const DeleteIcon = (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <polyline points="3 6 5 6 21 6"></polyline>
+        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+        <line x1="10" y1="11" x2="10" y2="17"></line>
+        <line x1="14" y1="11" x2="14" y2="17"></line>
+    </svg>
+);
+```
+
+</p>
+</details>
 
 [Refer to the `<DeleteButton>` documentation for detailed usage information. &#8594](/api-references/components/buttons/delete.md)
 
 Now you can try deleting records yourself. Just click on the delete button of the record you want to delete and confirm.
-
-The second way is showing delete button in `<PostEdit>` component. To show delete button in edit page, `canDelete` prop needs to be passed to resource object.
-
-```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
-import dataProvider from "@pankod/refine-simple-rest";
-
-import { PostList, PostShow, PostEdit, PostCreate } from "./pages/posts";
-
-export const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    show: PostShow,
-                    edit: PostEdit,
-                    create: PostCreate,
-                    // highlight-next-line
-                    canDelete: true,
-                },
-            ]}
-        />
-    );
-};
-```
-
-After adding `canDelete` prop, `<DeleteButton>` will appear in edit form.
 
 ## Live Codesandbox Example
 
