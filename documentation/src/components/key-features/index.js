@@ -88,9 +88,9 @@ const features = [
     {
         src: "/icons/features/decoupled.png",
         srcset: "/icons/features/decoupled@2x.png 768w",
-        title: "Decoupled UI",
+        title: "Headless",
         description:
-            "UI components are exposed directly without encapsulation. You have full control on UI elements.",
+            "All out-of-the-box features, it can be used without being tied to any UI elements or framework.",
     },
     {
         src: "/icons/features/box.png",
@@ -102,7 +102,7 @@ const features = [
     {
         src: "/icons/features/powerful.png",
         srcset: "/icons/features/powerful@2x.png 768w",
-        title: "Powerful Default UI",
+        title: "Enterprise UI",
         description:
             "Works seamlessly with integrated Ant Design System. (Support for multiple UI frameworks is on the Roadmap)",
     },
