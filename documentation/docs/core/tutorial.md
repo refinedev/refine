@@ -7,8 +7,8 @@ import readyPage from '@site/static/img/core/tutorial/ready-page.png';
 import resourceFirst from '@site/static/img/core/tutorial/resource-1.png';
 import resourceSecond from '@site/static/img/core/tutorial/resource-2.png';
 import showGif from '@site/static/img/core/tutorial/show.gif';
-import createGif from '@site/static/img/tutorial/create.gif';
-import editGif from '@site/static/img/tutorial/edit.gif';
+import editGif from '@site/static/img/core/tutorial/edit.gif';
+import createGif from '@site/static/img/core/tutorial/create.gif';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -116,7 +116,7 @@ tutorial
 
 **refine** is designed to consume data from APIs.
 
-For the sake of this tutorial, we will provide you a fully working, _fake REST API_ located at https://api.fake-rest.refine.dev/. You may take a look at available [resources and routes of the API](https://api.fake-rest.refine.dev/) before proceeding to the next step.
+For the sake of this tutorial, we will provide you a fully working, _fake REST API_ located at https://api.fake-rest.refine.dev/. You may take a look at available resources and routes of the [API](https://api.fake-rest.refine.dev/) before proceeding to the next step.
 
 ## Using a Dataprovider
 
@@ -442,7 +442,7 @@ export const Layout: React.FC = ({ children }) => {
 };
 ```
 
-We created a header with a logo and a list of links to all resources. The links are clickable and will navigate to the corresponding resource. To do this, we used the [`useResource`](#) hook to get the resources from the `<Refine/>` and the [`useNavigation`](#) hook to used to navigate between resources.
+We created a header with a logo and a list of links to all resources. The links are clickable and will navigate to the corresponding resource. To do this, we used the [`useResource`](/core/hooks/resource/useResource.md) hook to get the resources from the `<Refine/>` and the [`useNavigation`](/core/hooks/navigation/useNavigation.md) hook to used to navigate between resources.
 
 `children` is the content of the layout. In our case, it is the content of the **Page** components.
 
@@ -472,7 +472,7 @@ export const App: React.FC = () => {
 
 ## Creating a List Page
 
-First, we'll install [`@pankod/refine-react-table`](#) package to use the `useTable` hook.
+First, we'll install [`@pankod/refine-react-table`](https://github.com/pankod/refine/tree/master/packages/react-table) package to use the `useTable` hook.
 
 ```bash
 npm i @pankod/refine-react-table
@@ -586,7 +586,7 @@ export const PostList: React.FC = () => {
 
 `@pankod/refine-react-table` hook `useTable()` fetches data from API. Normally, **react-table**'s `useTable` expects a `data` prop but `@pankod/refine-react-table` doesn't expect a `data` prop.
 
-[Refer to the **@pankod/refine-react-table** for more information. →](#)
+[Refer to the **@pankod/refine-react-table** for more information. →](/packages/react-table.md)
 
 Finally, we are ready to add `<PostList>` to our resource. Add the highlighted line to your `App.tsx`
 
@@ -628,8 +628,6 @@ On the next step, we are going to add a category field to the table which involv
     <img src={resourceSecond} alt="Resource only List component" />
 </div>
 
-<br/>
-
 ### Handling relationships
 
 Remember the records from `/posts` endpoint that had a category id field?
@@ -642,8 +640,6 @@ Remember the records from `/posts` endpoint that had a category id field?
 ...
 ```
 
-<br />
-
 To display category titles on our table, we first need to map category id's to their corresponding titles.
 The category title data can be obtained from the `/categories` endpoint for each record.
 
@@ -653,8 +649,6 @@ The category title data can be obtained from the `/categories` endpoint for each
     "title": "mock category title",
   }
 ```
-
-<br />
 
 At this point, we need to join records from different resources. For this, we're goint to use the **refine** hook `useOne`.
 
@@ -683,6 +677,8 @@ So we can update our `list.tsx` with the highlighted lines:
 ```tsx title="pages/posts/list.tsx"
 import React from "react";
 import { useTable, Column } from "@pankod/refine-react-table";
+//highlight-next-line
+import { useOne } from "@pankod/refine-core";
 
 export const PostList: React.FC = () => {
     const columns: Array<Column> = React.useMemo(
@@ -786,9 +782,11 @@ export const PostList: React.FC = () => {
 
 Try the result on your browser and you'll notice that the category column is filled correctly with the matching category titles for the each record's category id's.
 
-To get more detailed information about this hook, please refer the [useOne Documentation](#).
+[Refer to the `useOne` documentation for detailed usage information. &#8594](/core/hooks/data/useOne.md)
 
 ### Adding Pagination
+
+We can add pagination to our table by using the `usePagination` hook that **react-table** provides.
 
 ```tsx title="pages/posts/list.tsx"
 import React from "react";
@@ -1063,6 +1061,8 @@ export const ChevronsRightIcon = (
 
 ### Adding Sorting and Filtering
 
+We can add sorting and filtering to our table by adding the following codes to the table:
+
 ```tsx
 import React from "react";
 import {
@@ -1295,6 +1295,8 @@ export const PostList: React.FC = () => {
 };
 ```
 
+Also, added a create button to the top right of the table for creating new posts. It redirects to the create page.
+
 <details><summary>Show CreateIcon</summary>
 <p>
 
@@ -1386,8 +1388,6 @@ export const PostShow: React.FC = () => {
 };
 ```
 
-<br />
-
 Now we can add the newly created component to our resource with `show` prop:
 
 ```tsx title="src/App.tsx"
@@ -1423,7 +1423,7 @@ export const App: React.FC = () => {
 
 <br />
 
-And then we can add a button on the list page to make it possible for users to navigate to detail pages:
+And then we can add a show button on the list page to make it possible for users to navigate to detail pages:
 
 ```tsx title="src/pages/posts/list.tsx"
 //highlight-next-line
@@ -1518,7 +1518,11 @@ Since we've got access to raw data returning from `useShow()`, there is no restr
 
 ## Editing a record
 
-Until this point, we were basically working with read operations such as fetching and displaying data from resources. From now on, we are going to start creating and updating records by using **refine**.
+First, we'll install [`@pankod/refine-react-hook-form`](https://github.com/pankod/refine/tree/master/packages/react-hook-form) package to use the `useForm` hook.
+
+Until this point, we were basically working with read operations such as fetching and displaying data from resources. From now on, we are going to start creating and updating records by using `@pankod/refine-react-hook-form`.
+
+[Refer to the `@pankod/refine-react-hook-form` documentation for detailed usage information. &#8594](/packages/react-hook-form.md)
 
 Let's start by creating a new `<PostEdit>` page responsible for editing a single record:
 
@@ -1713,7 +1717,7 @@ export const App: React.FC = () => {
 };
 ```
 
-We are going to need an _edit_ button on each row to diplay the `<PostEdit>` component. **refine** doesn't automatically add one, so we have to update our `<PostList>` component to add a `<EditButton>` for each record:
+We are going to need an _edit_ button on each row to diplay the `<PostEdit>` component. **refine** doesn't automatically add one, so we have to update our `<PostList>` component to add a edit button for each record:
 
 ```tsx title="components/pages/posts.tsx"
 ...
@@ -1789,30 +1793,6 @@ export const EditIcon = (
 
 </p>
 </details>
-
-[Refer to the `<EditButton>` documentation for detailed usage information. &#8594](/api-references/components/buttons/edit.md)
-
-You can try using edit buttons which will trigger the edit forms for each record, allowing you to update the record data.
-
-Let's see what's going on our `<PostEdit>` component in detail:
-
-✳️ `useForm` is a refine hook for handling form data.
-On the example it returns `formProps` and `saveButtonProps`, where the former includes all necessary props to build the form and the latter has the ones for the save button.
-
-:::caution Attention
-In edit page, `useForm` hook initializes the form with current record values.
-
-[Refer to the `useForm` documentation for detailed usage information . &#8594](/core/hooks/useForm.md)
-
-✳️ `<Form>` and `<Form.Item>` are Ant Design components to build form inputs.
-
-✳️ `<Edit>` is a wrapper **refine** component for `<Form>`. It provides save, delete and refresh buttons that can be used for form actions.
-
-✳️ Form data is set automatically, whenever children inputs `<Form.Item>`'s are edited.
-
-✳️ Save button submits the form by executing the `useUpdate` method provided by the [`dataProvider`](/core/providers/data-provider.md). After a succesfull response, the application will be redirected to the listing page.
-
-<br />
 
 <div class="img-container">
     <div class="window">
@@ -1999,11 +1979,9 @@ And that's it! Try it on browser and see if you can create new posts from scratc
 
 We should notice some minor differences from the edit example:
 
-✳️ `<Form>` is wrapped with `<Create>` component.
-
-✳️ Save button submits the form by executing the `useCreate` method provided by the [`dataProvider`](/core/providers/data-provider.md).
-
 ✳️ No `defaultValue` is passed to `useSelect`.
+
+✳️ `resetField` in not necessary, because we don't have any default values.
 
 <br />
 
@@ -2020,9 +1998,11 @@ We should notice some minor differences from the edit example:
 
 ## Deleting a record
 
-Deleting a record can be done in two ways.
+Deleting a record can be done with `useDelete` hook.
 
-First way is adding an delete button on each row since _refine_ doesn't automatically add one, so we have to update our `<PostList>` component to add a `<DeleteButton>` for each record:
+[Refer to the `useDelete` documentation for detailed usage information. &#8594](/core/hooks/data/useDelete.md)
+
+We are adding an _delete_ button on each row since _refine_ doesn't automatically add one, so we have to update our `<PostList>` component to add a _delete_ button for each record:
 
 ```tsx title="components/pages/posts.tsx"
 ...
@@ -2113,17 +2093,15 @@ export const DeleteIcon = (
 </p>
 </details>
 
-[Refer to the `<DeleteButton>` documentation for detailed usage information. &#8594](/api-references/components/buttons/delete.md)
-
-Now you can try deleting records yourself. Just click on the delete button of the record you want to delete and confirm.
+Now you can try deleting records yourself. Just click on the delete button of the record you want to delete.
 
 ## Live Codesandbox Example
 
 Our tutorial is complete. Below you'll find a live Codesandbox example displaying what we have done so far:
 
-<iframe src="https://codesandbox.io/embed/tutorial-ov79u?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-headless-tutorial-example-f4fx3?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-tutorial"
+    title="refine-headless-tutorial-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
