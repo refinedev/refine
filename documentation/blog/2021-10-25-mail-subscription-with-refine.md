@@ -452,7 +452,7 @@ export const MailCreate: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
-Using refine's [form](https://refine.dev/docs/api-references/hooks/form/useForm) and [create](https://refine.dev/docs/api-references/components/basic-views/create) components, we can now create subscribers and messages with refine.
+Using refine's [form](https://refine.dev/docs/api-references/hooks/form/useForm) and [create](https://refine.dev/docs/ui-framewors/antd/components/basic-views/create) components, we can now create subscribers and messages with refine.
 
 
 <div class="img-container">

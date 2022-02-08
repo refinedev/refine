@@ -20,10 +20,10 @@ type ShowButtonProps = ButtonProps & {
 
 /**
  * `<ShowButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} component.
- * It uses the {@link https://refine.dev/docs/api-references/hooks/navigation/useNavigation#show `show`} method from {@link https://refine.dev/docs/api-references/hooks/navigation/useNavigation `useNavigation`} under the hood.
+ * It uses the {@link https://refine.dev/docs/core/hooks/navigation/useNavigation#show `show`} method from {@link https://refine.dev/docs/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when redirecting the app to the show page with the record id route of resource.
  *
- * @see {@link https://refine.dev/docs/api-references/components/buttons/show-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/buttons/show-button} for more details.
  */
 export const ShowButton: React.FC<ShowButtonProps> = ({
     resourceName: propResourceName,

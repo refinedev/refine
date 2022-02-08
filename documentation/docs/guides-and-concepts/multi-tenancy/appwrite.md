@@ -548,9 +548,9 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
 
 ## Bonus - Realtime Feature
 
-**refine** lets you add Realtime support to your app via `liveProvider` prop for [`<Refine>`](api-references/components/refine-config.md). It can be used to update and show data in Realtime throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), etc.) to be integrated.
+**refine** lets you add Realtime support to your app via `liveProvider` prop for [`<Refine>`](/core/components/refine-config.md). It can be used to update and show data in Realtime throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), etc.) to be integrated.
 
-[Refer to the Live Provider documentation for detailed information. →](https://refine.dev/docs/api-references/providers/live-provider/)
+[Refer to the Live Provider documentation for detailed information. →](https://refine.dev/docs/core/providers/live-provider/)
 
 Appwrite Realtime API support is out-of-the-box supported by **refine**, just add two lines to make your App Realtime.
 

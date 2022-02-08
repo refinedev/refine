@@ -19,11 +19,11 @@ export interface LayoutWrapperProps {
 }
 
 /**
- * `<LayoutWrapper>` wraps its contents in **refine's** layout with all customizations made in {@link https://refine.dev/docs/api-references/components/refine-config `<Refine>`} component.
+ * `<LayoutWrapper>` wraps its contents in **refine's** layout with all customizations made in {@link https://refine.dev/docs/core/components/refine-config `<Refine>`} component.
  * It is the default layout used in resource pages.
  * It can be used in custom pages to use global layout.
  *
- * @see {@link https://refine.dev/docs/api-references/components/layout-wrapper} for more details.
+ * @see {@link https://refine.dev/docs/core/components/layout-wrapper} for more details.
  */
 export const LayoutWrapper: React.FC<LayoutWrapperProps> = ({
     children,

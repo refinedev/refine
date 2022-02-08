@@ -18,10 +18,10 @@ type useMenuReturnType = {
 /**
  * `useMenu` is used to get menu items of the default sidebar.
  * These items include a link to dashboard page (if it exists) and links to the user defined resources
- * (passed as children to {@link https://refine.dev/docs/api-references/components/refine-config `<Refine>`}).
+ * (passed as children to {@link https://refine.dev/docs/core/components/refine-config `<Refine>`}).
  * This hook can also be used to build custom menus, which is also used by default sidebar to show menu items.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/resource/useMenu} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/antd/hooks/resource/useMenu} for more details.
  */
 export const useMenu: () => useMenuReturnType = () => {
     const { resources } = useResource();
