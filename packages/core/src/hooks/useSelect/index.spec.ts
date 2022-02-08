@@ -3,7 +3,11 @@ import { renderHook } from "@testing-library/react-hooks";
 import { MockJSONServer, TestWrapper, act } from "@test";
 
 import { useSelect } from "./";
-import { CrudFilters, IDataContext } from "src/interfaces";
+import {
+    CrudFilters,
+    IDataContext,
+    IDataMultipleContextProvider,
+} from "src/interfaces";
 
 describe("useSelect Hook", () => {
     it("default", async () => {
@@ -177,8 +181,10 @@ describe("useSelect Hook", () => {
             {
                 wrapper: TestWrapper({
                     dataProvider: {
-                        ...MockJSONServer,
-                        getList: getListMock,
+                        defaultProvider: {
+                            ...MockJSONServer.defaultProvider,
+                            getList: getListMock,
+                        },
                     },
                     resources: [{ name: "posts" }],
                 }),
@@ -220,8 +226,10 @@ describe("useSelect Hook", () => {
             {
                 wrapper: TestWrapper({
                     dataProvider: {
-                        ...MockJSONServer,
-                        getList: getListMock,
+                        defaultProvider: {
+                            ...MockJSONServer.defaultProvider,
+                            getList: getListMock,
+                        },
                     },
                     resources: [{ name: "posts" }],
                 }),
@@ -341,9 +349,15 @@ describe("useSelect Hook", () => {
         ];
 
         const mockDataProvider = {
-            getList: jest.fn(() => Promise.resolve({ data: posts, total: 2 })),
-            getMany: jest.fn(() => Promise.resolve({ data: [...posts] })),
-        };
+            defaultProvider: {
+                ...MockJSONServer.defaultProvider,
+
+                getList: jest.fn(() =>
+                    Promise.resolve({ data: posts, total: 2 }),
+                ),
+                getMany: jest.fn(() => Promise.resolve({ data: [...posts] })),
+            },
+        } as IDataMultipleContextProvider;
 
         const { waitForNextUpdate } = renderHook(
             () =>
@@ -362,7 +376,7 @@ describe("useSelect Hook", () => {
 
         await waitForNextUpdate();
 
-        expect(mockDataProvider.getList).toHaveBeenCalledWith({
+        expect(mockDataProvider.defaultProvider.getList).toHaveBeenCalledWith({
             filters: [],
             pagination: { pageSize: 20 },
             resource: "posts",
@@ -382,9 +396,15 @@ describe("useSelect Hook", () => {
         ];
 
         const mockDataProvider = {
-            getList: jest.fn(() => Promise.resolve({ data: posts, total: 2 })),
-            getMany: jest.fn(() => Promise.resolve({ data: [...posts] })),
-        };
+            defaultProvider: {
+                ...MockJSONServer.defaultProvider,
+
+                getList: jest.fn(() =>
+                    Promise.resolve({ data: posts, total: 2 }),
+                ),
+                getMany: jest.fn(() => Promise.resolve({ data: [...posts] })),
+            },
+        } as IDataMultipleContextProvider;
 
         const filters: CrudFilters = [
             {
@@ -403,7 +423,8 @@ describe("useSelect Hook", () => {
                 }),
             {
                 wrapper: TestWrapper({
-                    dataProvider: mockDataProvider as unknown as IDataContext,
+                    dataProvider:
+                        mockDataProvider as unknown as IDataMultipleContextProvider,
                     resources: [{ name: "posts" }],
                 }),
             },
@@ -413,7 +434,7 @@ describe("useSelect Hook", () => {
 
         await waitForNextUpdate();
 
-        expect(mockDataProvider.getList).toHaveBeenCalledWith({
+        expect(mockDataProvider.defaultProvider.getList).toHaveBeenCalledWith({
             filters: [],
             resource: "posts",
         });
@@ -424,7 +445,7 @@ describe("useSelect Hook", () => {
 
         await waitForNextUpdate();
 
-        expect(mockDataProvider.getList).toHaveBeenCalledWith({
+        expect(mockDataProvider.defaultProvider.getList).toHaveBeenCalledWith({
             filters,
             resource: "posts",
         });
