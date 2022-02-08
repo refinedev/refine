@@ -669,8 +669,12 @@ const App: React.FC = () => {
 };
 ```
 
-### `setEditId` to `setId:setEditId`
-Change the use `setEditId` used in `useEditableTable`, `useModalForm`, and `useDrawerForm` to `setId: setEditId`.
+### `setEditId` to `setId:setEditId` & `editId` to `id:editId`
+Change the use `setEditId` and `editId` used in `useEditableTable`, `useModalForm`, and `useDrawerForm`.
+
+- `setEditId` -> `setId: setEditId`
+
+- `editId` -> `id:editId`
 
 ```diff title="PostList"
 import { IResourceComponentsProps } from "@pankod/refine-core";
@@ -702,6 +706,22 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         editButtonProps,
     } = useEditableTable<IPost>();
 };
+```
+
+```diff
+  const {
+    formProps: editFormProps,
+    drawerProps: editDrawerProps,
+    show: editDrawerShow,
+    saveButtonProps: editSaveButtonProps,
+    deleteButtonProps,
+-   editId,
++   id: editId 
+    formLoading
+  } = useDrawerForm<IPost>({
+    action: "edit",
+    warnWhenUnsavedChanges: true
+  });
 ```
 
 [refine-codemod]: https://github.com/pankod/refine/tree/master/packages/codemod
