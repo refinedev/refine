@@ -26,9 +26,9 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 ## Key features
 
-🔥 Headless : All out-of-the-box features, it can be used without being tied to any UI elements or framework.
+🔥 **Headless** : All out-of-the-box features, it can be used without being tied to any UI elements or framework.
 
-⚙️ **Zero-configuration**: One-line setup with [superplate](https://github.com/pankod/superplate). It takes less than a minute to start a project.
+⚙️ **Zero-configuration** : One-line setup with [superplate](https://github.com/pankod/superplate). It takes less than a minute to start a project.
 
 📦 **Out-of-the-box** : Routing, networking, authentication, state management, i18n and UI.
 
@@ -36,7 +36,7 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 📝 **Native Typescript Core** : You can always opt out for plain JavaScript.
 
-🐜 Enterprise UI : Works seamlessly with integrated Ant Design System. (Support for multiple UI frameworks is on the Roadmap)
+🐜 **Enterprise UI** : Works seamlessly with integrated Ant Design System. (Support for multiple UI frameworks is on the Roadmap)
 
 📝 **Boilerplate-free Code** : Keeps your codebase clean and readable.
 
@@ -179,10 +179,17 @@ interface ICategory {
 }
 ```
 
-### Roadmap
 
-You can find Refine's [Public Roadmap here!](https://github.com/pankod/refine/projects/1)
+## Next Steps
 
-## Special Thanks
+-   [Learn the basics &#8594](/getting-started/learn-basics.md)
 
-[React Admin](https://marmelab.com/react-admin/) has been a great source of ideas and inspiration for refine. Big thanks to friends at [Marmelab](https://marmelab.com) for the amazing work they are doing.
+-   [Comparison | Refine vs React-Admin vs AdminBro vs Retool &#8594](/comparison.md)
+
+-   [Next.js + Tailwind Tutorial &#8594](/core/tutorial.md)
+
+-   [Create React App + Ant Design Tutorial &#8594](/ui-frameworks/antd/tutorial.md)
+
+-   [Check the Guides & Concept section to learn generic solutions to common problems &#8594](/guides-and-concepts/upload/multipart-upload.md)
+
+-   [Check example section for code snippets &#8594](/examples/tutorial.md)
