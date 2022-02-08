@@ -63,7 +63,9 @@ export const useList = <
     GetListResponse<TData>,
     TError
 > => {
-    const { getList } = useDataProvider(dataProviderName);
+    const dataProvider = useDataProvider();
+
+    const { getList } = dataProvider(dataProviderName);
 
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();

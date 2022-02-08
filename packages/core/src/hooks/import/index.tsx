@@ -99,7 +99,6 @@ export const useImport = <
     onFinish,
     metaData,
     onProgress,
-    dataProviderName,
 }: ImportOptions<TItem, TVariables, TData> = {}): UseImportReturnType<
     TData,
     TVariables,

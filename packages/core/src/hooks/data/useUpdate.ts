@@ -64,6 +64,7 @@ export const useUpdate = <
     TVariables = {},
 >(): UseUpdateReturnType<TData, TError, TVariables> => {
     const queryClient = useQueryClient();
+    const dataProvider = useDataProvider();
 
     const {
         mutationMode: mutationModeContext,
@@ -100,20 +101,19 @@ export const useUpdate = <
                 undoableTimeout ?? undoableTimeoutContext;
 
             if (!(mutationModePropOrContext === "undoable")) {
-                return useDataProvider(dataProviderName).update<
-                    TData,
-                    TVariables
-                >({
-                    resource,
-                    id,
-                    variables: values,
-                    metaData,
-                });
+                return dataProvider(dataProviderName).update<TData, TVariables>(
+                    {
+                        resource,
+                        id,
+                        variables: values,
+                        metaData,
+                    },
+                );
             }
             const updatePromise = new Promise<UpdateResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        useDataProvider(dataProviderName)
+                        dataProvider(dataProviderName)
                             .update<TData, TVariables>({
                                 resource,
                                 id,

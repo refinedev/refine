@@ -54,6 +54,7 @@ export const useCreate = <
     TVariables = {},
 >(): UseCreateReturnType<TData, TError, TVariables> => {
     const { mutate: checkError } = useCheckError();
+    const dataProvider = useDataProvider();
 
     const getAllQueries = useCacheQueries();
     const translate = useTranslate();
@@ -73,7 +74,7 @@ export const useCreate = <
             metaData,
             dataProviderName,
         }: useCreateParams<TVariables>) => {
-            return useDataProvider(dataProviderName).create<TData, TVariables>({
+            return dataProvider(dataProviderName).create<TData, TVariables>({
                 resource,
                 variables: values,
                 metaData,

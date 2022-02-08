@@ -54,8 +54,9 @@ export const useMany = <
 }: UseManyProps<TData, TError>): QueryObserverResult<
     GetManyResponse<TData>
 > => {
-    const { getMany } = useDataProvider(dataProviderName);
-    console.log("useMany", dataProviderName);
+    const dataProvider = useDataProvider();
+
+    const { getMany } = dataProvider(dataProviderName);
 
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();

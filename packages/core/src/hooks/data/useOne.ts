@@ -52,7 +52,9 @@ export const useOne = <
     liveParams,
     dataProviderName,
 }: UseOneProps<TData, TError>): QueryObserverResult<GetOneResponse<TData>> => {
-    const { getOne } = useDataProvider(dataProviderName);
+    const dataProvider = useDataProvider();
+
+    const { getOne } = dataProvider(dataProviderName);
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const handleNotification = useHandleNotification();

@@ -66,7 +66,9 @@ export const useCustom = <
     CustomResponse<TData>,
     TError
 > => {
-    const { custom } = useDataProvider(dataProviderName);
+    const dataProvider = useDataProvider();
+
+    const { custom } = dataProvider(dataProviderName);
     const { mutate: checkError } = useCheckError();
     const translate = useTranslate();
     const handleNotification = useHandleNotification();

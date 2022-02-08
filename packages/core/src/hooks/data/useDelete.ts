@@ -62,6 +62,8 @@ export const useDelete = <
     TError extends HttpError = HttpError,
 >(): UseDeleteReturnType<TData, TError> => {
     const { mutate: checkError } = useCheckError();
+    const dataProvider = useDataProvider();
+
     const queryClient = useQueryClient();
 
     const {
@@ -98,7 +100,7 @@ export const useDelete = <
                 undoableTimeout ?? undoableTimeoutContext;
 
             if (!(mutationModePropOrContext === "undoable")) {
-                return useDataProvider(dataProviderName).deleteOne<TData>({
+                return dataProvider(dataProviderName).deleteOne<TData>({
                     resource,
                     id,
                     metaData,
@@ -108,7 +110,7 @@ export const useDelete = <
             const deletePromise = new Promise<DeleteOneResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        useDataProvider(dataProviderName)
+                        dataProvider(dataProviderName)
                             .deleteOne<TData>({ resource, id, metaData })
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));

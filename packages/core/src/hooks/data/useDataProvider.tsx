@@ -5,18 +5,21 @@ import {
     IDataMultipleContextProvider,
 } from "src/interfaces";
 
-export const useDataProvider = (
+export const useDataProvider = (): ((
     dataProviderName?: string,
-): IDataContextProvider => {
-    const handleDataProvider = useCallback(() => {
-        if (dataProviderName) {
-            return useContext<IDataMultipleContextProvider>(DataContext)[
-                dataProviderName
-            ];
-        }
+) => IDataContextProvider) => {
+    const context = useContext<IDataMultipleContextProvider>(DataContext);
 
-        return useContext<IDataMultipleContextProvider>(DataContext)
-            .defaultProvider;
-    }, [dataProviderName]);
-    return handleDataProvider();
+    const handleDataProvider = useCallback(
+        (dataProviderName?: string) => {
+            if (dataProviderName) {
+                return context[dataProviderName];
+            }
+
+            return context.defaultProvider;
+        },
+        [context],
+    );
+
+    return handleDataProvider;
 };

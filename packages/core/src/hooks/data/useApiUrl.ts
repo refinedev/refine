@@ -1,7 +1,9 @@
 import { useDataProvider } from "@hooks";
 
 export const useApiUrl = (dataProviderName?: string): string => {
-    const { getApiUrl } = useDataProvider(dataProviderName);
+    const dataProvider = useDataProvider();
+
+    const { getApiUrl } = dataProvider(dataProviderName);
 
     return getApiUrl();
 };

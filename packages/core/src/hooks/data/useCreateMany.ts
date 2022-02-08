@@ -52,6 +52,8 @@ export const useCreateMany = <
     TVariables = {},
 >(): UseCreateManyReturnType<TData, TError, TVariables> => {
     const getAllQueries = useCacheQueries();
+    const dataProvider = useDataProvider();
+
     const translate = useTranslate();
     const queryClient = useQueryClient();
     const publish = usePublish();
@@ -68,7 +70,7 @@ export const useCreateMany = <
             metaData,
             dataProviderName,
         }: useCreateManyParams<TVariables>) =>
-            useDataProvider(dataProviderName).createMany<TData, TVariables>({
+            dataProvider(dataProviderName).createMany<TData, TVariables>({
                 resource,
                 variables: values,
                 metaData,

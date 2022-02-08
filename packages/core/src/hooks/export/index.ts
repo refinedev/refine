@@ -63,6 +63,7 @@ export const useExport = <
     const [isLoading, setIsLoading] = useState(false);
 
     const resourceWithRoute = useResourceWithRoute();
+    const dataProvider = useDataProvider();
 
     const { useParams } = useRouterContext();
 
@@ -78,7 +79,7 @@ export const useExport = <
         "plural",
     )}-${new Date().toLocaleString()}`;
 
-    const { getList } = useDataProvider(dataProviderName);
+    const { getList } = dataProvider(dataProviderName);
 
     const triggerExport = async () => {
         setIsLoading(true);

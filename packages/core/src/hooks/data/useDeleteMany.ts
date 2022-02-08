@@ -67,6 +67,7 @@ export const useDeleteMany = <
         mutationMode: mutationModeContext,
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
+    const dataProvider = useDataProvider();
 
     const { notificationDispatch } = useCancelNotification();
     const translate = useTranslate();
@@ -97,7 +98,7 @@ export const useDeleteMany = <
             const undoableTimeoutPropOrContext =
                 undoableTimeout ?? undoableTimeoutContext;
             if (!(mutationModePropOrContext === "undoable")) {
-                return useDataProvider(dataProviderName).deleteMany<TData>({
+                return dataProvider(dataProviderName).deleteMany<TData>({
                     resource,
                     ids,
                     metaData,
@@ -107,7 +108,7 @@ export const useDeleteMany = <
             const updatePromise = new Promise<DeleteManyResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        useDataProvider(dataProviderName)
+                        dataProvider(dataProviderName)
                             .deleteMany<TData>({ resource, ids, metaData })
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));

@@ -64,6 +64,7 @@ export const useUpdateMany = <
     TVariables = {},
 >(): UseUpdateManyReturnType<TData, TError, TVariables> => {
     const queryClient = useQueryClient();
+    const dataProvider = useDataProvider();
     const translate = useTranslate();
 
     const {
@@ -101,7 +102,7 @@ export const useUpdateMany = <
                 undoableTimeout ?? undoableTimeoutContext;
 
             if (!(mutationModePropOrContext === "undoable")) {
-                return useDataProvider(dataProviderName).updateMany<
+                return dataProvider(dataProviderName).updateMany<
                     TData,
                     TVariables
                 >({
@@ -115,7 +116,7 @@ export const useUpdateMany = <
             const updatePromise = new Promise<UpdateManyResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        useDataProvider(dataProviderName)
+                        dataProvider(dataProviderName)
                             .updateMany<TData, TVariables>({
                                 resource,
                                 ids,
