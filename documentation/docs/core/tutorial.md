@@ -240,7 +240,7 @@ Point your browser to [http://localhost:3000](http://localhost:3000) to access i
 <br/>
 
 :::info
-The ready page is displayed when there are no resources in the **refine** app. You can change it with the [`ReadyPage`](api-references/components/refine-config.md#readypage) prop.
+The ready page is displayed when there are no resources in the **refine** app. You can change it with the [`ReadyPage`](/core/components/refine-config.md#readypage) prop.
 :::
 
 ## Adding Resources
@@ -348,7 +348,7 @@ Instead of showing the welcome page, the application should redirect now? to an 
 <br/>
 
 :::info
-You can change the **404** error page with the [`catchAll`](api-references/components/refine-config.md#catchall) prop.
+You can change the **404** error page with the [`catchAll`](/core/components/refine-config.md#catchall) prop.
 :::
 
 You'll still see a **404** error page because no **Page** component is assigned to our resource yet.
@@ -773,7 +773,7 @@ export const PostList: React.FC = () => {
 
 Try the result on your browser and you'll notice that the category column is filled correctly with the matching category titles for the each record's category id's. Even the loading state is managed by **refine**.
 
-To get more detailed information about this hook, please refer the [useMany Documentation](/api-references/hooks/data/useMany.md).
+To get more detailed information about this hook, please refer the [useMany Documentation](/core/hooks/data/useMany.md).
 
 ## Showing a single record
 
