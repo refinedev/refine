@@ -13,6 +13,7 @@ import {
     ILiveContext,
     INotificationContext,
     IDataMultipleContextProvider,
+    IDataContextProvider,
 } from "../src/interfaces";
 import { TranslationContextProvider } from "@contexts/translation";
 import { RefineContextProvider } from "@contexts/refine";
@@ -39,7 +40,7 @@ const queryClient = new QueryClient({
 
 interface ITestWrapperProps {
     authProvider?: IAuthContext;
-    dataProvider?: IDataMultipleContextProvider;
+    dataProvider?: IDataContextProvider | IDataMultipleContextProvider;
     i18nProvider?: I18nProvider;
     notificationProvider?: INotificationContext;
     accessControlProvider?: IAccessControlContext;
@@ -70,9 +71,17 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
         ) : (
             children
         );
+        let dataProviders;
 
+        if (!dataProvider?.hasOwnProperty("defaultProvider")) {
+            dataProviders = {
+                defaultProvider: dataProvider,
+            } as IDataMultipleContextProvider;
+        } else {
+            dataProviders = dataProvider as IDataMultipleContextProvider;
+        }
         const withData = dataProvider ? (
-            <DataContextProvider {...dataProvider}>
+            <DataContextProvider {...dataProviders}>
                 {withResource}
             </DataContextProvider>
         ) : (
