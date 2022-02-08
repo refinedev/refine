@@ -100,11 +100,6 @@ const siteConfig = {
                     position: "left",
                 },
                 {
-                    to: "/docs/api-references/providers/data-provider",
-                    label: "API",
-                    position: "left",
-                },
-                {
                     to: "docs/guides-and-concepts/ssr-nextjs",
                     label: "Guides",
                     position: "left",
