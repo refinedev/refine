@@ -4,7 +4,7 @@ import * as papaparse from "papaparse";
 
 import { useImport } from ".";
 import { act } from "react-dom/test-utils";
-import { HttpError, IDataContext } from "src/interfaces";
+import { HttpError, IDataMultipleContextProvider } from "src/interfaces";
 
 jest.mock("papaparse", () => {
     return {
@@ -128,7 +128,7 @@ describe("useImport hook", () => {
         const mockDataProvider = {
             ...MockJSONServer,
             createMany: jest.fn(),
-        } as IDataContext;
+        } as IDataMultipleContextProvider;
 
         const { result } = renderHook(
             () =>
@@ -181,7 +181,7 @@ describe("useImport hook", () => {
         const mockDataProvider = {
             ...MockJSONServer,
             createMany: jest.fn(),
-        } as IDataContext;
+        } as IDataMultipleContextProvider;
 
         const { result } = renderHook(
             () =>
@@ -225,7 +225,7 @@ describe("useImport hook", () => {
         const mockDataProvider = {
             ...MockJSONServer,
             createMany: jest.fn(),
-        } as IDataContext;
+        } as IDataMultipleContextProvider;
 
         const { result } = renderHook(
             () =>
@@ -266,7 +266,7 @@ describe("useImport hook", () => {
             const mockDataProvider = {
                 ...MockJSONServer,
                 createMany: jest.fn(),
-            } as IDataContext;
+            } as IDataMultipleContextProvider;
 
             jest.useFakeTimers();
 
@@ -300,7 +300,7 @@ describe("useImport hook", () => {
                         data: parsedData,
                     };
                 }),
-            } as IDataContext;
+            } as IDataMultipleContextProvider;
 
             const { result } = renderHook(
                 () =>
@@ -340,7 +340,7 @@ describe("useImport hook", () => {
 
                     return Promise.reject(customError);
                 },
-            } as IDataContext;
+            } as IDataMultipleContextProvider;
 
             const { result } = renderHook(
                 () =>
@@ -378,7 +378,7 @@ describe("useImport hook", () => {
             const mockDataProvider = {
                 ...MockJSONServer,
                 create: jest.fn(),
-            } as IDataContext;
+            } as IDataMultipleContextProvider;
 
             const { result } = renderHook(
                 () =>
@@ -425,7 +425,7 @@ describe("useImport hook", () => {
         });
 
         it("should give successes in onFinish callback if batchSize=1", async () => {
-            const mockDataProvider = {
+            const mockDataProvider: IDataMultipleContextProvider = {
                 ...MockJSONServer,
                 create: jest.fn(async ({ variables }: any) => {
                     if (variables.title === "Viral Strategist Local") {
@@ -450,7 +450,7 @@ describe("useImport hook", () => {
                         data: parsedData[0],
                     };
                 }),
-            } as IDataContext;
+            };
 
             const { result } = renderHook(
                 () =>
