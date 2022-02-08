@@ -28,7 +28,5 @@ export const DataContextProvider: React.FC<IDataMultipleContextProvider> = ({
     children,
     ...rest
 }) => {
-    console.log("DataContextProvider", rest);
-
     return <DataContext.Provider value={rest}>{children}</DataContext.Provider>;
 };

@@ -71,32 +71,35 @@ export const useCustom = <
     const translate = useTranslate();
     const handleNotification = useHandleNotification();
 
-    const queryResponse = useQuery<CustomResponse<TData>, TError>(
-        [`custom/${method}-${url}`, { ...config, ...metaData }],
-        () => custom!<TData>({ url, method, ...config, metaData }),
-        {
-            ...queryOptions,
-            onSuccess: (data) => {
-                queryOptions?.onSuccess?.(data);
-                handleNotification(successNotification);
-            },
-            onError: (err: TError) => {
-                checkError(err);
-                queryOptions?.onError?.(err);
+    if (custom) {
+        const queryResponse = useQuery<CustomResponse<TData>, TError>(
+            [`custom/${method}-${url}`, { ...config, ...metaData }],
+            () => custom<TData>({ url, method, ...config, metaData }),
+            {
+                ...queryOptions,
+                onSuccess: (data) => {
+                    queryOptions?.onSuccess?.(data);
+                    handleNotification(successNotification);
+                },
+                onError: (err: TError) => {
+                    checkError(err);
+                    queryOptions?.onError?.(err);
 
-                handleNotification(errorNotification, {
-                    key: `${method}-notification`,
-                    message: translate(
-                        "common:notifications.error",
-                        { statusCode: err.statusCode },
-                        `Error (status code: ${err.statusCode})`,
-                    ),
-                    description: err.message,
-                    type: "error",
-                });
+                    handleNotification(errorNotification, {
+                        key: `${method}-notification`,
+                        message: translate(
+                            "common:notifications.error",
+                            { statusCode: err.statusCode },
+                            `Error (status code: ${err.statusCode})`,
+                        ),
+                        description: err.message,
+                        type: "error",
+                    });
+                },
             },
-        },
-    );
-
-    return queryResponse;
+        );
+        return queryResponse;
+    } else {
+        throw Error("Not implemented custom on data provider.");
+    }
 };
