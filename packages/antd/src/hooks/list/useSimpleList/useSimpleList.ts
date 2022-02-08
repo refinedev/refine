@@ -55,7 +55,7 @@ export type useSimpleListReturnType<
  * By using `useSimpleList` you get props for your records from API in accordance with Ant Design {@link https://ant.design/components/list/ `<List>`} component.
  * All features such as pagination, sorting come out of the box.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/show/useSimpleList} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/antd/hooks/list/useSimpleList} for more details.
  *
  * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}

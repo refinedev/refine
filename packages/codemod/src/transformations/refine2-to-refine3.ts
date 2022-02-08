@@ -587,6 +587,14 @@ const updateSetEditIdToSetId = (j: JSCodeshift, root: Collection<any>) => {
             if (setEditIdProperty) {
                 setEditIdProperty.value.name = "setId: setEditId";
             }
+
+            const editIdProperty = path.parentPath.node.id.properties.find(
+                (p) => p.value.name === "editId",
+            );
+
+            if (editIdProperty) {
+                editIdProperty.value.name = "id: editId";
+            }
         });
     }
 };

@@ -12,7 +12,7 @@ import accessControl from '@site/static/img/guides-and-concepts/access-control/a
 
 Access control is a broad topic where there are lots of advanced solutions that provide different set of features. **refine** is deliberately agnostic for its own API to be able to integrate different methods (RBAC, ABAC, ACL, etc.) and different libraries ([Casbin](https://casbin.org/), [CASL](https://casl.js.org/v5/en/), [Cerbos](https://cerbos.dev/), [AccessControl.js](https://onury.io/accesscontrol/)). `can` method would be the entry point for those solutions.
 
-[Refer to the Access Control Provider documentation for detailed information. &#8594](api-references/providers/accessControl-provider.md)
+[Refer to the Access Control Provider documentation for detailed information. &#8594](/core/providers/accessControl-provider.md)
 
 **refine** provides an agnostic API via the `accessControlProvider` to manage access control throughout your app.
 
@@ -462,7 +462,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-Then it can be used with [`useCan`](api-references/hooks/accessControl/useCan.md) in the related area:
+Then it can be used with [`useCan`](core/hooks/accessControl/useCan.md) in the related area:
 
 ```tsx title="src/pages/posts/list.tsx"
 import {
@@ -507,7 +507,7 @@ export const PostList: React.FC = () => {
 ```
 
 :::tip
-[`<CanAccess />`](api-references/components/accessControl/canAccess.md) can be used too to check access control in custom places in your app.
+[`<CanAccess />`](/core/components/accessControl/canAccess.md) can be used too to check access control in custom places in your app.
 :::
 
 <br/>

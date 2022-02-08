@@ -14,17 +14,19 @@ import benchmarkChart from '@site/static/img/getting-started/benchmark.png';
 Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to _admin panels_, _B2B applications_ and _dashboards_.
 
 ## What is a "headless" Framework?
-**refine** is a **headless** React framework, which means out of the box features(**Routing**, **Networking**, **Authentication**, **Authorization**, **State Management**, **Realtime**, **i18n** ...etc), it can be used without being tied to any UI elements or framework. Also, Ant Design as out-of-the-box is supported.
+**refine** is a **headless** React framework, which means all out-of-the-box features(**Routing**, **Networking**, **Authentication**, **Authorization**, **State Management**, **Realtime**, **i18n**, etc.), it can be used without being tied to any UI elements or framework. Also, Ant Design as out-of-the-box is supported.
 
 - Customization & Extensibility -  UI is a completely customizable area and each developer uses different solutions. **refine** features does not restrict or interfere with your UI structure. **refine** allows the you to design and customizable the UI based on their unique use case.
 
 - Separation of Concerns - **refine** as a framework, is not responsible for your UI and is independent.
 
-- Maintenance & Update - By removing the API surface to support every UI use case, **refine** easy to use and update/maintain is simple.
+- Maintenance - By removing the API surface to support every UI use case, **refine** easy to use and update/maintain is simple.
 
 ###
 
 ## Key features
+
+🔥 **Headless**: refine is a **headless** React framework, which means all out-of-the-box features, it can be used without being tied to any UI elements or framework
 
 ⚙️ **Zero-configuration**: One-line setup with [superplate](https://github.com/pankod/superplate). It takes less than a minute to start a project.
 
@@ -36,7 +38,7 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 🔘 **Decoupled UI** : UI components are exposed directly without encapsulation. You have full control on UI elements.
 
-🐜 **Powerful Default UI** : Works seamlessly with integrated [Ant Design System](https://ant.design/). (Support for multiple UI frameworks is on the Roadmap)
+🐜 **Powerful UI** : Works seamlessly with integrated [Ant Design System](https://ant.design/). (It can also be used with **any** UI Framework)
 
 📝 **Boilerplate-free Code** : Keeps your codebase clean and readable.
 
@@ -84,7 +86,7 @@ In addition to **shorter development** times and **overall performance gains**, 
 Run the **superplate** tool with the following command:
 
 ```
-npx superplate-cli tutorial
+npx superplate-cli -p refine-react tutorial
 ```
 
 Follow the _CLI wizard_ to select options and start creating your project.
@@ -100,7 +102,7 @@ Your **refine** application will be accessible at [http://localhost:3000](http:/
 Replace the contents of `App.tsx` with the following code:
 
 ```tsx title="App.tsx"
-import { Refine, useMany } from "@pankod/refine-core"
+import { Refine, useMany } from "@pankod/refine-core";
 import {
     useTable,
     List,
@@ -110,7 +112,7 @@ import {
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 const App: React.FC = () => {
     return (

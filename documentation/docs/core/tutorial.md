@@ -81,7 +81,7 @@ This tutorial assumes your project is configured for absolute imports. Since CRA
 First, run the **superplate** with the following command:
 
 ```
-npx superplate-cli tutorial
+npx superplate-cli -p refine-react tutorial
 ```
 
 Select the following options to complete the _CLI wizard_:
@@ -174,7 +174,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 
 -   [Firebase](https://github.com/rturan29/refine-firebase) by [rturan29](https://github.com/rturan29)
 
-[Refer to the `dataProvider` documentation for detailed usage. &#8594](/api-references/providers/data-provider.md)
+[Refer to the `dataProvider` documentation for detailed usage. &#8594](/core/providers/data-provider.md)
 :::
 
 ## Bootstrapping the Application
@@ -200,7 +200,7 @@ export default App;
 
 <br/>
 
-`<Refine/>` is the root component of a **refine** application. Using the [`dataProvider`](/api-references/providers/data-provider.md) prop, we made our **Simple REST Dataprovider** available to the entire application.
+`<Refine/>` is the root component of a **refine** application. Using the [`dataProvider`](/core/providers/data-provider.md) prop, we made our **Simple REST Dataprovider** available to the entire application.
 
 Run the following command to install the required package:
 
@@ -1032,11 +1032,11 @@ export const ShowIcon = (
 
 ✳️ `useShow()` is a **refine** hook used to fetch a single record data. The `queryResult` has the response and also `isLoading` state.
 
-[Refer to the `useShow` documentation for detailed usage information. &#8594](/api-references/hooks/show/useShow.md)
+[Refer to the `useShow` documentation for detailed usage information. &#8594](/core/hooks/show/useShow.md)
 
 ✳️ To retrieve the category title, again we need to make a call to `/categories` endpoint. This time we used `useOne()` hook to get a single record from another resource.
 
-[Refer to the `useOne` documentation for detailed usage information. &#8594](/api-references/hooks/data/useOne.md)
+[Refer to the `useOne` documentation for detailed usage information. &#8594](/core/hooks/data/useOne.md)
 
 :::caution attention
 `useShow()` is the preferred hook for fetching data from current resource. For query foreign resources you may use the low-level `useOne()` hook.
@@ -1254,7 +1254,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-[Refer to the `<EditButton>` documentation for detailed usage information. &#8594](/api-references/components/buttons/edit.md)
+[Refer to the `<EditButton>` documentation for detailed usage information. &#8594](/ui-frameworks/antd/components/buttons/edit.md)
 
 You can try using edit buttons which will trigger the edit forms for each record, allowing you to update the record data.
 
@@ -1266,7 +1266,7 @@ On the example it returns `formProps` and `saveButtonProps`, where the former in
 :::caution Attention
 In edit page, `useForm` hook initializes the form with current record values.
 
-[Refer to the `useForm` documentation for detailed usage information . &#8594](/api-references/hooks/form/useForm.md)
+[Refer to the `useForm` documentation for detailed usage information . &#8594](/core/hooks/useForm.md)
 
 ✳️ `<Form>` and `<Form.Item>` are Ant Design components to build form inputs.
 
@@ -1274,7 +1274,7 @@ In edit page, `useForm` hook initializes the form with current record values.
 
 ✳️ Form data is set automatically, whenever children inputs `<Form.Item>`'s are edited.
 
-✳️ Save button submits the form by executing the `useUpdate` method provided by the [`dataProvider`](/api-references/providers/data-provider.md). After a succesfull response, the application will be redirected to the listing page.
+✳️ Save button submits the form by executing the `useUpdate` method provided by the [`dataProvider`](/core/providers/data-provider.md). After a succesfull response, the application will be redirected to the listing page.
 
 <br />
 
@@ -1395,7 +1395,7 @@ We should notice some minor differences from the edit example:
 
 ✳️ `<Form>` is wrapped with `<Create>` component.
 
-✳️ Save button submits the form by executing the `useCreate` method provided by the [`dataProvider`](/api-references/providers/data-provider.md).
+✳️ Save button submits the form by executing the `useCreate` method provided by the [`dataProvider`](/core/providers/data-provider.md).
 
 ✳️ No `defaultValue` is passed to `useSelect`.
 
@@ -1532,7 +1532,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-[Refer to the `<DeleteButton>` documentation for detailed usage information. &#8594](/api-references/components/buttons/delete.md)
+[Refer to the `<DeleteButton>` documentation for detailed usage information. &#8594](/ui-frameworks/antd/components/buttons/delete.md)
 
 Now you can try deleting records yourself. Just click on the delete button of the record you want to delete and confirm.
 
@@ -1581,11 +1581,11 @@ Our tutorial is complete. Below you'll find a live Codesandbox example displayin
 
 ## Next Steps
 
--   [Read about the authProvider to implement authentication for your refine application. &#8594](/api-references/providers/auth-provider.md)
+-   [Read about the authProvider to implement authentication for your refine application. &#8594](/core/providers/auth-provider.md)
 
--   [Read about the dataProvider to consume custom API's &#8594](/api-references/providers/data-provider.md)
+-   [Read about the dataProvider to consume custom API's &#8594](/core/providers/data-provider.md)
 
--   [Read about the i18nProvider to add language support. &#8594](/api-references/providers/i18n-provider.md)
+-   [Read about the i18nProvider to add language support. &#8594](/core/providers/i18n-provider.md)
 
 -   [Check the Guides & Concept section to learn generic solutions to common problems &#8594](/guides-and-concepts/upload/multipart-upload.md)
 
