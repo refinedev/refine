@@ -7,21 +7,24 @@ import {
     useSortBy,
     useFilters,
 } from "@pankod/refine-react-table";
-import { useNavigation } from "@pankod/refine-core";
 
-import { IPost } from "interfaces";
+import { useDelete, useNavigation, useOne } from "@pankod/refine-core";
+
+import { ICategory, IPost } from "interfaces";
 import {
     ChevronLeftIcon,
     ChevronRightIcon,
     ChevronsLeftIcon,
     ChevronsRightIcon,
     CreateIcon,
+    DeleteIcon,
     EditIcon,
     ShowIcon,
 } from "icons";
 
 export const PostList: React.FC = () => {
     const { edit, create, show } = useNavigation();
+    const { mutate } = useDelete();
 
     const columns: Array<Column> = React.useMemo(
         () => [
@@ -47,6 +50,23 @@ export const PostList: React.FC = () => {
                 accessor: "createdAt",
             },
             {
+                id: "category.id",
+                Header: "Category",
+                accessor: "category.id",
+                Cell: ({ cell }) => {
+                    const { data, isLoading } = useOne<ICategory>({
+                        resource: "categories",
+                        id: cell.value,
+                    });
+
+                    if (isLoading) {
+                        return <p>loading..</p>;
+                    }
+
+                    return data?.data.title;
+                },
+            },
+            {
                 id: "action",
                 Header: "Action",
                 accessor: "id",
@@ -64,6 +84,14 @@ export const PostList: React.FC = () => {
                             onClick={() => show("posts", value)}
                         >
                             {ShowIcon}
+                        </button>
+                        <button
+                            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-red-500 hover:text-white"
+                            onClick={() =>
+                                mutate({ id: value, resource: "posts" })
+                            }
+                        >
+                            {DeleteIcon}
                         </button>
                     </div>
                 ),
