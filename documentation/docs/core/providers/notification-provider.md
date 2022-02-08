@@ -25,7 +25,7 @@ interface NotificationProvider {
 }
 
 interface OpenNotificationParams {
-    key: string;
+    key?: string;
     message: string;
     type: "success" | "error" | "progress";
     description?: string;

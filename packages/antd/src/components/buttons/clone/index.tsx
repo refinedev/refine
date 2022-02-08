@@ -19,10 +19,10 @@ type CloneButtonProps = ButtonProps & {
 
 /**
  * `<CloneButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button> component`}.
- * It uses the {@link https://refine.dev/docs/api-references/hooks/navigation/useNavigation#clone `clone`} method from {@link https://refine.dev/docs/api-references/hooks/navigation/useNavigation useNavigation} under the hood.
+ * It uses the {@link https://refine.dev/docs/core/hooks/navigation/useNavigation#clone `clone`} method from {@link https://refine.dev/docs/core/hooks/navigation/useNavigation useNavigation} under the hood.
  * It can be useful when redirecting the app to the create page with the record id route of resource.
  *
- * @see {@link https://refine.dev/docs/api-references/components/buttons/clone-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/buttons/clone-button} for more details.
  */
 export const CloneButton: React.FC<CloneButtonProps> = ({
     resourceName: propResourceName,
@@ -47,7 +47,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
 
     const resourceName = propResourceName ?? resource.name;
 
-    const id = recordItemId ?? decodeURIComponent(idFromRoute);
+    const id = decodeURIComponent(recordItemId ?? idFromRoute);
 
     const onButtonClick = () => {
         clone(routeResourceName, id!);

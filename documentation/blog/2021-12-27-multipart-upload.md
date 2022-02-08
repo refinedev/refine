@@ -143,9 +143,9 @@ A React-based framework for building data-intensive applications in no time. **r
 
 📝 Native Typescript Core : You can always opt-out for plain JavaScript.
 
-🔘 Decoupled UI : UI components are exposed directly without encapsulation. You have full control on UI elements.
+🔘 Headless : All out-of-the-box features, it can be used without being tied to any UI elements or framework.
 
-🐜 Powerful Default UI : Works seamlessly with integrated Ant Design System. (Support for multiple UI frameworks is on the Roadmap)
+🐜 Enterprise UI : Works seamlessly with integrated Ant Design System. (Support for multiple UI frameworks is on the Roadmap)
 
 📝 Boilerplate-free Code : Keeps your codebase clean and readable.
 

@@ -11,7 +11,7 @@ type ExportButtonProps = ButtonProps & {
  * `<ExportButton>` is an Ant Design {@link https://ant.design/components/button/ `<Button>`} with a default export icon and a default text with "Export".
  * It only has presentational value.
  *
- * @see {@link https://refine.dev/docs/api-references/components/buttons/export-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/buttons/export-button} for more details.
  */
 export const ExportButton: React.FC<ExportButtonProps> = ({
     hideText = false,

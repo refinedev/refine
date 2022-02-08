@@ -1,0 +1,320 @@
+{
+    "redirects": [
+        {
+            "from": "/docs/next/api-references/providers/auth-provider",
+            "to": "/docs/next/core/providers/auth-provider"
+        },
+        {
+            "from": "/docs/next/api-references/providers/accessControl-provider",
+            "to": "/docs/next/core/providers/accessControl-provider"
+        },
+        {
+            "from": "/docs/next/api-references/providers/i18n-provider",
+            "to": "/docs/next/core/providers/i18n-provider"
+        },
+        {
+            "from": "/docs/next/api-references/providers/live-provider",
+            "to": "/docs/next/core/providers/live-provider"
+        },
+        {
+            "from": "/docs/next/api-references/providers/router-provider",
+            "to": "/docs/next/core/providers/router-provider"
+        },
+        {
+            "from": "/docs/next/api-references/providers/data-provider",
+            "to": "/docs/next/core/providers/data-provider"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/auth/useAuthenticated",
+            "to": "/docs/next/core/hooks/auth/useAuthenticated/"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/auth/usePermissions",
+            "to": "/docs/next/core/hooks/auth/usePermissions"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/auth/useLogin",
+            "to": "/docs/next/core/hooks/auth/useLogin"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/auth/useLogout",
+            "to": "/docs/next/core/hooks/auth/useLogout"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/auth/useCheckError",
+            "to": "/docs/next/core/hooks/auth/useCheckError"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/auth/useGetIdentity",
+            "to": "/docs/next/core/hooks/auth/useGetIdentity"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/data/useApiUrl",
+            "to": "/docs/next/core/hooks/data/useApiUrl"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/data/useCreate",
+            "to": "/docs/next/core/hooks/data/useCreate"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/data/useCreateMany",
+            "to": "/docs/next/core/hooks/data/useCreateMany"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/data/useCustom",
+            "to": "/docs/next/core/hooks/data/useCustom"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/data/useDelete",
+            "to": "/docs/next/core/hooks/data/useDelete"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/data/useDeleteMany",
+            "to": "/docs/next/core/hooks/data/useDeleteMany"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/data/useList",
+            "to": "/docs/next/core/hooks/data/useList"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/data/useMany",
+            "to": "/docs/next/core/hooks/data/useMany"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/data/useOne",
+            "to": "/docs/next/core/hooks/data/useOne"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/data/useUpdate",
+            "to": "/docs/next/core/hooks/data/useUpdate"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/data/useUpdateMany",
+            "to": "/docs/next/core/hooks/data/useUpdateMany"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/accessControl/useCan",
+            "to": "/docs/next/core/hooks/accessControl/useCan"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/refine/useTitle",
+            "to": "/docs/next/core/hooks/refine/useTitle"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/live/usePublish",
+            "to": "/docs/next/core/hooks/live/usePublish"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/live/useSubscription",
+            "to": "/docs/next/core/hooks/live/useSubscription"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/translate/useGetLocale",
+            "to": "/docs/next/core/hooks/translate/useGetLocale"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/translate/useSetLocale",
+            "to": "/docs/next/core/hooks/translate/useSetLocale"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/translate/useTranslate",
+            "to": "/docs/next/core/hooks/translate/useTranslate"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/show/useShow",
+            "to": "/docs/next/core/hooks/show/useShow"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/resource/useResource",
+            "to": "/docs/next/core/hooks/resource/useResource"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/resource/useResourceWithRoute",
+            "to": "/docs/next/core/hooks/resource/useResourceWithRoute"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/navigation/useNavigation",
+            "to": "/docs/next/core/hooks/navigation/useNavigation"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/ui/useModal",
+            "to": "/docs/next/core/hooks/ui/useModal/"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/form/useForm",
+            "to": "/docs/next/core/hooks/useForm"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/table/useTable",
+            "to": "/docs/next/core/hooks/useTable"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/field/useSelect",
+            "to": "/docs/next/core/hooks/useSelect"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/import-export/useImport",
+            "to": "/docs/next/core/hooks/import-export/useImport"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/import-export/useExport",
+            "to": "/docs/next/core/hooks/import-export/useExport"
+        },
+        {
+            "from": "/docs/next/api-references/components/auth/authenticated",
+            "to": "/docs/next/core/components/auth/authenticated"
+        },
+        {
+            "from": "/docs/next/api-references/components/accessControl/can-access",
+            "to": "/docs/next/core/components/accessControl/can-access"
+        },
+        {
+            "from": "/docs/next/api-references/components/refine-config",
+            "to": "/docs/next/core/components/refine-config"
+        },
+        {
+            "from": "/docs/next/api-references/components/layout-wrapper",
+            "to": "/docs/next/core/components/layout-wrapper"
+        }, 
+        {
+            "from": "/docs/next/api-references/interfaceReferences",
+            "to": "/docs/next/core/interfaceReferences"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/form/useDrawerForm",
+            "to": "/docs/next/ui-frameworks/antd/hooks/form/useDrawerForm"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/form/useModalForm",
+            "to": "/docs/next/ui-frameworks/antd/hooks/form/useModalForm"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/form/useStepsForm",
+            "to": "/docs/next/ui-frameworks/antd/hooks/form/useStepsForm"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/resource/useMenu",
+            "to": "/docs/next/ui-frameworks/antd/hooks/resource/useMenu"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/table/useEditableTable",
+            "to": "/docs/next/ui-frameworks/antd/hooks/table/useEditableTable"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/show/useSimpleList",
+            "to": "/docs/next/ui-frameworks/antd/hooks/list/useSimpleList"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/field/useRadioGroup",
+            "to": "/docs/next/ui-frameworks/antd/hooks/field/useRadioGroup"
+        },
+        {
+            "from": "/docs/next/api-references/hooks/field/useCheckboxGroup",
+            "to": "/docs/next/ui-frameworks/antd/hooks/field/useCheckboxGroup"
+        },
+        {
+            "from": "/docs/next/api-references/components/basic-views/create",
+            "to": "/docs/next/ui-frameworks/antd/components/basic-views/create"
+        },
+        {
+            "from": "/docs/next/api-references/components/basic-views/edit",
+            "to": "/docs/next/ui-frameworks/antd/components/basic-views/edit"
+        },
+        {
+            "from": "/docs/next/api-references/components/basic-views/list",
+            "to": "/docs/next/ui-frameworks/antd/components/basic-views/list"
+        },
+        {
+            "from": "/docs/next/api-references/components/basic-views/show",
+            "to": "/docs/next/ui-frameworks/antd/components/basic-views/show"
+        },
+        {
+            "from": "/docs/next/api-references/components/buttons/clone-button",
+            "to": "/docs/next/ui-frameworks/antd/components/buttons/clone-button"
+        },
+        {
+            "from": "/docs/next/api-references/components/buttons/list-button",
+            "to": "/docs/next/ui-frameworks/antd/components/buttons/list-button"
+        },
+        {
+            "from": "/docs/next/api-references/components/buttons/create-button",
+            "to": "/docs/next/ui-frameworks/antd/components/buttons/create-button"
+        },
+        {
+            "from": "/docs/next/api-references/components/buttons/edit-button",
+            "to": "/docs/next/ui-frameworks/antd/components/buttons/edit-button"
+        },
+        {
+            "from": "/docs/next/api-references/components/buttons/show-button",
+            "to": "/docs/next/ui-frameworks/antd/components/buttons/show-button"
+        },
+        {
+            "from": "/docs/next/api-references/components/buttons/delete-button",
+            "to": "/docs/next/ui-frameworks/antd/components/buttons/delete-button"
+        },
+        {
+            "from": "/docs/next/api-references/components/buttons/refresh-button",
+            "to": "/docs/next/ui-frameworks/antd/components/buttons/refresh-button"
+        },
+        {
+            "from": "/docs/next/api-references/components/buttons/save-button",
+            "to": "/docs/next/ui-frameworks/antd/components/buttons/save-button"
+        },
+        {
+            "from": "/docs/next/api-references/components/buttons/import-button",
+            "to": "/docs/next/ui-frameworks/antd/components/buttons/import-button"
+        },
+        {
+            "from": "/docs/next/api-references/components/buttons/export-button",
+            "to": "/docs/next/ui-frameworks/antd/components/buttons/export-button"
+        },
+        {
+            "from": "/docs/next/api-references/components/inputs/custom-inputs",
+            "to": "/docs/next/ui-frameworks/antd/components/inputs/custom-inputs"
+        },
+        {
+            "from": "/docs/next/api-references/components/filter-dropdown",
+            "to": "/docs/next/ui-frameworks/antd/components/filter-dropdown"
+        },
+        {
+            "from": "/docs/next/api-references/components/fields/boolean",
+            "to": "/docs/next/ui-frameworks/antd/components/fields/boolean"
+        },
+        {
+            "from": "/docs/next/api-references/components/fields/url",
+            "to": "/docs/next/ui-frameworks/antd/components/fields/url"
+        },
+        {
+            "from": "/docs/next/api-references/components/fields/image",
+            "to": "/docs/next/ui-frameworks/antd/components/fields/image"
+        },
+        {
+            "from": "/docs/next/api-references/components/fields/file",
+            "to": "/docs/next/ui-frameworks/antd/components/fields/file"
+        },
+        {
+            "from": "/docs/next/api-references/components/fields/date",
+            "to": "/docs/next/ui-frameworks/antd/components/fields/date"
+        },
+        {
+            "from": "/docs/next/api-references/components/fields/email",
+            "to": "/docs/next/ui-frameworks/antd/components/fields/email"
+        },
+        {
+            "from": "/docs/next/api-references/components/fields/markdown",
+            "to": "/docs/next/ui-frameworks/antd/components/fields/markdown"
+        },
+        {
+            "from": "/docs/next/api-references/components/fields/tag",
+            "to": "/docs/next/ui-frameworks/antd/components/fields/tag"
+        },
+        {
+            "from": "/docs/next/api-references/components/fields/text",
+            "to": "/docs/next/ui-frameworks/antd/components/fields/text"
+        },
+        {
+            "from": "/docs/next/api-references/components/fields/number",
+            "to": "/docs/next/ui-frameworks/antd/components/fields/number"
+        }
+    ]
+}

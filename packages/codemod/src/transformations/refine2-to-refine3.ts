@@ -587,6 +587,14 @@ const updateSetEditIdToSetId = (j: JSCodeshift, root: Collection<any>) => {
             if (setEditIdProperty) {
                 setEditIdProperty.value.name = "setId: setEditId";
             }
+
+            const editIdProperty = path.parentPath.node.id.properties.find(
+                (p) => p.value.name === "editId",
+            );
+
+            if (editIdProperty) {
+                editIdProperty.value.name = "id: editId";
+            }
         });
     }
 };
@@ -628,11 +636,11 @@ export async function postTransform(files: any, flags: any) {
     }> = [
         {
             name: "@pankod/refine-core",
-            version: "3.x.x",
+            version: "alpha",
         },
         {
             name: "@pankod/refine-antd",
-            version: "3.x.x",
+            version: "alpha",
         },
     ];
 
@@ -640,7 +648,7 @@ export async function postTransform(files: any, flags: any) {
         if (packagesToUpdate.includes(key)) {
             dependenciesToInstall.push({
                 name: key,
-                version: "3.x.x",
+                version: "alpha",
             });
         }
     }

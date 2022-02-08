@@ -11,7 +11,7 @@ export type ImageFieldProps = FieldProps<string | undefined> &
 /**
  * This field is used to display images and uses {@link https://ant.design/components/image/#header `<Image>`} from Ant Design.
  *
- * @see {@link https://refine.dev/docs/api-references/components/fields/image} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/fields/image} for more details.
  */
 export const ImageField: React.FC<ImageFieldProps> = ({
     value,

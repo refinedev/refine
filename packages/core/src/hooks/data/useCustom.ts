@@ -40,10 +40,10 @@ export type UseCustomProps<TData, TError, TQuery, TPayload> = {
  *
  * It uses the `custom` method from the `dataProvider` which is passed to `<Refine>`.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/data/useCustom} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/data/useCustom} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/core/interfaceReferences#httperror `HttpError`}
  * @typeParam TQuery - Values for query params
  * @typeParam TPayload - Values for params
  *

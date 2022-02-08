@@ -10,13 +10,11 @@ import {
     useWarnAboutChange,
     useResourceWithRoute,
     useRouterContext,
-} from "@pankod/refine-core";
-import {
     HttpError,
     ResourceRouterParams,
-    UseFormProps,
+    UseFormProps as UseFormPropsCore,
 } from "@pankod/refine-core";
-import { useForm, UseFormReturnType } from "../useForm";
+import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 import { BaseRecord, LiveModeProps } from "@pankod/refine-core/dist/interfaces";
 import { useModalFormFromSFReturnType } from "../../../../types/sunflower";
 
@@ -38,14 +36,15 @@ export type useModalFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = UseFormProps<TData, TError, TVariables> &
+> = UseFormPropsCore<TData, TError, TVariables> &
+    UseFormProps &
     UseModalFormConfigSF &
     useModalFormConfig &
     LiveModeProps;
 /**
  * `useModalForm` hook allows you to manage a form within a modal. It returns Ant Design {@link https://ant.design/components/form/ Form} and {@link https://ant.design/components/modal/ Modal} components props.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/form/useModalForm} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/antd/hooks/form/useModalForm} for more details.
  *
  * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}

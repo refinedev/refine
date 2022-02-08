@@ -5,12 +5,12 @@ import {
     useMutationMode,
     useTranslate,
     useWarnAboutChange,
-    UseFormProps,
+    UseFormProps as UseFormPropsCore,
+    HttpError,
 } from "@pankod/refine-core";
-import { HttpError } from "@pankod/refine-core";
 import { BaseRecord, LiveModeProps } from "@pankod/refine-core/dist/interfaces";
 
-import { useForm, UseFormReturnType } from "../useForm";
+import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 import { DeleteButtonProps } from "@components";
 
 export interface UseDrawerFormConfig extends UseFormConfig {
@@ -21,7 +21,8 @@ export type UseDrawerFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = UseFormProps<TData, TError, TVariables> &
+> = UseFormPropsCore<TData, TError, TVariables> &
+    UseFormProps &
     UseDrawerFormConfig &
     LiveModeProps;
 
@@ -44,7 +45,7 @@ export type UseDrawerFormReturnType<
 /**
  * `useDrawerForm` hook allows you to manage a form within a drawer. It returns Ant Design {@link https://ant.design/components/form/ Form} and {@link https://ant.design/components/drawer/ Drawer} components props.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/form/useDrawerForm} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/antd/hooks/form/useDrawerForm} for more details.
  *
  * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}

@@ -16,7 +16,7 @@ export type UseLoginReturnType<TData, TVariables = {}> = UseMutationResult<
 /**
  * `useLogin` calls `login` method from {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/auth/useLogin} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/auth/useLogin} for more details.
  *
  * @typeParam TData - Result data of the query
  * @typeParam TVariables - Values for mutation function. default `{}`

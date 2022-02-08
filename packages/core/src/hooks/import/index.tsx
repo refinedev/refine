@@ -78,7 +78,7 @@ export type UseImportReturnType<
 /**
  * `useImport` hook allows you to handle your csv import logic easily.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/import-export/useImport} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/import-export/useImport} for more details.
  *
  * @typeParam TItem - Interface of parsed csv data
  * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}

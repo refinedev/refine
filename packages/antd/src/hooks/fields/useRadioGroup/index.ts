@@ -34,9 +34,9 @@ export type UseRadioGroupReturnType<TData extends BaseRecord = BaseRecord> = {
 /**
  * `useRadioGroup` hook allows you to manage an Ant Design {@link https://ant.design/components/radio/#components-radio-demo-radiogroup-with-name Radio.Group} component when records in a resource needs to be used as radio options.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/field/useRadioGroup} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/antd/hooks/field/useRadioGroup} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/core/interfaceReferences#baserecord `BaseRecord`}
  *
  */
 

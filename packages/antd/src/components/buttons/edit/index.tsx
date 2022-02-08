@@ -19,10 +19,10 @@ type EditButtonProps = ButtonProps & {
 
 /**
  * `<EditButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} component.
- * It uses the {@link https://refine.dev/docs/api-references/hooks/navigation/useNavigation#edit `edit`} method from {@link https://refine.dev/docs/api-references/hooks/navigation/useNavigation `useNavigation`} under the hood.
+ * It uses the {@link https://refine.dev/docs/core/hooks/navigation/useNavigation#edit `edit`} method from {@link https://refine.dev/docs/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when redirecting the app to the edit page with the record id route of resource}.
  *
- * @see {@link https://refine.dev/docs/api-references/components/buttons/edit-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/buttons/edit-button} for more details.
  */
 export const EditButton: React.FC<EditButtonProps> = ({
     resourceName: propResourceName,
@@ -47,7 +47,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
 
     const { edit } = useNavigation();
 
-    const id = recordItemId ?? decodeURIComponent(idFromRoute);
+    const id = decodeURIComponent(recordItemId ?? idFromRoute);
 
     const { data } = useCan({
         resource: resourceName,
