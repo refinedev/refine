@@ -1,9 +1,9 @@
 import React from "react";
 
 import { screen, render } from "@test";
-import { ExportButton } from "./";
+import { ExportButton } from "./index";
 
-describe("<ExportButton/>", () => {
+xdescribe("<ExportButton/>", () => {
     it("should render", () => {
         const { findByText } = render(<ExportButton />);
 

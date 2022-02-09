@@ -9,16 +9,17 @@ This guide will help you learn and get information of basic **refine** concepts.
 
 **refine** has a very friendly community, we are always happy to help you get started:
 
--   [Join the Discord Community](https://discord.com/invite/UuU3XCc3J5) – it is the easiest way to get help, all questions are usually answered in as soon possible.
+-   [Join the Discord Community](https://discord.com/invite/UuU3XCc3J5) – it is the easiest way to get help, all questions are usually answered in about 30 minutes.
 -   [GitHub Discussions](https://github.com/pankod/refine/discussions) – ask anything about the project or give feedback.
 
 ## Refine Packages
 
 -   `@pankod/refine-core` - collection of 20+ React hooks for State, Networking, Authentication, Authorization, i18n and Live/Realtime Management.
 
-**UI Packages:**
+**UI Framework Packages:**
 
 -   `@pankod/refine-antd` - a fully featured [Ant Design](https://ant.design/) System UI Framework. Includes +20 Table, Form, Select, Menu, Layout, Notification and CRUD components and hooks.
+-   `@pankod/refine-mui` (Coming soon!) - a fully featured [Material UI](https://mui.com/) Framework.
 
 **[Data Provider](https://refine.dev/docs/core/providers/data-provider/) Packages:**
 
@@ -44,12 +45,17 @@ This guide will help you learn and get information of basic **refine** concepts.
 
 -   `@pankod/refine-ably` - [Ably](https://ably.com/) Live/Realtime Provider
 
+**❤️ Community  Packages:**
+
+-   [`refine-firebase`](https://github.com/rturan29/refine-firebase) - a fully featured [Firebase](https://github.com/rturan29/refine-firebase) Data Provider by [rturan29](https://github.com/rturan29)
+-   [`data-provider-customizer`](https://github.com/miyavsu-limited/data-provider-customizer) - Customize your data provider by mixing it with different data providers/data methods by [miyavsu-limited](https://github.com/miyavsu-limited)
+
 ## Refine 3rd Party Integration Examples
 
 **[i18n Provider](https://refine.dev/docs/core/providers/i18n-provider/)**
 
--   `i18n(React)` - [Example](https://refine.dev/docs/examples/i18n/i18n-react/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/i18n/react/src/App.tsx#L17)
--   `i18n(Next.js)` - [Example](https://refine.dev/docs/examples/i18n/i18n-nextjs/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/i18n/nextjs/pages/_app.tsx#L20)
+-   `React - i18next` - [Example](https://refine.dev/docs/examples/i18n/i18n-react/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/i18n/react/src/App.tsx#L17)
+-   `Next.js - next-i18next` - [Example](https://refine.dev/docs/examples/i18n/i18n-nextjs/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/i18n/nextjs/pages/_app.tsx#L20)
 
 **[Access Control Provider](https://refine.dev/docs/api-references/providers/accessControl-provider/)**
 
@@ -60,3 +66,19 @@ This guide will help you learn and get information of basic **refine** concepts.
 
 -   `Auth0` - [Example](https://refine.dev/docs/examples/auth-provider/auth0/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/authProvider/auth0/src/App.tsx#L23)
 -   `Google Auth` - [Example](https://refine.dev/docs/examples/auth-provider/google-auth/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/authProvider/googleLogin/src/App.tsx#L23)
+
+
+### Roadmap
+
+You can find Refine's [Public Roadmap here!](https://github.com/pankod/refine/projects/1)
+## Next Steps
+
+-   [Comparison | Refine vs React-Admin vs AdminBro vs Retool &#8594](/comparison.md)
+
+-   [Create React App + Ant Design Tutorial &#8594](/ui-frameworks/antd/tutorial.md)
+
+-   [Next.js + Tailwind Tutorial &#8594](/core/tutorial.md)
+
+-   [Check the Guides & Concept section to learn generic solutions to common problems &#8594](/guides-and-concepts/upload/multipart-upload.md)
+
+-   [Check example section for code snippets &#8594](/examples/tutorial.md)

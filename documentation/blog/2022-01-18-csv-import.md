@@ -217,6 +217,8 @@ We formatted the CSV file that came in plain text format, using Javascript [slic
 
 A React-based framework for building data-intensive applications in no time. **refine** offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards.
 
+🔥 **Headless** : So you can bring your own UI and fuel it with Refine for top speed development.
+
 ⚙️ Zero-configuration: One-line setup with superplate. It takes less than a minute to start a project.
 
 📦 Out-of-the-box : Routing, networking, authentication, state management, i18n and UI.
@@ -225,9 +227,7 @@ A React-based framework for building data-intensive applications in no time. **r
 
 📝 Native Typescript Core : You can always opt-out for plain JavaScript.
 
-🔘 Headless : All out-of-the-box features, it can be used without being tied to any UI elements or framework.
-
-🐜 Enterprise UI : Works seamlessly with integrated Ant Design System. (Support for multiple UI frameworks is on the Roadmap)
+🐜 Enterprise UI : Works seamlessly with Ant Design System. (Support for multiple UI frameworks is on the Roadmap)
 
 📝 Boilerplate-free Code : Keeps your codebase clean and readable.
 

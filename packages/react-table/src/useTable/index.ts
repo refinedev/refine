@@ -84,6 +84,9 @@ export const useTable = <
                 order: sorting.desc ? "desc" : "asc",
             })),
         );
+        if (sortBy?.length) {
+            setCurrent(1);
+        }
     }, [sortBy]);
 
     useEffect(() => {
@@ -120,6 +123,9 @@ export const useTable = <
         });
 
         setFilters(crudFilters);
+        if (crudFilters.length > 0) {
+            setCurrent(1);
+        }
     }, [filters]);
 
     return {

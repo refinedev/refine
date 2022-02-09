@@ -180,7 +180,7 @@ const SimpleRestDataProvider = (
 | resource  | `string`     |         |
 | variables | `TVariables` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useCreate`](/docs/api-references/hooks/data/useCreate#type-parameters) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useCreate`](/api-references/hooks/data/useCreate.md#type-parameters) to type `variables`
 
 <br/>
 
@@ -199,7 +199,7 @@ mutate({
 });
 ```
 
-> [Refer to the useCreate documentation for more information. &#8594](api-references/hooks/data/useCreate.md)
+> [Refer to the useCreate documentation for more information. &#8594](/api-references/hooks/data/useCreate.md)
 
 <br />
 
@@ -239,7 +239,7 @@ const SimpleRestDataProvider = (
 | resource  | `string`       |         |
 | variables | `TVariables[]` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useCreateMany`](/docs/api-references/hooks/data/useCreateMany) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useCreateMany`](/api-references/hooks/data/useCreateMany.md) to type `variables`
 
 <br/>
 
@@ -364,7 +364,7 @@ mutate({
 });
 ```
 
-> [Refer to the useDeleteMany documentation for more information. &#8594](api-references/hooks/data/useDeleteMany.md)
+> [Refer to the useDeleteMany documentation for more information. &#8594](/api-references/hooks/data/useDeleteMany.md)
 
 <br />
 
@@ -401,7 +401,7 @@ const SimpleRestDataProvider = (
 | id        | `string`     |         |
 | variables | `TVariables` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/api-references/hooks/data/useUpdate#type-parameters) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useUpdate`](/api-references/hooks/data/useUpdate.md#type-parameters) to type `variables`
 
 <br/>
 
@@ -419,7 +419,7 @@ mutate({
 });
 ```
 
-> [Refer to the useUpdate documentation for more information. &#8594](api-references/hooks/data/useUpdate.md)
+> [Refer to the useUpdate documentation for more information. &#8594](/api-references/hooks/data/useUpdate.md)
 
 <br />
 
@@ -460,7 +460,7 @@ const SimpleRestDataProvider = (
 | ids       | `string[]`   |         |
 | variables | `TVariables` | `{}`    |
 
-> TVariables is a user defined type which can be passed to [`useUpdateMany`](/docs/api-references/hooks/data/useUpdateMany#type-parameters) to type `variables`
+> TVariables is a user defined type which can be passed to [`useUpdateMany`](/api-references/hooks/data/useUpdateMany.md#type-parameters) to type `variables`
 
 <br/>
 
@@ -478,7 +478,7 @@ mutate({
 });
 ```
 
-> [Refer to the useUpdateMany documentation for more information. &#8594](api-references/hooks/data/useUpdateMany.md)
+> [Refer to the useUpdateMany documentation for more information. &#8594](/api-references/hooks/data/useUpdateMany.md)
 
 <br />
 
@@ -688,7 +688,7 @@ const { data } = useList({
 
 We'll sort records by speficified order and field.
 
-> [CrudSorting](/docs/api-references/interfaceReferences#crudoperators) ?
+> [CrudSorting](/api-references/interfaces.md#crudoperators) ?
 
 ```tsx title="dataProvider.ts"
 // highlight-start
@@ -777,7 +777,7 @@ const { data } = useList({
 
 **Adding filtering**
 
-Filters allow you to filter queries using [refine's filter operators](/docs/api-references/interfaceReferences#crudoperators). It is configured via field, operator and value properites.
+Filters allow you to filter queries using [refine's filter operators](/api-references/interfaces.md#crudoperators). It is configured via field, operator and value properites.
 
 ```tsx title="dataProvider.ts"
 const generateSort = (sort?: CrudSorting) => {
@@ -870,7 +870,7 @@ Since our API accepts only certain parameter formats to filter the data, we may 
 
 So we added the `generateFilter` and `mapOperator` methods to the transform filter parameters.
 
-[Refer to the list of all filter operators &#8594](/docs/api-references/interfaceReferences#crudoperators)
+[Refer to the list of all filter operators &#8594](/api-references/interfaces.md#crudoperators)
 
 ```ts
 import { useList } from "@pankod/refine";
@@ -963,8 +963,8 @@ const SimpleRestDataProvider = (
 | -------- | ---------------------------------------------------------------- |
 | url      | `string`                                                         |
 | method   | `get`, `delete`, `head`, `options`, `post`, `put`, `patch`       |
-| sort?    | [`CrudSorting`](../../api-references/interfaces.md#crudsorting); |
-| filters? | [`CrudFilters`](../../api-references/interfaces.md#crudfilters); |
+| sort?    | [`CrudSorting`](/api-references/interfaces.md#crudsorting); |
+| filters? | [`CrudFilters`](/api-references/interfaces.md#crudfilters); |
 | payload? | `{}`                                                             |
 | query?   | `{}`                                                             |
 | headers? | `{}`                                                             |
@@ -987,11 +987,11 @@ const { data, isLoading } = useCustom({
 });
 ```
 
-> [Refer to the useCustom documentation for more information. &#8594](api-references/hooks/data/useCustom.md)
+> [Refer to the useCustom documentation for more information. &#8594](/api-references/hooks/data/useCustom.md)
 
 ### Error Format
 
-**refine** expects errors to be extended from [`HttpError`](../../api-references/interfaces.md#httperror).  
+**refine** expects errors to be extended from [`HttpError`](/api-references/interfaces.md#httperror).  
 Axios interceptor can be used to transform the error from response before Axios returns the response to your code. Interceptors are methods which are triggered before the main method.
 
 ```ts title="dataProvider.ts"

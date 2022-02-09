@@ -24,18 +24,18 @@ export const OrdersModal: React.FC = () => {
 
     return (
         <>
-            <div className="fixed inset-0 z-50 opacity-40 bg-black"></div>
+            <div className="fixed inset-0 z-50 bg-black opacity-40"></div>
             <div className="fixed inset-0 z-50 flex items-center">
                 <div
                     ref={ref}
-                    className="w-[500px] bg-white mx-auto overflow-auto max-h-[95%] rounded-lg shadow-lg"
+                    className="mx-auto max-h-[95%] w-[500px] overflow-auto rounded-lg bg-white shadow-lg"
                 >
-                    <div className="relative bg-primary p-2">
+                    <div className="bg-primary relative p-2">
                         <button
-                            className="absolute top-2 right-2 p-1 hover:bg-orange-500 active:scale-90 transition-all"
+                            className="absolute top-2 right-2 p-1 transition-all hover:bg-orange-500 active:scale-90"
                             onClick={() => setOrdersModalVisible(false)}
                         >
-                            <CloseIcon className="w-6 h-6 text-white" />
+                            <CloseIcon className="h-6 w-6 text-white" />
                         </button>
                         <OrderIcon />
                     </div>
@@ -49,15 +49,15 @@ export const OrdersModal: React.FC = () => {
                                     />
                                 ))
                             ) : (
-                                <p className="h-48 flex items-center justify-center text-xl font-bold text-gray-500">
+                                <p className="flex h-48 items-center justify-center text-xl font-bold text-gray-500">
                                     No have any items.
                                 </p>
                             )}
                         </div>
-                        <div className="flex flex-col items-end gap-2 mt-2">
-                            <div className="flex justify-center items-center gap-2">
+                        <div className="mt-2 flex flex-col items-end gap-2">
+                            <div className="flex items-center justify-center gap-2">
                                 Total:
-                                <span className="font-bold text-lg text-gray-800">
+                                <span className="text-lg font-bold text-gray-800">
                                     {orders.length} items / ${totalPrice / 100}
                                 </span>
                             </div>
@@ -86,7 +86,7 @@ export const OrdersModal: React.FC = () => {
                                         },
                                     )
                                 }
-                                className="bg-primary text-white hover:bg-orange-500 text-lg px-4 font-bold border border-primary rounded-md active:scale-95 transition-all"
+                                className="bg-primary border-primary rounded-md border px-4 text-lg font-bold text-white transition-all hover:bg-orange-500 active:scale-95"
                             >
                                 Order
                             </button>

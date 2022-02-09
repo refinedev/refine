@@ -266,3 +266,21 @@
 [class^="announcementBar"] {
     border: none !important;
 }
+
+
+.tutorial-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+}
+
+
+@media (max-width: 425px) {
+    .tutorial-cards {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 16px;
+        margin-top: 24px;
+    }
+  }

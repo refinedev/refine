@@ -18,14 +18,14 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
                 query: { id, category: encodeURIComponent(title) },
             }}
         >
-            <a className="w-full md:w-1/3 h-60 overflow-hidden p-2">
+            <a className="h-60 w-full overflow-hidden p-2 md:w-1/3">
                 <div
-                    className="flex items-center justify-center bg-cover bg-center h-full rounded-lg shadow-md hover:opacity-95 transition-opacity duration-300"
+                    className="flex h-full items-center justify-center rounded-lg bg-cover bg-center shadow-md transition-opacity duration-300 hover:opacity-95"
                     style={{
                         backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${backgroundImg})`,
                     }}
                 >
-                    <div className="text-white text-5xl md:text-4xl lg:text-5xl font-extrabold uppercase">
+                    <div className="text-5xl font-extrabold uppercase text-white md:text-4xl lg:text-5xl">
                         {title}
                     </div>
                 </div>
