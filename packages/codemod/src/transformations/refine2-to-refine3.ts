@@ -636,11 +636,11 @@ export async function postTransform(files: any, flags: any) {
     }> = [
         {
             name: "@pankod/refine-core",
-            version: "alpha",
+            version: "3.x.x",
         },
         {
             name: "@pankod/refine-antd",
-            version: "alpha",
+            version: "3.x.x",
         },
     ];
 
@@ -648,7 +648,7 @@ export async function postTransform(files: any, flags: any) {
         if (packagesToUpdate.includes(key)) {
             dependenciesToInstall.push({
                 name: key,
-                version: "alpha",
+                version: "3.x.x",
             });
         }
     }
