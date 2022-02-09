@@ -1,13 +1,13 @@
 {
   "name": "refine-headless-tutorial-example",
-  "version": "3.0.4",
+  "version": "3.0.10",
   "private": true,
   "dependencies": {
-    "@pankod/refine-core": "^3.0.4",
-    "@pankod/refine-react-router": "^3.0.4",
-    "@pankod/refine-react-table": "^3.0.4",
-    "@pankod/refine-react-hook-form": "^3.0.4",
-    "@pankod/refine-simple-rest": "^3.0.4",
+    "@pankod/refine-core": "^3.0.10",
+    "@pankod/refine-react-hook-form": "^3.0.10",
+    "@pankod/refine-react-router": "^3.0.10",
+    "@pankod/refine-react-table": "^3.0.10",
+    "@pankod/refine-simple-rest": "^3.0.10",
     "@types/node": "^12.20.11",
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.4",
@@ -39,8 +39,8 @@
   "devDependencies": {
     "autoprefixer": "^10.4.1",
     "postcss": "^8.1.4",
-    "tailwindcss": "^3.0.11",
     "prettier": "2.3.0",
-    "prettier-plugin-tailwindcss": "^0.1.4"
+    "prettier-plugin-tailwindcss": "^0.1.4",
+    "tailwindcss": "^3.0.11"
   }
 }
