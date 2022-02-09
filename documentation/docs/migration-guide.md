@@ -669,7 +669,7 @@ const App: React.FC = () => {
 };
 ```
 
-### `setEditId` to `setId:setEditId` & `editId` to `id:editId`
+### `setEditId` to `setId` & `editId` to `id`
 Change the use `setEditId` and `editId` used in `useEditableTable`, `useModalForm`, and `useDrawerForm`.
 
 - `setEditId` -> `setId: setEditId`
