@@ -20,14 +20,8 @@ These tutorials will go through process of building a simple _admin panel_ for a
 
 Step by step, you're going to learn how to consume a _REST API_ and add basic CRUD functionality to your panel leveraging the unique capabilities of **refine**.
 
-<div
-    style={{
-        display: "grid",
-        "grid-template-columns": "repeat(2, minmax(0px, 1fr))",
-        gap: "16px",
-        marginTop: "24px",
-    }}
->
+
+<div className="tutorial-cards">
     <Card
         iconPath={"/img/cra-tailwind.png"}
         title={"Refine Core - Tailwind - CRA"}
