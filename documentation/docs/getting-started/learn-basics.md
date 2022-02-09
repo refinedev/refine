@@ -9,7 +9,7 @@ This guide will help you learn and get information of basic **refine** concepts.
 
 **refine** has a very friendly community, we are always happy to help you get started:
 
--   [Join the Discord Community](https://discord.com/invite/UuU3XCc3J5) – it is the easiest way to get help, all questions are usually answered in as soon possible.
+-   [Join the Discord Community](https://discord.com/invite/UuU3XCc3J5) – it is the easiest way to get help, all questions are usually answered in about 30 minutes.
 -   [GitHub Discussions](https://github.com/pankod/refine/discussions) – ask anything about the project or give feedback.
 
 ## Refine Packages

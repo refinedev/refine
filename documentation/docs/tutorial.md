@@ -9,9 +9,9 @@ import Card from "@site/src/components/tutorial-card";
 
 ## Introduction
 
-Refine is a **Headless** React Framework, it does not include a UI Component by default. 
+refine is a **Headless** React Framework, it does not include a UI Component by default. 
 
-There are two ways to add UI elements to Refine;
+There are two ways to add UI elements to refine;
 
 1. Using a **UI Library** such as [Tailwind](https://tailwindcss.com/), [Chakra UI](https://chakra-ui.com/), etc.
 2. Using a complete **UI Framework** such as [Ant Design](https://ant.design/), [Material UI](https://mui.com/), etc.

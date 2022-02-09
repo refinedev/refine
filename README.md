@@ -72,7 +72,7 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 ## Key features
 
-🔥 **Headless** : All out-of-the-box features, it can be used without being tied to any UI elements or framework.
+🔥 **Headless** : So you can bring your own UI and fuel it with Refine for top speed development.
 
 ⚙️ **Zero-configuration**: One-line setup with [superplate](https://github.com/pankod/superplate). It takes less than a minute to start a project.
 
