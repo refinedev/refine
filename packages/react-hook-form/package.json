@@ -19,6 +19,7 @@
     "analyze": "size-limit --why"
   },
   "name": "@pankod/refine-react-hook-form",
+  "description": "refine offers a React Hook Form adapter that allows you to use the React Hook Form library with refine.",
   "author": "Pankod",
   "module": "dist/refine-react-hook-form.esm.js",
   "size-limit": [

@@ -20,6 +20,7 @@
     "analyze": "size-limit --why"
   },
   "name": "@pankod/refine-react-table",
+  "description": "refine offers a React Table adapter that allows you to use the React Table library with refine.",
   "author": "Pankod",
   "module": "dist/refine-react-table.esm.js",
   "size-limit": [
