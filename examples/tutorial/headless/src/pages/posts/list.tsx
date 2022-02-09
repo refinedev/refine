@@ -121,7 +121,6 @@ export const PostList: React.FC = () => {
     return (
         <div className="container mx-auto pb-4">
             <div className="mb-3 mt-1 flex items-center justify-between">
-                <h1 className="text-2xl font-bold">Posts List</h1>
                 <div>
                     <label className="mr-1" htmlFor="title">
                         Title:

@@ -6,6 +6,9 @@ title: Tutorial
 import readyPage from '@site/static/img/core/tutorial/ready-page.png';
 import resourceFirst from '@site/static/img/core/tutorial/resource-1.png';
 import resourceSecond from '@site/static/img/core/tutorial/resource-2.png';
+import relation from '@site/static/img/core/tutorial/relation.png';
+import pagination from '@site/static/img/core/tutorial/pagination.png';
+import sortAndFilter from '@site/static/img/core/tutorial/sort-and-filter.gif';
 import showGif from '@site/static/img/core/tutorial/show.gif';
 import editGif from '@site/static/img/core/tutorial/edit.gif';
 import createGif from '@site/static/img/core/tutorial/create.gif';
@@ -784,6 +787,15 @@ Try the result on your browser and you'll notice that the category column is fil
 
 [Refer to the `useOne` documentation for detailed usage information. &#8594](/core/hooks/data/useOne.md)
 
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={relation} alt="Relational column on table" />
+</div>
+
 ### Adding Pagination
 
 We can add pagination to our table by using the `usePagination` hook that **react-table** provides.
@@ -1059,6 +1071,15 @@ export const ChevronsRightIcon = (
 </p>
 </details>
 
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={pagination} alt="Adding pagination to table" />
+</div>
+
 ### Adding Sorting and Filtering
 
 We can add sorting and filtering to our table by adding the following codes to the table:
@@ -1134,8 +1155,7 @@ export const PostList: React.FC = () => {
 
     return (
         <div className="container mx-auto pb-4">
-            <div className="aflex mb-3 mt-1 items-center justify-between">
-                <h1 className="text-2xl font-bold">Posts List</h1>
+            <div className="mb-3 mt-1 flex items-center justify-between">
                 //highlight-start
                 <div>
                     <label className="mr-1" htmlFor="title">
@@ -1283,6 +1303,15 @@ export const PostList: React.FC = () => {
     );
 };
 ```
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={sortAndFilter} alt="Sorting and filtering for table" />
+</div>
 
 ## Showing a single record
 
@@ -1967,9 +1996,7 @@ export const PostList: React.FC = () => {
 
     return (
         <div className="container mx-auto pb-4">
-            <div className="aflex mb-3 mt-1 items-center justify-between">
-                <h1 className="text-2xl font-bold">Posts List</h1>
-
+            <div className="mb-3 mt-1 flex items-center justify-between">
                 <div>
                     ...
                 </div>
