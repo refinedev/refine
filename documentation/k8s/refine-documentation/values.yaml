@@ -42,11 +42,12 @@ service:
 
 ingress:
   enabled: true
-
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  annotations:
+    nginx.ingress.kubernetes.io/server-snippet: >
+      location = /robots.txt {
+        add_header  Content-Type  text/plain;
+        return 200 "User-agent: *\nDisallow: /\n";
+      }
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
