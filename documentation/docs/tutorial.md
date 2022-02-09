@@ -29,8 +29,8 @@ Step by step, you're going to learn how to consume a _REST API_ and add basic CR
     }}
 >
     <Card
-        iconPath={"/img/nextjs-tailwind.png"}
-        title={"Refine Core - Next.js - Tailwind"}
+        iconPath={"/img/cra-tailwind.png"}
+        title={"Refine Core - Tailwind - CRA"}
         direction={"/docs/next/core/tutorial"}
     />
     <Card
