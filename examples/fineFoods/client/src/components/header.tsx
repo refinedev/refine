@@ -10,8 +10,8 @@ export const Header: React.FC = () => {
     const isBasketHaveOrders = orders.length > 0;
 
     return (
-        <header className="sticky top-0 bg-primary shadow-md z-50">
-            <div className="container flex justify-between items-center h-full px-2 md:px-0">
+        <header className="bg-primary sticky top-0 z-50 shadow-md">
+            <div className="container flex h-full items-center justify-between px-2 md:px-0">
                 <Link href="/">
                     <a className="flex gap-4">
                         <MotorcycleIcon className="hidden md:block" />
@@ -19,20 +19,20 @@ export const Header: React.FC = () => {
                     </a>
                 </Link>
                 <div
-                    className="flex items-center gap-2 cursor-pointer"
+                    className="flex cursor-pointer items-center gap-2"
                     onClick={() =>
                         setOrdersModalVisible((prev: boolean) => !prev)
                     }
                 >
                     {isBasketHaveOrders && (
-                        <div className="text-white font-semibold text-lg">
+                        <div className="text-lg font-semibold text-white">
                             {isBasketHaveOrders && `${orders.length} items /`}{" "}
-                            <span className="font-extrabold text-xl">
+                            <span className="text-xl font-extrabold">
                                 ${totalPrice / 100}
                             </span>
                         </div>
                     )}
-                    <BasketIcon className="w-6 h-6" />
+                    <BasketIcon className="h-6 w-6" />
                 </div>
             </div>
         </header>

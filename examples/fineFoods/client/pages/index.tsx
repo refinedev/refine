@@ -42,7 +42,7 @@ export const Home: React.FC<HomePageProps> = ({ categories, products }) => {
         <LayoutWrapper>
             <div className="container">
                 <Promotional />
-                <div className="bg-white p-4 md:p-8 rounded-lg">
+                <div className="rounded-lg bg-white p-4 md:p-8">
                     <div className="flex flex-wrap justify-center md:justify-between">
                         {categories.map((category) => (
                             <CategoryCard
@@ -54,7 +54,7 @@ export const Home: React.FC<HomePageProps> = ({ categories, products }) => {
                         ))}
                     </div>
                     <br />
-                    <h1 className="font-extrabold text-gray-800 text-3xl uppercase">
+                    <h1 className="text-3xl font-extrabold uppercase text-gray-800">
                         Deals of the day
                     </h1>
                     <br />
@@ -80,7 +80,7 @@ export const Home: React.FC<HomePageProps> = ({ categories, products }) => {
                         ))}
                     </div>
                     <br />
-                    <h1 className="font-extrabold text-gray-800 text-3xl uppercase">
+                    <h1 className="text-3xl font-extrabold uppercase text-gray-800">
                         Fast & delicious
                     </h1>
                     <br />

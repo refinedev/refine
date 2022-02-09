@@ -1,6 +1,6 @@
 {
-  "short_name": "refine tutorial example app",
-  "name": "refine tutorial example app",
+  "short_name": "refine antd tutorial app",
+  "name": "refine antd tutorial app",
   "icons": [
     {
       "src": "favicon.ico",

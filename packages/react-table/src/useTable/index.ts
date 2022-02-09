@@ -120,6 +120,7 @@ export const useTable = <
         });
 
         setFilters(crudFilters);
+        setCurrent(1);
     }, [filters]);
 
     return {
