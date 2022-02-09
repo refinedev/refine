@@ -39,8 +39,3 @@ export interface IResourceItem extends IResourceComponents {
     canShow?: boolean;
     canDelete?: boolean;
 }
-
-export type IMenuItem = IResourceItem & {
-    key: string;
-    route: string;
-};

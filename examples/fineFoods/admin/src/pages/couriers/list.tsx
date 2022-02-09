@@ -1,18 +1,21 @@
 import {
+    useTranslate,
+    IResourceComponentsProps,
+    useDelete,
+    useNavigation,
+} from "@pankod/refine-core";
+
+import {
     List,
     Table,
     Avatar,
     useTable,
-    useTranslate,
-    IResourceComponentsProps,
     Dropdown,
     Menu,
     Icons,
     Space,
-    useDelete,
-    useNavigation,
     Typography,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { ICourier } from "interfaces";
 

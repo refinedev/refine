@@ -1,9 +1,9 @@
+import { useTranslate, IResourceComponentsProps } from "@pankod/refine-core";
+
 import {
     List,
     Table,
     useTable,
-    useTranslate,
-    IResourceComponentsProps,
     Space,
     BooleanField,
     useEditableTable,
@@ -19,7 +19,7 @@ import {
     NumberField,
     DateField,
     Grid,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { ICategory, IProduct } from "interfaces";
 
@@ -30,7 +30,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
         isEditing,
         saveButtonProps,
         cancelButtonProps,
-        setEditId,
+        setId: setEditId,
     } = useEditableTable<ICategory>({
         initialSorter: [
             {

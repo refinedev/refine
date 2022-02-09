@@ -1,10 +1,10 @@
+import { IResourceComponentsProps, useTranslate } from "@pankod/refine-core";
+
 import {
     Edit,
     Form,
     Input,
-    IResourceComponentsProps,
     useForm,
-    useTranslate,
     Avatar,
     Row,
     Col,
@@ -12,7 +12,8 @@ import {
     Space,
     Radio,
     InputProps,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
+
 import InputMask from "react-input-mask";
 
 const { Text } = Typography;

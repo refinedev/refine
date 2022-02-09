@@ -1,5 +1,6 @@
+import { IResourceComponentsProps, useMany } from "@pankod/refine-core";
+
 import {
-    IResourceComponentsProps,
     List,
     Table,
     TextField,
@@ -7,8 +8,7 @@ import {
     Space,
     EditButton,
     ShowButton,
-    useMany,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
 

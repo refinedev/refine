@@ -6,7 +6,7 @@ import {
     FormProps,
     Upload,
     RcFile,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { appwriteClient, normalizeFile } from "utility";
 

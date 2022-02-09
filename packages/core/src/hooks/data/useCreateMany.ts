@@ -10,8 +10,12 @@ import {
     SuccessErrorNotification,
     MetaDataQuery,
 } from "../../interfaces";
-import { useCacheQueries, useTranslate, usePublish } from "@hooks";
-import { handleNotification } from "@definitions";
+import {
+    useCacheQueries,
+    useTranslate,
+    usePublish,
+    useHandleNotification,
+} from "@hooks";
 import pluralize from "pluralize";
 
 type useCreateManyParams<TVariables> = {
@@ -36,10 +40,10 @@ export type UseCreateManyReturnType<
  *
  * It uses `createMany` method as mutation function from the `dataProvider` which is passed to `<Refine>`.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/data/useCreateMany} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/data/useCreateMany} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/core/interfaceReferences#httperror `HttpError`}
  * @typeParam TVariables - Values for mutation function
  *
  */
@@ -53,6 +57,7 @@ export const useCreateMany = <
     const translate = useTranslate();
     const queryClient = useQueryClient();
     const publish = usePublish();
+    const handleNotification = useHandleNotification();
 
     const mutation = useMutation<
         CreateManyResponse<TData>,
@@ -70,7 +75,8 @@ export const useCreateMany = <
                 const resourcePlural = pluralize.plural(resource);
 
                 handleNotification(successNotification, {
-                    description: translate(
+                    key: `createMany-${resource}-notification`,
+                    message: translate(
                         "notifications.createSuccess",
                         {
                             resource: translate(
@@ -80,7 +86,7 @@ export const useCreateMany = <
                         },
                         `Successfully created ${resourcePlural}`,
                     ),
-                    message: translate("notifications.success", "Success"),
+                    description: translate("notifications.success", "Success"),
                     type: "success",
                 });
 
@@ -101,6 +107,7 @@ export const useCreateMany = <
             },
             onError: (err: TError, { resource, errorNotification }) => {
                 handleNotification(errorNotification, {
+                    key: `createMany-${resource}-notification`,
                     description: err.message,
                     message: translate(
                         "notifications.createError",

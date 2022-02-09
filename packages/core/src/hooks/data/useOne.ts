@@ -8,17 +8,21 @@ import {
     BaseRecord,
     MetaDataQuery,
     LiveModeProps,
+    OpenNotificationParams,
 } from "../../interfaces";
-import { useCheckError, useTranslate, useResourceSubscription } from "@hooks";
-import { ArgsProps } from "antd/lib/notification";
-import { handleNotification } from "@definitions";
+import {
+    useCheckError,
+    useTranslate,
+    useResourceSubscription,
+    useHandleNotification,
+} from "@hooks";
 
 export type UseOneProps<TData, TError> = {
     resource: string;
     id: string;
     queryOptions?: UseQueryOptions<GetOneResponse<TData>, TError>;
-    successNotification?: ArgsProps | false;
-    errorNotification?: ArgsProps | false;
+    successNotification?: OpenNotificationParams | false;
+    errorNotification?: OpenNotificationParams | false;
     metaData?: MetaDataQuery;
 } & LiveModeProps;
 
@@ -27,7 +31,7 @@ export type UseOneProps<TData, TError> = {
  *
  * It uses `getOne` method as query function from the `dataProvider` which is passed to `<Refine>`.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/data/useOne} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/data/useOne} for more details.
  *
  * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
@@ -50,6 +54,7 @@ export const useOne = <
     const { getOne } = useContext<IDataContext>(DataContext);
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
+    const handleNotification = useHandleNotification();
 
     useResourceSubscription({
         resource,

@@ -8,9 +8,10 @@ import {
     useTranslate,
     useCheckError,
     usePublish,
+    useHandleNotification,
 } from "@hooks";
 import { DataContext } from "@contexts/data";
-import { ActionTypes } from "@contexts/notification";
+import { ActionTypes } from "@contexts/undoableQueue";
 import pluralize from "pluralize";
 import {
     DeleteOneResponse,
@@ -25,7 +26,6 @@ import {
     SuccessErrorNotification,
     MetaDataQuery,
 } from "../../interfaces";
-import { handleNotification } from "@definitions/helpers";
 
 type DeleteParams = {
     id: string;
@@ -73,6 +73,7 @@ export const useDelete = <
     const { notificationDispatch } = useCancelNotification();
     const translate = useTranslate();
     const publish = usePublish();
+    const handleNotification = useHandleNotification();
 
     const cacheQueries = useCacheQueries();
 
@@ -231,8 +232,8 @@ export const useDelete = <
 
                 handleNotification(successNotification, {
                     key: `${id}-${resource}-notification`,
-                    message: translate("notifications.success", "Success"),
-                    description: translate(
+                    description: translate("notifications.success", "Success"),
+                    message: translate(
                         "notifications.deleteSuccess",
                         {
                             resource: translate(

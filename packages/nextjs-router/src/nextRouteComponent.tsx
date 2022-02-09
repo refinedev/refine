@@ -6,8 +6,8 @@ import {
     useResource,
     LoginPage as DefaultLoginPage,
     CanAccess,
-} from "@pankod/refine";
-import type { ResourceRouterParams } from "@pankod/refine";
+} from "@pankod/refine-core";
+import type { ResourceRouterParams } from "@pankod/refine-core";
 
 import { RouterProvider } from "./routerProvider";
 
@@ -30,7 +30,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
         id: idFromRoute,
     } = useParams<ResourceRouterParams>();
 
-    const id = decodeURIComponent(idFromRoute);
+    const id = idFromRoute ? decodeURIComponent(idFromRoute) : undefined;
 
     const { pathname } = useLocation();
     const { DashboardPage, catchAll, LoginPage } = useRefineContext();

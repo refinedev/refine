@@ -23,17 +23,23 @@ export const Hero = () => {
                 <div className="row row--justify--center">
                     <div className="col col--6">
                         <h1 className={styles.mainTitle}>
-                            <span>A React-based framework</span>
+                            <span>
+                                A React-based{" "}
+                                <b>
+                                    <u>headless</u>
+                                </b>{" "}
+                                framework
+                            </span>
                             <br />
                             for building data-intensive applications in no time.
                         </h1>
                     </div>
-                    <div className="col col--8">
+                    <div className="col col--9">
                         <p className={styles.description}>
                             Refine offers lots of out-of-the box functionality
                             for rapid development, without compromising extreme
-                            customizability. It ships with Ant Design System, an
-                            enterprise-level UI toolkit.
+                            customizability. So you can bring your own UI and
+                            fuel it with Refine for top speed development.
                         </p>
                     </div>
                 </div>

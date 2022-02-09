@@ -1,0 +1,320 @@
+{
+    "redirects": [
+        {
+            "from": "/docs/api-references/providers/auth-provider",
+            "to": "/docs/core/providers/auth-provider"
+        },
+        {
+            "from": "/docs/api-references/providers/accessControl-provider",
+            "to": "/docs/core/providers/accessControl-provider"
+        },
+        {
+            "from": "/docs/api-references/providers/i18n-provider",
+            "to": "/docs/core/providers/i18n-provider"
+        },
+        {
+            "from": "/docs/api-references/providers/live-provider",
+            "to": "/docs/core/providers/live-provider"
+        },
+        {
+            "from": "/docs/api-references/providers/router-provider",
+            "to": "/docs/core/providers/router-provider"
+        },
+        {
+            "from": "/docs/api-references/providers/data-provider",
+            "to": "/docs/core/providers/data-provider"
+        },
+        {
+            "from": "/docs/api-references/hooks/auth/useAuthenticated",
+            "to": "/docs/core/hooks/auth/useAuthenticated/"
+        },
+        {
+            "from": "/docs/api-references/hooks/auth/usePermissions",
+            "to": "/docs/core/hooks/auth/usePermissions"
+        },
+        {
+            "from": "/docs/api-references/hooks/auth/useLogin",
+            "to": "/docs/core/hooks/auth/useLogin"
+        },
+        {
+            "from": "/docs/api-references/hooks/auth/useLogout",
+            "to": "/docs/core/hooks/auth/useLogout"
+        },
+        {
+            "from": "/docs/api-references/hooks/auth/useCheckError",
+            "to": "/docs/core/hooks/auth/useCheckError"
+        },
+        {
+            "from": "/docs/api-references/hooks/auth/useGetIdentity",
+            "to": "/docs/core/hooks/auth/useGetIdentity"
+        },
+        {
+            "from": "/docs/api-references/hooks/data/useApiUrl",
+            "to": "/docs/core/hooks/data/useApiUrl"
+        },
+        {
+            "from": "/docs/api-references/hooks/data/useCreate",
+            "to": "/docs/core/hooks/data/useCreate"
+        },
+        {
+            "from": "/docs/api-references/hooks/data/useCreateMany",
+            "to": "/docs/core/hooks/data/useCreateMany"
+        },
+        {
+            "from": "/docs/api-references/hooks/data/useCustom",
+            "to": "/docs/core/hooks/data/useCustom"
+        },
+        {
+            "from": "/docs/api-references/hooks/data/useDelete",
+            "to": "/docs/core/hooks/data/useDelete"
+        },
+        {
+            "from": "/docs/api-references/hooks/data/useDeleteMany",
+            "to": "/docs/core/hooks/data/useDeleteMany"
+        },
+        {
+            "from": "/docs/api-references/hooks/data/useList",
+            "to": "/docs/core/hooks/data/useList"
+        },
+        {
+            "from": "/docs/api-references/hooks/data/useMany",
+            "to": "/docs/core/hooks/data/useMany"
+        },
+        {
+            "from": "/docs/api-references/hooks/data/useOne",
+            "to": "/docs/core/hooks/data/useOne"
+        },
+        {
+            "from": "/docs/api-references/hooks/data/useUpdate",
+            "to": "/docs/core/hooks/data/useUpdate"
+        },
+        {
+            "from": "/docs/api-references/hooks/data/useUpdateMany",
+            "to": "/docs/core/hooks/data/useUpdateMany"
+        },
+        {
+            "from": "/docs/api-references/hooks/accessControl/useCan",
+            "to": "/docs/core/hooks/accessControl/useCan"
+        },
+        {
+            "from": "/docs/api-references/hooks/refine/useTitle",
+            "to": "/docs/core/hooks/refine/useTitle"
+        },
+        {
+            "from": "/docs/api-references/hooks/live/usePublish",
+            "to": "/docs/core/hooks/live/usePublish"
+        },
+        {
+            "from": "/docs/api-references/hooks/live/useSubscription",
+            "to": "/docs/core/hooks/live/useSubscription"
+        },
+        {
+            "from": "/docs/api-references/hooks/translate/useGetLocale",
+            "to": "/docs/core/hooks/translate/useGetLocale"
+        },
+        {
+            "from": "/docs/api-references/hooks/translate/useSetLocale",
+            "to": "/docs/core/hooks/translate/useSetLocale"
+        },
+        {
+            "from": "/docs/api-references/hooks/translate/useTranslate",
+            "to": "/docs/core/hooks/translate/useTranslate"
+        },
+        {
+            "from": "/docs/api-references/hooks/show/useShow",
+            "to": "/docs/core/hooks/show/useShow"
+        },
+        {
+            "from": "/docs/api-references/hooks/resource/useResource",
+            "to": "/docs/core/hooks/resource/useResource"
+        },
+        {
+            "from": "/docs/api-references/hooks/resource/useResourceWithRoute",
+            "to": "/docs/core/hooks/resource/useResourceWithRoute"
+        },
+        {
+            "from": "/docs/api-references/hooks/navigation/useNavigation",
+            "to": "/docs/core/hooks/navigation/useNavigation"
+        },
+        {
+            "from": "/docs/api-references/hooks/ui/useModal",
+            "to": "/docs/core/hooks/ui/useModal/"
+        },
+        {
+            "from": "/docs/api-references/hooks/form/useForm",
+            "to": "/docs/core/hooks/useForm"
+        },
+        {
+            "from": "/docs/api-references/hooks/table/useTable",
+            "to": "/docs/core/hooks/useTable"
+        },
+        {
+            "from": "/docs/api-references/hooks/field/useSelect",
+            "to": "/docs/core/hooks/useSelect"
+        },
+        {
+            "from": "/docs/api-references/hooks/import-export/useImport",
+            "to": "/docs/core/hooks/import-export/useImport"
+        },
+        {
+            "from": "/docs/api-references/hooks/import-export/useExport",
+            "to": "/docs/core/hooks/import-export/useExport"
+        },
+        {
+            "from": "/docs/api-references/components/auth/authenticated",
+            "to": "/docs/core/components/auth/authenticated"
+        },
+        {
+            "from": "/docs/api-references/components/accessControl/can-access",
+            "to": "/docs/core/components/accessControl/can-access"
+        },
+        {
+            "from": "/docs/api-references/components/refine-config",
+            "to": "/docs/core/components/refine-config"
+        },
+        {
+            "from": "/docs/api-references/components/layout-wrapper",
+            "to": "/docs/core/components/layout-wrapper"
+        }, 
+        {
+            "from": "/docs/api-references/interfaceReferences",
+            "to": "/docs/core/interfaceReferences"
+        },
+        {
+            "from": "/docs/api-references/hooks/form/useDrawerForm",
+            "to": "/docs/ui-frameworks/antd/hooks/form/useDrawerForm"
+        },
+        {
+            "from": "/docs/api-references/hooks/form/useModalForm",
+            "to": "/docs/ui-frameworks/antd/hooks/form/useModalForm"
+        },
+        {
+            "from": "/docs/api-references/hooks/form/useStepsForm",
+            "to": "/docs/ui-frameworks/antd/hooks/form/useStepsForm"
+        },
+        {
+            "from": "/docs/api-references/hooks/resource/useMenu",
+            "to": "/docs/ui-frameworks/antd/hooks/resource/useMenu"
+        },
+        {
+            "from": "/docs/api-references/hooks/table/useEditableTable",
+            "to": "/docs/ui-frameworks/antd/hooks/table/useEditableTable"
+        },
+        {
+            "from": "/docs/api-references/hooks/show/useSimpleList",
+            "to": "/docs/ui-frameworks/antd/hooks/list/useSimpleList"
+        },
+        {
+            "from": "/docs/api-references/hooks/field/useRadioGroup",
+            "to": "/docs/ui-frameworks/antd/hooks/field/useRadioGroup"
+        },
+        {
+            "from": "/docs/api-references/hooks/field/useCheckboxGroup",
+            "to": "/docs/ui-frameworks/antd/hooks/field/useCheckboxGroup"
+        },
+        {
+            "from": "/docs/api-references/components/basic-views/create",
+            "to": "/docs/ui-frameworks/antd/components/basic-views/create"
+        },
+        {
+            "from": "/docs/api-references/components/basic-views/edit",
+            "to": "/docs/ui-frameworks/antd/components/basic-views/edit"
+        },
+        {
+            "from": "/docs/api-references/components/basic-views/list",
+            "to": "/docs/ui-frameworks/antd/components/basic-views/list"
+        },
+        {
+            "from": "/docs/api-references/components/basic-views/show",
+            "to": "/docs/ui-frameworks/antd/components/basic-views/show"
+        },
+        {
+            "from": "/docs/api-references/components/buttons/clone-button",
+            "to": "/docs/ui-frameworks/antd/components/buttons/clone-button"
+        },
+        {
+            "from": "/docs/api-references/components/buttons/list-button",
+            "to": "/docs/ui-frameworks/antd/components/buttons/list-button"
+        },
+        {
+            "from": "/docs/api-references/components/buttons/create-button",
+            "to": "/docs/ui-frameworks/antd/components/buttons/create-button"
+        },
+        {
+            "from": "/docs/api-references/components/buttons/edit-button",
+            "to": "/docs/ui-frameworks/antd/components/buttons/edit-button"
+        },
+        {
+            "from": "/docs/api-references/components/buttons/show-button",
+            "to": "/docs/ui-frameworks/antd/components/buttons/show-button"
+        },
+        {
+            "from": "/docs/api-references/components/buttons/delete-button",
+            "to": "/docs/ui-frameworks/antd/components/buttons/delete-button"
+        },
+        {
+            "from": "/docs/api-references/components/buttons/refresh-button",
+            "to": "/docs/ui-frameworks/antd/components/buttons/refresh-button"
+        },
+        {
+            "from": "/docs/api-references/components/buttons/save-button",
+            "to": "/docs/ui-frameworks/antd/components/buttons/save-button"
+        },
+        {
+            "from": "/docs/api-references/components/buttons/import-button",
+            "to": "/docs/ui-frameworks/antd/components/buttons/import-button"
+        },
+        {
+            "from": "/docs/api-references/components/buttons/export-button",
+            "to": "/docs/ui-frameworks/antd/components/buttons/export-button"
+        },
+        {
+            "from": "/docs/api-references/components/inputs/custom-inputs",
+            "to": "/docs/ui-frameworks/antd/components/inputs/custom-inputs"
+        },
+        {
+            "from": "/docs/api-references/components/filter-dropdown",
+            "to": "/docs/ui-frameworks/antd/components/filter-dropdown"
+        },
+        {
+            "from": "/docs/api-references/components/fields/boolean",
+            "to": "/docs/ui-frameworks/antd/components/fields/boolean"
+        },
+        {
+            "from": "/docs/api-references/components/fields/url",
+            "to": "/docs/ui-frameworks/antd/components/fields/url"
+        },
+        {
+            "from": "/docs/api-references/components/fields/image",
+            "to": "/docs/ui-frameworks/antd/components/fields/image"
+        },
+        {
+            "from": "/docs/api-references/components/fields/file",
+            "to": "/docs/ui-frameworks/antd/components/fields/file"
+        },
+        {
+            "from": "/docs/api-references/components/fields/date",
+            "to": "/docs/ui-frameworks/antd/components/fields/date"
+        },
+        {
+            "from": "/docs/api-references/components/fields/email",
+            "to": "/docs/ui-frameworks/antd/components/fields/email"
+        },
+        {
+            "from": "/docs/api-references/components/fields/markdown",
+            "to": "/docs/ui-frameworks/antd/components/fields/markdown"
+        },
+        {
+            "from": "/docs/api-references/components/fields/tag",
+            "to": "/docs/ui-frameworks/antd/components/fields/tag"
+        },
+        {
+            "from": "/docs/api-references/components/fields/text",
+            "to": "/docs/ui-frameworks/antd/components/fields/text"
+        },
+        {
+            "from": "/docs/api-references/components/fields/number",
+            "to": "/docs/ui-frameworks/antd/components/fields/number"
+        }
+    ]
+}

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { RcFile, UploadFile } from "@pankod/refine";
 
 interface StrapiUploadParams {
     maxCount: number;
@@ -8,17 +7,17 @@ interface StrapiUploadParams {
 type UseStrapiUploadType = {
     (uploadParams: StrapiUploadParams): {
         uploadedFileIds: string[];
-        beforeUpload: (_file: RcFile, files: RcFile[]) => boolean;
-        fileList: UploadFile<any>[];
+        beforeUpload: (_file: any, files: any[]) => boolean;
+        fileList: any[];
         maxCount: number;
     };
 };
 
 export const useStrapiUpload: UseStrapiUploadType = ({ maxCount }) => {
     const [uploadedFileIds] = useState<string[]>([]);
-    const [fileList, setFileList] = useState<UploadFile[]>([]);
+    const [fileList, setFileList] = useState<any[]>([]);
 
-    const beforeUpload = (_file: RcFile, files: RcFile[]): boolean => {
+    const beforeUpload = (_file: any, files: any[]): boolean => {
         const totalFiles = fileList.length;
         const filesCount = files.length;
 

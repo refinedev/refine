@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useGetIdentity } from "@pankod/refine-core";
+
 import {
     Row,
     Col,
@@ -11,8 +13,7 @@ import {
     Form,
     Input,
     notification,
-    useGetIdentity,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { sendEthereum } from "../utility";
 

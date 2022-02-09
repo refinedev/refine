@@ -16,9 +16,7 @@ jest.mock("react-router-dom", () => ({
 describe("ErrorComponent", () => {
     it("renders subtitle successfully", () => {
         const { getByText } = render(<ErrorComponent />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
+            wrapper: TestWrapper({}),
         });
 
         getByText("Sorry, the page you visited does not exist.");
@@ -26,9 +24,7 @@ describe("ErrorComponent", () => {
 
     it("renders button successfully", () => {
         const { container, getByText } = render(<ErrorComponent />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
+            wrapper: TestWrapper({}),
         });
 
         expect(container.querySelector("button")).toBeTruthy();
@@ -37,9 +33,7 @@ describe("ErrorComponent", () => {
 
     it("renders called function successfully if click the button", () => {
         const { getByText } = render(<ErrorComponent />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
+            wrapper: TestWrapper({}),
         });
 
         fireEvent.click(getByText("Back Home"));
@@ -48,25 +42,20 @@ describe("ErrorComponent", () => {
     });
 
     it("renders error messages if resources action's not found", async () => {
-        const { getByTestId, findByText } = render(
+        const { getByText } = render(
             <Route path="/:resource?/:action?">
                 <ErrorComponent />
             </Route>,
             {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts", route: "posts" }],
                     routerInitialEntries: ["/posts/create"],
                 }),
             },
         );
 
-        fireEvent.mouseOver(getByTestId("error-component-tooltip"));
-
-        expect(
-            await findByText(
-                `You may have forgotten to add the "create" component to "posts" resource.`,
-            ),
-        ).toBeInTheDocument();
+        getByText(
+            `You may have forgotten to add the "create" component to "posts" resource.`,
+        );
     });
 
     it("renders error messages if resource action's is different from 'create, edit, show'", () => {

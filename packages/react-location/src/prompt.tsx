@@ -1,7 +1,7 @@
 import { useLocation } from "react-location";
 import { useEffect } from "react";
 
-import type { PromptProps } from "@pankod/refine";
+import type { PromptProps } from "@pankod/refine-core";
 
 export const Prompt: React.FC<PromptProps> = ({
     message,

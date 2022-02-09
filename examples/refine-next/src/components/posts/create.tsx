@@ -5,7 +5,7 @@ import {
     Form,
     Select,
     Input,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 import { IPost } from "src/interfaces";
 
 export const PostCreate: React.FC = () => {

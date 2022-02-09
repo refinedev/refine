@@ -1,4 +1,4 @@
-import { IRouterProvider } from "@pankod/refine";
+import { IRouterProvider } from "@pankod/refine-core";
 import {
     useLocation,
     Link,

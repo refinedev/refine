@@ -1,4 +1,4 @@
-import { Card, Icons, DeleteButton } from "@pankod/refine";
+import { Card, Icons, DeleteButton } from "@pankod/refine-antd";
 
 import { IProduct } from "interfaces";
 import { API_URL } from "../../constants";

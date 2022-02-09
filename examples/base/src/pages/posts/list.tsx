@@ -1,24 +1,27 @@
+import { IResourceComponentsProps, useMany } from "@pankod/refine-core";
+
 import {
     List,
     Table,
     TextField,
-    useTable,
-    IResourceComponentsProps,
     Space,
     EditButton,
     ShowButton,
-    useMany,
     FilterDropdown,
-    useSelect,
     Select,
     Radio,
     TagField,
-} from "@pankod/refine";
+    getDefaultFilter,
+} from "@pankod/refine-antd";
+
+import { useTable, useSelect } from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps } = useTable<IPost>();
+    const { tableProps, filters } = useTable<IPost>({
+        syncWithLocation: true,
+    });
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
@@ -34,6 +37,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         resource: "categories",
         optionLabel: "title",
         optionValue: "id",
+        defaultValue: getDefaultFilter("category.id", filters, "in"),
     });
 
     return (
@@ -59,7 +63,12 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                         );
                     }}
                     filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
+                        <FilterDropdown
+                            {...props}
+                            mapValue={(selectedKeys) =>
+                                selectedKeys.map(Number)
+                            }
+                        >
                             <Select
                                 style={{ minWidth: 200 }}
                                 mode="multiple"
@@ -67,6 +76,11 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                 {...categorySelectProps}
                             />
                         </FilterDropdown>
+                    )}
+                    defaultFilteredValue={getDefaultFilter(
+                        "category.id",
+                        filters,
+                        "in",
                     )}
                 />
                 <Table.Column

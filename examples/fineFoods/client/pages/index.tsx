@@ -1,20 +1,17 @@
 import { GetServerSideProps } from "next";
-import { Row, Col, LayoutWrapper, Card, Typography } from "@pankod/refine";
+import { LayoutWrapper } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import { API_URL } from "../src/constants";
-import { CategoryCard, ProductCard, Promotional } from "@components";
-
+import { Promotional, CategoryCard, ProductCard } from "@components";
 import { ICategory, IProduct } from "@interfaces";
-
-const { Title } = Typography;
+import { API_URL } from "src/constants";
 
 type HomePageProps = {
     categories: ICategory[];
     products: IProduct[];
 };
 
-export const HomePage: React.FC<HomePageProps> = ({ categories, products }) => {
+export const Home: React.FC<HomePageProps> = ({ categories, products }) => {
     const dealsOfDayProducts = products.slice(0, 3);
     const fastAndDeliciousProducts = products.slice(3);
 
@@ -43,84 +40,71 @@ export const HomePage: React.FC<HomePageProps> = ({ categories, products }) => {
 
     return (
         <LayoutWrapper>
-            <Promotional />
-            <Card className="main-card" bodyStyle={{ padding: "0px" }}>
-                <Row gutter={[24, 24]}>
-                    {categories.map((category, index) => (
-                        <Col
-                            xs={24}
-                            sm={24}
-                            md={index === 2 ? 24 : 12}
-                            lg={8}
-                            xl={8}
-                            key={category.id}
-                        >
+            <div className="container">
+                <Promotional />
+                <div className="rounded-lg bg-white p-4 md:p-8">
+                    <div className="flex flex-wrap justify-center md:justify-between">
+                        {categories.map((category) => (
                             <CategoryCard
+                                key={category.id}
                                 id={category.id}
                                 title={category.title}
                                 backgroundImg={category.cover}
                             />
-                        </Col>
-                    ))}
-                </Row>
-                <br />
-                <br />
-                <Title level={2} style={{ fontWeight: 800 }}>
-                    DEALS OF THE DAY
-                </Title>
-                <Row gutter={[24, 24]}>
-                    {dealsOfDayProducts.map((product, index) => (
-                        <Col
-                            xs={24}
-                            sm={24}
-                            md={index === 2 ? 24 : 12}
-                            lg={index === 2 ? 24 : 12}
-                            xl={8}
-                            key={product.id}
-                        >
-                            <ProductCard
-                                productImg={product.images[0].url}
-                                title={product.name}
-                                description={product.description}
-                                price={product.price}
-                                productId={product.id}
-                                {...getBadgeProps(index)}
-                            />
-                        </Col>
-                    ))}
-                </Row>
-                <br />
-                <br />
-                <Title level={2} style={{ fontWeight: 800 }}>
-                    FAST & DELICIOUS
-                </Title>
-                <Row gutter={[24, 24]}>
-                    {fastAndDeliciousProducts.map((product) => (
-                        <Col
-                            xs={24}
-                            sm={24}
-                            md={12}
-                            lg={12}
-                            xl={12}
-                            key={product.id}
-                        >
-                            <ProductCard
-                                productImg={product.images[0].url}
-                                title={product.name}
-                                description={product.description}
-                                price={product.price}
-                                badgeTitle="taste in less than 30 minutes"
-                                productId={product.id}
-                            />
-                        </Col>
-                    ))}
-                </Row>
-            </Card>
+                        ))}
+                    </div>
+                    <br />
+                    <h1 className="text-3xl font-extrabold uppercase text-gray-800">
+                        Deals of the day
+                    </h1>
+                    <br />
+                    <div className="flex flex-wrap">
+                        {dealsOfDayProducts.map((product, index) => (
+                            <div
+                                key={product.id}
+                                className={
+                                    index === 2
+                                        ? "w-full lg:w-1/3"
+                                        : "w-full md:w-1/2 lg:w-1/3"
+                                }
+                            >
+                                <ProductCard
+                                    productImg={product.images[0].url}
+                                    title={product.name}
+                                    description={product.description}
+                                    price={product.price}
+                                    productId={product.id}
+                                    {...getBadgeProps(index)}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                    <br />
+                    <h1 className="text-3xl font-extrabold uppercase text-gray-800">
+                        Fast & delicious
+                    </h1>
+                    <br />
+                    <div className="flex flex-wrap">
+                        {fastAndDeliciousProducts.map((product) => (
+                            <div key={product.id} className="w-full md:w-1/2">
+                                <ProductCard
+                                    productImg={product.images[0].url}
+                                    title={product.name}
+                                    description={product.description}
+                                    price={product.price}
+                                    badgeTitle="taste in less than 30 minutes"
+                                    productId={product.id}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
         </LayoutWrapper>
     );
 };
 
-export default HomePage;
+export default Home;
 
 export const getServerSideProps: GetServerSideProps = async () => {
     const { data: categoryData } = await dataProvider(API_URL).getMany({

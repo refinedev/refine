@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 
 import { DataContext } from "@contexts/data";
-import { ActionTypes } from "@contexts/notification";
+import { ActionTypes } from "@contexts/undoableQueue";
 import {
     BaseRecord,
     IDataContext,
@@ -23,8 +23,8 @@ import {
     useTranslate,
     useCheckError,
     usePublish,
+    useHandleNotification,
 } from "@hooks";
-import { handleNotification } from "@definitions/helpers";
 
 type UpdateParams<TVariables> = {
     id: string;
@@ -74,6 +74,7 @@ export const useUpdate = <
     const { mutate: checkError } = useCheckError();
     const publish = usePublish();
     const { notificationDispatch } = useCancelNotification();
+    const handleNotification = useHandleNotification();
 
     const getAllQueries = useCacheQueries();
 
@@ -255,8 +256,11 @@ export const useUpdate = <
 
                 handleNotification(successNotification, {
                     key: `${id}-${resource}-notification`,
-                    message: translate("notifications.success", "Successful"),
                     description: translate(
+                        "notifications.success",
+                        "Successful",
+                    ),
+                    message: translate(
                         "notifications.editSuccess",
                         {
                             resource: translate(

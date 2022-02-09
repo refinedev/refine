@@ -16,12 +16,12 @@ export interface IRefineContext {
     catchAll?: React.ReactNode;
     DashboardPage?: React.FC;
     LoginPage?: React.FC | false;
-    Title: React.FC<TitleProps>;
+    Title?: React.FC<TitleProps>;
     Layout: React.FC<LayoutProps>;
-    Sider: React.FC;
-    Header: React.FC;
-    Footer: React.FC;
-    OffLayoutArea: React.FC;
+    Sider?: React.FC;
+    Header?: React.FC;
+    Footer?: React.FC;
+    OffLayoutArea?: React.FC;
     liveMode?: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
 }

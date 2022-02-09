@@ -1,8 +1,12 @@
 import {
     useTranslate,
     IResourceComponentsProps,
-    useSimpleList,
     CrudFilters,
+    HttpError,
+} from "@pankod/refine-core";
+
+import {
+    useSimpleList,
     Row,
     AntdList,
     Col,
@@ -12,9 +16,8 @@ import {
     Icons,
     Typography,
     useDrawerForm,
-    HttpError,
     getDefaultFilter,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 const { Text } = Typography;
 const { SearchOutlined } = Icons;

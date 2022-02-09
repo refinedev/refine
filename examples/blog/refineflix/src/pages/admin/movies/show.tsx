@@ -1,14 +1,17 @@
 import {
     useShow,
+    IResourceComponentsProps,
+    useNavigation,
+} from "@pankod/refine-core";
+
+import {
     Show,
     Typography,
-    IResourceComponentsProps,
     Space,
     ImageField,
     RefreshButton,
     EditButton,
-    useNavigation,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IMovies } from "interfaces";
 

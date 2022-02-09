@@ -1,3 +1,4 @@
+import { useGetLocale, useSetLocale } from "@pankod/refine-core";
 import {
     AntdLayout,
     Space,
@@ -6,9 +7,7 @@ import {
     Icons,
     Dropdown,
     Avatar,
-    useGetLocale,
-    useSetLocale,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 import { useTranslation } from "react-i18next";
 
 const { DownOutlined } = Icons;

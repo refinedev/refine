@@ -5,7 +5,7 @@ import {
     Space,
     ShowButton,
     EditButton,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { TeamType } from "interfaces";
 

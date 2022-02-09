@@ -4,7 +4,7 @@ import {
     HttpError,
     CrudFilters,
     CrudSorting,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
 import { stringify } from "query-string";
 
 const axiosInstance = axios.create();

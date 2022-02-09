@@ -1,11 +1,11 @@
+import { CrudFilters, HttpError, useUpdate } from "@pankod/refine-core";
+
 import {
     List,
     Typography,
     AntdList,
     useSimpleList,
-    CrudFilters,
     Form,
-    HttpError,
     Row,
     Col,
     Tag,
@@ -15,8 +15,7 @@ import {
     Button,
     DateField,
     Card,
-    useUpdate,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IFeedback, IFeedbackFilterVariables, FeedBackType } from "interfaces";
 

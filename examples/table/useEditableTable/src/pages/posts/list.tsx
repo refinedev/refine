@@ -1,3 +1,5 @@
+import { IResourceComponentsProps } from "@pankod/refine-core";
+
 import {
     List,
     Table,
@@ -9,8 +11,7 @@ import {
     Input,
     TextField,
     useEditableTable,
-    IResourceComponentsProps,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost } from "interfaces";
 
@@ -19,7 +20,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         tableProps,
         formProps,
         isEditing,
-        setEditId,
+        setId: setEditId,
         saveButtonProps,
         cancelButtonProps,
         editButtonProps,

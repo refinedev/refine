@@ -1,6 +1,4 @@
 import React, { useLayoutEffect, useState } from "react";
-import { Button, Result, Typography, Space, Tooltip } from "antd";
-import { InfoCircleOutlined } from "@ant-design/icons";
 
 import {
     useNavigation,
@@ -9,8 +7,6 @@ import {
     useRouterContext,
 } from "@hooks";
 import { ResourceErrorRouterParams } from "../../../interfaces";
-
-const { Text } = Typography;
 
 /**
  * When the app is navigated to a non-existent route, refine shows a default error page.
@@ -52,29 +48,17 @@ export const ErrorComponent: React.FC = () => {
     }, [params]);
 
     return (
-        <Result
-            status="404"
-            title="404"
-            extra={
-                <Space direction="vertical" size="large">
-                    <Space>
-                        <Text>
-                            {translate(
-                                "pages.error.404",
-                                "Sorry, the page you visited does not exist.",
-                            )}
-                        </Text>
-                        {errorMessage && (
-                            <Tooltip title={errorMessage}>
-                                <InfoCircleOutlined data-testid="error-component-tooltip" />
-                            </Tooltip>
-                        )}
-                    </Space>
-                    <Button type="primary" onClick={() => push("/")}>
-                        {translate("pages.error.backHome", "Back Home")}
-                    </Button>
-                </Space>
-            }
-        />
+        <>
+            <h1>
+                {translate(
+                    "pages.error.404",
+                    "Sorry, the page you visited does not exist.",
+                )}
+            </h1>
+            {errorMessage && <p>{errorMessage}</p>}
+            <button onClick={() => push("/")}>
+                {translate("pages.error.backHome", "Back Home")}
+            </button>
+        </>
     );
 };

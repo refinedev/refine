@@ -230,7 +230,6 @@ export interface IDataContextProvider {
         metaData?: MetaDataQuery;
     }) => Promise<DeleteManyResponse<TData>>;
     getApiUrl: () => string;
-    // TODO: Should be optional
     custom?: <TData extends BaseRecord = BaseRecord>(params: {
         url: string;
         method:

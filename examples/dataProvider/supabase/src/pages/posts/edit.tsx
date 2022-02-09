@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { IResourceComponentsProps } from "@pankod/refine-core";
+
 import {
     Alert,
     Button,
     Edit,
     Form,
     Input,
-    IResourceComponentsProps,
     ListButton,
     RcFile,
     RefreshButton,
@@ -13,7 +14,7 @@ import {
     Upload,
     useForm,
     useSelect,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";

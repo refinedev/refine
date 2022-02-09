@@ -1,10 +1,15 @@
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import {
+    notificationProvider,
+    Layout,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 
 import { Cerbos } from "cerbos";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { Header } from "components/header";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -86,6 +91,9 @@ const App: React.FC = () => {
                 },
             ]}
             Header={() => <Header role={role} />}
+            notificationProvider={notificationProvider}
+            Layout={Layout}
+            catchAll={<ErrorComponent />}
         />
     );
 };

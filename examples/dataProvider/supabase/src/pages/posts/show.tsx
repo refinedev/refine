@@ -1,9 +1,8 @@
+import { useShow, IResourceComponentsProps, useOne } from "@pankod/refine-core";
+
 import {
-    useShow,
     Show,
     Typography,
-    IResourceComponentsProps,
-    useOne,
     MarkdownField,
     Space,
     ImageField,
@@ -12,7 +11,7 @@ import {
     ListButton,
     EditButton,
     RefreshButton,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
 import { useState } from "react";

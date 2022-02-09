@@ -1,7 +1,7 @@
 import React from "react";
 import { Layout, Typography, Avatar, Space } from "antd";
 
-import { useGetIdentity } from "@pankod/refine";
+import { useGetIdentity } from "@pankod/refine-core";
 
 const { Text } = Typography;
 

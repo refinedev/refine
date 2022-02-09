@@ -1,11 +1,12 @@
 {
   "name": "access-control-casbin-react",
-  "version": "2.7.8",
+  "version": "3.0.10",
   "private": true,
   "dependencies": {
-    "@pankod/refine": "^2.7.8",
-    "@pankod/refine-react-router": "^2.7.8",
-    "@pankod/refine-simple-rest": "^2.7.8",
+    "@pankod/refine-antd": "^3.0.10",
+    "@pankod/refine-core": "^3.0.10",
+    "@pankod/refine-react-router": "^3.0.10",
+    "@pankod/refine-simple-rest": "^3.0.10",
     "@types/node": "^14.14.13",
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.4",
@@ -19,7 +20,7 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject"
   },

@@ -1,4 +1,4 @@
-export interface INotification {
+export interface IUndoableQueue {
     id: string;
     resource: string;
     cancelMutation: () => void;
