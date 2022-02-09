@@ -1074,7 +1074,6 @@ import {
     useFilters,
     //highlight-end
 } from "@pankod/refine-react-table";
-import { useNavigation } from "@pankod/refine-core";
 
 import { IPost } from "interfaces";
 import {
@@ -1082,12 +1081,9 @@ import {
     ChevronRightIcon,
     ChevronsLeftIcon,
     ChevronsRightIcon,
-    CreateIcon,
 } from "icons";
 
 export const PostList: React.FC = () => {
-    const { create } = useNavigation();
-
     const columns: Array<Column> = React.useMemo(
         () => [
             {
@@ -1160,13 +1156,6 @@ export const PostList: React.FC = () => {
                     />
                 </div>
                 //highlight-end
-                <button
-                    className="flex items-center justify-between gap-1 rounded border border-gray-200 bg-indigo-500 p-2 text-xs font-medium leading-tight text-white transition duration-150 ease-in-out hover:bg-indigo-600"
-                    onClick={() => create("posts")}
-                >
-                    {CreateIcon}
-                    <span>Create Post</span>
-                </button>
             </div>
 
             <table
@@ -1294,33 +1283,6 @@ export const PostList: React.FC = () => {
     );
 };
 ```
-
-Also, added a create button to the top right of the table for creating new posts. It redirects to the create page.
-
-<details><summary>Show CreateIcon</summary>
-<p>
-
-```tsx title="icons.tsx"
-export const CreateIcon = (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-    >
-        <line x1="12" y1="5" x2="12" y2="19"></line>
-        <line x1="5" y1="12" x2="19" y2="12"></line>
-    </svg>
-);
-```
-
-</p>
-</details>
 
 ## Showing a single record
 
@@ -1717,7 +1679,7 @@ export const App: React.FC = () => {
 };
 ```
 
-We are going to need an _edit_ button on each row to diplay the `<PostEdit>` component. **refine** doesn't automatically add one, so we have to update our `<PostList>` component to add a edit button for each record:
+We are going to need an _edit_ button on each row to display the `<PostEdit>` component. **refine** doesn't automatically add one, so we have to update our `<PostList>` component to add a edit button for each record:
 
 ```tsx title="components/pages/posts.tsx"
 ...
@@ -1803,10 +1765,6 @@ export const EditIcon = (
     <img src={editGif} alt="Edit record action" />
 </div>
 <br/>
-
-<br />
-
-:::
 
 ## Creating a record
 
@@ -1984,6 +1942,79 @@ We should notice some minor differences from the edit example:
 ✳️ `resetField` in not necessary, because we don't have any default values.
 
 <br />
+
+Finally, We are going to need an _create_ button on top of the right side of the `PostList` page to create new posts. It redirects to create page.
+
+```tsx
+...
+
+// highlight-next-line
+import { useNavigation } from "@pankod/refine-core";
+
+// highlight-next-line
+import { CreateIcon } from "icons";
+
+export const PostList: React.FC = () => {
+    // highlight-next-line
+    const { create } = useNavigation();
+
+    const columns: Array<Column> = React.useMemo(...);
+
+    const {
+       ...
+    } = useTable<IPost>({ columns }, useFilters, useSortBy, usePagination);
+    //highlight-end
+
+    return (
+        <div className="container mx-auto pb-4">
+            <div className="aflex mb-3 mt-1 items-center justify-between">
+                <h1 className="text-2xl font-bold">Posts List</h1>
+
+                <div>
+                    ...
+                </div>
+                //highlight-start
+                <button
+                    className="flex items-center justify-between gap-1 rounded border border-gray-200 bg-indigo-500 p-2 text-xs font-medium leading-tight text-white transition duration-150 ease-in-out hover:bg-indigo-600"
+                    onClick={() => create("posts")}
+                >
+                    {CreateIcon}
+                    <span>Create Post</span>
+                </button>
+                //highlight-end
+            </div>
+
+            ...
+
+        </div>
+    );
+};
+```
+
+<details><summary>Show CreateIcon</summary>
+<p>
+
+```tsx title="icons.tsx"
+export const CreateIcon = (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+    </svg>
+);
+```
+
+</p>
+</details>
 
 <div class="img-container">
     <div class="window">
