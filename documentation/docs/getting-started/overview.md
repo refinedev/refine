@@ -9,7 +9,7 @@ import benchmarkChart from '@site/static/img/getting-started/benchmark.png';
 
 ## What is refine?
 
-**refine** is a [React](https://reactjs.org/)-based **headless** framework for building data-intensive applications in no time :sparkles: It ships with [Ant Design System](https://ant.design/), an enterprise-level UI toolkit.
+**refine** is a [React](https://reactjs.org/)-based **headless** framework for building data-intensive applications in no time :sparkles: So you can bring your own UI and fuel it with Refine for top speed development.
 
 Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to _admin panels_, _B2B applications_ and _dashboards_.
 
@@ -36,7 +36,7 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 📝 **Native Typescript Core** : You can always opt out for plain JavaScript.
 
-🐜 **Enterprise UI** : Works seamlessly with integrated Ant Design System. (Support for multiple UI frameworks is on the Roadmap)
+🐜 **Enterprise UI** : Works seamlessly with Ant Design System. (Support for multiple UI frameworks is on the Roadmap)
 
 📝 **Boilerplate-free Code** : Keeps your codebase clean and readable.
 

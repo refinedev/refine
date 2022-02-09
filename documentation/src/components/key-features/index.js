@@ -104,7 +104,7 @@ const features = [
         srcset: "/icons/features/powerful@2x.png 768w",
         title: "Enterprise UI",
         description:
-            "Works seamlessly with integrated Ant Design System. (Support for multiple UI frameworks is on the Roadmap)",
+            "Works seamlessly with Ant Design System. (Support for multiple UI frameworks is on the Roadmap)",
     },
     {
         src: "/icons/features/native.png",

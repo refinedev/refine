@@ -145,7 +145,7 @@ A React-based framework for building data-intensive applications in no time. **r
 
 🔘 Headless : So you can bring your own UI and fuel it with Refine for top speed development.
 
-🐜 Enterprise UI : Works seamlessly with integrated Ant Design System. (Support for multiple UI frameworks is on the Roadmap)
+🐜 Enterprise UI : Works seamlessly with Ant Design System. (Support for multiple UI frameworks is on the Roadmap)
 
 📝 Boilerplate-free Code : Keeps your codebase clean and readable.
 
