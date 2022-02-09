@@ -672,9 +672,9 @@ const App: React.FC = () => {
 ### `setEditId` to `setId` & `editId` to `id`
 Change the use `setEditId` and `editId` used in `useEditableTable`, `useModalForm`, and `useDrawerForm`.
 
-- `setEditId` -> `setId: setEditId`
+- `setEditId` -> `setId`
 
-- `editId` -> `id:editId`
+- `editId` -> `id`
 
 ```diff title="PostList"
 import { IResourceComponentsProps } from "@pankod/refine-core";
