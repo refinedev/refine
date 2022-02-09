@@ -348,6 +348,10 @@ const App: React.FC = () => {
 };
 ```
 
+<details>
+<summary>List Page Example</summary>
+<p>
+
 ```diff title="PostList.tsx"
 - import {
 -    IResourceComponentsProps, 
@@ -478,6 +482,8 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 };
 
 ```
+</p>
+</details>
 
 ### `notificationProvider`
 
@@ -700,28 +706,14 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         formProps,
         isEditing,
 -       setEditId,
-+       setId: setEditId,
++       setId,
+-       editId,
++       id 
         saveButtonProps,
         cancelButtonProps,
         editButtonProps,
     } = useEditableTable<IPost>();
 };
-```
-
-```diff
-  const {
-    formProps: editFormProps,
-    drawerProps: editDrawerProps,
-    show: editDrawerShow,
-    saveButtonProps: editSaveButtonProps,
-    deleteButtonProps,
--   editId,
-+   id: editId 
-    formLoading
-  } = useDrawerForm<IPost>({
-    action: "edit",
-    warnWhenUnsavedChanges: true
-  });
 ```
 
 [refine-codemod]: https://github.com/pankod/refine/tree/master/packages/codemod
