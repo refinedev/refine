@@ -18,7 +18,7 @@ export const AuthContextProvider: React.FC<Partial<IAuthContext>> = ({
     login = defaultProvider.login,
     logout = defaultProvider.logout,
     checkAuth = defaultProvider.checkAuth,
-    checkError = defaultProvider.login,
+    checkError = defaultProvider.checkError,
     getPermissions = defaultProvider.getPermissions,
     getUserIdentity = defaultProvider.getUserIdentity,
     isProvided,
