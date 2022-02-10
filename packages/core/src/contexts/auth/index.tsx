@@ -60,10 +60,8 @@ export const AuthContextProvider: React.FC<Partial<IAuthContext>> = ({
             await checkAuth(params);
             setAuthenticated(true);
         } catch (error) {
-            const { redirectPath } = error as { redirectPath?: string };
-
-            if (redirectPath) {
-                replace(redirectPath);
+            if ((error as { redirectPath?: string })?.redirectPath) {
+                replace((error as { redirectPath: string }).redirectPath);
             }
             setAuthenticated(false);
             throw error;
