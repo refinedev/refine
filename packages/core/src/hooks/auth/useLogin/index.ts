@@ -4,15 +4,9 @@ import qs from "qs";
 
 import { AuthContext } from "@contexts/auth";
 
-import { IAuthContext } from "../../../interfaces";
+import { IAuthContext, TLoginData } from "../../../interfaces";
 import { useNavigation, useRouterContext, useNotification } from "@hooks";
 
-export type UseLoginReturnType<TData, TVariables = {}> = UseMutationResult<
-    TData,
-    unknown,
-    TVariables,
-    unknown
->;
 /**
  * `useLogin` calls `login` method from {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
  *
@@ -22,9 +16,11 @@ export type UseLoginReturnType<TData, TVariables = {}> = UseMutationResult<
  * @typeParam TVariables - Values for mutation function. default `{}`
  *
  */
-export const useLogin = <TData, TVariables = {}>(): UseLoginReturnType<
-    TData,
-    TVariables
+export const useLogin = <TVariables = {}>(): UseMutationResult<
+    TLoginData,
+    Error,
+    TVariables,
+    unknown
 > => {
     const { replace } = useNavigation();
     const { login: loginFromContext } =
@@ -36,12 +32,18 @@ export const useLogin = <TData, TVariables = {}>(): UseLoginReturnType<
 
     const { to } = qs.parse(search?.substring(1));
 
-    const queryResponse = useMutation<TData, unknown, TVariables, unknown>(
+    const queryResponse = useMutation<TLoginData, Error, TVariables, unknown>(
         "useLogin",
         loginFromContext,
         {
-            onSuccess: () => {
-                replace((to as string) ?? "/");
+            onSuccess: (redirectPathFromAuth) => {
+                if (redirectPathFromAuth !== false) {
+                    if (redirectPathFromAuth) {
+                        replace((to as string) ?? redirectPathFromAuth);
+                    } else {
+                        replace((to as string) ?? "/");
+                    }
+                }
                 close("login-error");
             },
             onError: (error: any) => {
