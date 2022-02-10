@@ -6,36 +6,36 @@ import { MotorcycleIcon, FinefoodsIcon, RefineLoveIcon } from "@components";
 export const Footer: React.FC = () => {
     return (
         <footer className="bg-primary">
-            <div className="container flex flex-wrap justify-between items-center mx-auto my-4 px-2 md:px-0">
-                <div className="hidden md:flex gap-4">
+            <div className="container mx-auto my-4 flex flex-wrap items-center justify-between px-2 md:px-0">
+                <div className="hidden gap-4 md:flex">
                     <MotorcycleIcon />
                     <FinefoodsIcon className="w-32" />
                 </div>
-                <div className="flex flex-col md:flex-row gap-4 text-lg text-white font-semibold">
+                <div className="flex flex-col gap-4 text-lg font-semibold text-white md:flex-row">
                     <div>
                         <Link href="/">
-                            <a className="hover:underline hover:underline-offset-2 transition-all">
+                            <a className="transition-all hover:underline hover:underline-offset-2">
                                 Home
                             </a>
                         </Link>
                     </div>
                     <div>
                         <Link href="/">
-                            <a className="hover:underline hover:underline-offset-2 transition-all">
+                            <a className="transition-all hover:underline hover:underline-offset-2">
                                 Contact
                             </a>
                         </Link>
                     </div>
                     <div>
                         <Link href="/">
-                            <a className="hover:underline hover:underline-offset-2 transition-all">
+                            <a className="transition-all hover:underline hover:underline-offset-2">
                                 Getting Started
                             </a>
                         </Link>
                     </div>
                     <div>
                         <Link href="/">
-                            <a className="hover:underline hover:underline-offset-2 transition-all">
+                            <a className="transition-all hover:underline hover:underline-offset-2">
                                 Tutorials
                             </a>
                         </Link>

@@ -72,12 +72,12 @@ const Category: React.FC<CategoryPageProps> = ({ category, products }) => {
         <LayoutWrapper>
             <div className="container mx-auto overflow-hidden rounded-xl bg-white">
                 <div
-                    className="flex items-center h-48 bg-cover bg-center bg-no-repeat pl-6"
+                    className="flex h-48 items-center bg-cover bg-center bg-no-repeat pl-6"
                     style={{
                         backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${category.cover})`,
                     }}
                 >
-                    <h1 className="uppercase text-white text-5xl font-extrabold">
+                    <h1 className="text-5xl font-extrabold uppercase text-white">
                         {category.title}
                     </h1>
                 </div>
@@ -106,18 +106,18 @@ const Category: React.FC<CategoryPageProps> = ({ category, products }) => {
                     </tbody>
                 </table>
 
-                <div className="flex justify-end my-4 px-4">
+                <div className="my-4 flex justify-end px-4">
                     <button
-                        className="px-2 py-2 border text-sm font-medium hover:bg-gray-50"
+                        className="border px-2 py-2 text-sm font-medium hover:bg-gray-50"
                         onClick={() => previousPage()}
                         disabled={!canPreviousPage}
                     >
-                        <ChevronLeftIcon className="h-5 w-5 text-primary" />
+                        <ChevronLeftIcon className="text-primary h-5 w-5" />
                     </button>
                     {pageOptions.map((page) => (
                         <button
                             key={page}
-                            className={`px-4 py-2 border text-sm font-medium hover:bg-gray-50 ${
+                            className={`border px-4 py-2 text-sm font-medium hover:bg-gray-50 ${
                                 pageIndex === page ? "text-primary" : ""
                             }`}
                             onClick={() => gotoPage(page)}
@@ -126,11 +126,11 @@ const Category: React.FC<CategoryPageProps> = ({ category, products }) => {
                         </button>
                     ))}
                     <button
-                        className="px-2 py-2 border text-sm font-medium hover:bg-gray-50"
+                        className="border px-2 py-2 text-sm font-medium hover:bg-gray-50"
                         onClick={() => nextPage()}
                         disabled={!canNextPage}
                     >
-                        <ChevronRightIcon className="h-5 w-5 text-primary" />
+                        <ChevronRightIcon className="text-primary h-5 w-5" />
                     </button>
                 </div>
             </div>

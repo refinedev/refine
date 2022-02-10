@@ -26,7 +26,8 @@ const Hello = () => {
                             className="link-button"
                             to="https://example.refine.dev"
                         >
-                            B2C Next.js App (SSR)
+                            Refine Headless <br />
+                            Refine Core + Next.js (SSR) + Tailwind CSS
                             <IoMdOpen />
                         </Link>
                         <div className="toggle toggle-left">
@@ -43,7 +44,9 @@ const Hello = () => {
                             className="link-button"
                             to="https://example.admin.refine.dev"
                         >
-                            Admin Panel
+                            Refine Antd
+                            <br />
+                            Refine Core + Refine Ant Design
                             <IoMdOpen />
                         </Link>
                         <div className="toggle toggle-right">
@@ -63,7 +66,8 @@ const Hello = () => {
                         className="link-button"
                         to="https://example.refine.dev"
                     >
-                        B2C Next.js App (SSR)
+                        Refine Headless <br />
+                        Refine Core + Next.js (SSR) + Tailwind CSS
                         <IoMdOpen />
                     </Link>
                     <img src="/demo/nextjs-client.png" />
@@ -73,7 +77,9 @@ const Hello = () => {
                         className="link-button"
                         to="https://example.admin.refine.dev"
                     >
-                        Admin Panel
+                        Refine Antd
+                        <br />
+                        Refine Core + Refine Ant Design
                         <IoMdOpen />
                     </Link>
                     <img src="/demo/react-admin.png" />

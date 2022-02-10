@@ -17,10 +17,10 @@
 
 ## Documentation
 
-For more detailed information and usage, refer to the [refine data provider documentation](https://refine.dev/docs/core/providers/data-provider).
+For more detailed information and usage, refer to the [refine React Table documentation](https://refine.dev/docs/packages/react-table/).
 
 ## Install
 
 ```
-npm install @pankod/refine-appwrite
+npm install @pankod/refine-react-table
 ```

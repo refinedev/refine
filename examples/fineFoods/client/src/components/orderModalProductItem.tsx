@@ -9,10 +9,10 @@ export const OrderModalProductItem: React.FC<{ order: IBasketOrder }> = ({
     const product = products.find((p) => p.id === productId);
 
     return (
-        <div className="flex justify-between items-center border-b p-1">
+        <div className="flex items-center justify-between border-b p-1">
             <div className="flex items-center gap-2">
                 <img
-                    className="rounded-full w-12 h-12 object-cover object-center"
+                    className="h-12 w-12 rounded-full object-cover object-center"
                     src={product?.images[0].url}
                     alt={product?.name}
                 />

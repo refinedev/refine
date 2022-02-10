@@ -52,11 +52,11 @@ export const OrderDetail: React.FC<OrderPageProps> = ({ order }) => {
         <LayoutWrapper>
             <div
                 ref={el}
-                className="container bg-white overflow-hidden rounded-xl"
+                className="container overflow-hidden rounded-xl bg-white"
             >
-                <div className="flex flex-wrap justify-center sm:justify-start  items-center gap-4 py-4 px-8 bg-green-600 text-white">
+                <div className="flex flex-wrap items-center justify-center  gap-4 bg-green-600 py-4 px-8 text-white sm:justify-start">
                     <OrderIcon />
-                    <h1 className="main-title text-center text-3xl md:text-5xl font-bold uppercase">
+                    <h1 className="main-title text-center text-3xl font-bold uppercase md:text-5xl">
                         Order received
                     </h1>
                 </div>
@@ -64,22 +64,22 @@ export const OrderDetail: React.FC<OrderPageProps> = ({ order }) => {
                     <h1 className="text-3xl font-bold text-gray-800">
                         Order Summary
                     </h1>
-                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-16 mt-2">
+                    <div className="mt-2 flex flex-col gap-2 sm:flex-row sm:gap-16">
                         <div className="flex flex-col gap-2">
                             <div className="flex items-center gap-2">
-                                <h4 className="font-bold text-lg text-gray-700">
+                                <h4 className="text-lg font-bold text-gray-700">
                                     Order Number:
                                 </h4>
                                 <p>#{order.orderNumber}</p>
                             </div>
                             <div className="flex items-center gap-2">
-                                <h4 className="font-bold text-lg text-gray-700">
+                                <h4 className="text-lg font-bold text-gray-700">
                                     Order Date:
                                 </h4>
                                 <p>{order.createdAt}</p>
                             </div>
                             <div className="flex items-center gap-2">
-                                <h4 className="font-bold text-lg text-gray-700">
+                                <h4 className="text-lg font-bold text-gray-700">
                                     Total:
                                 </h4>
                                 <p>
@@ -91,7 +91,7 @@ export const OrderDetail: React.FC<OrderPageProps> = ({ order }) => {
                             </div>
                         </div>
                         <div>
-                            <h4 className="font-bold text-lg text-gray-700">
+                            <h4 className="text-lg font-bold text-gray-700">
                                 Order Details
                             </h4>
                             {order.products.map((product, index) => (
@@ -108,27 +108,27 @@ export const OrderDetail: React.FC<OrderPageProps> = ({ order }) => {
                     <h1 className="text-3xl font-bold text-gray-800">
                         Delivery Details
                     </h1>
-                    <div className="flex flex-col lg:flex-row gap-2 lg:gap-16 mt-2">
+                    <div className="mt-2 flex flex-col gap-2 lg:flex-row lg:gap-16">
                         <div className="flex flex-col gap-2">
-                            <h4 className="font-bold text-lg text-gray-700">
+                            <h4 className="text-lg font-bold text-gray-700">
                                 Address
                             </h4>
                             <p>{order.adress.text}</p>
-                            <h4 className="font-bold text-lg text-gray-700">
+                            <h4 className="text-lg font-bold text-gray-700">
                                 Estimated Delivery Time
                             </h4>
                             <p>12:55</p>
                         </div>
-                        <div className="flex flex-col sm:flex-row items-center gap-2">
+                        <div className="flex flex-col items-center gap-2 sm:flex-row">
                             <img
-                                className="rounded-full h-32 w-32"
+                                className="h-32 w-32 rounded-full"
                                 src={order.courier.avatar[0].url}
                                 alt={order.courier.name}
                             />
-                            <div className="flex flex-col mt-16 md:mt-0 gap-4 relative">
+                            <div className="relative mt-16 flex flex-col gap-4 md:mt-0">
                                 {showMessage && (
                                     <a
-                                        className="message border-2 border-primary font-semibold px-4 py-2 rounded-full text-primary hover:text-orange-600 hover:border-orange-600 active:scale-95 transition-all"
+                                        className="message border-primary text-primary rounded-full border-2 px-4 py-2 font-semibold transition-all hover:border-orange-600 hover:text-orange-600 active:scale-95"
                                         href={`https://example.admin.refine.dev/orders/show/${order.id}`}
                                         rel="noreferrer"
                                     >
@@ -145,7 +145,7 @@ export const OrderDetail: React.FC<OrderPageProps> = ({ order }) => {
                     </div>
                 </div>
                 <hr />
-                <div className="flex flex-wrap justify-start md:justify-center items-center gap-1 p-8 opacity-50">
+                <div className="flex flex-wrap items-center justify-start gap-1 p-8 opacity-50 md:justify-center">
                     {TRANSLATIONS_BON_APPETIT.map((p, index) => (
                         <p
                             key={p}

@@ -34,8 +34,8 @@
 [![Meercode CI Success Rate](https://meercode.io/badge/pankod/refine?type=ci-success-rate&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
 [![Maintainability](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/maintainability)](https://codeclimate.com/github/pankod/refine/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/test_coverage)](https://codeclimate.com/github/pankod/refine/test_coverage)
-[![npm version](https://img.shields.io/npm/v/@pankod/refine.svg)](https://www.npmjs.com/package/@pankod/refine)
-[![npm](https://img.shields.io/npm/dm/@pankod/refine)](https://www.npmjs.com/package/@pankod/refine)
+[![npm version](https://img.shields.io/npm/v/@pankod/refine-core.svg)](https://www.npmjs.com/package/@pankod/refine-core)
+[![npm](https://img.shields.io/npm/dm/@pankod/refine-core)](https://www.npmjs.com/package/@pankod/refine-core)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](code_of_conduct.md)
 
 
@@ -72,7 +72,7 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 ## Key features
 
-🔥 **Headless**: refine is a **headless** React framework, which means all out-of-the-box features, it can be used without being tied to any UI elements or framework
+🔥 **Headless** : So you can bring your own UI and fuel it with Refine for top speed development.
 
 ⚙️ **Zero-configuration**: One-line setup with [superplate](https://github.com/pankod/superplate). It takes less than a minute to start a project.
 
@@ -82,9 +82,7 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 📝 **Native Typescript Core** : You can always opt out for plain JavaScript.
 
-🔘 **Decoupled UI** : UI components are exposed directly without encapsulation. You have full control on UI elements.
-
-🐜 **Powerful UI** : Works seamlessly with integrated [Ant Design System](https://ant.design/). (It can also be used with **any** UI Framework)
+🐜 **Enterprise UI** : Works seamlessly with Ant Design System. (Support for multiple UI frameworks is on the Roadmap)
 
 📝 **Boilerplate-free Code** : Keeps your codebase clean and readable.
 
