@@ -30,6 +30,7 @@ export type UseSelectProps<TData, TError> = {
     defaultValueQueryOptions?: UseQueryOptions<GetManyResponse<TData>, TError>;
     onSearch?: (value: string) => CrudFilters;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 } & SuccessErrorNotification &
     LiveModeProps;
 
@@ -69,6 +70,7 @@ export const useSelect = <
         onSearch: onSearchFromProp,
         liveParams,
         metaData,
+        dataProviderName,
     } = props;
 
     if (!Array.isArray(defaultValue)) {
@@ -97,6 +99,7 @@ export const useSelect = <
         },
         metaData,
         liveMode: "off",
+        dataProviderName,
     });
 
     const defaultQueryOnSuccess = (data: GetListResponse<TData>) => {
@@ -132,6 +135,7 @@ export const useSelect = <
         liveMode,
         liveParams,
         onLiveEvent,
+        dataProviderName,
     });
 
     const onSearch = (value: string | undefined) => {

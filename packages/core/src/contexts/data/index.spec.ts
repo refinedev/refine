@@ -13,7 +13,7 @@ describe("context/defaultProvider", () => {
         getOne,
         update,
         updateMany,
-    } = defaultDataProvider();
+    } = defaultDataProvider().defaultProvider;
 
     it("create", async () => {
         expect(await create()).toMatchInlineSnapshot(`

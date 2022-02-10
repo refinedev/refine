@@ -153,16 +153,6 @@ export const Refine: React.FC<RefineProps> = ({
 
     const { RouterComponent } = routerProvider;
 
-    let dataProviders;
-
-    if (!dataProvider.hasOwnProperty("defaultProvider")) {
-        dataProviders = {
-            defaultProvider: dataProvider,
-        } as IDataMultipleContextProvider;
-    } else {
-        dataProviders = dataProvider as IDataMultipleContextProvider;
-    }
-
     return (
         <QueryClientProvider client={queryClient}>
             <NotificationContextProvider {...notificationProvider}>
@@ -170,7 +160,7 @@ export const Refine: React.FC<RefineProps> = ({
                     {...authProvider}
                     isProvided={!!authProvider}
                 >
-                    <DataContextProvider {...dataProviders}>
+                    <DataContextProvider {...dataProvider}>
                         <LiveContextProvider liveProvider={liveProvider}>
                             <RouterContextProvider {...routerProvider}>
                                 <ResourceContextProvider resources={resources}>

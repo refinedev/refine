@@ -37,6 +37,7 @@ export type useSimpleListProps<TData, TError, TSearchVariables = unknown> =
         ) => CrudFilters | Promise<CrudFilters>;
         queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
         metaData?: MetaDataQuery;
+        dataProviderName?: string;
     } & SuccessErrorNotification &
         LiveModeProps;
 
@@ -80,6 +81,7 @@ export const useSimpleList = <
     onLiveEvent,
     liveParams,
     metaData,
+    dataProviderName,
     ...listProps
 }: useSimpleListProps<
     TData,
@@ -169,6 +171,7 @@ export const useSimpleList = <
         onLiveEvent,
         liveParams,
         metaData,
+        dataProviderName,
     });
     const { data, isFetching } = queryResult;
 

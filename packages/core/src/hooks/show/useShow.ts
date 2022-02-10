@@ -23,6 +23,7 @@ export type useShowProps = {
     resource?: string;
     id?: string;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 } & LiveModeProps &
     SuccessErrorNotification;
 
@@ -41,6 +42,7 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
     metaData,
     liveMode,
     onLiveEvent,
+    dataProviderName,
 }: useShowProps = {}): useShowReturnType<TData> => {
     const { useParams } = useRouterContext();
 
@@ -69,6 +71,7 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
         metaData,
         liveMode,
         onLiveEvent,
+        dataProviderName,
     });
 
     return {

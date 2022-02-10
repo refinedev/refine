@@ -15,7 +15,6 @@ export const useDataProvider = (): ((
             if (dataProviderName) {
                 return context[dataProviderName];
             }
-
             return context.defaultProvider;
         },
         [context],

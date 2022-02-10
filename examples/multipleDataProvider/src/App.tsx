@@ -11,6 +11,7 @@ import "@pankod/refine-antd/dist/styles.min.css";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
+const FINE_FOODS_API_URL = "https://api.finefoods.refine.dev";
 
 const App: React.FC = () => {
     return (
@@ -18,7 +19,7 @@ const App: React.FC = () => {
             routerProvider={routerProvider}
             dataProvider={{
                 defaultProvider: dataProvider(API_URL),
-                strapi: dataProvider(API_URL),
+                fineFoods: dataProvider(FINE_FOODS_API_URL),
             }}
             resources={[
                 {

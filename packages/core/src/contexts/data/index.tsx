@@ -1,6 +1,9 @@
 import React from "react";
 
-import { IDataMultipleContextProvider } from "../../interfaces";
+import {
+    IDataContextProvider,
+    IDataMultipleContextProvider,
+} from "../../interfaces";
 
 export const defaultDataProvider = () => {
     return {
@@ -24,9 +27,21 @@ export const DataContext = React.createContext<IDataMultipleContextProvider>(
     defaultDataProvider() as IDataMultipleContextProvider,
 );
 
-export const DataContextProvider: React.FC<IDataMultipleContextProvider> = ({
-    children,
-    ...rest
-}) => {
-    return <DataContext.Provider value={rest}>{children}</DataContext.Provider>;
+export const DataContextProvider: React.FC<
+    IDataMultipleContextProvider | IDataContextProvider
+> = ({ children, ...rest }) => {
+    let dataProviders;
+
+    if (!rest.hasOwnProperty("defaultProvider")) {
+        dataProviders = {
+            defaultProvider: rest,
+        } as IDataMultipleContextProvider;
+    } else {
+        dataProviders = rest as IDataMultipleContextProvider;
+    }
+    return (
+        <DataContext.Provider value={dataProviders}>
+            {children}
+        </DataContext.Provider>
+    );
 };

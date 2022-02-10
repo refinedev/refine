@@ -12,15 +12,26 @@ import {
     Radio,
     TagField,
     getDefaultFilter,
+    Collapse,
+    useTable,
+    useSelect,
+    useSimpleList,
+    AntdList,
+    NumberField,
 } from "@pankod/refine-antd";
-
-import { useTable, useSelect } from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
+    const { Panel } = Collapse;
+
     const { tableProps, filters } = useTable<IPost>({
         syncWithLocation: true,
+    });
+
+    const { listProps } = useSimpleList<IPost>({
+        resource: "products",
+        dataProviderName: "fineFoods",
     });
 
     const categoryIds =
@@ -40,82 +51,127 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         defaultValue: getDefaultFilter("category.id", filters, "in"),
     });
 
+    const { selectProps: fineFoodSelectProps } = useSelect<ICategory>({
+        resource: "products",
+        optionLabel: "name",
+        optionValue: "id",
+        dataProviderName: "fineFoods",
+    });
+
+    const renderItem = (item: any) => {
+        const { name, price, description } = item;
+
+        return (
+            <AntdList.Item
+                actions={[
+                    <Space key={item.id} direction="vertical" align="end">
+                        <NumberField value={price} />
+                    </Space>,
+                ]}
+            >
+                <AntdList.Item.Meta title={name} description={description} />
+            </AntdList.Item>
+        );
+    };
+
     return (
         <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-                <Table.Column
-                    dataIndex={["category", "id"]}
-                    title="Category"
-                    render={(value) => {
-                        if (isLoading) {
-                            return <TextField value="Loading..." />;
-                        }
-
-                        return (
-                            <TextField
-                                value={
-                                    data?.data.find((item) => item.id === value)
-                                        ?.title
+            <Collapse defaultActiveKey={["3"]}>
+                <Panel header="Default Data Provider Example" key="1">
+                    <Table {...tableProps} rowKey="id">
+                        <Table.Column dataIndex="id" title="ID" />
+                        <Table.Column dataIndex="title" title="Title" />
+                        <Table.Column
+                            dataIndex={["category", "id"]}
+                            title="Category"
+                            render={(value) => {
+                                if (isLoading) {
+                                    return <TextField value="Loading..." />;
                                 }
-                            />
-                        );
-                    }}
-                    filterDropdown={(props) => (
-                        <FilterDropdown
-                            {...props}
-                            mapValue={(selectedKeys) =>
-                                selectedKeys.map(Number)
-                            }
-                        >
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                {...categorySelectProps}
-                            />
-                        </FilterDropdown>
-                    )}
-                    defaultFilteredValue={getDefaultFilter(
-                        "category.id",
-                        filters,
-                        "in",
-                    )}
-                />
-                <Table.Column
-                    dataIndex="status"
-                    title="Status"
-                    render={(value: string) => <TagField value={value} />}
-                    filterDropdown={(props: any) => (
-                        <FilterDropdown {...props}>
-                            <Radio.Group>
-                                <Radio value="published">Published</Radio>
-                                <Radio value="draft">Draft</Radio>
-                                <Radio value="rejected">Rejected</Radio>
-                            </Radio.Group>
-                        </FilterDropdown>
-                    )}
-                />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <ShowButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
+
+                                return (
+                                    <TextField
+                                        value={
+                                            data?.data.find(
+                                                (item) => item.id === value,
+                                            )?.title
+                                        }
+                                    />
+                                );
+                            }}
+                            filterDropdown={(props) => (
+                                <FilterDropdown
+                                    {...props}
+                                    mapValue={(selectedKeys) =>
+                                        selectedKeys.map(Number)
+                                    }
+                                >
+                                    <Select
+                                        style={{ minWidth: 200 }}
+                                        mode="multiple"
+                                        placeholder="Select Category"
+                                        {...categorySelectProps}
+                                    />
+                                </FilterDropdown>
+                            )}
+                            defaultFilteredValue={getDefaultFilter(
+                                "category.id",
+                                filters,
+                                "in",
+                            )}
+                        />
+                        <Table.Column
+                            dataIndex="status"
+                            title="Status"
+                            render={(value: string) => (
+                                <TagField value={value} />
+                            )}
+                            filterDropdown={(props: any) => (
+                                <FilterDropdown {...props}>
+                                    <Radio.Group>
+                                        <Radio value="published">
+                                            Published
+                                        </Radio>
+                                        <Radio value="draft">Draft</Radio>
+                                        <Radio value="rejected">Rejected</Radio>
+                                    </Radio.Group>
+                                </FilterDropdown>
+                            )}
+                        />
+                        <Table.Column<IPost>
+                            title="Actions"
+                            dataIndex="actions"
+                            render={(_, record) => (
+                                <Space>
+                                    <EditButton
+                                        hideText
+                                        size="small"
+                                        recordItemId={record.id}
+                                    />
+                                    <ShowButton
+                                        hideText
+                                        size="small"
+                                        recordItemId={record.id}
+                                    />
+                                </Space>
+                            )}
+                        />
+                    </Table>
+                </Panel>
+                <Panel header="Fine Foods Data Provider Example" key="2">
+                    <AntdList {...listProps} renderItem={renderItem} />
+                    {/* <Table {...fineFoodsTableProps} rowKey="id">
+                        <Table.Column dataIndex="id" title="ID" />
+                        <Table.Column dataIndex="name" title="Name" />
+                    </Table> */}
+                </Panel>
+                <Panel header="Fine Foods Data Provider Example" key="3">
+                    <Select
+                        {...fineFoodSelectProps}
+                        dropdownStyle={{ minWidth: 200 }}
+                    />
+                </Panel>
+            </Collapse>
         </List>
     );
 };

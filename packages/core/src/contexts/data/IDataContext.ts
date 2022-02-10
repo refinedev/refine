@@ -180,11 +180,13 @@ export interface IDataContextProvider {
         sort?: CrudSorting;
         filters?: CrudFilters;
         metaData?: MetaDataQuery;
+        dataProviderName?: string;
     }) => Promise<GetListResponse<TData>>;
     getMany: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
         ids: string[];
         metaData?: MetaDataQuery;
+        dataProviderName?: string;
     }) => Promise<GetManyResponse<TData>>;
     getOne: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
