@@ -1,7 +1,3 @@
-export type TLogoutVariables = {
-    redirectPath?: string;
-    [key: string]: any;
-} | void;
 export type TLogoutData = void | false | string;
 export type TLoginData = void | false | string;
 
