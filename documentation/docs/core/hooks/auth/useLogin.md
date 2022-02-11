@@ -81,7 +81,7 @@ Then, you can handle this url in your `login` method of the `authProvider`.
 
 const authProvider: AuthProvider = {
     ...
-    login: ({redirectPath}) => {
+    login: ({ redirectPath }) => {
         ...
         return Promise.resolve(redirectPath);
     }
