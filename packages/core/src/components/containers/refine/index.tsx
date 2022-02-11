@@ -143,6 +143,7 @@ export const Refine: React.FC<RefineProps> = ({
             show: resource.show,
             list: resource.list,
             edit: resource.edit,
+            options: resource.options,
         });
     });
 
