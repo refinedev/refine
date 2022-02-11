@@ -51,13 +51,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         defaultValue: getDefaultFilter("category.id", filters, "in"),
     });
 
-    const { selectProps: fineFoodSelectProps } = useSelect<ICategory>({
-        resource: "products",
-        optionLabel: "name",
-        optionValue: "id",
-        dataProviderName: "fineFoods",
-    });
-
     const renderItem = (item: any) => {
         const { name, price, description } = item;
 
@@ -76,8 +69,8 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <List>
-            <Collapse defaultActiveKey={["3"]}>
-                <Panel header="Default Data Provider Example" key="1">
+            <Collapse defaultActiveKey={["1"]} expandIconPosition="right">
+                <Panel header="Default Data Provider" key="1">
                     <Table {...tableProps} rowKey="id">
                         <Table.Column dataIndex="id" title="ID" />
                         <Table.Column dataIndex="title" title="Title" />
@@ -158,18 +151,10 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                         />
                     </Table>
                 </Panel>
-                <Panel header="Fine Foods Data Provider Example" key="2">
-                    <AntdList {...listProps} renderItem={renderItem} />
-                    {/* <Table {...fineFoodsTableProps} rowKey="id">
-                        <Table.Column dataIndex="id" title="ID" />
-                        <Table.Column dataIndex="name" title="Name" />
-                    </Table> */}
-                </Panel>
-                <Panel header="Fine Foods Data Provider Example" key="3">
-                    <Select
-                        {...fineFoodSelectProps}
-                        dropdownStyle={{ minWidth: 200 }}
-                    />
+                <Panel header="Fine Foods Data Provider" key="2">
+                    <div>
+                        <AntdList {...listProps} renderItem={renderItem} />
+                    </div>
                 </Panel>
             </Collapse>
         </List>
