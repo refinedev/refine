@@ -1,4 +1,11 @@
-import { Edit, Form, Input, Select, useForm, useSelect } from "@pankod/refine";
+import {
+    Edit,
+    Form,
+    Input,
+    Select,
+    useForm,
+    useSelect,
+} from "@pankod/refine-antd";
 
 import { HackathonerType, TeamType } from "interfaces";
 

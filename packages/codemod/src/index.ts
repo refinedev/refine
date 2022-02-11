@@ -29,7 +29,10 @@ export const transformerDirectory = path.join(
     "dist/transformations",
 );
 
-const transformsWithPostTransform = ["refine1-to-refine2"];
+const transformsWithPostTransform = [
+    "refine1-to-refine2",
+    "refine2-to-refine3",
+];
 
 export function checkGitStatus(force) {
     let clean = false;
@@ -88,6 +91,8 @@ export function runTransform({ files, flags, transformer }) {
     args.push("--verbose=2");
 
     args.push("--ignore-pattern=**/node_modules/**");
+    args.push("--ignore-pattern=**/build/**");
+    args.push("--ignore-pattern=**/.next/**");
 
     args.push("--extensions=tsx,ts,jsx,js");
     args.push("--parser=tsx");
@@ -113,6 +118,10 @@ export function runTransform({ files, flags, transformer }) {
 }
 
 const TRANSFORMER_INQUIRER_CHOICES = [
+    {
+        name: "refine2-to-refine3: Transform from refine 2.x.x to at least 3.0.0",
+        value: "refine2-to-refine3",
+    },
     {
         name: "refine1-to-refine2: Transform from refine 1.x.x to at least 2.0.0",
         value: "refine1-to-refine2",

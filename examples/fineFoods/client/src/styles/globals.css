@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.message {
+    position: absolute;
+    right: 30px;
+    top: -60px;
+    animation: scaleUp 1s;
+}
+
+.message::before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #fb7a32;
+    right: 45%;
+    bottom: -5px;
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.3);
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}

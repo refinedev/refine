@@ -1,3 +1,5 @@
+import { useMany } from "@pankod/refine-core";
+
 import {
     List,
     Table,
@@ -5,9 +7,8 @@ import {
     Space,
     ShowButton,
     EditButton,
-    useMany,
     TextField,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import {
     HackathonerType,

@@ -1,14 +1,11 @@
 import { renderHook } from "@testing-library/react-hooks";
 import { act } from "react-dom/test-utils";
 
-import { MockJSONServer, TestWrapper } from "@test";
+import { TestWrapper } from "@test";
 
 import { useModal } from ".";
 
-const Wrapper = TestWrapper({
-    dataProvider: MockJSONServer,
-    resources: [{ name: "posts", route: "posts" }],
-});
+const Wrapper = TestWrapper({});
 
 describe("useModal Hook", () => {
     it("should visible false on init", async () => {
@@ -16,36 +13,31 @@ describe("useModal Hook", () => {
             wrapper: Wrapper,
         });
 
-        const { modalProps } = result.current;
+        const { visible } = result.current;
 
-        expect(modalProps.visible).toEqual(undefined);
+        expect(visible).toEqual(false);
     });
 
     it("should visible true on pass visible true with prop", async () => {
         const { result } = renderHook(
             () =>
                 useModal({
-                    modalProps: {
-                        visible: true,
-                    },
+                    defaultVisible: true,
                 }),
             {
                 wrapper: Wrapper,
             },
         );
 
-        const { modalProps } = result.current;
+        const { visible } = result.current;
 
-        expect(modalProps.visible).toEqual(true);
+        expect(visible).toEqual(true);
     });
 
     it("should visible true on called show", async () => {
-        const { result, waitFor, waitForNextUpdate } = renderHook(
-            () => useModal(),
-            {
-                wrapper: Wrapper,
-            },
-        );
+        const { result } = renderHook(() => useModal(), {
+            wrapper: Wrapper,
+        });
 
         const { show } = result.current;
 
@@ -53,7 +45,7 @@ describe("useModal Hook", () => {
             show();
         });
 
-        expect(result.current.modalProps.visible).toEqual(true);
+        expect(result.current.visible).toEqual(true);
     });
 
     it("should visible false on called show after close", async () => {
@@ -67,74 +59,12 @@ describe("useModal Hook", () => {
             show();
         });
 
-        expect(result.current.modalProps.visible).toEqual(true);
+        expect(result.current.visible).toEqual(true);
 
         act(() => {
             close();
         });
 
-        expect(result.current.modalProps.visible).toEqual(false);
-    });
-
-    it("should call close on modal onCancel", async () => {
-        const mockedOnClose = jest.fn();
-        const { result } = renderHook(
-            () =>
-                useModal({
-                    modalProps: {
-                        onCancel: mockedOnClose,
-                    },
-                }),
-            {
-                wrapper: Wrapper,
-            },
-        );
-
-        const { show, modalProps } = result.current;
-
-        act(() => {
-            show();
-        });
-
-        expect(result.current.modalProps.visible).toEqual(true);
-
-        act(() => {
-            modalProps.onCancel &&
-                modalProps.onCancel(
-                    new MouseEvent("click", {
-                        bubbles: true,
-                        cancelable: true,
-                    }) as any,
-                );
-        });
-
-        expect(result.current.modalProps.visible).toEqual(false);
-        expect(mockedOnClose).toBeCalledTimes(1);
-    });
-
-    it("should call close if modalProps onCancel is undefined", async () => {
-        const { result } = renderHook(() => useModal(), {
-            wrapper: Wrapper,
-        });
-
-        const { show, modalProps } = result.current;
-
-        act(() => {
-            show();
-        });
-
-        expect(result.current.modalProps.visible).toEqual(true);
-
-        act(() => {
-            modalProps.onCancel &&
-                modalProps.onCancel(
-                    new MouseEvent("click", {
-                        bubbles: true,
-                        cancelable: true,
-                    }) as any,
-                );
-        });
-
-        expect(result.current.modalProps.visible).toEqual(false);
+        expect(result.current.visible).toEqual(false);
     });
 });

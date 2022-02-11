@@ -5,7 +5,7 @@ import {
     Select,
     useForm,
     useSelect,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { HackathonerType, ProjectType, HackathonType } from "interfaces";
 

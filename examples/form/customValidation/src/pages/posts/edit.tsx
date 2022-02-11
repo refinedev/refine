@@ -1,16 +1,19 @@
 import { useState } from "react";
 import {
-    Edit,
-    Form,
     HttpError,
-    Input,
     IResourceComponentsProps,
-    Select,
     useApiUrl,
     useCustom,
+} from "@pankod/refine-core";
+
+import {
+    Edit,
+    Form,
+    Input,
+    Select,
     useForm,
     useSelect,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";

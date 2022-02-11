@@ -1,10 +1,9 @@
 import {
     IResourceComponentsProps,
-    Card,
-    Space,
     useList,
     useNavigation,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
+import { Card, Space } from "@pankod/refine-antd";
 import { Layout } from "components";
 
 import { IMovies } from "interfaces";

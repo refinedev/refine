@@ -1,12 +1,11 @@
 import {
     useShow,
-    Show,
-    Typography,
     IResourceComponentsProps,
     useOne,
-    MarkdownField,
     useTranslate,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
+
+import { Show, Typography, MarkdownField } from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
 

@@ -1,10 +1,6 @@
-import React from "react";
 import { useEffect, useState } from "react";
-import { ButtonProps, notification, UploadProps, Progress } from "antd";
-import { UploadChangeParam } from "antd/lib/upload";
 import {
     useCreate,
-    useTranslate,
     useCreateMany,
     useResourceWithRoute,
     useRouterContext,
@@ -39,7 +35,12 @@ export type OnFinishParams<TVariables, TData> = {
     errored: ImportErrorResult<TVariables>[];
 };
 
-type ImportOptions<
+export type OnProgressParams = {
+    totalAmount: number;
+    processedAmount: number;
+};
+
+export type ImportOptions<
     TItem,
     TVariables = any,
     TData extends BaseRecord = BaseRecord,
@@ -50,16 +51,33 @@ type ImportOptions<
     batchSize?: number;
     onFinish?: (results: OnFinishParams<TVariables, TData>) => void;
     metaData?: MetaDataQuery;
+    onProgress?: (onProgressParams: OnProgressParams) => void;
 };
 
 export type CreatedValuesType<TVariables, TData> =
     | ImportSuccessResult<TVariables, TData>
     | ImportErrorResult<TVariables>;
 
+export type HandleChangeType<TVariables, TData> = (onChangeParams: {
+    file: Partial<File>;
+}) => Promise<CreatedValuesType<TVariables, TData>[]>;
+
+export type UseImportReturnType<
+    TData,
+    TVariables,
+    TError extends HttpError = HttpError,
+> = {
+    mutationResult:
+        | UseCreateReturnType<TData, TError, TVariables>
+        | UseCreateManyReturnType<TData, TError, TVariables>;
+    isLoading: boolean;
+    handleChange: HandleChangeType<TVariables, TData>;
+};
+
 /**
  * `useImport` hook allows you to handle your csv import logic easily.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/import-export/useImport} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/import-export/useImport} for more details.
  *
  * @typeParam TItem - Interface of parsed csv data
  * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
@@ -79,20 +97,17 @@ export const useImport = <
     batchSize = Number.MAX_SAFE_INTEGER,
     onFinish,
     metaData,
-}: ImportOptions<TItem, TVariables, TData> = {}): {
-    uploadProps: UploadProps;
-    buttonProps: ButtonProps;
-    mutationResult:
-        | UseCreateReturnType<TData, TError, TVariables>
-        | UseCreateManyReturnType<TData, TError, TVariables>;
-} => {
+    onProgress,
+}: ImportOptions<TItem, TVariables, TData> = {}): UseImportReturnType<
+    TData,
+    TVariables,
+    TError
+> => {
     const [processedAmount, setProcessedAmount] = useState<number>(0);
     const [totalAmount, setTotalAmount] = useState<number>(0);
     const [isLoading, setIsLoading] = useState(false);
 
-    const t = useTranslate();
     const resourceWithRoute = useResourceWithRoute();
-
     const { useParams } = useRouterContext();
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
@@ -117,10 +132,6 @@ export const useImport = <
         setTotalAmount(0);
         setProcessedAmount(0);
         setIsLoading(false);
-
-        setTimeout(() => {
-            notification.close(`${resource}-import`);
-        }, 4500);
     };
 
     const handleFinish = (
@@ -135,59 +146,15 @@ export const useImport = <
             ) as unknown as ImportErrorResult<TVariables>[],
         };
 
-        handleCleanup();
-
         onFinish?.(result);
     };
 
     useEffect(() => {
-        if (totalAmount > 0 && processedAmount > 0) {
-            const description = (
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        marginTop: "-7px",
-                    }}
-                >
-                    <Progress
-                        type="circle"
-                        percent={Math.floor(
-                            (processedAmount / totalAmount) * 100,
-                        )}
-                        width={50}
-                        strokeColor="#1890ff"
-                        status="normal"
-                    />
-                    <span style={{ marginLeft: 8, width: "100%" }}>
-                        {t(
-                            "notifications.importProgress",
-                            {
-                                processed: processedAmount,
-                                total: totalAmount,
-                            },
-                            `Importing: ${processedAmount}/${totalAmount}`,
-                        )}
-                    </span>
-                </div>
-            );
-
-            notification.open({
-                description,
-                message: null,
-                key: `${resource}-import`,
-                duration: 0,
-            });
-
-            if (processedAmount >= totalAmount) {
-            }
-        }
+        onProgress?.({ totalAmount, processedAmount });
     }, [totalAmount, processedAmount]);
 
-    const handleChange = ({
-        file,
-    }: UploadChangeParam): Promise<CreatedValuesType<TVariables, TData>[]> => {
+    const handleChange: HandleChangeType<TVariables, TData> = ({ file }) => {
+        handleCleanup();
         return new Promise<CreatedValuesType<TVariables, TData>[]>(
             (resolve) => {
                 setIsLoading(true);
@@ -196,7 +163,6 @@ export const useImport = <
                         const values = importCSVMapper(data, mapData);
 
                         setTotalAmount(values.length);
-
                         if (batchSize === 1) {
                             const createdValues = await Promise.all(
                                 values
@@ -215,8 +181,11 @@ export const useImport = <
                                         response
                                             .then(({ data }) => {
                                                 setProcessedAmount(
-                                                    (currentAmount) =>
-                                                        currentAmount + 1,
+                                                    (currentAmount) => {
+                                                        return (
+                                                            currentAmount + 1
+                                                        );
+                                                    },
                                                 );
 
                                                 return {
@@ -266,9 +235,12 @@ export const useImport = <
                                             response
                                                 .then((response) => {
                                                     setProcessedAmount(
-                                                        (currentAmount) =>
-                                                            currentAmount +
-                                                            currentBatchLength,
+                                                        (currentAmount) => {
+                                                            return (
+                                                                currentAmount +
+                                                                currentBatchLength
+                                                            );
+                                                        },
                                                     );
 
                                                     return {
@@ -306,16 +278,8 @@ export const useImport = <
     };
 
     return {
-        uploadProps: {
-            onChange: handleChange,
-            beforeUpload: () => false,
-            showUploadList: false,
-            accept: ".csv",
-        },
-        buttonProps: {
-            type: "default",
-            loading: isLoading,
-        },
         mutationResult,
+        isLoading,
+        handleChange,
     };
 };

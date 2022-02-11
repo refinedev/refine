@@ -1,12 +1,15 @@
 import React from "react";
 import {
-    List,
-    Table,
-    useTable,
     useTranslate,
     useUpdateMany,
     useNavigation,
     IResourceComponentsProps,
+} from "@pankod/refine-core";
+
+import {
+    List,
+    Table,
+    useTable,
     Icons,
     Space,
     Button,
@@ -15,7 +18,7 @@ import {
     Typography,
     Dropdown,
     Menu,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IReview } from "interfaces";
 

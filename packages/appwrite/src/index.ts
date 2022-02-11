@@ -1,5 +1,5 @@
-import { DataProvider, LiveProvider, LiveEvent } from "@pankod/refine";
-import { CrudFilters, CrudSorting } from "@pankod/refine/dist/interfaces";
+import { DataProvider, LiveProvider, LiveEvent } from "@pankod/refine-core";
+import { CrudFilters, CrudSorting } from "@pankod/refine-core/dist/interfaces";
 import { Appwrite } from "appwrite";
 
 export * from "appwrite";
@@ -136,8 +136,8 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
                     resource,
                     id,
                     variables as any,
-                    metaData?.readPermissions ?? ["*"],
-                    metaData?.writePermissions ?? ["*"],
+                    metaData?.readPermissions ?? ["role:all"],
+                    metaData?.writePermissions ?? ["role:all"],
                 );
 
             return {
@@ -152,8 +152,8 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
                 await appwriteClient.database.createDocument(
                     resource,
                     variables as unknown as object,
-                    metaData?.readPermissions ?? ["*"],
-                    metaData?.writePermissions ?? ["*"],
+                    metaData?.readPermissions ?? ["role:all"],
+                    metaData?.writePermissions ?? ["role:all"],
                 );
 
             return {
@@ -169,8 +169,8 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
                     appwriteClient.database.createDocument<any>(
                         resource,
                         document as unknown as object,
-                        metaData?.readPermissions ?? ["*"],
-                        metaData?.writePermissions ?? ["*"],
+                        metaData?.readPermissions ?? ["role:all"],
+                        metaData?.writePermissions ?? ["role:all"],
                     ),
                 ),
             );
@@ -223,8 +223,8 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
                         resource,
                         id,
                         variables as unknown as object,
-                        metaData?.readPermissions ?? ["*"],
-                        metaData?.writePermissions ?? ["*"],
+                        metaData?.readPermissions ?? ["role:all"],
+                        metaData?.writePermissions ?? ["role:all"],
                     ),
                 ),
             );

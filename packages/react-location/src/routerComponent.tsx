@@ -9,7 +9,7 @@ import {
     LayoutWrapper,
     CanAccess,
     ErrorComponent,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
 import { rankRoutes } from "react-location-rank-routes";
 
 import {
@@ -63,7 +63,7 @@ export const RouterComponent: React.FC<RouterProps> = ({
             <Router
                 location={locationFromProps ?? location}
                 {...rest}
-                filterRoutes={rankRoutes}
+                filterRoutes={rankRoutes as any}
                 routes={routes}
             />
         );
@@ -120,7 +120,7 @@ export const RouterComponent: React.FC<RouterProps> = ({
         <Router
             location={locationFromProps ?? location}
             {...rest}
-            filterRoutes={rankRoutes}
+            filterRoutes={rankRoutes as any}
             routes={routes}
         />
     );

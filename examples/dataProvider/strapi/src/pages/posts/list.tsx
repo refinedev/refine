@@ -1,8 +1,9 @@
+import { IResourceComponentsProps } from "@pankod/refine-core";
+
 import {
     List,
     Table,
     useTable,
-    IResourceComponentsProps,
     getDefaultSortOrder,
     FilterDropdown,
     Select,
@@ -12,7 +13,7 @@ import {
     Space,
     EditButton,
     DeleteButton,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost } from "interfaces";
 

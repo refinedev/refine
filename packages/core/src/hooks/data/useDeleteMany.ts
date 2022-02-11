@@ -23,9 +23,9 @@ import {
     useCacheQueries,
     useCheckError,
     usePublish,
+    useHandleNotification,
 } from "@hooks";
-import { ActionTypes } from "@contexts/notification";
-import { handleNotification } from "@definitions";
+import { ActionTypes } from "@contexts/undoableQueue";
 
 type DeleteManyParams = {
     ids: string[];
@@ -51,10 +51,10 @@ type UseDeleteManyReturnType<
  *
  * It uses `deleteMany` method as mutation function from the `dataProvider` which is passed to `<Refine>`.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/data/useDeleteMany} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/data/useDeleteMany} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/core/interfaceReferences#httperror `HttpError`}
  * @typeParam TVariables - Values for params. default `{}`
  *
  */
@@ -73,6 +73,7 @@ export const useDeleteMany = <
     const translate = useTranslate();
     const cacheQueries = useCacheQueries();
     const publish = usePublish();
+    const handleNotification = useHandleNotification();
 
     const queryClient = useQueryClient();
 
@@ -204,8 +205,8 @@ export const useDeleteMany = <
             onSuccess: (_data, { ids, resource, successNotification }) => {
                 handleNotification(successNotification, {
                     key: `${ids}-${resource}-notification`,
-                    message: translate("notifications.success", "Success"),
-                    description: translate(
+                    description: translate("notifications.success", "Success"),
+                    message: translate(
                         "notifications.deleteSuccess",
                         {
                             resource: translate(
@@ -247,6 +248,7 @@ export const useDeleteMany = <
                             `Error (status code: ${err.statusCode})`,
                         ),
                         description: err.message,
+                        type: "error",
                     });
                 }
             },

@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { IResourceComponentsProps } from "@pankod/refine-core";
+
 import {
     List,
     Table,
     useTable,
-    IResourceComponentsProps,
     getDefaultSortOrder,
     FilterDropdown,
     Select,
@@ -16,7 +17,7 @@ import {
     Form,
     Radio,
     Tag,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost } from "interfaces";
 

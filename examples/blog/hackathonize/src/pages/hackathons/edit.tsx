@@ -1,4 +1,4 @@
-import { Edit, Form, Input, useForm, DatePicker } from "@pankod/refine";
+import { Edit, Form, Input, useForm, DatePicker } from "@pankod/refine-antd";
 import dayjs from "dayjs";
 
 import { HackathonType } from "interfaces";

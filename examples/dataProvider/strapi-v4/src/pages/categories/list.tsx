@@ -1,16 +1,17 @@
 import { useState } from "react";
+import { IResourceComponentsProps } from "@pankod/refine-core";
+
 import {
     List,
     Table,
     useTable,
-    IResourceComponentsProps,
     Space,
     EditButton,
     DateField,
     DeleteButton,
     Form,
     Radio,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { ICategory } from "interfaces";
 

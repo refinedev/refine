@@ -7,10 +7,9 @@ import {
     Icons,
     Switch,
     Select,
-    Input,
     Form,
     InputNumber,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { Group } from "..";
 

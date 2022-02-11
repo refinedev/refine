@@ -5,9 +5,9 @@ import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
 
 /**
- *  `useAuthenticated` calls the `checkAuth` method from the {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
+ *  `useAuthenticated` calls the `checkAuth` method from the {@link https://refine.dev/docs/core/providers/auth-provider `authProvider`} under the hood.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/auth/useAuthenticated} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/auth/useAuthenticated} for more details.
  *
  */
 export const useAuthenticated = (

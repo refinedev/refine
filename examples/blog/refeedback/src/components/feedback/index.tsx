@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Card, Button, Icons, Typography } from "@pankod/refine";
+import { Card, Button, Icons, Typography } from "@pankod/refine-antd";
 
 import { TypePage } from "./typePage";
 import { InputPage } from "./inputPage";

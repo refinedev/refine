@@ -1,6 +1,7 @@
-import { Icon } from "@pankod/refine";
+import * as React from "react";
+import { SVGProps } from "react";
 
-const SvgFinefoodsIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+const SvgFinefoodsIcon = (props: SVGProps<SVGSVGElement>) => (
     <svg
         viewBox="0 0 192 32"
         fill="none"
@@ -22,6 +23,4 @@ const SvgFinefoodsIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     </svg>
 );
 
-export const FinefoodsIcon = (props: any) => (
-    <Icon component={() => <SvgFinefoodsIcon {...props} />} {...props} />
-);
+export default SvgFinefoodsIcon;

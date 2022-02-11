@@ -1,11 +1,16 @@
-import { Refine, AuthProvider } from "@pankod/refine";
+import { Refine, AuthProvider } from "@pankod/refine-core";
+import {
+    notificationProvider,
+    Layout,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Login } from "pages/login";
@@ -28,8 +33,7 @@ const App: React.FC = () => {
 
     const authProvider: AuthProvider = {
         login: () => {
-            loginWithRedirect();
-            return Promise.resolve();
+            return Promise.resolve({});
         },
         logout: () => {
             logout({ returnTo: window.location.origin });
@@ -77,6 +81,9 @@ const App: React.FC = () => {
                     show: PostShow,
                 },
             ]}
+            notificationProvider={notificationProvider}
+            Layout={Layout}
+            catchAll={<ErrorComponent />}
         />
     );
 };

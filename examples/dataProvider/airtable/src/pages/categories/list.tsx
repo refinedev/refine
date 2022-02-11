@@ -1,13 +1,14 @@
+import { IResourceComponentsProps } from "@pankod/refine-core";
+
 import {
     List,
     Table,
     useTable,
-    IResourceComponentsProps,
     Space,
     EditButton,
     DeleteButton,
     BooleanField,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { ICategory } from "interfaces";
 

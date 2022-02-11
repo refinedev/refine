@@ -1,14 +1,15 @@
 import { useContext } from "react";
+import { IResourceComponentsProps } from "@pankod/refine-core";
+
 import {
     Edit,
     Form,
     Input,
-    IResourceComponentsProps,
     Select,
     useForm,
     useSelect,
     InputNumber,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IOrder, IProduct } from "interfaces";
 import { StoreContext } from "context/store";

@@ -1,10 +1,11 @@
-import { DataProvider } from "@pankod/refine";
+import { DataProvider } from "@pankod/refine-core";
 import {
     CrudFilters,
     CrudOperators,
     CrudSorting,
-} from "@pankod/refine/dist/interfaces";
+} from "@pankod/refine-core/dist/interfaces";
 import { compile, Formula } from "@qualifyze/airtable-formulator";
+
 import Airtable from "airtable";
 import { AirtableBase } from "airtable/lib/airtable_base";
 

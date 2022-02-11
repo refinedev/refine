@@ -1,14 +1,15 @@
+import { IResourceComponentsProps } from "@pankod/refine-core";
+
 import {
     List,
     Table,
     useTable,
-    IResourceComponentsProps,
     Space,
     EditButton,
     DeleteButton,
     ShowButton,
     EmailField,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IUser } from "interfaces";
 

@@ -1,6 +1,6 @@
 {
   "name": "admin",
-  "version": "2.6.3",
+  "version": "3.1.0",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.1.2",

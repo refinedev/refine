@@ -1,3 +1,4 @@
+import { GetListResponse } from "@pankod/refine-core";
 import {
     useTable,
     List,
@@ -6,9 +7,8 @@ import {
     EditButton,
     ShowButton,
     DeleteButton,
-    GetListResponse,
-} from "@pankod/refine";
-import type { IResourceComponentsProps } from "@pankod/refine";
+} from "@pankod/refine-antd";
+import type { IResourceComponentsProps } from "@pankod/refine-core";
 import { IPost } from "../../interfaces";
 
 export const PostList: React.FC<

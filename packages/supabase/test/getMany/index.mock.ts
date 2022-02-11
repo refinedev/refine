@@ -56,3 +56,53 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
             "kong/2.2.1",
         ],
     );
+
+nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
+    encodedQueryParams: true,
+})
+    .get("/rest/v1/posts")
+    .query({ select: "title", id: "in.%283%2C61%29" })
+    .reply(
+        200,
+        [
+            "1f8b08000000000000038bae562ac92cc94955b252324c2c4e0122a55a1d052e0584b04f7e516aae8267417169ae8291ae99526d2c0076408e3734000000",
+        ],
+        [
+            "Date",
+            "Fri, 28 Jan 2022 13:02:57 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "close",
+            "CF-Ray",
+            "6d4a6b08d9755488-IST",
+            "Access-Control-Allow-Origin",
+            "*",
+            "Content-Encoding",
+            "gzip",
+            "Content-Location",
+            "/posts?id=in.%283%2C61%29&select=title",
+            "Content-Range",
+            "0-1/*",
+            "Vary",
+            "Accept-Encoding, Origin",
+            "Via",
+            "kong/2.2.1",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Content-Profile",
+            "public",
+            "Expect-CT",
+            'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+            "X-Kong-Proxy-Latency",
+            "1",
+            "X-Kong-Upstream-Latency",
+            "3",
+            "Server",
+            "cloudflare",
+            "alt-svc",
+            'h3=":443"; ma=86400, h3-29=":443"; ma=86400',
+        ],
+    );

@@ -4,7 +4,7 @@ import {
     CrudFilter,
     LiveEvent,
     HttpError,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
 import {
     createClient,
     PostgrestError,
@@ -62,13 +62,15 @@ const handleError = (error: PostgrestError) => {
 
 const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
     return {
-        getList: async ({ resource, pagination, filters, sort }) => {
+        getList: async ({ resource, pagination, filters, sort, metaData }) => {
             const current = pagination?.current || 1;
             const pageSize = pagination?.pageSize || 10;
 
             const query = supabaseClient
                 .from(resource)
-                .select("*", { count: "exact" })
+                .select(metaData?.select ?? "*", {
+                    count: "exact",
+                })
                 .range((current - 1) * pageSize, current * pageSize - 1);
 
             sort?.map((item) => {
@@ -91,11 +93,11 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        getMany: async ({ resource, ids }) => {
+        getMany: async ({ resource, ids, metaData }) => {
             const { data, error } = await supabaseClient
                 .from(resource)
-                .select("*")
-                .in("id", ids);
+                .select(metaData?.select ?? "*")
+                .in(metaData?.id ?? "id", ids);
 
             if (error) {
                 return handleError(error);
@@ -134,12 +136,16 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        update: async ({ resource, id, variables }) => {
-            const { data, error } = await supabaseClient
-                .from(resource)
-                .update(variables)
-                .match({ id });
+        update: async ({ resource, id, variables, metaData }) => {
+            const query = supabaseClient.from(resource).update(variables);
 
+            if (metaData?.id) {
+                query.eq(metaData?.id, id);
+            } else {
+                query.match({ id });
+            }
+
+            const { data, error } = await query;
             if (error) {
                 return handleError(error);
             }
@@ -149,14 +155,20 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        updateMany: async ({ resource, ids, variables }) => {
+        updateMany: async ({ resource, ids, variables, metaData }) => {
             const response = await Promise.all(
                 ids.map(async (id) => {
-                    const { data, error } = await supabaseClient
+                    const query = supabaseClient
                         .from(resource)
-                        .update(variables)
-                        .match({ id });
+                        .update(variables);
 
+                    if (metaData?.id) {
+                        query.eq(metaData?.id, id);
+                    } else {
+                        query.match({ id });
+                    }
+
+                    const { data, error } = await query;
                     if (error) {
                         return handleError(error);
                     }
@@ -170,12 +182,18 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        getOne: async ({ resource, id }) => {
-            const { data, error } = await supabaseClient
+        getOne: async ({ resource, id, metaData }) => {
+            const query = supabaseClient
                 .from(resource)
-                .select("*")
-                .match({ id });
+                .select(metaData?.select ?? "*");
 
+            if (metaData?.id) {
+                query.eq(metaData?.id, id);
+            } else {
+                query.match({ id });
+            }
+
+            const { data, error } = await query;
             if (error) {
                 return handleError(error);
             }
@@ -185,12 +203,16 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        deleteOne: async ({ resource, id }) => {
-            const { data, error } = await supabaseClient
-                .from(resource)
-                .delete()
-                .match({ id });
+        deleteOne: async ({ resource, id, metaData }) => {
+            const query = supabaseClient.from(resource).delete();
 
+            if (metaData?.id) {
+                query.eq(metaData?.id, id);
+            } else {
+                query.match({ id });
+            }
+
+            const { data, error } = await query;
             if (error) {
                 return handleError(error);
             }
@@ -200,16 +222,22 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             };
         },
 
-        deleteMany: async ({ resource, ids }) => {
+        deleteMany: async ({ resource, ids, metaData }) => {
             const response = await Promise.all(
                 ids.map(async (id) => {
-                    const { data, error } = await supabaseClient
-                        .from(resource)
-                        .delete()
-                        .match({ id });
+                    const query = supabaseClient.from(resource).delete();
+
+                    if (metaData?.id) {
+                        query.eq(metaData?.id, id);
+                    } else {
+                        query.match({ id });
+                    }
+
+                    const { data, error } = await query;
                     if (error) {
                         return handleError(error);
                     }
+
                     return (data || [])[0];
                 }),
             );

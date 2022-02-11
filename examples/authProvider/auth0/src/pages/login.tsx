@@ -1,7 +1,10 @@
-import { AntdLayout, Button, useLogin } from "@pankod/refine";
+import { useLogin } from "@pankod/refine-core";
+
+import { AntdLayout, Button } from "@pankod/refine-antd";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const Login: React.FC = () => {
-    const { mutate: login, isLoading } = useLogin();
+    const { loginWithRedirect } = useAuth0();
 
     return (
         <AntdLayout
@@ -19,8 +22,7 @@ export const Login: React.FC = () => {
                         type="primary"
                         size="large"
                         block
-                        loading={isLoading}
-                        onClick={() => login({})}
+                        onClick={() => loginWithRedirect()}
                     >
                         Sign in
                     </Button>

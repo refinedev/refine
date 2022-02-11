@@ -1,3 +1,5 @@
+import { IResourceComponentsProps, useMany } from "@pankod/refine-core";
+
 import {
     List,
     Table,
@@ -6,14 +8,12 @@ import {
     getDefaultFilter,
     TagField,
     useTable,
-    IResourceComponentsProps,
     getDefaultSortOrder,
     FilterDropdownProps,
     useSelect,
     Select,
-    useMany,
     Input,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { ICategory, IPost } from "interfaces";
 

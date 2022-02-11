@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
-import { ArgsProps } from "antd/lib/notification";
 
 import { DataContext } from "@contexts/data";
 import {
@@ -11,9 +10,9 @@ import {
     BaseRecord,
     HttpError,
     MetaDataQuery,
+    OpenNotificationParams,
 } from "../../interfaces";
-import { useTranslate, useCheckError } from "@hooks";
-import { handleNotification } from "@definitions/helpers";
+import { useTranslate, useCheckError, useHandleNotification } from "@hooks";
 
 interface UseCustomConfig<TQuery, TPayload> {
     sort?: CrudSorting;
@@ -28,8 +27,8 @@ export type UseCustomProps<TData, TError, TQuery, TPayload> = {
     method: "get" | "delete" | "head" | "options" | "post" | "put" | "patch";
     config?: UseCustomConfig<TQuery, TPayload>;
     queryOptions?: UseQueryOptions<CustomResponse<TData>, TError>;
-    successNotification?: ArgsProps | false;
-    errorNotification?: ArgsProps | false;
+    successNotification?: OpenNotificationParams | false;
+    errorNotification?: OpenNotificationParams | false;
     metaData?: MetaDataQuery;
 };
 
@@ -38,10 +37,10 @@ export type UseCustomProps<TData, TError, TQuery, TPayload> = {
  *
  * It uses the `custom` method from the `dataProvider` which is passed to `<Refine>`.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/data/useCustom} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/data/useCustom} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/core/interfaceReferences#httperror `HttpError`}
  * @typeParam TQuery - Values for query params
  * @typeParam TPayload - Values for params
  *
@@ -66,6 +65,7 @@ export const useCustom = <
     const { custom } = useContext<IDataContext>(DataContext);
     const { mutate: checkError } = useCheckError();
     const translate = useTranslate();
+    const handleNotification = useHandleNotification();
 
     const queryResponse = useQuery<CustomResponse<TData>, TError>(
         [`custom/${method}-${url}`, { ...config, ...metaData }],

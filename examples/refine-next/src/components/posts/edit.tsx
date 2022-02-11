@@ -1,4 +1,11 @@
-import { useForm, useSelect, Edit, Form, Input, Select } from "@pankod/refine";
+import {
+    useForm,
+    useSelect,
+    Edit,
+    Form,
+    Input,
+    Select,
+} from "@pankod/refine-antd";
 import { IPost } from "src/interfaces";
 
 export const PostEdit: React.FC = () => {

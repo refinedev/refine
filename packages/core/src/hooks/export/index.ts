@@ -12,7 +12,6 @@ import {
 import { DataContext } from "@contexts/data";
 import { userFriendlyResourceName } from "@definitions";
 import { ExportToCsv, Options } from "export-to-csv";
-import dayjs from "dayjs";
 
 type UseExportOptionsType<
     TData extends BaseRecord = BaseRecord,
@@ -36,7 +35,7 @@ type UseExportReturnType = {
 /**
  * `useExport` hook allows you to make your resources exportable.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/import-export/useExport} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/import-export/useExport} for more details.
  *
  * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TVariables - Values for params.
@@ -71,7 +70,7 @@ export const useExport = <
     const filename = `${userFriendlyResourceName(
         resource,
         "plural",
-    )}-${dayjs().format("YYYY-MM-DD-HH-mm-ss")}`;
+    )}-${new Date().toLocaleString()}`;
 
     const { getList } = useContext<IDataContext>(DataContext);
 
