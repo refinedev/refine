@@ -11,7 +11,7 @@ import { useNavigation, useNotification } from "@hooks";
  * @see {@link https://refine.dev/docs/core/hooks/auth/useLogout} for more details.
  *
  */
-export const useLogout = <TVariables = {}>(): UseMutationResult<
+export const useLogout = <TVariables = void>(): UseMutationResult<
     TLogoutData,
     Error,
     TVariables,
