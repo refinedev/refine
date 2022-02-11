@@ -5,10 +5,10 @@ siderbar_label: useLogin
 description: useLogin data hook from refine is a modified version of react-query's useMutation for authenttication.
 ---
 
-`useLogin`  calls `login` method from [`authProvider`](/core/providers/auth-provider.md) under the hood.  
+`useLogin` calls `login` method from [`authProvider`](/core/providers/auth-provider.md) under the hood.  
 It authenticates the app if `login` method from `authProvider` resolves and if it rejects shows an error notification. After successful authentication it redirects the app to root.
 
-It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation). 
+It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation).
 
 Data that is resolved from `login` will be returned as the `data` in the query result.
 
@@ -24,7 +24,7 @@ import { Form } from "@pankod/refine-antd";
 type LoginVariables = {
     username: string;
     password: string;
-}
+};
 
 export const LoginPage = () => {
     const { mutate: login } = useLogin<LoginVariables>();
@@ -33,21 +33,73 @@ export const LoginPage = () => {
         login(values);
     };
 
-    return (
-        <Form onFinish={onSubmit}>
-            // rest of the login form
-        </Form>
-    )
-}
+    return <Form onFinish={onSubmit}>// rest of the login form</Form>;
+};
 ```
 
 :::tip
 `mutate` acquired from `useLogin` can accept any kind of object for values since `login` method from `authProvider` doesn't have a restriction on its parameters.  
 A type parameter for the values can be provided to `useLogin`.
+
 ```tsx
-const { mutate: login } = useLogin<{ username: string; password: string; }>();
+const { mutate: login } = useLogin<{ username: string; password: string }>();
 ```
+
 :::
+
+## Redirection after login
+
+We have 3 options for redirecting the app after login successfully .
+
+-   If promise returned from `login` is resolved with nothing, app will be redirected to the `/` route by default.
+
+-   A custom url can be resolved from the promise returned from the `login` method of the [authProvider](/core/providers/auth-provider.md).
+
+```tsx
+const authProvider: AuthProvider = {
+    ...
+    login: () => {
+        ...
+        return Promise.resolve("/custom-url");
+    }
+}
+```
+
+A custom url can be given to mutate function from the `useLogin` hook if you want to redirect yourself to a certain url.
+
+```tsx
+import { useLogin } from "@pankod/refine-core";
+
+const { mutate: login } = useLogin();
+
+login({ redirectPath: "/custom-url" });
+```
+
+Then, you can handle this url in your `login` method of the `authProvider`.
+
+```tsx
+
+const authProvider: AuthProvider = {
+    ...
+    login: ({redirectPath}) => {
+        ...
+        return Promise.resolve(redirectPath);
+    }
+}
+
+```
+
+-   If promise returned from the `login` method of the `authProvider` gets resolved with `false` no redirection will occur.
+
+```tsx
+const authProvider: AuthProvider = {
+    ...
+    login: () => {
+        ...
+        return Promise.resolve(false);
+    }
+}
+```
 
 :::caution
 This hook can only be used if `authProvider` is provided.
