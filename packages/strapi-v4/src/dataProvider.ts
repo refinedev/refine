@@ -77,42 +77,42 @@ const generateFilter = (filters?: CrudFilters) => {
     return queryFilters;
 };
 
-const normalizeData = (data: any) => {
+const normalizeData: any = (data: any) => {
     // following code credits goes to roelbeerens see: https://forum.strapi.io/t/discussion-regarding-the-complex-response-structure-for-rest-graphql-developer-experience/13400/9
-    const isObject = (data:any) =>
-      Object.prototype.toString.call(data) === "[object Object]";
-    
-    const flatten = (data:any) => {
-      if (!data.attributes) return data;
-  
-      return {
-        id: data.id,
-        ...data.attributes,
-      };
+    const isObject = (data: any) =>
+        Object.prototype.toString.call(data) === "[object Object]";
+
+    const flatten = (data: any) => {
+        if (!data.attributes) return data;
+
+        return {
+            id: data.id,
+            ...data.attributes,
+        };
     };
-  
+
     if (Array.isArray(data)) {
-      return data.map((item) => normalizeData(item));
+        return data.map((item) => normalizeData(item));
     }
-  
+
     if (isObject(data)) {
-      if (Array.isArray(data.data)) {
-        data = [...data.data];
-      } else if (isObject(data.data)) {
-        data = flatten({ ...data.data });
-      } else if (data.data === null) {
-        data = null;
-      } else {
-        data = flatten(data);
-      }
-  
-      for (const key in data) {
-        data[key] = normalizeData(data[key]);
-      }
-  
-      return data;
+        if (Array.isArray(data.data)) {
+            data = [...data.data];
+        } else if (isObject(data.data)) {
+            data = flatten({ ...data.data });
+        } else if (data.data === null) {
+            data = null;
+        } else {
+            data = flatten(data);
+        }
+
+        for (const key in data) {
+            data[key] = normalizeData(data[key]);
+        }
+
+        return data;
     }
-  
+
     return data;
 };
 
@@ -171,52 +171,52 @@ export const DataProvider = (
 
     create: async ({ resource, variables }) => {
         const url = `${apiUrl}/${resource}`;
-    
-        let dataVariables = { data: variables };
-    
+
+        let dataVariables: any = { data: variables };
+
         if (resource === "users") {
-          dataVariables = variables;
+            dataVariables = variables;
         }
 
         const { data } = await httpClient.post(url, dataVariables);
         return {
-          data,
+            data,
         };
-      },
-    
-      update: async ({ resource, id, variables }) => {
+    },
+
+    update: async ({ resource, id, variables }) => {
         const url = `${apiUrl}/${resource}/${id}`;
-    
-        let dataVariables = { data: variables };
-    
+
+        let dataVariables: any = { data: variables };
+
         if (resource === "users") {
-          dataVariables = variables;
+            dataVariables = variables;
         }
-    
+
         const { data } = await httpClient.put(url, dataVariables);
         return {
-          data,
+            data,
         };
-      },
-    
-      updateMany: async ({ resource, ids, variables }) => {
+    },
+
+    updateMany: async ({ resource, ids, variables }) => {
         const response = await Promise.all(
-          ids.map(async (id) => {
-            const url = `${apiUrl}/${resource}/${id}`;
-    
-            let dataVariables = { data: variables };
-        
-            if (resource === "users") {
-              dataVariables = variables;
-            }
-            const { data } = await httpClient.put(url, dataVariables);
-            return data
-          })
+            ids.map(async (id) => {
+                const url = `${apiUrl}/${resource}/${id}`;
+
+                let dataVariables: any = { data: variables };
+
+                if (resource === "users") {
+                    dataVariables = variables;
+                }
+                const { data } = await httpClient.put(url, dataVariables);
+                return data;
+            }),
         );
-    
+
         return { data: response };
-      },
-      
+    },
+
     createMany: async ({ resource, variables }) => {
         const response = await Promise.all(
             variables.map(async (param) => {
