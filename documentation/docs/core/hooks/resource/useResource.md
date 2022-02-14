@@ -22,22 +22,10 @@ const resources = useResource();
 #### Interfaces
 
 ```ts
-interface IResourceItem extends IResourceComponents {
-    name: string;
+interface OptionsProps {
     label?: string;
     route?: string;
-    icon?: ReactNode;
-    canCreate?: boolean;
-    canEdit?: boolean;
-    canShow?: boolean;
-    canDelete?: boolean;
-}
-
-interface IResourceComponents {
-    list?: React.FunctionComponent<IResourceComponentsProps>;
-    create?: React.FunctionComponent<IResourceComponentsProps>;
-    edit?: React.FunctionComponent<IResourceComponentsProps>;
-    show?: React.FunctionComponent<IResourceComponentsProps>;
+    [key: string]: any;
 }
 
 interface IResourceComponentsProps<TCrudData = any> {
@@ -47,6 +35,25 @@ interface IResourceComponentsProps<TCrudData = any> {
     canShow?: boolean;
     name?: string;
     initialData?: TCrudData;
+    options?: OptionsProps;
+}
+interface IResourceComponents {
+    list?: React.FunctionComponent<IResourceComponentsProps>;
+    create?: React.FunctionComponent<IResourceComponentsProps>;
+    edit?: React.FunctionComponent<IResourceComponentsProps>;
+    show?: React.FunctionComponent<IResourceComponentsProps>;
+}
+
+interface IResourceItem extends IResourceComponents {
+    name: string;
+    label?: string;
+    route?: string;
+    icon?: ReactNode;
+    canCreate?: boolean;
+    canEdit?: boolean;
+    canShow?: boolean;
+    canDelete?: boolean;
+    options?: OptionsProps;
 }
 ```
 
