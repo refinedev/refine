@@ -19,4 +19,31 @@ describe("useResource Hook", () => {
             ]),
         );
     });
+
+    it("should successfully return options value", async () => {
+        const { result } = renderHook(() => useResource(), {
+            wrapper: TestWrapper({
+                dataProvider: MockJSONServer,
+                resources: [
+                    {
+                        name: "posts",
+                        options: {
+                            isThatReallyWork: true,
+                        },
+                    },
+                ],
+            }),
+        });
+
+        expect(result.current.resources).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({
+                    name: "posts",
+                    options: {
+                        isThatReallyWork: true,
+                    },
+                }),
+            ]),
+        );
+    });
 });
