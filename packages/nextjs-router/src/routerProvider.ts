@@ -23,12 +23,12 @@ export const RouterProvider: IRouterProvider = {
 
         const queryParams = qs.stringify(query);
 
-  const sliceLength = Math.min(
-    ...[
-      asPath.indexOf('?') > 0 ? asPath.indexOf('?') : asPath.length,
-      asPath.indexOf('#') > 0 ? asPath.indexOf('#') : asPath.length,
-    ],
-  );
+        const sliceLength = Math.min(
+            ...[
+                asPath.indexOf("?") > 0 ? asPath.indexOf("?") : asPath.length,
+                asPath.indexOf("#") > 0 ? asPath.indexOf("#") : asPath.length,
+            ],
+        );
 
         return {
             pathname: asPath.slice(0, sliceLength),
