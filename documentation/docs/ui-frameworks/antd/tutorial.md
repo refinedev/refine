@@ -438,7 +438,7 @@ export const App: React.FC = () => {
 };
 ```
 
-If you are new to Typescript, note you will need a few more files which help `src/App.tsx` to find your pages and posts. In the `/pages` folder, put this `index.tsx` file in it which allows everything in the `posts` folder to be used elsewhere.
+Note you will need a few more files which help `src/App.tsx` to find your pages and posts. In the `/pages` folder, put this `index.tsx` file in it which allows everything in the `posts` folder to be used elsewhere.
 
 ```tsx title="src/pages/index.tsx"
 
