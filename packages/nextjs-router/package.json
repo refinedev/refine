@@ -34,19 +34,18 @@
     }
   ],
   "devDependencies": {
+    "@types/qs": "^6.9.7",
     "@size-limit/preset-small-lib": "^5.0.5",
     "size-limit": "^5.0.5",
     "tsdx": "^0.14.1",
-    "tslib": "^2.3.1"
+    "tslib": "^2.3.1",
+    "@pankod/refine-core": "^3.1.2",
+    "next": "^12.0.3"
   },
   "dependencies": {
-    "@pankod/refine-core": "^3.1.4",
-    "@types/qs": "^6.9.7",
-    "next": "^12.0.3",
     "qs": "^6.10.1"
   },
   "peerDependencies": {
-    "@pankod/refine-core": "^3.0.2",
     "next": "^12.0.3"
   },
   "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
