@@ -22,7 +22,7 @@ import {
     parseTableParams,
     stringifyTableParams,
     unionFilters,
-    setInitialFilters,
+    useTable as useTableCore,
 } from "@pankod/refine-core";
 
 export type useSimpleListProps<TData, TError, TSearchVariables = unknown> =
@@ -88,6 +88,29 @@ export const useSimpleList = <
 > = {}): useSimpleListReturnType<TData, TError, TSearchVariables> => {
     const { useLocation, useParams } = useRouterContext();
 
+    const {
+        filters,
+        sorter,
+        current,
+        pageSize,
+        setFilters,
+        setCurrent,
+        setPageSize,
+    } = useTableCore({
+        resource: resourceFromProp,
+        initialSorter,
+        initialFilter,
+        permanentFilter,
+        queryOptions,
+        successNotification,
+        errorNotification,
+        liveMode,
+        onLiveEvent,
+        liveParams,
+        metaData,
+        ...listProps,
+    });
+
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const { push } = useNavigation();
@@ -129,13 +152,6 @@ export const useSimpleList = <
         defaultSorter = parsedSorter.length ? parsedSorter : defaultSorter;
         defaultFilter = parsedFilters.length ? parsedFilters : defaultFilter;
     }
-
-    const [current, setCurrent] = useState(defaultCurrent);
-    const [pageSize, setPageSize] = useState(defaultPageSize);
-    const [filters, setFilters] = useState<CrudFilters>(
-        setInitialFilters(permanentFilter, defaultFilter ?? []),
-    );
-    const [sorter, setSorter] = useState<CrudSorting>(defaultSorter ?? []);
 
     useEffect(() => {
         if (syncWithLocation) {
@@ -181,9 +197,7 @@ export const useSimpleList = <
         if (onSearch) {
             const searchFilters = await onSearch(values);
             setCurrent(1);
-            return setFilters((prevFilters) =>
-                unionFilters(permanentFilter, searchFilters, prevFilters),
-            );
+            return setFilters(filters);
         }
     };
 
