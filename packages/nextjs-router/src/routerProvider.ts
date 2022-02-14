@@ -31,7 +31,7 @@ export const RouterProvider: IRouterProvider = {
   );
 
         return {
-            pathname: asPath.split("?")[0],
+            pathname: asPath.slice(0, sliceLength),
             search: queryParams && `?${queryParams}`,
         };
     },
