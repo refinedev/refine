@@ -92,20 +92,15 @@ export const useSimpleList = <
 
     const { push } = useNavigation();
 
-    const { search } = useLocation();
+    const { search, pathname } = useLocation();
 
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
-    let syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
+    const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
 
     const [form] = useForm<TSearchVariables>();
 
     const resourceWithRoute = useResourceWithRoute();
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
-
-    // disable syncWithLocation for custom resource tables
-    if (resourceFromProp) {
-        syncWithLocation = false;
-    }
 
     let defaultPageSize = 10;
     let defaultCurrent = 1;
@@ -148,7 +143,7 @@ export const useSimpleList = <
                 filters,
             });
 
-            return push(`/${resource.route}?${stringifyParams}`);
+            return push(`${pathname}?${stringifyParams}`);
         }
     }, [syncWithLocation, current, pageSize, sorter, filters]);
 
