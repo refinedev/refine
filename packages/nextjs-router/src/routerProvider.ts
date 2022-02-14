@@ -19,12 +19,12 @@ export const RouterProvider: IRouterProvider = {
     },
     useLocation: () => {
         const router = useRouter();
-        const { pathname, query } = router;
+        const { query, asPath } = router;
 
         const queryParams = qs.stringify(query);
 
         return {
-            pathname,
+            pathname: asPath.split("?")[0],
             search: queryParams && `?${queryParams}`,
         };
     },
