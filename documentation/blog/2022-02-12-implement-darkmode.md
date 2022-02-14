@@ -1,5 +1,5 @@
 ---
-title: Darkmode with Refine
+title: Implementing Dark Mode In Ant Design Using gulp
 description: Add a darkmode switch to your Refine app
 slug: darkmode-with-refine
 authors: vmalep
