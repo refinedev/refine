@@ -57,7 +57,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                         justifyContent: "center",
                     }}
                     {...listProps}
-                    renderItem={(item, index) => (
+                    renderItem={(item) => (
                         <AntdList.Item>
                             <ProductItem item={item} editShow={editShow} />
                         </AntdList.Item>
