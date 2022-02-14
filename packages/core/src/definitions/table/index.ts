@@ -32,11 +32,13 @@ export const parseTableParams = (url: string) => {
     Object.keys(filters).map((item) => {
         const [field, operator] = item.split("__");
         const value = filters[item];
-        parsedFilters.push({
-            field,
-            operator: operator as CrudOperators,
-            value,
-        });
+        if (operator) {
+            parsedFilters.push({
+                field,
+                operator: operator as CrudOperators,
+                value,
+            });
+        }
     });
 
     return {
