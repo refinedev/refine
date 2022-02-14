@@ -336,7 +336,7 @@ Let's create a **Page** component to fetch **posts** and display them as a table
 
 First, we'll need an interface to work with the data from the API endpoint.
 
-Create a new folder named _"interface"_ under _"/src"_ if you don't already have one. Then create a _"index.d.ts"_ file with the following code:
+Create a new folder named _"interfaces"_ under _"/src"_ if you don't already have one. Then create a _"index.d.ts"_ file with the following code:
 
 ```ts title="interfaces/index.d.ts"
 export interface IPost {

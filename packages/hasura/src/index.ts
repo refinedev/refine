@@ -45,21 +45,25 @@ export type HasuraFilterCondition =
     | "_nilike"
     | "_is_null";
 
-const hasuraFilters: Record<CrudOperators, HasuraFilterCondition> = {
-    eq: "_eq",
-    ne: "_neq",
-    lt: "_lt",
-    gt: "_gt",
-    lte: "_lte",
-    gte: "_gte",
-    in: "_in",
-    nin: "_nin",
-    contains: "_ilike",
-    ncontains: "_nilike",
-    containss: "_like",
-    ncontainss: "_nlike",
-    null: "_is_null",
-};
+const hasuraFilters: Record<CrudOperators, HasuraFilterCondition | undefined> =
+    {
+        eq: "_eq",
+        ne: "_neq",
+        lt: "_lt",
+        gt: "_gt",
+        lte: "_lte",
+        gte: "_gte",
+        in: "_in",
+        nin: "_nin",
+        contains: "_ilike",
+        ncontains: "_nilike",
+        containss: "_like",
+        ncontainss: "_nlike",
+        null: "_is_null",
+        between: undefined,
+        nbetween: undefined,
+        nnull: undefined,
+    };
 
 export const generateFilters: any = (filters?: CrudFilters) => {
     if (!filters) {
@@ -70,8 +74,13 @@ export const generateFilters: any = (filters?: CrudFilters) => {
 
     filters.forEach((filter) => {
         resultFilter[filter.field] = {};
-        resultFilter[filter.field][hasuraFilters[filter.operator]] =
-            filter.value;
+        const operator = hasuraFilters[filter.operator];
+
+        if (!operator) {
+            throw new Error(`Operator ${filter.operator} is not supported`);
+        }
+
+        resultFilter[filter.field][operator] = filter.value;
     });
 
     return resultFilter;
