@@ -30,7 +30,11 @@ title: Interface References
     "ncontains" |
     "containss" |
     "ncontainss" |
-    "null";
+    "between" |
+    "nbetween" |
+    "null" |
+    "nnull";
+
 ```
 
 | Type           | Description                     |
@@ -47,7 +51,10 @@ title: Interface References
 | `"ncontains"`  | Doesn't contain                 |
 | `"containss"`  | Contains, case sensitive        |
 | `"ncontainss"` | Doesn't contain, case sensitive |
+| `"between"`    | Between                         |
+| `"nbetween"`   | Doesn't between                 |
 | `"null"`       | Is null or not null             |
+| `"nnull"`      | Not null                        |
 
 ## CrudSorting
 
