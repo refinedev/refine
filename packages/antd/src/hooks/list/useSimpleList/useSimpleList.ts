@@ -16,6 +16,7 @@ import {
     useTableProps as useTablePropsCore,
 } from "@pankod/refine-core";
 import { useEffect } from "react";
+import { useLiveMode } from "@pankod/refine-core";
 
 export type useSimpleListProps<TData, TError, TSearchVariables> =
     ListProps<TData> &
@@ -62,7 +63,7 @@ export const useSimpleList = <
     syncWithLocation: syncWithLocationProp,
     successNotification,
     errorNotification,
-    liveMode,
+    liveMode: liveModeFromProp,
     onLiveEvent,
     liveParams,
     metaData,
@@ -95,16 +96,18 @@ export const useSimpleList = <
         queryOptions,
         successNotification,
         errorNotification,
-        liveMode,
+        liveMode: liveModeFromProp,
         onLiveEvent,
         liveParams,
         metaData,
         syncWithLocation: syncWithLocationProp,
     });
 
+    const liveMode = useLiveMode(liveModeFromProp);
+
     const [form] = useForm<TSearchVariables>();
 
-    const { data, isFetching } = queryResult;
+    const { data, isFetched, isLoading } = queryResult;
 
     const onChange = (page: number, pageSize?: number): void => {
         setCurrent(page);
@@ -127,7 +130,7 @@ export const useSimpleList = <
         listProps: {
             ...listProps,
             dataSource: data?.data,
-            loading: isFetching,
+            loading: liveMode === "auto" ? isLoading : !isFetched,
             pagination: {
                 ...listProps.pagination,
                 total: data?.total,
