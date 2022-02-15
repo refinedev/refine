@@ -344,7 +344,7 @@ export const ProductList: React.FC<ItemProps> = ({ products }) => {
                         id={item.id}
                         title={item.title}
                         description={item.description}
-                        cardImage={API_URL + item?.image?.data?.attributes?.url}
+                        cardImage={item.image ? API_URL + item.image.url : "./error.png"}
                     />
                 ))}
             </SimpleGrid>
@@ -500,7 +500,7 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
                         id={item.id}
                         title={item.title}
                         description={item.description}
-                        cardImage={API_URL + item?.image?.data?.attributes?.url}
+                        cardImage={item.image ? API_URL + item.image.url : "./error.png"}
                     />
                 ))}
             </SimpleGrid>
@@ -638,7 +638,7 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
                         id={item.id}
                         title={item.title}
                         description={item.description}
-                        cardImage={API_URL + item?.image?.data?.attributes?.url}
+                        cardImage={item.image ? API_URL + item.image.url : "./error.png"}
                     />
                 ))}
             </SimpleGrid>
