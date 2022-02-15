@@ -9,9 +9,9 @@ import Card from "@site/src/components/tutorial-card";
 
 ## Introduction
 
-Refine is a **Headless** React Framework, it does not include a UI Component by default. 
+refine is a **Headless** React Framework, it does not include a UI Component by default. 
 
-There are two ways to add UI elements to Refine;
+There are two ways to add UI elements to refine;
 
 1. Using a **UI Library** such as [Tailwind](https://tailwindcss.com/), [Chakra UI](https://chakra-ui.com/), etc.
 2. Using a complete **UI Framework** such as [Ant Design](https://ant.design/), [Material UI](https://mui.com/), etc.
@@ -20,19 +20,11 @@ These tutorials will go through process of building a simple _admin panel_ for a
 
 Step by step, you're going to learn how to consume a _REST API_ and add basic CRUD functionality to your panel leveraging the unique capabilities of **refine**.
 
-Let's begin by setting up a new **refine** project.
 
-<div
-    style={{
-        display: "grid",
-        "grid-template-columns": "repeat(2, minmax(0px, 1fr))",
-        gap: "16px",
-        marginTop: "24px",
-    }}
->
+<div className="tutorial-cards">
     <Card
-        iconPath={"/img/nextjs-tailwind.png"}
-        title={"Refine Core - Next.js - Tailwind"}
+        iconPath={"/img/cra-tailwind.png"}
+        title={"Refine Core - Tailwind - CRA"}
         direction={"/docs/next/core/tutorial"}
     />
     <Card

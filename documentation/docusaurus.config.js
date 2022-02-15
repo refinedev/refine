@@ -33,10 +33,10 @@ const siteConfig = {
                     showLastUpdateTime: true,
                     versions: {
                         current: {
-                            label: "3.xx.xx 🚧",
+                            label: "4.xx.xx 🚧",
                         },
                     },
-                    lastVersion: "2.xx.xx",
+                    lastVersion: "3.xx.xx",
                 },
                 blog: {
                     blogTitle: "refine blog!",

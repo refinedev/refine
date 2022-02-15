@@ -76,7 +76,6 @@ export const useTable = <
     onLiveEvent,
     liveParams,
     metaData,
-    dataProviderName,
 }: useTableProps<TData, TError, TSearchVariables> = {}): useTableReturnType<
     TData,
     TSearchVariables
@@ -107,7 +106,6 @@ export const useTable = <
         onLiveEvent,
         liveParams,
         metaData,
-        dataProviderName,
     });
 
     const breakpoint = Grid.useBreakpoint();

@@ -12,7 +12,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
     return (
         <div className="relative overflow-hidden">
             <input
-                className="pl-2 py-2 border w-16 rounded-md h-full focus:outline-primary focus:border-primary transition-colors"
+                className="focus:outline-primary focus:border-primary h-full w-16 rounded-md border py-2 pl-2 transition-colors"
                 value={value}
                 onChange={(event) => {
                     const parseNumber = Number(event.target.value);
@@ -22,7 +22,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
                     }
                 }}
             />
-            <button className="border border-t-0 border-r-0 absolute right-0.5 top-0 h-1/2 hover:scale-95 transition-all active:bg-gray-50">
+            <button className="absolute right-0.5 top-0 h-1/2 border border-t-0 border-r-0 transition-all hover:scale-95 active:bg-gray-50">
                 <ChevronUpIcon
                     onClick={() =>
                         setValue((prev) => {
@@ -32,10 +32,10 @@ export const NumberInput: React.FC<NumberInputProps> = ({
                             return 0;
                         })
                     }
-                    className="text-primary w-4 h-full"
+                    className="text-primary h-full w-4"
                 />
             </button>
-            <button className="border border-b-0 border-r-0 absolute right-0.5 bottom-0 h-1/2 hover:scale-95 transition-all active:bg-gray-50">
+            <button className="absolute right-0.5 bottom-0 h-1/2 border border-b-0 border-r-0 transition-all hover:scale-95 active:bg-gray-50">
                 <ChevronDownIcon
                     onClick={() =>
                         setValue((prev) => {
@@ -45,7 +45,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
                             return 0;
                         })
                     }
-                    className="text-primary w-4 h-full"
+                    className="text-primary h-full w-4"
                 />
             </button>
         </div>

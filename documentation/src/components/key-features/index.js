@@ -90,7 +90,7 @@ const features = [
         srcset: "/icons/features/decoupled@2x.png 768w",
         title: "Headless",
         description:
-            "All out-of-the-box features, it can be used without being tied to any UI elements or framework.",
+            "So you can bring your own UI and fuel it with Refine for top speed development.",
     },
     {
         src: "/icons/features/box.png",
@@ -104,7 +104,7 @@ const features = [
         srcset: "/icons/features/powerful@2x.png 768w",
         title: "Enterprise UI",
         description:
-            "Works seamlessly with integrated Ant Design System. (Support for multiple UI frameworks is on the Roadmap)",
+            "Works seamlessly with Ant Design System. (Support for multiple UI frameworks is on the Roadmap)",
     },
     {
         src: "/icons/features/native.png",

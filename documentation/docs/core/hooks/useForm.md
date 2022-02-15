@@ -8,9 +8,8 @@ title: useForm
 :::info
 If you're looking for a complete form library, Refine supports two form libraries out-of-the-box.
 
-Refine supports two hook libraries as out-of-the-box.
 - [React Hook Form](https://react-hook-form.com/) (for Headless users) - [Documentation](/packages/react-hook-form.md) - [Example](/examples/react-hook-form/react-hook-form.md)
-- [Ant Design Form](https://ant.design/components/form/#header) (for Ant Design users) - [Documentation](/core/hooks/useForm.md) - [Example](/examples/form/useForm.md)
+- [Ant Design Form](https://ant.design/components/form/#header) (for Ant Design users) - [Documentation](/ui-frameworks/antd/hooks/form/useForm.md) - [Example](/examples/form/useForm.md)
 :::
 
 -   Returns the `mutationResult` after called the `onFinish` callback.
