@@ -1,5 +1,5 @@
 ---
-title: Refine-Nextjs E-commerce App with Strapi-v4 + Chakra UI
+title: Next.js E-commerce App with Strapi and Chakra UI
 description: In this guide, we will develop an E-commerce application using the headless feature of refine.
 slug: refine-ecommerce
 authors: melih
