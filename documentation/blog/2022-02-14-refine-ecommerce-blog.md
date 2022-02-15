@@ -103,8 +103,7 @@ const API_URL = "YOUR_STRAPI_API_URL";
 import axios from "axios";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-    const axiosInstance = axios.create();
-    const dataProvider = DataProvider(API_URL + "/api", axiosInstance);
+    const dataProvider = DataProvider(API_URL + "/api");
 
     return (
         <Refine routerProvider={routerProvider} dataProvider={dataProvider}>
