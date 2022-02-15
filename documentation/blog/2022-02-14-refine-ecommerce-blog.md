@@ -15,9 +15,19 @@ import sample_product from '@site/static/img/blog/2022-02-14-refine-ecommerce-bl
 import basket from '@site/static/img/blog/2022-02-14-refine-ecommerce-blog/basket.gif';
 import page_size from '@site/static/img/blog/2022-02-14-refine-ecommerce-blog/page_size.gif';
 
-It is now used **headless** with the **refine** 3 version. You can use any UI library you want with the **headless** feature.
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={basket} alt="basket" />
+</div>
+<br />
 
-In this article, we will create the E-commerce client of our [Strapi-Multitenancy](/docs/guides-and-concepts/multi-tenancy/strapi-v4) admin panel that we have done before.
+In this article, we will create the e-commerce client of our [Strapi-Multitenancy](/docs/guides-and-concepts/multi-tenancy/strapi-v4) admin panel that we have done before.
+
+It is now used **headless** with the **refine** 3 version. You can use any UI library you want with the **headless** feature.
 
 We will use [Strapi](https://strapi.io/) and [Chakra-UI](https://chakra-ui.com/) together with [**Next.js**](/docs/guides-and-concepts/ssr-nextjs/) in our E-commerce client example application.
 
