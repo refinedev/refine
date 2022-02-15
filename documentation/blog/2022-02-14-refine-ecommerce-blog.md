@@ -46,8 +46,7 @@ superplate will quickly create our **refine** project according to the features 
 ```bash
 cd refine-ecommerce-example
 
-npm i @pankod/refine-strapi-v4
-npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6
+npm i @pankod/refine-strapi-v4 @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6
 ```
 
 Our **refine** project and installations are now ready! Let's start using it.
