@@ -3,7 +3,7 @@ import { Button, ButtonProps, Upload, UploadProps } from "antd";
 import { ImportOutlined } from "@ant-design/icons";
 import { useTranslate } from "@pankod/refine-core";
 
-type ImportButtonProps = {
+export type ImportButtonProps = {
     uploadProps: UploadProps;
     buttonProps: ButtonProps;
     hideText?: boolean;

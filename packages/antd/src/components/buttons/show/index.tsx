@@ -11,7 +11,7 @@ import {
     ResourceRouterParams,
 } from "@pankod/refine-core";
 
-type ShowButtonProps = ButtonProps & {
+export type ShowButtonProps = ButtonProps & {
     resourceName?: string;
     recordItemId?: string;
     hideText?: boolean;

@@ -10,7 +10,7 @@ import {
     ResourceRouterParams,
 } from "@pankod/refine-core";
 
-type CloneButtonProps = ButtonProps & {
+export type CloneButtonProps = ButtonProps & {
     resourceName?: string;
     recordItemId?: string;
     hideText?: boolean;
