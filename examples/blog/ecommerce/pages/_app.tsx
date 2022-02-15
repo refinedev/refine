@@ -10,11 +10,9 @@ import { DataProvider } from "@pankod/refine-strapi-v4";
 import { API_URL } from "src/constants";
 import { Layout } from "src/components";
 
-import axios from "axios";
-
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-    const axiosInstance = axios.create();
-    const dataProvider = DataProvider(API_URL + "/api", axiosInstance);
+    const dataProvider = DataProvider(API_URL + "/api");
+
     return (
         <>
             <Head>

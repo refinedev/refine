@@ -7,8 +7,6 @@ import { IProduct, IStore } from "src/interfaces";
 import { Button, SimpleGrid, Flex, Text } from "@chakra-ui/react";
 import { ProductCard, FilterButton } from "src/components";
 
-import axios from "axios";
-
 type ItemProps = {
     products: GetListResponse<IProduct>;
     stores: IStore[];
@@ -99,7 +97,7 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
                             colorScheme={"teal"}
                             onClick={() => setCurrent(i + 1)}
                         >
-                            {"Page: " + (i + 1)}
+                            {i + 1}
                         </Button>
                     );
                 })}
@@ -111,21 +109,13 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
 export default ProductList;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const axiosInstance = axios.create();
-
-    const data = await DataProvider(
-        API_URL + "/api",
-        axiosInstance,
-    ).getList<IProduct>({
+    const data = await DataProvider(API_URL + "/api").getList<IProduct>({
         resource: "products",
         metaData: { populate: ["image"] },
         pagination: { current: 1, pageSize: 9 },
     });
 
-    const { data: storesData } = await DataProvider(
-        API_URL + "/api",
-        axiosInstance,
-    ).getMany({
+    const { data: storesData } = await DataProvider(API_URL + "/api").getMany({
         resource: "stores",
         ids: ["1", "2", "3"],
     });
