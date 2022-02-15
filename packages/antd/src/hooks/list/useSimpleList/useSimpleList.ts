@@ -99,7 +99,6 @@ export const useSimpleList = <
         liveParams,
         metaData,
         syncWithLocation,
-        ...listProps,
     });
 
     const [form] = useForm<TSearchVariables>();
