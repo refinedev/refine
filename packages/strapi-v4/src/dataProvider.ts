@@ -77,8 +77,7 @@ const generateFilter = (filters?: CrudFilters) => {
     return queryFilters;
 };
 
-const normalizeData: any = (data: any) => {
-    // following code credits goes to roelbeerens see: https://forum.strapi.io/t/discussion-regarding-the-complex-response-structure-for-rest-graphql-developer-experience/13400/9
+const normalizeData = (data: any): any => {
     const isObject = (data: any) =>
         Object.prototype.toString.call(data) === "[object Object]";
 
@@ -251,10 +250,7 @@ export const DataProvider = (
         const { data } = await httpClient.get(url);
 
         return {
-            data: {
-                id: data.data.id,
-                ...data.data.attributes,
-            },
+            data: normalizeData(data),
         };
     },
 

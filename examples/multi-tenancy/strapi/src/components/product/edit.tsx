@@ -35,12 +35,7 @@ export const EditProduct: React.FC<EditProductProps> = ({
                 wrapperCol={{ span: 12 }}
                 layout="vertical"
                 onFinish={(values) => {
-                    return formProps.onFinish?.(
-                        mediaUploadMapper({
-                            ...values,
-                            image: values.image?.data,
-                        }),
-                    );
+                    return formProps.onFinish?.(mediaUploadMapper(values));
                 }}
             >
                 <Form.Item
@@ -59,7 +54,7 @@ export const EditProduct: React.FC<EditProductProps> = ({
                 </Form.Item>
                 <Form.Item label="Image">
                     <Form.Item
-                        name={["image", "data"]}
+                        name="image"
                         valuePropName="fileList"
                         getValueProps={(data) => getValueProps(data, API_URL)}
                         noStyle
