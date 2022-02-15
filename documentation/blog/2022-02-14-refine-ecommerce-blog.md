@@ -385,7 +385,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 </div>
 <br />
 
-## Fetch and List the Stores
+## Adding Store-based Filtering
 
 We have fetch all the products above. Now, let's fetch the stores and list the store-specific products separately.
 
