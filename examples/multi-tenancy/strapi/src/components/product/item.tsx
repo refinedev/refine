@@ -13,9 +13,7 @@ type ProductItemProps = {
 const { Meta } = Card;
 
 export const ProductItem: React.FC<ProductItemProps> = ({ item, editShow }) => {
-    const image = item.image.data
-        ? API_URL + item.image.data.attributes.url
-        : "./error.png";
+    const image = item.image ? API_URL + item.image.url : "./error.png";
 
     return (
         <Card

@@ -9,16 +9,16 @@ export const getValueProps = (data: any, imageUrl: string) => {
             data.fileList ??
             (Array.isArray(data) ? data : [...data]).map((item: any) => {
                 const file: any = {
-                    name: item.attributes.name,
-                    percent: item.attributes.percent,
-                    size: item.attributes.size,
-                    status: item.attributes.status,
-                    type: item.attributes.mime || item.attributes.type,
-                    uid: item.attributes.id,
+                    name: item.name,
+                    percent: item.percent,
+                    size: item.size,
+                    status: item.status,
+                    type: item.mime || item.type,
+                    uid: item.id,
                 };
 
-                if (item.attributes.url) {
-                    file.url = `${imageUrl}${item.attributes.url}`;
+                if (item.url) {
+                    file.url = `${imageUrl}${item.url}`;
                 }
 
                 return file;

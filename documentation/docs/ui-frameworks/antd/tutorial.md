@@ -454,9 +454,9 @@ Similarly, put a file in the `/src/pages/posts` folder which accomplishes the sa
 ```tsx title="src/pages/posts/index.tsx"
 
 export * from "./list";
-#export * from "./edit";
-#export * from "./create";
-#export * from "./show";
+// export * from "./edit";
+// export * from "./create";
+// export * from "./show";
 
 ```
 
