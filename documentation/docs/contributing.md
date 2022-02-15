@@ -11,7 +11,7 @@ We follow a [code of conduct][CODE_OF_CONDUCT] when participating in the communi
 
 ## Running in development mode
 
-`node` version 14 is required.
+`node` version 16 is required.
 
 This project has multiple packages and uses [Lerna][Lerna] to manage packages under `packages/`.
 
