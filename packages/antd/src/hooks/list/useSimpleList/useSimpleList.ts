@@ -4,7 +4,6 @@ import { FormProps } from "antd/lib/form";
 import { useForm } from "antd/lib/form/Form";
 
 import {
-    useSyncWithLocation,
     BaseRecord,
     CrudFilters,
     CrudSorting,
@@ -15,6 +14,7 @@ import {
     LiveModeProps,
     useTable as useTableCore,
 } from "@pankod/refine-core";
+import { useEffect } from "react";
 
 export type useSimpleListProps<TData, TError, TSearchVariables> =
     ListProps<TData> & {
@@ -76,8 +76,15 @@ export const useSimpleList = <
     TError,
     TSearchVariables
 > = {}): useSimpleListReturnType<TData, TSearchVariables> => {
-    const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
-    const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
+    useEffect(() => {
+        if (listProps.pagination && listProps.pagination.current) {
+            setCurrent(listProps.pagination.current);
+        }
+        if (listProps.pagination && listProps.pagination.pageSize) {
+            setPageSize(listProps.pagination.pageSize);
+        }
+    }, []);
+
     const {
         filters,
         current,
@@ -98,7 +105,7 @@ export const useSimpleList = <
         onLiveEvent,
         liveParams,
         metaData,
-        syncWithLocation,
+        syncWithLocation: syncWithLocationProp,
     });
 
     const [form] = useForm<TSearchVariables>();
