@@ -552,7 +552,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 </div>
 <br />
 
-## Set Product Capacity(Pagination)
+## Adding Pagination
 
 We list all products on our `All Products` page. Let's add pagination to this page and divide the products into pages. We will perform pagination using the `pageSize`, `current` and setCurrent properties from the useTable hook.
 
