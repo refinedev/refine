@@ -64,14 +64,11 @@ import routerProvider from "@pankod/refine-nextjs-router";
 //highlight-next-line
 import { DataProvider } from "@pankod/refine-strapi-v4";
 
-import axios from "axios";
-
-const API_URL = "YOUR_STRAPI_API_URL";
+const API_URL = "https://api.strapi-multi-tenant.refine.dev/api";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-    const axiosInstance = axios.create();
     //highlight-next-line
-    const dataProvider = DataProvider(API_URL + "/api", axiosInstance);
+    const dataProvider = DataProvider(API_URL);
 
     return (
         <Refine
@@ -85,7 +82,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 }
 ```
 
-### Wrap the Component with ChakraProvider
+### Chakra-UI Provider Setup
 
 ```tsx title="pages/_app.tsx"
 import React from "react";
@@ -98,12 +95,10 @@ import { DataProvider } from "@pankod/refine-strapi-v4";
 //highlight-next-line
 import { ChakraProvider } from "@chakra-ui/react";
 
-const API_URL = "YOUR_STRAPI_API_URL";
-
-import axios from "axios";
+const API_URL = "https://api.strapi-multi-tenant.refine.dev/api";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-    const dataProvider = DataProvider(API_URL + "/api");
+    const dataProvider = DataProvider(API_URL);
 
     return (
         <Refine routerProvider={routerProvider} dataProvider={dataProvider}>
@@ -167,13 +162,10 @@ import { ChakraProvider } from "@chakra-ui/react";
 //highlight-next-line
 import { Layout } from "src/components";
 
-const API_URL = "YOUR_STRAPI_API_URL";
-
-import axios from "axios";
+const API_URL = "https://api.strapi-multi-tenant.refine.dev/api";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-    const axiosInstance = axios.create();
-    const dataProvider = DataProvider(API_URL + "/api", axiosInstance);
+    const dataProvider = DataProvider(API_URL);
 
     return (
         <Refine
@@ -280,17 +272,13 @@ First, let's fetch our products with the nextjs `getServerSideProps` function.
 import { GetServerSideProps } from "next";
 import { DataProvider } from "@pankod/refine-strapi-v4";
 
-import { API_URL } from "src/constants";
 import { IProduct } from "interfaces";
+
+const API_URL = "https://api.strapi-multi-tenant.refine.dev/api";
 
 //highlight-start
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const axiosInstance = axios.create();
-
-    const data = await DataProvider(
-        API_URL + "/api",
-        axiosInstance,
-    ).getList<IProduct>({
+    const data = await DataProvider(API_URL).getList<IProduct>({
         resource: "products",
         metaData: { populate: ["image"] },
     });
@@ -312,12 +300,11 @@ import { GetServerSideProps } from "next";
 import { LayoutWrapper, GetListResponse, useTable } from "@pankod/refine-core";
 import { DataProvider } from "@pankod/refine-strapi-v4";
 
-import { API_URL } from "src/constants";
 import { IProduct } from "interfaces";
 import { SimpleGrid } from "@chakra-ui/react";
 import { ProductCard } from "src/components";
 
-import axios from "axios";
+const API_URL = "https://api.strapi-multi-tenant.refine.dev/api";
 
 //highlight-start
 type ItemProps = {
@@ -331,7 +318,7 @@ export const ProductList: React.FC<ItemProps> = ({ products }) => {
         resource: "products",
         queryOptions: {
             initialData: products,
-         },
+        },
         metaData: { populate: ["image"] },
     });
     //highlight-end
@@ -345,7 +332,11 @@ export const ProductList: React.FC<ItemProps> = ({ products }) => {
                         id={item.id}
                         title={item.title}
                         description={item.description}
-                        cardImage={item.image ? API_URL + item.image.url : "./error.png"}
+                        cardImage={
+                            item.image
+                                ? API_URL + item.image.url
+                                : "./error.png"
+                        }
                     />
                 ))}
             </SimpleGrid>
@@ -357,12 +348,7 @@ export const ProductList: React.FC<ItemProps> = ({ products }) => {
 export default ProductList;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const axiosInstance = axios.create();
-
-    const data = await DataProvider(
-        API_URL + "/api",
-        axiosInstance,
-    ).getList<IProduct>({
+    const data = await DataProvider(API_URL).getList<IProduct>({
         resource: "products",
         metaData: { populate: ["image"] },
     });
@@ -391,22 +377,14 @@ First, let's fetch our stores by using the **refine** `useMany` hook within the 
 
 ```tsx title="pages/index.tsx"
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const axiosInstance = axios.create();
-
-    const data = await DataProvider(
-        API_URL + "/api",
-        axiosInstance,
-    ).getList<IProduct>({
+    const data = await DataProvider(API_URL).getList<IProduct>({
         resource: "products",
         metaData: { populate: ["image"] },
         pagination: { current: 1, pageSize: 9 },
     });
 
     //highlight-start
-    const { data: storesData } = await DataProvider(
-        API_URL + "/api",
-        axiosInstance,
-    ).getMany({
+    const { data: storesData } = await DataProvider(API_URL).getMany({
         resource: "stores",
         ids: ["1", "2", "3"],
     });
@@ -427,12 +405,11 @@ import { GetServerSideProps } from "next";
 import { LayoutWrapper, GetListResponse, useTable } from "@pankod/refine-core";
 import { DataProvider } from "@pankod/refine-strapi-v4";
 
-import { API_URL } from "src/constants";
 import { IProduct, IStore } from "interfaces";
 import { Button, SimpleGrid, Flex, Text } from "@chakra-ui/react";
 import { ProductCard, FilterButton } from "src/components";
 
-import axios from "axios";
+const API_URL = "https://api.strapi-multi-tenant.refine.dev/api";
 
 type ItemProps = {
     products: GetListResponse<IProduct>;
@@ -501,7 +478,11 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
                         id={item.id}
                         title={item.title}
                         description={item.description}
-                        cardImage={item.image ? API_URL + item.image.url : "./error.png"}
+                        cardImage={
+                            item.image
+                                ? API_URL + item.image.url
+                                : "./error.png"
+                        }
                     />
                 ))}
             </SimpleGrid>
@@ -512,21 +493,13 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
 export default ProductList;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const axiosInstance = axios.create();
-
-    const data = await DataProvider(
-        API_URL + "/api",
-        axiosInstance,
-    ).getList<IProduct>({
+    const data = await DataProvider(API_URL).getList<IProduct>({
         resource: "products",
         metaData: { populate: ["image"] },
         pagination: { current: 1, pageSize: 9 },
     });
 
-    const { data: storesData } = await DataProvider(
-        API_URL + "/api",
-        axiosInstance,
-    ).getMany({
+    const { data: storesData } = await DataProvider(API_URL).getMany({
         resource: "stores",
         ids: ["1", "2", "3"],
     });
@@ -561,12 +534,11 @@ import { GetServerSideProps } from "next";
 import { LayoutWrapper, GetListResponse, useTable } from "@pankod/refine-core";
 import { DataProvider } from "@pankod/refine-strapi-v4";
 
-import { API_URL } from "src/constants";
 import { IProduct, IStore } from "interfaces";
 import { Button, SimpleGrid, Flex, Text } from "@chakra-ui/react";
 import { ProductCard, FilterButton } from "src/components";
 
-import axios from "axios";
+const API_URL = "https://api.strapi-multi-tenant.refine.dev/api";
 
 type ItemProps = {
     products: GetListResponse<IProduct>;
@@ -639,7 +611,11 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
                         id={item.id}
                         title={item.title}
                         description={item.description}
-                        cardImage={item.image ? API_URL + item.image.url : "./error.png"}
+                        cardImage={
+                            item.image
+                                ? API_URL + item.image.url
+                                : "./error.png"
+                        }
                     />
                 ))}
             </SimpleGrid>
@@ -667,21 +643,13 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
 export default ProductList;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const axiosInstance = axios.create();
-
-    const data = await DataProvider(
-        API_URL + "/api",
-        axiosInstance,
-    ).getList<IProduct>({
+    const data = await DataProvider(API_URL).getList<IProduct>({
         resource: "products",
         metaData: { populate: ["image"] },
         pagination: { current: 1, pageSize: 9 },
     });
 
-    const { data: storesData } = await DataProvider(
-        API_URL + "/api",
-        axiosInstance,
-    ).getMany({
+    const { data: storesData } = await DataProvider(API_URL).getMany({
         resource: "stores",
         ids: ["1", "2", "3"],
     });
@@ -712,8 +680,8 @@ One of the steps that should be in an E-commerce application is the cart and pay
 
 ```tsx title="pages/_app.tsx"
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-    const axiosInstance = axios.create();
-    const dataProvider = DataProvider(API_URL + "/api", axiosInstance);
+    const dataProvider = DataProvider(API_URL);
+
     return (
         <>
             //highlight-start
