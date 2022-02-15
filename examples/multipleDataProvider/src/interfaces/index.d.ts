@@ -10,3 +10,10 @@ export interface IPost {
     status: "published" | "draft" | "rejected";
     category: ICategory;
 }
+
+export interface IProducts {
+    id: string;
+    name: string;
+    price: number;
+    description: string;
+}

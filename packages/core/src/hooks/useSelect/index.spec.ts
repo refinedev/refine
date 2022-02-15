@@ -49,7 +49,7 @@ describe("useSelect Hook", () => {
                 }),
             {
                 wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
+                    dataProvider: MockJSONServer.default,
                     resources: [{ name: "posts" }],
                 }),
             },
@@ -181,8 +181,8 @@ describe("useSelect Hook", () => {
             {
                 wrapper: TestWrapper({
                     dataProvider: {
-                        defaultProvider: {
-                            ...MockJSONServer.defaultProvider,
+                        default: {
+                            ...MockJSONServer.default,
                             getList: getListMock,
                         },
                     },
@@ -226,11 +226,11 @@ describe("useSelect Hook", () => {
             {
                 wrapper: TestWrapper({
                     dataProvider: {
-                        defaultProvider: {
-                            ...MockJSONServer.defaultProvider,
+                        default: {
+                            ...MockJSONServer.default,
                             getList: getListMock,
                         },
-                    },
+                    } as any,
                     resources: [{ name: "posts" }],
                 }),
             },
@@ -349,9 +349,8 @@ describe("useSelect Hook", () => {
         ];
 
         const mockDataProvider = {
-            defaultProvider: {
-                ...MockJSONServer.defaultProvider,
-
+            default: {
+                ...MockJSONServer.default,
                 getList: jest.fn(() =>
                     Promise.resolve({ data: posts, total: 2 }),
                 ),
@@ -376,7 +375,7 @@ describe("useSelect Hook", () => {
 
         await waitForNextUpdate();
 
-        expect(mockDataProvider.defaultProvider.getList).toHaveBeenCalledWith({
+        expect(mockDataProvider.default.getList).toHaveBeenCalledWith({
             filters: [],
             pagination: { pageSize: 20 },
             resource: "posts",
@@ -396,9 +395,8 @@ describe("useSelect Hook", () => {
         ];
 
         const mockDataProvider = {
-            defaultProvider: {
-                ...MockJSONServer.defaultProvider,
-
+            default: {
+                ...MockJSONServer.default,
                 getList: jest.fn(() =>
                     Promise.resolve({ data: posts, total: 2 }),
                 ),
@@ -434,7 +432,7 @@ describe("useSelect Hook", () => {
 
         await waitForNextUpdate();
 
-        expect(mockDataProvider.defaultProvider.getList).toHaveBeenCalledWith({
+        expect(mockDataProvider.default.getList).toHaveBeenCalledWith({
             filters: [],
             resource: "posts",
         });
@@ -445,7 +443,7 @@ describe("useSelect Hook", () => {
 
         await waitForNextUpdate();
 
-        expect(mockDataProvider.defaultProvider.getList).toHaveBeenCalledWith({
+        expect(mockDataProvider.default.getList).toHaveBeenCalledWith({
             filters,
             resource: "posts",
         });

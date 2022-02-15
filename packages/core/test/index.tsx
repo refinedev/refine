@@ -71,17 +71,8 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
         ) : (
             children
         );
-        let dataProviders;
-
-        if (!dataProvider?.hasOwnProperty("defaultProvider")) {
-            dataProviders = {
-                defaultProvider: dataProvider,
-            } as IDataMultipleContextProvider;
-        } else {
-            dataProviders = dataProvider as IDataMultipleContextProvider;
-        }
         const withData = dataProvider ? (
-            <DataContextProvider {...dataProviders}>
+            <DataContextProvider {...dataProvider}>
                 {withResource}
             </DataContextProvider>
         ) : (

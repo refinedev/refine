@@ -7,7 +7,7 @@ import {
 
 export const defaultDataProvider = () => {
     return {
-        defaultProvider: {
+        default: {
             create: () => Promise.resolve({ data: { id: 1 } }),
             createMany: () => Promise.resolve({ data: [] }),
             deleteOne: () => Promise.resolve({ data: { id: 1 } }),
@@ -32,9 +32,9 @@ export const DataContextProvider: React.FC<
 > = ({ children, ...rest }) => {
     let dataProviders;
 
-    if (!rest.hasOwnProperty("defaultProvider")) {
+    if (!rest.hasOwnProperty("default")) {
         dataProviders = {
-            defaultProvider: rest,
+            default: rest,
         } as IDataMultipleContextProvider;
     } else {
         dataProviders = rest as IDataMultipleContextProvider;

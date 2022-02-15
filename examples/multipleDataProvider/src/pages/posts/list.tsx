@@ -20,7 +20,7 @@ import {
     NumberField,
 } from "@pankod/refine-antd";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ICategory, IProducts } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { Panel } = Collapse;
@@ -29,7 +29,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         syncWithLocation: true,
     });
 
-    const { listProps } = useSimpleList<IPost>({
+    const { listProps } = useSimpleList<IProducts>({
         resource: "products",
         dataProviderName: "fineFoods",
     });
@@ -51,7 +51,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         defaultValue: getDefaultFilter("category.id", filters, "in"),
     });
 
-    const renderItem = (item: any) => {
+    const renderItem = (item: IProducts) => {
         const { name, price, description } = item;
 
         return (

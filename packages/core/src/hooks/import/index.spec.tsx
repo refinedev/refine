@@ -126,8 +126,8 @@ describe("useImport hook", () => {
 
     it("should call mutate method of result of useCreateMany many times with correct values in if batchSize is 2", async () => {
         const mockDataProvider = {
-            defaultProvider: {
-                ...MockJSONServer.defaultProvider,
+            default: {
+                ...MockJSONServer.default,
                 createMany: jest.fn(),
             },
         } as IDataMultipleContextProvider;
@@ -138,7 +138,7 @@ describe("useImport hook", () => {
                     batchSize: 2,
                     onFinish: async () => {
                         expect(
-                            mockDataProvider.defaultProvider.createMany,
+                            mockDataProvider.default.createMany,
                         ).toHaveBeenCalledWith({
                             resource: "posts",
                             variables: [parsedData[0], parsedData[1]].map(
@@ -149,7 +149,7 @@ describe("useImport hook", () => {
                         });
 
                         expect(
-                            mockDataProvider.defaultProvider.createMany,
+                            mockDataProvider.default.createMany,
                         ).toHaveBeenCalledWith({
                             resource: "posts",
                             variables: [parsedData[0], parsedData[1]].map(
@@ -181,8 +181,8 @@ describe("useImport hook", () => {
 
     it("should map data successfully before it uploads to server", async () => {
         const mockDataProvider = {
-            defaultProvider: {
-                ...MockJSONServer.defaultProvider,
+            default: {
+                ...MockJSONServer.default,
                 createMany: jest.fn(),
             },
         } as IDataMultipleContextProvider;
@@ -196,7 +196,7 @@ describe("useImport hook", () => {
                     }),
                     onFinish: () => {
                         expect(
-                            mockDataProvider.defaultProvider.createMany,
+                            mockDataProvider.default.createMany,
                         ).toHaveBeenCalledWith({
                             resource: "posts",
                             variables: parsedData.map((parsedData) => ({
@@ -227,8 +227,8 @@ describe("useImport hook", () => {
 
     it("should send request for the specified resource", async () => {
         const mockDataProvider = {
-            defaultProvider: {
-                ...MockJSONServer.defaultProvider,
+            default: {
+                ...MockJSONServer.default,
                 createMany: jest.fn(),
             },
         } as IDataMultipleContextProvider;
@@ -239,7 +239,7 @@ describe("useImport hook", () => {
                     resourceName: "tests",
                     onFinish: () => {
                         expect(
-                            mockDataProvider.defaultProvider.createMany,
+                            mockDataProvider.default.createMany,
                         ).toHaveBeenCalledWith({
                             resource: "tests",
                             variables: parsedData.map((parsedData) => ({
@@ -270,8 +270,8 @@ describe("useImport hook", () => {
     describe("batchSize = undefined", () => {
         it("should call mutate method of result of useCreateMany one time with correct values if batchSize=undefined", async () => {
             const mockDataProvider = {
-                defaultProvider: {
-                    ...MockJSONServer.defaultProvider,
+                default: {
+                    ...MockJSONServer.default,
                     createMany: jest.fn(),
                 },
             } as IDataMultipleContextProvider;
@@ -302,8 +302,8 @@ describe("useImport hook", () => {
 
         it("should give successes in onFinish callback if batchSize=undefined", async () => {
             const mockDataProvider = {
-                defaultProvider: {
-                    ...MockJSONServer.defaultProvider,
+                default: {
+                    ...MockJSONServer.default,
                     createMany: jest.fn(async () => {
                         return {
                             data: parsedData,
@@ -341,8 +341,8 @@ describe("useImport hook", () => {
 
         it("should give errors in onFinish callback if batchSize=undefined", async () => {
             const mockDataProvider = {
-                defaultProvider: {
-                    ...MockJSONServer.defaultProvider,
+                default: {
+                    ...MockJSONServer.default,
                     createMany: () => {
                         const customError: HttpError = {
                             message: "something happened",
@@ -388,8 +388,8 @@ describe("useImport hook", () => {
     describe("batchSize = 1", () => {
         it("should call mutate method of result of useCreate many times with correct values if batchSize is 1", async () => {
             const mockDataProvider = {
-                defaultProvider: {
-                    ...MockJSONServer.defaultProvider,
+                default: {
+                    ...MockJSONServer.default,
                     create: jest.fn(),
                 },
             } as IDataMultipleContextProvider;
@@ -400,19 +400,19 @@ describe("useImport hook", () => {
                         batchSize: 1,
                         onFinish: () => {
                             expect(
-                                mockDataProvider.defaultProvider.create,
+                                mockDataProvider.default.create,
                             ).toHaveBeenCalledWith({
                                 resource: "posts",
                                 variables: parsedData[0],
                             });
                             expect(
-                                mockDataProvider.defaultProvider.create,
+                                mockDataProvider.default.create,
                             ).toHaveBeenCalledWith({
                                 resource: "posts",
                                 variables: parsedData[1],
                             });
                             expect(
-                                mockDataProvider.defaultProvider.create,
+                                mockDataProvider.default.create,
                             ).toHaveBeenCalledWith({
                                 resource: "posts",
                                 variables: parsedData[2],
@@ -440,8 +440,8 @@ describe("useImport hook", () => {
 
         it("should give successes in onFinish callback if batchSize=1", async () => {
             const mockDataProvider = {
-                defaultProvider: {
-                    ...MockJSONServer.defaultProvider,
+                default: {
+                    ...MockJSONServer.default,
                     create: async ({ variables }: any) => {
                         if (variables.title === "Viral Strategist Local") {
                             return {
