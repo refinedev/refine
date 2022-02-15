@@ -1,4 +1,4 @@
-import { QueryObserverResult, UseQueryOptions } from "react-query";
+import { QueryObserverResult } from "react-query";
 import { ListProps } from "antd/lib/list";
 import { FormProps } from "antd/lib/form";
 import { useForm } from "antd/lib/form/Form";
@@ -6,16 +6,13 @@ import { useForm } from "antd/lib/form/Form";
 import {
     BaseRecord,
     CrudFilters,
-    CrudSorting,
     GetListResponse,
     SuccessErrorNotification,
     HttpError,
-    MetaDataQuery,
     LiveModeProps,
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
 } from "@pankod/refine-core";
-import { useEffect } from "react";
 import { useLiveMode } from "@pankod/refine-core";
 
 export type useSimpleListProps<TData, TError, TSearchVariables> =
@@ -54,6 +51,8 @@ export const useSimpleList = <
     TSearchVariables = unknown,
 >({
     resource: resourceFromProp,
+    initialCurrent,
+    initialPageSize,
     initialSorter,
     permanentSorter,
     initialFilter,
@@ -89,10 +88,10 @@ export const useSimpleList = <
         permanentFilter,
         initialCurrent: listProps.pagination
             ? listProps.pagination.current
-            : undefined,
+            : initialCurrent,
         initialPageSize: listProps.pagination
             ? listProps.pagination.pageSize
-            : undefined,
+            : initialPageSize,
         queryOptions,
         successNotification,
         errorNotification,
