@@ -710,7 +710,7 @@ One of the steps that should be in an E-commerce application is the cart and pay
 
 [Refer to the Snipcart documentation for detailed information. →](https://docs.snipcart.com/v3/)
 
-### Installation
+### Installation Snipcart Widget
 
 ```tsx title="pages/_app.tsx"
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
