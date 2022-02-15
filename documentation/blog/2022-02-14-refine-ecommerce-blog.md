@@ -19,7 +19,7 @@ It is now used **headless** with the **refine** 3 version. You can use any UI li
 
 In this article, we will create the E-commerce client of our [Strapi-Multitenancy](/docs/guides-and-concepts/multi-tenancy/strapi-v4) admin panel that we have done before.
 
-We will use [Strapi](https://strapi.io/) and [Chakra-UI](https://chakra-ui.com/) together with [**refine-nextjs(SSR)**](/docs/guides-and-concepts/ssr-nextjs/) in our E-commerce client example application.
+We will use [Strapi](https://strapi.io/) and [Chakra-UI](https://chakra-ui.com/) together with [**Next.js**](/docs/guides-and-concepts/ssr-nextjs/) in our E-commerce client example application.
 
 <!--truncate-->
 
