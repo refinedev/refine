@@ -834,9 +834,9 @@ export const ProductCard: React.FC<ProductProps> = ({
 
 ## Conclusion
 
-One of the biggest features that distinguishes Refine from other frameworks is that it is customizable. Combined with Refine headless, it now provides more customization options. This provides a great deal of convenience in the project you will develop.
+One of the biggest features that distinguishes **refine** from other frameworks is that it is customizable. Combined with **refine** **headless**, it now provides more customization options. This provides a great deal of convenience in the project you will develop.
 
-As you can see in this article, we have developed the Client part of our [Admin Panel](https://refine.dev/docs/guides-and-concepts/multi-tenancy/strapi-v4/), which we have done before, with **refine**. Refine offers the opportunity to develop B2B and B2C applications without any restrictions and in a fully customizable manner.
+As you can see in this article, we have developed the Client part of our [Admin Panel](https://refine.dev/docs/guides-and-concepts/multi-tenancy/strapi-v4/), which we have done before, with **refine**. **refine** offers the opportunity to develop B2B and B2C applications without any restrictions and in a fully customizable manner.
 
 [Refer to the Admin side of the project →](https://refine.dev/docs/guides-and-concepts/multi-tenancy/strapi-v4/)
 
