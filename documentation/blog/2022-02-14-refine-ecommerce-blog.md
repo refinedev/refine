@@ -53,7 +53,7 @@ Our **refine** project and installations are now ready! Let's start using it.
 
 ## Usage
 
-### Define Strapi-v4 Provider
+### Configure Refine for Strapi-v4
 
 ```tsx title="pages/_app.tsx"
 import React from "react";
