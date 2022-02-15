@@ -13,22 +13,17 @@ import {
     MetaDataQuery,
     LiveModeProps,
     useTable as useTableCore,
+    useTableProps as useTablePropsCore,
 } from "@pankod/refine-core";
 import { useEffect } from "react";
 
 export type useSimpleListProps<TData, TError, TSearchVariables> =
-    ListProps<TData> & {
-        permanentFilter?: CrudFilters;
-        syncWithLocation?: boolean;
-        resource?: string;
-        initialFilter?: CrudFilters;
-        initialSorter?: CrudSorting;
-        onSearch?: (
-            data: TSearchVariables,
-        ) => CrudFilters | Promise<CrudFilters>;
-        queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
-        metaData?: MetaDataQuery;
-    } & SuccessErrorNotification &
+    ListProps<TData> &
+        useTablePropsCore<TData, TError> & {
+            onSearch?: (
+                data: TSearchVariables,
+            ) => CrudFilters | Promise<CrudFilters>;
+        } & SuccessErrorNotification &
         LiveModeProps;
 
 export type useSimpleListReturnType<
@@ -59,8 +54,9 @@ export const useSimpleList = <
 >({
     resource: resourceFromProp,
     initialSorter,
+    permanentSorter,
     initialFilter,
-    permanentFilter = [],
+    permanentFilter,
     onSearch,
     queryOptions,
     syncWithLocation: syncWithLocationProp,
@@ -76,15 +72,6 @@ export const useSimpleList = <
     TError,
     TSearchVariables
 > = {}): useSimpleListReturnType<TData, TSearchVariables> => {
-    useEffect(() => {
-        if (listProps.pagination && listProps.pagination.current) {
-            setCurrent(listProps.pagination.current);
-        }
-        if (listProps.pagination && listProps.pagination.pageSize) {
-            setPageSize(listProps.pagination.pageSize);
-        }
-    }, []);
-
     const {
         filters,
         current,
@@ -96,8 +83,15 @@ export const useSimpleList = <
     } = useTableCore({
         resource: resourceFromProp,
         initialSorter,
+        permanentSorter,
         initialFilter,
         permanentFilter,
+        initialCurrent: listProps.pagination
+            ? listProps.pagination.current
+            : undefined,
+        initialPageSize: listProps.pagination
+            ? listProps.pagination.pageSize
+            : undefined,
         queryOptions,
         successNotification,
         errorNotification,
