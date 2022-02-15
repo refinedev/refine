@@ -749,7 +749,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 }
 ```
 
-### Product Details for Add to Basket Button
+### Adding "Add to Basket" Button on ProductCard component
 
 ```tsx title="src/components/ProductCard.tsx"
 import React from "react";
