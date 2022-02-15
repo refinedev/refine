@@ -331,6 +331,9 @@ export const ProductList: React.FC<ItemProps> = ({ products }) => {
     //highlight-start
     const { tableQueryResult } = useTable<IProduct>({
         resource: "products",
+        queryOptions: {
+            initialData: products,
+         },
         metaData: { populate: ["image"] },
     });
     //highlight-end
