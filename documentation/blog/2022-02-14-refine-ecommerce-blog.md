@@ -125,7 +125,7 @@ We created our collections in the previous Strapi Multitenancy guide. Now we wil
 
 [Refer to the Project Collections for detailed information. →](https://refine.dev/docs/guides-and-concepts/multi-tenancy/strapi-v4/#create-collections)
 
-## Create Layout
+## Create Refine Layout
 
 **refine** **headless** is not affiliated with any UI. It is entirely up to you to customize your UI. Let's create a simple layout for this example.
 
