@@ -4060,11 +4060,6 @@
   "resolved" "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
   "version" "1.0.0"
 
-"fsevents@~2.3.2":
-  "integrity" "sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA=="
-  "resolved" "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz"
-  "version" "2.3.2"
-
 "function-bind@^1.1.1":
   "integrity" "sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A=="
   "resolved" "https://registry.npmjs.org/function-bind/-/function-bind-1.1.1.tgz"
@@ -6483,7 +6478,7 @@
   dependencies:
     "@babel/runtime" "^7.10.3"
 
-"react-loadable@*", "react-loadable@npm:@docusaurus/react-loadable@5.5.2":
+"react-loadable@npm:@docusaurus/react-loadable@5.5.2":
   "integrity" "sha512-A3dYjdBGuy0IGT+wyLIGIKLRE+sAk1iNk0f1HjNDysO7u8lhL4N3VEm+FAubmJbAztn94F7MxBTPmnixbiyFdQ=="
   "resolved" "https://registry.npmjs.org/@docusaurus/react-loadable/-/react-loadable-5.5.2.tgz"
   "version" "5.5.2"
@@ -6544,7 +6539,6 @@
   "version" "2.1.1"
 
 "react-split-pane@git+https://github.com/quarkw/react-split-pane.git":
-  "integrity" "sha512-nbowHYzeBTcLFcYSvJpuU062lbRW0gs4ETRYtBwjCJIWKcNLWEU1JPR0ICNy/1YOzJzSZJU0Jdfz5BVU1KRvVQ=="
   "resolved" "git+ssh://git@github.com/quarkw/react-split-pane.git#50ffccdfb012cd2159d04136a8e2a1ad42766617"
   "version" "0.1.87"
   dependencies:

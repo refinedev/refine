@@ -438,6 +438,28 @@ export const App: React.FC = () => {
 };
 ```
 
+Note you will need a few more files which help `src/App.tsx` to find your pages and posts. In the `/pages` folder, put this `index.tsx` file in it which allows everything in the `posts` folder to be used elsewhere.
+
+```tsx title="src/pages/index.tsx"
+
+export * from "./posts";
+
+```
+
+<br />
+
+Similarly, put a file in the `/src/pages/posts` folder which accomplishes the same function. We will use the commented out code later as we add more capabilities to our app. Remember as you add functions, uncomment each appropriate line.
+
+
+```tsx title="src/pages/posts/index.tsx"
+
+export * from "./list";
+// export * from "./edit";
+// export * from "./create";
+// export * from "./show";
+
+```
+
 <br />
 
 Open your application in your browser. You will see **posts** are displayed correctly in a table structure and even the pagination works out-of-the box.

@@ -58,6 +58,7 @@ const availableCoreImports = [
     "IDataContext",
     "IDataContextProvider",
     "defaultDataProvider",
+    "DataProvider",
     "DataContext",
     "DataContextProvider",
     "ILiveContext",

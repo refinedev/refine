@@ -8,12 +8,7 @@ export interface IProduct {
     title: string;
     description: string;
     image: any;
-    stores: {
-        data: {
-            id: string;
-            attributes: IStore;
-        };
-    };
+    stores: IStore;
 }
 
 export interface IOrder {
@@ -22,12 +17,7 @@ export interface IOrder {
     status: "delivered" | "not delivered";
     quantitiy: number;
     customerName: string;
-    product: any;
+    product: IProduct;
     customerAddress: string;
-    stores: {
-        data: {
-            id: string;
-            attributes: IStore;
-        };
-    };
+    stores: IStore;
 }

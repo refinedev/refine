@@ -19,12 +19,19 @@ export const RouterProvider: IRouterProvider = {
     },
     useLocation: () => {
         const router = useRouter();
-        const { pathname, query } = router;
+        const { query, asPath } = router;
 
         const queryParams = qs.stringify(query);
 
+        const sliceLength = Math.min(
+            ...[
+                asPath.indexOf("?") > 0 ? asPath.indexOf("?") : asPath.length,
+                asPath.indexOf("#") > 0 ? asPath.indexOf("#") : asPath.length,
+            ],
+        );
+
         return {
-            pathname,
+            pathname: asPath.slice(0, sliceLength),
             search: queryParams && `?${queryParams}`,
         };
     },

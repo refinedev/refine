@@ -24,6 +24,12 @@ const resourceWithRoute = useResourceWithRoute();
 #### Interfaces
 
 ```ts
+interface OptionsProps {
+    label?: string;
+    route?: string;
+    [key: string]: any;
+}
+
 interface IResourceItem {
     name: string;
     label?: string;
@@ -33,6 +39,7 @@ interface IResourceItem {
     canEdit?: boolean;
     canShow?: boolean;
     canDelete?: boolean;
+    options?: OptionsProps;
 }
 ```
 
