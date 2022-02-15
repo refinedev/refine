@@ -13,7 +13,7 @@ export const Prompt: React.FC<PromptProps> = ({
     useEffect(() => {
         if (!when) return;
 
-        const unblock = location.history.block((transition) => {
+        const unblock = location.history.block((transition: any) => {
             if (window.confirm(message)) {
                 setWarnWhen?.(false);
                 unblock();
