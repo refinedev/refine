@@ -704,7 +704,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 </div>
 <br />
 
-## Add Items to Basket and Payout
+## Adding Basket and Payment features with Snipcart
 
 One of the steps that should be in an E-commerce application is the cart and payment transactions. In our example, we will use [Snipcart](https://snipcart.com/) for this process.
 
