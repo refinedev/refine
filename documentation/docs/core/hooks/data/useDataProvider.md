@@ -55,9 +55,9 @@ const secondDataProvider= dataProvider("second"); // return second data provider
 
 ### Properties
 
-| Property         | Description                                       | Type     | Default   |
-| ---------------- | ------------------------------------------------- | -------- | --------- |
-| dataProviderName | The name of the `data provider` we want to access | `string` | `default` |
+| Property         | Description                                        | Type     | Default   |
+| ---------------- | -------------------------------------------------- | -------- | --------- |
+| dataProviderName | The name of the `data provider` you want to access | `string` | `default` |
 
 ### Return value
 
