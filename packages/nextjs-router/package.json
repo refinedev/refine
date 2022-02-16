@@ -1,7 +1,7 @@
 {
   "name": "@pankod/refine-nextjs-router",
   "description": "refine Next.js router provider. refine is a React-based headless framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
-  "version": "3.1.6",
+  "version": "3.1.9",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -34,7 +34,7 @@
     }
   ],
   "devDependencies": {
-    "@pankod/refine-core": "^3.1.6",
+    "@pankod/refine-core": "^3.1.9",
     "@size-limit/preset-small-lib": "^5.0.5",
     "@types/qs": "^6.9.7",
     "next": "^12.0.3",
