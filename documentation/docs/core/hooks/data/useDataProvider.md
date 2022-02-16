@@ -9,27 +9,21 @@ This hook is useful when you need to access the `dataProvider` [Data Provider] f
 
 ## Usage
 
-Let's say that we have a data provider named `default` and another data provider named `another`.
+Let's say that we have a data provider named `default` and second data provider named `second`.
 
 ```tsx
 import { Refine } from "@pankod/refine-core";
+import dataProvider from "@pankod/refine-simple-rest";
 
-import {
-    // highlight-next-line
-    useDataProvider
-} from "@pankod/refine-core";
 
 const App: React.FC = () => {
-// highlight-start
-const defaultDataProvider = useDataProvider();
-const anotherDataProvider = useDataProvider("anotherDataProvider");
-// highlight-end
+
     return (
         <Refine
             dataProvider={{
                 // highlight-start
-                default: defaultDataProvider,
-                another: anotherDataProvider
+                default:  dataProvider("API_URL"),
+                second: dataProvider("SECOND_API_URL"),
                 // highlight-end
                 ...
             }}
@@ -41,13 +35,35 @@ export default App;
 
 ```
 
+Now we can access the `default` data provider from a child component:
+```tsx
+import {
+    // highlight-next-line
+    useDataProvider
+} from "@pankod/refine-core";
+
+// highlight-start
+const dataProvider = useDataProvider();
+
+const defaultDataProvider= dataProvider(); // return default data provider
+const secondDataProvider= dataProvider("second"); // return second data provider
+// highlight-end
+```
+
+
 ## API
+
+### Properties
+
+| Property         | Description                                       | Type     | Default   |
+| ---------------- | ------------------------------------------------- | -------- | --------- |
+| dataProviderName | The name of the `data provider` we want to access | `string` | `default` |
 
 ### Return value
 
-| Description   | Type     |
-| ------------- | -------- |
-| Data Provider | `string` |
+| Description   | Type                                                |
+| ------------- | --------------------------------------------------- |
+| Data Provider | [`Data Provider`](/core/providers/data-provider.md) |
 
 [Refine]: /core/components/refine-config.md
 [Data Provider]: /core/providers/data-provider.md

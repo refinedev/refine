@@ -17,12 +17,31 @@ jest.mock("react-router-dom", () => ({
 describe("useDataProvider Hook", () => {
     const { result } = renderHook(() => useDataProvider(), {
         wrapper: TestWrapper({
-            dataProvider: MockJSONServer,
+            dataProvider: {
+                default: MockJSONServer.default,
+                another: MockJSONServer.default,
+            },
         }),
     });
 
-    it("get list", async () => {
+    it("get list with default data provider", async () => {
         const dataProvider = result.current();
         expect(dataProvider.getList).toBeDefined();
+    });
+
+    it("get list with fron another data provider", async () => {
+        const dataProvider = result.current("another");
+
+        expect(dataProvider.getList).toBeDefined();
+    });
+
+    it("get list with fron another data provider", async () => {
+        try {
+            result.current("not-exist");
+        } catch (error) {
+            expect(error).toEqual(
+                new Error(`"not-exist" Data provider not found`),
+            );
+        }
     });
 });

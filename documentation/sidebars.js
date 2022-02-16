@@ -52,6 +52,7 @@ module.exports = {
                                 "core/hooks/data/useMany",
                                 "core/hooks/data/useCustom",
                                 "core/hooks/data/useApiUrl",
+                                "core/hooks/data/useDataProvider",
                             ],
                         },
                         {

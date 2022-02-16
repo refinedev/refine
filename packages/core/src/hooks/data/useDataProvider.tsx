@@ -13,6 +13,12 @@ export const useDataProvider = (): ((
     const handleDataProvider = useCallback(
         (dataProviderName?: string) => {
             if (dataProviderName) {
+                const dataProvider = context[dataProviderName];
+                if (!dataProvider) {
+                    throw new Error(
+                        `"${dataProviderName}" Data provider not found`,
+                    );
+                }
                 return context[dataProviderName];
             }
             return context.default;
