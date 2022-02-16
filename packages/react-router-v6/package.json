@@ -1,5 +1,5 @@
 {
-  "name": "@pankod/refine-react-router",
+  "name": "@pankod/refine-react-router-v6",
   "description": "refine react-router router provider. refine is a React-based headless framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "version": "3.1.9",
   "license": "MIT",
@@ -22,28 +22,26 @@
     "analyze": "size-limit --why"
   },
   "author": "Pankod",
-  "module": "dist/refine-react-router.esm.js",
+  "module": "dist/refine-react-router-v6.esm.js",
   "size-limit": [
     {
-      "path": "dist/refine-react-router.cjs.production.min.js",
+      "path": "dist/refine-react-router-v6.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/refine-react-router.esm.js",
+      "path": "dist/refine-react-router-v6.esm.js",
       "limit": "10 KB"
     }
   ],
   "devDependencies": {
     "@size-limit/preset-small-lib": "^5.0.5",
-    "@types/react-router-dom": "^5.1.8",
     "size-limit": "^5.0.5",
     "tsdx": "^0.14.1",
-    "tslib": "^2.3.1",
-    "typescript": "^4.4.3"
+    "tslib": "^2.3.1"
   },
   "dependencies": {
     "@pankod/refine-core": "^3.1.9",
-    "react-router-dom": "^5.3.0"
+    "react-router-dom": "^6.0.0"
   },
   "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
   "publishConfig": {
