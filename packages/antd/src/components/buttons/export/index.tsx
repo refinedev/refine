@@ -3,7 +3,7 @@ import { Button, ButtonProps } from "antd";
 import { ExportOutlined } from "@ant-design/icons";
 import { useTranslate } from "@pankod/refine-core";
 
-type ExportButtonProps = ButtonProps & {
+export type ExportButtonProps = ButtonProps & {
     hideText?: boolean;
 };
 
