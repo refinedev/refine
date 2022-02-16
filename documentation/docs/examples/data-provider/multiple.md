@@ -5,10 +5,6 @@ title: Multiple
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/dataProvider/multiple)
 
-:::note
-Codesandbox environment does not allow Realtime features to work.
-:::
-
 <iframe src="https://codesandbox.io/embed/refine-multiple-data-provider-example-wes73l?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-multiple-data-provider-example"

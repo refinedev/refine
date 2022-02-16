@@ -1,12 +1,12 @@
 {
   "name": "refine-react-location-example",
-  "version": "3.1.9",
+  "version": "3.2.0",
   "private": true,
   "dependencies": {
-    "@pankod/refine-antd": "^3.1.9",
-    "@pankod/refine-core": "^3.1.9",
-    "@pankod/refine-react-location": "^3.1.9",
-    "@pankod/refine-simple-rest": "^3.1.9",
+    "@pankod/refine-antd": "^3.2.0",
+    "@pankod/refine-core": "^3.2.0",
+    "@pankod/refine-react-location": "^3.2.0",
+    "@pankod/refine-simple-rest": "^3.2.0",
     "@types/node": "^14.14.13",
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.4",
