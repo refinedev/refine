@@ -880,6 +880,10 @@
                         {
                             "type": "doc",
                             "id": "version-3.xx.xx/examples/data-provider/altogic"
+                        },
+                        {
+                            "type": "doc",
+                            "id": "version-3.xx.xx/examples/data-provider/multiple"
                         }
                     ],
                     "collapsible": true,

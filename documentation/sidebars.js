@@ -386,6 +386,7 @@ module.exports = {
                         "examples/data-provider/airtable",
                         "examples/data-provider/supabase",
                         "examples/data-provider/altogic",
+                        "examples/data-provider/multiple",
                     ],
                 },
                 {
