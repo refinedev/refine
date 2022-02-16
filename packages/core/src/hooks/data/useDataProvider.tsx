@@ -21,7 +21,12 @@ export const useDataProvider = (): ((
                 }
                 return context[dataProviderName];
             }
-            return context.default;
+            if (context.default) {
+                return context.default;
+            } else
+                throw new Error(
+                    `There is no "default" data provider. Please pass dataProviderName.`,
+                );
         },
         [context],
     );

@@ -138,7 +138,7 @@ describe("useImport hook", () => {
                     batchSize: 2,
                     onFinish: async () => {
                         expect(
-                            mockDataProvider.default.createMany,
+                            mockDataProvider.default?.createMany,
                         ).toHaveBeenCalledWith({
                             resource: "posts",
                             variables: [parsedData[0], parsedData[1]].map(
@@ -149,7 +149,7 @@ describe("useImport hook", () => {
                         });
 
                         expect(
-                            mockDataProvider.default.createMany,
+                            mockDataProvider.default?.createMany,
                         ).toHaveBeenCalledWith({
                             resource: "posts",
                             variables: [parsedData[0], parsedData[1]].map(
@@ -196,7 +196,7 @@ describe("useImport hook", () => {
                     }),
                     onFinish: () => {
                         expect(
-                            mockDataProvider.default.createMany,
+                            mockDataProvider.default?.createMany,
                         ).toHaveBeenCalledWith({
                             resource: "posts",
                             variables: parsedData.map((parsedData) => ({
@@ -239,7 +239,7 @@ describe("useImport hook", () => {
                     resourceName: "tests",
                     onFinish: () => {
                         expect(
-                            mockDataProvider.default.createMany,
+                            mockDataProvider.default?.createMany,
                         ).toHaveBeenCalledWith({
                             resource: "tests",
                             variables: parsedData.map((parsedData) => ({
@@ -400,19 +400,19 @@ describe("useImport hook", () => {
                         batchSize: 1,
                         onFinish: () => {
                             expect(
-                                mockDataProvider.default.create,
+                                mockDataProvider.default?.create,
                             ).toHaveBeenCalledWith({
                                 resource: "posts",
                                 variables: parsedData[0],
                             });
                             expect(
-                                mockDataProvider.default.create,
+                                mockDataProvider.default?.create,
                             ).toHaveBeenCalledWith({
                                 resource: "posts",
                                 variables: parsedData[1],
                             });
                             expect(
-                                mockDataProvider.default.create,
+                                mockDataProvider.default?.create,
                             ).toHaveBeenCalledWith({
                                 resource: "posts",
                                 variables: parsedData[2],

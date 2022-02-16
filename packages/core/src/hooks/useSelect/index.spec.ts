@@ -182,7 +182,7 @@ describe("useSelect Hook", () => {
                 wrapper: TestWrapper({
                     dataProvider: {
                         default: {
-                            ...MockJSONServer.default,
+                            ...MockJSONServer.default!,
                             getList: getListMock,
                         },
                     },
@@ -375,7 +375,7 @@ describe("useSelect Hook", () => {
 
         await waitForNextUpdate();
 
-        expect(mockDataProvider.default.getList).toHaveBeenCalledWith({
+        expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
             filters: [],
             pagination: { pageSize: 20 },
             resource: "posts",
@@ -432,7 +432,7 @@ describe("useSelect Hook", () => {
 
         await waitForNextUpdate();
 
-        expect(mockDataProvider.default.getList).toHaveBeenCalledWith({
+        expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
             filters: [],
             resource: "posts",
         });
@@ -443,7 +443,7 @@ describe("useSelect Hook", () => {
 
         await waitForNextUpdate();
 
-        expect(mockDataProvider.default.getList).toHaveBeenCalledWith({
+        expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
             filters,
             resource: "posts",
         });

@@ -31,21 +31,15 @@ export const DataContextProvider: React.FC<
     IDataMultipleContextProvider | IDataContextProvider
 > = ({ children, ...rest }) => {
     let dataProviders;
-
-    if (!rest.hasOwnProperty("default")) {
-        if (
-            !rest.hasOwnProperty("updateMany") ||
-            !rest.hasOwnProperty("createMany")
-        ) {
-            throw new Error(
-                "If you have multiple data providers, you must provide default data provider property",
-            );
-        }
+    if (
+        !rest.hasOwnProperty("updateMany") ||
+        !rest.hasOwnProperty("createMany")
+    ) {
+        dataProviders = rest as IDataMultipleContextProvider;
+    } else {
         dataProviders = {
             default: rest,
         } as IDataMultipleContextProvider;
-    } else {
-        dataProviders = rest as IDataMultipleContextProvider;
     }
     return (
         <DataContext.Provider value={dataProviders}>
