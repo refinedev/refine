@@ -18,6 +18,9 @@ const operators = {
     ncontains: undefined,
     ncontainss: undefined,
     null: undefined,
+    between: undefined,
+    nbetween: undefined,
+    nnull: undefined,
 };
 
 const appwriteEventToRefineEvent = {

@@ -35,7 +35,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
     saveButtonProps,
 }) => {
     const API_URL = useApiUrl();
-    const [store, setStore] = useContext(StoreContext);
+    const [store] = useContext(StoreContext);
 
     const breakpoint = Grid.useBreakpoint();
 

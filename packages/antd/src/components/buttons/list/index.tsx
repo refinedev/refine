@@ -11,7 +11,7 @@ import {
     userFriendlyResourceName,
 } from "@pankod/refine-core";
 
-type ListButtonProps = ButtonProps & {
+export type ListButtonProps = ButtonProps & {
     resourceName?: string;
     hideText?: boolean;
     ignoreAccessControlProvider?: boolean;

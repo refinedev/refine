@@ -10,7 +10,7 @@ import {
     ResourceRouterParams,
 } from "@pankod/refine-core";
 
-type RefreshButtonProps = ButtonProps & {
+export type RefreshButtonProps = ButtonProps & {
     resourceName?: string;
     recordItemId?: string;
     hideText?: boolean;

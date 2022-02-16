@@ -36,6 +36,7 @@ export const ResourceComponentWrapper: React.FC = () => {
             canEdit,
             canShow,
             canDelete,
+            options,
         } = resource;
 
         const List = list ?? (() => null);
@@ -58,6 +59,7 @@ export const ResourceComponentWrapper: React.FC = () => {
                                 canEdit={canEdit}
                                 canDelete={canDelete}
                                 canShow={canShow}
+                                options={options}
                             />
                         </CanAccess>
                     );
@@ -76,6 +78,7 @@ export const ResourceComponentWrapper: React.FC = () => {
                                 canEdit={canEdit}
                                 canDelete={canDelete}
                                 canShow={canShow}
+                                options={options}
                             />
                         </CanAccess>
                     );
@@ -94,6 +97,7 @@ export const ResourceComponentWrapper: React.FC = () => {
                                 canEdit={canEdit}
                                 canDelete={canDelete}
                                 canShow={canShow}
+                                options={options}
                             />
                         </CanAccess>
                     );
@@ -112,6 +116,7 @@ export const ResourceComponentWrapper: React.FC = () => {
                                 canEdit={canEdit}
                                 canDelete={canDelete}
                                 canShow={canShow}
+                                options={options}
                             />
                         </CanAccess>
                     );

@@ -41,7 +41,10 @@ export type CrudOperators =
     | "ncontains"
     | "containss"
     | "ncontainss"
-    | "null";
+    | "between"
+    | "nbetween"
+    | "null"
+    | "nnull";
 
 export type CrudFilter = {
     field: string;

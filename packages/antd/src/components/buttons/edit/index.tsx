@@ -10,7 +10,7 @@ import {
     ResourceRouterParams,
 } from "@pankod/refine-core";
 
-type EditButtonProps = ButtonProps & {
+export type EditButtonProps = ButtonProps & {
     resourceName?: string;
     recordItemId?: string;
     hideText?: boolean;

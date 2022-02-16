@@ -336,7 +336,7 @@ Let's create a **Page** component to fetch **posts** and display them as a table
 
 First, we'll need an interface to work with the data from the API endpoint.
 
-Create a new folder named _"interface"_ under _"/src"_ if you don't already have one. Then create a _"index.d.ts"_ file with the following code:
+Create a new folder named _"interfaces"_ under _"/src"_ if you don't already have one. Then create a _"index.d.ts"_ file with the following code:
 
 ```ts title="interfaces/index.d.ts"
 export interface IPost {
@@ -436,6 +436,28 @@ export const App: React.FC = () => {
         />
     );
 };
+```
+
+Note you will need a few more files which help `src/App.tsx` to find your pages and posts. In the `/pages` folder, put this `index.tsx` file in it which allows everything in the `posts` folder to be used elsewhere.
+
+```tsx title="src/pages/index.tsx"
+
+export * from "./posts";
+
+```
+
+<br />
+
+Similarly, put a file in the `/src/pages/posts` folder which accomplishes the same function. We will use the commented out code later as we add more capabilities to our app. Remember as you add functions, uncomment each appropriate line.
+
+
+```tsx title="src/pages/posts/index.tsx"
+
+export * from "./list";
+// export * from "./edit";
+// export * from "./create";
+// export * from "./show";
+
 ```
 
 <br />

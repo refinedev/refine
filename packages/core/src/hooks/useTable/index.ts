@@ -96,7 +96,7 @@ export const useTable = <
     const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
 
     const { useLocation, useParams } = useRouterContext();
-    const { search } = useLocation();
+    const { search, pathname } = useLocation();
     const liveMode = useLiveMode(liveModeFromProp);
 
     let defaultCurrent = initialCurrent;
@@ -143,7 +143,7 @@ export const useTable = <
             });
 
             // Careful! This triggers render
-            return push(`/${resource.route}?${stringifyParams}`);
+            return push(`${pathname}?${stringifyParams}`);
         }
     }, [syncWithLocation, current, pageSize, sorter, filters]);
 

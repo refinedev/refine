@@ -77,13 +77,42 @@ const generateFilter = (filters?: CrudFilters) => {
     return queryFilters;
 };
 
-const normalizeData = (data: any) => {
-    const _data = data.data.map((item: any) => ({
-        id: item.id,
-        ...item.attributes,
-    }));
+const normalizeData = (data: any): any => {
+    const isObject = (data: any) =>
+        Object.prototype.toString.call(data) === "[object Object]";
 
-    return _data;
+    const flatten = (data: any) => {
+        if (!data.attributes) return data;
+
+        return {
+            id: data.id,
+            ...data.attributes,
+        };
+    };
+
+    if (Array.isArray(data)) {
+        return data.map((item) => normalizeData(item));
+    }
+
+    if (isObject(data)) {
+        if (Array.isArray(data.data)) {
+            data = [...data.data];
+        } else if (isObject(data.data)) {
+            data = flatten({ ...data.data });
+        } else if (data.data === null) {
+            data = null;
+        } else {
+            data = flatten(data);
+        }
+
+        for (const key in data) {
+            data[key] = normalizeData(data[key]);
+        }
+
+        return data;
+    }
+
+    return data;
 };
 
 export const DataProvider = (
@@ -142,10 +171,10 @@ export const DataProvider = (
     create: async ({ resource, variables }) => {
         const url = `${apiUrl}/${resource}`;
 
-        let dataVariables = { data: variables };
+        let dataVariables: any = { data: variables };
 
         if (resource === "users") {
-            dataVariables = variables as any;
+            dataVariables = variables;
         }
 
         const { data } = await httpClient.post(url, dataVariables);
@@ -157,10 +186,10 @@ export const DataProvider = (
     update: async ({ resource, id, variables }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        let dataVariables = { data: variables };
+        let dataVariables: any = { data: variables };
 
         if (resource === "users") {
-            dataVariables = variables as any;
+            dataVariables = variables;
         }
 
         const { data } = await httpClient.put(url, dataVariables);
@@ -174,10 +203,10 @@ export const DataProvider = (
             ids.map(async (id) => {
                 const url = `${apiUrl}/${resource}/${id}`;
 
-                let dataVariables = { data: variables };
+                let dataVariables: any = { data: variables };
 
                 if (resource === "users") {
-                    dataVariables = variables as any;
+                    dataVariables = variables;
                 }
                 const { data } = await httpClient.put(url, dataVariables);
                 return data;
@@ -221,10 +250,7 @@ export const DataProvider = (
         const { data } = await httpClient.get(url);
 
         return {
-            data: {
-                id: data.data.id,
-                ...data.data.attributes,
-            },
+            data: normalizeData(data),
         };
     },
 

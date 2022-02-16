@@ -7,6 +7,8 @@ import selection from '@site/static/img/guides-and-concepts/data-provider/strapi
 import category from '@site/static/img/guides-and-concepts/data-provider/strapi-v4/category.png';
 import publication from '@site/static/img/guides-and-concepts/data-provider/strapi-v4/publication.gif';
 import locale from '@site/static/img/guides-and-concepts/data-provider/strapi-v4/locale.gif';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 **refine** supports the features that come with [Strapi-v4](https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html).
 
@@ -17,38 +19,65 @@ A few of the Strapi-v4 API features are as follows:
 -   Publication State
 -   Locale
 
-You can use these API features with **refine**. Thanks to `MetaDataQuery`, you can simply send queries using these API parameters.
+`metaData` allows us to use the above features in hooks. Thus, we can fetch the data according to the parameters we want.
 
-Hooks and components that support `MetaDataQuery`:
+Hooks and components that support `metaData`:
 
-| Supported data hooks                                                 | Supported other hooks                                                       | Supported components                                                   |
-| -------------------------------------------------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`useUpdate` &#8594](/core/hooks/data/useUpdate.md)         | [`useForm` &#8594](/core/hooks/useForm.md)                    | [`DeleteButton` &#8594](/ui-frameworks/antd/components/buttons/delete.md)   |
+| Supported data hooks                                        | Supported other hooks                                                            | Supported components                                                        |
+| ----------------------------------------------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| [`useUpdate` &#8594](/core/hooks/data/useUpdate.md)         | [`useForm` &#8594](/core/hooks/useForm.md)                                       | [`DeleteButton` &#8594](/ui-frameworks/antd/components/buttons/delete.md)   |
 | [`useUpdateMany` &#8594](/core/hooks/data/useUpdateMany.md) | [`useModalForm` &#8594](/ui-frameworks/antd/hooks/form/useModalForm.md)          | [`RefreshButton` &#8594](/ui-frameworks/antd/components/buttons/refresh.md) |
-| [`useDelete` &#8594](/core/hooks/data/useDelete.md)         | [`useDrawerForm` &#8594](/ui-frameworks/antd/hooks/form/useDrawerForm.md)        |                                                                        |
-| [`useDeleteMany` &#8594](/core/hooks/data/useDeleteMany.md) | [`useStepsForm` &#8594](/ui-frameworks/antd/hooks/form/useStepsForm.md)          |                                                                        |
-| [`useCreate` &#8594](/core/hooks/data/useCreate.md)         | [`useTable` &#8594](/core/hooks/useTable.md)                 |                                                                        |
-| [`useCreateMany` &#8594](/core/hooks/data/useCreateMany.md) | [`useEditableTable` &#8594](/ui-frameworks/antd/hooks/table/useEditableTable.md) |                                                                        |
-| [`useList` &#8594](/core/hooks/data/useList.md)             | [`useSimpleList` &#8594](/ui-frameworks/antd/hooks/list/useSimpleList.md)        |                                                                        |
-| [`useOne` &#8594](/core/hooks/data/useOne.md)               | [`useShow` &#8594](/core/hooks/show/useShow.md)                    |                                                                        |
-| [`useMany` &#8594](/core/hooks/data/useMany.md)             | [`useExport` &#8594](/core/hooks/import-export/useExport.md)       |                                                                        |
-| [`useCustom` &#8594](/core/hooks/data/useCustom.md)         | [`useCheckboxGroup` &#8594](/ui-frameworks/antd/hooks/field/useCheckboxGroup.md) |                                                                        |
-|                                                                      | [`useSelect` &#8594](/core/hooks/useSelect.md)               |                                                                        |
-|                                                                      | [`useRadioGroup` &#8594](/ui-frameworks/antd/hooks/field/useRadioGroup.md)       |                                                                        |
-
+| [`useDelete` &#8594](/core/hooks/data/useDelete.md)         | [`useDrawerForm` &#8594](/ui-frameworks/antd/hooks/form/useDrawerForm.md)        |                                                                             |
+| [`useDeleteMany` &#8594](/core/hooks/data/useDeleteMany.md) | [`useStepsForm` &#8594](/ui-frameworks/antd/hooks/form/useStepsForm.md)          |                                                                             |
+| [`useCreate` &#8594](/core/hooks/data/useCreate.md)         | [`useTable` &#8594](/core/hooks/useTable.md)                                     |                                                                             |
+| [`useCreateMany` &#8594](/core/hooks/data/useCreateMany.md) | [`useEditableTable` &#8594](/ui-frameworks/antd/hooks/table/useEditableTable.md) |                                                                             |
+| [`useList` &#8594](/core/hooks/data/useList.md)             | [`useSimpleList` &#8594](/ui-frameworks/antd/hooks/list/useSimpleList.md)        |                                                                             |
+| [`useOne` &#8594](/core/hooks/data/useOne.md)               | [`useShow` &#8594](/core/hooks/show/useShow.md)                                  |                                                                             |
+| [`useMany` &#8594](/core/hooks/data/useMany.md)             | [`useExport` &#8594](/core/hooks/import-export/useExport.md)                     |                                                                             |
+| [`useCustom` &#8594](/core/hooks/data/useCustom.md)         | [`useCheckboxGroup` &#8594](/ui-frameworks/antd/hooks/field/useCheckboxGroup.md) |                                                                             |
+|                                                             | [`useSelect` &#8594](/core/hooks/useSelect.md)                                   |                                                                             |
+|                                                             | [`useRadioGroup` &#8594](/ui-frameworks/antd/hooks/field/useRadioGroup.md)       |                                                                             |
 
 :::note
-You can handle features such as Sorting, Pagination and Filters with Dataprovider. There is no need to use MetaDataQuery.
+There is no need to use `metaData` for sorting, pagination and filters. Sorting, pagination and filters will be handled automatically by the strapi-v4 dataProvider.
 :::
 
-## Setup 
+:::info
+Normally, strapi-v4 backend returns data in the following format:
+
+```json
+{
+    "id": 1,
+    "attributes": {
+        "title": "My title",
+        "content": "Long content...",
+}
+```
+
+However, we can use [normalizeData](https://github.com/pankod/refine/blob/27a55320ada61a0624ed2f5b29331946334f7727/packages/strapi-v4/src/dataProvider.ts#L80) to customize the data returned by the backend. So, our data will look like:
+
+```json
+{
+    "id": 1,
+    "title": "My title",
+    "content": "Long content..."
+}
+```
+
+:::
+
+## Setup
+
 ```bash
 npm i @pankod/refine-strapi-v4
 ```
+
 :::caution
 To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
 :::
+
 ## Usage
+
 ```tsx title="App.tsx"
 import { Refine, AuthProvider } from "@pankod/refine-core";
 //highlight-start
@@ -70,47 +99,61 @@ const App: React.FC = () => {
 ```
 
 ## API Parameters
-Let's examine how API parameters that come with Strapi-v4 are used with **refine** metadata. Then, let's see how it is used in the application.
 
-
+Let's examine how API parameters that come with Strapi-v4 are used with `metaData`. Then, let's see how it is used in the application.
 
 ### Create Collections
+
 We created two collections on [Strapi](https://strapi.io/) as `posts` and `categories` and added a relation between them. For detailed information on how to create a collection, you can check [here](https://strapi.io/documentation/developer-docs/latest/getting-started/quick-start.html).
 
+<Tabs
+defaultValue="posts"
+values={[
+{label: 'posts', value: 'posts'},
+{label: 'categories', value: 'categories'}
+]}>
+<TabItem value="posts">
 
-```tsx title="posts"
-{
-    id: 3,
-    attributes: {
-        title: "Incidunt tempora ut voluptas est",
-        content: "Soluta voluptatibus rem assumenda id autem possimus dicta molestiae qui. Tenetur corporis sed aliquam et voluptatibus expedita in sunt.",
-        createdAt: "2021-12-15T14:22:52.919Z",
-        updatedAt: "2021-12-15T14:23:07.542Z",
-        publishedAt: "2021-12-15T14:22:54.126Z",
-        locale: "en"
-    }
-}
-```
+**posts** has the following fields:
+
+-   `id`
+-   `title`
+-   `content`
+-   `category`
+-   `createdAt`
+-   `locale`
+
+</TabItem>
+<TabItem value="categories">
+
+**categories** has the following fields:
+
+-   `id`
+-   `title`
+
+</TabItem>
+</Tabs>
 
 ### Fields Selection
-To select only some fields, we must specify this fields with metadata.
+
+To select only some fields, we must specify this fields with `metaData`.
 
 [Refer to the Fields Selection documentation for detailed information. →](https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest-api.html#fields-selection)
 
 ```tsx title="Get only id and title of all posts"
 const { tableProps } = useTable<IPost>({
     metaData: {
-        fields: ["id", "title"]
+        fields: ["id", "title"],
     },
-}); 
+});
 ```
 
 ```tsx title="Get all fields of all posts(id, title, category, content ...)"
 const { tableProps } = useTable<IPost>({
     metaData: {
-        fields: "*"
+        fields: "*",
     },
-});    
+});
 ```
 
 When sending the request, we can specify which fields will come, so we send `fields` in `metaData` to hooks that we will fetch data from. In this way, you can perform the queries of only the fields you want.
@@ -156,14 +199,12 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
             >
                 <Table.Column
                     dataIndex="id"
-                    key="id"
                     title="ID"
                     defaultSortOrder={getDefaultSortOrder("id", sorter)}
                     sorter={{ multiple: 3 }}
                 />
                 <Table.Column
                     dataIndex="title"
-                    key="title"
                     title="Title"
                     defaultSortOrder={getDefaultSortOrder("title", sorter)}
                     sorter={{ multiple: 2 }}
@@ -171,7 +212,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 
                 <Table.Column<{ id: string }>
                     title="Actions"
-                    dataIndex="actions"
                     render={(_, record) => (
                         <Space>
                             <EditButton
@@ -202,8 +242,8 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     <img src={selection} alt="Fields Selection Metadata" />
 </div>
 
-
 ### Relations Population
+
 By default, relations are not populated when fetching entries.
 
 The `populate` parameter is used to define which fields will be populated.
@@ -213,24 +253,22 @@ The `populate` parameter is used to define which fields will be populated.
 ```tsx title="Get all the posts and populate the selected relations"
 const { tableProps } = useTable<IPost>({
     metaData: {
-        populate: ["category", "cover"]
+        populate: ["category", "cover"],
     },
-}); 
+});
 ```
 
 ```tsx title="Get all posts and populate all their first-level relations"
 const { tableProps } = useTable<IPost>({
     metaData: {
-        populate: "*"
+        populate: "*",
     },
-});  
+});
 ```
 
-In order to pull the `categories` related to the posts, we can now show the categories in our list by defining the `metadata` `populate` parameter.
+In order to pull the `categories` related to the posts, we can now show the categories in our list by defining the `metaData` `populate` parameter.
 
 ```tsx title="PostList.tsx"
-import { useState } from "react";
-
 import { IResourceComponentsProps } from "@pankod/refine-core";
 import {
     List,
@@ -240,14 +278,9 @@ import {
     FilterDropdown,
     Select,
     useSelect,
-    DateField,
     Space,
     EditButton,
     DeleteButton,
-    ImageField,
-    Form,
-    Radio,
-    Tag,
 } from "@pankod/refine-antd";
 
 import { IPost } from "interfaces";
@@ -255,9 +288,6 @@ import { IPost } from "interfaces";
 import { API_URL } from "../../constants";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const [locale, setLocale] = useState("en");
-    const [publicationState, setPublicationState] = useState("live");
-
     const { tableProps, sorter } = useTable<IPost>({
         metaData: {
             fields: ["id", "title"],
@@ -267,11 +297,13 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         },
     });
 
+    // highlight-start
     const { selectProps } = useSelect({
         resource: "categories",
         optionLabel: "title",
         optionValue: "id",
     });
+    // highlight-end
 
     return (
         <List>
@@ -285,22 +317,19 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
             >
                 <Table.Column
                     dataIndex="id"
-                    key="id"
                     title="ID"
                     defaultSortOrder={getDefaultSortOrder("id", sorter)}
                     sorter={{ multiple: 3 }}
                 />
                 <Table.Column
                     dataIndex="title"
-                    key="title"
                     title="Title"
                     defaultSortOrder={getDefaultSortOrder("title", sorter)}
                     sorter={{ multiple: 2 }}
                 />
                 //highlight-start
                 <Table.Column
-                    key="[category][id]"
-                    dataIndex={["category", "data", "attributes", "title"]}
+                    dataIndex={["category", "title"]}
                     title="Category"
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
@@ -316,7 +345,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 //highlight-end
                 <Table.Column<{ id: string }>
                     title="Actions"
-                    dataIndex="actions"
                     render={(_, record) => (
                         <Space>
                             <EditButton
@@ -362,7 +390,7 @@ The Draft & Publish feature should be enabled on Strapi.
 ```tsx
 const { tableProps } = useTable<IPost>({
     metaData: {
-        publicationState: "preview"
+        publicationState: "preview",
     },
 });
 ```
@@ -370,6 +398,7 @@ const { tableProps } = useTable<IPost>({
 We can list the posts separately according to the `published` or `draft` information.
 
 ```tsx title="PostList"
+// highlight-next-line
 import { useState } from "react";
 
 import { IResourceComponentsProps } from "@pankod/refine-core";
@@ -385,10 +414,11 @@ import {
     Space,
     EditButton,
     DeleteButton,
-    ImageField,
+    // highlight-start
     Form,
     Radio,
     Tag,
+    // highlight-end
 } from "@pankod/refine-antd";
 
 import { IPost } from "interfaces";
@@ -398,7 +428,7 @@ import { API_URL } from "../../constants";
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     // highlight-start
     const [publicationState, setPublicationState] = useState("live");
-    //highlight-end
+    // highlight-end
 
     const { tableProps, sorter } = useTable<IPost>({
         metaData: {
@@ -418,15 +448,13 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <List>
+            //highlight-start
             <Form
                 layout="inline"
-                //highlight-start
                 initialValues={{
                     publicationState,
                 }}
-                //highlight-end
             >
-               //highlight-start
                 <Form.Item label="Publication State" name="publicationState">
                     <Radio.Group
                         onChange={(e) => setPublicationState(e.target.value)}
@@ -437,8 +465,8 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                         </Radio.Button>
                     </Radio.Group>
                 </Form.Item>
-                //highlight-end
             </Form>
+            //highlight-end
             <br />
             <Table
                 {...tableProps}
@@ -450,21 +478,18 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
             >
                 <Table.Column
                     dataIndex="id"
-                    key="id"
                     title="ID"
                     defaultSortOrder={getDefaultSortOrder("id", sorter)}
                     sorter={{ multiple: 3 }}
                 />
                 <Table.Column
                     dataIndex="title"
-                    key="title"
                     title="Title"
                     defaultSortOrder={getDefaultSortOrder("title", sorter)}
                     sorter={{ multiple: 2 }}
                 />
                 <Table.Column
-                    key="[category][id]"
-                    dataIndex={["category", "data", "attributes", "title"]}
+                    dataIndex={["category", "title"]}
                     title="Category"
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
@@ -477,6 +502,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                         </FilterDropdown>
                     )}
                 />
+                //highlight-start
                 <Table.Column
                     dataIndex="publishedAt"
                     title="Status"
@@ -488,9 +514,9 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                         );
                     }}
                 />
+                //highlight-end
                 <Table.Column<{ id: string }>
                     title="Actions"
-                    dataIndex="actions"
                     render={(_, record) => (
                         <Space>
                             <EditButton
@@ -524,6 +550,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 <br/>
 
 ### Locale
+
 :::tip
 To fetch content for a locale, make sure it has been already [added to Strapi in the admin panel](https://docs.strapi.io/user-docs/latest/settings/managing-global-settings.html#configuring-internationalization-locales)
 :::
@@ -533,7 +560,7 @@ To fetch content for a locale, make sure it has been already [added to Strapi in
 ```tsx
 const { tableProps } = useTable<IPost>({
     metaData: {
-        locale: "de"
+        locale: "de",
     },
 });
 ```
@@ -630,21 +657,18 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
             >
                 <Table.Column
                     dataIndex="id"
-                    key="id"
                     title="ID"
                     defaultSortOrder={getDefaultSortOrder("id", sorter)}
                     sorter={{ multiple: 3 }}
                 />
                 <Table.Column
                     dataIndex="title"
-                    key="title"
                     title="Title"
                     defaultSortOrder={getDefaultSortOrder("title", sorter)}
                     sorter={{ multiple: 2 }}
                 />
                 <Table.Column
-                    key="[category][id]"
-                    dataIndex={["category", "data", "attributes", "title"]}
+                    dataIndex={["category", "title"]}
                     title="Category"
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
@@ -670,7 +694,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 />
                 <Table.Column<{ id: string }>
                     title="Actions"
-                    dataIndex="actions"
                     render={(_, record) => (
                         <Space>
                             <EditButton
@@ -702,8 +725,9 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 </div>
 <br/>
 
-:::tip
-When creating and editing posts you can use these API parameters in `metaData`. You can look how it is used in EditList and CreateList from Codesandbox.
+## `metaData` Usages
+
+When creating and editing posts you can use these API parameters in `metaData`:
 
 ```tsx
 const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
@@ -722,9 +746,9 @@ const { selectProps } = useSelect({
     metaData: { locale: "en" },
 });
 ```
-:::
 
 ## Live Codesandbox Example
+
 Username: demo@refine.dev
 
 Password: demodemo
