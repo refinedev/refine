@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:16-alpine
 
 WORKDIR /opt/app
 
@@ -14,7 +14,7 @@ COPY . /opt/app
 
 RUN npm run build
 
-FROM node:14-alpine
+FROM node:16-alpine
 
 COPY --from=0 /opt/app/build /opt/app
 WORKDIR /opt/app/
