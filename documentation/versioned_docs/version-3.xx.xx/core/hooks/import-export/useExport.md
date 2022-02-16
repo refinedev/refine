@@ -194,21 +194,22 @@ You can pass more options to further customize the exporting process.
 
 ### `useExport` Options
 
-| Key           | Description                                                                                                                | Type                                                                             |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| resourceName  | Default resource name this button imports to. Inferred from route by default                                               | `string`                                                                         |
-| mapData       | A mapping function that runs for every record. Mapped data will be included in the file contents                           | `<TItem, TVariables>(item: TItem, index?: number, items?: TItem[]): TVariables;` |
-| pageSize      | Requests to fetch data are made as batches by page size. By default, it is 20. Used for `getList` method of `DataProvider` | `number`                                                                         |
-| sorter        | Sorts  records                                                                                                             | [`CrudSorting`][CrudSorting] \| `undefined`                                      |    |
-| filter        | Filters records                                                                                                            | [`CrudFilters`][CrudFilters] \| `undefined`                                      |    |
-| exportOptions | Used for exporting options                                                                                                 | [`Options`][export-to-csv#api] \| `undefined`                                    |    |
-| metaData      | Metadata query for `dataProvider`                                                                                          | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                 | {} |
+| Key              | Description                                                                                                                | Type                                                                             |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| resourceName     | Default resource name this button imports to. Inferred from route by default                                               | `string`                                                                         |
+| mapData          | A mapping function that runs for every record. Mapped data will be included in the file contents                           | `<TItem, TVariables>(item: TItem, index?: number, items?: TItem[]): TVariables;` |
+| pageSize         | Requests to fetch data are made as batches by page size. By default, it is 20. Used for `getList` method of `DataProvider` | `number`                                                                         |
+| sorter           | Sorts  records                                                                                                             | [`CrudSorting`][CrudSorting] \| `undefined`                                      |           |
+| filter           | Filters records                                                                                                            | [`CrudFilters`][CrudFilters] \| `undefined`                                      |           |
+| exportOptions    | Used for exporting options                                                                                                 | [`Options`][export-to-csv#api] \| `undefined`                                    |           |
+| metaData         | Metadata query for `dataProvider`                                                                                          | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                             | {}        |
+| dataProviderName | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.                         | `string`                                                                         | `default` |
 
 ### `useExport` Return Values
 
 | Key           | Description                                | Type               |
 | ------------- | ------------------------------------------ | ------------------ |
-| isLoading       | Shows true when there is an export process | `boolean`          |
+| isLoading     | Shows true when there is an export process | `boolean`          |
 | triggerExport | When invoked, starts the exporting process | `async () => void` |
 
 ### Type Parameters

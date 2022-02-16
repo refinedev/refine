@@ -66,6 +66,7 @@ export const useSimpleList = <
     onLiveEvent,
     liveParams,
     metaData,
+    dataProviderName,
     ...listProps
 }: useSimpleListProps<
     TData,
@@ -100,6 +101,7 @@ export const useSimpleList = <
         liveParams,
         metaData,
         syncWithLocation: syncWithLocationProp,
+        dataProviderName,
     });
 
     const liveMode = useLiveMode(liveModeFromProp);

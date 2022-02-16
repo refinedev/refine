@@ -22,6 +22,7 @@ export type DeleteButtonProps = ButtonProps & {
     mutationMode?: MutationMode;
     hideText?: boolean;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
     ignoreAccessControlProvider?: boolean;
 } & SuccessErrorNotification;
 
@@ -42,6 +43,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     hideText = false,
     ignoreAccessControlProvider = false,
     metaData,
+    dataProviderName,
     ...rest
 }) => {
     const resourceWithRoute = useResourceWithRoute();
@@ -91,6 +93,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                         successNotification,
                         errorNotification,
                         metaData,
+                        dataProviderName,
                     },
                     {
                         onSuccess: (value) => {

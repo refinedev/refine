@@ -1,11 +1,8 @@
-import { useContext } from "react";
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
 import pluralize from "pluralize";
 
-import { DataContext } from "@contexts/data";
 import {
     DeleteManyResponse,
-    IDataContext,
     HttpError,
     BaseRecord,
     MutationMode,
@@ -24,6 +21,7 @@ import {
     useCheckError,
     usePublish,
     useHandleNotification,
+    useDataProvider,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 
@@ -34,6 +32,7 @@ type DeleteManyParams = {
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 } & SuccessErrorNotification;
 
 type UseDeleteManyReturnType<
@@ -63,11 +62,12 @@ export const useDeleteMany = <
     TError extends HttpError = HttpError,
 >(): UseDeleteManyReturnType<TData, TError> => {
     const { mutate: checkError } = useCheckError();
-    const { deleteMany } = useContext<IDataContext>(DataContext);
+
     const {
         mutationMode: mutationModeContext,
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
+    const dataProvider = useDataProvider();
 
     const { notificationDispatch } = useCancelNotification();
     const translate = useTranslate();
@@ -90,6 +90,7 @@ export const useDeleteMany = <
             undoableTimeout,
             onCancel,
             metaData,
+            dataProviderName,
         }: DeleteManyParams) => {
             const mutationModePropOrContext =
                 mutationMode ?? mutationModeContext;
@@ -97,13 +98,18 @@ export const useDeleteMany = <
             const undoableTimeoutPropOrContext =
                 undoableTimeout ?? undoableTimeoutContext;
             if (!(mutationModePropOrContext === "undoable")) {
-                return deleteMany<TData>({ resource, ids, metaData });
+                return dataProvider(dataProviderName).deleteMany<TData>({
+                    resource,
+                    ids,
+                    metaData,
+                });
             }
 
             const updatePromise = new Promise<DeleteManyResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        deleteMany<TData>({ resource, ids, metaData })
+                        dataProvider(dataProviderName)
+                            .deleteMany<TData>({ resource, ids, metaData })
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
                     };

@@ -35,7 +35,6 @@ This guide will help you learn and get information of basic **refine** concepts.
 -   `@pankod/refine-airtable` - a fully featured [Airtable](https://github.com/Airtable/airtable.js) Data Provider
 -   `@pankod/refine-altogic` - a fully featured [Altogic](https://github.com/altogic/altogic-js) Data Provider
 
-
 **[Router Provider](https://refine.dev/docs/core/providers/router-provider/) Packages**
 
 -   `@pankod/refine-react-router` - Router Provider for [React Router(v5)](https://github.com/remix-run/react-router)

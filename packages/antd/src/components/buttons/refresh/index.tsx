@@ -15,6 +15,7 @@ export type RefreshButtonProps = ButtonProps & {
     recordItemId?: string;
     hideText?: boolean;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 };
 
 /**
@@ -28,6 +29,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     recordItemId,
     hideText = false,
     metaData,
+    dataProviderName,
     children,
     ...rest
 }) => {
@@ -53,6 +55,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
         },
         metaData,
         liveMode: "off",
+        dataProviderName,
     });
 
     return (

@@ -1,10 +1,10 @@
 import { useHistory, useParams, useLocation, Link } from "react-router-dom";
 
 import {
-    IDataContext,
     IRouterContext,
     IAccessControlContext,
     ILiveContext,
+    IDataMultipleContextProvider,
 } from "../src/interfaces";
 
 export const posts = [
@@ -34,21 +34,24 @@ export const posts = [
 
 const MockDataProvider = () => {
     return {
-        create: () => Promise.resolve({ data: posts[0] }),
-        createMany: () => Promise.resolve({ data: posts }),
-        deleteOne: () => Promise.resolve({ data: posts[0] }),
-        deleteMany: () => Promise.resolve({ data: [] }),
-        getList: () => Promise.resolve({ data: posts, total: 2 }),
-        getMany: () => Promise.resolve({ data: [...posts] }),
-        getOne: () => Promise.resolve({ data: posts[0] }),
-        update: () => Promise.resolve({ data: posts[0] }),
-        updateMany: () => Promise.resolve({ data: [] }),
-        getApiUrl: () => "https://api.fake-rest.refine.dev",
-        custom: () => Promise.resolve({ data: [...posts] }),
+        default: {
+            create: () => Promise.resolve({ data: posts[0] }),
+            createMany: () => Promise.resolve({ data: posts }),
+            deleteOne: () => Promise.resolve({ data: posts[0] }),
+            deleteMany: () => Promise.resolve({ data: [] }),
+            getList: () => Promise.resolve({ data: posts, total: 2 }),
+            getMany: () => Promise.resolve({ data: [...posts] }),
+            getOne: () => Promise.resolve({ data: posts[0] }),
+            update: () => Promise.resolve({ data: posts[0] }),
+            updateMany: () => Promise.resolve({ data: [] }),
+            getApiUrl: () => "https://api.fake-rest.refine.dev",
+            custom: () => Promise.resolve({ data: [...posts] }),
+        },
     };
 };
 
-export const MockJSONServer = MockDataProvider() as IDataContext;
+export const MockJSONServer =
+    MockDataProvider() as IDataMultipleContextProvider;
 
 export const MockRouterProvider: IRouterContext = {
     useHistory,

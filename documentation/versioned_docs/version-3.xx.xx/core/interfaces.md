@@ -54,7 +54,6 @@ title: Interface References
 | `"between"`    | Between                         |
 | `"nbetween"`   | Doesn't between                 |
 | `"null"`       | Is null or not null             |
-| `"nnull"`      | Not null                        |
 
 ## CrudSorting
 

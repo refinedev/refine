@@ -35,6 +35,7 @@ export const useImport = <
     batchSize = Number.MAX_SAFE_INTEGER,
     onFinish,
     metaData,
+    dataProviderName,
     onProgress: onProgressFromProp,
 }: ImportOptions<TItem, TVariables, TData> = {}): Omit<
     UseImportReturnType<TData, TVariables, TError>,
@@ -63,6 +64,7 @@ export const useImport = <
         paparseOptions,
         batchSize,
         metaData,
+        dataProviderName,
         onFinish,
         onProgress:
             onProgressFromProp ??

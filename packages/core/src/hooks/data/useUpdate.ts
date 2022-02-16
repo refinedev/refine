@@ -1,11 +1,8 @@
-import { useContext } from "react";
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 
-import { DataContext } from "@contexts/data";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
     BaseRecord,
-    IDataContext,
     UpdateResponse,
     QueryResponse,
     MutationMode,
@@ -24,6 +21,7 @@ import {
     useCheckError,
     usePublish,
     useHandleNotification,
+    useDataProvider,
 } from "@hooks";
 
 type UpdateParams<TVariables> = {
@@ -34,6 +32,7 @@ type UpdateParams<TVariables> = {
     onCancel?: (cancelMutation: () => void) => void;
     values: TVariables;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 } & SuccessErrorNotification;
 
 export type UseUpdateReturnType<
@@ -65,7 +64,8 @@ export const useUpdate = <
     TVariables = {},
 >(): UseUpdateReturnType<TData, TError, TVariables> => {
     const queryClient = useQueryClient();
-    const { update } = useContext<IDataContext>(DataContext);
+    const dataProvider = useDataProvider();
+
     const {
         mutationMode: mutationModeContext,
         undoableTimeout: undoableTimeoutContext,
@@ -92,6 +92,7 @@ export const useUpdate = <
             undoableTimeout,
             onCancel,
             metaData,
+            dataProviderName,
         }) => {
             const mutationModePropOrContext =
                 mutationMode ?? mutationModeContext;
@@ -100,22 +101,25 @@ export const useUpdate = <
                 undoableTimeout ?? undoableTimeoutContext;
 
             if (!(mutationModePropOrContext === "undoable")) {
-                return update<TData, TVariables>({
-                    resource,
-                    id,
-                    variables: values,
-                    metaData,
-                });
+                return dataProvider(dataProviderName).update<TData, TVariables>(
+                    {
+                        resource,
+                        id,
+                        variables: values,
+                        metaData,
+                    },
+                );
             }
             const updatePromise = new Promise<UpdateResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        update<TData, TVariables>({
-                            resource,
-                            id,
-                            variables: values,
-                            metaData,
-                        })
+                        dataProvider(dataProviderName)
+                            .update<TData, TVariables>({
+                                resource,
+                                id,
+                                variables: values,
+                                metaData,
+                            })
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
                     };

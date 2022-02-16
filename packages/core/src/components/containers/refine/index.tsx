@@ -43,6 +43,7 @@ import {
     LiveModeProps,
     IAccessControlContext,
     INotificationContext,
+    IDataMultipleContextProvider,
 } from "../../../interfaces";
 
 interface QueryClientConfig {
@@ -52,7 +53,7 @@ interface QueryClientConfig {
 }
 export interface RefineProps {
     authProvider?: IAuthContext;
-    dataProvider: IDataContextProvider;
+    dataProvider: IDataContextProvider | IDataMultipleContextProvider;
     liveProvider?: ILiveContext;
     routerProvider: IRouterProvider;
     notificationProvider?: INotificationContext;

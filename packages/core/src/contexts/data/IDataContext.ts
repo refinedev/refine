@@ -183,11 +183,13 @@ export interface IDataContextProvider {
         sort?: CrudSorting;
         filters?: CrudFilters;
         metaData?: MetaDataQuery;
+        dataProviderName?: string;
     }) => Promise<GetListResponse<TData>>;
     getMany: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
         ids: string[];
         metaData?: MetaDataQuery;
+        dataProviderName?: string;
     }) => Promise<GetManyResponse<TData>>;
     getOne: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
@@ -250,4 +252,9 @@ export interface IDataContextProvider {
         headers?: {};
         metaData?: MetaDataQuery;
     }) => Promise<CustomResponse<TData>>;
+}
+
+export interface IDataMultipleContextProvider {
+    default?: IDataContextProvider;
+    [key: string]: IDataContextProvider | any;
 }

@@ -52,6 +52,7 @@ module.exports = {
                                 "core/hooks/data/useMany",
                                 "core/hooks/data/useCustom",
                                 "core/hooks/data/useApiUrl",
+                                "core/hooks/data/useDataProvider",
                             ],
                         },
                         {
@@ -385,6 +386,7 @@ module.exports = {
                         "examples/data-provider/airtable",
                         "examples/data-provider/supabase",
                         "examples/data-provider/altogic",
+                        "examples/data-provider/multiple",
                     ],
                 },
                 {

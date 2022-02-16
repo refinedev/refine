@@ -23,6 +23,7 @@ export type useCheckboxGroupProps<TData, TError> = {
     filters?: CrudFilters;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 } & SuccessErrorNotification &
     LiveModeProps;
 
@@ -56,6 +57,7 @@ export const useCheckboxGroup = <
     onLiveEvent,
     liveParams,
     metaData,
+    dataProviderName,
 }: useCheckboxGroupProps<TData, TError>): UseCheckboxGroupReturnType<TData> => {
     const [options, setOptions] = useState<Option[]>([]);
 
@@ -87,6 +89,7 @@ export const useCheckboxGroup = <
         onLiveEvent,
         liveParams,
         metaData,
+        dataProviderName,
     });
 
     return {

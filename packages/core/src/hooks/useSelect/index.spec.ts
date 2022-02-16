@@ -3,7 +3,11 @@ import { renderHook } from "@testing-library/react-hooks";
 import { MockJSONServer, TestWrapper, act } from "@test";
 
 import { useSelect } from "./";
-import { CrudFilters, IDataContext } from "src/interfaces";
+import {
+    CrudFilters,
+    IDataContext,
+    IDataMultipleContextProvider,
+} from "src/interfaces";
 
 describe("useSelect Hook", () => {
     it("default", async () => {
@@ -45,7 +49,7 @@ describe("useSelect Hook", () => {
                 }),
             {
                 wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
+                    dataProvider: MockJSONServer.default,
                     resources: [{ name: "posts" }],
                 }),
             },
@@ -177,8 +181,10 @@ describe("useSelect Hook", () => {
             {
                 wrapper: TestWrapper({
                     dataProvider: {
-                        ...MockJSONServer,
-                        getList: getListMock,
+                        default: {
+                            ...MockJSONServer.default!,
+                            getList: getListMock,
+                        },
                     },
                     resources: [{ name: "posts" }],
                 }),
@@ -220,9 +226,11 @@ describe("useSelect Hook", () => {
             {
                 wrapper: TestWrapper({
                     dataProvider: {
-                        ...MockJSONServer,
-                        getList: getListMock,
-                    },
+                        default: {
+                            ...MockJSONServer.default,
+                            getList: getListMock,
+                        },
+                    } as any,
                     resources: [{ name: "posts" }],
                 }),
             },
@@ -341,9 +349,14 @@ describe("useSelect Hook", () => {
         ];
 
         const mockDataProvider = {
-            getList: jest.fn(() => Promise.resolve({ data: posts, total: 2 })),
-            getMany: jest.fn(() => Promise.resolve({ data: [...posts] })),
-        };
+            default: {
+                ...MockJSONServer.default,
+                getList: jest.fn(() =>
+                    Promise.resolve({ data: posts, total: 2 }),
+                ),
+                getMany: jest.fn(() => Promise.resolve({ data: [...posts] })),
+            },
+        } as IDataMultipleContextProvider;
 
         const { waitForNextUpdate } = renderHook(
             () =>
@@ -362,7 +375,7 @@ describe("useSelect Hook", () => {
 
         await waitForNextUpdate();
 
-        expect(mockDataProvider.getList).toHaveBeenCalledWith({
+        expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
             filters: [],
             pagination: { pageSize: 20 },
             resource: "posts",
@@ -382,9 +395,14 @@ describe("useSelect Hook", () => {
         ];
 
         const mockDataProvider = {
-            getList: jest.fn(() => Promise.resolve({ data: posts, total: 2 })),
-            getMany: jest.fn(() => Promise.resolve({ data: [...posts] })),
-        };
+            default: {
+                ...MockJSONServer.default,
+                getList: jest.fn(() =>
+                    Promise.resolve({ data: posts, total: 2 }),
+                ),
+                getMany: jest.fn(() => Promise.resolve({ data: [...posts] })),
+            },
+        } as IDataMultipleContextProvider;
 
         const filters: CrudFilters = [
             {
@@ -403,7 +421,8 @@ describe("useSelect Hook", () => {
                 }),
             {
                 wrapper: TestWrapper({
-                    dataProvider: mockDataProvider as unknown as IDataContext,
+                    dataProvider:
+                        mockDataProvider as unknown as IDataMultipleContextProvider,
                     resources: [{ name: "posts" }],
                 }),
             },
@@ -413,7 +432,7 @@ describe("useSelect Hook", () => {
 
         await waitForNextUpdate();
 
-        expect(mockDataProvider.getList).toHaveBeenCalledWith({
+        expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
             filters: [],
             resource: "posts",
         });
@@ -424,7 +443,7 @@ describe("useSelect Hook", () => {
 
         await waitForNextUpdate();
 
-        expect(mockDataProvider.getList).toHaveBeenCalledWith({
+        expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
             filters,
             resource: "posts",
         });

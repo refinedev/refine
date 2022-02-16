@@ -23,6 +23,7 @@ export type useRadioGroupProps<TData, TError> = RadioGroupProps & {
     filters?: CrudFilters;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 } & SuccessErrorNotification &
     LiveModeProps;
 
@@ -56,6 +57,7 @@ export const useRadioGroup = <
     onLiveEvent,
     liveParams,
     metaData,
+    dataProviderName,
 }: useRadioGroupProps<TData, TError>): UseRadioGroupReturnType<TData> => {
     const [options, setOptions] = useState<Option[]>([]);
 
@@ -87,6 +89,7 @@ export const useRadioGroup = <
         onLiveEvent,
         liveParams,
         metaData,
+        dataProviderName,
     });
 
     return {

@@ -20,6 +20,7 @@ export type UseFormProps<
 > = UseFormPropsCore<TData, TError, TVariables> & {
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
+    dataProviderName?: string;
 };
 
 export type UseFormReturnType<
@@ -63,6 +64,7 @@ export const useForm = <
     liveMode,
     liveParams,
     mutationMode,
+    dataProviderName,
     onLiveEvent,
 }: UseFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
     TData,
@@ -95,6 +97,7 @@ export const useForm = <
         liveMode,
         liveParams,
         mutationMode,
+        dataProviderName,
         onLiveEvent,
     });
 

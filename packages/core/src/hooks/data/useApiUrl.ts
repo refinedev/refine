@@ -1,10 +1,9 @@
-import { useContext } from "react";
+import { useDataProvider } from "@hooks";
 
-import { DataContext } from "@contexts/data";
-import { IDataContext } from "../../interfaces";
+export const useApiUrl = (dataProviderName?: string): string => {
+    const dataProvider = useDataProvider();
 
-export const useApiUrl = (): string => {
-    const { getApiUrl } = useContext<IDataContext>(DataContext);
+    const { getApiUrl } = dataProvider(dataProviderName);
 
     return getApiUrl();
 };

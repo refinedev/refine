@@ -1,9 +1,6 @@
-import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
 
-import { DataContext } from "@contexts/data";
 import {
-    IDataContext,
     BaseRecord,
     GetManyResponse,
     HttpError,
@@ -16,6 +13,7 @@ import {
     useCheckError,
     useResourceSubscription,
     useHandleNotification,
+    useDataProvider,
 } from "@hooks";
 
 export type UseManyProps<TData, TError> = {
@@ -25,6 +23,7 @@ export type UseManyProps<TData, TError> = {
     successNotification?: OpenNotificationParams | false;
     errorNotification?: OpenNotificationParams | false;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 } & LiveModeProps;
 
 /**
@@ -51,10 +50,14 @@ export const useMany = <
     liveMode,
     onLiveEvent,
     liveParams,
+    dataProviderName,
 }: UseManyProps<TData, TError>): QueryObserverResult<
     GetManyResponse<TData>
 > => {
-    const { getMany } = useContext<IDataContext>(DataContext);
+    const dataProvider = useDataProvider();
+
+    const { getMany } = dataProvider(dataProviderName);
+
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const handleNotification = useHandleNotification();

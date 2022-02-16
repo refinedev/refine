@@ -1,8 +1,6 @@
-import { useContext } from "react";
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 import pluralize from "pluralize";
 
-import { DataContext } from "@contexts/data";
 import {
     useCacheQueries,
     useCancelNotification,
@@ -11,10 +9,10 @@ import {
     useTranslate,
     usePublish,
     useHandleNotification,
+    useDataProvider,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
-    IDataContext,
     BaseRecord,
     UpdateManyResponse,
     HttpError,
@@ -34,6 +32,7 @@ type UpdateManyParams<TVariables> = {
     onCancel?: (cancelMutation: () => void) => void;
     values: TVariables;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 } & SuccessErrorNotification;
 
 type UseUpdateManyReturnType<
@@ -65,8 +64,9 @@ export const useUpdateMany = <
     TVariables = {},
 >(): UseUpdateManyReturnType<TData, TError, TVariables> => {
     const queryClient = useQueryClient();
+    const dataProvider = useDataProvider();
     const translate = useTranslate();
-    const { updateMany } = useContext<IDataContext>(DataContext);
+
     const {
         mutationMode: mutationModeContext,
         undoableTimeout: undoableTimeoutContext,
@@ -93,6 +93,7 @@ export const useUpdateMany = <
             mutationMode,
             undoableTimeout,
             metaData,
+            dataProviderName,
         }: UpdateManyParams<TVariables>) => {
             const mutationModePropOrContext =
                 mutationMode ?? mutationModeContext;
@@ -101,7 +102,10 @@ export const useUpdateMany = <
                 undoableTimeout ?? undoableTimeoutContext;
 
             if (!(mutationModePropOrContext === "undoable")) {
-                return updateMany<TData, TVariables>({
+                return dataProvider(dataProviderName).updateMany<
+                    TData,
+                    TVariables
+                >({
                     resource,
                     ids,
                     variables: values,
@@ -112,12 +116,13 @@ export const useUpdateMany = <
             const updatePromise = new Promise<UpdateManyResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        updateMany<TData, TVariables>({
-                            resource,
-                            ids,
-                            variables: values,
-                            metaData,
-                        })
+                        dataProvider(dataProviderName)
+                            .updateMany<TData, TVariables>({
+                                resource,
+                                ids,
+                                variables: values,
+                                metaData,
+                            })
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
                     };

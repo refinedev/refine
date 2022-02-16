@@ -7,12 +7,13 @@ import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import {
-    IDataContext,
     IAuthContext,
     I18nProvider,
     IAccessControlContext,
     ILiveContext,
     INotificationContext,
+    IDataMultipleContextProvider,
+    IDataContextProvider,
 } from "../src/interfaces";
 import { TranslationContextProvider } from "@contexts/translation";
 import { RefineContextProvider } from "@contexts/refine";
@@ -39,7 +40,7 @@ const queryClient = new QueryClient({
 
 interface ITestWrapperProps {
     authProvider?: IAuthContext;
-    dataProvider?: IDataContext;
+    dataProvider?: IDataContextProvider | IDataMultipleContextProvider;
     i18nProvider?: I18nProvider;
     notificationProvider?: INotificationContext;
     accessControlProvider?: IAccessControlContext;
@@ -70,7 +71,6 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
         ) : (
             children
         );
-
         const withData = dataProvider ? (
             <DataContextProvider {...dataProvider}>
                 {withResource}

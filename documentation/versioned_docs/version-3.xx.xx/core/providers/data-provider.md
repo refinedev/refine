@@ -96,6 +96,26 @@ const App: React.FC = () => {
 };
 ```
 
+:::tip
+
+To activate multiple data provider in refine, we have to pass the default key with `dataProvider` for default data provider and we can pass other data provider with any key to the `<Refine />` component.
+
+
+```tsx title="App.tsx"
+import { Refine } from "@pankod/refine-core";
+
+import defaultDataProvider from "./dataProvider";
+import exampleDataProvider from "./dataProvider";
+
+const App: React.FC = () => {
+    return <Refine dataProvider={{
+        default: defaultDataProvider,
+        example: exampleDataProvider 
+    }} 
+    />;
+};
+```
+:::
 ## Creating a data provider
 
 We will build **"Simple REST Dataprovider"** of `@pankod/refine-simple-rest` from scratch to show the logic of how data provider methods interact with the API.
@@ -604,9 +624,9 @@ const SimpleRestDataProvider = (
 
 #### Parameter Types
 
-| Name        | Type                                                             |
-| ----------- | ---------------------------------------------------------------- |
-| resource    | `string`                                                         |
+| Name        | Type                                              |
+| ----------- | ------------------------------------------------- |
+| resource    | `string`                                          |
 | pagination? | [`Pagination`](/core/interfaces.md#pagination);   |
 | sort?       | [`CrudSorting`](/core/interfaces.md#crudsorting); |
 | filters?    | [`CrudFilters`](/core/interfaces.md#crudfilters); |
@@ -959,15 +979,15 @@ const SimpleRestDataProvider = (
 
 #### Parameter Types
 
-| Name     | Type                                                             |
-| -------- | ---------------------------------------------------------------- |
-| url      | `string`                                                         |
-| method   | `get`, `delete`, `head`, `options`, `post`, `put`, `patch`       |
-| sort?    | [`CrudSorting`](/core/interfaces.md#crudsorting); |
-| filters? | [`CrudFilters`](/core/interfaces.md#crudfilters); |
-| payload? | `{}`                                                             |
-| query?   | `{}`                                                             |
-| headers? | `{}`                                                             |
+| Name     | Type                                                       |
+| -------- | ---------------------------------------------------------- |
+| url      | `string`                                                   |
+| method   | `get`, `delete`, `head`, `options`, `post`, `put`, `patch` |
+| sort?    | [`CrudSorting`](/core/interfaces.md#crudsorting);          |
+| filters? | [`CrudFilters`](/core/interfaces.md#crudfilters);          |
+| payload? | `{}`                                                       |
+| query?   | `{}`                                                       |
+| headers? | `{}`                                                       |
 
 <br/>
 

@@ -52,6 +52,7 @@ type ActionFormProps<
     metaData?: MetaDataQuery;
     mutationMode?: MutationMode;
     undoableTimeout?: number;
+    dataProviderName?: string;
 } & SuccessErrorNotification &
     ActionParams &
     LiveModeProps;
@@ -107,6 +108,7 @@ export const useForm = <
     onLiveEvent,
     liveParams,
     undoableTimeout,
+    dataProviderName,
 }: UseFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
     TData,
     TError,
@@ -181,6 +183,7 @@ export const useForm = <
                 successNotification,
                 errorNotification,
                 metaData,
+                dataProviderName,
             },
             {
                 onSuccess: (data, variables, context) => {

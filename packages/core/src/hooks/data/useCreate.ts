@@ -1,11 +1,8 @@
-import { useContext } from "react";
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 import pluralize from "pluralize";
 
-import { DataContext } from "@contexts/data";
 import {
     CreateResponse,
-    IDataContext,
     BaseRecord,
     HttpError,
     SuccessErrorNotification,
@@ -17,12 +14,14 @@ import {
     useCacheQueries,
     usePublish,
     useHandleNotification,
+    useDataProvider,
 } from "@hooks";
 
 type useCreateParams<TVariables> = {
     resource: string;
     values: TVariables;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 } & SuccessErrorNotification;
 
 export type UseCreateReturnType<
@@ -48,13 +47,15 @@ export type UseCreateReturnType<
  * @typeParam TVariables - Values for mutation function
  *
  */
+
 export const useCreate = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
 >(): UseCreateReturnType<TData, TError, TVariables> => {
     const { mutate: checkError } = useCheckError();
-    const { create } = useContext<IDataContext>(DataContext);
+    const dataProvider = useDataProvider();
+
     const getAllQueries = useCacheQueries();
     const translate = useTranslate();
     const queryClient = useQueryClient();
@@ -67,12 +68,18 @@ export const useCreate = <
         useCreateParams<TVariables>,
         unknown
     >(
-        ({ resource, values, metaData }: useCreateParams<TVariables>) =>
-            create<TData, TVariables>({
+        ({
+            resource,
+            values,
+            metaData,
+            dataProviderName,
+        }: useCreateParams<TVariables>) => {
+            return dataProvider(dataProviderName).create<TData, TVariables>({
                 resource,
                 variables: values,
                 metaData,
-            }),
+            });
+        },
         {
             onSuccess: (
                 data,

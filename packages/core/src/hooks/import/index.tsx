@@ -52,6 +52,7 @@ export type ImportOptions<
     onFinish?: (results: OnFinishParams<TVariables, TData>) => void;
     metaData?: MetaDataQuery;
     onProgress?: (onProgressParams: OnProgressParams) => void;
+    dataProviderName?: string;
 };
 
 export type CreatedValuesType<TVariables, TData> =
