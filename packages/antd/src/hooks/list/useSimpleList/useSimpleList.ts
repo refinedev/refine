@@ -101,6 +101,7 @@ export const useSimpleList = <
         liveParams,
         metaData,
         syncWithLocation: syncWithLocationProp,
+        dataProviderName,
     });
 
     const liveMode = useLiveMode(liveModeFromProp);

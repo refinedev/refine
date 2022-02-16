@@ -19,7 +19,7 @@ describe("useDataProvider Hook", () => {
         wrapper: TestWrapper({
             dataProvider: {
                 default: MockJSONServer.default,
-                another: MockJSONServer.default,
+                second: MockJSONServer.default,
             },
         }),
     });
@@ -29,18 +29,39 @@ describe("useDataProvider Hook", () => {
         expect(dataProvider.getList).toBeDefined();
     });
 
-    it("get list with fron another data provider", async () => {
-        const dataProvider = result.current("another");
+    it("get list with from second data provider", async () => {
+        const dataProvider = result.current("second");
 
         expect(dataProvider.getList).toBeDefined();
     });
 
-    it("get list with fron another data provider", async () => {
+    it("get list with from second data provider", async () => {
         try {
             result.current("not-exist");
         } catch (error) {
             expect(error).toEqual(
                 new Error(`"not-exist" Data provider not found`),
+            );
+        }
+    });
+});
+describe("useDataProvider Hook without default data provider property", () => {
+    const { result } = renderHook(() => useDataProvider(), {
+        wrapper: TestWrapper({
+            dataProvider: {
+                someDataProvider: MockJSONServer.default,
+            } as any,
+        }),
+    });
+
+    it("get list without from default data provider", async () => {
+        try {
+            result.current("someDataProvider");
+        } catch (error) {
+            expect(error).toEqual(
+                new Error(
+                    `If you have multiple data providers, you must provide default data provider property`,
+                ),
             );
         }
     });

@@ -33,6 +33,14 @@ export const DataContextProvider: React.FC<
     let dataProviders;
 
     if (!rest.hasOwnProperty("default")) {
+        if (
+            !rest.hasOwnProperty("updateMany") ||
+            !rest.hasOwnProperty("createMany")
+        ) {
+            throw new Error(
+                "If you have multiple data providers, you must provide default data provider property",
+            );
+        }
         dataProviders = {
             default: rest,
         } as IDataMultipleContextProvider;
