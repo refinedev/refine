@@ -71,7 +71,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
     return (
         <Button
             onClick={(): void => {
-                edit(routeResourceName, id!);
+                edit(resourceName, id!);
             }}
             icon={<EditOutlined />}
             disabled={data?.can === false}
