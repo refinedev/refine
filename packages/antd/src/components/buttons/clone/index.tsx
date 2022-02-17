@@ -50,7 +50,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     const id = decodeURIComponent(recordItemId ?? idFromRoute);
 
     const onButtonClick = () => {
-        clone(routeResourceName, id!);
+        clone(resourceName, id!);
     };
 
     const { data } = useCan({

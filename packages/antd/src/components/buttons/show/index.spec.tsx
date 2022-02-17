@@ -182,7 +182,7 @@ describe("Show Button", () => {
         expect(mHistory.push).toBeCalledWith("/posts/show/1");
     });
 
-    xit("should custom resource and recordItemId redirect show route called function successfully if click the button", () => {
+    it("should custom resource and recordItemId redirect show route called function successfully if click the button", () => {
         const { getByText } = render(
             <Route path="/:resource">
                 <ShowButton resourceName="categories" recordItemId="1" />
