@@ -1,6 +1,5 @@
 import { useEffect, useContext } from "react";
-import { useLocation } from "react-location";
-import { UNSAFE_NavigationContext } from "react-router-dom";
+import { UNSAFE_NavigationContext as NavigationContext } from "react-router-dom";
 import type { History } from "history";
 
 import type { PromptProps } from "@pankod/refine-core";
@@ -10,23 +9,22 @@ export const Prompt: React.FC<PromptProps> = ({
     when,
     setWarnWhen,
 }) => {
-    const location = useLocation();
-    const navigator = useContext(UNSAFE_NavigationContext).navigator as History;
+    const navigator = useContext(NavigationContext).navigator as History;
 
     useEffect(() => {
         if (!when) return;
 
-        const unblock = location.history.block((transition: any) => {
+        const unblock = navigator.block((transition: any) => {
             if (window.confirm(message)) {
                 setWarnWhen?.(false);
                 unblock();
                 transition.retry();
             } else {
-                location.current.pathname = window.location.pathname;
+                navigator.location.pathname = window.location.pathname;
             }
         });
         return unblock;
-    }, [navigator, setWarnWhen, when]);
+    }, [when, location, message]);
 
     return null;
 };
