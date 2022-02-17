@@ -1,24 +1,150 @@
 /* eslint-disable react/display-name */
 import React from "react";
-import { RouteProps, Routes, Route, Navigate } from "react-router-dom";
+import { RouteProps, Route, Routes, Navigate } from "react-router-dom";
 import {
     LoginPage as DefaultLoginPage,
     ErrorComponent,
     LayoutWrapper,
     useAuthenticated,
     useIsAuthenticated,
-    IResourceItem,
     useResource,
     useRefineContext,
     useRouterContext,
     CanAccess,
+    ResourceRouterParams,
 } from "@pankod/refine-core";
 
-type IRoutesProps = RouteProps & { routes?: RouteProps[] };
+const ResourceComponent: React.FC = () => {
+    const { catchAll } = useRefineContext();
+    const { useParams } = useRouterContext();
+    const { resources } = useResource();
 
-type IRouteComponentProps = { match: { params: { id: string } } };
+    const {
+        resource: routeResourceName,
+        action,
+        id,
+    } = useParams<ResourceRouterParams>();
 
-const RouteProviderBase: React.FC = () => {
+    const resource = resources.find(
+        (res) =>
+            res.name === routeResourceName || res.route === routeResourceName,
+    );
+
+    if (resource) {
+        const {
+            list,
+            create,
+            edit,
+            show,
+            name,
+            canCreate,
+            canEdit,
+            canShow,
+            canDelete,
+        } = resource;
+
+        const List = list ?? (() => null);
+        const Create = create ?? (() => null);
+        const Edit = edit ?? (() => null);
+        const Show = show ?? (() => null);
+
+        const renderCrud = () => {
+            switch (action) {
+                case undefined:
+                    return (
+                        <CanAccess
+                            resource={name}
+                            action="list"
+                            fallback={catchAll ?? <ErrorComponent />}
+                        >
+                            <List
+                                name={name}
+                                canCreate={canCreate}
+                                canEdit={canEdit}
+                                canDelete={canDelete}
+                                canShow={canShow}
+                            />
+                        </CanAccess>
+                    );
+                case undefined:
+                    return (
+                        <CanAccess
+                            resource={name}
+                            action="list"
+                            fallback={catchAll ?? <ErrorComponent />}
+                        >
+                            <List
+                                name={name}
+                                canCreate={canCreate}
+                                canEdit={canEdit}
+                                canDelete={canDelete}
+                                canShow={canShow}
+                            />
+                        </CanAccess>
+                    );
+
+                case "create":
+                case "clone":
+                    return (
+                        <CanAccess
+                            resource={name}
+                            action="create"
+                            fallback={catchAll ?? <ErrorComponent />}
+                        >
+                            <Create
+                                name={name}
+                                canCreate={canCreate}
+                                canEdit={canEdit}
+                                canDelete={canDelete}
+                                canShow={canShow}
+                            />
+                        </CanAccess>
+                    );
+
+                case "edit":
+                    return (
+                        <CanAccess
+                            resource={name}
+                            action="edit"
+                            params={{ id }}
+                            fallback={catchAll ?? <ErrorComponent />}
+                        >
+                            <Edit
+                                name={name}
+                                canCreate={canCreate}
+                                canEdit={canEdit}
+                                canDelete={canDelete}
+                                canShow={canShow}
+                            />
+                        </CanAccess>
+                    );
+
+                case "show":
+                    return (
+                        <CanAccess
+                            resource={name}
+                            action="show"
+                            params={{ id }}
+                            fallback={catchAll ?? <ErrorComponent />}
+                        >
+                            <Show
+                                name={name}
+                                canCreate={canCreate}
+                                canEdit={canEdit}
+                                canDelete={canDelete}
+                                canShow={canShow}
+                            />
+                        </CanAccess>
+                    );
+            }
+        };
+
+        return <LayoutWrapper>{renderCrud()}</LayoutWrapper>;
+    }
+
+    return <LayoutWrapper>{catchAll ?? <ErrorComponent />}</LayoutWrapper>;
+};
+const RouteProviderBase = () => {
     const { resources } = useResource();
     const { catchAll, DashboardPage, LoginPage } = useRefineContext();
 
@@ -36,181 +162,47 @@ const RouteProviderBase: React.FC = () => {
         );
     }
 
-    const routes: IRoutesProps[] = [];
-    const RouteHandler = (val: IResourceItem): void => {
-        const { list, create, edit, show, canDelete, route, name, options } =
-            val;
-
-        const ListComponent = list;
-        const CreateComponent = create;
-        const EditComponent = edit;
-        const ShowComponent = show;
-
-        const canCreate = !!create;
-        const canEdit = !!edit;
-        const canShow = !!show;
-
-        if (CreateComponent) {
-            routes.push({
-                path: `/:resource(${route})/:action(create)`,
-                element: () => (
-                    <CanAccess
-                        resource={name}
-                        action="create"
-                        fallback={catchAll ?? <ErrorComponent />}
-                    >
-                        <CreateComponent
-                            canCreate={canCreate}
-                            canEdit={canEdit}
-                            canDelete={canDelete}
-                            canShow={canShow}
-                            name={name}
-                            options={options}
-                        />
-                    </CanAccess>
-                ),
-            });
-
-            routes.push({
-                path: `/:resource(${route})/:action(clone)/:id`,
-                element: (props: IRouteComponentProps) => (
-                    <CanAccess
-                        resource={name}
-                        action="create"
-                        params={{
-                            id: decodeURIComponent(props.match.params.id),
-                        }}
-                        fallback={catchAll ?? <ErrorComponent />}
-                    >
-                        <CreateComponent
-                            canCreate={canCreate}
-                            canEdit={canEdit}
-                            canDelete={canDelete}
-                            canShow={canShow}
-                            name={name}
-                            options={options}
-                        />
-                    </CanAccess>
-                ),
-            });
+    const CustomPathAfterLogin: React.FC = (): JSX.Element | null => {
+        if (isLoading) {
+            return null;
         }
+        const { pathname, search } = location;
+        const toURL = `${pathname}${search}`;
 
-        if (EditComponent) {
-            routes.push({
-                path: `/:resource(${route})/:action(edit)/:id`,
-                element: (props: IRouteComponentProps) => (
-                    <CanAccess
-                        resource={name}
-                        action="edit"
-                        params={{
-                            id: decodeURIComponent(props.match.params.id),
-                        }}
-                        fallback={catchAll ?? <ErrorComponent />}
-                    >
-                        <EditComponent
-                            canCreate={canCreate}
-                            canEdit={canEdit}
-                            canDelete={canDelete}
-                            canShow={canShow}
-                            name={name}
-                            options={options}
-                        />
-                    </CanAccess>
-                ),
-            });
-        }
-
-        if (ShowComponent) {
-            routes.push({
-                path: `/:resource(${route})/:action(show)/:id`,
-                element: (props: IRouteComponentProps) => (
-                    <CanAccess
-                        resource={name}
-                        action="show"
-                        params={{
-                            id: decodeURIComponent(props.match.params.id),
-                        }}
-                        fallback={catchAll ?? <ErrorComponent />}
-                    >
-                        <ShowComponent
-                            canCreate={canCreate}
-                            canEdit={canEdit}
-                            canDelete={canDelete}
-                            canShow={canShow}
-                            name={name}
-                            options={options}
-                        />
-                    </CanAccess>
-                ),
-            });
-        }
-
-        if (ListComponent) {
-            routes.push({
-                path: `/:resource(${route})`,
-                element: () => (
-                    <CanAccess
-                        resource={name}
-                        action="list"
-                        fallback={catchAll ?? <ErrorComponent />}
-                    >
-                        <ListComponent
-                            canCreate={canCreate}
-                            canEdit={canEdit}
-                            canDelete={canDelete}
-                            canShow={canShow}
-                            name={name}
-                            options={options}
-                        />
-                    </CanAccess>
-                ),
-            });
-        }
-
-        return;
+        return <Navigate to={`/login?to=${encodeURIComponent(toURL)}`} />;
     };
-
-    resources.map((item) => {
-        RouteHandler(item);
-    });
-
-    const RouteWithSubRoutes = (route: any) => <Route {...route} />;
 
     const renderAuthorized = () => (
         <Routes>
             {[...(customRoutes || [])].map((route, i) => (
-                <Route key={`custom-route-${i}`} {...route} />
+                <Route
+                    key={`custom-route-${i}`}
+                    {...route}
+                    element={() => route.element}
+                />
             ))}
-            <Route>
-                <LayoutWrapper>
-                    <Routes>
-                        <Route
-                            path="/"
-                            element={() =>
-                                DashboardPage ? (
-                                    <CanAccess
-                                        resource="dashboard"
-                                        action="list"
-                                        fallback={
-                                            catchAll ?? <ErrorComponent />
-                                        }
-                                    >
-                                        <DashboardPage />
-                                    </CanAccess>
-                                ) : (
-                                    <Navigate to={`/${resources[0].route}`} />
-                                )
-                            }
-                        />
-                        {[...routes].map((route, i) => (
-                            <RouteWithSubRoutes key={i} {...route} />
-                        ))}
-                        <Route path="/:resource?/:action?">
-                            {catchAll ?? <ErrorComponent />}
-                        </Route>
-                        <Route>{catchAll ?? <ErrorComponent />}</Route>
-                    </Routes>
-                </LayoutWrapper>
+            <Route
+                path="/"
+                element={
+                    DashboardPage ? (
+                        <LayoutWrapper>
+                            <CanAccess
+                                resource="dashboard"
+                                action="list"
+                                fallback={catchAll ?? <ErrorComponent />}
+                            >
+                                <DashboardPage />
+                            </CanAccess>
+                        </LayoutWrapper>
+                    ) : (
+                        <Navigate to={`/${resources[0].route}`} />
+                    )
+                }
+            />
+            <Route path=":resource" element={<ResourceComponent />}>
+                <Route path=":action" element={<ResourceComponent />}>
+                    <Route path=":id" element={<ResourceComponent />} />
+                </Route>
             </Route>
         </Routes>
     );
@@ -218,29 +210,17 @@ const RouteProviderBase: React.FC = () => {
     const renderUnauthorized = () => (
         <Routes>
             <Route
+                path="/"
+                element={LoginPage ? <LoginPage /> : <DefaultLoginPage />}
+            />
+            <Route
                 path="/login"
                 element={LoginPage ? <LoginPage /> : <DefaultLoginPage />}
             />
             {[...(customRoutes || [])].map((route, i) => (
                 <Route key={`custom-route-${i}`} {...route} />
             ))}
-
-            <Route
-                element={({ location }: { location: any }) => {
-                    if (isLoading) {
-                        return null;
-                    }
-
-                    const { pathname, search } = location;
-                    const toURL = `${pathname}${search}`;
-
-                    return (
-                        <Navigate
-                            to={`/login?to=${encodeURIComponent(toURL)}`}
-                        />
-                    );
-                }}
-            />
+            <Route path="*" element={<CustomPathAfterLogin />} />
         </Routes>
     );
     return isAuthenticated ? renderAuthorized() : renderUnauthorized();
