@@ -130,7 +130,7 @@ describe("Create Button", () => {
         expect(create).toHaveBeenCalledTimes(1);
     });
 
-    xit("should redirect custom resource route called function successfully if click the button", () => {
+    it("should redirect custom resource route called function successfully if click the button", () => {
         const { getByText } = render(
             <Route path="/:resource">
                 <CreateButton resourceName="categories" />

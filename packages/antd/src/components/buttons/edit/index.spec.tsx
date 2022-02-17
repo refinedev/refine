@@ -1,7 +1,16 @@
 import React from "react";
-
+import ReactRouterDom, { Route } from "react-router-dom";
 import { fireEvent, render, TestWrapper, waitFor } from "@test";
 import { EditButton } from "./";
+
+const mHistory = {
+    push: jest.fn(),
+};
+
+jest.mock("react-router-dom", () => ({
+    ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
+    useHistory: jest.fn(() => mHistory),
+}));
 
 describe("Edit Button", () => {
     const edit = jest.fn();
@@ -134,5 +143,22 @@ describe("Edit Button", () => {
         fireEvent.click(getByText("Edit"));
 
         expect(edit).toHaveBeenCalledTimes(1);
+    });
+
+    it("should custom resource and recordItemId redirect show route called function successfully if click the button", () => {
+        const { getByText } = render(
+            <Route path="/:resource">
+                <EditButton resourceName="categories" recordItemId="1" />
+            </Route>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }, { name: "categories" }],
+                    routerInitialEntries: ["/posts"],
+                }),
+            },
+        );
+        fireEvent.click(getByText("Edit"));
+
+        expect(mHistory.push).toBeCalledWith("/categories/edit/1");
     });
 });
