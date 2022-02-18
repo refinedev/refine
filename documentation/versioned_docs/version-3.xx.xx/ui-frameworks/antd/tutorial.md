@@ -56,14 +56,14 @@ values={[
 <TabItem value="npm">
 
 ```bash
-npm i @pankod/refine @pankod/refine-react-router
+npm i @pankod/refine-core @pankod/refine-antd @pankod/refine-react-router
 ```
 
   </TabItem>
     <TabItem value="yarn">
 
 ```bash
-yarn add @pankod/refine @pankod/refine-react-router
+yarn add  @pankod/refine-core @pankod/refine-antd @pankod/refine-react-router
 ```
 
   </TabItem>
@@ -185,6 +185,7 @@ Replace the contents of `App.tsx` with the following code:
 
 ```tsx  title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -195,6 +196,10 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
         />
     );
 };
@@ -287,6 +292,7 @@ Now, add the highlighted code to your `App.tsx` to connect to the endpoint.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -295,6 +301,10 @@ export const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
             // highlight-next-line
             resources={[{ name: "posts" }]}
         />
@@ -336,7 +346,7 @@ Let's create a **Page** component to fetch **posts** and display them as a table
 
 First, we'll need an interface to work with the data from the API endpoint.
 
-Create a new folder named _"interface"_ under _"/src"_ if you don't already have one. Then create a _"index.d.ts"_ file with the following code:
+Create a new folder named _"interfaces"_ under _"/src"_ if you don't already have one. Then create a _"index.d.ts"_ file with the following code:
 
 ```ts title="interfaces/index.d.ts"
 export interface IPost {
@@ -420,6 +430,7 @@ Finally, we are ready to add `<PostList>` to our resource. Add the highlighted l
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -431,11 +442,37 @@ export const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
             // highlight-next-line
             resources={[{ name: "posts", list: PostList }]}
         />
     );
 };
+```
+
+Note you will need a few more files which help `src/App.tsx` to find your pages and posts. In the `/pages` folder, put this `index.tsx` file in it which allows everything in the `posts` folder to be used elsewhere.
+
+```tsx title="src/pages/index.tsx"
+
+export * from "./posts";
+
+```
+
+<br />
+
+Similarly, put a file in the `/src/pages/posts` folder which accomplishes the same function. We will use the commented out code later as we add more capabilities to our app. Remember as you add functions, uncomment each appropriate line.
+
+
+```tsx title="src/pages/posts/index.tsx"
+
+export * from "./list";
+// export * from "./edit";
+// export * from "./create";
+// export * from "./show";
+
 ```
 
 <br />
@@ -774,6 +811,10 @@ export const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
             // highlight-start
             resources={[
                 {
@@ -977,6 +1018,7 @@ Now we can add the newly created component to our resource with `edit` prop:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -988,6 +1030,10 @@ export const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
             // highlight-start
             resources={[
                 {
@@ -1220,6 +1266,7 @@ After creating the `<PostCreate>` component, add it to resource with `create` pr
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 
@@ -1231,6 +1278,10 @@ export const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
             // highlight-start
             resources={[
                 {
@@ -1400,6 +1451,7 @@ The second way is showing delete button in `<PostEdit>` component. To show delet
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -1410,6 +1462,10 @@ export const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
             resources={[
                 {
                     name: "posts",
