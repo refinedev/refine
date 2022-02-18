@@ -12,12 +12,15 @@ import {
 import { RouterComponent } from "./routerComponent";
 import { Prompt } from "./prompt";
 
+export type RefineRouteProps = RouteProps & {
+    layout?: boolean;
+};
 interface IReactRouterProvider extends IRouterProvider {
     useLocation: typeof useLocation;
     Link: typeof Link;
     useParams: any;
-    routes?: RouteProps[];
     RouterComponent: React.FC<BrowserRouterProps>;
+    routes?: RefineRouteProps[];
 }
 
 const RouterProvider: IReactRouterProvider = {
