@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 import React from "react";
-import { RouteProps, Route, Routes, Navigate } from "react-router-dom";
+import { RouteProps, Route, Routes, Navigate, Outlet } from "react-router-dom";
 import {
     LoginPage as DefaultLoginPage,
     ErrorComponent,
@@ -13,6 +13,7 @@ import {
     CanAccess,
     ResourceRouterParams,
 } from "@pankod/refine-core";
+import { RefineRouteProps } from "./index";
 
 const ResourceComponent: React.FC = () => {
     const { catchAll } = useRefineContext();
@@ -139,12 +140,13 @@ const ResourceComponent: React.FC = () => {
             }
         };
 
-        return <LayoutWrapper>{renderCrud()}</LayoutWrapper>;
+        return renderCrud();
     }
 
-    return <LayoutWrapper>{catchAll ?? <ErrorComponent />}</LayoutWrapper>;
+    return <>{catchAll ?? <ErrorComponent />}</>;
 };
-const RouteProviderBase = () => {
+
+export const RouteProvider = () => {
     const { resources } = useResource();
     const { catchAll, DashboardPage, LoginPage } = useRefineContext();
 
@@ -163,9 +165,6 @@ const RouteProviderBase = () => {
     }
 
     const CustomPathAfterLogin: React.FC = (): JSX.Element | null => {
-        if (isLoading) {
-            return null;
-        }
         const { pathname, search } = location;
         const toURL = `${pathname}${search}`;
 
@@ -174,34 +173,54 @@ const RouteProviderBase = () => {
 
     const renderAuthorized = () => (
         <Routes>
-            {[...(customRoutes || [])].map((route, i) => (
-                <Route
-                    key={`custom-route-${i}`}
-                    {...route}
-                    element={() => route.element}
-                />
-            ))}
+            {[...(customRoutes || [])]
+                .filter((p: RefineRouteProps) => !p.layout)
+                .map((route, i) => (
+                    <Route
+                        key={`custom-route-${i}`}
+                        {...route}
+                        element={route.element}
+                    />
+                ))}
             <Route
                 path="/"
                 element={
-                    DashboardPage ? (
-                        <LayoutWrapper>
-                            <CanAccess
-                                resource="dashboard"
-                                action="list"
-                                fallback={catchAll ?? <ErrorComponent />}
-                            >
-                                <DashboardPage />
-                            </CanAccess>
-                        </LayoutWrapper>
-                    ) : (
-                        <Navigate to={`/${resources[0].route}`} />
-                    )
+                    <LayoutWrapper>
+                        <Outlet />
+                    </LayoutWrapper>
                 }
-            />
-            <Route path=":resource" element={<ResourceComponent />}>
-                <Route path=":action" element={<ResourceComponent />}>
-                    <Route path=":id" element={<ResourceComponent />} />
+            >
+                {[...(customRoutes || [])]
+                    .filter((p: RefineRouteProps) => p.layout)
+                    .map((route, i) => (
+                        <Route
+                            key={`custom-route-${i}`}
+                            {...route}
+                            element={route.element}
+                        />
+                    ))}
+                <Route
+                    index
+                    element={
+                        DashboardPage ? (
+                            <LayoutWrapper>
+                                <CanAccess
+                                    resource="dashboard"
+                                    action="list"
+                                    fallback={catchAll ?? <ErrorComponent />}
+                                >
+                                    <DashboardPage />
+                                </CanAccess>
+                            </LayoutWrapper>
+                        ) : (
+                            <Navigate to={`/${resources[0].route}`} />
+                        )
+                    }
+                />
+                <Route path=":resource" element={<ResourceComponent />}>
+                    <Route path=":action" element={<ResourceComponent />}>
+                        <Route path=":id" element={<ResourceComponent />} />
+                    </Route>
                 </Route>
             </Route>
         </Routes>
@@ -225,8 +244,3 @@ const RouteProviderBase = () => {
     );
     return isAuthenticated ? renderAuthorized() : renderUnauthorized();
 };
-
-/**
- * @internal
- */
-export const RouteProvider = React.memo(RouteProviderBase);
