@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import {
     useResourceWithRoute,
     useRouterContext,
@@ -6,16 +6,14 @@ import {
 } from "@hooks";
 import {
     ResourceRouterParams,
-    IDataContext,
     BaseRecord,
     MapDataFn,
     CrudSorting,
     CrudFilters,
     MetaDataQuery,
 } from "../../interfaces";
-import { DataContext } from "@contexts/data";
 import { userFriendlyResourceName } from "@definitions";
-import { ExportToCsv, Options } from "export-to-csv";
+import { ExportToCsv, Options } from "export-to-csv-fix-source-map";
 
 type UseExportOptionsType<
     TData extends BaseRecord = BaseRecord,
