@@ -7,7 +7,7 @@ import { useExport } from "./";
 
 const generateCsvMock = jest.fn();
 
-jest.mock("export-to-csv", () => {
+jest.mock("export-to-csv-fix-source-map", () => {
     return {
         ExportToCsv: class ExportToCsv {
             generateCsv = generateCsvMock;

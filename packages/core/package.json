@@ -1,6 +1,6 @@
 {
     "name": "@pankod/refine-core",
-    "version": "3.2.0",
+    "version": "3.2.2",
     "description": "refine is a React-based headless framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
     "private": false,
     "main": "dist/index.js",
@@ -33,7 +33,6 @@
         "@types/pluralize": "^0.0.29",
         "@types/qs": "^6.9.7",
         "@types/react": "^17.0.4",
-        "@types/react-csv": "^1.1.1",
         "@types/react-dom": "^17.0.4",
         "@types/react-router-dom": "^5.1.8",
         "@types/testing-library__jest-dom": "^5.9.5",
@@ -45,14 +44,13 @@
         "typescript": "^4.4.3"
     },
     "dependencies": {
-        "export-to-csv": "^0.2.1",
+        "export-to-csv-fix-source-map": "^0.2.1",
         "humanize-string": "^2.1.0",
         "lodash": "^4.17.21",
         "lodash-es": "^4.17.21",
         "papaparse": "^5.3.0",
         "pluralize": "^8.0.0",
         "qs": "^6.10.1",
-        "react-csv": "^2.0.3",
         "react-query": "^3.19.2",
         "tslib": "^2.3.1"
     },
