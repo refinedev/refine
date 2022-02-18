@@ -296,6 +296,8 @@ import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
+import "@pankod/refine-antd/dist/styles.min.css";
+
 export const App: React.FC = () => {
     return (
         <Refine
@@ -433,6 +435,8 @@ import { Refine } from "@pankod/refine-core";
 import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
+
+import "@pankod/refine-antd/dist/styles.min.css";
 
 // highlight-next-line
 import { PostList } from "./pages/posts";
@@ -1022,6 +1026,8 @@ import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
+import "@pankod/refine-antd/dist/styles.min.css";
+
 // highlight-next-line
 import { PostList, PostShow, PostEdit } from "./pages/posts";
 
@@ -1270,6 +1276,8 @@ import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 
+import "@pankod/refine-antd/dist/styles.min.css";
+
 // highlight-next-line
 import { PostList, PostShow, PostEdit, PostCreate } from "./pages/posts";
 
@@ -1454,6 +1462,8 @@ import { Refine } from "@pankod/refine-core";
 import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
+
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostShow, PostEdit, PostCreate } from "./pages/posts";
 
