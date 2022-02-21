@@ -123,7 +123,7 @@ export const ResourceComponentWrapper: React.FC = () => {
             }
         };
 
-        return <LayoutWrapper>{renderCrud()}</LayoutWrapper>;
+        return renderCrud();
     }
 
     return catchAll ? (
