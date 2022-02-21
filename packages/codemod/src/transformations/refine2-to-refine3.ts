@@ -226,7 +226,6 @@ const availableCoreImports = [
     "BaseRecord",
     "Option",
     "IAuthUserReducer",
-    "IResourceReducer",
     "MapDataFn",
     "MutationMode",
     "IUndoableQueue",

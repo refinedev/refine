@@ -300,7 +300,6 @@ UI independent import packages have been migrated to the `refine-core` package w
     "BaseRecord",
     "Option",
     "IAuthUserReducer",
-    "IResourceReducer",
     "MapDataFn",
     "MutationMode",
     "IUndoableQueue",
