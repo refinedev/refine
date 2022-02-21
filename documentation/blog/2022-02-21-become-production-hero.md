@@ -10,6 +10,7 @@ hide_table_of_contents: false
 
 With 2022, a new future in our careers as software developers. We will meet new technologies this year and continue to pursue innovations as before.
 
+<!--truncate-->
 
 ### Production Oriented Approach 🧰 
 
