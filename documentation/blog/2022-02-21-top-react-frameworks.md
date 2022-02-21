@@ -15,12 +15,12 @@ import reactBootstrap from '@site/static/img/blog/2022-02-21-top-react-framework
 import refineAdmin from '@site/static/img/blog/2022-02-21-top-react-frameworks/refine.png';
 import refine from '@site/static/img/blog/2022-02-21-top-react-frameworks/refine-2.png';
 
-<!--truncate-->
-
 ##     Best UI Frameworks for React.js
 
 
 In this post, I have listed some of the best React frameworks that are most popular and that I believe will be popular in 2022.
+
+<!--truncate-->
 
 ### What is React?
 
