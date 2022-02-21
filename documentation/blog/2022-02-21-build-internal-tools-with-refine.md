@@ -230,9 +230,9 @@ Refer to the [`authProvider`](https://refine.dev/docs/core/providers/auth-provid
 
 ### Out-of-the-box router providers
 
--   Auth0 - [Source Code](https://github.com/pankod/refine/tree/master/examples/authProvider/auth0/) - [Demo](examples/auth-provider/auth0.md)
--   Google - [Source Code](https://github.com/pankod/refine/tree/master/examples/authProvider/googleLogin) - [Demo](examples/auth-provider/google-auth.md)
--   OTP Login - [Source Code](https://github.com/pankod/refine/tree/master/examples/authProvider/otpLogin) - [Demo](examples/auth-provider/otpLogin.md)
+-   Auth0 - [Source Code](https://github.com/pankod/refine/tree/master/examples/authProvider/auth0/) - [Demo](https://refine.dev/docs/examples/auth-provider/auth0)
+-   Google - [Source Code](https://github.com/pankod/refine/tree/master/examples/authProvider/googleLogin) - [Demo](https://refine.dev/docs/examples/auth-provider/google-auth)
+-   OTP Login - [Source Code](https://github.com/pankod/refine/tree/master/examples/authProvider/otpLogin) - [Demo](https://refine.dev/docs/examples/auth-provider/otpLogin)
 
 ## Authorization
 
