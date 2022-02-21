@@ -12,8 +12,12 @@ import {
 import { RouterComponent, location } from "./routerComponent";
 import { Prompt } from "./prompt";
 
+export type RefineRouteProps = Route & {
+    layout?: boolean;
+};
+
 interface IReactRouterProvider extends IRouterProvider {
-    routes?: Route[];
+    routes?: RefineRouteProps[];
     RouterComponent: React.FC<RouterProps>;
     Link: typeof Link;
     location: ReactLocation;
