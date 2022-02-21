@@ -1,10 +1,10 @@
 {
   "name": "refine-custom-theme-example",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.1.2",
-    "@pankod/refine-antd": "^3.2.2",
+    "@pankod/refine-antd": "^3.2.3",
     "@pankod/refine-core": "^3.2.2",
     "@pankod/refine-react-router": "^3.2.2",
     "@pankod/refine-simple-rest": "^3.2.2",
