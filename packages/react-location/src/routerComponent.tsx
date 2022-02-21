@@ -22,6 +22,7 @@ import {
 } from "react-location";
 
 import { ResourceComponentWrapper } from "./resourceComponent";
+import { RefineRouteProps } from "./index";
 
 export const location = new ReactLocation();
 
@@ -70,47 +71,66 @@ export const RouterComponent: React.FC<RouterProps> = ({
     }
 
     const routes: Route[] = [
-        ...[...(customRoutes || [])],
+        ...[...(customRoutes || [])].filter((p: RefineRouteProps) => !p.layout),
         {
             path: "/",
-            element: DashboardPage ? (
-                <CanAccess
-                    resource="dashboard"
-                    action="list"
-                    fallback={catchAll ?? <ErrorComponent />}
-                >
-                    <LayoutWrapper>
-                        <DashboardPage />
-                    </LayoutWrapper>
-                </CanAccess>
-            ) : (
-                <Navigate to={`/${resources[0].route}`} />
-            ),
-        },
-        {
-            path: `:resource`,
             children: [
+                ...[...(customRoutes || [])].filter(
+                    (p: RefineRouteProps) => p.layout,
+                ),
                 {
-                    path: "/",
-                    element: <ResourceComponentWrapper />,
+                    element: DashboardPage ? (
+                        <CanAccess
+                            resource="dashboard"
+                            action="list"
+                            fallback={catchAll ?? <ErrorComponent />}
+                        >
+                            <LayoutWrapper>
+                                <DashboardPage />
+                            </LayoutWrapper>
+                        </CanAccess>
+                    ) : (
+                        <Navigate to={`/${resources[0].route}`} />
+                    ),
                 },
-            ],
-        },
-        {
-            path: `:resource/:action`,
-            children: [
                 {
-                    path: "/",
-                    element: <ResourceComponentWrapper />,
+                    path: `:resource`,
+                    children: [
+                        {
+                            path: "/",
+                            element: (
+                                <LayoutWrapper>
+                                    <ResourceComponentWrapper />
+                                </LayoutWrapper>
+                            ),
+                        },
+                    ],
                 },
-            ],
-        },
-        {
-            path: `:resource/:action/:id`,
-            children: [
                 {
-                    path: "/",
-                    element: <ResourceComponentWrapper />,
+                    path: `:resource/:action`,
+                    children: [
+                        {
+                            path: "/",
+                            element: (
+                                <LayoutWrapper>
+                                    <ResourceComponentWrapper />,
+                                </LayoutWrapper>
+                            ),
+                        },
+                    ],
+                },
+                {
+                    path: `:resource/:action/:id`,
+                    children: [
+                        {
+                            path: "/",
+                            element: (
+                                <LayoutWrapper>
+                                    <ResourceComponentWrapper />,
+                                </LayoutWrapper>
+                            ),
+                        },
+                    ],
                 },
             ],
         },
