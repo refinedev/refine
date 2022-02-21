@@ -8,7 +8,7 @@ import {
     ResourceRouterParams,
 } from "@pankod/refine-core";
 
-import { CreateButton, CreateButtonProps } from "@components";
+import { CreateButton, CreateButtonProps } from "../../../components";
 
 export interface ListProps {
     canCreate?: boolean;

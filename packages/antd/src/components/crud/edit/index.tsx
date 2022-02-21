@@ -23,9 +23,9 @@ import {
     DeleteButton,
     RefreshButton,
     ListButton,
-    DeleteButtonProps,
     SaveButton,
 } from "@components";
+import { DeleteButtonProps } from "../../../components";
 
 export interface EditProps {
     title?: string;
