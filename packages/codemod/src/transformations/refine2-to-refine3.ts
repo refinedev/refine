@@ -225,7 +225,6 @@ const availableCoreImports = [
     "HttpError",
     "BaseRecord",
     "Option",
-    "IState",
     "IAuthUserReducer",
     "IResourceReducer",
     "MapDataFn",
