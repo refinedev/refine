@@ -8,6 +8,10 @@ image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
 ---
 
+In the [previous blog post](https://refine.dev/blog/customizable-admin-panel-with-nestjs), we used [nestjs](https://nestjs.com) with an api and [refine](https://refine.dev) in the admin panel. In this blog, let's add **authorization** to both api and admin panel.
+
+<!--truncate-->
+
 **All the steps described are in this [repo](https://github.com/pankod/refine-hackathon/tree/main/job-posting-app).**
 
 ## Intro
