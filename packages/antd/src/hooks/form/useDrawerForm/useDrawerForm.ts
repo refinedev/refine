@@ -156,6 +156,7 @@ export const useDrawerForm = <
             width: "500px",
             onClose: handleClose,
             visible,
+            getContainer: false,
         },
         saveButtonProps,
         deleteButtonProps,
