@@ -44,6 +44,7 @@ export const RecentOrders: React.FC = () => {
             {...tableProps}
             pagination={{ ...tableProps.pagination, simple: true }}
             showHeader={false}
+            rowKey="id"
         >
             <Table.Column<IOrder>
                 key="avatar"
