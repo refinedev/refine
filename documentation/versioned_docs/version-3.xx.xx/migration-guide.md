@@ -299,7 +299,6 @@ UI independent import packages have been migrated to the `refine-core` package w
     "HttpError",
     "BaseRecord",
     "Option",
-    "IAuthUserReducer",
     "MapDataFn",
     "MutationMode",
     "IUndoableQueue",
