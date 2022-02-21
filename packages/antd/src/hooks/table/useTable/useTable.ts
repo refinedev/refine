@@ -152,7 +152,7 @@ export const useTable = <
 
     return {
         searchFormProps: {
-            ...formSF,
+            ...formSF.formProps,
             onFinish,
         },
         tableProps: {
