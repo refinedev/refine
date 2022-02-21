@@ -19,6 +19,7 @@ import {
     Navigate,
     useRouter,
     RouterProps,
+    Outlet,
 } from "react-location";
 
 import { ResourceComponentWrapper } from "./resourceComponent";
@@ -74,6 +75,11 @@ export const RouterComponent: React.FC<RouterProps> = ({
         ...[...(customRoutes || [])].filter((p: RefineRouteProps) => !p.layout),
         {
             path: "/",
+            element: (
+                <LayoutWrapper>
+                    <Outlet />
+                </LayoutWrapper>
+            ),
             children: [
                 ...[...(customRoutes || [])].filter(
                     (p: RefineRouteProps) => p.layout,
@@ -98,11 +104,7 @@ export const RouterComponent: React.FC<RouterProps> = ({
                     children: [
                         {
                             path: "/",
-                            element: (
-                                <LayoutWrapper>
-                                    <ResourceComponentWrapper />
-                                </LayoutWrapper>
-                            ),
+                            element: <ResourceComponentWrapper />,
                         },
                     ],
                 },
@@ -111,11 +113,7 @@ export const RouterComponent: React.FC<RouterProps> = ({
                     children: [
                         {
                             path: "/",
-                            element: (
-                                <LayoutWrapper>
-                                    <ResourceComponentWrapper />,
-                                </LayoutWrapper>
-                            ),
+                            element: <ResourceComponentWrapper />,
                         },
                     ],
                 },
@@ -124,11 +122,7 @@ export const RouterComponent: React.FC<RouterProps> = ({
                     children: [
                         {
                             path: "/",
-                            element: (
-                                <LayoutWrapper>
-                                    <ResourceComponentWrapper />,
-                                </LayoutWrapper>
-                            ),
+                            element: <ResourceComponentWrapper />,
                         },
                     ],
                 },
