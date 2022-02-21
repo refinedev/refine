@@ -409,29 +409,6 @@ Callback to handle all live events.
 
 [Refer to live provider documentation for detailed information. &#8594](/core/providers/live-provider.md#refine)
 
-## `configProviderProps`
-
-Ant Design's [ConfigProvider](https://ant.design/components/config-provider) which includes default configurations can be changed using `configProviderProps`.
-
-[Props for the Ant Design's ConfigProvider &#8594](https://ant.design/components/config-provider/#API)
-
-For example, Layout direction can be set to other way:
-
-```tsx title="App.tsx"
-const App: React.FC = () => (
-    <Refine
-        ...
-        // highlight-start
-        configProviderProps={{
-            direction: "rtl",
-        }}
-        // highlight-end
-    />
-);
-```
-
-<br />
-
 ## `LoginPage`
 
 **refine** has a default login page form which is served on `/login` route when the `authProvider` configuration is provided.

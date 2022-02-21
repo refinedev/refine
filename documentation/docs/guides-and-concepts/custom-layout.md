@@ -24,7 +24,7 @@ Let's look at an example of modifying the default layout to have a top menu layo
 
 ```tsx title="/src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import { AntdLayout } from "@pankod/refine-antd";
+import { AntdLayout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -66,6 +66,9 @@ const App: React.FC = () => {
                     <img src="/refine.svg" alt="Refine" />
                 </Link>
             )}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
         />
     );
 };

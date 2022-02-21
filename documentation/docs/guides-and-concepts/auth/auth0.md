@@ -121,9 +121,12 @@ In refine, authentication and authorization processes are performed with the aut
 
 ```tsx title="App.tsx"
 import { Refine, AuthProvider } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 import { useAuth0 } from "@auth0/auth0-react";
+
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { Login } from "pages/login";
 
@@ -187,6 +190,10 @@ const App = () => {
             routerProvider={routerProvider}
             authProvider={authProvider}
             dataProvider={dataProvider(API_URL, axios)}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
         />
     );
 };

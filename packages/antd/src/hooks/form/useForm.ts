@@ -142,7 +142,7 @@ export const useForm = <
     };
 
     return {
-        ...formSF,
+        form: formSF.form,
         formProps: {
             ...formSF.formProps,
             onFinish,

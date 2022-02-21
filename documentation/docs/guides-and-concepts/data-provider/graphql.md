@@ -57,6 +57,7 @@ To activate data provider in `@pankod/refine-strapi-graphql`, we have to pass th
 
 ```tsx  title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router";
 // highlight-start
 import dataProvider from "@pankod/refine-strapi-graphql";
@@ -71,6 +72,10 @@ const App: React.FC = () => {
             routerProvider={routerProvider}
 // highlight-next-line
             dataProvider={dataProvider(client)}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
         />
     );
 };

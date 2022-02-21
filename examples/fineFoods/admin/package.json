@@ -1,11 +1,11 @@
 {
 	"name": "fine-foods",
-	"version": "3.2.2",
+	"version": "3.2.3",
 	"private": true,
 	"dependencies": {
 		"@ant-design/charts": "^1.2.0",
 		"@craco/craco": "^6.1.2",
-		"@pankod/refine-antd": "^3.2.2",
+		"@pankod/refine-antd": "^3.2.3",
 		"@pankod/refine-core": "^3.2.2",
 		"@pankod/refine-react-router": "^3.2.2",
 		"@pankod/refine-react-router-v6": "^3.2.2",

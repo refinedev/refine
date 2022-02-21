@@ -90,6 +90,7 @@ export const authProvider: AuthProvider = {
 
 ```tsx title="App.tsx"
 import { Refine, AuthProvider } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 //highlight-start
 import { dataProvider } from "@pankod/refine-appwrite";
 //highlight-end
@@ -108,6 +109,10 @@ const App: React.FC = () => {
             authProvider={authProvider}
         //highlight-end    
             routerProvider={routerProvider}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
         />
     );
 };
@@ -344,6 +349,10 @@ const App: React.FC = () => {
             dataProvider={dataProvider(appwriteClient)}
             authProvider={authProvider}
             routerProvider={routerProvider}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
             LoginPage={Login}
             resources={[
                 {
