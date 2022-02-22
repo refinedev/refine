@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import { useQueryClient } from "react-query";
+import { BaseKey } from "../interfaces";
 
 export const useListResourceQueries = () => {
     const queryClient = useQueryClient();
@@ -54,22 +55,17 @@ export const useCacheQueries = () => {
     const getOneQuery = useGetOneQueries();
     const getManyResourceQuery = useGetManyQueries();
 
-    return useCallback((resource: string, id?: string | string[]) => {
+    return useCallback((resource: string, id?: BaseKey | BaseKey[]) => {
         const queries = getOneQuery(resource);
         const listQuery = listResourceQueries(resource);
         const getManyQuery = getManyResourceQuery(resource);
 
         if (id) {
-            let getOneQueriesWithId;
-            if (Array.isArray(id)) {
-                getOneQueriesWithId = queries.filter((query) => {
-                    return id.includes((query.queryKey[1] as any).id);
-                });
-            } else {
-                getOneQueriesWithId = queries.filter((query) => {
-                    return (query.queryKey[1] as any).id === id;
-                });
-            }
+            const ids = Array.isArray(id) ? id : [id];
+
+            const getOneQueriesWithId = queries.filter((query) => {
+                return ids.map(String).includes((query.queryKey[1] as any).id);
+            });
 
             return [...listQuery, ...getManyQuery, ...getOneQueriesWithId];
         }
