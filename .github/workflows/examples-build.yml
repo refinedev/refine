@@ -7,7 +7,7 @@ on:
     - cron: '0 6 * * *'
 
 jobs:
-  publish-npm:
+  build-all-examples:
     runs-on: ubuntu-latest
 
     strategy:
