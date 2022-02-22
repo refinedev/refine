@@ -137,7 +137,6 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App = () => {
     const {
         isLoading,
-        loginWithRedirect,
         isAuthenticated,
         user,
         logout,
@@ -150,7 +149,6 @@ const App = () => {
 
     const authProvider: AuthProvider = {
         login: () => {
-            loginWithRedirect();
             return Promise.resolve();
         },
         logout: () => {
