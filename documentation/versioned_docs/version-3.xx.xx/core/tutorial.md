@@ -175,6 +175,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 
 ### Community ❤️
 -   [Firebase](https://github.com/rturan29/refine-firebase) by [rturan29](https://github.com/rturan29)
+-   [Directus](https://github.com/tspvivek/refine-directus) by [tspvivek](https://github.com/tspvivek)
 
 [Refer to the `dataProvider` documentation for detailed usage. &#8594](/core/providers/data-provider.md)
 :::

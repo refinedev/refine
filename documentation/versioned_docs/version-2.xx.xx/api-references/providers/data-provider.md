@@ -56,6 +56,7 @@ const dataProvider = {
 
 ### Community ❤️
 -   [Firebase](https://github.com/rturan29/refine-firebase) by [rturan29](https://github.com/rturan29)
+-   [Directus](https://github.com/tspvivek/refine-directus) - Directus dataprovider package for refine by [tspvivek](https://github.com/tspvivek)
 :::
 
 <br/>

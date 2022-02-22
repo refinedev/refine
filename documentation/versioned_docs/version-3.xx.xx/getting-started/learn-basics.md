@@ -49,6 +49,7 @@ This guide will help you learn and get information of basic **refine** concepts.
 **❤️ Community  Packages:**
 
 -   [`refine-firebase`](https://github.com/rturan29/refine-firebase) - a fully featured [Firebase](https://github.com/rturan29/refine-firebase) Data Provider by [rturan29](https://github.com/rturan29)
+-   [`@tspvivek/refine-directus`](https://github.com/tspvivek/refine-directus) - Directus dataprovider package for refine by [tspvivek](https://github.com/tspvivek)
 -   [`data-provider-customizer`](https://github.com/miyavsu-limited/data-provider-customizer) - Customize your data provider by mixing it with different data providers/data methods by [miyavsu-limited](https://github.com/miyavsu-limited)
 
 ## Refine 3rd Party Integration Examples

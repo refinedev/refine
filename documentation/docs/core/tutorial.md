@@ -174,7 +174,8 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 -   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
 ### Community ❤️
--   [Firebase](https://github.com/rturan29/refine-firebase) by [rturan29](https://github.com/rturan29)
+-   [Firebase](https://github.com/rturan29/refine-firebase) - a fully featured [Firebase](https://github.com/rturan29/refine-firebase) Data Provider by [rturan29](https://github.com/rturan29)
+-   [Directus](https://github.com/tspvivek/refine-directus) - Directus dataprovider package for refine by [tspvivek](https://github.com/tspvivek)
 
 [Refer to the `dataProvider` documentation for detailed usage. &#8594](/core/providers/data-provider.md)
 :::
