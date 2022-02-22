@@ -175,8 +175,13 @@ export const useDeleteMany = <
                                     data: (data ?? []).filter(
                                         (record: TData) =>
                                             !ids
+                                                .filter(
+                                                    (id) => id !== undefined,
+                                                )
                                                 .map(String)
-                                                .includes(record.id.toString()),
+                                                .includes(
+                                                    record.id!.toString(),
+                                                ),
                                     ),
                                     total: total - ids.length,
                                 });

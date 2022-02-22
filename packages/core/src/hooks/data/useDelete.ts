@@ -254,7 +254,7 @@ export const useDelete = <
                     channel: `resources/${resource}`,
                     type: "deleted",
                     payload: {
-                        ids: id ? [id.toString()] : [],
+                        ids: id ? [id] : [],
                     },
                     date: new Date(),
                 });

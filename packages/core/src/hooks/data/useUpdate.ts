@@ -279,9 +279,7 @@ export const useUpdate = <
                     channel: `resources/${resource}`,
                     type: "updated",
                     payload: {
-                        ids: data.data?.id
-                            ? [data.data.id.toString()]
-                            : undefined,
+                        ids: data.data?.id ? [data.data.id] : undefined,
                     },
                     date: new Date(),
                 });
