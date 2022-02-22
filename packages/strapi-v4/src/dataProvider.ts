@@ -5,6 +5,7 @@ import {
     CrudFilters,
     CrudSorting,
     CrudOperators,
+    BaseKey,
 } from "@pankod/refine-core";
 import { stringify, parse } from "qs";
 
@@ -158,7 +159,7 @@ export const DataProvider = (
         const url = `${apiUrl}/${resource}`;
 
         const query = ids
-            .map((item: string) => `filters[id][$in]=${item}`)
+            .map((item: BaseKey) => `filters[id][$in]=${item}`)
             .join("&");
 
         const { data } = await httpClient.get(`${url}?${query}`);

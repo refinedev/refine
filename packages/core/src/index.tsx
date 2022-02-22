@@ -36,6 +36,7 @@ export {
     ResourceRouterParams,
     IResourceItem,
     BaseRecord,
+    BaseKey,
     Option,
     LiveModeProps,
     MetaDataQuery,
