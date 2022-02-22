@@ -4,7 +4,7 @@ import * as papaparse from "papaparse";
 
 import { useImport } from ".";
 import { act } from "react-dom/test-utils";
-import { HttpError, IDataMultipleContextProvider } from "src/interfaces";
+import { HttpError, IDataMultipleContextProvider } from "../../interfaces";
 
 jest.mock("papaparse", () => {
     return {

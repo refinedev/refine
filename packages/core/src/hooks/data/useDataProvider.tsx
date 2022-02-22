@@ -1,9 +1,10 @@
 import { useCallback, useContext } from "react";
+
 import { DataContext } from "@contexts/data";
 import {
     IDataContextProvider,
     IDataMultipleContextProvider,
-} from "src/interfaces";
+} from "../../interfaces";
 
 export const useDataProvider = (): ((
     dataProviderName?: string,

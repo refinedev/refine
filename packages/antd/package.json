@@ -1,6 +1,6 @@
 {
     "name": "@pankod/refine-antd",
-    "version": "3.2.3",
+    "version": "3.2.4",
     "description": "refine is a React-based headless framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
     "private": false,
     "main": "dist/index.js",
@@ -46,7 +46,7 @@
     },
     "dependencies": {
         "@ant-design/icons": "^4.5.0",
-        "@pankod/refine-core": "^3.2.2",
+        "@pankod/refine-core": "^3.2.4",
         "antd": "^4.17.1",
         "dayjs": "^1.10.7",
         "react-markdown": "^6.0.1",
