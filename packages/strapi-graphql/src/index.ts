@@ -3,7 +3,6 @@ import { GraphQLClient } from "graphql-request";
 import * as gql from "gql-query-builder";
 import pluralize from "pluralize";
 import camelCase from "camelcase";
-import { stringify } from "query-string";
 
 const genereteSort = (sort?: CrudSorting) => {
     if (sort && sort.length > 0) {
