@@ -7,7 +7,7 @@ import {
     CrudFilters,
     IDataContext,
     IDataMultipleContextProvider,
-} from "src/interfaces";
+} from "../../interfaces";
 
 describe("useSelect Hook", () => {
     it("default", async () => {

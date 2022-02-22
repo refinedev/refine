@@ -1,6 +1,7 @@
 import { useTable } from "@hooks";
 import { BaseRecord, HttpError, UseFormProps } from "@pankod/refine-core";
-import { ButtonProps } from "@components/antd";
+
+import { ButtonProps } from "../../../components/antd";
 import { useTableProps, useTableReturnType } from "../useTable";
 import { UseFormReturnType, useForm } from "../../form/useForm";
 
