@@ -203,15 +203,13 @@ export const RouteProvider = () => {
                     index
                     element={
                         DashboardPage ? (
-                            <LayoutWrapper>
-                                <CanAccess
-                                    resource="dashboard"
-                                    action="list"
-                                    fallback={catchAll ?? <ErrorComponent />}
-                                >
-                                    <DashboardPage />
-                                </CanAccess>
-                            </LayoutWrapper>
+                            <CanAccess
+                                resource="dashboard"
+                                action="list"
+                                fallback={catchAll ?? <ErrorComponent />}
+                            >
+                                <DashboardPage />
+                            </CanAccess>
                         ) : (
                             <Navigate to={`/${resources[0].route}`} />
                         )
