@@ -46,8 +46,9 @@ export * from "./metaData";
 //metaData
 export * from "./live";
 
+export type BaseKey = string | number;
 export type BaseRecord = {
-    id?: string;
+    id: string | number;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
 };

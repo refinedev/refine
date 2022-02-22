@@ -2,6 +2,7 @@ import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
 
 import {
     BaseRecord,
+    BaseKey,
     GetManyResponse,
     HttpError,
     MetaDataQuery,
@@ -18,7 +19,7 @@ import {
 
 export type UseManyProps<TData, TError> = {
     resource: string;
-    ids: string[];
+    ids: BaseKey[];
     queryOptions?: UseQueryOptions<GetManyResponse<TData>, TError>;
     successNotification?: OpenNotificationParams | false;
     errorNotification?: OpenNotificationParams | false;
