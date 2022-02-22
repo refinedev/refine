@@ -11,7 +11,7 @@ import {
 import { BaseRecord, LiveModeProps } from "@pankod/refine-core/dist/interfaces";
 
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
-import { DeleteButtonProps } from "@components";
+import { DeleteButtonProps } from "../../../components";
 
 export interface UseDrawerFormConfig extends UseFormConfig {
     action: "show" | "edit" | "create" | "clone";

@@ -11,7 +11,7 @@ import {
     UseFormProps as UseFormPropsCore,
 } from "@pankod/refine-core";
 
-import { ButtonProps } from "@components/antd";
+import { ButtonProps } from "../../components/antd";
 
 export type UseFormProps<
     TData extends BaseRecord = BaseRecord,
