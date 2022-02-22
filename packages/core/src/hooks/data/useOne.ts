@@ -4,6 +4,7 @@ import {
     GetOneResponse,
     HttpError,
     BaseRecord,
+    BaseKey,
     MetaDataQuery,
     LiveModeProps,
     OpenNotificationParams,
@@ -18,7 +19,7 @@ import {
 
 export type UseOneProps<TData, TError> = {
     resource: string;
-    id: string;
+    id: BaseKey;
     queryOptions?: UseQueryOptions<GetOneResponse<TData>, TError>;
     successNotification?: OpenNotificationParams | false;
     errorNotification?: OpenNotificationParams | false;

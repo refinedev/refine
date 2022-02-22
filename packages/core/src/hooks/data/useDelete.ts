@@ -18,6 +18,7 @@ import {
     QueryResponse,
     Context as DeleteContext,
     BaseRecord,
+    BaseKey,
     ContextQuery,
     HttpError,
     GetListResponse,
@@ -26,7 +27,7 @@ import {
 } from "../../interfaces";
 
 type DeleteParams = {
-    id: string;
+    id: BaseKey;
     resource: string;
     mutationMode?: MutationMode;
     undoableTimeout?: number;
@@ -175,11 +176,7 @@ export const useDelete = <
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: (data ?? []).filter(
-                                        (record: TData) =>
-                                            !(
-                                                record.id?.toString() ===
-                                                id.toString()
-                                            ),
+                                        (record: TData) => !(record.id == id),
                                     ),
                                     total: total - 1,
                                 });

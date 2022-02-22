@@ -3,6 +3,7 @@ import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
     BaseRecord,
+    BaseKey,
     UpdateResponse,
     QueryResponse,
     MutationMode,
@@ -25,7 +26,7 @@ import {
 } from "@hooks";
 
 type UpdateParams<TVariables> = {
-    id: string;
+    id: BaseKey;
     resource: string;
     mutationMode?: MutationMode;
     undoableTimeout?: number;
@@ -182,10 +183,7 @@ export const useUpdate = <
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: data.map((record: TData) => {
-                                        if (
-                                            record.id?.toString() ===
-                                            id.toString()
-                                        ) {
+                                        if (record.id == id) {
                                             return {
                                                 ...values,
                                                 id: id,

@@ -14,6 +14,7 @@ import {
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
     BaseRecord,
+    BaseKey,
     UpdateManyResponse,
     HttpError,
     MutationMode,
@@ -25,7 +26,7 @@ import {
 } from "../../interfaces";
 
 type UpdateManyParams<TVariables> = {
-    ids: string[];
+    ids: BaseKey[];
     resource: string;
     mutationMode?: MutationMode;
     undoableTimeout?: number;
@@ -187,8 +188,8 @@ export const useUpdateMany = <
                                     data: data.map((record: TData) => {
                                         if (
                                             ids
-                                                .map((p) => p.toString())
-                                                .includes(record.id!.toString())
+                                                .map(String)
+                                                .includes(record.id.toString())
                                         ) {
                                             return {
                                                 ...record,
