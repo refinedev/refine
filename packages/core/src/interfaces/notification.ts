@@ -1,5 +1,6 @@
+import { BaseKey } from ".";
 export interface IUndoableQueue {
-    id: string;
+    id: BaseKey;
     resource: string;
     cancelMutation: () => void;
     doMutation: () => void;
