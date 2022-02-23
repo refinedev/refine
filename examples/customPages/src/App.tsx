@@ -11,7 +11,7 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 
@@ -59,13 +59,11 @@ const App: React.FC = () => {
                 ...routerProvider,
                 routes: [
                     {
-                        exact: true,
-                        component: PostReview,
+                        element: PostReview,
                         path: "/public-page",
                     },
                     {
-                        exact: true,
-                        component: AuthenticatedPostReview,
+                        element: AuthenticatedPostReview,
                         path: "/authenticated-page",
                     },
                 ] as typeof routerProvider.routes,

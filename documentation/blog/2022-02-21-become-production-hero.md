@@ -59,6 +59,7 @@ The word headless is underlined above. So Refine drop you into UI heaven, meanwh
 - Hasura
 - Appwrite
 - Firebase
+- Directus
 - Altogic
 	
 
