@@ -1,7 +1,7 @@
 {
   "name": "@pankod/refine-react-location",
   "description": "refine React Location router provider. refine is a React-based headless framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -40,7 +40,7 @@
     "tslib": "^2.3.1"
   },
   "dependencies": {
-    "@pankod/refine-core": "^3.2.4",
+    "@pankod/refine-core": "^3.3.1",
     "react-location": "^3.1.10",
     "react-location-rank-routes": "^3.1.10"
   },
