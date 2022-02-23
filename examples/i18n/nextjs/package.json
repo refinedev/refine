@@ -1,6 +1,6 @@
 {
     "name": "i18n-next",
-    "version": "3.3.1",
+    "version": "3.3.2",
     "private": true,
     "scripts": {
         "start": "NODE_OPTIONS=--max_old_space_size=4096 next dev -p 3001",
@@ -9,7 +9,7 @@
         "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
     },
     "dependencies": {
-        "@pankod/refine-antd": "^3.3.1",
+        "@pankod/refine-antd": "^3.3.2",
         "@pankod/refine-core": "^3.3.1",
         "@pankod/refine-nextjs-router": "^3.3.1",
         "@pankod/refine-simple-rest": "^3.3.1",
