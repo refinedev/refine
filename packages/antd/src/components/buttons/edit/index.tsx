@@ -8,11 +8,12 @@ import {
     useRouterContext,
     useTranslate,
     ResourceRouterParams,
+    BaseKey,
 } from "@pankod/refine-core";
 
 export type EditButtonProps = ButtonProps & {
     resourceName?: string;
-    recordItemId?: string;
+    recordItemId?: BaseKey;
     hideText?: boolean;
     ignoreAccessControlProvider?: boolean;
 };
@@ -47,7 +48,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
 
     const { edit } = useNavigation();
 
-    const id = decodeURIComponent(recordItemId ?? idFromRoute);
+    const id = recordItemId ?? decodeURIComponent(idFromRoute);
 
     const { data } = useCan({
         resource: resourceName,

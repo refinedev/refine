@@ -8,11 +8,12 @@ import {
     useTranslate,
     MetaDataQuery,
     ResourceRouterParams,
+    BaseKey,
 } from "@pankod/refine-core";
 
 export type RefreshButtonProps = ButtonProps & {
     resourceName?: string;
-    recordItemId?: string;
+    recordItemId?: BaseKey;
     hideText?: boolean;
     metaData?: MetaDataQuery;
     dataProviderName?: string;
@@ -45,7 +46,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
 
     const resource = resourceWithRoute(resourceName);
 
-    const id = decodeURIComponent(recordItemId ?? idFromRoute);
+    const id = recordItemId ?? decodeURIComponent(idFromRoute);
 
     const { refetch, isFetching } = useOne({
         resource: resource.name,

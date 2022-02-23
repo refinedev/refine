@@ -17,6 +17,7 @@ import {
     userFriendlyResourceName,
     MutationMode,
     ResourceRouterParams,
+    BaseKey,
 } from "@pankod/refine-core";
 
 import {
@@ -32,7 +33,7 @@ export interface EditProps {
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
     mutationMode?: MutationMode;
-    recordItemId?: string;
+    recordItemId?: BaseKey;
     pageHeaderProps?: PageHeaderProps;
     canDelete?: boolean;
     deleteButtonProps?: DeleteButtonProps;
