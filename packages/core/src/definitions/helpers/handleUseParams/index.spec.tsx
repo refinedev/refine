@@ -25,16 +25,29 @@ describe("handleUseParams", () => {
     });
 
     it("should return params true with Id", () => {
-        expect(handleUseParams(paramsWithId)).toEqual(paramsWithId);
+        expect(
+            handleUseParams({
+                ...paramsWithId,
+                id: encodeURIComponent(paramsWithId.id),
+            }),
+        ).toEqual(paramsWithId);
     });
 
     it("should return params true with unique Id", () => {
-        expect(handleUseParams(paramsWithUniqueId)).toEqual(paramsWithUniqueId);
+        expect(
+            handleUseParams({
+                ...paramsWithUniqueId,
+                id: encodeURIComponent(paramsWithUniqueId.id),
+            }),
+        ).toEqual(paramsWithUniqueId);
     });
 
     it("should return params true with nique Id", () => {
-        expect(handleUseParams(paramsWithBase64EncodedId)).toEqual(
-            paramsWithBase64EncodedId,
-        );
+        expect(
+            handleUseParams({
+                ...paramsWithBase64EncodedId,
+                id: encodeURIComponent(paramsWithBase64EncodedId.id),
+            }),
+        ).toEqual(paramsWithBase64EncodedId);
     });
 });
