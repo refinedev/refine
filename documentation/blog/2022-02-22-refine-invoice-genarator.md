@@ -882,6 +882,15 @@ We created our `Client` and `Contact` pages. Now, let's create a Client with **r
 </div>
 <br />
 
+## Live CodeSandbox Example
+
+<iframe src="https://codesandbox.io/embed/refine-invoice-genarator-basics-i7h78z?autoresize=1&fontsize=14&theme=dark&view=preview"
+     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+     title="refine-invoice-genarator-basics"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+
 ## Conclusion
 
 We have completed the first step of our project, creating a basic platform for users to create their company and clients. In the next section, we will add more functionality to this program by allowing users to generate invoices and track payments. Stay tuned as we continue working on `Refine Invoice Generator`!
