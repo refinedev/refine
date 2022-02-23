@@ -1,3 +1,4 @@
+import React from "react";
 import { NotificationProvider } from "@pankod/refine-core";
 import { toast } from "react-toastify";
 import { UndoableNotification } from "components/undoableNotification";
@@ -33,8 +34,8 @@ export const notificationProvider: NotificationProvider = {
                 );
             }
         } else {
-            if (toast.isActive(key)) {
-                toast.update(key, {
+            if (toast.isActive(key as React.ReactText)) {
+                toast.update(key as React.ReactText, {
                     render: message,
                     closeButton: true,
                     autoClose: 5000,
