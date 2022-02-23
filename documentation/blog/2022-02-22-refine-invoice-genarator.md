@@ -1,5 +1,5 @@
 ---
-title: The Best Invoice Generator for Your Buisness Part I
+title: Title: Develop your Own Customizable Invoice Generator with Refine and Strapi | Part I
 description: We will develop a fully customizable Invoice Maker Web application for your business using Refine and Strapi.
 slug: refine-react-admin-invoice-genarator
 authors: melih
