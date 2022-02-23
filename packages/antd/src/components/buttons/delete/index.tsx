@@ -57,7 +57,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
 
     const { useParams } = useRouterContext();
 
-    const { resource: routeResourceName, id } =
+    const { resource: routeResourceName, id: idFromRoute } =
         useParams<ResourceRouterParams>();
 
     const resourceName = propResourceName ?? routeResourceName;
@@ -65,6 +65,8 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     const resource = resourceWithRoute(resourceName);
 
     const { mutate, isLoading, variables } = useDelete();
+
+    const id = recordItemId ?? idFromRoute;
 
     const { data } = useCan({
         resource: resource.name,

@@ -39,12 +39,14 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
 
     const { useParams } = useRouterContext();
 
-    const { resource: routeResourceName, id } =
+    const { resource: routeResourceName, id: idFromRoute } =
         useParams<ResourceRouterParams>();
 
     const resourceName = propResourceName ?? routeResourceName;
 
     const resource = resourceWithRoute(resourceName);
+
+    const id = recordItemId ?? idFromRoute;
 
     const { refetch, isFetching } = useOne({
         resource: resource.name,

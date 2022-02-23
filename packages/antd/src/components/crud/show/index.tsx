@@ -56,13 +56,15 @@ export const Show: React.FC<ShowProps> = ({
     const {
         resource: routeResourceName,
         action: routeFromAction,
-        id,
+        id: idFromRoute,
     } = useParams<ResourceRouterParams>();
 
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
     const isDeleteButtonVisible = canDelete ?? resource.canDelete;
     const isEditButtonVisible = canEdit ?? resource.canEdit;
+
+    const id = recordItemId ?? idFromRoute;
 
     return (
         <PageHeader
