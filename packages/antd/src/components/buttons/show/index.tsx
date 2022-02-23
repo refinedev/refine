@@ -42,17 +42,12 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
 
     const { useParams } = useRouterContext();
 
-    const { resource: routeResourceName, id: idFromRoute } =
+    const { resource: routeResourceName, id } =
         useParams<ResourceRouterParams>();
 
     const resource = resourceWithRoute(routeResourceName);
 
     const resourceName = propResourceName ?? resource.name;
-
-    const id =
-        typeof recordItemId === "string"
-            ? decodeURIComponent(recordItemId ?? idFromRoute)
-            : recordItemId ?? decodeURIComponent(idFromRoute);
 
     const { data } = useCan({
         resource: resourceName,

@@ -41,17 +41,12 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
 
     const { useParams } = useRouterContext();
 
-    const { resource: routeResourceName, id: idFromRoute } =
+    const { resource: routeResourceName, id } =
         useParams<ResourceRouterParams>();
 
     const resource = resourceWithRoute(routeResourceName);
 
     const resourceName = propResourceName ?? resource.name;
-
-    const id =
-        typeof recordItemId === "string"
-            ? decodeURIComponent(recordItemId ?? idFromRoute)
-            : recordItemId ?? decodeURIComponent(idFromRoute);
 
     const onButtonClick = () => {
         clone(resourceName, id!);
