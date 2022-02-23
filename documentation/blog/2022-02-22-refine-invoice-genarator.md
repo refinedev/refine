@@ -1,5 +1,5 @@
 ---
-title: Title: Develop your Own Customizable Invoice Generator with Refine and Strapi | Part I
+title: Develop your Own Customizable Invoice Generator with Refine and Strapi | Part I
 description: Looking for an invoice generator? Try out Refine. With our custom interface, you can build your own invoice in minutes! Learn more here.
 slug: refine-react-admin-invoice-genarator
 authors: melih
