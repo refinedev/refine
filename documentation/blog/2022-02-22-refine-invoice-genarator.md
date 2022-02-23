@@ -226,9 +226,11 @@ We have created our collections by Strapi, now we can create Clients and their c
 
 ## Your Company Detail Page
 
-Let's design a component that includes the details of our company. Then let's show it using `refine-antd` `List`.
+As a first step, let's start to create the part where our own `Company` will be located. If there are other companies you need to manage you can create them on the Your Company page and view them here.
 
 ### Company Card Component
+
+Let's design a component that includes the details of our company. Then let's show it using `refine-antd` `List`. We will put the information such as name, logo and address from the Company collection we created on Strapi into Card component.
 
 <details>
 <summary>Show Code</summary>
@@ -249,14 +251,17 @@ import { API_URL } from "../../constants";
 
 const { Title, Text } = Typography;
 
+//highlight-start
 type CompanyItemProps = {
     item: ICompany;
 };
+//highlight-end
 
 export const CompanyItem: React.FC<CompanyItemProps> = ({ item }) => {
     const image = item.logo ? API_URL + item.logo.url : "./error.png";
 
     return (
+        //highlight-start
         <Card
             style={{ width: "300px" }}
             cover={
@@ -295,6 +300,7 @@ export const CompanyItem: React.FC<CompanyItemProps> = ({ item }) => {
             <Title level={5}>Website:</Title>
             <UrlField value={item.website} />
         </Card>
+        //highlight-end
     );
 };
 ```
@@ -304,12 +310,15 @@ export const CompanyItem: React.FC<CompanyItemProps> = ({ item }) => {
 
 ### Company List Page
 
-Let's put the component we created above into the List.
+Let's place the `CompanyItem` component that we created above in the [refine-antd List](https://refine.dev/docs/ui-frameworks/antd/hooks/list/useSimpleList/) and display company information.
 
 ```tsx title="src/pages/company/CompanyList.tsx"
-import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
-
+import { IResourceComponentsProps } from "@pankod/refine-core";
+//highlight-next-line
 import { useSimpleList, AntdList, List } from "@pankod/refine-antd";
+
+//highlight-next-line
+import { CompanyItem } from "components/company";
 
 export const CompanyList: React.FC<IResourceComponentsProps> = () => {
     const { listProps } = useSimpleList<ICompany>({
@@ -317,17 +326,20 @@ export const CompanyList: React.FC<IResourceComponentsProps> = () => {
     });
 
     return (
+        //highlight-start
         <List title={"Your Companies"}>
             <AntdList
                 grid={{ gutter: 16 }}
                 {...listProps}
                 renderItem={(item) => (
                     <AntdList.Item>
+                        //highlight-next-line
                         <CompanyItem item={item} />
                     </AntdList.Item>
                 )}
             />
         </List>
+        //highlight-end
     );
 };
 ```
@@ -378,7 +390,7 @@ We fetch the data of the `Company` collection that we created by Strapi, thanks 
 
 ## Contact Page
 
-Our `Contact Page` is a page related to `Clients`. Communication with client companies will be through the contacts we create here.
+Our `Contact Page` is a page related to `Clients`. Communication with client companies will be through the contacts we create here. The Contact Page will contain the information of the people we will contact. Let's create our list using **refine** [useTable](https://refine.dev/docs/ui-frameworks/antd/hooks/table/useTable/) hook.
 
 ```tsx title="src/pages/contact/ContactList.tsx"
 import {
@@ -396,9 +408,11 @@ import { IContact } from "interfaces";
 import { CreateContact } from "components/contacts";
 
 export const ContactsList: React.FC = () => {
+    //highlight-start
     const { tableProps } = useTable<IContact>({
         metaData: { populate: ["client"] },
     });
+    //highlight-end
 
     const {
         formProps: createContactFormProps,
@@ -419,6 +433,7 @@ export const ContactsList: React.FC = () => {
                     },
                 }}
             >
+                //highlight-start
                 <Table {...tableProps} rowKey="id">
                     <Table.Column dataIndex="id" title="ID" />
                     <Table.Column dataIndex="first_name" title="First Name" />
@@ -454,6 +469,7 @@ export const ContactsList: React.FC = () => {
                         )}
                     />
                 </Table>
+                //highlight-end
             </List>
             <CreateContact
                 modalProps={modalProps}
@@ -476,7 +492,7 @@ export const ContactsList: React.FC = () => {
 
 ## Client List Page
 
-We have created an example company above. Now let's create a `Client List` where we can view our clients.
+We have created example company and contacts above. Now let's create a `Client List` where we can view our clients.
 
 ### Client Card Component
 
@@ -869,7 +885,3 @@ We created our `Client` and `Contact` pages. Now, let's create a Client with **r
 ## Conclusion
 
 We have completed the first step of our project, creating a basic platform for users to create their company and clients. In the next section, we will add more functionality to this program by allowing users to generate invoices and track payments. Stay tuned as we continue working on `Refine Invoice Generator`!
-
-
-
-
