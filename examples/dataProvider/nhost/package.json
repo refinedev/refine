@@ -12,6 +12,7 @@
     "@types/react-dom": "^17.0.4",
     "graphql": "^15.6.1",
     "graphql-request": "^3.5.0",
+    "@nhost/nhost-js": "^0.3.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-markdown": "^6.0.1",
