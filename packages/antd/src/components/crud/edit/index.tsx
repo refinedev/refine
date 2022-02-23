@@ -80,6 +80,11 @@ export const Edit: React.FC<EditProps> = ({
     const isDeleteButtonVisible =
         canDelete ?? (resource.canDelete || deleteButtonProps);
 
+    const id =
+        typeof recordItemId === "string"
+            ? decodeURIComponent(recordItemId ?? idFromRoute)
+            : recordItemId ?? decodeURIComponent(idFromRoute);
+
     return (
         <PageHeader
             ghost={false}
@@ -104,9 +109,7 @@ export const Edit: React.FC<EditProps> = ({
                     )}
                     <RefreshButton
                         resourceName={resource.name}
-                        recordItemId={
-                            recordItemId ?? encodeURIComponent(idFromRoute)
-                        }
+                        recordItemId={id}
                     />
                 </Space>
             }

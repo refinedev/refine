@@ -64,7 +64,10 @@ export const Show: React.FC<ShowProps> = ({
     const isDeleteButtonVisible = canDelete ?? resource.canDelete;
     const isEditButtonVisible = canEdit ?? resource.canEdit;
 
-    const id = recordItemId ?? encodeURIComponent(idFromRoute);
+    const id =
+        typeof recordItemId === "string"
+            ? decodeURIComponent(recordItemId ?? idFromRoute)
+            : recordItemId ?? decodeURIComponent(idFromRoute);
 
     return (
         <PageHeader
