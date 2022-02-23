@@ -42,6 +42,7 @@ const ResourceComponent: React.FC = () => {
             canEdit,
             canShow,
             canDelete,
+            options,
         } = resource;
 
         const List = list ?? (() => null);
@@ -64,26 +65,10 @@ const ResourceComponent: React.FC = () => {
                                 canEdit={canEdit}
                                 canDelete={canDelete}
                                 canShow={canShow}
+                                options={options}
                             />
                         </CanAccess>
                     );
-                case undefined:
-                    return (
-                        <CanAccess
-                            resource={name}
-                            action="list"
-                            fallback={catchAll ?? <ErrorComponent />}
-                        >
-                            <List
-                                name={name}
-                                canCreate={canCreate}
-                                canEdit={canEdit}
-                                canDelete={canDelete}
-                                canShow={canShow}
-                            />
-                        </CanAccess>
-                    );
-
                 case "create":
                 case "clone":
                     return (
@@ -98,6 +83,7 @@ const ResourceComponent: React.FC = () => {
                                 canEdit={canEdit}
                                 canDelete={canDelete}
                                 canShow={canShow}
+                                options={options}
                             />
                         </CanAccess>
                     );
@@ -116,6 +102,7 @@ const ResourceComponent: React.FC = () => {
                                 canEdit={canEdit}
                                 canDelete={canDelete}
                                 canShow={canShow}
+                                options={options}
                             />
                         </CanAccess>
                     );
@@ -134,6 +121,7 @@ const ResourceComponent: React.FC = () => {
                                 canEdit={canEdit}
                                 canDelete={canDelete}
                                 canShow={canShow}
+                                options={options}
                             />
                         </CanAccess>
                     );
