@@ -25,12 +25,12 @@ Step by step, you're going to learn how to consume a _REST API_ and add basic CR
     <Card
         iconPath={"/img/cra-tailwind.png"}
         title={"Refine Core - Tailwind - CRA"}
-        direction={"/docs/next/core/tutorial"}
+        direction={"/docs/core/tutorial"}
     />
     <Card
         iconPath={"/img/cra-antd.png"}
         title={"Refine Core & Ant Design - CRA"}
-        direction={"/docs/next/ui-frameworks/antd/tutorial"}
+        direction={"/docs/ui-frameworks/antd/tutorial"}
     />
 </div>
 
