@@ -178,7 +178,7 @@ export const PostEdit: React.FC = () => {
 
 We can also implement similar thing in show page.
 
-[Refer to the codesandbox example for detailed information. &#8594](#live-condesandbox-example)
+[Refer to the codesandbox example for detailed information. &#8594](#live-codesandbox-example)
 :::
 
 <br/>

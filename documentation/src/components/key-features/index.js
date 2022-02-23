@@ -154,6 +154,10 @@ const backendLinks = [
         text: "Firebase",
     },
     {
+        href: "https://directus.io/",
+        text: "Directus",
+    },
+    {
         href: "https://altogic.com/",
         text: "Altogic",
     },

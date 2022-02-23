@@ -233,7 +233,6 @@ const RouteProviderBase: React.FC = () => {
             {[...(customRoutes || [])].map((route, i) => (
                 <Route key={`custom-route-${i}`} {...route} />
             ))}
-
             <Route
                 render={({ location }: { location: any }) => {
                     if (isLoading) {
