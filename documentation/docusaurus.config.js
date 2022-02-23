@@ -33,10 +33,10 @@ const siteConfig = {
                     showLastUpdateTime: true,
                     versions: {
                         current: {
-                            label: "4.xx.xx 🚧",
+                            label: "3.xx.xx",
                         },
                     },
-                    lastVersion: "3.xx.xx",
+                    lastVersion: "current",
                 },
                 blog: {
                     blogTitle: "refine blog!",
@@ -74,6 +74,13 @@ const siteConfig = {
             indexName: "refine",
             contextualSearch: true,
         },
+        metadata: [
+            {
+                name: "keywords",
+                content:
+                    "react-admin, react-framework, internal-tool, admin-panel, ant-design",
+            },
+        ],
         announcementBar: {
             id: "support",
             backgroundColor: "#0B82F0",

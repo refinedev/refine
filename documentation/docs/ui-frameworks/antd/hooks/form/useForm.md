@@ -165,8 +165,8 @@ const { clone } = useNavigation();
 | formLoading     | Loading state of form request                           | `boolean`                                                                        |
 | cloneId         | Record id for clone action                              | `"string"` \| `"number"`                                                         |
 | setCloneId      | `cloneId` setter                                        | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                 |
-| editId          | Record id for edit action                               | `"string"` \| `"number"`                                                         |     |
-| setEditId       | `editId` setter                                         | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                 |
+| id          | Record id for edit action                               | `"string"` \| `"number"`                                                         |     |
+| setId       | `id` setter                                         | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                 |
 
 ### Type Parameters
 
