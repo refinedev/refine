@@ -12,6 +12,7 @@ import {
     Radio,
     TagField,
     getDefaultFilter,
+    DeleteButton,
 } from "@pankod/refine-antd";
 
 import { useTable, useSelect } from "@pankod/refine-antd";
@@ -108,6 +109,11 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                 recordItemId={record.id}
                             />
                             <ShowButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <DeleteButton
                                 hideText
                                 size="small"
                                 recordItemId={record.id}
