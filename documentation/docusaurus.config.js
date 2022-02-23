@@ -64,12 +64,6 @@ const siteConfig = {
             "@docusaurus/plugin-client-redirects",
             {
                 redirects: redirectJson.redirects,
-                createRedirects(existingPath) {
-                    if (existingPath.includes("/next")) {
-                        return [existingPath.replace("/next", "/")];
-                    }
-                    return undefined;
-                },
             },
         ],
     ],
