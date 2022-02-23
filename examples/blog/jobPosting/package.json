@@ -24,8 +24,8 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "dev": "craco start",
-    "build": "craco build",
+    "dev": "DISABLE_ESLINT_PLUGIN=true craco start",
+    "build": "DISABLE_ESLINT_PLUGIN=true craco build",
     "test": "craco test",
     "eject": "craco eject"
   },
