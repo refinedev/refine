@@ -12,8 +12,7 @@ const TwitterSvg =
 
 const siteConfig = {
     title: "refine",
-    tagline:
-        "A React-based framework for building data-intensive applications in no time.",
+    tagline: "A React-based framework for building internal tools, rapidly.",
     url: "https://refine.dev",
     baseUrl: "/",
     projectName: "refine",

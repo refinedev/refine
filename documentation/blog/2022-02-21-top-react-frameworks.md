@@ -121,7 +121,7 @@ If you're looking for a framework that will let your data- intensive application
 **Key features**
 
 ​
-🔥 **Headless** : So you can bring your own UI and fuel it with Refine for top speed development.
+🔥 **Headless** : Works with any UI framework
 
 ⚙️ **Zero-configuration** : One-line setup with [superplate](https://github.com/pankod/superplate). It takes less than a minute to start a project.
 

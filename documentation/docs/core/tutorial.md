@@ -99,7 +99,7 @@ tutorial
 ? Package manager:
 ❯ Npm
 
-? Do you want to using UI Framework?:
+? Do you want to use an UI Framework?:
 ❯ No (headless)
 
 ? Data Provider :

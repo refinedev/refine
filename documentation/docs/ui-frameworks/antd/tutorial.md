@@ -96,6 +96,9 @@ tutorial
 ? Package manager:
 ❯ Npm
 
+? Do you want to use an UI Framework?:
+❯ Yes, I want Ant Design
+
 ? Do you want to customize the theme?:
 ❯ No (Ant Design default theme)
 

@@ -1,5 +1,5 @@
 .section {
-    padding: 0px 0px 96px 0px;
+    padding: 0px 0px 20px 0px;
     background-color: var(--color-bg-white);
     color: var(--color-text-black);
 }
@@ -9,6 +9,7 @@
     font-weight: 900;
     color: var(--color-blue);
     text-align: center;
+    padding-top: 66px;
 }
 
 .description {

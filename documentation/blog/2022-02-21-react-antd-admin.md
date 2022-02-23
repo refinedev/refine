@@ -21,7 +21,7 @@ import table_i18n from '@site/static/img/blog/2022-02-21-react-antd-admin/table-
 
 #### Key features​
 
-🔥 Headless : So you can bring your own UI and fuel it with Refine for top speed development.
+🔥 Headless : Works with any UI framework
 
 ⚙️ Zero-configuration : One-line setup with superplate. It takes less than a minute to start a project.
 
@@ -58,7 +58,7 @@ npx superplate-cli -p refine-react refine-advanced-tutorial
 
 ✔ Package manager: · npm
 
-✔ Do you want to using UI Framework?: · antd
+✔ Do you want to use an UI Framework?: · antd
 
 ✔ Do you want to customize theme?: · css
 

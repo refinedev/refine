@@ -9,7 +9,7 @@ import Card from "@site/src/components/tutorial-card";
 
 ## Introduction
 
-refine is a **Headless** React Framework, it does not include a UI Component by default. 
+refine is a **headless** Framework, so it does not include UI Components by default.
 
 There are two ways to add UI elements to refine;
 

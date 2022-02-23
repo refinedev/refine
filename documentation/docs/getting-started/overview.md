@@ -9,11 +9,15 @@ import benchmarkChart from '@site/static/img/getting-started/benchmark.png';
 
 ## What is refine?
 
-**refine** is a [React](https://reactjs.org/)-based **headless** framework for building data-intensive applications in no time :sparkles: So you can bring your own UI and fuel it with Refine for top speed development.
+<!-- **refine** is a [React](https://reactjs.org/)-based framework for building data-intensive applications in no time :sparkles: Works with any UI framework
 
-Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to _admin panels_, _B2B applications_ and _dashboards_.
+Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to _admin panels_, _B2B applications_ and _dashboards_. -->
 
-## What is a "headless" Framework?
+refine is a [React](https://reactjs.org/)-based framework for rapid building of internal tools. It's is a a collection of helper hooks, components and providers. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
+
+Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards.
+
+<!-- ## What is a "headless" Framework?
 **refine** is a **headless** React framework, which means all out-of-the-box features(**Routing**, **Networking**, **Authentication**, **Authorization**, **State Management**, **Realtime**, **i18n**, etc.), it can be used without being tied to any UI elements or framework. Also, Ant Design as out-of-the-box is supported.
 
 - Customization & Extensibility -  UI is a completely customizable area and each developer uses different solutions. **refine** features does not restrict or interfere with your UI structure. **refine** allows the you to design and customizable the UI based on their unique use case.
@@ -21,12 +25,12 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 - Separation of Concerns - **refine** as a framework, is not responsible for your UI and is independent.
 
 - Maintenance - By removing the API surface to support every UI use case, **refine** easy to use and update/maintain is simple.
-
+ -->
 ###
 
 ## Key features
 
-🔥 **Headless** : So you can bring your own UI and fuel it with Refine for top speed development.
+🔥 **Headless** : Works with any UI framework
 
 ⚙️ **Zero-configuration** : One-line setup with [superplate](https://github.com/pankod/superplate). It takes less than a minute to start a project.
 
@@ -45,8 +49,6 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility.
 
 After many years of experience in developing B2B frontend applications and working with popular frameworks, we came up with a new approach to tackle this dilemma. This is how **refine** is born.
-
-**Refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
 
 As **refine** is totally _unopinionated_ about UI and logic, it's strongly _opinionated_ about three parts of your application:
 
