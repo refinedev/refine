@@ -61,7 +61,7 @@ This example is for SPA react apps, for Next.js [refer to i18n Nextjs example ][
 
 Let's add multi-language support using the `react-i18next` framework. At the end of our example, our application will support both German and English.
 
-[Refer to the react-i18n docs for detailed information &#8594](https://react.i18next.com/getting-started)
+[Refer to the react-i18next docs for detailed information &#8594](https://react.i18next.com/getting-started)
 
 ### Installation
 
@@ -77,9 +77,9 @@ First, we will create an i18n instance using `react-i18next`.
 
 ```ts title="src/i18n.ts"
 import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-import Backend from "i18next-xhr-backend"; // adding lazy loading for translations, more information here: https://react.i18next.com/legacy-v9/step-by-step-guide#2-lazy-loading-translations
-import detector from "i18next-browser-languagedetector"; // auto detect the user language, more information here: https://react.i18next.com/legacy-v9/step-by-step-guide#c-auto-detect-the-user-language
+import { initReactI18next } from "react-i18next"; // https://react.i18next.com/latest/using-with-hooks
+import Backend from "i18next-http-backend"; // adding lazy loading for translations, more information here: https://github.com/i18next/i18next-http-backend
+import detector from "i18next-browser-languagedetector"; // auto detect the user language, more information here: https://github.com/i18next/i18next-browser-languageDetector
 
 i18n.use(Backend)
     .use(detector)
