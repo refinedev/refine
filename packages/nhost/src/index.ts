@@ -1,4 +1,4 @@
-import { GraphQLClient } from "graphql-request";
+import { NhostClient } from "@nhost/nhost-js";
 import * as gql from "gql-query-builder";
 import {
     CrudOperators,
@@ -86,7 +86,7 @@ export const generateFilters: any = (filters?: CrudFilters) => {
     return resultFilter;
 };
 
-const dataProvider = (client: GraphQLClient): DataProvider => {
+const dataProvider = (client: NhostClient): DataProvider => {
     return {
         getOne: async ({ resource, id, metaData }) => {
             const operation = `${metaData?.operation ?? resource}_by_pk`;
@@ -100,10 +100,10 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                 fields: metaData?.fields,
             });
 
-            const response = await client.request(query, variables);
+            const { data } = await client.graphql.request(query, variables);
 
             return {
-                data: response[operation],
+                data: (data as any)[operation],
             };
         },
 
@@ -125,10 +125,10 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                 },
             });
 
-            const result = await client.request(query, variables);
+            const { data } = await client.graphql.request(query, variables);
 
             return {
-                data: result[operation],
+                data: (data as any)[operation],
             };
         },
 
@@ -180,11 +180,11 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                 },
             ]);
 
-            const result = await client.request(query, variables);
+            const { data } = await client.graphql.request(query, variables);
 
             return {
-                data: result[operation],
-                total: result[aggregateOperation].aggregate.count,
+                data: (data as any)[operation],
+                total: (data as any)[aggregateOperation].aggregate.count,
             };
         },
 
@@ -206,10 +206,10 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                 fields: metaData?.fields ?? ["id", ...Object.keys(variables)],
             });
 
-            const response = await client.request(query, gqlVariables);
+            const { data } = await client.graphql.request(query, gqlVariables);
 
             return {
-                data: response[insertOperation],
+                data: (data as any)[insertOperation],
             };
         },
 
@@ -235,10 +235,10 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                 ],
             });
 
-            const response = await client.request(query, gqlVariables);
+            const { data } = await client.graphql.request(query, gqlVariables);
 
             return {
-                data: response[insertOperation]["returning"],
+                data: (data as any)[insertOperation]["returning"],
             };
         },
 
@@ -269,10 +269,10 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                 fields: metaData?.fields ?? ["id"],
             });
 
-            const response = await client.request(query, gqlVariables);
+            const { data } = await client.graphql.request(query, gqlVariables);
 
             return {
-                data: response[updateOperation],
+                data: (data as any)[updateOperation],
             };
         },
         updateMany: async ({ resource, ids, variables, metaData }) => {
@@ -308,10 +308,10 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                 ],
             });
 
-            const response = await client.request(query, gqlVariables);
+            const { data } = await client.graphql.request(query, gqlVariables);
 
             return {
-                data: response[updateOperation]["returning"],
+                data: (data as any)[updateOperation]["returning"],
             };
         },
 
@@ -329,10 +329,10 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                 fields: metaData?.fields ?? ["id"],
             });
 
-            const response = await client.request(query, variables);
+            const { data } = await client.graphql.request(query, variables);
 
             return {
-                data: response[deleteOperation],
+                data: (data as any)[deleteOperation],
             };
         },
 
@@ -363,67 +363,19 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                 },
             });
 
-            const result = await client.request(query, variables);
+            const { data } = await client.graphql.request(query, variables);
 
             return {
-                data: result[deleteOperation]["returning"],
+                data: (data as any)[deleteOperation]["returning"],
             };
         },
 
         getApiUrl: () => {
-            throw new Error(
-                "getApiUrl method is not implemented on refine-hasura data provider.",
-            );
+            return client.graphql.getUrl();
         },
 
-        custom: async ({ url, method, headers, metaData }) => {
-            let gqlClient = client;
-
-            if (url) {
-                gqlClient = new GraphQLClient(url, { headers });
-            }
-
-            if (metaData) {
-                if (metaData.operation) {
-                    if (method === "get") {
-                        const { query, variables } = gql.query({
-                            operation: metaData.operation,
-                            fields: metaData.fields,
-                            variables: metaData.variables,
-                        });
-
-                        const response = await gqlClient.request(
-                            query,
-                            variables,
-                        );
-
-                        return {
-                            data: response[metaData.operation],
-                        };
-                    } else {
-                        const { query, variables } = gql.mutation({
-                            operation: metaData.operation,
-                            fields: metaData.fields,
-                            variables: metaData.variables,
-                        });
-
-                        const response = await gqlClient.request(
-                            query,
-                            variables,
-                        );
-
-                        return {
-                            data: response[metaData.operation],
-                        };
-                    }
-                } else {
-                    throw Error("GraphQL operation name required.");
-                }
-            } else {
-                throw Error(
-                    "GraphQL need to operation, fields and variables values in metaData object.",
-                );
-            }
+        custom: () => {
+            throw Error("useCustom is not implemented in @pankod/refine-nhost");
         },
     };
 };

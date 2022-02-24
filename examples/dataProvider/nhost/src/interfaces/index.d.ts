@@ -1,6 +1,7 @@
 export interface ICategory {
     id: string;
     title: string;
+    created_at: string;
 }
 
 export interface IPost {
