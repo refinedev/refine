@@ -83,7 +83,7 @@ Variables passed to `mutate` must have these types.
 
 ```tsx
 {
-    id: string;
+    id: BaseKey;
     resource: string;
     mutationMode?: MutationMode;
     undoableTimeout?: number;
@@ -158,7 +158,7 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 | Property                                                                                            | Description                                                                                        | Type                                                                       | Default                             |
 | --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ----------------------------------- |
 | <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                                            | `string`                                                                   |                                     |
-| id <div className=" required">Required</div>                                                        | id for mutation function                                                                           | `string`                                                                   |                                     |
+| id <div className=" required">Required</div>                                                        | id for mutation function                                                                           | [`BaseKey`](/core/interfaces.md#basekey)                                                                    |                                     |
 | mutationMode                                                                                        | [Determines when mutations are executed](/guides-and-concepts/mutation-mode.md)                    | ` "pessimistic` \| `"optimistic` \| `"undoable"`                           | `"pessimistic"`\*                   |
 | undoableTimeout                                                                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"`                    | `number`                                                                   | `5000ms`\*                          |
 | onCancel                                                                                            | Callback that runs when undo button is clicked on `mutationMode = "undoable"`                      | `(cancelMutation: () => void) => void`                                     |                                     |
@@ -182,4 +182,4 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 
 | Description                               | Type                                                                                                                                                              |
 | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { id: string; },`<br/>` DeleteContext>`](https://react-query.tanstack.com/reference/useMutation) |
+| Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { id: BaseKey; },`<br/>` DeleteContext>`](https://react-query.tanstack.com/reference/useMutation) |

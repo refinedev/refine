@@ -234,7 +234,6 @@ The `<Show>` component needs the `id` information for work properly, so if you u
 :::
 
 ## API Reference
-
 ### Properties
 
 | Property        | Description                                       | Type                                                              | Default                                                                        |
@@ -245,5 +244,5 @@ The `<Show>` component needs the `id` information for work properly, so if you u
 | actionButtons   | Gets passed to the `extra` prop of the `<Card>`   | `React.ReactNode`                                                 | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
 | isLoading       | Gets passed to the `loading` prop of the `<Card>` | `boolean`                                                         | `false`                                                                        |
 | pageHeaderProps | Passes props for `<PageHeader>`                   | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` } |
-| recordItemId    | Record id for `<RefreshButton>`                   | `string`                                                          |                                                                                |
+| recordItemId    | Record id for `<RefreshButton>`                   | [`BaseKey`](/core/interfaces.md#basekey)                          |                                                                                |
 | resource        | Resource name for API data interactions           | `string`                                                          | Resource name that it reads from the URL.                                      |

@@ -78,11 +78,18 @@ title: Interface References
 | current  | `number` |
 | pageSize | `number` |
 
+## BaseKey
+
+| Type                 |
+| -------------------- |
+| `string` \| `number` |
+
+
 ## BaseRecord
 
 | Key             | Type                 |
 | --------------- | -------------------- |
-| id?             | `string` \| `number` |
+| id?             | [`BaseKey`](#basekey) |
 | `[key: string]` | `any`                |
 
 ## HttpError
@@ -99,7 +106,7 @@ ButtonProps
 | Key           | Type                                                     |
 | ------------- | -------------------------------------------------------- |
 | resourceName? | `string`                                                 |
-| recordItemId? | `string` \|` number`                                     |
+| recordItemId? | [`BaseKey`](#basekey)                                     |
 | onSuccess?    | `<TData = BaseRecord>(value: { data: TData; }) => void;` |
 | mutationMode? | [`MutationMode`](#mutationmode)                          |
 | hideText?     | `boolean`                                                |
@@ -194,7 +201,7 @@ ButtonProps
 | ------- | --------------------------------------------------------------------- |
 | channel | `string`                                                              |
 | types   | `Array<"deleted"` \| `"updated"` \| `"created"` \| "`*`" \| `string`> |
-| payload | `{ids?: string[]; [x: string]: any; }`                                |
+| payload | `{ids?: BaseKey[]; [x: string]: any; }`                                |
 | date    | `Date`                                                                |
 
 ## LiveModeProps
@@ -202,5 +209,5 @@ ButtonProps
 | Key          | Type                                   |
 | ------------ | -------------------------------------- |
 | liveMode?    | `"auto"` \| `"manual"` \| `"off"`      |
-| liveParams?  | `{ids?: string[]; [x: string]: any; }` |
+| liveParams?  | `{ids?: BaseKey[]; [x: string]: any; }` |
 | onLiveEvent? | `(event: LiveEvent) => void`           |
