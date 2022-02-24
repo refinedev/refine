@@ -39,7 +39,7 @@ Let's say that we have a resource named `categories`.
 
 ```tsx 
 type CategoryMutationResult = {
-    id: string;
+    id: number;
     title: string;
 };
 
@@ -49,7 +49,7 @@ const { mutate } = useUpdate<CategoryMutationResult>();
 
 mutate({
     resource: "categories",
-    id: "2",
+    id: 2,
     values: { title: "New Category Title" },
 });
 ```
@@ -95,7 +95,7 @@ Values passed to `mutate` must have these types.
 ```tsx
 {
     resource: string;
-    id: string;
+    id: BaseKey;
     values: TVariables = {};
     mutationMode?: MutationMode;
     undoableTimeout?: number;
@@ -116,7 +116,7 @@ const { mutate } = useUpdate();
 
 mutate({
     resource: "categories",
-    id: "2",
+    id: 2,
     values: { title: "New Category Title" },
     // highlight-next-line
     mutationMode: "optimistic",
@@ -150,7 +150,7 @@ const { mutate } = useUpdate();
 
 mutate({
     resource: "categories",
-    id: "2",
+    id: 2,
     values: { title: "New Category Title" },
     mutationMode: "undoable",
     // highlight-start
@@ -172,7 +172,7 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 | Property                                                                                            | Description                                                                                        | Type                                                                       | Default                                                      |
 | --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                                            | `string`                                                                   |                                                              |
-| id <div className=" required">Required</div>                                                        | id for mutation function                                                                           | `string`                                                                   |                                                              |
+| id <div className=" required">Required</div>                                                        | id for mutation function                                                                           | [`BaseKey`](/core/interfaces.md#basekey)                                                                    |                                                              |
 | values <div className=" required">Required</div>                                                    | Values for mutation function                                                                       | `TVariables`                                                               | {}                                                           |
 | mutationMode                                                                                        | [Determines when mutations are executed](/guides-and-concepts/mutation-mode.md)                    | ` "pessimistic` \| `"optimistic` \| `"undoable"`                           | `"pessimistic"`\*                                            |
 | undoableTimeout                                                                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"`                    | `number`                                                                   | `5000ms`\*                                                   |
@@ -198,6 +198,6 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 
 | Description                               | Type                                                                                                                                                                                                     |
 | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource:string; id: string; values: TVariables; },`<br/>` UpdateContext>`](https://react-query.tanstack.com/reference/useMutation)\* |
+| Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource:string; id: BaseKey; values: TVariables; },`<br/>` UpdateContext>`](https://react-query.tanstack.com/reference/useMutation)\* |
 
 > `*` `UpdateContext` is an internal type.
