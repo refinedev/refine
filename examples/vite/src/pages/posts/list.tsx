@@ -16,7 +16,7 @@ import {
 
 import { useTable, useSelect } from "@pankod/refine-antd";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ICategory } from "../../interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, filters } = useTable<IPost>({

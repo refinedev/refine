@@ -20,12 +20,12 @@
     "react-markdown": "^6.0.1",
     "react-mde": "^11.1.0",
     "react-scripts": "^5.0.0",
-    "typescript": "^4.2.4",
+    "typescript": "^4.4.3",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "dev": "craco start",
-    "build": "craco build",
+    "dev": "DISABLE_ESLINT_PLUGIN=true craco start",
+    "build": "DISABLE_ESLINT_PLUGIN=true craco build",
     "test": "craco test",
     "eject": "craco eject"
   },
