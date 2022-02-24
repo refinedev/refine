@@ -201,7 +201,7 @@ ButtonProps
 | ------- | --------------------------------------------------------------------- |
 | channel | `string`                                                              |
 | types   | `Array<"deleted"` \| `"updated"` \| `"created"` \| "`*`" \| `string`> |
-| payload | `{ids?: string[]; [x: string]: any; }`                                |
+| payload | `{ids?: BaseKey[]; [x: string]: any; }`                                |
 | date    | `Date`                                                                |
 
 ## LiveModeProps
@@ -209,5 +209,5 @@ ButtonProps
 | Key          | Type                                   |
 | ------------ | -------------------------------------- |
 | liveMode?    | `"auto"` \| `"manual"` \| `"off"`      |
-| liveParams?  | `{ids?: string[]; [x: string]: any; }` |
+| liveParams?  | `{ids?: BaseKey[]; [x: string]: any; }` |
 | onLiveEvent? | `(event: LiveEvent) => void`           |
