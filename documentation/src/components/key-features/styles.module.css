@@ -74,21 +74,30 @@
 .feature {
     display: flex;
     gap: 36px;
+    align-items: center;
 }
 
 .feature img {
     width: 80px;
     height: 80px;
+    object-fit: contain;
 }
 
 .feature p {
-    margin-bottom: 0;
+    margin-bottom: 4px;
 }
 
 .featureTitle {
     color: var(--color-text-black);
-    font-weight: 800;
+    font-weight: 900;
     font-size: 20px;
+    line-height: 24px;
+    text-transform: uppercase;
+}
+.featureDescription {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
 }
 
 @media screen and (max-width: 700px) {
