@@ -79,40 +79,40 @@ const backends = [
 
 const features = [
     {
-        src: "/icons/features/zero.png",
-        srcset: "/icons/features/zero@2x.png 768w",
+        src: "/icons/features/fast.png",
+        srcset: "/icons/features/fast@2x.png 768w",
         title: "Fast",
         description: `Up to 3x increase in speed of development. (<a href="/docs/getting-started/overview/#benchmark" target="_blank">*</a>)`,
     },
     {
-        src: "/icons/features/decoupled.png",
-        srcset: "/icons/features/decoupled@2x.png 768w",
+        src: "/icons/features/headless.png",
+        srcset: "/icons/features/headless@2x.png 768w",
         title: "Headless",
         description: "Works with any UI framework.",
     },
     {
-        src: "/icons/features/box.png",
-        srcset: "/icons/features/box@2x.png 768w",
+        src: "/icons/features/union.png",
+        srcset: "/icons/features/union@2x.png 768w",
         title: "Flexible",
         description: "No limits for your custom styling and business logic.",
     },
     {
-        src: "/icons/features/powerful.png",
-        srcset: "/icons/features/powerful@2x.png 768w",
+        src: "/icons/features/universal.png",
+        srcset: "/icons/features/universal@2x.png 768w",
         title: "Universal",
         description:
             "Single framework for internal tools and customer-facing apps. SSR included.",
     },
     {
-        src: "/icons/features/native.png",
-        srcset: "/icons/features/native@2x.png 768w",
+        src: "/icons/features/vector.png",
+        srcset: "/icons/features/vector@2x.png 768w",
         title: "Future-proof",
         description:
             "Robust architecture, full test coverage and no technical debt.",
     },
     {
-        src: "/icons/features/boilerplate.png",
-        srcset: "/icons/features/boilerplate@2x.png 768w",
+        src: "/icons/features/one-min-setup.png",
+        srcset: "/icons/features/one-min-setup@2x.png 768w",
         title: "1-minute setup",
         description: "Start your project with a single CLI command.",
     },
@@ -190,6 +190,9 @@ export const KeyFeatures = () => {
                                                 {title}
                                             </p>
                                             <p
+                                                className={
+                                                    styles.featureDescription
+                                                }
                                                 dangerouslySetInnerHTML={{
                                                     __html: description,
                                                 }}
