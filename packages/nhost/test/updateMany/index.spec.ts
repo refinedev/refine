@@ -1,14 +1,21 @@
 import dataProvider from "../../src/index";
-import client from "../gqlClient";
+import nhost from "../nhost";
 import "./index.mock";
 
 describe("updateMany", () => {
+    beforeAll(async () => {
+        await nhost.auth.signIn({
+            email: "salih@pankod.com",
+            password: "refine-nhost",
+        });
+    });
+
     it("correct response with metaData", async () => {
-        const { data } = await dataProvider(client).updateMany({
+        const { data } = await dataProvider(nhost).updateMany({
             resource: "posts",
             ids: [
-                "487524fd-1160-45c8-a28d-717f78893c37",
-                "55c37980-05e5-45b3-8368-a2d8c2210436",
+                "6a117e72-9446-4413-9760-30d66b9a27dc",
+                "eccfaeb9-7fc7-45f6-b546-cb6e14109087",
             ],
             variables: {
                 content: "Vel deserunt rerum et.",
@@ -18,21 +25,21 @@ describe("updateMany", () => {
             },
         });
 
-        expect(data[0]["id"]).toEqual("487524fd-1160-45c8-a28d-717f78893c37");
-        expect(data[0]["title"]).toEqual("updated-foo-1");
+        expect(data[0]["id"]).toEqual("eccfaeb9-7fc7-45f6-b546-cb6e14109087");
+        expect(data[0]["title"]).toEqual("Updated Title");
         expect(data[0]["content"]).toEqual("Vel deserunt rerum et.");
 
-        expect(data[1]["id"]).toEqual("55c37980-05e5-45b3-8368-a2d8c2210436");
-        expect(data[1]["title"]).toEqual("updated-foo-1");
+        expect(data[1]["id"]).toEqual("6a117e72-9446-4413-9760-30d66b9a27dc");
+        expect(data[1]["title"]).toEqual("E-business alarm Bedfordshire");
         expect(data[1]["content"]).toEqual("Vel deserunt rerum et.");
     });
 
     it("correct response without metaData", async () => {
-        const { data } = await dataProvider(client).updateMany({
+        const { data } = await dataProvider(nhost).updateMany({
             resource: "posts",
             ids: [
-                "487524fd-1160-45c8-a28d-717f78893c37",
-                "55c37980-05e5-45b3-8368-a2d8c2210436",
+                "6a117e72-9446-4413-9760-30d66b9a27dc",
+                "eccfaeb9-7fc7-45f6-b546-cb6e14109087",
             ],
             variables: {
                 title: "updated-foo-1",
@@ -40,7 +47,7 @@ describe("updateMany", () => {
             },
         });
 
-        expect(data[0]["id"]).toEqual("487524fd-1160-45c8-a28d-717f78893c37");
-        expect(data[1]["id"]).toEqual("55c37980-05e5-45b3-8368-a2d8c2210436");
+        expect(data[0]["id"]).toEqual("eccfaeb9-7fc7-45f6-b546-cb6e14109087");
+        expect(data[1]["id"]).toEqual("6a117e72-9446-4413-9760-30d66b9a27dc");
     });
 });
