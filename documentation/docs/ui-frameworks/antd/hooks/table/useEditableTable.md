@@ -233,11 +233,11 @@ Refer to [`<Table.Column>`][table.column] documentation for more information.
 
 ## Editing by clicking to row
 
-A line with the `id` value can be put to edit mode programatically by using the `setEditId` function that returns from `useEditableTable`.
+A line with the `id` value can be put to edit mode programatically by using the `setId` function that returns from `useEditableTable`.
 
 The `onRow` property of the `<Table>` component can be used to put a line to editing mode when its clicked on. Function given to the `onRow` property is called everytime one of these lines are clicked on, with the information of which line was clicked on.
 
-We can use `setEditId` to put a line to edit mode whenever its clicked on.
+We can use `setId` to put a line to edit mode whenever its clicked on.
 
 ```tsx  title="/pages/posts/list.tsx"
 import {
@@ -251,7 +251,7 @@ import {
 
 export const PostList: React.FC = () => {
 // highlight-start
-    const { tableProps, formProps, isEditing, setEditId } =
+    const { tableProps, formProps, isEditing, setId } =
         useEditableTable<IPost>();
 // highlight-end
 
@@ -265,7 +265,7 @@ export const PostList: React.FC = () => {
                     onRow={(record) => ({
                         onClick: (event: any) => {
                             if (event.target.nodeName === "TD") {
-                                setEditId && setEditId(record.id);
+                                setId && setId(record.id);
                             }
                         },
                     })}
@@ -353,8 +353,8 @@ export const PostList: React.FC = () => {
 | formLoading       | Loading state of form request                           | `boolean`                                                                                         |
 | cloneId           | Record id for clone action                              | `"string"` \| `"number"`                                                                          |
 | setCloneId        | `cloneId` setter                                        | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                  |
-| editId            | Record id for edit action                               | `"string"` \| `"number"`                                                                          |
-| setEditId         | `editId` setter                                         | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                  |
+| id            | Record id for edit action                               | `"string"` \| `"number"`                                                                          |
+| setId         | `id` setter                                         | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                  |
 | isEditing         | Check if is editing                                     | `(id: string) => boolean`                                                                         |
 
 <br />

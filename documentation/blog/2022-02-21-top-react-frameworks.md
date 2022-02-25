@@ -121,7 +121,7 @@ If you're looking for a framework that will let your data- intensive application
 **Key features**
 
 ​
-🔥 **Headless** : So you can bring your own UI and fuel it with Refine for top speed development.
+🔥 **Headless** : Works with any UI framework
 
 ⚙️ **Zero-configuration** : One-line setup with [superplate](https://github.com/pankod/superplate). It takes less than a minute to start a project.
 
@@ -140,7 +140,7 @@ There are two ways to add UI elements to refine;
 1. Using a UI Library such as Tailwind, Chakra UI, etc.
 2. Using a complete UI Framework such as Ant Design, Material UI, etc.
 
-The recommended way is using the [superplate](https://github.com/pankod/superplate) tool. superplate's CLI wizard will let you create and customize your application in seconds. You can find tutorial from [here](https://refine.dev/docs/next/core/tutorial/)
+The recommended way is using the [superplate](https://github.com/pankod/superplate) tool. superplate's CLI wizard will let you create and customize your application in seconds. You can find tutorial from [here](https://refine.dev/docs/core/tutorial/)
 
 ```
 npx superplate-cli -p refine-react tutorial

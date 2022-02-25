@@ -21,7 +21,7 @@ import table_i18n from '@site/static/img/blog/2022-02-21-react-antd-admin/table-
 
 #### Key features​
 
-🔥 Headless : So you can bring your own UI and fuel it with Refine for top speed development.
+🔥 Headless : Works with any UI framework
 
 ⚙️ Zero-configuration : One-line setup with superplate. It takes less than a minute to start a project.
 
@@ -41,7 +41,7 @@ You can use it with any UI library you want without any problems. Also, [Ant Des
 
 ## Refine Advanced Tutorial
 
-This article will proceed through refine's [Refine Basic Tutorial](https://refine.dev/docs/next/ui-frameworks/antd/tutorial/). That's why I suggest you read the basic tutorial of refine.
+This article will proceed through refine's [Refine Basic Tutorial](https://refine.dev/docs/ui-frameworks/antd/tutorial/). That's why I suggest you read the basic tutorial of refine.
 
 In this tutorial, we will learn how to include the features(i18n, Realtime, Access Control) provided by the refine in our project and how we can use it.
 
@@ -58,7 +58,7 @@ npx superplate-cli -p refine-react refine-advanced-tutorial
 
 ✔ Package manager: · npm
 
-✔ Do you want to using UI Framework?: · antd
+✔ Do you want to use an UI Framework?: · antd
 
 ✔ Do you want to customize theme?: · css
 
@@ -446,7 +446,7 @@ Check out [refine i18n Provider](https://refine.dev/docs/core/providers/i18n-pro
 
 refine lets you add Realtime support to your app via liveProvider prop for `<Refine>`. It can be used to update and show data in Realtime throughout your app.
 
-Now let's make our application Realtime using the [refine Live Provider](https://refine.dev/docs/next/guides-and-concepts/real-time/)
+Now let's make our application Realtime using the [refine Live Provider](https://refine.dev/docs/guides-and-concepts/real-time/)
 
 We will using [Ably](https://ably.com/) in this article to provide Realtime features.
 
@@ -523,7 +523,7 @@ export default App;
 
 You can configure `liveMode`, this example use "auto" mode.
 
-Check out [Refine Live Provider](https://refine.dev/docs/next/guides-and-concepts/real-time/) for more detailed information and step-by-step guide.
+Check out [Refine Live Provider](https://refine.dev/docs/guides-and-concepts/real-time/) for more detailed information and step-by-step guide.
 
 Our project is now Realtime! Thanks to **refine** Live Provider, we made our project Realtime by adding only 2 lines.
 
@@ -541,11 +541,11 @@ Let's see how our RealTime Project works.
 
 ## Add Access Control to Your Project with Refine
 
-You can control your project as you wish with the **refine react admin framework**. Now let's add [Access Control Provider](https://refine.dev/docs/next/core/providers/accessControl-provider/) to our refine project.
+You can control your project as you wish with the **refine react admin framework**. Now let's add [Access Control Provider](https://refine.dev/docs/core/providers/accessControl-provider/) to our refine project.
 
 Access control is a broad topic where there are lots of advanced solutions that provide different set of features. refine is deliberately agnostic for its own API to be able to integrate different methods (RBAC, ABAC, ACL, etc.) and different libraries (Casbin, CASL, Cerbos, AccessControl.js). can method would be the entry point for those solutions.
 
-[Refer to the Access Control Provider documentation for detailed information. →](https://refine.dev/docs/next/core/providers/accessControl-provider/)
+[Refer to the Access Control Provider documentation for detailed information. →](https://refine.dev/docs/core/providers/accessControl-provider/)
 
 Let's create two Roles, Admin and Editor. Admin have full CRUD authority on the posts. The Editor role, on the other hand, only has the authority to create and edit new posts. In other words, the person in the editor role cannot delete the posts and cannot view all the rows on the table.
 
@@ -703,7 +703,7 @@ const cerbos = new Cerbos({
 
 We will perform our actions according to the role we choose from the header. As you can see above, we set this with the `access Control Provider` `can` method.
 
-Now using the **refine** [`useCan`](https://refine.dev/docs/next/core/hooks/accessControl/useCan/)hook Let's perform operations according to roles within our list.
+Now using the **refine** [`useCan`](https://refine.dev/docs/core/hooks/accessControl/useCan/)hook Let's perform operations according to roles within our list.
 
 ```tsx title="src/pages/PostList.tsx"
 import {
@@ -862,7 +862,7 @@ Here, if the selected role is Admin, the 'Hit' section will appear in our Table.
 </div>
 <br />
 
-Check out [**refine** Access Control](https://refine.dev/docs/next/guides-and-concepts/access-control/) Provider for more detailed information and step-by-step guide
+Check out [**refine** Access Control](https://refine.dev/docs/guides-and-concepts/access-control/) Provider for more detailed information and step-by-step guide
 
 ## Conclusion
 

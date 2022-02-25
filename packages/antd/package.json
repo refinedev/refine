@@ -1,7 +1,7 @@
 {
     "name": "@pankod/refine-antd",
-    "version": "3.3.1",
-    "description": "refine is a React-based headless framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
+    "version": "3.3.2",
+    "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
     "private": false,
     "main": "dist/index.js",
     "module": "dist/refine-antd.esm.js",
@@ -16,7 +16,7 @@
         "generate-theme": "npx @emeks/antd-custom-theme-generator -w --antd ../../node_modules/antd ./src/assets/styles/custom-theme.less ./src/assets/styles/styles.min.css"
     },
     "peerDependencies": {
-        "antd": "^4.17.1",
+        "antd": "^4.18.8",
         "dayjs": "^1.10.7",
         "react": "^17.0.2",
         "react-dom": "^17.0.2"

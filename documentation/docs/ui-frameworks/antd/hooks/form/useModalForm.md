@@ -123,7 +123,7 @@ export const PostList: React.FC = () => {
         modalProps,
         formProps,
         show,
-        editId,
+        id,
     } = useModalForm<IPost>({
 // highlight-next-line
         action: "edit",
@@ -246,8 +246,8 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 | close                    | Specify a function that can close the modal                  | `() => void`                                                                                                                                                                          |
 | defaultFormValuesLoading | DefaultFormValues loading status of form                     | `boolean`                                                                                                                                                                             |
 | form                     | Ant Design form instance                                     | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance)                                                                                                        |
-| editId                   | Record id for edit action                                    | `string`                                                                                                                                                                              |
-| setEditId                | `editId` setter                                              | `Dispatch<SetStateAction<` `string` \| `undefined>>`                                                                                                                                  |
+| id                   | Record id for edit action                                    | `string`                                                                                                                                                                              |
+| setId                | `id` setter                                              | `Dispatch<SetStateAction<` `string` \| `undefined>>`                                                                                                                                  |
 | queryResult              | Result of the query of a record                              | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery)                                                                                         |
 | mutationResult           | Result of the mutation triggered by submitting the form      | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; values: TVariables; },`<br/>` unknown>`](https://react-query.tanstack.com/reference/useMutation) |
 

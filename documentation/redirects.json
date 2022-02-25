@@ -175,7 +175,7 @@
         {
             "from": "/docs/api-references/components/layout-wrapper",
             "to": "/docs/core/components/layout-wrapper"
-        }, 
+        },
         {
             "from": "/docs/api-references/interfaceReferences",
             "to": "/docs/core/interfaceReferences"
@@ -315,6 +315,738 @@
         {
             "from": "/docs/api-references/components/fields/number",
             "to": "/docs/ui-frameworks/antd/components/fields/number"
+        },
+        {
+            "from": "/docs/next/",
+            "to": "/docs/"
+        },
+        {
+            "from": "/docs/next/comparison/",
+            "to": "/docs/comparison/"
+        },
+        {
+            "from": "/docs/next/contributing/",
+            "to": "/docs/contributing/"
+        },
+        {
+            "from": "/docs/next/core/components/accessControl/can-access/",
+            "to": "/docs/core/components/accessControl/can-access/"
+        },
+        {
+            "from": "/docs/next/core/components/auth/authenticated/",
+            "to": "/docs/core/components/auth/authenticated/"
+        },
+        {
+            "from": "/docs/next/core/components/layout-wrapper/",
+            "to": "/docs/core/components/layout-wrapper/"
+        },
+        {
+            "from": "/docs/next/core/components/refine-config/",
+            "to": "/docs/core/components/refine-config/"
+        },
+        {
+            "from": "/docs/next/core/hooks/accessControl/useCan/",
+            "to": "/docs/core/hooks/accessControl/useCan/"
+        },
+        {
+            "from": "/docs/next/core/hooks/auth/useAuthenticated/",
+            "to": "/docs/core/hooks/auth/useAuthenticated/"
+        },
+        {
+            "from": "/docs/next/core/hooks/auth/useCheckError/",
+            "to": "/docs/core/hooks/auth/useCheckError/"
+        },
+        {
+            "from": "/docs/next/core/hooks/auth/useGetIdentity/",
+            "to": "/docs/core/hooks/auth/useGetIdentity/"
+        },
+        {
+            "from": "/docs/next/core/hooks/auth/useLogin/",
+            "to": "/docs/core/hooks/auth/useLogin/"
+        },
+        {
+            "from": "/docs/next/core/hooks/auth/useLogout/",
+            "to": "/docs/core/hooks/auth/useLogout/"
+        },
+        {
+            "from": "/docs/next/core/hooks/auth/usePermissions/",
+            "to": "/docs/core/hooks/auth/usePermissions/"
+        },
+        {
+            "from": "/docs/next/core/hooks/data/useApiUrl/",
+            "to": "/docs/core/hooks/data/useApiUrl/"
+        },
+        {
+            "from": "/docs/next/core/hooks/data/useCreate/",
+            "to": "/docs/core/hooks/data/useCreate/"
+        },
+        {
+            "from": "/docs/next/core/hooks/data/useCreateMany/",
+            "to": "/docs/core/hooks/data/useCreateMany/"
+        },
+        {
+            "from": "/docs/next/core/hooks/data/useCustom/",
+            "to": "/docs/core/hooks/data/useCustom/"
+        },
+        {
+            "from": "/docs/next/core/hooks/data/useDataProvider/",
+            "to": "/docs/core/hooks/data/useDataProvider/"
+        },
+        {
+            "from": "/docs/next/core/hooks/data/useDelete/",
+            "to": "/docs/core/hooks/data/useDelete/"
+        },
+        {
+            "from": "/docs/next/core/hooks/data/useDeleteMany/",
+            "to": "/docs/core/hooks/data/useDeleteMany/"
+        },
+        {
+            "from": "/docs/next/core/hooks/data/useList/",
+            "to": "/docs/core/hooks/data/useList/"
+        },
+        {
+            "from": "/docs/next/core/hooks/data/useMany/",
+            "to": "/docs/core/hooks/data/useMany/"
+        },
+        {
+            "from": "/docs/next/core/hooks/data/useOne/",
+            "to": "/docs/core/hooks/data/useOne/"
+        },
+        {
+            "from": "/docs/next/core/hooks/data/useUpdate/",
+            "to": "/docs/core/hooks/data/useUpdate/"
+        },
+        {
+            "from": "/docs/next/core/hooks/data/useUpdateMany/",
+            "to": "/docs/core/hooks/data/useUpdateMany/"
+        },
+        {
+            "from": "/docs/next/core/hooks/import-export/useExport/",
+            "to": "/docs/core/hooks/import-export/useExport/"
+        },
+        {
+            "from": "/docs/next/core/hooks/import-export/useImport/",
+            "to": "/docs/core/hooks/import-export/useImport/"
+        },
+        {
+            "from": "/docs/next/core/hooks/live/usePublish/",
+            "to": "/docs/core/hooks/live/usePublish/"
+        },
+        {
+            "from": "/docs/next/core/hooks/live/useSubscription/",
+            "to": "/docs/core/hooks/live/useSubscription/"
+        },
+        {
+            "from": "/docs/next/core/hooks/navigation/useNavigation/",
+            "to": "/docs/core/hooks/navigation/useNavigation/"
+        },
+        {
+            "from": "/docs/next/core/hooks/refine/useTitle/",
+            "to": "/docs/core/hooks/refine/useTitle/"
+        },
+        {
+            "from": "/docs/next/core/hooks/resource/useResource/",
+            "to": "/docs/core/hooks/resource/useResource/"
+        },
+        {
+            "from": "/docs/next/core/hooks/resource/useResourceWithRoute/",
+            "to": "/docs/core/hooks/resource/useResourceWithRoute/"
+        },
+        {
+            "from": "/docs/next/core/hooks/show/useShow/",
+            "to": "/docs/core/hooks/show/useShow/"
+        },
+        {
+            "from": "/docs/next/core/hooks/translate/useGetLocale/",
+            "to": "/docs/core/hooks/translate/useGetLocale/"
+        },
+        {
+            "from": "/docs/next/core/hooks/translate/useSetLocale/",
+            "to": "/docs/core/hooks/translate/useSetLocale/"
+        },
+        {
+            "from": "/docs/next/core/hooks/translate/useTranslate/",
+            "to": "/docs/core/hooks/translate/useTranslate/"
+        },
+        {
+            "from": "/docs/next/core/hooks/ui/useModal/",
+            "to": "/docs/core/hooks/ui/useModal/"
+        },
+        {
+            "from": "/docs/next/core/hooks/useForm/",
+            "to": "/docs/core/hooks/useForm/"
+        },
+        {
+            "from": "/docs/next/core/hooks/useNotification/",
+            "to": "/docs/core/hooks/useNotification/"
+        },
+        {
+            "from": "/docs/next/core/hooks/useSelect/",
+            "to": "/docs/core/hooks/useSelect/"
+        },
+        {
+            "from": "/docs/next/core/hooks/useTable/",
+            "to": "/docs/core/hooks/useTable/"
+        },
+        {
+            "from": "/docs/next/core/interfaceReferences/",
+            "to": "/docs/core/interfaceReferences/"
+        },
+        {
+            "from": "/docs/next/core/providers/accessControl-provider/",
+            "to": "/docs/core/providers/accessControl-provider/"
+        },
+        {
+            "from": "/docs/next/core/providers/auth-provider/",
+            "to": "/docs/core/providers/auth-provider/"
+        },
+        {
+            "from": "/docs/next/core/providers/data-provider/",
+            "to": "/docs/core/providers/data-provider/"
+        },
+        {
+            "from": "/docs/next/core/providers/i18n-provider/",
+            "to": "/docs/core/providers/i18n-provider/"
+        },
+        {
+            "from": "/docs/next/core/providers/live-provider/",
+            "to": "/docs/core/providers/live-provider/"
+        },
+        {
+            "from": "/docs/next/core/providers/notification-provider/",
+            "to": "/docs/core/providers/notification-provider/"
+        },
+        {
+            "from": "/docs/next/core/providers/router-provider/",
+            "to": "/docs/core/providers/router-provider/"
+        },
+        {
+            "from": "/docs/next/core/tutorial/",
+            "to": "/docs/core/tutorial/"
+        },
+        {
+            "from": "/docs/next/examples/access-control/casbin/",
+            "to": "/docs/examples/access-control/casbin/"
+        },
+        {
+            "from": "/docs/next/examples/access-control/cerbos/",
+            "to": "/docs/examples/access-control/cerbos/"
+        },
+        {
+            "from": "/docs/next/examples/auth-provider/auth0/",
+            "to": "/docs/examples/auth-provider/auth0/"
+        },
+        {
+            "from": "/docs/next/examples/auth-provider/google-auth/",
+            "to": "/docs/examples/auth-provider/google-auth/"
+        },
+        {
+            "from": "/docs/next/examples/auth-provider/otpLogin/",
+            "to": "/docs/examples/auth-provider/otpLogin/"
+        },
+        {
+            "from": "/docs/next/examples/authorization/",
+            "to": "/docs/examples/authorization/"
+        },
+        {
+            "from": "/docs/next/examples/core/useImport/",
+            "to": "/docs/examples/core/useImport/"
+        },
+        {
+            "from": "/docs/next/examples/core/useModal/",
+            "to": "/docs/examples/core/useModal/"
+        },
+        {
+            "from": "/docs/next/examples/core/useSelect/",
+            "to": "/docs/examples/core/useSelect/"
+        },
+        {
+            "from": "/docs/next/examples/customization/customFooter/",
+            "to": "/docs/examples/customization/customFooter/"
+        },
+        {
+            "from": "/docs/next/examples/customization/customLogin/",
+            "to": "/docs/examples/customization/customLogin/"
+        },
+        {
+            "from": "/docs/next/examples/customization/customSider/",
+            "to": "/docs/examples/customization/customSider/"
+        },
+        {
+            "from": "/docs/next/examples/customization/offLayoutArea/",
+            "to": "/docs/examples/customization/offLayoutArea/"
+        },
+        {
+            "from": "/docs/next/examples/customization/rtl/",
+            "to": "/docs/examples/customization/rtl/"
+        },
+        {
+            "from": "/docs/next/examples/customization/topMenuLayout/",
+            "to": "/docs/examples/customization/topMenuLayout/"
+        },
+        {
+            "from": "/docs/next/examples/customPages/",
+            "to": "/docs/examples/customPages/"
+        },
+        {
+            "from": "/docs/next/examples/customTheme/",
+            "to": "/docs/examples/customTheme/"
+        },
+        {
+            "from": "/docs/next/examples/data-provider/airtable/",
+            "to": "/docs/examples/data-provider/airtable/"
+        },
+        {
+            "from": "/docs/next/examples/data-provider/altogic/",
+            "to": "/docs/examples/data-provider/altogic/"
+        },
+        {
+            "from": "/docs/next/examples/data-provider/appwrite/",
+            "to": "/docs/examples/data-provider/appwrite/"
+        },
+        {
+            "from": "/docs/next/examples/data-provider/hasura/",
+            "to": "/docs/examples/data-provider/hasura/"
+        },
+        {
+            "from": "/docs/next/examples/data-provider/multiple/",
+            "to": "/docs/examples/data-provider/multiple/"
+        },
+        {
+            "from": "/docs/next/examples/data-provider/nestjsxCrud/",
+            "to": "/docs/examples/data-provider/nestjsxCrud/"
+        },
+        {
+            "from": "/docs/next/examples/data-provider/strapi-graphql/",
+            "to": "/docs/examples/data-provider/strapi-graphql/"
+        },
+        {
+            "from": "/docs/next/examples/data-provider/strapi-v4/",
+            "to": "/docs/examples/data-provider/strapi-v4/"
+        },
+        {
+            "from": "/docs/next/examples/data-provider/strapi/",
+            "to": "/docs/examples/data-provider/strapi/"
+        },
+        {
+            "from": "/docs/next/examples/data-provider/supabase/",
+            "to": "/docs/examples/data-provider/supabase/"
+        },
+        {
+            "from": "/docs/next/examples/e2e-testing/",
+            "to": "/docs/examples/e2e-testing/"
+        },
+        {
+            "from": "/docs/next/examples/field/useCheckboxGroup/",
+            "to": "/docs/examples/field/useCheckboxGroup/"
+        },
+        {
+            "from": "/docs/next/examples/field/useRadioGroup/",
+            "to": "/docs/examples/field/useRadioGroup/"
+        },
+        {
+            "from": "/docs/next/examples/field/useSelect/",
+            "to": "/docs/examples/field/useSelect/"
+        },
+        {
+            "from": "/docs/next/examples/form/custom-form-validation/",
+            "to": "/docs/examples/form/custom-form-validation/"
+        },
+        {
+            "from": "/docs/next/examples/form/useDrawerForm/",
+            "to": "/docs/examples/form/useDrawerForm/"
+        },
+        {
+            "from": "/docs/next/examples/form/useForm/",
+            "to": "/docs/examples/form/useForm/"
+        },
+        {
+            "from": "/docs/next/examples/form/useModalForm/",
+            "to": "/docs/examples/form/useModalForm/"
+        },
+        {
+            "from": "/docs/next/examples/form/useStepsForm/",
+            "to": "/docs/examples/form/useStepsForm/"
+        },
+        {
+            "from": "/docs/next/examples/i18n/i18n-nextjs/",
+            "to": "/docs/examples/i18n/i18n-nextjs/"
+        },
+        {
+            "from": "/docs/next/examples/i18n/i18n-react/",
+            "to": "/docs/examples/i18n/i18n-react/"
+        },
+        {
+            "from": "/docs/next/examples/import-export/",
+            "to": "/docs/examples/import-export/"
+        },
+        {
+            "from": "/docs/next/examples/inputs/customInput/",
+            "to": "/docs/examples/inputs/customInput/"
+        },
+        {
+            "from": "/docs/next/examples/inputs/datePicker/",
+            "to": "/docs/examples/inputs/datePicker/"
+        },
+        {
+            "from": "/docs/next/examples/javascript/",
+            "to": "/docs/examples/javascript/"
+        },
+        {
+            "from": "/docs/next/examples/list/useSimpleList/",
+            "to": "/docs/examples/list/useSimpleList/"
+        },
+        {
+            "from": "/docs/next/examples/live-provider/ably/",
+            "to": "/docs/examples/live-provider/ably/"
+        },
+        {
+            "from": "/docs/next/examples/multi-tenancy/appwrite/",
+            "to": "/docs/examples/multi-tenancy/appwrite/"
+        },
+        {
+            "from": "/docs/next/examples/multi-tenancy/strapi-v4/",
+            "to": "/docs/examples/multi-tenancy/strapi-v4/"
+        },
+        {
+            "from": "/docs/next/examples/notification-provider/react-toastify/",
+            "to": "/docs/examples/notification-provider/react-toastify/"
+        },
+        {
+            "from": "/docs/next/examples/react-hook-form/react-hook-form/",
+            "to": "/docs/examples/react-hook-form/react-hook-form/"
+        },
+        {
+            "from": "/docs/next/examples/react-table/advanced-react-table/",
+            "to": "/docs/examples/react-table/advanced-react-table/"
+        },
+        {
+            "from": "/docs/next/examples/react-table/react-table/",
+            "to": "/docs/examples/react-table/react-table/"
+        },
+        {
+            "from": "/docs/next/examples/router-provider/react-location/",
+            "to": "/docs/examples/router-provider/react-location/"
+        },
+        {
+            "from": "/docs/next/examples/search/search/",
+            "to": "/docs/examples/search/search/"
+        },
+        {
+            "from": "/docs/next/examples/table/advancedTable/",
+            "to": "/docs/examples/table/advancedTable/"
+        },
+        {
+            "from": "/docs/next/examples/table/tableFilter/",
+            "to": "/docs/examples/table/tableFilter/"
+        },
+        {
+            "from": "/docs/next/examples/table/useDeleteMany/",
+            "to": "/docs/examples/table/useDeleteMany/"
+        },
+        {
+            "from": "/docs/next/examples/table/useEditableTable/",
+            "to": "/docs/examples/table/useEditableTable/"
+        },
+        {
+            "from": "/docs/next/examples/table/useTable/",
+            "to": "/docs/examples/table/useTable/"
+        },
+        {
+            "from": "/docs/next/examples/table/useUpdateMany/",
+            "to": "/docs/examples/table/useUpdateMany/"
+        },
+        {
+            "from": "/docs/next/examples/tutorial/",
+            "to": "/docs/examples/tutorial/"
+        },
+        {
+            "from": "/docs/next/examples/ui/useModal/",
+            "to": "/docs/examples/ui/useModal/"
+        },
+        {
+            "from": "/docs/next/examples/upload/base64Upload/",
+            "to": "/docs/examples/upload/base64Upload/"
+        },
+        {
+            "from": "/docs/next/examples/upload/multipartUpload/",
+            "to": "/docs/examples/upload/multipartUpload/"
+        },
+        {
+            "from": "/docs/next/examples/web3/web3Login/",
+            "to": "/docs/examples/web3/web3Login/"
+        },
+        {
+            "from": "/docs/next/getting-started/basics/",
+            "to": "/docs/getting-started/basics/"
+        },
+        {
+            "from": "/docs/next/getting-started/components/",
+            "to": "/docs/getting-started/components/"
+        },
+        {
+            "from": "/docs/next/getting-started/overview/",
+            "to": "/docs/getting-started/overview/"
+        },
+        {
+            "from": "/docs/next/guides-and-concepts/access-control/",
+            "to": "/docs/guides-and-concepts/access-control/"
+        },
+        {
+            "from": "/docs/next/guides-and-concepts/auth/auth0/",
+            "to": "/docs/guides-and-concepts/auth/auth0/"
+        },
+        {
+            "from": "/docs/next/guides-and-concepts/custom-layout/",
+            "to": "/docs/guides-and-concepts/custom-layout/"
+        },
+        {
+            "from": "/docs/next/guides-and-concepts/custom-pages/",
+            "to": "/docs/guides-and-concepts/custom-pages/"
+        },
+        {
+            "from": "/docs/next/guides-and-concepts/data-provider/appwrite/",
+            "to": "/docs/guides-and-concepts/data-provider/appwrite/"
+        },
+        {
+            "from": "/docs/next/guides-and-concepts/data-provider/graphql/",
+            "to": "/docs/guides-and-concepts/data-provider/graphql/"
+        },
+        {
+            "from": "/docs/next/guides-and-concepts/data-provider/strapi-v4/",
+            "to": "/docs/guides-and-concepts/data-provider/strapi-v4/"
+        },
+        {
+            "from": "/docs/next/guides-and-concepts/forms/custom-form-validation/",
+            "to": "/docs/guides-and-concepts/forms/custom-form-validation/"
+        },
+        {
+            "from": "/docs/next/guides-and-concepts/import-export/csv-export/",
+            "to": "/docs/guides-and-concepts/import-export/csv-export/"
+        },
+        {
+            "from": "/docs/next/guides-and-concepts/import-export/csv-import/",
+            "to": "/docs/guides-and-concepts/import-export/csv-import/"
+        },
+        {
+            "from": "/docs/next/guides-and-concepts/multi-tenancy/appwrite/",
+            "to": "/docs/guides-and-concepts/multi-tenancy/appwrite/"
+        },
+        {
+            "from": "/docs/next/guides-and-concepts/multi-tenancy/strapi-v4/",
+            "to": "/docs/guides-and-concepts/multi-tenancy/strapi-v4/"
+        },
+        {
+            "from": "/docs/next/guides-and-concepts/mutation-mode/",
+            "to": "/docs/guides-and-concepts/mutation-mode/"
+        },
+        {
+            "from": "/docs/next/guides-and-concepts/real-time/",
+            "to": "/docs/guides-and-concepts/real-time/"
+        },
+        {
+            "from": "/docs/next/guides-and-concepts/search/list-search/",
+            "to": "/docs/guides-and-concepts/search/list-search/"
+        },
+        {
+            "from": "/docs/next/guides-and-concepts/search/search/",
+            "to": "/docs/guides-and-concepts/search/search/"
+        },
+        {
+            "from": "/docs/next/guides-and-concepts/search/table-search/",
+            "to": "/docs/guides-and-concepts/search/table-search/"
+        },
+        {
+            "from": "/docs/next/guides-and-concepts/ssr-nextjs/",
+            "to": "/docs/guides-and-concepts/ssr-nextjs/"
+        },
+        {
+            "from": "/docs/next/guides-and-concepts/theme/",
+            "to": "/docs/guides-and-concepts/theme/"
+        },
+        {
+            "from": "/docs/next/guides-and-concepts/upload/base64-upload/",
+            "to": "/docs/guides-and-concepts/upload/base64-upload/"
+        },
+        {
+            "from": "/docs/next/guides-and-concepts/upload/multipart-upload/",
+            "to": "/docs/guides-and-concepts/upload/multipart-upload/"
+        },
+        {
+            "from": "/docs/next/guides-and-concepts/web3/ethereum-signin/",
+            "to": "/docs/guides-and-concepts/web3/ethereum-signin/"
+        },
+        {
+            "from": "/docs/next/migration-guide/",
+            "to": "/docs/migration-guide/"
+        },
+        {
+            "from": "/docs/next/packages/react-hook-form/",
+            "to": "/docs/packages/react-hook-form/"
+        },
+        {
+            "from": "/docs/next/packages/react-table/",
+            "to": "/docs/packages/react-table/"
+        },
+        {
+            "from": "/docs/next/testing/",
+            "to": "/docs/testing/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/basic-views/create/",
+            "to": "/docs/ui-frameworks/antd/components/basic-views/create/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/basic-views/edit/",
+            "to": "/docs/ui-frameworks/antd/components/basic-views/edit/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/basic-views/list/",
+            "to": "/docs/ui-frameworks/antd/components/basic-views/list/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/basic-views/show/",
+            "to": "/docs/ui-frameworks/antd/components/basic-views/show/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/buttons/clone-button/",
+            "to": "/docs/ui-frameworks/antd/components/buttons/clone-button/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/buttons/create-button/",
+            "to": "/docs/ui-frameworks/antd/components/buttons/create-button/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/buttons/delete-button/",
+            "to": "/docs/ui-frameworks/antd/components/buttons/delete-button/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/buttons/edit-button/",
+            "to": "/docs/ui-frameworks/antd/components/buttons/edit-button/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/buttons/export-button/",
+            "to": "/docs/ui-frameworks/antd/components/buttons/export-button/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/buttons/import-button/",
+            "to": "/docs/ui-frameworks/antd/components/buttons/import-button/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/buttons/list-button/",
+            "to": "/docs/ui-frameworks/antd/components/buttons/list-button/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/buttons/refresh-button/",
+            "to": "/docs/ui-frameworks/antd/components/buttons/refresh-button/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/buttons/save-button/",
+            "to": "/docs/ui-frameworks/antd/components/buttons/save-button/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/buttons/show-button/",
+            "to": "/docs/ui-frameworks/antd/components/buttons/show-button/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/fields/boolean/",
+            "to": "/docs/ui-frameworks/antd/components/fields/boolean/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/fields/date/",
+            "to": "/docs/ui-frameworks/antd/components/fields/date/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/fields/email/",
+            "to": "/docs/ui-frameworks/antd/components/fields/email/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/fields/file/",
+            "to": "/docs/ui-frameworks/antd/components/fields/file/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/fields/image/",
+            "to": "/docs/ui-frameworks/antd/components/fields/image/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/fields/markdown/",
+            "to": "/docs/ui-frameworks/antd/components/fields/markdown/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/fields/number/",
+            "to": "/docs/ui-frameworks/antd/components/fields/number/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/fields/tag/",
+            "to": "/docs/ui-frameworks/antd/components/fields/tag/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/fields/text/",
+            "to": "/docs/ui-frameworks/antd/components/fields/text/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/fields/url/",
+            "to": "/docs/ui-frameworks/antd/components/fields/url/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/filter-dropdown/",
+            "to": "/docs/ui-frameworks/antd/components/filter-dropdown/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/components/inputs/custom-inputs/",
+            "to": "/docs/ui-frameworks/antd/components/inputs/custom-inputs/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/hooks/field/useCheckboxGroup/",
+            "to": "/docs/ui-frameworks/antd/hooks/field/useCheckboxGroup/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/hooks/field/useRadioGroup/",
+            "to": "/docs/ui-frameworks/antd/hooks/field/useRadioGroup/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/hooks/field/useSelect/",
+            "to": "/docs/ui-frameworks/antd/hooks/field/useSelect/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/hooks/form/useDrawerForm/",
+            "to": "/docs/ui-frameworks/antd/hooks/form/useDrawerForm/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/hooks/form/useForm/",
+            "to": "/docs/ui-frameworks/antd/hooks/form/useForm/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/hooks/form/useModalForm/",
+            "to": "/docs/ui-frameworks/antd/hooks/form/useModalForm/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/hooks/form/useStepsForm/",
+            "to": "/docs/ui-frameworks/antd/hooks/form/useStepsForm/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/hooks/import/useImport/",
+            "to": "/docs/ui-frameworks/antd/hooks/import/useImport/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/hooks/list/useSimpleList/",
+            "to": "/docs/ui-frameworks/antd/hooks/list/useSimpleList/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/hooks/resource/useMenu/",
+            "to": "/docs/ui-frameworks/antd/hooks/resource/useMenu/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/hooks/table/useEditableTable/",
+            "to": "/docs/ui-frameworks/antd/hooks/table/useEditableTable/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/hooks/table/useTable/",
+            "to": "/docs/ui-frameworks/antd/hooks/table/useTable/"
+        },
+        {
+            "from": "/docs/next/ui-frameworks/antd/tutorial/",
+            "to": "/docs/ui-frameworks/antd/tutorial/"
         }
     ]
 }

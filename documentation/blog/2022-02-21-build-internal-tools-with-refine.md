@@ -14,7 +14,7 @@ When it comes to creating internal tools, low-code platforms are the way to go. 
 
 ## What is Refine?
 
-Refine is a React-based headless framework that allows you to build data-intensive applications quickly and with ease. Rapid development and headless at the same time how is it? Well, Refine supports [Ant Design](https://ant.design) for quick and easy solutions. In addition, it allows you to use your design system, or to integrate with other popular design frameworks.
+Refine is a React-based framework that allows you to build data-intensive applications quickly and with ease. Rapid development and headless at the same time how is it? Well, Refine supports [Ant Design](https://ant.design) for quick and easy solutions. In addition, it allows you to use your design system, or to integrate with other popular design frameworks.
 
 Refer to the [Refine](https://refine.dev) for more information.
 

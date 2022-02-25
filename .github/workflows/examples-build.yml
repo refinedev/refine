@@ -1,0 +1,31 @@
+name: Build all examples
+
+on:
+  pull_request:
+    types: [labeled, synchronize]
+  schedule:
+    - cron: '0 6 * * *'
+
+jobs:
+  build-all-examples:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - name: Get PR labels
+        id: pr-labels
+        uses: joerick/pr-labels-action@v1.0.6
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
+      - run: |
+          npm ci
+          npm run bootstrap -- --scope "refine*"
+          npm run build -- --scope "refine*"
+        if: github.event_name == 'schedule' || (github.event_name == 'pull_request' && contains(steps.pr-labels.outputs.labels, ' build-examples '))

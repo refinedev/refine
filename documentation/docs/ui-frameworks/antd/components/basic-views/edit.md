@@ -143,7 +143,7 @@ The `<Edit>` component reads the `id` information from the route by default. `re
 import { Edit, Modal, useModalForm } from "@pankod/refine-antd";
 
 export const EditPage: React.FC = () => {
-    const { modalProps, editId } = useModalForm({
+    const { modalProps, id } = useModalForm({
         action: "edit",
     });
 
@@ -151,7 +151,7 @@ export const EditPage: React.FC = () => {
         <>
             ...
             <Modal {...modalProps}>
-                <Edit recordItemId={editId}>...</Edit>
+                <Edit recordItemId={id}>...</Edit>
             </Modal>
         </>
     );

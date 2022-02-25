@@ -12,7 +12,7 @@ import CodeBlock from '@theme/CodeBlock';
 ### Motivation behind breaking changes
 
 One of the big requests we received from the Community after we released the first version of **refine** was that **refine** could be used with different UI frameworks other than Ant Design.
-We are happy to announce that you can use it as **refine** `Headless` on top of these requests. Now **refine** is a **headless** framework and works in harmony with the any UI framework you choose. At the same time, all projects made with Refine@2 are also Refine@3 compatible.
+We are happy to announce that you can use it as **refine** `Headless` on top of these requests. Now **refine** is a framework  and works in harmony with the any UI framework you choose. At the same time, all projects made with Refine@2 are also Refine@3 compatible.
 
 With **refine** 3.x.x **headless** version, we have released two new packages named `@pankod/refine-core` and `@pankod/refine-antd`. The `refine-core` package includes UI independent hooks and components. The `refine-antd` package includes Ant Design components and there are table, form, select, etc hooks and components compatible with `@pankod/refine-core`.
 

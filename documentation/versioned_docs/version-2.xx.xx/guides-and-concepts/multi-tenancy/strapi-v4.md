@@ -63,9 +63,9 @@ export const authProvider: AuthProvider = {
                 Authorization: `Bearer ${data.jwt}`,
             };
 
-            return Promise.resolve;
+            return Promise.resolve();
         }
-        return Promise.reject;
+        return Promise.reject();
     },
     logout: () => {
         localStorage.removeItem(TOKEN_KEY);

@@ -349,7 +349,8 @@ For authenticated custom page, your application needs an `authProvider`.
 [Refer to the `authProvider` for more detailed information. &#8594](/core/providers/auth-provider.md)
 :::
 
-:::info
+## Layout for Custom Pages
+
 <Tabs
 defaultValue="react-router-v6"
 values={[
@@ -358,8 +359,6 @@ values={[
 {label: 'React Router V5', value: 'react-router'}
 ]}>
 <TabItem value="react-router-v6">
-
-By default, custom pages don't have any layout. If you want to show your custom page in a layout, you can pass `layout` prop true.
 
 ```tsx 
 import { Refine } from "@pankod/refine-core";
@@ -393,8 +392,6 @@ export default App;
 
 </TabItem>
 <TabItem value="react-location">
-
-By default, custom pages don't have any layout. If you want to show your custom page in a layout, you can pass `layout` prop true.
 
 ```tsx 
 import { Refine } from "@pankod/refine-core";
@@ -434,8 +431,6 @@ By default, custom pages don't have any layout. If you want to show your custom 
 [Refer to the `<LayoutWrapper>` for more detailed information. &#8594](/core/components/layout-wrapper.md)
 </TabItem>
 </Tabs>
-:::
-
 
 
 ## Example

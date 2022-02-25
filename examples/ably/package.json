@@ -1,10 +1,10 @@
 {
   "name": "refine-ably-example",
-  "version": "3.3.1",
+  "version": "3.3.2",
   "private": true,
   "dependencies": {
     "@pankod/refine-ably": "^3.3.1",
-    "@pankod/refine-antd": "^3.3.1",
+    "@pankod/refine-antd": "^3.3.2",
     "@pankod/refine-core": "^3.3.1",
     "@pankod/refine-react-router": "^3.3.1",
     "@pankod/refine-simple-rest": "^3.3.1",
@@ -20,8 +20,8 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
+    "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
     "eject": "react-scripts eject"
   },
   "browserslist": {

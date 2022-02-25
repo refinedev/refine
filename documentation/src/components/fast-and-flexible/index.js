@@ -52,11 +52,15 @@ export const FastAndFlexible = () => {
                             </strong>
                         </p>
                         <p className={styles.description}>
-                            After <strong>many years of experience</strong> in
-                            developing B2B frontend applications and working
-                            with popular frameworks, we came up with{" "}
-                            <strong>a new approach</strong> to tackle this
-                            dilemma. This is how refine is born.
+                            <strong>
+                                Refine is a collection of helper hooks,
+                                components and providers.
+                            </strong>
+                            They are all decoupled from your UI components and
+                            business logic, so they never keep you from&nbsp;
+                            <strong>
+                                customizing your UI or coding your own flow.
+                            </strong>
                         </p>
                     </div>
                     <div className="col col--1">

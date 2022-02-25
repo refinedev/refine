@@ -1,9 +1,9 @@
 {
   "name": "signin-with-ethereum",
-  "version": "3.3.1",
+  "version": "3.3.2",
   "private": true,
   "dependencies": {
-    "@pankod/refine-antd": "^3.3.1",
+    "@pankod/refine-antd": "^3.3.2",
     "@pankod/refine-core": "^3.3.1",
     "@pankod/refine-react-router": "^3.3.1",
     "@pankod/refine-simple-rest": "^3.3.1",
@@ -19,14 +19,14 @@
     "react-markdown": "^6.0.1",
     "react-mde": "^11.1.0",
     "react-scripts": "^5.0.0",
-    "typescript": "^4.2.4",
+    "typescript": "^4.4.3",
     "web-vitals": "^1.1.1",
     "web3": "^1.6.1",
     "web3modal": "^1.9.4"
   },
   "scripts": {
     "dev": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -23,7 +23,9 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
             metaData: { populate: ["image"] },
         });
 
-    const totalPageCount = Math.ceil(tableQueryResult.data?.total / pageSize);
+    const totalPageCount = Math.ceil(
+        (tableQueryResult.data?.total ?? 0) / pageSize,
+    );
 
     return (
         <LayoutWrapper>

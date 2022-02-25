@@ -215,9 +215,9 @@ We formatted the CSV file that came in plain text format, using Javascript [slic
 
 ## Are You Looking React Web Framework?
 
-A React-based framework for building data-intensive applications in no time. **refine** offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards.
+A React-based framework for building internal tools, rapidly. **refine** offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards.
 
-🔥 **Headless** : So you can bring your own UI and fuel it with Refine for top speed development.
+🔥 **Headless** : Works with any UI framework
 
 ⚙️ Zero-configuration: One-line setup with superplate. It takes less than a minute to start a project.
 

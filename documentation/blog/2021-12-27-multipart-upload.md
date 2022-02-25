@@ -133,7 +133,7 @@ The requests we created to send files by JavaScript will now be sent to our loca
 <br />
 
 ## Are You Looking React Web Framework?
-A React-based framework for building data-intensive applications in no time. **refine** offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards.
+A React-based framework for building internal tools, rapidly. **refine** offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards.
 
 ⚙️ Zero-configuration: One-line setup with superplate. It takes less than a minute to start a project.
 
@@ -143,7 +143,7 @@ A React-based framework for building data-intensive applications in no time. **r
 
 📝 Native Typescript Core : You can always opt-out for plain JavaScript.
 
-🔘 Headless : So you can bring your own UI and fuel it with Refine for top speed development.
+🔘 Headless : Works with any UI framework
 
 🐜 Enterprise UI : Works seamlessly with Ant Design System. (Support for multiple UI frameworks is on the Roadmap)
 

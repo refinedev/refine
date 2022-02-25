@@ -1,6 +1,6 @@
 {
   "name": "@pankod/refine-strapi-graphql",
-  "description": "refine Strapi GraphQL data provider. refine is a React-based headless framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
+  "description": "refine Strapi GraphQL data provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "version": "3.3.1",
   "license": "MIT",
   "main": "dist/index.js",
