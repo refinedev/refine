@@ -195,7 +195,7 @@ The `<Show>` component reads the `resource` information from the route by defaul
 import { Refine } from "@pankod/refine-core";
 import { Show } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 // highlight-start
 const CustomPage = () => {
@@ -215,8 +215,7 @@ export const App: React.FC = () => {
                 // highlight-start
                 routes: [
                     {
-                        exact: true,
-                        component: CustomPage,
+                        element: <CustomPage />,
                         path: "/custom",
                     },
                 ]
