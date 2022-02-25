@@ -1,32 +1,39 @@
 import dataProvider from "../../src/index";
-import client from "../gqlClient";
+import nhost from "../nhost";
 import "./index.mock";
 
 describe("getMany", () => {
+    beforeAll(async () => {
+        await nhost.auth.signIn({
+            email: "salih@pankod.com",
+            password: "refine-nhost",
+        });
+    });
+
     it("correct response with metaData", async () => {
-        const { data } = await dataProvider(client).getMany({
+        const { data } = await dataProvider(nhost).getMany({
             resource: "posts",
             ids: [
-                "c82c71c5-0f0b-4042-b9a3-db977fe28a83",
-                "bac2ef0a-899f-4694-84ef-b9c6fe4dc2b7",
+                "72fab741-2352-49cb-8b31-06ae4be2f1d1",
+                "acfff044-c728-4030-8d50-330b9224d99b",
             ],
             metaData: {
                 fields: ["id", "title", "content", { category: ["id"] }],
             },
         });
 
-        expect(data[0]["id"]).toEqual("c82c71c5-0f0b-4042-b9a3-db977fe28a83");
-        expect(data[0]["title"]).toEqual("adcsadas");
-        expect(data[0]["content"]).toEqual("asvasdvasdv");
+        expect(data[0]["id"]).toEqual("acfff044-c728-4030-8d50-330b9224d99b");
+        expect(data[0]["title"]).toEqual("Title One");
+        expect(data[0]["content"]).toEqual("Content For Demo");
         expect(data[0]["category"].id).toEqual(
-            "8332c138-3231-406d-9655-1328ded9d5f2",
+            "3e5ff497-af3e-4234-876d-0fb7ccb078f5",
         );
 
-        expect(data[1]["id"]).toEqual("bac2ef0a-899f-4694-84ef-b9c6fe4dc2b7");
-        expect(data[1]["title"]).toEqual("asdfasdfsadf");
-        expect(data[1]["content"]).toEqual("asdfasdfasdfasdf");
+        expect(data[1]["id"]).toEqual("72fab741-2352-49cb-8b31-06ae4be2f1d1");
+        expect(data[1]["title"]).toEqual("Refine Nhost Demo Title");
+        expect(data[1]["content"]).toEqual("Hello Test");
         expect(data[1]["category"].id).toEqual(
-            "8332c138-3231-406d-9655-1328ded9d5f2",
+            "73c14cb4-a58c-471d-9410-fc97ea6dac66",
         );
     });
 });
