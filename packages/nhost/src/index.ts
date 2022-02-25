@@ -103,7 +103,7 @@ const dataProvider = (client: NhostClient): DataProvider => {
             const { data } = await client.graphql.request(query, variables);
 
             return {
-                data: (data as any)[operation],
+                data: (data as any)?.[operation],
             };
         },
 
@@ -128,7 +128,7 @@ const dataProvider = (client: NhostClient): DataProvider => {
             const { data } = await client.graphql.request(query, variables);
 
             return {
-                data: (data as any)[operation],
+                data: (data as any)?.[operation],
             };
         },
 
@@ -160,7 +160,7 @@ const dataProvider = (client: NhostClient): DataProvider => {
                                 type: hasuraSortingType,
                             },
                         }),
-                        ...(hasuraSorting && {
+                        ...(hasuraFilters && {
                             where: {
                                 value: hasuraFilters,
                                 type: hasuraFiltersType,
@@ -183,8 +183,8 @@ const dataProvider = (client: NhostClient): DataProvider => {
             const { data } = await client.graphql.request(query, variables);
 
             return {
-                data: (data as any)[operation],
-                total: (data as any)[aggregateOperation].aggregate.count,
+                data: (data as any)?.[operation],
+                total: (data as any)?.[aggregateOperation]?.aggregate?.count,
             };
         },
 
@@ -209,7 +209,7 @@ const dataProvider = (client: NhostClient): DataProvider => {
             const { data } = await client.graphql.request(query, gqlVariables);
 
             return {
-                data: (data as any)[insertOperation],
+                data: (data as any)?.[insertOperation],
             };
         },
 
@@ -238,7 +238,7 @@ const dataProvider = (client: NhostClient): DataProvider => {
             const { data } = await client.graphql.request(query, gqlVariables);
 
             return {
-                data: (data as any)[insertOperation]["returning"],
+                data: (data as any)?.[insertOperation]?.["returning"],
             };
         },
 
@@ -272,7 +272,7 @@ const dataProvider = (client: NhostClient): DataProvider => {
             const { data } = await client.graphql.request(query, gqlVariables);
 
             return {
-                data: (data as any)[updateOperation],
+                data: (data as any)?.[updateOperation],
             };
         },
         updateMany: async ({ resource, ids, variables, metaData }) => {
@@ -311,7 +311,7 @@ const dataProvider = (client: NhostClient): DataProvider => {
             const { data } = await client.graphql.request(query, gqlVariables);
 
             return {
-                data: (data as any)[updateOperation]["returning"],
+                data: (data as any)?.[updateOperation]?.["returning"],
             };
         },
 
@@ -332,7 +332,7 @@ const dataProvider = (client: NhostClient): DataProvider => {
             const { data } = await client.graphql.request(query, variables);
 
             return {
-                data: (data as any)[deleteOperation],
+                data: (data as any)?.[deleteOperation],
             };
         },
 
@@ -366,7 +366,7 @@ const dataProvider = (client: NhostClient): DataProvider => {
             const { data } = await client.graphql.request(query, variables);
 
             return {
-                data: (data as any)[deleteOperation]["returning"],
+                data: (data as any)?.[deleteOperation]?.["returning"],
             };
         },
 
