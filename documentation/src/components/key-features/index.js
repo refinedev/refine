@@ -79,40 +79,40 @@ const backends = [
 
 const features = [
     {
-        src: "/icons/features/fast.svg",
-        srcset: "/icons/features/fast.svg 768w",
+        src: "/icons/features/fast.png",
+        srcset: "/icons/features/fast@2x.png 768w",
         title: "Fast",
         description: `Up to 3x increase in speed of development. (<a href="/docs/getting-started/overview/#benchmark" target="_blank">*</a>)`,
     },
     {
         src: "/icons/features/headless.png",
-        srcset: "/icons/features/headless.svg 768w",
+        srcset: "/icons/features/headless@2x.png 768w",
         title: "Headless",
         description: "Works with any UI framework.",
     },
     {
         src: "/icons/features/union.png",
-        srcset: "/icons/features/union.svg 768w",
+        srcset: "/icons/features/union@2x.png 768w",
         title: "Flexible",
         description: "No limits for your custom styling and business logic.",
     },
     {
-        src: "/icons/features/universal.svg",
-        srcset: "/icons/features/universal.svg 768w",
+        src: "/icons/features/universal.png",
+        srcset: "/icons/features/universal@2x.png 768w",
         title: "Universal",
         description:
             "Single framework for internal tools and customer-facing apps. SSR included.",
     },
     {
         src: "/icons/features/vector.png",
-        srcset: "/icons/features/vector.svg 768w",
+        srcset: "/icons/features/vector@2x.png 768w",
         title: "Future-proof",
         description:
             "Robust architecture, full test coverage and no technical debt.",
     },
     {
         src: "/icons/features/one-min-setup.png",
-        srcset: "/icons/features/one-min-setup.svg 768w",
+        srcset: "/icons/features/one-min-setup@2x.png 768w",
         title: "1-minute setup",
         description: "Start your project with a single CLI command.",
     },
