@@ -1,33 +1,31 @@
 import dataProvider from "../../src/index";
-import client from "../gqlClient";
-import "./index.mock";
+import nhost from "../nhost";
 
 describe("create", () => {
+    beforeAll(async () => {
+        await nhost.auth.signIn({
+            email: "salih@pankod.com",
+            password: "refine-nhost",
+        });
+    });
+
     it("correct response with metaData", async () => {
-        const { data } = await dataProvider(client).create({
+        const { data } = await dataProvider(nhost).create({
             resource: "posts",
             variables: {
                 content: "Lorem ipsum dolor sit amet.",
                 title: "Lorem ipsum dolore",
-                status: "draft",
-                category_id: "317cea5e-fef3-4858-8043-4496e5c7f5ab",
+                category_id: "73c14cb4-a58c-471d-9410-fc97ea6dac66",
             },
             metaData: {
-                fields: [
-                    "id",
-                    "title",
-                    "status",
-                    "content",
-                    { category: ["id"] },
-                ],
+                fields: ["id", "title", "content", { category: ["id"] }],
             },
         });
 
         expect(data["title"]).toEqual("Lorem ipsum dolore");
         expect(data["content"]).toEqual("Lorem ipsum dolor sit amet.");
         expect(data["category"].id).toEqual(
-            "317cea5e-fef3-4858-8043-4496e5c7f5ab",
+            "73c14cb4-a58c-471d-9410-fc97ea6dac66",
         );
-        expect(data["status"]).toEqual("draft");
     });
 });
