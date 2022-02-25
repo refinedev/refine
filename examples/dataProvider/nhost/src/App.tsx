@@ -7,22 +7,18 @@ import {
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-nhost";
-import { NhostClient } from "@nhost/nhost-js";
 import { NhostAuthProvider } from "@nhost/react-auth";
 import { NhostApolloProvider } from "@nhost/react-apollo";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 
+import { nhost } from "utility";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import {
     CategoriesList,
     CategoriesCreate,
     CategoriesEdit,
 } from "pages/categories";
-
-const nhost = new NhostClient({
-    backendUrl: "https://oxhhlmqsjahbyedrmvll.nhost.run",
-});
 
 const authProvider: AuthProvider = {
     login: async ({ username, password }) => {

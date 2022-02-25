@@ -14,6 +14,7 @@ import {
     useSelect,
     getDefaultFilter,
     DateField,
+    ImageField,
 } from "@pankod/refine-antd";
 
 import { ICategory, IPost } from "interfaces";
@@ -36,6 +37,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 "content",
                 "category_id",
                 "created_at",
+                "images",
             ],
         },
     });
@@ -87,6 +89,24 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     render={(value) => <DateField value={value} format="LLL" />}
                     defaultSortOrder={getDefaultSortOrder("created_at", sorter)}
                     sorter
+                />
+                <Table.Column
+                    dataIndex="images"
+                    align="center"
+                    title="Image"
+                    render={(value) => {
+                        return value ? (
+                            <ImageField
+                                value={value[0].url}
+                                alt={value[0]?.name}
+                                title={value[0]?.name}
+                                width={48}
+                                preview={{ mask: <></> }}
+                            />
+                        ) : (
+                            <span>---</span>
+                        );
+                    }}
                 />
                 <Table.Column<IPost>
                     title="Actions"
