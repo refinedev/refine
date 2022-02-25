@@ -1,37 +1,45 @@
 import dataProvider from "../../src/index";
-import client from "../gqlClient";
+import nhost from "../nhost";
 import "./index.mock";
 
 describe("deleteMany", () => {
+    beforeAll(async () => {
+        await nhost.auth.signIn({
+            email: "salih@pankod.com",
+            password: "refine-nhost",
+        });
+    });
+
     it("correct response with metaData", async () => {
-        const { data } = await dataProvider(client).deleteMany({
+        const { data } = await dataProvider(nhost).deleteMany({
             resource: "posts",
             ids: [
-                "bb5e4a56-504d-4561-ad8c-fd8198e2e32a",
-                "823a7094-1d5b-4404-80f4-575a99a69280",
+                "b16d671e-1172-4622-8c2f-b4b88fd60bfc",
+                "56c313f2-8709-4e75-9d01-6d89583e4939",
             ],
             metaData: {
                 fields: ["id", "title"],
             },
         });
 
-        expect(data[0].id).toEqual("bb5e4a56-504d-4561-ad8c-fd8198e2e32a");
-        expect(data[0].title).toEqual("Table Industrial Checking Account");
-
-        expect(data[1].id).toEqual("823a7094-1d5b-4404-80f4-575a99a69280");
-        expect(data[1].title).toEqual("Handmade Mouse Fresh");
+        expect(data[0].id).toEqual("56c313f2-8709-4e75-9d01-6d89583e4939");
+        expect(data[0].title).toEqual(
+            "Aenean ultricies non libero sit amet pellentesque",
+        );
+        expect(data[1].id).toEqual("b16d671e-1172-4622-8c2f-b4b88fd60bfc");
+        expect(data[1].title).toEqual("Etiam tincidunt ex ut auctor faucibus");
     });
 
     it("correct response without metaData", async () => {
-        const { data } = await dataProvider(client).deleteMany({
+        const { data } = await dataProvider(nhost).deleteMany({
             resource: "posts",
             ids: [
-                "72182c50-32e5-40bb-b259-67d49c2530ec",
-                "86f4a3b3-a328-4fa5-9d7e-f06a35e3635f",
+                "be7fd33d-efa2-4d49-8576-48d9a57a5bb1",
+                "ed7b62d6-762f-42aa-a7f0-fe3670d75a67",
             ],
         });
 
-        expect(data[0].id).toEqual("72182c50-32e5-40bb-b259-67d49c2530ec");
-        expect(data[1].id).toEqual("86f4a3b3-a328-4fa5-9d7e-f06a35e3635f");
+        expect(data[0].id).toEqual("be7fd33d-efa2-4d49-8576-48d9a57a5bb1");
+        expect(data[1].id).toEqual("ed7b62d6-762f-42aa-a7f0-fe3670d75a67");
     });
 });
