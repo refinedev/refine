@@ -109,8 +109,16 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                                         fileId: fileMetadata.id,
                                     });
 
-                                    onSuccess?.({ url }, new XMLHttpRequest());
+                                    onSuccess?.(
+                                        { url, fileId: fileMetadata.id },
+                                        new XMLHttpRequest(),
+                                    );
                                 }
+                            }}
+                            onRemove={async (props: any) => {
+                                await nhost.storage.delete({
+                                    fileId: props.fileId,
+                                });
                             }}
                         >
                             <p className="ant-upload-text">

@@ -2,6 +2,7 @@ import { UploadFile } from "@pankod/refine-antd";
 
 interface UploadResponse {
     url: string;
+    fileId: string;
 }
 interface EventArgs<T = UploadResponse> {
     file: UploadFile<T>;
@@ -22,6 +23,7 @@ export const normalizeFile = (event: EventArgs) => {
             size,
             percent,
             status,
+            fileId: item.response?.fileId || response?.fileId,
         };
     });
 };
