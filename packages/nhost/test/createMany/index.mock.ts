@@ -1,21 +1,107 @@
 import nock from "nock";
 
-nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
+nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
+    .post("/v1/auth/signin/email-password", {
+        email: "salih@pankod.com",
+        password: "refine-nhost",
+    })
+    .reply(
+        200,
+        {
+            session: {
+                accessToken:
+                    "eyJhbGciOiJIUzI1NiJ9.eyJodHRwczovL2hhc3VyYS5pby9qd3QvY2xhaW1zIjp7IngtaGFzdXJhLWFsbG93ZWQtcm9sZXMiOlsidXNlciIsIm1lIl0sIngtaGFzdXJhLWRlZmF1bHQtcm9sZSI6InVzZXIiLCJ4LWhhc3VyYS11c2VyLWlkIjoiY2IwZTA1NDQtZTI4ZC00ZmFmLTk2NWEtZWVhNDc4MmExOGNjIiwieC1oYXN1cmEtdXNlci1pc0Fub255bW91cyI6ImZhbHNlIn0sInN1YiI6ImNiMGUwNTQ0LWUyOGQtNGZhZi05NjVhLWVlYTQ3ODJhMThjYyIsImlzcyI6Imhhc3VyYS1hdXRoIiwiaWF0IjoxNjQ1Nzk2MTk3LCJleHAiOjE2NDU3OTcwOTd9.kLczIY1oRpAzIuFLWx0nbEK7AbRyWgJHy6rfKlBNJOo",
+                accessTokenExpiresIn: 900,
+                refreshToken: "5d0ff9c5-d30f-46cc-9746-a4abe563172f",
+                user: {
+                    id: "cb0e0544-e28d-4faf-965a-eea4782a18cc",
+                    createdAt: "2022-02-23T14:49:56.701205+00:00",
+                    displayName: "salih@pankod.com",
+                    avatarUrl:
+                        "https://s.gravatar.com/avatar/00cfdb0bc9cf7d668d0df28e18536166?r=g&default=blank",
+                    locale: "en",
+                    email: "salih@pankod.com",
+                    isAnonymous: false,
+                    defaultRole: "user",
+                    roles: ["user", "me"],
+                    metadata: {},
+                },
+            },
+            mfa: null,
+        },
+        [
+            "Date",
+            "Fri, 25 Feb 2022 13:36:37 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Content-Length",
+            "929",
+            "Connection",
+            "keep-alive",
+            "X-DNS-Prefetch-Control",
+            "off",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "Strict-Transport-Security",
+            "max-age=15552000; includeSubDomains",
+            "X-Download-Options",
+            "noopen",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-XSS-Protection",
+            "1; mode=block",
+            "Access-Control-Allow-Origin",
+            "*",
+            "Surrogate-Control",
+            "no-store",
+            "Cache-Control",
+            "no-store, no-cache, must-revalidate, proxy-revalidate",
+            "Pragma",
+            "no-cache",
+            "Expires",
+            "0",
+            "ETag",
+            'W/"3a1-6/Z1dqa3miYYf0v+K6TfZADIwC8"',
+        ],
+    );
+
+nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
+    .options("/v1/graphql")
+    .reply(204, "", [
+        "Date",
+        "Fri, 25 Feb 2022 13:36:37 GMT",
+        "Content-Type",
+        "text/plain charset=UTF-8",
+        "Content-Length",
+        "0",
+        "Connection",
+        "keep-alive",
+        "Access-Control-Max-Age",
+        "1728000",
+        "Access-Control-Allow-Headers",
+        "Authorization",
+        "Access-Control-Allow-Origin",
+        "http://localhost",
+        "Access-Control-Allow-Credentials",
+        "true",
+        "Access-Control-Allow-Methods",
+        "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+    ]);
+
+nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($objects: [posts_insert_input!]!) {\n  insert_posts (objects: $objects) {\n    returning { id, title, content, status, category { id } }\n  }\n}",
+        query: "mutation ($objects: [posts_insert_input!]!) {\n  insert_posts (objects: $objects) {\n    returning { id, title, content, category { id } }\n  }\n}",
         variables: {
             objects: [
                 {
                     content: "Vestibulum vulputate sapien arcu.",
                     title: "Aenean ultricies non libero sit amet pellentesque",
-                    status: "draft",
-                    category_id: "317cea5e-fef3-4858-8043-4496e5c7f5ab",
+                    category_id: "73c14cb4-a58c-471d-9410-fc97ea6dac66",
                 },
                 {
                     content: "Aliquam nibh erat.",
                     title: "Etiam tincidunt ex ut auctor faucibus",
-                    status: "draft",
-                    category_id: "317cea5e-fef3-4858-8043-4496e5c7f5ab",
+                    category_id: "3e5ff497-af3e-4234-876d-0fb7ccb078f5",
                 },
             ],
         },
@@ -23,35 +109,119 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .reply(
         200,
         [
-            "1f8b0800000000000403ad8fc14ec33010447f65e533464d9d38496f3df00b5c10426b7b5d2cb94e6aaf11a8cabfe35670e0ce69677767a47957e190511cae22a44299dfd6a570b9ed99b8e614d249c0015edadf898350ae331da99d44a795ec7756c9c99396a39995433793c5413c080e1ca9d98f940813d4c839d84005d29220064379811218f04c0c2bc54889a95c2ab5ac5d9a4edcd2cf5438981aeb193e6a5c2b2313145c0325c06ceb63739776acadaf70193ddfe2cd745af2d71de95eb91b2de140d2936f95a76192d3ae6faa9f350d76f4031ab16d0ff08338755ed969de4b3d9391bd4627d10cbdd4da4c831a3bb5f7b79abf884f1cf00c1c920dae2606fa84dac0aae525836fb311943f58c7182eb5655230ef4019f95f395eb76dfb064aa383e5d5010000",
+            "1f8b08000000000004036d8f416ec3201045af32621daac4c660679745afd04d5555030c2992831d18aa5691ef5e5275d14a5d0d33fc2fbd77131e19c5f126622a94f9755d0a97fb9e896b4e319d051ce1b9fd7b7114964cf07def2505eca4f26a92e360b454a39f703038587b103bc191676af11325c20475e61c5da402694930474b79811219f0420c2bcd3325a672add4ba6e69efc4adfd4485a3ad73bdc07b9dd7cac80405d7480930bbfa704fb7db79c99fdf067742d3bb837256491c462795397839a9c35e06371942edd1692db66d073f46e48dd59dd7d2e82e48d5214a34a1e5a9d766efcd80dafc327ae48817e0985cf43531d007d4e6511d2f19429b0db8fcb138cdf15a5b2745fb069491ffc5ee6908414d4662e8a961f44a8e467bb90fd63867f7660c43c37ed9b6ed0b63c634feb3010000",
         ],
         [
             "Date",
-            "Mon, 18 Oct 2021 13:37:34 GMT",
+            "Fri, 25 Feb 2022 13:36:37 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Transfer-Encoding",
             "chunked",
             "Connection",
-            "close",
+            "keep-alive",
+            "Access-Control-Allow-Origin",
+            "http://localhost",
+            "Access-Control-Allow-Credentials",
+            "true",
+            "Access-Control-Allow-Methods",
+            "GET,POST,PUT,PATCH,DELETE,OPTIONS",
             "x-request-id",
-            "792054bf9c36fd2f2f9c822d2a6f0962",
+            "2819bedaa1ef91ffe3374968020dbd9f",
             "Content-Encoding",
             "gzip",
-            "Strict-Transport-Security",
-            "max-age=31536000; includeSubDomains",
-            "CF-Cache-Status",
-            "DYNAMIC",
-            "Expect-CT",
-            'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
-            "Server",
-            "cloudflare",
-            "CF-RAY",
-            "6a0229720ce75488-IST",
         ],
     );
 
-nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
+nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
+    .post("/v1/auth/signin/email-password", {
+        email: "salih@pankod.com",
+        password: "refine-nhost",
+    })
+    .reply(
+        200,
+        {
+            session: {
+                accessToken:
+                    "eyJhbGciOiJIUzI1NiJ9.eyJodHRwczovL2hhc3VyYS5pby9qd3QvY2xhaW1zIjp7IngtaGFzdXJhLWFsbG93ZWQtcm9sZXMiOlsidXNlciIsIm1lIl0sIngtaGFzdXJhLWRlZmF1bHQtcm9sZSI6InVzZXIiLCJ4LWhhc3VyYS11c2VyLWlkIjoiY2IwZTA1NDQtZTI4ZC00ZmFmLTk2NWEtZWVhNDc4MmExOGNjIiwieC1oYXN1cmEtdXNlci1pc0Fub255bW91cyI6ImZhbHNlIn0sInN1YiI6ImNiMGUwNTQ0LWUyOGQtNGZhZi05NjVhLWVlYTQ3ODJhMThjYyIsImlzcyI6Imhhc3VyYS1hdXRoIiwiaWF0IjoxNjQ1Nzk2MzAxLCJleHAiOjE2NDU3OTcyMDF9.gfgbLTkFUwpK1gcIdxakghhf5Esha7Sjlfs7ckJGE9w",
+                accessTokenExpiresIn: 900,
+                refreshToken: "0148dd09-3fd0-484e-9fa0-abb30a16e58d",
+                user: {
+                    id: "cb0e0544-e28d-4faf-965a-eea4782a18cc",
+                    createdAt: "2022-02-23T14:49:56.701205+00:00",
+                    displayName: "salih@pankod.com",
+                    avatarUrl:
+                        "https://s.gravatar.com/avatar/00cfdb0bc9cf7d668d0df28e18536166?r=g&default=blank",
+                    locale: "en",
+                    email: "salih@pankod.com",
+                    isAnonymous: false,
+                    defaultRole: "user",
+                    roles: ["user", "me"],
+                    metadata: {},
+                },
+            },
+            mfa: null,
+        },
+        [
+            "Date",
+            "Fri, 25 Feb 2022 13:38:21 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Content-Length",
+            "929",
+            "Connection",
+            "keep-alive",
+            "X-DNS-Prefetch-Control",
+            "off",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "Strict-Transport-Security",
+            "max-age=15552000; includeSubDomains",
+            "X-Download-Options",
+            "noopen",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-XSS-Protection",
+            "1; mode=block",
+            "Access-Control-Allow-Origin",
+            "*",
+            "Surrogate-Control",
+            "no-store",
+            "Cache-Control",
+            "no-store, no-cache, must-revalidate, proxy-revalidate",
+            "Pragma",
+            "no-cache",
+            "Expires",
+            "0",
+            "ETag",
+            'W/"3a1-AzPRYus9JDAdZSQBVuJuV9XfaWE"',
+        ],
+    );
+
+nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
+    .options("/v1/graphql")
+    .reply(204, "", [
+        "Date",
+        "Fri, 25 Feb 2022 13:38:22 GMT",
+        "Content-Type",
+        "text/plain charset=UTF-8",
+        "Content-Length",
+        "0",
+        "Connection",
+        "keep-alive",
+        "Access-Control-Max-Age",
+        "1728000",
+        "Access-Control-Allow-Headers",
+        "Authorization",
+        "Access-Control-Allow-Origin",
+        "http://localhost",
+        "Access-Control-Allow-Credentials",
+        "true",
+        "Access-Control-Allow-Methods",
+        "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+    ]);
+
+nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
         query: "mutation ($objects: [posts_insert_input!]!) {\n  insert_posts (objects: $objects) {\n    returning { id }\n  }\n}",
         variables: {
@@ -59,14 +229,12 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
                 {
                     content: "Vestibulum vulputate sapien arcu.",
                     title: "Aenean ultricies non libero sit amet pellentesque",
-                    status: "draft",
-                    category_id: "317cea5e-fef3-4858-8043-4496e5c7f5ab",
+                    category_id: "73c14cb4-a58c-471d-9410-fc97ea6dac66",
                 },
                 {
                     content: "Aliquam nibh erat.",
                     title: "Etiam tincidunt ex ut auctor faucibus",
-                    status: "draft",
-                    category_id: "317cea5e-fef3-4858-8043-4496e5c7f5ab",
+                    category_id: "3e5ff497-af3e-4234-876d-0fb7ccb078f5",
                 },
             ],
         },
@@ -74,30 +242,26 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .reply(
         200,
         [
-            "1f8b080000000000040335ca410e02210c40d1ab90ae6dc2402185ab186380a2990d1ac0d584bb3b2e5cbefc7f80a499201eb0b751fbbcbf5f638e9f7b9d9fdef6f60415d5f5ec0211980c27f1090d0583548a412611d4a18adecac3b3635817f5df6db13ab14357b34722da3057ed514e661bd8b01358b7b5d617fdbb0d1688000000",
+            "1f8b08000000000004032dca4b0a03211045d1ad488d234875899fad84104aab0d3d3141cda871efb121930797774e101e0cf184a3f6bd8de7e7dd47bfbaede3dbea515fa0a2baaf5f20028ac92e60d624e8d794a2d926af37e7ad1753982dc1bca93f0f98520a840bb1d39425688f1b6a71172436990cccc79cf307736cb78c88000000",
         ],
         [
             "Date",
-            "Tue, 19 Oct 2021 06:51:58 GMT",
+            "Fri, 25 Feb 2022 13:38:22 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Transfer-Encoding",
             "chunked",
             "Connection",
-            "close",
+            "keep-alive",
+            "Access-Control-Allow-Origin",
+            "http://localhost",
+            "Access-Control-Allow-Credentials",
+            "true",
+            "Access-Control-Allow-Methods",
+            "GET,POST,PUT,PATCH,DELETE,OPTIONS",
             "x-request-id",
-            "f8f2fdd27b989b4960ea559b99842e69",
+            "a23e3087e6afc4b2fc1f65ff0410b0d6",
             "Content-Encoding",
             "gzip",
-            "Strict-Transport-Security",
-            "max-age=31536000; includeSubDomains",
-            "CF-Cache-Status",
-            "DYNAMIC",
-            "Expect-CT",
-            'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
-            "Server",
-            "cloudflare",
-            "CF-RAY",
-            "6a0814b35fa35493-IST",
         ],
     );
