@@ -37,7 +37,7 @@ Let's say that we have a resource named `posts`.
 
 ```tsx 
 type PostMutationResult = {
-    id: string;
+    id: number;
     status: "published" | "draft" | "rejected";
 };
 
@@ -47,7 +47,7 @@ const { mutate } = useUpdateMany<PostMutationResult>();
 
 mutate({
     resource: "posts",
-    ids: ["1", "2"],
+    ids: [1, 2],
     values: { status: "draft" },
 });
 ```
@@ -115,7 +115,7 @@ const { mutate } = useUpdateMany();
 
 mutate({
     resource: "posts",
-    ids: ["1", "2"],
+    ids: [1, 2],
     values: { status: "draft" },
     // highlight-next-line
     mutationMode: "optimistic",
@@ -149,7 +149,7 @@ const { mutate } = useUpdateMany();
 
 mutate({
     resource: "posts",
-    ids: ["1", "2"],
+    ids: [1, 2],
     values: { status: "draft" },
     mutationMode: "undoable",
     // highlight-start

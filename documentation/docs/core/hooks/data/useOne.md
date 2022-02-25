@@ -32,13 +32,13 @@ Let's say that we have a resource named `posts`.
 import { useOne } from "@pankod/refine-core";
 
 type ICategory = {
-    id: string;
+    id: number;
     title: string;
 };
 
 const categoryQueryResult = useOne<ICategory>({
     resource: "categories",
-    id: "1",
+    id: 1,
 });
 ```
 
@@ -51,7 +51,7 @@ const categoryQueryResult = useOne<ICategory>({
 ```tsx
 const categoryQueryResult = useOne<ICategory>({
     resource: "categories",
-    id: "1",
+    id: 1,
     queryOptions: {
         enabled: false,
     },

@@ -44,7 +44,7 @@ const { mutate } = useDelete();
 
 mutate({
     resource: "categories",
-    id: "2",
+    id: 2,
 });
 ```
 
@@ -104,7 +104,7 @@ const { mutate } = useDelete();
 
 mutate({
     resource: "categories",
-    id: "2",
+    id: 2,
     // highlight-next-line
     mutationMode: "optimistic",
 });
@@ -137,7 +137,7 @@ const { mutate } = useDelete();
 
 mutate({
     resource: "categories",
-    id: "1",
+    id: 1,
     mutationMode: "undoable",
     // highlight-start
     undoableTimeout: 7500,

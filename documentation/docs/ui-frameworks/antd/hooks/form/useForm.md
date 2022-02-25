@@ -100,10 +100,12 @@ const { formProps, saveButtonProps } = useForm({ action: "edit" });
 When creating a new record, `useForm` can initialize the form with the data of an existing record.
 
 `useForm` works on clone mode when a route has a `clone` and `id` parameters like this `{{resourceName}}/clone/1234`.
-Alternatively, if route doesn't have those parameters, action can be set with `action: "clone"` and id can be set with `setCloneId`.
+Alternatively, if route doesn't have those parameters, action can be set with `action: "clone"` and id can be set with `setId` and `id`.
 
 ```tsx 
-const { setCloneId } = useForm();
+const { setId, id } = useForm({
+   	 	action: "clone",
+	});
 ```
 
 :::tip
@@ -133,7 +135,7 @@ const { clone } = useNavigation();
 
 | Property               | Description                                                                                          | Type                                                                       | Default                                                                                                                              |
 | ---------------------- | ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| action                 | Type of the form mode                                                                                | `"edit"` \| `"create"`                                                     |                                                                                                                                      |
+| action                 | Type of the form mode                                                                                | `"edit"` \| `"create"` \| `"clone"`                                                      |                                                                                                                                      |
 | resource               | Resource name for API data interactions                       | `string`                                                                   |                                                                                                                                      |
 | onMutationSuccess      | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) is successful       | `(data: UpdateResponse<M>, variables: any, context: any) => void`          |                                                                                                                                      |
 | onMutationError        | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error | `(error: any, variables: any, context: any) => void`                       |                                                                                                                                      |
@@ -146,7 +148,7 @@ const { clone } = useNavigation();
 | errorNotification      | Unsuccessful Mutation notification                                                                   | [`SuccessErrorNotification`](/core/interfaces.md#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
 | metaData                                            | Metadata query for `dataProvider`                                              | [`MetaDataQuery`](/core/interfaces.md#metadataquery)           | {}                                                                   |
 | [liveMode](/core/providers/live-provider.md#usage-in-a-hook)                                                                                            | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)       | `"off"`                             |
-| liveParams                                                                                          | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                     | [`{ ids?: string[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | `undefined`                         |
+| liveParams                                                                                          | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                     | [`{ ids?: BaseKey[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | `undefined`                         |
 | onLiveEvent                                                                                         | Callback to handle all related live events of this hook.                                                                                                                                   | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)                           | `undefined`                                  |
 
 > `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/core/components/refine-config.md)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
@@ -163,10 +165,7 @@ const { clone } = useNavigation();
 | queryResult     | Result of the query of a record                         | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)  |
 | mutationResult  | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation) |
 | formLoading     | Loading state of form request                           | `boolean`                                                                        |
-| cloneId         | Record id for clone action                              | `"string"` \| `"number"`                                                         |
-| setCloneId      | `cloneId` setter                                        | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                 |
-| editId          | Record id for edit action                               | `"string"` \| `"number"`                                                         |     |
-| setEditId       | `editId` setter                                         | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                 |
+
 
 ### Type Parameters
 

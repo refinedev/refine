@@ -45,7 +45,7 @@ First of all, we will use `useList` without passing any query configurations.
 import { useList } from "@pankod/refine-core";
 
 type IPost = {
-    id: string;
+    id: number;
     title: string;
     status: "rejected" | "published" | "draft";
 };

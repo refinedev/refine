@@ -48,7 +48,7 @@ const { mutate } = useDeleteMany();
 
 mutate({
     resource: "categories",
-    ids: ["2", "3"],
+    ids: [2, 3],
 });
 ```
 
@@ -108,7 +108,7 @@ const { mutate } = useDeleteMany();
 
 mutate({
     resource: "categories",
-    ids: ["2", "3"],
+    ids: [2, 3],
     // highlight-next-line
     mutationMode: "optimistic",
 });
@@ -141,7 +141,7 @@ const { mutate } = useDeleteMany();
 
 mutate({
     resource: "categories",
-    ids: ["1", "2"],
+    ids: [1, 2],
     mutationMode: "undoable",
     // highlight-start
     undoableTimeout: 7500,

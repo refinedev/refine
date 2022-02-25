@@ -39,7 +39,7 @@ Let's say that we have a resource named `categories`.
 
 ```tsx 
 type CategoryMutationResult = {
-    id: string;
+    id: number;
     title: string;
 };
 
@@ -49,7 +49,7 @@ const { mutate } = useUpdate<CategoryMutationResult>();
 
 mutate({
     resource: "categories",
-    id: "2",
+    id: 2,
     values: { title: "New Category Title" },
 });
 ```
@@ -116,7 +116,7 @@ const { mutate } = useUpdate();
 
 mutate({
     resource: "categories",
-    id: "2",
+    id: 2,
     values: { title: "New Category Title" },
     // highlight-next-line
     mutationMode: "optimistic",
@@ -150,7 +150,7 @@ const { mutate } = useUpdate();
 
 mutate({
     resource: "categories",
-    id: "2",
+    id: 2,
     values: { title: "New Category Title" },
     mutationMode: "undoable",
     // highlight-start

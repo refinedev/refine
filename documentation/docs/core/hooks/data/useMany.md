@@ -36,13 +36,13 @@ Let's say that we have a resource named `categories`.
 import { useMany } from "@pankod/refine-core";
 
 type ICategory = {
-    id: string;
+    id: number;
     title: string;
 };
 
 const categoryQueryResult = useMany<ICategory>({
     resource: "categories",
-    ids: ["1", "2"],
+    ids: [1, 2],
 });
 ```
 
@@ -55,7 +55,7 @@ const categoryQueryResult = useMany<ICategory>({
 ```tsx
 const categoryQueryResult = useMany<ICategory>({
     resource: "categories",
-    ids: ["1", "2"],
+    ids: [1, 2],
     queryOptions: { enabled: false },
 });
 ```
