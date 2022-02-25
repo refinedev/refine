@@ -1,39 +1,46 @@
 import dataProvider from "../../src/index";
-import client from "../gqlClient";
+import nhost from "../nhost";
 import "./index.mock";
 
 describe("update", () => {
+    beforeAll(async () => {
+        await nhost.auth.signIn({
+            email: "salih@pankod.com",
+            password: "refine-nhost",
+        });
+    });
+
     it("correct response with metaData", async () => {
-        const { data } = await dataProvider(client).update({
+        const { data } = await dataProvider(nhost).update({
             resource: "posts",
-            id: "c82c71c5-0f0b-4042-b9a3-db977fe28a83",
+            id: "6a117e72-9446-4413-9760-30d66b9a27dc",
             variables: {
                 title: "E-business alarm Bedfordshire",
                 content: "Updated Content",
-                category_id: "4653050e-f969-4d58-939b-ece4c17aa506",
+                category_id: "3e5ff497-af3e-4234-876d-0fb7ccb078f5",
             },
             metaData: {
                 fields: ["id", "title", "content", { category: ["id"] }],
             },
         });
 
-        expect(data["id"]).toEqual("c82c71c5-0f0b-4042-b9a3-db977fe28a83");
+        expect(data["id"]).toEqual("6a117e72-9446-4413-9760-30d66b9a27dc");
         expect(data["title"]).toEqual("E-business alarm Bedfordshire");
         expect(data["content"]).toEqual("Updated Content");
         expect(data["category"].id).toEqual(
-            "4653050e-f969-4d58-939b-ece4c17aa506",
+            "3e5ff497-af3e-4234-876d-0fb7ccb078f5",
         );
     });
 
     it("correct response without metaData", async () => {
-        const { data } = await dataProvider(client).update({
+        const { data } = await dataProvider(nhost).update({
             resource: "posts",
-            id: "ecd7aa21-19f4-46c9-bc3e-227dcd0807fd",
+            id: "eccfaeb9-7fc7-45f6-b546-cb6e14109087",
             variables: {
-                title: "E-business alarm",
+                title: "Updated Title",
             },
         });
 
-        expect(data["id"]).toEqual("ecd7aa21-19f4-46c9-bc3e-227dcd0807fd");
+        expect(data["id"]).toEqual("eccfaeb9-7fc7-45f6-b546-cb6e14109087");
     });
 });
