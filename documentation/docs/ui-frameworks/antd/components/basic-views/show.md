@@ -233,7 +233,7 @@ The `<Show>` component needs the `id` information for work properly, so if you u
 :::
 
 ## API Reference
-asdas
+
 ### Properties
 
 | Property        | Description                                       | Type                                                              | Default                                                                        |
