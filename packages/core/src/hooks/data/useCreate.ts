@@ -103,8 +103,13 @@ export const useCreate = <
                     type: "success",
                 });
 
-                getAllQueries(resource).forEach((query) => {
-                    queryClient.invalidateQueries(query.queryKey);
+                // TODO - this can be optimized
+                queryClient.invalidateQueries({
+                    queryKey: [resource, "list"],
+                });
+
+                queryClient.invalidateQueries({
+                    queryKey: [resource, "getMany"],
                 });
 
                 publish?.({

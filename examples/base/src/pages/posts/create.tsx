@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps, useMany } from "@pankod/refine-core";
 
 import { Create, Form, Input, Select } from "@pankod/refine-antd";
 
@@ -15,18 +15,51 @@ import { IPost, ICategory } from "interfaces";
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IPost>({
         // warnWhenUnsavedChanges: true,
+        redirect: false,
+        resource: "categories",
     });
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
+        fetchSize: 30,
+        sort: [
+            {
+                field: "id",
+                order: "desc",
+            },
+        ],
+    });
+    const categoryQueryResult = useMany<ICategory>({
+        resource: "categories",
+        ids: ["1", "2"],
     });
 
     const [selectedTab, setSelectedTab] =
         useState<"write" | "preview">("write");
 
+    console.log("categoryQueryResult", categoryQueryResult);
+
     return (
         <Create saveButtonProps={saveButtonProps}>
+            <Select
+                {...categorySelectProps}
+                style={{ width: "100%" }}
+                dropdownStyle={{ minWidth: 200 }}
+            />
             <Form {...formProps} layout="vertical">
+                <Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+            </Form>
+            {/* <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
                     name="title"
@@ -94,7 +127,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                         }
                     />
                 </Form.Item>
-            </Form>
+            </Form> */}
         </Create>
     );
 };

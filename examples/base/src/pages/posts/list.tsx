@@ -22,6 +22,12 @@ import { IPost, ICategory } from "interfaces";
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, filters } = useTable<IPost>({
         syncWithLocation: true,
+        permanentSorter: [
+            {
+                field: "id",
+                order: "desc",
+            },
+        ],
     });
 
     const categoryIds =
@@ -108,15 +114,17 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                 size="small"
                                 recordItemId={record.id}
                             />
+
                             <ShowButton
                                 hideText
                                 size="small"
                                 recordItemId={record.id}
                             />
+
                             <DeleteButton
                                 hideText
                                 size="small"
-                                recordItemId={record.id}
+                                recordItemId={"record.id"}
                             />
                         </Space>
                     )}

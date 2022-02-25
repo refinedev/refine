@@ -15,6 +15,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <Refine
+            mutationMode="undoable"
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
             resources={[

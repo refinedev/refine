@@ -1,4 +1,9 @@
-import { useQueryClient, useMutation, UseMutationResult } from "react-query";
+import {
+    useQueryClient,
+    useMutation,
+    UseMutationResult,
+    InfiniteData,
+} from "react-query";
 
 import {
     useMutationMode,
@@ -141,51 +146,102 @@ export const useDelete = <
         },
         {
             onMutate: async ({ id, resource, mutationMode }) => {
-                const previousQueries: ContextQuery[] = [];
-
-                const allQueries = cacheQueries(resource, id);
+                // const previousQueries: ContextQuery[] = [];
+                const previousQueries: any = [];
+                // const allQueries = cacheQueries(resource, id);
 
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
 
-                for (const queryItem of allQueries) {
-                    const { queryKey } = queryItem;
-                    await queryClient.cancelQueries(queryKey, undefined, {
-                        silent: true,
-                    });
+                console.log(
+                    "mutationModePropOrContext",
+                    mutationModePropOrContext,
+                );
 
-                    const previousQuery =
-                        queryClient.getQueryData<QueryResponse<TData>>(
-                            queryKey,
-                        );
+                // for (const queryItem of allQueries) {
+                //     const { queryKey } = queryItem;
 
-                    if (!(mutationModePropOrContext === "pessimistic")) {
-                        if (previousQuery) {
-                            previousQueries.push({
-                                query: previousQuery,
-                                queryKey,
-                            });
+                //     console.log("queryKey", queryKey);
 
-                            if (
-                                queryKey.includes(`resource/list/${resource}`)
-                            ) {
-                                const { data, total } =
-                                    previousQuery as GetListResponse<TData>;
+                //     await queryClient.cancelQueries(queryKey, undefined, {
+                //         silent: true,
+                //     });
 
-                                queryClient.setQueryData(queryKey, {
-                                    ...previousQuery,
-                                    data: (data ?? []).filter(
-                                        (record: TData) =>
-                                            !(
-                                                record.id?.toString() ===
-                                                id.toString()
-                                            ),
-                                    ),
-                                    total: total - 1,
-                                });
-                            } else {
-                                queryClient.removeQueries(queryKey);
-                            }
+                //     const previousQuery =
+                //         queryClient.getQueryData<QueryResponse<TData>>(
+                //             queryKey,
+                //         );
+
+                //     if (!(mutationModePropOrContext === "pessimistic")) {
+                //         if (previousQuery) {
+                //             previousQueries.push({
+                //                 query: previousQuery,
+                //                 queryKey,
+                //             });
+
+                //             if (
+                //                 queryKey.includes(`resource/list/${resource}`)
+                //             ) {
+                //                 const { data, total } =
+                //                     previousQuery as GetListResponse<TData>;
+
+                //                 queryClient.setQueryData(queryKey, {
+                //                     ...previousQuery,
+                //                     data: (data ?? []).filter(
+                //                         (record: TData) =>
+                //                             !(
+                //                                 record.id?.toString() ===
+                //                                 id.toString()
+                //                             ),
+                //                     ),
+                //                     total: total - 1,
+                //                 });
+                //             } else {
+                //                 queryClient.removeQueries(queryKey);
+                //             }
+                //         }
+                //     }
+                // }
+
+                await queryClient.cancelQueries(resource, undefined, {
+                    silent: true,
+                });
+
+                const previousQuery = queryClient.getQueriesData(resource);
+
+                console.log("previousQuery", previousQuery);
+
+                if (!(mutationModePropOrContext === "pessimistic")) {
+                    if (previousQuery) {
+                        previousQueries.push(previousQuery);
+
+                        const listQueries = queryClient.getQueriesData([
+                            resource,
+                            "list",
+                        ]);
+
+                        if (listQueries.length > 0) {
+                            queryClient.setQueriesData(
+                                [resource, "list"],
+                                (previous?: GetListResponse<TData> | null) => {
+                                    if (!previous) {
+                                        return null;
+                                    }
+
+                                    return {
+                                        data: previous.data.filter(
+                                            (record: TData) =>
+                                                !(
+                                                    record.id?.toString() ===
+                                                    id.toString()
+                                                ),
+                                        ),
+                                        total: previous.total - 1,
+                                    };
+                                },
+                            );
+                        } else {
+                            queryClient.invalidateQueries([resource]);
                         }
                     }
                 }
@@ -199,7 +255,26 @@ export const useDelete = <
                 { id, resource, errorNotification },
                 context,
             ) => {
+                console.log(
+                    "context.previousQueries",
+                    context?.previousQueries,
+                );
+
                 if (context) {
+                    // queryClient.setQueriesData(
+                    //     context.previousQueries,
+                    //     (previous?: QueryResponse<TData> | null | any) => {
+                    //         if (!previous) {
+                    //             return null;
+                    //         }
+
+                    //         return {
+                    //             data: previous.data,
+                    //             total: previous.total,
+                    //         };
+                    //     },
+                    // );
+
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query.queryKey, query.query);
                     }
@@ -228,14 +303,22 @@ export const useDelete = <
             onSuccess: (_data, { id, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);
 
-                const allQueries = cacheQueries(resource, id);
-                for (const query of allQueries) {
-                    if (
-                        query.queryKey.includes(`resource/getOne/${resource}`)
-                    ) {
-                        queryClient.invalidateQueries(query.queryKey);
-                    }
+                const listQueries = queryClient.getQueriesData([
+                    resource,
+                    "list",
+                ]);
+
+                const detailQueries = queryClient.getQueriesData([
+                    resource,
+                    "detail",
+                    id,
+                ]);
+
+                if (detailQueries.length > 0) {
+                    queryClient.removeQueries(detailQueries);
                 }
+
+                queryClient.invalidateQueries(listQueries);
 
                 handleNotification(successNotification, {
                     key: `${id}-${resource}-notification`,
@@ -262,21 +345,24 @@ export const useDelete = <
                     date: new Date(),
                 });
             },
-            onSettled: (_data, _error, { id, resource }) => {
-                const allQueries = cacheQueries(resource, id);
-                for (const query of allQueries) {
-                    if (
-                        !query.queryKey.includes(`resource/getOne/${resource}`)
-                    ) {
-                        queryClient.invalidateQueries(query.queryKey);
-                    }
-                }
+            // onSettled: (_data, _error, { id, resource }) => {
 
-                notificationDispatch({
-                    type: ActionTypes.REMOVE,
-                    payload: { id, resource },
-                });
-            },
+            //     const allQueries = cacheQueries(resource, id);
+            //     console.log("allQueries", allQueries);
+
+            //     for (const query of allQueries) {
+            //         if (
+            //             !query.queryKey.includes(`resource/getOne/${resource}`)
+            //         ) {
+            //             queryClient.invalidateQueries(query.queryKey);
+            //         }
+            //     }
+
+            //     notificationDispatch({
+            //         type: ActionTypes.REMOVE,
+            //         payload: { id, resource },
+            //     });
+            // },
         },
     );
 
