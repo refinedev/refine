@@ -1,73 +1,241 @@
 import nock from "nock";
 
-nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
-    .post("/v1/graphql", {
-        query: "mutation ($id: uuid!) {\n  delete_posts_by_pk (id: $id) {\n    id, title\n  }\n}",
-        variables: { id: "52218781-f240-48d3-8407-fca1d163d3ce" },
+nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
+    .post("/v1/auth/signin/email-password", {
+        email: "salih@pankod.com",
+        password: "refine-nhost",
     })
     .reply(
         200,
-        [
-            "1f8b080000000000040315ca4b0ac3201000d0ab845977207eda486e50c81dc438932215953a5d94e0dddb6e1fef040a12603d8138b3b06fb54bf7fbc7b7e75f13c10a57ad955b9cc243db19ad2383cece0b1e312852374326325c409264fef57b91501e69cf3cd5c6057b7dbf224f5b8a5c3a138c31beec58762277000000",
-        ],
+        {
+            session: {
+                accessToken:
+                    "eyJhbGciOiJIUzI1NiJ9.eyJodHRwczovL2hhc3VyYS5pby9qd3QvY2xhaW1zIjp7IngtaGFzdXJhLWFsbG93ZWQtcm9sZXMiOlsidXNlciIsIm1lIl0sIngtaGFzdXJhLWRlZmF1bHQtcm9sZSI6InVzZXIiLCJ4LWhhc3VyYS11c2VyLWlkIjoiY2IwZTA1NDQtZTI4ZC00ZmFmLTk2NWEtZWVhNDc4MmExOGNjIiwieC1oYXN1cmEtdXNlci1pc0Fub255bW91cyI6ImZhbHNlIn0sInN1YiI6ImNiMGUwNTQ0LWUyOGQtNGZhZi05NjVhLWVlYTQ3ODJhMThjYyIsImlzcyI6Imhhc3VyYS1hdXRoIiwiaWF0IjoxNjQ1Nzk2NjM4LCJleHAiOjE2NDU3OTc1Mzh9.Oef5u7Sf9b5iyptFqBKjtNhTauwzqbZ8pVVnOUsNImg",
+                accessTokenExpiresIn: 900,
+                refreshToken: "4401a395-fa4a-4bec-8f66-f01000ed5e07",
+                user: {
+                    id: "cb0e0544-e28d-4faf-965a-eea4782a18cc",
+                    createdAt: "2022-02-23T14:49:56.701205+00:00",
+                    displayName: "salih@pankod.com",
+                    avatarUrl:
+                        "https://s.gravatar.com/avatar/00cfdb0bc9cf7d668d0df28e18536166?r=g&default=blank",
+                    locale: "en",
+                    email: "salih@pankod.com",
+                    isAnonymous: false,
+                    defaultRole: "user",
+                    roles: ["user", "me"],
+                    metadata: {},
+                },
+            },
+            mfa: null,
+        },
         [
             "Date",
-            "Tue, 19 Oct 2021 07:41:08 GMT",
+            "Fri, 25 Feb 2022 13:43:58 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
-            "Transfer-Encoding",
-            "chunked",
+            "Content-Length",
+            "929",
             "Connection",
-            "close",
-            "x-request-id",
-            "fbb3478e27c22d0723c2aa3f2428ce6b",
-            "Content-Encoding",
-            "gzip",
+            "keep-alive",
+            "X-DNS-Prefetch-Control",
+            "off",
+            "X-Frame-Options",
+            "SAMEORIGIN",
             "Strict-Transport-Security",
-            "max-age=31536000; includeSubDomains",
-            "CF-Cache-Status",
-            "DYNAMIC",
-            "Expect-CT",
-            'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
-            "Server",
-            "cloudflare",
-            "CF-RAY",
-            "6a085cb03d565488-IST",
+            "max-age=15552000; includeSubDomains",
+            "X-Download-Options",
+            "noopen",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-XSS-Protection",
+            "1; mode=block",
+            "Access-Control-Allow-Origin",
+            "*",
+            "Surrogate-Control",
+            "no-store",
+            "Cache-Control",
+            "no-store, no-cache, must-revalidate, proxy-revalidate",
+            "Pragma",
+            "no-cache",
+            "Expires",
+            "0",
+            "ETag",
+            'W/"3a1-OgQarQyV1skzVL6VM8QxBMXgj20"',
         ],
     );
 
-nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
+nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
+    .options("/v1/graphql")
+    .reply(204, "", [
+        "Date",
+        "Fri, 25 Feb 2022 13:43:58 GMT",
+        "Content-Type",
+        "text/plain charset=UTF-8",
+        "Content-Length",
+        "0",
+        "Connection",
+        "keep-alive",
+        "Access-Control-Max-Age",
+        "1728000",
+        "Access-Control-Allow-Headers",
+        "Authorization",
+        "Access-Control-Allow-Origin",
+        "http://localhost",
+        "Access-Control-Allow-Credentials",
+        "true",
+        "Access-Control-Allow-Methods",
+        "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+    ]);
+
+nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($id: uuid!) {\n  delete_posts_by_pk (id: $id) {\n    id\n  }\n}",
-        variables: { id: "b65b724e-7f21-47ad-aa37-194c4dbcf7cd" },
+        query: "mutation ($id: uuid!) {\n  delete_posts_by_pk (id: $id) {\n    id, title\n  }\n}",
+        variables: { id: "92bbb942-a5a7-4cd9-8232-d7aa544a0c40" },
     })
     .reply(
         200,
         [
-            "1f8b080000000000040315c8c10a80200c00d07fd97d876c35f267647313a220412f21fe7bf48e6f8049178803cc6fef9eead37a4bfaa67afd7b1a44d07d530ee4c8252c482c86222be3725026d35c381bcc393f759077864d000000",
+            "1f8b080000000000040315cad10ac2300c40d15f2979b6306ac6ecdefd8e92361182731b360565f4df9d4f170ef7002623980f6059c424ed5bb59af237edcfbf2ac30c31e49c23064f234d1e0b477f0bd7e079221a11692838c0054c6d9173bf9bd2cb99ae45b9ade6e4e39a396ac5b6b77b9cd5dc2af4de7fc2ecbe637d000000",
         ],
         [
             "Date",
-            "Tue, 19 Oct 2021 07:47:30 GMT",
+            "Fri, 25 Feb 2022 13:43:58 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Transfer-Encoding",
             "chunked",
             "Connection",
-            "close",
+            "keep-alive",
+            "Access-Control-Allow-Origin",
+            "http://localhost",
+            "Access-Control-Allow-Credentials",
+            "true",
+            "Access-Control-Allow-Methods",
+            "GET,POST,PUT,PATCH,DELETE,OPTIONS",
             "x-request-id",
-            "6d4af690403b2fdbe4ce743813feedff",
+            "f39bd8b7b51590d9960c15776b96a060",
             "Content-Encoding",
             "gzip",
+        ],
+    );
+
+nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
+    .post("/v1/auth/signin/email-password", {
+        email: "salih@pankod.com",
+        password: "refine-nhost",
+    })
+    .reply(
+        200,
+        {
+            session: {
+                accessToken:
+                    "eyJhbGciOiJIUzI1NiJ9.eyJodHRwczovL2hhc3VyYS5pby9qd3QvY2xhaW1zIjp7IngtaGFzdXJhLWFsbG93ZWQtcm9sZXMiOlsidXNlciIsIm1lIl0sIngtaGFzdXJhLWRlZmF1bHQtcm9sZSI6InVzZXIiLCJ4LWhhc3VyYS11c2VyLWlkIjoiY2IwZTA1NDQtZTI4ZC00ZmFmLTk2NWEtZWVhNDc4MmExOGNjIiwieC1oYXN1cmEtdXNlci1pc0Fub255bW91cyI6ImZhbHNlIn0sInN1YiI6ImNiMGUwNTQ0LWUyOGQtNGZhZi05NjVhLWVlYTQ3ODJhMThjYyIsImlzcyI6Imhhc3VyYS1hdXRoIiwiaWF0IjoxNjQ1Nzk2NzI1LCJleHAiOjE2NDU3OTc2MjV9.SUHvEiDr9SEPX8YeFsyxq3CN2g232k5CJiBQOBnZVkU",
+                accessTokenExpiresIn: 900,
+                refreshToken: "2f63d855-873b-4739-95ee-a3cc18bc4626",
+                user: {
+                    id: "cb0e0544-e28d-4faf-965a-eea4782a18cc",
+                    createdAt: "2022-02-23T14:49:56.701205+00:00",
+                    displayName: "salih@pankod.com",
+                    avatarUrl:
+                        "https://s.gravatar.com/avatar/00cfdb0bc9cf7d668d0df28e18536166?r=g&default=blank",
+                    locale: "en",
+                    email: "salih@pankod.com",
+                    isAnonymous: false,
+                    defaultRole: "user",
+                    roles: ["user", "me"],
+                    metadata: {},
+                },
+            },
+            mfa: null,
+        },
+        [
+            "Date",
+            "Fri, 25 Feb 2022 13:45:25 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Content-Length",
+            "929",
+            "Connection",
+            "keep-alive",
+            "X-DNS-Prefetch-Control",
+            "off",
+            "X-Frame-Options",
+            "SAMEORIGIN",
             "Strict-Transport-Security",
-            "max-age=31536000; includeSubDomains",
-            "CF-Cache-Status",
-            "DYNAMIC",
-            "Expect-CT",
-            'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
-            "Server",
-            "cloudflare",
-            "CF-RAY",
-            "6a0866075eb0548e-IST",
+            "max-age=15552000; includeSubDomains",
+            "X-Download-Options",
+            "noopen",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-XSS-Protection",
+            "1; mode=block",
+            "Access-Control-Allow-Origin",
+            "*",
+            "Surrogate-Control",
+            "no-store",
+            "Cache-Control",
+            "no-store, no-cache, must-revalidate, proxy-revalidate",
+            "Pragma",
+            "no-cache",
+            "Expires",
+            "0",
+            "ETag",
+            'W/"3a1-6hqIIO4mqijquoesPJv5YeuXnQI"',
+        ],
+    );
+
+nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
+    .options("/v1/graphql")
+    .reply(204, "", [
+        "Date",
+        "Fri, 25 Feb 2022 13:45:25 GMT",
+        "Content-Type",
+        "text/plain charset=UTF-8",
+        "Content-Length",
+        "0",
+        "Connection",
+        "keep-alive",
+        "Access-Control-Max-Age",
+        "1728000",
+        "Access-Control-Allow-Headers",
+        "Authorization",
+        "Access-Control-Allow-Origin",
+        "http://localhost",
+        "Access-Control-Allow-Credentials",
+        "true",
+        "Access-Control-Allow-Methods",
+        "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+    ]);
+
+nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
+    .post("/v1/graphql", {
+        query: "mutation ($id: uuid!) {\n  delete_posts_by_pk (id: $id) {\n    id\n  }\n}",
+        variables: { id: "2d0c792c-4d28-4dff-a5b8-37858d0faa54" },
+    })
+    .reply(
+        200,
+        [
+            "1f8b0800000000000403ab564a492c4954b2aa564a49cd492d498d2fc82f2e298e4faa8c2fc8068966a628592919a518249b5b1a25eb9aa418590089b434dd44d3240b5d63730b538b1483b4c4445313a5dada5a00f46473374d000000",
+        ],
+        [
+            "Date",
+            "Fri, 25 Feb 2022 13:45:25 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "keep-alive",
+            "Access-Control-Allow-Origin",
+            "http://localhost",
+            "Access-Control-Allow-Credentials",
+            "true",
+            "Access-Control-Allow-Methods",
+            "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+            "x-request-id",
+            "73328edc038ca1baf85b11f7e9af33f8",
+            "Content-Encoding",
+            "gzip",
         ],
     );

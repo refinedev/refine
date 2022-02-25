@@ -1,27 +1,34 @@
 import dataProvider from "../../src/index";
-import client from "../gqlClient";
+import nhost from "../nhost";
 import "./index.mock";
 
 describe("deleteOne", () => {
+    beforeAll(async () => {
+        await nhost.auth.signIn({
+            email: "salih@pankod.com",
+            password: "refine-nhost",
+        });
+    });
+
     it("correct response with metaData", async () => {
-        const { data } = await dataProvider(client).deleteOne({
+        const { data } = await dataProvider(nhost).deleteOne({
             resource: "posts",
-            id: "52218781-f240-48d3-8407-fca1d163d3ce",
+            id: "92bbb942-a5a7-4cd9-8232-d7aa544a0c40",
             metaData: {
                 fields: ["id", "title"],
             },
         });
 
-        expect(data.id).toEqual("52218781-f240-48d3-8407-fca1d163d3ce");
-        expect(data.title).toEqual("Intangible open-source Licensed");
+        expect(data.id).toEqual("92bbb942-a5a7-4cd9-8232-d7aa544a0c40");
+        expect(data.title).toEqual("Etiam tincidunt ex ut auctor faucibus");
     });
 
     it("correct response without metaData", async () => {
-        const { data } = await dataProvider(client).deleteOne({
+        const { data } = await dataProvider(nhost).deleteOne({
             resource: "posts",
-            id: "b65b724e-7f21-47ad-aa37-194c4dbcf7cd",
+            id: "2d0c792c-4d28-4dff-a5b8-37858d0faa54",
         });
 
-        expect(data.id).toEqual("b65b724e-7f21-47ad-aa37-194c4dbcf7cd");
+        expect(data.id).toEqual("2d0c792c-4d28-4dff-a5b8-37858d0faa54");
     });
 });
