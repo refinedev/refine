@@ -5,6 +5,7 @@ import {
     CrudFilters,
     CrudSorting,
     CrudOperators,
+    CrudFilter,
 } from "@pankod/refine-core";
 import { stringify, parse } from "qs";
 
@@ -59,14 +60,40 @@ const generateFilter = (filters?: CrudFilters) => {
 
     if (filters) {
         filters.map(({ field, operator, value }) => {
-            const mapedOperator = mapOperator(operator);
+            if (operator === "or") {
+                if (!Array.isArray(value)) {
+                    console.error(
+                        `The value of the "or" operator must be of type [CrudFilters](https://refine.dev/docs/core/interfaceReferences/#crudfilters).`,
+                    );
+                }
 
-            if (Array.isArray(value)) {
-                value.map((val: string) => {
-                    rawQuery += `&filters${field}[$${mapedOperator}]=${val}`;
+                value.map((item: CrudFilter, index: number) => {
+                    const mapedOperator = mapOperator(item.operator);
+
+                    if (!item.field) {
+                        console.error(
+                            `Please enter a "field" in the filters inside the operator "or"`,
+                        );
+                    }
+
+                    rawQuery += `&filters[$or][${index}][${item.field}][$${mapedOperator}]=${item.value}`;
                 });
             } else {
-                rawQuery += `&filters[${field}][$${mapedOperator}]=${value}`;
+                if (!field) {
+                    console.error(
+                        `Please enter a "field" for filters whose operator is not "or"`,
+                    );
+                }
+
+                const mapedOperator = mapOperator(operator);
+
+                if (Array.isArray(value)) {
+                    value.map((val: string) => {
+                        rawQuery += `&filters${field}[$${mapedOperator}]=${val}`;
+                    });
+                } else {
+                    rawQuery += `&filters[${field}][$${mapedOperator}]=${value}`;
+                }
             }
         });
     }
