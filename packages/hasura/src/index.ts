@@ -160,7 +160,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                                 type: hasuraSortingType,
                             },
                         }),
-                        ...(hasuraSorting && {
+                        ...(hasuraFilters && {
                             where: {
                                 value: hasuraFilters,
                                 type: hasuraFiltersType,
