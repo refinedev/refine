@@ -155,6 +155,7 @@ Refine includes many out-of-the-box data providers to use in your projects like:
 -   [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql)
 -   [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
 -   [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura)
+-   [Nhost](https://github.com/pankod/refine/tree/master/packages/nhost)
 -   [Appwrite](https://github.com/pankod/refine/tree/master/packages/appwrite)
 -   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 

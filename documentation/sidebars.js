@@ -382,6 +382,7 @@ module.exports = {
                         "examples/data-provider/appwrite",
                         "examples/data-provider/strapi-graphql",
                         "examples/data-provider/hasura",
+                        "examples/data-provider/nhost",
                         "examples/data-provider/nestjsxCrud",
                         "examples/data-provider/airtable",
                         "examples/data-provider/supabase",
