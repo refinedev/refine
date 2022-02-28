@@ -146,70 +146,19 @@ export const useDelete = <
         },
         {
             onMutate: async ({ id, resource, mutationMode }) => {
-                // const previousQueries: ContextQuery[] = [];
+                //  const previousQueries: ContextQuery[] = [];
                 const previousQueries: any = [];
-                // const allQueries = cacheQueries(resource, id);
 
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
-
-                console.log(
-                    "mutationModePropOrContext",
-                    mutationModePropOrContext,
-                );
-
-                // for (const queryItem of allQueries) {
-                //     const { queryKey } = queryItem;
-
-                //     console.log("queryKey", queryKey);
-
-                //     await queryClient.cancelQueries(queryKey, undefined, {
-                //         silent: true,
-                //     });
-
-                //     const previousQuery =
-                //         queryClient.getQueryData<QueryResponse<TData>>(
-                //             queryKey,
-                //         );
-
-                //     if (!(mutationModePropOrContext === "pessimistic")) {
-                //         if (previousQuery) {
-                //             previousQueries.push({
-                //                 query: previousQuery,
-                //                 queryKey,
-                //             });
-
-                //             if (
-                //                 queryKey.includes(`resource/list/${resource}`)
-                //             ) {
-                //                 const { data, total } =
-                //                     previousQuery as GetListResponse<TData>;
-
-                //                 queryClient.setQueryData(queryKey, {
-                //                     ...previousQuery,
-                //                     data: (data ?? []).filter(
-                //                         (record: TData) =>
-                //                             !(
-                //                                 record.id?.toString() ===
-                //                                 id.toString()
-                //                             ),
-                //                     ),
-                //                     total: total - 1,
-                //                 });
-                //             } else {
-                //                 queryClient.removeQueries(queryKey);
-                //             }
-                //         }
-                //     }
-                // }
 
                 await queryClient.cancelQueries(resource, undefined, {
                     silent: true,
                 });
 
-                const previousQuery = queryClient.getQueriesData(resource);
-
-                console.log("previousQuery", previousQuery);
+                const previousQuery: any = queryClient.getQueriesData([
+                    resource,
+                ]);
 
                 if (!(mutationModePropOrContext === "pessimistic")) {
                     if (previousQuery) {
@@ -227,15 +176,14 @@ export const useDelete = <
                                     if (!previous) {
                                         return null;
                                     }
+                                    const data = previous.data.filter(
+                                        (record: TData) =>
+                                            record.id?.toString() !==
+                                            id.toString(),
+                                    );
 
                                     return {
-                                        data: previous.data.filter(
-                                            (record: TData) =>
-                                                !(
-                                                    record.id?.toString() ===
-                                                    id.toString()
-                                                ),
-                                        ),
+                                        data,
                                         total: previous.total - 1,
                                     };
                                 },
@@ -255,28 +203,14 @@ export const useDelete = <
                 { id, resource, errorNotification },
                 context,
             ) => {
-                console.log(
-                    "context.previousQueries",
-                    context?.previousQueries,
-                );
-
                 if (context) {
                     // queryClient.setQueriesData(
-                    //     context.previousQueries,
-                    //     (previous?: QueryResponse<TData> | null | any) => {
-                    //         if (!previous) {
-                    //             return null;
-                    //         }
-
-                    //         return {
-                    //             data: previous.data,
-                    //             total: previous.total,
-                    //         };
-                    //     },
+                    //     [resource, "list"],
+                    //     context?.previousQueries,
                     // );
 
-                    for (const query of context.previousQueries) {
-                        queryClient.setQueryData(query.queryKey, query.query);
+                    for (const query of context.previousQueries[0]) {
+                        queryClient.setQueryData(query[0], query[1]);
                     }
                 }
 
@@ -314,6 +248,8 @@ export const useDelete = <
                     id,
                 ]);
 
+                // get many remove et
+
                 if (detailQueries.length > 0) {
                     queryClient.removeQueries(detailQueries);
                 }
@@ -345,24 +281,22 @@ export const useDelete = <
                     date: new Date(),
                 });
             },
-            // onSettled: (_data, _error, { id, resource }) => {
+            onSettled: (_data, _error, { id, resource }) => {
+                // const allQueries = cacheQueries(resource, id);
 
-            //     const allQueries = cacheQueries(resource, id);
-            //     console.log("allQueries", allQueries);
+                // for (const query of allQueries) {
+                //     if (
+                //         !query.queryKey.includes(`resource/getOne/${resource}`)
+                //     ) {
+                //         queryClient.invalidateQueries(query.queryKey);
+                //     }
+                // }
 
-            //     for (const query of allQueries) {
-            //         if (
-            //             !query.queryKey.includes(`resource/getOne/${resource}`)
-            //         ) {
-            //             queryClient.invalidateQueries(query.queryKey);
-            //         }
-            //     }
-
-            //     notificationDispatch({
-            //         type: ActionTypes.REMOVE,
-            //         payload: { id, resource },
-            //     });
-            // },
+                notificationDispatch({
+                    type: ActionTypes.REMOVE,
+                    payload: { id, resource },
+                });
+            },
         },
     );
 

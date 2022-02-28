@@ -8,7 +8,7 @@ export type QueryResponse<T = BaseRecord> =
     | GetOneResponse<T>;
 
 export type Context = {
-    previousQueries: ContextQuery[];
+    previousQueries: ContextQuery[] | any; //TO DO: fix type
 };
 
 export type ContextQuery<T = BaseRecord> = {

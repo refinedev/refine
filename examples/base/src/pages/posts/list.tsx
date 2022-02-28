@@ -124,7 +124,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                             <DeleteButton
                                 hideText
                                 size="small"
-                                recordItemId={"record.id"}
+                                recordItemId={record.id}
                             />
                         </Space>
                     )}
