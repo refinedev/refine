@@ -44,10 +44,11 @@ export type CrudOperators =
     | "between"
     | "nbetween"
     | "null"
-    | "nnull";
+    | "nnull"
+    | "or";
 
 export type CrudFilter = {
-    field: string;
+    field?: string;
     operator: CrudOperators;
     value: any;
 };
