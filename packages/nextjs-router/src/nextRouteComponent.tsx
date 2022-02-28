@@ -27,10 +27,8 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
     const {
         resource: routeResourceName,
         action,
-        id: idFromRoute,
+        id,
     } = useParams<ResourceRouterParams>();
-
-    const id = idFromRoute ? decodeURIComponent(idFromRoute) : undefined;
 
     const { pathname } = useLocation();
     const { DashboardPage, catchAll, LoginPage } = useRefineContext();

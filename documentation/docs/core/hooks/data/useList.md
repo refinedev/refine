@@ -45,7 +45,7 @@ First of all, we will use `useList` without passing any query configurations.
 import { useList } from "@pankod/refine-core";
 
 type IPost = {
-    id: string;
+    id: number;
     title: string;
     status: "rejected" | "published" | "draft";
 };
@@ -265,7 +265,7 @@ const postListQueryResult = useList<IPost>({
 | metaData                                                                                           | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                           | {}                                  |
 | dataProviderName                                                                                   | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.                                                                 | `string`                                                                       | `default`                           |
 | [liveMode](/core/providers/live-provider.md#usage-in-a-hook)                                       | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)         | `"off"`                             |
-| liveParams                                                                                         | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: string[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | `undefined`                         |
+| liveParams                                                                                         | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: BaseKey[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | `undefined`                         |
 | onLiveEvent                                                                                        | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)              | `undefined`                         |
 
 ### Config parameters

@@ -36,13 +36,13 @@ Let's say that we have a resource named `categories`.
 import { useMany } from "@pankod/refine-core";
 
 type ICategory = {
-    id: string;
+    id: number;
     title: string;
 };
 
 const categoryQueryResult = useMany<ICategory>({
     resource: "categories",
-    ids: ["1", "2"],
+    ids: [1, 2],
 });
 ```
 
@@ -55,7 +55,7 @@ const categoryQueryResult = useMany<ICategory>({
 ```tsx
 const categoryQueryResult = useMany<ICategory>({
     resource: "categories",
-    ids: ["1", "2"],
+    ids: [1, 2],
     queryOptions: { enabled: false },
 });
 ```
@@ -93,14 +93,14 @@ After query runs, the `categoryQueryResult` will include the retrieved data:
 | Property                                                                                            | Description                                                                                                                                                        | Type                                                                           | Default                             |
 | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ----------------------------------- |
 | <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                                                                                                            | `string`                                                                       |                                     |
-| ids <div className="required">Required</div>                                                        | ids of the item in the resource                                                                                                                                    | `string[]`                                                                     |                                     |
+| ids <div className="required">Required</div>                                                        | ids of the item in the resource                                                                                                                                    | [`BaseKey[]`](/core/interfaces.md#basekey)                                                                      |                                     |
 | queryOptions                                                                                        | `react-query`'s `useQuery` options                                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                    |                                     |
 | successNotification                                                                                 | Successful Query notification                                                                                                                                      | [`SuccessErrorNotification`](/core/interfaces.md#successerrornotification)     | `false`                             |
 | errorNotification                                                                                   | Unsuccessful Query notification                                                                                                                                    | [`SuccessErrorNotification`](/core/interfaces.md#successerrornotification)     | "Error (status code: `statusCode`)" |
 | metaData                                                                                            | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                           | {}                                  |
 | dataProviderName                                                                                    | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.                                                                 | `string`                                                                       | `default`                           |
 | [liveMode](/core/providers/live-provider.md#usage-in-a-hook)                                        | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)         | `"off"`                             |
-| liveParams                                                                                          | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: string[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | `undefined`                         |
+| liveParams                                                                                          | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: BaseKey[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | `undefined`                         |
 | onLiveEvent                                                                                         | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)              | `undefined`                         |
 
 ### Type Parameters

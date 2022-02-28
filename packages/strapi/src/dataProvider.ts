@@ -4,6 +4,7 @@ import {
     HttpError,
     CrudFilters,
     CrudSorting,
+    BaseKey,
 } from "@pankod/refine-core";
 import { stringify } from "query-string";
 
@@ -88,7 +89,7 @@ export const DataProvider = (
     getMany: async ({ resource, ids }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const query = ids.map((item: string) => `id_in=${item}`).join("&");
+        const query = ids.map((item: BaseKey) => `id_in=${item}`).join("&");
 
         const { data } = await httpClient.get(`${url}?${query}`);
 

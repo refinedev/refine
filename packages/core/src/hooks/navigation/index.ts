@@ -1,4 +1,5 @@
 import { useResourceWithRoute, useRouterContext } from "@hooks";
+import { BaseKey } from "../../interfaces";
 
 export type HistoryType = "push" | "replace";
 
@@ -22,7 +23,11 @@ export const useNavigation = () => {
             : history.replace(`/${resourceName.route}/create`);
     };
 
-    const edit = (resource: string, id: string, type: HistoryType = "push") => {
+    const edit = (
+        resource: string,
+        id: BaseKey,
+        type: HistoryType = "push",
+    ) => {
         const resourceName = resourceWithRoute(resource);
 
         const encodedId = encodeURIComponent(id);
@@ -34,7 +39,7 @@ export const useNavigation = () => {
 
     const clone = (
         resource: string,
-        id: string,
+        id: BaseKey,
         type: HistoryType = "push",
     ) => {
         const resourceName = resourceWithRoute(resource);
@@ -46,7 +51,11 @@ export const useNavigation = () => {
             : history.replace(`/${resourceName.route}/clone/${encodedId}`);
     };
 
-    const show = (resource: string, id: string, type: HistoryType = "push") => {
+    const show = (
+        resource: string,
+        id: BaseKey,
+        type: HistoryType = "push",
+    ) => {
         const resourceName = resourceWithRoute(resource);
 
         const encodedId = encodeURIComponent(id);

@@ -156,7 +156,10 @@ const AirtableDataProvider = (
         },
 
         update: async ({ resource, id, variables }) => {
-            const { fields } = await base(resource).update(id, variables);
+            const { fields } = await base(resource).update(
+                id.toString(),
+                variables,
+            );
 
             return {
                 data: {
@@ -168,7 +171,7 @@ const AirtableDataProvider = (
 
         updateMany: async ({ resource, ids, variables }) => {
             const requestParams = ids.map((id) => ({
-                id,
+                id: id.toString(),
                 fields: { ...variables },
             }));
             const data = await base(resource).update(requestParams);
@@ -182,7 +185,7 @@ const AirtableDataProvider = (
         },
 
         getOne: async ({ resource, id }) => {
-            const { fields } = await base(resource).find(id);
+            const { fields } = await base(resource).find(id.toString());
 
             return {
                 data: {
@@ -193,7 +196,7 @@ const AirtableDataProvider = (
         },
 
         deleteOne: async ({ resource, id }) => {
-            const { fields } = await base(resource).destroy(id);
+            const { fields } = await base(resource).destroy(id.toString());
 
             return {
                 data: {
@@ -204,7 +207,7 @@ const AirtableDataProvider = (
         },
 
         deleteMany: async ({ resource, ids }) => {
-            const data = await base(resource).destroy(ids);
+            const data = await base(resource).destroy(ids.map(String));
 
             return {
                 data: data.map((p) => ({
