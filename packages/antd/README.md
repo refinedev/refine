@@ -35,7 +35,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/maintainability)](https://codeclimate.com/github/pankod/refine/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/test_coverage)](https://codeclimate.com/github/pankod/refine/test_coverage)
 [![npm version](https://img.shields.io/npm/v/@pankod/refine-antd.svg)](https://www.npmjs.com/package/@pankod/refine-antd)
-[![npm](https://img.shields.io/npm/dm/@pankod/refine-antd)](https://www.npmjs.com/package/@pankod/refine-antd)
+[![npm](https://img.shields.io/npm/dm/@pankod/refine-core-antd)](https://www.npmjs.com/package/@pankod/refine-antd)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](code_of_conduct.md)
 
 
