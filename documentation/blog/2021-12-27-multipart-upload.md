@@ -139,7 +139,7 @@ A React-based framework for building data-intensive applications in no time. **r
 
 📦 Out-of-the-box : Routing, networking, authentication, state management, i18n and UI.
 
-🔌 Backend Agnostic : Connects to any custom backend. Built-in support for REST API, Strapi, NestJs CRUD, Airtable, Supabase, Appwrite and Altogic.
+🔌 Backend Agnostic : Connects to any custom backend. Built-in support for REST API, Strapi, NestJs CRUD, Hasura, Nhost, Airtable, Supabase, Appwrite and Altogic.
 
 📝 Native Typescript Core : You can always opt-out for plain JavaScript.
 
