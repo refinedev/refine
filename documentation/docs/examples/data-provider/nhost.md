@@ -5,8 +5,8 @@ title: Nhost
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/dataProvider/nhost)
 
-**Username**: salih@pankod.com  
-**Password**: refine-nhost
+**Username**: info@refine.dev  
+**Password**: demodemo
 
 <iframe src="https://codesandbox.io/embed/refine-nhost-example-jb9v4c?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
   style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
