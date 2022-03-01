@@ -1,4 +1,4 @@
-export const handleUseParams = (params: any): any => {
+export const handleUseParams = (params: any = {}): any => {
     if (params?.id) {
         return {
             ...params,
