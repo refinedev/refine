@@ -12,7 +12,7 @@ export default defineConfig({
             dest: "./dist/styles.min.css",
         }),
     ],
-    dts: {
-        resolve: true,
+    loader: {
+        ".svg": "dataurl",
     },
 });

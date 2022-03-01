@@ -37,6 +37,10 @@
     "entry": [
       "src/index.ts"
     ],
+    "external": [
+      "react",
+      "react-dom"
+  ],
     "splitting": false,
     "sourcemap": true,
     "clean": false

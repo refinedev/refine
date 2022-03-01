@@ -4,7 +4,6 @@
     "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
     "private": false,
     "main": "dist/index.js",
-    "module": "dist/index.mjs",
     "typings": "dist/index.d.ts",
     "scripts": {
         "start": "tsup --watch --dts",
@@ -40,7 +39,7 @@
         "typescript": "^4.4.3",
         "tsup": "^5.11.13",
         "esbuild-copy-static-files": "^0.1.0",
-        "esbuild-copy-plugin": "^1.0.0"
+        "esbuild-plugin-inline-image": "^0.0.8"
     },
     "dependencies": {
         "@ant-design/icons": "^4.5.0",

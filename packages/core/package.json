@@ -55,7 +55,11 @@
         ],
         "splitting": false,
         "sourcemap": true,
-        "clean": false
+        "clean": false,
+        "external": [
+            "react",
+            "react-dom"
+        ]
     },
     "author": "Pankod",
     "license": "MIT",
