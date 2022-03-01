@@ -7,9 +7,5 @@ export default defineConfig({
     sourcemap: true,
     clean: false,
     external: ["react", "react-dom"],
-    esbuildPlugins: [
-        lodashTransformer({
-            outLodashPackage: "lodash-es",
-        }),
-    ],
+    esbuildPlugins: [lodashTransformer()],
 });
