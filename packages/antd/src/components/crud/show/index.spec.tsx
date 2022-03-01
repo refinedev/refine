@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { Route } from "react-router-dom";
 import { Button } from "antd";
-import { IAccessControlContext } from "@pankod/refine-core/dist/interfaces";
+import { AccessControlProvider } from "@pankod/refine-core";
 
 import { render, TestWrapper, waitFor } from "@test";
 
@@ -9,7 +9,7 @@ import { Show } from "./index";
 
 const renderShow = (
     show: ReactNode,
-    accessControlProvider?: IAccessControlContext,
+    accessControlProvider?: AccessControlProvider,
 ) => {
     return render(<Route path="/:resource/show/:id">{show}</Route>, {
         wrapper: TestWrapper({
