@@ -47,12 +47,18 @@ export type CrudOperators =
     | "nnull"
     | "or";
 
-export type CrudFilter = {
-    field?: string;
-    operator: CrudOperators;
+export type LogicalFilter = {
+    field: string;
+    operator: Exclude<CrudOperators, "or">;
     value: any;
 };
 
+export type ConditionalFilter = {
+    operator: "or";
+    value: LogicalFilter[];
+};
+
+export type CrudFilter = LogicalFilter | ConditionalFilter;
 export type CrudSort = {
     field: string;
     order: "asc" | "desc";
