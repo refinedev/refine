@@ -2,7 +2,7 @@ import {
     useQueryClient,
     useMutation,
     UseMutationResult,
-    InfiniteData,
+    QueryKey,
 } from "react-query";
 
 import {
@@ -21,13 +21,14 @@ import {
     DeleteOneResponse,
     MutationMode,
     QueryResponse,
-    Context as DeleteContext,
+    PrevContext as DeleteContext,
     BaseRecord,
     ContextQuery,
     HttpError,
     GetListResponse,
     SuccessErrorNotification,
     MetaDataQuery,
+    PreviousQuery,
 } from "../../interfaces";
 
 type DeleteParams = {
@@ -47,7 +48,7 @@ type UseDeleteReturnType<
     DeleteOneResponse<TData>,
     TError,
     DeleteParams,
-    DeleteContext
+    DeleteContext<TData>
 >;
 
 /**
@@ -87,7 +88,7 @@ export const useDelete = <
         DeleteOneResponse<TData>,
         TError,
         DeleteParams,
-        DeleteContext
+        DeleteContext<TData>
     >(
         ({
             id,
@@ -146,24 +147,20 @@ export const useDelete = <
         },
         {
             onMutate: async ({ id, resource, mutationMode }) => {
-                //  const previousQueries: ContextQuery[] = [];
-                const previousQueries: any = [];
-
+                // const previousQueries: PreviousQuery<TData>[] = [];
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
 
-                // await queryClient.cancelQueries(resource, undefined, {
-                //     silent: true,
-                // });
+                await queryClient.cancelQueries(resource, undefined, {
+                    silent: true,
+                });
 
-                const previousQuery: any = queryClient.getQueriesData([
+                const previousQueries: any = queryClient.getQueriesData([
                     resource,
-                ]);
+                ]) as [queryKey: QueryKey, data: TData | unknown];
 
                 if (!(mutationModePropOrContext === "pessimistic")) {
-                    if (previousQuery) {
-                        previousQueries.push(previousQuery);
-
+                    if (previousQueries) {
                         const listQueries = queryClient.getQueriesData([
                             resource,
                             "list",
@@ -188,12 +185,13 @@ export const useDelete = <
                                     };
                                 },
                             );
+                        } else {
+                            queryClient.invalidateQueries([resource]);
                         }
-                        //else {
-                        //     queryClient.invalidateQueries([resource]);
-                        // }
                     }
                 }
+
+                console.log("previousQueries", previousQueries);
 
                 return {
                     previousQueries: previousQueries,
@@ -204,15 +202,8 @@ export const useDelete = <
                 { id, resource, errorNotification },
                 context,
             ) => {
-                console.log("onError", err);
-
                 if (context) {
-                    // queryClient.setQueriesData(
-                    //     [resource, "list"],
-                    //     context?.previousQueries,
-                    // );
-                    console.log("context", context.previousQueries);
-
+                    console.log("onError", context.previousQueries);
                     for (const query of context.previousQueries[0]) {
                         queryClient.setQueryData(query[0], query[1]);
                     }
