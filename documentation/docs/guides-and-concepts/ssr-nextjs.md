@@ -11,11 +11,15 @@ title: SSR-Next.js
 [**nextjs-router**][NextjsRouter] package provided by **refine** must be used for the [`routerProvider`][routerProvider]
 
 ```bash
-npm i @pankod/refine @pankod/refine-nextjs-router
+npm i @pankod/refine-core @pankod/refine-antd @pankod/refine-nextjs-router
 ```
 
 :::tip
 We recommend [**superplate**][superplate] to initialize your refine projects. It configures the project according to your needs including SSR with Next.js.
+:::
+
+:::caution
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
 :::
 
 ## Usage
@@ -25,7 +29,9 @@ We recommend [**superplate**][superplate] to initialize your refine projects. It
 ```tsx title="pages/_app.tsx"
 import { AppProps } from "next/app";
 
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-nextjs-router";
 
@@ -37,6 +43,10 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
         >
             <Component {...pageProps} />
         </Refine>
@@ -52,12 +62,12 @@ export default MyApp;
 Let's say we want to show a list of users in `/users`. After creating `users.tsx` under `pages` in your Nextjs app, we can use the `useTable` hook to list the users in a table:
 
 ```tsx title="pages/users.tsx"
+import { LayoutWrapper } from "@pankod/refine-core";
 import {
     useTable,
     List,
     Table,
-    LayoutWrapper,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 // highlight-start
@@ -103,13 +113,15 @@ We also used `<LayoutWrapper>` to show the page in the layout provided to [`<Ref
 import { GetServerSideProps } from "next";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    useTable,
-    List,
-    Table,
     LayoutWrapper,
 // highlight-next-line
     GetListResponse,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
+import {
+    useTable,
+    List,
+    Table,
+} from "@pankod/refine-antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 // highlight-start
@@ -241,13 +253,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 And in the `list` component for a `resource` e.g. "posts":
 
 ```tsx title="src/components/posts/list.tsx"
+import { GetListResponse, IResourceComponentsProps } from "@pankod/refine-core";
 import {
     useTable,
     List,
     Table,
-    GetListResponse,
-} from "@pankod/refine";
-import type { IResourceComponentsProps } from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC<
     IResourceComponentsProps<GetListResponse<IPost>>
@@ -320,7 +331,7 @@ If `syncWithLocation` is enabled, query parameters must be handled while doing S
 ```tsx title="pages/users.tsx"
 import { GetServerSideProps } from "next";
 // highlight-next-line
-import { parseTableParamsFromQuery } from "@pankod/refine";
+import { parseTableParamsFromQuery } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -354,7 +365,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-next-q94fw?autoresize=1&fontsize=14&module=%2Fpages%2F_app.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-next-3x3zp?autoresize=1&fontsize=14&module=%2Fpages%2F_app.tsx&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-next"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
@@ -363,17 +374,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 [Nextjs]: https://nextjs.org/docs/getting-started
 [NextjsRouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router
-[routerProvider]: /api-references/providers/router-provider.md
+[routerProvider]: /core/providers/router-provider.md
 [superplate]: https://github.com/pankod/superplate
 [NextjsCustomApp]: https://nextjs.org/docs/advanced-features/custom-app
-[refine]: /api-references/components/refine-config.md
+[refine]: /core/components/refine-config.md
 [NextjsPages]: https://nextjs.org/docs/basic-features/pages
-[useTable]: /api-references/hooks/table/useTable.md
+[useTable]: /core/hooks/useTable.md
 [ReactQuerySSR]: https://react-query.tanstack.com/guides/ssr#using-initialdata
 [ReactQuery]: https://react-query.tanstack.com/
-[getList]: /api-references/providers/data-provider.md#getlist
-[dataProvider]: /api-references/providers/data-provider.md
-[useTable]: /api-references/hooks/table/useTable.md
-[interfaces]: /api-references/interfaces.md/#crudfilters
+[getList]: /core/providers/data-provider.md#getlist
+[dataProvider]: /core/providers/data-provider.md
+[useTable]: /core/hooks/useTable.md
+[interfaces]: /core/interfaces.md/#crudfilters
 [autoStaticOpt]: https://nextjs.org/docs/advanced-features/automatic-static-optimization
 [dataFetching]: https://nextjs.org/docs/basic-features/data-fetching

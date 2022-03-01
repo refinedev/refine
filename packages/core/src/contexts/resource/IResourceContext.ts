@@ -6,6 +6,7 @@ export interface IResourceContext {
 export interface OptionsProps {
     label?: string;
     route?: string;
+    [key: string]: any;
 }
 
 export interface ResourceProps extends IResourceComponents {
@@ -21,6 +22,7 @@ export interface IResourceComponentsProps<TCrudData = any> {
     canShow?: boolean;
     name?: string;
     initialData?: TCrudData;
+    options?: OptionsProps;
 }
 export interface IResourceComponents {
     list?: React.FunctionComponent<IResourceComponentsProps>;
@@ -38,9 +40,5 @@ export interface IResourceItem extends IResourceComponents {
     canEdit?: boolean;
     canShow?: boolean;
     canDelete?: boolean;
+    options?: OptionsProps;
 }
-
-export type IMenuItem = IResourceItem & {
-    key: string;
-    route: string;
-};

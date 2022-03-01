@@ -1,14 +1,14 @@
+import { IResourceComponentsProps, useList } from "@pankod/refine-core";
+
 import {
     List,
     Table,
     TextField,
     useTable,
-    IResourceComponentsProps,
     Space,
     EditButton,
     ShowButton,
-    useList,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost, ILanguage } from "interfaces";
 

@@ -1,15 +1,15 @@
 import { useContext } from "react";
+import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
+
 import {
     Form,
     Input,
-    IResourceComponentsProps,
     useForm,
     useSelect,
     Select,
     InputNumber,
-    HttpError,
     Edit,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IOrder, IProduct } from "interfaces";
 import { StoreContext } from "context/store";
@@ -28,7 +28,7 @@ export const OrderEdit: React.FC<IResourceComponentsProps> = () => {
 
     const { selectProps: productSelectProps } = useSelect<IProduct>({
         resource: "products",
-        defaultValue: productData?.product?.data?.id,
+        defaultValue: productData?.product?.id,
         optionLabel: "title",
         optionValue: "id",
         filters: [{ field: "stores][id]", operator: "eq", value: store }],
@@ -42,17 +42,10 @@ export const OrderEdit: React.FC<IResourceComponentsProps> = () => {
                 initialValues={{
                     isActive: true,
                 }}
-                onFinish={(values) => {
-                    console.log(values);
-                    return formProps.onFinish?.({
-                        ...values,
-                        product: values.product?.data,
-                    });
-                }}
             >
                 <Form.Item
                     label="Product"
-                    name={["product", "data", "id"]}
+                    name={["product", "id"]}
                     rules={[
                         {
                             required: true,

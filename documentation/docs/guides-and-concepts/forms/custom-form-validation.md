@@ -43,8 +43,14 @@ Now let's prepare a rule that checks if the titles of the posts are unique. We h
 
 ```tsx
 import { useState } from "react";
-// highlight-next-line
-import { useApiUrl, useCustom, HttpError, useForm, Form, Create, Input } from "@pankod/refine";
+// highlight-start
+import {
+    useApiUrl,
+    useCustom,
+    HttpError
+} from "@pankod/refine-core";
+import { useForm, Form, Create, Input } from "@pankod/refine-antd";
+//highlight-end
 
 export const PostCreate = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();

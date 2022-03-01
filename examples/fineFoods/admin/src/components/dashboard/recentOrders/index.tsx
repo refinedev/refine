@@ -1,3 +1,4 @@
+import { useNavigation, useTranslate } from "@pankod/refine-core";
 import {
     Typography,
     useTable,
@@ -6,9 +7,7 @@ import {
     Space,
     Tag,
     NumberField,
-    useNavigation,
-    useTranslate,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 import "./style.less";
 
 import { OrderActions } from "components";
@@ -45,6 +44,7 @@ export const RecentOrders: React.FC = () => {
             {...tableProps}
             pagination={{ ...tableProps.pagination, simple: true }}
             showHeader={false}
+            rowKey="id"
         >
             <Table.Column<IOrder>
                 key="avatar"

@@ -1,17 +1,17 @@
 import { useContext } from "react";
+import { IResourceComponentsProps, useMany } from "@pankod/refine-core";
+
 import {
     List,
     Table,
     useTable,
-    IResourceComponentsProps,
     TagField,
-    useMany,
     TextField,
     Space,
     EditButton,
     DeleteButton,
     ImageField,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IOrder, IProduct } from "interfaces";
 import { StoreContext } from "context/store";

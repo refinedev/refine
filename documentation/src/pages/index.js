@@ -19,9 +19,9 @@ function Home() {
         >
             <main>
                 <Hero />
+                <KeyFeatures />
                 <FastAndFlexible />
                 {/* <Comments /> */}
-                <KeyFeatures />
                 <LazyLoad once offset={200}>
                     <PerfectImplementation />
                 </LazyLoad>

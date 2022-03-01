@@ -1,4 +1,4 @@
-import { IRouterProvider } from "@pankod/refine";
+import { IRouterProvider } from "@pankod/refine-core";
 import {
     useLocation,
     Link,
@@ -11,9 +11,14 @@ import {
 
 import { RouterComponent, location } from "./routerComponent";
 import { Prompt } from "./prompt";
+import { handleUseParams } from "@pankod/refine-core";
+
+export type RefineRouteProps = Route & {
+    layout?: boolean;
+};
 
 interface IReactRouterProvider extends IRouterProvider {
-    routes?: Route[];
+    routes?: RefineRouteProps[];
     RouterComponent: React.FC<RouterProps>;
     Link: typeof Link;
     location: ReactLocation;
@@ -50,8 +55,7 @@ const RouterProvider: IReactRouterProvider = {
     },
     useParams: () => {
         const { params } = useMatch();
-
-        return params as any;
+        return handleUseParams(params);
     },
     Prompt,
     Link,

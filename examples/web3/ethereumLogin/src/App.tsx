@@ -1,7 +1,12 @@
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import {
+    notificationProvider,
+    Layout,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 import simpleRestDataProvider from "@pankod/refine-simple-rest";
 import { authProvider } from "authProvider";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -27,7 +32,10 @@ function App() {
                     show: PostShow,
                 },
             ]}
-        ></Refine>
+            notificationProvider={notificationProvider}
+            Layout={Layout}
+            catchAll={<ErrorComponent />}
+        />
     );
 }
 

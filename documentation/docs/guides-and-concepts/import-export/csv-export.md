@@ -9,18 +9,24 @@ With **refine**, you can easily add export functionality to dump resources' reco
 
 ## Usage
 
+:::caution
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
+:::
+
 Let's see an example:
 
 ```tsx  title="pages/posts/list.tsx"
 import {
+    // highlight-next-line
+    useExport,
+} from "@pankod/refine-core";
+import {
     List,
     Table,
     useTable,
-// highlight-start
-    useExport,
+// highlight-next-line
     ExportButton,
-// highlight-end
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -73,7 +79,7 @@ Manually running the `triggerExport` function is another option.
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-import-export-example-4nneu?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-import-export-example-2ftcf?autoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-import-export-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
@@ -82,5 +88,5 @@ Manually running the `triggerExport` function is another option.
 
 
 [Button]: https://ant.design/components/button/
-[useExport]: api-references/hooks/import-export/useExport.md
-[ExportButton]: api-references/components/buttons/export.md
+[useExport]: /core/hooks/import-export/useExport.md
+[ExportButton]: /ui-frameworks/antd/components/buttons/export.md

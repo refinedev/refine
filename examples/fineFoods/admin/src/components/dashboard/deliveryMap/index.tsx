@@ -1,4 +1,4 @@
-import { useList, useNavigation } from "@pankod/refine";
+import { useList, useNavigation } from "@pankod/refine-core";
 import GoogleMapReact from "google-map-react";
 
 import { MapMarker } from "components/map";

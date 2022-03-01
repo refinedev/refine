@@ -1,4 +1,4 @@
-import { LiveEvent } from "../../interfaces";
+import { BaseKey, LiveEvent } from "../../interfaces";
 
 export type ILiveContext =
     | {
@@ -6,7 +6,7 @@ export type ILiveContext =
           subscribe: (options: {
               channel: string;
               params?: {
-                  ids?: string[];
+                  ids?: BaseKey[];
                   [key: string]: any;
               };
               types: LiveEvent["type"][];

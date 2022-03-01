@@ -1,13 +1,14 @@
 {
 	"name": "fine-foods",
-	"version": "2.7.8",
+	"version": "3.4.0",
 	"private": true,
 	"dependencies": {
-		"@ant-design/charts": "^1.1.9",
+		"@ant-design/charts": "^1.2.0",
 		"@craco/craco": "^6.1.2",
-		"@pankod/refine": "^2.7.8",
-		"@pankod/refine-react-router": "^2.7.8",
-		"@pankod/refine-simple-rest": "^2.7.8",
+		"@pankod/refine-antd": "^3.4.0",
+		"@pankod/refine-core": "^3.4.0",
+		"@pankod/refine-react-router-v6": "^3.4.0",
+		"@pankod/refine-simple-rest": "^3.4.0",
 		"@testing-library/jest-dom": "^5.12.0",
 		"@testing-library/react": "^11.2.6",
 		"@testing-library/user-event": "^12.8.3",
@@ -35,8 +36,8 @@
 		"web-vitals": "^1.1.1"
 	},
 	"scripts": {
-		"start": "craco start",
-		"build": "craco build",
+		"start": "DISABLE_ESLINT_PLUGIN=true craco start",
+		"build": "DISABLE_ESLINT_PLUGIN=true craco build",
 		"test": "craco test --passWithNoTests --watchAll=false",
 		"eject": "craco eject"
 	},

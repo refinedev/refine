@@ -1,22 +1,25 @@
 import React, { useState } from "react";
 import {
+    IResourceComponentsProps,
+    useMany,
+    useDeleteMany,
+} from "@pankod/refine-core";
+
+import {
     List,
     Table,
     TextField,
     Form,
     EditButton,
-    IResourceComponentsProps,
     Input,
     Select,
     Space,
     Button,
     MarkdownField,
     SaveButton,
-    useMany,
     useEditableTable,
     useSelect,
-    useDeleteMany,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
@@ -204,7 +207,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                         />
                                         <Button
                                             {...cancelButtonProps}
-                                            hideText
                                             size="small"
                                         >
                                             Cancel

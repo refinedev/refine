@@ -12,7 +12,7 @@ import accessControl from '@site/static/img/guides-and-concepts/access-control/a
 
 Access control is a broad topic where there are lots of advanced solutions that provide different set of features. **refine** is deliberately agnostic for its own API to be able to integrate different methods (RBAC, ABAC, ACL, etc.) and different libraries ([Casbin](https://casbin.org/), [CASL](https://casl.js.org/v5/en/), [Cerbos](https://cerbos.dev/), [AccessControl.js](https://onury.io/accesscontrol/)). `can` method would be the entry point for those solutions.
 
-[Refer to the Access Control Provider documentation for detailed information. &#8594](api-references/providers/accessControl-provider.md)
+[Refer to the Access Control Provider documentation for detailed information. &#8594](/core/providers/accessControl-provider.md)
 
 **refine** provides an agnostic API via the `accessControlProvider` to manage access control throughout your app.
 
@@ -27,7 +27,9 @@ We need to install Casbin.
 ```bash
 npm install casbin.js --save
 ```
-
+:::caution
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
+:::
 ## Setup
 
 The app will have three resources: **posts**, **users** and **categories** with CRUD pages(list, create, edit and show).
@@ -37,10 +39,12 @@ The app will have three resources: **posts**, **users** and **categories** with 
 `App.tsx` will look like this before we begin implementing access control:
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
-import "@pankod/refine/dist/styles.min.css";
+
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { UserList, UserCreate, UserEdit, UserShow } from "pages/users";
@@ -58,6 +62,10 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
             resources={[
                 {
                     name: "posts",
@@ -235,7 +243,7 @@ export default App;
 <summary>Header Component</summary>
 
 ```tsx title="src/components/header.tsx"
-import { AntdLayout, Radio } from "@pankod/refine";
+import { AntdLayout, Radio } from "@pankod/refine-antd";
 
 interface HeaderProps {
     role: string;
@@ -460,13 +468,13 @@ const App: React.FC = () => {
 export default App;
 ```
 
-Then it can be used with [`useCan`](api-references/hooks/accessControl/useCan.md) in the related area:
+Then it can be used with [`useCan`](core/hooks/accessControl/useCan.md) in the related area:
 
 ```tsx title="src/pages/posts/list.tsx"
 import {
     // ...
     useCan,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
 
 export const PostList: React.FC = () => {
     // ...
@@ -505,7 +513,7 @@ export const PostList: React.FC = () => {
 ```
 
 :::tip
-[`<CanAccess />`](api-references/components/accessControl/canAccess.md) can be used too to check access control in custom places in your app.
+[`<CanAccess />`](/core/components/accessControl/canAccess.md) can be used too to check access control in custom places in your app.
 :::
 
 <br/>
@@ -522,7 +530,7 @@ export const PostList: React.FC = () => {
 
 ### Casbin
 
-<iframe src="https://codesandbox.io/embed/access-control-casbin-react-l1ne3?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/access-control-casbin-react-l06vy?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="access-control-casbin-react"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
@@ -531,7 +539,7 @@ export const PostList: React.FC = () => {
 
 ### Cerbos
 
-<iframe src="https://codesandbox.io/embed/access-control-cerbos-react-5mfkq?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/access-control-cerbos-react-mbhei?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="access-control-cerbos-react"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

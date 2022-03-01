@@ -1,11 +1,9 @@
-import { useContext } from "react";
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 
-import { DataContext } from "@contexts/data";
-import { ActionTypes } from "@contexts/notification";
+import { ActionTypes } from "@contexts/undoableQueue";
 import {
     BaseRecord,
-    IDataContext,
+    BaseKey,
     UpdateResponse,
     QueryResponse,
     MutationMode,
@@ -23,17 +21,19 @@ import {
     useTranslate,
     useCheckError,
     usePublish,
+    useHandleNotification,
+    useDataProvider,
 } from "@hooks";
-import { handleNotification } from "@definitions/helpers";
 
 type UpdateParams<TVariables> = {
-    id: string;
+    id: BaseKey;
     resource: string;
     mutationMode?: MutationMode;
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
     values: TVariables;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 } & SuccessErrorNotification;
 
 export type UseUpdateReturnType<
@@ -65,7 +65,8 @@ export const useUpdate = <
     TVariables = {},
 >(): UseUpdateReturnType<TData, TError, TVariables> => {
     const queryClient = useQueryClient();
-    const { update } = useContext<IDataContext>(DataContext);
+    const dataProvider = useDataProvider();
+
     const {
         mutationMode: mutationModeContext,
         undoableTimeout: undoableTimeoutContext,
@@ -74,6 +75,7 @@ export const useUpdate = <
     const { mutate: checkError } = useCheckError();
     const publish = usePublish();
     const { notificationDispatch } = useCancelNotification();
+    const handleNotification = useHandleNotification();
 
     const getAllQueries = useCacheQueries();
 
@@ -91,6 +93,7 @@ export const useUpdate = <
             undoableTimeout,
             onCancel,
             metaData,
+            dataProviderName,
         }) => {
             const mutationModePropOrContext =
                 mutationMode ?? mutationModeContext;
@@ -99,22 +102,25 @@ export const useUpdate = <
                 undoableTimeout ?? undoableTimeoutContext;
 
             if (!(mutationModePropOrContext === "undoable")) {
-                return update<TData, TVariables>({
-                    resource,
-                    id,
-                    variables: values,
-                    metaData,
-                });
+                return dataProvider(dataProviderName).update<TData, TVariables>(
+                    {
+                        resource,
+                        id,
+                        variables: values,
+                        metaData,
+                    },
+                );
             }
             const updatePromise = new Promise<UpdateResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        update<TData, TVariables>({
-                            resource,
-                            id,
-                            variables: values,
-                            metaData,
-                        })
+                        dataProvider(dataProviderName)
+                            .update<TData, TVariables>({
+                                resource,
+                                id,
+                                variables: values,
+                                metaData,
+                            })
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
                     };
@@ -177,10 +183,7 @@ export const useUpdate = <
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: data.map((record: TData) => {
-                                        if (
-                                            record.id?.toString() ===
-                                            id.toString()
-                                        ) {
+                                        if (record.id == id) {
                                             return {
                                                 ...values,
                                                 id: id,
@@ -255,8 +258,11 @@ export const useUpdate = <
 
                 handleNotification(successNotification, {
                     key: `${id}-${resource}-notification`,
-                    message: translate("notifications.success", "Successful"),
                     description: translate(
+                        "notifications.success",
+                        "Successful",
+                    ),
+                    message: translate(
                         "notifications.editSuccess",
                         {
                             resource: translate(
@@ -273,9 +279,7 @@ export const useUpdate = <
                     channel: `resources/${resource}`,
                     type: "updated",
                     payload: {
-                        ids: data.data?.id
-                            ? [data.data.id.toString()]
-                            : undefined,
+                        ids: data.data?.id ? [data.data.id] : undefined,
                     },
                     date: new Date(),
                 });

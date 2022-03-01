@@ -17,14 +17,14 @@ const backends = [
     ],
     [
         {
-            src: "/icons/backends/dotnet.png",
-            srcset: "/icons/backends/dotnet@2x.png 768w",
-            alt: "dotnet",
-        },
-        {
             src: "/icons/backends/strapi.png",
             srcset: "/icons/backends/strapi@2x.png 768w",
             alt: "strapi",
+        },
+        {
+            src: "/icons/backends/nhost.png",
+            srcset: "/icons/backends/nhost@2x.png 768w",
+            alt: "nhost",
         },
     ],
     [
@@ -79,44 +79,42 @@ const backends = [
 
 const features = [
     {
-        src: "/icons/features/zero.png",
-        srcset: "/icons/features/zero@2x.png 768w",
-        title: "Zero-configuration",
+        src: "/icons/features/fast.png",
+        srcset: "/icons/features/fast@2x.png 768w",
+        title: "Fast",
+        description: `Up to 3x increase in speed of development. (<a href="/docs/getting-started/overview/#benchmark" target="_blank">*</a>)`,
+    },
+    {
+        src: "/icons/features/headless.png",
+        srcset: "/icons/features/headless@2x.png 768w",
+        title: "Headless",
+        description: "Works with any UI framework.",
+    },
+    {
+        src: "/icons/features/union.png",
+        srcset: "/icons/features/union@2x.png 768w",
+        title: "Flexible",
+        description: "No limits for your custom styling and business logic.",
+    },
+    {
+        src: "/icons/features/universal.png",
+        srcset: "/icons/features/universal@2x.png 768w",
+        title: "Universal",
         description:
-            "One-line setup with superplate. It takes less than a minute to start a project.",
+            "Single framework for internal tools and customer-facing apps. SSR included.",
     },
     {
-        src: "/icons/features/decoupled.png",
-        srcset: "/icons/features/decoupled@2x.png 768w",
-        title: "Decoupled UI",
+        src: "/icons/features/vector.png",
+        srcset: "/icons/features/vector@2x.png 768w",
+        title: "Future-proof",
         description:
-            "UI components are exposed directly without encapsulation. You have full control on UI elements.",
+            "Robust architecture, full test coverage and no technical debt.",
     },
     {
-        src: "/icons/features/box.png",
-        srcset: "/icons/features/box@2x.png 768w",
-        title: "Out-of-the-box",
-        description:
-            "Routing, networking, authentication, state management, i18n and UI.",
-    },
-    {
-        src: "/icons/features/powerful.png",
-        srcset: "/icons/features/powerful@2x.png 768w",
-        title: "Powerful Default UI",
-        description:
-            "Works seamlessly with integrated Ant Design System. (Support for multiple UI frameworks is on the Roadmap)",
-    },
-    {
-        src: "/icons/features/native.png",
-        srcset: "/icons/features/native@2x.png 768w",
-        title: "Native Typescript Core",
-        description: "You can always opt out for plain Javascript.",
-    },
-    {
-        src: "/icons/features/boilerplate.png",
-        srcset: "/icons/features/boilerplate@2x.png 768w",
-        title: "Boilerplate-free Code",
-        description: "Keeps your codebase clean and readable.",
+        src: "/icons/features/one-min-setup.png",
+        srcset: "/icons/features/one-min-setup@2x.png 768w",
+        title: "1-minute setup",
+        description: "Start your project with a single CLI command.",
     },
 ];
 
@@ -146,12 +144,20 @@ const backendLinks = [
         text: "Hasura",
     },
     {
+        href: "https://nhost.io/",
+        text: "Nhost",
+    },
+    {
         href: "https://appwrite.io/",
         text: "Appwrite",
     },
     {
         href: "https://firebase.google.com/",
         text: "Firebase",
+    },
+    {
+        href: "https://directus.io/",
+        text: "Directus",
     },
     {
         href: "https://altogic.com/",
@@ -163,6 +169,45 @@ export const KeyFeatures = () => {
     return (
         <section className={styles.section}>
             <div className="container">
+                <div className="row row--justify--center">
+                    <div className="col col--10">
+                        <h2 className={styles.mainFeatureTitle}>
+                            Key features
+                        </h2>
+                        <div className={styles.featuresContainer}>
+                            {features.map(
+                                (
+                                    { srcset, src, title, description },
+                                    index,
+                                ) => (
+                                    <div
+                                        className={styles.feature}
+                                        key={`backend-${index}`}
+                                    >
+                                        <img
+                                            srcSet={srcset}
+                                            src={src}
+                                            alt={title}
+                                        />
+                                        <div>
+                                            <p className={styles.featureTitle}>
+                                                {title}
+                                            </p>
+                                            <p
+                                                className={
+                                                    styles.featureDescription
+                                                }
+                                                dangerouslySetInnerHTML={{
+                                                    __html: description,
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                ),
+                            )}
+                        </div>
+                    </div>
+                </div>
                 <h2 className={styles.mainTitle}>
                     Your API is supported, out of the box!
                 </h2>
@@ -228,36 +273,6 @@ export const KeyFeatures = () => {
                                     ))}
                                 </div>
                             ))}
-                        </div>
-                    </div>
-                    <div className="col col--10">
-                        <h2 className={styles.mainFeatureTitle}>
-                            Other key features
-                        </h2>
-                        <div className={styles.featuresContainer}>
-                            {features.map(
-                                (
-                                    { srcset, src, title, description },
-                                    index,
-                                ) => (
-                                    <div
-                                        className={styles.feature}
-                                        key={`backend-${index}`}
-                                    >
-                                        <img
-                                            srcSet={srcset}
-                                            src={src}
-                                            alt={title}
-                                        />
-                                        <div>
-                                            <p className={styles.featureTitle}>
-                                                {title}
-                                            </p>
-                                            <p>{description}</p>
-                                        </div>
-                                    </div>
-                                ),
-                            )}
                         </div>
                     </div>
                 </div>

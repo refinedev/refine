@@ -1,16 +1,19 @@
 import { ReactNode } from "react";
 import {
-    Row,
-    Col,
     useShow,
     IResourceComponentsProps,
     useTranslate,
+    useUpdate,
+} from "@pankod/refine-core";
+
+import {
+    Row,
+    Col,
     Button,
     Icons,
     Steps,
     PageHeader,
     Grid,
-    useUpdate,
     Space,
     Avatar,
     Typography,
@@ -19,7 +22,8 @@ import {
     List,
     Skeleton,
     Icon,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
+
 import GoogleMapReact from "google-map-react";
 import dayjs from "dayjs";
 

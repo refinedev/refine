@@ -28,12 +28,19 @@ This guide has been prepared assuming you know the basics of **refine**. If you 
 npm install @pankod/refine-appwrite
 ```
 
+:::caution
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
+:::
+
 ## Usage
 
 ```tsx
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import { dataProvider } from "@pankod/refine-appwrite";
 import routerProvider from "@pankod/refine-react-router";
+
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { appwriteClient } from "utility";
 import { authProvider } from "./authProvider";
@@ -46,6 +53,10 @@ const App: React.FC = () => {
             authProvider={authProvider}
             //highlight-end
             routerProvider={routerProvider}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
         />
     );
 };
@@ -110,9 +121,12 @@ export const StoreProvider = (props: any) => {
 ```
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import { dataProvider } from "@pankod/refine-appwrite";
 import routerProvider from "@pankod/refine-react-router";
+
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { appwriteClient } from "utility";
 import { authProvider } from "./authProvider";
@@ -127,6 +141,10 @@ const App: React.FC = () => {
                 dataProvider={dataProvider(appwriteClient)}
                 authProvider={authProvider}
                 routerProvider={routerProvider}
+                Layout={Layout}
+                ReadyPage={ReadyPage}
+                notificationProvider={notificationProvider}
+                catchAll={<ErrorComponent />}
             />
         <StoreProvider>
          //highlight-end
@@ -140,7 +158,7 @@ We will create a select component in the Sider Menu where the user will select t
 
 ```tsx title="scr/components/select/StoreSelect.tsx"
 import { useContext } from "react";
-import { Select, useSelect } from "@pankod/refine";
+import { Select, useSelect } from "@pankod/refine-antd";
 
 import { StoreContext } from "context/store";
 import { IStore } from "interfaces";
@@ -195,15 +213,14 @@ Let's define the select component in the **refine** Sider Menu. First, we need t
 
 ```tsx title="src/components/sider/CustomSider.tsx"
 import React, { useState } from "react";
+import { useTitle, useNavigation } from "@pankod/refine-core";
 import {
     AntdLayout,
     Menu,
     useMenu,
-    useTitle,
-    useNavigation,
     Grid,
     Icons,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 import { StoreSelect } from "components/select";
@@ -307,8 +324,8 @@ const { listProps } = useSimpleList<IProduct>({
 
 ```tsx title="src/pages/ProductList.tsx"
 import { useContext } from "react";
+import { IResourceComponentsProps } from "@pankod/refine-core";
 import {
-    IResourceComponentsProps,
     useSimpleList,
     AntdList,
     useModalForm,
@@ -400,6 +417,7 @@ const [store] = useContext(StoreContext);
 <p>
 
 ```tsx title="CreateProduct"
+import { useContext } from "react";
 import {
     Create,
     Drawer,
@@ -411,11 +429,10 @@ import {
     Upload,
     Grid,
     RcFile,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { appwriteClient, normalizeFile } from "utility";
 import { StoreContext } from "context/store";
-import { useContext } from "react";
 
 type CreateProductProps = {
     drawerProps: DrawerProps;
@@ -545,18 +562,19 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
 
 ## Bonus - Realtime Feature
 
-**refine** lets you add Realtime support to your app via `liveProvider` prop for [`<Refine>`](api-references/components/refine-config.md). It can be used to update and show data in Realtime throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), etc.) to be integrated.
+**refine** lets you add Realtime support to your app via `liveProvider` prop for [`<Refine>`](/core/components/refine-config.md). It can be used to update and show data in Realtime throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), etc.) to be integrated.
 
-[Refer to the Live Provider documentation for detailed information. →](https://refine.dev/docs/api-references/providers/live-provider/)
+[Refer to the Live Provider documentation for detailed information. →](https://refine.dev/docs/core/providers/live-provider/)
 
 Appwrite Realtime API support is out-of-the-box supported by **refine**, just add two lines to make your App Realtime.
 
 ```tsx
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import { dataProvider, liveProvider } from "@pankod/refine-appwrite";
 import routerProvider from "@pankod/refine-react-router";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { appwriteClient } from "utility";
 import { authProvider } from "./authProvider";
@@ -591,6 +609,10 @@ function App() {
                         },
                     },
                 ]}
+                Layout={Layout}
+                ReadyPage={ReadyPage}
+                notificationProvider={notificationProvider}
+                catchAll={<ErrorComponent />}
             />
         </StoreProvider>
     );
@@ -605,7 +627,7 @@ In this guide and in our example app, we talked about how we can build Multitena
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/cake-house-cvco9?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/cake-house-41kgm?autoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="cake-house"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

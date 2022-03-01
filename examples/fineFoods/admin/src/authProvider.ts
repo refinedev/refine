@@ -1,4 +1,4 @@
-import { AuthProvider } from "@pankod/refine";
+import { AuthProvider } from "@pankod/refine-core";
 
 export const TOKEN_KEY = "refine-auth";
 

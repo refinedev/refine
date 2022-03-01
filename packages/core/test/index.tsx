@@ -3,15 +3,17 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 
 import { AuthContextProvider } from "@contexts/auth";
-import { NotificationContextProvider } from "@contexts/notification";
+import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import {
-    IDataContext,
     IAuthContext,
     I18nProvider,
     IAccessControlContext,
     ILiveContext,
+    INotificationContext,
+    IDataMultipleContextProvider,
+    IDataContextProvider,
 } from "../src/interfaces";
 import { TranslationContextProvider } from "@contexts/translation";
 import { RefineContextProvider } from "@contexts/refine";
@@ -19,6 +21,7 @@ import { IRefineContextProvider } from "@contexts/refine/IRefineContext";
 import { RouterContextProvider } from "@contexts/router";
 import { AccessControlContextProvider } from "@contexts/accessControl";
 import { LiveContextProvider } from "@contexts/live";
+import { NotificationContextProvider } from "@contexts/notification";
 
 import {
     MockRouterProvider,
@@ -37,8 +40,9 @@ const queryClient = new QueryClient({
 
 interface ITestWrapperProps {
     authProvider?: IAuthContext;
-    dataProvider?: IDataContext;
+    dataProvider?: IDataContextProvider | IDataMultipleContextProvider;
     i18nProvider?: I18nProvider;
+    notificationProvider?: INotificationContext;
     accessControlProvider?: IAccessControlContext;
     liveProvider?: ILiveContext;
     resources?: IResourceItem[];
@@ -52,6 +56,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     dataProvider,
     resources,
     i18nProvider,
+    notificationProvider,
     accessControlProvider,
     routerInitialEntries,
     refineProvider,
@@ -66,7 +71,6 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
         ) : (
             children
         );
-
         const withData = dataProvider ? (
             <DataContextProvider {...dataProvider}>
                 {withResource}
@@ -75,13 +79,21 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
             withResource
         );
 
+        const withNotificationProvider = notificationProvider ? (
+            <NotificationContextProvider {...notificationProvider}>
+                {withData}
+            </NotificationContextProvider>
+        ) : (
+            withData
+        );
+
         const withAccessControl = accessControlProvider ? (
             <AccessControlContextProvider {...accessControlProvider}>
-                {withData}
+                {withNotificationProvider}
             </AccessControlContextProvider>
         ) : (
             <AccessControlContextProvider {...MockAccessControlProvider}>
-                {withData}
+                {withNotificationProvider}
             </AccessControlContextProvider>
         );
 
@@ -104,9 +116,9 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
         );
 
         const withNotification = (
-            <NotificationContextProvider>
+            <UndoableQueueContextProvider>
                 {withTranslation}
-            </NotificationContextProvider>
+            </UndoableQueueContextProvider>
         );
 
         const withAuth = authProvider ? (

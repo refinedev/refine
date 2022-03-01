@@ -1,12 +1,14 @@
-import { Icon } from "@pankod/refine";
+import * as React from "react";
+import { SVGProps } from "react";
 
-const SvgFastMotoCycleIcon: React.FC<React.SVGProps<SVGSVGElement>> = () => (
+const SvgFastMotocycleIcon = (props: SVGProps<SVGSVGElement>) => (
     <svg
-        width="70"
-        height="34"
+        width={70}
+        height={34}
         viewBox="0 0 70 34"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        {...props}
     >
         <path
             fillRule="evenodd"
@@ -15,53 +17,51 @@ const SvgFastMotoCycleIcon: React.FC<React.SVGProps<SVGSVGElement>> = () => (
             fill="#FB7A32"
         />
         <line
-            x1="19.0869"
-            y1="11.9561"
-            x2="6.47847"
-            y2="11.9561"
+            x1={19.0869}
+            y1={11.9561}
+            x2={6.47847}
+            y2={11.9561}
             stroke="#FB7A32"
-            strokeWidth="2"
+            strokeWidth={2}
             strokeLinecap="round"
         />
         <line
-            x1="19.0869"
-            y1="24.7383"
-            x2="6.47847"
-            y2="24.7383"
+            x1={19.0869}
+            y1={24.7383}
+            x2={6.47847}
+            y2={24.7383}
             stroke="#FB7A32"
-            strokeWidth="2"
+            strokeWidth={2}
             strokeLinecap="round"
         />
         <line
-            x1="4.47852"
-            y1="15.6084"
-            x2="1.00035"
-            y2="15.6084"
+            x1={4.47852}
+            y1={15.6084}
+            x2={1.00035}
+            y2={15.6084}
             stroke="#FB7A32"
-            strokeWidth="2"
+            strokeWidth={2}
             strokeLinecap="round"
         />
         <line
-            x1="20.9131"
-            y1="28.3906"
-            x2="17.4349"
-            y2="28.3906"
+            x1={20.9131}
+            y1={28.3906}
+            x2={17.4349}
+            y2={28.3906}
             stroke="#FB7A32"
-            strokeWidth="2"
+            strokeWidth={2}
             strokeLinecap="round"
         />
         <line
-            x1="20.9131"
-            y1="19.2607"
-            x2="11.9567"
-            y2="19.2607"
+            x1={20.9131}
+            y1={19.2607}
+            x2={11.9567}
+            y2={19.2607}
             stroke="#FB7A32"
-            strokeWidth="2"
+            strokeWidth={2}
             strokeLinecap="round"
         />
     </svg>
 );
 
-export const FastMotoCycleIcon = (props: any) => (
-    <Icon component={SvgFastMotoCycleIcon} {...props} />
-);
+export default SvgFastMotocycleIcon;

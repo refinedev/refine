@@ -11,6 +11,12 @@ Now let's make a small example to see how its done. In this example, the file we
 
 ```tsx  title="pages/users/create.tsx"
 import {
+    //highlight-start
+    file2Base64,
+    //highlight-end
+} from "@pankod/refine-core";
+
+import {
     Create,
     Form,
     Upload,
@@ -18,9 +24,8 @@ import {
     useForm,
 // highlight-start
     getValueFromEvent,
-    file2Base64,
 // highlight-end
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 export const UserCreate: React.FC = () => {
     const { form, formProps, saveButtonProps } = useForm<IUser>();
@@ -123,7 +128,7 @@ An edit form can be made by using the `<Edit>` component instead of `<Create>` w
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-base64-upload-example-tm5nh?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-base64-upload-example-sn0kj?autoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-base64-upload-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

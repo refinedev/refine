@@ -6,7 +6,7 @@ import {
     ShowButton,
     EditButton,
     TextField,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import dayjs from "dayjs";
 

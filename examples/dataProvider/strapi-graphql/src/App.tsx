@@ -1,10 +1,15 @@
-import { AuthProvider, Refine } from "@pankod/refine";
+import { AuthProvider, Refine } from "@pankod/refine-core";
+import {
+    notificationProvider,
+    Layout,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-strapi-graphql";
 import routerProvider from "@pankod/refine-react-router";
 
 import { GraphQLClient } from "graphql-request";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { Login } from "pages/login";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -118,6 +123,9 @@ const App: React.FC = () => {
                     canDelete: true,
                 },
             ]}
+            notificationProvider={notificationProvider}
+            Layout={Layout}
+            catchAll={<ErrorComponent />}
         />
     );
 };

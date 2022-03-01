@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@docusaurus/core": "^2.0.0-beta.9",
+    "@docusaurus/plugin-client-redirects": "^2.0.0-beta.9",
     "@docusaurus/preset-classic": "^2.0.0-beta.9",
     "@mdx-js/react": "^1.6.21",
     "@types/react-dom": "^17.0.11",
@@ -21,7 +22,7 @@
     "graphql-request": "^3.7.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "react-hook-form": "^7.23.0",
+    "react-hook-form": "^7.26.1",
     "react-icons": "^4.2.0",
     "react-lazyload": "^3.2.0",
     "react-player": "^2.9.0",

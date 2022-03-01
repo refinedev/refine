@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useShow, IResourceComponentsProps } from "@pankod/refine-core";
+
 import {
     List,
     Create,
@@ -15,10 +17,8 @@ import {
     ShowButton,
     DeleteButton,
     useTable,
-    useShow,
     useDrawerForm,
-    IResourceComponentsProps,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost } from "../../interfaces";
 
@@ -44,7 +44,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
         show: editDrawerShow,
         saveButtonProps: editSaveButtonProps,
         deleteButtonProps,
-        editId,
+        id,
         formLoading,
     } = useDrawerForm<IPost>({
         action: "edit",
@@ -142,7 +142,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
             </Drawer>
             <Drawer {...editDrawerProps}>
                 <Edit
-                    recordItemId={editId}
+                    recordItemId={id}
                     saveButtonProps={{
                         ...editSaveButtonProps,
                         disabled: formLoading,

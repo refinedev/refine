@@ -3,11 +3,17 @@ import {
     AuthProvider,
     Authenticated,
     LayoutWrapper,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
+import {
+    notificationProvider,
+    LoginPage,
+    Layout,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { PostReview } from "pages/post-review";
@@ -53,13 +59,11 @@ const App: React.FC = () => {
                 ...routerProvider,
                 routes: [
                     {
-                        exact: true,
-                        component: PostReview,
+                        element: PostReview,
                         path: "/public-page",
                     },
                     {
-                        exact: true,
-                        component: AuthenticatedPostReview,
+                        element: AuthenticatedPostReview,
                         path: "/authenticated-page",
                     },
                 ] as typeof routerProvider.routes,
@@ -74,6 +78,10 @@ const App: React.FC = () => {
                     show: PostShow,
                 },
             ]}
+            notificationProvider={notificationProvider}
+            LoginPage={LoginPage}
+            Layout={Layout}
+            catchAll={<ErrorComponent />}
         />
     );
 };

@@ -1,10 +1,15 @@
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import {
+    notificationProvider,
+    Layout,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router";
 import { dataProvider } from "@pankod/refine-supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { UserList } from "./pages/user";
 import { TaskList, TaskShow, TaskCreate, EditTask } from "./pages/task";
@@ -42,6 +47,9 @@ function App() {
                     show: TaskShow,
                 },
             ]}
+            notificationProvider={notificationProvider}
+            Layout={Layout}
+            catchAll={<ErrorComponent />}
         />
     );
 }

@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { IResourceComponentsProps } from "@pankod/refine-core";
+
 import {
     List,
     Table,
     useTable,
-    IResourceComponentsProps,
     getDefaultSortOrder,
     FilterDropdown,
     Select,
@@ -16,7 +17,7 @@ import {
     Form,
     Radio,
     Tag,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IPost } from "interfaces";
 
@@ -98,7 +99,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 />
                 <Table.Column
                     key="[category][id]"
-                    dataIndex={["category", "data", "attributes", "title"]}
+                    dataIndex={["category", "title"]}
                     title="Category"
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
@@ -130,15 +131,15 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     }}
                 />
                 <Table.Column
-                    dataIndex={["cover", "data"]}
+                    dataIndex={"cover"}
                     align="center"
                     title="Cover"
                     render={(value) => {
                         return value ? (
                             <ImageField
-                                value={API_URL + value[0]?.attributes.url}
-                                alt={value[0]?.attributes?.name}
-                                title={value[0]?.attributes?.name}
+                                value={API_URL + value[0].url}
+                                alt={value[0]?.name}
+                                title={value[0]?.name}
                                 width={48}
                                 preview={{ mask: <></> }}
                             />

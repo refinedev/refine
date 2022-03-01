@@ -1,25 +1,30 @@
-import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
-import { DataContext } from "@contexts/data";
+
 import {
     GetOneResponse,
-    IDataContext,
     HttpError,
     BaseRecord,
+    BaseKey,
     MetaDataQuery,
     LiveModeProps,
+    OpenNotificationParams,
 } from "../../interfaces";
-import { useCheckError, useTranslate, useResourceSubscription } from "@hooks";
-import { ArgsProps } from "antd/lib/notification";
-import { handleNotification } from "@definitions";
+import {
+    useCheckError,
+    useTranslate,
+    useResourceSubscription,
+    useHandleNotification,
+    useDataProvider,
+} from "@hooks";
 
 export type UseOneProps<TData, TError> = {
     resource: string;
-    id: string;
+    id: BaseKey;
     queryOptions?: UseQueryOptions<GetOneResponse<TData>, TError>;
-    successNotification?: ArgsProps | false;
-    errorNotification?: ArgsProps | false;
+    successNotification?: OpenNotificationParams | false;
+    errorNotification?: OpenNotificationParams | false;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 } & LiveModeProps;
 
 /**
@@ -27,7 +32,7 @@ export type UseOneProps<TData, TError> = {
  *
  * It uses `getOne` method as query function from the `dataProvider` which is passed to `<Refine>`.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/data/useOne} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/data/useOne} for more details.
  *
  * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
  * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
@@ -46,16 +51,20 @@ export const useOne = <
     liveMode,
     onLiveEvent,
     liveParams,
+    dataProviderName,
 }: UseOneProps<TData, TError>): QueryObserverResult<GetOneResponse<TData>> => {
-    const { getOne } = useContext<IDataContext>(DataContext);
+    const dataProvider = useDataProvider();
+
+    const { getOne } = dataProvider(dataProviderName);
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
+    const handleNotification = useHandleNotification();
 
     useResourceSubscription({
         resource,
         types: ["*"],
         channel: `resources/${resource}`,
-        params: { ids: id ? [id.toString()] : [], ...liveParams },
+        params: { ids: id ? [id] : [], ...liveParams },
         enabled: queryOptions?.enabled,
         liveMode,
         onLiveEvent,

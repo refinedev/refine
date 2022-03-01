@@ -1,4 +1,4 @@
-import { AuthProvider } from "@pankod/refine";
+import { AuthProvider } from "@pankod/refine-core";
 import { AuthHelper } from "@pankod/refine-strapi-v4";
 
 import { TOKEN_KEY, API_URL } from "./constants";
@@ -22,9 +22,9 @@ export const authProvider: AuthProvider = {
                 Authorization: `Bearer ${data.jwt}`,
             };
 
-            return Promise.resolve;
+            return Promise.resolve();
         }
-        return Promise.reject;
+        return Promise.reject();
     },
     logout: () => {
         localStorage.removeItem(TOKEN_KEY);

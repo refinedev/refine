@@ -7,9 +7,9 @@ import realTimeDemo from '@site/static/img/guides-and-concepts/real-time/real-ti
 import manualMode from '@site/static/img/guides-and-concepts/real-time/manual-mode.gif';
 import customSider from '@site/static/img/guides-and-concepts/real-time/custom-sider.gif';
 
-**refine** lets you add Realtime support to your app via `liveProvider` prop for [`<Refine>`](api-references/components/refine-config.md). It can be used to update and show data in Realtime throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), etc.) to be integrated.
+**refine** lets you add Realtime support to your app via `liveProvider` prop for [`<Refine>`](/core/components/refine-config.md). It can be used to update and show data in Realtime throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), etc.) to be integrated.
 
-[Refer to the Live Provider documentation for detailed information. &#8594](api-references/providers/live-provider.md)
+[Refer to the Live Provider documentation for detailed information. &#8594](/core/providers/live-provider.md)
 
 We will be using [Ably](https://ably.com) in this guide to provide Realtime features.
 
@@ -20,6 +20,10 @@ We need to install Ably live provider package from **refine**.
 ```bash
 npm install @pankod/refine-ably
 ```
+
+:::caution
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
+:::
 
 ## Setup
 
@@ -42,9 +46,13 @@ export const ablyClient = new Ably.Realtime("your-api-key");
 Then pass `liveProvider` from [`@pankod/refine-ably`](https://github.com/pankod/refine/tree/master/packages/ably) to `<Refine>`.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
+
+import "@pankod/refine-antd/dist/styles.min.css";
+
 //highlight-next-line
 import { liveProvider } from "@pankod/refine-ably";
 
@@ -57,6 +65,10 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
             //highlight-start
             liveProvider={liveProvider(ablyClient)}
             liveMode="auto"
@@ -82,7 +94,7 @@ export default App;
 
 For live features to work automatically we also added `liveMode="auto"`.
 
-[Refer to the Live Provider documentation for detailed information. &#8594](api-references/providers/live-provider.md#livemode)
+[Refer to the Live Provider documentation for detailed information. &#8594](/core/providers/live-provider.md#livemode)
 :::
 
 <br/>
@@ -166,7 +178,7 @@ export const PostEdit: React.FC = () => {
 
 We can also implement similar thing in show page.
 
-[Refer to the codesandbox example for detailed information. &#8594](#live-condesandbox-example)
+[Refer to the codesandbox example for detailed information. &#8594](#live-codesandbox-example)
 :::
 
 <br/>
@@ -192,15 +204,8 @@ Firstly, let's implement a custom sider like in [this example](/examples/customi
 
 ```tsx title="src/components/sider.tsx"
 import React, { useState } from "react";
-import {
-    AntdLayout,
-    Menu,
-    useMenu,
-    useTitle,
-    useNavigation,
-    Grid,
-    Icons,
-} from "@pankod/refine";
+import { useTitle, useNavigation } from "@pankod/refine-core";
+import { AntdLayout, Menu, useMenu, Grid, Icons } from "@pankod/refine-antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 export const CustomSider: React.FC = () => {
@@ -271,18 +276,22 @@ Now, let's add a badge for number of create and update events for **_posts_** me
 ```tsx
 import React, { useState } from "react";
 import {
+    useTitle,
+    useNavigation,
+    //highlight-start
+    useSubscription,
+    //highlight-end
+} from "@pankod/refine-core";
+import {
     AntdLayout,
     Menu,
     useMenu,
-    useTitle,
-    useNavigation,
     Grid,
     Icons,
     //highlight-start
     Badge,
-    useSubscription,
     //highlight-end
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 export const CustomSider: React.FC = () => {
@@ -403,7 +412,7 @@ useSubscription({
 
 ## Live Condesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-ably-example-u9wg9?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-ably-example-9swpp?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-ably-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

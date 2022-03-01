@@ -514,7 +514,7 @@ function App() {
 export default App;
 ```
 
-Here we define our login and signup pages. We then use the refine's [router-provider](https://refine.dev/docs/next/api-references/providers/router-provider/) and [useNavigaton](https://refine.dev/docs/next/api-references/hooks/navigation/useNavigation/) hooks to switch between login and signup.
+Here we define our login and signup pages. We then use the refine's [router-provider](https://refine.dev/docs/api-references/providers/router-provider/) and [useNavigaton](https://refine.dev/docs/core/hooks/navigation/useNavigation/) hooks to switch between login and signup.
 
 <div class="img-container">
     <div class="window">
@@ -1201,7 +1201,7 @@ export const TaskShow: React.FC = () => {
 <br />
  
 
-By using Refine's basic views such as [create](https://refine.dev/docs/api-references/components/basic-views/create), [edit](https://refine.dev/docs/api-references/components/basic-views/edit/) and [show](https://refine.dev/docs/api-references/components/basic-views/show/), we can now create tasks, edit these tasks and view their details.
+By using Refine's basic views such as [create](https://refine.dev/docs/ui-framewors/antd/components/basic-views/create), [edit](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/edit/) and [show](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/show/), we can now create tasks, edit these tasks and view their details.
 
 
 Let's see how to add a dashboard page to our project together.

@@ -1,5 +1,13 @@
 import { useState, useEffect } from "react";
 import {
+    useGetLocale,
+    useSetLocale,
+    useGetIdentity,
+    useTranslate,
+    useList,
+} from "@pankod/refine-core";
+
+import {
     AntdLayout,
     Menu,
     Icons,
@@ -12,13 +20,9 @@ import {
     Row,
     Col,
     AutoComplete,
-    useGetLocale,
-    useSetLocale,
-    useGetIdentity,
-    useTranslate,
-    useList,
-} from "@pankod/refine";
-import RefineReactRouter from "@pankod/refine-react-router";
+} from "@pankod/refine-antd";
+
+import RefineReactRouter from "@pankod/refine-react-router-v6";
 
 import { useTranslation } from "react-i18next";
 import debounce from "lodash/debounce";

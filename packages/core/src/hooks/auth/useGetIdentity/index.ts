@@ -5,9 +5,9 @@ import { IAuthContext } from "../../../interfaces";
 import { useQuery, UseQueryResult } from "react-query";
 
 /**
- * `useGetIdentity` calls the `getUserIdentity` method from the {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
+ * `useGetIdentity` calls the `getUserIdentity` method from the {@link https://refine.dev/docs/core/providers/auth-provider `authProvider`} under the hood.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/auth/useGetIdentity} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/auth/useGetIdentity} for more details.
  *
  * @typeParam TData - Result data of the query
  *

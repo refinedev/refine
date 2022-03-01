@@ -1,8 +1,9 @@
+import { IResourceComponentsProps, useExport } from "@pankod/refine-core";
+
 import {
     List,
     Table,
     useTable,
-    IResourceComponentsProps,
     Space,
     EditButton,
     ShowButton,
@@ -13,10 +14,9 @@ import {
     useSelect,
     ExportButton,
     ImportButton,
-    useExport,
-    useImport,
     CreateButton,
-} from "@pankod/refine";
+    useImport,
+} from "@pankod/refine-antd";
 
 import { ICategory, IPost } from "interfaces";
 

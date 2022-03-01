@@ -1,11 +1,6 @@
-import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
-import { ArgsProps } from "antd/lib/notification";
-
-import { DataContext } from "@contexts/data";
 import {
     GetListResponse,
-    IDataContext,
     CrudFilters,
     Pagination,
     BaseRecord,
@@ -13,9 +8,15 @@ import {
     CrudSorting,
     MetaDataQuery,
     LiveModeProps,
+    OpenNotificationParams,
 } from "../../interfaces";
-import { useCheckError, useResourceSubscription, useTranslate } from "@hooks";
-import { handleNotification } from "@definitions";
+import {
+    useCheckError,
+    useHandleNotification,
+    useResourceSubscription,
+    useTranslate,
+    useDataProvider,
+} from "@hooks";
 
 interface UseListConfig {
     pagination?: Pagination;
@@ -27,9 +28,10 @@ export type UseListProps<TData, TError> = {
     resource: string;
     config?: UseListConfig;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
-    successNotification?: ArgsProps | false;
-    errorNotification?: ArgsProps | false;
+    successNotification?: OpenNotificationParams | false;
+    errorNotification?: OpenNotificationParams | false;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 } & LiveModeProps;
 
 /**
@@ -37,10 +39,10 @@ export type UseListProps<TData, TError> = {
  *
  * It uses the `getList` method as the query function from the `dataProvider` which is passed to `<Refine>`.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/data/useList} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/data/useList} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/core/interfaceReferences#httperror `HttpError`}
  *
  */
 export const useList = <
@@ -56,13 +58,18 @@ export const useList = <
     liveMode,
     onLiveEvent,
     liveParams,
+    dataProviderName,
 }: UseListProps<TData, TError>): QueryObserverResult<
     GetListResponse<TData>,
     TError
 > => {
-    const { getList } = useContext<IDataContext>(DataContext);
+    const dataProvider = useDataProvider();
+
+    const { getList } = dataProvider(dataProviderName);
+
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
+    const handleNotification = useHandleNotification();
 
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;

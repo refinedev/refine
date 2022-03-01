@@ -1,15 +1,15 @@
 import React, { useState } from "react";
+import { IResourceComponentsProps } from "@pankod/refine-core";
 import {
     Edit,
     Form,
     Input,
-    IResourceComponentsProps,
     Select,
     useForm,
     useSelect,
     Upload,
     Radio,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 import {
     useStrapiUpload,
     getValueProps,
@@ -33,7 +33,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
 
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
-        defaultValue: queryResult?.data?.data?.category?.data?.id,
+        defaultValue: queryResult?.data?.data?.category?.id,
         metaData: { locale: queryResult?.data?.data.locale },
     });
 
@@ -47,16 +47,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                 {...formProps}
                 layout="vertical"
                 onFinish={(values: any) => {
-                    return (
-                        formProps.onFinish &&
-                        formProps.onFinish(
-                            mediaUploadMapper({
-                                ...values,
-                                cover: values.cover?.data,
-                                category: values.category?.data.id,
-                            }),
-                        )
-                    );
+                    return formProps.onFinish?.(mediaUploadMapper(values));
                 }}
             >
                 <Form.Item label="Locale" name="locale">
@@ -80,7 +71,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                 <Form.Item
                     wrapperCol={{ span: 8 }}
                     label="Category"
-                    name={["category", "data", "id"]}
+                    name={["category", "id"]}
                     rules={[
                         {
                             required: true,
@@ -110,7 +101,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                 </Form.Item>
                 <Form.Item label="Cover">
                     <Form.Item
-                        name={["cover", "data"]}
+                        name="cover"
                         valuePropName="fileList"
                         getValueProps={(data) => getValueProps(data, API_URL)}
                         noStyle

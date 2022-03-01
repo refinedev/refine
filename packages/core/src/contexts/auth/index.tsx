@@ -18,7 +18,7 @@ export const AuthContextProvider: React.FC<Partial<IAuthContext>> = ({
     login = defaultProvider.login,
     logout = defaultProvider.logout,
     checkAuth = defaultProvider.checkAuth,
-    checkError = defaultProvider.login,
+    checkError = defaultProvider.checkError,
     getPermissions = defaultProvider.getPermissions,
     getUserIdentity = defaultProvider.getUserIdentity,
     isProvided,
@@ -60,10 +60,8 @@ export const AuthContextProvider: React.FC<Partial<IAuthContext>> = ({
             await checkAuth(params);
             setAuthenticated(true);
         } catch (error) {
-            const { redirectPath } = error as { redirectPath?: string };
-
-            if (redirectPath) {
-                replace(redirectPath);
+            if ((error as { redirectPath?: string })?.redirectPath) {
+                replace((error as { redirectPath: string }).redirectPath);
             }
             setAuthenticated(false);
             throw error;

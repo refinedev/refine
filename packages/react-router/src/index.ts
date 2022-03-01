@@ -1,5 +1,5 @@
 import React from "react";
-import { IRouterProvider } from "@pankod/refine";
+import { handleUseParams, IRouterProvider } from "@pankod/refine-core";
 import {
     useHistory,
     useLocation,
@@ -24,7 +24,10 @@ interface IReactRouterProvider extends IRouterProvider {
 const RouterProvider: IReactRouterProvider = {
     useHistory,
     useLocation,
-    useParams,
+    useParams: () => {
+        const params = useParams();
+        return handleUseParams(params);
+    },
     Prompt: Prompt as any,
     Link,
     RouterComponent,

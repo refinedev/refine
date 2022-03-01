@@ -1,6 +1,6 @@
 {
     "name": "i18n-next",
-    "version": "2.7.8",
+    "version": "3.4.0",
     "private": true,
     "scripts": {
         "start": "NODE_OPTIONS=--max_old_space_size=4096 next dev -p 3001",
@@ -9,9 +9,10 @@
         "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
     },
     "dependencies": {
-        "@pankod/refine": "^2.7.8",
-        "@pankod/refine-nextjs-router": "^2.7.8",
-        "@pankod/refine-simple-rest": "^2.7.8",
+        "@pankod/refine-antd": "^3.4.0",
+        "@pankod/refine-core": "^3.4.0",
+        "@pankod/refine-nextjs-router": "^3.4.0",
+        "@pankod/refine-simple-rest": "^3.4.0",
         "next": "^12.0.3",
         "next-compose-plugins": "^2.2.1",
         "next-i18next": "^8.9.0",
@@ -22,9 +23,9 @@
     },
     "devDependencies": {
         "@types/node": "^14.14.13",
-        "@types/react": "^17.0.0",
+        "@types/react": "^17.0.4",
         "@types/react-dom": "^17.0.4",
-        "@typescript-eslint/parser": "^4.9.1",
+        "@typescript-eslint/parser": "^4.25.0",
         "typescript": "^4.4.3"
     }
 }

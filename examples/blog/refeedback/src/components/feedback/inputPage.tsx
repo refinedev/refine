@@ -1,4 +1,4 @@
-import { Button, Form, Input, useForm } from "@pankod/refine";
+import { Button, Form, Input, useForm } from "@pankod/refine-antd";
 
 import { IFeedback } from "interfaces";
 

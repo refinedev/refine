@@ -17,6 +17,10 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("useCheckError Hook", () => {
+    beforeEach(() => {
+        mHistory.push.mockReset();
+    });
+
     it("logout and redirect to login if check error rejected", async () => {
         const logoutMock = jest.fn();
 
@@ -47,8 +51,6 @@ describe("useCheckError Hook", () => {
     });
 
     it("logout and redirect to custom path if check error rejected", async () => {
-        const logoutMock = jest.fn();
-
         const { result, waitFor } = renderHook(() => useCheckError(), {
             wrapper: TestWrapper({
                 authProvider: {
@@ -57,7 +59,9 @@ describe("useCheckError Hook", () => {
                     checkAuth: () => Promise.resolve(),
                     checkError: () => Promise.reject("/customPath"),
                     getPermissions: () => Promise.resolve(),
-                    logout: logoutMock,
+                    logout: ({ redirectPath }) => {
+                        return Promise.resolve(redirectPath);
+                    },
                     getUserIdentity: () => Promise.resolve(),
                 },
             }),
@@ -72,7 +76,6 @@ describe("useCheckError Hook", () => {
         });
 
         await act(async () => {
-            expect(logoutMock).toBeCalledTimes(1);
             expect(mHistory.push).toBeCalledWith("/customPath", undefined);
         });
     });

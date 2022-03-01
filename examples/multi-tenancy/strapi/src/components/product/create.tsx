@@ -1,3 +1,5 @@
+import { useApiUrl } from "@pankod/refine-core";
+
 import {
     Create,
     Drawer,
@@ -8,8 +10,7 @@ import {
     ButtonProps,
     Upload,
     Grid,
-    useApiUrl,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { StoreContext } from "context/store";
 import { useContext } from "react";
@@ -34,7 +35,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
     saveButtonProps,
 }) => {
     const API_URL = useApiUrl();
-    const [store, setStore] = useContext(StoreContext);
+    const [store] = useContext(StoreContext);
 
     const breakpoint = Grid.useBreakpoint();
 

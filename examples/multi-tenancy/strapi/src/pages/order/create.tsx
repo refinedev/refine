@@ -1,15 +1,15 @@
 import { useContext } from "react";
+import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
+
 import {
     Create,
     Form,
     Input,
-    IResourceComponentsProps,
     useForm,
     useSelect,
     Select,
     InputNumber,
-    HttpError,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IOrder, IProduct } from "interfaces";
 import { StoreContext } from "context/store";
@@ -52,7 +52,7 @@ export const CreateOrder: React.FC<IResourceComponentsProps> = () => {
                     <Select {...productSelectProps} />
                 </Form.Item>
                 <Form.Item label="Quantity" name="quantity">
-                    <InputNumber defaultValue={1} />
+                    <InputNumber min={0} defaultValue={1} />
                 </Form.Item>
 
                 <Form.Item label="Status" name="status">

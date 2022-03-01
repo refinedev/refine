@@ -21,7 +21,7 @@ We will now examine how to search within the application with this component.
 To do this, let's first create our `<Header>` component.
 
 ```tsx  title="src/components/header.tsx"
-import { AntdLayout, AutoComplete, Input, Icons } from "@pankod/refine";
+import { AntdLayout, AutoComplete, Input, Icons } from "@pankod/refine-antd";
 
 const { SearchOutlined } = Icons;
 
@@ -56,11 +56,12 @@ We created the `<Header>` component as we want it to appear. We have not done an
 Let's not forget to pass the `<Header>` component to the `<Refine>` component in `App.tsx` as below.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 // highlight-next-line
 import { Header } from "components";
@@ -72,7 +73,11 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
-// highlight-next-line
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
+            // highlight-next-line
             Header={Header}
         />
     );
@@ -85,7 +90,7 @@ export default App;
 
 Now let's get our [`<AutoComplete>`](https://ant.design/components/auto-complete) input ready to search. So, let's fetch our posts according to the value entered in our input.
 
-In order to fetch more than one record, we will use the [`useList`](/api-references/hooks/data/useList.md) data hook, and we will filter and fetch this data according to the search value.
+In order to fetch more than one record, we will use the [`useList`](/core/hooks/data/useList.md) data hook, and we will filter and fetch this data according to the search value.
 
 Before we start, let's create the interfaces of our [`<AutoComplete>`](https://ant.design/components/auto-complete)'s `options` property and the post source.
 
@@ -113,16 +118,17 @@ export interface IOptions {
 
 ```tsx title="src/components/header.tsx"
 import { useState, useEffect } from "react";
+import { useList } from "@pankod/refine-core";
 import {
     AntdLayout,
     AutoComplete,
     Input,
     Icons,
-    useList,
     Typography,
-    Link,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
+import routerProvider from "@pankod/refine-react-router";
 
+const { Link } = routerProvider;
 const { Text } = Typography;
 const { SearchOutlined } = Icons;
 
@@ -205,7 +211,7 @@ export const Header: React.FC = () => {
 };
 ```
 
-We created states to dynamically manage the `value` and `options` properties of the [`<AutoComplete>`](https://ant.design/components/auto-complete) component. The [`useList`](/api-references/hooks/data/useList.md) hook is triggered whenever the value changes. Likewise, the filter used to fetch the data is updated each time the value changes.
+We created states to dynamically manage the `value` and `options` properties of the [`<AutoComplete>`](https://ant.design/components/auto-complete) component. The [`useList`](/core/hooks/data/useList.md) hook is triggered whenever the value changes. Likewise, the filter used to fetch the data is updated each time the value changes.
 
 <br />
 
@@ -290,7 +296,7 @@ By doing the same implementation on your other resources, you can search more th
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-search-example-ynwkw?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-search-example-jzrlp?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-search-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

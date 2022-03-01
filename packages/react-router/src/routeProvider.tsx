@@ -12,7 +12,7 @@ import {
     useRefineContext,
     useRouterContext,
     CanAccess,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
 
 type IRoutesProps = RouteProps & { routes?: RouteProps[] };
 
@@ -38,7 +38,8 @@ const RouteProviderBase: React.FC = () => {
 
     const routes: IRoutesProps[] = [];
     const RouteHandler = (val: IResourceItem): void => {
-        const { list, create, edit, show, canDelete, route, name } = val;
+        const { list, create, edit, show, canDelete, route, name, options } =
+            val;
 
         const ListComponent = list;
         const CreateComponent = create;
@@ -65,6 +66,7 @@ const RouteProviderBase: React.FC = () => {
                             canDelete={canDelete}
                             canShow={canShow}
                             name={name}
+                            options={options}
                         />
                     </CanAccess>
                 ),
@@ -88,6 +90,7 @@ const RouteProviderBase: React.FC = () => {
                             canDelete={canDelete}
                             canShow={canShow}
                             name={name}
+                            options={options}
                         />
                     </CanAccess>
                 ),
@@ -113,6 +116,7 @@ const RouteProviderBase: React.FC = () => {
                             canDelete={canDelete}
                             canShow={canShow}
                             name={name}
+                            options={options}
                         />
                     </CanAccess>
                 ),
@@ -138,6 +142,7 @@ const RouteProviderBase: React.FC = () => {
                             canDelete={canDelete}
                             canShow={canShow}
                             name={name}
+                            options={options}
                         />
                     </CanAccess>
                 ),
@@ -160,6 +165,7 @@ const RouteProviderBase: React.FC = () => {
                             canDelete={canDelete}
                             canShow={canShow}
                             name={name}
+                            options={options}
                         />
                     </CanAccess>
                 ),
@@ -217,6 +223,9 @@ const RouteProviderBase: React.FC = () => {
 
     const renderUnauthorized = () => (
         <Switch>
+            {[...(customRoutes || [])].map((route, i) => (
+                <Route key={`custom-route-${i}`} {...route} />
+            ))}
             <Route
                 exact
                 path={["/", "/login"]}
@@ -224,10 +233,6 @@ const RouteProviderBase: React.FC = () => {
                     LoginPage ? <LoginPage /> : <DefaultLoginPage />
                 }
             />
-            {[...(customRoutes || [])].map((route, i) => (
-                <Route key={`custom-route-${i}`} {...route} />
-            ))}
-
             <Route
                 render={({ location }: { location: any }) => {
                     if (isLoading) {

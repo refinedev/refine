@@ -1,5 +1,6 @@
-export interface INotification {
-    id: string;
+import { BaseKey } from ".";
+export interface IUndoableQueue {
+    id: BaseKey;
     resource: string;
     cancelMutation: () => void;
     doMutation: () => void;

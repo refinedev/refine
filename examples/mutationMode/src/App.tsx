@@ -1,9 +1,15 @@
-import { Refine, BackTop } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import {
+    BackTop,
+    notificationProvider,
+    Layout,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import { DemoSidebar, useDemoSidebar } from "@pankod/refine-demo-sidebar";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -32,6 +38,9 @@ const App: React.FC = () => {
                     show: PostShow,
                 },
             ]}
+            notificationProvider={notificationProvider}
+            Layout={Layout}
+            catchAll={<ErrorComponent />}
         />
     );
 };

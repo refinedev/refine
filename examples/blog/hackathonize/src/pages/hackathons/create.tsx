@@ -1,4 +1,4 @@
-import { Create, Form, Input, useForm, DatePicker } from "@pankod/refine";
+import { Create, Form, Input, useForm, DatePicker } from "@pankod/refine-antd";
 
 import { HackathonType } from "interfaces";
 

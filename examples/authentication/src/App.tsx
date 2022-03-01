@@ -1,8 +1,14 @@
-import { Refine, AuthProvider } from "@pankod/refine";
+import { Refine, AuthProvider } from "@pankod/refine-core";
+import {
+    notificationProvider,
+    LoginPage,
+    Layout,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostEdit, PostShow } from "pages/posts";
 import { DashboardPage } from "pages/dashboard";
@@ -51,6 +57,10 @@ const App: React.FC = () => {
                     show: PostShow,
                 },
             ]}
+            notificationProvider={notificationProvider}
+            LoginPage={LoginPage}
+            Layout={Layout}
+            catchAll={<ErrorComponent />}
         />
     );
 };

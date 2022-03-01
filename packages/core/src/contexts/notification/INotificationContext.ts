@@ -1,6 +1,13 @@
-import { INotification } from "../../interfaces";
+export interface OpenNotificationParams {
+    key?: string;
+    message: string;
+    type: "success" | "error" | "progress";
+    description?: string;
+    cancelMutation?: () => void;
+    undoableTimeout?: number;
+}
 
 export interface INotificationContext {
-    notifications: INotification[];
-    notificationDispatch: React.Dispatch<any>;
+    open: (params: OpenNotificationParams) => void;
+    close: (key: string) => void;
 }

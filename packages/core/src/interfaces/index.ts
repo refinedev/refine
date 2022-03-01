@@ -1,36 +1,20 @@
-// reducers
-export * from "./reducers/auth/user";
-export * from "./reducers/resource/resource";
-
-// redux state
-export * from "./istate";
-
 // contexts
 export * from "../contexts/data/IDataContext";
 export * from "../contexts/live/ILiveContext";
 export * from "../contexts/auth/IAuthContext";
 export * from "../contexts/refine/IRefineContext";
 export * from "../contexts/translation/ITranslationContext";
-export * from "../contexts/components/IComponentsContext";
-export * from "../contexts/notification/INotificationContext";
+export * from "../contexts/undoableQueue/IUndoableQueueContext";
 export * from "../contexts/resource/IResourceContext";
 export * from "../contexts/unsavedWarn/IUnsavedWarnContext";
 export * from "../contexts/router/IRouterContext";
 export * from "../contexts/accessControl/IAccessControlContext";
-
-// buttons
-export { CreateButtonProps } from "../components/buttons/create/index";
+export * from "../contexts/notification/INotificationContext";
 
 export * from "../components/pages/login";
 
-// field
-export * from "./field";
-
 // notification
 export * from "./notification";
-
-// match
-export * from "./match";
 
 // mutationMode
 export * from "./mutationMode";
@@ -50,9 +34,6 @@ export * from "./resourceErrorRouterParams";
 // redirection
 export * from "./redirectionTypes";
 
-// upload
-export * from "./upload";
-
 // mapData
 export * from "./mapDataFn";
 
@@ -65,14 +46,9 @@ export * from "./metaData";
 //metaData
 export * from "./live";
 
-// sunflower types
-export {
-    useModalFormFromSFReturnType,
-    useStepsFormFromSFReturnType,
-} from "../../types/sunflower";
-
+export type BaseKey = string | number;
 export type BaseRecord = {
-    id?: string;
+    id?: BaseKey;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
 };

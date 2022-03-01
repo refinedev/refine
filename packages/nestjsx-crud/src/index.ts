@@ -13,8 +13,11 @@ import {
     DataProvider,
     HttpError,
     CrudFilters as RefineCrudFilter,
-} from "@pankod/refine";
-import { CrudOperators, CrudSorting } from "@pankod/refine/dist/interfaces";
+} from "@pankod/refine-core";
+import {
+    CrudOperators,
+    CrudSorting,
+} from "@pankod/refine-core/dist/interfaces";
 import { stringify } from "query-string";
 
 type SortBy = QuerySort | QuerySortArr | Array<QuerySort | QuerySortArr>;

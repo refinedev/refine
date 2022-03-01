@@ -1,23 +1,26 @@
-import { useContext } from "react";
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
 
-import { DataContext } from "@contexts/data";
 import {
-    IDataContext,
     BaseRecord,
     CreateManyResponse,
     HttpError,
     SuccessErrorNotification,
     MetaDataQuery,
 } from "../../interfaces";
-import { useCacheQueries, useTranslate, usePublish } from "@hooks";
-import { handleNotification } from "@definitions";
+import {
+    useCacheQueries,
+    useTranslate,
+    usePublish,
+    useHandleNotification,
+    useDataProvider,
+} from "@hooks";
 import pluralize from "pluralize";
 
 type useCreateManyParams<TVariables> = {
     resource: string;
     values: TVariables[];
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 } & SuccessErrorNotification;
 
 export type UseCreateManyReturnType<
@@ -36,10 +39,10 @@ export type UseCreateManyReturnType<
  *
  * It uses `createMany` method as mutation function from the `dataProvider` which is passed to `<Refine>`.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/data/useCreateMany} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/data/useCreateMany} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/core/interfaceReferences#httperror `HttpError`}
  * @typeParam TVariables - Values for mutation function
  *
  */
@@ -48,19 +51,26 @@ export const useCreateMany = <
     TError extends HttpError = HttpError,
     TVariables = {},
 >(): UseCreateManyReturnType<TData, TError, TVariables> => {
-    const { createMany } = useContext<IDataContext>(DataContext);
     const getAllQueries = useCacheQueries();
+    const dataProvider = useDataProvider();
+
     const translate = useTranslate();
     const queryClient = useQueryClient();
     const publish = usePublish();
+    const handleNotification = useHandleNotification();
 
     const mutation = useMutation<
         CreateManyResponse<TData>,
         TError,
         useCreateManyParams<TVariables>
     >(
-        ({ resource, values, metaData }: useCreateManyParams<TVariables>) =>
-            createMany<TData, TVariables>({
+        ({
+            resource,
+            values,
+            metaData,
+            dataProviderName,
+        }: useCreateManyParams<TVariables>) =>
+            dataProvider(dataProviderName).createMany<TData, TVariables>({
                 resource,
                 variables: values,
                 metaData,
@@ -70,7 +80,8 @@ export const useCreateMany = <
                 const resourcePlural = pluralize.plural(resource);
 
                 handleNotification(successNotification, {
-                    description: translate(
+                    key: `createMany-${resource}-notification`,
+                    message: translate(
                         "notifications.createSuccess",
                         {
                             resource: translate(
@@ -80,7 +91,7 @@ export const useCreateMany = <
                         },
                         `Successfully created ${resourcePlural}`,
                     ),
-                    message: translate("notifications.success", "Success"),
+                    description: translate("notifications.success", "Success"),
                     type: "success",
                 });
 
@@ -94,13 +105,14 @@ export const useCreateMany = <
                     payload: {
                         ids: response.data
                             .filter((item) => item?.id !== undefined)
-                            .map((item) => item.id!.toString()),
+                            .map((item) => item.id!),
                     },
                     date: new Date(),
                 });
             },
             onError: (err: TError, { resource, errorNotification }) => {
                 handleNotification(errorNotification, {
+                    key: `createMany-${resource}-notification`,
                     description: err.message,
                     message: translate(
                         "notifications.createError",

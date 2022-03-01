@@ -79,7 +79,7 @@ The mutation is applied locally, redirection and UI updates are executed immedia
 
 ## Usage
 
-Mutation mode can be set application-wide in [`<Refine>`](/api-references/components/refine-config.md#mutationmode) component.
+Mutation mode can be set application-wide in [`<Refine>`](/core/components/refine-config.md#mutationmode) component.
 
 ```tsx title="App.tsx"
 <Refine ... mutationMode="optimistic" />
@@ -92,7 +92,7 @@ Mutation mode can be set application-wide in [`<Refine>`](/api-references/compon
 It can also be set in supported [data hooks](https://docs-mu-doc-refine.pankod.com/docs/api-references/hooks/data/useUpdate#mutation-mode) and [form hooks](https://docs-mu-doc-refine.pankod.com/docs/api-references/hooks/form/useForm#properties) for fine-grained configuration.
 
 ```tsx
-import { useUpdate } from "@pankod/refine";
+import { useUpdate } from "@pankod/refine-core";
 
 const { mutate } = useUpdate();
 
@@ -109,27 +109,27 @@ mutate({
 
 ### Supported data hooks
 
--   [`useUpdate` &#8594](api-references/hooks/data/useUpdate.md)
--   [`useUpdateMany` &#8594](api-references/hooks/data/useUpdateMany.md)
--   [`useDelete` &#8594](api-references/hooks/data/useDelete.md)
--   [`useDeleteMany` &#8594](api-references/hooks/data/useDeleteMany.md)
+-   [`useUpdate` &#8594](/core/hooks/data/useUpdate.md)
+-   [`useUpdateMany` &#8594](/core/hooks/data/useUpdateMany.md)
+-   [`useDelete` &#8594](/core/hooks/data/useDelete.md)
+-   [`useDeleteMany` &#8594](/core/hooks/data/useDeleteMany.md)
 
 ### Supported form hooks
 
--   [`useForm` &#8594](api-references/hooks/form/useForm.md)
--   [`useModalForm` &#8594](api-references/hooks/form/useModalForm.md)
--   [`useDrawerForm` &#8594](api-references/hooks/form/useDrawerForm.md)
--   [`useStepsForm` &#8594](api-references/hooks/form/useStepsForm.md)
+-   [`useForm` &#8594](/ui-frameworks/antd/hooks/form/useForm.md)
+-   [`useModalForm` &#8594](/ui-frameworks/antd/hooks/form/useModalForm.md)
+-   [`useDrawerForm` &#8594](/ui-frameworks/antd/hooks/form/useDrawerForm.md)
+-   [`useStepsForm` &#8594](/ui-frameworks/antd/hooks/form/useStepsForm.md)
 
 ### Supported components
 
--   [`DeleteButton` &#8594](api-references/components/buttons/delete.md)
+-   [`DeleteButton` &#8594](/ui-frameworks/antd/components/buttons/delete.md)
 
 <br />
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-example-mutation-mode-0m3y9?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-example-mutation-mode-yh7nb?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-example-mutation-mode"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

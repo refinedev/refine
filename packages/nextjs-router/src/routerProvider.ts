@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import qs from "qs";
 
-import type { IRouterProvider } from "@pankod/refine";
+import { handleUseParams, IRouterProvider } from "@pankod/refine-core";
 
 import { Prompt } from "./prompt";
 
@@ -19,12 +19,19 @@ export const RouterProvider: IRouterProvider = {
     },
     useLocation: () => {
         const router = useRouter();
-        const { pathname, query } = router;
+        const { query, asPath } = router;
 
         const queryParams = qs.stringify(query);
 
+        const sliceLength = Math.min(
+            ...[
+                asPath.indexOf("?") > 0 ? asPath.indexOf("?") : asPath.length,
+                asPath.indexOf("#") > 0 ? asPath.indexOf("#") : asPath.length,
+            ],
+        );
+
         return {
-            pathname,
+            pathname: asPath.slice(0, sliceLength),
             search: queryParams && `?${queryParams}`,
         };
     },
@@ -32,7 +39,7 @@ export const RouterProvider: IRouterProvider = {
         const router = useRouter();
 
         const { query } = router;
-        return query as unknown as Params;
+        return handleUseParams(query);
     },
     Prompt,
     Link,

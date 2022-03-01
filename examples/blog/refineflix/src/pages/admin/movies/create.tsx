@@ -1,12 +1,12 @@
+import { IResourceComponentsProps } from "@pankod/refine-core";
 import {
     Create,
     Form,
     Input,
-    IResourceComponentsProps,
     Upload,
     useForm,
     RcFile,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 import { IMovies } from "interfaces";
 import { supabaseClient, normalizeFile } from "utility";
 

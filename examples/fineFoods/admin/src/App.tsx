@@ -1,6 +1,13 @@
 import { useEffect } from "react";
-import routerProvider from "@pankod/refine-react-router";
-import { Refine, Icons } from "@pankod/refine";
+import routerProvider from "@pankod/refine-react-router-v6";
+import { Refine } from "@pankod/refine-core";
+import {
+    Icons,
+    ConfigProvider,
+    notificationProvider,
+    Layout,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import jsonServerDataProvider from "@pankod/refine-simple-rest";
 import de_DE from "antd/lib/locale/de_DE";
 import { authProvider } from "authProvider";
@@ -50,66 +57,68 @@ const App: React.FC = () => {
     }, [locale]);
 
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider}
-            authProvider={authProvider}
-            i18nProvider={i18nProvider}
-            Header={Header}
-            Title={Title}
-            OffLayoutArea={OffLayoutArea}
-            DashboardPage={DashboardPage}
-            LoginPage={LoginPage}
-            syncWithLocation
-            warnWhenUnsavedChanges
-            configProviderProps={{
-                locale: locale === "de" ? de_DE : undefined,
-            }}
-            resources={[
-                {
-                    name: "orders",
-                    list: OrderList,
-                    show: OrderShow,
-                    icon: <Icons.ShoppingOutlined />,
-                },
-                {
-                    name: "users",
-                    list: UserList,
-                    show: UserShow,
-                    icon: <Icons.UsergroupAddOutlined />,
-                },
-                {
-                    name: "products",
-                    list: ProductList,
-                    icon: <PizzaIcon />,
-                },
+        <ConfigProvider locale={locale === "de" ? de_DE : undefined}>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider}
+                authProvider={authProvider}
+                i18nProvider={i18nProvider}
+                OffLayoutArea={OffLayoutArea}
+                DashboardPage={DashboardPage}
+                LoginPage={LoginPage}
+                Title={Title}
+                Header={Header}
+                Layout={Layout}
+                syncWithLocation
+                warnWhenUnsavedChanges
+                resources={[
+                    {
+                        name: "orders",
+                        list: OrderList,
+                        show: OrderShow,
+                        icon: <Icons.ShoppingOutlined />,
+                    },
+                    {
+                        name: "users",
+                        list: UserList,
+                        show: UserShow,
+                        icon: <Icons.UsergroupAddOutlined />,
+                    },
+                    {
+                        name: "products",
+                        list: ProductList,
+                        icon: <PizzaIcon />,
+                    },
 
-                {
-                    name: "stores",
-                    list: StoreList,
-                    edit: StoreEdit,
-                    create: StoreCreate,
-                    icon: <Icons.ShopOutlined />,
-                },
-                {
-                    name: "categories",
-                    list: CategoryList,
-                },
-                {
-                    name: "couriers",
-                    list: CourierList,
-                    show: CourierShow,
-                    create: CouriersCreate,
-                    edit: CouriersEdit,
-                    icon: <BikeWhiteIcon />,
-                },
-                {
-                    name: "reviews",
-                    list: ReviewsList,
-                    icon: <Icons.StarOutlined />,
-                },
-            ]}
-        ></Refine>
+                    {
+                        name: "stores",
+                        list: StoreList,
+                        edit: StoreEdit,
+                        create: StoreCreate,
+                        icon: <Icons.ShopOutlined />,
+                    },
+                    {
+                        name: "categories",
+                        list: CategoryList,
+                    },
+                    {
+                        name: "couriers",
+                        list: CourierList,
+                        show: CourierShow,
+                        create: CouriersCreate,
+                        edit: CouriersEdit,
+                        icon: <BikeWhiteIcon />,
+                    },
+                    {
+                        name: "reviews",
+                        list: ReviewsList,
+                        icon: <Icons.StarOutlined />,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                catchAll={<ErrorComponent />}
+            ></Refine>
+        </ConfigProvider>
     );
 };
 

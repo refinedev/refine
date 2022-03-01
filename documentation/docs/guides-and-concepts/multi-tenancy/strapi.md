@@ -30,6 +30,10 @@ This guide has been prepared assuming you know the basics of **refine**. If you 
 npm i @pankod/refine-strapi-v4
 ```
 
+:::caution
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
+:::
+
 ## Usage
 
 ### AuthProvider
@@ -39,7 +43,7 @@ npm i @pankod/refine-strapi-v4
 <p>
 
 ```tsx title="src/authProvider.ts"
-import { AuthProvider } from "@pankod/refine";
+import { AuthProvider } from "@pankod/refine-core";
 import { AuthHelper } from "@pankod/refine-strapi-v4";
 import axios from "axios";
 
@@ -63,9 +67,9 @@ export const authProvider: AuthProvider = {
                 Authorization: `Bearer ${data.jwt}`,
             };
 
-            return Promise.resolve;
+            return Promise.resolve();
         }
-        return Promise.reject;
+        return Promise.reject();
     },
     logout: () => {
         localStorage.removeItem(TOKEN_KEY);
@@ -109,10 +113,14 @@ export const authProvider: AuthProvider = {
 </details>
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import { DataProvider } from "@pankod/refine-strapi-v4";
 import routerProvider from "@pankod/refine-react-router";
 
+import "@pankod/refine-antd/dist/styles.min.css";
+
+// highlight-next-line
 import { authProvider, axiosInstance } from "./authProvider";
 
 const API_URL = "YOUR_API_URL";
@@ -125,6 +133,10 @@ const App: React.FC = () => {
             dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
             //highlight-end
             routerProvider={routerProvider}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
         />
     );
 };
@@ -137,19 +149,6 @@ You can find detailed usage information and the source code [here](https://githu
 ## Create Collections
 
 We created three collections on Strapi as store, product and order and added a relation between them. For detailed information on how to create a collection, you can check [here](https://docs.strapi.io/developer-docs/latest/getting-started/quick-start.html).
-
-```tsx title="products"
-{
-    id: 1,
-    attributes: {
-        title: "Test Product",
-        description: "Test Product Description",
-        createdAt: "2022-01-13T13:38:28.665Z",
-        updatedAt: "2022-01-13T13:38:50.909Z",
-        publishedAt: "2022-01-13T13:38:50.905Z"
-    }
-}
-```
 
 `Stores`
 
@@ -212,7 +211,7 @@ In order to view the products and orders of two different stores separately, we 
 
 For this reason, we will create a [React Context](https://en.reactjs.org/docs/context.html) and keep the storeId state information in it and send it to the relevant **refine** components.
 
-```tsx
+```tsx title="src/contexts/StoreContext.tsx"
 import { createContext, useState } from "react";
 
 export const StoreContext = createContext<any[]>([]);
@@ -225,25 +224,34 @@ export const StoreProvider = (props: any) => {
 ```
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import { DataProvider } from "@pankod/refine-strapi-v4";
 import routerProvider from "@pankod/refine-react-router";
 
+import "@pankod/refine-antd/dist/styles.min.css";
+
+// highlight-next-line
+import { StoreProvider } from "context/store";
 import { authProvider, axiosInstance } from "./authProvider";
 
 const API_URL = "YOUR_API_URL";
 
 const App: React.FC = () => {
     return (
-        //highlight-start
+        //highlight-next-line
         <StoreProvider>
             <Refine
                 authProvider={authProvider}
                 dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
                 routerProvider={routerProvider}
+                Layout={Layout}
+                ReadyPage={ReadyPage}
+                notificationProvider={notificationProvider}
+                catchAll={<ErrorComponent />}
             />
+            //highlight-next-line
         </StoreProvider>
-        // highlight-end
     );
 };
 ```
@@ -254,7 +262,7 @@ We will create a select component in the Sider Menu where the user will select t
 
 ```tsx title="scr/components/select/StoreSelect.tsx"
 import { useContext } from "react";
-import { Select, useSelect } from "@pankod/refine";
+import { Select, useSelect } from "@pankod/refine-antd";
 
 import { StoreContext } from "context/store";
 import { IStore } from "interfaces";
@@ -264,48 +272,32 @@ type SelectProps = {
 };
 
 export const StoreSelect: React.FC<SelectProps> = ({ onSelect }) => {
-    import { useContext } from "react";
-    import { Select, useSelect } from "@pankod/refine";
+    const [store, setStore] = useContext(StoreContext);
 
-    import { StoreContext } from "context/store";
-    import { IStore } from "interfaces";
+    const { selectProps: storeSelectProps } = useSelect<IStore>({
+        resource: "stores",
+        optionLabel: "title",
+        optionValue: "id",
+    });
 
-    type SelectProps = {
-        onSelect: () => void;
+    const handleChange = (selectedValue: string) => {
+        setStore(selectedValue);
     };
 
-    export const StoreSelect: React.FC<SelectProps> = ({ onSelect }) => {
-        //highlight-start
-        const [store, setStore] = useContext(StoreContext);
-        //highlight-end
-
-        const { selectProps: storeSelectProps } = useSelect<IStore>({
-            resource: "stores",
-            optionLabel: "title",
-            optionValue: "id",
-        });
-
-        //highlight-start
-        const handleChange = (selectedValue: string) => {
-            setStore(selectedValue);
-        };
-        //highlight-end
-
-        return (
-            <Select
-                defaultValue={store}
-                style={{ width: 130 }}
-                onChange={handleChange}
-                onSelect={onSelect}
-            >
-                {storeSelectProps.options?.map(({ value, label }) => (
-                    <Select.Option key={value} value={value}>
-                        {label}
-                    </Select.Option>
-                ))}
-            </Select>
-        );
-    };
+    return (
+        <Select
+            defaultValue={store}
+            style={{ width: 130 }}
+            onChange={handleChange}
+            onSelect={onSelect}
+        >
+            {storeSelectProps.options?.map(({ value, label }) => (
+                <Select.Option key={value} value={value}>
+                    {label}
+                </Select.Option>
+            ))}
+        </Select>
+    );
 };
 ```
 
@@ -321,21 +313,15 @@ Let's define the select component in the **refine** Sider Menu. First, we need t
 
 ```tsx title="src/components/sider/CustomSider.tsx"
 import React, { useState } from "react";
-import {
-    AntdLayout,
-    Menu,
-    useMenu,
-    useTitle,
-    useNavigation,
-    Grid,
-    Icons,
-} from "@pankod/refine";
-import { antLayoutSider, antLayoutSiderMobile } from "./styles";
+import { useTitle, useNavigation, useLogout } from "@pankod/refine-core";
+import { AntdLayout, Menu, useMenu, Grid, Icons } from "@pankod/refine-antd";
 
 import { StoreSelect } from "components/select";
+import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 export const CustomSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
+    const { mutate: logout } = useLogout();
     const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
@@ -352,15 +338,19 @@ export const CustomSider: React.FC = () => {
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
             style={isMobile ? antLayoutSiderMobile : antLayoutSider}
         >
-            <Title collapsed={collapsed} />
+            {Title && <Title collapsed={collapsed} />}
             <Menu
                 selectedKeys={[selectedKey]}
                 mode="inline"
                 onClick={({ key }) => {
+                    if (key === "logout") {
+                        logout();
+                        return;
+                    }
+
                     push(key as string);
                 }}
             >
-                //highlight-start
                 <Menu.Item
                     key={selectedKey}
                     icon={<Icons.AppstoreAddOutlined />}
@@ -371,7 +361,7 @@ export const CustomSider: React.FC = () => {
                         }}
                     />
                 </Menu.Item>
-                //highlight-end
+
                 {menuItems.map(({ icon, label, route }) => {
                     const isSelected = route === selectedKey;
                     return (
@@ -397,6 +387,10 @@ export const CustomSider: React.FC = () => {
                         </Menu.Item>
                     );
                 })}
+
+                <Menu.Item key={"logout"} icon={<Icons.LoginOutlined />}>
+                    Logout
+                </Menu.Item>
             </Menu>
         </AntdLayout.Sider>
     );
@@ -433,16 +427,15 @@ const { listProps } = useSimpleList<IProduct>({
 
 ```tsx title=src/pages/ProductList.tsx
 import { useContext } from "react";
+import { IResourceComponentsProps, HttpError } from "@pankod/refine-core";
 import {
-    IResourceComponentsProps,
     useSimpleList,
     AntdList,
     useModalForm,
     useDrawerForm,
     CreateButton,
     List,
-    HttpError,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IProduct } from "interfaces";
 
@@ -461,26 +454,24 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
     //highlight-end
 
     return (
-        <>
-            <List
-                pageHeaderProps={{
-                    extra: <CreateButton onClick={() => createShow()} />,
+        <List
+            pageHeaderProps={{
+                extra: <CreateButton onClick={() => createShow()} />,
+            }}
+        >
+            <AntdList
+                grid={{ gutter: 16, xs: 1 }}
+                style={{
+                    justifyContent: "center",
                 }}
-            >
-                <AntdList
-                    grid={{ gutter: 16, xs: 1 }}
-                    style={{
-                        justifyContent: "center",
-                    }}
-                    {...listProps}
-                    renderItem={(item) => (
-                        <AntdList.Item>
-                            <ProductItem item={item} editShow={editShow} />
-                        </AntdList.Item>
-                    )}
-                />
-            </List>
-        </>
+                {...listProps}
+                renderItem={(item) => (
+                    <AntdList.Item>
+                        <ProductItem item={item} editShow={editShow} />
+                    </AntdList.Item>
+                )}
+            />
+        </List>
     );
 };
 ```
@@ -530,6 +521,8 @@ const [store, setStore] = useContext(StoreContext);
 <p>
 
 ```tsx title="CreateProduct"
+import { useContext } from "react";
+import { useApiUrl } from "@pankod/refine-core";
 import {
     Create,
     Drawer,
@@ -540,11 +533,9 @@ import {
     ButtonProps,
     Upload,
     Grid,
-    useApiUrl,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { StoreContext } from "context/store";
-import { useContext } from "react";
 
 import {
     useStrapiUpload,
@@ -674,7 +665,7 @@ Username: `refine-demo`
 
 Password: `demodemo`
 
-<iframe src="https://codesandbox.io/embed/strapi-multi-tenant-example-jgr0g?fautoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/strapi-multi-tenant-example-t5d8x?fautoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="strapi-multi-tenant-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

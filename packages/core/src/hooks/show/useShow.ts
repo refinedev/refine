@@ -9,20 +9,21 @@ import {
     GetOneResponse,
     SuccessErrorNotification,
     MetaDataQuery,
-    LiveEvent,
     LiveModeProps,
+    BaseKey,
 } from "../../interfaces";
 
 export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
     queryResult: QueryObserverResult<GetOneResponse<TData>>;
-    showId?: string;
-    setShowId: React.Dispatch<React.SetStateAction<string | undefined>>;
+    showId?: BaseKey;
+    setShowId: React.Dispatch<React.SetStateAction<BaseKey | undefined>>;
 };
 
 export type useShowProps = {
     resource?: string;
-    id?: string;
+    id?: BaseKey;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 } & LiveModeProps &
     SuccessErrorNotification;
 
@@ -31,7 +32,7 @@ export type useShowProps = {
  * It uses `getOne` method as query function from the dataProvider that is
  * passed to {@link https://refine.dev/docs/api-references/components/refine-config `<Refine>`}.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/show/useShow} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/show/useShow} for more details.
  */
 export const useShow = <TData extends BaseRecord = BaseRecord>({
     resource: resourceFromProp,
@@ -41,17 +42,15 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
     metaData,
     liveMode,
     onLiveEvent,
+    dataProviderName,
 }: useShowProps = {}): useShowReturnType<TData> => {
     const { useParams } = useRouterContext();
 
     const { resource: routeResourceName, id: idFromRoute } =
         useParams<ResourceRouterParams>();
 
-    const [showId, setShowId] = useState<string | undefined>(
-        id ??
-            (idFromRoute !== undefined
-                ? decodeURIComponent(idFromRoute)
-                : undefined),
+    const [showId, setShowId] = useState<BaseKey | undefined>(
+        id ?? idFromRoute,
     );
 
     const resourceWithRoute = useResourceWithRoute();
@@ -69,6 +68,7 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
         metaData,
         liveMode,
         onLiveEvent,
+        dataProviderName,
     });
 
     return {

@@ -1,16 +1,17 @@
 import { useContext } from "react";
+import { IResourceComponentsProps } from "@pankod/refine-core";
+
 import {
     List,
     Table,
     useTable,
-    IResourceComponentsProps,
     TagField,
     TextField,
     Space,
     EditButton,
     DeleteButton,
     ImageField,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IOrder } from "interfaces";
 import { StoreContext } from "context/store";
@@ -32,7 +33,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="Order ID" />
                 <Table.Column
-                    dataIndex={["product", "data", "attributes"]}
+                    dataIndex="product"
                     title="Product"
                     render={(value) => {
                         return value ? <TextField value={value.title} /> : "";
@@ -40,14 +41,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 />
 
                 <Table.Column
-                    dataIndex={[
-                        "product",
-                        "data",
-                        "attributes",
-                        "image",
-                        "data",
-                        "attributes",
-                    ]}
+                    dataIndex={["product", "image"]}
                     title="Product Image"
                     render={(value) => {
                         return value ? (

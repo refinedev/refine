@@ -1,13 +1,15 @@
 import { GetServerSideProps } from "next";
 import {
-    useTable,
-    List,
-    Table,
     GetListResponse,
     LayoutWrapper,
     parseTableParamsFromQuery,
+} from "@pankod/refine-core";
+import {
+    useTable,
+    List,
+    Table,
     getDefaultSortOrder,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import { checkAuthentication } from "@pankod/refine-nextjs-router";
 

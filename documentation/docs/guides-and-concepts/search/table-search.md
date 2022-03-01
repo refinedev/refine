@@ -24,7 +24,7 @@ import {
     DatePicker,
     Space,
     Input,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 const { RangePicker } = DatePicker;
 
@@ -81,7 +81,7 @@ interface IPost {
 
 <br />
 
-When the form is submitted, the `onSearch` method runs and we get the search form values. We have to return an object of type [`CrudFilters`](../../api-references/interfaces.md#crudfilters) for this method.
+When the form is submitted, the `onSearch` method runs and we get the search form values. We have to return an object of type [`CrudFilters`](/core/interfaces.md#crudfilters) for this method.
 
 ```tsx title="pages/list.tsx"
 ...
@@ -122,7 +122,7 @@ const { searchFormProps } = useTable<IPost, { title: string; createdAt: [Dayjs, 
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-table-filter-example-fdzc4?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-table-filter-example-ngjz7?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-table-filter-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

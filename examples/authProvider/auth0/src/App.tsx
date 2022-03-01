@@ -1,11 +1,16 @@
-import { Refine, AuthProvider } from "@pankod/refine";
+import { Refine, AuthProvider } from "@pankod/refine-core";
+import {
+    notificationProvider,
+    Layout,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Login } from "pages/login";
@@ -13,14 +18,8 @@ import { Login } from "pages/login";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    const {
-        isLoading,
-        loginWithRedirect,
-        isAuthenticated,
-        user,
-        logout,
-        getIdTokenClaims,
-    } = useAuth0();
+    const { isLoading, isAuthenticated, user, logout, getIdTokenClaims } =
+        useAuth0();
 
     if (isLoading) {
         return <span>loading...</span>;
@@ -28,7 +27,6 @@ const App: React.FC = () => {
 
     const authProvider: AuthProvider = {
         login: () => {
-            loginWithRedirect();
             return Promise.resolve();
         },
         logout: () => {
@@ -77,6 +75,9 @@ const App: React.FC = () => {
                     show: PostShow,
                 },
             ]}
+            notificationProvider={notificationProvider}
+            Layout={Layout}
+            catchAll={<ErrorComponent />}
         />
     );
 };

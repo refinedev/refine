@@ -1,13 +1,8 @@
-import { BaseRecord, MetaDataQuery } from "../../interfaces";
+import { BaseRecord, BaseKey, MetaDataQuery } from "../../interfaces";
 
 export interface Pagination {
     current?: number;
     pageSize?: number;
-}
-
-export interface Search {
-    field?: string;
-    value?: string;
 }
 
 // Filters are used as a suffix of a field name:
@@ -41,7 +36,10 @@ export type CrudOperators =
     | "ncontains"
     | "containss"
     | "ncontainss"
-    | "null";
+    | "between"
+    | "nbetween"
+    | "null"
+    | "nnull";
 
 export type CrudFilter = {
     field: string;
@@ -107,12 +105,12 @@ export interface IDataContext {
     }) => Promise<GetListResponse<TData>>;
     getMany: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
-        ids: string[];
+        ids: BaseKey[];
         metaData?: MetaDataQuery;
     }) => Promise<GetManyResponse<TData>>;
     getOne: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
-        id: string;
+        id: BaseKey;
         metaData?: MetaDataQuery;
     }) => Promise<GetOneResponse<TData>>;
     create: <TData extends BaseRecord = BaseRecord, TVariables = {}>(params: {
@@ -130,7 +128,7 @@ export interface IDataContext {
     }) => Promise<CreateManyResponse<TData>>;
     update: <TData extends BaseRecord = BaseRecord, TVariables = {}>(params: {
         resource: string;
-        id: string;
+        id: BaseKey;
         variables: TVariables;
         metaData?: MetaDataQuery;
     }) => Promise<UpdateResponse<TData>>;
@@ -139,18 +137,18 @@ export interface IDataContext {
         TVariables = {},
     >(params: {
         resource: string;
-        ids: string[];
+        ids: BaseKey[];
         variables: TVariables;
         metaData?: MetaDataQuery;
     }) => Promise<UpdateManyResponse<TData>>;
     deleteOne: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
-        id: string;
+        id: BaseKey;
         metaData?: MetaDataQuery;
     }) => Promise<DeleteOneResponse<TData>>;
     deleteMany: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
-        ids: string[];
+        ids: BaseKey[];
         metaData?: MetaDataQuery;
     }) => Promise<DeleteManyResponse<TData>>;
     getApiUrl: () => string;
@@ -180,15 +178,17 @@ export interface IDataContextProvider {
         sort?: CrudSorting;
         filters?: CrudFilters;
         metaData?: MetaDataQuery;
+        dataProviderName?: string;
     }) => Promise<GetListResponse<TData>>;
     getMany: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
-        ids: string[];
+        ids: BaseKey[];
         metaData?: MetaDataQuery;
+        dataProviderName?: string;
     }) => Promise<GetManyResponse<TData>>;
     getOne: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
-        id: string;
+        id: BaseKey;
         metaData?: MetaDataQuery;
     }) => Promise<GetOneResponse<TData>>;
     create: <TData extends BaseRecord = BaseRecord, TVariables = {}>(params: {
@@ -206,7 +206,7 @@ export interface IDataContextProvider {
     }) => Promise<CreateManyResponse<TData>>;
     update: <TData extends BaseRecord = BaseRecord, TVariables = {}>(params: {
         resource: string;
-        id: string;
+        id: BaseKey;
         variables: TVariables;
         metaData?: MetaDataQuery;
     }) => Promise<UpdateResponse<TData>>;
@@ -215,22 +215,21 @@ export interface IDataContextProvider {
         TVariables = {},
     >(params: {
         resource: string;
-        ids: string[];
+        ids: BaseKey[];
         variables: TVariables;
         metaData?: MetaDataQuery;
     }) => Promise<UpdateManyResponse<TData>>;
     deleteOne: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
-        id: string;
+        id: BaseKey;
         metaData?: MetaDataQuery;
     }) => Promise<DeleteOneResponse<TData>>;
     deleteMany: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
-        ids: string[];
+        ids: BaseKey[];
         metaData?: MetaDataQuery;
     }) => Promise<DeleteManyResponse<TData>>;
     getApiUrl: () => string;
-    // TODO: Should be optional
     custom?: <TData extends BaseRecord = BaseRecord>(params: {
         url: string;
         method:
@@ -248,4 +247,9 @@ export interface IDataContextProvider {
         headers?: {};
         metaData?: MetaDataQuery;
     }) => Promise<CustomResponse<TData>>;
+}
+
+export interface IDataMultipleContextProvider {
+    default?: IDataContextProvider;
+    [key: string]: IDataContextProvider | any;
 }

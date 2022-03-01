@@ -1,0 +1,36 @@
+{
+  "name": "refine-ecommerce-example",
+  "version": "3.4.0",
+  "private": true,
+  "scripts": {
+    "dev": "NODE_OPTIONS=--max_old_space_size=4096 next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^1.1.5",
+    "@chakra-ui/react": "^1.8.3",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@pankod/refine-core": "^3.4.0",
+    "@pankod/refine-nextjs-router": "^3.4.0",
+    "@pankod/refine-strapi": "^3.4.0",
+    "@pankod/refine-strapi-v4": "^3.4.0",
+    "axios": "^0.21.4",
+    "framer-motion": "^5.6.0",
+    "next": "^12.0.3",
+    "next-compose-plugins": "^2.2.1",
+    "nookies": "^2.5.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.20.11",
+    "@types/react": "^17.0.4",
+    "@types/react-dom": "^17.0.4",
+    "@typescript-eslint/parser": "^4.25.0",
+    "typescript": "^4.4.3"
+  }
+}

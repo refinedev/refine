@@ -16,7 +16,7 @@ export const PerfectImplementation = () => {
                     )}
                 >
                     <iframe
-                        src="https://codesandbox.io/embed/tutorial-grg4u?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+                        src="https://codesandbox.io/embed/tutorial-ov79u?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
                         style={{
                             width: "100%",
                             height: "70vh",
@@ -29,18 +29,9 @@ export const PerfectImplementation = () => {
                         sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
                     ></iframe>
                 </div>
-                <div className="row row--justify--center">
+                {/*  <div className="row row--justify--center">
                     <div className="col col--9">
                         <h2 className={styles.title}>Perfect Implementation</h2>
-                        <p className={styles.description}>
-                            <strong>
-                                Refine is a collection of helper hooks,
-                                components and providers.
-                            </strong>
-                            They are all decoupled from your UI components and
-                            business logic, so they never keep you from
-                            customizing your UI or coding your own flow.
-                        </p>
                         <p className={styles.description}>
                             <strong>
                                 Refine&apos;s strongly opinionated about three
@@ -63,7 +54,7 @@ export const PerfectImplementation = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </section>
     );

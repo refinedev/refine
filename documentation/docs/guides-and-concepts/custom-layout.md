@@ -16,18 +16,25 @@ Both of these components can accept the listed props for customization. [`<Refin
 
 ## Usage
 
+:::caution
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
+:::
+
 Let's look at an example of modifying the default layout to have a top menu layout.
 
 ```tsx title="/src/App.tsx"
-import { Refine, AntdLayout, Link } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import { AntdLayout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
-import "@pankod/refine/dist/styles.min.css";
+
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList } from "pages/posts";
-
 // highlight-next-line
 import { CustomSider } from "components";
+
+const { Link } = routerProvider;
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -48,9 +55,9 @@ const App: React.FC = () => {
                                 {children}
                             </div>
                         </AntdLayout.Content>
-                        <Footer />
+                        {Footer && <Footer />}
                     </AntdLayout.Content>
-                    <OffLayoutArea />
+                    {OffLayoutArea && <OffLayoutArea />}
                 </AntdLayout>
             )}
 // highlight-end
@@ -59,6 +66,9 @@ const App: React.FC = () => {
                     <img src="/refine.svg" alt="Refine" />
                 </Link>
             )}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
         />
     );
 };
@@ -71,7 +81,11 @@ Here, we override the [`<Title>`][title] and [`<Layout>`][layout] components. Wh
 So, we just provided a custom [`<Sider>`][sider]. Here's our custom sider that looks horizontal, instead of the default vertical one:
 
 ```tsx  title="/src/components/sider/index.tsx"
-import { Link, Menu, useMenu, useTitle } from "@pankod/refine";
+import { useTitle } from "@pankod/refine-core";
+import { Menu, useMenu } from "@pankod/refine-antd";
+import routerProvider from "@pankod/refine-react-router";
+
+const { Link } = routerProvider;
 
 export const CustomSider: React.FC = () => {
 // highlight-start
@@ -82,7 +96,7 @@ export const CustomSider: React.FC = () => {
     return (
         <>
 // highlight-start
-            <Title collapsed={false} />
+            {Title && <Title collapsed={false} />}
             <Menu selectedKeys={[selectedKey]} mode="horizontal">
                 {menuItems.map(({ icon, route, label }) => (
                     <Menu.Item key={route} icon={icon}>
@@ -110,23 +124,23 @@ This example demonstrated how to configure a global layout. To learn how to use 
 
 Here's how it looks in the end:
 
-<iframe src="https://codesandbox.io/embed/refine-top-menu-layout-example-yb9r8?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-top-menu-layout-example-mryki?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-top-menu-layout-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
-[refine]: /api-references/components/refine-config.md
-[layout]: /api-references/components/refine-config.md#layout
-[sider]: /api-references/components/refine-config.md#sider
-[footer]: /api-references/components/refine-config.md#footer
-[header]: /api-references/components/refine-config.md#header
-[offlayoutarea]: /api-references/components/refine-config.md#offlayoutarea
-[title]: /api-references/components/refine-config.md#title
-[layoutwrapper]: /api-references/components/layout-wrapper.md
+[refine]: /core/components/refine-config.md
+[layout]: /core/components/refine-config.md#layout
+[sider]: /core/components/refine-config.md#sider
+[footer]: /core/components/refine-config.md#footer
+[header]: /core/components/refine-config.md#header
+[offlayoutarea]: /core/components/refine-config.md#offlayoutarea
+[title]: /core/components/refine-config.md#title
+[layoutwrapper]: /core/components/layout-wrapper.md
 [custom page example]: /guides-and-concepts/custom-pages.md
 [custom page example code]: /examples/customization/topMenuLayout.md
 [antdlayout]: https://ant.design/components/layout/
-[usemenu]: /api-references/hooks/resource/useMenu.md
-[usetitle]: /api-references/hooks/refine/useTitle.md
+[usemenu]: /ui-frameworks/antd/hooks/resource/useMenu.md
+[usetitle]: /core/hooks/refine/useTitle.md

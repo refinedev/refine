@@ -1,8 +1,6 @@
 import React from "react";
-import { Row, Table } from "antd";
 
 import { render, MockJSONServer, MockRouterProvider, TestWrapper } from "@test";
-import { List } from "@components";
 
 import { Refine } from "./index";
 
@@ -47,13 +45,9 @@ describe("Refine Container", () => {
     it("should render correctly readyPage with ready prop", async () => {
         const readyPage = () => {
             return (
-                <Row
-                    align="middle"
-                    justify="center"
-                    data-testid="readyContainer"
-                >
+                <div data-testid="readyContainer">
                     <p>readyPage rendered with ready prop</p>
-                </Row>
+                </div>
             );
         };
         const { getByTestId, getByText } = render(
@@ -71,19 +65,17 @@ describe("Refine Container", () => {
     it("should render resource prop list page", async () => {
         const PostList = () => {
             return (
-                <List>
-                    <Table rowKey="id">
-                        <Table.Column
-                            key="title"
-                            title="Title"
-                            dataIndex="title"
-                        />
-                    </Table>
-                </List>
+                <>
+                    <h1>Posts</h1>
+                    <table>
+                        <td>foo</td>
+                        <tr>bar</tr>
+                    </table>
+                </>
             );
         };
 
-        const { container, getByText, debug } = render(<PostList />, {
+        const { container, getByText } = render(<PostList />, {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
                 resources: [{ name: "posts" }],

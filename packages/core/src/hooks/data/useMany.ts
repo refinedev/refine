@@ -1,26 +1,30 @@
-import { useContext } from "react";
 import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
-import { ArgsProps } from "antd/lib/notification";
 
-import { DataContext } from "@contexts/data";
 import {
-    IDataContext,
     BaseRecord,
+    BaseKey,
     GetManyResponse,
     HttpError,
     MetaDataQuery,
     LiveModeProps,
+    OpenNotificationParams,
 } from "../../interfaces";
-import { useTranslate, useCheckError, useResourceSubscription } from "@hooks";
-import { handleNotification } from "@definitions";
+import {
+    useTranslate,
+    useCheckError,
+    useResourceSubscription,
+    useHandleNotification,
+    useDataProvider,
+} from "@hooks";
 
 export type UseManyProps<TData, TError> = {
     resource: string;
-    ids: string[];
+    ids: BaseKey[];
     queryOptions?: UseQueryOptions<GetManyResponse<TData>, TError>;
-    successNotification?: ArgsProps | false;
-    errorNotification?: ArgsProps | false;
+    successNotification?: OpenNotificationParams | false;
+    errorNotification?: OpenNotificationParams | false;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 } & LiveModeProps;
 
 /**
@@ -28,10 +32,10 @@ export type UseManyProps<TData, TError> = {
  *
  * It uses `getMany` method as query function from the `dataProvider` which is passed to `<Refine>`.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/data/useMany} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/data/useMany} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/core/interfaceReferences#httperror `HttpError`}
  *
  */
 export const useMany = <
@@ -47,12 +51,17 @@ export const useMany = <
     liveMode,
     onLiveEvent,
     liveParams,
+    dataProviderName,
 }: UseManyProps<TData, TError>): QueryObserverResult<
     GetManyResponse<TData>
 > => {
-    const { getMany } = useContext<IDataContext>(DataContext);
+    const dataProvider = useDataProvider();
+
+    const { getMany } = dataProvider(dataProviderName);
+
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
+    const handleNotification = useHandleNotification();
 
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
@@ -60,7 +69,7 @@ export const useMany = <
     useResourceSubscription({
         resource,
         types: ["*"],
-        params: { ids: ids ? ids?.map(String) : [], ...liveParams },
+        params: { ids: ids ?? [], ...liveParams },
         channel: `resources/${resource}`,
         enabled: isEnabled,
         liveMode,

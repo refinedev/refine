@@ -1,8 +1,6 @@
-import { useContext } from "react";
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 import pluralize from "pluralize";
 
-import { DataContext } from "@contexts/data";
 import {
     useCacheQueries,
     useCancelNotification,
@@ -10,11 +8,13 @@ import {
     useMutationMode,
     useTranslate,
     usePublish,
+    useHandleNotification,
+    useDataProvider,
 } from "@hooks";
-import { ActionTypes } from "@contexts/notification";
+import { ActionTypes } from "@contexts/undoableQueue";
 import {
-    IDataContext,
     BaseRecord,
+    BaseKey,
     UpdateManyResponse,
     HttpError,
     MutationMode,
@@ -24,16 +24,16 @@ import {
     SuccessErrorNotification,
     MetaDataQuery,
 } from "../../interfaces";
-import { handleNotification } from "@definitions/helpers";
 
 type UpdateManyParams<TVariables> = {
-    ids: string[];
+    ids: BaseKey[];
     resource: string;
     mutationMode?: MutationMode;
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
     values: TVariables;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 } & SuccessErrorNotification;
 
 type UseUpdateManyReturnType<
@@ -52,10 +52,10 @@ type UseUpdateManyReturnType<
  *
  * It uses `updateMany` method as mutation function from the `dataProvider` which is passed to `<Refine>`.
  *
- * @see {@link https://refine.dev/docs/api-references/hooks/data/useUpdateMany} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/data/useUpdateMany} for more details.
  *
- * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
- * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/api-references/interfaceReferences#httperror `HttpError`}
+ * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/core/interfaceReferences#baserecord `BaseRecord`}
+ * @typeParam TError - Custom error object that extends {@link https://refine.dev/docs/core/interfaceReferences#httperror `HttpError`}
  * @typeParam TVariables - Values for mutation function
  *
  */
@@ -65,8 +65,9 @@ export const useUpdateMany = <
     TVariables = {},
 >(): UseUpdateManyReturnType<TData, TError, TVariables> => {
     const queryClient = useQueryClient();
+    const dataProvider = useDataProvider();
     const translate = useTranslate();
-    const { updateMany } = useContext<IDataContext>(DataContext);
+
     const {
         mutationMode: mutationModeContext,
         undoableTimeout: undoableTimeoutContext,
@@ -75,6 +76,7 @@ export const useUpdateMany = <
 
     const { notificationDispatch } = useCancelNotification();
     const publish = usePublish();
+    const handleNotification = useHandleNotification();
 
     const getAllQueries = useCacheQueries();
 
@@ -92,6 +94,7 @@ export const useUpdateMany = <
             mutationMode,
             undoableTimeout,
             metaData,
+            dataProviderName,
         }: UpdateManyParams<TVariables>) => {
             const mutationModePropOrContext =
                 mutationMode ?? mutationModeContext;
@@ -100,7 +103,10 @@ export const useUpdateMany = <
                 undoableTimeout ?? undoableTimeoutContext;
 
             if (!(mutationModePropOrContext === "undoable")) {
-                return updateMany<TData, TVariables>({
+                return dataProvider(dataProviderName).updateMany<
+                    TData,
+                    TVariables
+                >({
                     resource,
                     ids,
                     variables: values,
@@ -111,12 +117,13 @@ export const useUpdateMany = <
             const updatePromise = new Promise<UpdateManyResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        updateMany<TData, TVariables>({
-                            resource,
-                            ids,
-                            variables: values,
-                            metaData,
-                        })
+                        dataProvider(dataProviderName)
+                            .updateMany<TData, TVariables>({
+                                resource,
+                                ids,
+                                variables: values,
+                                metaData,
+                            })
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
                     };
@@ -181,7 +188,10 @@ export const useUpdateMany = <
                                     data: data.map((record: TData) => {
                                         if (
                                             ids
-                                                .map((p) => p.toString())
+                                                .filter(
+                                                    (id) => id !== undefined,
+                                                )
+                                                .map(String)
                                                 .includes(record.id!.toString())
                                         ) {
                                             return {
@@ -255,8 +265,11 @@ export const useUpdateMany = <
 
                 handleNotification(successNotification, {
                     key: `${ids}-${resource}-notification`,
-                    message: translate("notifications.success", "Successful"),
                     description: translate(
+                        "notifications.success",
+                        "Successful",
+                    ),
+                    message: translate(
                         "notifications.editSuccess",
                         {
                             resource: translate(

@@ -1,4 +1,5 @@
-import { AntdLayout, Button, Icons, useLogin } from "@pankod/refine";
+import { useLogin } from "@pankod/refine-core";
+import { AntdLayout, Button, Icons } from "@pankod/refine-antd";
 import { useGoogleLogin, GoogleLoginResponse } from "react-google-login";
 
 const { GoogleOutlined } = Icons;

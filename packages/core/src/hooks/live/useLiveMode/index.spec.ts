@@ -3,7 +3,7 @@ import { renderHook } from "@testing-library/react-hooks";
 import { TestWrapper } from "@test";
 
 import { useLiveMode } from "./";
-import { IRefineContextProvider } from "src/interfaces";
+import { IRefineContextProvider } from "../../../interfaces";
 
 const mockRefineProvider: IRefineContextProvider = {
     hasDashboard: false,

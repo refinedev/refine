@@ -50,7 +50,7 @@ npx superplate-cli demo-refine-project
 
 * Configuration: One-line setup with superplate. Project setup is very simple. Using superplate you can choose the content of your project and the features you want to add. 
 
-* UI: You have full control over the UI elements. Fully customizable, open to use. Works seamlessly with integrated Ant Design System.
+* UI: You have full control over the UI elements. Fully customizable, open to use. Works seamlessly with Ant Design System.
 
 * Out-of-the-box: Routing, networking, authentication, state managment, i18n and UI.
 
@@ -380,7 +380,8 @@ Connects to any REST or GraphQL custom backend.
 * Strapi v4: [https://github.com/pankod/refine/tree/master/examples/dataProvider/strapi-v4](https://github.com/pankod/refine/tree/master/examples/dataProvider/strapi-v4)
 * Strapi GraphQL: [https://github.com/pankod/refine/tree/master/examples/dataProvider/strapi-graphql](https://github.com/pankod/refine/tree/master/examples/dataProvider/strapi-graphql)
 * Supabase: [https://github.com/pankod/refine/tree/master/examples/dataProvider/supabase](https://github.com/pankod/refine/tree/master/examples/dataProvider/supabase)
-* Hasura: [https://github.com/pankod/refine/tree/master/examples/dataProvider/supabase](https://github.com/pankod/refine/tree/master/examples/dataProvider/supabase)
+* Hasura: [https://github.com/pankod/refine/tree/master/examples/dataProvider/hasura](https://github.com/pankod/refine/tree/master/examples/dataProvider/hasura)
+* Nhost: [https://github.com/pankod/refine/tree/master/examples/dataProvider/nhost](https://github.com/pankod/refine/tree/master/examples/dataProvider/nhost)
 * Appwrite: [https://github.com/pankod/refine/tree/master/examples/dataProvider/appwrite](https://github.com/pankod/refine/tree/master/examples/dataProvider/appwrite)
 * Altogic: [https://github.com/pankod/refine/tree/master/examples/dataProvider/altogic](https://github.com/pankod/refine/tree/master/examples/dataProvider/altogic)
 

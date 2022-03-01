@@ -1,11 +1,7 @@
 import React from "react";
-import {
-    useTable,
-    List,
-    Table,
-    DateField,
-    IResourceComponentsProps,
-} from "@pankod/refine";
+import { IResourceComponentsProps } from "@pankod/refine-core";
+
+import { useTable, List, Table, DateField } from "@pankod/refine-antd";
 
 import { IMail } from "interfaces";
 

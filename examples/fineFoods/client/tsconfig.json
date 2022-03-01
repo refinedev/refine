@@ -1,66 +1,49 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "baseUrl": ".",
-    "paths": {
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@components": [
-        "src/components"
-      ],
-      "@styles/*": [
-        "src/styles/*"
-      ],
-      "@styles": [
-        "src/styles"
-      ],
-      "@public/*": [
-        "public/*"
-      ],
-      "@public": [
-        "public"
-      ],
-      "@hooks/*": [
-        "src/hooks/*"
-      ],
-      "@hooks": [
-        "src/hooks"
-      ],
-      "@interfaces": [
-        "src/interfaces"
-      ],
-      "@contextProviders/*": [
-        "src/contextProviders/*"
-      ],
-      "@contextProviders": [
-        "src/contextProviders"
-      ]
+    "compilerOptions": {
+        "baseUrl": ".",
+        "target": "es5",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "incremental": true,
+        "paths": {
+            "@components/*": [
+              "src/components/*"
+            ],
+            "@components": [
+              "src/components"
+            ],
+            "@hooks/*": [
+              "src/hooks/*"
+            ],
+            "@hooks": [
+              "src/hooks"
+            ],
+            "@interfaces": [
+              "src/interfaces"
+            ],
+            "@context/*": [
+              "src/context/*"
+            ],
+            "@context": [
+              "src/context"
+            ]
+          },
     },
-    "incremental": true
-  },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        "src/types/react-table-config.d.ts"
+    ],
+    "exclude": ["node_modules"]
 }

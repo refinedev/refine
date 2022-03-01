@@ -3,8 +3,11 @@ id: custom-pages
 title: Custom Pages
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 import basic from '@site/static/img/guides-and-concepts/custom-pages/basic.png'
 import gif from '@site/static/img/guides-and-concepts/custom-pages/gif.gif'
+
 
 :::caution
 
@@ -21,8 +24,81 @@ This document is related to how to create custom pages for **react** application
 
 Allows creating custom pages that everyone can access via path.
 
+<Tabs
+defaultValue="react-router-v6"
+values={[
+{label: 'React Router V6', value: 'react-router-v6'},
+{label: 'React Location', value: 'react-location'},
+{label: 'React Router V5', value: 'react-router'}
+]}>
+<TabItem value="react-router-v6">
+
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+// highlight-next-line
+import { CustomPage } from "pages/custom-page";
+
+const App = () => {
+    return (
+        <Refine
+            ...
+// highlight-start
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                     {
+                        element: <CustomPage />,
+                        path: "/custom-page",
+                    },
+                ],
+            }}
+// highlight-end
+        />
+    );
+};
+
+export default App;
+```
+
+</TabItem>
+<TabItem value="react-location">
+
+```tsx title="src/App.tsx"
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-location";
+
+// highlight-next-line
+import { CustomPage } from "pages/custom-page";
+
+const App = () => {
+    return (
+        <Refine
+            ...
+// highlight-start
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                     {
+                        element: <CustomPage />,
+                        path: "custom-page",
+                    },
+                ],
+            }}
+// highlight-end
+        />
+    );
+};
+
+export default App;
+```
+
+</TabItem>
+<TabItem value="react-router">
+
+```tsx title="src/App.tsx"
+import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 
 // highlight-next-line
@@ -51,15 +127,156 @@ const App = () => {
 export default App;
 ```
 
+  </TabItem>
+</Tabs>
+
+
+
 Everyone can access this page via `/custom-page` path.
 
 ## Authenticated Custom Pages
 
 Allows creating custom pages that only authenticated users can access via path.
 
+<Tabs
+defaultValue="react-router-v6"
+values={[
+{label: 'React Router V6', value: 'react-router-v6'},
+{label: 'React Location', value: 'react-location'},
+{label: 'React Router V5', value: 'react-router'}
+]}>
+<TabItem value="react-router-v6">
+
+```tsx title="src/App.tsx"
+import { Refine, Authenticated, AuthProvider } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+import { CustomPage } from "pages/custom-page";
+
+const authProvider: AuthProvider = {
+    login: (params: any) => {
+        if (params.username === "admin") {
+            localStorage.setItem("username", params.username);
+            return Promise.resolve();
+        }
+
+        return Promise.reject();
+    },
+    logout: () => {
+        localStorage.removeItem("username");
+        return Promise.resolve();
+    },
+    checkError: () => Promise.resolve(),
+    checkAuth: () =>
+        localStorage.getItem("username") ? Promise.resolve() : Promise.reject(),
+    getPermissions: () => Promise.resolve(["admin"]),
+};
+
+// highlight-start
+const AuthenticatedCustomPage = () => {
+    return (
+        <Authenticated>
+            <CustomPage />
+        </Authenticated>
+    );
+};
+// highlight-end
+
+const App = () => {
+    return (
+        <Refine
+            ...
+// highlight-start
+            authProvider={authProvider}
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                     {
+                        element: <AuthenticatedCustomPage />,
+                        path: "/custom-page",
+                    },
+                ],
+            }}
+// highlight-end
+        />
+    );
+};
+
+export default App;
+```
+
+</TabItem>
+<TabItem value="react-location">
+
 ```tsx title="src/App.tsx"
 // highlight-start
-import { Refine, Authenticated, AuthProvider } from "@pankod/refine";
+import { Refine, Authenticated, AuthProvider } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-location";
+// highlight-end
+
+// highlight-next-line
+import { CustomPage } from "pages/custom-page";
+
+// highlight-start
+const authProvider: AuthProvider = {
+    login: (params: any) => {
+        if (params.username === "admin") {
+            localStorage.setItem("username", params.username);
+            return Promise.resolve();
+        }
+
+        return Promise.reject();
+    },
+    logout: () => {
+        localStorage.removeItem("username");
+        return Promise.resolve();
+    },
+    checkError: () => Promise.resolve(),
+    checkAuth: () =>
+        localStorage.getItem("username") ? Promise.resolve() : Promise.reject(),
+    getPermissions: () => Promise.resolve(["admin"]),
+};
+// highlight-end
+
+// highlight-start
+const AuthenticatedCustomPage = () => {
+    return (
+        <Authenticated>
+            <CustomPage />
+        </Authenticated>
+    );
+};
+// highlight-end
+
+const App = () => {
+    return (
+        <Refine
+            ...
+// highlight-start
+            authProvider={authProvider}
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                     {
+                        component: <AuthenticatedCustomPage />,
+                        path: "custom-page",
+                    },
+                ],
+            }}
+// highlight-end
+        />
+    );
+};
+
+export default App;
+```
+
+</TabItem>
+<TabItem value="react-router">
+
+```tsx title="src/App.tsx"
+// highlight-start
+import { Refine, Authenticated, AuthProvider } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router";
 // highlight-end
 
@@ -121,26 +338,106 @@ const App = () => {
 export default App;
 ```
 
+  </TabItem>
+</Tabs>
+
 Only authenticated users can access this page via `/custom-page` path.
 
 :::caution attention
 For authenticated custom page, your application needs an `authProvider`.
 
-[Refer to the `authProvider` for more detailed information. &#8594](/api-references/providers/auth-provider.md)
-
+[Refer to the `authProvider` for more detailed information. &#8594](/core/providers/auth-provider.md)
 :::
 
-:::info
+## Layout for Custom Pages
+
+<Tabs
+defaultValue="react-router-v6"
+values={[
+{label: 'React Router V6', value: 'react-router-v6'},
+{label: 'React Location', value: 'react-location'},
+{label: 'React Router V5', value: 'react-router'}
+]}>
+<TabItem value="react-router-v6">
+
+```tsx 
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+// highlight-next-line
+import { CustomPage } from "pages/custom-page";
+
+const App = () => {
+    return (
+        <Refine
+            ...
+// highlight-start
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                     {
+                        element: <CustomPage />,
+                        path: "/custom-page",
+                        layout: true
+                    },
+                ],
+            }}
+// highlight-end
+        />
+    );
+};
+
+export default App;
+```
+
+</TabItem>
+<TabItem value="react-location">
+
+```tsx 
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-location";
+
+// highlight-next-line
+import { CustomPage } from "pages/custom-page";
+
+const App = () => {
+    return (
+        <Refine
+            ...
+// highlight-start
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                     {
+                        element: <CustomPage />,
+                        path: "custom-page",
+                        layout: true
+                    },
+                ],
+            }}
+// highlight-end
+        />
+    );
+};
+
+export default App;
+```
+
+</TabItem>
+<TabItem value="react-router">
+
 By default, custom pages don't have any layout. If you want to show your custom page in a layout, you can use `<LayoutWrapper>` component.
 
-[Refer to the `<LayoutWrapper>` for more detailed information. &#8594](/api-references/components/layout-wrapper.md)
-:::
+[Refer to the `<LayoutWrapper>` for more detailed information. &#8594](/core/components/layout-wrapper.md)
+</TabItem>
+</Tabs>
+
 
 ## Example
 
 Let's make a custom page for posts. On this page, the editor can approve or reject the posts with the "draft" status.
 
-Before starting the example, let's assume that our [`dataProvider`](/api-references/providers/data-provider.md) has an endpoint that returns posts as following.
+Before starting the example, let's assume that our [`dataProvider`](/core/providers/data-provider.md) has an endpoint that returns posts as following.
 
 ```ts title="https://api.fake-rest.refine.dev/posts"
 {
@@ -173,10 +470,11 @@ Before starting the example, let's assume that our [`dataProvider`](/api-referen
 First, we will create the post's CRUD pages and bootstrap the app.
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router";
-import "@pankod/refine/dist/styles.min.css";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -203,10 +501,10 @@ export default App;
 
 Now, let's create the custom page with the name `<PostReview>`. We will use the properties of `useList`, `filter` and `pagination` to fetch a post with "draft" status.
 
-[Refer to the `useList` documentation for detailed usage. &#8594](/api-references/hooks/data/useList.md)
+[Refer to the `useList` documentation for detailed usage. &#8594](/core/hooks/data/useList.md)
 
 ```tsx  title="src/pages/post-review.tsx"
-import { useList } from "@pankod/refine";
+import { useList } from "@pankod/refine-core";
 
 const PostReview = () => {
     const { data, isLoading } = useList<IPost>({
@@ -246,7 +544,7 @@ Post's category is relational. So we will use the post's category "id" to get th
 
 ```tsx  title="src/pages/post-review.tsx"
 // highlight-next-line
-import { useList, useOne } from "@pankod/refine";
+import { useList, useOne } from "@pankod/refine-core";
 
 export const PostReview = () => {
     const { data, isLoading } = useList<IPost>({
@@ -285,15 +583,14 @@ Now we have the data to display the post as we want. Let's use the `<Show>` comp
 :::
 
 ```tsx  title="src/pages/post-review.tsx"
+import { useOne, useList } from "@pankod/refine-core";
 import {
 // highlight-start
     Typography,
     Show,
     MarkdownField,
 // highlight-end
-    useOne,
-    useList,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 // highlight-next-line
 const { Title, Text } = Typography;
@@ -351,10 +648,11 @@ export const PostReview = () => {
 Then, pass this `<PostReview>` as the routes property in the `<Refine>` component:
 
 ```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine";
-import routerProvider from "@pankod/refine-react-router";
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
-import "@pankod/refine/dist/styles.min.css";
+
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -371,8 +669,7 @@ const App = () => {
                 ...routerProvider,
                 routes: [
                     {
-                        exact: true,
-                        component: PostReview,
+                        element: <PostReview />,
                         path: "/post-review",
                     },
                 ],
@@ -408,9 +705,15 @@ Now our page looks like this:
 
 Now let's put in approve and reject buttons to change the status of the post shown on the page. When these buttons are clicked, we will change the status of the post using `useUpdate`.
 
-[Refer to the `useUpdate` documentation for detailed usage. &#8594](/api-references/hooks/data/useUpdate.md)
+[Refer to the `useUpdate` documentation for detailed usage. &#8594](/core/hooks/data/useUpdate.md)
 
 ```tsx  title="src/pages/post-review.tsx"
+import { 
+    useList, 
+    useOne, 
+    //highlight-next-line
+    useUpdate 
+} from "@pankod/refine-core";
 import {
     Typography,
     Show,
@@ -418,11 +721,8 @@ import {
 // highlight-start
     Space,
     Button,
-    useUpdate,
 // highlight-end
-    useOne,
-    useList,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 const { Title, Text } = Typography;
 
@@ -527,7 +827,7 @@ export const PostReview = () => {
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/custom-pages-example-1o1by?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/custom-pages-example-rn2ly?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="custom-pages-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

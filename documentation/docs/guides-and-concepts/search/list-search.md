@@ -6,22 +6,25 @@ title: List Search
 import basicList from '@site/static/img/guides-and-concepts/list-search/basic-list.png';
 import formList from '@site/static/img/guides-and-concepts/list-search/form-list.png';
 
-We will examine how to make an extensive search and filtering with the [`useSimpleList`](../../api-references/hooks/show/useSimpleList.md) hook that works with the Ant Design's [`<List>`](https://ant.design/components/list) component.
+We will examine how to make an extensive search and filtering with the [`useSimpleList`](/ui-frameworks/antd/hooks/list/useSimpleList.md) hook that works with the Ant Design's [`<List>`](https://ant.design/components/list) component.
 
 To do this, let's list posts using the posts resource.
 
 ```tsx title="pages/posts/list.tsx"
+import { 
+    // highlight-next-line
+    useMany 
+} from "@pankod/refine-core";
 import {
     List,
     // highlight-start
     useSimpleList,
-    useMany,
     // highlight-end
     AntdList,
     Typography,
     Space,
     NumberField,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 const { Text } = Typography;
 
@@ -91,11 +94,12 @@ interface IPost {
 After creating the `<PostList>` component, add it to resource with `list` prop:
 
 ```tsx
-import { Refine, Resource } from "@pankod/refine";
+import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine/dist/styles.min.css";
+import "@pankod/refine-antd/dist/styles.min.css";
 
 // highlight-next-line
 import { PostList } from "pages/posts";
@@ -107,8 +111,18 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
-            // highlight-next-line
-            resources={[{ name: "posts", list: PostList }]}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
+            // highlight-start
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                },
+            ]}
+            //highlight-end
         />
     );
 };
@@ -126,7 +140,7 @@ export default App;
 </div>
 <br />
 
-We will create a form by extracting `searchFormProps` from [`useSimpleList`](../../api-references/hooks/show/useSimpleList.md). We will use this form for search/filtering. We will also create an interface to determine the types of values from the form.
+We will create a form by extracting `searchFormProps` from [`useSimpleList`](/ui-frameworks/antd/hooks/list/useSimpleList.md). We will use this form for search/filtering. We will also create an interface to determine the types of values from the form.
 
 ```tsx title="pages/posts/list.tsx"
 ...
@@ -135,7 +149,7 @@ import {
     ...
 // highlight-next-line
     CrudFilters,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
 
 export const PostList: React.FC = () => {
 // highlight-start
@@ -223,12 +237,12 @@ When the form is submitted, the `onSearch` method runs and we get the search for
 <br />
 
 :::important
-[`CrudFilters`](../../api-references/interfaces.md#crudfilters) type object has `field`, `operator` and `value` properties. These properties help us to filter in which field, with which operator, and with which data.
+[`CrudFilters`](/core/interfaces.md#crudfilters) type object has `field`, `operator` and `value` properties. These properties help us to filter in which field, with which operator, and with which data.
 :::
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-use-simple-list-example-3098n?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-use-simple-list-example-zm51o?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-simple-list-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

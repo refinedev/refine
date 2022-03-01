@@ -1,13 +1,6 @@
 import React, { useState } from "react";
-import {
-    AntdLayout,
-    Menu,
-    useMenu,
-    useTitle,
-    useNavigation,
-    Grid,
-    Icons,
-} from "@pankod/refine";
+import { useTitle, useNavigation } from "@pankod/refine-core";
+import { AntdLayout, Menu, useMenu, Grid, Icons } from "@pankod/refine-antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 export const CustomSider: React.FC = () => {
@@ -28,7 +21,7 @@ export const CustomSider: React.FC = () => {
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
             style={isMobile ? antLayoutSiderMobile : antLayoutSider}
         >
-            <Title collapsed={collapsed} />
+            {Title && <Title collapsed={collapsed} />}
             <Menu
                 selectedKeys={[selectedKey]}
                 mode="inline"

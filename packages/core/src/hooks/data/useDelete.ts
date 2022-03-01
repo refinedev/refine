@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
 
 import {
@@ -8,32 +7,33 @@ import {
     useTranslate,
     useCheckError,
     usePublish,
+    useHandleNotification,
+    useDataProvider,
 } from "@hooks";
-import { DataContext } from "@contexts/data";
-import { ActionTypes } from "@contexts/notification";
+import { ActionTypes } from "@contexts/undoableQueue";
 import pluralize from "pluralize";
 import {
     DeleteOneResponse,
-    IDataContext,
     MutationMode,
     QueryResponse,
     Context as DeleteContext,
     BaseRecord,
+    BaseKey,
     ContextQuery,
     HttpError,
     GetListResponse,
     SuccessErrorNotification,
     MetaDataQuery,
 } from "../../interfaces";
-import { handleNotification } from "@definitions/helpers";
 
 type DeleteParams = {
-    id: string;
+    id: BaseKey;
     resource: string;
     mutationMode?: MutationMode;
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
     metaData?: MetaDataQuery;
+    dataProviderName?: string;
 } & SuccessErrorNotification;
 
 type UseDeleteReturnType<
@@ -63,8 +63,10 @@ export const useDelete = <
     TError extends HttpError = HttpError,
 >(): UseDeleteReturnType<TData, TError> => {
     const { mutate: checkError } = useCheckError();
+    const dataProvider = useDataProvider();
+
     const queryClient = useQueryClient();
-    const { deleteOne } = useContext<IDataContext>(DataContext);
+
     const {
         mutationMode: mutationModeContext,
         undoableTimeout: undoableTimeoutContext,
@@ -73,6 +75,7 @@ export const useDelete = <
     const { notificationDispatch } = useCancelNotification();
     const translate = useTranslate();
     const publish = usePublish();
+    const handleNotification = useHandleNotification();
 
     const cacheQueries = useCacheQueries();
 
@@ -89,6 +92,7 @@ export const useDelete = <
             resource,
             onCancel,
             metaData,
+            dataProviderName,
         }) => {
             const mutationModePropOrContext =
                 mutationMode ?? mutationModeContext;
@@ -97,13 +101,18 @@ export const useDelete = <
                 undoableTimeout ?? undoableTimeoutContext;
 
             if (!(mutationModePropOrContext === "undoable")) {
-                return deleteOne<TData>({ resource, id, metaData });
+                return dataProvider(dataProviderName).deleteOne<TData>({
+                    resource,
+                    id,
+                    metaData,
+                });
             }
 
             const deletePromise = new Promise<DeleteOneResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        deleteOne<TData>({ resource, id, metaData })
+                        dataProvider(dataProviderName)
+                            .deleteOne<TData>({ resource, id, metaData })
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
                     };
@@ -167,11 +176,7 @@ export const useDelete = <
                                 queryClient.setQueryData(queryKey, {
                                     ...previousQuery,
                                     data: (data ?? []).filter(
-                                        (record: TData) =>
-                                            !(
-                                                record.id?.toString() ===
-                                                id.toString()
-                                            ),
+                                        (record: TData) => !(record.id == id),
                                     ),
                                     total: total - 1,
                                 });
@@ -231,8 +236,8 @@ export const useDelete = <
 
                 handleNotification(successNotification, {
                     key: `${id}-${resource}-notification`,
-                    message: translate("notifications.success", "Success"),
-                    description: translate(
+                    description: translate("notifications.success", "Success"),
+                    message: translate(
                         "notifications.deleteSuccess",
                         {
                             resource: translate(
@@ -249,7 +254,7 @@ export const useDelete = <
                     channel: `resources/${resource}`,
                     type: "deleted",
                     payload: {
-                        ids: id ? [id.toString()] : [],
+                        ids: id ? [id] : [],
                     },
                     date: new Date(),
                 });

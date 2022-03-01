@@ -1,4 +1,6 @@
 import React from "react";
+import { useLogin, useNavigation } from "@pankod/refine-core";
+
 import {
     Row,
     Col,
@@ -8,9 +10,7 @@ import {
     Form,
     Input,
     Button,
-    useLogin,
-    useNavigation,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import "./styles.css";
 

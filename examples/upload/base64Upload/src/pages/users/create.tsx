@@ -1,15 +1,18 @@
 import React from "react";
 import {
+    IResourceComponentsProps,
+    file2Base64,
+    HttpError,
+} from "@pankod/refine-core";
+
+import {
     Create,
     Form,
     Input,
-    IResourceComponentsProps,
     Upload,
     useForm,
     getValueFromEvent,
-    file2Base64,
-    HttpError,
-} from "@pankod/refine";
+} from "@pankod/refine-antd";
 
 import { IUser, IUserVariable } from "interfaces";
 

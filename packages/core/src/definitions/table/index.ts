@@ -10,11 +10,6 @@ import {
     CrudFilter,
     CrudSort,
 } from "../../interfaces";
-import {
-    SortOrder,
-    TablePaginationConfig,
-    SorterResult,
-} from "antd/lib/table/interface";
 
 export const parseTableParams = (url: string) => {
     const { current, pageSize, sort, order, ...filters } = qs.parse(
@@ -37,11 +32,13 @@ export const parseTableParams = (url: string) => {
     Object.keys(filters).map((item) => {
         const [field, operator] = item.split("__");
         const value = filters[item];
-        parsedFilters.push({
-            field,
-            operator: operator as CrudOperators,
-            value,
-        });
+        if (operator) {
+            parsedFilters.push({
+                field,
+                operator: operator as CrudOperators,
+                value,
+            });
+        }
     });
 
     return {
@@ -58,7 +55,7 @@ export const parseTableParamsFromQuery = (params: any) => {
 };
 
 export const stringifyTableParams = (params: {
-    pagination: TablePaginationConfig;
+    pagination: { current?: number; pageSize?: number };
     sorter: CrudSorting;
     filters: CrudFilters;
 }): string => {
@@ -96,102 +93,11 @@ export const stringifyTableParams = (params: {
     return queryString;
 };
 
-export const getDefaultSortOrder = (
-    columnName: string,
-    sorter?: CrudSorting,
-): SortOrder | undefined => {
-    if (!sorter) {
-        return;
-    }
-
-    const sortItem = sorter.find((item) => item.field === columnName);
-
-    if (sortItem) {
-        return `${sortItem.order}end` as SortOrder;
-    }
-
-    return;
-};
-
-export const getDefaultFilter = (
-    columnName: string,
-    filters?: CrudFilters,
-    operatorType: CrudOperators = "eq",
-): CrudFilter["value"] | undefined => {
-    const filter = filters?.find(
-        ({ field, operator }) =>
-            field === columnName && operator === operatorType,
-    );
-
-    if (filter) {
-        return filter.value || [];
-    }
-
-    return undefined;
-};
-
-export const mapAntdSorterToCrudSorting = (
-    sorter: SorterResult<any> | SorterResult<any>[],
-): CrudSorting => {
-    const crudSorting: CrudSorting = [];
-    if (Array.isArray(sorter)) {
-        sorter
-            .sort((a, b) => {
-                return ((a.column?.sorter as { multiple?: number }).multiple ??
-                    0) <
-                    ((b.column?.sorter as { multiple?: number }).multiple ?? 0)
-                    ? -1
-                    : 0;
-            })
-            .map((item) => {
-                if (item.field && item.order) {
-                    crudSorting.push({
-                        field: `${item.columnKey ?? item.field}`,
-                        order: item.order.replace("end", "") as "asc" | "desc",
-                    });
-                }
-            });
-    } else {
-        if (sorter.field && sorter.order) {
-            crudSorting.push({
-                field: `${sorter.columnKey ?? sorter.field}`,
-                order: sorter.order.replace("end", "") as "asc" | "desc",
-            });
-        }
-    }
-
-    return crudSorting;
-};
-
-export const mapAntdFilterToCrudFilter = (
-    tableFilters: Record<
-        string,
-        (string | number | boolean) | (string | number | boolean)[] | null
-    >,
-    prevFilters: CrudFilters,
-): CrudFilters => {
-    const crudFilters: CrudFilters = [];
-
-    Object.keys(tableFilters).map((field) => {
-        const value = tableFilters[field];
-        const operator = prevFilters.find((p) => p.field === field)?.operator;
-
-        crudFilters.push({
-            field,
-            operator: operator ?? (Array.isArray(value) ? "in" : "eq"),
-            value,
-        });
-    });
-
-    return crudFilters;
-};
-
 export const compareFilters = (left: CrudFilter, right: CrudFilter): boolean =>
     left.field == right.field && left.operator == right.operator;
 
 export const compareSorters = (left: CrudSort, right: CrudSort): boolean =>
     left.field == right.field;
-
 // Keep only one CrudFilter per type according to compareFilters
 // Items in the array that is passed first to unionWith have higher priority
 // CrudFilter items with undefined values are necessary to signify no filter
@@ -217,7 +123,6 @@ export const unionSorters = (
         (crudSorter) =>
             crudSorter.order !== undefined && crudSorter.order !== null,
     );
-
 // Prioritize filters in the permanentFilter and put it at the end of result array
 export const setInitialFilters = (
     permanentFilter: CrudFilters,

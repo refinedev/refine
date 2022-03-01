@@ -1,10 +1,6 @@
-import {
-    useShow,
-    Show,
-    Typography,
-    useOne,
-    MarkdownField,
-} from "@pankod/refine";
+import { useShow, useOne } from "@pankod/refine-core";
+
+import { Show, Typography, MarkdownField } from "@pankod/refine-antd";
 
 const { Title, Text } = Typography;
 

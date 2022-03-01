@@ -1,8 +1,11 @@
-import React, { FC, useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 
-import { useRouterContext, useTranslate, useWarnAboutChange } from "@hooks";
-import { RefineContext } from "@contexts/refine";
-import { IRefineContext } from "@contexts/refine/IRefineContext";
+import {
+    useRefineContext,
+    useRouterContext,
+    useTranslate,
+    useWarnAboutChange,
+} from "@hooks";
 import { LayoutProps, TitleProps } from "../../interfaces";
 
 export interface LayoutWrapperProps {
@@ -16,13 +19,13 @@ export interface LayoutWrapperProps {
 }
 
 /**
- * `<LayoutWrapper>` wraps its contents in **refine's** layout with all customizations made in {@link https://refine.dev/docs/api-references/components/refine-config `<Refine>`} component.
+ * `<LayoutWrapper>` wraps its contents in **refine's** layout with all customizations made in {@link https://refine.dev/docs/core/components/refine-config `<Refine>`} component.
  * It is the default layout used in resource pages.
  * It can be used in custom pages to use global layout.
  *
- * @see {@link https://refine.dev/docs/api-references/components/layout-wrapper} for more details.
+ * @see {@link https://refine.dev/docs/core/components/layout-wrapper} for more details.
  */
-export const LayoutWrapper: FC<LayoutWrapperProps> = ({
+export const LayoutWrapper: React.FC<LayoutWrapperProps> = ({
     children,
     dashboard,
     Layout: LayoutFromProps,
@@ -33,7 +36,7 @@ export const LayoutWrapper: FC<LayoutWrapperProps> = ({
     OffLayoutArea: OffLayoutAreaFromProps,
 }) => {
     const { Layout, Footer, Header, Sider, Title, OffLayoutArea } =
-        useContext<IRefineContext>(RefineContext);
+        useRefineContext();
 
     const LayoutToRender = LayoutFromProps ?? Layout;
 

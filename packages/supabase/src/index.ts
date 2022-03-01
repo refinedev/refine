@@ -4,7 +4,7 @@ import {
     CrudFilter,
     LiveEvent,
     HttpError,
-} from "@pankod/refine";
+} from "@pankod/refine-core";
 import {
     createClient,
     PostgrestError,

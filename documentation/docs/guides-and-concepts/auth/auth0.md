@@ -32,7 +32,7 @@ import App from "./App";
 
 ReactDOM.render(
     <React.StrictMode>
-// highlight-start
+        // highlight-start
         <Auth0Provider
             domain="YOUR_DOMAIN"
             clientId="YOUR_CLIENT_ID"
@@ -40,7 +40,7 @@ ReactDOM.render(
         >
             <App />
         </Auth0Provider>
-// highlight-end
+        // highlight-end
     </React.StrictMode>,
     document.getElementById("root"),
 );
@@ -54,21 +54,13 @@ Refer to [**Auth0 docs**](https://auth0.com/docs/quickstart/spa/react#configure-
 
 First, we need to override the **refine** login page. In this way, we will redirect it to the Auth0 login page. We create a `login.tsx` file in the `/pages` folder.
 
-```tsx  title="/pages/login.tsx"
-import { 
-    Row,
-    Col,
-    AntdLayout,
-    Card,
-    Typography,
-    Button,
-// highlight-next-line
-    useLogin
-} from "@pankod/refine";
+```tsx title="/pages/login.tsx"
+import { AntdLayout, Button } from "@pankod/refine-antd";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const Login: React.FC = () => {
-// highlight-next-line
-    const { mutate: login } = useLogin();
+    // highlight-next-line
+    const { loginWithRedirect } = useAuth0();
 
     const CardTitle = (
         <div
@@ -86,47 +78,26 @@ export const Login: React.FC = () => {
     return (
         <AntdLayout
             style={{
-                backgroundColor: "#eff7f7",
+                background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
+                backgroundSize: "cover",
             }}
         >
-            <Row
-                justify="center"
-                align="middle"
-                style={{
-                    height: "100vh",
-                }}
-            >
-                <Col xs={22}>
-                    <Card
-                        style={{
-                            maxWidth: "400px",
-                            margin: "auto",
-                        }}
-                        title={CardTitle}
+            <div style={{ height: "100vh", display: "flex" }}>
+                <div style={{ maxWidth: "200px", margin: "auto" }}>
+                    <div style={{ marginBottom: "28px" }}>
+                        <img src="./refine.svg" alt="Refine" />
+                    </div>
+                    <Button
+                        type="primary"
+                        size="large"
+                        block
+                        //highlight-next-line
+                        onClick={() => loginWithRedirect()}
                     >
-                        <Button
-                            type="primary"
-                            size="large"
-                            htmlType="submit"
-                            block
-// highlight-next-line
-                            onClick={() => login({})}
-                        >
-                            Login
-                        </Button>
-                        <br />
-                        <br />
-                        <div
-                            style={{ textAlign: "center", padding: "10px 0px" }}
-                        >
-                            <Typography.Text>
-                                Still no account? Please go to
-                                <a href="#"> Sign up</a>
-                            </Typography.Text>
-                        </div>
-                    </Card>
-                </Col>
-            </Row>
+                        Sign in
+                    </Button>
+                </div>
+            </div>
         </AntdLayout>
     );
 };
@@ -149,22 +120,23 @@ After clicking the `Login` button, you will be directed to the auth0 login scree
 In refine, authentication and authorization processes are performed with the auth provider. Let's write a provider for Auth0.
 
 ```tsx title="App.tsx"
-import { Refine } from "@pankod/refine";
+import { Refine, AuthProvider } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 import { useAuth0 } from "@auth0/auth0-react";
 
+import "@pankod/refine-antd/dist/styles.min.css";
+
 import { Login } from "pages/login";
 
 import axios from "axios";
-
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App = () => {
     const {
         isLoading,
-        loginWithRedirect,
         isAuthenticated,
         user,
         logout,
@@ -177,7 +149,6 @@ const App = () => {
 
     const authProvider: AuthProvider = {
         login: () => {
-            loginWithRedirect();
             return Promise.resolve();
         },
         logout: () => {
@@ -217,6 +188,10 @@ const App = () => {
             routerProvider={routerProvider}
             authProvider={authProvider}
             dataProvider={dataProvider(API_URL, axios)}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
         />
     );
 };
@@ -248,7 +223,7 @@ We can use it with the `user` from the `useAuth0` hook.
 
 Auth0 example doesn't work in codesandbox embed mode. With [this](https://ussft.csb.app/) link, you can open the example in the browser and try it.
 
-<iframe src="https://codesandbox.io/embed/refine-auth0-example-7drxm?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/refine-auth0-example-q8yze?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-auth0-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

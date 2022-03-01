@@ -83,14 +83,14 @@ This tutorial assumes your project is configured for absolute imports. Since CRA
 First, run the **superplate** with the following command:
 
 ```
-npx superplate-cli tutorial
+npx superplate-cli -p refine-react tutorial
 ```
 
 Select the following options to complete the _CLI wizard_:
 
 ```
 ? Select your project type:
-❯ refine
+❯ refine-react
 
 ? What will be the name of your app:
 tutorial
@@ -177,6 +177,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 
 ### Community ❤️
 -   [Firebase](https://github.com/rturan29/refine-firebase) by [rturan29](https://github.com/rturan29)
+-   [Directus](https://github.com/tspvivek/refine-directus) by [tspvivek](https://github.com/tspvivek)
 
 [Refer to the `dataProvider` documentation for detailed usage. &#8594](/api-references/providers/data-provider.md)
 :::

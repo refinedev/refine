@@ -3,7 +3,7 @@ import { renderHook } from "@testing-library/react-hooks";
 import { MockJSONServer, TestWrapper } from "@test";
 
 import { useMany } from "./useMany";
-import { IRefineContextProvider } from "src/interfaces";
+import { IRefineContextProvider } from "../../interfaces";
 
 const mockRefineProvider: IRefineContextProvider = {
     hasDashboard: false,
