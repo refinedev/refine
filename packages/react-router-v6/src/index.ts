@@ -39,7 +39,7 @@ const RouterProvider: IReactRouterProvider = {
     },
     useLocation,
     useParams: () => {
-        const { params } = useParams();
+        const params = useParams();
         return handleUseParams(params);
     },
     Prompt: Prompt as any,
