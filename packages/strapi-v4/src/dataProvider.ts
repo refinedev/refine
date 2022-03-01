@@ -5,7 +5,6 @@ import {
     CrudFilters,
     CrudSorting,
     CrudOperators,
-    CrudFilter,
 } from "@pankod/refine-core";
 import { stringify, parse } from "qs";
 
@@ -59,31 +58,9 @@ const generateFilter = (filters?: CrudFilters) => {
     let rawQuery = "";
 
     if (filters) {
-        filters.map(({ field, operator, value }) => {
-            if (operator === "or") {
-                if (!Array.isArray(value)) {
-                    console.error(
-                        `The value of the "or" operator must be of type [CrudFilters](https://refine.dev/docs/core/interfaceReferences/#crudfilters).`,
-                    );
-                }
-
-                value.map((item: CrudFilter, index: number) => {
-                    const mapedOperator = mapOperator(item.operator);
-
-                    if (!item.field) {
-                        console.error(
-                            `Please enter a "field" in the filters inside the operator "or"`,
-                        );
-                    }
-
-                    rawQuery += `&filters[$or][${index}][${item.field}][$${mapedOperator}]=${item.value}`;
-                });
-            } else {
-                if (!field) {
-                    console.error(
-                        `Please enter a "field" for filters whose operator is not "or"`,
-                    );
-                }
+        filters.map((filter) => {
+            if (filter.operator !== "or") {
+                const { field, operator, value } = filter;
 
                 const mapedOperator = mapOperator(operator);
 
@@ -94,6 +71,16 @@ const generateFilter = (filters?: CrudFilters) => {
                 } else {
                     rawQuery += `&filters[${field}][$${mapedOperator}]=${value}`;
                 }
+            } else {
+                const { value } = filter;
+
+                value.map((item, index) => {
+                    const { field, operator, value } = item;
+
+                    const mapedOperator = mapOperator(operator);
+
+                    rawQuery += `&filters[$or][${index}][${field}][$${mapedOperator}]=${value}`;
+                });
             }
         });
     }
