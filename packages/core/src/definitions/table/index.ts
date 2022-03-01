@@ -1,5 +1,6 @@
 import qs, { IStringifyOptions } from "qs";
-import { unionWith, reverse, differenceWith } from "lodash-es";
+// eslint-disable-next-line prettier/prettier
+import { unionWith, reverse, differenceWith } from 'lodash';
 
 import {
     CrudFilters,

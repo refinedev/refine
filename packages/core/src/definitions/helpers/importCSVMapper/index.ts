@@ -1,4 +1,5 @@
-import { zip, fromPairs } from "lodash-es";
+// eslint-disable-next-line prettier/prettier
+import { zip, fromPairs } from 'lodash';
 import { MapDataFn } from "../../../interfaces";
 
 export const importCSVMapper = <TItem = any, TVariables = any>(

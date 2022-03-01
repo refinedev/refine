@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { parse, ParseConfig } from "papaparse";
-import { chunk } from "lodash-es";
+// eslint-disable-next-line prettier/prettier
+import { chunk } from 'lodash';
 
 import {
     useCreate,
