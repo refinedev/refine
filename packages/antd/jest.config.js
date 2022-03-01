@@ -17,10 +17,12 @@ module.exports = {
     moduleNameMapper: {
         ...pathsToModuleNameMapper(paths, { prefix: "<rootDir>/" }),
         "\\.css$": "identity-obj-proxy",
-        "\\.svg$": "identity-obj-proxy",
     },
     name: "antd",
     displayName: "antd",
+    transform: {
+        "^.+\\.svg$": "<rootDir>/test/svgTransform.ts",
+    },
     coveragePathIgnorePatterns: [
         "<rootDir>/src/index.ts",
         "<rootDir>/src/components/antd/",

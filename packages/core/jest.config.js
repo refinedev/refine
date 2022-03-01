@@ -31,4 +31,5 @@ module.exports = {
         "<rootDir>/src/components/antd/",
         "<rootDir>/src/interfaces/",
     ],
+    testEnvironment: "jsdom",
 };

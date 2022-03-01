@@ -4,4 +4,5 @@ module.exports = {
     name: "graphql",
     displayName: "graphql",
     setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
+    testEnvironment: "jsdom",
 };

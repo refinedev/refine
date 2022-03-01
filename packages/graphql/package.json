@@ -23,9 +23,11 @@
   "module": "dist/index.mjs",
   "devDependencies": {
     "@types/pluralize": "^0.0.29",
+    "jest": "^27.5.1",
     "nock": "^13.1.3",
-    "tsup": "^5.11.13",
-    "tslib": "^2.3.1"
+    "ts-jest": "^27.1.3",
+    "tslib": "^2.3.1",
+    "tsup": "^5.11.13"
   },
   "dependencies": {
     "@pankod/refine-core": "^3.4.2",

@@ -4,4 +4,5 @@ module.exports = {
     name: "airtable",
     displayName: "airtable",
     setupFilesAfterEnv: ["<rootDir>/test/jest.setup.js"],
+    testEnvironment: "jsdom",
 };

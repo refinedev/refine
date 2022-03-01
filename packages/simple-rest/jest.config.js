@@ -4,4 +4,5 @@ module.exports = {
     name: "simple-rest",
     displayName: "simple-rest",
     setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
+    testEnvironment: "jsdom",
 };
