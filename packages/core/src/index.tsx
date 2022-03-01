@@ -29,6 +29,8 @@ export {
     CreateManyResponse,
     UpdateManyResponse,
     UpdateResponse,
+    DeleteOneResponse,
+    DeleteManyResponse,
     CustomResponse,
     SuccessErrorNotification,
     IRouterProvider,
@@ -43,6 +45,7 @@ export {
     RedirectionTypes,
     MapDataFn,
     OpenNotificationParams,
+    ResourceErrorRouterParams,
 } from "./interfaces";
 
 export {
