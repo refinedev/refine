@@ -1,7 +1,5 @@
 import qs, { IStringifyOptions } from "qs";
-import unionWith from "lodash/unionWith";
-import reverse from "lodash/reverse";
-import differenceWith from "lodash/differenceWith";
+import { unionWith, reverse, differenceWith } from "lodash-es";
 
 import {
     CrudFilters,

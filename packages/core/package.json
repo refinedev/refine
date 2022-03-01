@@ -24,7 +24,7 @@
         "@testing-library/react-hooks": "^5.0.3",
         "@testing-library/user-event": "^12.8.3",
         "@types/jest": "^26.0.24",
-        "@types/lodash": "^4.14.171",
+        "@types/lodash-es": "^4.17.6",
         "@types/papaparse": "^5.2.5",
         "@types/pluralize": "^0.0.29",
         "@types/qs": "^6.9.7",
@@ -43,7 +43,6 @@
     "dependencies": {
         "export-to-csv-fix-source-map": "^0.2.1",
         "humanize-string": "^2.1.0",
-        "lodash": "^4.17.21",
         "lodash-es": "^4.17.21",
         "papaparse": "^5.3.0",
         "pluralize": "^8.0.0",

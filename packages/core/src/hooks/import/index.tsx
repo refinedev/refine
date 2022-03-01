@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { parse, ParseConfig } from "papaparse";
-import chunk from "lodash/chunk";
+import { chunk } from "lodash-es";
 
 import {
     useCreate,
