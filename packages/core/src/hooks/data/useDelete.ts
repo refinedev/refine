@@ -20,7 +20,7 @@ import {
     GetListResponse,
     SuccessErrorNotification,
     MetaDataQuery,
-    IPreviousQuery,
+    PreviousQuery,
 } from "../../interfaces";
 
 type DeleteParams = {
@@ -144,7 +144,7 @@ export const useDelete = <
                     silent: true,
                 });
 
-                const previousQueries: IPreviousQuery<TData>[] =
+                const previousQueries: PreviousQuery<TData>[] =
                     queryClient.getQueriesData([resource]);
 
                 if (!(mutationModePropOrContext === "pessimistic")) {
