@@ -15,4 +15,5 @@ export default defineConfig({
     loader: {
         ".svg": "dataurl",
     },
+    external: ["react", "react-dom"],
 });
