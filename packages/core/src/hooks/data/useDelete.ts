@@ -152,9 +152,9 @@ export const useDelete = <
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
 
-                await queryClient.cancelQueries(resource, undefined, {
-                    silent: true,
-                });
+                // await queryClient.cancelQueries(resource, undefined, {
+                //     silent: true,
+                // });
 
                 const previousQuery: any = queryClient.getQueriesData([
                     resource,
@@ -188,9 +188,10 @@ export const useDelete = <
                                     };
                                 },
                             );
-                        } else {
-                            queryClient.invalidateQueries([resource]);
                         }
+                        //else {
+                        //     queryClient.invalidateQueries([resource]);
+                        // }
                     }
                 }
 
@@ -203,11 +204,14 @@ export const useDelete = <
                 { id, resource, errorNotification },
                 context,
             ) => {
+                console.log("onError", err);
+
                 if (context) {
                     // queryClient.setQueriesData(
                     //     [resource, "list"],
                     //     context?.previousQueries,
                     // );
+                    console.log("context", context.previousQueries);
 
                     for (const query of context.previousQueries[0]) {
                         queryClient.setQueryData(query[0], query[1]);
@@ -248,7 +252,14 @@ export const useDelete = <
                     id,
                 ]);
 
-                // get many remove et
+                const getManyQueries = queryClient.getQueriesData([
+                    resource,
+                    "getMany",
+                ]);
+
+                if (getManyQueries.length > 0) {
+                    queryClient.removeQueries(getManyQueries);
+                }
 
                 if (detailQueries.length > 0) {
                     queryClient.removeQueries(detailQueries);
@@ -282,16 +293,6 @@ export const useDelete = <
                 });
             },
             onSettled: (_data, _error, { id, resource }) => {
-                // const allQueries = cacheQueries(resource, id);
-
-                // for (const query of allQueries) {
-                //     if (
-                //         !query.queryKey.includes(`resource/getOne/${resource}`)
-                //     ) {
-                //         queryClient.invalidateQueries(query.queryKey);
-                //     }
-                // }
-
                 notificationDispatch({
                     type: ActionTypes.REMOVE,
                     payload: { id, resource },
