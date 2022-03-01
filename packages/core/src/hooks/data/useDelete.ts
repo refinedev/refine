@@ -1,14 +1,8 @@
-import {
-    useQueryClient,
-    useMutation,
-    UseMutationResult,
-    QueryKey,
-} from "react-query";
+import { useQueryClient, useMutation, UseMutationResult } from "react-query";
 
 import {
     useMutationMode,
     useCancelNotification,
-    useCacheQueries,
     useTranslate,
     useCheckError,
     usePublish,
@@ -20,15 +14,13 @@ import pluralize from "pluralize";
 import {
     DeleteOneResponse,
     MutationMode,
-    QueryResponse,
     PrevContext as DeleteContext,
     BaseRecord,
-    ContextQuery,
     HttpError,
     GetListResponse,
     SuccessErrorNotification,
     MetaDataQuery,
-    PreviousQuery,
+    IPreviousQuery,
 } from "../../interfaces";
 
 type DeleteParams = {
@@ -81,8 +73,6 @@ export const useDelete = <
     const translate = useTranslate();
     const publish = usePublish();
     const handleNotification = useHandleNotification();
-
-    const cacheQueries = useCacheQueries();
 
     const mutation = useMutation<
         DeleteOneResponse<TData>,
@@ -147,7 +137,6 @@ export const useDelete = <
         },
         {
             onMutate: async ({ id, resource, mutationMode }) => {
-                // const previousQueries: PreviousQuery<TData>[] = [];
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
 
@@ -155,9 +144,8 @@ export const useDelete = <
                     silent: true,
                 });
 
-                const previousQueries: any = queryClient.getQueriesData([
-                    resource,
-                ]) as [queryKey: QueryKey, data: TData | unknown];
+                const previousQueries: IPreviousQuery<TData>[] =
+                    queryClient.getQueriesData([resource]);
 
                 if (!(mutationModePropOrContext === "pessimistic")) {
                     if (previousQueries) {
@@ -203,9 +191,8 @@ export const useDelete = <
                 context,
             ) => {
                 if (context) {
-                    console.log("onError", context.previousQueries);
-                    for (const query of context.previousQueries[0]) {
-                        queryClient.setQueryData(query[0], query[1]);
+                    for (const query of context.previousQueries) {
+                        queryClient.setQueryData([query[0]], [query[1]]);
                     }
                 }
 
