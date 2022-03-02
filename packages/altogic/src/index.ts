@@ -68,23 +68,27 @@ const generateSort = (sort?: CrudSorting) => {
 const generateFilter = (filters?: CrudFilters) => {
     const queryFilters: string[] = [];
     if (filters) {
-        filters.map(({ field, operator, value }) => {
-            const mappedOperator = mapOperator(operator);
+        filters.map((filter) => {
+            const mappedOperator = mapOperator(filter.operator);
 
-            switch (mappedOperator) {
-                case "IN":
-                case "NIN":
-                    queryFilters.push(
-                        `${mappedOperator}(${JSON.stringify(
-                            value,
-                        )}, this.${field})`,
-                    );
-                    break;
+            if (filter.operator !== "or") {
+                const { field, value } = filter;
 
-                default:
-                    queryFilters.push(
-                        `this.${field} ${mappedOperator} "${value}"`,
-                    );
+                switch (mappedOperator) {
+                    case "IN":
+                    case "NIN":
+                        queryFilters.push(
+                            `${mappedOperator}(${JSON.stringify(
+                                value,
+                            )}, this.${field})`,
+                        );
+                        break;
+
+                    default:
+                        queryFilters.push(
+                            `this.${field} ${mappedOperator} "${value}"`,
+                        );
+                }
             }
         });
     }
