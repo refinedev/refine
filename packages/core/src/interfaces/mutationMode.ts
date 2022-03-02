@@ -12,3 +12,12 @@ export type PreviousQuery<TData> = [QueryKey, TData | unknown];
 export type PrevContext<TData> = {
     previousQueries: PreviousQuery<TData>[];
 };
+
+export type Context = {
+    previousQueries: ContextQuery[];
+};
+
+export type ContextQuery<T = BaseRecord> = {
+    query: QueryResponse<T>;
+    queryKey: QueryKey;
+};
