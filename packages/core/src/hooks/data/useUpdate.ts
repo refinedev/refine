@@ -76,8 +76,6 @@ export const useUpdate = <
     const { notificationDispatch } = useCancelNotification();
     const handleNotification = useHandleNotification();
 
-    const getAllQueries = useCacheQueries();
-
     const mutation = useMutation<
         UpdateResponse<TData>,
         TError,
@@ -195,10 +193,9 @@ export const useUpdate = <
                                 },
                             );
                         }
+                    } else {
+                        queryClient.invalidateQueries([resource]);
                     }
-                    // else {
-                    //     queryClient.invalidateQueries([resource]);
-                    // }
                 }
 
                 return {
@@ -212,7 +209,7 @@ export const useUpdate = <
             ) => {
                 if (context) {
                     for (const query of context.previousQueries) {
-                        queryClient.setQueryData([query[0]], [query[1]]);
+                        queryClient.setQueryData(query[0], query[1]);
                     }
                 }
 
@@ -239,10 +236,9 @@ export const useUpdate = <
                     });
                 }
             },
-            onSettled: (_data, _error, { id, resource }, context) => {
-                // const allQueries = getAllQueries(resource, id);
-                // for (const query of allQueries) {
-                //     queryClient.invalidateQueries(query.queryKey);
+            onSettled: (_data, _error, { id, resource }) => {
+                queryClient.invalidateQueries([resource]);
+
                 notificationDispatch({
                     type: ActionTypes.REMOVE,
                     payload: { id, resource },
