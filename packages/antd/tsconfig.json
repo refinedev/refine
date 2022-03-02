@@ -1,6 +1,6 @@
 {
     "include": [
-        "src",
+        "src"
     ],
     "extends": "../../tsconfig.build.json",
     "compilerOptions": {

@@ -1,4 +1,4 @@
-const { pathsToModuleNameMapper } = require("ts-jest/utils");
+const { pathsToModuleNameMapper } = require("ts-jest");
 const { compilerOptions } = require("./tsconfig.json");
 
 const paths = compilerOptions.paths ? compilerOptions.paths : {};
