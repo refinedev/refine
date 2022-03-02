@@ -190,7 +190,7 @@ export const useDelete = <
             ) => {
                 if (context) {
                     for (const query of context.previousQueries) {
-                        queryClient.setQueryData([query[0]], [query[1]]);
+                        queryClient.setQueryData(query[0], query[1]);
                     }
                 }
 
