@@ -21,6 +21,7 @@ const operators = {
     between: undefined,
     nbetween: undefined,
     nnull: undefined,
+    or: undefined,
 };
 
 const appwriteEventToRefineEvent = {
@@ -61,13 +62,16 @@ export const getAppwriteFilters: GetAppwriteFiltersType = (filters) => {
 
     for (const filter of filters) {
         const operator = operators[filter.operator];
-        const filterField = filter.field === "id" ? "$id" : filter.field;
 
         if (!operator) {
             throw new Error(`Operator ${filter.operator} is not supported`);
         }
 
-        appwriteFilters.push(`${filterField}${operator}${filter.value}`);
+        if (filter.operator !== "or") {
+            const filterField = filter.field === "id" ? "$id" : filter.field;
+
+            appwriteFilters.push(`${filterField}${operator}${filter.value}`);
+        }
     }
 
     return appwriteFilters;
