@@ -65,8 +65,8 @@ const generateFilter = (filters?: CrudFilters) => {
                 const mapedOperator = mapOperator(operator);
 
                 if (Array.isArray(value)) {
-                    value.map((val: string) => {
-                        rawQuery += `&filters${field}[$${mapedOperator}]=${val}`;
+                    value.map((val, index) => {
+                        rawQuery += `&filters[${field}][$${mapedOperator}][${index}]=${val}`;
                     });
                 } else {
                     rawQuery += `&filters[${field}][$${mapedOperator}]=${value}`;
