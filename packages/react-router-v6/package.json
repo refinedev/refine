@@ -31,6 +31,10 @@
     "@pankod/refine-core": "^3.4.2",
     "react-router-dom": "^6.0.0"
   },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
   "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
   "publishConfig": {
     "access": "public"
@@ -38,10 +42,6 @@
   "tsup": {
     "entry": [
       "src/index.ts"
-    ],
-    "external": [
-      "react",
-      "react-dom"
     ],
     "splitting": false,
     "sourcemap": true,
