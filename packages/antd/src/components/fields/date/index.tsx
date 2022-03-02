@@ -3,7 +3,7 @@ import dayjs, { ConfigType } from "dayjs";
 import { Typography } from "antd";
 import { TextProps } from "antd/lib/typography/Text";
 
-import LocalizedFormat from "dayjs/plugin/localizedFormat";
+import LocalizedFormat from "dayjs/plugin/localizedFormat.js";
 
 import { FieldProps } from "../../../interfaces";
 

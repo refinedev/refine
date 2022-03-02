@@ -1,6 +1,5 @@
 import { defineConfig } from "tsup";
 import lodashTransformer from "esbuild-plugin-lodash";
-import textReplace from "esbuild-plugin-text-replace";
 
 import * as fs from "fs";
 import path from "path";

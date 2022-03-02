@@ -15,5 +15,5 @@ export default defineConfig({
     loader: {
         ".svg": "dataurl",
     },
-    external: ["react", "react-dom"],
+    external: ["react", "react-dom", "antd", "dayjs", "rc-picker"],
 });
