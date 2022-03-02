@@ -5,11 +5,6 @@ export * from "./providers";
 export * from "./components/antd";
 export * from "./components";
 
-/* export {
-    useModalFormFromSFReturnType,
-    useStepsFormFromSFReturnType,
-} from "./types/sunflower"; */
-
 export type useModalFormFromSFReturnType<TData, TVariables> = {
     form: FormInstance<TVariables>;
     visible: boolean;
@@ -43,7 +38,7 @@ export type useStepsFormFromSFReturnType<TData, TVariables> = {
 };
 
 // antd filterDropDownProps (using for <FilterDropDown> component)
-export { FilterDropdownProps } from "antd/lib/table/interface";
+export type { FilterDropdownProps } from "antd/lib/table/interface";
 export { RcFile, UploadFile } from "antd/lib/upload/interface";
 export * from "./interfaces";
 

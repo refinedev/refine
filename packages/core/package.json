@@ -8,7 +8,7 @@
     "typings": "dist/index.d.ts",
     "scripts": {
         "start": "tsup --watch --dts",
-        "build": "tsup --dts --format esm,cjs,iife --minify",
+        "build": "tsup --dts --format esm,cjs,iife",
         "test": "jest --passWithNoTests --runInBand",
         "prepare": "npm run build"
     },

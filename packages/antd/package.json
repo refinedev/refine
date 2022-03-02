@@ -6,7 +6,7 @@
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
     "scripts": {
-        "start": "tsup --watch --dts",
+        "start": "tsup --watch --dts --format esm,cjs,iife",
         "build": "tsup --dts --format esm,cjs,iife --minify",
         "test": "jest --passWithNoTests --runInBand",
         "prepare": "npm run build",
