@@ -1,5 +1,5 @@
 import { LiveProvider, LiveEvent } from "@pankod/refine-core";
-import Ably from "ably/promises";
+import Ably from "ably/promises.js";
 import { Types } from "ably";
 interface MessageType extends Types.Message {
     data: LiveEvent;
