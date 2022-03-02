@@ -179,8 +179,6 @@ export const useDelete = <
                     }
                 }
 
-                console.log("previousQueries", previousQueries);
-
                 return {
                     previousQueries: previousQueries,
                 };
@@ -243,7 +241,8 @@ export const useDelete = <
                     queryClient.removeQueries(detailQueries);
                 }
 
-                queryClient.invalidateQueries(listQueries);
+                if (listQueries.length > 0)
+                    queryClient.invalidateQueries(listQueries);
 
                 handleNotification(successNotification, {
                     key: `${id}-${resource}-notification`,
