@@ -45,6 +45,7 @@ const generateFilter = (filters?: CrudFilters) => {
         filters.map((filter) => {
             if (filter.operator !== "or") {
                 const { field, operator, value } = filter;
+
                 if (operator === "eq") {
                     rawQuery += `&${field}=${value}`;
                 } else {

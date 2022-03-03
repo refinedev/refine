@@ -52,7 +52,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 id: item.id,
                 title: item.title,
                 content: item.content,
-                category: item.category.id,
+                category: item.category?.id,
             };
         },
         metaData: {
@@ -113,7 +113,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                             />
                         </FilterDropdown>
                     )}
-                    render={(_, record) => record.category.title}
+                    render={(_, record) => record.category?.title}
                 />
                 <Table.Column<IPost>
                     title="Actions"
