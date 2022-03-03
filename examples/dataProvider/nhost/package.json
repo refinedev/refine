@@ -1,0 +1,43 @@
+{
+  "name": "refine-nhost-example",
+  "version": "3.4.2",
+  "private": true,
+  "dependencies": {
+    "@nhost/nhost-js": "^0.3.9",
+    "@nhost/react-apollo": "^2.1.4",
+    "@nhost/react-auth": "^2.0.7",
+    "@pankod/refine-antd": "^3.4.2",
+    "@pankod/refine-core": "^3.4.2",
+    "@pankod/refine-nhost": "^3.4.2",
+    "@pankod/refine-react-router": "^3.4.2",
+    "@types/node": "^12.20.11",
+    "@types/react": "^17.0.4",
+    "@types/react-dom": "^17.0.4",
+    "graphql": "^15.6.1",
+    "graphql-request": "^3.5.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-markdown": "^6.0.1",
+    "react-mde": "^11.1.0",
+    "react-scripts": "^5.0.0",
+    "typescript": "^4.4.3",
+    "web-vitals": "^1.1.1"
+  },
+  "scripts": {
+    "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
+    "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

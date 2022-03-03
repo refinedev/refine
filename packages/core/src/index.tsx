@@ -36,6 +36,7 @@ export {
     ResourceRouterParams,
     IResourceItem,
     BaseRecord,
+    BaseKey,
     Option,
     LiveModeProps,
     MetaDataQuery,
@@ -56,5 +57,6 @@ export {
 export {
     userFriendlyResourceName,
     importCSVMapper,
+    handleUseParams,
 } from "./definitions/helpers";
 export { file2Base64 } from "./definitions/upload";

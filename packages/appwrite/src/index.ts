@@ -128,7 +128,10 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
         },
         getOne: async ({ resource, id }) => {
             const { $id, ...restData } =
-                await appwriteClient.database.getDocument(resource, id);
+                await appwriteClient.database.getDocument(
+                    resource,
+                    id.toString(),
+                );
 
             return {
                 data: {
@@ -141,7 +144,7 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
             const { $id, ...restData } =
                 await appwriteClient.database.updateDocument(
                     resource,
-                    id,
+                    id.toString(),
                     variables as any,
                     metaData?.readPermissions ?? ["role:all"],
                     metaData?.writePermissions ?? ["role:all"],
@@ -190,7 +193,10 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
             } as any;
         },
         deleteOne: async ({ resource, id }) => {
-            await appwriteClient.database.deleteDocument(resource, id);
+            await appwriteClient.database.deleteDocument(
+                resource,
+                id.toString(),
+            );
 
             return {
                 data: { id },
@@ -199,7 +205,10 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
         deleteMany: async ({ resource, ids }) => {
             await Promise.all(
                 ids.map((id) =>
-                    appwriteClient.database.deleteDocument(resource, id),
+                    appwriteClient.database.deleteDocument(
+                        resource,
+                        id.toString(),
+                    ),
                 ),
             );
 
@@ -212,7 +221,10 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
         getMany: async ({ resource, ids }) => {
             const data = await Promise.all(
                 ids.map((id) =>
-                    appwriteClient.database.getDocument<any>(resource, id),
+                    appwriteClient.database.getDocument<any>(
+                        resource,
+                        id.toString(),
+                    ),
                 ),
             );
 
@@ -228,7 +240,7 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
                 ids.map((id) =>
                     appwriteClient.database.updateDocument<any>(
                         resource,
-                        id,
+                        id.toString(),
                         variables as unknown as object,
                         metaData?.readPermissions ?? ["role:all"],
                         metaData?.writePermissions ?? ["role:all"],

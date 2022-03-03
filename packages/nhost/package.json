@@ -1,0 +1,58 @@
+{
+  "name": "@pankod/refine-nhost",
+  "description": "refine nhost.io data provider. refine is a React-based headless framework for building data-intensive applications in no time. It ships with Ant Design System, an enterprise-level UI toolkit.",
+  "version": "3.4.2",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "private": false,
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch --tsconfig tsconfig.json --verbose --noClean",
+    "build": "tsdx build --tsconfig tsconfig.json",
+    "test": "tsdx test --passWithNoTests --runInBand",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "author": "Pankod",
+  "module": "dist/refine-hasura.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/refine-hasura.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/refine-hasura.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^5.0.5",
+    "nock": "^13.1.3",
+    "size-limit": "^5.0.5",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "@nhost/nhost-js": "^0.3.9",
+    "@pankod/refine-core": "^3.4.2",
+    "gql-query-builder": "^3.5.5",
+    "graphql": "^15.6.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

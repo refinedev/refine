@@ -17,14 +17,14 @@ const backends = [
     ],
     [
         {
-            src: "/icons/backends/dotnet.png",
-            srcset: "/icons/backends/dotnet@2x.png 768w",
-            alt: "dotnet",
-        },
-        {
             src: "/icons/backends/strapi.png",
             srcset: "/icons/backends/strapi@2x.png 768w",
             alt: "strapi",
+        },
+        {
+            src: "/icons/backends/nhost.png",
+            srcset: "/icons/backends/nhost@2x.png 768w",
+            alt: "nhost",
         },
     ],
     [
@@ -142,6 +142,10 @@ const backendLinks = [
     {
         href: "https://hasura.io/",
         text: "Hasura",
+    },
+    {
+        href: "https://nhost.io/",
+        text: "Nhost",
     },
     {
         href: "https://appwrite.io/",

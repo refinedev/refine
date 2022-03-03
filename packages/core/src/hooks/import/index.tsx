@@ -65,8 +65,8 @@ export type HandleChangeType<TVariables, TData> = (onChangeParams: {
 }) => Promise<CreatedValuesType<TVariables, TData>[]>;
 
 export type UseImportReturnType<
-    TData,
-    TVariables,
+    TData extends BaseRecord = BaseRecord,
+    TVariables = {},
     TError extends HttpError = HttpError,
 > = {
     mutationResult:

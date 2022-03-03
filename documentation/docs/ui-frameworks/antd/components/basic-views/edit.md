@@ -185,7 +185,7 @@ export const EditPage: React.FC = () => {
 ```tsx
 import { Refine } from "@pankod/refine-core";
 import { Edit } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-start
@@ -202,8 +202,7 @@ export const App: React.FC = () => {
                 // highlight-start
                 routes: [
                     {
-                        exact: true,
-                        component: CustomPage,
+                        element: <CustomPage />,
                         path: "/custom",
                     },
                 ]
@@ -232,7 +231,7 @@ export const App: React.FC = () => {
 | title             | Adds the title                                                                  | `string`                                                          | `"Edit"` prefix and singular of `resource.name`                                |
 | actionButtons     | Passes properties for `<PageHeader>`                                            | `React.ReactNode`                                                 | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
 | pageHeaderProps   | Passes properties for `<PageHeader>`                                            | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` } |
-| recordItemId      | The record id for `<RefreshButton>`                                             | `string`                                                          |                                                                                |
+| recordItemId      | The record id for `<RefreshButton>`                                             | [`BaseKey`](/core/interfaces.md#basekey)                          |                                                                                |
 | mutationMode      | [Determines when mutations are executed](/guides-and-concepts/mutation-mode.md) | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  | `"pessimistic"`\*                                                              |
 | resource          | Resource name for API data interactions                                         | `string`                                                          | Resource name that it reads from the URL.                                      |
 

@@ -13,7 +13,7 @@ describe("getList", () => {
 
         expect(data[0]["id"]).toBe("bac2ef0a-899f-4694-84ef-b9c6fe4dc2b7");
         expect(data[0]["title"]).toBe("asdfasdfsadf");
-        expect(total).toBe(29);
+        expect(total).toBe(25);
     });
 
     it("correct sorting response", async () => {
@@ -30,9 +30,9 @@ describe("getList", () => {
             },
         });
 
-        expect(data[0]["id"]).toBe("2b5ac145-0f89-4e38-a8c5-a26b1b1631d3");
-        expect(data[0]["title"]).toBe("deneme");
-        expect(total).toBe(29);
+        expect(data[0]["id"]).toBe("75dbf808-6dc0-4b7b-bd1a-f1f381ee0e4c");
+        expect(data[0]["title"]).toBe("Boliviano Mvdol B2B Saint Helena Pound");
+        expect(total).toBe(25);
     });
 
     it("correct filter response", async () => {
@@ -50,9 +50,9 @@ describe("getList", () => {
             },
         });
 
-        expect(data[0]["id"]).toBe("bac2ef0a-899f-4694-84ef-b9c6fe4dc2b7");
-        expect(data[0]["title"]).toBe("asdfasdfsadf");
-        expect(total).toBe(8);
+        expect(data[0]["id"]).toBe("ecd7aa21-19f4-46c9-bc3e-227dcd0807fd");
+        expect(data[0]["title"]).toBe("E-business alarm");
+        expect(total).toBe(5);
     });
 
     it("correct filter and sort response", async () => {

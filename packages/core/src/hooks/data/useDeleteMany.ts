@@ -5,6 +5,7 @@ import {
     DeleteManyResponse,
     HttpError,
     BaseRecord,
+    BaseKey,
     MutationMode,
     ContextQuery,
     QueryResponse,
@@ -26,7 +27,7 @@ import {
 import { ActionTypes } from "@contexts/undoableQueue";
 
 type DeleteManyParams = {
-    ids: string[];
+    ids: BaseKey[];
     resource: string;
     mutationMode?: MutationMode;
     undoableTimeout?: number;
@@ -174,7 +175,10 @@ export const useDeleteMany = <
                                     data: (data ?? []).filter(
                                         (record: TData) =>
                                             !ids
-                                                .map((p) => p.toString())
+                                                .filter(
+                                                    (id) => id !== undefined,
+                                                )
+                                                .map(String)
                                                 .includes(
                                                     record.id!.toString(),
                                                 ),

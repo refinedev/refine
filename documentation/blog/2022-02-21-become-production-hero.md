@@ -57,6 +57,7 @@ The word headless is underlined above. So Refine drop you into UI heaven, meanwh
 - Strapi GraphQL
 - Supabase
 - Hasura
+- Nhost
 - Appwrite
 - Firebase
 - Directus

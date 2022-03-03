@@ -195,7 +195,7 @@ The `<Show>` component reads the `resource` information from the route by defaul
 import { Refine } from "@pankod/refine-core";
 import { Show } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 // highlight-start
 const CustomPage = () => {
@@ -215,8 +215,7 @@ export const App: React.FC = () => {
                 // highlight-start
                 routes: [
                     {
-                        exact: true,
-                        component: CustomPage,
+                        element: <CustomPage />,
                         path: "/custom",
                     },
                 ]
@@ -245,5 +244,5 @@ The `<Show>` component needs the `id` information for work properly, so if you u
 | actionButtons   | Gets passed to the `extra` prop of the `<Card>`   | `React.ReactNode`                                                 | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
 | isLoading       | Gets passed to the `loading` prop of the `<Card>` | `boolean`                                                         | `false`                                                                        |
 | pageHeaderProps | Passes props for `<PageHeader>`                   | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` } |
-| recordItemId    | Record id for `<RefreshButton>`                   | `string`                                                          |                                                                                |
+| recordItemId    | Record id for `<RefreshButton>`                   | [`BaseKey`](/core/interfaces.md#basekey)                          |                                                                                |
 | resource        | Resource name for API data interactions           | `string`                                                          | Resource name that it reads from the URL.                                      |

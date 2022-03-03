@@ -214,6 +214,9 @@ export const RouteProvider = () => {
 
     const renderUnauthorized = () => (
         <Routes>
+            {[...(customRoutes || [])].map((route, i) => (
+                <Route key={`custom-route-${i}`} {...route} />
+            ))}
             <Route
                 path="/"
                 element={LoginPage ? <LoginPage /> : <DefaultLoginPage />}
@@ -222,9 +225,6 @@ export const RouteProvider = () => {
                 path="/login"
                 element={LoginPage ? <LoginPage /> : <DefaultLoginPage />}
             />
-            {[...(customRoutes || [])].map((route, i) => (
-                <Route key={`custom-route-${i}`} {...route} />
-            ))}
             <Route path="*" element={<CustomPathAfterLogin />} />
         </Routes>
     );

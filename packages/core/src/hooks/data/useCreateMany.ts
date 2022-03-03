@@ -105,7 +105,7 @@ export const useCreateMany = <
                     payload: {
                         ids: response.data
                             .filter((item) => item?.id !== undefined)
-                            .map((item) => item.id!.toString()),
+                            .map((item) => item.id!),
                     },
                     date: new Date(),
                 });

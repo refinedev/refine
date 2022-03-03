@@ -9,11 +9,12 @@ import {
     useRouterContext,
     useTranslate,
     ResourceRouterParams,
+    BaseKey,
 } from "@pankod/refine-core";
 
 export type ShowButtonProps = ButtonProps & {
     resourceName?: string;
-    recordItemId?: string;
+    recordItemId?: BaseKey;
     hideText?: boolean;
     ignoreAccessControlProvider?: boolean;
 };
@@ -48,7 +49,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
 
     const resourceName = propResourceName ?? resource.name;
 
-    const id = decodeURIComponent(recordItemId ?? idFromRoute);
+    const id = recordItemId ?? idFromRoute;
 
     const { data } = useCan({
         resource: resourceName,

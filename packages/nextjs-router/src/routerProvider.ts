@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import qs from "qs";
 
-import type { IRouterProvider } from "@pankod/refine-core";
+import { handleUseParams, IRouterProvider } from "@pankod/refine-core";
 
 import { Prompt } from "./prompt";
 
@@ -39,7 +39,7 @@ export const RouterProvider: IRouterProvider = {
         const router = useRouter();
 
         const { query } = router;
-        return query as unknown as Params;
+        return handleUseParams(query);
     },
     Prompt,
     Link,

@@ -8,11 +8,12 @@ import {
     useRouterContext,
     useTranslate,
     ResourceRouterParams,
+    BaseKey,
 } from "@pankod/refine-core";
 
 export type CloneButtonProps = ButtonProps & {
     resourceName?: string;
-    recordItemId?: string;
+    recordItemId?: BaseKey;
     hideText?: boolean;
     ignoreAccessControlProvider?: boolean;
 };
@@ -47,7 +48,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
 
     const resourceName = propResourceName ?? resource.name;
 
-    const id = decodeURIComponent(recordItemId ?? idFromRoute);
+    const id = recordItemId ?? idFromRoute;
 
     const onButtonClick = () => {
         clone(resourceName, id!);
