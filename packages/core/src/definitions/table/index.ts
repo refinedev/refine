@@ -18,8 +18,8 @@ export const parseTableParams = (url: string) => {
     return {
         parsedCurrent: current && Number(current),
         parsedPageSize: pageSize && Number(pageSize),
-        parsedSorter: sorter ?? [],
-        parsedFilters: filters ?? [],
+        parsedSorter: (sorter as CrudSorting) ?? [],
+        parsedFilters: (filters as CrudFilters) ?? [],
     };
 };
 
