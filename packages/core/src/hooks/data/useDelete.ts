@@ -173,10 +173,10 @@ export const useDelete = <
                                     };
                                 },
                             );
-                        } else {
-                            queryClient.removeQueries([resource, "detail", id]);
-                            queryClient.removeQueries([resource, "getMany"]);
                         }
+
+                        queryClient.removeQueries([resource, "detail", id]);
+                        queryClient.removeQueries([resource, "getMany"]);
                     }
                 }
 
