@@ -21,16 +21,6 @@
   },
   "author": "Pankod",
   "module": "dist/esm/index.js",
-  "size-limit": [
-    {
-      "path": "dist/refine-ably.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/refine-ably.esm.js",
-      "limit": "10 KB"
-    }
-  ],
   "devDependencies": {
     "jest": "^27.5.1",
     "nock": "^13.1.3",
@@ -52,6 +42,7 @@
     ],
     "splitting": false,
     "sourcemap": true,
-    "clean": false
+    "clean": false,
+    "platform": "browser"
   }
 }

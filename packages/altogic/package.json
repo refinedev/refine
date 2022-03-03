@@ -43,6 +43,7 @@
     ],
     "splitting": false,
     "sourcemap": true,
-    "clean": false
+    "clean": false,
+    "platform": "browser"
   }
 }
