@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Space } from "antd";
-import { FilterDropdownProps as AntdFilterDropdownProps } from "antd/lib/table/interface";
+import type { FilterDropdownProps as AntdFilterDropdownProps } from "antd/lib/table/interface";
 import { FilterOutlined } from "@ant-design/icons";
 import { useTranslate } from "@pankod/refine-core";
 

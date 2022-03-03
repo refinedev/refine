@@ -3,4 +3,5 @@ module.exports = {
     rootDir: "./",
     name: "react-router-v6",
     displayName: "react-router-v6",
+    testEnvironment: "jsdom",
 };

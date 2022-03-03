@@ -10,12 +10,12 @@
         "start": "lerna run start --stream --parallel --scope @pankod/refine-core",
         "test": "lerna run test --stream --parallel --scope @pankod/refine*",
         "test:coverage": "npm run test --stream -- -- -- --coverage",
-        "bootstrap": "cd packages/codemod && npm i && cd ../.. && lerna bootstrap --hoist --strict --ignore-scripts --ignore @pankod/refine-codemod --scope @pankod/refine*",
+        "bootstrap": "cd packages/codemod && npm ci && cd ../.. && lerna bootstrap --hoist --strict --ignore-scripts --ignore @pankod/refine-codemod --scope @pankod/refine*",
         "lint": "eslint -c ./.eslintrc packages examples",
         "lint:fix": "npm run lint -- --quiet --fix",
         "build": "lerna run build --scope @pankod/refine*",
         "versionup": "npm run lerna version --conventional-commits --no-git-tag-version --scope @pankod/refine*",
-        "nuke": "rm -rf node_modules; for d in for d in packages/*/node_modules; do echo $d; rm -rf $d; done; for d in for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in examples/*/node_modules; do echo $d; rm -rf $d; done;  for d in examples/*/package-lock.json; do echo $d; rm -rf $d; done; for d in packages/*/package-lock.json; do echo $d; rm -rf $d; done;",
+        "nuke": "rm -rf node_modules; for d in for d in packages/*/node_modules; do echo $d; rm -rf $d; done; for d in for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in examples/*/node_modules; do echo $d; rm -rf $d; done;  for d in examples/*/package-lock.json; do echo $d; rm -rf $d; done;",
         "coffee": "npm run nuke && npm i && npm run bootstrap && npm run build"
     },
     "lint-staged": {
@@ -40,12 +40,13 @@
         "eslint-plugin-prettier": "3.4.0",
         "eslint-plugin-react": "7.23.2",
         "husky": "^4.3.8",
-        "jest": "^25.5.4",
+        "jest": "^27.5.1",
         "lerna": "^4.0.0",
         "lint-staged": "^10.5.4",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "react-refresh": "^0.11.0",
+        "ts-jest": "^27.1.3",
         "typescript": "^4.4.3"
     },
     "dependencies": {

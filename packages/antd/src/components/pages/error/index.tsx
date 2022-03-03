@@ -7,7 +7,7 @@ import {
     useResourceWithRoute,
     useRouterContext,
 } from "@pankod/refine-core";
-import { ResourceErrorRouterParams } from "@pankod/refine-core/dist/interfaces";
+import { ResourceErrorRouterParams } from "@pankod/refine-core";
 
 const { Text } = Typography;
 

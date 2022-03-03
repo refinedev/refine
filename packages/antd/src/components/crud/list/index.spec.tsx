@@ -1,14 +1,14 @@
 import React, { ReactNode } from "react";
 import { Route } from "react-router-dom";
+import { AccessControlProvider } from "@pankod/refine-core";
 import { Table } from "antd";
 
 import { render, TestWrapper, waitFor } from "@test";
 import { List } from "./index";
-import { IAccessControlContext } from "@pankod/refine-core/dist/interfaces";
 
 const renderList = (
     list: ReactNode,
-    accessControlProvider?: IAccessControlContext,
+    accessControlProvider?: AccessControlProvider,
 ) => {
     return render(<Route path="/:resource">{list}</Route>, {
         wrapper: TestWrapper({

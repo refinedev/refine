@@ -52,9 +52,8 @@ nock("http://localhost:80", { encodedQueryParams: true })
         ],
     );
 
-beforeAll(async (done) => {
-    await appwriteClient.account.createAnonymousSession();
-    done();
+beforeAll(async () => {
+    return await appwriteClient.account.createAnonymousSession();
 });
 
 afterAll(() => {

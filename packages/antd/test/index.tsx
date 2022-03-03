@@ -6,12 +6,12 @@ import { Refine } from "@pankod/refine-core";
 import { MockRouterProvider, MockJSONServer } from "@test";
 import {
     I18nProvider,
-    IAccessControlContext,
-    IAuthContext,
-    IDataContext,
-    INotificationContext,
-    ResourceProps,
-} from "@pankod/refine-core/dist/interfaces";
+    AccessControlProvider,
+    AuthProvider,
+    DataProvider,
+    NotificationProvider,
+    IResourceItem,
+} from "@pankod/refine-core";
 
 /* interface ITestWrapperProps {
     authProvider?: IAuthContext;
@@ -29,11 +29,11 @@ const List = () => {
     return <div>hede</div>;
 };
 interface ITestWrapperProps {
-    dataProvider?: IDataContext;
-    authProvider?: IAuthContext;
-    resources?: ResourceProps[];
-    notificationProvider?: INotificationContext;
-    accessControlProvider?: IAccessControlContext;
+    dataProvider?: DataProvider;
+    authProvider?: AuthProvider;
+    resources?: IResourceItem[];
+    notificationProvider?: NotificationProvider;
+    accessControlProvider?: AccessControlProvider;
     i18nProvider?: I18nProvider;
     routerInitialEntries?: string[];
     DashboardPage?: React.FC;

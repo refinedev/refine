@@ -4,4 +4,5 @@ module.exports = {
     name: "react-hook-form",
     displayName: "react-hook-form",
     setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
+    testEnvironment: "jsdom",
 };
