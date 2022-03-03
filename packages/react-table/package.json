@@ -12,15 +12,15 @@
     "node": ">=10"
   },
   "scripts": {
-    "start": "tsup --watch --dts --format esm,cjs,iife",
-    "build": "tsup --dts --format esm,cjs,iife --minify",
+    "start": "tsup --watch --dts --format esm,cjs,iife --legacy-output",
+    "build": "tsup --dts --format esm,cjs,iife --minify --legacy-output",
     "test": "jest --passWithNoTests --runInBand",
     "prepare": "npm run build"
   },
   "name": "@pankod/refine-react-table",
   "description": "refine offers a React Table adapter that allows you to use the React Table library with refine.",
   "author": "Pankod",
-  "module": "dist/index.mjs",
+  "module": "dist/esm/index.js",
   "peerDependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

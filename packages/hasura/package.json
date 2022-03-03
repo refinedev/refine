@@ -14,8 +14,8 @@
     "node": ">=10"
   },
   "scripts": {
-    "start": "tsup --watch --dts --format esm,cjs,iife",
-    "build": "tsup --dts --format esm,cjs,iife --minify",
+    "start": "tsup --watch --dts --format esm,cjs,iife --legacy-output",
+    "build": "tsup --dts --format esm,cjs,iife --minify --legacy-output",
     "test": "jest --passWithNoTests --runInBand",
     "prepare": "npm run build"
   },
@@ -25,7 +25,7 @@
     }
   },
   "author": "Pankod",
-  "module": "dist/index.mjs",
+  "module": "dist/esm/index.js",
   "devDependencies": {
     "jest": "^27.5.1",
     "nock": "^13.1.3",
