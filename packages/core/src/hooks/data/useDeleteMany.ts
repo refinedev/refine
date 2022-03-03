@@ -7,7 +7,6 @@ import {
     BaseRecord,
     MutationMode,
     PreviousQuery,
-    QueryResponse,
     GetListResponse,
     PrevContext as DeleteContext,
     SuccessErrorNotification,
@@ -17,7 +16,6 @@ import {
     useTranslate,
     useMutationMode,
     useCancelNotification,
-    useCacheQueries,
     useCheckError,
     usePublish,
     useHandleNotification,
@@ -71,7 +69,6 @@ export const useDeleteMany = <
 
     const { notificationDispatch } = useCancelNotification();
     const translate = useTranslate();
-    const cacheQueries = useCacheQueries();
     const publish = usePublish();
     const handleNotification = useHandleNotification();
 
@@ -181,7 +178,11 @@ export const useDeleteMany = <
                                 "detail",
                                 ids,
                             ]);
-                            queryClient.removeQueries([resource, "getMany"]);
+                            queryClient.removeQueries([
+                                resource,
+                                "getMany",
+                                ids,
+                            ]);
                         }
                     }
                 }
@@ -207,6 +208,7 @@ export const useDeleteMany = <
                 const getManyQueries = queryClient.getQueriesData([
                     resource,
                     "getMany",
+                    ids,
                 ]);
 
                 if (getManyQueries.length > 0) {
