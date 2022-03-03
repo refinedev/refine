@@ -39,7 +39,7 @@ In this part, we will create a missions part for the services your company provi
 This article is written as a continuation of our [Develop your Own Customizable Invoice Generator with Refine](https://refine.dev/blog/refine-react-admin-invoice-genarator/) article. If you have not read Part I, we recommend that you read Part I before reading this article.
 :::
 
-Let's see together how easily and in a short time we can develop our project with its refined features.
+Let's see together how easily and in a short time we can develop our project with its refine features.
 
 ## Create New Strapi Collections
 
