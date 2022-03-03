@@ -16,7 +16,6 @@ import pluralize from "pluralize";
 import {
     useMutationMode,
     useCancelNotification,
-    useCacheQueries,
     useTranslate,
     useCheckError,
     usePublish,
@@ -194,7 +193,8 @@ export const useUpdate = <
                             );
                         }
                     } else {
-                        queryClient.invalidateQueries([resource]);
+                        queryClient.invalidateQueries([resource, "detail", id]);
+                        queryClient.invalidateQueries([resource, "getMany"]);
                     }
                 }
 
