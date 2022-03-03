@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { QueryObserverResult, UseQueryOptions } from "react-query";
-// eslint-disable-next-line prettier/prettier
-import { uniqBy, debounce } from 'lodash'
+import uniqBy from "lodash/uniqBy";
+import debounce from "lodash/debounce";
 
 import { useList, useMany } from "@hooks";
 import {

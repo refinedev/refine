@@ -1,5 +1,4 @@
 import { defineConfig } from "tsup";
-import lodashTransformer from "esbuild-plugin-lodash";
 import { NodeResolvePlugin } from "@esbuild-plugins/node-resolve";
 
 import * as fs from "fs";
@@ -13,27 +12,6 @@ export default defineConfig({
     sourcemap: true,
     clean: false,
     esbuildPlugins: [
-        NodeResolvePlugin({
-            extensions: [".js", "ts", "tsx", "jsx"],
-            onResolved: (resolved) => {
-                if (resolved.includes("node_modules")) {
-                    return {
-                        external: true,
-                    };
-                }
-                return resolved;
-            },
-        }),
-        {
-            name: "lodash",
-            setup: (build) => {
-                if (build.initialOptions.format === "cjs") {
-                    lodashTransformer({
-                        outLodashPackage: "lodash",
-                    }).setup(build);
-                }
-            },
-        },
         {
             name: "textReplace",
             setup: (build) => {
@@ -75,5 +53,16 @@ export default defineConfig({
                 });
             },
         },
+        NodeResolvePlugin({
+            extensions: [".js", "ts", "tsx", "jsx"],
+            onResolved: (resolved) => {
+                if (resolved.includes("node_modules")) {
+                    return {
+                        external: true,
+                    };
+                }
+                return resolved;
+            },
+        }),
     ],
 });
