@@ -7,7 +7,7 @@ import {
     DefaultOptions,
 } from "react-query";
 
-import { ReactQueryDevtools } from "react-query/devtools";
+/* import { ReactQueryDevtools } from "react-query/devtools"; */
 
 import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
@@ -224,11 +224,11 @@ export const Refine: React.FC<RefineProps> = ({
                     </DataContextProvider>
                 </AuthContextProvider>
             </NotificationContextProvider>
-            <ReactQueryDevtools
+            {/*        <ReactQueryDevtools
                 initialIsOpen={false}
                 position="bottom-right"
                 {...reactQueryDevtoolConfig}
-            />
+            /> */}
         </QueryClientProvider>
     );
 };

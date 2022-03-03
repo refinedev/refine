@@ -3,4 +3,5 @@ module.exports = {
     rootDir: "./",
     name: "react-location",
     displayName: "react-location",
+    testEnvironment: "jsdom",
 };

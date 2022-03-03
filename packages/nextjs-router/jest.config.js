@@ -3,4 +3,5 @@ module.exports = {
     rootDir: "./",
     name: "nextjs-router",
     displayName: "nextjs-router",
+    testEnvironment: "jsdom",
 };

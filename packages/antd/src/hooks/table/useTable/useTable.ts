@@ -1,10 +1,7 @@
-import { Grid } from "antd";
-import { TablePaginationConfig, TableProps } from "antd/lib/table";
-import { FormProps } from "antd/lib/form";
+import { Grid, FormProps, Form, TablePaginationConfig, TableProps } from "antd";
 import { QueryObserverResult } from "react-query";
 import { useForm as useFormSF } from "sunflower-antd";
 
-import { useForm } from "antd/lib/form/Form";
 import { SorterResult } from "antd/lib/table/interface";
 
 import {
@@ -112,7 +109,7 @@ export const useTable = <
 
     const breakpoint = Grid.useBreakpoint();
 
-    const [form] = useForm<TSearchVariables>();
+    const [form] = Form.useForm<TSearchVariables>();
     const formSF = useFormSF<any, TSearchVariables>({
         form: form,
     });

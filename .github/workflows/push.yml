@@ -34,12 +34,16 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install, build
+    - name: npm install
       run: |
         npm install
         npm run bootstrap
+    - name: build & lint
+      run: |
         npm run build
         npm run lint
+    - name: test
+      run: |
         npm run test:coverage
     - name: npm test & publish code coverage
       uses: paambaati/codeclimate-action@v2.7.5

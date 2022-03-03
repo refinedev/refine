@@ -13,8 +13,8 @@ import {
     SuccessErrorNotification,
     MetaDataQuery,
     BaseKey,
+    DeleteOneResponse,
 } from "@pankod/refine-core";
-import { DeleteOneResponse } from "@pankod/refine-core/dist/interfaces";
 
 export type DeleteButtonProps = ButtonProps & {
     resourceName?: string;

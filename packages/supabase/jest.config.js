@@ -4,4 +4,5 @@ module.exports = {
     name: "supabase",
     displayName: "supabase",
     setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
+    testEnvironment: "jsdom",
 };
