@@ -61,14 +61,18 @@ const generateSort = (sort?: CrudSorting) => {
 const generateFilter = (filters?: CrudFilters) => {
     const queryFilters: { [key: string]: string } = {};
     if (filters) {
-        filters.map(({ field, operator, value }) => {
-            if (field === "q") {
-                queryFilters[field] = value;
-                return;
-            }
+        filters.map((filter) => {
+            if (filter.operator !== "or") {
+                const { field, operator, value } = filter;
 
-            const mappedOperator = mapOperator(operator);
-            queryFilters[`${field}${mappedOperator}`] = value;
+                if (field === "q") {
+                    queryFilters[field] = value;
+                    return;
+                }
+
+                const mappedOperator = mapOperator(operator);
+                queryFilters[`${field}${mappedOperator}`] = value;
+            }
         });
     }
 
