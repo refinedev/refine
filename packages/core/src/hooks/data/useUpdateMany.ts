@@ -2,7 +2,6 @@ import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 import pluralize from "pluralize";
 
 import {
-    useCacheQueries,
     useCancelNotification,
     useCheckError,
     useMutationMode,
@@ -17,11 +16,11 @@ import {
     UpdateManyResponse,
     HttpError,
     MutationMode,
-    ContextQuery,
     QueryResponse,
-    Context as UpdateContext,
+    PrevContext as UpdateContext,
     SuccessErrorNotification,
     MetaDataQuery,
+    GetListResponse,
 } from "../../interfaces";
 
 type UpdateManyParams<TVariables> = {
@@ -43,7 +42,7 @@ type UseUpdateManyReturnType<
     UpdateManyResponse<TData>,
     TError,
     UpdateManyParams<TVariables>,
-    UpdateContext
+    UpdateContext<TData>
 >;
 
 /**
@@ -77,13 +76,11 @@ export const useUpdateMany = <
     const publish = usePublish();
     const handleNotification = useHandleNotification();
 
-    const getAllQueries = useCacheQueries();
-
     const mutation = useMutation<
         UpdateManyResponse<TData>,
         TError,
         UpdateManyParams<TVariables>,
-        UpdateContext
+        UpdateContext<TData>
     >(
         ({
             ids,
@@ -153,59 +150,70 @@ export const useUpdateMany = <
 
         {
             onMutate: async ({ resource, ids, values, mutationMode }) => {
-                const previousQueries: ContextQuery[] = [];
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
 
-                const allQueries = getAllQueries(resource, ids);
+                await queryClient.cancelQueries(resource, undefined, {
+                    silent: true,
+                });
 
-                for (const queryItem of allQueries) {
-                    const { queryKey } = queryItem;
-                    await queryClient.cancelQueries(queryKey, undefined, {
-                        silent: true,
-                    });
+                const previousQueries = queryClient.getQueriesData<
+                    QueryResponse<TData>
+                >([resource]);
 
-                    const previousQuery =
-                        queryClient.getQueryData<QueryResponse<TData>>(
-                            queryKey,
-                        );
+                if (!(mutationModePropOrContext === "pessimistic")) {
+                    if (previousQueries) {
+                        const listQueries = queryClient.getQueriesData([
+                            resource,
+                            "list",
+                        ]);
 
-                    if (!(mutationModePropOrContext === "pessimistic")) {
-                        if (previousQuery) {
-                            previousQueries.push({
-                                query: previousQuery,
-                                queryKey,
-                            });
+                        if (listQueries.length > 0) {
+                            queryClient.setQueriesData(
+                                [resource, "list"],
+                                (previous?: GetListResponse<TData> | null) => {
+                                    if (!previous) {
+                                        return null;
+                                    }
 
-                            if (
-                                queryKey.includes(`resource/list/${resource}`)
-                            ) {
-                                const { data } = previousQuery;
-
-                                queryClient.setQueryData(queryKey, {
-                                    ...previousQuery,
-                                    data: data.map((record: TData) => {
-                                        if (
-                                            ids
-                                                .map((p) => p.toString())
-                                                .includes(record.id!.toString())
-                                        ) {
-                                            return {
-                                                ...record,
-                                                ...values,
-                                            };
-                                        }
-                                        return record;
-                                    }),
-                                });
-                            } else {
-                                queryClient.setQueryData(queryKey, {
-                                    data: {
-                                        ...previousQuery.data,
-                                        ...values,
-                                    },
-                                });
-                            }
+                                    const data = previous.data.map(
+                                        (record: TData) => {
+                                            if (
+                                                ids
+                                                    .filter(
+                                                        (id) =>
+                                                            id !== undefined,
+                                                    )
+                                                    .map(String)
+                                                    .includes(
+                                                        record.id!.toString(),
+                                                    )
+                                            ) {
+                                                return {
+                                                    ...record,
+                                                    ...values,
+                                                };
+                                            }
+                                            return record;
+                                        },
+                                    );
+                                    return {
+                                        ...previous,
+                                        data,
+                                    };
+                                },
+                            );
+                        } else {
+                            queryClient.invalidateQueries([
+                                resource,
+                                "detail",
+                                ids,
+                            ]);
+                            queryClient.invalidateQueries([
+                                resource,
+                                "getMany",
+                                ids,
+                            ]);
                         }
                     }
                 }
@@ -221,7 +229,7 @@ export const useUpdateMany = <
             ) => {
                 if (context) {
                     for (const query of context.previousQueries) {
-                        queryClient.setQueryData(query.queryKey, query.query);
+                        queryClient.setQueryData(query[0], query[1]);
                     }
                 }
 
@@ -246,10 +254,7 @@ export const useUpdateMany = <
                 }
             },
             onSettled: (_data, _error, { ids, resource }) => {
-                const allQueries = getAllQueries(resource, ids);
-                for (const query of allQueries) {
-                    queryClient.invalidateQueries(query.queryKey);
-                }
+                queryClient.invalidateQueries([resource]);
 
                 notificationDispatch({
                     type: ActionTypes.REMOVE,
