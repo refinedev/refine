@@ -6,10 +6,10 @@ import {
     HttpError,
     BaseRecord,
     MutationMode,
-    ContextQuery,
+    PreviousQuery,
     QueryResponse,
     GetListResponse,
-    Context as DeleteContext,
+    PrevContext as DeleteContext,
     SuccessErrorNotification,
     MetaDataQuery,
 } from "../../interfaces";
@@ -81,7 +81,7 @@ export const useDeleteMany = <
         DeleteManyResponse<TData>,
         TError,
         DeleteManyParams,
-        DeleteContext
+        DeleteContext<TData>
     >(
         ({
             resource,
@@ -141,49 +141,47 @@ export const useDeleteMany = <
             onMutate: async ({ ids, resource, mutationMode }) => {
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
-                const previousQueries: ContextQuery[] = [];
 
-                const allQueries = cacheQueries(resource, ids);
+                await queryClient.cancelQueries(resource, undefined, {
+                    silent: true,
+                });
 
-                for (const queryItem of allQueries) {
-                    const { queryKey } = queryItem;
-                    await queryClient.cancelQueries(queryKey, undefined, {
-                        silent: true,
-                    });
+                const previousQueries: PreviousQuery<TData>[] =
+                    queryClient.getQueriesData([resource]);
 
-                    const previousQuery =
-                        queryClient.getQueryData<QueryResponse<TData>>(
-                            queryKey,
-                        );
+                if (!(mutationModePropOrContext === "pessimistic")) {
+                    if (previousQueries) {
+                        const listQueries = queryClient.getQueriesData([
+                            resource,
+                            "list",
+                        ]);
+                        if (listQueries.length > 0) {
+                            queryClient.setQueriesData(
+                                [resource, "list"],
+                                (previous?: GetListResponse<TData> | null) => {
+                                    if (!previous) {
+                                        return null;
+                                    }
 
-                    if (!(mutationModePropOrContext === "pessimistic")) {
-                        if (previousQuery) {
-                            previousQueries.push({
-                                query: previousQuery,
-                                queryKey,
-                            });
+                                    const data = previous.data.filter(
+                                        (item) =>
+                                            item.id &&
+                                            !ids.includes(item.id.toString()),
+                                    );
 
-                            if (
-                                queryKey.includes(`resource/list/${resource}`)
-                            ) {
-                                const { data, total } =
-                                    previousQuery as GetListResponse<TData>;
-
-                                queryClient.setQueryData(queryKey, {
-                                    ...previousQuery,
-                                    data: (data ?? []).filter(
-                                        (record: TData) =>
-                                            !ids
-                                                .map((p) => p.toString())
-                                                .includes(
-                                                    record.id!.toString(),
-                                                ),
-                                    ),
-                                    total: total - ids.length,
-                                });
-                            } else {
-                                queryClient.removeQueries(queryKey);
-                            }
+                                    return {
+                                        data,
+                                        total: previous.total - 1,
+                                    };
+                                },
+                            );
+                        } else {
+                            queryClient.removeQueries([
+                                resource,
+                                "detail",
+                                ids,
+                            ]);
+                            queryClient.removeQueries([resource, "getMany"]);
                         }
                     }
                 }
@@ -194,21 +192,33 @@ export const useDeleteMany = <
             },
             // Always refetch after error or success:
             onSettled: (_data, _error, { resource, ids }) => {
-                const allQueries = cacheQueries(resource, ids);
-                for (const query of allQueries) {
-                    if (
-                        !query.queryKey.includes(`resource/getOne/${resource}`)
-                    ) {
-                        queryClient.invalidateQueries(query.queryKey);
-                    }
-                }
-
                 notificationDispatch({
                     type: ActionTypes.REMOVE,
                     payload: { id: ids, resource },
                 });
             },
             onSuccess: (_data, { ids, resource, successNotification }) => {
+                const detailQueries = queryClient.getQueriesData([
+                    resource,
+                    "detail",
+                    ids,
+                ]);
+
+                const getManyQueries = queryClient.getQueriesData([
+                    resource,
+                    "getMany",
+                ]);
+
+                if (getManyQueries.length > 0) {
+                    queryClient.removeQueries(getManyQueries);
+                }
+
+                if (detailQueries.length > 0) {
+                    queryClient.removeQueries(detailQueries);
+                }
+
+                queryClient.invalidateQueries([resource, "list"]);
+
                 handleNotification(successNotification, {
                     key: `${ids}-${resource}-notification`,
                     description: translate("notifications.success", "Success"),
@@ -235,7 +245,7 @@ export const useDeleteMany = <
             onError: (err, { ids, resource, errorNotification }, context) => {
                 if (context) {
                     for (const query of context.previousQueries) {
-                        queryClient.setQueryData(query.queryKey, query.query);
+                        queryClient.setQueryData(query[0], query[1]);
                     }
                 }
 

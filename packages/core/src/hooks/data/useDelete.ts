@@ -174,7 +174,8 @@ export const useDelete = <
                                 },
                             );
                         } else {
-                            queryClient.invalidateQueries([resource]);
+                            queryClient.removeQueries([resource, "detail", id]);
+                            queryClient.removeQueries([resource, "getMany"]);
                         }
                     }
                 }
@@ -217,11 +218,6 @@ export const useDelete = <
             onSuccess: (_data, { id, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);
 
-                const listQueries = queryClient.getQueriesData([
-                    resource,
-                    "list",
-                ]);
-
                 const detailQueries = queryClient.getQueriesData([
                     resource,
                     "detail",
@@ -241,8 +237,7 @@ export const useDelete = <
                     queryClient.removeQueries(detailQueries);
                 }
 
-                if (listQueries.length > 0)
-                    queryClient.invalidateQueries(listQueries);
+                queryClient.invalidateQueries([resource, "list"]);
 
                 handleNotification(successNotification, {
                     key: `${id}-${resource}-notification`,
