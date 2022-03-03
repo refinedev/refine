@@ -11,7 +11,6 @@ import {
 import {
     useTranslate,
     useCheckError,
-    useCacheQueries,
     usePublish,
     useHandleNotification,
     useDataProvider,
@@ -56,7 +55,6 @@ export const useCreate = <
     const { mutate: checkError } = useCheckError();
     const dataProvider = useDataProvider();
 
-    const getAllQueries = useCacheQueries();
     const translate = useTranslate();
     const queryClient = useQueryClient();
     const publish = usePublish();
@@ -103,14 +101,9 @@ export const useCreate = <
                     type: "success",
                 });
 
-                // TODO - this can be optimized
-                queryClient.invalidateQueries({
-                    queryKey: [resource, "list"],
-                });
+                queryClient.invalidateQueries([resource, "list"]);
 
-                queryClient.invalidateQueries({
-                    queryKey: [resource, "getMany"],
-                });
+                queryClient.invalidateQueries([resource, "getMany"]);
 
                 publish?.({
                     channel: `resources/${resource}`,
