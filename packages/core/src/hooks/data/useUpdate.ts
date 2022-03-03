@@ -192,9 +192,25 @@ export const useUpdate = <
                                 },
                             );
                         }
-                    } else {
-                        queryClient.invalidateQueries([resource, "detail", id]);
-                        queryClient.invalidateQueries([resource, "getMany"]);
+
+                        queryClient.setQueriesData(
+                            [resource, "detail", id],
+                            (previous?: GetListResponse<TData> | null) => {
+                                if (!previous) {
+                                    return null;
+                                }
+
+                                return {
+                                    ...previous,
+                                    data: {
+                                        ...previous.data,
+                                        ...values,
+                                    },
+                                };
+                            },
+                        );
+
+                        // keep continue with the mutaiton of getMany keys
                     }
                 }
 
