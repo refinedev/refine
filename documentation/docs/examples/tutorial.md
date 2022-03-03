@@ -5,7 +5,7 @@ title: Tutorial
 ---
 
 
-This tutorial will go through process of building a simple admin panel for a CMS-like application.
+This [tutorial](/docs/ui-frameworks/antd/tutorial/) will go through process of building a simple admin panel for a CMS-like application.
 <br/>
 
 <iframe src="https://codesandbox.io/embed/tutorial-ov79u?autoresize=1&fontsize=14&theme=dark&view=preview"
