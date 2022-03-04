@@ -3,8 +3,8 @@ import {
     CrudOperators,
     CrudSorting,
     CrudFilter,
+    LogicalFilter,
 } from "@pankod/refine-core";
-import { LogicalFilter } from "@pankod/refine-core/dist/interfaces";
 import { SortOrder, SorterResult } from "antd/lib/table/interface";
 
 export const getDefaultSortOrder = (
