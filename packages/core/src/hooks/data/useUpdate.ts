@@ -194,6 +194,34 @@ export const useUpdate = <
                         }
 
                         queryClient.setQueriesData(
+                            [resource, "getMany"],
+                            (previous?: GetListResponse<TData> | null) => {
+                                if (!previous) {
+                                    return null;
+                                }
+
+                                const data = previous.data.map(
+                                    (record: TData) => {
+                                        if (
+                                            record.id?.toString() ===
+                                            id.toString()
+                                        ) {
+                                            record = {
+                                                id: Number(id),
+                                                ...values,
+                                            } as unknown as TData;
+                                        }
+                                        return record;
+                                    },
+                                );
+                                return {
+                                    ...previous,
+                                    data,
+                                };
+                            },
+                        );
+
+                        queryClient.setQueriesData(
                             [resource, "detail", id],
                             (previous?: GetListResponse<TData> | null) => {
                                 if (!previous) {
@@ -209,8 +237,6 @@ export const useUpdate = <
                                 };
                             },
                         );
-
-                        // keep continue with the mutaiton of getMany keys
                     }
                 }
 
