@@ -235,9 +235,6 @@ export const useUpdateMany = <
                                 };
                             },
                         );
-
-                        //
-
                         for (const id of ids) {
                             queryClient.setQueriesData(
                                 [resource, "detail", id],
