@@ -91,9 +91,7 @@ export const RouterComponent: React.FC<RouterProps> = ({
                             action="list"
                             fallback={catchAll ?? <ErrorComponent />}
                         >
-                            <LayoutWrapper>
-                                <DashboardPage />
-                            </LayoutWrapper>
+                            <DashboardPage />
                         </CanAccess>
                     ) : (
                         <Navigate to={`/${resources[0].route}`} />

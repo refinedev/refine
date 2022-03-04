@@ -1,7 +1,7 @@
 {
   "name": "@pankod/refine-airtable",
   "description": "refine Airtable data provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
-  "version": "3.4.2",
+  "version": "3.5.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -14,34 +14,22 @@
     "node": ">=10"
   },
   "scripts": {
-    "start": "tsdx watch --tsconfig tsconfig.json --verbose --noClean",
-    "build": "tsdx build --tsconfig tsconfig.json",
-    "test": "tsdx test --passWithNoTests --runInBand",
-    "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why"
+    "start": "tsup --watch --dts --format esm,cjs,iife --legacy-output",
+    "build": "tsup --dts --format esm,cjs,iife --minify --legacy-output",
+    "test": "jest --passWithNoTests --runInBand",
+    "prepare": "npm run build"
   },
   "author": "Pankod",
-  "module": "dist/refine-airtable.esm.js",
-  "size-limit": [
-    {
-      "path": "dist/refine-airtable.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/refine-airtable.esm.js",
-      "limit": "10 KB"
-    }
-  ],
+  "module": "dist/esm/index.js",
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^5.0.5",
+    "jest": "^27.5.1",
     "nock": "^13.1.3",
-    "size-limit": "^5.0.5",
-    "tsdx": "^0.14.1",
-    "tslib": "^2.3.1"
+    "ts-jest": "^27.1.3",
+    "tslib": "^2.3.1",
+    "tsup": "^5.11.13"
   },
   "dependencies": {
-    "@pankod/refine-core": "^3.4.2",
+    "@pankod/refine-core": "^3.5.0",
     "@qualifyze/airtable-formulator": "^1.0.1",
     "airtable": "^0.11.1",
     "asyncairtable": "^2.1.0",
@@ -50,5 +38,14 @@
   "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
   "publishConfig": {
     "access": "public"
+  },
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "splitting": false,
+    "sourcemap": true,
+    "clean": false,
+    "platform": "browser"
   }
 }

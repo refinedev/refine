@@ -1,12 +1,12 @@
 {
   "name": "refine-use-modal-form-example",
-  "version": "3.4.2",
+  "version": "3.5.0",
   "private": true,
   "dependencies": {
-    "@pankod/refine-antd": "^3.4.2",
-    "@pankod/refine-core": "^3.4.2",
-    "@pankod/refine-react-router": "^3.4.2",
-    "@pankod/refine-simple-rest": "^3.4.2",
+    "@pankod/refine-antd": "^3.5.0",
+    "@pankod/refine-core": "^3.5.0",
+    "@pankod/refine-react-router": "^3.5.0",
+    "@pankod/refine-simple-rest": "^3.5.0",
     "@types/node": "^12.20.11",
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.4",

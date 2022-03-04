@@ -1,19 +1,16 @@
 {
     "name": "@pankod/refine-core",
-    "version": "3.4.2",
+    "version": "3.5.0",
     "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
     "private": false,
     "main": "dist/index.js",
-    "module": "dist/refine-core.esm.js",
+    "module": "dist/esm/index.js",
     "typings": "dist/index.d.ts",
     "scripts": {
-        "start": "tsdx watch --tsconfig tsconfig.json --verbose --noClean",
-        "build": "tsdx build --tsconfig tsconfig.json",
-        "test": "tsdx test --passWithNoTests --runInBand",
-        "prepare": "tsdx build",
-        "size": "size-limit",
-        "analyze": "size-limit --why",
-        "generate-theme": "npx @emeks/antd-custom-theme-generator -w --antd ../../node_modules/antd ./src/assets/styles/custom-theme.less ./src/assets/styles/styles.min.css"
+        "start": "tsup --watch --dts --format esm,cjs,iife --legacy-output",
+        "build": "tsup --dts --format esm,cjs,iife --minify --legacy-output",
+        "test": "jest --passWithNoTests --runInBand",
+        "prepare": "npm run build"
     },
     "peerDependencies": {
         "antd": "^4.17.1",
@@ -21,8 +18,6 @@
         "react-dom": "^17.0.2"
     },
     "devDependencies": {
-        "@babel/core": "^7.13.14",
-        "@size-limit/preset-small-lib": "^5.0.5",
         "@testing-library/jest-dom": "^5.12.0",
         "@testing-library/react": "^11.2.6",
         "@testing-library/react-hooks": "^5.0.3",
@@ -36,11 +31,11 @@
         "@types/react-dom": "^17.0.4",
         "@types/react-router-dom": "^5.1.8",
         "@types/testing-library__jest-dom": "^5.9.5",
-        "babel-plugin-module-resolver": "^4.1.0",
         "identity-obj-proxy": "^3.0.0",
+        "jest": "^27.5.1",
         "react-router-dom": "^5.3.0",
-        "size-limit": "^5.0.5",
-        "tsdx": "^0.14.1",
+        "ts-jest": "^27.1.3",
+        "tsup": "^5.11.13",
         "typescript": "^4.4.3"
     },
     "dependencies": {

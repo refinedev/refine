@@ -7,12 +7,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@pankod/refine-antd": "^3.5.0",
+    "@pankod/refine-core": "^3.5.0",
+    "@pankod/refine-react-router": "^3.5.0",
+    "@pankod/refine-simple-rest": "^3.5.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "@pankod/refine-antd": "^3.2.2",
-    "@pankod/refine-core": "^3.2.2",
-    "@pankod/refine-react-router": "^3.2.2",
-    "@pankod/refine-simple-rest": "^3.2.2",
     "react-markdown": "^6.0.1",
     "react-mde": "^11.1.0"
   },
@@ -22,5 +22,6 @@
     "@vitejs/plugin-react": "^1.0.7",
     "typescript": "^4.4.3",
     "vite": "^2.8.0"
-  }
+  },
+  "version": "3.5.0"
 }

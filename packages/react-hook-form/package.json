@@ -1,5 +1,5 @@
 {
-  "version": "3.4.2",
+  "version": "3.5.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -12,43 +12,40 @@
     "node": ">=10"
   },
   "scripts": {
-    "start": "tsdx watch --tsconfig tsconfig.json --verbose --noClean",
-    "build": "tsdx build --tsconfig tsconfig.json",
-    "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why"
+    "start": "tsup --watch --dts --format esm,cjs,iife --legacy-output",
+    "build": "tsup --dts --format esm,cjs,iife --minify --legacy-output",
+    "prepare": "npm run build"
   },
   "name": "@pankod/refine-react-hook-form",
   "description": "refine offers a React Hook Form adapter that allows you to use the React Hook Form library with refine.",
   "author": "Pankod",
-  "module": "dist/refine-react-hook-form.esm.js",
-  "size-limit": [
-    {
-      "path": "dist/refine-react-hook-form.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/refine-react-hook-form.esm.js",
-      "limit": "10 KB"
-    }
-  ],
+  "module": "dist/esm/index.js",
   "peerDependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.22.1"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^5.0.5",
-    "size-limit": "^5.0.5",
-    "tsdx": "^0.14.1",
-    "tslib": "^2.3.1"
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.3",
+    "tslib": "^2.3.1",
+    "tsup": "^5.11.13"
   },
   "dependencies": {
-    "@pankod/refine-core": "^3.4.2",
+    "@pankod/refine-core": "^3.5.0",
     "react-hook-form": "^7.22.1"
   },
   "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
   "publishConfig": {
     "access": "public"
+  },
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "splitting": false,
+    "sourcemap": true,
+    "clean": false,
+    "platform": "browser"
   }
 }

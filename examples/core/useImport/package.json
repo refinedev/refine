@@ -1,11 +1,11 @@
 {
   "name": "refine-core-use-import-example",
-  "version": "3.4.2",
+  "version": "3.5.0",
   "private": true,
   "dependencies": {
-    "@pankod/refine-core": "^3.4.2",
-    "@pankod/refine-react-router": "^3.4.2",
-    "@pankod/refine-simple-rest": "^3.4.2",
+    "@pankod/refine-core": "^3.5.0",
+    "@pankod/refine-react-router": "^3.5.0",
+    "@pankod/refine-simple-rest": "^3.5.0",
     "@types/node": "^12.20.11",
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.4",
@@ -18,7 +18,7 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "PORT=3001 react-scripts start",
+    "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
     "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
     "eject": "react-scripts eject"
   },

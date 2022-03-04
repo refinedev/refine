@@ -1,7 +1,5 @@
 import { QueryObserverResult } from "react-query";
-import { ListProps } from "antd/lib/list";
-import { FormProps } from "antd/lib/form";
-import { useForm } from "antd/lib/form/Form";
+import { ListProps, FormProps, Form } from "antd";
 
 import {
     BaseRecord,
@@ -106,7 +104,7 @@ export const useSimpleList = <
 
     const liveMode = useLiveMode(liveModeFromProp);
 
-    const [form] = useForm<TSearchVariables>();
+    const [form] = Form.useForm<TSearchVariables>();
 
     const { data, isFetched, isLoading } = queryResult;
 

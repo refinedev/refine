@@ -1,14 +1,14 @@
 import React, { ReactNode } from "react";
 import { Route } from "react-router-dom";
+import { AccessControlProvider } from "@pankod/refine-core";
 import { Button } from "antd";
 
 import { render, TestWrapper, waitFor } from "@test";
 import { Edit } from "./";
-import { IAccessControlContext } from "@pankod/refine-core/dist/interfaces";
 
 const renderEdit = (
     edit: ReactNode,
-    accessControlProvider?: IAccessControlContext,
+    accessControlProvider?: AccessControlProvider,
 ) => {
     return render(<Route path="/:resource/edit/:id">{edit}</Route>, {
         wrapper: TestWrapper({

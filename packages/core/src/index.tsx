@@ -1,8 +1,9 @@
 export * from "./components";
 export * from "./hooks";
 
-export { IAuthContext as AuthProvider, Pagination } from "./interfaces";
 export {
+    IAuthContext as AuthProvider,
+    Pagination,
     IDataContextProvider as DataProvider,
     ILiveContext as LiveProvider,
     LiveEvent,
@@ -29,6 +30,10 @@ export {
     CreateManyResponse,
     UpdateManyResponse,
     UpdateResponse,
+    DeleteOneResponse,
+    DeleteManyResponse,
+    CanParams,
+    CanReturnType,
     CustomResponse,
     SuccessErrorNotification,
     IRouterProvider,
@@ -43,6 +48,7 @@ export {
     RedirectionTypes,
     MapDataFn,
     OpenNotificationParams,
+    ResourceErrorRouterParams,
 } from "./interfaces";
 
 export {
