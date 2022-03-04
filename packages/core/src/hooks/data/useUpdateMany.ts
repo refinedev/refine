@@ -203,17 +203,59 @@ export const useUpdateMany = <
                                     };
                                 },
                             );
-                        } else {
-                            queryClient.invalidateQueries([
-                                resource,
-                                "detail",
-                                ids,
-                            ]);
-                            queryClient.invalidateQueries([
-                                resource,
-                                "getMany",
-                                ids,
-                            ]);
+                        }
+                        queryClient.setQueriesData(
+                            [resource, "getMany"],
+                            (previous?: GetListResponse<TData> | null) => {
+                                if (!previous) {
+                                    return null;
+                                }
+
+                                const data = previous.data.map(
+                                    (record: TData) => {
+                                        if (
+                                            ids
+                                                .filter(
+                                                    (id) => id !== undefined,
+                                                )
+                                                .map(String)
+                                                .includes(record.id!.toString())
+                                        ) {
+                                            return {
+                                                ...record,
+                                                ...values,
+                                            };
+                                        }
+                                        return record;
+                                    },
+                                );
+                                return {
+                                    ...previous,
+                                    data,
+                                };
+                            },
+                        );
+
+                        //
+
+                        for (const id of ids) {
+                            queryClient.setQueriesData(
+                                [resource, "detail", id],
+                                (previous?: GetListResponse<TData> | null) => {
+                                    if (!previous) {
+                                        return null;
+                                    }
+
+                                    const data = {
+                                        ...previous.data,
+                                        ...values,
+                                    };
+                                    return {
+                                        ...previous,
+                                        data,
+                                    };
+                                },
+                            );
                         }
                     }
                 }
