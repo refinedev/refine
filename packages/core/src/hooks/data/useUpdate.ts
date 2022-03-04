@@ -177,7 +177,7 @@ export const useUpdate = <
                                                 id.toString()
                                             ) {
                                                 return {
-                                                    id: Number(id),
+                                                    id,
                                                     ...values,
                                                 } as unknown as TData;
                                             }
@@ -207,7 +207,7 @@ export const useUpdate = <
                                             id.toString()
                                         ) {
                                             record = {
-                                                id: Number(id),
+                                                id,
                                                 ...values,
                                             } as unknown as TData;
                                         }
