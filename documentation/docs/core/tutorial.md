@@ -59,14 +59,14 @@ values={[
 <TabItem value="npm">
 
 ```bash
-npm i @pankod/refine @pankod/refine-react-router
+npm i @pankod/refine-core @pankod/refine-react-router-v6
 ```
 
   </TabItem>
     <TabItem value="yarn">
 
 ```bash
-yarn add @pankod/refine @pankod/refine-react-router
+yarn add @pankod/refine-core @pankod/refine-react-router-v6
 ```
 
   </TabItem>
@@ -99,7 +99,7 @@ tutorial
 ? Package manager:
 ❯ Npm
 
-? Do you want to using UI Framework?:
+? Do you want to use an UI Framework?:
 ❯ No (headless)
 
 ? Data Provider :
@@ -170,11 +170,13 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 -   [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql)
 -   [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
 -   [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura)
+-   [Nhost](https://github.com/pankod/refine/tree/master/packages/nhost)
 -   [Appwrite](https://github.com/pankod/refine/tree/master/packages/appwrite)
 -   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
 ### Community ❤️
--   [Firebase](https://github.com/rturan29/refine-firebase) by [rturan29](https://github.com/rturan29)
+-   [Firebase](https://github.com/rturan29/refine-firebase) - a fully featured [Firebase](https://firebase.google.com/) Data Provider by [rturan29](https://github.com/rturan29)
+-   [Directus](https://github.com/tspvivek/refine-directus) - a fully featured [Directus](https://directus.io/) Data Provider by [tspvivek](https://github.com/tspvivek)
 
 [Refer to the `dataProvider` documentation for detailed usage. &#8594](/core/providers/data-provider.md)
 :::
@@ -185,7 +187,7 @@ If you don't use _superplate_ replace the contents of `App.tsx` with the followi
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 const App: React.FC = () => {
@@ -287,7 +289,7 @@ Now, add the highlighted code to your `App.tsx` to connect to the endpoint.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-next-line
@@ -402,7 +404,7 @@ Create a new folder named _"components"_ under _"/src"_ and create a new file na
 
 ```tsx title="components/Layout.tsx"
 import { useResource, useNavigation } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 const { Link } = routerProvider;
 
@@ -452,7 +454,7 @@ Now, we can use the `<Layout>` in our application.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-next-line
@@ -594,7 +596,7 @@ Finally, we are ready to add `<PostList>` to our resource. Add the highlighted l
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-next-line
@@ -1382,7 +1384,7 @@ Now we can add the newly created component to our resource with `show` prop:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-next-line
@@ -1677,7 +1679,7 @@ Now we can add the newly created component to our resource with `edit` prop:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-next-line
@@ -1929,7 +1931,7 @@ After creating the `<PostCreate>` component, add it to resource with `create` pr
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-next-line

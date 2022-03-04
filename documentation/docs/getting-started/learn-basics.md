@@ -31,6 +31,7 @@ This guide will help you learn and get information of basic **refine** concepts.
 -   `@pankod/refine-strapi-graphql` - a fully featured [Strapi-GraphQL](https://github.com/strapi/strapi/tree/master/packages/plugins/graphql) Data Provider
 -   `@pankod/refine-supabase` - a fully featured [Supabase](https://github.com/supabase/supabase) Data Provider. Also supported Supabase Realtime feature.
 -   `@pankod/refine-hasura` - a fully featured [Hasura GraphQL](https://github.com/hasura/graphql-engine) Data Provider
+-   `@pankod/refine-nhost` - a fully featured [Nhost](https://github.com/nhost/nhost) Data Provider
 -   `@pankod/refine-appwrite` - a fully featured [Appwrite](https://github.com/appwrite/appwrite) Data Provider. Also supported Appwrite Realtime feature.
 -   `@pankod/refine-airtable` - a fully featured [Airtable](https://github.com/Airtable/airtable.js) Data Provider
 -   `@pankod/refine-altogic` - a fully featured [Altogic](https://github.com/altogic/altogic-js) Data Provider
@@ -47,9 +48,9 @@ This guide will help you learn and get information of basic **refine** concepts.
 
 **❤️ Community  Packages:**
 
--   [`refine-firebase`](https://github.com/rturan29/refine-firebase) - a fully featured [Firebase](https://github.com/rturan29/refine-firebase) Data Provider by [rturan29](https://github.com/rturan29)
+-   [`refine-firebase`](https://github.com/rturan29/refine-firebase) - a fully featured [Firebase](https://firebase.google.com/) Data Provider by [rturan29](https://github.com/rturan29)
+-   [`@tspvivek/refine-directus`](https://github.com/tspvivek/refine-directus) - a fully featured [Directus](https://directus.io/) Data Provider by [tspvivek](https://github.com/tspvivek)
 -   [`data-provider-customizer`](https://github.com/miyavsu-limited/data-provider-customizer) - Customize your data provider by mixing it with different data providers/data methods by [miyavsu-limited](https://github.com/miyavsu-limited)
-
 ## Refine 3rd Party Integration Examples
 
 **[i18n Provider](https://refine.dev/docs/core/providers/i18n-provider/)**

@@ -4,7 +4,7 @@ import { IRefineContextProvider } from "../../contexts/refine/IRefineContext";
 import { render, TestWrapper, MockJSONServer } from "@test";
 import { Route } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
-import { LayoutProps } from "src/interfaces";
+import { LayoutProps } from "../../interfaces";
 
 const renderWithRefineContext = (
     children: React.ReactNode,

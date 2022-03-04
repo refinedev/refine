@@ -12,8 +12,7 @@ const TwitterSvg =
 
 const siteConfig = {
     title: "refine",
-    tagline:
-        "A React-based framework for building data-intensive applications in no time.",
+    tagline: "A React-based framework for building internal tools, rapidly.",
     url: "https://refine.dev",
     baseUrl: "/",
     projectName: "refine",
@@ -33,10 +32,10 @@ const siteConfig = {
                     showLastUpdateTime: true,
                     versions: {
                         current: {
-                            label: "4.xx.xx 🚧",
+                            label: "3.xx.xx",
                         },
                     },
-                    lastVersion: "3.xx.xx",
+                    lastVersion: "current",
                 },
                 blog: {
                     blogTitle: "refine blog!",
@@ -74,6 +73,13 @@ const siteConfig = {
             indexName: "refine",
             contextualSearch: true,
         },
+        metadata: [
+            {
+                name: "keywords",
+                content:
+                    "react-admin, react-framework, internal-tool, admin-panel, ant-design",
+            },
+        ],
         announcementBar: {
             id: "support",
             backgroundColor: "#0B82F0",

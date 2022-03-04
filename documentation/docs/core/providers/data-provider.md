@@ -51,11 +51,13 @@ const dataProvider = {
 -   [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql)
 -   [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
 -   [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura)
+-   [Nhost](https://github.com/pankod/refine/tree/master/packages/nhost)
 -   [Appwrite](https://github.com/pankod/refine/tree/master/packages/appwrite)
 -   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
 ### Community ❤️
 -   [Firebase](https://github.com/rturan29/refine-firebase) by [rturan29](https://github.com/rturan29)
+-   [Directus](https://github.com/tspvivek/refine-directus) by [tspvivek](https://github.com/tspvivek)
 :::
 
 <br/>

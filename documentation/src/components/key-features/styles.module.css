@@ -1,5 +1,5 @@
 .section {
-    padding: 0px 0px 96px 0px;
+    padding: 0px 0px 20px 0px;
     background-color: var(--color-bg-white);
     color: var(--color-text-black);
 }
@@ -9,6 +9,7 @@
     font-weight: 900;
     color: var(--color-blue);
     text-align: center;
+    padding-top: 66px;
 }
 
 .description {
@@ -73,6 +74,7 @@
 .feature {
     display: flex;
     gap: 36px;
+    align-items: center;
 }
 
 .feature img {
@@ -81,13 +83,20 @@
 }
 
 .feature p {
-    margin-bottom: 0;
+    margin-bottom: 4px;
 }
 
 .featureTitle {
     color: var(--color-text-black);
-    font-weight: 800;
+    font-weight: 900;
     font-size: 20px;
+    line-height: 24px;
+    text-transform: uppercase;
+}
+.featureDescription {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
 }
 
 @media screen and (max-width: 700px) {

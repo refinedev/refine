@@ -1,20 +1,20 @@
 {
 	"name": "fine-foods",
-	"version": "3.2.1",
+	"version": "3.5.0",
 	"private": true,
 	"dependencies": {
-		"@ant-design/charts": "^1.1.9",
+		"@ant-design/charts": "^1.2.0",
 		"@craco/craco": "^6.1.2",
-		"@pankod/refine-antd": "^3.2.1",
-		"@pankod/refine-core": "^3.2.0",
-		"@pankod/refine-react-router": "^3.2.0",
-		"@pankod/refine-simple-rest": "^3.2.0",
+		"@pankod/refine-antd": "^3.5.0",
+		"@pankod/refine-core": "^3.5.0",
+		"@pankod/refine-react-router-v6": "^3.5.0",
+		"@pankod/refine-simple-rest": "^3.5.0",
 		"@testing-library/jest-dom": "^5.12.0",
 		"@testing-library/react": "^11.2.6",
 		"@testing-library/user-event": "^12.8.3",
 		"@types/google-map-react": "^2.1.2",
 		"@types/jest": "^26.0.24",
-		"@types/node": "^14.14.13",
+		"@types/node": "^12.20.11",
 		"@types/react": "^17.0.4",
 		"@types/react-dom": "^17.0.4",
 		"craco-less": "^2.0.0",
@@ -36,8 +36,8 @@
 		"web-vitals": "^1.1.1"
 	},
 	"scripts": {
-		"start": "craco start",
-		"build": "craco build",
+		"start": "DISABLE_ESLINT_PLUGIN=true craco start",
+		"build": "DISABLE_ESLINT_PLUGIN=true craco build",
 		"test": "craco test --passWithNoTests --watchAll=false",
 		"eject": "craco eject"
 	},

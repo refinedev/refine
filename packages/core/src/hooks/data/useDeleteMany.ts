@@ -5,6 +5,7 @@ import {
     DeleteManyResponse,
     HttpError,
     BaseRecord,
+    BaseKey,
     MutationMode,
     PreviousQuery,
     GetListResponse,
@@ -24,7 +25,7 @@ import {
 import { ActionTypes } from "@contexts/undoableQueue";
 
 type DeleteManyParams = {
-    ids: string[];
+    ids: BaseKey[];
     resource: string;
     mutationMode?: MutationMode;
     undoableTimeout?: number;
@@ -172,18 +173,9 @@ export const useDeleteMany = <
                                     };
                                 },
                             );
-                        } else {
-                            queryClient.removeQueries([
-                                resource,
-                                "detail",
-                                ids,
-                            ]);
-                            queryClient.removeQueries([
-                                resource,
-                                "getMany",
-                                ids,
-                            ]);
                         }
+                        queryClient.removeQueries([resource, "detail", ids]);
+                        queryClient.removeQueries([resource, "getMany", ids]);
                     }
                 }
 

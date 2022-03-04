@@ -4,4 +4,5 @@ module.exports = {
     name: "refine-hasura",
     displayName: "refine-hasura",
     setupFilesAfterEnv: ["<rootDir>/test/jest.setup.js"],
+    testEnvironment: "jsdom",
 };

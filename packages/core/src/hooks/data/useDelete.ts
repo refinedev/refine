@@ -16,6 +16,7 @@ import {
     MutationMode,
     PrevContext as DeleteContext,
     BaseRecord,
+    BaseKey,
     HttpError,
     GetListResponse,
     SuccessErrorNotification,
@@ -24,7 +25,7 @@ import {
 } from "../../interfaces";
 
 type DeleteParams = {
-    id: string;
+    id: BaseKey;
     resource: string;
     mutationMode?: MutationMode;
     undoableTimeout?: number;
@@ -259,7 +260,7 @@ export const useDelete = <
                     channel: `resources/${resource}`,
                     type: "deleted",
                     payload: {
-                        ids: id ? [id.toString()] : [],
+                        ids: id ? [id] : [],
                     },
                     date: new Date(),
                 });

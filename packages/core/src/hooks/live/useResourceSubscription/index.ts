@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { useQueryClient } from "react-query";
 import { useCacheQueries } from "@hooks";
 import {
+    BaseKey,
     ILiveContext,
     IRefineContext,
     LiveEvent,
@@ -13,7 +14,7 @@ import { RefineContext } from "@contexts/refine";
 export type UseResourceSubscriptionProps = {
     channel: string;
     params?: {
-        ids?: string[];
+        ids?: BaseKey[];
         [key: string]: any;
     };
     types: LiveEvent["type"][];

@@ -47,8 +47,12 @@ Then pass `liveProvider` from [`@pankod/refine-ably`](https://github.com/pankod/
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
+
+import "@pankod/refine-antd/dist/styles.min.css";
+
 //highlight-next-line
 import { liveProvider } from "@pankod/refine-ably";
 
@@ -61,6 +65,10 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
             //highlight-start
             liveProvider={liveProvider(ablyClient)}
             liveMode="auto"
@@ -170,7 +178,7 @@ export const PostEdit: React.FC = () => {
 
 We can also implement similar thing in show page.
 
-[Refer to the codesandbox example for detailed information. &#8594](#live-condesandbox-example)
+[Refer to the codesandbox example for detailed information. &#8594](#live-codesandbox-example)
 :::
 
 <br/>

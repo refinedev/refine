@@ -115,7 +115,7 @@ The `<Create>` component reads the `resource` information from the route by defa
 ```tsx
 import { Refine } from "@pankod/refine-core";
 import { Create } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-start
@@ -132,8 +132,7 @@ export const App: React.FC = () => {
                 // highlight-start
                 routes: [
                     {
-                        exact: true,
-                        component: CustomPage,
+                        element: <CustomPage />,
                         path: "/custom",
                     },
                 ]

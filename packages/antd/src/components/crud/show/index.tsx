@@ -7,6 +7,7 @@ import {
     useTranslate,
     ResourceRouterParams,
     userFriendlyResourceName,
+    BaseKey,
 } from "@pankod/refine-core";
 
 import {
@@ -24,7 +25,7 @@ export interface ShowProps {
     isLoading?: boolean;
     pageHeaderProps?: PageHeaderProps;
     resource?: string;
-    recordItemId?: string;
+    recordItemId?: BaseKey;
 }
 
 /**
@@ -63,7 +64,7 @@ export const Show: React.FC<ShowProps> = ({
     const isDeleteButtonVisible = canDelete ?? resource.canDelete;
     const isEditButtonVisible = canEdit ?? resource.canEdit;
 
-    const id = recordItemId ?? encodeURIComponent(idFromRoute);
+    const id = recordItemId ?? idFromRoute;
 
     return (
         <PageHeader

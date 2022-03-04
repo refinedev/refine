@@ -1,0 +1,91 @@
+import {
+    List,
+    Table,
+    TagField,
+    useTable,
+    Space,
+    EditButton,
+    DeleteButton,
+    useModalForm,
+    EmailField,
+} from "@pankod/refine-antd";
+
+import { IContact } from "interfaces";
+import { CreateContact } from "components/contacts";
+
+export const ContactsList: React.FC = () => {
+    const { tableProps } = useTable<IContact>({
+        metaData: { populate: ["client"] },
+    });
+
+    const {
+        formProps: createContactFormProps,
+        modalProps,
+        show,
+    } = useModalForm({
+        resource: "contacts",
+        action: "create",
+        redirect: false,
+    });
+
+    return (
+        <>
+            <List
+                createButtonProps={{
+                    onClick: () => {
+                        show();
+                    },
+                }}
+            >
+                <Table {...tableProps} rowKey="id">
+                    <Table.Column dataIndex="id" title="ID" />
+                    <Table.Column dataIndex="first_name" title="First Name" />
+                    <Table.Column dataIndex="last_name" title="Last Name" />
+                    <Table.Column
+                        dataIndex={["client", "name"]}
+                        title="Client Company"
+                    />
+                    <Table.Column
+                        dataIndex="phone_number"
+                        title="Phone Number"
+                    />
+                    <Table.Column
+                        dataIndex="email"
+                        title="Email"
+                        render={(value: string) => <EmailField value={value} />}
+                    />
+                    <Table.Column
+                        dataIndex="job"
+                        title="Job"
+                        render={(value: string) => (
+                            <TagField color={"blue"} value={value} />
+                        )}
+                    />
+                    <Table.Column<{ id: string }>
+                        title="Actions"
+                        dataIndex="actions"
+                        render={(_, record) => (
+                            <Space>
+                                <EditButton
+                                    hideText
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                                <DeleteButton
+                                    hideText
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                            </Space>
+                        )}
+                    />
+                </Table>
+            </List>
+            <CreateContact
+                modalProps={modalProps}
+                formProps={createContactFormProps}
+                hideCompanySelect={false}
+            />
+        </>
+    );
+};

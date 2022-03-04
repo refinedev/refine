@@ -13,6 +13,7 @@ import {
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
     BaseRecord,
+    BaseKey,
     UpdateManyResponse,
     HttpError,
     MutationMode,
@@ -24,7 +25,7 @@ import {
 } from "../../interfaces";
 
 type UpdateManyParams<TVariables> = {
-    ids: string[];
+    ids: BaseKey[];
     resource: string;
     mutationMode?: MutationMode;
     undoableTimeout?: number;

@@ -48,7 +48,7 @@ const { mutate } = useDeleteMany();
 
 mutate({
     resource: "categories",
-    ids: ["2", "3"],
+    ids: [2, 3],
 });
 ```
 
@@ -87,7 +87,7 @@ Values passed to `mutate` must have these types.
 
 ```tsx
 {
-    ids: string[];
+    ids: BaseKey[];
     resource: string;
     mutationMode?: MutationMode;
     undoableTimeout?: number;
@@ -108,7 +108,7 @@ const { mutate } = useDeleteMany();
 
 mutate({
     resource: "categories",
-    ids: ["2", "3"],
+    ids: [2, 3],
     // highlight-next-line
     mutationMode: "optimistic",
 });
@@ -141,7 +141,7 @@ const { mutate } = useDeleteMany();
 
 mutate({
     resource: "categories",
-    ids: ["1", "2"],
+    ids: [1, 2],
     mutationMode: "undoable",
     // highlight-start
     undoableTimeout: 7500,
@@ -162,7 +162,7 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 | Property                                                                                            | Description                                                                                        | Type                                                                       | Default                                                      |
 | --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                                            | `string`                                                                   |                                                              |
-| ids <div className=" required">Required</div>                                                       | ids for mutation function                                                                          | `string[]`                                                                 |                                                              |
+| ids <div className=" required">Required</div>                                                       | ids for mutation function                                                                          | [`BaseKey[]`](/core/interfaces.md#basekey)                                                                |                                                              |
 | mutationMode                                                                                        | [Determines when mutations are executed](/guides-and-concepts/mutation-mode.md)                    | ` "pessimistic` \| `"optimistic` \| `"undoable"`                           | `"pessimistic"`\*                                            |
 | undoableTimeout                                                                                     | Duration to wait before executing the mutation when `mutationMode = "undoable"`                    | `number`                                                                   | `5000ms`\*                                                   |
 | onCancel                                                                                            | Callback that runs when undo button is clicked on `mutationMode = "undoable"`                      | `(cancelMutation: () => void) => void`                                     |                                                              |
@@ -186,4 +186,4 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 
 | Description                               | Type                                                                                                                                                                                     |
 | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; ids: string[]; },`<br/>` DeleteContext>`](https://react-query.tanstack.com/reference/useMutation)\* |
+| Result of the `react-query`'s useMutation | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; ids: BaseKey[]; },`<br/>` DeleteContext>`](https://react-query.tanstack.com/reference/useMutation)\* |

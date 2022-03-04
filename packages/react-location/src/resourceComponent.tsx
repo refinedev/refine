@@ -18,10 +18,8 @@ export const ResourceComponentWrapper: React.FC = () => {
     const {
         resource: routeResourceName,
         action,
-        id: idFromRoute,
+        id,
     } = useParams<ResourceRouterParams>();
-
-    const id = idFromRoute ? decodeURIComponent(idFromRoute) : undefined;
 
     const resource = resources.find((res) => res.route === routeResourceName);
 
@@ -123,7 +121,7 @@ export const ResourceComponentWrapper: React.FC = () => {
             }
         };
 
-        return <LayoutWrapper>{renderCrud()}</LayoutWrapper>;
+        return renderCrud();
     }
 
     return catchAll ? (

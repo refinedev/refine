@@ -21,7 +21,7 @@ export const CustomSider: React.FC = () => {
             onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
             style={isMobile ? antLayoutSiderMobile : antLayoutSider}
         >
-            <Title collapsed={collapsed} />
+            {Title && <Title collapsed={collapsed} />}
             <Menu
                 selectedKeys={[selectedKey]}
                 mode="inline"

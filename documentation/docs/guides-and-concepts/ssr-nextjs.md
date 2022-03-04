@@ -11,7 +11,7 @@ title: SSR-Next.js
 [**nextjs-router**][NextjsRouter] package provided by **refine** must be used for the [`routerProvider`][routerProvider]
 
 ```bash
-npm i @pankod/refine @pankod/refine-nextjs-router
+npm i @pankod/refine-core @pankod/refine-antd @pankod/refine-nextjs-router
 ```
 
 :::tip
@@ -30,6 +30,8 @@ To make this example more visual, we used the [`@pankod/refine-antd`](https://gi
 import { AppProps } from "next/app";
 
 import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-nextjs-router";
 
@@ -41,6 +43,10 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
         >
             <Component {...pageProps} />
         </Refine>

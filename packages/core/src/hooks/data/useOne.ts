@@ -4,6 +4,7 @@ import {
     GetOneResponse,
     HttpError,
     BaseRecord,
+    BaseKey,
     MetaDataQuery,
     LiveModeProps,
     OpenNotificationParams,
@@ -18,7 +19,7 @@ import {
 
 export type UseOneProps<TData, TError> = {
     resource: string;
-    id: string;
+    id: BaseKey;
     queryOptions?: UseQueryOptions<GetOneResponse<TData>, TError>;
     successNotification?: OpenNotificationParams | false;
     errorNotification?: OpenNotificationParams | false;
@@ -63,7 +64,7 @@ export const useOne = <
         resource,
         types: ["*"],
         channel: `resources/${resource}`,
-        params: { ids: id ? [id.toString()] : [], ...liveParams },
+        params: { ids: id ? [id] : [], ...liveParams },
         enabled: queryOptions?.enabled,
         liveMode,
         onLiveEvent,

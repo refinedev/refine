@@ -17,4 +17,5 @@ module.exports = {
     },
     name: "core",
     displayName: "core",
+    testEnvironment: "jsdom",
 };

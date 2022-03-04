@@ -114,8 +114,11 @@ export const authProvider: AuthProvider = {
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import { DataProvider } from "@pankod/refine-strapi-v4";
 import routerProvider from "@pankod/refine-react-router";
+
+import "@pankod/refine-antd/dist/styles.min.css";
 
 // highlight-next-line
 import { authProvider, axiosInstance } from "./authProvider";
@@ -130,6 +133,10 @@ const App: React.FC = () => {
             dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
             //highlight-end
             routerProvider={routerProvider}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
         />
     );
 };
@@ -218,8 +225,11 @@ export const StoreProvider = (props: any) => {
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import { DataProvider } from "@pankod/refine-strapi-v4";
 import routerProvider from "@pankod/refine-react-router";
+
+import "@pankod/refine-antd/dist/styles.min.css";
 
 // highlight-next-line
 import { StoreProvider } from "context/store";
@@ -235,6 +245,10 @@ const App: React.FC = () => {
                 authProvider={authProvider}
                 dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
                 routerProvider={routerProvider}
+                Layout={Layout}
+                ReadyPage={ReadyPage}
+                notificationProvider={notificationProvider}
+                catchAll={<ErrorComponent />}
             />
             //highlight-next-line
         </StoreProvider>

@@ -36,8 +36,11 @@ To make this example more visual, we used the [`@pankod/refine-antd`](https://gi
 
 ```tsx
 import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import { dataProvider } from "@pankod/refine-appwrite";
 import routerProvider from "@pankod/refine-react-router";
+
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { appwriteClient } from "utility";
 import { authProvider } from "./authProvider";
@@ -50,6 +53,10 @@ const App: React.FC = () => {
             authProvider={authProvider}
             //highlight-end
             routerProvider={routerProvider}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
         />
     );
 };
@@ -115,8 +122,11 @@ export const StoreProvider = (props: any) => {
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import { dataProvider } from "@pankod/refine-appwrite";
 import routerProvider from "@pankod/refine-react-router";
+
+import "@pankod/refine-antd/dist/styles.min.css";
 
 import { appwriteClient } from "utility";
 import { authProvider } from "./authProvider";
@@ -131,6 +141,10 @@ const App: React.FC = () => {
                 dataProvider={dataProvider(appwriteClient)}
                 authProvider={authProvider}
                 routerProvider={routerProvider}
+                Layout={Layout}
+                ReadyPage={ReadyPage}
+                notificationProvider={notificationProvider}
+                catchAll={<ErrorComponent />}
             />
         <StoreProvider>
          //highlight-end
@@ -556,6 +570,7 @@ Appwrite Realtime API support is out-of-the-box supported by **refine**, just ad
 
 ```tsx
 import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import { dataProvider, liveProvider } from "@pankod/refine-appwrite";
 import routerProvider from "@pankod/refine-react-router";
 
@@ -594,6 +609,10 @@ function App() {
                         },
                     },
                 ]}
+                Layout={Layout}
+                ReadyPage={ReadyPage}
+                notificationProvider={notificationProvider}
+                catchAll={<ErrorComponent />}
             />
         </StoreProvider>
     );

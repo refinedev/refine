@@ -7,11 +7,12 @@ import {
     useWarnAboutChange,
     UseFormProps as UseFormPropsCore,
     HttpError,
+    LiveModeProps,
+    BaseRecord,
 } from "@pankod/refine-core";
-import { BaseRecord, LiveModeProps } from "@pankod/refine-core/dist/interfaces";
 
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
-import { DeleteButtonProps } from "@components";
+import { DeleteButtonProps } from "../../../components";
 
 export interface UseDrawerFormConfig extends UseFormConfig {
     action: "show" | "edit" | "create" | "clone";
@@ -53,6 +54,7 @@ export type UseDrawerFormReturnType<
  *
  *
  */
+
 export const useDrawerForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -156,6 +158,7 @@ export const useDrawerForm = <
             width: "500px",
             onClose: handleClose,
             visible,
+            getContainer: false,
         },
         saveButtonProps,
         deleteButtonProps,

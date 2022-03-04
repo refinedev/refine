@@ -19,7 +19,7 @@
 </div>
 <br/>
 
-<div align="center"><strong>refine</strong> is a <a href="https://reactjs.org/">React</a>-based <b>headless</b> framework for building data-intensive applications in no time ✨ It ships with <a href="https://ant.design/">Ant Design System</a>, an enterprise-level UI toolkit.</div>
+<div align="center"><strong>refine</strong> is a <a href="https://reactjs.org/">React</a>-based framework for building data-intensive applications in no time ✨ It ships with <a href="https://ant.design/">Ant Design System</a>, an enterprise-level UI toolkit.</div>
 
 <br />
 
@@ -35,7 +35,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/maintainability)](https://codeclimate.com/github/pankod/refine/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/test_coverage)](https://codeclimate.com/github/pankod/refine/test_coverage)
 [![npm version](https://img.shields.io/npm/v/@pankod/refine-core.svg)](https://www.npmjs.com/package/@pankod/refine-core)
-[![npm](https://img.shields.io/npm/dm/@pankod/refine)](https://www.npmjs.com/package/@pankod/refine-core)
+[![npm](https://img.shields.io/npm/dm/@pankod/refine-core)](https://www.npmjs.com/package/@pankod/refine-core)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](code_of_conduct.md)
 
 
@@ -55,7 +55,7 @@ For more detailed information and usage, refer to the [refine documentation](htt
 
 ## What is refine?
 
-**refine** is a [React](https://reactjs.org/)-based **headless** framework for building data-intensive applications in no time :sparkles: It ships with [Ant Design System](https://ant.design/), an enterprise-level UI toolkit.
+**refine** is a [React](https://reactjs.org/)-based framework for building data-intensive applications in no time :sparkles: It ships with [Ant Design System](https://ant.design/), an enterprise-level UI toolkit.
 
 Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to _admin panels_, _B2B applications_ and _dashboards_.
 
@@ -72,13 +72,13 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 ## Key features
 
-🔥 **Headless** : So you can bring your own UI and fuel it with Refine for top speed development.
+🔥 **Headless** : Works with any UI framework
 
 ⚙️ **Zero-configuration**: One-line setup with [superplate](https://github.com/pankod/superplate). It takes less than a minute to start a project.
 
 📦 **Out-of-the-box** : Routing, networking, authentication, state management, i18n and UI.
 
-🔌 **Backend Agnostic** : Connects to any custom backend. Built-in support for [REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/pankod/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable), [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/pankod/refine/tree/master/packages/strapi-v4), [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql), [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase), [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura), [Appwrite](https://github.com/pankod/refine/tree/master/packages/appwrite), [Firebase](https://firebase.google.com/) and [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic).
+🔌 **Backend Agnostic** : Connects to any custom backend. Built-in support for [REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/pankod/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable), [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/pankod/refine/tree/master/packages/strapi-v4), [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql), [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase), [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura), [Nhost](https://github.com/pankod/refine/tree/master/packages/nhost), [Appwrite](https://github.com/pankod/refine/tree/master/packages/appwrite), [Firebase](https://firebase.google.com/), [Directus](https://directus.io/) and [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic).
 
 📝 **Native Typescript Core** : You can always opt out for plain JavaScript.
 
@@ -157,7 +157,7 @@ import {
     Table,
     DateField,
 } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import "@pankod/refine-antd/dist/styles.min.css";

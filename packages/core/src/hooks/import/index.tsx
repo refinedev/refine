@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import { parse, ParseConfig } from "papaparse";
+import chunk from "lodash/chunk";
+
 import {
     useCreate,
     useCreateMany,
@@ -12,11 +15,9 @@ import {
     ResourceRouterParams,
     MetaDataQuery,
 } from "../../interfaces";
-import { parse, ParseConfig } from "papaparse";
 import { importCSVMapper } from "@definitions";
-import chunk from "lodash/chunk";
-import { UseCreateReturnType } from "@hooks/data/useCreate";
-import { UseCreateManyReturnType } from "@hooks/data/useCreateMany";
+import { UseCreateReturnType } from "../../hooks/data/useCreate";
+import { UseCreateManyReturnType } from "../../hooks/data/useCreateMany";
 
 export type ImportSuccessResult<TVariables, TData> = {
     request: TVariables[];
@@ -64,8 +65,8 @@ export type HandleChangeType<TVariables, TData> = (onChangeParams: {
 }) => Promise<CreatedValuesType<TVariables, TData>[]>;
 
 export type UseImportReturnType<
-    TData,
-    TVariables,
+    TData extends BaseRecord = BaseRecord,
+    TVariables = {},
     TError extends HttpError = HttpError,
 > = {
     mutationResult:

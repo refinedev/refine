@@ -34,7 +34,8 @@ const routerProvider = {
 
 **refine** includes many out-of-the-box router providers to use in your projects like
 
--   [React Router][react-router]
+-   [React Router V6][react-router-v6]
+-   [React Router V5][react-router-v5]
 -   [React Location][react-location]
 -   [Next.js Router][nextjs-router]
 
@@ -42,7 +43,7 @@ const routerProvider = {
 
 :::tip
 
-We do not recommend creating this provider unless you do not need any customization on the router. Instead, you can use [Next.js Router][nextjs-router] for your [Next.js](https://nextjs.org/) app and [React Router][react-router] or [React Location][react-location] for your [react](https://en.reactjs.org/) app.
+We do not recommend creating this provider unless you do not need any customization on the router. Instead, you can use [Next.js Router][nextjs-router] for your [Next.js](https://nextjs.org/) app and [React Router V6][react-router-v6], [React Router V5][react-router-v5] or [React Location][react-location] for your [react](https://en.reactjs.org/) app.
 
 :::
 
@@ -51,17 +52,30 @@ We do not recommend creating this provider unless you do not need any customizat
 To activate router provider in **refine**, we have to pass the `routerProvider` to the `<Refine />` component.
 
 <Tabs
-defaultValue="react-router"
+defaultValue="react-router-v6"
 values={[
-{label: 'React Router', value: 'react-router'},
+{label: 'React Router V6', value: 'react-router-v6'},
+{label: 'React Router V5', value: 'react-router'},
 {label: 'React Location', value: 'react-location'},
 {label: 'Next.js Router', value: 'nextjs'}
 ]}>
+<TabItem value="react-router-v6">
+
+```tsx title="App.tsx"
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+const App: React.FC = () => {
+    return <Refine routerProvider={routerProvider} />;
+};
+```
+
+</TabItem>
 <TabItem value="react-router">
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v5";
 
 const App: React.FC = () => {
     return <Refine routerProvider={routerProvider} />;
@@ -97,21 +111,50 @@ const App: React.FC = () => {
 
 ## Creating a router provider
 
-The `routerProvider` methods **refine** expects are exactly the same as [react-router-dom](https://reactrouter.com/web) methods.
+The `routerProvider` methods **refine** expects are exactly the same as [React Router V6](https://reactrouter.com) methods.
 
-To understand how to create a `routerProvider`, let's examine how the [React Router][react-router], [React Location][react-location] and [Next.js Router][nextjs-router] libraries provided by **refine** create a `routerProvider`.
+To understand how to create a `routerProvider`, let's examine how the [React Router V6][react-router-v6], [React Router V5][react-router-v5], [React Location][react-location] and [Next.js Router][nextjs-router] libraries provided by **refine** create a `routerProvider`.
 
 ### `useHistory`
 
 **refine** uses `push`, `replace`, and `goBack` functions of `useHistory` for navigation.
 
 <Tabs
-defaultValue="react-useHistory"
+defaultValue="react-useHistory-v6"
 values={[
-{label: 'React Router', value: 'react-useHistory'},
+{label: 'React Router V6', value: 'react-useHistory-v6'},
+{label: 'React Router V5', value: 'react-useHistory'},
 {label: 'React Location', value: 'react-location-useHistory'},
 {label: 'Next.js Router', value: 'nextjs-useHistory'}
 ]}>
+<TabItem value="react-useHistory-v6">
+
+```ts title="routerProvider.ts"
+import { IRouterProvider } from "@pankod/refine-core";
+
+const routerProvider: IRouterProvider = {
+    ...
+// highlight-start
+    useHistory: () => {
+        const navigate = useNavigate();
+
+        return {
+            push: navigate,
+            replace: (path: string) => {
+                navigate(path, { replace: true });
+            },
+            goBack: () => {
+                navigate(-1);
+            },
+        };
+    },
+// highlight-end
+
+    ...
+};
+```
+
+</TabItem>
 <TabItem value="react-useHistory">
 
 ```ts title="routerProvider.ts"
@@ -197,12 +240,29 @@ const routerProvider: IRouterProvider = {
 **refine** uses the `pathname` to find the location of the user and `search` to find the query string.
 
 <Tabs
-defaultValue="react-useLocation"
+defaultValue="react-useLocation-v6"
 values={[
-{label: 'React Router', value: 'react-useLocation'},
+{label: 'React Router V6', value: 'react-useLocation-v6'},
+{label: 'React Router V5', value: 'react-useLocation'},
 {label: 'React Location', value: 'react-location-useLocation'},
 {label: 'Next.js Router', value: 'nextjs-useLocation'}
 ]}>
+<TabItem value="react-useLocation-v6">
+
+```ts title="routerProvider.ts"
+import { IRouterProvider } from "@pankod/refine-core";
+// highlight-next-line
+import { useLocation } from "react-router-dom";
+
+const routerProvider: IRouterProvider = {
+    ...
+// highlight-next-line
+    useLocation,
+    ...
+};
+```
+
+</TabItem>
 <TabItem value="react-useLocation">
 
 ```ts title="routerProvider.ts"
@@ -278,13 +338,30 @@ const routerProvider: IRouterProvider = {
 **refine** uses `useParams` to use action name, record id, etc. found in the route.
 
 <Tabs
-defaultValue="react-useParams"
+defaultValue="react-router-v6-useParams"
 values={[
-{label: 'React Router', value: 'react-useParams'},
+{label: 'React Router V6', value: 'react-router-v6-useParams'},
+{label: 'React Router V5', value: 'react-router-v5-useParams'},
 {label: 'React Location', value: 'react-location-useParams'},
 {label: 'Next.js Router', value: 'nextjs-useParams'}
 ]}>
-<TabItem value="react-useParams">
+<TabItem value="react-router-v6-useParams">
+
+```ts title="routerProvider.ts"
+import { IRouterProvider } from "@pankod/refine-core";
+// highlight-next-line
+import { useParams } from "react-router-dom";
+
+const routerProvider: IRouterProvider = {
+    ...
+// highlight-next-line
+    useParams,
+    ...
+};
+```
+
+</TabItem>
+<TabItem value="react-router-v5-useParams">
 
 ```ts title="routerProvider.ts"
 import { IRouterProvider } from "@pankod/refine-core";
@@ -352,13 +429,66 @@ const routerProvider: IRouterProvider = {
 **refine** uses `<Prompt>` to display the alert when [warnWhenUnsavedChanges](/core/components/refine-config.md#warnwhenunsavedchanges) is `true`.
 
 <Tabs
-defaultValue="react-prompt"
+defaultValue="react--router-v6-prompt"
 values={[
-{label: 'React Router', value: 'react-prompt'},
+{label: 'React Router V6', value: 'react--router-v6-prompt'},
+{label: 'React Router V5', value: 'react--router-v5-prompt'},
 {label: 'React Location', value: 'react-location-prompt'},
 {label: 'Next.js Router', value: 'nextjs-prompt'}
 ]}>
-<TabItem value="react-prompt">
+<TabItem value="react--router-v6-prompt">
+
+```tsx title="Prompt.tsx"
+// highlight-start
+import { useEffect, useContext } from "react";
+import { UNSAFE_NavigationContext as NavigationContext } from "react-router-dom";
+import type { History } from "history";
+// highlight-end
+
+import type { PromptProps } from "@pankod/refine-core";
+
+export const Prompt: React.FC<PromptProps> = ({
+    message,
+    when,
+    setWarnWhen,
+}) => {
+    const navigator = useContext(NavigationContext).navigator as History;
+
+    useEffect(() => {
+        if (!when) return;
+
+        const unblock = navigator.block((transition: any) => {
+            if (window.confirm(message)) {
+                setWarnWhen?.(false);
+                unblock();
+                transition.retry();
+            } else {
+                navigator.location.pathname = window.location.pathname;
+            }
+        });
+        return unblock;
+    }, [when, location, message]);
+
+    return null;
+};
+```
+
+```ts title="routerProvider.ts"
+import { IRouterProvider } from "@pankod/refine-core";
+
+// highlight-next-line
+import { Prompt } from "./prompt";
+
+const routerProvider: IRouterProvider = {
+    ...
+// highlight-next-line
+    Prompt,
+    ...
+};
+```
+
+</TabItem>
+<TabItem value="react--router-v5-prompt">
 
 ```ts title="routerProvider.ts"
 import { IRouterProvider } from "@pankod/refine-core";
@@ -481,13 +611,30 @@ const routerProvider: IRouterProvider = {
 **refine** uses `<Link>` for navigation.
 
 <Tabs
-defaultValue="react-link"
+defaultValue="react-router-v6-link"
 values={[
-{label: 'React Router', value: 'react-link'},
+{label: 'React Router V6', value: 'react-router-v6-link'},
+{label: 'React Router V5', value: 'react-router-v5-link'},
 {label: 'React Location', value: 'react-location-link'},
 {label: 'Next.js Router', value: 'nextjs-link'}
 ]}>
-<TabItem value="react-link">
+<TabItem value="react-router-v6-link">
+
+```ts title="routerProvider.ts"
+import { IRouterProvider } from "@pankod/refine-core";
+// highlight-next-line
+import { Link } from "react-router-dom";
+
+const routerProvider: IRouterProvider = {
+    ...
+// highlight-next-line
+    Link,
+    ...
+};
+```
+
+</TabItem>
+<TabItem value="react-router-v5-link">
 
 ```ts title="routerProvider.ts"
 import { IRouterProvider } from "@pankod/refine-core";
@@ -568,24 +715,79 @@ Since Nextjs has a folder base route structure, it is used by exporting the `<Ne
 
 <br />
 
-&#8594 [Refer to the React Router's `<RouterComponent>` for detailed usage information.][routercomponent]  
+&#8594 [Refer to the React Router V6's `<RouterComponent>` for detailed usage information.][routercomponent-v6]  
+&#8594 [Refer to the React Router V5's `<RouterComponent>` for detailed usage information.][routercomponent]  
 &#8594 [Refer to the React Location's `<RouterComponent>` for detailed usage information.][react-location-routercomponent]  
 &#8594 [Refer to the Next.js Router's `<NextRouteComponent>` for detailed usage information.](https://github.com/pankod/refine/blob/master/packages/nextjs-router/src/nextRouteComponent.tsx)
 
 ## Serving the application from a subdirectory
 
 <Tabs
-defaultValue="react-subdirectory"
+defaultValue="react-router-v6-subdirectory"
 values={[
-{label: 'React Router', value: 'react-subdirectory'},
+{label: 'React Router V6', value: 'react-router-v6-subdirectory'},
+{label: 'React Router V5', value: 'react-router-v5-subdirectory'},
 {label: 'React Location', value: 'react-location-subdirectory'},
 {label: 'Next.js', value: 'nextjs-subdirectory'}
 ]}>
-<TabItem value="react-subdirectory">
+<TabItem value="react-router-v6-subdirectory">
 
 If you want to serve from a subdirectory in your **refine** react app. You can use `basepath` property of [`<Router>`][browserrouter].
 
-The [`<RouterComponent>`][routercomponent] in the [react-router][react-router] package passes all its properties to the [`<BrowserRouter>`][browserrouter] component. Therefore, a `<BrowserRouter>` property that we will give to the `<RouterComponent>` is passed to the `<BrowserRouter>` that wraps our application.
+The [`<RouterComponent>`][routercomponent] in the [react-router-v6][react-router-v6] package passes all its properties to the [`<BrowserRouter>`][browserrouter] component. Therefore, a `<BrowserRouter>` property that we will give to the `<RouterComponent>` is passed to the `<BrowserRouter>` that wraps our application.
+
+In the example below you can see how to serve the application in a subdirectory.
+
+```tsx title="src/App.tsx"
+import { Refine } from "@pankod/refine-core";
+// highlight-next-line
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+import "@pankod/refine/dist/styles.min.css";
+
+import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const { RouterComponent } = routerProvider;
+
+// highlight-next-line
+const CustomRouterComponent = () => <RouterComponent basename="/admin" />;
+
+const App: React.FC = () => {
+    return (
+        <Refine
+// highlight-start
+            routerProvider={{
+                ...routerProvider,
+                RouterComponent: CustomRouterComponent,
+            }}
+// highlight-end
+            dataProvider={dataProvider(API_URL)}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+            ]}
+        />
+    );
+};
+
+export default App;
+```
+
+Now you can access our application at `www.domain.com/admin`.
+
+</TabItem>
+<TabItem value="react-router-v5-subdirectory">
+
+If you want to serve from a subdirectory in your **refine** react app. You can use `basepath` property of [`<Router>`][browserrouter].
+
+The [`<RouterComponent>`][routercomponent] in the [react-router-v5][react-router-v5] package passes all its properties to the [`<BrowserRouter>`][browserrouter] component. Therefore, a `<BrowserRouter>` property that we will give to the `<RouterComponent>` is passed to the `<BrowserRouter>` that wraps our application.
 
 In the example below you can see how to serve the application in a subdirectory.
 
@@ -707,10 +909,13 @@ Now you can access our application at `www.domain.com/admin`.
   </TabItem>
 </Tabs>
 
-[browserrouter]: https://reactrouter.com/web/api/BrowserRouter
+[browserrouter]: https://github.com/pankod/refine/blob/master/packages/react-router-v6/src/routerComponent.tsx
 [router]: https://react-location.tanstack.com/docs/api#router
+[routercomponent-v6]:https://github.com/pankod/refine/blob/master/packages/react-router-v6/src/routerComponent.tsx
 [routercomponent]: https://github.com/pankod/refine/blob/master/packages/react-router/src/routerComponent.tsx
 [react-location-routercomponent]: https://github.com/pankod/refine/blob/master/packages/react-location/src/routerComponent.tsx
-[react-router]: https://github.com/pankod/refine/tree/master/packages/react-router
+[react-router-v5]: https://github.com/pankod/refine/tree/master/packages/react-router
+[react-router-v6]: https://github.com/pankod/refine/tree/master/packages/react-router-v6
 [nextjs-router]: https://github.com/pankod/refine/tree/master/packages/nextjs-router
 [react-location]: https://github.com/pankod/refine/tree/master/packages/react-location
+

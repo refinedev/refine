@@ -12,12 +12,13 @@ import {
     MutationMode,
     SuccessErrorNotification,
     MetaDataQuery,
+    BaseKey,
+    DeleteOneResponse,
 } from "@pankod/refine-core";
-import { DeleteOneResponse } from "@pankod/refine-core/dist/interfaces";
 
 export type DeleteButtonProps = ButtonProps & {
     resourceName?: string;
-    recordItemId?: string;
+    recordItemId?: BaseKey;
     onSuccess?: (value: DeleteOneResponse) => void;
     mutationMode?: MutationMode;
     hideText?: boolean;
@@ -65,7 +66,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
 
     const { mutate, isLoading, variables } = useDelete();
 
-    const id = decodeURIComponent(recordItemId ?? idFromRoute);
+    const id = recordItemId ?? idFromRoute;
 
     const { data } = useCan({
         resource: resource.name,

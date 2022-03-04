@@ -3,6 +3,7 @@ import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
     BaseRecord,
+    BaseKey,
     UpdateResponse,
     MutationMode,
     PrevContext as UpdateContext,
@@ -24,7 +25,7 @@ import {
 } from "@hooks";
 
 type UpdateParams<TVariables> = {
-    id: string;
+    id: BaseKey;
     resource: string;
     mutationMode?: MutationMode;
     undoableTimeout?: number;
@@ -312,9 +313,7 @@ export const useUpdate = <
                     channel: `resources/${resource}`,
                     type: "updated",
                     payload: {
-                        ids: data.data?.id
-                            ? [data.data.id.toString()]
-                            : undefined,
+                        ids: data.data?.id ? [data.data.id] : undefined,
                     },
                     date: new Date(),
                 });

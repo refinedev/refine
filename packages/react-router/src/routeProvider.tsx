@@ -223,6 +223,9 @@ const RouteProviderBase: React.FC = () => {
 
     const renderUnauthorized = () => (
         <Switch>
+            {[...(customRoutes || [])].map((route, i) => (
+                <Route key={`custom-route-${i}`} {...route} />
+            ))}
             <Route
                 exact
                 path={["/", "/login"]}
@@ -230,10 +233,6 @@ const RouteProviderBase: React.FC = () => {
                     LoginPage ? <LoginPage /> : <DefaultLoginPage />
                 }
             />
-            {[...(customRoutes || [])].map((route, i) => (
-                <Route key={`custom-route-${i}`} {...route} />
-            ))}
-
             <Route
                 render={({ location }: { location: any }) => {
                     if (isLoading) {

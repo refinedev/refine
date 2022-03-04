@@ -23,24 +23,10 @@ export const Hero = () => {
                 <div className="row row--justify--center">
                     <div className="col col--6">
                         <h1 className={styles.mainTitle}>
-                            <span>
-                                A React-based{" "}
-                                <b>
-                                    <u>headless</u>
-                                </b>{" "}
-                                framework
-                            </span>
+                            <span>A React-based framework</span>
                             <br />
-                            for building data-intensive applications in no time.
+                            for building internal tools, rapidly.
                         </h1>
-                    </div>
-                    <div className="col col--9">
-                        <p className={styles.description}>
-                            Refine offers lots of out-of-the box functionality
-                            for rapid development, without compromising extreme
-                            customizability. So you can bring your own UI and
-                            fuel it with Refine for top speed development.
-                        </p>
                     </div>
                 </div>
                 <div
@@ -142,13 +128,6 @@ export const Hero = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div className="col col--8">
-                        <p className={styles.description}>
-                            Use-cases include, but are not limited to admin
-                            panels, B2B applications and dashboards.
-                        </p>
                     </div>
                 </div>
             </div>

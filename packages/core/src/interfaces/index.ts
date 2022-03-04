@@ -1,10 +1,3 @@
-// reducers
-export * from "./reducers/auth/user";
-export * from "./reducers/resource/resource";
-
-// redux state
-export * from "./istate";
-
 // contexts
 export * from "../contexts/data/IDataContext";
 export * from "../contexts/live/ILiveContext";
@@ -53,8 +46,9 @@ export * from "./metaData";
 //metaData
 export * from "./live";
 
+export type BaseKey = string | number;
 export type BaseRecord = {
-    id?: string;
+    id?: BaseKey;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
 };

@@ -1,12 +1,12 @@
 {
     "include": [
-        "src",
-        "types"
+        "src"
     ],
     "extends": "../../tsconfig.build.json",
     "compilerOptions": {
         "rootDir": "./src",
         "baseUrl": ".",
+        "allowSyntheticDefaultImports": true,
         "strict": false,
         "paths": {
             "@components/*": [
@@ -59,7 +59,7 @@
             ]
         },
         "typeRoots": [
-            "./types",
+            "./src/types",
             "../../node_modules/@types"
         ]
     }
