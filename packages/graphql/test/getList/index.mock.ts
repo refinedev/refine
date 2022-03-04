@@ -81,60 +81,30 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
 nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .post("/graphql", {
         query: "query ($sort: String, $where: JSON, $start: Int, $limit: Int) { posts (sort: $sort, where: $where, start: $start, limit: $limit) { title } }",
-        variables: { where: { title_eq: "GraphQl 3" }, start: 0, limit: 10 },
-    })
-    .reply(200, { data: { posts: [{ title: "GraphQl 3" }] } }, [
-        "Server",
-        "nginx/1.17.10",
-        "Date",
-        "Fri, 17 Sep 2021 07:34:57 GMT",
-        "Content-Type",
-        "application/json",
-        "Content-Length",
-        "43",
-        "Connection",
-        "close",
-        "Vary",
-        "Origin",
-        "Strict-Transport-Security",
-        "max-age=31536000; includeSubDomains",
-        "X-Frame-Options",
-        "SAMEORIGIN",
-        "X-Powered-By",
-        "Strapi <strapi.io>",
-        "X-Response-Time",
-        "39ms",
-    ]);
-
-nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
-    .post("/graphql", {
-        query: "query ($sort: String, $where: JSON, $start: Int, $limit: Int) { posts (sort: $sort, where: $where, start: $start, limit: $limit) { id, title, category { id, title } } }",
-        variables: {
-            sort: "title:asc",
-            where: { category_eq: "2" },
-            start: 0,
-            limit: 10,
-        },
+        variables: { where: { id: "907" }, start: 0, limit: 10 },
     })
     .reply(
         200,
-        [
-            "1f8b0800000000000003aa564a492c4954b2aa562ac82f2e2956b28aae56ca4c51b252323254d2512ac92cc94905721cf3f24b32528b14fc52cb150280ea8052c98925a9e9f9459520ad100d48ea5d5273f3956a6b756052265434cb948a665950cf2c63032a9a654445b38ca9689619f5cc32c46796426801a9c621077f62710a101169426c6d2d17000000ffff",
-            "0300efcf3e6706030000",
-        ],
+        {
+            data: {
+                posts: [
+                    {
+                        title: "Molestias iste voluptatem velit sed voluptate aut voluptatibus explicabo.",
+                    },
+                ],
+            },
+        },
         [
             "Server",
             "nginx/1.17.10",
             "Date",
-            "Fri, 17 Sep 2021 07:45:46 GMT",
+            "Fri, 04 Mar 2022 11:33:59 GMT",
             "Content-Type",
             "application/json",
-            "Transfer-Encoding",
-            "chunked",
+            "Content-Length",
+            "107",
             "Connection",
             "close",
-            "Vary",
-            "Accept-Encoding",
             "Vary",
             "Origin",
             "Strict-Transport-Security",
@@ -144,8 +114,53 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
             "X-Powered-By",
             "Strapi <strapi.io>",
             "X-Response-Time",
-            "64ms",
-            "Content-Encoding",
-            "gzip",
+            "24ms",
+        ],
+    );
+
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
+    .post("/graphql", {
+        query: "query ($sort: String, $where: JSON, $start: Int, $limit: Int) { posts (sort: $sort, where: $where, start: $start, limit: $limit) { id, title, category { id, title } } }",
+        variables: {
+            sort: "title:asc",
+            where: { category: "8" },
+            start: 0,
+            limit: 10,
+        },
+    })
+    .reply(
+        200,
+        {
+            data: {
+                posts: [
+                    {
+                        id: "349",
+                        title: "Illo non iusto rem distinctio sequi dolores nobis.",
+                        category: { id: "8", title: "Test" },
+                    },
+                ],
+            },
+        },
+        [
+            "Server",
+            "nginx/1.17.10",
+            "Date",
+            "Fri, 04 Mar 2022 11:50:17 GMT",
+            "Content-Type",
+            "application/json",
+            "Content-Length",
+            "132",
+            "Connection",
+            "close",
+            "Vary",
+            "Origin",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "X-Powered-By",
+            "Strapi <strapi.io>",
+            "X-Response-Time",
+            "37ms",
         ],
     );
