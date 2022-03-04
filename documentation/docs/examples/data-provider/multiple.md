@@ -3,6 +3,8 @@ id: multiple
 title: Multiple
 ---
 
+**refine**'s Multiple Data Provider feature allows you to connect multiple backends and manage their data with a single interface. This tutorial explains in detail how to use the Multiple Data Provider in your project.
+
 [View Source](https://github.com/pankod/refine/tree/master/examples/dataProvider/multiple)
 
 <iframe src="https://codesandbox.io/embed/refine-multiple-data-provider-example-wes73l?autoresize=1&fontsize=14&theme=dark&view=preview"

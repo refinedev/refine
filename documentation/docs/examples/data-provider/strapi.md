@@ -5,7 +5,7 @@ title: Strapi
 
 This example demonstrates how to quickly connect your Strapi data with a full-featured **refine** Strapi Data Provider without having to make any additional adjustments.
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/dataProvider/strapi)
+[View Strapi Example Source](https://github.com/pankod/refine/tree/master/examples/dataProvider/strapi)
 
 **Username**: demo@refine.dev  
 **Password**: demodemo
