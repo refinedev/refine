@@ -174,8 +174,51 @@ export const useDeleteMany = <
                                 },
                             );
                         }
-                        queryClient.removeQueries([resource, "detail", ids]);
-                        queryClient.removeQueries([resource, "getMany", ids]);
+                        queryClient.setQueriesData(
+                            [resource, "getMany"],
+                            (previous?: GetListResponse<TData> | null) => {
+                                if (!previous) {
+                                    return null;
+                                }
+
+                                const data = previous.data.filter(
+                                    (record: TData) => {
+                                        if (record.id) {
+                                            return !ids.includes(
+                                                record.id.toString(),
+                                            );
+                                        }
+                                    },
+                                );
+
+                                return {
+                                    ...previous,
+                                    data,
+                                };
+                            },
+                        );
+
+                        for (const id of ids) {
+                            queryClient.setQueriesData(
+                                [resource, "detail"],
+                                (previous?: any | null) => {
+                                    if (!previous) {
+                                        return null;
+                                    }
+
+                                    if (
+                                        previous.data.id.toString() ===
+                                        id.toString()
+                                    ) {
+                                        return null;
+                                    }
+
+                                    return {
+                                        ...previous,
+                                    };
+                                },
+                            );
+                        }
                     }
                 }
 
