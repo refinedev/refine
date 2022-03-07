@@ -175,14 +175,30 @@ export const useDelete = <
                                 },
                             );
                         }
+                        queryClient.setQueriesData(
+                            [resource, "getMany"],
+                            (previous?: GetListResponse<TData> | null) => {
+                                if (!previous) {
+                                    return null;
+                                }
 
-                        queryClient.removeQueries([resource, "detail", id]);
-                        queryClient.removeQueries([resource, "getMany"]);
+                                const data = previous.data.filter(
+                                    (record: TData) => {
+                                        return record.id != id;
+                                    },
+                                );
+
+                                return {
+                                    ...previous,
+                                    data,
+                                };
+                            },
+                        );
                     }
                 }
 
                 return {
-                    previousQueries: previousQueries,
+                    previousQueries,
                 };
             },
             onError: (
@@ -219,26 +235,7 @@ export const useDelete = <
             onSuccess: (_data, { id, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);
 
-                const detailQueries = queryClient.getQueriesData([
-                    resource,
-                    "detail",
-                    id,
-                ]);
-
-                const getManyQueries = queryClient.getQueriesData([
-                    resource,
-                    "getMany",
-                ]);
-
-                if (getManyQueries.length > 0) {
-                    queryClient.removeQueries(getManyQueries);
-                }
-
-                if (detailQueries.length > 0) {
-                    queryClient.removeQueries(detailQueries);
-                }
-
-                queryClient.invalidateQueries([resource, "list"]);
+                queryClient.removeQueries([resource, "detail", id.toString()]);
 
                 handleNotification(successNotification, {
                     key: `${id}-${resource}-notification`,
@@ -266,6 +263,8 @@ export const useDelete = <
                 });
             },
             onSettled: (_data, _error, { id, resource }) => {
+                queryClient.invalidateQueries([resource]);
+
                 notificationDispatch({
                     type: ActionTypes.REMOVE,
                     payload: { id, resource },
