@@ -8,7 +8,6 @@ import {
 import routerProvider from "@pankod/refine-react-router";
 import dataProvider from "@pankod/refine-nhost";
 import { NhostAuthProvider } from "@nhost/react-auth";
-import { NhostApolloProvider } from "@nhost/react-apollo";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 
@@ -80,32 +79,30 @@ const authProvider: AuthProvider = {
 const App: React.FC = () => {
     return (
         <NhostAuthProvider nhost={nhost}>
-            <NhostApolloProvider nhost={nhost}>
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(nhost)}
-                    authProvider={authProvider}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: PostList,
-                            create: PostCreate,
-                            edit: PostEdit,
-                            show: PostShow,
-                        },
-                        {
-                            name: "categories",
-                            list: CategoriesList,
-                            create: CategoriesCreate,
-                            edit: CategoriesEdit,
-                        },
-                    ]}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    LoginPage={LoginPage}
-                    catchAll={<ErrorComponent />}
-                />
-            </NhostApolloProvider>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(nhost)}
+                authProvider={authProvider}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                        show: PostShow,
+                    },
+                    {
+                        name: "categories",
+                        list: CategoriesList,
+                        create: CategoriesCreate,
+                        edit: CategoriesEdit,
+                    },
+                ]}
+                notificationProvider={notificationProvider}
+                Layout={Layout}
+                LoginPage={LoginPage}
+                catchAll={<ErrorComponent />}
+            />
         </NhostAuthProvider>
     );
 };
