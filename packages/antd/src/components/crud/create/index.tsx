@@ -58,7 +58,10 @@ export const Create: React.FC<CreateProps> = ({
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
     const tags = [];
-    if (idFromRoute) {
+    if (
+        (!resourceFromProps || resourceFromProps === routeFromAction) &&
+        idFromRoute
+    ) {
         tags.push(
             <Tag
                 key={`${resource.name}-${idFromRoute}-create-clone-tag`}
