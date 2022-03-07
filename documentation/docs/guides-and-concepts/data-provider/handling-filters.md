@@ -123,14 +123,36 @@ filter = [
 Here the query will look like:  
 `"status" == "published" AND ("createdAt" == "2022-01-01" OR "createdAt" == "2022-01-02")`
 
-### Handle Filters in a Data Provider
+## Handle filters in a data provider
 
 ```tsx title="dataProvider.ts"
 import { DataProvider } from "@pankod/refine-core";
 
 const dataProvider = (): DataProvider => ({
     getList: async ({ resource, pagination, filters, sort }) => {
-
+        if (filters) {
+            filters.map((filter) => {
+                if (filter.operator !== "or") {
+                    // Handle your logical filters here
+                    // console.log(typeof filter); // LogicalFilter
+                } else {
+                    // Handle your conditional filters here
+                    // console.log(typeof filter); // ConditionalFilter
+                }
+            });
+        }
     },
-}
+});
 ```
+
+:::tip
+Data providers that support `or` and `and` filtering logic are as follows:
+
+-   [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
+-   [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/pankod/refine/tree/master/packages/strapi-v4)
+-   [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql)
+-   [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
+-   [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura)
+-   [Nhost](https://github.com/pankod/refine/tree/master/packages/nhost)
+
+:::
