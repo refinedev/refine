@@ -3,6 +3,8 @@ id: authorization
 title: Authorization
 ---
 
+You can create your own Authorization approach using **refine**. You can customize the [AuthProvider](/docs/core/providers/auth-provider/) methods according to your needs and control the privileges of your users. This example is a simple example of custom authorization with **refine**.
+
 [View Source](https://github.com/pankod/refine/tree/master/examples/authorization)
 
 <iframe src="https://codesandbox.io/embed/refine-authentication-example-niqdy?autoresize=1&fontsize=14&theme=dark&view=preview"

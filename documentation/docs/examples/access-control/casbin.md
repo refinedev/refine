@@ -3,6 +3,10 @@ id: casbin
 title: Casbin
 ---
 
+Access Control is a complex topic with a variety of sophisticated solutions that provide numerous functions. This example demonstrates how to use **refine** and [Casbin](https://casbin.org/) to simplify access control management throughout your application.
+
+[Refer to the refine Access Control Provider documentation for more information. →](/docs/core/providers/accessControl-provider/)
+
 [View Source](https://github.com/pankod/refine/tree/master/examples/accessControl/casbin)
 
 <iframe src="https://codesandbox.io/embed/access-control-casbin-react-l06vy?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"

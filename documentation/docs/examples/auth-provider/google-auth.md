@@ -3,6 +3,8 @@ id: google-auth
 title: Google Auth
 ---
 
+You can use Google Login to control access and provide identity for your app. This example will guide you through how to connect Google Login into your project using **refine**.
+
 [View Source](https://github.com/pankod/refine/tree/master/examples/authProvider/googleLogin)
 
 <iframe src="https://codesandbox.io/embed/refine-google-login-example-9vwi7?autoresize=1&fontsize=14&theme=dark&view=preview"
