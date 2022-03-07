@@ -174,6 +174,7 @@ export const useDeleteMany = <
                                 },
                             );
                         }
+
                         queryClient.setQueriesData(
                             [resource, "getMany"],
                             (previous?: GetListResponse<TData> | null) => {
@@ -188,6 +189,8 @@ export const useDeleteMany = <
                                                 record.id.toString(),
                                             );
                                         }
+
+                                        return false;
                                     },
                                 );
 
@@ -200,16 +203,15 @@ export const useDeleteMany = <
 
                         for (const id of ids) {
                             queryClient.setQueriesData(
-                                [resource, "detail"],
+                                [resource, "detail", id],
                                 (previous?: any | null) => {
                                     if (!previous) {
                                         return null;
                                     }
 
-                                    if (
-                                        previous.data.id.toString() ===
-                                        id.toString()
-                                    ) {
+                                    console.log("detail previous", previous);
+
+                                    if (previous.data.id == id) {
                                         return null;
                                     }
 

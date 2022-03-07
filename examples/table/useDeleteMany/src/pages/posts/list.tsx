@@ -3,6 +3,7 @@ import {
     IResourceComponentsProps,
     useMany,
     useDeleteMany,
+    useOne,
 } from "@pankod/refine-core";
 
 import {
@@ -14,6 +15,8 @@ import {
     EditButton,
     ShowButton,
     Button,
+    useSelect,
+    Select,
 } from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
@@ -34,6 +37,21 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>(
         [],
     );
+
+    const { data: postOne20 } = useOne<IPost>({
+        resource: "posts",
+        id: 20,
+    });
+
+    const { data: postOne } = useOne<IPost>({
+        resource: "posts",
+        id: 21,
+    });
+
+    const { data: postsMany } = useMany<IPost>({
+        resource: "posts",
+        ids: [20, 21, 22, 23, 24],
+    });
 
     const { mutate, isLoading: deleteManyIsLoading } = useDeleteMany<IPost>();
 
@@ -85,6 +103,16 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                 ? `Selected ${selectedRowKeys.length} items`
                                 : ""}
                         </span>
+                        <span>{postOne?.data.id}</span>
+                        <span>{postOne?.data.title}</span>
+                        <br />
+                        <span>{postOne20?.data.id}</span>
+                        <span>{postOne20?.data.title}</span>
+                        <ul>
+                            {postsMany?.data.map((p) => (
+                                <li key={p.id}>{`${p.id}-${p.title}`}</li>
+                            ))}
+                        </ul>
                     </>
                 ),
             }}

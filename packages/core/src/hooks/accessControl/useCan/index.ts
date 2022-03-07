@@ -29,7 +29,9 @@ export const useCan = ({
         () => can({ action, resource, params }),
         {
             ...queryOptions,
+            enabled: false,
             retry: false,
+            initialData: { can: true },
         },
     );
 
