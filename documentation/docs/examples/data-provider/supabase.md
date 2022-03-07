@@ -3,7 +3,9 @@ id: supabase
 title: Supabase
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/dataProvider/supabase)
+Connect your Supabase database with **refine** Supabase Data Provider and easily manage all the features that the database offers in your interface. This example will show you how Supabase Data Provider works and is used.
+
+[View Supabase Example Source](https://github.com/pankod/refine/tree/master/examples/dataProvider/supabase)
 
 :::note
 Codesandbox environment does not allow Realtime features to work.

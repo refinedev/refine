@@ -71,7 +71,6 @@ In this example, we hide the left sider only for this page. The rest should look
 
 | Property      | Description                                           | Type       | Default |
 | ------------- | ----------------------------------------------------- | ---------- | ------- |
-| dashboard     |                                                       | `boolean`  | \*      |
 | Layout        | Outer component that renders other components         | `React.FC` | \*      |
 | Sider         | [Custom sider to use][refine#sider]                   | `React.FC` | \*      |
 | Header        | [Custom header to use][refine#header]                 | `React.FC` | \*      |
