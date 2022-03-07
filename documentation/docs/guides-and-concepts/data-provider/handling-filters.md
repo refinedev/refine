@@ -75,14 +75,19 @@ Here the query will look like: `"name" = "John" AND "age" < 30`
 ```ts
 const filter = [
     {
-        field: "age",
-        operator: "eq",
-        value: 30,
-    },
-    {
-        field: "createdAt",
-        operator: "gte",
-        value: "2018-01-01",
+        operator: "or",
+        value: [
+            {
+                field: "age",
+                operator: "eq",
+                value: 30,
+            },
+            {
+                field: "createdAt",
+                operator: "gte",
+                value: "2018-01-01",
+            },
+        ],
     },
 ];
 ```
