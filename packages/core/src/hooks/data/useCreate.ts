@@ -101,9 +101,7 @@ export const useCreate = <
                     type: "success",
                 });
 
-                queryClient.invalidateQueries([resource, "list"]);
-
-                queryClient.invalidateQueries([resource, "getMany"]);
+                queryClient.invalidateQueries([resource]);
 
                 publish?.({
                     channel: `resources/${resource}`,

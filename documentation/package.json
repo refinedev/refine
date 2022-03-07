@@ -22,7 +22,7 @@
     "graphql-request": "^3.7.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "react-hook-form": "^7.26.1",
+    "react-hook-form": "^7.27.0",
     "react-icons": "^4.2.0",
     "react-lazyload": "^3.2.0",
     "react-player": "^2.9.0",

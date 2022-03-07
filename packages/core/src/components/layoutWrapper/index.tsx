@@ -9,7 +9,6 @@ import {
 import { LayoutProps, TitleProps } from "../../interfaces";
 
 export interface LayoutWrapperProps {
-    dashboard?: boolean;
     Layout?: React.FC<LayoutProps>;
     Sider?: React.FC;
     Header?: React.FC;
@@ -27,7 +26,6 @@ export interface LayoutWrapperProps {
  */
 export const LayoutWrapper: React.FC<LayoutWrapperProps> = ({
     children,
-    dashboard,
     Layout: LayoutFromProps,
     Sider: SiderFromProps,
     Header: HeaderFromProps,
@@ -47,7 +45,6 @@ export const LayoutWrapper: React.FC<LayoutWrapperProps> = ({
             Footer={FooterFromProps ?? Footer}
             Title={TitleFromProps ?? Title}
             OffLayoutArea={OffLayoutAreaFromProps ?? OffLayoutArea}
-            dashboard={dashboard}
         >
             {children}
             <UnsavedPrompt />

@@ -304,6 +304,14 @@ export const useUpdateMany = <
             onSuccess: (_data, { ids, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);
 
+                ids.forEach((id) =>
+                    queryClient.removeQueries([
+                        resource,
+                        "detail",
+                        id.toString(),
+                    ]),
+                );
+
                 handleNotification(successNotification, {
                     key: `${ids}-${resource}-notification`,
                     description: translate(
