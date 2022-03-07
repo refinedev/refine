@@ -290,6 +290,8 @@ export const useUpdate = <
             onSuccess: (data, { id, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);
 
+                queryClient.removeQueries([resource, "detail", id.toString()]);
+
                 handleNotification(successNotification, {
                     key: `${id}-${resource}-notification`,
                     description: translate(
