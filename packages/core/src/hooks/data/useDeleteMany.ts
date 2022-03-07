@@ -140,7 +140,7 @@ export const useDeleteMany = <
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
 
-                await queryClient.cancelQueries(resource, undefined, {
+                await queryClient.cancelQueries([resource], undefined, {
                     silent: true,
                 });
 
@@ -149,32 +149,27 @@ export const useDeleteMany = <
 
                 if (!(mutationModePropOrContext === "pessimistic")) {
                     if (previousQueries) {
-                        const listQueries = queryClient.getQueriesData([
-                            resource,
-                            "list",
-                        ]);
-                        if (listQueries.length > 0) {
-                            queryClient.setQueriesData(
-                                [resource, "list"],
-                                (previous?: GetListResponse<TData> | null) => {
-                                    if (!previous) {
-                                        return null;
-                                    }
+                        queryClient.setQueriesData(
+                            [resource, "list"],
+                            (previous?: GetListResponse<TData> | null) => {
+                                if (!previous) {
+                                    return null;
+                                }
 
-                                    const data = previous.data.filter(
-                                        (item) =>
-                                            item.id &&
-                                            !ids.includes(item.id.toString()),
-                                    );
+                                const data = previous.data.filter(
+                                    (item) =>
+                                        item.id &&
+                                        !ids
+                                            .map(String)
+                                            .includes(item.id.toString()),
+                                );
 
-                                    return {
-                                        data,
-                                        total: previous.total - 1,
-                                    };
-                                },
-                            );
-                        }
-
+                                return {
+                                    data,
+                                    total: previous.total - 1,
+                                };
+                            },
+                        );
                         queryClient.setQueriesData(
                             [resource, "getMany"],
                             (previous?: GetListResponse<TData> | null) => {
@@ -185,11 +180,10 @@ export const useDeleteMany = <
                                 const data = previous.data.filter(
                                     (record: TData) => {
                                         if (record.id) {
-                                            return !ids.includes(
-                                                record.id.toString(),
-                                            );
+                                            return !ids
+                                                .map(String)
+                                                .includes(record.id.toString());
                                         }
-
                                         return false;
                                     },
                                 );
@@ -203,18 +197,11 @@ export const useDeleteMany = <
 
                         for (const id of ids) {
                             queryClient.setQueriesData(
-                                [resource, "detail", id],
+                                [resource, "detail", id.toString()],
                                 (previous?: any | null) => {
-                                    if (!previous) {
+                                    if (!previous || previous.data.id == id) {
                                         return null;
                                     }
-
-                                    console.log("detail previous", previous);
-
-                                    if (previous.data.id == id) {
-                                        return null;
-                                    }
-
                                     return {
                                         ...previous,
                                     };
@@ -225,38 +212,25 @@ export const useDeleteMany = <
                 }
 
                 return {
-                    previousQueries: previousQueries,
+                    previousQueries,
                 };
             },
             // Always refetch after error or success:
             onSettled: (_data, _error, { resource, ids }) => {
+                queryClient.invalidateQueries([resource]);
                 notificationDispatch({
                     type: ActionTypes.REMOVE,
                     payload: { id: ids, resource },
                 });
             },
             onSuccess: (_data, { ids, resource, successNotification }) => {
-                const detailQueries = queryClient.getQueriesData([
-                    resource,
-                    "detail",
-                    ids,
-                ]);
-
-                const getManyQueries = queryClient.getQueriesData([
-                    resource,
-                    "getMany",
-                    ids,
-                ]);
-
-                if (getManyQueries.length > 0) {
-                    queryClient.removeQueries(getManyQueries);
-                }
-
-                if (detailQueries.length > 0) {
-                    queryClient.removeQueries(detailQueries);
-                }
-
-                queryClient.invalidateQueries([resource, "list"]);
+                ids.forEach((id) =>
+                    queryClient.removeQueries([
+                        resource,
+                        "detail",
+                        id.toString(),
+                    ]),
+                );
 
                 handleNotification(successNotification, {
                     key: `${ids}-${resource}-notification`,
