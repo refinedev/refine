@@ -1,5 +1,16 @@
 import { ReactNode } from "react";
 
+const auditLogPermissions = [
+    "create",
+    "update",
+    "delete",
+    "createMany",
+    "updateMany",
+    "deleteMany",
+    "*",
+] as const;
+type AuditLogPermissions = typeof auditLogPermissions;
+
 export interface IResourceContext {
     resources: IResourceItem[];
 }
@@ -14,6 +25,7 @@ export interface ResourceProps extends IResourceComponents {
     canDelete?: boolean;
     icon?: ReactNode;
     options?: OptionsProps;
+    auditLogPermissions?: AuditLogPermissions[number][] | string[];
 }
 export interface IResourceComponentsProps<TCrudData = any> {
     canCreate?: boolean;
@@ -41,4 +53,5 @@ export interface IResourceItem extends IResourceComponents {
     canShow?: boolean;
     canDelete?: boolean;
     options?: OptionsProps;
+    auditLogPermissions?: AuditLogPermissions[number][] | string[];
 }
