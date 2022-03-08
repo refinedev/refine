@@ -95,14 +95,8 @@ export const useCreateMany = <
                     type: "success",
                 });
 
-                // TODO - this can be optimized
-                queryClient.invalidateQueries({
-                    queryKey: [resource, "list"],
-                });
-
-                queryClient.invalidateQueries({
-                    queryKey: [resource, "getMany"],
-                });
+                queryClient.invalidateQueries([resource, "list"]);
+                queryClient.invalidateQueries([resource, "getMany"]);
 
                 publish?.({
                     channel: `resources/${resource}`,

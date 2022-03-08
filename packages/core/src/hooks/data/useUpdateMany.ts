@@ -154,7 +154,7 @@ export const useUpdateMany = <
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
 
-                await queryClient.cancelQueries(resource, undefined, {
+                await queryClient.cancelQueries([resource], undefined, {
                     silent: true,
                 });
 
@@ -164,47 +164,40 @@ export const useUpdateMany = <
 
                 if (!(mutationModePropOrContext === "pessimistic")) {
                     if (previousQueries) {
-                        const listQueries = queryClient.getQueriesData([
-                            resource,
-                            "list",
-                        ]);
+                        queryClient.setQueriesData(
+                            [resource, "list"],
+                            (previous?: GetListResponse<TData> | null) => {
+                                if (!previous) {
+                                    return null;
+                                }
 
-                        if (listQueries.length > 0) {
-                            queryClient.setQueriesData(
-                                [resource, "list"],
-                                (previous?: GetListResponse<TData> | null) => {
-                                    if (!previous) {
-                                        return null;
-                                    }
+                                const data = previous.data.map(
+                                    (record: TData) => {
+                                        if (
+                                            record.id !== undefined &&
+                                            ids
+                                                .filter(
+                                                    (id) => id !== undefined,
+                                                )
+                                                .map(String)
+                                                .includes(record.id.toString())
+                                        ) {
+                                            return {
+                                                ...record,
+                                                ...values,
+                                            };
+                                        }
 
-                                    const data = previous.data.map(
-                                        (record: TData) => {
-                                            if (
-                                                ids
-                                                    .filter(
-                                                        (id) =>
-                                                            id !== undefined,
-                                                    )
-                                                    .map(String)
-                                                    .includes(
-                                                        record.id!.toString(),
-                                                    )
-                                            ) {
-                                                return {
-                                                    ...record,
-                                                    ...values,
-                                                };
-                                            }
-                                            return record;
-                                        },
-                                    );
-                                    return {
-                                        ...previous,
-                                        data,
-                                    };
-                                },
-                            );
-                        }
+                                        return record;
+                                    },
+                                );
+                                return {
+                                    ...previous,
+                                    data,
+                                };
+                            },
+                        );
+
                         queryClient.setQueriesData(
                             [resource, "getMany"],
                             (previous?: GetListResponse<TData> | null) => {
@@ -215,12 +208,13 @@ export const useUpdateMany = <
                                 const data = previous.data.map(
                                     (record: TData) => {
                                         if (
+                                            record.id !== undefined &&
                                             ids
                                                 .filter(
                                                     (id) => id !== undefined,
                                                 )
                                                 .map(String)
-                                                .includes(record.id!.toString())
+                                                .includes(record.id.toString())
                                         ) {
                                             return {
                                                 ...record,
@@ -294,7 +288,15 @@ export const useUpdateMany = <
                 }
             },
             onSettled: (_data, _error, { ids, resource }) => {
-                queryClient.invalidateQueries([resource]);
+                queryClient.invalidateQueries([resource, "list"]);
+                queryClient.invalidateQueries([resource, "getMany"]);
+                ids.forEach((id) =>
+                    queryClient.invalidateQueries([
+                        resource,
+                        "detail",
+                        id.toString(),
+                    ]),
+                );
 
                 notificationDispatch({
                     type: ActionTypes.REMOVE,
@@ -303,14 +305,6 @@ export const useUpdateMany = <
             },
             onSuccess: (_data, { ids, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);
-
-                ids.forEach((id) =>
-                    queryClient.removeQueries([
-                        resource,
-                        "detail",
-                        id.toString(),
-                    ]),
-                );
 
                 handleNotification(successNotification, {
                     key: `${ids}-${resource}-notification`,

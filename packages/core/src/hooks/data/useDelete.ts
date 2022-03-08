@@ -141,7 +141,7 @@ export const useDelete = <
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
 
-                await queryClient.cancelQueries(resource, undefined, {
+                await queryClient.cancelQueries([resource], undefined, {
                     silent: true,
                 });
 
@@ -150,31 +150,24 @@ export const useDelete = <
 
                 if (!(mutationModePropOrContext === "pessimistic")) {
                     if (previousQueries) {
-                        const listQueries = queryClient.getQueriesData([
-                            resource,
-                            "list",
-                        ]);
+                        queryClient.setQueriesData(
+                            [resource, "list"],
+                            (previous?: GetListResponse<TData> | null) => {
+                                if (!previous) {
+                                    return null;
+                                }
+                                const data = previous.data.filter(
+                                    (record: TData) =>
+                                        record.id?.toString() !== id.toString(),
+                                );
 
-                        if (listQueries.length > 0) {
-                            queryClient.setQueriesData(
-                                [resource, "list"],
-                                (previous?: GetListResponse<TData> | null) => {
-                                    if (!previous) {
-                                        return null;
-                                    }
-                                    const data = previous.data.filter(
-                                        (record: TData) =>
-                                            record.id?.toString() !==
-                                            id.toString(),
-                                    );
+                                return {
+                                    data,
+                                    total: previous.total - 1,
+                                };
+                            },
+                        );
 
-                                    return {
-                                        data,
-                                        total: previous.total - 1,
-                                    };
-                                },
-                            );
-                        }
                         queryClient.setQueriesData(
                             [resource, "getMany"],
                             (previous?: GetListResponse<TData> | null) => {
@@ -184,7 +177,10 @@ export const useDelete = <
 
                                 const data = previous.data.filter(
                                     (record: TData) => {
-                                        return record.id != id;
+                                        return (
+                                            record.id?.toString() !==
+                                            id?.toString()
+                                        );
                                     },
                                 );
 
@@ -235,7 +231,7 @@ export const useDelete = <
             onSuccess: (_data, { id, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);
 
-                queryClient.removeQueries([resource, "detail", id.toString()]);
+                queryClient.removeQueries([resource, "detail", id?.toString()]);
 
                 handleNotification(successNotification, {
                     key: `${id}-${resource}-notification`,
@@ -263,7 +259,8 @@ export const useDelete = <
                 });
             },
             onSettled: (_data, _error, { id, resource }) => {
-                queryClient.invalidateQueries([resource]);
+                queryClient.invalidateQueries([resource, "list"]);
+                queryClient.invalidateQueries([resource, "getMany"]);
 
                 notificationDispatch({
                     type: ActionTypes.REMOVE,

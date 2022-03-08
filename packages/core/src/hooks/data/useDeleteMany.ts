@@ -170,6 +170,7 @@ export const useDeleteMany = <
                                 };
                             },
                         );
+
                         queryClient.setQueriesData(
                             [resource, "getMany"],
                             (previous?: GetListResponse<TData> | null) => {
@@ -217,7 +218,8 @@ export const useDeleteMany = <
             },
             // Always refetch after error or success:
             onSettled: (_data, _error, { resource, ids }) => {
-                queryClient.invalidateQueries([resource]);
+                queryClient.invalidateQueries([resource, "list"]);
+                queryClient.invalidateQueries([resource, "getMany"]);
                 notificationDispatch({
                     type: ActionTypes.REMOVE,
                     payload: { id: ids, resource },
@@ -251,7 +253,7 @@ export const useDeleteMany = <
                 publish?.({
                     channel: `resources/${resource}`,
                     type: "deleted",
-                    payload: { ids: ids.map(String) },
+                    payload: { ids },
                     date: new Date(),
                 });
             },

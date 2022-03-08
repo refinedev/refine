@@ -153,46 +153,39 @@ export const useUpdate = <
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
 
-                await queryClient.cancelQueries(resource, undefined, {
+                await queryClient.cancelQueries([resource], undefined, {
                     silent: true,
                 });
 
                 if (!(mutationModePropOrContext === "pessimistic")) {
                     if (previousQueries) {
-                        const listQueries = queryClient.getQueriesData([
-                            resource,
-                            "list",
-                        ]);
+                        queryClient.setQueriesData(
+                            [resource, "list"],
+                            (previous?: GetListResponse<TData> | null) => {
+                                if (!previous) {
+                                    return null;
+                                }
+                                const data = previous.data.map(
+                                    (record: TData) => {
+                                        if (
+                                            record.id?.toString() ===
+                                            id?.toString()
+                                        ) {
+                                            return {
+                                                id,
+                                                ...values,
+                                            } as unknown as TData;
+                                        }
+                                        return record;
+                                    },
+                                );
 
-                        if (listQueries.length > 0) {
-                            queryClient.setQueriesData(
-                                [resource, "list"],
-                                (previous?: GetListResponse<TData> | null) => {
-                                    if (!previous) {
-                                        return null;
-                                    }
-                                    const data = previous.data.map(
-                                        (record: TData) => {
-                                            if (
-                                                record.id?.toString() ===
-                                                id.toString()
-                                            ) {
-                                                return {
-                                                    id,
-                                                    ...values,
-                                                } as unknown as TData;
-                                            }
-                                            return record;
-                                        },
-                                    );
-
-                                    return {
-                                        ...previous,
-                                        data,
-                                    };
-                                },
-                            );
-                        }
+                                return {
+                                    ...previous,
+                                    data,
+                                };
+                            },
+                        );
 
                         queryClient.setQueriesData(
                             [resource, "getMany"],
@@ -205,7 +198,7 @@ export const useUpdate = <
                                     (record: TData) => {
                                         if (
                                             record.id?.toString() ===
-                                            id.toString()
+                                            id?.toString()
                                         ) {
                                             record = {
                                                 id,
@@ -222,6 +215,7 @@ export const useUpdate = <
                             },
                         );
 
+                        // TODO: handle dataProviderName
                         queryClient.setQueriesData(
                             [resource, "detail", id],
                             (previous?: GetListResponse<TData> | null) => {
@@ -280,7 +274,13 @@ export const useUpdate = <
                 }
             },
             onSettled: (_data, _error, { id, resource }) => {
-                queryClient.invalidateQueries([resource]);
+                queryClient.invalidateQueries([resource, "list"]);
+                queryClient.invalidateQueries([resource, "getMany"]);
+                queryClient.invalidateQueries([
+                    resource,
+                    "detail",
+                    id?.toString(),
+                ]);
 
                 notificationDispatch({
                     type: ActionTypes.REMOVE,
@@ -289,8 +289,6 @@ export const useUpdate = <
             },
             onSuccess: (data, { id, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);
-
-                queryClient.removeQueries([resource, "detail", id.toString()]);
 
                 handleNotification(successNotification, {
                     key: `${id}-${resource}-notification`,
