@@ -14,6 +14,12 @@ export type AuditLogEvent = {
     meta?: any;
 };
 
-export interface IAuditLogContext {
-    logEvent: (params: AuditLogEvent) => void;
+export type IAuditLogContext =
+    | {
+          logEvent: (params: AuditLogEvent) => void;
+      }
+    | undefined;
+
+export interface IAuditLogContextProvider {
+    auditLogProvider: IAuditLogContext;
 }

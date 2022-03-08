@@ -1,18 +1,16 @@
 import React from "react";
 
-import { IAuditLogContext } from "./IAuditLogContext";
+import { IAuditLogContext, IAuditLogContextProvider } from "./IAuditLogContext";
 
-export const AuditContext = React.createContext<IAuditLogContext>(
-    {} as IAuditLogContext,
-);
+export const AuditLogContext = React.createContext<IAuditLogContext>(undefined);
 
-export const AuditContextProvider: React.FC<IAuditLogContext> = ({
-    logEvent,
+export const AuditLogContextProvider: React.FC<IAuditLogContextProvider> = ({
+    auditLogProvider,
     children,
 }) => {
     return (
-        <AuditContext.Provider value={{ logEvent }}>
+        <AuditLogContext.Provider value={auditLogProvider}>
             {children}
-        </AuditContext.Provider>
+        </AuditLogContext.Provider>
     );
 };

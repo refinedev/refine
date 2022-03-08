@@ -29,6 +29,7 @@ import {
     NotificationContextProvider,
     defaultNotificationProvider,
 } from "@contexts/notification";
+import { AuditLogContextProvider } from "@contexts/auditLog";
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
 import {
     MutationMode,
@@ -44,6 +45,7 @@ import {
     IAccessControlContext,
     INotificationContext,
     IDataMultipleContextProvider,
+    IAuditLogContext,
 } from "../../../interfaces";
 
 interface QueryClientConfig {
@@ -58,6 +60,7 @@ export interface RefineProps {
     routerProvider: IRouterProvider;
     notificationProvider?: INotificationContext;
     accessControlProvider?: IAccessControlContext;
+    auditLogProvider?: IAuditLogContext;
     resources?: ResourceProps[];
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
@@ -93,6 +96,7 @@ export const Refine: React.FC<RefineProps> = ({
     routerProvider,
     notificationProvider = defaultNotificationProvider,
     accessControlProvider = defaultAccessControlContext,
+    auditLogProvider,
     resources: resourcesFromProps,
     DashboardPage,
     ReadyPage,
@@ -171,51 +175,61 @@ export const Refine: React.FC<RefineProps> = ({
                                         <AccessControlContextProvider
                                             {...accessControlProvider}
                                         >
-                                            <UndoableQueueContextProvider>
-                                                <RefineContextProvider
-                                                    mutationMode={mutationMode}
-                                                    warnWhenUnsavedChanges={
-                                                        warnWhenUnsavedChanges
-                                                    }
-                                                    syncWithLocation={
-                                                        syncWithLocation
-                                                    }
-                                                    Title={Title}
-                                                    undoableTimeout={
-                                                        undoableTimeout
-                                                    }
-                                                    catchAll={catchAll}
-                                                    DashboardPage={
-                                                        DashboardPage
-                                                    }
-                                                    LoginPage={LoginPage}
-                                                    Layout={Layout}
-                                                    Sider={Sider}
-                                                    Footer={Footer}
-                                                    Header={Header}
-                                                    OffLayoutArea={
-                                                        OffLayoutArea
-                                                    }
-                                                    hasDashboard={
-                                                        !!DashboardPage
-                                                    }
-                                                    liveMode={liveMode}
-                                                    onLiveEvent={onLiveEvent}
-                                                >
-                                                    <UnsavedWarnContextProvider>
-                                                        <>
-                                                            {children}
-                                                            {RouterComponent ? (
-                                                                <RouterComponent>
+                                            <AuditLogContextProvider
+                                                auditLogProvider={
+                                                    auditLogProvider
+                                                }
+                                            >
+                                                <UndoableQueueContextProvider>
+                                                    <RefineContextProvider
+                                                        mutationMode={
+                                                            mutationMode
+                                                        }
+                                                        warnWhenUnsavedChanges={
+                                                            warnWhenUnsavedChanges
+                                                        }
+                                                        syncWithLocation={
+                                                            syncWithLocation
+                                                        }
+                                                        Title={Title}
+                                                        undoableTimeout={
+                                                            undoableTimeout
+                                                        }
+                                                        catchAll={catchAll}
+                                                        DashboardPage={
+                                                            DashboardPage
+                                                        }
+                                                        LoginPage={LoginPage}
+                                                        Layout={Layout}
+                                                        Sider={Sider}
+                                                        Footer={Footer}
+                                                        Header={Header}
+                                                        OffLayoutArea={
+                                                            OffLayoutArea
+                                                        }
+                                                        hasDashboard={
+                                                            !!DashboardPage
+                                                        }
+                                                        liveMode={liveMode}
+                                                        onLiveEvent={
+                                                            onLiveEvent
+                                                        }
+                                                    >
+                                                        <UnsavedWarnContextProvider>
+                                                            <>
+                                                                {children}
+                                                                {RouterComponent ? (
+                                                                    <RouterComponent>
+                                                                        <RouteChangeHandler />
+                                                                    </RouterComponent>
+                                                                ) : (
                                                                     <RouteChangeHandler />
-                                                                </RouterComponent>
-                                                            ) : (
-                                                                <RouteChangeHandler />
-                                                            )}
-                                                        </>
-                                                    </UnsavedWarnContextProvider>
-                                                </RefineContextProvider>
-                                            </UndoableQueueContextProvider>
+                                                                )}
+                                                            </>
+                                                        </UnsavedWarnContextProvider>
+                                                    </RefineContextProvider>
+                                                </UndoableQueueContextProvider>
+                                            </AuditLogContextProvider>
                                         </AccessControlContextProvider>
                                     </TranslationContextProvider>
                                 </ResourceContextProvider>
