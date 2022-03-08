@@ -1,9 +1,9 @@
 import { useEffect, useMemo } from "react";
 import {
     BaseRecord,
-    CrudFilters,
     CrudOperators,
     HttpError,
+    LogicalFilter,
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
 } from "@pankod/refine-core";
@@ -43,6 +43,13 @@ export const useTable = <
         setFilters,
     } = useTableResult;
 
+    const logicalFilters: LogicalFilter[] = [];
+    filtersCore.map((filter) => {
+        if (filter.operator !== "or") {
+            logicalFilters.push(filter);
+        }
+    });
+
     const memoizedData = useMemo(() => data?.data ?? [], [data]);
     const reactTableResult = useTableRT(
         {
@@ -54,7 +61,7 @@ export const useTable = <
                     id: sorting.field,
                     desc: sorting.order === "desc",
                 })),
-                filters: filtersCore.map((filter) => ({
+                filters: logicalFilters.map((filter) => ({
                     id: filter.field,
                     value: filter.value,
                 })),
@@ -90,12 +97,12 @@ export const useTable = <
     }, [sortBy]);
 
     useEffect(() => {
-        const crudFilters: CrudFilters = [];
+        const crudFilters: LogicalFilter[] = [];
 
         filters?.map((filter) => {
             const operator = reactTableResult.columns.find(
                 (c) => c.id === filter.id,
-            )?.filter as CrudOperators;
+            )?.filter as Exclude<CrudOperators, "or">;
 
             crudFilters.push({
                 field: filter.id,
@@ -105,7 +112,7 @@ export const useTable = <
             });
         });
 
-        const filteredArray = filtersCore.filter(
+        const filteredArray = logicalFilters.filter(
             (value) =>
                 !crudFilters.some(
                     (b) =>

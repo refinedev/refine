@@ -5,47 +5,21 @@ import differenceWith from "lodash/differenceWith";
 
 import {
     CrudFilters,
-    CrudOperators,
     CrudSorting,
     CrudFilter,
     CrudSort,
 } from "../../interfaces";
 
 export const parseTableParams = (url: string) => {
-    const { current, pageSize, sort, order, ...filters } = qs.parse(
+    const { current, pageSize, sorter, filters } = qs.parse(
         url.substring(1), // remove first ? character
     );
-
-    const parsedSorter: CrudSorting = [];
-    if (Array.isArray(sort) && Array.isArray(order)) {
-        sort.forEach((item: unknown, index: number) => {
-            const sortOrder = order[index] as "asc" | "desc";
-
-            parsedSorter.push({
-                field: `${item}`,
-                order: sortOrder,
-            });
-        });
-    }
-
-    const parsedFilters: CrudFilters = [];
-    Object.keys(filters).map((item) => {
-        const [field, operator] = item.split("__");
-        const value = filters[item];
-        if (operator) {
-            parsedFilters.push({
-                field,
-                operator: operator as CrudOperators,
-                value,
-            });
-        }
-    });
 
     return {
         parsedCurrent: current && Number(current),
         parsedPageSize: pageSize && Number(pageSize),
-        parsedSorter,
-        parsedFilters,
+        parsedSorter: (sorter as CrudSorting) ?? [],
+        parsedFilters: (filters as CrudFilters) ?? [],
     };
 };
 
@@ -61,40 +35,35 @@ export const stringifyTableParams = (params: {
 }): string => {
     const options: IStringifyOptions = {
         skipNulls: true,
-        arrayFormat: "brackets",
+        arrayFormat: "indices",
         encode: false,
     };
-
     const { pagination, sorter, filters } = params;
-
-    const sortFields = sorter.map((item) => item.field);
-    const sortOrders = sorter.map((item) => item.order);
-
-    const qsSortFields = qs.stringify({ sort: sortFields }, options);
-    const qsSortOrders = qs.stringify({ order: sortOrders }, options);
 
     let queryString = `current=${pagination.current}&pageSize=${pagination.pageSize}`;
 
-    const qsFilterItems: { [key: string]: string } = {};
-    filters.map((filterItem) => {
-        qsFilterItems[`${filterItem.field}__${filterItem.operator}`] =
-            filterItem.value;
-    });
-
-    const qsFilters = qs.stringify(qsFilterItems, options);
-    if (qsFilters) {
-        queryString = `${queryString}&${qsFilters}`;
+    const qsSorters = qs.stringify({ sorter }, options);
+    if (qsSorters) {
+        queryString += `&${qsSorters}`;
     }
 
-    if (qsSortFields && qsSortOrders) {
-        queryString = `${queryString}&${qsSortFields}&${qsSortOrders}`;
+    const qsFilters = qs.stringify({ filters }, options);
+    if (qsFilters) {
+        queryString += `&${qsFilters}`;
     }
 
     return queryString;
 };
 
-export const compareFilters = (left: CrudFilter, right: CrudFilter): boolean =>
-    left.field == right.field && left.operator == right.operator;
+export const compareFilters = (
+    left: CrudFilter,
+    right: CrudFilter,
+): boolean => {
+    if (left.operator !== "or" && right.operator !== "or") {
+        return left.field == right.field && left.operator == right.operator;
+    }
+    return false;
+};
 
 export const compareSorters = (left: CrudSort, right: CrudSort): boolean =>
     left.field == right.field;

@@ -89,19 +89,33 @@ const generateSort = (sort?: CrudSorting): SortBy | undefined => {
     return;
 };
 
-const generateFilter = (filters?: RefineCrudFilter): CrudFilters => {
+const generateFilter = (
+    filters?: RefineCrudFilter,
+): { crudFilters: CrudFilters; orFilters: CrudFilters } => {
     const crudFilters: CrudFilters = [];
+    const orFilters: CrudFilters = [];
+
     if (filters) {
-        filters.map(({ field, operator, value }) => {
-            crudFilters.push({
-                field,
-                operator: mapOperator(operator),
-                value,
-            });
+        filters.map((filter) => {
+            if (filter.operator !== "or") {
+                crudFilters.push({
+                    field: filter.field,
+                    operator: mapOperator(filter.operator),
+                    value: filter.value,
+                });
+            } else {
+                filter.value.map((orFilter) => {
+                    orFilters.push({
+                        field: orFilter.field,
+                        operator: mapOperator(orFilter.operator),
+                        value: orFilter.value,
+                    });
+                });
+            }
         });
     }
 
-    return crudFilters;
+    return { crudFilters, orFilters };
 };
 
 const NestsxCrud = (
@@ -113,10 +127,11 @@ const NestsxCrud = (
         const current = pagination?.current || 1;
         const pageSize = pagination?.pageSize || 10;
 
-        const generetedFilters = generateFilter(filters);
+        const { crudFilters, orFilters } = generateFilter(filters);
 
         const query = RequestQueryBuilder.create()
-            .setFilter(generetedFilters)
+            .setFilter(crudFilters)
+            .setOr(orFilters)
             .setLimit(pageSize)
             .setPage(current)
             .setOffset((current - 1) * pageSize);
@@ -233,9 +248,9 @@ const NestsxCrud = (
     },
 
     custom: async ({ url, method, filters, sort, payload, query, headers }) => {
-        const requestQueryBuilder = RequestQueryBuilder.create().setFilter(
-            generateFilter(filters),
-        );
+        const { crudFilters } = generateFilter(filters);
+        const requestQueryBuilder =
+            RequestQueryBuilder.create().setFilter(crudFilters);
 
         const sortBy = generateSort(sort);
         if (sortBy) {

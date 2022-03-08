@@ -27,8 +27,9 @@ const simpleOperators: Partial<Record<CrudOperators, string>> = {
 
 const generateFilter = (filters?: CrudFilters): string | undefined => {
     if (filters) {
-        const parsedFilter = filters.map(
-            ({ field, operator, value }): Formula => {
+        const parsedFilter = filters.map((filter): Formula => {
+            if (filter.operator !== "or") {
+                const { field, operator, value } = filter;
                 if (Object.keys(simpleOperators).includes(operator)) {
                     const mappedOperator =
                         simpleOperators[
@@ -70,10 +71,10 @@ const generateFilter = (filters?: CrudFilters): string | undefined => {
 
                     return [value ? "=" : "!=", { field }, ["BLANK"]];
                 }
+            }
 
-                throw Error(`Operator ${operator} is not supported`);
-            },
-        );
+            throw Error(`Operator ${filter.operator} is not supported`);
+        });
 
         return compile(["AND", ...parsedFilter]);
     }

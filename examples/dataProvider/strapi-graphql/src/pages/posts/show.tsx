@@ -41,7 +41,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
             <Text>{record?.title}</Text>
 
             <Title level={5}>Category</Title>
-            <Text>{record?.category.title}</Text>
+            <Text>{record?.category?.title}</Text>
 
             <Title level={5}>Content</Title>
             <MarkdownField value={record?.content} />

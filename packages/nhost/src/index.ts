@@ -60,6 +60,7 @@ const hasuraFilters: Record<CrudOperators, HasuraFilterCondition | undefined> =
         containss: "_like",
         ncontainss: "_nlike",
         null: "_is_null",
+        or: "_or",
         between: undefined,
         nbetween: undefined,
         nnull: undefined,
@@ -72,15 +73,34 @@ export const generateFilters: any = (filters?: CrudFilters) => {
 
     const resultFilter: any = {};
 
-    filters.forEach((filter) => {
-        resultFilter[filter.field] = {};
+    filters.map((filter) => {
         const operator = hasuraFilters[filter.operator];
-
         if (!operator) {
             throw new Error(`Operator ${filter.operator} is not supported`);
         }
 
-        resultFilter[filter.field][operator] = filter.value;
+        if (filter.operator !== "or") {
+            resultFilter[filter.field] = {};
+            resultFilter[filter.field][operator] = filter.value;
+        } else {
+            const orFilter: any = [];
+
+            filter.value.map((val) => {
+                const filterObject: any = {};
+                const mapedOperator = hasuraFilters[val.operator];
+
+                if (!mapedOperator) {
+                    throw new Error(
+                        `Operator ${val.operator} is not supported`,
+                    );
+                }
+                filterObject[val.field] = {};
+                filterObject[val.field][mapedOperator] = val.value;
+                orFilter.push(filterObject);
+            });
+
+            resultFilter[operator] = orFilter;
+        }
     });
 
     return resultFilter;
