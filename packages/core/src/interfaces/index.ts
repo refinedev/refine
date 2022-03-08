@@ -10,6 +10,7 @@ export * from "../contexts/unsavedWarn/IUnsavedWarnContext";
 export * from "../contexts/router/IRouterContext";
 export * from "../contexts/accessControl/IAccessControlContext";
 export * from "../contexts/notification/INotificationContext";
+export * from "../contexts/auditLog/IAuditLogContext";
 
 export * from "../components/pages/login";
 

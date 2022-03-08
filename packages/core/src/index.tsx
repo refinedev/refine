@@ -10,6 +10,7 @@ export {
     ITranslationContext as TranslationProvider,
     IAccessControlContext as AccessControlProvider,
     INotificationContext as NotificationProvider,
+    IAuditLogContext as AuditLogProvider,
     I18nProvider,
     MutationMode,
     IResourceComponents,
