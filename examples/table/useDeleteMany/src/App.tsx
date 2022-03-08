@@ -30,7 +30,6 @@ const App: React.FC = () => {
             notificationProvider={notificationProvider}
             Layout={Layout}
             catchAll={<ErrorComponent />}
-            mutationMode="undoable"
         />
     );
 };
