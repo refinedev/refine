@@ -18,8 +18,8 @@ This guide will help you learn and get information of basic **refine** concepts.
 
 **UI Framework Packages:**
 
--   `@pankod/refine-antd` - a fully featured [Ant Design](https://ant.design/) System UI Framework. Includes +20 Table, Form, Select, Menu, Layout, Notification and CRUD components and hooks.
--   `@pankod/refine-mui` (Coming soon!) - a fully featured [Material UI](https://mui.com/) Framework.
+-   `@pankod/refine-antd` - a fully featured [Ant Design](https://ant.design/) System UI Framework support. Includes +20 Table, Form, Select, Menu, Layout, Notification and CRUD components and hooks.
+-   `@pankod/refine-mui` (Coming soon!) - a fully featured [Material UI](https://mui.com/) Framework support.
 
 **[Data Provider](https://refine.dev/docs/core/providers/data-provider/) Packages:**
 
@@ -38,7 +38,8 @@ This guide will help you learn and get information of basic **refine** concepts.
 
 **[Router Provider](https://refine.dev/docs/core/providers/router-provider/) Packages**
 
--   `@pankod/refine-react-router` - Router Provider for [React Router(v5)](https://github.com/remix-run/react-router)
+-   `@pankod/refine-react-router-v6` - Router Provider for [React Router (v6)](https://reactrouter.com)
+-   `@pankod/refine-react-router` - Router Provider for [React Router (v5)](https://v5.reactrouter.com/)
 -   `@pankod/refine-nextjs-router` - Router Provider for [Next.js](https://nextjs.org/docs/api-reference/next/router#userouter)
 -   `@pankod/refine-react-location` - Router Provider for [React Location](https://github.com/tannerlinsley/react-location)
 
