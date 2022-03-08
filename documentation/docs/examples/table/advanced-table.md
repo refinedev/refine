@@ -3,7 +3,7 @@ id: advancedTable
 title: Advanced Table
 ---
 
-Multiple record deletion, modification, and other features can be used simultaneously in a table. It's an example of a Advanced Table made with **refine**'s customization feature. 
+Multiple record deletion, modification, and other features can be used simultaneously in a table. It's an example of a Advanced Table made with **refine**'s customization feature.
 
 [View Advanced Table Example Source](https://github.com/pankod/refine/tree/master/examples/table/advancedTable)
 
