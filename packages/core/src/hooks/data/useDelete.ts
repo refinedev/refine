@@ -23,6 +23,7 @@ import {
     MetaDataQuery,
     PreviousQuery,
 } from "../../interfaces";
+import { queryKeys } from "@definitions/helpers";
 
 type DeleteParams = {
     id: BaseKey;
@@ -137,13 +138,33 @@ export const useDelete = <
             return deletePromise;
         },
         {
-            onMutate: async ({ id, resource, mutationMode }) => {
+            onMutate: async ({
+                id,
+                resource,
+                mutationMode,
+                dataProviderName,
+                metaData,
+            }) => {
+                const queryKey = queryKeys(
+                    resource,
+                    dataProviderName,
+                    metaData,
+                );
+
+                const listKey = queryKey.list();
+
+                console.log("listKey", resource, listKey);
+
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
 
-                await queryClient.cancelQueries([resource], undefined, {
-                    silent: true,
-                });
+                await queryClient.cancelQueries(
+                    [resource, { dataProviderName }],
+                    undefined,
+                    {
+                        silent: true,
+                    },
+                );
 
                 const previousQueries: PreviousQuery<TData>[] =
                     queryClient.getQueriesData([resource]);
@@ -151,7 +172,7 @@ export const useDelete = <
                 if (!(mutationModePropOrContext === "pessimistic")) {
                     if (previousQueries) {
                         queryClient.setQueriesData(
-                            [resource, "list"],
+                            listKey,
                             (previous?: GetListResponse<TData> | null) => {
                                 if (!previous) {
                                     return null;
@@ -169,7 +190,7 @@ export const useDelete = <
                         );
 
                         queryClient.setQueriesData(
-                            [resource, "getMany"],
+                            queryKey.many(),
                             (previous?: GetListResponse<TData> | null) => {
                                 if (!previous) {
                                     return null;
@@ -195,6 +216,7 @@ export const useDelete = <
 
                 return {
                     previousQueries,
+                    queryKey,
                 };
             },
             onError: (
@@ -228,10 +250,14 @@ export const useDelete = <
                     });
                 }
             },
-            onSuccess: (_data, { id, resource, successNotification }) => {
+            onSuccess: (
+                _data,
+                { id, resource, successNotification },
+                context,
+            ) => {
                 const resourceSingular = pluralize.singular(resource);
 
-                queryClient.removeQueries([resource, "detail", id?.toString()]);
+                queryClient.removeQueries(context.queryKey.detail(id));
 
                 handleNotification(successNotification, {
                     key: `${id}-${resource}-notification`,
@@ -258,9 +284,11 @@ export const useDelete = <
                     date: new Date(),
                 });
             },
-            onSettled: (_data, _error, { id, resource }) => {
-                queryClient.invalidateQueries([resource, "list"]);
-                queryClient.invalidateQueries([resource, "getMany"]);
+            onSettled: (_data, _error, { id, resource }, context) => {
+                if (context) {
+                    queryClient.invalidateQueries(context.queryKey.list());
+                    queryClient.invalidateQueries(context.queryKey.many());
+                }
 
                 notificationDispatch({
                     type: ActionTypes.REMOVE,

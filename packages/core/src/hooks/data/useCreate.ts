@@ -81,7 +81,11 @@ export const useCreate = <
         {
             onSuccess: (
                 data,
-                { resource, successNotification: successNotificationFromProp },
+                {
+                    resource,
+                    successNotification: successNotificationFromProp,
+                    dataProviderName,
+                },
             ) => {
                 const resourceSingular = pluralize.singular(resource);
 
@@ -101,8 +105,16 @@ export const useCreate = <
                     type: "success",
                 });
 
-                queryClient.invalidateQueries([resource, "list"]);
-                queryClient.invalidateQueries([resource, "getMany"]);
+                queryClient.invalidateQueries([
+                    resource,
+                    "list",
+                    { dataProviderName },
+                ]);
+                queryClient.invalidateQueries([
+                    resource,
+                    "getMany",
+                    { dataProviderName },
+                ]);
 
                 publish?.({
                     channel: `resources/${resource}`,

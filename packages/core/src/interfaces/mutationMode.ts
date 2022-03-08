@@ -1,4 +1,9 @@
-import { BaseRecord, GetListResponse, GetOneResponse } from "../interfaces";
+import {
+    BaseRecord,
+    GetListResponse,
+    GetOneResponse,
+    MetaDataQuery,
+} from "../interfaces";
 import { QueryKey } from "react-query";
 
 export type MutationMode = "pessimistic" | "optimistic" | "undoable";
@@ -11,6 +16,7 @@ export type PreviousQuery<TData> = [QueryKey, TData | unknown];
 
 export type PrevContext<TData> = {
     previousQueries: PreviousQuery<TData>[];
+    queryKey: any;
 };
 
 export type Context = {

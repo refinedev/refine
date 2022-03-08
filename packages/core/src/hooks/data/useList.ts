@@ -17,8 +17,9 @@ import {
     useTranslate,
     useDataProvider,
 } from "@hooks";
+import { queryKeys } from "@definitions/helpers";
 
-interface UseListConfig {
+export interface UseListConfig {
     pagination?: Pagination;
     sort?: CrudSorting;
     filters?: CrudFilters;
@@ -64,7 +65,7 @@ export const useList = <
     TError
 > => {
     const dataProvider = useDataProvider();
-
+    const queryKey = queryKeys(resource, dataProviderName, metaData);
     const { getList } = dataProvider(dataProviderName);
 
     const translate = useTranslate();
@@ -84,8 +85,10 @@ export const useList = <
         onLiveEvent,
     });
 
+    console.log("useList", queryKey.list(config));
+
     const queryResponse = useQuery<GetListResponse<TData>, TError>(
-        [resource, "list", { ...config, ...metaData, dataProviderName }],
+        queryKey.list(config),
         () => getList<TData>({ resource, ...config, metaData }),
         {
             ...queryOptions,

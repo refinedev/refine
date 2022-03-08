@@ -136,21 +136,32 @@ export const useDeleteMany = <
             return updatePromise;
         },
         {
-            onMutate: async ({ ids, resource, mutationMode }) => {
+            onMutate: async ({
+                ids,
+                resource,
+                mutationMode,
+                dataProviderName,
+            }) => {
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
 
-                await queryClient.cancelQueries([resource], undefined, {
-                    silent: true,
-                });
+                await queryClient.cancelQueries(
+                    [resource, { dataProviderName }],
+                    undefined,
+                    {
+                        silent: true,
+                    },
+                );
 
                 const previousQueries: PreviousQuery<TData>[] =
-                    queryClient.getQueriesData([resource]);
+                    queryClient.getQueriesData([resource, dataProviderName]);
+
+                console.log("previousQueries", previousQueries);
 
                 if (!(mutationModePropOrContext === "pessimistic")) {
                     if (previousQueries) {
                         queryClient.setQueriesData(
-                            [resource, "list"],
+                            [dataProviderName, resource, "list"],
                             (previous?: GetListResponse<TData> | null) => {
                                 if (!previous) {
                                     return null;
@@ -172,7 +183,7 @@ export const useDeleteMany = <
                         );
 
                         queryClient.setQueriesData(
-                            [resource, "getMany"],
+                            [dataProviderName, resource, "getMany"],
                             (previous?: GetListResponse<TData> | null) => {
                                 if (!previous) {
                                     return null;
@@ -198,7 +209,12 @@ export const useDeleteMany = <
 
                         for (const id of ids) {
                             queryClient.setQueriesData(
-                                [resource, "detail", id.toString()],
+                                [
+                                    dataProviderName,
+                                    resource,
+                                    "detail",
+                                    id.toString(),
+                                ],
                                 (previous?: any | null) => {
                                     if (!previous || previous.data.id == id) {
                                         return null;
@@ -217,17 +233,29 @@ export const useDeleteMany = <
                 };
             },
             // Always refetch after error or success:
-            onSettled: (_data, _error, { resource, ids }) => {
-                queryClient.invalidateQueries([resource, "list"]);
-                queryClient.invalidateQueries([resource, "getMany"]);
+            onSettled: (_data, _error, { resource, ids, dataProviderName }) => {
+                queryClient.invalidateQueries([
+                    dataProviderName,
+                    resource,
+                    "list",
+                ]);
+                queryClient.invalidateQueries([
+                    dataProviderName,
+                    resource,
+                    "getMany",
+                ]);
                 notificationDispatch({
                     type: ActionTypes.REMOVE,
                     payload: { id: ids, resource },
                 });
             },
-            onSuccess: (_data, { ids, resource, successNotification }) => {
+            onSuccess: (
+                _data,
+                { ids, resource, successNotification, dataProviderName },
+            ) => {
                 ids.forEach((id) =>
                     queryClient.removeQueries([
+                        dataProviderName,
                         resource,
                         "detail",
                         id.toString(),
