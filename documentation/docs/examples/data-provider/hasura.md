@@ -3,7 +3,7 @@ id: hasura
 title: Hasura
 ---
 
-Any REST or GraphQL custom backend work integrated with **refine**. **refine** Hasura GraphQL Data Provider comes out-of-the-box. Thanks to **refine**, you can connect to your Hasura database and create special queries and use your data easily. This example shows in detail how you can use the data in your Hasura database with **refine** project.
+Any REST or GraphQL custom backend work integrated with **refine**. **refine** [Hasura](https://hasura.io/) GraphQL Data Provider comes out-of-the-box. Thanks to **refine**, you can connect to your Hasura database and create special queries and use your data easily. This example shows in detail how you can use the data in your Hasura database with **refine** project.
 
 [View Hasura Example Source](https://github.com/pankod/refine/tree/master/examples/dataProvider/hasura)
 

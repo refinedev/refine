@@ -2,7 +2,7 @@
 id: nhost
 title: Nhost
 ---
-**refine** Nhost GraphQL Data Provider comes out-of-the-box. Thanks to **refine**, you can connect to your Nhost database and create special queries and use your data easily. This example shows in detail how you can use the data in your Nhost database with **refine** project.
+**refine** [Nhost](https://nhost.io/) GraphQL Data Provider comes out-of-the-box. Thanks to **refine**, you can connect to your Nhost database and create special queries and use your data easily. This example shows in detail how you can use the data in your Nhost database with **refine** project.
 
 [View Nhost Example Source](https://github.com/pankod/refine/tree/master/examples/dataProvider/nhost)
 
