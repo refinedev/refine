@@ -3,4 +3,5 @@ module.exports = {
     rootDir: "./",
     name: "ably",
     displayName: "ably",
+    testEnvironment: "jsdom",
 };

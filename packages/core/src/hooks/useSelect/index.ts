@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
-import uniqBy from "lodash/uniqBy";
 import { QueryObserverResult, UseQueryOptions } from "react-query";
+import uniqBy from "lodash/uniqBy";
 import debounce from "lodash/debounce";
 
 import { useList, useMany } from "@hooks";

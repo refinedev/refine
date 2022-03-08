@@ -1,6 +1,6 @@
 import React from "react";
 import { Layout as AntLayout, Grid } from "antd";
-import { LayoutProps, useRefineContext } from "@pankod/refine-core";
+import { LayoutProps } from "@pankod/refine-core";
 
 import { Sider as DefaultSider } from "./sider";
 import { Header as DefaultHeader } from "./header";

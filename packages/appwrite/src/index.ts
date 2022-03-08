@@ -1,5 +1,10 @@
-import { DataProvider, LiveProvider, LiveEvent } from "@pankod/refine-core";
-import { CrudFilters, CrudSorting } from "@pankod/refine-core/dist/interfaces";
+import {
+    DataProvider,
+    LiveProvider,
+    LiveEvent,
+    CrudFilters,
+    CrudSorting,
+} from "@pankod/refine-core";
 import { Appwrite } from "appwrite";
 
 export * from "appwrite";

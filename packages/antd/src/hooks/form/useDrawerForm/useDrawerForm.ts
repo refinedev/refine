@@ -7,8 +7,9 @@ import {
     useWarnAboutChange,
     UseFormProps as UseFormPropsCore,
     HttpError,
+    LiveModeProps,
+    BaseRecord,
 } from "@pankod/refine-core";
-import { BaseRecord, LiveModeProps } from "@pankod/refine-core/dist/interfaces";
 
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 import { DeleteButtonProps } from "../../../components";

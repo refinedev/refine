@@ -907,3 +907,5 @@ We created our `Client` and `Contact` pages. Now, let's create a Client with **r
 ## Conclusion
 
 We have completed the first step of our project, creating a basic platform for users to create their company and clients. In the next section, we will add more functionality to this program by allowing users to generate invoices and track payments. Stay tuned as we continue working on `Refine Invoice Generator`!
+
+[You can find the Refine Invoice Generator Part II article here →](/blog/refine-invoice-generator/)

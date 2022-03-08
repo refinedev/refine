@@ -1,16 +1,12 @@
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
-import { Refine } from "@pankod/refine-core";
-import {
-    IDataContext,
-    ResourceProps,
-} from "@pankod/refine-core/dist/interfaces";
+import { Refine, DataProvider, IResourceItem } from "@pankod/refine-core";
 
 import { MockRouterProvider, MockJSONServer } from "./dataMocks";
 
 interface ITestWrapperProps {
-    dataProvider?: IDataContext;
-    resources?: ResourceProps[];
+    dataProvider?: DataProvider;
+    resources?: IResourceItem[];
     routerInitialEntries?: string[];
 }
 

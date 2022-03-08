@@ -15,11 +15,12 @@ import { supabaseClient } from "utility";
 
 const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
-        const { user, error } = await supabaseClient.auth.signIn({
-            email,
-            password,
-        });
+        const { user, error, session, provider, url } =
+            await supabaseClient.auth.signIn({
+                provider: "google",
+            });
 
+        console.log("login", { user, error, session, provider, url });
         if (error) {
             return Promise.reject(error);
         }
@@ -38,10 +39,11 @@ const authProvider: AuthProvider = {
         return Promise.resolve("/");
     },
     checkError: () => Promise.resolve(),
-    checkAuth: () => {
+    checkAuth: async () => {
         const session = supabaseClient.auth.session();
+        const sessionFromURL = await supabaseClient.auth.getSessionFromUrl();
 
-        if (session) {
+        if (session || sessionFromURL?.data?.user) {
             return Promise.resolve();
         }
 
