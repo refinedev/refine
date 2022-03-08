@@ -17,3 +17,4 @@ export * from "./router";
 export * from "./accessControl";
 export * from "./useSelect";
 export * from "./useTable";
+export * from "./auditLog";
