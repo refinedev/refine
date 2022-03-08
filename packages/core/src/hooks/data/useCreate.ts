@@ -15,6 +15,7 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useLogEvent,
 } from "@hooks";
 
 type useCreateParams<TVariables> = {
@@ -60,6 +61,7 @@ export const useCreate = <
     const translate = useTranslate();
     const queryClient = useQueryClient();
     const publish = usePublish();
+    const logEvent = useLogEvent();
     const handleNotification = useHandleNotification();
 
     const mutation = useMutation<
@@ -114,6 +116,12 @@ export const useCreate = <
                         ids: data.data?.id ? [data.data.id] : undefined,
                     },
                     date: new Date(),
+                });
+
+                logEvent?.({
+                    action: "create",
+                    resource,
+                    data,
                 });
             },
             onError: (
