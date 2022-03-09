@@ -1,9 +1,4 @@
-import {
-    BaseRecord,
-    GetListResponse,
-    GetOneResponse,
-    MetaDataQuery,
-} from "../interfaces";
+import { BaseRecord, GetListResponse, GetOneResponse } from "../interfaces";
 import { QueryKey } from "react-query";
 
 export type MutationMode = "pessimistic" | "optimistic" | "undoable";

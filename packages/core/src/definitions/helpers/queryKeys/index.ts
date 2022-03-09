@@ -1,36 +1,34 @@
-import { UseListConfig } from "@hooks/data/useList";
-import { useCallback } from "react";
+import { IQueryKeys } from "src/interfaces";
+import { QueryKey } from "react-query";
 
-import { BaseKey, MetaDataQuery } from "src/interfaces";
+import { MetaDataQuery } from "src/interfaces";
 
 export const queryKeys = (
     resource: string,
     dataProviderName?: string,
     metaData?: MetaDataQuery | undefined,
-) => {
+): IQueryKeys => {
     const providerName = dataProviderName || "default";
-    const keys = {
+    const keys: IQueryKeys = {
         all: [providerName],
         resourceAll: [providerName, resource],
-        list: (config?: UseListConfig | undefined) => [
-            providerName,
-            resource,
+        list: (config) => [
+            ...keys.resourceAll,
             "list",
-            { ...config, ...metaData },
+            { ...config, ...metaData } as QueryKey,
         ],
-        many: (ids?: BaseKey[]) => [
-            providerName,
-            resource,
-            "getMany",
-            ids?.map(String),
-            { ...metaData },
-        ],
-        detail: (id: BaseKey) => [
-            providerName,
-            resource,
+        many: (ids) =>
+            [
+                ...keys.resourceAll,
+                "getMany",
+                (ids && ids.map(String)) as QueryKey,
+                { ...metaData } as QueryKey,
+            ].filter((item) => item !== undefined),
+        detail: (id) => [
+            ...keys.resourceAll,
             "detail",
             id.toString(),
-            { ...metaData },
+            { ...metaData } as QueryKey,
         ],
     };
     return keys;
