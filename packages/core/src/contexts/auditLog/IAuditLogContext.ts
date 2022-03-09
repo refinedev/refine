@@ -1,16 +1,6 @@
-export type AuditLogActionType =
-    | "create"
-    | "update"
-    | "delete"
-    | "createMany"
-    | "updateMany"
-    | "deleteMany"
-    | "*"
-    | string;
-
 export type AuditLogEvent = {
     resource: string;
-    action: AuditLogActionType;
+    action: string;
     data: any;
     previousData?: any;
     meta?: any;
