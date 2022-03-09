@@ -23,6 +23,7 @@ import {
     useDataProvider,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
+import { queryKeys } from "@definitions";
 
 type DeleteManyParams = {
     ids: BaseKey[];
@@ -142,11 +143,13 @@ export const useDeleteMany = <
                 mutationMode,
                 dataProviderName,
             }) => {
+                const queryKey = queryKeys(resource, dataProviderName);
+
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
 
                 await queryClient.cancelQueries(
-                    [resource, { dataProviderName }],
+                    queryKey.resourceAll,
                     undefined,
                     {
                         silent: true,
@@ -154,14 +157,13 @@ export const useDeleteMany = <
                 );
 
                 const previousQueries: PreviousQuery<TData>[] =
-                    queryClient.getQueriesData([resource, dataProviderName]);
-
-                console.log("previousQueries", previousQueries);
+                    queryClient.getQueriesData(queryKey.resourceAll);
 
                 if (!(mutationModePropOrContext === "pessimistic")) {
                     if (previousQueries) {
+                        // Set the previous queries to the new ones:
                         queryClient.setQueriesData(
-                            [dataProviderName, resource, "list"],
+                            queryKey.list(),
                             (previous?: GetListResponse<TData> | null) => {
                                 if (!previous) {
                                     return null;
@@ -183,7 +185,7 @@ export const useDeleteMany = <
                         );
 
                         queryClient.setQueriesData(
-                            [dataProviderName, resource, "getMany"],
+                            queryKey.many(),
                             (previous?: GetListResponse<TData> | null) => {
                                 if (!previous) {
                                     return null;
@@ -209,12 +211,7 @@ export const useDeleteMany = <
 
                         for (const id of ids) {
                             queryClient.setQueriesData(
-                                [
-                                    dataProviderName,
-                                    resource,
-                                    "detail",
-                                    id.toString(),
-                                ],
+                                queryKey.detail(id),
                                 (previous?: any | null) => {
                                     if (!previous || previous.data.id == id) {
                                         return null;
@@ -230,20 +227,15 @@ export const useDeleteMany = <
 
                 return {
                     previousQueries,
+                    queryKey,
                 };
             },
             // Always refetch after error or success:
-            onSettled: (_data, _error, { resource, ids, dataProviderName }) => {
-                queryClient.invalidateQueries([
-                    dataProviderName,
-                    resource,
-                    "list",
-                ]);
-                queryClient.invalidateQueries([
-                    dataProviderName,
-                    resource,
-                    "getMany",
-                ]);
+            onSettled: (_data, _error, { resource, ids }, context) => {
+                // invalidate the cache for the list and many queries:
+                queryClient.invalidateQueries(context?.queryKey.list());
+                queryClient.invalidateQueries(context?.queryKey.many());
+
                 notificationDispatch({
                     type: ActionTypes.REMOVE,
                     payload: { id: ids, resource },
@@ -251,15 +243,12 @@ export const useDeleteMany = <
             },
             onSuccess: (
                 _data,
-                { ids, resource, successNotification, dataProviderName },
+                { ids, resource, successNotification },
+                context,
             ) => {
+                // Remove the queries from the cache:
                 ids.forEach((id) =>
-                    queryClient.removeQueries([
-                        dataProviderName,
-                        resource,
-                        "detail",
-                        id.toString(),
-                    ]),
+                    queryClient.removeQueries(context.queryKey.detail(id)),
                 );
 
                 handleNotification(successNotification, {
@@ -286,6 +275,7 @@ export const useDeleteMany = <
                 });
             },
             onError: (err, { ids, resource, errorNotification }, context) => {
+                // set back the queries to the context:
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query[0], query[1]);

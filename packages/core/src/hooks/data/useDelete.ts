@@ -143,23 +143,14 @@ export const useDelete = <
                 resource,
                 mutationMode,
                 dataProviderName,
-                metaData,
             }) => {
-                const queryKey = queryKeys(
-                    resource,
-                    dataProviderName,
-                    metaData,
-                );
-
-                const listKey = queryKey.list();
-
-                console.log("listKey", resource, listKey);
+                const queryKey = queryKeys(resource, dataProviderName);
 
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
 
                 await queryClient.cancelQueries(
-                    [resource, { dataProviderName }],
+                    queryKey.resourceAll,
                     undefined,
                     {
                         silent: true,
@@ -167,12 +158,13 @@ export const useDelete = <
                 );
 
                 const previousQueries: PreviousQuery<TData>[] =
-                    queryClient.getQueriesData([resource]);
+                    queryClient.getQueriesData(queryKey.resourceAll);
 
                 if (!(mutationModePropOrContext === "pessimistic")) {
                     if (previousQueries) {
+                        // Set the previous queries to the new ones:
                         queryClient.setQueriesData(
-                            listKey,
+                            queryKey.list(),
                             (previous?: GetListResponse<TData> | null) => {
                                 if (!previous) {
                                     return null;
@@ -195,7 +187,6 @@ export const useDelete = <
                                 if (!previous) {
                                     return null;
                                 }
-
                                 const data = previous.data.filter(
                                     (record: TData) => {
                                         return (
@@ -219,36 +210,17 @@ export const useDelete = <
                     queryKey,
                 };
             },
-            onError: (
-                err: TError,
-                { id, resource, errorNotification },
-                context,
-            ) => {
+            onSettled: (_data, _error, { id, resource }, context) => {
+                // invalidate the cache for the list and many queries:
                 if (context) {
-                    for (const query of context.previousQueries) {
-                        queryClient.setQueryData(query[0], query[1]);
-                    }
+                    queryClient.invalidateQueries(context.queryKey.list());
+                    queryClient.invalidateQueries(context.queryKey.many());
                 }
 
-                if (err.message !== "mutationCancelled") {
-                    checkError(err);
-
-                    const resourceSingular = pluralize.singular(resource);
-
-                    handleNotification(errorNotification, {
-                        key: `${id}-${resource}-notification`,
-                        message: translate(
-                            "notifications.deleteError",
-                            {
-                                resource: resourceSingular,
-                                statusCode: err.statusCode,
-                            },
-                            `Error (status code: ${err.statusCode})`,
-                        ),
-                        description: err.message,
-                        type: "error",
-                    });
-                }
+                notificationDispatch({
+                    type: ActionTypes.REMOVE,
+                    payload: { id, resource },
+                });
             },
             onSuccess: (
                 _data,
@@ -257,6 +229,7 @@ export const useDelete = <
             ) => {
                 const resourceSingular = pluralize.singular(resource);
 
+                // Remove the queries from the cache:
                 queryClient.removeQueries(context.queryKey.detail(id));
 
                 handleNotification(successNotification, {
@@ -284,16 +257,37 @@ export const useDelete = <
                     date: new Date(),
                 });
             },
-            onSettled: (_data, _error, { id, resource }, context) => {
+            onError: (
+                err: TError,
+                { id, resource, errorNotification },
+                context,
+            ) => {
+                // set back the queries to the context:
                 if (context) {
-                    queryClient.invalidateQueries(context.queryKey.list());
-                    queryClient.invalidateQueries(context.queryKey.many());
+                    for (const query of context.previousQueries) {
+                        queryClient.setQueryData(query[0], query[1]);
+                    }
                 }
 
-                notificationDispatch({
-                    type: ActionTypes.REMOVE,
-                    payload: { id, resource },
-                });
+                if (err.message !== "mutationCancelled") {
+                    checkError(err);
+
+                    const resourceSingular = pluralize.singular(resource);
+
+                    handleNotification(errorNotification, {
+                        key: `${id}-${resource}-notification`,
+                        message: translate(
+                            "notifications.deleteError",
+                            {
+                                resource: resourceSingular,
+                                statusCode: err.statusCode,
+                            },
+                            `Error (status code: ${err.statusCode})`,
+                        ),
+                        description: err.message,
+                        type: "error",
+                    });
+                }
             },
         },
     );

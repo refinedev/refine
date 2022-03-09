@@ -85,8 +85,6 @@ export const useList = <
         onLiveEvent,
     });
 
-    console.log("useList", queryKey.list(config));
-
     const queryResponse = useQuery<GetListResponse<TData>, TError>(
         queryKey.list(config),
         () => getList<TData>({ resource, ...config, metaData }),
