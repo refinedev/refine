@@ -118,7 +118,7 @@ export const useCreate = <
                     date: new Date(),
                 });
 
-                logEvent?.({
+                logEvent({
                     action: "create",
                     resource,
                     data,

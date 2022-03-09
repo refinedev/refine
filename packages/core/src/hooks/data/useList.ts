@@ -16,6 +16,7 @@ import {
     useResourceSubscription,
     useTranslate,
     useDataProvider,
+    useLogEvent,
 } from "@hooks";
 
 interface UseListConfig {
@@ -70,6 +71,7 @@ export const useList = <
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const handleNotification = useHandleNotification();
+    const logEvent = useLogEvent();
 
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
@@ -92,6 +94,16 @@ export const useList = <
             onSuccess: (data) => {
                 queryOptions?.onSuccess?.(data);
                 handleNotification(successNotification);
+
+                logEvent({
+                    action: "list",
+                    resource,
+                    data,
+                    meta: {
+                        config,
+                        metaData,
+                    },
+                });
             },
             onError: (err: TError) => {
                 checkError(err);

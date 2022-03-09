@@ -15,6 +15,7 @@ import {
     useResourceSubscription,
     useHandleNotification,
     useDataProvider,
+    useLogEvent,
 } from "@hooks";
 
 export type UseManyProps<TData, TError> = {
@@ -62,6 +63,7 @@ export const useMany = <
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const handleNotification = useHandleNotification();
+    const logEvent = useLogEvent();
 
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
@@ -84,6 +86,16 @@ export const useMany = <
             onSuccess: (data) => {
                 queryOptions?.onSuccess?.(data);
                 handleNotification(successNotification);
+
+                logEvent({
+                    action: "getMany",
+                    resource,
+                    data,
+                    meta: {
+                        ids,
+                        metaData,
+                    },
+                });
             },
             onError: (err: TError) => {
                 checkError(err);

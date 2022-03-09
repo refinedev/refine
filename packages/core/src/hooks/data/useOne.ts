@@ -15,6 +15,7 @@ import {
     useResourceSubscription,
     useHandleNotification,
     useDataProvider,
+    useLogEvent,
 } from "@hooks";
 
 export type UseOneProps<TData, TError> = {
@@ -59,6 +60,7 @@ export const useOne = <
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const handleNotification = useHandleNotification();
+    const logEvent = useLogEvent();
 
     useResourceSubscription({
         resource,
@@ -78,6 +80,16 @@ export const useOne = <
             onSuccess: (data) => {
                 queryOptions?.onSuccess?.(data);
                 handleNotification(successNotification);
+
+                logEvent({
+                    action: "getOne",
+                    resource,
+                    data,
+                    meta: {
+                        id,
+                        metaData,
+                    },
+                });
             },
             onError: (err: TError) => {
                 checkError(err);

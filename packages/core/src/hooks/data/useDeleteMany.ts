@@ -23,6 +23,7 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useLogEvent,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 
@@ -74,6 +75,7 @@ export const useDeleteMany = <
     const translate = useTranslate();
     const cacheQueries = useCacheQueries();
     const publish = usePublish();
+    const logEvent = useLogEvent();
     const handleNotification = useHandleNotification();
 
     const queryClient = useQueryClient();
@@ -212,7 +214,7 @@ export const useDeleteMany = <
                     payload: { id: ids, resource },
                 });
             },
-            onSuccess: (_data, { ids, resource, successNotification }) => {
+            onSuccess: (data, { ids, resource, successNotification }) => {
                 handleNotification(successNotification, {
                     key: `${ids}-${resource}-notification`,
                     description: translate("notifications.success", "Success"),
@@ -234,6 +236,15 @@ export const useDeleteMany = <
                     type: "deleted",
                     payload: { ids: ids.map(String) },
                     date: new Date(),
+                });
+
+                logEvent({
+                    action: "deleteMany",
+                    resource,
+                    data,
+                    meta: {
+                        ids,
+                    },
                 });
             },
             onError: (err, { ids, resource, errorNotification }, context) => {

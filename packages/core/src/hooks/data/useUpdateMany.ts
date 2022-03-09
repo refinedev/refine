@@ -10,6 +10,7 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useLogEvent,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
@@ -73,9 +74,9 @@ export const useUpdateMany = <
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
     const { mutate: checkError } = useCheckError();
-
     const { notificationDispatch } = useCancelNotification();
     const publish = usePublish();
+    const logEvent = useLogEvent();
     const handleNotification = useHandleNotification();
 
     const getAllQueries = useCacheQueries();
@@ -260,7 +261,7 @@ export const useUpdateMany = <
                     payload: { id: ids, resource },
                 });
             },
-            onSuccess: (_data, { ids, resource, successNotification }) => {
+            onSuccess: (data, { ids, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);
 
                 handleNotification(successNotification, {
@@ -289,6 +290,15 @@ export const useUpdateMany = <
                         ids: ids.map(String),
                     },
                     date: new Date(),
+                });
+
+                logEvent({
+                    action: "updateMany",
+                    resource,
+                    data,
+                    meta: {
+                        ids,
+                    },
                 });
             },
         },

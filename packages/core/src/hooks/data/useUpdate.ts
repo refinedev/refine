@@ -23,6 +23,7 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useLogEvent,
 } from "@hooks";
 
 type UpdateParams<TVariables> = {
@@ -74,6 +75,7 @@ export const useUpdate = <
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const publish = usePublish();
+    const logEvent = useLogEvent();
     const { notificationDispatch } = useCancelNotification();
     const handleNotification = useHandleNotification();
 
@@ -282,6 +284,15 @@ export const useUpdate = <
                         ids: data.data?.id ? [data.data.id] : undefined,
                     },
                     date: new Date(),
+                });
+
+                logEvent({
+                    action: "update",
+                    resource,
+                    data,
+                    meta: {
+                        id,
+                    },
                 });
             },
         },

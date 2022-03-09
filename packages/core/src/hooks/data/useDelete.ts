@@ -9,6 +9,7 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useLogEvent,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import pluralize from "pluralize";
@@ -75,6 +76,7 @@ export const useDelete = <
     const { notificationDispatch } = useCancelNotification();
     const translate = useTranslate();
     const publish = usePublish();
+    const logEvent = useLogEvent();
     const handleNotification = useHandleNotification();
 
     const cacheQueries = useCacheQueries();
@@ -222,7 +224,7 @@ export const useDelete = <
                     });
                 }
             },
-            onSuccess: (_data, { id, resource, successNotification }) => {
+            onSuccess: (data, { id, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);
 
                 const allQueries = cacheQueries(resource, id);
@@ -257,6 +259,15 @@ export const useDelete = <
                         ids: id ? [id] : [],
                     },
                     date: new Date(),
+                });
+
+                logEvent({
+                    action: "delete",
+                    resource,
+                    data,
+                    meta: {
+                        id,
+                    },
                 });
             },
             onSettled: (_data, _error, { id, resource }) => {

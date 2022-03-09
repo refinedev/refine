@@ -13,6 +13,7 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useLogEvent,
 } from "@hooks";
 import pluralize from "pluralize";
 
@@ -57,6 +58,7 @@ export const useCreateMany = <
     const translate = useTranslate();
     const queryClient = useQueryClient();
     const publish = usePublish();
+    const logEvent = useLogEvent();
     const handleNotification = useHandleNotification();
 
     const mutation = useMutation<
@@ -108,6 +110,12 @@ export const useCreateMany = <
                             .map((item) => item.id!),
                     },
                     date: new Date(),
+                });
+
+                logEvent({
+                    action: "createMany",
+                    resource,
+                    data: response.data,
                 });
             },
             onError: (err: TError, { resource, errorNotification }) => {
