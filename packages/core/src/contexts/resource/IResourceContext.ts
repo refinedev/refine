@@ -1,9 +1,12 @@
 import { ReactNode } from "react";
 
 const auditLogPermissions = [
+    "list",
     "create",
     "update",
     "delete",
+    "getOne",
+    "getMany",
     "createMany",
     "updateMany",
     "deleteMany",
