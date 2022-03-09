@@ -25,13 +25,15 @@ const App: React.FC = () => {
                     create: PostCreate,
                     edit: PostEdit,
                     show: PostShow,
-                    auditLogPermissions: ["create", "list"],
+                    canDelete: true,
+                    auditLogPermissions: ["create", "list", "delete"],
                 },
                 {
                     name: "categories",
                     list: CategoryList,
                     create: CategoryCreate,
                     edit: CategoryEdit,
+                    auditLogPermissions: ["*"],
                 },
             ]}
             notificationProvider={notificationProvider}
