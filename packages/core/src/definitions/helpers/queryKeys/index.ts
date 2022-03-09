@@ -27,7 +27,7 @@ export const queryKeys = (
         detail: (id) => [
             ...keys.resourceAll,
             "detail",
-            id.toString(),
+            id?.toString(),
             { ...metaData } as QueryKey,
         ],
     };
