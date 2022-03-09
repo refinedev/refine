@@ -9,7 +9,12 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
-import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
+import {
+    CategoryList,
+    CategoryCreate,
+    CategoryEdit,
+    CategoryShow,
+} from "pages/categories";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -26,13 +31,22 @@ const App: React.FC = () => {
                     edit: PostEdit,
                     show: PostShow,
                     canDelete: true,
-                    auditLogPermissions: ["create", "list", "delete"],
+                    auditLogPermissions: [
+                        "create",
+                        "delete",
+                        "update",
+                        "createMany",
+                        "updateMany",
+                        "deleteMany",
+                    ],
                 },
                 {
                     name: "categories",
                     list: CategoryList,
                     create: CategoryCreate,
                     edit: CategoryEdit,
+                    show: CategoryShow,
+                    canDelete: true,
                     auditLogPermissions: ["*"],
                 },
             ]}
@@ -41,7 +55,7 @@ const App: React.FC = () => {
             catchAll={<ErrorComponent />}
             auditLogProvider={{
                 logEvent: (params) => {
-                    console.log("Log Çalıştı Params:", params);
+                    console.log("💻 :", params);
                 },
             }}
         />
