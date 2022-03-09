@@ -161,48 +161,45 @@ export const useDelete = <
                     queryClient.getQueriesData(queryKey.resourceAll);
 
                 if (!(mutationModePropOrContext === "pessimistic")) {
-                    if (previousQueries) {
-                        // Set the previous queries to the new ones:
-                        queryClient.setQueriesData(
-                            queryKey.list(),
-                            (previous?: GetListResponse<TData> | null) => {
-                                if (!previous) {
-                                    return null;
-                                }
-                                const data = previous.data.filter(
-                                    (record: TData) =>
-                                        record.id?.toString() !== id.toString(),
-                                );
+                    // Set the previous queries to the new ones:
+                    queryClient.setQueriesData(
+                        queryKey.list(),
+                        (previous?: GetListResponse<TData> | null) => {
+                            if (!previous) {
+                                return null;
+                            }
+                            const data = previous.data.filter(
+                                (record: TData) =>
+                                    record.id?.toString() !== id.toString(),
+                            );
 
-                                return {
-                                    data,
-                                    total: previous.total - 1,
-                                };
-                            },
-                        );
+                            return {
+                                data,
+                                total: previous.total - 1,
+                            };
+                        },
+                    );
 
-                        queryClient.setQueriesData(
-                            queryKey.many(),
-                            (previous?: GetListResponse<TData> | null) => {
-                                if (!previous) {
-                                    return null;
-                                }
-                                const data = previous.data.filter(
-                                    (record: TData) => {
-                                        return (
-                                            record.id?.toString() !==
-                                            id?.toString()
-                                        );
-                                    },
-                                );
+                    queryClient.setQueriesData(
+                        queryKey.many(),
+                        (previous?: GetListResponse<TData> | null) => {
+                            if (!previous) {
+                                return null;
+                            }
+                            const data = previous.data.filter(
+                                (record: TData) => {
+                                    return (
+                                        record.id?.toString() !== id?.toString()
+                                    );
+                                },
+                            );
 
-                                return {
-                                    ...previous,
-                                    data,
-                                };
-                            },
-                        );
-                    }
+                            return {
+                                ...previous,
+                                data,
+                            };
+                        },
+                    );
                 }
 
                 return {
@@ -212,10 +209,9 @@ export const useDelete = <
             },
             onSettled: (_data, _error, { id, resource }, context) => {
                 // invalidate the cache for the list and many queries:
-                if (context) {
-                    queryClient.invalidateQueries(context.queryKey.list());
-                    queryClient.invalidateQueries(context.queryKey.many());
-                }
+
+                queryClient.invalidateQueries(context?.queryKey.list());
+                queryClient.invalidateQueries(context?.queryKey.many());
 
                 notificationDispatch({
                     type: ActionTypes.REMOVE,

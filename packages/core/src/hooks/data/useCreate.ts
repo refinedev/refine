@@ -15,6 +15,7 @@ import {
     useHandleNotification,
     useDataProvider,
 } from "@hooks";
+import { queryKeys } from "@definitions/helpers";
 
 type useCreateParams<TVariables> = {
     resource: string;
@@ -87,6 +88,7 @@ export const useCreate = <
                     dataProviderName,
                 },
             ) => {
+                const queryKey = queryKeys(resource, dataProviderName);
                 const resourceSingular = pluralize.singular(resource);
 
                 handleNotification(successNotificationFromProp, {
@@ -105,16 +107,8 @@ export const useCreate = <
                     type: "success",
                 });
 
-                queryClient.invalidateQueries([
-                    resource,
-                    "list",
-                    { dataProviderName },
-                ]);
-                queryClient.invalidateQueries([
-                    resource,
-                    "getMany",
-                    { dataProviderName },
-                ]);
+                queryClient.invalidateQueries(queryKey.list());
+                queryClient.invalidateQueries(queryKey.many());
 
                 publish?.({
                     channel: `resources/${resource}`,

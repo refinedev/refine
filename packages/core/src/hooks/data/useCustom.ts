@@ -76,10 +76,11 @@ export const useCustom = <
     if (custom) {
         const queryResponse = useQuery<CustomResponse<TData>, TError>(
             [
+                dataProviderName,
                 "custom",
                 method,
                 url,
-                { ...config, ...metaData, dataProviderName },
+                { ...config, ...metaData },
             ],
             () => custom<TData>({ url, method, ...config, metaData }),
             {

@@ -160,68 +160,66 @@ export const useDeleteMany = <
                     queryClient.getQueriesData(queryKey.resourceAll);
 
                 if (!(mutationModePropOrContext === "pessimistic")) {
-                    if (previousQueries) {
-                        // Set the previous queries to the new ones:
-                        queryClient.setQueriesData(
-                            queryKey.list(),
-                            (previous?: GetListResponse<TData> | null) => {
-                                if (!previous) {
-                                    return null;
-                                }
+                    // Set the previous queries to the new ones:
+                    queryClient.setQueriesData(
+                        queryKey.list(),
+                        (previous?: GetListResponse<TData> | null) => {
+                            if (!previous) {
+                                return null;
+                            }
 
-                                const data = previous.data.filter(
-                                    (item) =>
-                                        item.id &&
-                                        !ids
+                            const data = previous.data.filter(
+                                (item) =>
+                                    item.id &&
+                                    !ids
+                                        .map(String)
+                                        .includes(item.id.toString()),
+                            );
+
+                            return {
+                                data,
+                                total: previous.total - 1,
+                            };
+                        },
+                    );
+
+                    queryClient.setQueriesData(
+                        queryKey.many(),
+                        (previous?: GetListResponse<TData> | null) => {
+                            if (!previous) {
+                                return null;
+                            }
+
+                            const data = previous.data.filter(
+                                (record: TData) => {
+                                    if (record.id) {
+                                        return !ids
                                             .map(String)
-                                            .includes(item.id.toString()),
-                                );
-
-                                return {
-                                    data,
-                                    total: previous.total - 1,
-                                };
-                            },
-                        );
-
-                        queryClient.setQueriesData(
-                            queryKey.many(),
-                            (previous?: GetListResponse<TData> | null) => {
-                                if (!previous) {
-                                    return null;
-                                }
-
-                                const data = previous.data.filter(
-                                    (record: TData) => {
-                                        if (record.id) {
-                                            return !ids
-                                                .map(String)
-                                                .includes(record.id.toString());
-                                        }
-                                        return false;
-                                    },
-                                );
-
-                                return {
-                                    ...previous,
-                                    data,
-                                };
-                            },
-                        );
-
-                        for (const id of ids) {
-                            queryClient.setQueriesData(
-                                queryKey.detail(id),
-                                (previous?: any | null) => {
-                                    if (!previous || previous.data.id == id) {
-                                        return null;
+                                            .includes(record.id.toString());
                                     }
-                                    return {
-                                        ...previous,
-                                    };
+                                    return false;
                                 },
                             );
-                        }
+
+                            return {
+                                ...previous,
+                                data,
+                            };
+                        },
+                    );
+
+                    for (const id of ids) {
+                        queryClient.setQueriesData(
+                            queryKey.detail(id),
+                            (previous?: any | null) => {
+                                if (!previous || previous.data.id == id) {
+                                    return null;
+                                }
+                                return {
+                                    ...previous,
+                                };
+                            },
+                        );
                     }
                 }
 

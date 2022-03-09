@@ -23,6 +23,7 @@ import {
     MetaDataQuery,
     GetListResponse,
 } from "../../interfaces";
+import { queryKeys } from "@definitions/helpers";
 
 type UpdateManyParams<TVariables> = {
     ids: BaseKey[];
@@ -150,152 +151,129 @@ export const useUpdateMany = <
         },
 
         {
-            onMutate: async ({ resource, ids, values, mutationMode }) => {
+            onMutate: async ({
+                resource,
+                ids,
+                values,
+                mutationMode,
+                dataProviderName,
+                metaData,
+            }) => {
+                const queryKey = queryKeys(
+                    resource,
+                    dataProviderName,
+                    metaData,
+                );
+
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
 
-                await queryClient.cancelQueries([resource], undefined, {
-                    silent: true,
-                });
+                await queryClient.cancelQueries(
+                    queryKey.resourceAll,
+                    undefined,
+                    {
+                        silent: true,
+                    },
+                );
 
                 const previousQueries = queryClient.getQueriesData<
                     QueryResponse<TData>
-                >([resource]);
+                >(queryKey.resourceAll);
 
                 if (!(mutationModePropOrContext === "pessimistic")) {
-                    if (previousQueries) {
-                        queryClient.setQueriesData(
-                            [resource, "list"],
-                            (previous?: GetListResponse<TData> | null) => {
-                                if (!previous) {
-                                    return null;
-                                }
+                    // Set the previous queries to the new ones:
+                    queryClient.setQueriesData(
+                        queryKey.list(),
+                        (previous?: GetListResponse<TData> | null) => {
+                            if (!previous) {
+                                return null;
+                            }
 
-                                const data = previous.data.map(
-                                    (record: TData) => {
-                                        if (
-                                            record.id !== undefined &&
-                                            ids
-                                                .filter(
-                                                    (id) => id !== undefined,
-                                                )
-                                                .map(String)
-                                                .includes(record.id.toString())
-                                        ) {
-                                            return {
-                                                ...record,
-                                                ...values,
-                                            };
-                                        }
-
-                                        return record;
-                                    },
-                                );
-                                return {
-                                    ...previous,
-                                    data,
-                                };
-                            },
-                        );
-
-                        queryClient.setQueriesData(
-                            [resource, "getMany"],
-                            (previous?: GetListResponse<TData> | null) => {
-                                if (!previous) {
-                                    return null;
-                                }
-
-                                const data = previous.data.map(
-                                    (record: TData) => {
-                                        if (
-                                            record.id !== undefined &&
-                                            ids
-                                                .filter(
-                                                    (id) => id !== undefined,
-                                                )
-                                                .map(String)
-                                                .includes(record.id.toString())
-                                        ) {
-                                            return {
-                                                ...record,
-                                                ...values,
-                                            };
-                                        }
-                                        return record;
-                                    },
-                                );
-                                return {
-                                    ...previous,
-                                    data,
-                                };
-                            },
-                        );
-                        for (const id of ids) {
-                            queryClient.setQueriesData(
-                                [resource, "detail", id],
-                                (previous?: GetListResponse<TData> | null) => {
-                                    if (!previous) {
-                                        return null;
-                                    }
-
-                                    const data = {
-                                        ...previous.data,
+                            const data = previous.data.map((record: TData) => {
+                                if (
+                                    record.id !== undefined &&
+                                    ids
+                                        .filter((id) => id !== undefined)
+                                        .map(String)
+                                        .includes(record.id.toString())
+                                ) {
+                                    return {
+                                        ...record,
                                         ...values,
                                     };
+                                }
+
+                                return record;
+                            });
+
+                            return {
+                                ...previous,
+                                data,
+                            };
+                        },
+                    );
+
+                    queryClient.setQueriesData(
+                        queryKey.many(),
+                        (previous?: GetListResponse<TData> | null) => {
+                            if (!previous) {
+                                return null;
+                            }
+
+                            const data = previous.data.map((record: TData) => {
+                                if (
+                                    record.id !== undefined &&
+                                    ids
+                                        .filter((id) => id !== undefined)
+                                        .map(String)
+                                        .includes(record.id.toString())
+                                ) {
                                     return {
-                                        ...previous,
-                                        data,
+                                        ...record,
+                                        ...values,
                                     };
-                                },
-                            );
-                        }
+                                }
+                                return record;
+                            });
+                            return {
+                                ...previous,
+                                data,
+                            };
+                        },
+                    );
+                    for (const id of ids) {
+                        queryClient.setQueriesData(
+                            queryKey.detail(id),
+                            (previous?: GetListResponse<TData> | null) => {
+                                if (!previous) {
+                                    return null;
+                                }
+
+                                const data = {
+                                    ...previous.data,
+                                    ...values,
+                                };
+                                return {
+                                    ...previous,
+                                    data,
+                                };
+                            },
+                        );
                     }
                 }
 
                 return {
-                    previousQueries: previousQueries,
+                    previousQueries,
+                    queryKey,
                 };
             },
-            onError: (
-                err: TError,
-                { ids, resource, errorNotification },
-                context,
-            ) => {
-                if (context) {
-                    for (const query of context.previousQueries) {
-                        queryClient.setQueryData(query[0], query[1]);
-                    }
-                }
+            onSettled: (_data, _error, { ids, resource }, context) => {
+                // invalidate the cache for the list and many queries:
 
-                if (err.message !== "mutationCancelled") {
-                    checkError?.(err);
-
-                    const resourceSingular = pluralize.singular(resource);
-
-                    handleNotification(errorNotification, {
-                        key: `${ids}-${resource}-updateMany-error-notification`,
-                        message: translate(
-                            "notifications.editError",
-                            {
-                                resource: resourceSingular,
-                                statusCode: err.statusCode,
-                            },
-                            `Error when updating ${resourceSingular} (status code: ${err.statusCode})`,
-                        ),
-                        description: err.message,
-                        type: "error",
-                    });
-                }
-            },
-            onSettled: (_data, _error, { ids, resource }) => {
-                queryClient.invalidateQueries([resource, "list"]);
-                queryClient.invalidateQueries([resource, "getMany"]);
+                queryClient.invalidateQueries(context?.queryKey.list());
+                queryClient.invalidateQueries(context?.queryKey.many());
                 ids.forEach((id) =>
-                    queryClient.invalidateQueries([
-                        resource,
-                        "detail",
-                        id.toString(),
-                    ]),
+                    queryClient.invalidateQueries(context?.queryKey.detail(id)),
                 );
 
                 notificationDispatch({
@@ -333,6 +311,39 @@ export const useUpdateMany = <
                     },
                     date: new Date(),
                 });
+            },
+            onError: (
+                err: TError,
+                { ids, resource, errorNotification },
+                context,
+            ) => {
+                // set back the queries to the context:
+
+                if (context) {
+                    for (const query of context.previousQueries) {
+                        queryClient.setQueryData(query[0], query[1]);
+                    }
+                }
+
+                if (err.message !== "mutationCancelled") {
+                    checkError?.(err);
+
+                    const resourceSingular = pluralize.singular(resource);
+
+                    handleNotification(errorNotification, {
+                        key: `${ids}-${resource}-updateMany-error-notification`,
+                        message: translate(
+                            "notifications.editError",
+                            {
+                                resource: resourceSingular,
+                                statusCode: err.statusCode,
+                            },
+                            `Error when updating ${resourceSingular} (status code: ${err.statusCode})`,
+                        ),
+                        description: err.message,
+                        type: "error",
+                    });
+                }
             },
         },
     );
