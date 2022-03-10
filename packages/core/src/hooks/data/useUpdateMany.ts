@@ -270,7 +270,6 @@ export const useUpdateMany = <
             },
             onSettled: (_data, _error, { ids, resource }, context) => {
                 // invalidate the cache for the list and many queries:
-
                 queryClient.invalidateQueries(context?.queryKey.list());
                 queryClient.invalidateQueries(context?.queryKey.many());
                 ids.forEach((id) =>
@@ -282,7 +281,11 @@ export const useUpdateMany = <
                     payload: { id: ids, resource },
                 });
             },
-            onSuccess: (data, { ids, resource, successNotification }) => {
+            onSuccess: (
+                data,
+                { ids, resource, successNotification },
+                context,
+            ) => {
                 const resourceSingular = pluralize.singular(resource);
 
                 handleNotification(successNotification, {
@@ -313,10 +316,17 @@ export const useUpdateMany = <
                     date: new Date(),
                 });
 
+                const previousData = ids.map((id) => {
+                    return queryClient.getQueryData<UpdateManyResponse<TData>>(
+                        context.queryKey.detail(id),
+                    )?.data;
+                });
+
                 logEvent({
                     action: "updateMany",
                     resource,
-                    data,
+                    data: data.data,
+                    previousData,
                     meta: {
                         ids,
                     },
@@ -328,7 +338,6 @@ export const useUpdateMany = <
                 context,
             ) => {
                 // set back the queries to the context:
-
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query[0], query[1]);

@@ -246,11 +246,6 @@ export const useDeleteMany = <
                 { ids, resource, successNotification },
                 context,
             ) => {
-                // Remove the queries from the cache:
-                ids.forEach((id) =>
-                    queryClient.removeQueries(context.queryKey.detail(id)),
-                );
-
                 handleNotification(successNotification, {
                     key: `${ids}-${resource}-notification`,
                     description: translate("notifications.success", "Success"),
@@ -274,14 +269,26 @@ export const useDeleteMany = <
                     date: new Date(),
                 });
 
+                const previousData = ids.map((id) => {
+                    return queryClient.getQueryData<DeleteManyResponse<TData>>(
+                        context.queryKey.detail(id),
+                    )?.data;
+                });
+
                 logEvent({
                     action: "deleteMany",
                     resource,
                     data,
+                    previousData,
                     meta: {
                         ids,
                     },
                 });
+
+                // Remove the queries from the cache:
+                ids.forEach((id) =>
+                    queryClient.removeQueries(context.queryKey.detail(id)),
+                );
             },
             onError: (err, { ids, resource, errorNotification }, context) => {
                 // set back the queries to the context:

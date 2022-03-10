@@ -245,7 +245,6 @@ export const useUpdate = <
             },
             onSettled: (_data, _error, { id, resource }, context) => {
                 // invalidate the cache for the list and many queries:
-
                 queryClient.invalidateQueries(context?.queryKey.list());
                 queryClient.invalidateQueries(context?.queryKey.many());
                 queryClient.invalidateQueries(context?.queryKey.detail(id));
@@ -255,7 +254,11 @@ export const useUpdate = <
                     payload: { id, resource },
                 });
             },
-            onSuccess: (data, { id, resource, successNotification }) => {
+            onSuccess: (
+                data,
+                { id, resource, successNotification },
+                context,
+            ) => {
                 const resourceSingular = pluralize.singular(resource);
 
                 handleNotification(successNotification, {
@@ -286,10 +289,15 @@ export const useUpdate = <
                     date: new Date(),
                 });
 
+                const previousData = queryClient.getQueryData<
+                    UpdateResponse<TData>
+                >(context.queryKey.detail(id))?.data;
+
                 logEvent({
                     action: "update",
                     resource,
                     data,
+                    previousData,
                     meta: {
                         id,
                     },

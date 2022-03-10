@@ -211,7 +211,6 @@ export const useDelete = <
             },
             onSettled: (_data, _error, { id, resource }, context) => {
                 // invalidate the cache for the list and many queries:
-
                 queryClient.invalidateQueries(context?.queryKey.list());
                 queryClient.invalidateQueries(context?.queryKey.many());
 
@@ -226,9 +225,6 @@ export const useDelete = <
                 context,
             ) => {
                 const resourceSingular = pluralize.singular(resource);
-
-                // Remove the queries from the cache:
-                queryClient.removeQueries(context.queryKey.detail(id));
 
                 handleNotification(successNotification, {
                     key: `${id}-${resource}-notification`,
@@ -255,14 +251,22 @@ export const useDelete = <
                     date: new Date(),
                 });
 
+                const previousData = queryClient.getQueryData<
+                    DeleteOneResponse<TData>
+                >(context.queryKey.detail(id))?.data;
+
                 logEvent({
                     action: "delete",
                     resource,
                     data,
+                    previousData,
                     meta: {
                         id,
                     },
                 });
+
+                // Remove the queries from the cache:
+                queryClient.removeQueries(context.queryKey.detail(id));
             },
             onError: (
                 err: TError,
