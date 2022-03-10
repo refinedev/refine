@@ -389,6 +389,7 @@ module.exports = {
                         "examples/data-provider/supabase",
                         "examples/data-provider/altogic",
                         "examples/data-provider/multiple",
+                        "examples/data-provider/directus",
                     ],
                 },
                 {
