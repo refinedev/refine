@@ -1,3 +1,4 @@
+import { ConditionalFilter } from "@pankod/refine-core";
 import dataProvider from "../../src/index";
 import "./index.mock";
 
@@ -358,6 +359,86 @@ describe("getList", () => {
             });
         }).rejects.toThrow(
             `Operator ${operator} is not supported for the Airtable data provider`,
+        );
+    });
+
+    it("correct 'or' conditional filter", async () => {
+        const filter = {
+            operator: "or",
+            value: [
+                {
+                    field: "title",
+                    operator: "eq",
+                    value: "Silver Bullet",
+                },
+                {
+                    field: "title",
+                    operator: "ne",
+                    value: "The Mythical Man Month",
+                },
+            ],
+        } as ConditionalFilter;
+
+        const response = await dataProvider(
+            "keywoytODSr6xAqfg",
+            "appKYl1H4k9g73sBT",
+        ).getList({
+            resource: "posts",
+            filters: [filter],
+        });
+
+        expect(response.total).toBe(1);
+        // {field} must either be Silver Bullet or must not be Mythical Man Month
+        expect(response.data[0]["query"]).toBe(
+            'AND(OR({title}="Silver Bullet",{title}!="The Mythical Man Month"))',
+        );
+    });
+
+    it("correct compound 'or' conditional filter", async () => {
+        const filters = [
+            {
+                operator: "or",
+                value: [
+                    {
+                        field: "title",
+                        operator: "eq",
+                        value: "Silver Bullet",
+                    },
+                    {
+                        field: "title",
+                        operator: "ne",
+                        value: "The Mythical Man Month",
+                    },
+                ],
+            },
+            {
+                operator: "or",
+                value: [
+                    {
+                        field: "age",
+                        operator: "gt",
+                        value: 15,
+                    },
+                    {
+                        field: "age",
+                        operator: "lt",
+                        value: 25,
+                    },
+                ],
+            },
+        ] as ConditionalFilter[];
+
+        const response = await dataProvider(
+            "keywoytODSr6xAqfg",
+            "appKYl1H4k9g73sBT",
+        ).getList({
+            resource: "posts",
+            filters: filters,
+        });
+
+        expect(response.total).toBe(1);
+        expect(response.data[0]["query"]).toBe(
+            'AND(OR({title}="Silver Bullet",{title}!="The Mythical Man Month"),OR({age}>15,{age}<25))',
         );
     });
 });

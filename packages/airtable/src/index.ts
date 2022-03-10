@@ -40,7 +40,7 @@ const isContainsOperator = (
 ): operator is "contains" | "ncontains" =>
     ["contains", "ncontains"].includes(operator);
 
-const generateLogicalFilter = (filter: LogicalFilter): Formula => {
+const generateLogicalFilterFormula = (filter: LogicalFilter): Formula => {
     const { field, operator, value } = filter;
 
     if (isSimpleOperator(operator)) {
@@ -84,17 +84,24 @@ const generateLogicalFilter = (filter: LogicalFilter): Formula => {
     );
 };
 
+const generateFilterFormula = (filters: CrudFilters): Formula[] => {
+    const compound = filters.map((filter): Formula => {
+        const { operator, value } = filter;
+
+        if (operator === "or") {
+            return ["OR", ...generateFilterFormula(value)];
+        }
+
+        return generateLogicalFilterFormula(filter);
+    });
+
+    return compound;
+};
+
 const generateFilter = (filters?: CrudFilters): string | undefined => {
     if (filters) {
-        const parsedFilter = filters.map((filter): Formula => {
-            if (filter.operator !== "or") {
-                return generateLogicalFilter(filter);
-            }
-
-            throw Error(`Operator ${filter.operator} is not supported`);
-        });
-
-        return compile(["AND", ...parsedFilter]);
+        // Top-level array has an implicit AND as per CRUDFilter design - https://refine.dev/docs/guides-and-concepts/data-provider/handling-filters/#logicalfilters
+        return compile(["AND", ...generateFilterFormula(filters)]);
     }
 
     return undefined;
