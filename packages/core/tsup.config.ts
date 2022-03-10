@@ -11,6 +11,7 @@ export default defineConfig({
     splitting: false,
     sourcemap: true,
     clean: false,
+    platform: "browser",
     esbuildPlugins: [
         {
             name: "textReplace",
