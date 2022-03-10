@@ -1,6 +1,6 @@
 {
     "name": "refine-next",
-    "version": "3.6.0",
+    "version": "3.6.1",
     "private": true,
     "scripts": {
         "start": "NODE_OPTIONS=--max_old_space_size=4096 PORT=3001 next dev",
@@ -9,10 +9,10 @@
         "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
     },
     "dependencies": {
-        "@pankod/refine-antd": "^3.6.0",
-        "@pankod/refine-core": "^3.6.0",
-        "@pankod/refine-nextjs-router": "^3.6.0",
-        "@pankod/refine-simple-rest": "^3.6.0",
+        "@pankod/refine-antd": "^3.6.1",
+        "@pankod/refine-core": "^3.6.1",
+        "@pankod/refine-nextjs-router": "^3.6.1",
+        "@pankod/refine-simple-rest": "^3.6.1",
         "next": "^12.0.3",
         "next-compose-plugins": "^2.2.1",
         "nookies": "^2.5.2",
