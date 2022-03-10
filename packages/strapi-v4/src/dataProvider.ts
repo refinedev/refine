@@ -59,15 +59,29 @@ const generateFilter = (filters?: CrudFilters) => {
     let rawQuery = "";
 
     if (filters) {
-        filters.map(({ field, operator, value }) => {
-            const mapedOperator = mapOperator(operator);
+        filters.map((filter) => {
+            if (filter.operator !== "or") {
+                const { field, operator, value } = filter;
 
-            if (Array.isArray(value)) {
-                value.map((val: string) => {
-                    rawQuery += `&filters${field}[$${mapedOperator}]=${val}`;
-                });
+                const mapedOperator = mapOperator(operator);
+
+                if (Array.isArray(value)) {
+                    value.map((val, index) => {
+                        rawQuery += `&filters[${field}][$${mapedOperator}][${index}]=${val}`;
+                    });
+                } else {
+                    rawQuery += `&filters[${field}][$${mapedOperator}]=${value}`;
+                }
             } else {
-                rawQuery += `&filters[${field}][$${mapedOperator}]=${value}`;
+                const { value } = filter;
+
+                value.map((item, index) => {
+                    const { field, operator, value } = item;
+
+                    const mapedOperator = mapOperator(operator);
+
+                    rawQuery += `&filters[$or][${index}][${field}][$${mapedOperator}]=${value}`;
+                });
             }
         });
     }

@@ -17,14 +17,29 @@ const genereteSort = (sort?: CrudSorting) => {
 };
 
 const generateFilter = (filters?: CrudFilters) => {
-    const queryFilters: { [key: string]: string } = {};
+    const queryFilters: { [key: string]: any } = {};
 
     if (filters) {
-        filters.map(({ field, operator, value }) => {
-            if (operator === "eq") {
-                queryFilters[`${field}`] = value;
+        filters.map((filter) => {
+            if (filter.operator !== "or") {
+                const { field, operator, value } = filter;
+
+                if (operator === "eq") {
+                    queryFilters[`${field}`] = value;
+                } else {
+                    queryFilters[`${field}_${operator}`] = value;
+                }
             } else {
-                queryFilters[`${field}_${operator}`] = value;
+                const { value } = filter;
+
+                const orFilters: any[] = [];
+                value.map((val) => {
+                    orFilters.push({
+                        [`${val.field}_${val.operator}`]: val.value,
+                    });
+                });
+
+                queryFilters["_or"] = orFilters;
             }
         });
     }

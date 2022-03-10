@@ -153,23 +153,6 @@ describe("filtering", () => {
         expect(total).toBe(2);
     });
 
-    it("nin operator should throw error", async () => {
-        try {
-            await dataProvider(supabaseClient).getList({
-                resource: "posts",
-                filters: [
-                    {
-                        field: "id",
-                        operator: "nin",
-                        value: ["2", "3"],
-                    },
-                ],
-            });
-        } catch (error) {
-            expect(error).toEqual(Error("Operator nin is not supported"));
-        }
-    });
-
     it("contains operator should work correctly", async () => {
         const { data, total } = await dataProvider(supabaseClient).getList({
             resource: "posts",
@@ -186,23 +169,6 @@ describe("filtering", () => {
         expect(total).toBe(0);
     });
 
-    it("ncontains operator should throw error", async () => {
-        try {
-            await dataProvider(supabaseClient).getList({
-                resource: "posts",
-                filters: [
-                    {
-                        field: "id",
-                        operator: "ncontains",
-                        value: "world",
-                    },
-                ],
-            });
-        } catch (error) {
-            expect(error).toEqual(Error("Operator ncontains is not supported"));
-        }
-    });
-
     it("containss operator should work correctly", async () => {
         const { data, total } = await dataProvider(supabaseClient).getList({
             resource: "posts",
@@ -217,25 +183,6 @@ describe("filtering", () => {
 
         expect(data[0]["title"]).toBe("Hello World");
         expect(total).toBe(1);
-    });
-
-    it("ncontainss operator should throw error", async () => {
-        try {
-            await dataProvider(supabaseClient).getList({
-                resource: "posts",
-                filters: [
-                    {
-                        field: "id",
-                        operator: "ncontainss",
-                        value: "world",
-                    },
-                ],
-            });
-        } catch (error) {
-            expect(error).toEqual(
-                Error("Operator ncontainss is not supported"),
-            );
-        }
     });
 
     it("null operator should work correctly", async () => {

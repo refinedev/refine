@@ -99,10 +99,6 @@ When you run the command that produces coverage report, go to `/coverage/lcov-re
 
 Please make sure you contribute well tested code.
 
-## Known Issues
-
-- If the interface changes are not reflected in the project when the interface changes under the packages, delete the `dist` folder in the project and try again.
-
 [Lerna]: https://github.com/lerna/lerna
 [Lerna Bootstrap]: https://lerna.js.org/#command-bootstrap
 [Lerna Filter]: https://github.com/lerna/lerna/blob/main/core/filter-options/README.md#--scope-glob

@@ -3,7 +3,11 @@ id: useModal
 title: useModal
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/core/useModal)
+Using the `useModal` hook that comes with the **headless** version of **refine**, you may manage a modal. This hook is UI-independent and only includes show and close operations. You can create your UI as you like, and control it with the `useModal` hook.
+
+[Refer to the **refine** useModal hook documentation for more information. →](/docs/core/hooks/ui/useModal/)
+
+[View useModal Example Source](https://github.com/pankod/refine/tree/master/examples/core/useModal)
 
 <iframe src="https://codesandbox.io/embed/refine-core-use-modal-rq1hh?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}

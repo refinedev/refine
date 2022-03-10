@@ -21,6 +21,8 @@ export {
     TitleProps,
     CrudFilter,
     CrudFilters,
+    LogicalFilter,
+    ConditionalFilter,
     CrudOperators,
     CrudSorting,
     CrudSort,

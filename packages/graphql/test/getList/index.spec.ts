@@ -37,9 +37,9 @@ describe("getList", () => {
             resource: "posts",
             filters: [
                 {
-                    field: "title",
+                    field: "id",
                     operator: "eq",
-                    value: "GraphQl 3",
+                    value: "907",
                 },
             ],
             metaData: {
@@ -47,7 +47,9 @@ describe("getList", () => {
             },
         });
 
-        expect(data[0]["title"]).toBe("GraphQl 3");
+        expect(data[0]["title"]).toBe(
+            "Molestias iste voluptatem velit sed voluptate aut voluptatibus explicabo.",
+        );
     });
 
     it("correct filter and sort response", async () => {
@@ -57,7 +59,7 @@ describe("getList", () => {
                 {
                     field: "category",
                     operator: "eq",
-                    value: "2",
+                    value: "8",
                 },
             ],
             sort: [
@@ -71,7 +73,7 @@ describe("getList", () => {
             },
         });
 
-        expect(response.data[0]["id"]).toBe("21");
-        expect(response.data[0]["category"].title).toBe("Demo");
+        expect(response.data[0]["id"]).toBe("349");
+        expect(response.data[0]["category"].title).toBe("Test");
     });
 });

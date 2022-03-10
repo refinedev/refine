@@ -39,14 +39,21 @@ export type CrudOperators =
     | "between"
     | "nbetween"
     | "null"
-    | "nnull";
+    | "nnull"
+    | "or";
 
-export type CrudFilter = {
+export type LogicalFilter = {
     field: string;
-    operator: CrudOperators;
+    operator: Exclude<CrudOperators, "or">;
     value: any;
 };
 
+export type ConditionalFilter = {
+    operator: "or";
+    value: LogicalFilter[];
+};
+
+export type CrudFilter = LogicalFilter | ConditionalFilter;
 export type CrudSort = {
     field: string;
     order: "asc" | "desc";

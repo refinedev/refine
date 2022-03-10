@@ -11,12 +11,12 @@ import {
 import {
     useTranslate,
     useCheckError,
-    useCacheQueries,
     usePublish,
     useHandleNotification,
     useDataProvider,
     useLogEvent,
 } from "@hooks";
+import { queryKeys } from "@definitions/helpers";
 
 type useCreateParams<TVariables> = {
     resource: string;
@@ -57,7 +57,6 @@ export const useCreate = <
     const { mutate: checkError } = useCheckError();
     const dataProvider = useDataProvider();
 
-    const getAllQueries = useCacheQueries();
     const translate = useTranslate();
     const queryClient = useQueryClient();
     const publish = usePublish();
@@ -85,8 +84,13 @@ export const useCreate = <
         {
             onSuccess: (
                 data,
-                { resource, successNotification: successNotificationFromProp },
+                {
+                    resource,
+                    successNotification: successNotificationFromProp,
+                    dataProviderName,
+                },
             ) => {
+                const queryKey = queryKeys(resource, dataProviderName);
                 const resourceSingular = pluralize.singular(resource);
 
                 handleNotification(successNotificationFromProp, {
@@ -105,9 +109,8 @@ export const useCreate = <
                     type: "success",
                 });
 
-                getAllQueries(resource).forEach((query) => {
-                    queryClient.invalidateQueries(query.queryKey);
-                });
+                queryClient.invalidateQueries(queryKey.list());
+                queryClient.invalidateQueries(queryKey.many());
 
                 publish?.({
                     channel: `resources/${resource}`,

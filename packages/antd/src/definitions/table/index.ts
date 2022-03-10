@@ -3,6 +3,7 @@ import {
     CrudOperators,
     CrudSorting,
     CrudFilter,
+    LogicalFilter,
 } from "@pankod/refine-core";
 import { SortOrder, SorterResult } from "antd/lib/table/interface";
 
@@ -28,10 +29,13 @@ export const getDefaultFilter = (
     filters?: CrudFilters,
     operatorType: CrudOperators = "eq",
 ): CrudFilter["value"] | undefined => {
-    const filter = filters?.find(
-        ({ field, operator }) =>
-            field === columnName && operator === operatorType,
-    );
+    const filter = filters?.find((filter) => {
+        if (filter.operator !== "or") {
+            const { operator, field } = filter;
+            return field === columnName && operator === operatorType;
+        }
+        return undefined;
+    });
 
     if (filter) {
         return filter.value || [];
@@ -84,13 +88,17 @@ export const mapAntdFilterToCrudFilter = (
 
     Object.keys(tableFilters).map((field) => {
         const value = tableFilters[field];
-        const operator = prevFilters.find((p) => p.field === field)?.operator;
+        const operator = prevFilters
+            .filter((i) => i.operator !== "or")
+            .find((p: LogicalFilter) => p.field === field)?.operator;
 
-        crudFilters.push({
-            field,
-            operator: operator ?? (Array.isArray(value) ? "in" : "eq"),
-            value,
-        });
+        if (operator !== "or") {
+            crudFilters.push({
+                field,
+                operator: operator ?? (Array.isArray(value) ? "in" : "eq"),
+                value,
+            });
+        }
     });
 
     return crudFilters;

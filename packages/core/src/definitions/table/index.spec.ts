@@ -60,7 +60,7 @@ describe("definitions/table", () => {
 
     it("parse table params with single sorter correctly", async () => {
         const url =
-            "?current=1&pageSize=10&categoryId__in[]=1&categoryId__in[]=2&sort[]=id&order[]=desc";
+            "?current=1&pageSize=10&sorter[0][field]=id&sorter[0][order]=desc&filters[0][operator]=in&filters[0][field]=categoryId&filters[0][value][0]=1&filters[0][value][1]=2";
 
         const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
             parseTableParams(url);
@@ -75,11 +75,30 @@ describe("definitions/table", () => {
 
     it("parse table params with advanced query object", async () => {
         const query = {
-            current: "1",
-            pageSize: "10",
-            id__eq: "1",
-            sort: ["id", "firstName"],
-            order: ["asc", "desc"],
+            current: 1,
+            pageSize: 10,
+            sorter: [
+                { field: "id", order: "asc" },
+                { field: "firstName", order: "desc" },
+            ],
+            filters: [
+                { field: "id", operator: "eq", value: "1" },
+                {
+                    operator: "or",
+                    value: [
+                        {
+                            field: "age",
+                            operator: "lt",
+                            value: "18",
+                        },
+                        {
+                            field: "age",
+                            operator: "gt",
+                            value: "20",
+                        },
+                    ],
+                },
+            ],
         };
 
         const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
@@ -93,6 +112,21 @@ describe("definitions/table", () => {
         ]);
         expect(parsedFilters).toStrictEqual([
             { field: "id", operator: "eq", value: "1" },
+            {
+                operator: "or",
+                value: [
+                    {
+                        field: "age",
+                        operator: "lt",
+                        value: "18",
+                    },
+                    {
+                        field: "age",
+                        operator: "gt",
+                        value: "20",
+                    },
+                ],
+            },
         ]);
     });
 

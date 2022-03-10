@@ -97,13 +97,20 @@ const App: React.FC = () => {
 </TabItem>
 <TabItem value="nextjs">
 
-```tsx title="App.tsx"
+```tsx title="pages/_app.tsx"
 import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-nextjs-router";
+import { AppProps } from "next/app";
 
-const App: React.FC = () => {
-    return <Refine routerProvider={routerProvider} />;
-};
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+    return (
+        <Refine
+            routerProvider={routerProvider}
+        >
+            <Component {...pageProps} />
+        </Refine>
+    );
+}
 ```
 
   </TabItem>

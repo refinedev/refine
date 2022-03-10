@@ -6,7 +6,6 @@ import {
     MutationCache,
     DefaultOptions,
 } from "react-query";
-
 import { ReactQueryDevtools } from "react-query/devtools";
 
 import { AuthContextProvider } from "@contexts/auth";

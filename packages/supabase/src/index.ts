@@ -4,6 +4,7 @@ import {
     CrudFilter,
     LiveEvent,
     HttpError,
+    CrudOperators,
 } from "@pankod/refine-core";
 import {
     createClient,
@@ -30,25 +31,66 @@ const supabaseTypes: Record<LiveEvent["type"], SupabaseEventTypes> = {
     "*": "*",
 };
 
+const mapOperator = (operator: CrudOperators) => {
+    switch (operator) {
+        case "ne":
+            return "neq";
+        case "nin":
+            return "not.in";
+        case "contains":
+            return "ilike";
+        case "ncontains":
+            return "not.ilike";
+        case "containss":
+            return "like";
+        case "ncontainss":
+            return "not.like";
+        case "null":
+            return "is";
+        case "nnull":
+            return "not.is";
+        case "between":
+        case "nbetween":
+            throw Error(`Operator ${operator} is not supported`);
+        default:
+            return operator;
+    }
+};
+
 const generateFilter = (filter: CrudFilter, query: any) => {
     switch (filter.operator) {
+        case "eq":
+            return query.eq(filter.field, filter.value);
         case "ne":
-            return query.filter(filter.field, "neq", filter.value);
+            return query.neq(filter.field, filter.value);
         case "in":
             return query.in(filter.field, filter.value);
+        case "gt":
+            return query.gt(filter.field, filter.value);
+        case "gte":
+            return query.gte(filter.field, filter.value);
+        case "lt":
+            return query.lt(filter.field, filter.value);
+        case "lte":
+            return query.lte(filter.field, filter.value);
         case "contains":
             return query.ilike(filter.field, `%${filter.value}%`);
         case "containss":
             return query.like(filter.field, `%${filter.value}%`);
-        case "ncontainss":
-        case "ncontains":
-        case "nin":
-            throw Error(`Operator ${filter.operator} is not supported`);
         case "null":
             return query.is(filter.field, null);
+        case "or":
+            const orSyntax = filter.value
+                .map((item) => `${item.field}.${item.operator}.${item.value}`)
+                .join(",");
+            return query.or(orSyntax);
+        default:
+            return query.filter(
+                filter.field,
+                mapOperator(filter.operator),
+                filter.value,
+            );
     }
-
-    return query.filter(filter.field, filter.operator, filter.value);
 };
 
 const handleError = (error: PostgrestError) => {
