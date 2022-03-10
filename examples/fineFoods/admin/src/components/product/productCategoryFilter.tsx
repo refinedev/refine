@@ -21,9 +21,7 @@ export const ProductCategoryFilter: React.FC<ProductItemProps> = ({
     );
 
     useEffect(() => {
-        if (filterCategories.length > 0) {
-            onChange?.(filterCategories);
-        }
+        onChange?.(filterCategories);
     }, [filterCategories]);
 
     const { data: categoryData, isLoading: categoryIsLoading } =
