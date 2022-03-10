@@ -72,10 +72,11 @@ const generateLogicalFilter = (filter: LogicalFilter): Formula => {
     }
 
     if (operator === "null") {
-        if (typeof value !== "boolean")
-            throw new Error("Value must be a boolean for the null operator");
+        return ["=", { field }, ["BLANK"]];
+    }
 
-        return [value ? "=" : "!=", { field }, ["BLANK"]];
+    if (operator === "nnull") {
+        return ["!=", { field }, ["BLANK"]];
     }
 
     throw Error(

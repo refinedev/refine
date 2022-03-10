@@ -282,7 +282,7 @@ describe("getList", () => {
         const filter = {
             operator: "null",
             field: "title",
-            value: true,
+            value: undefined,
         } as const;
 
         const response = await dataProvider(
@@ -300,9 +300,9 @@ describe("getList", () => {
 
     it("correct falsy null filter", async () => {
         const filter = {
-            operator: "null",
+            operator: "nnull",
             field: "title",
-            value: false,
+            value: undefined,
         } as const;
 
         const response = await dataProvider(
