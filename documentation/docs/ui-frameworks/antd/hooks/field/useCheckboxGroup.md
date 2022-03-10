@@ -84,6 +84,16 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 [Refer to Ant Design Checkbox.Group component documentation for detailed info for `options`. &#8594](https://ant.design/components/checkbox)
 
+### `defaultValue`
+
+```tsx
+const { selectProps } = useCheckboxGroup({
+    resource: "languages",
+// highlight-next-line
+    defaultValue: ["1","2"],
+});
+```
+The easiest way to selecting a default values for checkbox fields is by passing in `defaultValue`.
 ### `optionLabel` and `optionValue`
 
 ```tsx
@@ -135,6 +145,17 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 It allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
 
+### `fetchSize`
+
+```tsx
+const { selectProps } = useCheckboxGroup({
+    resource: "languages",
+// highlight-next-line
+    fetchSize: 20,
+});
+```
+
+Amount of records to fetch in radio group buttons.
 ### `queryOptions`
 
 ```tsx
