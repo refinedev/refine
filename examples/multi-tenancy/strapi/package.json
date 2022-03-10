@@ -1,12 +1,12 @@
 {
   "name": "strapi-multi-tenant",
-  "version": "3.6.2",
+  "version": "3.6.3",
   "private": true,
   "dependencies": {
-    "@pankod/refine-antd": "^3.6.2",
-    "@pankod/refine-core": "^3.6.2",
-    "@pankod/refine-react-router": "^3.6.2",
-    "@pankod/refine-strapi-v4": "^3.6.2",
+    "@pankod/refine-antd": "^3.6.3",
+    "@pankod/refine-core": "^3.6.3",
+    "@pankod/refine-react-router": "^3.6.3",
+    "@pankod/refine-strapi-v4": "^3.6.3",
     "@types/node": "^12.20.10",
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.4",
