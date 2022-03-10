@@ -7,10 +7,9 @@ import {
     BaseRecord,
     BaseKey,
     MutationMode,
-    ContextQuery,
-    QueryResponse,
+    PreviousQuery,
     GetListResponse,
-    Context as DeleteContext,
+    PrevContext as DeleteContext,
     SuccessErrorNotification,
     MetaDataQuery,
 } from "../../interfaces";
@@ -18,13 +17,13 @@ import {
     useTranslate,
     useMutationMode,
     useCancelNotification,
-    useCacheQueries,
     useCheckError,
     usePublish,
     useHandleNotification,
     useDataProvider,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
+import { queryKeys } from "@definitions";
 
 type DeleteManyParams = {
     ids: BaseKey[];
@@ -72,7 +71,6 @@ export const useDeleteMany = <
 
     const { notificationDispatch } = useCancelNotification();
     const translate = useTranslate();
-    const cacheQueries = useCacheQueries();
     const publish = usePublish();
     const handleNotification = useHandleNotification();
 
@@ -82,7 +80,7 @@ export const useDeleteMany = <
         DeleteManyResponse<TData>,
         TError,
         DeleteManyParams,
-        DeleteContext
+        DeleteContext<TData>
     >(
         ({
             resource,
@@ -139,80 +137,118 @@ export const useDeleteMany = <
             return updatePromise;
         },
         {
-            onMutate: async ({ ids, resource, mutationMode }) => {
+            onMutate: async ({
+                ids,
+                resource,
+                mutationMode,
+                dataProviderName,
+            }) => {
+                const queryKey = queryKeys(resource, dataProviderName);
+
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
-                const previousQueries: ContextQuery[] = [];
 
-                const allQueries = cacheQueries(resource, ids);
-
-                for (const queryItem of allQueries) {
-                    const { queryKey } = queryItem;
-                    await queryClient.cancelQueries(queryKey, undefined, {
+                await queryClient.cancelQueries(
+                    queryKey.resourceAll,
+                    undefined,
+                    {
                         silent: true,
-                    });
+                    },
+                );
 
-                    const previousQuery =
-                        queryClient.getQueryData<QueryResponse<TData>>(
-                            queryKey,
-                        );
+                const previousQueries: PreviousQuery<TData>[] =
+                    queryClient.getQueriesData(queryKey.resourceAll);
 
-                    if (!(mutationModePropOrContext === "pessimistic")) {
-                        if (previousQuery) {
-                            previousQueries.push({
-                                query: previousQuery,
-                                queryKey,
-                            });
-
-                            if (
-                                queryKey.includes(`resource/list/${resource}`)
-                            ) {
-                                const { data, total } =
-                                    previousQuery as GetListResponse<TData>;
-
-                                queryClient.setQueryData(queryKey, {
-                                    ...previousQuery,
-                                    data: (data ?? []).filter(
-                                        (record: TData) =>
-                                            !ids
-                                                .filter(
-                                                    (id) => id !== undefined,
-                                                )
-                                                .map(String)
-                                                .includes(
-                                                    record.id!.toString(),
-                                                ),
-                                    ),
-                                    total: total - ids.length,
-                                });
-                            } else {
-                                queryClient.removeQueries(queryKey);
+                if (!(mutationModePropOrContext === "pessimistic")) {
+                    // Set the previous queries to the new ones:
+                    queryClient.setQueriesData(
+                        queryKey.list(),
+                        (previous?: GetListResponse<TData> | null) => {
+                            if (!previous) {
+                                return null;
                             }
-                        }
+
+                            const data = previous.data.filter(
+                                (item) =>
+                                    item.id &&
+                                    !ids
+                                        .map(String)
+                                        .includes(item.id.toString()),
+                            );
+
+                            return {
+                                data,
+                                total: previous.total - 1,
+                            };
+                        },
+                    );
+
+                    queryClient.setQueriesData(
+                        queryKey.many(),
+                        (previous?: GetListResponse<TData> | null) => {
+                            if (!previous) {
+                                return null;
+                            }
+
+                            const data = previous.data.filter(
+                                (record: TData) => {
+                                    if (record.id) {
+                                        return !ids
+                                            .map(String)
+                                            .includes(record.id.toString());
+                                    }
+                                    return false;
+                                },
+                            );
+
+                            return {
+                                ...previous,
+                                data,
+                            };
+                        },
+                    );
+
+                    for (const id of ids) {
+                        queryClient.setQueriesData(
+                            queryKey.detail(id),
+                            (previous?: any | null) => {
+                                if (!previous || previous.data.id == id) {
+                                    return null;
+                                }
+                                return {
+                                    ...previous,
+                                };
+                            },
+                        );
                     }
                 }
 
                 return {
-                    previousQueries: previousQueries,
+                    previousQueries,
+                    queryKey,
                 };
             },
             // Always refetch after error or success:
-            onSettled: (_data, _error, { resource, ids }) => {
-                const allQueries = cacheQueries(resource, ids);
-                for (const query of allQueries) {
-                    if (
-                        !query.queryKey.includes(`resource/getOne/${resource}`)
-                    ) {
-                        queryClient.invalidateQueries(query.queryKey);
-                    }
-                }
+            onSettled: (_data, _error, { resource, ids }, context) => {
+                // invalidate the cache for the list and many queries:
+                queryClient.invalidateQueries(context?.queryKey.list());
+                queryClient.invalidateQueries(context?.queryKey.many());
 
                 notificationDispatch({
                     type: ActionTypes.REMOVE,
                     payload: { id: ids, resource },
                 });
             },
-            onSuccess: (_data, { ids, resource, successNotification }) => {
+            onSuccess: (
+                _data,
+                { ids, resource, successNotification },
+                context,
+            ) => {
+                // Remove the queries from the cache:
+                ids.forEach((id) =>
+                    queryClient.removeQueries(context.queryKey.detail(id)),
+                );
+
                 handleNotification(successNotification, {
                     key: `${ids}-${resource}-notification`,
                     description: translate("notifications.success", "Success"),
@@ -232,14 +268,15 @@ export const useDeleteMany = <
                 publish?.({
                     channel: `resources/${resource}`,
                     type: "deleted",
-                    payload: { ids: ids.map(String) },
+                    payload: { ids },
                     date: new Date(),
                 });
             },
             onError: (err, { ids, resource, errorNotification }, context) => {
+                // set back the queries to the context:
                 if (context) {
                     for (const query of context.previousQueries) {
-                        queryClient.setQueryData(query.queryKey, query.query);
+                        queryClient.setQueryData(query[0], query[1]);
                     }
                 }
 

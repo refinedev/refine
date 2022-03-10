@@ -8,13 +8,13 @@ import {
     MetaDataQuery,
 } from "../../interfaces";
 import {
-    useCacheQueries,
     useTranslate,
     usePublish,
     useHandleNotification,
     useDataProvider,
 } from "@hooks";
 import pluralize from "pluralize";
+import { queryKeys } from "@definitions/helpers";
 
 type useCreateManyParams<TVariables> = {
     resource: string;
@@ -51,7 +51,6 @@ export const useCreateMany = <
     TError extends HttpError = HttpError,
     TVariables = {},
 >(): UseCreateManyReturnType<TData, TError, TVariables> => {
-    const getAllQueries = useCacheQueries();
     const dataProvider = useDataProvider();
 
     const translate = useTranslate();
@@ -76,7 +75,12 @@ export const useCreateMany = <
                 metaData,
             }),
         {
-            onSuccess: (response, { resource, successNotification }) => {
+            onSuccess: (
+                response,
+                { resource, successNotification, dataProviderName },
+            ) => {
+                const queryKey = queryKeys(resource, dataProviderName);
+
                 const resourcePlural = pluralize.plural(resource);
 
                 handleNotification(successNotification, {
@@ -95,9 +99,8 @@ export const useCreateMany = <
                     type: "success",
                 });
 
-                getAllQueries(resource).forEach((query) => {
-                    queryClient.invalidateQueries(query.queryKey);
-                });
+                queryClient.invalidateQueries(queryKey.list());
+                queryClient.invalidateQueries(queryKey.many());
 
                 publish?.({
                     channel: `resources/${resource}`,

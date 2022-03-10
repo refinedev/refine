@@ -16,6 +16,7 @@ import {
     useHandleNotification,
     useDataProvider,
 } from "@hooks";
+import { queryKeys } from "@definitions/helpers";
 
 export type UseManyProps<TData, TError> = {
     resource: string;
@@ -56,6 +57,7 @@ export const useMany = <
     GetManyResponse<TData>
 > => {
     const dataProvider = useDataProvider();
+    const queryKey = queryKeys(resource, dataProviderName, metaData);
 
     const { getMany } = dataProvider(dataProviderName);
 
@@ -77,7 +79,7 @@ export const useMany = <
     });
 
     const queryResponse = useQuery<GetManyResponse<TData>, TError>(
-        [`resource/getMany/${resource}`, { ids, ...metaData }],
+        queryKey.many(ids),
         () => getMany<TData>({ resource, ids, metaData }),
         {
             ...queryOptions,

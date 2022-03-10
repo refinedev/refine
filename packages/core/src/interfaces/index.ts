@@ -43,6 +43,9 @@ export * from "./successErrorNotification";
 //metaData
 export * from "./metaData";
 
+//queryKeys
+export * from "./queryKey";
+
 //metaData
 export * from "./live";
 

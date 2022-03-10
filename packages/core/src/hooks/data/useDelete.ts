@@ -3,7 +3,6 @@ import { useQueryClient, useMutation, UseMutationResult } from "react-query";
 import {
     useMutationMode,
     useCancelNotification,
-    useCacheQueries,
     useTranslate,
     useCheckError,
     usePublish,
@@ -15,16 +14,16 @@ import pluralize from "pluralize";
 import {
     DeleteOneResponse,
     MutationMode,
-    QueryResponse,
-    Context as DeleteContext,
+    PrevContext as DeleteContext,
     BaseRecord,
     BaseKey,
-    ContextQuery,
     HttpError,
     GetListResponse,
     SuccessErrorNotification,
     MetaDataQuery,
+    PreviousQuery,
 } from "../../interfaces";
+import { queryKeys } from "@definitions/helpers";
 
 type DeleteParams = {
     id: BaseKey;
@@ -43,7 +42,7 @@ type UseDeleteReturnType<
     DeleteOneResponse<TData>,
     TError,
     DeleteParams,
-    DeleteContext
+    DeleteContext<TData>
 >;
 
 /**
@@ -77,13 +76,11 @@ export const useDelete = <
     const publish = usePublish();
     const handleNotification = useHandleNotification();
 
-    const cacheQueries = useCacheQueries();
-
     const mutation = useMutation<
         DeleteOneResponse<TData>,
         TError,
         DeleteParams,
-        DeleteContext
+        DeleteContext<TData>
     >(
         ({
             id,
@@ -141,98 +138,95 @@ export const useDelete = <
             return deletePromise;
         },
         {
-            onMutate: async ({ id, resource, mutationMode }) => {
-                const previousQueries: ContextQuery[] = [];
-
-                const allQueries = cacheQueries(resource, id);
+            onMutate: async ({
+                id,
+                resource,
+                mutationMode,
+                dataProviderName,
+            }) => {
+                const queryKey = queryKeys(resource, dataProviderName);
 
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
 
-                for (const queryItem of allQueries) {
-                    const { queryKey } = queryItem;
-                    await queryClient.cancelQueries(queryKey, undefined, {
+                await queryClient.cancelQueries(
+                    queryKey.resourceAll,
+                    undefined,
+                    {
                         silent: true,
-                    });
+                    },
+                );
 
-                    const previousQuery =
-                        queryClient.getQueryData<QueryResponse<TData>>(
-                            queryKey,
-                        );
+                const previousQueries: PreviousQuery<TData>[] =
+                    queryClient.getQueriesData(queryKey.resourceAll);
 
-                    if (!(mutationModePropOrContext === "pessimistic")) {
-                        if (previousQuery) {
-                            previousQueries.push({
-                                query: previousQuery,
-                                queryKey,
-                            });
-
-                            if (
-                                queryKey.includes(`resource/list/${resource}`)
-                            ) {
-                                const { data, total } =
-                                    previousQuery as GetListResponse<TData>;
-
-                                queryClient.setQueryData(queryKey, {
-                                    ...previousQuery,
-                                    data: (data ?? []).filter(
-                                        (record: TData) => !(record.id == id),
-                                    ),
-                                    total: total - 1,
-                                });
-                            } else {
-                                queryClient.removeQueries(queryKey);
+                if (!(mutationModePropOrContext === "pessimistic")) {
+                    // Set the previous queries to the new ones:
+                    queryClient.setQueriesData(
+                        queryKey.list(),
+                        (previous?: GetListResponse<TData> | null) => {
+                            if (!previous) {
+                                return null;
                             }
-                        }
-                    }
+                            const data = previous.data.filter(
+                                (record: TData) =>
+                                    record.id?.toString() !== id.toString(),
+                            );
+
+                            return {
+                                data,
+                                total: previous.total - 1,
+                            };
+                        },
+                    );
+
+                    queryClient.setQueriesData(
+                        queryKey.many(),
+                        (previous?: GetListResponse<TData> | null) => {
+                            if (!previous) {
+                                return null;
+                            }
+                            const data = previous.data.filter(
+                                (record: TData) => {
+                                    return (
+                                        record.id?.toString() !== id?.toString()
+                                    );
+                                },
+                            );
+
+                            return {
+                                ...previous,
+                                data,
+                            };
+                        },
+                    );
                 }
 
                 return {
-                    previousQueries: previousQueries,
+                    previousQueries,
+                    queryKey,
                 };
             },
-            onError: (
-                err: TError,
-                { id, resource, errorNotification },
+            onSettled: (_data, _error, { id, resource }, context) => {
+                // invalidate the cache for the list and many queries:
+
+                queryClient.invalidateQueries(context?.queryKey.list());
+                queryClient.invalidateQueries(context?.queryKey.many());
+
+                notificationDispatch({
+                    type: ActionTypes.REMOVE,
+                    payload: { id, resource },
+                });
+            },
+            onSuccess: (
+                _data,
+                { id, resource, successNotification },
                 context,
             ) => {
-                if (context) {
-                    for (const query of context.previousQueries) {
-                        queryClient.setQueryData(query.queryKey, query.query);
-                    }
-                }
-
-                if (err.message !== "mutationCancelled") {
-                    checkError(err);
-
-                    const resourceSingular = pluralize.singular(resource);
-
-                    handleNotification(errorNotification, {
-                        key: `${id}-${resource}-notification`,
-                        message: translate(
-                            "notifications.deleteError",
-                            {
-                                resource: resourceSingular,
-                                statusCode: err.statusCode,
-                            },
-                            `Error (status code: ${err.statusCode})`,
-                        ),
-                        description: err.message,
-                        type: "error",
-                    });
-                }
-            },
-            onSuccess: (_data, { id, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);
 
-                const allQueries = cacheQueries(resource, id);
-                for (const query of allQueries) {
-                    if (
-                        query.queryKey.includes(`resource/getOne/${resource}`)
-                    ) {
-                        queryClient.invalidateQueries(query.queryKey);
-                    }
-                }
+                // Remove the queries from the cache:
+                queryClient.removeQueries(context.queryKey.detail(id));
 
                 handleNotification(successNotification, {
                     key: `${id}-${resource}-notification`,
@@ -259,20 +253,37 @@ export const useDelete = <
                     date: new Date(),
                 });
             },
-            onSettled: (_data, _error, { id, resource }) => {
-                const allQueries = cacheQueries(resource, id);
-                for (const query of allQueries) {
-                    if (
-                        !query.queryKey.includes(`resource/getOne/${resource}`)
-                    ) {
-                        queryClient.invalidateQueries(query.queryKey);
+            onError: (
+                err: TError,
+                { id, resource, errorNotification },
+                context,
+            ) => {
+                // set back the queries to the context:
+                if (context) {
+                    for (const query of context.previousQueries) {
+                        queryClient.setQueryData(query[0], query[1]);
                     }
                 }
 
-                notificationDispatch({
-                    type: ActionTypes.REMOVE,
-                    payload: { id, resource },
-                });
+                if (err.message !== "mutationCancelled") {
+                    checkError(err);
+
+                    const resourceSingular = pluralize.singular(resource);
+
+                    handleNotification(errorNotification, {
+                        key: `${id}-${resource}-notification`,
+                        message: translate(
+                            "notifications.deleteError",
+                            {
+                                resource: resourceSingular,
+                                statusCode: err.statusCode,
+                            },
+                            `Error (status code: ${err.statusCode})`,
+                        ),
+                        description: err.message,
+                        type: "error",
+                    });
+                }
             },
         },
     );

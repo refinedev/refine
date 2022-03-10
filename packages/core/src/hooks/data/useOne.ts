@@ -16,6 +16,7 @@ import {
     useHandleNotification,
     useDataProvider,
 } from "@hooks";
+import { queryKeys } from "@definitions";
 
 export type UseOneProps<TData, TError> = {
     resource: string;
@@ -54,6 +55,7 @@ export const useOne = <
     dataProviderName,
 }: UseOneProps<TData, TError>): QueryObserverResult<GetOneResponse<TData>> => {
     const dataProvider = useDataProvider();
+    const queryKey = queryKeys(resource, dataProviderName, metaData);
 
     const { getOne } = dataProvider(dataProviderName);
     const translate = useTranslate();
@@ -71,7 +73,7 @@ export const useOne = <
     });
 
     const queryResponse = useQuery<GetOneResponse<TData>, TError>(
-        [`resource/getOne/${resource}`, { id, ...metaData }],
+        queryKey.detail(id),
         () => getOne<TData>({ resource, id, metaData }),
         {
             ...queryOptions,
