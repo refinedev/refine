@@ -25,6 +25,9 @@ export type DeleteButtonProps = ButtonProps & {
     metaData?: MetaDataQuery;
     dataProviderName?: string;
     ignoreAccessControlProvider?: boolean;
+    confirmTitle?: string;
+    confirmOkText?: string;
+    confirmCancelText?: string;
 } & SuccessErrorNotification;
 
 /**
@@ -45,6 +48,9 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     ignoreAccessControlProvider = false,
     metaData,
     dataProviderName,
+    confirmTitle,
+    confirmOkText,
+    confirmCancelText,
     ...rest
 }) => {
     const resourceWithRoute = useResourceWithRoute();
@@ -80,10 +86,14 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     return (
         <Popconfirm
             key="delete"
-            okText={translate("buttons.delete", "Delete")}
-            cancelText={translate("buttons.cancel", "Cancel")}
+            okText={confirmOkText ?? translate("buttons.delete", "Delete")}
+            cancelText={
+                confirmCancelText ?? translate("buttons.cancel", "Cancel")
+            }
             okType="danger"
-            title={translate("buttons.confirm", "Are you sure?")}
+            title={
+                confirmTitle ?? translate("buttons.confirm", "Are you sure?")
+            }
             okButtonProps={{ disabled: isLoading }}
             onConfirm={(): void => {
                 mutate(
