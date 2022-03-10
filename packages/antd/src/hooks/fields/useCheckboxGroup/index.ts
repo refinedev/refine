@@ -1,31 +1,13 @@
-import { CheckboxGroupProps } from "antd/lib/checkbox";
-import { QueryObserverResult, UseQueryOptions } from "react-query";
+import { QueryObserverResult } from "react-query";
 
+import { CheckboxGroupProps } from "antd/lib/checkbox";
 import {
-    CrudSorting,
     BaseRecord,
     GetListResponse,
-    CrudFilters,
-    SuccessErrorNotification,
     HttpError,
-    MetaDataQuery,
-    LiveModeProps,
-    useList,
-    Option,
+    UseSelectProps,
+    useSelect,
 } from "@pankod/refine-core";
-import { useState } from "react";
-
-export type useCheckboxGroupProps<TData, TError> = {
-    resource: string;
-    optionLabel?: string;
-    optionValue?: string;
-    sort?: CrudSorting;
-    filters?: CrudFilters;
-    queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
-    metaData?: MetaDataQuery;
-    dataProviderName?: string;
-} & SuccessErrorNotification &
-    LiveModeProps;
 
 export type UseCheckboxGroupReturnType<TData extends BaseRecord = BaseRecord> =
     {
@@ -41,6 +23,12 @@ export type UseCheckboxGroupReturnType<TData extends BaseRecord = BaseRecord> =
  * @typeParam TData - Result data of the query extends {@link https://refine.dev/docs/api-references/interfaceReferences#baserecord `BaseRecord`}
  *
  */
+
+type UseCheckboxGroupProps<TData, TError> = Omit<
+    UseSelectProps<TData, TError>,
+    "defaultValue"
+> & { defaultValue?: string[] | number[] };
+
 export const useCheckboxGroup = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -48,53 +36,44 @@ export const useCheckboxGroup = <
     resource,
     sort,
     filters,
-    optionLabel = "title",
-    optionValue = "id",
+    optionLabel,
+    optionValue,
+    debounce,
     successNotification,
     errorNotification,
+    defaultValueQueryOptions,
     queryOptions,
+    fetchSize,
     liveMode,
+    defaultValue,
     onLiveEvent,
     liveParams,
     metaData,
     dataProviderName,
-}: useCheckboxGroupProps<TData, TError>): UseCheckboxGroupReturnType<TData> => {
-    const [options, setOptions] = useState<Option[]>([]);
-
-    const defaultQueryOnSuccess = (data: GetListResponse<TData>) => {
-        setOptions(
-            data.data.map((item) => ({
-                label: item[optionLabel],
-                value: item[optionValue],
-            })),
-        );
-    };
-
-    const queryResult = useList<TData, TError>({
+}: UseCheckboxGroupProps<TData, TError>): UseCheckboxGroupReturnType<TData> => {
+    const { queryResult, options } = useSelect({
         resource,
-        config: {
-            sort,
-            filters,
-        },
-        queryOptions: {
-            ...queryOptions,
-            onSuccess: (data) => {
-                defaultQueryOnSuccess(data);
-                queryOptions?.onSuccess?.(data);
-            },
-        },
+        sort,
+        filters,
+        optionLabel,
+        optionValue,
+        debounce,
         successNotification,
         errorNotification,
+        defaultValueQueryOptions,
+        queryOptions,
+        fetchSize,
         liveMode,
+        defaultValue,
         onLiveEvent,
         liveParams,
         metaData,
         dataProviderName,
     });
-
     return {
         checkboxGroupProps: {
             options,
+            defaultValue,
         },
         queryResult,
     };
