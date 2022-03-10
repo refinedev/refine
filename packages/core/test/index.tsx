@@ -14,6 +14,7 @@ import {
     INotificationContext,
     IDataMultipleContextProvider,
     IDataContextProvider,
+    IAuditLogContext,
 } from "../src/interfaces";
 import { TranslationContextProvider } from "@contexts/translation";
 import { RefineContextProvider } from "@contexts/refine";
@@ -22,6 +23,7 @@ import { RouterContextProvider } from "@contexts/router";
 import { AccessControlContextProvider } from "@contexts/accessControl";
 import { LiveContextProvider } from "@contexts/live";
 import { NotificationContextProvider } from "@contexts/notification";
+import { AuditLogContextProvider } from "@contexts/auditLog";
 
 import {
     MockRouterProvider,
@@ -49,6 +51,7 @@ interface ITestWrapperProps {
     children?: React.ReactNode;
     routerInitialEntries?: string[];
     refineProvider?: IRefineContextProvider;
+    auditLogProvider?: IAuditLogContext;
 }
 
 export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
@@ -61,6 +64,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     routerInitialEntries,
     refineProvider,
     liveProvider,
+    auditLogProvider,
 }) => {
     // eslint-disable-next-line react/display-name
     return ({ children }): React.ReactElement => {
@@ -97,13 +101,21 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
             </AccessControlContextProvider>
         );
 
+        const withAuidtLogProvider = auditLogProvider ? (
+            <AuditLogContextProvider auditLogProvider={auditLogProvider}>
+                {withAccessControl}
+            </AuditLogContextProvider>
+        ) : (
+            withAccessControl
+        );
+
         const withLive = liveProvider ? (
             <LiveContextProvider liveProvider={liveProvider}>
-                {withAccessControl}
+                {withAuidtLogProvider}
             </LiveContextProvider>
         ) : (
             <LiveContextProvider liveProvider={MockLiveProvider}>
-                {withAccessControl}
+                {withAuidtLogProvider}
             </LiveContextProvider>
         );
 
