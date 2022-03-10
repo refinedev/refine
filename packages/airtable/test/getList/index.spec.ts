@@ -317,4 +317,47 @@ describe("getList", () => {
         // {field} must not be null (blank)
         expect(response.data[0]["query"]).toBe("AND({title}!=BLANK())");
     });
+
+    it.each(["between", "nbetween"] as const)(
+        "fails for %s filter",
+        async (operator) => {
+            const filter = {
+                operator,
+                field: "age",
+                value: [10, 15],
+            } as const;
+
+            await expect(() => {
+                return dataProvider(
+                    "keywoytODSr6xAqfg",
+                    "appKYl1H4k9g73sBT",
+                ).getList({
+                    resource: "posts",
+                    filters: [filter],
+                });
+            }).rejects.toThrow(
+                `Operator ${operator} is not supported for the Airtable data provider`,
+            );
+        },
+    );
+
+    it.each(["in", "nin"] as const)("fails for %s filter", async (operator) => {
+        const filter = {
+            operator,
+            field: "posts",
+            value: ["uuid-1", "uuid-2"],
+        } as const;
+
+        await expect(() => {
+            return dataProvider(
+                "keywoytODSr6xAqfg",
+                "appKYl1H4k9g73sBT",
+            ).getList({
+                resource: "posts",
+                filters: [filter],
+            });
+        }).rejects.toThrow(
+            `Operator ${operator} is not supported for the Airtable data provider`,
+        );
+    });
 });

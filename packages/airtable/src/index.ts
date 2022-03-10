@@ -1,8 +1,8 @@
 import {
     DataProvider,
     CrudFilters,
-    CrudOperators,
     CrudSorting,
+    LogicalFilter,
 } from "@pankod/refine-core";
 import { compile, Formula } from "@qualifyze/airtable-formulator";
 
@@ -16,61 +16,78 @@ const generateSort = (sort?: CrudSorting) => {
     }));
 };
 
-const simpleOperators: Partial<Record<CrudOperators, string>> = {
+type SimpleOperators = "eq" | "ne" | "lt" | "lte" | "gt" | "gte";
+
+const simpleOperatorMapping: Record<SimpleOperators, string> = {
     eq: "=",
     ne: "!=",
     lt: "<",
     lte: "<=",
     gt: ">",
     gte: ">=",
+} as const;
+
+const isSimpleOperator = (operator: any): operator is SimpleOperators =>
+    Object.keys(simpleOperatorMapping).includes(operator);
+
+const isContainssOperator = (
+    operator: any,
+): operator is "containss" | "ncontainss" =>
+    ["containss", "ncontainss"].includes(operator);
+
+const isContainsOperator = (
+    operator: any,
+): operator is "contains" | "ncontains" =>
+    ["contains", "ncontains"].includes(operator);
+
+const generateLogicalFilter = (filter: LogicalFilter): Formula => {
+    const { field, operator, value } = filter;
+
+    if (isSimpleOperator(operator)) {
+        return [simpleOperatorMapping[operator], { field }, value];
+    }
+
+    if (isContainssOperator(operator)) {
+        const mappedOperator = {
+            containss: "!=",
+            ncontainss: "=",
+        }[operator];
+
+        return [mappedOperator, ["FIND", value, { field }], 0];
+    }
+
+    if (isContainsOperator(operator)) {
+        const mappedOperator = {
+            contains: "!=",
+            ncontains: "=",
+        }[operator];
+
+        const find = [
+            "FIND",
+            ["LOWER", value],
+            ["LOWER", { field }],
+        ] as Formula;
+
+        return [mappedOperator, find, 0];
+    }
+
+    if (operator === "null") {
+        if (typeof value !== "boolean")
+            throw new Error("Value must be a boolean for the null operator");
+
+        return [value ? "=" : "!=", { field }, ["BLANK"]];
+    }
+
+    throw Error(
+        `Operator ${operator} is not supported for the Airtable data provider`,
+    );
 };
 
 const generateFilter = (filters?: CrudFilters): string | undefined => {
     if (filters) {
         const parsedFilter = filters.map((filter): Formula => {
             if (filter.operator !== "or") {
-                const { field, operator, value } = filter;
-                if (Object.keys(simpleOperators).includes(operator)) {
-                    const mappedOperator =
-                        simpleOperators[
-                            operator as keyof typeof simpleOperators
-                        ];
-
-                    return [mappedOperator as string, { field }, value];
-                }
-
-                if (["containss", "ncontainss"].includes(operator)) {
-                    const mappedOperator = {
-                        containss: "!=",
-                        ncontainss: "=",
-                    }[operator as "containss" | "ncontainss"];
-
-                    return [mappedOperator, ["FIND", value, { field }], 0];
-                }
-
-                if (["contains", "ncontains"].includes(operator)) {
-                    const mappedOperator = {
-                        contains: "!=",
-                        ncontains: "=",
-                    }[operator as "contains" | "ncontains"];
-
-                    const find = [
-                        "FIND",
-                        ["LOWER", value],
-                        ["LOWER", { field }],
-                    ] as Formula;
-
-                    return [mappedOperator, find, 0];
-                }
-
-                if (operator === "null") {
-                    if (typeof value !== "boolean")
-                        throw new Error(
-                            "Value must be a boolean for the null operator",
-                        );
-
-                    return [value ? "=" : "!=", { field }, ["BLANK"]];
-                }
+                return generateLogicalFilter(filter);
             }
 
             throw Error(`Operator ${filter.operator} is not supported`);
