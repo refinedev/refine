@@ -1,10 +1,10 @@
 {
   "name": "refine-auth0-example",
-  "version": "3.6.5",
+  "version": "3.6.6",
   "private": true,
   "dependencies": {
     "@auth0/auth0-react": "^1.5.0",
-    "@pankod/refine-antd": "^3.6.5",
+    "@pankod/refine-antd": "^3.6.6",
     "@pankod/refine-core": "^3.6.5",
     "@pankod/refine-react-router": "^3.6.5",
     "@pankod/refine-simple-rest": "^3.6.5",

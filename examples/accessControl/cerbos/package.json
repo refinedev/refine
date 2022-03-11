@@ -1,9 +1,9 @@
 {
     "name": "access-control-cerbos-react",
-    "version": "3.6.5",
+    "version": "3.6.6",
     "private": true,
     "dependencies": {
-        "@pankod/refine-antd": "^3.6.5",
+        "@pankod/refine-antd": "^3.6.6",
         "@pankod/refine-core": "^3.6.5",
         "@pankod/refine-react-router": "^3.6.5",
         "@pankod/refine-simple-rest": "^3.6.5",
