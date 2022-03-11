@@ -206,7 +206,7 @@ export const MyListComponent = () => {
 };
 ```
 
-## How to override confirm texts
+## How to override confirm texts?
 
 You can change the text that appears when you confirm a transaction with `confirmTitle` prop, as well as what ok and cancel buttons text look like with `confirmOkText` and `confirmCancelText` props.
 
