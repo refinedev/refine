@@ -193,21 +193,6 @@ export const MyDeleteComponent = () => {
 };
 ```
 
-### `confirm texts`
-
-You can change the text that appears when you confirm a transaction with `confirmTitle` prop, as well as what ok and cancel buttons text look like with `confirmOkText` and `confirmCancelText` props.
-
-```tsx 
-import { DeleteButton } from "@pankod/refine-antd";
-
-export const MyDeleteComponent = () => {
-    return <DeleteButton 
-                confirmTitle="Title" 
-                confirmOkText="Ok Text" 
-                confirmCancelText="Delete Text" 
-            />;
-};
-```
 
 ### `ignoreAccessControlProvider`
 
@@ -221,6 +206,23 @@ export const MyListComponent = () => {
 };
 ```
 
+## How to override confirm texts
+
+You can change the text that appears when you confirm a transaction with `confirmTitle` prop, as well as what ok and cancel buttons text look like with `confirmOkText` and `confirmCancelText` props.
+
+```tsx 
+import { DeleteButton } from "@pankod/refine-antd";
+
+export const MyDeleteComponent = () => {
+    return (
+        <DeleteButton
+            confirmTitle="Title"
+            confirmOkText="Ok Text"
+            confirmCancelText="Delete Text"
+        />
+    );
+};
+```
 ## API Reference
 
 ### Properties
