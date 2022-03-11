@@ -84,6 +84,16 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 [Refer to Ant Design Checkbox.Group component documentation for detailed info for `options`. &#8594](https://ant.design/components/checkbox)
 
+### `defaultValue`
+
+```tsx
+const { selectProps } = useCheckboxGroup({
+    resource: "languages",
+// highlight-next-line
+    defaultValue: [1, 2],
+});
+```
+The easiest way to selecting a default values for checkbox fields is by passing in `defaultValue`.
 ### `optionLabel` and `optionValue`
 
 ```tsx
@@ -135,6 +145,17 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 It allows us to sort the `options`. For example, if you want to sort your list according to `title` by ascending.
 
+### `fetchSize`
+
+```tsx
+const { selectProps } = useCheckboxGroup({
+    resource: "languages",
+// highlight-next-line
+    fetchSize: 20,
+});
+```
+
+Amount of records to fetch in checkboxes.
 ### `queryOptions`
 
 ```tsx
@@ -159,6 +180,7 @@ const { checkboxGroupProps } = useCheckboxGroup({
 | Property                                                                                            | Description                                                                         | Type                                                           | Default   |
 | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------- | --------- |
 | <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                             | `string`                                                       |           |
+| defaultValue                                                                                        | Sets the default value                                                              | [`BaseKey[]`](/core/interfaces.md#basekey)                       |           |
 | optionValue                                                                                         | Sets the option's value                                                             | `string`                                                       | `"id"`    |
 | optionLabel                                                                                         | Sets the option's label value                                                       | `string`                                                       | `"title"` |
 | filters                                                                                             | Adds filters while fetching the data                                                | [`CrudFilters`](/core/interfaces.md#crudfilters)               |           |
