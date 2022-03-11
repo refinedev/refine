@@ -9,7 +9,7 @@ on:
 jobs:
   build-all-examples:
     runs-on: ubuntu-latest
-
+    if: github.event_name == 'schedule' || (github.event_name == 'pull_request' && contains(steps.pr-labels.outputs.labels, ' build-examples '))
     strategy:
       matrix:
         node-version: [16.x]
@@ -28,4 +28,4 @@ jobs:
           npm ci
           npm run bootstrap -- --scope "refine*"
           npm run build -- --scope "refine*"
-        if: github.event_name == 'schedule' || (github.event_name == 'pull_request' && contains(steps.pr-labels.outputs.labels, ' build-examples '))
+        
