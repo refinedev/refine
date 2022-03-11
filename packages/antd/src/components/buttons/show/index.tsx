@@ -70,7 +70,6 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
             );
     };
 
-    console.log("rest", rest);
     return (
         <Button
             onClick={(e): void =>
