@@ -70,9 +70,12 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
             );
     };
 
+    console.log("rest", rest);
     return (
         <Button
-            onClick={(): void => show(resourceName, id!)}
+            onClick={(e): void =>
+                rest?.onClick ? rest.onClick(e) : show(resourceName, id!)
+            }
             icon={<EyeOutlined />}
             disabled={data?.can === false}
             title={createButtonDisabledTitle()}

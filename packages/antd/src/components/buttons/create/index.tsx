@@ -28,6 +28,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
     hideText = false,
     ignoreAccessControlProvider = false,
     children,
+    onClick,
     ...rest
 }) => {
     const resourceWithRoute = useResourceWithRoute();
@@ -43,8 +44,6 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
     const resource = resourceWithRoute(routeResourceName);
 
     const resourceName = propResourceName ?? resource.name;
-
-    const onButtonClick = () => create(resourceName, "push");
 
     const { data } = useCan({
         resource: resourceName,
@@ -66,7 +65,9 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
 
     return (
         <Button
-            onClick={onButtonClick}
+            onClick={(e): void =>
+                onClick ? onClick(e) : create(resourceName, "push")
+            }
             icon={<PlusSquareOutlined />}
             disabled={data?.can === false}
             title={createButtonDisabledTitle()}

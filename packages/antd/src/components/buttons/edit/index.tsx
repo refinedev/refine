@@ -31,6 +31,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
     hideText = false,
     ignoreAccessControlProvider = false,
     children,
+    onClick,
     ...rest
 }) => {
     const resourceWithRoute = useResourceWithRoute();
@@ -71,9 +72,9 @@ export const EditButton: React.FC<EditButtonProps> = ({
 
     return (
         <Button
-            onClick={(): void => {
-                edit(resourceName, id!);
-            }}
+            onClick={(e): void =>
+                onClick ? onClick(e) : edit(resourceName, id!)
+            }
             icon={<EditOutlined />}
             disabled={data?.can === false}
             title={createButtonDisabledTitle()}

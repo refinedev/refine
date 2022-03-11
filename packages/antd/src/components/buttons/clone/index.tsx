@@ -31,6 +31,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     hideText = false,
     ignoreAccessControlProvider = false,
     children,
+    onClick,
     ...rest
 }) => {
     const resourceWithRoute = useResourceWithRoute();
@@ -49,10 +50,6 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     const resourceName = propResourceName ?? resource.name;
 
     const id = recordItemId ?? idFromRoute;
-
-    const onButtonClick = () => {
-        clone(resourceName, id!);
-    };
 
     const { data } = useCan({
         resource: resourceName,
@@ -75,7 +72,9 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
 
     return (
         <Button
-            onClick={onButtonClick}
+            onClick={(e): void =>
+                onClick ? onClick(e) : clone(resourceName, id!)
+            }
             icon={<PlusSquareOutlined />}
             disabled={data?.can === false}
             title={createButtonDisabledTitle()}
