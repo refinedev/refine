@@ -32,6 +32,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     metaData,
     dataProviderName,
     children,
+    onClick,
     ...rest
 }) => {
     const translate = useTranslate();
@@ -61,8 +62,8 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
 
     return (
         <Button
+            onClick={(e) => (onClick ? onClick(e) : refetch())}
             icon={<RedoOutlined spin={isFetching} />}
-            onClick={() => refetch()}
             {...rest}
         >
             {!hideText && (children ?? translate("buttons.refresh", "Refresh"))}
