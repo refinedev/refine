@@ -6,7 +6,7 @@ import { useGetIdentity } from "@hooks/auth";
 import { AuditLogEvent } from "../../../interfaces";
 
 export const useLogEvent = (): ((params: AuditLogEvent) => void) => {
-    const liveContext = useContext(AuditLogContext);
+    const auditLogContext = useContext(AuditLogContext);
     const { resources } = useContext(ResourceContext);
     const { data: identityData, refetch, isLoading } = useGetIdentity();
 
@@ -27,7 +27,7 @@ export const useLogEvent = (): ((params: AuditLogEvent) => void) => {
                         authorData = await refetch();
                     }
 
-                    liveContext?.logEvent({
+                    auditLogContext?.logEvent({
                         ...params,
                         author: identityData ?? authorData?.data,
                     });
