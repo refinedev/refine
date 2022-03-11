@@ -193,6 +193,7 @@ export const MyDeleteComponent = () => {
 };
 ```
 
+
 ### `ignoreAccessControlProvider`
 
 It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/core/components/refine-config.md)
@@ -205,6 +206,23 @@ export const MyListComponent = () => {
 };
 ```
 
+## How to override confirm texts?
+
+You can change the text that appears when you confirm a transaction with `confirmTitle` prop, as well as what ok and cancel buttons text look like with `confirmOkText` and `confirmCancelText` props.
+
+```tsx 
+import { DeleteButton } from "@pankod/refine-antd";
+
+export const MyDeleteComponent = () => {
+    return (
+        <DeleteButton
+            confirmTitle="Title"
+            confirmOkText="Ok Text"
+            confirmCancelText="Delete Text"
+        />
+    );
+};
+```
 ## API Reference
 
 ### Properties
@@ -217,6 +235,9 @@ export const MyListComponent = () => {
 | onSuccess                   | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful | `(value: DeleteOneResponse) => void`                                                                                        |                                                                                      |
 | mutationMode                | Determines when mutations are executed.                                                      | `"pessimistic"` \| `"optimistic"` \| `"undoable"`                                                                           |                                                                                      |
 | hideText                    | Allows to hide button text                                                                   | `boolean`                                                                                                                   | `false`                                                                              |
+| confirmTitle                | The title of the confirmation box                                                            | `string`                                                                                                                    | `"Are you sure?"`                                                                        |
+| confirmOkText               | The text of the Confirm button                                                               | `string`                                                                                                                    | `"Delete"`                                                                                | 
+| confirmCancelText           | The text of the Cancel button                                                                | `string`                                                                                                                    | `"Cancel"`                                                                 |
 | children                    | Sets the button text                                                                         | `ReactNode`                                                                                                                 | `"Delete"`                                                                           |
 | ignoreAccessControlProvider | Skip access control                                                                          | `boolean`                                                                                                                   | `false`                                                                              |
 | icon                        | Sets the icon component of the button                                                        | `ReactNode`                                                                                                                 | [`<DeleteOutlined />`](https://ant.design/components/icon/)                          |
