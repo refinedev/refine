@@ -7,6 +7,7 @@ import {
     HttpError,
     UseSelectProps,
     useSelect,
+    BaseKey,
 } from "@pankod/refine-core";
 
 export type UseCheckboxGroupReturnType<TData extends BaseRecord = BaseRecord> =
@@ -27,7 +28,7 @@ export type UseCheckboxGroupReturnType<TData extends BaseRecord = BaseRecord> =
 type UseCheckboxGroupProps<TData, TError> = Omit<
     UseSelectProps<TData, TError>,
     "defaultValue"
-> & { defaultValue?: string[] | number[] };
+> & { defaultValue?: BaseKey[] };
 
 export const useCheckboxGroup = <
     TData extends BaseRecord = BaseRecord,
