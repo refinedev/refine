@@ -90,7 +90,7 @@ const { checkboxGroupProps } = useCheckboxGroup({
 const { selectProps } = useCheckboxGroup({
     resource: "languages",
 // highlight-next-line
-    defaultValue: ["1","2"],
+    defaultValue: [1, 2],
 });
 ```
 The easiest way to selecting a default values for checkbox fields is by passing in `defaultValue`.
@@ -155,7 +155,7 @@ const { selectProps } = useCheckboxGroup({
 });
 ```
 
-Amount of records to fetch in radio group buttons.
+Amount of records to fetch in checkboxes.
 ### `queryOptions`
 
 ```tsx
@@ -180,6 +180,7 @@ const { checkboxGroupProps } = useCheckboxGroup({
 | Property                                                                                            | Description                                                                         | Type                                                           | Default   |
 | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------- | --------- |
 | <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                             | `string`                                                       |           |
+| defaultValue                                                                                        | Sets the default value                                                              | [`BaseKey[]`](/core/interfaces.md#basekey)                       |           |
 | optionValue                                                                                         | Sets the option's value                                                             | `string`                                                       | `"id"`    |
 | optionLabel                                                                                         | Sets the option's label value                                                       | `string`                                                       | `"title"` |
 | filters                                                                                             | Adds filters while fetching the data                                                | [`CrudFilters`](/core/interfaces.md#crudfilters)               |           |
