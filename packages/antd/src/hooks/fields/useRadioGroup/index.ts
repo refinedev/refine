@@ -1,31 +1,14 @@
-import { RadioGroupProps } from "antd/lib/radio";
-import { QueryObserverResult, UseQueryOptions } from "react-query";
+import { QueryObserverResult } from "react-query";
 
+import { RadioGroupProps } from "antd/lib/radio";
 import {
-    CrudSorting,
+    BaseKey,
     BaseRecord,
     GetListResponse,
-    CrudFilters,
-    SuccessErrorNotification,
     HttpError,
-    MetaDataQuery,
-    LiveModeProps,
-    useList,
-    Option,
+    useSelect,
+    UseSelectProps,
 } from "@pankod/refine-core";
-import { useState } from "react";
-
-export type useRadioGroupProps<TData, TError> = RadioGroupProps & {
-    resource: string;
-    optionLabel?: string;
-    optionValue?: string;
-    sort?: CrudSorting;
-    filters?: CrudFilters;
-    queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
-    metaData?: MetaDataQuery;
-    dataProviderName?: string;
-} & SuccessErrorNotification &
-    LiveModeProps;
 
 export type UseRadioGroupReturnType<TData extends BaseRecord = BaseRecord> = {
     radioGroupProps: RadioGroupProps;
@@ -41,6 +24,11 @@ export type UseRadioGroupReturnType<TData extends BaseRecord = BaseRecord> = {
  *
  */
 
+type UseRadioGroupProps<TData, TError> = Omit<
+    UseSelectProps<TData, TError>,
+    "defaultValue"
+> & { defaultValue?: BaseKey };
+
 export const useRadioGroup = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -48,44 +36,27 @@ export const useRadioGroup = <
     resource,
     sort,
     filters,
-    optionLabel = "title",
-    optionValue = "id",
-    successNotification,
-    errorNotification,
+    optionLabel,
+    optionValue,
     queryOptions,
+    fetchSize,
     liveMode,
+    defaultValue,
     onLiveEvent,
     liveParams,
     metaData,
     dataProviderName,
-}: useRadioGroupProps<TData, TError>): UseRadioGroupReturnType<TData> => {
-    const [options, setOptions] = useState<Option[]>([]);
-
-    const defaultQueryOnSuccess = (data: GetListResponse<TData>) => {
-        setOptions(() =>
-            data.data.map((item) => ({
-                label: item[optionLabel],
-                value: item[optionValue],
-            })),
-        );
-    };
-
-    const queryResult = useList<TData, TError>({
+}: UseRadioGroupProps<TData, TError>): UseRadioGroupReturnType<TData> => {
+    const { queryResult, options } = useSelect({
         resource,
-        config: {
-            sort,
-            filters,
-        },
-        queryOptions: {
-            ...queryOptions,
-            onSuccess: (data) => {
-                defaultQueryOnSuccess(data);
-                queryOptions?.onSuccess?.(data);
-            },
-        },
-        successNotification,
-        errorNotification,
+        sort,
+        filters,
+        optionLabel,
+        optionValue,
+        queryOptions,
+        fetchSize,
         liveMode,
+        defaultValue,
         onLiveEvent,
         liveParams,
         metaData,
@@ -95,6 +66,7 @@ export const useRadioGroup = <
     return {
         radioGroupProps: {
             options,
+            defaultValue,
         },
         queryResult,
     };
