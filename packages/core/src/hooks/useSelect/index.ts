@@ -15,6 +15,7 @@ import {
     HttpError,
     MetaDataQuery,
     LiveModeProps,
+    BaseKey,
 } from "../../interfaces";
 
 export type UseSelectProps<TData, TError> = {
@@ -23,7 +24,7 @@ export type UseSelectProps<TData, TError> = {
     optionValue?: string;
     sort?: CrudSorting;
     filters?: CrudFilters;
-    defaultValue?: string | string[] | number | number[];
+    defaultValue?: BaseKey | BaseKey[];
     debounce?: number;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     fetchSize?: number;
