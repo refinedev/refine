@@ -3,7 +3,7 @@ id: javascript
 title: JavaScript
 ---
 
-Refine supports you to develop with JavaScript. All features of **refine** can be used with JavaScript. In our example below, we developed the refine-tutorial sample application entirely with JavaScript. You can learn more by following the live example.
+Refine supports you to develop with JavaScript. All features of **refine** can be used with JavaScript. In our example below, we developed the [refine-tutorial](/docs/examples/tutorial/) sample application entirely with JavaScript. You can learn more by following the live example.
 
 [View **refine** JavaScript Example Source](https://github.com/pankod/refine/tree/master/examples/javascript)
 
