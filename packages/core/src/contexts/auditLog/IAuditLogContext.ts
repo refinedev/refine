@@ -1,3 +1,10 @@
+import {
+    CrudFilters,
+    CrudSorting,
+    MetaDataQuery,
+    Pagination,
+} from "../../interfaces";
+
 export type AuditLogEvent = {
     resource: string;
     action: string;
@@ -13,7 +20,13 @@ export type AuditLogEvent = {
 export type IAuditLogContext =
     | {
           logEvent: (params: AuditLogEvent) => void;
-          list: () => Promise<any>;
+          list: (params: {
+              resource: string;
+              pagination?: Pagination;
+              sort?: CrudSorting;
+              filters?: CrudFilters;
+              metaData?: MetaDataQuery;
+          }) => Promise<any>;
       }
     | undefined;
 
