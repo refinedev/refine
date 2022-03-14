@@ -3,7 +3,9 @@ id: customTheme
 title: Theme
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/customTheme)
+You can customize design and theme in your project with **refine**. In this example, we have created an example application by customizing the default theme of **refine**. You can easily customize your theme as you wish in your refine project.
+
+[View Custom Theme Example Source](https://github.com/pankod/refine/tree/master/examples/customTheme)
 
 <iframe src="https://codesandbox.io/embed/refine-custom-theme-example-142fb?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
