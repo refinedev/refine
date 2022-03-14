@@ -1,7 +1,14 @@
 import React, { useState } from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps, useNavigation } from "@pankod/refine-core";
 
-import { Edit, Form, Input, Select } from "@pankod/refine-antd";
+import {
+    Button,
+    Edit,
+    Form,
+    Input,
+    SaveButton,
+    Select,
+} from "@pankod/refine-antd";
 
 import { useForm, useSelect } from "@pankod/refine-antd";
 
@@ -13,9 +20,15 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
-        warnWhenUnsavedChanges: true,
-    });
+    const { formProps, saveButtonProps, queryResult, onFinish, redirect } =
+        useForm<IPost>({
+            warnWhenUnsavedChanges: true,
+            mutationMode: "pessimistic",
+            onMutationSuccess: () => {
+                console.log("Mutation success");
+            },
+            redirect: false,
+        });
 
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -27,7 +40,26 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         useState<"write" | "preview">("write");
 
     return (
-        <Edit saveButtonProps={saveButtonProps}>
+        <Edit
+            saveButtonProps={saveButtonProps}
+            actionButtons={
+                <>
+                    <SaveButton
+                        onClick={async () => {
+                            await onFinish?.();
+                        }}
+                    >
+                        Save and continue editing
+                    </SaveButton>
+                    <SaveButton
+                        onClick={async () => {
+                            await onFinish?.();
+                            redirect("show");
+                        }}
+                    />
+                </>
+            }
+        >
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"

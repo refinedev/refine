@@ -33,6 +33,7 @@ export type UseFormReturnType<
     saveButtonProps: ButtonProps & {
         onClick: () => void;
     };
+    onFinish: (values?: TVariables) => Promise<void>;
 };
 
 /**
@@ -151,5 +152,8 @@ export const useForm = <
         },
         saveButtonProps,
         ...useFormCoreResult,
+        onFinish: async (values?: TVariables) => {
+            return await onFinish?.(values ?? formSF.form.getFieldsValue(true));
+        },
     };
 };
