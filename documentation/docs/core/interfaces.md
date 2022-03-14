@@ -53,7 +53,8 @@ title: Interface References
 | `"ncontainss"` | Doesn't contain, case sensitive |
 | `"between"`    | Between                         |
 | `"nbetween"`   | Doesn't between                 |
-| `"null"`       | Is null or not null             |
+| `"null"`       | Is null                         |
+| `"nnull"`      | Is not null                     |
 
 ## CrudSorting
 
