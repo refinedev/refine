@@ -4,11 +4,12 @@ import { TestWrapper } from "@test";
 import { useLogEvent } from "./";
 import { AuditLogEvent } from "../../../interfaces";
 
-const logEventhMock = jest.fn();
+const logEventMock = jest.fn();
+const logListMock = jest.fn();
 
 describe("useLogEvent Hook", () => {
     beforeEach(() => {
-        logEventhMock.mockReset();
+        logEventMock.mockReset();
     });
 
     it("should called logEvent if include permissions", async () => {
@@ -16,7 +17,8 @@ describe("useLogEvent Hook", () => {
             wrapper: TestWrapper({
                 resources: [{ name: "posts", auditLogPermissions: ["create"] }],
                 auditLogProvider: {
-                    logEvent: logEventhMock,
+                    logEvent: logEventMock,
+                    list: logListMock,
                 },
             }),
         });
@@ -31,8 +33,8 @@ describe("useLogEvent Hook", () => {
 
         logEvent(logEventPayload);
 
-        expect(logEventhMock).toBeCalledWith(logEventPayload);
-        expect(logEventhMock).toBeCalledTimes(1);
+        expect(logEventMock).toBeCalledWith(logEventPayload);
+        expect(logEventMock).toBeCalledTimes(1);
     });
 
     it("should not called logEvent if no includes permissions", async () => {
@@ -40,7 +42,8 @@ describe("useLogEvent Hook", () => {
             wrapper: TestWrapper({
                 resources: [{ name: "posts", auditLogPermissions: ["create"] }],
                 auditLogProvider: {
-                    logEvent: logEventhMock,
+                    logEvent: logEventMock,
+                    list: logListMock,
                 },
             }),
         });
@@ -55,7 +58,7 @@ describe("useLogEvent Hook", () => {
 
         logEvent(logEventPayload);
 
-        expect(logEventhMock).not.toBeCalled();
+        expect(logEventMock).not.toBeCalled();
     });
 
     it("should not called logEvent if no exist auditLogPermissions", async () => {
@@ -63,7 +66,8 @@ describe("useLogEvent Hook", () => {
             wrapper: TestWrapper({
                 resources: [{ name: "posts" }],
                 auditLogProvider: {
-                    logEvent: logEventhMock,
+                    logEvent: logEventMock,
+                    list: logListMock,
                 },
             }),
         });
@@ -78,7 +82,7 @@ describe("useLogEvent Hook", () => {
 
         logEvent(logEventPayload);
 
-        expect(logEventhMock).not.toBeCalled();
+        expect(logEventMock).not.toBeCalled();
     });
 
     it("should called logEvent every action if permisson is `*`", async () => {
@@ -86,7 +90,8 @@ describe("useLogEvent Hook", () => {
             wrapper: TestWrapper({
                 resources: [{ name: "posts", auditLogPermissions: ["*"] }],
                 auditLogProvider: {
-                    logEvent: logEventhMock,
+                    logEvent: logEventMock,
+                    list: logListMock,
                 },
             }),
         });
@@ -101,8 +106,8 @@ describe("useLogEvent Hook", () => {
 
         logEvent(logEventPayload);
 
-        expect(logEventhMock).toBeCalledWith(logEventPayload);
-        expect(logEventhMock).toBeCalledTimes(1);
+        expect(logEventMock).toBeCalledWith(logEventPayload);
+        expect(logEventMock).toBeCalledTimes(1);
 
         const logEventPayload2: AuditLogEvent = {
             action: "createMany",
@@ -112,8 +117,8 @@ describe("useLogEvent Hook", () => {
 
         logEvent(logEventPayload2);
 
-        expect(logEventhMock).toBeCalledWith(logEventPayload2);
-        expect(logEventhMock).toBeCalledTimes(2);
+        expect(logEventMock).toBeCalledWith(logEventPayload2);
+        expect(logEventMock).toBeCalledTimes(2);
     });
 
     it("should not called logEvent if resources no match", async () => {
@@ -123,7 +128,8 @@ describe("useLogEvent Hook", () => {
                     { name: "categories", auditLogPermissions: ["update"] },
                 ],
                 auditLogProvider: {
-                    logEvent: logEventhMock,
+                    logEvent: logEventMock,
+                    list: logListMock,
                 },
             }),
         });
@@ -138,6 +144,6 @@ describe("useLogEvent Hook", () => {
 
         logEvent(logEventPayload);
 
-        expect(logEventhMock).not.toBeCalled();
+        expect(logEventMock).not.toBeCalled();
     });
 });
