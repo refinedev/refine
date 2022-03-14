@@ -3,9 +3,9 @@ id: customSider
 title: Custom Sider
 ---
 
-In your **refine** project, you can modify the design in a few simple steps. With **refine**, you can completely customize your layout to your prefrence. This example goes through how to add a custom footer in your **refine** project.
+Creating your own `Sider Menu` with **refine** is quite simple. We have customize the default **refine** Sider Menu in this example. You can customize the sider menu of your **refine** project based examine this sample.
 
-[View Custom Footer Example Source](https://github.com/pankod/refine/tree/master/examples/customization/customSider)
+[View Custom Sider Example Source](https://github.com/pankod/refine/tree/master/examples/customization/customSider)
 
 <iframe src="https://codesandbox.io/embed/refine-custom-sider-example-g6l9n?autoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
