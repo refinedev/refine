@@ -10,6 +10,10 @@ export const useLogEvent = (): ((params: AuditLogEvent) => void) => {
     const { resources } = useContext(ResourceContext);
     const { data: identityData, refetch, isLoading } = useGetIdentity();
 
+    if (!auditLogContext) {
+        throw new Error("auditLogContext is not defined");
+    }
+
     const logEvent = useCallback(
         async (params: AuditLogEvent) => {
             const auditLogPermissions = resources.find(
@@ -27,7 +31,7 @@ export const useLogEvent = (): ((params: AuditLogEvent) => void) => {
                         authorData = await refetch();
                     }
 
-                    auditLogContext?.logEvent({
+                    auditLogContext.logEvent({
                         ...params,
                         author: identityData ?? authorData?.data,
                     });

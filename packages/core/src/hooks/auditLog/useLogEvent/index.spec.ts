@@ -13,7 +13,7 @@ describe("useLogEvent Hook", () => {
     });
 
     it("should called logEvent if include permissions", async () => {
-        const { result } = renderHook(() => useLogEvent(), {
+        const { result, waitForNextUpdate } = renderHook(() => useLogEvent(), {
             wrapper: TestWrapper({
                 resources: [{ name: "posts", auditLogPermissions: ["create"] }],
                 auditLogProvider: {
@@ -32,6 +32,8 @@ describe("useLogEvent Hook", () => {
         };
 
         logEvent(logEventPayload);
+
+        await waitForNextUpdate();
 
         expect(logEventMock).toBeCalledWith(logEventPayload);
         expect(logEventMock).toBeCalledTimes(1);
@@ -86,7 +88,7 @@ describe("useLogEvent Hook", () => {
     });
 
     it("should called logEvent every action if permisson is `*`", async () => {
-        const { result } = renderHook(() => useLogEvent(), {
+        const { result, waitForNextUpdate } = renderHook(() => useLogEvent(), {
             wrapper: TestWrapper({
                 resources: [{ name: "posts", auditLogPermissions: ["*"] }],
                 auditLogProvider: {
@@ -106,6 +108,8 @@ describe("useLogEvent Hook", () => {
 
         logEvent(logEventPayload);
 
+        await waitForNextUpdate();
+
         expect(logEventMock).toBeCalledWith(logEventPayload);
         expect(logEventMock).toBeCalledTimes(1);
 
@@ -116,6 +120,8 @@ describe("useLogEvent Hook", () => {
         };
 
         logEvent(logEventPayload2);
+
+        await waitForNextUpdate();
 
         expect(logEventMock).toBeCalledWith(logEventPayload2);
         expect(logEventMock).toBeCalledTimes(2);
