@@ -14,7 +14,7 @@ export const useLogEvent = (): ((params: AuditLogEvent) => void) => {
         async (params: AuditLogEvent) => {
             const auditLogPermissions = resources.find(
                 (p) => p.name === params.resource,
-            )?.auditLogPermissions;
+            )?.options?.auditLogPermissions;
 
             if (auditLogPermissions) {
                 const shouldAuditLog = auditLogPermissions.find(

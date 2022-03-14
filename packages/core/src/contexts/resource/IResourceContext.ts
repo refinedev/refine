@@ -20,6 +20,7 @@ export interface IResourceContext {
 export interface OptionsProps {
     label?: string;
     route?: string;
+    auditLogPermissions?: AuditLogPermissions[number][] | string[];
     [key: string]: any;
 }
 
@@ -28,7 +29,6 @@ export interface ResourceProps extends IResourceComponents {
     canDelete?: boolean;
     icon?: ReactNode;
     options?: OptionsProps;
-    auditLogPermissions?: AuditLogPermissions[number][] | string[];
 }
 export interface IResourceComponentsProps<TCrudData = any> {
     canCreate?: boolean;
@@ -56,5 +56,4 @@ export interface IResourceItem extends IResourceComponents {
     canShow?: boolean;
     canDelete?: boolean;
     options?: OptionsProps;
-    auditLogPermissions?: AuditLogPermissions[number][] | string[];
 }

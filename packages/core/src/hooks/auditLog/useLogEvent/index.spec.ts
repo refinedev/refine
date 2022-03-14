@@ -15,7 +15,12 @@ describe("useLogEvent Hook", () => {
     it("should called logEvent if include permissions", async () => {
         const { result, waitForNextUpdate } = renderHook(() => useLogEvent(), {
             wrapper: TestWrapper({
-                resources: [{ name: "posts", auditLogPermissions: ["create"] }],
+                resources: [
+                    {
+                        name: "posts",
+                        options: { auditLogPermissions: ["create"] },
+                    },
+                ],
                 auditLogProvider: {
                     logEvent: logEventMock,
                     list: logListMock,
@@ -42,7 +47,12 @@ describe("useLogEvent Hook", () => {
     it("should not called logEvent if no includes permissions", async () => {
         const { result } = renderHook(() => useLogEvent(), {
             wrapper: TestWrapper({
-                resources: [{ name: "posts", auditLogPermissions: ["create"] }],
+                resources: [
+                    {
+                        name: "posts",
+                        options: { auditLogPermissions: ["create"] },
+                    },
+                ],
                 auditLogProvider: {
                     logEvent: logEventMock,
                     list: logListMock,
@@ -90,7 +100,9 @@ describe("useLogEvent Hook", () => {
     it("should called logEvent every action if permisson is `*`", async () => {
         const { result, waitForNextUpdate } = renderHook(() => useLogEvent(), {
             wrapper: TestWrapper({
-                resources: [{ name: "posts", auditLogPermissions: ["*"] }],
+                resources: [
+                    { name: "posts", options: { auditLogPermissions: ["*"] } },
+                ],
                 auditLogProvider: {
                     logEvent: logEventMock,
                     list: logListMock,
@@ -131,7 +143,10 @@ describe("useLogEvent Hook", () => {
         const { result } = renderHook(() => useLogEvent(), {
             wrapper: TestWrapper({
                 resources: [
-                    { name: "categories", auditLogPermissions: ["update"] },
+                    {
+                        name: "categories",
+                        options: { auditLogPermissions: ["update"] },
+                    },
                 ],
                 auditLogProvider: {
                     logEvent: logEventMock,
