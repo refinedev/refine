@@ -9,7 +9,7 @@ import benchmarkChart from '@site/static/img/getting-started/benchmark.png';
 
 ## What is refine?
 
-<!-- **refine** is a [React](https://reactjs.org/)-based framework for building data-intensive applications in no time :sparkles: Works with any UI framework
+<!-- **refine** is a [React](https://reactjs.org/)-based framework for building internal tools, rapidly. :sparkles: Works with any UI framework
 
 Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to _admin panels_, _B2B applications_ and _dashboards_. -->
 
