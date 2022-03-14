@@ -1,12 +1,12 @@
 {
   "name": "antd-tutorial",
-  "version": "3.6.6",
+  "version": "3.6.7",
   "private": true,
   "dependencies": {
-    "@pankod/refine-antd": "^3.6.6",
-    "@pankod/refine-core": "^3.6.5",
-    "@pankod/refine-react-router": "^3.6.5",
-    "@pankod/refine-simple-rest": "^3.6.5",
+    "@pankod/refine-antd": "^3.6.7",
+    "@pankod/refine-core": "^3.6.7",
+    "@pankod/refine-react-router": "^3.6.7",
+    "@pankod/refine-simple-rest": "^3.6.7",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",

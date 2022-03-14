@@ -1,11 +1,11 @@
 {
   "name": "refine-core-use-select-example",
-  "version": "3.6.5",
+  "version": "3.6.7",
   "private": true,
   "dependencies": {
-    "@pankod/refine-core": "^3.6.5",
-    "@pankod/refine-react-router": "^3.6.5",
-    "@pankod/refine-simple-rest": "^3.6.5",
+    "@pankod/refine-core": "^3.6.7",
+    "@pankod/refine-react-router": "^3.6.7",
+    "@pankod/refine-simple-rest": "^3.6.7",
     "@types/node": "^12.20.11",
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.4",
