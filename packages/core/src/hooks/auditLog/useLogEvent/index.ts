@@ -1,4 +1,5 @@
 import { useCallback, useContext } from "react";
+import { useQueryClient } from "react-query";
 
 import { AuditLogContext } from "@contexts/auditLog";
 import { ResourceContext } from "@contexts/resource";
@@ -6,15 +7,29 @@ import { useGetIdentity } from "@hooks/auth";
 import { AuditLogEvent } from "../../../interfaces";
 
 export const useLogEvent = (): ((params: AuditLogEvent) => void) => {
+    const queryClient = useQueryClient();
     const auditLogContext = useContext(AuditLogContext);
     const { resources } = useContext(ResourceContext);
-    const { data: identityData, refetch, isLoading } = useGetIdentity();
+    const {
+        data: identityData,
+        refetch,
+        isLoading,
+    } = useGetIdentity({
+        queryOptions: {
+            enabled: !!auditLogContext,
+        },
+    });
 
     const logEvent = useCallback(
         async (params: AuditLogEvent) => {
-            const auditLogPermissions = resources.find(
-                (p) => p.name === params.resource,
-            )?.options?.auditLogPermissions;
+            if (!auditLogContext) {
+                return;
+            }
+
+            const resource = resources.find((p) => p.name === params.resource);
+            queryClient.invalidateQueries(["useLogList", resource?.name]);
+
+            const auditLogPermissions = resource?.options?.auditLogPermissions;
 
             if (auditLogPermissions) {
                 const shouldAuditLog = auditLogPermissions.find(
@@ -27,14 +42,14 @@ export const useLogEvent = (): ((params: AuditLogEvent) => void) => {
                         authorData = await refetch();
                     }
 
-                    auditLogContext?.logEvent({
+                    auditLogContext.logEvent?.({
                         ...params,
                         author: identityData ?? authorData?.data,
                     });
                 }
             }
         },
-        [resources, identityData],
+        [resources, identityData, auditLogContext],
     );
 
     return logEvent;

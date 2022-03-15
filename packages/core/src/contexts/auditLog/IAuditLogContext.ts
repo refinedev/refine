@@ -14,7 +14,7 @@ export type AuditLogEvent = {
 
 export type IAuditLogContext =
     | {
-          logEvent: (params: AuditLogEvent) => void;
+          logEvent?: (params: AuditLogEvent) => void;
           list: (params: {
               resource: string;
               params?: { id?: BaseKey; [key: string]: any };

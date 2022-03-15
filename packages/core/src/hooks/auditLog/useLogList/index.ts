@@ -26,7 +26,7 @@ export const useLogList = <TData = any, TError extends HttpError = HttpError>({
     const queryResponse = useQuery<TData, TError>(
         ["useLogList", resource, { ...params, ...metaData }],
         () =>
-            auditLogContext?.list({
+            auditLogContext.list({
                 resource,
                 params,
                 metaData,
