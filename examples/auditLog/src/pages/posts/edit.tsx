@@ -25,6 +25,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = ({
 }) => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
         warnWhenUnsavedChanges: true,
+        redirect: false,
     });
 
     const postData = queryResult?.data?.data;
@@ -41,7 +42,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = ({
             case "create":
                 return "green";
             default:
-                return "blue";
+                return "gray";
         }
     };
 

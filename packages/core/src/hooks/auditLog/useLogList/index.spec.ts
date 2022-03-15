@@ -13,11 +13,7 @@ describe("useLogList Hook", () => {
             () =>
                 useLogList({
                     resource: "posts",
-                    filters: [
-                        { field: "action", operator: "eq", value: "create" },
-                    ],
-                    pagination: { current: 1, pageSize: 10 },
-                    sort: [{ field: "id", order: "asc" }],
+                    params: { id: 1 },
                     metaData: { fields: ["id", "action", "data"] },
                 }),
             {
@@ -32,9 +28,7 @@ describe("useLogList Hook", () => {
 
         expect(logListMock).toBeCalledWith({
             resource: "posts",
-            filters: [{ field: "action", operator: "eq", value: "create" }],
-            pagination: { current: 1, pageSize: 10 },
-            sort: [{ field: "id", order: "asc" }],
+            params: { id: 1 },
             metaData: { fields: ["id", "action", "data"] },
         });
     });

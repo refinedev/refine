@@ -2,28 +2,18 @@ import { useContext } from "react";
 import { useQuery, UseQueryResult, UseQueryOptions } from "react-query";
 
 import { AuditLogContext } from "@contexts/auditLog";
-import {
-    CrudFilters,
-    CrudSorting,
-    HttpError,
-    MetaDataQuery,
-    Pagination,
-} from "../../../interfaces";
+import { BaseKey, HttpError, MetaDataQuery } from "../../../interfaces";
 
 export type UseLogProps<TData, TError> = {
     resource: string;
-    pagination?: Pagination;
-    sort?: CrudSorting;
-    filters?: CrudFilters;
+    params?: { id?: BaseKey; [key: string]: any };
     queryOptions?: UseQueryOptions<TData, TError>;
     metaData?: MetaDataQuery;
 };
 
 export const useLogList = <TData = any, TError extends HttpError = HttpError>({
     resource,
-    filters,
-    pagination,
-    sort,
+    params,
     metaData,
     queryOptions,
 }: UseLogProps<TData, TError>): UseQueryResult<TData> => {
@@ -34,14 +24,12 @@ export const useLogList = <TData = any, TError extends HttpError = HttpError>({
     }
 
     const queryResponse = useQuery<TData, TError>(
-        ["useLogList", resource, { sort, filters, pagination, metaData }],
+        ["useLogList", resource, { ...params, ...metaData }],
         () =>
             auditLogContext?.list({
                 resource,
-                filters,
+                params,
                 metaData,
-                pagination,
-                sort,
             }),
         {
             ...queryOptions,

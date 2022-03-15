@@ -87,7 +87,7 @@ const App: React.FC = () => {
                         variables: params,
                     });
                 },
-                list: ({ resource, filters }) => {
+                list: ({ resource, params }) => {
                     return dataProvider(API_URL).getList({
                         resource: "logs",
                         filters: [
@@ -96,7 +96,11 @@ const App: React.FC = () => {
                                 operator: "eq",
                                 value: resource,
                             },
-                            ...(filters ?? []),
+                            {
+                                field: "data.id",
+                                operator: "eq",
+                                value: params?.id,
+                            },
                         ],
                     });
                 },
