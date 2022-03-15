@@ -6,7 +6,12 @@ import {
     Select,
     useForm,
     useSelect,
+    Timeline,
+    Col,
+    Row,
+    Card,
 } from "@pankod/refine-antd";
+import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
@@ -15,7 +20,9 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostEdit: React.FC = () => {
+export const PostEdit: React.FC<IResourceComponentsProps> = ({
+    logQueryResult,
+}) => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
         warnWhenUnsavedChanges: true,
     });
@@ -29,77 +36,106 @@ export const PostEdit: React.FC = () => {
     const [selectedTab, setSelectedTab] =
         useState<"write" | "preview">("write");
 
+    const getDotColorWithAction = (action: string) => {
+        switch (action) {
+            case "create":
+                return "green";
+            default:
+                return "blue";
+        }
+    };
+
     return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name={["category", "id"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...categorySelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label="Status"
-                    name="status"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select
-                        options={[
-                            {
-                                label: "Published",
-                                value: "published",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
-                            },
-                            {
-                                label: "Rejected",
-                                value: "rejected",
-                            },
-                        ]}
-                    />
-                </Form.Item>
-                <Form.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <ReactMde
-                        selectedTab={selectedTab}
-                        onTabChange={setSelectedTab}
-                        generateMarkdownPreview={(markdown) =>
-                            Promise.resolve(
-                                <ReactMarkdown>{markdown}</ReactMarkdown>,
-                            )
-                        }
-                    />
-                </Form.Item>
-            </Form>
-        </Edit>
+        <Row gutter={16}>
+            <Col span={18}>
+                <Edit saveButtonProps={saveButtonProps}>
+                    <Form {...formProps} layout="vertical">
+                        <Form.Item
+                            label="Title"
+                            name="title"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
+                            label="Category"
+                            name={["category", "id"]}
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Select {...categorySelectProps} />
+                        </Form.Item>
+                        <Form.Item
+                            label="Status"
+                            name="status"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Select
+                                options={[
+                                    {
+                                        label: "Published",
+                                        value: "published",
+                                    },
+                                    {
+                                        label: "Draft",
+                                        value: "draft",
+                                    },
+                                    {
+                                        label: "Rejected",
+                                        value: "rejected",
+                                    },
+                                ]}
+                            />
+                        </Form.Item>
+                        <Form.Item
+                            label="Content"
+                            name="content"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <ReactMde
+                                selectedTab={selectedTab}
+                                onTabChange={setSelectedTab}
+                                generateMarkdownPreview={(markdown) =>
+                                    Promise.resolve(
+                                        <ReactMarkdown>
+                                            {markdown}
+                                        </ReactMarkdown>,
+                                    )
+                                }
+                            />
+                        </Form.Item>
+                    </Form>
+                </Edit>
+            </Col>
+            <Col span={6}>
+                <Card title="History" loading={queryResult?.isLoading}>
+                    <Timeline>
+                        {logQueryResult?.data?.data?.map((log: any) => (
+                            <Timeline.Item
+                                key={log.id}
+                                color={getDotColorWithAction(log.action)}
+                            >
+                                {log.action} by {log.author.name}
+                            </Timeline.Item>
+                        ))}
+                    </Timeline>
+                </Card>
+            </Col>
+        </Row>
     );
 };

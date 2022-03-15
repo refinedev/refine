@@ -61,14 +61,7 @@ const App: React.FC = () => {
                     show: PostShow,
                     canDelete: true,
                     options: {
-                        auditLogPermissions: [
-                            "create",
-                            "delete",
-                            "update",
-                            "createMany",
-                            "updateMany",
-                            "deleteMany",
-                        ],
+                        auditLogPermissions: ["create", "delete", "update"],
                     },
                 },
                 {
@@ -79,14 +72,7 @@ const App: React.FC = () => {
                     show: CategoryShow,
                     canDelete: true,
                     options: {
-                        auditLogPermissions: [
-                            "create",
-                            "delete",
-                            "update",
-                            "createMany",
-                            "updateMany",
-                            "deleteMany",
-                        ],
+                        auditLogPermissions: ["create", "delete", "update"],
                     },
                 },
             ]}
