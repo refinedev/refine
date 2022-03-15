@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Layout, Menu, Grid } from "antd";
 import { RightOutlined, LogoutOutlined } from "@ant-design/icons";
 import {
@@ -15,6 +15,8 @@ import { Title as DefaultTitle } from "@components";
 import { useMenu } from "@hooks";
 
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
+import { IMenuItem, ITreeMenu } from "src";
+const { SubMenu } = Menu;
 
 export const Sider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
@@ -29,6 +31,34 @@ export const Sider: React.FC = () => {
     const isMobile = !breakpoint.lg;
 
     const RenderToTitle = Title ?? DefaultTitle;
+
+    const createTreeView = (location: IMenuItem[]) => {
+        const tree = [];
+        const object = {};
+        let parent: any;
+        let child: any;
+
+        for (let i = 0; i < location.length; i++) {
+            parent = location[i];
+
+            object[parent.name] = parent;
+            object[parent.name]["children"] = [];
+        }
+
+        for (const name in object) {
+            if (object.hasOwnProperty(name)) {
+                child = object[name];
+                if (child.parentName && object[child["parentName"]]) {
+                    object[child["parentName"]]["children"].push(child);
+                } else {
+                    tree.push(child);
+                }
+            }
+        }
+        return tree;
+    };
+
+    const treeMenu: ITreeMenu[] = createTreeView(menuItems);
 
     return (
         <Layout.Sider
@@ -56,8 +86,9 @@ export const Sider: React.FC = () => {
                     push(key as string);
                 }}
             >
-                {menuItems.map(({ icon, label, route, name }) => {
+                {treeMenu.map(({ icon, label, route, name, children }) => {
                     const isSelected = route === selectedKey;
+
                     return (
                         <CanAccess
                             key={route}
