@@ -14,7 +14,7 @@ export interface ResourceProps extends IResourceComponents {
     canDelete?: boolean;
     icon?: ReactNode;
     options?: OptionsProps;
-    subResources?: IResourceItem[];
+    parentName?: string;
 }
 export interface IResourceComponentsProps<TCrudData = any> {
     canCreate?: boolean;
@@ -42,5 +42,5 @@ export interface IResourceItem extends IResourceComponents {
     canShow?: boolean;
     canDelete?: boolean;
     options?: OptionsProps;
-    subResources?: IResourceItem[];
+    parentName?: string;
 }
