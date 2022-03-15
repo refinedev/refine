@@ -171,11 +171,8 @@ export const useForm = <
         mutationResultCreate;
 
     const mutationResultUpdate = useUpdate<TData, TError, TVariables>();
-    const {
-        mutate: mutateUpdate,
-        mutateAsync: mutateAsyncUpdate,
-        isLoading: isLoadingUpdate,
-    } = mutationResultUpdate;
+    const { mutate: mutateUpdate, isLoading: isLoadingUpdate } =
+        mutationResultUpdate;
 
     const { setWarnWhen } = useWarnAboutChange();
 
@@ -239,26 +236,13 @@ export const useForm = <
             });
         };
 
-        if (mutationMode === "pessimistic") {
-            await mutateAsyncUpdate(variables, {
-                onSuccess: (data, _, context) => {
-                    if (onMutationSuccess) {
-                        onMutationSuccess(data, values, context);
-                    }
-
-                    onSuccess();
-                },
-                onError: (error: TError, variables, context) => {
-                    if (onMutationError) {
-                        return onMutationError(error, values, context);
-                    }
-                },
+        // setWarnWhen is set to "false" at the start of the mutation. With the help of setTimeout we guarantee that the value false is set.
+        if (mutationMode !== "pessimistic") {
+            setTimeout(() => {
+                onSuccess();
             });
-
-            return;
         }
 
-        onSuccess();
         // setTimeout is required to make onSuccess e.g. callbacks to work if component unmounts i.e. on route change
         return new Promise<void>((resolve, reject) =>
             setTimeout(() => {
@@ -267,6 +251,11 @@ export const useForm = <
                         if (onMutationSuccess) {
                             onMutationSuccess(data, values, context);
                         }
+
+                        if (mutationMode === "pessimistic") {
+                            onSuccess();
+                        }
+
                         resolve();
                     },
                     onError: (error: TError, variables, context) => {
