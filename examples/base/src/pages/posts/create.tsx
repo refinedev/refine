@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import { Create, Form, Input, Select } from "@pankod/refine-antd";
+import {
+    Create,
+    Form,
+    Input,
+    SaveButton,
+    Select,
+    Space,
+} from "@pankod/refine-antd";
 
 import { useForm, useSelect } from "@pankod/refine-antd";
 
@@ -13,7 +20,7 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "interfaces";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>({
+    const { formProps, saveButtonProps, onFinish, redirect } = useForm<IPost>({
         // warnWhenUnsavedChanges: true,
     });
 
@@ -25,7 +32,31 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
         useState<"write" | "preview">("write");
 
     return (
-        <Create saveButtonProps={saveButtonProps}>
+        <Create
+            actionButtons={
+                <Space>
+                    <SaveButton {...saveButtonProps} onClick={() => onFinish()}>
+                        Save and continue editing
+                    </SaveButton>
+                    <SaveButton
+                        {...saveButtonProps}
+                        onClick={async () => {
+                            await onFinish?.();
+                            redirect("create");
+                        }}
+                    >
+                        Save and add another
+                    </SaveButton>
+                    <SaveButton
+                        {...saveButtonProps}
+                        onClick={async () => {
+                            await onFinish?.();
+                            redirect("show");
+                        }}
+                    />
+                </Space>
+            }
+        >
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"

@@ -77,7 +77,7 @@ export type UseFormReturnType<
         | UseCreateReturnType<TData, TError, TVariables>;
     formLoading: boolean;
     onFinish: (values: TVariables) => Promise<void>;
-    redirect: (redirect: "show" | "list" | "edit" | false) => void;
+    redirect: (redirect: "show" | "list" | "edit" | "create" | false) => void;
 };
 
 /**

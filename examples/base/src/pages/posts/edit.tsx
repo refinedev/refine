@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import { Edit, Form, Input, SaveButton, Select } from "@pankod/refine-antd";
+import {
+    Edit,
+    Form,
+    Input,
+    SaveButton,
+    Select,
+    Space,
+} from "@pankod/refine-antd";
 
 import { useForm, useSelect } from "@pankod/refine-antd";
 
@@ -34,20 +41,28 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Edit
-            saveButtonProps={saveButtonProps}
             actionButtons={
-                <>
-                    <SaveButton
-                        onClick={async () => {
-                            await onFinish?.();
-                            console.log("finished");
-                            redirect("show");
-                        }}
-                    >
+                <Space>
+                    <SaveButton {...saveButtonProps} onClick={() => onFinish()}>
                         Save and continue editing
                     </SaveButton>
-                    <SaveButton {...saveButtonProps} />
-                </>
+                    <SaveButton
+                        {...saveButtonProps}
+                        onClick={async () => {
+                            await onFinish?.();
+                            redirect("create");
+                        }}
+                    >
+                        Save and add another
+                    </SaveButton>
+                    <SaveButton
+                        {...saveButtonProps}
+                        onClick={async () => {
+                            await onFinish?.();
+                            redirect("show");
+                        }}
+                    />
+                </Space>
             }
         >
             <Form {...formProps} layout="vertical">
