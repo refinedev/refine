@@ -1,14 +1,7 @@
 import React, { useState } from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import {
-    Edit,
-    Form,
-    Input,
-    SaveButton,
-    Select,
-    Space,
-} from "@pankod/refine-antd";
+import { Edit, Form, Input, Select } from "@pankod/refine-antd";
 
 import { useForm, useSelect } from "@pankod/refine-antd";
 
@@ -20,15 +13,9 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps, queryResult, onFinish, redirect } =
-        useForm<IPost>({
-            warnWhenUnsavedChanges: true,
-            mutationMode: "optimistic",
-            onMutationSuccess: (data, data2, data3) => {
-                console.log("Mutation success", { data, data2, data3 });
-            },
-            redirect: false,
-        });
+    const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+        warnWhenUnsavedChanges: true,
+    });
 
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -40,31 +27,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         useState<"write" | "preview">("write");
 
     return (
-        <Edit
-            actionButtons={
-                <Space>
-                    <SaveButton {...saveButtonProps} onClick={() => onFinish()}>
-                        Save and continue editing
-                    </SaveButton>
-                    <SaveButton
-                        {...saveButtonProps}
-                        onClick={async () => {
-                            await onFinish?.();
-                            redirect("create");
-                        }}
-                    >
-                        Save and add another
-                    </SaveButton>
-                    <SaveButton
-                        {...saveButtonProps}
-                        onClick={async () => {
-                            await onFinish?.();
-                            redirect("show");
-                        }}
-                    />
-                </Space>
-            }
-        >
+        <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
