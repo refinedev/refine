@@ -129,73 +129,47 @@ export const Refine: React.FC<RefineProps> = ({
 
     const resources: IResourceItem[] = [];
 
-    const handleResources = (
-        resourcesParam?: IResourceItem[],
-        idx?: number,
-    ): IResourceItem[] | undefined => {
-        if (resourcesParam) {
-            resourcesParam.map((resource, index) => {
-                if (resource.subResources) {
-                    resources.push({
-                        name: resource.name,
-                        label: resource.options?.label,
-                        options: resource.options,
-                        subResources: [],
-                    });
-                    resource.subResources?.map((subResource, idx) => {
-                        resources[index].subResources?.push({
-                            name: subResource.name,
-                            label: subResource.options?.label,
-                            icon: subResource.icon,
-                            route:
-                                subResource.options?.route ?? subResource.name,
-                            canCreate: !!subResource.create,
-                            canEdit: !!subResource.edit,
-                            canShow: !!subResource.show,
-                            canDelete: subResource.canDelete,
-                            create: subResource.create,
-                            show: subResource.show,
-                            list: subResource.list,
-                            edit: subResource.edit,
-                            options: subResource.options,
-                            subResources: subResource?.subResources,
-                        });
-                        (resources[index].subResources?.length === 0 &&
-                            idx === index &&
-                            subResource.subResources) ??
-                            handleResources(resource.subResources);
-                        return resources;
-                    });
-                } else {
-                    resources.push({
-                        name: resource.name,
-                        label: resource.options?.label,
-                        icon: resource.icon,
-                        route: resource.options?.route ?? resource.name,
-                        canCreate: !!resource.create,
-                        canEdit: !!resource.edit,
-                        canShow: !!resource.show,
-                        canDelete: resource.canDelete,
-                        create: resource.create,
-                        show: resource.show,
-                        list: resource.list,
-                        edit: resource.edit,
-                        options: resource.options,
-                    });
+    const routeGenerator = (item: ResourceProps): string | undefined => {
+        let route;
 
-                    return resources;
-                }
-            });
-        } else return undefined;
+        if (item.parentName) {
+            const hasParentName = resourcesFromProps?.find(
+                (p) => p.name === item.parentName,
+            );
+
+            if (hasParentName?.parentName) {
+                route = routeGenerator(hasParentName) + `/${item.name}`;
+                routeGenerator(hasParentName);
+            } else if (item.parentName) {
+                route = `${item.parentName}/${item.name}`;
+            }
+        } else {
+            route = item.name;
+        }
+        return route;
     };
 
-    handleResources(resourcesFromProps);
+    resourcesFromProps?.map((resource) => {
+        resources.push({
+            name: resource.name,
+            label: resource.options?.label,
+            icon: resource.icon,
+            route: resource.options?.route ?? routeGenerator(resource),
+            canCreate: !!resource.create,
+            canEdit: !!resource.edit,
+            canShow: !!resource.show,
+            canDelete: resource.canDelete,
+            create: resource.create,
+            show: resource.show,
+            list: resource.list,
+            edit: resource.edit,
+            options: resource.options,
+        });
+    });
 
     if (resources.length === 0) {
         return ReadyPage ? <ReadyPage /> : <DefaultReadyPage />;
     }
-
-    console.log("resources", resources);
 
     const { RouterComponent } = routerProvider;
 
