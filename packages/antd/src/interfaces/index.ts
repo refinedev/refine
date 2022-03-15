@@ -10,6 +10,10 @@ export interface Option {
     value: string;
 }
 
+export type ITreeMenu = IMenuItem & {
+    children: IMenuItem[];
+};
+
 export type IMenuItem = IResourceItem & {
     key: string;
     route: string;
