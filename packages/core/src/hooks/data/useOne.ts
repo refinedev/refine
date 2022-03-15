@@ -86,7 +86,7 @@ export const useOne = <
                 logEvent({
                     action: "getOne",
                     resource,
-                    data,
+                    data: data.data,
                     meta: {
                         id,
                         metaData,

@@ -258,7 +258,7 @@ export const useDelete = <
                 logEvent({
                     action: "delete",
                     resource,
-                    data,
+                    data: data.data,
                     previousData,
                     meta: {
                         id,

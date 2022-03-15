@@ -116,7 +116,7 @@ export const useCreateMany = <
                 });
 
                 logEvent({
-                    action: "createMany",
+                    action: "create",
                     resource,
                     data: response.data,
                 });

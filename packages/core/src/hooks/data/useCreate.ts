@@ -124,7 +124,7 @@ export const useCreate = <
                 logEvent({
                     action: "create",
                     resource,
-                    data,
+                    data: data.data,
                 });
             },
             onError: (

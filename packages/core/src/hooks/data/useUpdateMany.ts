@@ -323,7 +323,7 @@ export const useUpdateMany = <
                 });
 
                 logEvent({
-                    action: "updateMany",
+                    action: "update",
                     resource,
                     data: data.data,
                     previousData,

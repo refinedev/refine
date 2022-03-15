@@ -99,7 +99,7 @@ export const useList = <
                 logEvent({
                     action: "list",
                     resource,
-                    data,
+                    data: data.data,
                     meta: {
                         config,
                         metaData,

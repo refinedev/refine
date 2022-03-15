@@ -8,9 +8,6 @@ const auditLogPermissions = [
     "delete",
     "getOne",
     "getMany",
-    "createMany",
-    "updateMany",
-    "deleteMany",
     "*",
 ] as const;
 type AuditLogPermissions = typeof auditLogPermissions;

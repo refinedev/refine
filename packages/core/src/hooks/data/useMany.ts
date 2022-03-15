@@ -92,7 +92,7 @@ export const useMany = <
                 logEvent({
                     action: "getMany",
                     resource,
-                    data,
+                    data: data.data,
                     meta: {
                         ids,
                         metaData,
