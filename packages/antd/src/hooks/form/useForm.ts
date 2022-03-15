@@ -20,7 +20,6 @@ export type UseFormProps<
 > = UseFormPropsCore<TData, TError, TVariables> & {
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
-    dataProviderName?: string;
 };
 
 export type UseFormReturnType<

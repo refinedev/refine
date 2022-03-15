@@ -16,10 +16,11 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult, onFinish, redirect } =
         useForm<IPost>({
             warnWhenUnsavedChanges: true,
-            mutationMode: "undoable",
+            mutationMode: "optimistic",
             onMutationSuccess: (data, data2, data3) => {
                 console.log("Mutation success", { data, data2, data3 });
             },
+            redirect: false,
         });
 
     const postData = queryResult?.data?.data;
@@ -40,6 +41,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                         onClick={async () => {
                             await onFinish?.();
                             console.log("finished");
+                            redirect("show");
                         }}
                     >
                         Save and continue editing
