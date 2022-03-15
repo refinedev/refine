@@ -126,20 +126,19 @@ export default App;
 These components will receive some properties.
 
 ```tsx title="PostList.tsx"
-interface OptionsProps {
+type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
     label?: string;
     route?: string;
-    [key: string]: any;
 }
 
-interface IResourceComponentsProps<TCrudData = any> {
+interface IResourceComponentsProps<TCrudData = any, TOptionsPropsExtends = { [key: string]: any }> {
     canCreate?: boolean;
     canEdit?: boolean;
     canDelete?: boolean;
     canShow?: boolean;
     name?: string;
     initialData?: TCrudData;
-    options?: OptionsProps;
+    options?: OptionsProps<TOptionsPropsExtends>;
 }
 
 const PostList: React.FC<IResourceComponentsProps> = (props) => {
@@ -252,6 +251,23 @@ Custom route name
 
 :::tip
 You can also pass any type of property into the options object. This property you pass can be recieved from the [useResource](/core/hooks/resource/useResource.md) and [useResourceWithRoute](/core/hooks/resource/useResourceWithRoute.md) hooks as well as the components rendered in the `list`, `create`, `edit` and `show` pages.
+
+```tsx
+type DataType = {
+    id: number;
+    title: string;
+};
+
+//highlight-start
+type OptionType = {
+    yourCustomOption: string;
+};
+//highlight-end
+
+const PostList: React.FC<IResourceComponentsProps<DataType, OptionType>> = (props) => {
+    ...
+}
+```
 :::
 
 <br />

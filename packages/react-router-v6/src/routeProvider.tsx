@@ -147,7 +147,7 @@ export const RouteProvider = () => {
     if (isLoading) {
         return (
             <Routes>
-                <Route />
+                <Route path="*" element={null} />
             </Routes>
         );
     }

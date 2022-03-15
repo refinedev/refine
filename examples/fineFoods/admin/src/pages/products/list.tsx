@@ -46,13 +46,13 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
             productFilters.push({
                 field: "category.id",
                 operator: "in",
-                value: categories,
+                value: categories?.length > 0 ? categories : undefined,
             });
 
             productFilters.push({
                 field: "name",
                 operator: "contains",
-                value: name ? name : null,
+                value: name ? name : undefined,
             });
 
             return productFilters;

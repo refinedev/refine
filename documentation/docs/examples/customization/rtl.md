@@ -3,7 +3,9 @@ id: rtl
 title: RTL (Right to Left)
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/customization/rtl)
+This example shows how to use **refine** to manage and customize the content of your Layout. You may adapt and design your Layout content as you choose by examine this example and the source code.
+
+[View RTL Example Source](https://github.com/pankod/refine/tree/master/examples/customization/rtl)
 
 <iframe src="https://codesandbox.io/embed/refine-rtl-example-nd7u6?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}

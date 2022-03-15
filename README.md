@@ -19,7 +19,7 @@
 </div>
 <br/>
 
-<div align="center"><strong>refine</strong> is a <a href="https://reactjs.org/">React</a>-based framework for building data-intensive applications in no time ✨ It ships with <a href="https://ant.design/">Ant Design System</a>, an enterprise-level UI toolkit.</div>
+<div align="center"><strong>refine</strong> is a <a href="https://reactjs.org/">React</a>-based framework for building internal tools, rapidly. ✨ It ships with <a href="https://ant.design/">Ant Design System</a>, an enterprise-level UI toolkit.</div>
 
 <br />
 
@@ -55,7 +55,7 @@ For more detailed information and usage, refer to the [refine documentation](htt
 
 ## What is refine?
 
-**refine** is a [React](https://reactjs.org/)-based framework for building data-intensive applications in no time :sparkles: It ships with [Ant Design System](https://ant.design/), an enterprise-level UI toolkit.
+**refine** is a [React](https://reactjs.org/)-based framework for building internal tools, rapidly. :sparkles: It ships with [Ant Design System](https://ant.design/), an enterprise-level UI toolkit.
 
 Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to _admin panels_, _B2B applications_ and _dashboards_.
 

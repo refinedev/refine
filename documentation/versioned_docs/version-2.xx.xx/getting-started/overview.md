@@ -9,7 +9,7 @@ import benchmarkChart from '@site/static/img/getting-started/benchmark.png';
 
 ## What is refine?
 
-**refine** is a [React](https://reactjs.org/)-based framework for building data-intensive applications in no time :sparkles: It ships with [Ant Design System](https://ant.design/), an enterprise-level UI toolkit.
+**refine** is a [React](https://reactjs.org/)-based framework for building internal tools, rapidly. :sparkles: It ships with [Ant Design System](https://ant.design/), an enterprise-level UI toolkit.
 
 Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to _admin panels_, _B2B applications_ and _dashboards_.
 

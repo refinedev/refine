@@ -160,6 +160,7 @@ export const useForm = <
         onLiveEvent,
         liveParams,
         metaData,
+        dataProviderName,
     });
 
     const { isFetching: isFetchingQuery } = queryResult;

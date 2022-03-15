@@ -29,6 +29,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
     hideText = false,
     ignoreAccessControlProvider = false,
     children,
+    onClick,
     ...rest
 }) => {
     const resourceWithRoute = useResourceWithRoute();
@@ -64,7 +65,9 @@ export const ListButton: React.FC<ListButtonProps> = ({
 
     return (
         <Button
-            onClick={(): void => list(resourceName, "push")}
+            onClick={(e): void =>
+                onClick ? onClick(e) : list(resourceName, "push")
+            }
             icon={<BarsOutlined />}
             disabled={data?.can === false}
             title={createButtonDisabledTitle()}
