@@ -164,6 +164,7 @@ export const Refine: React.FC<RefineProps> = ({
             list: resource.list,
             edit: resource.edit,
             options: resource.options,
+            parentName: resource.parentName,
         });
     });
 
