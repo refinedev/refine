@@ -126,20 +126,19 @@ export default App;
 These components will receive some properties.
 
 ```tsx title="PostList.tsx"
-interface OptionsProps {
+type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
     label?: string;
     route?: string;
-    [key: string]: any;
 }
 
-interface IResourceComponentsProps<TCrudData = any> {
+interface IResourceComponentsProps<TCrudData = any, TOptionsPropsExtends = { [key: string]: any }> {
     canCreate?: boolean;
     canEdit?: boolean;
     canDelete?: boolean;
     canShow?: boolean;
     name?: string;
     initialData?: TCrudData;
-    options?: OptionsProps;
+    options?: OptionsProps<TOptionsPropsExtends>;
 }
 
 const PostList: React.FC<IResourceComponentsProps> = (props) => {
