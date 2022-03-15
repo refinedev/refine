@@ -30,6 +30,7 @@ import {
 } from "@contexts/notification";
 import { AuditLogContextProvider } from "@contexts/auditLog";
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
+import { withAuditLogs } from "../withAuditLogs";
 import {
     MutationMode,
     IDataContextProvider,
@@ -143,12 +144,19 @@ export const Refine: React.FC<RefineProps> = ({
             canEdit: !!resource.edit,
             canShow: !!resource.show,
             canDelete: resource.canDelete,
-            create: resource.create,
-            show: resource.show,
-            list: resource.list,
-            edit: resource.edit,
+            create: resource.create
+                ? () => withAuditLogs(resource.create)
+                : undefined,
+            show: resource.show
+                ? () => withAuditLogs(resource.show)
+                : undefined,
+            list: resource.list
+                ? () => withAuditLogs(resource.list)
+                : undefined,
+            edit: resource.edit
+                ? () => withAuditLogs(resource.edit)
+                : undefined,
             options: resource.options,
-            auditLogPermissions: resource.auditLogPermissions,
         });
     });
 

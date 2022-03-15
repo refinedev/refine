@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { UseQueryResult } from "react-query";
 
 const auditLogPermissions = [
     "list",
@@ -38,6 +39,7 @@ export interface IResourceComponentsProps<TCrudData = any> {
     name?: string;
     initialData?: TCrudData;
     options?: OptionsProps;
+    logQueryResult?: UseQueryResult<any>; //TODO: define type
 }
 export interface IResourceComponents {
     list?: React.FunctionComponent<IResourceComponentsProps>;
