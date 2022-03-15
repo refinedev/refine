@@ -259,22 +259,25 @@ export const useForm = <
         }
 
         onSuccess();
-
         // setTimeout is required to make onSuccess e.g. callbacks to work if component unmounts i.e. on route change
-        setTimeout(() => {
-            mutateUpdate(variables, {
-                onSuccess: (data, _, context) => {
-                    if (onMutationSuccess) {
-                        onMutationSuccess(data, values, context);
-                    }
-                },
-                onError: (error: TError, variables, context) => {
-                    if (onMutationError) {
-                        return onMutationError(error, values, context);
-                    }
-                },
-            });
-        });
+        return new Promise<void>((resolve, reject) =>
+            setTimeout(() => {
+                mutateUpdate(variables, {
+                    onSuccess: (data, _, context) => {
+                        if (onMutationSuccess) {
+                            onMutationSuccess(data, values, context);
+                        }
+                        resolve();
+                    },
+                    onError: (error: TError, variables, context) => {
+                        if (onMutationError) {
+                            return onMutationError(error, values, context);
+                        }
+                        reject();
+                    },
+                });
+            }),
+        );
     };
 
     const createResult = {
@@ -297,7 +300,6 @@ export const useForm = <
         id,
         setId,
         redirect: (redirect) => {
-            console.log("redirect", redirect);
             handleSubmitWithRedirect({
                 redirect:
                     redirect !== undefined

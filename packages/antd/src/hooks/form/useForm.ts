@@ -72,14 +72,6 @@ export const useForm = <
     TError,
     TVariables
 > => {
-    const onMutationSuccess: typeof onMutationSuccessProp = (
-        data,
-        values,
-        context,
-    ) => {
-        onMutationSuccessProp?.(data, values, context);
-    };
-
     const [formAnt] = Form.useForm();
     const formSF = useFormSF<TData, TVariables>({
         form: formAnt,
@@ -87,7 +79,9 @@ export const useForm = <
     const { form } = formSF;
 
     const useFormCoreResult = useFormCore<TData, TError, TVariables>({
-        onMutationSuccess,
+        onMutationSuccess: onMutationSuccessProp
+            ? onMutationSuccessProp
+            : undefined,
         onMutationError,
         redirect,
         action,

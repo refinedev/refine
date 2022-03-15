@@ -1,14 +1,7 @@
 import React, { useState } from "react";
-import { IResourceComponentsProps, useNavigation } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@pankod/refine-core";
 
-import {
-    Button,
-    Edit,
-    Form,
-    Input,
-    SaveButton,
-    Select,
-} from "@pankod/refine-antd";
+import { Edit, Form, Input, SaveButton, Select } from "@pankod/refine-antd";
 
 import { useForm, useSelect } from "@pankod/refine-antd";
 
@@ -23,11 +16,10 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult, onFinish, redirect } =
         useForm<IPost>({
             warnWhenUnsavedChanges: true,
-            mutationMode: "pessimistic",
-            onMutationSuccess: () => {
-                console.log("Mutation success");
+            mutationMode: "undoable",
+            onMutationSuccess: (data, data2, data3) => {
+                console.log("Mutation success", { data, data2, data3 });
             },
-            redirect: false,
         });
 
     const postData = queryResult?.data?.data;
@@ -47,16 +39,12 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                     <SaveButton
                         onClick={async () => {
                             await onFinish?.();
+                            console.log("finished");
                         }}
                     >
                         Save and continue editing
                     </SaveButton>
-                    <SaveButton
-                        onClick={async () => {
-                            await onFinish?.();
-                            redirect("show");
-                        }}
-                    />
+                    <SaveButton {...saveButtonProps} />
                 </>
             }
         >
