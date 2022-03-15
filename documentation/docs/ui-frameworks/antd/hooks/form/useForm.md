@@ -132,14 +132,14 @@ const { clone } = useNavigation();
 ## How can I implement the save and continue feature?
 Refine provides you with the necessary methods to add this feature. This feature is familiar to [Django](https://www.djangoproject.com/) users.
 
-We have three save options: "Save", "Save and continue editing" and "Save and add another". By default, only the "Save" button is added for now. 
+We have three save options: `Save`, `Save and continue editing` and `Save and add another`. By default, only the `Save` button is added from [CRUD components](/ui-frameworks/antd/components/basic-views/create/) for now. 
 
 Now let's see how to handle other cases,
 
 ```tsx title="pages/posts/create.tsx"
 import { Edit, Form, Input, useForm, Select, Space } from "@pankod/refine-antd";
 
-export const PostCreate: React.FC = () => {
+export const PostEdit: React.FC = () => {
     const { 
         formProps,
         saveButtonProps,
@@ -163,7 +163,7 @@ export const PostCreate: React.FC = () => {
                             redirect("list");
                         }}
                     />
-                    <SaveButton {...saveButtonProps} onClick={() => onFinish()}>
+                    <SaveButton {...saveButtonProps}>
                         Save and continue editing
                     </SaveButton>
                     <SaveButton {...saveButtonProps}
