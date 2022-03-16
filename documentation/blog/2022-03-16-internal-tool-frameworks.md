@@ -1,5 +1,5 @@
 ---
-title: ReactJS Frameworks You Should Know Before You Start Developing Internal Tool Application
+title: ReactJS Frameworks You Should Know Before Start Developing B2B/Internal Application
 description: We have listed Open source ReactJS frameworks that will help and speed you up while developing internal-tool applications.
 slug: best-internal-tool-react-frameworks
 authors: melih
