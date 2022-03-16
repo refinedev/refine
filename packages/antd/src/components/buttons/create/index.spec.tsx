@@ -174,7 +174,10 @@ describe("Create Button", () => {
             {
                 wrapper: TestWrapper({
                     resources: [
-                        { name: "posts", route: "custom-route-posts" },
+                        {
+                            name: "posts",
+                            options: { route: "custom-route-posts" },
+                        },
                         { name: "posts" },
                     ],
                     routerInitialEntries: ["/posts"],

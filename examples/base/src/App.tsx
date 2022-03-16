@@ -26,6 +26,25 @@ const App: React.FC = () => {
                     show: PostShow,
                     canDelete: true,
                 },
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                    canDelete: true,
+                    options: {
+                        route: "posts-hede",
+                    },
+                },
+                {
+                    name: "categories",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                    canDelete: true,
+                },
             ]}
             notificationProvider={notificationProvider}
             Layout={Layout}

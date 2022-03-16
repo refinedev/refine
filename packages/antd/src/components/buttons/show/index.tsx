@@ -13,7 +13,11 @@ import {
 } from "@pankod/refine-core";
 
 export type ShowButtonProps = ButtonProps & {
+    /**
+     * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/pankod/refine/issues/1618
+     */
     resourceName?: string;
+    resourceNameOrRouteName?: string;
     recordItemId?: BaseKey;
     hideText?: boolean;
     ignoreAccessControlProvider?: boolean;
@@ -28,6 +32,7 @@ export type ShowButtonProps = ButtonProps & {
  */
 export const ShowButton: React.FC<ShowButtonProps> = ({
     resourceName: propResourceName,
+    resourceNameOrRouteName: propResourceNameOrRouteName,
     recordItemId,
     hideText = false,
     ignoreAccessControlProvider = false,
@@ -45,7 +50,9 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     const { resource: routeResourceName, id: idFromRoute } =
         useParams<ResourceRouterParams>();
 
-    const resource = resourceWithRoute(routeResourceName);
+    const resource = resourceWithRoute(
+        propResourceNameOrRouteName ?? routeResourceName,
+    );
 
     const resourceName = propResourceName ?? resource.name;
 
@@ -73,7 +80,9 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     return (
         <Button
             onClick={(e): void =>
-                rest?.onClick ? rest.onClick(e) : show(resourceName, id!)
+                rest?.onClick
+                    ? rest.onClick(e)
+                    : show(propResourceName ?? resource.route, id!)
             }
             icon={<EyeOutlined />}
             disabled={data?.can === false}
