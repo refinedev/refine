@@ -71,7 +71,7 @@ export const useMenu: () => useMenuReturnType = () => {
 
                 return {
                     ...resource,
-                    icon: resource.icon ?? <UnorderedListOutlined />,
+                    icon: resource.icon,
                     route: route,
                     key: route,
                     label:

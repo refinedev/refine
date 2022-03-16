@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Layout, Menu, Grid } from "antd";
-import { RightOutlined, LogoutOutlined } from "@ant-design/icons";
+import {
+    RightOutlined,
+    LogoutOutlined,
+    UnorderedListOutlined,
+} from "@ant-design/icons";
 import {
     useTranslate,
     useLogout,
@@ -44,13 +48,18 @@ export const Sider: React.FC = () => {
                         resource={name.toLowerCase()}
                         action="list"
                     >
-                        <SubMenu key={name} icon={icon} title={label}>
+                        <SubMenu
+                            key={name}
+                            icon={icon ?? <UnorderedListOutlined />}
+                            title={label}
+                        >
                             {renderTreeView(children, selectedKey)}
                         </SubMenu>
                     </CanAccess>
                 );
             } else {
                 const isSelected = route === selectedKey;
+                const isRoute = route.split("/").length === 2;
 
                 return (
                     <CanAccess
@@ -66,7 +75,9 @@ export const Sider: React.FC = () => {
                             style={{
                                 fontWeight: isSelected ? "bold" : "normal",
                             }}
-                            icon={icon}
+                            icon={
+                                icon ?? (isRoute && <UnorderedListOutlined />)
+                            }
                         >
                             {/* <div
                                 style={{
@@ -79,6 +90,7 @@ export const Sider: React.FC = () => {
                             {!collapsed && isSelected && (
                                 <div className="ant-menu-submenu-arrow" />
                             )}
+
                             {/* </div> */}
                         </Menu.Item>
                     </CanAccess>
