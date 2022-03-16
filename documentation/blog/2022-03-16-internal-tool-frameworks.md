@@ -106,9 +106,7 @@ You can quickly create the project containing **refine** and all the features yo
 If you want, you can manually install the refine packages.
 
 ```bash
-npm i @pankod/refine-core
-
-npm i @pankod/refine-antd
+npm i @pankod/refine-core @pankod/refine-antd
 ```
 
 ### Refine Examples
