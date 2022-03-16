@@ -47,7 +47,7 @@ export const List: React.FC<ListProps> = ({
     const defaultExtra = isCreateButtonVisible && (
         <CreateButton
             size="middle"
-            resourceName={resource.name}
+            resourceNameOrRouteName={resource.route}
             data-testid="list-create-button"
             {...createButtonProps}
         />
