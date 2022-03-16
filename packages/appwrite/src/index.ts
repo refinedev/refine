@@ -105,7 +105,7 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
             const appwriteFilters = getAppwriteFilters(filters);
             const { orderField, orderType } = getAppwriteSorting(sort);
 
-            const { sum: total, documents: data } =
+            const { total: total, documents: data } =
                 await appwriteClient.database.listDocuments<any>(
                     resource,
                     appwriteFilters,
