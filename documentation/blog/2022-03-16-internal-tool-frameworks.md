@@ -73,7 +73,7 @@ npm install -g blitz
 
 **refine** offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards
 
-## Key Features​
+### Key Features​
 
 🔥 Headless : Works with any UI framework
 
@@ -209,6 +209,6 @@ yarn add react-admin
 <br/>
 <br/>
 
-In this article, we have listed the popular open-source ReactJS internal-tool frameworks with you. If you want a more detailed review article, you can like and share this article. Thank you for your interest and reading.
+In this article, we have listed the popular open-source ReactJS internal-tool frameworks. If you want a more detailed review article, you can like and share this article. Thank you for your interest and reading.
 
 [For more information about **refine** ->](https://refine.dev/docs/getting-started/overview/)
