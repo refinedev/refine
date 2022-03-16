@@ -66,5 +66,6 @@ export {
     userFriendlyResourceName,
     importCSVMapper,
     handleUseParams,
+    routeGenerator,
 } from "./definitions/helpers";
 export { file2Base64 } from "./definitions/upload";

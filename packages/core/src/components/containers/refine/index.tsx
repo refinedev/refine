@@ -44,6 +44,7 @@ import {
     INotificationContext,
     IDataMultipleContextProvider,
 } from "../../../interfaces";
+import { routeGenerator } from "src";
 
 interface QueryClientConfig {
     queryCache?: QueryCache;
@@ -129,32 +130,14 @@ export const Refine: React.FC<RefineProps> = ({
 
     const resources: IResourceItem[] = [];
 
-    const routeGenerator = (item: ResourceProps): string | undefined => {
-        let route;
-
-        if (item.parentName) {
-            const hasParentName = resourcesFromProps?.find(
-                (p) => p.name === item.parentName,
-            );
-
-            if (hasParentName?.parentName) {
-                route = routeGenerator(hasParentName) + `/${item.name}`;
-                routeGenerator(hasParentName);
-            } else if (item.parentName) {
-                route = `${item.parentName}/${item.name}`;
-            }
-        } else {
-            route = item.name;
-        }
-        return route;
-    };
-
     resourcesFromProps?.map((resource) => {
         resources.push({
             name: resource.name,
             label: resource.options?.label,
             icon: resource.icon,
-            route: resource.options?.route ?? routeGenerator(resource),
+            route:
+                resource.options?.route ??
+                routeGenerator(resource, resourcesFromProps),
             canCreate: !!resource.create,
             canEdit: !!resource.edit,
             canShow: !!resource.show,
