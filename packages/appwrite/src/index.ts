@@ -1,5 +1,9 @@
 import { DataProvider, LiveProvider, LiveEvent } from "@pankod/refine-core";
-import { BaseRecord, CrudFilters, CrudSorting } from "@pankod/refine-core/dist/interfaces";
+import {
+    BaseRecord,
+    CrudFilters,
+    CrudSorting,
+} from "@pankod/refine-core/dist/interfaces";
 import { Appwrite } from "appwrite";
 
 export * from "appwrite";
@@ -96,7 +100,7 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
             const appwriteFilters = getAppwriteFilters(filters);
             const { orderField, orderType } = getAppwriteSorting(sort);
 
-            const { sum: total, documents: data } =
+            const { total: total, documents: data } =
                 await appwriteClient.database.listDocuments<any>(
                     resource,
                     appwriteFilters,
