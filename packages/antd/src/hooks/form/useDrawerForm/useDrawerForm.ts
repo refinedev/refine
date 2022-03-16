@@ -9,6 +9,7 @@ import {
     HttpError,
     LiveModeProps,
     BaseRecord,
+    BaseKey,
 } from "@pankod/refine-core";
 
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
@@ -35,7 +36,7 @@ export type UseDrawerFormReturnType<
     formProps: FormProps<TVariables> & {
         form: FormInstance<TVariables>;
     };
-    show: (id?: string) => void;
+    show: (id?: BaseKey) => void;
     close: () => void;
     drawerProps: DrawerProps;
     saveButtonProps: ButtonProps;
@@ -138,7 +139,7 @@ export const useDrawerForm = <
         setId?.(undefined);
     }, [warnWhen]);
 
-    const handleShow = useCallback((id?: string) => {
+    const handleShow = useCallback((id?: BaseKey) => {
         setId?.(id);
 
         setVisible(true);

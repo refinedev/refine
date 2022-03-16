@@ -24,6 +24,7 @@ import {
     MetaDataQuery,
     UpdateResponse,
     MutationMode,
+    BaseKey,
 } from "../../interfaces";
 import { UseUpdateReturnType } from "../data/useUpdate";
 import { UseCreateReturnType } from "../data/useCreate";
@@ -68,8 +69,8 @@ export type UseFormReturnType<
     TError extends HttpError = HttpError,
     TVariables = {},
 > = {
-    id?: string;
-    setId: Dispatch<SetStateAction<string | undefined>>;
+    id?: BaseKey;
+    setId: Dispatch<SetStateAction<BaseKey | undefined>>;
 
     queryResult?: QueryObserverResult<GetOneResponse<TData>>;
     mutationResult:
@@ -122,12 +123,12 @@ export const useForm = <
         id: idFromParams,
     } = useParams<ResourceRouterParams>();
 
-    // id state is needed to determine selected record in a context for example useModal
-    const [id, setId] = React.useState<string | undefined>(
+    const defaultId =
         !resourceFromProps || resourceFromProps === resourceFromRoute
             ? idFromParams
-            : undefined,
-    );
+            : undefined;
+    // id state is needed to determine selected record in a context for example useModal
+    const [id, setId] = React.useState<BaseKey | undefined>(defaultId);
 
     const resourceName = resourceFromProps ?? resourceFromRoute;
     const action = actionFromProps ?? actionFromRoute ?? "create";
@@ -228,7 +229,7 @@ export const useForm = <
 
         const onSuccess = () => {
             // If it is in modal mode set it to undefined. Otherwise set it to current id from route.
-            setId(idFromParams);
+            setId(defaultId);
             handleSubmitWithRedirect({
                 redirect,
                 resource,

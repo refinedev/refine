@@ -48,35 +48,16 @@ export const Create: React.FC<CreateProps> = ({
 
     const { useParams } = useRouterContext();
 
-    const {
-        resource: routeResourceName,
-        action: routeFromAction,
-        id: idFromRoute,
-    } = useParams<ResourceRouterParams>();
+    const { resource: routeResourceName, action: routeFromAction } =
+        useParams<ResourceRouterParams>();
     const resourceWithRoute = useResourceWithRoute();
 
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
-
-    const tags = [];
-    if (
-        (!resourceFromProps || resourceFromProps === routeFromAction) &&
-        idFromRoute
-    ) {
-        tags.push(
-            <Tag
-                key={`${resource.name}-${idFromRoute}-create-clone-tag`}
-                color="blue"
-            >
-                {translate("tags.clone", "Clone")}
-            </Tag>,
-        );
-    }
 
     return (
         <PageHeader
             ghost={false}
             onBack={routeFromAction ? goBack : undefined}
-            tags={tags}
             title={
                 title ??
                 translate(

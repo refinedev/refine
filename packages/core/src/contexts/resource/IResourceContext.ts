@@ -3,11 +3,10 @@ import { ReactNode } from "react";
 export interface IResourceContext {
     resources: IResourceItem[];
 }
-export interface OptionsProps {
+type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
     label?: string;
     route?: string;
-    [key: string]: any;
-}
+};
 
 export interface ResourceProps extends IResourceComponents {
     name: string;
@@ -15,20 +14,23 @@ export interface ResourceProps extends IResourceComponents {
     icon?: ReactNode;
     options?: OptionsProps;
 }
-export interface IResourceComponentsProps<TCrudData = any> {
+export interface IResourceComponentsProps<
+    TCrudData = any,
+    TOptionsPropsExtends = { [key: string]: any },
+> {
     canCreate?: boolean;
     canEdit?: boolean;
     canDelete?: boolean;
     canShow?: boolean;
     name?: string;
     initialData?: TCrudData;
-    options?: OptionsProps;
+    options?: OptionsProps<TOptionsPropsExtends>;
 }
 export interface IResourceComponents {
-    list?: React.FunctionComponent<IResourceComponentsProps>;
-    create?: React.FunctionComponent<IResourceComponentsProps>;
-    edit?: React.FunctionComponent<IResourceComponentsProps>;
-    show?: React.FunctionComponent<IResourceComponentsProps>;
+    list?: React.FunctionComponent<IResourceComponentsProps<any, any>>;
+    create?: React.FunctionComponent<IResourceComponentsProps<any, any>>;
+    edit?: React.FunctionComponent<IResourceComponentsProps<any, any>>;
+    show?: React.FunctionComponent<IResourceComponentsProps<any, any>>;
 }
 
 export interface IResourceItem extends IResourceComponents {
