@@ -129,7 +129,6 @@ export const useForm = <
     // id state is needed to determine selected record in a context for example useModal
     const [id, setId] = React.useState<BaseKey | undefined>(defaultId);
 
-    console.log("id", id);
     const resourceName = resourceFromProps ?? resourceFromRoute;
     const action = actionFromProps ?? actionFromRoute ?? "create";
 
