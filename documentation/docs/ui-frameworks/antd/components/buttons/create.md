@@ -51,7 +51,7 @@ Will look like this:
 
 ## Properties
 
-### `resourceName`
+### `resourceNameOrRouteName`
 
 It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of resource object.
 
@@ -59,7 +59,7 @@ It is used to redirect the app to the `/create` endpoint of the given resource n
 import { CreateButton } from "@pankod/refine-antd";
 
 export const MyCreateComponent = () => {
-    return <CreateButton resourceName="posts" />;
+    return <CreateButton resourceNameOrRouteName="posts" />;
 };
 ```
 
@@ -96,7 +96,8 @@ export const MyListComponent = () => {
 | Property                    | Description                                      | Type                                                                                                          | Default                                                         |
 | --------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
 | props                       | Ant Design button props                          | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; hideText?: boolean; }` |                                                                 |
-| resourceName                | Determines which resource to use for redirection | `string`                                                                                                      | Resource name that it reads from route                          |
+| resourceNameOrRouteName                                                                                   | Determines which resource to use for redirection | `string`                                                                                                      | Resource name that it reads from route                           |
+| <div className="required-block"><div>resourceName</div> <div className=" required">deprecated</div></div> | Determines which resource to use for redirection | `string`                                                                                                      | Resource name that it reads from route                           |
 | hideText                    | Allows to hide button text                       | `boolean`                                                                                                     | `false`                                                         |
 | ignoreAccessControlProvider | Skip access control                              | `boolean`                                                                                                     | `false`                                                         |
 | children                    | Sets the button text                             | `ReactNode`                                                                                                   | `"Create"`                                                      |

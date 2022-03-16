@@ -165,4 +165,28 @@ describe("Create Button", () => {
 
         expect(mHistory.push).toBeCalledWith("/posts/create");
     });
+
+    it("should redirect with custom route called function successfully if click the button", () => {
+        const { getByText } = render(
+            <Route path="/:resource">
+                <CreateButton resourceNameOrRouteName="custom-route-posts" />
+            </Route>,
+            {
+                wrapper: TestWrapper({
+                    resources: [
+                        {
+                            name: "posts",
+                            options: { route: "custom-route-posts" },
+                        },
+                        { name: "posts" },
+                    ],
+                    routerInitialEntries: ["/posts"],
+                }),
+            },
+        );
+
+        fireEvent.click(getByText("Create"));
+
+        expect(mHistory.push).toBeCalledWith("/custom-route-posts/create");
+    });
 });

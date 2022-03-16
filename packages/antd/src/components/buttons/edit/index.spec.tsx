@@ -15,6 +15,10 @@ jest.mock("react-router-dom", () => ({
 describe("Edit Button", () => {
     const edit = jest.fn();
 
+    beforeEach(() => {
+        mHistory.push.mockReset();
+    });
+
     it("should render button successfuly", () => {
         const { container, getByText } = render(
             <EditButton onClick={() => edit()} />,
@@ -160,5 +164,32 @@ describe("Edit Button", () => {
         fireEvent.click(getByText("Edit"));
 
         expect(mHistory.push).toBeCalledWith("/categories/edit/1");
+    });
+
+    it("should redirect with custom route called function successfully if click the button", () => {
+        const { getByText } = render(
+            <Route path="/:resource">
+                <EditButton
+                    resourceNameOrRouteName="custom-route-posts"
+                    recordItemId={1}
+                />
+            </Route>,
+            {
+                wrapper: TestWrapper({
+                    resources: [
+                        {
+                            name: "posts",
+                            options: { route: "custom-route-posts" },
+                        },
+                        { name: "posts" },
+                    ],
+                    routerInitialEntries: ["/posts"],
+                }),
+            },
+        );
+
+        fireEvent.click(getByText("Edit"));
+
+        expect(mHistory.push).toBeCalledWith("/custom-route-posts/edit/1");
     });
 });
