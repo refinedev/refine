@@ -11,7 +11,7 @@ export interface Option {
 }
 
 export type ITreeMenu = IMenuItem & {
-    children: IMenuItem[];
+    children: ITreeMenu[];
 };
 
 export type IMenuItem = IResourceItem & {

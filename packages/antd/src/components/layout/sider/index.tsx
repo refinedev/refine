@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Layout, Menu, Grid } from "antd";
 import { RightOutlined, LogoutOutlined } from "@ant-design/icons";
 import {
@@ -33,6 +33,7 @@ export const Sider: React.FC = () => {
     const RenderToTitle = Title ?? DefaultTitle;
 
     const createTreeView = (location: IMenuItem[]) => {
+        // helper - unit test
         const tree = [];
         const object = {};
         let parent: any;
@@ -60,6 +61,59 @@ export const Sider: React.FC = () => {
 
     const treeMenu: ITreeMenu[] = createTreeView(menuItems);
 
+    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
+        return tree.map((item: ITreeMenu) => {
+            const { icon, label, route, name, children } = item;
+            if (children.length > 0) {
+                return (
+                    <CanAccess
+                        key={route}
+                        resource={name.toLowerCase()}
+                        action="list"
+                    >
+                        <SubMenu key={name} icon={icon} title={label}>
+                            {renderTreeView(children, selectedKey)}
+                        </SubMenu>
+                    </CanAccess>
+                );
+            } else {
+                const isSelected = route === selectedKey;
+
+                return (
+                    <CanAccess
+                        key={route}
+                        resource={name.toLowerCase()}
+                        action="list"
+                    >
+                        <Menu.Item
+                            key={name}
+                            onClick={() => {
+                                push(route);
+                            }}
+                            style={{
+                                fontWeight: isSelected ? "bold" : "normal",
+                            }}
+                            icon={icon}
+                        >
+                            {/* <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                }}
+                            > */}
+                            {label}
+                            {!collapsed && isSelected && (
+                                <div className="ant-menu-submenu-arrow" />
+                            )}
+                            {/* </div> */}
+                        </Menu.Item>
+                    </CanAccess>
+                );
+            }
+        });
+    };
+
     return (
         <Layout.Sider
             collapsible
@@ -86,37 +140,7 @@ export const Sider: React.FC = () => {
                     push(key as string);
                 }}
             >
-                {treeMenu.map(({ icon, label, route, name, children }) => {
-                    const isSelected = route === selectedKey;
-
-                    return (
-                        <CanAccess
-                            key={route}
-                            resource={name.toLowerCase()}
-                            action="list"
-                        >
-                            <Menu.Item
-                                style={{
-                                    fontWeight: isSelected ? "bold" : "normal",
-                                }}
-                                icon={icon}
-                            >
-                                <div
-                                    style={{
-                                        display: "flex",
-                                        justifyContent: "space-between",
-                                        alignItems: "center",
-                                    }}
-                                >
-                                    {label}
-                                    {!collapsed && isSelected && (
-                                        <RightOutlined />
-                                    )}
-                                </div>
-                            </Menu.Item>
-                        </CanAccess>
-                    );
-                })}
+                {renderTreeView(treeMenu, selectedKey)}
 
                 {isExistAuthentication && (
                     <Menu.Item key="logout" icon={<LogoutOutlined />}>
