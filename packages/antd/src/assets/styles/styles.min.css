@@ -15731,7 +15731,7 @@ textarea.ant-mentions {
   transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 .ant-menu-submenu-popup > .ant-menu {
-  background-color: #fff;
+  background-color: #2a132e;
 }
 .ant-menu-submenu-expand-icon,
 .ant-menu-submenu-arrow {
