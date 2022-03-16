@@ -32,7 +32,7 @@ In this article, I will talk about new open-source React.js frameworks that will
 
 ## What is Internal Tool?
 
-Internal tools, also known as Back Office applications, are software pieces developed to improve your corporate processes and make your work easier. Internal tool applications are generally used to control your business follow-up or to manage your product's internal processes.
+Internal tools, also known as Backoffice applications, are software pieces developed to improve your corporate processes and make your work easier. Internal tool applications are generally used to control your business follow-up or to manage your product's internal processes.
 
 Internal tools manage the activities your company or product needs, such as tracking inventory, processing customer requests, controlling payments. Although its field is quite wide, the needs of each product or company differ. Here in this article, we will review React.js Frameworks that will help you quickly develop your own internal-tool applications according to your needs.
 
