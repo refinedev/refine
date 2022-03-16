@@ -75,8 +75,26 @@ describe("redirectionAfterSubmission Hook", () => {
     it("redirect edit, canEdit false", async () => {
         result.current({
             redirect: "edit",
-            resource: { canShow: false, route: "posts", name: "posts" },
+            resource: { canEdit: false, route: "posts", name: "posts" },
             id: "1",
+        });
+
+        expect(mHistory.push).toBeCalledWith("/posts");
+    });
+
+    it("redirect create, canCreate true", async () => {
+        result.current({
+            redirect: "create",
+            resource: { canCreate: true, route: "posts", name: "posts" },
+        });
+
+        expect(mHistory.push).toBeCalledWith("/posts/create");
+    });
+
+    it("redirect create, canCreate false", async () => {
+        result.current({
+            redirect: "create",
+            resource: { canCreate: false, route: "posts", name: "posts" },
         });
 
         expect(mHistory.push).toBeCalledWith("/posts");

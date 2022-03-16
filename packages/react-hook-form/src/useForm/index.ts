@@ -30,6 +30,7 @@ export type UseFormProps<
     TContext extends object = {},
 > = {
     refineCoreProps?: UseFormCoreProps<TData, TError, TVariables>;
+    warnWhenUnsavedChanges?: boolean;
 } & UseHookFormProps<TVariables, TContext>;
 
 export const useForm = <
@@ -39,6 +40,7 @@ export const useForm = <
     TContext extends object = {},
 >({
     refineCoreProps,
+    warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
     ...rest
 }: UseFormProps<TData, TError, TVariables, TContext> = {}): UseFormReturnType<
     TData,
@@ -46,7 +48,12 @@ export const useForm = <
     TVariables,
     TContext
 > => {
-    const { warnWhenUnsavedChanges, setWarnWhen } = useWarnAboutChange();
+    const {
+        warnWhenUnsavedChanges: warnWhenUnsavedChangesRefine,
+        setWarnWhen,
+    } = useWarnAboutChange();
+    const warnWhenUnsavedChanges =
+        warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesRefine;
 
     const useFormCoreResult = useFormCore<TData, TError, TVariables>({
         onMutationSuccess: () => {
