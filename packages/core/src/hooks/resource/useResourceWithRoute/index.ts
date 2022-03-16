@@ -2,7 +2,9 @@ import { useContext, useCallback } from "react";
 import { ResourceContext } from "@contexts/resource";
 import { IResourceItem } from "../../../interfaces";
 
-export const useResourceWithRoute = (): ((route: string) => IResourceItem) => {
+export type UseResourceWithRouteReturnType = (route: string) => IResourceItem;
+
+export const useResourceWithRoute = (): UseResourceWithRouteReturnType => {
     const { resources } = useContext(ResourceContext);
 
     const resourceWithRoute = useCallback(
