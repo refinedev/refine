@@ -36,12 +36,10 @@ const authProvider: AuthProvider = {
         localStorage.getItem("username") ? Promise.resolve() : Promise.reject(),
     getPermissions: () => Promise.resolve(["admin"]),
     getUserIdentity: async () => {
-        return new Promise((resolve) => setTimeout(resolve, 10000)).then(() => {
-            return {
-                id: 1,
-                name: "Jane Doe",
-                avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
-            };
+        return Promise.resolve({
+            id: 1,
+            name: "Jane Doe",
+            avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
         });
     },
 };
@@ -82,6 +80,7 @@ const App: React.FC = () => {
             Header={() => null}
             auditLogProvider={{
                 logEvent: (params) => {
+                    console.log("Geldi");
                     dataProvider(API_URL).create({
                         resource: "logs",
                         variables: params,
