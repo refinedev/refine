@@ -65,7 +65,7 @@ or
 npm install -g blitz
 ```
 
-### Blitz.js Examples
+[For Blitz.js examples, you can take a look at the showcase section. → ](https://blitzjs.com/showcase)
 
 ## Refine
 
