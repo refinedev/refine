@@ -36,7 +36,7 @@ Internal tools, also known as Back Office applications, are software pieces deve
 
 Internal tools manage the activities your company or product needs, such as tracking inventory, processing customer requests, controlling payments. Although its field is quite wide, the needs of each product or company differ. Here in this article, we will review React.js Frameworks that will help you quickly develop your own internal-tool applications according to your needs.
 
-Interal Tool React.js Frameworks that we will review:
+Internal Tool React.js Frameworks that we will review:
 
 -   [Blitz.js](https://blitzjs.com/)
 -   [Refine](https://refine.dev/)
