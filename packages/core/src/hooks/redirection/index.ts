@@ -4,14 +4,14 @@ import { BaseKey, IResourceItem } from "../../interfaces";
 import { useNavigation } from "@hooks";
 
 export type UseRedirectionAfterSubmissionType = () => (options: {
-    redirect: "show" | "list" | "edit" | false;
+    redirect: "show" | "list" | "edit" | "create" | false;
     resource: IResourceItem;
     id?: BaseKey;
 }) => void;
 
 export const useRedirectionAfterSubmission: UseRedirectionAfterSubmissionType =
     () => {
-        const { show, edit, list } = useNavigation();
+        const { show, edit, list, create } = useNavigation();
 
         const handleSubmitWithRedirect = useCallback(
             ({
@@ -19,7 +19,7 @@ export const useRedirectionAfterSubmission: UseRedirectionAfterSubmissionType =
                 resource,
                 id,
             }: {
-                redirect: "show" | "list" | "edit" | false;
+                redirect: "show" | "list" | "edit" | "create" | false;
                 resource: IResourceItem;
                 id?: BaseKey;
             }) => {
@@ -30,6 +30,10 @@ export const useRedirectionAfterSubmission: UseRedirectionAfterSubmissionType =
 
                     if (resource.canEdit && redirect === "edit" && id) {
                         return edit(resource.route, id);
+                    }
+
+                    if (resource.canCreate && redirect === "create") {
+                        return create(resource.route);
                     }
 
                     return list(resource.route, "push");
