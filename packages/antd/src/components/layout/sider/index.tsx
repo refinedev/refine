@@ -15,7 +15,7 @@ import { Title as DefaultTitle } from "@components";
 import { useMenu } from "@hooks";
 
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
-import { IMenuItem, ITreeMenu } from "src";
+import { ITreeMenu, createTreeView } from "src";
 const { SubMenu } = Menu;
 
 export const Sider: React.FC = () => {
@@ -31,33 +31,6 @@ export const Sider: React.FC = () => {
     const isMobile = !breakpoint.lg;
 
     const RenderToTitle = Title ?? DefaultTitle;
-
-    const createTreeView = (location: IMenuItem[]) => {
-        // helper - unit test
-        const tree = [];
-        const object = {};
-        let parent: any;
-        let child: any;
-
-        for (let i = 0; i < location.length; i++) {
-            parent = location[i];
-
-            object[parent.name] = parent;
-            object[parent.name]["children"] = [];
-        }
-
-        for (const name in object) {
-            if (object.hasOwnProperty(name)) {
-                child = object[name];
-                if (child.parentName && object[child["parentName"]]) {
-                    object[child["parentName"]]["children"].push(child);
-                } else {
-                    tree.push(child);
-                }
-            }
-        }
-        return tree;
-    };
 
     const treeMenu: ITreeMenu[] = createTreeView(menuItems);
 

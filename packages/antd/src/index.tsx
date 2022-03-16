@@ -49,3 +49,4 @@ export {
     mapAntdFilterToCrudFilter,
 } from "./definitions/table";
 export { getValueFromEvent } from "./definitions/upload";
+export { createTreeView } from "./definitions/treeView";
