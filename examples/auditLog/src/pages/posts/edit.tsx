@@ -6,12 +6,11 @@ import {
     Select,
     useForm,
     useSelect,
-    Timeline,
     Col,
     Row,
-    Card,
 } from "@pankod/refine-antd";
 import { IResourceComponentsProps } from "@pankod/refine-core";
+import { AuditLogList } from "@pankod/refine-audit-log";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
@@ -36,15 +35,6 @@ export const PostEdit: React.FC<IResourceComponentsProps> = ({
 
     const [selectedTab, setSelectedTab] =
         useState<"write" | "preview">("write");
-
-    const getDotColorWithAction = (action: string) => {
-        switch (action) {
-            case "create":
-                return "green";
-            default:
-                return "gray";
-        }
-    };
 
     return (
         <Row gutter={16}>
@@ -124,18 +114,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = ({
                 </Edit>
             </Col>
             <Col span={6}>
-                <Card title="History" loading={queryResult?.isLoading}>
-                    <Timeline>
-                        {logQueryResult?.data?.data?.map((log: any) => (
-                            <Timeline.Item
-                                key={log.id}
-                                color={getDotColorWithAction(log.action)}
-                            >
-                                {log.action} by {log.author.name}
-                            </Timeline.Item>
-                        ))}
-                    </Timeline>
-                </Card>
+                <AuditLogList />
             </Col>
         </Row>
     );
