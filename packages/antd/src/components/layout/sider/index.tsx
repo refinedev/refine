@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { Layout, Menu, Grid } from "antd";
-import {
-    RightOutlined,
-    LogoutOutlined,
-    UnorderedListOutlined,
-} from "@ant-design/icons";
+import { LogoutOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import {
     useTranslate,
     useLogout,
@@ -12,6 +8,7 @@ import {
     useNavigation,
     CanAccess,
     useIsExistAuthentication,
+    createTreeView,
 } from "@pankod/refine-core";
 
 import { Title as DefaultTitle } from "@components";
@@ -19,7 +16,7 @@ import { Title as DefaultTitle } from "@components";
 import { useMenu } from "@hooks";
 
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
-import { ITreeMenu, createTreeView } from "src";
+import { ITreeMenu } from "src";
 const { SubMenu } = Menu;
 
 export const Sider: React.FC = () => {
@@ -37,6 +34,8 @@ export const Sider: React.FC = () => {
     const RenderToTitle = Title ?? DefaultTitle;
 
     const treeMenu: ITreeMenu[] = createTreeView(menuItems);
+
+    console.log("treeMenu", treeMenu);
 
     const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
         return tree.map((item: ITreeMenu) => {

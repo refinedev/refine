@@ -1,5 +1,5 @@
-import { createTreeView } from "./createTreeView";
-import { IMenuItem, ITreeMenu } from "../../../interfaces";
+import { createTreeView } from ".";
+import { IMenuItem, ITreeMenu } from "src/interfaces";
 
 const mockLocation: IMenuItem[] = [
     {
