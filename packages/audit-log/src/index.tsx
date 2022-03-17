@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { UseQueryResult } from "react-query";
-import { useModal } from "@pankod/refine-core";
+import { useModal, useUpdate } from "@pankod/refine-core";
 import {
     Card,
     AntdList,
@@ -31,6 +31,7 @@ export const AuditLogList: React.FC<AuditLogListProps> = ({
     const [diffView, setDiffView] = useState("split");
 
     const { close, show, visible } = useModal();
+    const { mutate } = useUpdate();
 
     return (
         <>
@@ -50,7 +51,16 @@ export const AuditLogList: React.FC<AuditLogListProps> = ({
                                 <Dropdown
                                     overlay={
                                         <Menu mode="vertical">
-                                            <Menu.Item key="1">
+                                            <Menu.Item
+                                                key="1"
+                                                onClick={() => {
+                                                    mutate({
+                                                        resource: "posts",
+                                                        id: item.data.id,
+                                                        values: item.previousData,
+                                                    });
+                                                }}
+                                            >
                                                 Restore
                                             </Menu.Item>
                                             <Menu.Item key="2">
@@ -151,12 +161,28 @@ export const AuditLogList: React.FC<AuditLogListProps> = ({
                                     style={{
                                         alignItems: "flex-start",
                                         padding: "8px 0px 8px 8px",
+                                        backgroundColor:
+                                            item.id === selectedLog
+                                                ? "#f5f5f5"
+                                                : "",
                                     }}
                                     extra={
                                         <Dropdown
                                             overlay={
                                                 <Menu mode="vertical">
-                                                    <Menu.Item key="1">
+                                                    <Menu.Item
+                                                        key="1"
+                                                        onClick={() => {
+                                                            mutate({
+                                                                resource:
+                                                                    "posts",
+                                                                id: item.data
+                                                                    .id,
+                                                                values: item.previousData,
+                                                            });
+                                                            close();
+                                                        }}
+                                                    >
                                                         Restore
                                                     </Menu.Item>
                                                     <Menu.Item key="2">
@@ -173,7 +199,7 @@ export const AuditLogList: React.FC<AuditLogListProps> = ({
                                     }
                                 >
                                     <Button
-                                        type="text"
+                                        type="link"
                                         style={{
                                             display: "flex",
                                             flexDirection: "column",
