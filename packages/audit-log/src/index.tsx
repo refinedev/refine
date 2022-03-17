@@ -7,9 +7,9 @@ import {
     Icons,
     Dropdown,
     Menu,
-    Tag,
     Badge,
 } from "@pankod/refine-antd";
+import dayjs from "dayjs";
 
 const { Text } = Typography;
 export interface AuditLogListProps {
@@ -51,8 +51,11 @@ export const AuditLogList: React.FC<AuditLogListProps> = ({
                                 flexDirection: "column",
                             }}
                         >
-                            <Text strong>{item.timestamp}</Text>
-
+                            <Text strong>
+                                {dayjs(item.timestamp).format(
+                                    "MM/DD/YYYY, hh:mm",
+                                )}
+                            </Text>
                             <Badge color="blue" text={item.author.name} />
                         </div>
                     </AntdList.Item>
