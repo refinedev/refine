@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { UseQueryResult } from "react-query";
 import { useModal, useUpdate } from "@pankod/refine-core";
 import {
@@ -27,11 +27,17 @@ export interface AuditLogListProps {
 export const AuditLogList: React.FC<AuditLogListProps> = ({
     logQueryResult,
 }) => {
+    const ref = useRef<any>();
     const [selectedLog, setSelectedLog] = useState();
     const [diffView, setDiffView] = useState("split");
 
-    const { close, show, visible } = useModal();
+    const { close: modalClose, show, visible } = useModal();
     const { mutate } = useUpdate();
+
+    const close = () => {
+        ref.current.resetCodeBlocks();
+        modalClose();
+    };
 
     return (
         <>
@@ -123,7 +129,7 @@ export const AuditLogList: React.FC<AuditLogListProps> = ({
                                 </Menu.Item>
                             </Menu>
                         }
-                        placement="bottomCenter"
+                        placement="bottom"
                         trigger={["click"]}
                     >
                         <Button icon={<Icons.SettingOutlined />}>
@@ -135,6 +141,7 @@ export const AuditLogList: React.FC<AuditLogListProps> = ({
                 <Row gutter={[16, 16]}>
                     <Col span={20}>
                         <ReactDiffViewer
+                            ref={ref}
                             leftTitle="Before"
                             oldValue={stableStringify(
                                 logQueryResult?.data?.data.find(
