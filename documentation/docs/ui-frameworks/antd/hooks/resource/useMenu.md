@@ -226,6 +226,7 @@ interface IResourceItem extends IResourceComponents {
     canEdit?: boolean;
     canShow?: boolean;
     canDelete?: boolean;
+    parentName?: string;
 }
 
 interface IResourceComponents {

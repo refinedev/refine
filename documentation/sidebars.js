@@ -363,6 +363,7 @@ module.exports = {
                         "guides-and-concepts/multi-tenancy/strapi-v4",
                     ],
                 },
+                "guides-and-concepts/multi-level-menu/multi-level-menu",
                 "guides-and-concepts/mutation-mode",
                 "guides-and-concepts/custom-layout",
                 "guides-and-concepts/custom-pages",
