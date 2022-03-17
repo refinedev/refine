@@ -78,19 +78,10 @@ export const Sider: React.FC = () => {
                                 icon ?? (isRoute && <UnorderedListOutlined />)
                             }
                         >
-                            {/* <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                    alignItems: "center",
-                                }}
-                            > */}
                             {label}
                             {!collapsed && isSelected && (
-                                <div className="ant-menu-submenu-arrow" />
+                                <div className="ant-menu-tree-arrow" />
                             )}
-
-                            {/* </div> */}
                         </Menu.Item>
                     </CanAccess>
                 );
