@@ -44,7 +44,7 @@ import {
     INotificationContext,
     IDataMultipleContextProvider,
 } from "../../../interfaces";
-import { routeGenerator } from "src";
+import { routeGenerator } from "@definitions";
 
 interface QueryClientConfig {
     queryCache?: QueryCache;
