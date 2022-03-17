@@ -17,6 +17,7 @@ import {
 } from "@pankod/refine-antd";
 import dayjs from "dayjs";
 import ReactDiffViewer, { DiffMethod } from "react-diff-viewer";
+import stableStringify from "json-stable-stringify";
 
 const { Text } = Typography;
 export interface AuditLogListProps {
@@ -125,20 +126,18 @@ export const AuditLogList: React.FC<AuditLogListProps> = ({
                     <Col span={20}>
                         <ReactDiffViewer
                             leftTitle="Before"
-                            oldValue={JSON.stringify(
+                            oldValue={stableStringify(
                                 logQueryResult?.data?.data.find(
                                     (item: any) => item.id === selectedLog,
                                 )?.previousData,
-                                null,
-                                2,
+                                { space: " " },
                             )}
                             rightTitle="After"
-                            newValue={JSON.stringify(
+                            newValue={stableStringify(
                                 logQueryResult?.data?.data.find(
                                     (item: any) => item.id === selectedLog,
                                 )?.data,
-                                null,
-                                2,
+                                { space: " " },
                             )}
                             compareMethod={DiffMethod.WORDS}
                             splitView={diffView === "split"}
