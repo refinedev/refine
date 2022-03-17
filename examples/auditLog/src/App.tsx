@@ -80,7 +80,6 @@ const App: React.FC = () => {
             Header={() => null}
             auditLogProvider={{
                 logEvent: (params) => {
-                    console.log("Geldi");
                     dataProvider(API_URL).create({
                         resource: "logs",
                         variables: params,
