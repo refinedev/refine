@@ -547,6 +547,7 @@ module.exports = {
                 "examples/e2e-testing",
                 "examples/customPages",
                 "examples/customTheme",
+                "examples/multi-level-menu/multi-level-menu",
                 "examples/javascript",
             ],
         },
