@@ -50,6 +50,8 @@ export const LogList: React.FC<LogListProps> = ({ logQueryResult }) => {
                 ref={diffViewerRef}
                 modalProps={modalProps}
                 showModal={show}
+                resource="posts"
+                selectedLog={selectedLog}
                 setSelectedLog={setSelectedLog}
                 logQueryResult={logQueryResult}
                 reactDiffViewerProps={{

@@ -15,6 +15,7 @@ import {
     useTable,
     useSelect,
 } from "@pankod/refine-antd";
+import { LogButton } from "@pankod/refine-antd-audit-log";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -108,6 +109,11 @@ export const PostList: React.FC = () => {
                                 recordItemId={record.id}
                             />
                             <ShowButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <LogButton
                                 hideText
                                 size="small"
                                 recordItemId={record.id}
