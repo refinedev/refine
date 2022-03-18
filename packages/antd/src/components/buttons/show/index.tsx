@@ -37,6 +37,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     hideText = false,
     ignoreAccessControlProvider = false,
     children,
+    onClick,
     ...rest
 }) => {
     const resourceWithRoute = useResourceWithRoute();
@@ -80,8 +81,8 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     return (
         <Button
             onClick={(e): void =>
-                rest?.onClick
-                    ? rest.onClick(e)
+                onClick
+                    ? onClick(e)
                     : show(propResourceName ?? resource.route, id!)
             }
             icon={<EyeOutlined />}
