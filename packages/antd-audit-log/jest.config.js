@@ -1,7 +1,7 @@
 module.exports = {
     preset: "ts-jest",
     rootDir: "./",
-    name: "audit-log",
-    displayName: "audit-log",
+    name: "antd-audit-log",
+    displayName: "antd-audit-log",
     testEnvironment: "jsdom",
 };
