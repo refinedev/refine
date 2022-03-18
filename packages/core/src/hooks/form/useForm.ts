@@ -26,7 +26,7 @@ import {
     MutationMode,
     BaseKey,
 } from "../../interfaces";
-import { UseUpdateReturnType } from "../data/useUpdate";
+import { UpdateParams, UseUpdateReturnType } from "../data/useUpdate";
 import { UseCreateReturnType } from "../data/useCreate";
 
 export type ActionParams = {
@@ -216,7 +216,7 @@ export const useForm = <
     const onFinishUpdate = async (values: TVariables) => {
         setWarnWhen(false);
 
-        const variables = {
+        const variables: UpdateParams<TVariables> = {
             id: id ?? "",
             values,
             resource: resource.name,
@@ -225,6 +225,7 @@ export const useForm = <
             successNotification,
             errorNotification,
             metaData,
+            dataProviderName,
         };
 
         const onSuccess = () => {
