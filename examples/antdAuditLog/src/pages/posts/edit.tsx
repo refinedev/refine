@@ -10,7 +10,7 @@ import {
     Row,
 } from "@pankod/refine-antd";
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import { AuditLogList } from "@pankod/refine-audit-log";
+import { AuditLogList } from "@pankod/refine-antd-audit-log";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";

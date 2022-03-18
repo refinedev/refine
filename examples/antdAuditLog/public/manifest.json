@@ -1,6 +1,6 @@
 {
-  "short_name": "refine audit log example",
-  "name": "refine audit log example",
+  "short_name": "refine antd audit log example",
+  "name": "refine antd audit log example",
   "icons": [
     {
       "src": "favicon.ico",
