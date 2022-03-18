@@ -35,8 +35,6 @@ export const Sider: React.FC = () => {
 
     const treeMenu: ITreeMenu[] = createTreeView(menuItems);
 
-    console.log("treeMenu", treeMenu);
-
     const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
         return tree.map((item: ITreeMenu) => {
             const { icon, label, route, name, children } = item;
