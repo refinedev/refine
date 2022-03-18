@@ -25,7 +25,7 @@ export const createTreeView = (location: IMenuItem[]): ITreeMenu[] => {
             }
         }
     } catch (error) {
-        console.log("err", error);
+        console.log("create tree view eror", error);
     }
 
     return tree;
