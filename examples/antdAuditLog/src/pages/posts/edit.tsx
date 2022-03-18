@@ -10,7 +10,7 @@ import {
     Row,
 } from "@pankod/refine-antd";
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import { AuditLogList } from "@pankod/refine-antd-audit-log";
+import { LogList } from "@pankod/refine-antd-audit-log";
 
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
@@ -114,7 +114,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = ({
                 </Edit>
             </Col>
             <Col span={6}>
-                <AuditLogList logQueryResult={logQueryResult} />
+                <LogList logQueryResult={logQueryResult} />
             </Col>
         </Row>
     );

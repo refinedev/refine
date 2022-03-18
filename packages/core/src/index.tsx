@@ -52,6 +52,7 @@ export {
     MapDataFn,
     OpenNotificationParams,
     ResourceErrorRouterParams,
+    AuditLogEvent,
 } from "./interfaces";
 
 export {
