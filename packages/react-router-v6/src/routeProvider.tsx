@@ -167,9 +167,7 @@ export const RouteProvider = () => {
         return item.map((p: ITreeMenu) => {
             if (p.children.length > 0) {
                 return (
-                    <Route path={p.name} element={<ResourceComponent />}>
-                        {renderTreeView(p.children)}
-                    </Route>
+                    <Route path={p.name}>{renderTreeView(p.children)}</Route>
                 );
             } else {
                 return (
