@@ -14,10 +14,10 @@ Let's take a closer look at its usage.
 
 :::caution
 
-The usage we will look closer has been prepared with ant-design. You can do yourself with also headless. If you decided to create a multi-level menu with headless, you can use the [`useResource`](/core/hooks/resource/useResource.md) hook to get the properties of a resource defined as an element of the `resources`.
+The usage we will look closer has been prepared with Ant Design. You can do yourself with also headless. If you decided to create a multi-level menu with headless, you can use the [`useResource`](/core/hooks/resource/useResource.md) hook to get the properties of a resource defined as an element of the `resources`.
 :::
 
-To do this, it is necessary to create an object array with the following [resources roperties](/core/interfaces.md#resourceitemprops):
+To do this, it is necessary to create an object array with the following [resources properties](/core/interfaces.md#resourceitemprops):
 
 ```tsx title="src/App.tsx"
         <Refine
@@ -25,15 +25,15 @@ To do this, it is necessary to create an object array with the following [resour
            // highlight-start
             resources={[
                 {
-                    name: "cms",
+                    name: "CMS",
                 },
                 {
                     name: "posts",
-                    parentName: "cms",
+                    parentName: "CMS",
                 },
                 {
                     name: "category",
-                    parentName: "cms",
+                    parentName: "CMS",
                 },
             ]}
             // highlight-end
@@ -42,10 +42,10 @@ To do this, it is necessary to create an object array with the following [resour
 
 ### Access Menu Items
 
-You can access menu items that you want to render in your Sider component when using ant-design [`useMenu`](/ui-frameworks/antd/hooks/resource/useMenu.md) can help.
+You can access menu items that you want to render in your Sider component when using Ant Design [`useMenu`](/ui-frameworks/antd/hooks/resource/useMenu.md) can help.
 
 ```tsx title="src/components/layout/sider/index.tsx"
-import { useMenu } from "@hooks";
+import { useMenu } from "@pankod/refine-antd";
 
 export const Sider: React.FC = () => {
     //highlight-next-line
@@ -58,10 +58,12 @@ export const Sider: React.FC = () => {
 Creating a multi-level menu compatible tree is not as difficult or time consuming. The only thing you will want to do when creating your trees with levels of submenus is using `createTreeView` helper from refine core.
 
 ```tsx title="src/components/layout/sider/index.tsx"
+import { useMenu } from "@pankod/refine-antd";
     //highlight-next-line
 import { createTreeView } from "@pankod/refine-core";
 
 export const Sider: React.FC = () => {
+     const { menuItems } = useMenu();
     //highlight-next-line
     const treeMenu: ITreeMenu[] = createTreeView(menuItems);
 };
@@ -71,7 +73,7 @@ export const Sider: React.FC = () => {
 ```tsx title="example output"
 [
     {
-        name: "cms",
+        name: "CMS",
         children: [
             {
                 name: "posts",
@@ -85,7 +87,7 @@ export const Sider: React.FC = () => {
 ```
 
 :::tip
-If you want to create your multi-level menu without ant-design, you can use the `createTreeView` helper from refine core with resources that you can access from [`useResource`](/core/hooks/resource/useResource.md) hook.
+If you want to create your multi-level menu without Ant Design, you can use the `createTreeView` helper from refine core with resources that you can access from [`useResource`](/core/hooks/resource/useResource.md) hook.
 :::
 
 ## Live Codesandbox Example
