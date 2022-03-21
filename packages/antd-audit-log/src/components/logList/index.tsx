@@ -16,6 +16,7 @@ import { ILogs } from "src/interfaces";
 
 export interface LogListProps {
     logQueryResult?: UseQueryResult<ILogs>;
+    recordItemId?: BaseKey;
     reactDiffViewerProps?: ReactDiffViewerProps;
     modalProps?: ModalProps;
     resource?: string;
@@ -23,6 +24,7 @@ export interface LogListProps {
 
 export const LogList: React.FC<LogListProps> = ({
     logQueryResult: logQueryResultProp,
+    recordItemId,
     reactDiffViewerProps,
     modalProps: propModalProps,
     resource: propResourceName,
@@ -32,15 +34,18 @@ export const LogList: React.FC<LogListProps> = ({
     const { modalProps, show } = useModal();
 
     const { useParams } = useRouterContext();
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
+    const { resource: routeResourceName, id: idFromRoute } =
+        useParams<ResourceRouterParams>();
 
     const resourceWithRoute = useResourceWithRoute();
     const resource = resourceWithRoute(routeResourceName);
 
     const resourceName = propResourceName ?? resource.name;
+    const id = recordItemId ?? idFromRoute;
 
     const logQueryResultHook = useLogList<ILogs>({
         resource: resourceName,
+        params: { id },
         queryOptions: { enabled: logQueryResultProp ? false : true },
     });
 
