@@ -9,21 +9,18 @@ import {
     Badge,
     Typography,
 } from "@pankod/refine-antd";
-import { BaseKey, useUpdate, AuditLogEvent } from "@pankod/refine-core";
+import { BaseKey, useUpdate } from "@pankod/refine-core";
 import dayjs from "dayjs";
+
+import { ILogs } from "src/interfaces";
 
 const { Text } = Typography;
 
 interface EventListProps {
-    logQueryResult?: UseQueryResult<any>;
+    logQueryResult?: UseQueryResult<ILogs>;
     showModal: () => void;
     setSelectedLog: React.Dispatch<React.SetStateAction<BaseKey | undefined>>;
 }
-
-type EventListItemProps = AuditLogEvent & {
-    id: BaseKey;
-    timestamp?: string;
-};
 
 export const EventList: React.FC<EventListProps> = ({
     logQueryResult,
@@ -34,8 +31,8 @@ export const EventList: React.FC<EventListProps> = ({
 
     return (
         <AntdList
-            dataSource={logQueryResult?.data?.data}
-            renderItem={(log: EventListItemProps) => (
+            dataSource={logQueryResult?.data}
+            renderItem={(log) => (
                 <AntdList.Item
                     style={{
                         alignItems: "flex-start",

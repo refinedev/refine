@@ -19,9 +19,10 @@ import stableStringify from "json-stable-stringify";
 import { UseQueryResult } from "react-query";
 
 import { ModalDiffViewer } from "../modalDiffViewer";
+import { ILogs } from "src/interfaces";
 
 export type LogButtonProps = ButtonProps & {
-    logQueryResult?: UseQueryResult<any>;
+    logQueryResult?: UseQueryResult<ILogs>;
     recordItemId?: BaseKey;
     resourceName?: string;
     hideText?: boolean;
@@ -56,20 +57,20 @@ export const LogButton: React.FC<LogButtonProps> = ({
 
     const { modalProps, show } = useModal();
 
-    const logQueryResultHook = useLogList({
+    const logQueryResultHook = useLogList<ILogs>({
         resource: resourceName,
         params: { id },
         queryOptions: {
             enabled: logQueryResultProp ? false : modalProps.visible,
             onSuccess: (result) => {
-                setSelectedLog(result.data?.[0]?.id);
+                setSelectedLog(result[0]?.id);
             },
         },
     });
 
     const logQueryResult = logQueryResultProp ?? logQueryResultHook;
 
-    const data = logQueryResult?.data?.data;
+    const data = logQueryResult?.data;
     const oldData = data?.find(
         (item: any) => item.id === selectedLog,
     )?.previousData;

@@ -85,8 +85,8 @@ const App: React.FC = () => {
                         variables: params,
                     });
                 },
-                list: ({ resource, params }) => {
-                    return dataProvider(API_URL).getList({
+                list: async ({ resource, params }) => {
+                    const { data } = await dataProvider(API_URL).getList({
                         resource: "logs",
                         filters: [
                             {
@@ -101,6 +101,7 @@ const App: React.FC = () => {
                             },
                         ],
                     });
+                    return data;
                 },
             }}
         />

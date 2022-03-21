@@ -13,9 +13,10 @@ import { ReactDiffViewerProps } from "react-diff-viewer";
 
 import { ModalDiffViewer } from "../modalDiffViewer";
 import { EventList } from "../eventList";
+import { ILogs } from "src/interfaces";
 
 export interface LogListProps {
-    logQueryResult?: UseQueryResult<any>;
+    logQueryResult?: UseQueryResult<ILogs>;
     reactDiffViewerProps?: ReactDiffViewerProps;
     modalProps?: ModalProps;
     resource?: string;
@@ -37,7 +38,7 @@ export const LogList: React.FC<LogListProps> = ({
 
     const resourceName = propResourceName ?? resource.name;
 
-    const logQueryResultHook = useLogList({
+    const logQueryResultHook = useLogList<ILogs>({
         resource: resourceName,
         queryOptions: { enabled: logQueryResultProp ? false : true },
     });
@@ -46,7 +47,7 @@ export const LogList: React.FC<LogListProps> = ({
 
     const { modalProps, show } = useModal();
 
-    const data = logQueryResult?.data?.data;
+    const data = logQueryResult?.data;
     const oldData = data?.find(
         (item: any) => item.id === selectedLog,
     )?.previousData;
