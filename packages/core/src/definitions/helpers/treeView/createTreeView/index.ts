@@ -1,9 +1,11 @@
-import { IMenuItem, ITreeMenu } from "src/interfaces";
+import { IResourceItem, ITreeMenu, IMenuItem } from "src/interfaces";
 
-export const createTreeView = (location: IMenuItem[]): ITreeMenu[] => {
+export const createTreeView = (
+    location: IResourceItem[] | IMenuItem[],
+): ITreeMenu[] => {
     const tree = [];
     const object: { [key: string]: any } = {};
-    let parent: IMenuItem;
+    let parent: IResourceItem | IMenuItem;
     let child: ITreeMenu;
 
     try {
