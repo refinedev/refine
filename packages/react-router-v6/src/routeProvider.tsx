@@ -12,6 +12,8 @@ import {
     useRouterContext,
     CanAccess,
     ResourceRouterParams,
+    createTreeView,
+    ITreeMenu,
 } from "@pankod/refine-core";
 import { RefineRouteProps } from "./index";
 
@@ -138,6 +140,8 @@ export const RouteProvider = () => {
     const { resources } = useResource();
     const { catchAll, DashboardPage, LoginPage } = useRefineContext();
 
+    const treeMenu: ITreeMenu[] = createTreeView(resources);
+
     const { routes: customRoutes }: { routes: RouteProps[] } =
         useRouterContext();
 
@@ -157,6 +161,26 @@ export const RouteProvider = () => {
         const toURL = `${pathname}${search}`;
 
         return <Navigate to={`/login?to=${encodeURIComponent(toURL)}`} />;
+    };
+
+    const renderTreeView = (item: ITreeMenu[]) => {
+        return item.map((p: ITreeMenu) => {
+            if (p.children.length > 0) {
+                return (
+                    <Route path={p.name} element={<ResourceComponent />}>
+                        {renderTreeView(p.children)}
+                    </Route>
+                );
+            } else {
+                return (
+                    <Route path=":resource" element={<ResourceComponent />}>
+                        <Route path=":action" element={<ResourceComponent />}>
+                            <Route path=":id" element={<ResourceComponent />} />
+                        </Route>
+                    </Route>
+                );
+            }
+        });
     };
 
     const renderAuthorized = () => (
@@ -203,11 +227,7 @@ export const RouteProvider = () => {
                         )
                     }
                 />
-                <Route path=":resource" element={<ResourceComponent />}>
-                    <Route path=":action" element={<ResourceComponent />}>
-                        <Route path=":id" element={<ResourceComponent />} />
-                    </Route>
-                </Route>
+                {renderTreeView(treeMenu)}
             </Route>
         </Routes>
     );
