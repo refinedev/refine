@@ -53,6 +53,7 @@ export const ModalDiffViewer = React.forwardRef<
         const logQueryResultHook = useLogList({
             resource,
             params: { id },
+            queryOptions: { enabled: logQueryResultProp ? false : true },
         });
 
         const logQueryResult = logQueryResultProp ?? logQueryResultHook;
