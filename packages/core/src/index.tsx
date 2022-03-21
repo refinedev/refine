@@ -51,6 +51,7 @@ export {
     MapDataFn,
     OpenNotificationParams,
     ResourceErrorRouterParams,
+    ITreeMenu,
 } from "./interfaces";
 
 export {
