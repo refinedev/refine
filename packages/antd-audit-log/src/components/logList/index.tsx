@@ -1,18 +1,24 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Card, useModal } from "@pankod/refine-antd";
+import { Card, ModalProps, useModal } from "@pankod/refine-antd";
 import { BaseKey } from "@pankod/refine-core";
 import { UseQueryResult } from "react-query";
 import stableStringify from "json-stable-stringify";
-import ReactDiffViewer from "react-diff-viewer";
+import ReactDiffViewer, { ReactDiffViewerProps } from "react-diff-viewer";
 
 import { ModalDiffViewer } from "../modalDiffViewer";
 import { EventList } from "../eventList";
 
 export interface LogListProps {
     logQueryResult?: UseQueryResult<any>;
+    reactDiffViewerProps?: ReactDiffViewerProps;
+    modalProps?: ModalProps;
 }
 
-export const LogList: React.FC<LogListProps> = ({ logQueryResult }) => {
+export const LogList: React.FC<LogListProps> = ({
+    logQueryResult,
+    reactDiffViewerProps,
+    modalProps: propModalProps,
+}) => {
     const diffViewerRef = useRef<ReactDiffViewer>(null);
     const [selectedLog, setSelectedLog] = useState<BaseKey | undefined>();
 
@@ -48,7 +54,7 @@ export const LogList: React.FC<LogListProps> = ({ logQueryResult }) => {
             </Card>
             <ModalDiffViewer
                 ref={diffViewerRef}
-                modalProps={modalProps}
+                modalProps={{ ...modalProps, ...propModalProps }}
                 showModal={show}
                 resource="posts"
                 selectedLog={selectedLog}
@@ -57,6 +63,7 @@ export const LogList: React.FC<LogListProps> = ({ logQueryResult }) => {
                 reactDiffViewerProps={{
                     oldValue: stableStringify(oldData, { space: " " }),
                     newValue: stableStringify(newData, { space: " " }),
+                    ...reactDiffViewerProps,
                 }}
             />
         </>
