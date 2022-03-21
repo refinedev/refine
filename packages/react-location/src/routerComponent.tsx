@@ -9,6 +9,8 @@ import {
     LayoutWrapper,
     CanAccess,
     ErrorComponent,
+    createTreeView,
+    ITreeMenu,
 } from "@pankod/refine-core";
 import { rankRoutes } from "react-location-rank-routes";
 
@@ -33,6 +35,7 @@ export const RouterComponent: React.FC<RouterProps> = ({
     ...rest
 }) => {
     const { resources } = useResource();
+    const treeMenu: ITreeMenu[] = createTreeView(resources);
     const { DashboardPage, catchAll, LoginPage } = useRefineContext();
 
     const { routes: customRoutes }: { routes: Route[] } = useRouterContext();
@@ -71,6 +74,49 @@ export const RouterComponent: React.FC<RouterProps> = ({
         );
     }
 
+    const createNestedRoute = (item: ITreeMenu[]) => {
+        const nestedMenu: Route[] = [];
+        item.forEach((p: ITreeMenu) => {
+            if (p.children.length > 0) {
+                nestedMenu.push({
+                    path: p.name,
+                    children: [...createNestedRoute(p.children)],
+                });
+            } else {
+                nestedMenu.push({
+                    path: `:resource`,
+                    children: [
+                        {
+                            path: "/",
+                            element: <ResourceComponentWrapper />,
+                        },
+                    ],
+                },
+                {
+                    path: `:resource/:action`,
+                    children: [
+                        {
+                            path: "/",
+                            element: <ResourceComponentWrapper />,
+                        },
+                    ],
+                },
+                {
+                    path: `:resource/:action/:id`,
+                    children: [
+                        {
+                            path: "/",
+                            element: <ResourceComponentWrapper />,ç.
+                        },
+                    ],
+                },);
+            }
+        });
+        console.log(nestedMenu);
+
+        return nestedMenu;
+    };
+
     const routes: Route[] = [
         ...[...(customRoutes || [])].filter((p: RefineRouteProps) => !p.layout),
         {
@@ -97,36 +143,14 @@ export const RouterComponent: React.FC<RouterProps> = ({
                         <Navigate to={`/${resources[0].route}`} />
                     ),
                 },
-                {
-                    path: `:resource`,
-                    children: [
-                        {
-                            path: "/",
-                            element: <ResourceComponentWrapper />,
-                        },
-                    ],
-                },
-                {
-                    path: `:resource/:action`,
-                    children: [
-                        {
-                            path: "/",
-                            element: <ResourceComponentWrapper />,
-                        },
-                    ],
-                },
-                {
-                    path: `:resource/:action/:id`,
-                    children: [
-                        {
-                            path: "/",
-                            element: <ResourceComponentWrapper />,
-                        },
-                    ],
-                },
+                ...createNestedRoute(treeMenu),
+                // cms/content/posts
+                
             ],
         },
     ];
+
+    console.log("routes", routes);
 
     return (
         <Router
