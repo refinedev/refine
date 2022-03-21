@@ -16,6 +16,7 @@ import ReactDiffViewer, {
     ReactDiffViewerProps,
 } from "react-diff-viewer";
 import { UseQueryResult } from "react-query";
+import stableStringify from "json-stable-stringify";
 
 import { EventList } from "../eventList";
 
@@ -23,14 +24,16 @@ export interface ModalDiffViewerProps {
     logQueryResult?: UseQueryResult<any>;
     reactDiffViewerProps?: ReactDiffViewerProps;
     modalProps?: ModalProps;
-    showModal: () => void;
+    selectedLog?: BaseKey;
     setSelectedLog: React.Dispatch<React.SetStateAction<BaseKey | undefined>>;
+    showModal: () => void;
 }
 
 export const ModalDiffViewer: React.FC<ModalDiffViewerProps> = ({
     logQueryResult,
     modalProps,
     reactDiffViewerProps,
+    selectedLog,
     setSelectedLog,
     showModal,
 }) => {
@@ -44,6 +47,12 @@ export const ModalDiffViewer: React.FC<ModalDiffViewerProps> = ({
         reactDiffViewerProps?.oldValue,
         modalProps?.visible,
     ]);
+
+    const data = logQueryResult?.data;
+    const oldData = data?.find(
+        (item: any) => item.id === selectedLog,
+    )?.previousData;
+    const newData = data?.find((item: any) => item.id === selectedLog)?.data;
 
     return (
         <Modal footer={null} width={"80%"} {...modalProps}>
@@ -80,6 +89,8 @@ export const ModalDiffViewer: React.FC<ModalDiffViewerProps> = ({
                         rightTitle="After"
                         compareMethod={DiffMethod.WORDS}
                         splitView={diffView === "split"}
+                        oldValue={stableStringify(oldData, { space: " " })}
+                        newValue={stableStringify(newData, { space: " " })}
                         {...reactDiffViewerProps}
                     />
                 </Col>

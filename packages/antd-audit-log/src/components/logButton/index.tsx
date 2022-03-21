@@ -15,7 +15,6 @@ import {
     useLogList,
 } from "@pankod/refine-core";
 import { ReactDiffViewerProps } from "react-diff-viewer";
-import stableStringify from "json-stable-stringify";
 import { UseQueryResult } from "react-query";
 
 import { ModalDiffViewer } from "../modalDiffViewer";
@@ -44,6 +43,7 @@ export const LogButton: React.FC<LogButtonProps> = ({
     const [selectedLog, setSelectedLog] = useState<BaseKey | undefined>();
 
     const translate = useTranslate();
+    const { modalProps, show } = useModal();
 
     const { useParams } = useRouterContext();
     const { resource: routeResourceName, id: idFromRoute } =
@@ -54,8 +54,6 @@ export const LogButton: React.FC<LogButtonProps> = ({
 
     const resourceName = propResourceName ?? resource.name;
     const id = recordItemId ?? idFromRoute;
-
-    const { modalProps, show } = useModal();
 
     const logQueryResultHook = useLogList<ILogs>({
         resource: resourceName,
@@ -70,12 +68,6 @@ export const LogButton: React.FC<LogButtonProps> = ({
 
     const logQueryResult = logQueryResultProp ?? logQueryResultHook;
 
-    const data = logQueryResult?.data;
-    const oldData = data?.find(
-        (item: any) => item.id === selectedLog,
-    )?.previousData;
-    const newData = data?.find((item: any) => item.id === selectedLog)?.data;
-
     return (
         <>
             <Button
@@ -89,13 +81,10 @@ export const LogButton: React.FC<LogButtonProps> = ({
             <ModalDiffViewer
                 modalProps={{ ...modalProps, ...propModalProps }}
                 showModal={show}
+                selectedLog={selectedLog}
                 setSelectedLog={setSelectedLog}
                 logQueryResult={logQueryResult}
-                reactDiffViewerProps={{
-                    oldValue: stableStringify(oldData, { space: " " }),
-                    newValue: stableStringify(newData, { space: " " }),
-                    ...reactDiffViewerProps,
-                }}
+                reactDiffViewerProps={reactDiffViewerProps}
             />
         </>
     );
