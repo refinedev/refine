@@ -1,15 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Button, ButtonProps, Icons, useModal } from "@pankod/refine-antd";
+import {
+    Button,
+    ButtonProps,
+    Icons,
+    ModalProps,
+    useModal,
+} from "@pankod/refine-antd";
 import {
     useRouterContext,
     useTranslate,
     useResourceWithRoute,
     ResourceRouterParams,
     BaseKey,
-    useLogList,
 } from "@pankod/refine-core";
-import ReactDiffViewer from "react-diff-viewer";
-import stableStringify from "json-stable-stringify";
+import ReactDiffViewer, { ReactDiffViewerProps } from "react-diff-viewer";
 
 import { ModalDiffViewer } from "../modalDiffViewer";
 
@@ -17,6 +21,8 @@ export type LogButtonProps = ButtonProps & {
     recordItemId?: BaseKey;
     resourceName?: string;
     hideText?: boolean;
+    reactDiffViewerProps?: ReactDiffViewerProps;
+    modalProps?: ModalProps;
 };
 
 export const LogButton: React.FC<LogButtonProps> = ({
@@ -24,6 +30,8 @@ export const LogButton: React.FC<LogButtonProps> = ({
     recordItemId,
     hideText = false,
     onClick,
+    reactDiffViewerProps,
+    modalProps: propModalProps,
     children,
     ...rest
 }) => {
@@ -66,12 +74,13 @@ export const LogButton: React.FC<LogButtonProps> = ({
             </Button>
             <ModalDiffViewer
                 ref={diffViewerRef}
-                modalProps={modalProps}
+                modalProps={{ ...modalProps, ...propModalProps }}
                 showModal={show}
                 selectedLog={selectedLog}
                 setSelectedLog={setSelectedLog}
                 resource={resourceName}
                 id={id}
+                reactDiffViewerProps={reactDiffViewerProps}
             />
         </>
     );
