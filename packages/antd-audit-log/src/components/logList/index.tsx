@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { Card, ModalProps, useModal } from "@pankod/refine-antd";
 import {
     BaseKey,
@@ -9,7 +9,7 @@ import {
 } from "@pankod/refine-core";
 import { UseQueryResult } from "react-query";
 import stableStringify from "json-stable-stringify";
-import ReactDiffViewer, { ReactDiffViewerProps } from "react-diff-viewer";
+import { ReactDiffViewerProps } from "react-diff-viewer";
 
 import { ModalDiffViewer } from "../modalDiffViewer";
 import { EventList } from "../eventList";
@@ -18,7 +18,7 @@ export interface LogListProps {
     logQueryResult?: UseQueryResult<any>;
     reactDiffViewerProps?: ReactDiffViewerProps;
     modalProps?: ModalProps;
-    resource: string;
+    resource?: string;
 }
 
 export const LogList: React.FC<LogListProps> = ({
@@ -27,7 +27,6 @@ export const LogList: React.FC<LogListProps> = ({
     modalProps: propModalProps,
     resource: propResourceName,
 }) => {
-    const diffViewerRef = useRef<ReactDiffViewer>(null);
     const [selectedLog, setSelectedLog] = useState<BaseKey | undefined>();
 
     const { useParams } = useRouterContext();
@@ -45,17 +44,7 @@ export const LogList: React.FC<LogListProps> = ({
 
     const logQueryResult = logQueryResultProp ?? logQueryResultHook;
 
-    const { modalProps, show } = useModal({
-        modalProps: {
-            onCancel: () => {
-                diffViewerRef.current?.resetCodeBlocks();
-            },
-        },
-    });
-
-    useEffect(() => {
-        diffViewerRef.current?.resetCodeBlocks();
-    }, [selectedLog]);
+    const { modalProps, show } = useModal();
 
     const data = logQueryResult?.data?.data;
     const oldData = data?.find(
@@ -76,7 +65,6 @@ export const LogList: React.FC<LogListProps> = ({
                 />
             </Card>
             <ModalDiffViewer
-                ref={diffViewerRef}
                 modalProps={{ ...modalProps, ...propModalProps }}
                 showModal={show}
                 setSelectedLog={setSelectedLog}

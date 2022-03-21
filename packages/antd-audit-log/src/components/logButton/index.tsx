@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import {
     Button,
     ButtonProps,
@@ -14,7 +14,7 @@ import {
     BaseKey,
     useLogList,
 } from "@pankod/refine-core";
-import ReactDiffViewer, { ReactDiffViewerProps } from "react-diff-viewer";
+import { ReactDiffViewerProps } from "react-diff-viewer";
 import stableStringify from "json-stable-stringify";
 import { UseQueryResult } from "react-query";
 
@@ -40,7 +40,6 @@ export const LogButton: React.FC<LogButtonProps> = ({
     children,
     ...rest
 }) => {
-    const diffViewerRef = useRef<ReactDiffViewer>(null);
     const [selectedLog, setSelectedLog] = useState<BaseKey | undefined>();
 
     const translate = useTranslate();
@@ -55,13 +54,7 @@ export const LogButton: React.FC<LogButtonProps> = ({
     const resourceName = propResourceName ?? resource.name;
     const id = recordItemId ?? idFromRoute;
 
-    const { modalProps, show } = useModal({
-        modalProps: {
-            onCancel: () => {
-                diffViewerRef.current?.resetCodeBlocks();
-            },
-        },
-    });
+    const { modalProps, show } = useModal();
 
     const logQueryResultHook = useLogList({
         resource: resourceName,
@@ -82,10 +75,6 @@ export const LogButton: React.FC<LogButtonProps> = ({
     )?.previousData;
     const newData = data?.find((item: any) => item.id === selectedLog)?.data;
 
-    useEffect(() => {
-        diffViewerRef.current?.resetCodeBlocks();
-    }, [selectedLog]);
-
     return (
         <>
             <Button
@@ -97,7 +86,6 @@ export const LogButton: React.FC<LogButtonProps> = ({
                     (children ?? translate("buttons.logs", "Audit Logs"))}
             </Button>
             <ModalDiffViewer
-                ref={diffViewerRef}
                 modalProps={{ ...modalProps, ...propModalProps }}
                 showModal={show}
                 setSelectedLog={setSelectedLog}
