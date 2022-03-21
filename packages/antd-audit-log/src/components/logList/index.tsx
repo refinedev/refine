@@ -3,6 +3,7 @@ import { Card, ModalProps, useModal } from "@pankod/refine-antd";
 import {
     BaseKey,
     ResourceRouterParams,
+    useLogList,
     useResourceWithRoute,
     useRouterContext,
 } from "@pankod/refine-core";
@@ -21,7 +22,7 @@ export interface LogListProps {
 }
 
 export const LogList: React.FC<LogListProps> = ({
-    logQueryResult,
+    logQueryResult: logQueryResultProp,
     reactDiffViewerProps,
     modalProps: propModalProps,
     resource: propResourceName,
@@ -36,6 +37,13 @@ export const LogList: React.FC<LogListProps> = ({
     const resource = resourceWithRoute(routeResourceName);
 
     const resourceName = propResourceName ?? resource.name;
+
+    const logQueryResultHook = useLogList({
+        resource: resourceName,
+        queryOptions: { enabled: logQueryResultProp ? false : true },
+    });
+
+    const logQueryResult = logQueryResultProp ?? logQueryResultHook;
 
     const { modalProps, show } = useModal({
         modalProps: {
@@ -71,8 +79,6 @@ export const LogList: React.FC<LogListProps> = ({
                 ref={diffViewerRef}
                 modalProps={{ ...modalProps, ...propModalProps }}
                 showModal={show}
-                resource={resourceName}
-                selectedLog={selectedLog}
                 setSelectedLog={setSelectedLog}
                 logQueryResult={logQueryResult}
                 reactDiffViewerProps={{
