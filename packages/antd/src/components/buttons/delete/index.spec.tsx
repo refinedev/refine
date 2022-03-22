@@ -200,7 +200,6 @@ describe("Delete Button", () => {
         });
 
         it("should confirm Popconfirm successfuly with onSuccess", async () => {
-            const deleteOneMock = jest.fn();
             const onSuccessMock = jest.fn();
 
             const { getByText, getAllByText } = render(
@@ -209,10 +208,6 @@ describe("Delete Button", () => {
                 </Route>,
                 {
                     wrapper: TestWrapper({
-                        dataProvider: {
-                            ...MockJSONServer,
-                            deleteOne: deleteOneMock,
-                        },
                         routerInitialEntries: ["/posts/edit/1"],
                     }),
                 },
@@ -231,7 +226,6 @@ describe("Delete Button", () => {
                 fireEvent.click(deleteButtons[1]);
             });
 
-            expect(deleteOneMock).toBeCalledTimes(1);
             expect(onSuccessMock).toBeCalledTimes(1);
         });
     });
