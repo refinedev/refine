@@ -74,83 +74,80 @@ export const RouterComponent: React.FC<RouterProps> = ({
         );
     }
 
-    const createNestedRoute = (item: ITreeMenu[]) => {
-        const nestedMenu: Route[] = [];
-        item.forEach((p: ITreeMenu) => {
-            if (p.children.length > 0) {
-                nestedMenu.push({
-                    path: p.name,
-                    children: [...createNestedRoute(p.children)],
-                });
+    // subRoutes refer routes that only have list for render
+    const subRoutes: string[] = [];
+
+    const getSubRoute = (item: ITreeMenu[]) => {
+        item.map((i) => {
+            if (i.children.length > 0) {
+                return getSubRoute(i.children);
             } else {
-                nestedMenu.push({
-                    path: `:resource`,
-                    children: [
-                        {
-                            path: "/",
-                            element: <ResourceComponentWrapper />,
-                        },
-                    ],
-                },
-                {
-                    path: `:resource/:action`,
-                    children: [
-                        {
-                            path: "/",
-                            element: <ResourceComponentWrapper />,
-                        },
-                    ],
-                },
-                {
-                    path: `:resource/:action/:id`,
-                    children: [
-                        {
-                            path: "/",
-                            element: <ResourceComponentWrapper />,ç.
-                        },
-                    ],
-                },);
+                if (i.children) {
+                    const routeWithoutResource =
+                        i.route === i.name
+                            ? i.route.replace(i.name, "/")
+                            : i.route.replace(i.name, "");
+                    subRoutes.push(routeWithoutResource);
+                }
             }
         });
-        console.log(nestedMenu);
-
-        return nestedMenu;
     };
+
+    // recoursive method for creating prefix [prefix]/:resource
+    getSubRoute(treeMenu);
+
+    // to prevent duplicate same level resource's prefix
+    const uniqeSubRoutes = subRoutes.filter(
+        (item: string, idx: number) => subRoutes.indexOf(item) === idx,
+    );
+
+    const subRoutesArray = [
+        ...[...(customRoutes || [])].filter((p: RefineRouteProps) => p.layout),
+        {
+            path: "/",
+            element: DashboardPage ? (
+                <CanAccess
+                    resource="dashboard"
+                    action="list"
+                    fallback={catchAll ?? <ErrorComponent />}
+                >
+                    <DashboardPage />
+                </CanAccess>
+            ) : (
+                <Navigate to={`/${resources[0].route}`} />
+            ),
+        },
+    ];
+
+    // generate dynamic paths according to prefixs
+    uniqeSubRoutes.map((i: string) => {
+        subRoutesArray.push(
+            {
+                path: `${i}:resource`,
+                element: <ResourceComponentWrapper />,
+            },
+            {
+                path: `${i}:resource/:action`,
+                element: <ResourceComponentWrapper />,
+            },
+            {
+                path: `${i}:resource/:action/:id`,
+                element: <ResourceComponentWrapper />,
+            },
+        );
+    });
 
     const routes: Route[] = [
         ...[...(customRoutes || [])].filter((p: RefineRouteProps) => !p.layout),
         {
-            path: "/",
             element: (
                 <LayoutWrapper>
                     <Outlet />
                 </LayoutWrapper>
             ),
-            children: [
-                ...[...(customRoutes || [])].filter(
-                    (p: RefineRouteProps) => p.layout,
-                ),
-                {
-                    element: DashboardPage ? (
-                        <CanAccess
-                            resource="dashboard"
-                            action="list"
-                            fallback={catchAll ?? <ErrorComponent />}
-                        >
-                            <DashboardPage />
-                        </CanAccess>
-                    ) : (
-                        <Navigate to={`/${resources[0].route}`} />
-                    ),
-                },
-                ...createNestedRoute(treeMenu),
-                // cms/content/posts
-                
-            ],
+            children: subRoutesArray,
         },
     ];
-
-    console.log("routes", routes);
 
     return (
         <Router
