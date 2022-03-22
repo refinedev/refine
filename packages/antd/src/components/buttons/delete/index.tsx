@@ -17,7 +17,11 @@ import {
 } from "@pankod/refine-core";
 
 export type DeleteButtonProps = ButtonProps & {
+    /**
+     * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/pankod/refine/issues/1618
+     */
     resourceName?: string;
+    resourceNameOrRouteName?: string;
     recordItemId?: BaseKey;
     onSuccess?: (value: DeleteOneResponse) => void;
     mutationMode?: MutationMode;
@@ -38,6 +42,7 @@ export type DeleteButtonProps = ButtonProps & {
  */
 export const DeleteButton: React.FC<DeleteButtonProps> = ({
     resourceName: propResourceName,
+    resourceNameOrRouteName: propResourceNameOrRouteName,
     recordItemId,
     onSuccess,
     mutationMode: mutationModeProp,
@@ -66,16 +71,17 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     const { resource: routeResourceName, id: idFromRoute } =
         useParams<ResourceRouterParams>();
 
-    const resourceName = propResourceName ?? routeResourceName;
-
-    const resource = resourceWithRoute(resourceName);
+    const resource = resourceWithRoute(
+        propResourceNameOrRouteName ?? routeResourceName,
+    );
+    const resourceName = propResourceName ?? resource.name;
 
     const { mutate, isLoading, variables } = useDelete();
 
     const id = recordItemId ?? idFromRoute;
 
     const { data } = useCan({
-        resource: resource.name,
+        resource: resourceName,
         action: "delete",
         params: { id },
         queryOptions: {
@@ -99,7 +105,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                 mutate(
                     {
                         id: id!,
-                        resource: resource.name,
+                        resource: resourceName,
                         mutationMode,
                         successNotification,
                         errorNotification,

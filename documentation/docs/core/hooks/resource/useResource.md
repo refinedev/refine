@@ -22,26 +22,26 @@ const resources = useResource();
 #### Interfaces
 
 ```ts
-interface OptionsProps {
+type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
     label?: string;
     route?: string;
-    [key: string]: any;
 }
 
-interface IResourceComponentsProps<TCrudData = any> {
+interface IResourceComponentsProps<TCrudData = any, TOptionsPropsExtends = { [key: string]: any }> {
     canCreate?: boolean;
     canEdit?: boolean;
     canDelete?: boolean;
     canShow?: boolean;
     name?: string;
     initialData?: TCrudData;
-    options?: OptionsProps;
+    options?: OptionsProps<TOptionsPropsExtends>;
 }
+
 interface IResourceComponents {
-    list?: React.FunctionComponent<IResourceComponentsProps>;
-    create?: React.FunctionComponent<IResourceComponentsProps>;
-    edit?: React.FunctionComponent<IResourceComponentsProps>;
-    show?: React.FunctionComponent<IResourceComponentsProps>;
+    list?: React.FunctionComponent<IResourceComponentsProps<any, any>>;
+    create?: React.FunctionComponent<IResourceComponentsProps<any, any>>;
+    edit?: React.FunctionComponent<IResourceComponentsProps<any, any>>;
+    show?: React.FunctionComponent<IResourceComponentsProps<any, any>>;
 }
 
 interface IResourceItem extends IResourceComponents {

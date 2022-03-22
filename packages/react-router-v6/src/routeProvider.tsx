@@ -28,10 +28,7 @@ const ResourceComponent: React.FC = () => {
         id,
     } = useParams<ResourceRouterParams>();
 
-    const resource = resources.find(
-        (res) =>
-            res.name === routeResourceName || res.route === routeResourceName,
-    );
+    const resource = resources.find((res) => res.route === routeResourceName);
 
     if (resource) {
         const {
@@ -151,7 +148,7 @@ export const RouteProvider = () => {
     if (isLoading) {
         return (
             <Routes>
-                <Route />
+                <Route path="*" element={null} />
             </Routes>
         );
     }

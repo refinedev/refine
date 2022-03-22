@@ -89,12 +89,11 @@ describe("Create", () => {
             </Route>,
             {
                 wrapper: TestWrapper({
-                    routerInitialEntries: ["/posts/create/1"],
+                    routerInitialEntries: ["/posts/clone/1"],
                 }),
             },
         );
 
         getByText("Create Post");
-        getByText("Clone");
     });
 });

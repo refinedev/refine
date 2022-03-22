@@ -77,15 +77,15 @@ Clicking the button will trigger the [`useOne`](/core/hooks/data/useOne.md) meth
 `<RefreshButton>` component reads the id information from the route by default.
 :::
 
-### `resourceName`
+### `resourceNameOrRouteName`
 
-`resourceName` allows us to manage which resource is going to be refreshed.
+`resourceNameOrRouteName` allows us to manage which resource is going to be refreshed.
 
 ```tsx 
 import { RefreshButton } from "@pankod/refine-antd";
 
 export const MyRefreshComponent = () => {
-    return <RefreshButton resourceName="categories" recordItemId="2" />;
+    return <RefreshButton resourceNameOrRouteName="categories" recordItemId="2" />;
 };
 ```
 
@@ -111,13 +111,14 @@ export const MyRefreshComponent = () => {
 
 ### Properties
 
-| Property     | Description                                  | Type                                                                                                                                 | Default                                                                        |
-| ------------ | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| props        | Ant Design button props                      | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; recordItemId?: BaseKey; hideText?: boolean; }` |                                                                                |
-| resourceName | Determines which resource to use for refresh | `string`                                                                                                                             | Resource name that it reads from route                                         |
-| recordItemId | Determines which id to use for refresh       | [`BaseKey`](/core/interfaces.md#basekey)                                                                                                                             | Record id that it reads from route                                             |
-| hideText     | Allows to hide button text                   | `boolean`                                                                                                                            | `false`                                                                        |
-| children     | Sets the button text                         | `ReactNode`                                                                                                                          | `"Refresh"`                                                                    |
-| icon         | Sets the icon component of button            | `ReactNode`                                                                                                                          | [`<RedoOutlined />`](https://ant.design/components/icon/)                      |
-| onClick      | Sets the handler to handle the click event   | `(event) => void`                                                                                                                    | trigger the [`useOne`](/core/hooks/data/useOne.md) method for refresh |
-| metaData     | Metadata query for `dataProvider`            | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                                                                     | {}                                                                             |
+| Property                                                                                                  | Description                                      | Type                                                                                                                                  | Default                                                               |
+| --------------------------------------------------------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| props                                                                                                     | Ant Design button props                          | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; recordItemId?: BaseKey; hideText?: boolean; }` |                                                                       |
+| resourceNameOrRouteName                                                                                   | Determines which resource to use for redirection | `string`                                                                                                                              | Resource name that it reads from route                                |
+| <div className="required-block"><div>resourceName</div> <div className=" required">deprecated</div></div> | Determines which resource to use for redirection | `string`                                                                                                                              | Resource name that it reads from route                                |
+| recordItemId                                                                                              | Determines which id to use for refresh           | [`BaseKey`](/core/interfaces.md#basekey)                                                                                              | Record id that it reads from route                                    |
+| hideText                                                                                                  | Allows to hide button text                       | `boolean`                                                                                                                             | `false`                                                               |
+| children                                                                                                  | Sets the button text                             | `ReactNode`                                                                                                                           | `"Refresh"`                                                           |
+| icon                                                                                                      | Sets the icon component of button                | `ReactNode`                                                                                                                           | [`<RedoOutlined />`](https://ant.design/components/icon/)             |
+| onClick                                                                                                   | Sets the handler to handle the click event       | `(event) => void`                                                                                                                     | trigger the [`useOne`](/core/hooks/data/useOne.md) method for refresh |
+| metaData                                                                                                  | Metadata query for `dataProvider`                | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                                                                                  | {}                                                                    |

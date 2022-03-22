@@ -208,4 +208,31 @@ describe("Clone Button", () => {
 
         expect(mHistory.push).toBeCalledWith("/categories/clone/1");
     });
+
+    it("should redirect with custom route called function successfully if click the button", () => {
+        const { getByText } = render(
+            <Route path="/:resource">
+                <CloneButton
+                    resourceNameOrRouteName="custom-route-posts"
+                    recordItemId="1"
+                />
+            </Route>,
+            {
+                wrapper: TestWrapper({
+                    resources: [
+                        {
+                            name: "posts",
+                            options: { route: "custom-route-posts" },
+                        },
+                        { name: "posts" },
+                    ],
+                    routerInitialEntries: ["/posts"],
+                }),
+            },
+        );
+
+        fireEvent.click(getByText("Clone"));
+
+        expect(mHistory.push).toBeCalledWith("/custom-route-posts/clone/1");
+    });
 });

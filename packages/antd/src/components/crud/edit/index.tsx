@@ -101,11 +101,11 @@ export const Edit: React.FC<EditProps> = ({
                     {!recordItemId && (
                         <ListButton
                             data-testid="edit-list-button"
-                            resourceName={resource.name}
+                            resourceNameOrRouteName={resource.route}
                         />
                     )}
                     <RefreshButton
-                        resourceName={resource.name}
+                        resourceNameOrRouteName={resource.route}
                         recordItemId={id}
                     />
                 </Space>

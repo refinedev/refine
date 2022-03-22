@@ -76,15 +76,15 @@ Clicking the button will trigger the `show` method of [`useNavigation`](/core/ho
 `<ShowButton>` component reads the id information from the route by default.
 :::
 
-### `resourceName`
+### `resourceNameOrRouteName`
 
-Redirection endpoint(`resourceName/show`) is defined by `resourceName` property. By default, `<ShowButton>` uses `name` property of the resource object as an endpoint to redirect after clicking.
+Redirection endpoint(`resourceNameOrRouteName/show`) is defined by `resourceNameOrRouteName` property. By default, `<ShowButton>` uses `name` property of the resource object as an endpoint to redirect after clicking.
 
 ```tsx 
 import { ShowButton } from "@pankod/refine-antd";
 
 export const MyShowComponent = () => {
-    return <ShowButton resourceName="categories" recordItemId="2" />;
+    return <ShowButton resourceNameOrRouteName="categories" recordItemId="2" />;
 };
 ```
 
@@ -118,13 +118,14 @@ export const MyListComponent = () => {
 
 ### Properties
 
-| Property                    | Description                                      | Type                                                                                                                                 | Default                                                          |
-| --------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
-| props                       | Ant Design button properties                     | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; recordItemId?: BaseKey; hideText?: boolean; }` |                                                                  |
-| resourceName                | Determines which resource to use for redirection | `string`                                                                                                                             | Resource name that it reads from route                           |
-| recordItemId                | Adds `id` to the end of the URL                  | [`BaseKey`](/core/interfaces.md#basekey)                                                                                                                             | Record id that it reads from route                               |
-| hideText                    | Allows to hide button text                       | `boolean`                                                                                                                            | `false`                                                          |
-| ignoreAccessControlProvider | Skip access control                              | `boolean`                                                                                                                            | `false`                                                          |
-| children                    | Sets the button text                             | `ReactNode`                                                                                                                          | `"Show"`                                                         |
-| icon                        | Sets the icon component of button                | `ReactNode`                                                                                                                          | [`<EyeOutlined />`](https://ant.design/components/icon/)         |
-| onClick                     | Sets the handler to handle click event           | `(event) => void`                                                                                                                    | Triggers navigation for redirection to the show page of resource |
+| Property                                                                                                  | Description                                      | Type                                                                                                                                  | Default                                                          |
+| --------------------------------------------------------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| props                                                                                                     | Ant Design button properties                     | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; recordItemId?: BaseKey; hideText?: boolean; }` |                                                                  |
+| resourceNameOrRouteName                                                                                   | Determines which resource to use for redirection | `string`                                                                                                                              | Resource name that it reads from route                           |
+| <div className="required-block"><div>resourceName</div> <div className=" required">deprecated</div></div> | Determines which resource to use for redirection | `string`                                                                                                                              | Resource name that it reads from route                           |
+| recordItemId                                                                                              | Adds `id` to the end of the URL                  | [`BaseKey`](/core/interfaces.md#basekey)                                                                                              | Record id that it reads from route                               |
+| hideText                                                                                                  | Allows to hide button text                       | `boolean`                                                                                                                             | `false`                                                          |
+| ignoreAccessControlProvider                                                                               | Skip access control                              | `boolean`                                                                                                                             | `false`                                                          |
+| children                                                                                                  | Sets the button text                             | `ReactNode`                                                                                                                           | `"Show"`                                                         |
+| icon                                                                                                      | Sets the icon component of button                | `ReactNode`                                                                                                                           | [`<EyeOutlined />`](https://ant.design/components/icon/)         |
+| onClick                                                                                                   | Sets the handler to handle click event           | `(event) => void`                                                                                                                     | Triggers navigation for redirection to the show page of resource |
