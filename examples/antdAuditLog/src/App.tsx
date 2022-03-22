@@ -103,6 +103,14 @@ const App: React.FC = () => {
                     });
                     return data;
                 },
+                rename: async ({ id, name }) => {
+                    const { data } = await dataProvider(API_URL).update({
+                        resource: "logs",
+                        id,
+                        variables: { name },
+                    });
+                    return data;
+                },
             }}
         />
     );

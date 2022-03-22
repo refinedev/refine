@@ -17,7 +17,7 @@ import {
 import { ReactDiffViewerProps } from "react-diff-viewer";
 
 import { ModalDiffViewer } from "../modalDiffViewer";
-import { ILogs } from "src/interfaces";
+import { ILog, ILogs } from "src/interfaces";
 
 export type LogButtonProps = ButtonProps & {
     recordItemId?: BaseKey;
@@ -37,7 +37,7 @@ export const LogButton: React.FC<LogButtonProps> = ({
     children,
     ...rest
 }) => {
-    const [selectedLog, setSelectedLog] = useState<BaseKey | undefined>();
+    const [selectedLog, setSelectedLog] = useState<ILog>();
 
     const translate = useTranslate();
     const { modalProps, show } = useModal();
@@ -58,7 +58,7 @@ export const LogButton: React.FC<LogButtonProps> = ({
         queryOptions: {
             enabled: modalProps.visible,
             onSuccess: (result) => {
-                setSelectedLog(result[0]?.id);
+                setSelectedLog(result[0]);
             },
         },
     });
@@ -68,19 +68,22 @@ export const LogButton: React.FC<LogButtonProps> = ({
             <Button
                 onClick={(e): void => (onClick ? onClick(e) : show())}
                 icon={<Icons.HistoryOutlined />}
+                loading={logQueryResult.isLoading}
                 {...rest}
             >
                 {!hideText &&
                     (children ?? translate("buttons.logs", "Audit Logs"))}
             </Button>
-            <ModalDiffViewer
-                modalProps={{ ...modalProps, ...propModalProps }}
-                showModal={show}
-                selectedLog={selectedLog}
-                setSelectedLog={setSelectedLog}
-                logQueryResult={logQueryResult}
-                reactDiffViewerProps={reactDiffViewerProps}
-            />
+            {selectedLog && (
+                <ModalDiffViewer
+                    modalProps={{ ...modalProps, ...propModalProps }}
+                    showModal={show}
+                    selectedLog={selectedLog}
+                    setSelectedLog={setSelectedLog}
+                    logQueryResult={logQueryResult}
+                    reactDiffViewerProps={reactDiffViewerProps}
+                />
+            )}
         </>
     );
 };

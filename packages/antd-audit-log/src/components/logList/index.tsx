@@ -11,7 +11,7 @@ import { ReactDiffViewerProps } from "react-diff-viewer";
 
 import { ModalDiffViewer } from "../modalDiffViewer";
 import { EventList } from "../eventList";
-import { ILogs } from "src/interfaces";
+import { ILog, ILogs } from "src/interfaces";
 
 export interface LogListProps {
     recordItemId?: BaseKey;
@@ -26,7 +26,7 @@ export const LogList: React.FC<LogListProps> = ({
     modalProps: propModalProps,
     resource: propResourceName,
 }) => {
-    const [selectedLog, setSelectedLog] = useState<BaseKey | undefined>();
+    const [selectedLog, setSelectedLog] = useState<ILog>();
 
     const { modalProps, show } = useModal();
 
@@ -57,14 +57,16 @@ export const LogList: React.FC<LogListProps> = ({
                     showModal={show}
                 />
             </Card>
-            <ModalDiffViewer
-                modalProps={{ ...modalProps, ...propModalProps }}
-                showModal={show}
-                selectedLog={selectedLog}
-                setSelectedLog={setSelectedLog}
-                logQueryResult={logQueryResult}
-                reactDiffViewerProps={reactDiffViewerProps}
-            />
+            {selectedLog && (
+                <ModalDiffViewer
+                    modalProps={{ ...modalProps, ...propModalProps }}
+                    showModal={show}
+                    selectedLog={selectedLog}
+                    setSelectedLog={setSelectedLog}
+                    logQueryResult={logQueryResult}
+                    reactDiffViewerProps={reactDiffViewerProps}
+                />
+            )}
         </>
     );
 };

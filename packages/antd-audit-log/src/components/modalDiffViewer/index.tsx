@@ -9,8 +9,10 @@ import {
     Row,
     Col,
     ModalProps,
+    Typography,
+    Space,
 } from "@pankod/refine-antd";
-import { BaseKey } from "@pankod/refine-core";
+import { useLogRename } from "@pankod/refine-core";
 import ReactDiffViewer, {
     DiffMethod,
     ReactDiffViewerProps,
@@ -18,14 +20,17 @@ import ReactDiffViewer, {
 import { UseQueryResult } from "react-query";
 import stableStringify from "json-stable-stringify";
 
+const { Paragraph } = Typography;
+
 import { EventList } from "../eventList";
+import { ILog, ILogs } from "src/interfaces";
 
 export interface ModalDiffViewerProps {
-    logQueryResult?: UseQueryResult<any>;
+    logQueryResult?: UseQueryResult<ILogs>;
     reactDiffViewerProps?: ReactDiffViewerProps;
     modalProps?: ModalProps;
-    selectedLog?: BaseKey;
-    setSelectedLog: React.Dispatch<React.SetStateAction<BaseKey | undefined>>;
+    selectedLog: ILog;
+    setSelectedLog: React.Dispatch<React.SetStateAction<ILog | undefined>>;
     showModal: () => void;
 }
 
@@ -38,7 +43,10 @@ export const ModalDiffViewer: React.FC<ModalDiffViewerProps> = ({
     showModal,
 }) => {
     const [diffView, setDiffView] = useState("split");
+    const [name, setName] = useState(selectedLog.name ?? "Name");
     const diffViewerRef = useRef<ReactDiffViewer>(null);
+
+    const { mutate } = useLogRename();
 
     useEffect(() => {
         diffViewerRef.current?.resetCodeBlocks();
@@ -48,15 +56,23 @@ export const ModalDiffViewer: React.FC<ModalDiffViewerProps> = ({
         modalProps?.visible,
     ]);
 
-    const data = logQueryResult?.data;
-    const oldData = data?.find(
-        (item: any) => item.id === selectedLog,
-    )?.previousData;
-    const newData = data?.find((item: any) => item.id === selectedLog)?.data;
+    const handleRename = (value: string) => {
+        mutate(
+            {
+                id: selectedLog.id,
+                name: value,
+            },
+            {
+                onSuccess: () => {
+                    setName(value);
+                },
+            },
+        );
+    };
 
     return (
         <Modal footer={null} width={"80%"} {...modalProps}>
-            <div style={{ display: "flex" }}>
+            <Space>
                 <Dropdown
                     overlay={
                         <Menu selectedKeys={[diffView]}>
@@ -79,7 +95,16 @@ export const ModalDiffViewer: React.FC<ModalDiffViewerProps> = ({
                 >
                     <Button icon={<Icons.SettingOutlined />}>Diff view</Button>
                 </Dropdown>
-            </div>
+                <Paragraph
+                    editable={{
+                        icon: <></>,
+                        onChange: handleRename,
+                        triggerType: ["text"],
+                    }}
+                >
+                    {name}
+                </Paragraph>
+            </Space>
             <Divider />
             <Row gutter={[16, 16]}>
                 <Col span={20}>
@@ -89,8 +114,12 @@ export const ModalDiffViewer: React.FC<ModalDiffViewerProps> = ({
                         rightTitle="After"
                         compareMethod={DiffMethod.WORDS}
                         splitView={diffView === "split"}
-                        oldValue={stableStringify(oldData, { space: " " })}
-                        newValue={stableStringify(newData, { space: " " })}
+                        oldValue={stableStringify(selectedLog.previousData, {
+                            space: " ",
+                        })}
+                        newValue={stableStringify(selectedLog.data, {
+                            space: " ",
+                        })}
                         {...reactDiffViewerProps}
                     />
                 </Col>

@@ -20,6 +20,11 @@ export type IAuditLogContext =
               params?: { id?: BaseKey; [key: string]: any };
               metaData?: MetaDataQuery;
           }) => Promise<any>;
+          rename?: (params: {
+              id: BaseKey;
+              name: string;
+              [key: string]: any;
+          }) => Promise<any>;
       }
     | undefined;
 

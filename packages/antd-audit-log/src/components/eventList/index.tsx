@@ -9,17 +9,17 @@ import {
     Badge,
     Typography,
 } from "@pankod/refine-antd";
-import { BaseKey, useUpdate } from "@pankod/refine-core";
+import { useUpdate } from "@pankod/refine-core";
 import dayjs from "dayjs";
 
-import { ILogs } from "src/interfaces";
+import { ILog, ILogs } from "src/interfaces";
 
 const { Text } = Typography;
 
 interface EventListProps {
     logQueryResult?: UseQueryResult<ILogs>;
     showModal: () => void;
-    setSelectedLog: React.Dispatch<React.SetStateAction<BaseKey | undefined>>;
+    setSelectedLog: React.Dispatch<React.SetStateAction<ILog | undefined>>;
 }
 
 export const EventList: React.FC<EventListProps> = ({
@@ -72,11 +72,14 @@ export const EventList: React.FC<EventListProps> = ({
                         }}
                         onClick={() => {
                             showModal();
-                            setSelectedLog(log.id);
+                            setSelectedLog(log);
                         }}
                     >
                         <Text strong>
-                            {dayjs(log.timestamp).format("MM/DD/YYYY, hh:mm")}
+                            {log.name ??
+                                dayjs(log.timestamp).format(
+                                    "MM/DD/YYYY, hh:mm",
+                                )}
                         </Text>
                         <Badge color="blue" text={log?.author?.name} />
                     </Button>
