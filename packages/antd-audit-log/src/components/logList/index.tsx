@@ -7,7 +7,6 @@ import {
     useResourceWithRoute,
     useRouterContext,
 } from "@pankod/refine-core";
-import { UseQueryResult } from "react-query";
 import { ReactDiffViewerProps } from "react-diff-viewer";
 
 import { ModalDiffViewer } from "../modalDiffViewer";
@@ -15,7 +14,6 @@ import { EventList } from "../eventList";
 import { ILogs } from "src/interfaces";
 
 export interface LogListProps {
-    logQueryResult?: UseQueryResult<ILogs>;
     recordItemId?: BaseKey;
     reactDiffViewerProps?: ReactDiffViewerProps;
     modalProps?: ModalProps;
@@ -23,7 +21,6 @@ export interface LogListProps {
 }
 
 export const LogList: React.FC<LogListProps> = ({
-    logQueryResult: logQueryResultProp,
     recordItemId,
     reactDiffViewerProps,
     modalProps: propModalProps,
@@ -43,13 +40,10 @@ export const LogList: React.FC<LogListProps> = ({
     const resourceName = propResourceName ?? resource.name;
     const id = recordItemId ?? idFromRoute;
 
-    const logQueryResultHook = useLogList<ILogs>({
+    const logQueryResult = useLogList<ILogs>({
         resource: resourceName,
         params: { id },
-        queryOptions: { enabled: logQueryResultProp ? false : true },
     });
-
-    const logQueryResult = logQueryResultProp ?? logQueryResultHook;
 
     return (
         <>

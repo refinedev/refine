@@ -114,7 +114,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = ({
                 </Edit>
             </Col>
             <Col span={6}>
-                <LogList logQueryResult={logQueryResult} />
+                <LogList />
             </Col>
         </Row>
     );

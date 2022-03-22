@@ -15,13 +15,11 @@ import {
     useLogList,
 } from "@pankod/refine-core";
 import { ReactDiffViewerProps } from "react-diff-viewer";
-import { UseQueryResult } from "react-query";
 
 import { ModalDiffViewer } from "../modalDiffViewer";
 import { ILogs } from "src/interfaces";
 
 export type LogButtonProps = ButtonProps & {
-    logQueryResult?: UseQueryResult<ILogs>;
     recordItemId?: BaseKey;
     resourceName?: string;
     hideText?: boolean;
@@ -30,7 +28,6 @@ export type LogButtonProps = ButtonProps & {
 };
 
 export const LogButton: React.FC<LogButtonProps> = ({
-    logQueryResult: logQueryResultProp,
     resourceName: propResourceName,
     recordItemId,
     hideText = false,
@@ -55,18 +52,16 @@ export const LogButton: React.FC<LogButtonProps> = ({
     const resourceName = propResourceName ?? resource.name;
     const id = recordItemId ?? idFromRoute;
 
-    const logQueryResultHook = useLogList<ILogs>({
+    const logQueryResult = useLogList<ILogs>({
         resource: resourceName,
         params: { id },
         queryOptions: {
-            enabled: logQueryResultProp ? false : modalProps.visible,
+            enabled: modalProps.visible,
             onSuccess: (result) => {
                 setSelectedLog(result[0]?.id);
             },
         },
     });
-
-    const logQueryResult = logQueryResultProp ?? logQueryResultHook;
 
     return (
         <>
