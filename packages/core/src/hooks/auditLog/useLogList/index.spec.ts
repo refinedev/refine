@@ -4,7 +4,6 @@ import { TestWrapper } from "@test";
 
 import { useLogList } from "./";
 
-const logEventhMock = jest.fn();
 const logListMock = jest.fn();
 
 describe("useLogList Hook", () => {
@@ -19,7 +18,6 @@ describe("useLogList Hook", () => {
             {
                 wrapper: TestWrapper({
                     auditLogProvider: {
-                        logEvent: logEventhMock,
                         list: logListMock,
                     },
                 }),
@@ -39,7 +37,6 @@ describe("useLogList Hook", () => {
             {
                 wrapper: TestWrapper({
                     auditLogProvider: {
-                        logEvent: logEventhMock,
                         list: ({ resource }) => {
                             if (resource === "posts") {
                                 return Promise.resolve([

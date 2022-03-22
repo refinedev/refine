@@ -5,7 +5,6 @@ import { useLogEvent } from "./";
 import { AuditLogEvent } from "../../../interfaces";
 
 const logEventMock = jest.fn();
-const logListMock = jest.fn();
 
 describe("useLogEvent Hook", () => {
     beforeEach(() => {
@@ -23,7 +22,6 @@ describe("useLogEvent Hook", () => {
                 ],
                 auditLogProvider: {
                     logEvent: logEventMock,
-                    list: logListMock,
                 },
             }),
         });
@@ -55,7 +53,6 @@ describe("useLogEvent Hook", () => {
                 ],
                 auditLogProvider: {
                     logEvent: logEventMock,
-                    list: logListMock,
                 },
             }),
         });
@@ -79,7 +76,6 @@ describe("useLogEvent Hook", () => {
                 resources: [{ name: "posts" }],
                 auditLogProvider: {
                     logEvent: logEventMock,
-                    list: logListMock,
                 },
             }),
         });
@@ -105,7 +101,6 @@ describe("useLogEvent Hook", () => {
                 ],
                 auditLogProvider: {
                     logEvent: logEventMock,
-                    list: logListMock,
                 },
             }),
         });
@@ -150,7 +145,6 @@ describe("useLogEvent Hook", () => {
                 ],
                 auditLogProvider: {
                     logEvent: logEventMock,
-                    list: logListMock,
                 },
             }),
         });
