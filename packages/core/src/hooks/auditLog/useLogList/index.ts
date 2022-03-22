@@ -23,10 +23,14 @@ export const useLogList = <TData = any, TError extends HttpError = HttpError>({
         throw new Error("auditLogProvider is not defined.");
     }
 
+    if (!auditLogContext.list) {
+        throw new Error("auditLogProvider's `list` is not defined.");
+    }
+
     const queryResponse = useQuery<TData, TError>(
         ["useLogList", resource, { ...params }],
         () =>
-            auditLogContext.list({
+            auditLogContext.list!({
                 resource,
                 params,
                 metaData,
