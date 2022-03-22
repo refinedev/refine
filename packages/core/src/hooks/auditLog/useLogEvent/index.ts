@@ -27,8 +27,6 @@ export const useLogEvent = (): ((params: AuditLogEvent) => void) => {
             }
 
             const resource = resources.find((p) => p.name === params.resource);
-            queryClient.invalidateQueries(["useLogList", resource?.name]);
-
             const auditLogPermissions = resource?.options?.auditLogPermissions;
 
             if (auditLogPermissions) {
@@ -46,6 +44,13 @@ export const useLogEvent = (): ((params: AuditLogEvent) => void) => {
                         ...params,
                         author: identityData ?? authorData?.data,
                     });
+
+                    setTimeout(() => {
+                        queryClient.invalidateQueries([
+                            "useLogList",
+                            resource?.name,
+                        ]);
+                    }, 500);
                 }
             }
         },
