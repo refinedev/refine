@@ -18,9 +18,13 @@ const liveProvider = (client: Ably.Realtime): LiveProvider => {
                         message.data?.payload?.ids !== undefined
                     ) {
                         if (
-                            params.ids.filter((value) =>
-                                message.data.payload.ids!.includes(value),
-                            ).length > 0
+                            params.ids
+                                .map(String)
+                                .filter((value) =>
+                                    message.data.payload.ids
+                                        ?.map(String)
+                                        .includes(value),
+                                ).length > 0
                         ) {
                             callback(message.data as LiveEvent);
                         }
