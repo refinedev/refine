@@ -319,7 +319,11 @@ const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
                         params?.ids !== undefined &&
                         payload.new?.id !== undefined
                     ) {
-                        if (params.ids.includes(payload.new.id.toString())) {
+                        if (
+                            params.ids
+                                .map(String)
+                                .includes(payload.new.id.toString())
+                        ) {
                             callback({
                                 channel,
                                 type: liveTypes[payload.eventType],
