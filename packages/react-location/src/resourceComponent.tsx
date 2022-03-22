@@ -21,7 +21,7 @@ export const ResourceComponentWrapper: React.FC = () => {
         id,
     } = useParams<ResourceRouterParams>();
 
-    const resource = resources.find((res) => res.route === routeResourceName);
+    const resource = resources.find((res) => res.name === routeResourceName);
 
     if (resource) {
         const {
