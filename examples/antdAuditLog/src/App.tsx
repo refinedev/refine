@@ -85,7 +85,7 @@ const App: React.FC = () => {
             catchAll={<ErrorComponent />}
             Header={() => null}
             auditLogProvider={{
-                logEvent: (params) => {
+                log: (params) => {
                     dataProvider(API_URL).create({
                         resource: "logs",
                         variables: params,
