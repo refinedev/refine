@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useRouterContext, useResourceWithRoute, useLogList } from "@hooks";
+import { hasPermission } from "@definitions/helpers";
 import {
     IResourceComponentsProps,
     ResourceRouterParams,
@@ -23,7 +24,13 @@ export const withAuditLogs = (
     const queryResult = useLogList({
         resource: resource.name,
         params: { id },
-        metaData: { action },
+        metaData: { action, ...resource.options },
+        queryOptions: {
+            enabled: hasPermission(
+                resource.options?.auditLog?.autoFetch,
+                action,
+            ),
+        },
     });
 
     if (component) {

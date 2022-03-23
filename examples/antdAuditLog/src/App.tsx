@@ -59,7 +59,10 @@ const App: React.FC = () => {
                     show: PostShow,
                     canDelete: true,
                     options: {
-                        auditLogPermissions: ["create", "delete", "update"],
+                        auditLog: {
+                            permissions: ["create", "delete", "update"],
+                            autoFetch: ["*"],
+                        },
                     },
                 },
                 {
@@ -70,7 +73,10 @@ const App: React.FC = () => {
                     show: CategoryShow,
                     canDelete: true,
                     options: {
-                        auditLogPermissions: ["create", "delete", "update"],
+                        auditLog: {
+                            permissions: ["create", "delete", "update"],
+                            autoFetch: ["*"],
+                        },
                     },
                 },
             ]}
