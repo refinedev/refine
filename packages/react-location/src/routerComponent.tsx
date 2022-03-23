@@ -55,10 +55,10 @@ export const RouterComponent: React.FC<RouterProps> = ({
                 path: "/login",
                 element: LoginPage ? <LoginPage /> : <DefaultLoginPage />,
             },
-            /*  {
+            {
                 path: "*",
                 element: <LoginNavigateWithToParam />,
-            }, */
+            },
         ];
 
         return (
@@ -111,10 +111,10 @@ export const RouterComponent: React.FC<RouterProps> = ({
                 </LayoutWrapper>
             ),
             children: [
-                /*   ...[...(customRoutes || [])].filter(
+                ...[...(customRoutes || [])].filter(
                     (p: RefineRouteProps) => p.layout,
-                ), */
-                /*  {
+                ),
+                {
                     element: DashboardPage ? (
                         <CanAccess
                             resource="dashboard"
@@ -124,38 +124,15 @@ export const RouterComponent: React.FC<RouterProps> = ({
                             <DashboardPage />
                         </CanAccess>
                     ) : (
-                        <Navigate to={`/${resources[0].route}`} />
+                        <Navigate
+                            to={`/${
+                                resources.find((p) => p.list !== undefined)
+                                    ?.route
+                            }`}
+                        />
                     ),
-                }, */
+                },
                 ...[...(resourceRoutes || [])],
-
-                /* {
-                    path: `:resource`,
-                    children: [
-                        {
-                            path: "/",
-                            element: <ResourceComponentWrapper />,
-                        },
-                    ],
-                },
-                {
-                    path: `:resource/:action`,
-                    children: [
-                        {
-                            path: "/",
-                            element: <ResourceComponentWrapper />,
-                        },
-                    ],
-                },
-                {
-                    path: `:resource/:action/:id`,
-                    children: [
-                        {
-                            path: "/",
-                            element: <ResourceComponentWrapper />,
-                        },
-                    ],
-                }, */
             ],
         },
     ];
