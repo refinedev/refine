@@ -53,6 +53,8 @@ export {
     OpenNotificationParams,
     ResourceErrorRouterParams,
     LogParams,
+    ILogData,
+    ILog,
 } from "./interfaces";
 
 export {
