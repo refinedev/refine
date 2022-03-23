@@ -243,7 +243,7 @@ export const useDeleteMany = <
             },
             onSuccess: (
                 _data,
-                { ids, resource, successNotification },
+                { ids, resource, successNotification, dataProviderName },
                 context,
             ) => {
                 handleNotification(successNotification, {
@@ -281,6 +281,7 @@ export const useDeleteMany = <
                     previousData,
                     meta: {
                         ids,
+                        dataProviderName,
                     },
                 });
 

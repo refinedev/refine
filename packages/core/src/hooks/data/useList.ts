@@ -103,6 +103,7 @@ export const useList = <
                     meta: {
                         config,
                         metaData,
+                        dataProviderName,
                     },
                 });
             },

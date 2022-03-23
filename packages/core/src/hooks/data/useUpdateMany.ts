@@ -283,7 +283,7 @@ export const useUpdateMany = <
             },
             onSuccess: (
                 data,
-                { ids, resource, successNotification },
+                { ids, resource, successNotification, dataProviderName },
                 context,
             ) => {
                 const resourceSingular = pluralize.singular(resource);
@@ -329,6 +329,7 @@ export const useUpdateMany = <
                     previousData,
                     meta: {
                         ids,
+                        dataProviderName,
                     },
                 });
             },

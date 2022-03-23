@@ -90,6 +90,7 @@ export const useOne = <
                     meta: {
                         id,
                         metaData,
+                        dataProviderName,
                     },
                 });
             },

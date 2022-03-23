@@ -125,6 +125,9 @@ export const useCreate = <
                     action: "create",
                     resource,
                     data: data.data,
+                    meta: {
+                        dataProviderName,
+                    },
                 });
             },
             onError: (

@@ -256,7 +256,7 @@ export const useUpdate = <
             },
             onSuccess: (
                 data,
-                { id, resource, successNotification },
+                { id, resource, successNotification, dataProviderName },
                 context,
             ) => {
                 const resourceSingular = pluralize.singular(resource);
@@ -300,6 +300,7 @@ export const useUpdate = <
                     previousData,
                     meta: {
                         id,
+                        dataProviderName,
                     },
                 });
             },

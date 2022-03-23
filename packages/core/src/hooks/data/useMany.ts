@@ -96,6 +96,7 @@ export const useMany = <
                     meta: {
                         ids,
                         metaData,
+                        dataProviderName,
                     },
                 });
             },

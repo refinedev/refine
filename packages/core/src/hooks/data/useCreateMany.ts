@@ -119,6 +119,9 @@ export const useCreateMany = <
                     action: "create",
                     resource,
                     data: response.data,
+                    meta: {
+                        dataProviderName,
+                    },
                 });
             },
             onError: (err: TError, { resource, errorNotification }) => {

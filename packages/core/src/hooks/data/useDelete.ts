@@ -221,7 +221,7 @@ export const useDelete = <
             },
             onSuccess: (
                 _data,
-                { id, resource, successNotification },
+                { id, resource, successNotification, dataProviderName },
                 context,
             ) => {
                 const resourceSingular = pluralize.singular(resource);
@@ -261,6 +261,7 @@ export const useDelete = <
                     previousData,
                     meta: {
                         id,
+                        dataProviderName,
                     },
                 });
 
