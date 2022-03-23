@@ -12,6 +12,7 @@ import {
     useRouterContext,
     CanAccess,
     ResourceRouterParams,
+    IResourceItem,
 } from "@pankod/refine-core";
 import { RefineRouteProps } from "./index";
 
@@ -158,7 +159,6 @@ export const RouteProvider = () => {
         const route = (
             <Route
                 path={`${resource.route}`}
-                key={`${resource.route}`}
                 element={<ResourceComponent route={resource.route!} />}
             >
                 <Route
@@ -173,6 +173,34 @@ export const RouteProvider = () => {
             </Route>
         );
         resourceRoutes.push(route);
+    });
+
+    const routesAll = resources.map((route: IResourceItem) => {
+        return (
+            <Route
+                key={`${route.route}`}
+                path={route.route}
+                element={
+                    <ResourceComponent route={route.route!}>
+                        <Outlet />
+                    </ResourceComponent>
+                }
+            >
+                <Route
+                    path=":action"
+                    element={
+                        <ResourceComponent route={route.route!}>
+                            <Outlet />
+                        </ResourceComponent>
+                    }
+                >
+                    <Route
+                        path=":id"
+                        element={<ResourceComponent route={route.route!} />}
+                    />
+                </Route>
+            </Route>
+        );
     });
 
     const renderAuthorized = () => (
@@ -215,7 +243,12 @@ export const RouteProvider = () => {
                                 <DashboardPage />
                             </CanAccess>
                         ) : (
-                            <Navigate to={`/${resources[0].route}`} />
+                            <Navigate
+                                to={`/${
+                                    resources.find((p) => p.list !== undefined)
+                                        ?.route
+                                }`}
+                            />
                         )
                     }
                 />

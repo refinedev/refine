@@ -54,9 +54,10 @@ const RouterProvider: IReactRouterProvider = {
         };
     },
     useParams: () => {
-        const match = useMatch();
-        const resource = (match.element as any)?.props?.route;
-        return handleUseParams({ ...match.params, resource });
+        const { params, element } = useMatch();
+        const resource = (element as any)?.props?.route;
+
+        return handleUseParams({ ...params, resource });
     },
     Prompt,
     Link,

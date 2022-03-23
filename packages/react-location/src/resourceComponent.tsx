@@ -35,8 +35,6 @@ export const ResourceComponentWrapper: React.FC<{ route: string }> = ({
             options,
         } = resource;
 
-        console.log("name", name);
-
         const List = list ?? (() => null);
         const Create = create ?? (() => null);
         const Edit = edit ?? (() => null);

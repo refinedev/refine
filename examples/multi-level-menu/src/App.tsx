@@ -56,7 +56,6 @@ const App: React.FC = () => {
                     create: UserCreate,
                     edit: UserEdit,
                     show: UserShow,
-                    parentName: "teams",
                 },
             ]}
             notificationProvider={notificationProvider}
