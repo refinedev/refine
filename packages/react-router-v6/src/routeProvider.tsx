@@ -1,13 +1,6 @@
 /* eslint-disable react/display-name */
 import React from "react";
-import {
-    RouteProps,
-    Route,
-    Routes,
-    Navigate,
-    Outlet,
-    useLocation,
-} from "react-router-dom";
+import { RouteProps, Route, Routes, Navigate, Outlet } from "react-router-dom";
 import {
     LoginPage as DefaultLoginPage,
     ErrorComponent,
@@ -21,6 +14,7 @@ import {
     ResourceRouterParams,
     createTreeView,
     ITreeMenu,
+    IResourceItem,
 } from "@pankod/refine-core";
 import { RefineRouteProps } from "./index";
 
@@ -30,12 +24,15 @@ const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
     const { resources } = useResource();
 
     const {
-        resource: routeResourceName,
+        resource: routeName,
         action,
         id,
     } = useParams<ResourceRouterParams>();
 
-    const resource = resources.find((res) => res.route === routeResourceName);
+    console.log("route", route);
+    console.log("routeName", routeName);
+
+    const resource = resources.find((res) => res.route === route);
 
     if (resource) {
         const {
@@ -168,6 +165,8 @@ export const RouteProvider = () => {
         return <Navigate to={`/login?to=${encodeURIComponent(toURL)}`} />;
     };
 
+    console.log("resources", resources);
+
     // const renderTreeView = (item: ITreeMenu[]) => {
     //     return item.map((p: ITreeMenu) => {
     //         if (p.children.length > 0) {
@@ -176,15 +175,53 @@ export const RouteProvider = () => {
     //             );
     //         } else {
     //             return (
-    //                 <Route path=":resource" element={<ResourceComponent />}>
-    //                     <Route path=":action" element={<ResourceComponent />}>
-    //                         <Route path=":id" element={<ResourceComponent />} />
+    //                 <Route
+    //                     path=":resource"
+    //                     element={<ResourceComponent route={p.route!} />}
+    //                 >
+    //                     <Route
+    //                         path=":action"
+    //                         element={<ResourceComponent route={p.route!} />}
+    //                     >
+    //                         <Route
+    //                             path=":id"
+    //                             element={<ResourceComponent route={p.route!} />}
+    //                         />
     //                     </Route>
     //                 </Route>
     //             );
     //         }
     //     });
     // };
+
+    const routesAll = resources.map((route: IResourceItem) => {
+        return (
+            <Route
+                key={`${route.route}`}
+                path={route.route}
+                element={
+                    <ResourceComponent route={route.route!}>
+                        <Outlet />
+                    </ResourceComponent>
+                }
+            >
+                <Route
+                    path=":action"
+                    element={
+                        <ResourceComponent route={route.route!}>
+                            <Outlet />
+                        </ResourceComponent>
+                    }
+                >
+                    <Route
+                        path=":id"
+                        element={<ResourceComponent route={route.route!} />}
+                    />
+                </Route>
+            </Route>
+        );
+    });
+    console.log("routesAll", [...(routesAll || [])]);
 
     const renderAuthorized = () => (
         <Routes>
@@ -230,20 +267,8 @@ export const RouteProvider = () => {
                         )
                     }
                 />
-                {resources.map((resource) => (
-                    <Route
-                        key={resource.route}
-                        path={resource.route}
-                        element={<ResourceComponent route={resource.route!} />}
-                    >
-                        <Route
-                            path="*"
-                            element={
-                                <ResourceComponent route={resource.route!} />
-                            }
-                        />
-                    </Route>
-                ))}
+                {/* {...routesAll} */}
+                {[...(routesAll || [])]}
             </Route>
         </Routes>
     );

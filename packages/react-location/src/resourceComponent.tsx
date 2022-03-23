@@ -19,14 +19,7 @@ export const ResourceComponentWrapper: React.FC<{ route: string }> = ({
 
     const { action, id } = useParams<ResourceRouterParams>();
 
-    // console.log("resources", resources);
-    // console.log("routeResourceName", routeResourceName);
-    // console.log("optionParam", optionParam);
-
-    console.log("route2222", route, action);
     const resource = resources.find((res) => res.route === route);
-
-    console.log("resource2222", resource);
 
     if (resource) {
         const {
@@ -41,8 +34,6 @@ export const ResourceComponentWrapper: React.FC<{ route: string }> = ({
             canDelete,
             options,
         } = resource;
-
-        console.log("name", name);
 
         const List = list ?? (() => null);
         const Create = create ?? (() => null);

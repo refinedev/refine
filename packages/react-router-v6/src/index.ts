@@ -7,6 +7,7 @@ import {
     RouteProps,
     BrowserRouterProps,
     useNavigate,
+    useMatch,
 } from "react-router-dom";
 
 import { RouterComponent } from "./routerComponent";
@@ -40,9 +41,14 @@ const RouterProvider: IReactRouterProvider = {
     useLocation,
     useParams: () => {
         const params = useParams();
-        console.log("params", params);
 
-        return handleUseParams(params);
+        const location = useLocation();
+        console.log("param", params);
+
+        return handleUseParams({
+            ...params,
+            resource: location.pathname,
+        });
     },
     Prompt: Prompt as any,
     Link,
