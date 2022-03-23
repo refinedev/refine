@@ -12,7 +12,7 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
-    useLogEvent,
+    useLog,
 } from "@hooks";
 import pluralize from "pluralize";
 import { queryKeys } from "@definitions/helpers";
@@ -57,7 +57,7 @@ export const useCreateMany = <
     const translate = useTranslate();
     const queryClient = useQueryClient();
     const publish = usePublish();
-    const logEvent = useLogEvent();
+    const { log } = useLog();
     const handleNotification = useHandleNotification();
 
     const mutation = useMutation<
@@ -115,7 +115,7 @@ export const useCreateMany = <
                     date: new Date(),
                 });
 
-                logEvent({
+                log({
                     action: "create",
                     resource,
                     data: response.data,

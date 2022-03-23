@@ -21,7 +21,7 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
-    useLogEvent,
+    useLog,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import { queryKeys } from "@definitions";
@@ -73,7 +73,7 @@ export const useDeleteMany = <
     const { notificationDispatch } = useCancelNotification();
     const translate = useTranslate();
     const publish = usePublish();
-    const logEvent = useLogEvent();
+    const { log } = useLog();
     const handleNotification = useHandleNotification();
 
     const queryClient = useQueryClient();
@@ -275,7 +275,7 @@ export const useDeleteMany = <
                     )?.data;
                 });
 
-                logEvent({
+                log({
                     action: "delete",
                     resource,
                     previousData,

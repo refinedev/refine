@@ -9,7 +9,7 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
-    useLogEvent,
+    useLog,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
@@ -76,7 +76,7 @@ export const useUpdateMany = <
     const { mutate: checkError } = useCheckError();
     const { notificationDispatch } = useCancelNotification();
     const publish = usePublish();
-    const logEvent = useLogEvent();
+    const { log } = useLog();
     const handleNotification = useHandleNotification();
 
     const mutation = useMutation<
@@ -322,7 +322,7 @@ export const useUpdateMany = <
                     )?.data;
                 });
 
-                logEvent({
+                log({
                     action: "update",
                     resource,
                     data: data.data,

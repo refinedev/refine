@@ -1,40 +1,41 @@
 import { renderHook } from "@testing-library/react-hooks";
 
 import { TestWrapper } from "@test";
-import { useLogEvent } from "./";
-import { AuditLogEvent } from "../../../interfaces";
+import { useLog } from ".";
+import { LogParams } from "../../../interfaces";
 
 const logEventMock = jest.fn();
+const logRenameMock = jest.fn();
 
-describe("useLogEvent Hook", () => {
+describe("useLog Hook", () => {
     beforeEach(() => {
         logEventMock.mockReset();
     });
 
     it("should called logEvent if include permissions", async () => {
-        const { result, waitForNextUpdate } = renderHook(() => useLogEvent(), {
+        const { result, waitForNextUpdate } = renderHook(() => useLog(), {
             wrapper: TestWrapper({
                 resources: [
                     {
                         name: "posts",
-                        options: { auditLogPermissions: ["create"] },
+                        options: { auditLog: { permissions: ["create"] } },
                     },
                 ],
                 auditLogProvider: {
-                    logEvent: logEventMock,
+                    log: logEventMock,
                 },
             }),
         });
 
-        const logEvent = result.current;
+        const { log } = result.current;
 
-        const logEventPayload: AuditLogEvent = {
+        const logEventPayload: LogParams = {
             action: "create",
             resource: "posts",
             data: { id: 1, title: "title" },
         };
 
-        logEvent(logEventPayload);
+        log(logEventPayload);
 
         await waitForNextUpdate();
 
@@ -43,90 +44,93 @@ describe("useLogEvent Hook", () => {
     });
 
     it("should not called logEvent if no includes permissions", async () => {
-        const { result } = renderHook(() => useLogEvent(), {
+        const { result } = renderHook(() => useLog(), {
             wrapper: TestWrapper({
                 resources: [
                     {
                         name: "posts",
-                        options: { auditLogPermissions: ["create"] },
+                        options: { auditLog: { permissions: ["create"] } },
                     },
                 ],
                 auditLogProvider: {
-                    logEvent: logEventMock,
+                    log: logEventMock,
                 },
             }),
         });
 
-        const logEvent = result.current;
+        const { log } = result.current;
 
-        const logEventPayload: AuditLogEvent = {
+        const logEventPayload: LogParams = {
             action: "update",
             resource: "posts",
             data: { id: 1, title: "title" },
         };
 
-        logEvent(logEventPayload);
+        log(logEventPayload);
 
         expect(logEventMock).not.toBeCalled();
     });
 
     it("should not called logEvent if no exist auditLogPermissions", async () => {
-        const { result } = renderHook(() => useLogEvent(), {
+        const { result } = renderHook(() => useLog(), {
             wrapper: TestWrapper({
                 resources: [{ name: "posts" }],
                 auditLogProvider: {
-                    logEvent: logEventMock,
+                    log: logEventMock,
                 },
             }),
         });
 
-        const logEvent = result.current;
+        const { log } = result.current;
 
-        const logEventPayload: AuditLogEvent = {
+        const logEventPayload: LogParams = {
             action: "update",
             resource: "posts",
             data: { id: 1, title: "title" },
         };
 
-        logEvent(logEventPayload);
+        log(logEventPayload);
 
         expect(logEventMock).not.toBeCalled();
     });
 
     it("should called logEvent every action if permisson is `*`", async () => {
-        const { result, waitForNextUpdate } = renderHook(() => useLogEvent(), {
+        const { result, waitForNextUpdate } = renderHook(() => useLog(), {
             wrapper: TestWrapper({
                 resources: [
-                    { name: "posts", options: { auditLogPermissions: ["*"] } },
+                    {
+                        name: "posts",
+                        options: { auditLog: { permissions: ["*"] } },
+                    },
                 ],
                 auditLogProvider: {
-                    logEvent: logEventMock,
+                    log: logEventMock,
                 },
             }),
         });
 
-        const logEvent = result.current;
+        const { log } = result.current;
 
-        const logEventPayload: AuditLogEvent = {
+        const logEventPayload: LogParams = {
             action: "update",
             resource: "posts",
             data: { id: 1, title: "title" },
         };
 
-        logEvent(logEventPayload);
+        log(logEventPayload);
 
         await waitForNextUpdate();
 
         expect(logEventMock).toBeCalledWith(logEventPayload);
         expect(logEventMock).toBeCalledTimes(1);
 
-        const logEventPayload2: AuditLogEvent = {
+        const logEventPayload2: LogParams = {
             action: "createMany",
             resource: "posts",
             data: { id: 2, title: "title2" },
         };
 
-        logEvent(logEventPayload2);
+        log(logEventPayload2);
 
         await waitForNextUpdate();
 
@@ -135,30 +139,52 @@ describe("useLogEvent Hook", () => {
     });
 
     it("should not called logEvent if resources no match", async () => {
-        const { result } = renderHook(() => useLogEvent(), {
+        const { result } = renderHook(() => useLog(), {
             wrapper: TestWrapper({
                 resources: [
                     {
                         name: "categories",
-                        options: { auditLogPermissions: ["update"] },
+                        options: { auditLog: { permissions: ["update"] } },
                     },
                 ],
                 auditLogProvider: {
-                    logEvent: logEventMock,
+                    log: logEventMock,
                 },
             }),
         });
 
-        const logEvent = result.current;
+        const { log } = result.current;
 
-        const logEventPayload: AuditLogEvent = {
+        const logEventPayload: LogParams = {
             action: "update",
             resource: "posts",
             data: { id: 1, title: "title" },
         };
 
-        logEvent(logEventPayload);
+        log(logEventPayload);
 
         expect(logEventMock).not.toBeCalled();
+    });
+});
+
+describe("useLogRename Hook", () => {
+    it("succeed rename", async () => {
+        const { result, waitForNextUpdate } = renderHook(() => useLog(), {
+            wrapper: TestWrapper({
+                auditLogProvider: {
+                    rename: logRenameMock,
+                },
+            }),
+        });
+
+        const { rename } = result.current!;
+        const { mutate } = rename;
+
+        await mutate({ id: 1, name: "test name" });
+
+        await waitForNextUpdate();
+
+        expect(logRenameMock).toBeCalledWith({ id: 1, name: "test name" });
+        expect(logRenameMock).toBeCalledTimes(1);
     });
 });

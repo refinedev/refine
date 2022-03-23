@@ -8,7 +8,7 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
-    useLogEvent,
+    useLog,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import pluralize from "pluralize";
@@ -75,7 +75,7 @@ export const useDelete = <
     const { notificationDispatch } = useCancelNotification();
     const translate = useTranslate();
     const publish = usePublish();
-    const logEvent = useLogEvent();
+    const { log } = useLog();
     const handleNotification = useHandleNotification();
 
     const mutation = useMutation<
@@ -255,7 +255,7 @@ export const useDelete = <
                     DeleteOneResponse<TData>
                 >(context.queryKey.detail(id))?.data;
 
-                logEvent({
+                log({
                     action: "delete",
                     resource,
                     previousData,

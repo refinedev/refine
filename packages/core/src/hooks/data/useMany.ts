@@ -15,7 +15,7 @@ import {
     useResourceSubscription,
     useHandleNotification,
     useDataProvider,
-    useLogEvent,
+    useLog,
 } from "@hooks";
 import { queryKeys } from "@definitions/helpers";
 
@@ -65,7 +65,7 @@ export const useMany = <
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const handleNotification = useHandleNotification();
-    const logEvent = useLogEvent();
+    const { log } = useLog();
 
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
@@ -89,7 +89,7 @@ export const useMany = <
                 queryOptions?.onSuccess?.(data);
                 handleNotification(successNotification);
 
-                logEvent({
+                log({
                     action: "getMany",
                     resource,
                     data: data.data,

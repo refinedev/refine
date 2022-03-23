@@ -1,3 +1,2 @@
-export * from "./useLogEvent";
+export * from "./useLog";
 export * from "./useLogList";
-export * from "./useLogRename";

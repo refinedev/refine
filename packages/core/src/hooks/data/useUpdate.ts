@@ -22,7 +22,7 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
-    useLogEvent,
+    useLog,
 } from "@hooks";
 import { queryKeys } from "@definitions/helpers";
 
@@ -75,7 +75,7 @@ export const useUpdate = <
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const publish = usePublish();
-    const logEvent = useLogEvent();
+    const { log } = useLog();
     const { notificationDispatch } = useCancelNotification();
     const handleNotification = useHandleNotification();
 
@@ -293,7 +293,7 @@ export const useUpdate = <
                     UpdateResponse<TData>
                 >(context.queryKey.detail(id))?.data;
 
-                logEvent({
+                log({
                     action: "update",
                     resource,
                     data: data.data,

@@ -16,7 +16,7 @@ import {
     useResourceSubscription,
     useTranslate,
     useDataProvider,
-    useLogEvent,
+    useLog,
 } from "@hooks";
 import { queryKeys } from "@definitions/helpers";
 
@@ -72,7 +72,7 @@ export const useList = <
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const handleNotification = useHandleNotification();
-    const logEvent = useLogEvent();
+    const { log } = useLog();
 
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
@@ -96,7 +96,7 @@ export const useList = <
                 queryOptions?.onSuccess?.(data);
                 handleNotification(successNotification);
 
-                logEvent({
+                log({
                     action: "list",
                     resource,
                     data: data.data,

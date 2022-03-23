@@ -1,6 +1,6 @@
 import { BaseKey, MetaDataQuery } from "../../interfaces";
 
-export type AuditLogEvent = {
+export type LogParams = {
     resource: string;
     action: string;
     data?: any;
@@ -14,7 +14,7 @@ export type AuditLogEvent = {
 
 export type IAuditLogContext =
     | {
-          logEvent?: (params: AuditLogEvent) => void;
+          log?: (params: LogParams) => void;
           list?: (params: {
               resource: string;
               params?: { id?: BaseKey; [key: string]: any };

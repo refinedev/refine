@@ -1,12 +1,26 @@
 import { useCallback, useContext } from "react";
-import { useQueryClient } from "react-query";
+import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 
 import { AuditLogContext } from "@contexts/auditLog";
 import { ResourceContext } from "@contexts/resource";
 import { useGetIdentity } from "@hooks/auth";
-import { AuditLogEvent } from "../../../interfaces";
+import { BaseKey, LogParams } from "../../../interfaces";
+import { hasPermission } from "@definitions/helpers";
 
-export const useLogEvent = (): ((params: AuditLogEvent) => void) => {
+type TLogRenameData = void | false | string;
+export type UseLogReturnType = {
+    log: (params: LogParams) => Promise<void>;
+    rename: UseMutationResult<
+        TLogRenameData,
+        Error,
+        {
+            id: BaseKey;
+            name: string;
+        }
+    >;
+};
+
+export const useLog = (): UseLogReturnType => {
     const queryClient = useQueryClient();
     const auditLogContext = useContext(AuditLogContext);
     const { resources } = useContext(ResourceContext);
@@ -20,27 +34,25 @@ export const useLogEvent = (): ((params: AuditLogEvent) => void) => {
         },
     });
 
-    const logEvent = useCallback(
-        async (params: AuditLogEvent) => {
-            if (!auditLogContext) {
+    const log = useCallback(
+        async (params: LogParams) => {
+            if (!auditLogContext || !auditLogContext.log) {
                 return;
             }
 
             const resource = resources.find((p) => p.name === params.resource);
-            const auditLogPermissions = resource?.options?.auditLogPermissions;
+            const logPermissions = resource?.options?.auditLog?.permissions;
 
-            if (auditLogPermissions) {
-                const shouldAuditLog = auditLogPermissions.find(
-                    (i) => i === params.action || i === "*",
-                );
+            if (logPermissions) {
+                const shouldLog = hasPermission(logPermissions, params.action);
 
-                if (shouldAuditLog) {
+                if (shouldLog) {
                     let authorData;
                     if (isLoading) {
                         authorData = await refetch();
                     }
 
-                    auditLogContext.logEvent?.({
+                    auditLogContext.log({
                         ...params,
                         author: identityData ?? authorData?.data,
                     });
@@ -57,5 +69,16 @@ export const useLogEvent = (): ((params: AuditLogEvent) => void) => {
         [resources, identityData, auditLogContext],
     );
 
-    return logEvent;
+    const rename = useMutation<
+        TLogRenameData,
+        Error,
+        { id: BaseKey; name: string },
+        unknown
+    >("useLogRename", auditLogContext?.rename, {
+        onSuccess: (data: any) => {
+            queryClient.invalidateQueries(["useLogList", data.resource]);
+        },
+    });
+
+    return { log, rename };
 };

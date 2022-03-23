@@ -12,7 +12,7 @@ import {
     Typography,
     Space,
 } from "@pankod/refine-antd";
-import { useLogRename } from "@pankod/refine-core";
+import { useLog } from "@pankod/refine-core";
 import ReactDiffViewer, {
     DiffMethod,
     ReactDiffViewerProps,
@@ -46,7 +46,8 @@ export const ModalDiffViewer: React.FC<ModalDiffViewerProps> = ({
     const [name, setName] = useState(selectedLog.name ?? "Name");
     const diffViewerRef = useRef<ReactDiffViewer>(null);
 
-    const { mutate } = useLogRename();
+    const { rename } = useLog();
+    const { mutate } = rename;
 
     useEffect(() => {
         diffViewerRef.current?.resetCodeBlocks();
