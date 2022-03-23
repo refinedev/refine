@@ -12,7 +12,7 @@ import {
     Typography,
     Space,
 } from "@pankod/refine-antd";
-import { useLog } from "@pankod/refine-core";
+import { useLog, ILogData, ILog } from "@pankod/refine-core";
 import ReactDiffViewer, {
     DiffMethod,
     ReactDiffViewerProps,
@@ -23,10 +23,9 @@ import stableStringify from "json-stable-stringify";
 const { Paragraph } = Typography;
 
 import { EventList } from "../eventList";
-import { ILog, ILogs } from "src/interfaces";
 
 export interface ModalDiffViewerProps {
-    logQueryResult?: UseQueryResult<ILogs>;
+    logQueryResult?: UseQueryResult<ILogData>;
     reactDiffViewerProps?: ReactDiffViewerProps;
     modalProps?: ModalProps;
     selectedLog: ILog;

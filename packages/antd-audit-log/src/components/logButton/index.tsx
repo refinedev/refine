@@ -13,11 +13,12 @@ import {
     ResourceRouterParams,
     BaseKey,
     useLogList,
+    ILog,
+    ILogData,
 } from "@pankod/refine-core";
 import { ReactDiffViewerProps } from "react-diff-viewer";
 
 import { ModalDiffViewer } from "../modalDiffViewer";
-import { ILog, ILogs } from "src/interfaces";
 
 export type LogButtonProps = ButtonProps & {
     recordItemId?: BaseKey;
@@ -52,7 +53,7 @@ export const LogButton: React.FC<LogButtonProps> = ({
     const resourceName = propResourceName ?? resource.name;
     const id = recordItemId ?? idFromRoute;
 
-    const logQueryResult = useLogList<ILogs>({
+    const logQueryResult = useLogList<ILogData>({
         resource: resourceName,
         params: { id },
         queryOptions: {

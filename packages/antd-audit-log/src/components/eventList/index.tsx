@@ -9,15 +9,13 @@ import {
     Badge,
     Typography,
 } from "@pankod/refine-antd";
-import { useUpdate } from "@pankod/refine-core";
+import { ILog, ILogData, useUpdate } from "@pankod/refine-core";
 import dayjs from "dayjs";
-
-import { ILog, ILogs } from "src/interfaces";
 
 const { Text } = Typography;
 
 interface EventListProps {
-    logQueryResult?: UseQueryResult<ILogs>;
+    logQueryResult?: UseQueryResult<ILogData>;
     showModal: () => void;
     setSelectedLog: React.Dispatch<React.SetStateAction<ILog | undefined>>;
 }

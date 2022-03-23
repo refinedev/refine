@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Card, ModalProps, useModal } from "@pankod/refine-antd";
 import {
     BaseKey,
+    ILog,
+    ILogData,
     ResourceRouterParams,
     useLogList,
     useResourceWithRoute,
@@ -11,7 +13,6 @@ import { ReactDiffViewerProps } from "react-diff-viewer";
 
 import { ModalDiffViewer } from "../modalDiffViewer";
 import { EventList } from "../eventList";
-import { ILog, ILogs } from "src/interfaces";
 
 export interface LogListProps {
     recordItemId?: BaseKey;
@@ -40,7 +41,7 @@ export const LogList: React.FC<LogListProps> = ({
     const resourceName = propResourceName ?? resource.name;
     const id = recordItemId ?? idFromRoute;
 
-    const logQueryResult = useLogList<ILogs>({
+    const logQueryResult = useLogList<ILogData>({
         resource: resourceName,
         params: { id },
     });
