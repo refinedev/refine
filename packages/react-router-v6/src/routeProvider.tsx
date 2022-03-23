@@ -175,34 +175,6 @@ export const RouteProvider = () => {
         resourceRoutes.push(route);
     });
 
-    const routesAll = resources.map((route: IResourceItem) => {
-        return (
-            <Route
-                key={`${route.route}`}
-                path={route.route}
-                element={
-                    <ResourceComponent route={route.route!}>
-                        <Outlet />
-                    </ResourceComponent>
-                }
-            >
-                <Route
-                    path=":action"
-                    element={
-                        <ResourceComponent route={route.route!}>
-                            <Outlet />
-                        </ResourceComponent>
-                    }
-                >
-                    <Route
-                        path=":id"
-                        element={<ResourceComponent route={route.route!} />}
-                    />
-                </Route>
-            </Route>
-        );
-    });
-
     const renderAuthorized = () => (
         <Routes>
             {[...(customRoutes || [])]
