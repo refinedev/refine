@@ -5,7 +5,7 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-location";
+import routerProvider from "@pankod/refine-react-router-v6";
 import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -47,7 +47,7 @@ const App: React.FC = () => {
                     canDelete: true,
                     options: {
                         label: "kahve kategori",
-                        route: "kahve/boz",
+                        route: "kahve/boz/hede",
                     },
                 },
                 {

@@ -1,13 +1,6 @@
 /* eslint-disable react/display-name */
 import React from "react";
-import {
-    RouteProps,
-    Route,
-    Routes,
-    Navigate,
-    Outlet,
-    useLocation,
-} from "react-router-dom";
+import { RouteProps, Route, Routes, Navigate, Outlet } from "react-router-dom";
 import {
     LoginPage as DefaultLoginPage,
     ErrorComponent,
@@ -19,8 +12,6 @@ import {
     useRouterContext,
     CanAccess,
     ResourceRouterParams,
-    createTreeView,
-    ITreeMenu,
 } from "@pankod/refine-core";
 import { RefineRouteProps } from "./index";
 
@@ -29,13 +20,9 @@ const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
     const { useParams } = useRouterContext();
     const { resources } = useResource();
 
-    const {
-        resource: routeResourceName,
-        action,
-        id,
-    } = useParams<ResourceRouterParams>();
+    const { action, id } = useParams<ResourceRouterParams>();
 
-    const resource = resources.find((res) => res.route === routeResourceName);
+    const resource = resources.find((res) => res.route === route);
 
     if (resource) {
         const {
@@ -59,7 +46,6 @@ const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
         const renderCrud = () => {
             switch (action) {
                 case undefined:
-                default:
                     return (
                         <CanAccess
                             resource={name}
@@ -145,8 +131,6 @@ export const RouteProvider = () => {
     const { resources } = useResource();
     const { catchAll, DashboardPage, LoginPage } = useRefineContext();
 
-    const treeMenu: ITreeMenu[] = createTreeView(resources);
-
     const { routes: customRoutes }: { routes: RouteProps[] } =
         useRouterContext();
 
@@ -168,23 +152,28 @@ export const RouteProvider = () => {
         return <Navigate to={`/login?to=${encodeURIComponent(toURL)}`} />;
     };
 
-    // const renderTreeView = (item: ITreeMenu[]) => {
-    //     return item.map((p: ITreeMenu) => {
-    //         if (p.children.length > 0) {
-    //             return (
-    //                 <Route path={p.name}>{renderTreeView(p.children)}</Route>
-    //             );
-    //         } else {
-    //             return (
-    //                 <Route path=":resource" element={<ResourceComponent />}>
-    //                     <Route path=":action" element={<ResourceComponent />}>
-    //                         <Route path=":id" element={<ResourceComponent />} />
-    //                     </Route>
-    //                 </Route>
-    //             );
-    //         }
-    //     });
-    // };
+    const resourceRoutes: JSX.Element[] = [];
+
+    resources.map((resource) => {
+        const route = (
+            <Route
+                path={`${resource.route}`}
+                key={`${resource.route}`}
+                element={<ResourceComponent route={resource.route!} />}
+            >
+                <Route
+                    path=":action"
+                    element={<ResourceComponent route={resource.route!} />}
+                >
+                    <Route
+                        path=":id"
+                        element={<ResourceComponent route={resource.route!} />}
+                    />
+                </Route>
+            </Route>
+        );
+        resourceRoutes.push(route);
+    });
 
     const renderAuthorized = () => (
         <Routes>
@@ -230,20 +219,7 @@ export const RouteProvider = () => {
                         )
                     }
                 />
-                {resources.map((resource) => (
-                    <Route
-                        key={resource.route}
-                        path={resource.route}
-                        element={<ResourceComponent route={resource.route!} />}
-                    >
-                        <Route
-                            path="*"
-                            element={
-                                <ResourceComponent route={resource.route!} />
-                            }
-                        />
-                    </Route>
-                ))}
+                {...[...(resourceRoutes || [])]}
             </Route>
         </Routes>
     );
