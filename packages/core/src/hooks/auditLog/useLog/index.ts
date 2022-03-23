@@ -7,8 +7,12 @@ import { useGetIdentity } from "@hooks/auth";
 import { BaseKey, LogParams } from "../../../interfaces";
 import { hasPermission } from "@definitions/helpers";
 
-type TLogRenameData = void | false | string;
-export type UseLogReturnType = {
+type LogRenameData =
+    | {
+          resource?: string;
+      }
+    | undefined;
+export type UseLogReturnType<TLogRenameData> = {
     log: (params: LogParams) => Promise<void>;
     rename: UseMutationResult<
         TLogRenameData,
@@ -20,7 +24,9 @@ export type UseLogReturnType = {
     >;
 };
 
-export const useLog = (): UseLogReturnType => {
+export const useLog = <
+    TLogRenameData extends LogRenameData = LogRenameData,
+>(): UseLogReturnType<TLogRenameData> => {
     const queryClient = useQueryClient();
     const auditLogContext = useContext(AuditLogContext);
     const { resources } = useContext(ResourceContext);
@@ -74,11 +80,31 @@ export const useLog = (): UseLogReturnType => {
         Error,
         { id: BaseKey; name: string },
         unknown
-    >("useLogRename", auditLogContext?.rename, {
-        onSuccess: (data: any) => {
-            queryClient.invalidateQueries(["useLogList", data.resource]);
+    >(
+        async (params) => {
+            if (!auditLogContext) {
+                throw new Error("auditLogProvider is not defined.");
+            }
+
+            if (!auditLogContext.rename) {
+                throw new Error("auditLogProvider's `rename` is not defined.");
+            }
+
+            return await auditLogContext.rename?.(params);
         },
-    });
+        {
+            onSuccess: (data) => {
+                if (data?.resource) {
+                    queryClient.invalidateQueries([
+                        "useLogList",
+                        data.resource,
+                    ]);
+                } else {
+                    queryClient.invalidateQueries(["useLogList"]);
+                }
+            },
+        },
+    );
 
     return { log, rename };
 };
