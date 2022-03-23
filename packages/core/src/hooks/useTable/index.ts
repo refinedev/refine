@@ -114,13 +114,12 @@ export const useTable = <
         defaultFilter = parsedFilters.length ? parsedFilters : defaultFilter;
     }
 
-    const { resource: routeResourceName, name } =
-        useParams<ResourceRouterParams>();
+    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const { push } = useNavigation();
     const resourceWithRoute = useResourceWithRoute();
 
-    const routeResourceNameFromOptions = name ?? routeResourceName;
+    const routeResourceNameFromOptions = routeResourceName;
     const resource = resourceWithRoute(
         resourceFromProp ?? routeResourceNameFromOptions,
     );

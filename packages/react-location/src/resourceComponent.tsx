@@ -10,28 +10,23 @@ import {
     CanAccess,
 } from "@pankod/refine-core";
 
-export const ResourceComponentWrapper: React.FC<{ optionParam?: any }> = ({
-    optionParam,
+export const ResourceComponentWrapper: React.FC<{ route: string }> = ({
+    route,
 }) => {
     const { catchAll } = useRefineContext();
     const { useParams } = useRouterContext();
     const { resources } = useResource();
 
-    const {
-        resource: routeResourceName,
-        action,
-        id,
-    } = useParams<ResourceRouterParams>();
+    const { action, id } = useParams<ResourceRouterParams>();
 
     // console.log("resources", resources);
     // console.log("routeResourceName", routeResourceName);
     // console.log("optionParam", optionParam);
 
-    const resourceName = optionParam ? optionParam.name : routeResourceName;
+    console.log("route2222", route, action);
+    const resource = resources.find((res) => res.route === route);
 
-    const resource = resources.find((res) => res.name === resourceName);
-
-    console.log("resource", resource);
+    console.log("resource2222", resource);
 
     if (resource) {
         const {
