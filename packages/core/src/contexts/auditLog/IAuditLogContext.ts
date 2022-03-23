@@ -3,7 +3,7 @@ import { BaseKey, MetaDataQuery } from "../../interfaces";
 export type AuditLogEvent = {
     resource: string;
     action: string;
-    data: any;
+    data?: any;
     author?: {
         name?: string;
         [key: string]: any;

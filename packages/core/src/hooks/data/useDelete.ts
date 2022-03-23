@@ -220,7 +220,7 @@ export const useDelete = <
                 });
             },
             onSuccess: (
-                data,
+                _data,
                 { id, resource, successNotification },
                 context,
             ) => {
@@ -258,7 +258,6 @@ export const useDelete = <
                 logEvent({
                     action: "delete",
                     resource,
-                    data: data.data,
                     previousData,
                     meta: {
                         id,

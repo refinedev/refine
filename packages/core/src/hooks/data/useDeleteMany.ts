@@ -242,7 +242,7 @@ export const useDeleteMany = <
                 });
             },
             onSuccess: (
-                data,
+                _data,
                 { ids, resource, successNotification },
                 context,
             ) => {
@@ -278,7 +278,6 @@ export const useDeleteMany = <
                 logEvent({
                     action: "delete",
                     resource,
-                    data: data.data,
                     previousData,
                     meta: {
                         ids,
