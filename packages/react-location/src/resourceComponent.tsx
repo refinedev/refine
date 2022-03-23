@@ -10,7 +10,9 @@ import {
     CanAccess,
 } from "@pankod/refine-core";
 
-export const ResourceComponentWrapper: React.FC = () => {
+export const ResourceComponentWrapper: React.FC<{ optionParam?: any }> = ({
+    optionParam,
+}) => {
     const { catchAll } = useRefineContext();
     const { useParams } = useRouterContext();
     const { resources } = useResource();
@@ -21,7 +23,15 @@ export const ResourceComponentWrapper: React.FC = () => {
         id,
     } = useParams<ResourceRouterParams>();
 
-    const resource = resources.find((res) => res.name === routeResourceName);
+    // console.log("resources", resources);
+    // console.log("routeResourceName", routeResourceName);
+    // console.log("optionParam", optionParam);
+
+    const resourceName = optionParam ? optionParam.name : routeResourceName;
+
+    const resource = resources.find((res) => res.name === resourceName);
+
+    console.log("resource", resource);
 
     if (resource) {
         const {
@@ -37,6 +47,8 @@ export const ResourceComponentWrapper: React.FC = () => {
             options,
         } = resource;
 
+        console.log("name", name);
+
         const List = list ?? (() => null);
         const Create = create ?? (() => null);
         const Edit = edit ?? (() => null);
@@ -44,7 +56,7 @@ export const ResourceComponentWrapper: React.FC = () => {
 
         const renderCrud = () => {
             switch (action) {
-                case undefined:
+                default:
                     return (
                         <CanAccess
                             resource={name}

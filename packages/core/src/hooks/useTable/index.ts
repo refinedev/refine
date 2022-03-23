@@ -114,12 +114,16 @@ export const useTable = <
         defaultFilter = parsedFilters.length ? parsedFilters : defaultFilter;
     }
 
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
+    const { resource: routeResourceName, name } =
+        useParams<ResourceRouterParams>();
 
     const { push } = useNavigation();
     const resourceWithRoute = useResourceWithRoute();
 
-    const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
+    const routeResourceNameFromOptions = name ?? routeResourceName;
+    const resource = resourceWithRoute(
+        resourceFromProp ?? routeResourceNameFromOptions,
+    );
 
     const [sorter, setSorter] = useState<CrudSorting>(
         setInitialSorters(permanentSorter, defaultSorter ?? []),

@@ -40,6 +40,8 @@ export const RouterComponent: React.FC<RouterProps> = ({
 
     const { routes: customRoutes }: { routes: Route[] } = useRouterContext();
 
+    console.log("resources", resources);
+
     const isAuthenticated = useIsAuthenticated();
     const { isLoading } = useAuthenticated({ type: "routeProvider" });
 
@@ -76,6 +78,10 @@ export const RouterComponent: React.FC<RouterProps> = ({
 
     // subRoutes refer routes that only have list for render
     const subRoutes: string[] = [];
+    const optionRoutes: {
+        name: string;
+        prefix: string;
+    }[] = [];
 
     const getSubRoute = (item: ITreeMenu[]) => {
         item.map((i) => {
@@ -83,11 +89,31 @@ export const RouterComponent: React.FC<RouterProps> = ({
                 return getSubRoute(i.children);
             } else {
                 if (i.children) {
-                    const routeWithoutResource =
-                        i.route === i.name
-                            ? i.route.replace(i.name, "/")
-                            : i.route.replace(i.name, "");
-                    subRoutes.push(routeWithoutResource);
+                    if (!i.options) {
+                        const routeWithoutResource =
+                            i.route === i.name
+                                ? i.route.replace(i.name, "/")
+                                : i.route.replace(i.name, "");
+                        subRoutes.push(routeWithoutResource);
+                    } else {
+                        const splitedRoute = i.route.split("/");
+                        const resource = splitedRoute[splitedRoute.length - 1];
+                        const prefix =
+                            splitedRoute.length > 1
+                                ? i.route.replace(resource, "")
+                                : i.route.replace(resource, "/");
+
+                        console.log("prefix", prefix);
+
+                        optionRoutes.push({
+                            name: i.name,
+                            prefix,
+                        });
+                    }
+                } else {
+                    console.log("edde");
+
+                    return "asd";
                 }
             }
         });
@@ -101,6 +127,7 @@ export const RouterComponent: React.FC<RouterProps> = ({
         (item: string, idx: number) => subRoutes.indexOf(item) === idx,
     );
 
+    console.log("subRoutes", subRoutes);
     const subRoutesArray = [
         ...[...(customRoutes || [])].filter((p: RefineRouteProps) => p.layout),
         {
@@ -119,6 +146,8 @@ export const RouterComponent: React.FC<RouterProps> = ({
         },
     ];
 
+    console.log("uniqeSubRoutes", uniqeSubRoutes);
+
     // generate dynamic paths according to prefixs
     uniqeSubRoutes.map((i: string) => {
         subRoutesArray.push(
@@ -133,6 +162,23 @@ export const RouterComponent: React.FC<RouterProps> = ({
             {
                 path: `${i}:resource/:action/:id`,
                 element: <ResourceComponentWrapper />,
+            },
+        );
+    });
+
+    optionRoutes.map((item: { name: string; prefix: string }) => {
+        subRoutesArray.push(
+            {
+                path: `${item.prefix}:resource`,
+                element: <ResourceComponentWrapper optionParam={item} />,
+            },
+            {
+                path: `${item.prefix}:resource/:action`,
+                element: <ResourceComponentWrapper optionParam={item} />,
+            },
+            {
+                path: `${item.prefix}:resource/:action/:id`,
+                element: <ResourceComponentWrapper optionParam={item} />,
             },
         );
     });

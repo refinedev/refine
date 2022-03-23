@@ -28,6 +28,9 @@ const App: React.FC = () => {
                     parentName: "cms",
                 },
                 {
+                    name: "teams",
+                },
+                {
                     name: "posts",
                     list: PostList,
                     create: PostCreate,
@@ -42,7 +45,10 @@ const App: React.FC = () => {
                     create: CategoryCreate,
                     edit: CategoryEdit,
                     canDelete: true,
-                    parentName: "cms",
+                    options: {
+                        label: "kahve kategori",
+                        route: "kahve/boz",
+                    },
                 },
                 {
                     name: "users",
@@ -50,6 +56,7 @@ const App: React.FC = () => {
                     create: UserCreate,
                     edit: UserEdit,
                     show: UserShow,
+                    parentName: "teams",
                 },
             ]}
             notificationProvider={notificationProvider}

@@ -1,6 +1,13 @@
 /* eslint-disable react/display-name */
 import React from "react";
-import { RouteProps, Route, Routes, Navigate, Outlet } from "react-router-dom";
+import {
+    RouteProps,
+    Route,
+    Routes,
+    Navigate,
+    Outlet,
+    useLocation,
+} from "react-router-dom";
 import {
     LoginPage as DefaultLoginPage,
     ErrorComponent,
@@ -17,7 +24,7 @@ import {
 } from "@pankod/refine-core";
 import { RefineRouteProps } from "./index";
 
-const ResourceComponent: React.FC = () => {
+const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
     const { catchAll } = useRefineContext();
     const { useParams } = useRouterContext();
     const { resources } = useResource();
@@ -52,6 +59,7 @@ const ResourceComponent: React.FC = () => {
         const renderCrud = () => {
             switch (action) {
                 case undefined:
+                default:
                     return (
                         <CanAccess
                             resource={name}
@@ -160,23 +168,23 @@ export const RouteProvider = () => {
         return <Navigate to={`/login?to=${encodeURIComponent(toURL)}`} />;
     };
 
-    const renderTreeView = (item: ITreeMenu[]) => {
-        return item.map((p: ITreeMenu) => {
-            if (p.children.length > 0) {
-                return (
-                    <Route path={p.name}>{renderTreeView(p.children)}</Route>
-                );
-            } else {
-                return (
-                    <Route path=":resource" element={<ResourceComponent />}>
-                        <Route path=":action" element={<ResourceComponent />}>
-                            <Route path=":id" element={<ResourceComponent />} />
-                        </Route>
-                    </Route>
-                );
-            }
-        });
-    };
+    // const renderTreeView = (item: ITreeMenu[]) => {
+    //     return item.map((p: ITreeMenu) => {
+    //         if (p.children.length > 0) {
+    //             return (
+    //                 <Route path={p.name}>{renderTreeView(p.children)}</Route>
+    //             );
+    //         } else {
+    //             return (
+    //                 <Route path=":resource" element={<ResourceComponent />}>
+    //                     <Route path=":action" element={<ResourceComponent />}>
+    //                         <Route path=":id" element={<ResourceComponent />} />
+    //                     </Route>
+    //                 </Route>
+    //             );
+    //         }
+    //     });
+    // };
 
     const renderAuthorized = () => (
         <Routes>
@@ -222,7 +230,20 @@ export const RouteProvider = () => {
                         )
                     }
                 />
-                {renderTreeView(treeMenu)}
+                {resources.map((resource) => (
+                    <Route
+                        key={resource.route}
+                        path={resource.route}
+                        element={<ResourceComponent route={resource.route!} />}
+                    >
+                        <Route
+                            path="*"
+                            element={
+                                <ResourceComponent route={resource.route!} />
+                            }
+                        />
+                    </Route>
+                ))}
             </Route>
         </Routes>
     );
