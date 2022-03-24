@@ -24,7 +24,7 @@ export const withAuditLogs = (
     const queryResult = useLogList({
         resource: resource.name,
         params: { id },
-        metaData: { action, ...resource.options },
+        metaData: resource.options,
         queryOptions: {
             enabled: hasPermission(
                 resource.options?.auditLog?.autoFetch,

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useQuery, UseQueryResult, UseQueryOptions } from "react-query";
 
 import { AuditLogContext } from "@contexts/auditLog";
+import { queryKeys } from "@definitions/helpers";
 import { BaseKey, HttpError, MetaDataQuery } from "../../../interfaces";
 
 export type UseLogProps<TData, TError> = {
@@ -27,8 +28,10 @@ export const useLogList = <TData = any, TError extends HttpError = HttpError>({
         throw new Error("auditLogProvider's `list` is not defined.");
     }
 
+    const queryKey = queryKeys(resource, undefined, metaData);
+
     const queryResponse = useQuery<TData, TError>(
-        ["useLogList", resource, { ...params }],
+        queryKey.logList(params),
         () =>
             auditLogContext.list!({
                 resource,

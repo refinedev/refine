@@ -5,7 +5,7 @@ import { AuditLogContext } from "@contexts/auditLog";
 import { ResourceContext } from "@contexts/resource";
 import { useGetIdentity } from "@hooks/auth";
 import { BaseKey, LogParams } from "../../../interfaces";
-import { hasPermission } from "@definitions/helpers";
+import { hasPermission, queryKeys } from "@definitions/helpers";
 
 type LogRenameData =
     | {
@@ -63,11 +63,9 @@ export const useLog = <
                         author: identityData ?? authorData?.data,
                     });
 
+                    const queryKey = queryKeys(resource?.name);
                     setTimeout(() => {
-                        queryClient.invalidateQueries([
-                            "useLogList",
-                            resource?.name,
-                        ]);
+                        queryClient.invalidateQueries(queryKey.logList());
                     }, 500);
                 }
             }
@@ -95,12 +93,8 @@ export const useLog = <
         {
             onSuccess: (data) => {
                 if (data?.resource) {
-                    queryClient.invalidateQueries([
-                        "useLogList",
-                        data.resource,
-                    ]);
-                } else {
-                    queryClient.invalidateQueries(["useLogList"]);
+                    const queryKey = queryKeys(data?.resource);
+                    queryClient.invalidateQueries(queryKey.logList());
                 }
             },
         },

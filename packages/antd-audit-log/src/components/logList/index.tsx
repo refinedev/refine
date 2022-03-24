@@ -44,6 +44,7 @@ export const LogList: React.FC<LogListProps> = ({
     const logQueryResult = useLogList<ILogData>({
         resource: resourceName,
         params: { id },
+        metaData: resource.options,
     });
 
     return (

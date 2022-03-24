@@ -9,4 +9,5 @@ export interface IQueryKeys {
     list: (config?: UseListConfig | undefined) => QueryKey[];
     many: (ids?: BaseKey[]) => QueryKey[];
     detail: (id: BaseKey) => QueryKey[];
+    logList: (params?: { id?: BaseKey; [key: string]: any }) => QueryKey[];
 }
