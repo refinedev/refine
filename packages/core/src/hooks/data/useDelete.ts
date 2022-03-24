@@ -75,7 +75,7 @@ export const useDelete = <
     const { notificationDispatch } = useCancelNotification();
     const translate = useTranslate();
     const publish = usePublish();
-    const { log } = useLog();
+    const { log, isConfigured } = useLog();
     const handleNotification = useHandleNotification();
 
     const mutation = useMutation<
@@ -251,19 +251,21 @@ export const useDelete = <
                     date: new Date(),
                 });
 
-                const previousData = queryClient.getQueryData<
-                    DeleteOneResponse<TData>
-                >(context.queryKey.detail(id))?.data;
+                if (isConfigured) {
+                    const previousData = queryClient.getQueryData<
+                        DeleteOneResponse<TData>
+                    >(context.queryKey.detail(id))?.data;
 
-                log({
-                    action: "delete",
-                    resource,
-                    previousData,
-                    meta: {
-                        id,
-                        dataProviderName,
-                    },
-                });
+                    log({
+                        action: "delete",
+                        resource,
+                        previousData,
+                        meta: {
+                            id,
+                            dataProviderName,
+                        },
+                    });
+                }
 
                 // Remove the queries from the cache:
                 queryClient.removeQueries(context.queryKey.detail(id));

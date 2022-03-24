@@ -57,7 +57,7 @@ export const useCreateMany = <
     const translate = useTranslate();
     const queryClient = useQueryClient();
     const publish = usePublish();
-    const { log } = useLog();
+    const { log, isConfigured } = useLog();
     const handleNotification = useHandleNotification();
 
     const mutation = useMutation<
@@ -115,14 +115,16 @@ export const useCreateMany = <
                     date: new Date(),
                 });
 
-                log({
-                    action: "create",
-                    resource,
-                    data: response.data,
-                    meta: {
-                        dataProviderName,
-                    },
-                });
+                if (isConfigured) {
+                    log({
+                        action: "create",
+                        resource,
+                        data: response.data,
+                        meta: {
+                            dataProviderName,
+                        },
+                    });
+                }
             },
             onError: (err: TError, { resource, errorNotification }) => {
                 handleNotification(errorNotification, {

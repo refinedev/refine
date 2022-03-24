@@ -73,7 +73,7 @@ export const useDeleteMany = <
     const { notificationDispatch } = useCancelNotification();
     const translate = useTranslate();
     const publish = usePublish();
-    const { log } = useLog();
+    const { log, isConfigured } = useLog();
     const handleNotification = useHandleNotification();
 
     const queryClient = useQueryClient();
@@ -269,21 +269,23 @@ export const useDeleteMany = <
                     date: new Date(),
                 });
 
-                const previousData = ids.map((id) => {
-                    return queryClient.getQueryData<DeleteManyResponse<TData>>(
-                        context.queryKey.detail(id),
-                    )?.data;
-                });
+                if (isConfigured) {
+                    const previousData = ids.map((id) => {
+                        return queryClient.getQueryData<
+                            DeleteManyResponse<TData>
+                        >(context.queryKey.detail(id))?.data;
+                    });
 
-                log({
-                    action: "delete",
-                    resource,
-                    previousData,
-                    meta: {
-                        ids,
-                        dataProviderName,
-                    },
-                });
+                    log({
+                        action: "delete",
+                        resource,
+                        previousData,
+                        meta: {
+                            ids,
+                            dataProviderName,
+                        },
+                    });
+                }
 
                 // Remove the queries from the cache:
                 ids.forEach((id) =>

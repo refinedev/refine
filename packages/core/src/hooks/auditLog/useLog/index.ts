@@ -22,6 +22,7 @@ export type UseLogReturnType<TLogRenameData> = {
             name: string;
         }
     >;
+    isConfigured: boolean;
 };
 
 export const useLog = <
@@ -29,6 +30,8 @@ export const useLog = <
 >(): UseLogReturnType<TLogRenameData> => {
     const queryClient = useQueryClient();
     const auditLogContext = useContext(AuditLogContext);
+    const isConfigured = auditLogContext !== undefined;
+
     const { resources } = useContext(ResourceContext);
     const {
         data: identityData,
@@ -42,8 +45,12 @@ export const useLog = <
 
     const log = useCallback(
         async (params: LogParams) => {
-            if (!auditLogContext || !auditLogContext.log) {
-                return;
+            if (!auditLogContext) {
+                throw new Error("auditLogProvider is not defined.");
+            }
+
+            if (!auditLogContext.log) {
+                throw new Error("auditLogProvider's `log` is not defined.");
             }
 
             const resource = resources.find((p) => p.name === params.resource);
@@ -100,5 +107,5 @@ export const useLog = <
         },
     );
 
-    return { log, rename };
+    return { log, rename, isConfigured };
 };

@@ -65,7 +65,7 @@ export const useMany = <
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const handleNotification = useHandleNotification();
-    const { log } = useLog();
+    const { log, isConfigured } = useLog();
 
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
@@ -89,16 +89,18 @@ export const useMany = <
                 queryOptions?.onSuccess?.(data);
                 handleNotification(successNotification);
 
-                log({
-                    action: "getMany",
-                    resource,
-                    data: data.data,
-                    meta: {
-                        ids,
-                        metaData,
-                        dataProviderName,
-                    },
-                });
+                if (isConfigured) {
+                    log({
+                        action: "getMany",
+                        resource,
+                        data: data.data,
+                        meta: {
+                            ids,
+                            metaData,
+                            dataProviderName,
+                        },
+                    });
+                }
             },
             onError: (err: TError) => {
                 checkError(err);
