@@ -119,10 +119,7 @@ export const useTable = <
     const { push } = useNavigation();
     const resourceWithRoute = useResourceWithRoute();
 
-    const routeResourceNameFromOptions = routeResourceName;
-    const resource = resourceWithRoute(
-        resourceFromProp ?? routeResourceNameFromOptions,
-    );
+    const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
     const [sorter, setSorter] = useState<CrudSorting>(
         setInitialSorters(permanentSorter, defaultSorter ?? []),

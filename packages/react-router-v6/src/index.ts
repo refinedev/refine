@@ -7,7 +7,6 @@ import {
     RouteProps,
     BrowserRouterProps,
     useNavigate,
-    useMatch,
 } from "react-router-dom";
 
 import { RouterComponent } from "./routerComponent";

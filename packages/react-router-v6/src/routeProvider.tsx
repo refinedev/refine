@@ -12,7 +12,6 @@ import {
     useRouterContext,
     CanAccess,
     ResourceRouterParams,
-    IResourceItem,
 } from "@pankod/refine-core";
 import { RefineRouteProps } from "./index";
 
@@ -158,6 +157,7 @@ export const RouteProvider = () => {
     resources.map((resource) => {
         const route = (
             <Route
+                key={`${resource.route}`}
                 path={`${resource.route}`}
                 element={<ResourceComponent route={resource.route!} />}
             >

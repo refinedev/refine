@@ -37,11 +37,11 @@ export const Sider: React.FC = () => {
 
     const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
         return tree.map((item: ITreeMenu) => {
-            const { icon, label, route, name, children } = item;
+            const { icon, label, route, name, children, options } = item;
             if (children.length > 0) {
                 return (
                     <CanAccess
-                        key={route}
+                        key={name}
                         resource={name.toLowerCase()}
                         action="list"
                     >
@@ -56,7 +56,9 @@ export const Sider: React.FC = () => {
                 );
             } else {
                 const isSelected = route === selectedKey;
-                const isRoute = route.split("/").length === 2;
+                const isRoute =
+                    route.split("/").length === 2 ||
+                    route === `/${options?.route}`;
 
                 return (
                     <CanAccess
@@ -65,7 +67,7 @@ export const Sider: React.FC = () => {
                         action="list"
                     >
                         <Menu.Item
-                            key={name}
+                            key={selectedKey}
                             onClick={() => {
                                 push(route);
                             }}
@@ -99,6 +101,7 @@ export const Sider: React.FC = () => {
             <RenderToTitle collapsed={collapsed} />
             <Menu
                 selectedKeys={[selectedKey]}
+                defaultOpenKeys={selectedKey.split("/").filter((x) => x !== "")}
                 mode="inline"
                 onClick={({ key }) => {
                     if (key === "logout") {
