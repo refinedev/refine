@@ -45,7 +45,7 @@ export const LoginPage = () => {
                             login({ username, password });
                         }}
                     >
-                        <div style={{ width: 500 }}>
+                        <div style={{ width: 300 }}>
                             <div style={{ display: "flex" }}>
                                 <TextField
                                     placeholder="User Name"

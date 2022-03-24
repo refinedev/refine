@@ -12,6 +12,8 @@ import { CategoryList, CategoryCreate, CategoryEdit } from "pages/category";
 import { LoginPage } from "pages/login";
 import { Footer } from "./components/footer";
 
+import "./app.css";
+
 function App() {
     return (
         <ThemeProvider theme={original}>
@@ -22,24 +24,8 @@ function App() {
                 LoginPage={LoginPage}
                 Layout={({ children }) => {
                     return (
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                minHeight: "100vh",
-                                backgroundColor: "rgb(0, 128, 128)",
-                            }}
-                        >
-                            <div
-                                style={{
-                                    marginTop: 24,
-                                    marginRight: 24,
-                                    marginLeft: 24,
-                                    marginBottom: 60,
-                                }}
-                            >
-                                {children}
-                            </div>
+                        <div className="main">
+                            <div className="layout">{children}</div>
                             <div>
                                 <Footer />
                             </div>

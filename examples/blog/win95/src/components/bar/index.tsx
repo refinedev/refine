@@ -10,49 +10,41 @@ export const TopMenu: React.FC<TopMenuProps> = ({ children }) => {
 
     return (
         <AppBar style={{ zIndex: 1 }}>
-            <Toolbar style={{ justifyContent: "space-between" }}>
-                <div style={{ position: "relative", display: "inline-block" }}>
-                    <Button
-                        variant="menu"
-                        onClick={() => setOpen(!open)}
-                        active={open}
+            <Toolbar>
+                <Button
+                    variant="menu"
+                    onClick={() => setOpen(!open)}
+                    active={open}
+                >
+                    File
+                </Button>
+                <Button variant="menu" disabled>
+                    Edit
+                </Button>
+                <Button variant="menu" disabled>
+                    View
+                </Button>
+                <Button variant="menu" disabled>
+                    Format
+                </Button>
+                <Button variant="menu" disabled>
+                    Tools
+                </Button>
+                <Button variant="menu" disabled>
+                    Help
+                </Button>
+                {open && (
+                    <List
+                        style={{
+                            position: "absolute",
+                            left: "0",
+                            top: "100%",
+                        }}
+                        onClick={() => setOpen(false)}
                     >
-                        File
-                    </Button>
-                    <Button variant="menu" disabled>
-                        Edit
-                    </Button>
-                    <Button variant="menu" disabled>
-                        View
-                    </Button>
-                    <Button variant="menu" disabled>
-                        Format
-                    </Button>
-                    <Button variant="menu" disabled>
-                        Tools
-                    </Button>
-                    <Button variant="menu" disabled>
-                        Table
-                    </Button>
-                    <Button variant="menu" disabled>
-                        Window
-                    </Button>
-                    <Button variant="menu" disabled>
-                        Help
-                    </Button>
-                    {open && (
-                        <List
-                            style={{
-                                position: "absolute",
-                                left: "0",
-                                top: "100%",
-                            }}
-                            onClick={() => setOpen(false)}
-                        >
-                            {children}
-                        </List>
-                    )}
-                </div>
+                        {children}
+                    </List>
+                )}
             </Toolbar>
         </AppBar>
     );

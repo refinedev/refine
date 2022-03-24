@@ -6,11 +6,11 @@ export const Footer: React.FC = () => {
     const [open, setOpen] = useState(false);
 
     const { mutate: logout } = useLogout();
-    const { push } = useNavigation();
+    const { list } = useNavigation();
 
     return (
         <AppBar style={{ top: "unset", bottom: 0 }}>
-            <Toolbar style={{ justifyContent: "space-between" }}>
+            <Toolbar>
                 <div style={{ position: "relative", display: "inline-block" }}>
                     <Button
                         onClick={() => setOpen(!open)}
@@ -19,7 +19,7 @@ export const Footer: React.FC = () => {
                     >
                         <img
                             src={"./refine.png"}
-                            alt="react95 logo"
+                            alt="refine logo"
                             style={{ height: "20px", marginRight: 4 }}
                         />
                     </Button>
@@ -34,14 +34,14 @@ export const Footer: React.FC = () => {
                         >
                             <ListItem
                                 onClick={() => {
-                                    push("posts");
+                                    list("posts");
                                 }}
                             >
                                 Posts
                             </ListItem>
                             <ListItem
                                 onClick={() => {
-                                    push("categories");
+                                    list("categories");
                                 }}
                             >
                                 Categories

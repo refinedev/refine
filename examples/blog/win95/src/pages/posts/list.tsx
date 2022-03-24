@@ -1,11 +1,6 @@
 /* eslint-disable react/jsx-key */
 import { useMemo, useRef, useState } from "react";
-import {
-    useOne,
-    useNavigation,
-    useDelete,
-    useImport,
-} from "@pankod/refine-core";
+import { useOne, useNavigation, useImport } from "@pankod/refine-core";
 import {
     useTable,
     Column,
@@ -41,7 +36,6 @@ export const PostList = () => {
     const [visible, setVisible] = useState(false);
 
     const { edit, create } = useNavigation();
-    const { mutate } = useDelete();
 
     const { handleChange } = useImport<ICsvPost>({
         onFinish: (results) => {
@@ -91,20 +85,7 @@ export const PostList = () => {
                 accessor: "id",
                 // eslint-disable-next-line react/display-name
                 Cell: ({ value }) => (
-                    <div>
-                        <Button onClick={() => edit("posts", value)}>
-                            Edit
-                        </Button>
-
-                        <Button
-                            style={{ marginLeft: 4, marginTop: 4 }}
-                            onClick={() =>
-                                mutate({ id: value, resource: "posts" })
-                            }
-                        >
-                            Delete
-                        </Button>
-                    </div>
+                    <Button onClick={() => edit("posts", value)}>Edit</Button>
                 ),
             },
         ],
@@ -164,12 +145,13 @@ export const PostList = () => {
 
             <Window style={{ width: "100%" }}>
                 <WindowHeader>Posts</WindowHeader>
-                <WindowContent>
+                <WindowContent style={{ overflowX: "hidden" }}>
                     <Table {...getTableProps()}>
                         <TableHead>
                             {headerGroups.map((headerGroup) => (
                                 <TableRow
                                     {...headerGroup.getHeaderGroupProps()}
+                                    style={{ overflowX: "auto" }}
                                 >
                                     {headerGroup.headers.map((column) => (
                                         <TableHeadCell
