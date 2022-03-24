@@ -14,6 +14,7 @@ export interface ResourceProps extends IResourceComponents {
     icon?: ReactNode;
     options?: OptionsProps;
     parentName?: string;
+    key?: string;
 }
 export interface IResourceComponentsProps<
     TCrudData = any,
@@ -45,4 +46,5 @@ export interface IResourceItem extends IResourceComponents {
     canDelete?: boolean;
     options?: OptionsProps;
     parentName?: string;
+    key?: string;
 }

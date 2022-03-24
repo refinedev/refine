@@ -73,7 +73,7 @@ export const useMenu: () => useMenuReturnType = () => {
                     ...resource,
                     icon: resource.icon,
                     route: route,
-                    key: route,
+                    key: resource.key ?? route,
                     label:
                         resource.label ??
                         translate(

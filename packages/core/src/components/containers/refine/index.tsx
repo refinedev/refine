@@ -132,6 +132,7 @@ export const Refine: React.FC<RefineProps> = ({
 
     resourcesFromProps?.map((resource) => {
         resources.push({
+            key: resource.key,
             name: resource.name,
             label: resource.options?.label,
             icon: resource.icon,

@@ -11,14 +11,15 @@ export const createTreeView = (
     try {
         for (let i = 0; i < location.length; i++) {
             parent = location[i];
-
-            object[parent.name] = parent;
-            object[parent.name]["children"] = [];
+            if (parent.key) {
+                object[parent.key] = parent;
+                object[parent.key]["children"] = [];
+            }
         }
 
-        for (const name in object) {
-            if (object.hasOwnProperty(name)) {
-                child = object[name];
+        for (const key in object) {
+            if (object.hasOwnProperty(key)) {
+                child = object[key];
                 if (child.parentName && object[child["parentName"]]) {
                     object[child["parentName"]]["children"].push(child);
                 } else {
