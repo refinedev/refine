@@ -26,7 +26,7 @@
 <div align="center">
 
 [![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/UuU3XCc3J5)
-![Twitter Follow](https://img.shields.io/twitter/follow/refine_dev?style=social)
+[![Twitter Follow](https://img.shields.io/twitter/follow/refine_dev?style=social)](https://twitter.com/refine_dev)
 
 <a href="https://www.producthunt.com/posts/refine-open-source-react-framework?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-refine-open-source-react-framework" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=319164&theme=light" alt="refine: Open Source React Framework - Focus your business logic. refine will do the rest. | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
