@@ -13,6 +13,20 @@ import refine_setup from '@site/static/img/blog/2022-03-22-refine-with-react95/r
 import refine_login from '@site/static/img/blog/2022-03-22-refine-with-react95/refine_login.png';
 import table from '@site/static/img/blog/2022-03-22-refine-with-react95/table.png';
 import advanced_table from '@site/static/img/blog/2022-03-22-refine-with-react95/advanced_table.gif';
+import create_edit from '@site/static/img/blog/2022-03-22-refine-with-react95/create_edit.gif';
+import menu from '@site/static/img/blog/2022-03-22-refine-with-react95/menu.gif';
+import top_menu from '@site/static/img/blog/2022-03-22-refine-with-react95/top_menu.gif';
+import overview from '@site/static/img/blog/2022-03-22-refine-with-react95/overview.gif';
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={overview} alt="Refine Overview" />
+</div>
+<br />
 
 With **refine**'s **headless** feature, you can include any UI in your project and take full advantage of all its features without worrying about compatibility. To build a project with a vintage `Windows95` style using [React95](https://react95.io/) UI components, we'll use the **refine** headless feature.
 
@@ -667,3 +681,476 @@ export const opt = [
     <img src={advanced_table} alt="Refine Table" />
 </div>
 <br />
+
+You may quickly handle sorting and paging operations by simply adding a few lines thanks to **refine**'s out-of-the-box features. We have completed our Post page by adding the pagination and sorting features provided by the Refine `useTable` hook to our table.
+
+## Refine Create and Edit Page
+
+We have created our post page. Now we will create pages where we can create and edit posts. **refine** provides a [`refine-react-hook-form`](/docs/packages/react-hook-form/) adapter that you can use with the headless feature. All the features of [React Hook Form](https://react-hook-form.com/) work in harmony with **refine** and the form you will create.
+
+-   `Create Page`
+
+<details>
+<summary>Show Code</summary>
+<p>
+
+```tsx title="src/pages/posts/Create.tsx"
+import { Controller, useForm } from "@pankod/refine-react-hook-form";
+import { useSelect, useNavigation } from "@pankod/refine-core";
+import {
+    Select,
+    Fieldset,
+    Button,
+    TextField,
+    Window,
+    WindowHeader,
+    WindowContent,
+    ListItem,
+} from "react95";
+
+export const PostCreate: React.FC = () => {
+    const {
+        refineCore: { onFinish, formLoading },
+        register,
+        handleSubmit,
+        control,
+        formState: { errors },
+    } = useForm();
+
+    const { goBack } = useNavigation();
+
+    const { options } = useSelect({
+        resource: "categories",
+    });
+
+    return (
+        <>
+            <Window style={{ width: "100%", height: "100%" }}>
+                <WindowHeader active={true} className="window-header">
+                    <span>Create Post</span>
+                </WindowHeader>
+                <form onSubmit={handleSubmit(onFinish)}>
+                    <WindowContent>
+                        <label>Title: </label>
+                        <br />
+                        <br />
+                        <TextField
+                            {...register("title", { required: true })}
+                            placeholder="Type here..."
+                        />
+                        {errors.title && <span>This field is required</span>}
+                        <br />
+                        <br />
+
+                        <Controller
+                            {...register("categoryId", { required: true })}
+                            control={control}
+                            render={({ field: { onChange, value } }) => (
+                                <Fieldset label={"Category"}>
+                                    <Select
+                                        options={options}
+                                        menuMaxHeight={160}
+                                        width={160}
+                                        variant="flat"
+                                        onChange={onChange}
+                                        value={value}
+                                    />
+                                </Fieldset>
+                            )}
+                        />
+                        {errors.category && <span>This field is required</span>}
+                        <br />
+                        <label>Content: </label>
+                        <br />
+                        <TextField
+                            {...register("content", { required: true })}
+                            multiline
+                            rows={10}
+                            cols={50}
+                        />
+
+                        {errors.content && <span>This field is required</span>}
+                        <br />
+                        <Button type="submit" value="Submit">
+                            Submit
+                        </Button>
+                        {formLoading && <p>Loading</p>}
+                    </WindowContent>
+                </form>
+            </Window>
+        </>
+    );
+};
+```
+
+</p>
+</details>
+
+-   `Edit Page`
+
+<details>
+<summary>Show Code</summary>
+<p>
+
+```tsx title="src/pages/posts/Edit.tsx"
+import { useEffect } from "react";
+import { Controller, useForm } from "@pankod/refine-react-hook-form";
+import { useSelect, useNavigation } from "@pankod/refine-core";
+import {
+    Select,
+    Fieldset,
+    Button,
+    TextField,
+    WindowContent,
+    Window,
+    WindowHeader,
+    ListItem,
+} from "react95";
+
+export const PostEdit: React.FC = () => {
+    const {
+        refineCore: { onFinish, formLoading, queryResult },
+        register,
+        handleSubmit,
+        resetField,
+        control,
+        formState: { errors },
+    } = useForm();
+
+    const { goBack } = useNavigation();
+
+    const { options } = useSelect({
+        resource: "categories",
+        defaultValue: queryResult?.data?.data.categoryId,
+    });
+
+    useEffect(() => {
+        resetField("categoryId");
+    }, [options]);
+
+    return (
+        <>
+            <Window style={{ width: "100%", height: "100%" }}>
+                <form onSubmit={handleSubmit(onFinish)}>
+                    <WindowHeader active={true} className="window-header">
+                        <span>Edit Post</span>
+                    </WindowHeader>
+                    <WindowContent>
+                        <label>Title: </label>
+                        <br />
+                        <TextField
+                            {...register("title", { required: true })}
+                            placeholder="Type here..."
+                        />
+                        {errors.title && <span>This field is required</span>}
+                        <br />
+                        <br />
+
+                        <Controller
+                            {...register("categoryId", { required: true })}
+                            control={control}
+                            render={({ field: { onChange, value } }) => (
+                                <Fieldset label={"Category"}>
+                                    <Select
+                                        options={options}
+                                        menuMaxHeight={160}
+                                        width={160}
+                                        variant="flat"
+                                        onChange={onChange}
+                                        value={value}
+                                    />
+                                </Fieldset>
+                            )}
+                        />
+                        {errors.category && <span>This field is required</span>}
+                        <br />
+                        <label>Content: </label>
+                        <br />
+                        <TextField
+                            {...register("content", { required: true })}
+                            multiline
+                            rows={10}
+                            cols={50}
+                        />
+
+                        {errors.content && <span>This field is required</span>}
+                        <br />
+                        <Button type="submit" value="Submit">
+                            Submit
+                        </Button>
+                        {formLoading && <p>Loading</p>}
+                    </WindowContent>
+                </form>
+            </Window>
+        </>
+    );
+};
+```
+
+</p>
+</details>
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={create_edit} alt="Refine Create and Edit Page" />
+</div>
+<br />
+
+We can manage our forms and generate Posts thanks to the `refine-react-hook-form` adapter, and we may save the Post that we created with the **refine** `onFinish` method directly to Supabase.
+
+## Customize Refine Layout
+
+Our app is almost ready. As a final step, let's edit our Layout to make our application more like Window95. Let's create a footer component first and then define it as a **refine** Layout.
+
+[Refer to the refine Custom Layout docs for detailed usage. →](/docs/guides-and-concepts/custom-layout/)
+
+-   `Footer`
+
+<details>
+<summary>Show Code</summary>
+<p>
+
+```tsx title="components/Footer.tsx"
+import React, { useState } from "react";
+import { useLogout, useNavigation } from "@pankod/refine-core";
+import { AppBar, Toolbar, Button, List, ListItem } from "react95";
+
+export const Footer: React.FC = () => {
+    const [open, setOpen] = useState(false);
+
+    const { mutate: logout } = useLogout();
+    const { push } = useNavigation();
+
+    return (
+        <AppBar style={{ top: "unset", bottom: 0 }}>
+            <Toolbar style={{ justifyContent: "space-between" }}>
+                <div style={{ position: "relative", display: "inline-block" }}>
+                    <Button
+                        onClick={() => setOpen(!open)}
+                        active={open}
+                        style={{ fontWeight: "bold" }}
+                    >
+                        <img
+                            src={"./refine.png"}
+                            alt="refine logo"
+                            style={{ height: "20px", marginRight: 4 }}
+                        />
+                    </Button>
+                    {open && (
+                        <List
+                            style={{
+                                position: "absolute",
+                                left: "0",
+                                bottom: "100%",
+                            }}
+                            onClick={() => setOpen(false)}
+                        >
+                            <ListItem
+                                onClick={() => {
+                                    push("posts");
+                                }}
+                            >
+                                Posts
+                            </ListItem>
+                            <ListItem
+                                onClick={() => {
+                                    push("categories");
+                                }}
+                            >
+                                Categories
+                            </ListItem>
+                            <ListItem
+                                onClick={() => {
+                                    logout();
+                                }}
+                            >
+                                <span role="img" aria-label="🔙">
+                                    🔙
+                                </span>
+                                Logout
+                            </ListItem>
+                        </List>
+                    )}
+                </div>
+            </Toolbar>
+        </AppBar>
+    );
+};
+```
+
+</p>
+</details>
+
+```tsx title="App.tsx"
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+import { dataProvider } from "@pankod/refine-supabase";
+import authProvider from "./authProvider";
+import { supabaseClient } from "utility";
+
+import original from "react95/dist/themes/original";
+import { ThemeProvider } from "styled-components";
+
+import { PostList, PostEdit, PostCreate } from "pages/posts";
+import { CategoryList, CategoryCreate, CategoryEdit } from "pages/category";
+import { LoginPage } from "pages/login";
+//highlight-next-line
+import { Footer } from "./components/footer";
+
+import "./app.css";
+
+function App() {
+    return (
+        <ThemeProvider theme={original}>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(supabaseClient)}
+                authProvider={authProvider}
+                LoginPage={LoginPage}
+                //highlight-start
+                Layout={({ children }) => {
+                    return (
+                        <div className="main">
+                            <div className="layout">{children}</div>
+                            <div>
+                                <Footer />
+                            </div>
+                        </div>
+                    );
+                }}
+                //highlight-end
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                    },
+                ]}
+            />
+        </ThemeProvider>
+    );
+}
+
+export default App;
+```
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={menu} alt="Refine95 Menu" />
+</div>
+<br />
+
+Now we'll make a top menu component that's specific to the Windows 95 design.
+
+-   Top Menu
+
+<details>
+<summary>Show Code</summary>
+<p>
+
+```tsx title="components/bar/TopMenu"
+import React, { useState } from "react";
+import { AppBar, Toolbar, Button, List } from "react95";
+
+type TopMenuProps = {
+    children: React.ReactNode[] | React.ReactNode;
+};
+
+export const TopMenu: React.FC<TopMenuProps> = ({ children }) => {
+    const [open, setOpen] = useState(false);
+
+    return (
+        <AppBar style={{ zIndex: 1 }}>
+            <Toolbar>
+                <Button
+                    variant="menu"
+                    onClick={() => setOpen(!open)}
+                    active={open}
+                >
+                    File
+                </Button>
+                <Button variant="menu" disabled>
+                    Edit
+                </Button>
+                <Button variant="menu" disabled>
+                    View
+                </Button>
+                <Button variant="menu" disabled>
+                    Format
+                </Button>
+                <Button variant="menu" disabled>
+                    Tools
+                </Button>
+                <Button variant="menu" disabled>
+                    Table
+                </Button>
+                <Button variant="menu" disabled>
+                    Window
+                </Button>
+                <Button variant="menu" disabled>
+                    Help
+                </Button>
+                {open && (
+                    <List
+                        style={{
+                            position: "absolute",
+                            left: "0",
+                            top: "100%",
+                        }}
+                        onClick={() => setOpen(false)}
+                    >
+                        {children}
+                    </List>
+                )}
+            </Toolbar>
+        </AppBar>
+    );
+};
+```
+
+</p>
+</details>
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={top_menu} alt="Refine Top Menu" />
+</div>
+<br />
+
+## Project Overview
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={overview} alt="Refine Project Overview" />
+</div>
+<br />
+
+## Live CodeSandbox Example
+
+<iframe src="https://codesandbox.io/embed/refine-react95-example-beie0q?autoresize=1&fontsize=14&theme=dark&view=preview"
+     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+     title="refine-react95-example"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+
+## Conclusion
+
+**refine** is a very powerful and flexible internal tool development framework. The features it provides will greatly reduce your development time. In this example, we have shown step-by-step how a development can be quick and easy using a custom UI and refine-core features. **refine** does not restrict you, and it delivers almost all of your project's requirements via the hooks it provides, regardless of the UI.
