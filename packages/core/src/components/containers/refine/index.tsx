@@ -54,7 +54,7 @@ interface QueryClientConfig {
     defaultOptions?: DefaultOptions;
 }
 export interface RefineProps {
-    authProvider?: IAuthContext;
+    authProvider?: Omit<IAuthContext, "isProvided" | "isAuthenticated">;
     dataProvider: IDataContextProvider | IDataMultipleContextProvider;
     liveProvider?: ILiveContext;
     routerProvider: IRouterProvider;

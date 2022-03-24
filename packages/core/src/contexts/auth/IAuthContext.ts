@@ -10,5 +10,4 @@ export interface IAuthContext {
     getUserIdentity?: () => Promise<any>;
     isProvided?: boolean;
     isAuthenticated?: boolean;
-    [key: string]: any;
 }
