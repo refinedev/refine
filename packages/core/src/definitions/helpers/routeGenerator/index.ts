@@ -10,7 +10,6 @@ export const routeGenerator = (
         const hasParentName = resourcesFromProps?.find(
             (p) => p.name === item.parentName,
         );
-        const path = resourcesFromProps?.find((p) => p.key === item.parentName);
 
         if (hasParentName?.parentName) {
             route =
@@ -18,7 +17,7 @@ export const routeGenerator = (
                 `/${item.name}`;
             routeGenerator(hasParentName, resourcesFromProps);
         } else if (item.parentName) {
-            route = `${path?.name}/${item.name}`;
+            route = `${item?.parentName}/${item.name}`;
         }
     } else {
         route = item.name;

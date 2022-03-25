@@ -72,8 +72,6 @@ export const useOne = <
         onLiveEvent,
     });
 
-    console.log("sadsads", resource);
-
     const queryResponse = useQuery<GetOneResponse<TData>, TError>(
         queryKey.detail(id),
         () => getOne<TData>({ resource, id, metaData }),
