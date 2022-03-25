@@ -76,7 +76,7 @@ Let's begin editing our project now that it's ready to use.
 <summary>Show Code</summary>
 <p>
 
-```tsx title="src/authProvider.ts"
+```tsx title="src/utility/supabaseClient.ts"
 import { createClient } from "@pankod/refine-supabase";
 
 const SUPABASE_URL = "YOUR_DATABASE_URL";
@@ -341,7 +341,7 @@ In this step, we'll show how to use the refine-react-table package to create a d
 <summary>Show Part I Code</summary>
 <p>
 
-```tsx
+```tsx title="src/pages/post/PostList.tsx"
 import { useMemo } from "react";
 import { useOne } from "@pankod/refine-core";
 import { useTable, Column } from "@pankod/refine-react-table";
@@ -468,7 +468,7 @@ As you can see, our first step is complete. Thanks to the refine-react-table ada
 <summary>Show Part II Code</summary>
 <p>
 
-```tsx
+```tsx title="src/pages/post/PostList.tsx"
 import { useMemo, useRef, useState } from "react";
 import { useOne, useNavigation, useDelete } from "@pankod/refine-core";
 import {
