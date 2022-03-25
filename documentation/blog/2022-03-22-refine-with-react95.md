@@ -1,7 +1,7 @@
 ---
 title: We are going back to 1995! The perfect harmony of Modern stack and Win95
 description: With the refine being headless, we may use any UI we choose for our Admin Panel. In this tutorial, we'll create a Nostalgic-style admin panel using refine and React95 UI.
-slug: awesome-react-vintage-ui-with-refine
+slug: awesome-react-windows95-ui-with-refine
 authors: melih
 tags:
     [refine, react, admin-panel, Windows95, React95, Supabase, B2B, open-source]
@@ -68,7 +68,7 @@ Let's begin editing our project now that it's ready to use.
 
 ## Usage
 
-Refine, automatically creates `supabaseClient` and `AuthProvider` for you. All you have to do is define your Database URL and Secret_Key. You can see how to use it in detail below.
+**refine**, automatically creates `supabaseClient` and `AuthProvider` for you. All you have to do is define your Database URL and Secret_Key. You can see how to use it in detail below.
 
 ### Supabase Client
 
