@@ -8,7 +8,7 @@ import {
     useNavigation,
     CanAccess,
     useIsExistAuthentication,
-    createTreeView,
+    ITreeMenu,
 } from "@pankod/refine-core";
 
 import { Title as DefaultTitle } from "@components";
@@ -16,7 +16,6 @@ import { Title as DefaultTitle } from "@components";
 import { useMenu } from "@hooks";
 
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
-import { ITreeMenu } from "src";
 const { SubMenu } = Menu;
 
 export const Sider: React.FC = () => {
@@ -25,15 +24,13 @@ export const Sider: React.FC = () => {
     const { mutate: logout } = useLogout();
     const Title = useTitle();
     const translate = useTranslate();
-    const { menuItems, selectedKey } = useMenu();
+    const { selectedKey, menuItems } = useMenu();
     const { push } = useNavigation();
     const breakpoint = Grid.useBreakpoint();
 
     const isMobile = !breakpoint.lg;
 
     const RenderToTitle = Title ?? DefaultTitle;
-
-    const treeMenu: ITreeMenu[] = createTreeView(menuItems);
 
     const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
         return tree.map((item: ITreeMenu) => {
@@ -116,7 +113,7 @@ export const Sider: React.FC = () => {
                     push(key as string);
                 }}
             >
-                {renderTreeView(treeMenu, selectedKey)}
+                {renderTreeView(menuItems, selectedKey)}
 
                 {isExistAuthentication && (
                     <Menu.Item key="logout" icon={<LogoutOutlined />}>

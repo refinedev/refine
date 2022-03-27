@@ -1,5 +1,5 @@
 import React from "react";
-import { DashboardOutlined, UnorderedListOutlined } from "@ant-design/icons";
+import { DashboardOutlined } from "@ant-design/icons";
 
 import { IMenuItem } from "../../interfaces";
 import {
@@ -8,11 +8,13 @@ import {
     useResource,
     useRouterContext,
     userFriendlyResourceName,
+    createTreeView,
+    ITreeMenu,
 } from "@pankod/refine-core";
 
 type useMenuReturnType = {
     selectedKey: string;
-    menuItems: IMenuItem[];
+    menuItems: ITreeMenu[];
 };
 
 /**
@@ -86,8 +88,10 @@ export const useMenu: () => useMenuReturnType = () => {
         [resources, hasDashboard],
     );
 
+    const treeMenu = createTreeView(menuItems);
+
     return {
         selectedKey,
-        menuItems,
+        menuItems: treeMenu,
     };
 };
