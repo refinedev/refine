@@ -1,39 +1,74 @@
 import { createTreeView } from ".";
-import { IMenuItem, ITreeMenu } from "src/interfaces";
+import { IResourceItem, ITreeMenu } from "src/interfaces";
 
-const mockLocation: IMenuItem[] = [
+const mockResources: IResourceItem[] = [
     {
-        name: "posts",
-        key: "1",
-        route: "posts",
+        name: "cms",
     },
-    { name: "categories", key: "2", route: "categories" },
-    { name: "active", key: "3", route: "posts/active", parentName: "posts" },
-];
-const expectedMockLocation: ITreeMenu[] = [
+    {
+        name: "content",
+        parentName: "cms",
+    },
     {
         name: "posts",
-        key: "1",
-        route: "posts",
+        parentName: "content",
+    },
+    {
+        name: "categories-route",
+        route: "/categories-route",
+    },
+    {
+        name: "categories",
+        route: "/categories",
+    },
+    {
+        name: "categories",
+        options: {
+            label: "asd",
+            route: "bitti/son/sonson",
+        },
+        parentName: "categories-route",
+    },
+    {
+        name: "users",
+        route: "/users",
+    },
+];
+
+const expectedMockResources: ITreeMenu[] = [
+    {
+        name: "categories-route",
+        route: "/categories-route",
         children: [
             {
-                name: "active",
-                key: "3",
-                route: "posts/active",
-                parentName: "posts",
+                name: "categories",
+                options: {
+                    label: "asd",
+                    route: "bitti/son/sonson",
+                },
+                parentName: "categories-route",
                 children: [],
             },
         ],
     },
-    { name: "categories", key: "2", route: "categories", children: [] },
+    {
+        name: "categories",
+        route: "/categories",
+        children: [],
+    },
+    {
+        name: "users",
+        route: "/users",
+        children: [],
+    },
 ];
 
 describe("createTreeView", () => {
-    const tree: ITreeMenu[] = createTreeView(mockLocation);
-    it("should return an tree which has two member", async () => {
-        expect(tree.length).toBe(2);
+    const tree: ITreeMenu[] = createTreeView(mockResources);
+    it("should return an tree which has three member", async () => {
+        expect(tree.length).toBe(3);
     });
     it("should be equal expectedMockLocation", async () => {
-        expect(tree).toEqual(expectedMockLocation);
+        expect(tree).toEqual(expectedMockResources);
     });
 });

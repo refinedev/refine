@@ -2,41 +2,35 @@ import { IResourceItem, ITreeMenu, IMenuItem } from "src/interfaces";
 
 export const createTreeView = (
     resources: IResourceItem[] | IMenuItem[],
-): ITreeMenu[] => {
+): ITreeMenu[] | ITreeMenu[] => {
     const tree = [];
     const resourcesRouteObject: { [key: string]: any } = {};
     const resourcesNameObject: { [key: string]: any } = {};
     let parent: IResourceItem | IMenuItem;
     let child: ITreeMenu;
 
-    try {
-        for (let i = 0; i < resources.length; i++) {
-            parent = resources[i];
+    for (let i = 0; i < resources.length; i++) {
+        parent = resources[i];
 
-            const route = parent.route ?? parent.options?.route ?? "";
+        const route = parent.route ?? parent.options?.route ?? "";
 
-            resourcesRouteObject[route] = parent;
-            resourcesRouteObject[route]["children"] = [];
+        resourcesRouteObject[route] = parent;
+        resourcesRouteObject[route]["children"] = [];
 
-            resourcesNameObject[parent.name] = parent;
-            resourcesNameObject[parent.name]["children"] = [];
-        }
+        resourcesNameObject[parent.name] = parent;
+        resourcesNameObject[parent.name]["children"] = [];
+    }
 
-        for (const name in resourcesRouteObject) {
-            if (resourcesRouteObject.hasOwnProperty(name)) {
-                child = resourcesRouteObject[name];
+    for (const name in resourcesRouteObject) {
+        if (resourcesRouteObject.hasOwnProperty(name)) {
+            child = resourcesRouteObject[name];
 
-                if (child.parentName && resourcesNameObject[child.parentName]) {
-                    resourcesNameObject[child.parentName]["children"].push(
-                        child,
-                    );
-                } else {
-                    tree.push(child);
-                }
+            if (child.parentName && resourcesNameObject[child.parentName]) {
+                resourcesNameObject[child.parentName]["children"].push(child);
+            } else {
+                tree.push(child);
             }
         }
-    } catch (error) {
-        console.log("create tree view eror", error);
     }
 
     return tree;
