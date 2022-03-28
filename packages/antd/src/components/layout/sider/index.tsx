@@ -45,38 +45,34 @@ export const Sider: React.FC = () => {
                         {renderTreeView(children, selectedKey)}
                     </SubMenu>
                 );
-            } else {
-                const isSelected = route === selectedKey;
-                const isRoute =
-                    route.split("/").length === 2 ||
-                    route === `/${options?.route}`;
-
-                return (
-                    <CanAccess
-                        key={route}
-                        resource={name.toLowerCase()}
-                        action="list"
-                    >
-                        <Menu.Item
-                            key={selectedKey}
-                            onClick={() => {
-                                push(route);
-                            }}
-                            style={{
-                                fontWeight: isSelected ? "bold" : "normal",
-                            }}
-                            icon={
-                                icon ?? (isRoute && <UnorderedListOutlined />)
-                            }
-                        >
-                            {label}
-                            {!collapsed && isSelected && (
-                                <div className="ant-menu-tree-arrow" />
-                            )}
-                        </Menu.Item>
-                    </CanAccess>
-                );
             }
+            const isSelected = route === selectedKey;
+            const isRoute =
+                route.split("/").length === 2 || route === `/${options?.route}`;
+
+            return (
+                <CanAccess
+                    key={route}
+                    resource={name.toLowerCase()}
+                    action="list"
+                >
+                    <Menu.Item
+                        key={selectedKey}
+                        onClick={() => {
+                            push(route);
+                        }}
+                        style={{
+                            fontWeight: isSelected ? "bold" : "normal",
+                        }}
+                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
+                    >
+                        {label}
+                        {!collapsed && isSelected && (
+                            <div className="ant-menu-tree-arrow" />
+                        )}
+                    </Menu.Item>
+                </CanAccess>
+            );
         });
     };
 
