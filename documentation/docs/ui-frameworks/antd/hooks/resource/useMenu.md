@@ -7,11 +7,12 @@ title: useMenu
 This hook can also be used to build custom menus, which is also used by default sidebar to show menu items.
 
 ```ts
-const { selectedKey, menuItems } = useMenu();
+const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
 ```
 
 -   `menuItems` is a list of style agnostic menu items. Each of them has a key.
 -   `selectedKey` is the key of the resource user is viewing at the moment. Its inferred from the route.
+-   `defaultOpenKeys` is the array with the keys of default opened menus.
 
 ## Usage
 
@@ -36,7 +37,7 @@ import {
 export const CustomMenu: React.FC = () => {
     const Title = useTitle();
 // highlight-next-line
-    const { menuItems, selectedKey } = useMenu();
+    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
 
     const [collapsed, setCollapsed] = useState<boolean>(false);
 
@@ -54,7 +55,7 @@ export const CustomMenu: React.FC = () => {
         >
             {Title && <Title collapsed={collapsed} />}
 // highlight-start
-            <Menu selectedKeys={[selectedKey]} mode="inline">
+            <Menu defaultOpenKeys={defaultOpenKeys} selectedKeys={[selectedKey]} mode="inline">
                 {menuItems.map(({ icon, route, label }) => (
                     <Menu.Item key={route} icon={icon}>
                         <Link to={route}>{label}</Link>
@@ -79,6 +80,10 @@ const antLayoutSiderMobile: CSSProperties = {
 `useMenu` hook is used to get style agnostic menu items. We render these items in the body of the sider. We get the `Title` component with the `useTitle` hook.
 
 <br />
+
+:::tip
+If you want to create a multi-level menu, you can take a look [`multi-level menu`](/docs/examples/multi-level-menu/multi-level-menu/) example.
+:::
 
 We can override the default sider and show the custom menu we implemented in its place by passing a the custom component to `<Refine>`s `Sider` prop:
 
@@ -212,7 +217,8 @@ You can further customize the Sider and its appearance.
 | Property    | Description                                                                             | Type                         |
 | ----------- | --------------------------------------------------------------------------------------- | ---------------------------- |
 | selectedKey | Key of the resource the user is viewing at the moment                                   | `string`                     |
-| menuItems   | List of keys and routes and some metadata of resources and also the dashboard if exists | [`IMenuItem[]`](#interfaces) |
+| menuItems   | List of keys and routes and some metadata of resources and also the dashboard if exists | [`ITreeMenu[]`](#interfaces) |
+| defaultOpenKeys   | Array with the keys of default opened menus.| `string[]`      |
 
 #### Interfaces
 
@@ -247,5 +253,9 @@ interface IResourceComponentsProps<TCrudData = any> {
 
 type IMenuItem = IResourceItem & {
     key: string;
+};
+
+type ITreeMenu = IMenuItem & {
+    children: ITreeMenu[];
 };
 ```
