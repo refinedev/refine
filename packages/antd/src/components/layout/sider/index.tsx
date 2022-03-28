@@ -34,7 +34,8 @@ export const Sider: React.FC = () => {
 
     const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
         return tree.map((item: ITreeMenu) => {
-            const { icon, label, route, name, children, options } = item;
+            const { icon, label, route, name, children, parentName } = item;
+
             if (children.length > 0) {
                 return (
                     <SubMenu
@@ -47,9 +48,7 @@ export const Sider: React.FC = () => {
                 );
             }
             const isSelected = route === selectedKey;
-            const isRoute =
-                route.split("/").length === 2 || route === `/${options?.route}`;
-
+            const isRoute = !(parentName && children.length === 0);
             return (
                 <CanAccess
                     key={route}
