@@ -7,17 +7,18 @@ export const routeGenerator = (
     let route;
 
     if (item.parentName) {
-        const hasParentName = resourcesFromProps?.find(
+        const hasParentName = resourcesFromProps.find(
             (p) => p.name === item.parentName,
         );
-
         if (hasParentName?.parentName) {
-            route =
-                routeGenerator(hasParentName, resourcesFromProps) +
-                `/${item.name}`;
+            const routePrefix = routeGenerator(
+                hasParentName,
+                resourcesFromProps,
+            );
+            route = `${routePrefix}/${item.name}`;
             routeGenerator(hasParentName, resourcesFromProps);
         } else if (item.parentName) {
-            route = `${item?.parentName}/${item.name}`;
+            route = `${item.parentName}/${item.name}`;
         }
     } else {
         route = item.name;
