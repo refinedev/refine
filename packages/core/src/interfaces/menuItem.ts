@@ -1,6 +1,6 @@
 import { IResourceItem } from "src";
 
-export type ITreeMenu = IMenuItem & {
+export type ITreeMenu = IResourceItem & {
     children: ITreeMenu[];
 };
 

@@ -8,6 +8,7 @@ import {
     useNavigation,
     CanAccess,
     useIsExistAuthentication,
+    ITreeMenu,
 } from "@pankod/refine-core";
 
 import { Title as DefaultTitle } from "@components";
@@ -15,7 +16,6 @@ import { Title as DefaultTitle } from "@components";
 import { useMenu } from "@hooks";
 
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
-import { ITreeMenu } from "src";
 const { SubMenu } = Menu;
 
 export const Sider: React.FC = () => {

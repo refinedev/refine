@@ -13,7 +13,6 @@ import { IMenuItem } from "../../interfaces";
 
 type useMenuReturnType = {
     selectedKey: string;
-    defaultOpenKeys: string[];
     menuItems: ITreeMenu[];
 };
 

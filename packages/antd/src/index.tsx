@@ -40,7 +40,6 @@ export type useStepsFormFromSFReturnType<TData, TVariables> = {
 // antd filterDropDownProps (using for <FilterDropDown> component)
 export type { FilterDropdownProps } from "antd/lib/table/interface";
 export type { RcFile, UploadFile } from "antd/lib/upload/interface";
-export * from "./interfaces";
 
 export {
     getDefaultSortOrder,
