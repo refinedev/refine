@@ -27,6 +27,46 @@ describe("useMenu Hook", () => {
         );
     });
 
+    it("should returns menuItems with custom route", async () => {
+        const { result } = renderHook(() => useMenu(), {
+            wrapper: TestWrapper({
+                dataProvider: MockJSONServer,
+                resources: [
+                    {
+                        name: "posts",
+                        options: {
+                            label: "Posts",
+                            route: "refine/posts",
+                        },
+                    },
+                ],
+            }),
+        });
+
+        expect(result.current.menuItems).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({
+                    name: "posts",
+                    route: "/refine/posts",
+                    key: "/refine/posts",
+                    label: "Posts",
+                }),
+            ]),
+        );
+    });
+
+    it("should returns defaultOpenKeys correctly", async () => {
+        const { result } = renderHook(() => useMenu(), {
+            wrapper: TestWrapper({
+                dataProvider: MockJSONServer,
+                resources: [{ name: "posts" }],
+                routerInitialEntries: ["/refine/posts"],
+            }),
+        });
+
+        expect(result.current.defaultOpenKeys).toEqual(["refine", "posts"]);
+    });
+
     it("returns dashboard if hasDashboard from RefineContext is true", async () => {
         const { result } = renderHook(() => useMenu(), {
             wrapper: TestWrapper({
