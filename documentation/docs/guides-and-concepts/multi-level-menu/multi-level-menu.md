@@ -49,23 +49,22 @@ import { useMenu } from "@pankod/refine-antd";
 
 export const Sider: React.FC = () => {
     //highlight-next-line
-    const { menuItems, selectedKey } = useMenu();
+    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
 };
 ```
 
 ### Tree Creation Compatible with Multi-level Menu
 
-Creating a multi-level menu compatible tree is not as difficult or time consuming. The only thing you will want to do when creating your trees with levels of submenus is using `createTreeView` helper from refine core.
+If you want to create your multi-level menu without Ant Design, you can use the `createTreeView` helper from refine core with resources that you can access from [`useResource`](/core/hooks/resource/useResource.md) hook.
 
 ```tsx title="src/components/layout/sider/index.tsx"
-import { useMenu } from "@pankod/refine-antd";
     //highlight-next-line
-import { createTreeView } from "@pankod/refine-core";
+import { useResource, createTreeView } from "@pankod/refine-core";
 
 export const Sider: React.FC = () => {
-     const { menuItems } = useMenu();
+     const { resources } = useResource();
     //highlight-next-line
-    const treeMenu: ITreeMenu[] = createTreeView(menuItems);
+    const treeMenu: ITreeMenu[] = createTreeView(resources);
 };
         
 ```
@@ -85,10 +84,6 @@ export const Sider: React.FC = () => {
     },
 ];
 ```
-
-:::tip
-If you want to create your multi-level menu without Ant Design, you can use the `createTreeView` helper from refine core with resources that you can access from [`useResource`](/core/hooks/resource/useResource.md) hook.
-:::
 
 ## Live Codesandbox Example
 
