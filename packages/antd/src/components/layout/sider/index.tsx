@@ -8,7 +8,6 @@ import {
     useNavigation,
     CanAccess,
     useIsExistAuthentication,
-    createTreeView,
 } from "@pankod/refine-core";
 
 import { Title as DefaultTitle } from "@components";
@@ -25,7 +24,7 @@ export const Sider: React.FC = () => {
     const { mutate: logout } = useLogout();
     const Title = useTitle();
     const translate = useTranslate();
-    const { menuItems, selectedKey } = useMenu();
+    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const { push } = useNavigation();
     const breakpoint = Grid.useBreakpoint();
 
@@ -33,26 +32,18 @@ export const Sider: React.FC = () => {
 
     const RenderToTitle = Title ?? DefaultTitle;
 
-    const treeMenu: ITreeMenu[] = createTreeView(menuItems);
-
     const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
         return tree.map((item: ITreeMenu) => {
             const { icon, label, route, name, children, options } = item;
             if (children.length > 0) {
                 return (
-                    <CanAccess
+                    <SubMenu
                         key={name}
-                        resource={name.toLowerCase()}
-                        action="list"
+                        icon={icon ?? <UnorderedListOutlined />}
+                        title={label}
                     >
-                        <SubMenu
-                            key={name}
-                            icon={icon ?? <UnorderedListOutlined />}
-                            title={label}
-                        >
-                            {renderTreeView(children, selectedKey)}
-                        </SubMenu>
-                    </CanAccess>
+                        {renderTreeView(children, selectedKey)}
+                    </SubMenu>
                 );
             } else {
                 const isSelected = route === selectedKey;
@@ -101,7 +92,7 @@ export const Sider: React.FC = () => {
             <RenderToTitle collapsed={collapsed} />
             <Menu
                 selectedKeys={[selectedKey]}
-                defaultOpenKeys={selectedKey.split("/").filter((x) => x !== "")}
+                defaultOpenKeys={defaultOpenKeys}
                 mode="inline"
                 onClick={({ key }) => {
                     if (key === "logout") {
@@ -116,7 +107,7 @@ export const Sider: React.FC = () => {
                     push(key as string);
                 }}
             >
-                {renderTreeView(treeMenu, selectedKey)}
+                {renderTreeView(menuItems, selectedKey)}
 
                 {isExistAuthentication && (
                     <Menu.Item key="logout" icon={<LogoutOutlined />}>

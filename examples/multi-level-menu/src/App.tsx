@@ -22,12 +22,10 @@ const App: React.FC = () => {
             resources={[
                 {
                     name: "cms",
-                    key: "1",
                 },
                 {
                     name: "content",
-                    key: "1-2",
-                    parentName: "1", // TODO: parentKey
+                    parentName: "cms", // TODO: parentKey
                 },
                 {
                     name: "posts",
@@ -36,16 +34,20 @@ const App: React.FC = () => {
                     edit: PostEdit,
                     show: PostShow,
                     canDelete: true,
-                    parentName: "1-2",
+                    parentName: "content",
+                    options: {
+                        label: "hehe",
+                        route: "hehe/hehe/hehe",
+                    },
                 },
-                { name: "categories-route", key: "2" },
+                { name: "categories-route" },
                 {
                     name: "categories",
                     list: CategoryList,
                     create: CategoryCreate,
                     edit: CategoryEdit,
                     canDelete: true,
-                    parentName: "2",
+                    parentName: "categories-route",
                 },
                 {
                     name: "categories",
@@ -57,7 +59,7 @@ const App: React.FC = () => {
                         label: "asd",
                         route: "bitti/son/sonson",
                     },
-                    parentName: "2",
+                    parentName: "categories-route",
                 },
                 {
                     name: "users",
