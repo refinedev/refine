@@ -21,52 +21,23 @@ const App: React.FC = () => {
             dataProvider={dataProvider(API_URL)}
             resources={[
                 {
-                    name: "cms",
-                },
-                {
-                    name: "content",
-                    parentName: "cms", // TODO: parentKey
+                    name: "CMS",
                 },
                 {
                     name: "posts",
+                    parentName: "CMS",
                     list: PostList,
                     create: PostCreate,
                     edit: PostEdit,
                     show: PostShow,
-                    canDelete: true,
-                    parentName: "content",
-                    options: {
-                        label: "hehe",
-                        route: "hehe/hehe/hehe",
-                    },
                 },
-                { name: "categories-route" },
                 {
-                    name: "categories",
+                    name: "category",
+                    parentName: "CMS",
                     list: CategoryList,
                     create: CategoryCreate,
                     edit: CategoryEdit,
                     canDelete: true,
-                    parentName: "categories-route",
-                },
-                {
-                    name: "categories",
-                    list: CategoryList,
-                    create: CategoryCreate,
-                    edit: CategoryEdit,
-                    canDelete: true,
-                    options: {
-                        label: "asd",
-                        route: "bitti/son/sonson",
-                    },
-                    parentName: "categories-route",
-                },
-                {
-                    name: "users",
-                    list: UserList,
-                    create: UserCreate,
-                    edit: UserEdit,
-                    show: UserShow,
                 },
             ]}
             notificationProvider={notificationProvider}
