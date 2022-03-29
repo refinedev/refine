@@ -4,18 +4,15 @@ title: Multi Level Menu
 sidebar_label: Multi Level Menu
 ---
 
+import multiLevelMenu from '@site/static/img/guides-and-concepts/multi-level-menu/multi-level-menu.png';
+
+
+This document is related to how to create a multi-level menu for **refine** applications. 
+
 ### What is Multi-level Menu?
 
-This document is related to how to create a multi-level menu for **refine** applications. The resources in your menu that you want to create for **refine** application may not be of equal importance. Multi-level menu will provide you with the necessary infrastructure to create your resources with the priority.
-
-Let's take a closer look at its usage.
-
+The multi-level menu is a great way to organize your sider menu items. You can create groups and sub menus to keep your menu items organized. This makes it easy to find the menu items you are looking for.
 ## Usage
-
-:::caution
-
-The usage we will look closer has been prepared with Ant Design. You can do yourself with also headless. If you decided to create a multi-level menu with headless, you can use the [`useResource`](/core/hooks/resource/useResource.md) hook to get the properties of a resource defined as an element of the `resources`.
-:::
 
 To do this, it is necessary to create an object array with the following [resources properties](/core/interfaces.md#resourceitemprops):
 
@@ -40,22 +37,37 @@ To do this, it is necessary to create an object array with the following [resour
         />
 ```
 
-### Access Menu Items
+:::tip
 
-You can access menu items that you want to render in your Sider component when using Ant Design [`useMenu`](/ui-frameworks/antd/hooks/resource/useMenu.md) can help.
+The `parentName` you give in the resource objects must be strictly equal to the resource name you want to group under.
 
-```tsx title="src/components/layout/sider/index.tsx"
-import { useMenu } from "@pankod/refine-antd";
+:::
+### Ant Design
 
-export const Sider: React.FC = () => {
-    //highlight-next-line
-    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
-};
-```
+The Sider component allows you to create the groups you want in the sider menu. By default, the sider will group menu items by their top-level heading. However, you can also add sub menu items to each group via `parentName`.
 
-### Tree Creation Compatible with Multi-level Menu
+:::tip
 
-If you want to create your multi-level menu without Ant Design, you can use the `createTreeView` helper from refine core with resources that you can access from [`useResource`](/core/hooks/resource/useResource.md) hook.
+Take a look at closer [`useMenu`](/docs/ui-frameworks/antd/hooks/resource/useMenu) hook for how Ant Design handle this resources.
+:::
+
+This gives you more control over the side menu, and allows you to customize it to better suit your needs. 
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={multiLevelMenu} alt="multiLevelMenu" />
+</div>
+<br />
+
+<br/>
+
+### Headless 
+
+If you want to create your multi-level menu without Ant Design, [`useResource`](/core/hooks/resource/useResource.md) hook gives your resources. The `createTreeView` helper from refine core allows you to create a tree for your headless sider.
 
 ```tsx title="src/components/layout/sider/index.tsx"
     //highlight-next-line
