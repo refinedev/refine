@@ -63,8 +63,8 @@ import { useResource, createTreeView } from "@pankod/refine-core";
 
 export const Sider: React.FC = () => {
      const { resources } = useResource();
-    //highlight-next-line
-    const treeMenu: ITreeMenu[] = createTreeView(resources);
+     //highlight-next-line
+     const treeMenu: ITreeMenu[] = createTreeView(resources);
 };
         
 ```
