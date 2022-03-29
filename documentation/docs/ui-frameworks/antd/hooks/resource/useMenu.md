@@ -36,6 +36,8 @@ import {
 
 export const CustomMenu: React.FC = () => {
     const Title = useTitle();
+    const { SubMenu } = Menu;
+
 // highlight-next-line
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
 
@@ -255,7 +257,7 @@ export const CustomMenu: React.FC = () => {
                         logout();
                         return;
                     }
-                    
+
                     if (!breakpoint.lg) {
                         setCollapsed(true);
                     }
