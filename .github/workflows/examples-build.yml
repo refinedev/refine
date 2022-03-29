@@ -5,6 +5,13 @@ on:
     types: [labeled, synchronize]
   schedule:
     - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: false 
+  
 
 jobs:
   build-all-examples:
