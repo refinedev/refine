@@ -29,9 +29,12 @@ const App: React.FC = () => {
                     create: PostCreate,
                     edit: PostEdit,
                     show: PostShow,
+                    options: {
+                        label: "Ömer",
+                    },
                 },
                 {
-                    name: "category",
+                    name: "categories",
                     parentName: "CMS",
                     list: CategoryList,
                     create: CategoryCreate,

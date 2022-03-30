@@ -118,6 +118,8 @@ const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
                             />
                         </CanAccess>
                     );
+                default:
+                    return <>{catchAll ?? <ErrorComponent />}</>;
             }
         };
 
@@ -225,6 +227,7 @@ export const RouteProvider = () => {
                     }
                 />
                 {...[...(resourceRoutes || [])]}
+                <Route path="*" element={<ResourceComponent route="" />} />
             </Route>
         </Routes>
     );
