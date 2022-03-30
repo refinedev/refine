@@ -29,9 +29,6 @@ const App: React.FC = () => {
                     create: PostCreate,
                     edit: PostEdit,
                     show: PostShow,
-                    options: {
-                        label: "Ömer",
-                    },
                 },
                 {
                     name: "categories",
