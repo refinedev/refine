@@ -10,6 +10,7 @@ hide_table_of_contents: false
 
 import server_start from '@site/static/img/blog/2022-03-29-react-hook-form-upload/server_start.gif';
 import image_upload from '@site/static/img/blog/2022-03-29-react-hook-form-upload/image_upload.gif';
+import overview from '@site/static/img/blog/2022-03-29-react-hook-form-upload/overview.gif';
 
 In this example, we will learn how to upload files with [React Hook Form](https://react-hook-form.com/), which is very preferred for managing forms with React. We will use [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData) to upload a file and we will upload a file of type multipart/form-data.
 
@@ -333,6 +334,16 @@ export const PostCreate: React.FC = () => {
     );
 };
 ```
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={overview} alt="Refine Example Overview" />
+</div>
+<br />
 
 As you can see, we have easily saved both our data such as title, category, status and an image in the form of `multipart/form-data` to our database using the `refine-react-hook-form` adapter. We've only shown how to utilize the Multipart File Upload feature for our example in this tutorial. For examine **refine** CMS example, checkout the live codeSandbox below.
 
