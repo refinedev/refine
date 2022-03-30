@@ -402,7 +402,7 @@ export const PostCreate: React.FC = () => {
 };
 ```
 
-<div class="img-container" style={{"max-width": "500px"}}>
+<div class="img-container">
     <div class="window">
         <div class="control red"></div>
         <div class="control orange"></div>
