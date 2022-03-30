@@ -12,6 +12,16 @@ import server_start from '@site/static/img/blog/2022-03-29-react-hook-form-uploa
 import image_upload from '@site/static/img/blog/2022-03-29-react-hook-form-upload/image_upload.gif';
 import overview from '@site/static/img/blog/2022-03-29-react-hook-form-upload/overview.gif';
 
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={overview} alt="Refine Example Overview" />
+</div>
+<br />
+
 In this example, we will learn how to upload files with [React Hook Form](https://react-hook-form.com/), which is very preferred for managing forms with React. We will use [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData) to upload a file and we will upload a file of type multipart/form-data.
 
 <!--truncate-->
