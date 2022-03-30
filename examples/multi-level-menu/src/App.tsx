@@ -10,7 +10,6 @@ import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
-import { UserList, UserCreate, UserEdit, UserShow } from "pages/users";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
