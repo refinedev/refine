@@ -150,7 +150,7 @@ Your **refine** application will be accessible at [http://localhost:3000](http:/
 Replace the contents of `App.tsx` with the following code:
 
 ```tsx title="App.tsx"
-mport { Refine, useMany } from "@pankod/refine-core";
+import { Refine, useMany } from "@pankod/refine-core";
 import {
     useTable,
     List,
