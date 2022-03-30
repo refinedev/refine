@@ -15,12 +15,11 @@ import { supabaseClient } from "utility";
 
 const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
-        const { user, error, session, provider, url } =
-            await supabaseClient.auth.signIn({
-                provider: "google",
-            });
+        const { user, error } = await supabaseClient.auth.signIn({
+            email,
+            password,
+        });
 
-        console.log("login", { user, error, session, provider, url });
         if (error) {
             return Promise.reject(error);
         }

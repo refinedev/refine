@@ -52,7 +52,6 @@ export const ListButton: React.FC<ListButtonProps> = ({
 
     const resourceName = propResourceName ?? resource.name;
 
-    console.log("resourceName", propResourceName, resource, resourceName);
     const { data } = useCan({
         resource: resourceName,
         action: "list",
