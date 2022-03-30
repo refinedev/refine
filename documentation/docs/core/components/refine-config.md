@@ -325,7 +325,7 @@ const App: React.FC = () => {
         <Refine
             ...
             // highlight-next-line
-            catchAll={CustomErrorPage}
+            catchAll={CustomErrorPage()}
         />
     );
 };
