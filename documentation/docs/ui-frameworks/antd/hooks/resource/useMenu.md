@@ -24,12 +24,13 @@ First we define `<CustomMenu>`:
 
 ```tsx  title="src/CustomMenu.tsx"
 import { useState, CSSProperties } from "react";
-import { useTitle } from "@pankod/refine-core";
+import { useTitle, ITreeMenu, CanAccess } from "@pankod/refine-core";
 import {
     AntdLayout,
     Menu,
     Grid,
     Link,
+    Icons,
 // highlight-next-line
     useMenu,
 } from "@pankod/refine-antd";
@@ -57,7 +58,7 @@ export const CustomMenu: React.FC = () => {
                 return (
                     <SubMenu
                         key={name}
-                        icon={icon ?? <UnorderedListOutlined />}
+                        icon={icon ?? <Icons.UnorderedListOutlined />}
                         title={label}
                     >
                         {renderTreeView(children, selectedKey)}
@@ -80,7 +81,7 @@ export const CustomMenu: React.FC = () => {
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
+                        icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
                     >
                         {label}
                         {!collapsed && isSelected && (
@@ -198,7 +199,7 @@ export const CustomMenu: React.FC = () => {
                 return (
                     <SubMenu
                         key={name}
-                        icon={icon ?? <UnorderedListOutlined />}
+                        icon={icon ?? <Icons.UnorderedListOutlined />}
                         title={label}
                     >
                         {renderTreeView(children, selectedKey)}
@@ -221,7 +222,7 @@ export const CustomMenu: React.FC = () => {
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
+                        icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
                     >
                         {label}
                         {!collapsed && isSelected && (
