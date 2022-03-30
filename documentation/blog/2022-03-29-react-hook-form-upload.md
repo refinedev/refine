@@ -222,7 +222,7 @@ It allows you to manage your forms and send data to your server with the [refine
 
 You can manage your form very easily with the `refine-react-hook-form adapter`. The data created in the form will be automatically saved to the database with the **refine** `onFinish` method.
 
-This is a basic `CMS` app that was created with **refine**'s **headless** feature. You may quickly build records and save them to your database using **refine**. We'll look at the CreatePost page of this step. We'll create a record in the form and manage it with the `refine-react-hook-form` adapter. 
+This is a basic `CMS` app that was created with **refine**'s **headless** feature. You may quickly build records and save them to your database using **refine**. We'll look at the CreatePost page of this step. We'll create a record in the form and manage it with the `refine-react-hook-form` adapter.
 
 ```tsx title="src/pages/CreatePost"
 import { useState } from "react";
@@ -334,6 +334,13 @@ export const PostCreate: React.FC = () => {
 };
 ```
 
-As you can see, we have easily saved both our data such as title, category, status and an image in the form of `multipart/form-data` to our database using the `refine-react-hook-form` adapter. We've only shown how to utilize the Multipart File Upload feature for our example in this tutorial. For examine  **refine** CMS example, checkout the live codeSandbox below.
+As you can see, we have easily saved both our data such as title, category, status and an image in the form of `multipart/form-data` to our database using the `refine-react-hook-form` adapter. We've only shown how to utilize the Multipart File Upload feature for our example in this tutorial. For examine **refine** CMS example, checkout the live codeSandbox below.
 
 ## Refine Multipart Upload Live CodeSandbox Example
+
+<iframe src="https://codesandbox.io/embed/refine-react-hook-form-example-4hf74?autoresize=1&fontsize=14&theme=dark&view=preview"
+     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+     title="refine-react-hook-form-example"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
