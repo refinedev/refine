@@ -82,7 +82,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
             onClick={(e): void =>
                 onClick
                     ? onClick(e)
-                    : clone(propResourceName ?? resource.route, id!)
+                    : clone(propResourceName ?? resource.route!, id!)
             }
             icon={<PlusSquareOutlined />}
             disabled={data?.can === false}

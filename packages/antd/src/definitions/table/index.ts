@@ -90,7 +90,7 @@ export const mapAntdFilterToCrudFilter = (
         const value = tableFilters[field];
         const operator = prevFilters
             .filter((i) => i.operator !== "or")
-            .find((p: LogicalFilter) => p.field === field)?.operator;
+            .find((p: any) => p.field === field)?.operator;
 
         if (operator !== "or") {
             crudFilters.push({

@@ -66,7 +66,9 @@ export const CustomMenu: React.FC = () => {
                 );
             }
             const isSelected = route === selectedKey;
-            const isRoute = !(parentName && children.length === 0);
+            const isRoute = !(
+                parentName !== undefined && children.length === 0
+            );
             return (
                 <CanAccess
                     key={route}
@@ -76,7 +78,7 @@ export const CustomMenu: React.FC = () => {
                     <Menu.Item
                         key={selectedKey}
                         onClick={() => {
-                            push(route);
+                            push(route ?? "");
                         }}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
@@ -207,7 +209,9 @@ export const CustomMenu: React.FC = () => {
                 );
             }
             const isSelected = route === selectedKey;
-            const isRoute = !(parentName && children.length === 0);
+            const isRoute = !(
+                parentName !== undefined && children.length === 0
+            );
             return (
                 <CanAccess
                     key={route}
@@ -217,7 +221,7 @@ export const CustomMenu: React.FC = () => {
                     <Menu.Item
                         key={selectedKey}
                         onClick={() => {
-                            push(route);
+                            push(route ?? "");
                         }}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",

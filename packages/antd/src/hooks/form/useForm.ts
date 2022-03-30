@@ -104,16 +104,14 @@ export const useForm = <
     const warnWhenUnsavedChanges =
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesRefine;
 
-    const { data, isFetching } = queryResult;
-
     React.useEffect(() => {
         form.setFieldsValue({
-            ...(data?.data as any), // Fix Me
+            ...(queryResult?.data?.data as any), // Fix Me
         });
         return () => {
             form.resetFields();
         };
-    }, [data, id, isFetching]);
+    }, [queryResult?.data?.data, id, queryResult?.isFetching]);
 
     const onKeyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
         if (submitOnEnter && event.key === "Enter") {

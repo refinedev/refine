@@ -83,7 +83,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
             onClick={(e): void =>
                 onClick
                     ? onClick(e)
-                    : show(propResourceName ?? resource.route, id!)
+                    : show(propResourceName ?? resource.route!, id!)
             }
             icon={<EyeOutlined />}
             disabled={data?.can === false}

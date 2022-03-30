@@ -75,7 +75,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
             onClick={(e): void =>
                 onClick
                     ? onClick(e)
-                    : create(propResourceName ?? resource.route, "push")
+                    : create(propResourceName ?? resource.route!, "push")
             }
             icon={<PlusSquareOutlined />}
             disabled={data?.can === false}
