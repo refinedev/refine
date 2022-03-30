@@ -334,6 +334,6 @@ export const PostCreate: React.FC = () => {
 };
 ```
 
-As you can see, we have easily saved both our data such as title, category, status and an image in the form of `multipart/form-data` to our database using the `refine-react-hook-form` adapter. We've only shown how to utilize the Multipart File Upload feature for our example in this lesson. For examine  **refine** CMS example, checkout the live codeSandbox below.
+As you can see, we have easily saved both our data such as title, category, status and an image in the form of `multipart/form-data` to our database using the `refine-react-hook-form` adapter. We've only shown how to utilize the Multipart File Upload feature for our example in this tutorial. For examine  **refine** CMS example, checkout the live codeSandbox below.
 
 ## Refine Multipart Upload Live CodeSandbox Example
