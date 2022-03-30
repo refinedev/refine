@@ -222,23 +222,62 @@ It allows you to manage your forms and send data to your server with the [refine
 
 You can manage your form very easily with the `refine-react-hook-form adapter`. The data created in the form will be automatically saved to the database with the **refine** `onFinish` method.
 
+This is a basic `CMS` app that was created with **refine**'s **headless** feature. You may quickly build records and save them to your database using **refine**. We'll look at the CreatePost page of this step. We'll create a record in the form and manage it with the `refine-react-hook-form` adapter. 
+
 ```tsx title="src/pages/CreatePost"
+import { useState } from "react";
+//highlight-next-line
 import { useForm } from "@pankod/refine-react-hook-form";
-import { useSelect } from "@pankod/refine-core";
+import { useSelect, useApiUrl } from "@pankod/refine-core";
+
+import axios from "axios";
 
 export const PostCreate: React.FC = () => {
+    const [isUploading, setIsUploading] = useState<boolean>(false);
+
+    //highlight-start
     const {
         refineCore: { onFinish, formLoading },
         register,
         handleSubmit,
         formState: { errors },
+        setValue,
     } = useForm();
+    //highlight-end
+
+    //highlight-next-line
+    const apiURL = useApiUrl();
 
     const { options } = useSelect({
         resource: "categories",
     });
 
+    //highlight-start
+    const onSubmitFile = async () => {
+        setIsUploading(true);
+        const inputFile = document.getElementById("fileInput") as any;
+
+        const formData = new FormData();
+        formData.append("file", inputFile?.files?.[0]);
+
+        const res = await axios.post<{ url: string }>(
+            `${apiURL}/media/upload`,
+            formData,
+            {
+                withCredentials: false,
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                },
+            },
+        );
+
+        setValue("thumbnail", res.data.url);
+        setIsUploading(false);
+    };
+    //highlight-end
+
     return (
+        //highlight-next-line
         <form onSubmit={handleSubmit(onFinish)}>
             <label>Title: </label>
             <input {...register("title", { required: true })} />
@@ -276,11 +315,25 @@ export const PostCreate: React.FC = () => {
             />
             {errors.content && <span>This field is required</span>}
             <br />
-            <input type="submit" value="Submit" />
+            <br />
+            //highlight-start
+            <label>Image: </label>
+            <input id="fileInput" type="file" onChange={onSubmitFile} />
+            <input
+                type="hidden"
+                {...register("thumbnail", { required: true })}
+            />
+            {errors.thumbnail && <span>This field is required</span>}
+            //highlight-end
+            <br />
+            <br />
+            <input type="submit" disabled={isUploading} value="Submit" />
             {formLoading && <p>Loading</p>}
         </form>
     );
 };
 ```
 
-## Refine Multipart Upload Live Codesandbox Example
+As you can see, we have easily saved both our data such as title, category, status and an image in the form of `multipart/form-data` to our database using the `refine-react-hook-form` adapter. We've only shown how to utilize the Multipart File Upload feature for our example in this lesson. For examine  **refine** CMS example, checkout the live codeSandbox below.
+
+## Refine Multipart Upload Live CodeSandbox Example
