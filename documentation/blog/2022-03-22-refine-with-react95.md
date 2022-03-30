@@ -285,7 +285,9 @@ export const LoginPage = () => {
                                     placeholder="User Name"
                                     fullWidth
                                     value={username}
-                                    onChange={(e) => {
+                                    onChange={(
+                                        e: React.ChangeEvent<HTMLInputElement>
+                                    ) => {
                                         setUsername(e.target.value);
                                     }}
                                 />
@@ -296,7 +298,9 @@ export const LoginPage = () => {
                                 fullWidth
                                 type="password"
                                 value={password}
-                                onChange={(e) => {
+                                onChange={(
+                                    e: React.ChangeEvent<HTMLInputElement>
+                                ) => {
                                     setPassword(e.target.value);
                                 }}
                             />
