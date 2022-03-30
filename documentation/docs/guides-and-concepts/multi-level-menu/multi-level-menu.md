@@ -19,27 +19,41 @@ To do this, it is necessary to create an object array with the following [resour
 ```tsx title="src/App.tsx"
         <Refine
            ...
-           // highlight-start
             resources={[
                 {
+                    // highlight-start
                     name: "CMS",
+                    // highlight-end
                 },
                 {
+                    // highlight-start
                     name: "posts",
                     parentName: "CMS",
+                    // highlight-end
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
                 },
                 {
+                    // highlight-start
                     name: "category",
                     parentName: "CMS",
+                    // highlight-end
+                    list: CategoryList,
+                    create: CategoryCreate,
+                    edit: CategoryEdit,
+                    canDelete: true,
                 },
             ]}
-            // highlight-end
         />
 ```
 
 :::tip
 
-The `parentName` you give in the resource objects must be strictly equal to the resource name you want to group under.
+The `parentName` you give in the resource objects must be strictly equal to the resource name you want to group under.<br />
+A resource given as a group can only have a `name` and a  `parentName`. They should not have other props such as list, edit, create etc.
+
 
 :::
 ### Ant Design
@@ -77,20 +91,32 @@ export const Sider: React.FC = () => {
      const { resources } = useResource();
      //highlight-next-line
      const treeMenu: ITreeMenu[] = createTreeView(resources);
+
+     // Here create your Sider to your UI choice
+
 };
         
 ```
 
 ```tsx title="example output"
+
 [
     {
         name: "CMS",
+        route: "CMS",
+        ...
         children: [
             {
                 name: "posts",
+                route: "CMS/posts",
+                ...
+                children: [],
             },
             {
                 name: "category",
+                route: "CMS/category",
+                ...
+                children: [],
             },
         ],
     },
