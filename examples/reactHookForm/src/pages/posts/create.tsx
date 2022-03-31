@@ -22,10 +22,12 @@ export const PostCreate: React.FC = () => {
 
     const onSubmitFile = async () => {
         setIsUploading(true);
-        const inputFile = document.getElementById("fileInput") as any;
+        const inputFile = document.getElementById(
+            "fileInput",
+        ) as HTMLInputElement;
 
         const formData = new FormData();
-        formData.append("file", inputFile?.files?.[0]);
+        formData.append("file", inputFile?.files?.item(0) as File);
 
         const res = await axios.post<{ url: string }>(
             `${apiURL}/media/upload`,
