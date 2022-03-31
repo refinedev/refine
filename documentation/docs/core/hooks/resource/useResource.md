@@ -54,6 +54,7 @@ interface IResourceItem extends IResourceComponents {
     canShow?: boolean;
     canDelete?: boolean;
     options?: OptionsProps;
+    parentName?: string;
 }
 ```
 

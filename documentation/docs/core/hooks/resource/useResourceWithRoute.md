@@ -17,30 +17,9 @@ const resourceWithRoute = useResourceWithRoute();
 
 ### Return value
 
-| Description       | Type                               |
-| ----------------- | ---------------------------------- |
-| resourceWithRoute | `(route: string) => IResourceItem` |
+| Description       | Type                                                                        |
+| ----------------- | --------------------------------------------------------------------------- |
+| resourceWithRoute | [`(route: string) => IResourceItem`](/core/interfaces.md#resourceitemprops) |
 
-#### Interfaces
-
-```ts
-interface OptionsProps {
-    label?: string;
-    route?: string;
-    [key: string]: any;
-}
-
-interface IResourceItem {
-    name: string;
-    label?: string;
-    route?: string;
-    icon?: ReactNode;
-    canCreate?: boolean;
-    canEdit?: boolean;
-    canShow?: boolean;
-    canDelete?: boolean;
-    options?: OptionsProps;
-}
-```
 
 > The `canCreate`, `canShow` and `canEdit` properties are defined automatically if the `create`, `show` and `edit` components are defined on the `resources` property in `<Refine>`.

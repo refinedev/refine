@@ -85,20 +85,20 @@ export const Show: React.FC<ShowProps> = ({
                     {!recordItemId && (
                         <ListButton
                             data-testid="show-list-button"
-                            resourceName={resource.name}
+                            resourceNameOrRouteName={resource.route}
                         />
                     )}
                     {isEditButtonVisible && (
                         <EditButton
                             disabled={isLoading}
                             data-testid="show-edit-button"
-                            resourceName={resource.name}
+                            resourceNameOrRouteName={resource.route}
                             recordItemId={id}
                         />
                     )}
                     {isDeleteButtonVisible && (
                         <DeleteButton
-                            resourceName={resource.name}
+                            resourceNameOrRouteName={resource.route}
                             data-testid="show-delete-button"
                             recordItemId={id}
                             onSuccess={() =>
@@ -107,7 +107,7 @@ export const Show: React.FC<ShowProps> = ({
                         />
                     )}
                     <RefreshButton
-                        resourceName={resource.name}
+                        resourceNameOrRouteName={resource.route}
                         recordItemId={id}
                     />
                 </Space>

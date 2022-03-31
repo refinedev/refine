@@ -11,7 +11,11 @@ import {
 } from "@pankod/refine-core";
 
 export type CreateButtonProps = ButtonProps & {
+    /**
+     * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/pankod/refine/issues/1618
+     */
     resourceName?: string;
+    resourceNameOrRouteName?: string;
     hideText?: boolean;
     ignoreAccessControlProvider?: boolean;
 };
@@ -25,6 +29,7 @@ export type CreateButtonProps = ButtonProps & {
  */
 export const CreateButton: React.FC<CreateButtonProps> = ({
     resourceName: propResourceName,
+    resourceNameOrRouteName: propResourceNameOrRouteName,
     hideText = false,
     ignoreAccessControlProvider = false,
     children,
@@ -41,7 +46,9 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
-    const resource = resourceWithRoute(routeResourceName);
+    const resource = resourceWithRoute(
+        propResourceNameOrRouteName ?? routeResourceName,
+    );
 
     const resourceName = propResourceName ?? resource.name;
 
@@ -66,7 +73,9 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
     return (
         <Button
             onClick={(e): void =>
-                onClick ? onClick(e) : create(resourceName, "push")
+                onClick
+                    ? onClick(e)
+                    : create(propResourceName ?? resource.route!, "push")
             }
             icon={<PlusSquareOutlined />}
             disabled={data?.can === false}

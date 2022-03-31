@@ -1,8 +1,17 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import ReactRouterDom, { Route } from "react-router-dom";
 
 import { fireEvent, render, TestWrapper, waitFor } from "@test";
 import { ListButton } from "./";
+
+const mHistory = {
+    push: jest.fn(),
+};
+
+jest.mock("react-router-dom", () => ({
+    ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
+    useHistory: jest.fn(() => mHistory),
+}));
 
 describe("List Button", () => {
     const list = jest.fn();
@@ -142,5 +151,29 @@ describe("List Button", () => {
         fireEvent.click(getByText("Posts"));
 
         expect(list).toHaveBeenCalledTimes(1);
+    });
+
+    it("should redirect with custom route called function successfully if click the button", () => {
+        const { getByText } = render(
+            <Route path="/:resource">
+                <ListButton resourceNameOrRouteName="custom-route-posts" />
+            </Route>,
+            {
+                wrapper: TestWrapper({
+                    resources: [
+                        {
+                            name: "posts",
+                            options: { route: "custom-route-posts" },
+                        },
+                        { name: "posts" },
+                    ],
+                    routerInitialEntries: ["/posts"],
+                }),
+            },
+        );
+
+        fireEvent.click(getByText("Posts"));
+
+        expect(mHistory.push).toBeCalledWith("/custom-route-posts");
     });
 });

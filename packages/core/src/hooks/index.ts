@@ -3,7 +3,6 @@ export * from "./data";
 export * from "./live";
 export * from "./resource";
 export * from "./notification";
-export * from "./useListResourceQueries";
 export * from "./translate";
 export * from "./refine";
 export * from "./export";

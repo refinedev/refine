@@ -55,7 +55,19 @@ const RouterProvider: IReactRouterProvider = {
     },
     useParams: () => {
         const { params } = useMatch();
-        return handleUseParams(params);
+        const pathname = useLocation();
+
+        const paramsString = `/${Object.values(params).join("/")}`;
+
+        return handleUseParams({
+            ...params,
+            resource:
+                Object.keys(params).length === 0
+                    ? pathname.current.pathname.substring(1)
+                    : pathname.current.pathname
+                          .substring(1)
+                          .replace(paramsString, ""),
+        });
     },
     Prompt,
     Link,

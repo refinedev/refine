@@ -57,6 +57,7 @@ export const useEditableTable = <
     const edit = useForm<TData, TError, TVariables>({
         ...props,
         action: "edit",
+        redirect: false,
     });
 
     const { id: editId, setId, saveButtonProps } = edit;

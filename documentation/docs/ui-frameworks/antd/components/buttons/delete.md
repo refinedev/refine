@@ -92,13 +92,13 @@ Clicking the button will trigger the [`useDelete`](/core/hooks/data/useDelete.md
 
 ### `resourceName`
 
-`resourceName` allows us to manage which resource's record is going to be deleted.
+`resourceNameOrRouteName` allows us to manage which resource's record is going to be deleted.
 
 ```tsx 
 import { DeleteButton } from "@pankod/refine-antd";
 
 export const MyDeleteComponent = () => {
-    return <DeleteButton resourceName="categories" recordItemId="2" />;
+    return <DeleteButton resourceNameOrRouteName="categories" recordItemId="2" />;
 };
 ```
 
@@ -230,7 +230,8 @@ export const MyDeleteComponent = () => {
 | Property                    | Description                                                                                  | Type                                                                                                                        | Default                                                                              |
 | --------------------------- | -------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
 | props                       | Ant Design button properties                                                                 | [`ButtonProps`](https://ant.design/components/button/#API) & [`DeleteButtonProps`](/core/interfaces.md#delete-button-props) |                                                                                      |
-| resourceName                | Determines which resource to use for deletion                                                | `string`                                                                                                                    | Resource name that it reads from route                                               |
+| resourceNameOrRouteName                                                                                   | Determines which resource to use for redirection | `string`                                                                                                      | Resource name that it reads from route                           |
+| <div className="required-block"><div>resourceName</div> <div className=" required">deprecated</div></div> | Determines which resource to use for redirection | `string`                                                                                                      | Resource name that it reads from route                           |
 | recordItemId                | Determines which id to use for deletion                                                      | [`BaseKey`](/core/interfaces.md#basekey)                                                                                                                  | Record id that it reads from route                                                   |
 | onSuccess                   | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful | `(value: DeleteOneResponse) => void`                                                                                        |                                                                                      |
 | mutationMode                | Determines when mutations are executed.                                                      | `"pessimistic"` \| `"optimistic"` \| `"undoable"`                                                                           |                                                                                      |

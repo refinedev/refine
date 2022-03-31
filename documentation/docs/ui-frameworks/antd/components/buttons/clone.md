@@ -78,7 +78,7 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/core/h
 **`<CloneButton>`** component reads the id information from the route by default.
 :::
 
-### `resourceName`
+### `resourceNameOrRouteName`
 
 It is used to redirect the app to the `/clone` endpoint of the given resource name. By default, the app redirects to a URL with `/clone` defined by the name property of the resource object.
 
@@ -86,7 +86,7 @@ It is used to redirect the app to the `/clone` endpoint of the given resource na
 import { CloneButton } from "@pankod/refine-antd";
 
 export const MyCloneComponent = () => {
-    return <CloneButton resourceName="categories" recordItemId="2" />;
+    return <CloneButton resourceNameOrRouteName="categories" recordItemId="2" />;
 };
 ```
 
@@ -123,7 +123,8 @@ export const MyListComponent = () => {
 | Property                    | Description                                      | Type                                                                                                                                 | Default                                                            |
 | --------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
 | props                       | Ant Design button props                          | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; recordItemId?: BaseKey; hideText?: boolean; }` |                                                                    |
-| resourceName                | Determines which resource to use for redirection | `string`                                                                                                                             | Resource name that it reads from route                             |
+| resourceNameOrRouteName                                                                                   | Determines which resource to use for redirection | `string`                                                                                                      | Resource name that it reads from route                           |
+| <div className="required-block"><div>resourceName</div> <div className=" required">deprecated</div></div> | Determines which resource to use for redirection | `string`                                                                                                      | Resource name that it reads from route                           |
 | recordItemId                | Adds `id` to the end of the URL                  | [`BaseKey`](/core/interfaces.md#basekey)                                                                                                                             | Record id that it reads from route                                 |
 | hideText                    | Allows to hide button text                       | `boolean`                                                                                                                            | `false`                                                            |
 | ignoreAccessControlProvider | Skip access control                              | `boolean`                                                                                                                            | `false`                                                            |

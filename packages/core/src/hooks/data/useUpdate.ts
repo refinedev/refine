@@ -26,7 +26,7 @@ import {
 } from "@hooks";
 import { queryKeys } from "@definitions/helpers";
 
-type UpdateParams<TVariables> = {
+export type UpdateParams<TVariables> = {
     id: BaseKey;
     resource: string;
     mutationMode?: MutationMode;

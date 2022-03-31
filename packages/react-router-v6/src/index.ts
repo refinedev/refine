@@ -40,7 +40,16 @@ const RouterProvider: IReactRouterProvider = {
     useLocation,
     useParams: () => {
         const params = useParams();
-        return handleUseParams(params);
+        const { pathname } = useLocation();
+
+        const paramsString = `/${Object.values(params).join("/")}`;
+        return handleUseParams({
+            ...params,
+            resource:
+                Object.keys(params).length === 0
+                    ? pathname.substring(1)
+                    : pathname.substring(1).replace(paramsString, ""),
+        });
     },
     Prompt: Prompt as any,
     Link,

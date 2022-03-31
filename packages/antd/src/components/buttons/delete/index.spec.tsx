@@ -234,6 +234,46 @@ describe("Delete Button", () => {
             expect(deleteOneMock).toBeCalledTimes(1);
             expect(onSuccessMock).toBeCalledTimes(1);
         });
+
+        it("should confirm Popconfirm successfuly with onSuccess", async () => {
+            const deleteOneMock = jest.fn();
+            const onSuccessMock = jest.fn();
+
+            const { getByText, getAllByText, debug } = render(
+                <Route path="/:resource/:action/:id">
+                    <DeleteButton
+                        onSuccess={onSuccessMock}
+                        confirmOkText="confirmOkText"
+                        confirmCancelText="confirmCancelText"
+                        confirmTitle="confirmTitle"
+                    />
+                </Route>,
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            ...MockJSONServer,
+                            deleteOne: deleteOneMock,
+                        },
+                        routerInitialEntries: ["/posts/edit/1"],
+                    }),
+                },
+            );
+
+            await act(async () => {
+                fireEvent.click(getByText("Delete"));
+            });
+
+            getByText("confirmTitle");
+            getByText("confirmOkText");
+            getByText("confirmCancelText");
+
+            await act(async () => {
+                fireEvent.click(getByText("confirmOkText"));
+            });
+
+            expect(deleteOneMock).toBeCalledTimes(1);
+            expect(onSuccessMock).toBeCalledTimes(1);
+        });
     });
 
     it("should render with custom mutationMode", () => {
@@ -256,6 +296,22 @@ describe("Delete Button", () => {
         const { getByText } = render(
             <Route path="/:resource">
                 <DeleteButton resourceName="categories" />
+            </Route>,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }, { name: "categories" }],
+                    routerInitialEntries: ["/posts"],
+                }),
+            },
+        );
+
+        fireEvent.click(getByText("Delete"));
+    });
+
+    it("should render with resourceNameOrRouteName", () => {
+        const { getByText } = render(
+            <Route path="/:resource">
+                <DeleteButton resourceNameOrRouteName="categories" />
             </Route>,
             {
                 wrapper: TestWrapper({

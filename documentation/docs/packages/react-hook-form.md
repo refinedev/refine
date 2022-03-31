@@ -6,6 +6,7 @@ title: React Hook Form
 import listPage from '@site/static/img/packages/react-hook-form/list-page.png';
 import createForm from '@site/static/img/packages/react-hook-form/create-form.gif';
 import editForm from '@site/static/img/packages/react-hook-form/edit-form.gif';
+import fileUpload from '@site/static/img/packages/react-hook-form/upload.gif';
 
 **refine** offers a [React Hook Form][react-hook-form] adapter([@pankod/refine-react-hook-form][refine-react-hook-form]) that allows you to use the React Hook Form library with **refine**. Thus, you can manage your forms in headless way.
 
@@ -132,26 +133,26 @@ We also use `useSelect` to fetch category options.
 [Refer to the `useSelect` documentation for detailed information. &#8594](/core/hooks/useSelect.md)
 
 ```tsx title="src/posts/create.tsx"
-// highligt-next-line
+// highlight-next-line
 import { useForm } from "@pankod/refine-react-hook-form";
 import { useSelect } from "@pankod/refine-core";
 
 export const PostCreate: React.FC = () => {
-//highligt-start
+    //highlight-start
     const {
         refineCore: { onFinish, formLoading },
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
-//highligt-end
+    //highlight-end
 
     const { options } = useSelect({
         resource: "categories",
     });
 
     return (
-// highligt-next-line
+        // highlight-next-line
         <form onSubmit={handleSubmit(onFinish)}>
             <label>Title: </label>
             <input {...register("title", { required: true })} />
@@ -225,18 +226,18 @@ export const PostEdit: React.FC = () => {
         formState: { errors },
     } = useForm();
 
-// highligt-start
+    // highlight-start
     const { options } = useSelect({
         resource: "categories",
         defaultValue: queryResult?.data?.data.category.id,
     });
-// highligt-end
+    // highlight-end
 
-// highligt-start
+    // highlight-start
     useEffect(() => {
         resetField("category.id");
     }, [options]);
-// highligt-end
+    // highlight-end
 
     return (
         <form onSubmit={handleSubmit(onFinish())}>
@@ -289,6 +290,127 @@ export const PostEdit: React.FC = () => {
         <div class="control green"></div>
     </div>
     <img src={editForm} alt="Edit Form" />
+</div>
+
+### Multipart File Upload
+
+You can submit files or images to your server in multipart/form-data format using the refine-react-hook-form adapter. First of all, let's create a function called `onSubmitFile` to convert the file from the input to formData type. After placing the selected file in formData, let's upload it to our server. When your form is submitted, the **refine** `onFinish` method automatically saves your file and other data on your server.
+
+```tsx title="src/posts/create.tsx"
+import { useState } from "react";
+import { useForm } from "@pankod/refine-react-hook-form";
+import { useSelect, useApiUrl } from "@pankod/refine-core";
+
+import axios from "axios";
+
+export const PostCreate: React.FC = () => {
+    const [isUploading, setIsUploading] = useState<boolean>(false);
+
+    const {
+        refineCore: { onFinish, formLoading },
+        register,
+        handleSubmit,
+        formState: { errors },
+        setValue,
+    } = useForm();
+
+    //highlight-next-line
+    const apiURL = useApiUrl();
+
+    const { options } = useSelect({
+        resource: "categories",
+    });
+
+    //highlight-start
+    const onSubmitFile = async () => {
+        setIsUploading(true);
+        const inputFile = document.getElementById(
+            "fileInput",
+        ) as HTMLInputElement;
+
+        const formData = new FormData();
+        formData.append("file", inputFile?.files?.item(0) as File);
+
+        const res = await axios.post<{ url: string }>(
+            `${apiURL}/media/upload`,
+            formData,
+            {
+                withCredentials: false,
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                },
+            },
+        );
+
+        setValue("thumbnail", res.data.url);
+        setIsUploading(false);
+    };
+    //highlight-end
+
+    return (
+        <form onSubmit={handleSubmit(onFinish)}>
+            <label>Title: </label>
+            <input {...register("title", { required: true })} />
+            {errors.title && <span>This field is required</span>}
+            <br />
+            <label>Status: </label>
+            <select {...register("status")}>
+                <option value="published">published</option>
+                <option value="draft">draft</option>
+                <option value="rejected">rejected</option>
+            </select>
+            <br />
+            <label>Category: </label>
+            <select
+                defaultValue={""}
+                {...register("category.id", { required: true })}
+            >
+                <option value={""} disabled>
+                    Please select
+                </option>
+                {options?.map((category) => (
+                    <option key={category.value} value={category.value}>
+                        {category.label}
+                    </option>
+                ))}
+            </select>
+            {errors.category && <span>This field is required</span>}
+            <br />
+            <label>Content: </label>
+            <br />
+            <textarea
+                {...register("content", { required: true })}
+                rows={10}
+                cols={50}
+            />
+            {errors.content && <span>This field is required</span>}
+            <br />
+            <br />
+            //highlight-start
+            <label>Image: </label>
+            <input id="fileInput" type="file" onChange={onSubmitFile} />
+            <input
+                type="hidden"
+                {...register("thumbnail", { required: true })}
+            />
+            {errors.thumbnail && <span>This field is required</span>}
+            //highlight-end
+            <br />
+            <br />
+            <input type="submit" disabled={isUploading} value="Submit" />
+            {formLoading && <p>Loading</p>}
+        </form>
+    );
+};
+```
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={fileUpload} alt="Multipart File Upload" />
 </div>
 
 ## API

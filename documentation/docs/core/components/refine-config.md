@@ -318,7 +318,7 @@ When the app is navigated to a non-existent route, **refine** shows a default er
 
 ```tsx title="App.tsx"
 // highlight-next-line
-const CustomErrorPage = () => <div>Page not found</div>;
+const CustomErrorPage = <div>Page not found</div>;
 
 const App: React.FC = () => {
     return (

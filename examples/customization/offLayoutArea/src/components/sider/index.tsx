@@ -1,13 +1,66 @@
 import React, { useState } from "react";
-import { useTitle, useNavigation } from "@pankod/refine-core";
+import {
+    useTitle,
+    useNavigation,
+    ITreeMenu,
+    CanAccess,
+} from "@pankod/refine-core";
 
 import { AntdLayout, Menu, Icons, useMenu } from "@pankod/refine-antd";
 
 export const FixedSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const Title = useTitle();
+    const { SubMenu } = Menu;
     const { menuItems, selectedKey } = useMenu();
     const { push } = useNavigation();
+
+    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
+        return tree.map((item: ITreeMenu) => {
+            const { icon, label, route, name, children, parentName } = item;
+
+            if (children.length > 0) {
+                return (
+                    <SubMenu
+                        key={name}
+                        icon={icon ?? <Icons.UnorderedListOutlined />}
+                        title={label}
+                    >
+                        {renderTreeView(children, selectedKey)}
+                    </SubMenu>
+                );
+            }
+            const isSelected = route === selectedKey;
+            const isRoute = !(
+                parentName !== undefined && children.length === 0
+            );
+            return (
+                <CanAccess
+                    key={route}
+                    resource={name.toLowerCase()}
+                    action="list"
+                >
+                    <Menu.Item
+                        key={selectedKey}
+                        onClick={() => {
+                            push(route ?? "");
+                        }}
+                        style={{
+                            fontWeight: isSelected ? "bold" : "normal",
+                        }}
+                        icon={
+                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
+                        }
+                    >
+                        {label}
+                        {!collapsed && isSelected && (
+                            <div className="ant-menu-tree-arrow" />
+                        )}
+                    </Menu.Item>
+                </CanAccess>
+            );
+        });
+    };
 
     return (
         <AntdLayout.Sider
@@ -30,29 +83,7 @@ export const FixedSider: React.FC = () => {
                     push(key as string);
                 }}
             >
-                {menuItems.map(({ icon, label, route }) => {
-                    const isSelected = route === selectedKey;
-                    return (
-                        <Menu.Item
-                            style={{
-                                fontWeight: isSelected ? "bold" : "normal",
-                            }}
-                            key={route}
-                            icon={icon}
-                        >
-                            <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                    alignItems: "center",
-                                }}
-                            >
-                                {label}
-                                {isSelected && <Icons.RightOutlined />}
-                            </div>
-                        </Menu.Item>
-                    );
-                })}
+                {renderTreeView(menuItems, selectedKey)}
             </Menu>
         </AntdLayout.Sider>
     );

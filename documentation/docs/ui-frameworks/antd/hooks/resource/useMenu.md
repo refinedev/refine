@@ -7,11 +7,12 @@ title: useMenu
 This hook can also be used to build custom menus, which is also used by default sidebar to show menu items.
 
 ```ts
-const { selectedKey, menuItems } = useMenu();
+const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
 ```
 
 -   `menuItems` is a list of style agnostic menu items. Each of them has a key.
 -   `selectedKey` is the key of the resource user is viewing at the moment. Its inferred from the route.
+-   `defaultOpenKeys` is the array with the keys of default opened menus.
 
 ## Usage
 
@@ -23,25 +24,78 @@ First we define `<CustomMenu>`:
 
 ```tsx  title="src/CustomMenu.tsx"
 import { useState, CSSProperties } from "react";
-import { useTitle } from "@pankod/refine-core";
+import { useTitle, ITreeMenu, CanAccess } from "@pankod/refine-core";
 import {
     AntdLayout,
     Menu,
     Grid,
     Link,
+    Icons,
 // highlight-next-line
     useMenu,
 } from "@pankod/refine-antd";
 
 export const CustomMenu: React.FC = () => {
     const Title = useTitle();
+    const { SubMenu } = Menu;
+
 // highlight-next-line
-    const { menuItems, selectedKey } = useMenu();
+    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
 
     const [collapsed, setCollapsed] = useState<boolean>(false);
 
     const breakpoint = Grid.useBreakpoint();
     const isMobile = !breakpoint.lg;
+
+    const RenderToTitle = Title ?? DefaultTitle;
+
+// highlight-start
+    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
+        return tree.map((item: ITreeMenu) => {
+            const { icon, label, route, name, children, parentName } = item;
+
+            if (children.length > 0) {
+                return (
+                    <SubMenu
+                        key={name}
+                        icon={icon ?? <Icons.UnorderedListOutlined />}
+                        title={label}
+                    >
+                        {renderTreeView(children, selectedKey)}
+                    </SubMenu>
+                );
+            }
+            const isSelected = route === selectedKey;
+            const isRoute = !(
+                parentName !== undefined && children.length === 0
+            );
+            return (
+                <CanAccess
+                    key={route}
+                    resource={name.toLowerCase()}
+                    action="list"
+                >
+                    <Menu.Item
+                        key={selectedKey}
+                        onClick={() => {
+                            push(route ?? "");
+                        }}
+                        style={{
+                            fontWeight: isSelected ? "bold" : "normal",
+                        }}
+                        icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
+                    >
+                        {label}
+                        {!collapsed && isSelected && (
+                            <div className="ant-menu-tree-arrow" />
+                        )}
+                    </Menu.Item>
+                </CanAccess>
+            );
+        });
+    };
+// highlight-end
+
 
     return (
         <AntdLayout.Sider
@@ -52,14 +106,10 @@ export const CustomMenu: React.FC = () => {
             breakpoint="lg"
             style={isMobile ? antLayoutSiderMobile : antLayoutSider}
         >
-            {Title && <Title collapsed={collapsed} />}
+            <RenderToTitle collapsed={collapsed} />
 // highlight-start
-            <Menu selectedKeys={[selectedKey]} mode="inline">
-                {menuItems.map(({ icon, route, label }) => (
-                    <Menu.Item key={route} icon={icon}>
-                        <Link to={route}>{label}</Link>
-                    </Menu.Item>
-                ))}
+            <Menu defaultOpenKeys={defaultOpenKeys} selectedKeys={[selectedKey]} mode="inline">
+               {renderTreeView(menuItems, selectedKey)}
             </Menu>
 // highlight-end
         </AntdLayout.Sider>
@@ -76,9 +126,13 @@ const antLayoutSiderMobile: CSSProperties = {
 };
 ```
 
-`useMenu` hook is used to get style agnostic menu items. We render these items in the body of the sider. We get the `Title` component with the `useTitle` hook.
+`useMenu` hook is used to get style agnostic menu items. We render these items in the body of the sider. We create a recursive `renderTreeView` function to create menu items from the list of resources passed to `<Refine>`. We get the `Title` component with the `useTitle` hook.
 
 <br />
+
+:::tip
+If you want to create a multi-level menu, you can take a look at this [`multi-level menu`](/docs/examples/multi-level-menu/multi-level-menu/) example and also [`here`](/docs/guides-and-concepts/multi-level-menu/multi-level-menu/) is the guide.
+:::
 
 We can override the default sider and show the custom menu we implemented in its place by passing a the custom component to `<Refine>`s `Sider` prop:
 
@@ -137,6 +191,53 @@ export const CustomMenu: React.FC = () => {
     const breakpoint = Grid.useBreakpoint();
     const isMobile = !breakpoint.lg;
 
+    const RenderToTitle = Title ?? DefaultTitle;
+
+    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
+        return tree.map((item: ITreeMenu) => {
+            const { icon, label, route, name, children, parentName } = item;
+
+            if (children.length > 0) {
+                return (
+                    <SubMenu
+                        key={name}
+                        icon={icon ?? <Icons.UnorderedListOutlined />}
+                        title={label}
+                    >
+                        {renderTreeView(children, selectedKey)}
+                    </SubMenu>
+                );
+            }
+            const isSelected = route === selectedKey;
+            const isRoute = !(
+                parentName !== undefined && children.length === 0
+            );
+            return (
+                <CanAccess
+                    key={route}
+                    resource={name.toLowerCase()}
+                    action="list"
+                >
+                    <Menu.Item
+                        key={selectedKey}
+                        onClick={() => {
+                            push(route ?? "");
+                        }}
+                        style={{
+                            fontWeight: isSelected ? "bold" : "normal",
+                        }}
+                        icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
+                    >
+                        {label}
+                        {!collapsed && isSelected && (
+                            <div className="ant-menu-tree-arrow" />
+                        )}
+                    </Menu.Item>
+                </CanAccess>
+            );
+        });
+    };
+
 // highlight-start
     const { mutate: logout } = useLogout();
     const { push } = useNavigation();
@@ -151,7 +252,7 @@ export const CustomMenu: React.FC = () => {
             breakpoint="lg"
             style={isMobile ? antLayoutSiderMobile : antLayoutSider}
         >
-            {Title && <Title collapsed={collapsed} />}
+            <RenderToTitle collapsed={collapsed} />
             <Menu
                 selectedKeys={[selectedKey]}
                 mode="inline"
@@ -162,16 +263,15 @@ export const CustomMenu: React.FC = () => {
                         return;
                     }
 
+                    if (!breakpoint.lg) {
+                        setCollapsed(true);
+                    }
+
                     push(key as string);
                 }}
 // highlight-end
             >
-                {menuItems.map(({ icon, route, label }) => (
-                    <Menu.Item key={route} icon={icon}>
-                        <Link to={route}>{label}</Link>
-                    </Menu.Item>
-                ))}
-
+                {renderTreeView(menuItems, selectedKey)}
 // highlight-start
                 <Menu.Item key="logout" icon={<Icons.LogoutOutlined />}>
                     Logout
@@ -209,10 +309,11 @@ You can further customize the Sider and its appearance.
 
 ### Return values
 
-| Property    | Description                                                                             | Type                         |
-| ----------- | --------------------------------------------------------------------------------------- | ---------------------------- |
-| selectedKey | Key of the resource the user is viewing at the moment                                   | `string`                     |
-| menuItems   | List of keys and routes and some metadata of resources and also the dashboard if exists | [`IMenuItem[]`](#interfaces) |
+| Property        | Description                                                                             | Type                         |
+| --------------- | --------------------------------------------------------------------------------------- | ---------------------------- |
+| selectedKey     | Key of the resource the user is viewing at the moment                                   | `string`                     |
+| menuItems       | List of keys and routes and some metadata of resources and also the dashboard if exists | [`ITreeMenu[]`](#interfaces) |
+| defaultOpenKeys | Array with the keys of default opened menus.                                            | `string[]`                   |
 
 #### Interfaces
 
@@ -226,6 +327,7 @@ interface IResourceItem extends IResourceComponents {
     canEdit?: boolean;
     canShow?: boolean;
     canDelete?: boolean;
+    parentName?: string;
 }
 
 interface IResourceComponents {
@@ -246,5 +348,9 @@ interface IResourceComponentsProps<TCrudData = any> {
 
 type IMenuItem = IResourceItem & {
     key: string;
+};
+
+type ITreeMenu = IMenuItem & {
+    children: ITreeMenu[];
 };
 ```
