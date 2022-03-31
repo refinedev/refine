@@ -132,7 +132,7 @@ const { mutate: login } =
 :::
 
 :::tip
-**refine** automatically displays an error notification if the login fails. You can customize the default error notification.
+**refine** automatically displays an error notification if the login fails. You can customize the default error message.
 
 ```tsx
 login: ({ username, password, remember }) => {
