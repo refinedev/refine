@@ -69,7 +69,7 @@ export const PostList = () => {
                 Cell: ({ cell }) => {
                     const { data, isLoading } = useOne<ICategory>({
                         resource: "categories",
-                        id: cell.row.original.categoryId,
+                        id: (cell.row.original as any).categoryId,
                     });
 
                     if (isLoading) {
@@ -198,7 +198,7 @@ export const PostList = () => {
                     <Select
                         style={{ marginLeft: 8 }}
                         value={pageSize}
-                        onChange={(_, selection) => {
+                        onChange={(_: any, selection: any) => {
                             setPageSize(selection.value);
                         }}
                         options={opt}
@@ -216,7 +216,7 @@ export const PostList = () => {
                                 min={1}
                                 defaultValue={pageIndex + 1}
                                 width={130}
-                                onChange={(value) => {
+                                onChange={(value: any) => {
                                     const page = value ? Number(value) - 1 : 0;
                                     gotoPage(page);
                                 }}
