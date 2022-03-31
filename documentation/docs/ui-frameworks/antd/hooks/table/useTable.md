@@ -130,7 +130,10 @@ export const PostList: React.FC = () => {
 ```
 
 :::caution
-The sort process looks for the column's "key" property, which is its primary value. If no key is defined in the column, the "dataIndex" property is used.
+
+During the sorting process, the `key` property of your `<Column />` component is used as the property name in the API request. If your Column component does not have a `key` value, the `dataIndex` property is used.
+It can be used when your DataIndex and your sorting key are different.
+
 :::
 
 :::tip
