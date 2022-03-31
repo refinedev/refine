@@ -131,6 +131,26 @@ const { mutate: login } =
 
 :::
 
+:::tip
+**refine** automatically displays an error notification if the login fails. You can customize the default error notification.
+
+```tsx
+login: ({ username, password, remember }) => {
+    const user = mockUsers.find((item) => item.username === username);
+
+        if (user) {
+            localStorage.setItem("auth", JSON.stringify(user));
+            return Promise.resolve();
+        }
+
+        //highlight-next-line
+        return Promise.reject({name: "Login Failed!", message: "The username or password that you've entered doesn't match any account."});
+    },
+
+```
+
+:::
+
 > [Refer to useLogin documentation for more information. &#8594](/core/hooks/auth/useLogin.md)
 
 <br />
