@@ -1,18 +1,20 @@
 import React from "react";
-import { DashboardOutlined, UnorderedListOutlined } from "@ant-design/icons";
-
-import { IMenuItem } from "../../interfaces";
+import { DashboardOutlined } from "@ant-design/icons";
 import {
     useRefineContext,
     useTranslate,
     useResource,
     useRouterContext,
     userFriendlyResourceName,
+    createTreeView,
+    ITreeMenu,
 } from "@pankod/refine-core";
+import { IMenuItem } from "../../interfaces";
 
 type useMenuReturnType = {
+    defaultOpenKeys: string[];
     selectedKey: string;
-    menuItems: IMenuItem[];
+    menuItems: ITreeMenu[];
 };
 
 /**
@@ -53,7 +55,7 @@ export const useMenu: () => useMenuReturnType = () => {
         selectedKey = location?.pathname;
     }
 
-    const menuItems: IMenuItem[] = React.useMemo(
+    const treeMenuItems: IMenuItem[] = React.useMemo(
         () => [
             ...(hasDashboard
                 ? [
@@ -71,9 +73,9 @@ export const useMenu: () => useMenuReturnType = () => {
 
                 return {
                     ...resource,
-                    icon: resource.icon ?? <UnorderedListOutlined />,
+                    icon: resource.icon,
                     route: route,
-                    key: route,
+                    key: resource.key ?? route,
                     label:
                         resource.label ??
                         translate(
@@ -85,9 +87,12 @@ export const useMenu: () => useMenuReturnType = () => {
         ],
         [resources, hasDashboard],
     );
+    const menuItems: ITreeMenu[] = createTreeView(treeMenuItems);
 
+    const defaultOpenKeys = selectedKey.split("/").filter((x) => x !== "");
     return {
         selectedKey,
+        defaultOpenKeys,
         menuItems,
     };
 };

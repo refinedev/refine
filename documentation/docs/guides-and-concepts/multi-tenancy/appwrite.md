@@ -213,7 +213,12 @@ Let's define the select component in the **refine** Sider Menu. First, we need t
 
 ```tsx title="src/components/sider/CustomSider.tsx"
 import React, { useState } from "react";
-import { useTitle, useNavigation } from "@pankod/refine-core";
+import {
+    useTitle,
+    useNavigation,
+    ITreeMenu,
+    CanAccess,
+} from "@pankod/refine-core";
 import {
     AntdLayout,
     Menu,
@@ -228,11 +233,57 @@ import { StoreSelect } from "components/select";
 export const CustomSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const Title = useTitle();
+    const { SubMenu } = Menu;
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
     const { push } = useNavigation();
 
     const isMobile = !breakpoint.lg;
+    
+    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
+        return tree.map((item: ITreeMenu) => {
+            const { icon, label, route, name, children, parentName } = item;
+
+            if (children.length > 0) {
+                return (
+                    <SubMenu
+                        key={name}
+                        icon={icon ?? <Icons.UnorderedListOutlined />}
+                        title={label}
+                    >
+                        {renderTreeView(children, selectedKey)}
+                    </SubMenu>
+                );
+            }
+            const isSelected = route === selectedKey;
+            const isRoute = !(
+                parentName !== undefined && children.length === 0
+            );
+            return (
+                <CanAccess
+                    key={route}
+                    resource={name.toLowerCase()}
+                    action="list"
+                >
+                    <Menu.Item
+                        key={selectedKey}
+                        onClick={() => {
+                            push(route ?? "");
+                        }}
+                        style={{
+                            fontWeight: isSelected ? "bold" : "normal",
+                        }}
+                        icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
+                    >
+                        {label}
+                        {!collapsed && isSelected && (
+                            <div className="ant-menu-tree-arrow" />
+                        )}
+                    </Menu.Item>
+                </CanAccess>
+            );
+        });
+    };
 
     return (
         <AntdLayout.Sider
@@ -263,31 +314,7 @@ export const CustomSider: React.FC = () => {
                     />
                 </Menu.Item>
                 //highlight-end
-                {menuItems.map(({ icon, label, route }) => {
-                    const isSelected = route === selectedKey;
-                    return (
-                        <Menu.Item
-                            style={{
-                                fontWeight: isSelected ? "bold" : "normal",
-                            }}
-                            key={route}
-                            icon={icon}
-                        >
-                            <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                    alignItems: "center",
-                                }}
-                            >
-                                {label}
-                                {!collapsed && isSelected && (
-                                    <Icons.RightOutlined />
-                                )}
-                            </div>
-                        </Menu.Item>
-                    );
-                })}
+                {renderTreeView(menuItems, selectedKey)}
             </Menu>
         </AntdLayout.Sider>
     );

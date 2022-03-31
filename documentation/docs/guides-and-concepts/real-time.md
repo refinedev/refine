@@ -204,7 +204,7 @@ Firstly, let's implement a custom sider like in [this example](/examples/customi
 
 ```tsx title="src/components/sider.tsx"
 import React, { useState } from "react";
-import { useTitle, useNavigation } from "@pankod/refine-core";
+import { useTitle, useNavigation, ITreeMenu, CanAccess } from "@pankod/refine-core";
 import { AntdLayout, Menu, useMenu, Grid, Icons } from "@pankod/refine-antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
@@ -216,6 +216,51 @@ export const CustomSider: React.FC = () => {
     const { push } = useNavigation();
 
     const isMobile = !breakpoint.lg;
+    
+    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
+        return tree.map((item: ITreeMenu) => {
+            const { icon, label, route, name, children, parentName } = item;
+
+            if (children.length > 0) {
+                return (
+                    <SubMenu
+                        key={name}
+                        icon={icon ?? <Icons.UnorderedListOutlined />}
+                        title={label}
+                    >
+                        {renderTreeView(children, selectedKey)}
+                    </SubMenu>
+                );
+            }
+            const isSelected = route === selectedKey;
+            const isRoute = !(
+                parentName !== undefined && children.length === 0
+            );
+            return (
+                <CanAccess
+                    key={route}
+                    resource={name.toLowerCase()}
+                    action="list"
+                >
+                    <Menu.Item
+                        key={selectedKey}
+                        onClick={() => {
+                            push(route ?? "");
+                        }}
+                        style={{
+                            fontWeight: isSelected ? "bold" : "normal",
+                        }}
+                        icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
+                    >
+                            {label}
+                            {!collapsed && isSelected && (
+                                <Icons.UnorderedListOutlined />
+                            )}
+                    </Menu.Item>
+                </CanAccess>
+            );
+        });
+    };
 
     return (
         <AntdLayout.Sider
@@ -238,31 +283,7 @@ export const CustomSider: React.FC = () => {
                     push(key as string);
                 }}
             >
-                {menuItems.map(({ icon, label, route }) => {
-                    const isSelected = route === selectedKey;
-                    return (
-                        <Menu.Item
-                            style={{
-                                fontWeight: isSelected ? "bold" : "normal",
-                            }}
-                            key={route}
-                            icon={icon}
-                        >
-                            <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                    alignItems: "center",
-                                }}
-                            >
-                                {label}
-                                {!collapsed && isSelected && (
-                                    <Icons.RightOutlined />
-                                )}
-                            </div>
-                        </Menu.Item>
-                    );
-                })}
+                {renderTreeView(menuItems, selectedKey)}
             </Menu>
         </AntdLayout.Sider>
     );
@@ -278,6 +299,8 @@ import React, { useState } from "react";
 import {
     useTitle,
     useNavigation,
+    ITreeMenu,
+    CanAccess,
     //highlight-start
     useSubscription,
     //highlight-end
@@ -312,6 +335,59 @@ export const CustomSider: React.FC = () => {
     });
     //highlight-end
 
+    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
+        return tree.map((item: ITreeMenu) => {
+            const { icon, label, route, name, children, parentName } = item;
+
+            if (children.length > 0) {
+                return (
+                    <SubMenu
+                        key={name}
+                        icon={icon ?? <Icons.UnorderedListOutlined />}
+                        title={label}
+                    >
+                        {renderTreeView(children, selectedKey)}
+                    </SubMenu>
+                );
+            }
+            const isSelected = route === selectedKey;
+            const isRoute = !(
+                parentName !== undefined && children.length === 0
+            );
+            return (
+                <CanAccess
+                    key={route}
+                    resource={name.toLowerCase()}
+                    action="list"
+                >
+                    <Menu.Item
+                        key={selectedKey}
+                        onClick={() => {
+                            push(route ?? "");
+                        }}
+                        style={{
+                            fontWeight: isSelected ? "bold" : "normal",
+                        }}
+                        icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
+                    >
+                            //highlight-start
+                                <div>
+                                    {label}
+                                    {label === "Posts" && (
+                                        <Badge
+                                            size="small"
+                                            count={subscriptionCount}
+                                            offset={[2, -15]}
+                                        />
+                                    )}
+                                </div>
+                            //highlight-end
+                    </Menu.Item>
+                </CanAccess>
+            );
+        });
+    };
+
     return (
         <AntdLayout.Sider
             collapsible
@@ -339,42 +415,7 @@ export const CustomSider: React.FC = () => {
                     push(key as string);
                 }}
             >
-                {menuItems.map(({ icon, label, route }) => {
-                    const isSelected = route === selectedKey;
-                    return (
-                        <Menu.Item
-                            style={{
-                                fontWeight: isSelected ? "bold" : "normal",
-                            }}
-                            key={route}
-                            icon={icon}
-                        >
-                            <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                    alignItems: "center",
-                                }}
-                            >
-                                //highlight-start
-                                <div>
-                                    {label}
-                                    {label === "Posts" && (
-                                        <Badge
-                                            size="small"
-                                            count={subscriptionCount}
-                                            offset={[2, -15]}
-                                        />
-                                    )}
-                                </div>
-                                //highlight-end
-                                {!collapsed && isSelected && (
-                                    <Icons.RightOutlined />
-                                )}
-                            </div>
-                        </Menu.Item>
-                    );
-                })}
+                {renderTreeView(menuItems, selectedKey)}
             </Menu>
         </AntdLayout.Sider>
     );

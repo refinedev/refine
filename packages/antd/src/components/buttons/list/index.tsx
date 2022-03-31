@@ -75,7 +75,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
             onClick={(e): void =>
                 onClick
                     ? onClick(e)
-                    : list(propResourceName ?? resource.route, "push")
+                    : list(propResourceName ?? resource.route!, "push")
             }
             icon={<BarsOutlined />}
             disabled={data?.can === false}

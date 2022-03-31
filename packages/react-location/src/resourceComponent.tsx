@@ -10,18 +10,16 @@ import {
     CanAccess,
 } from "@pankod/refine-core";
 
-export const ResourceComponentWrapper: React.FC = () => {
+export const ResourceComponentWrapper: React.FC<{ route: string }> = ({
+    route,
+}) => {
     const { catchAll } = useRefineContext();
     const { useParams } = useRouterContext();
     const { resources } = useResource();
 
-    const {
-        resource: routeResourceName,
-        action,
-        id,
-    } = useParams<ResourceRouterParams>();
+    const { action, id } = useParams<ResourceRouterParams>();
 
-    const resource = resources.find((res) => res.route === routeResourceName);
+    const resource = resources.find((res) => res.route === route);
 
     if (resource) {
         const {
@@ -44,7 +42,7 @@ export const ResourceComponentWrapper: React.FC = () => {
 
         const renderCrud = () => {
             switch (action) {
-                case undefined:
+                default:
                     return (
                         <CanAccess
                             resource={name}

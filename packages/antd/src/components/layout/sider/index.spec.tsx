@@ -82,7 +82,8 @@ describe("Sider", () => {
 
         await act(async () => {
             fireEvent.click(
-                container.children.item(0).children.item(1).firstElementChild,
+                container.children.item(0)!.children.item(1)!
+                    .firstElementChild!,
             );
         });
     });

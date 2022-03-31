@@ -7,7 +7,6 @@
         "rootDir": "./src",
         "baseUrl": ".",
         "allowSyntheticDefaultImports": true,
-        "strict": false,
         "paths": {
             "@components/*": [
                 "src/components/*"

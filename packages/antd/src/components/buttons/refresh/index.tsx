@@ -58,7 +58,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
 
     const { refetch, isFetching } = useOne({
         resource: resourceName,
-        id,
+        id: id ?? "",
         queryOptions: {
             enabled: false,
         },
