@@ -57,6 +57,23 @@ export const PostEdit: React.FC = () => {
             />
             {errors.content && <span>This field is required</span>}
             <br />
+
+            {queryResult?.data?.data?.thumbnail && (
+                <>
+                    <br />
+                    <label>Image: </label>
+                    <br />
+
+                    <img
+                        src={queryResult?.data?.data?.thumbnail}
+                        width={200}
+                        height={200}
+                    />
+                    <br />
+                    <br />
+                </>
+            )}
+
             <input type="submit" value="Submit" />
             {formLoading && <p>Loading</p>}
         </form>
