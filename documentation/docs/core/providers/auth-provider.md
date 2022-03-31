@@ -143,11 +143,12 @@ login: ({ username, password, remember }) => {
             return Promise.resolve();
         }
 
-        //highlight-next-line
+        //highlight-start
         return Promise.reject({
             name: "Login Failed!",
             message: "The username or password that you've entered doesn't match any account.",
         });
+        //highlight-end
     },
 
 ```
