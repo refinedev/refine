@@ -301,47 +301,22 @@ module.exports = {
             type: "category",
             label: "Guides & Concepts",
             items: [
-                {
-                    type: "category",
-                    label: "Data Provider",
-                    items: [
-                        "guides-and-concepts/data-provider/handling-filters",
-                        "guides-and-concepts/data-provider/graphql",
-                        "guides-and-concepts/data-provider/strapi-v4",
-                        "guides-and-concepts/data-provider/appwrite",
-                    ],
-                },
-                "guides-and-concepts/ssr-nextjs",
                 "guides-and-concepts/access-control",
-                "guides-and-concepts/real-time",
-                {
-                    type: "category",
-                    label: "Upload",
-                    items: [
-                        "guides-and-concepts/upload/multipart-upload",
-                        "guides-and-concepts/upload/base64-upload",
-                    ],
-                },
                 {
                     type: "category",
                     label: "Auth",
                     items: ["guides-and-concepts/auth/auth0"],
                 },
+                "guides-and-concepts/custom-layout",
+                "guides-and-concepts/custom-pages",
                 {
                     type: "category",
-                    label: "Search",
+                    label: "Data Provider",
                     items: [
-                        "guides-and-concepts/search/search",
-                        "guides-and-concepts/search/table-search",
-                        "guides-and-concepts/search/list-search",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Import - Export",
-                    items: [
-                        "guides-and-concepts/import-export/csv-import",
-                        "guides-and-concepts/import-export/csv-export",
+                        "guides-and-concepts/data-provider/appwrite",
+                        "guides-and-concepts/data-provider/graphql",
+                        "guides-and-concepts/data-provider/handling-filters",
+                        "guides-and-concepts/data-provider/strapi-v4",
                     ],
                 },
                 {
@@ -351,9 +326,14 @@ module.exports = {
                 },
                 {
                     type: "category",
-                    label: "Web3",
-                    items: ["guides-and-concepts/web3/ethereum-signin"],
+                    label: "Import - Export",
+                    items: [
+                        "guides-and-concepts/import-export/csv-export",
+                        "guides-and-concepts/import-export/csv-import",
+                    ],
                 },
+                "guides-and-concepts/real-time",
+                "guides-and-concepts/multi-level-menu/multi-level-menu",
                 {
                     type: "category",
                     label: "Multitenancy",
@@ -362,11 +342,32 @@ module.exports = {
                         "guides-and-concepts/multi-tenancy/strapi-v4",
                     ],
                 },
-                "guides-and-concepts/multi-level-menu/multi-level-menu",
                 "guides-and-concepts/mutation-mode",
-                "guides-and-concepts/custom-layout",
-                "guides-and-concepts/custom-pages",
+                {
+                    type: "category",
+                    label: "Search",
+                    items: [
+                        "guides-and-concepts/search/list-search",
+                        "guides-and-concepts/search/search",
+                        "guides-and-concepts/search/table-search",
+                    ],
+                },
+
+                "guides-and-concepts/ssr-nextjs",
                 "guides-and-concepts/theme",
+                {
+                    type: "category",
+                    label: "Upload",
+                    items: [
+                        "guides-and-concepts/upload/base64-upload",
+                        "guides-and-concepts/upload/multipart-upload",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Web3",
+                    items: ["guides-and-concepts/web3/ethereum-signin"],
+                },
             ],
         },
         {
