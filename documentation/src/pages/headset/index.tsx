@@ -23,6 +23,9 @@ const Contact: React.FC = () => {
             data,
             { headers: { Accept: "application/json" } },
         );
+
+        location.href =
+            "https://www.youtube.com/watch?v=oHg5SJYRHA0&ab_channel=cotter548";
     };
 
     return (
