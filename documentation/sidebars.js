@@ -56,28 +56,6 @@ module.exports = {
                         },
                         {
                             type: "category",
-                            label: "Components",
-                            items: [
-                                "core/components/refine-config",
-                                "core/components/layout-wrapper",
-                                {
-                                    type: "category",
-                                    label: "Authorization",
-                                    items: [
-                                        "core/components/auth/authenticated",
-                                    ],
-                                },
-                                {
-                                    type: "category",
-                                    label: "Access Control",
-                                    items: [
-                                        "core/components/accessControl/can-access",
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            type: "category",
                             label: "Data",
                             items: [
                                 "core/hooks/data/useApiUrl",
@@ -166,6 +144,24 @@ module.exports = {
                             type: "category",
                             label: "UI",
                             items: ["core/hooks/ui/useModal"],
+                        },
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Components",
+                    items: [
+                        "core/components/refine-config",
+                        "core/components/layout-wrapper",
+                        {
+                            type: "category",
+                            label: "Authorization",
+                            items: ["core/components/auth/authenticated"],
+                        },
+                        {
+                            type: "category",
+                            label: "Access Control",
+                            items: ["core/components/accessControl/can-access"],
                         },
                     ],
                 },
