@@ -112,15 +112,19 @@ export const PostList: React.FC = () => {
                     dataIndex="id"
                     title="ID"
                     render={(value) => <TextField value={value} />}
-                    // highlight-next-line
+                    // highlight-start
                     sorter
+                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
+                    // highlight-end
                 />
                 <Table.Column
                     dataIndex="title"
                     title="Title"
                     render={(value) => <TextField value={value} />}
-                    // highlight-next-line
+                    // highlight-start
                     sorter={{ multiple: 1 }}
+                    defaultSortOrder={getDefaultSortOrder("title", sorter)}
+                    // highlight-end
                 />
                 <Table.Column dataIndex="content" title="Content" />
             </Table>
@@ -165,6 +169,23 @@ const { tableProps, sorter } = useTable<IPost>({
 ```
 
 By using `initialSorter` setting, you can select which `field` is going to start with which sorting status (`"asc"` or `"desc"`).
+
+:::caution
+If you're using the initialSorter, don't forget to add `getDefaultSortOrder` to your `<Table.Column>` component. Otherwise, during filter and paging operations, the initialSorter might be lost.
+
+```tsx
+...
+<Table.Column
+    dataIndex="title"
+    title="Title"
+    sorter={{ multiple: 2 }}
+    // highlight-next-line
+    defaultSortOrder={getDefaultSortOrder("title", sorter)}
+/>
+...
+```
+
+:::
 
 ## Filtering
 
