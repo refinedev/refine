@@ -39,6 +39,45 @@ module.exports = {
                     items: [
                         {
                             type: "category",
+                            label: "Access Control",
+                            items: ["core/hooks/accessControl/useCan"],
+                        },
+                        {
+                            type: "category",
+                            label: "Authorization",
+                            items: [
+                                "core/hooks/auth/useAuthenticated",
+                                "core/hooks/auth/useCheckError",
+                                "core/hooks/auth/useGetIdentity",
+                                "core/hooks/auth/useLogin",
+                                "core/hooks/auth/useLogout",
+                                "core/hooks/auth/usePermissions",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Components",
+                            items: [
+                                "core/components/refine-config",
+                                "core/components/layout-wrapper",
+                                {
+                                    type: "category",
+                                    label: "Authorization",
+                                    items: [
+                                        "core/components/auth/authenticated",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Access Control",
+                                    items: [
+                                        "core/components/accessControl/can-access",
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            type: "category",
                             label: "Data",
                             items: [
                                 "core/hooks/data/useApiUrl",
@@ -57,20 +96,21 @@ module.exports = {
                         },
                         {
                             type: "category",
-                            label: "Authorization",
-                            items: [
-                                "core/hooks/auth/useAuthenticated",
-                                "core/hooks/auth/useCheckError",
-                                "core/hooks/auth/useGetIdentity",
-                                "core/hooks/auth/useLogin",
-                                "core/hooks/auth/useLogout",
-                                "core/hooks/auth/usePermissions",
-                            ],
+                            label: "Field",
+                            items: ["core/hooks/useSelect"],
                         },
                         {
                             type: "category",
-                            label: "Access Control",
-                            items: ["core/hooks/accessControl/useCan"],
+                            label: "Form",
+                            items: ["core/hooks/useForm"],
+                        },
+                        {
+                            type: "category",
+                            label: "Import-Export",
+                            items: [
+                                "core/hooks/import-export/useExport",
+                                "core/hooks/import-export/useImport",
+                            ],
                         },
                         {
                             type: "category",
@@ -82,24 +122,36 @@ module.exports = {
                         },
                         {
                             type: "category",
-                            label: "Form",
-                            items: ["core/hooks/useForm"],
+                            label: "Navigation",
+                            items: ["core/hooks/navigation/useNavigation"],
                         },
                         {
                             type: "category",
-                            label: "Table",
-                            items: ["core/hooks/useTable"],
-                        },
-
-                        {
-                            type: "category",
-                            label: "Field",
-                            items: ["core/hooks/useSelect"],
+                            label: "Notification",
+                            items: ["core/hooks/useNotification"],
                         },
                         {
                             type: "category",
                             label: "Refine",
                             items: ["core/hooks/refine/useTitle"],
+                        },
+                        {
+                            type: "category",
+                            label: "Resource",
+                            items: [
+                                "core/hooks/resource/useResource",
+                                "core/hooks/resource/useResourceWithRoute",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Show",
+                            items: ["core/hooks/show/useShow"],
+                        },
+                        {
+                            type: "category",
+                            label: "Table",
+                            items: ["core/hooks/useTable"],
                         },
                         {
                             type: "category",
@@ -112,57 +164,8 @@ module.exports = {
                         },
                         {
                             type: "category",
-                            label: "Show",
-                            items: ["core/hooks/show/useShow"],
-                        },
-                        {
-                            type: "category",
-                            label: "Resource",
-                            items: [
-                                "core/hooks/resource/useResource",
-                                "core/hooks/resource/useResourceWithRoute",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Navigation",
-                            items: ["core/hooks/navigation/useNavigation"],
-                        },
-                        {
-                            type: "category",
-                            label: "Import-Export",
-                            items: [
-                                "core/hooks/import-export/useExport",
-                                "core/hooks/import-export/useImport",
-                            ],
-                        },
-                        {
-                            type: "category",
                             label: "UI",
                             items: ["core/hooks/ui/useModal"],
-                        },
-                        {
-                            type: "category",
-                            label: "Notification",
-                            items: ["core/hooks/useNotification"],
-                        },
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Components",
-                    items: [
-                        "core/components/refine-config",
-                        "core/components/layout-wrapper",
-                        {
-                            type: "category",
-                            label: "Authorization",
-                            items: ["core/components/auth/authenticated"],
-                        },
-                        {
-                            type: "category",
-                            label: "Access Control",
-                            items: ["core/components/accessControl/can-access"],
                         },
                     ],
                 },
