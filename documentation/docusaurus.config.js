@@ -117,8 +117,8 @@ const siteConfig = {
                 },
                 { to: "blog", label: "Blog", position: "left" },
                 {
-                    to: "/enterprise",
-                    label: "Enterprise",
+                    to: "/headset",
+                    label: "Headset",
                     position: "left",
                 },
                 {
