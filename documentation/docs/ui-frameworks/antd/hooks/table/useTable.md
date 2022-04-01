@@ -179,7 +179,7 @@ const { tableProps, sorter } = useTable<IPost>({
 By using `initialSorter` setting, you can select which `field` is going to start with which sorting status (`"asc"` or `"desc"`).
 
 :::caution
-If you're using the initialSorter, don't forget to add `getDefaultSortOrder` to your `<Table.Column>` component. Otherwise, during filter and paging operations, the initialSorter might be lost.
+If you're using the `initialSorter`, don't forget to add `getDefaultSortOrder` to your `<Table.Column>` component. Otherwise, during filter and paging operations, the `initialSorter` might be lost.
 
 ```tsx
 ...
