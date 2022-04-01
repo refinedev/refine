@@ -100,10 +100,18 @@ const { tableProps } = useTable<IPost>();
 If we want to give a column the sorting property, the corresponding `<Table.Column>` component must be given the [sorter](https://ant.design/components/table/#components-table-demo-head) property.
 
 ```tsx title="/src/pages/posts/list.tsx"
-import { List, Table, TextField, useTable } from "@pankod/refine-antd";
+import {
+    List,
+    Table,
+    TextField,
+    useTable,
+    // highlight-next-line
+    getDefaultSortOrder,
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+    // highlight-next-line
+    const { tableProps, sorter } = useTable<IPost>();
 
     return (
         <List>
