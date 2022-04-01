@@ -1,5 +1,5 @@
 {
-  "name": "refine-invoice-genarator",
+  "name": "refine-invoice-generator",
   "version": "3.9.0",
   "private": true,
   "dependencies": {
