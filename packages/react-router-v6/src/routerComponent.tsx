@@ -1,9 +1,15 @@
 import React from "react";
-import { BrowserRouter, BrowserRouterProps } from "react-router-dom";
+import {} from "react-router-dom";
+import {
+    BrowserRouter,
+    BrowserRouterProps,
+    MemoryRouter,
+    MemoryRouterProps,
+} from "react-router-dom";
 
 import { RouteProvider } from "./routeProvider";
 
-export const RouterComponent: React.FC<BrowserRouterProps> = ({
+export const BrowserRouterComponent: React.FC<BrowserRouterProps> = ({
     children,
     ...props
 }) => {
@@ -12,5 +18,17 @@ export const RouterComponent: React.FC<BrowserRouterProps> = ({
             <RouteProvider />
             {children}
         </BrowserRouter>
+    );
+};
+
+export const MemoryRouterComponent: React.FC<MemoryRouterProps> = ({
+    children,
+    ...props
+}) => {
+    return (
+        <MemoryRouter {...props}>
+            <RouteProvider />
+            {children}
+        </MemoryRouter>
     );
 };
