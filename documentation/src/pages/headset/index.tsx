@@ -33,10 +33,38 @@ const Contact: React.FC = () => {
             <div className={styles.wrapper}>
                 <div className="container">
                     <div className="row row--justify--center row--no-gutters row--align--center">
-                        <div className="col col--6">
+                        {new Date().getDate() !== 1 && (
+                            <h1
+                                style={{
+                                    marginBottom: 50,
+                                    fontSize: 62,
+                                }}
+                                className={styles.descriptionTitle}
+                            >
+                                <span>Happy</span>
+                                {` April's`} fool day 🎉
+                            </h1>
+                        )}
+                        <div
+                            style={{
+                                filter:
+                                    new Date().getDate() !== 1
+                                        ? "grayscale(1)"
+                                        : "",
+                            }}
+                            className="col col--6"
+                        >
                             <img src="/contact-page/contact_rise.png" />
                         </div>
-                        <div className="col col--6">
+                        <div
+                            style={{
+                                filter:
+                                    new Date().getDate() !== 1
+                                        ? "grayscale(1)"
+                                        : "",
+                            }}
+                            className="col col--6"
+                        >
                             <div className={styles.descriptionContainer}>
                                 <h1 className={styles.descriptionTitle}>
                                     build the <br /> <span>Future</span>
@@ -58,7 +86,15 @@ const Contact: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    <div className={styles.contactContainer}>
+                    <div
+                        style={{
+                            filter:
+                                new Date().getDate() !== 1
+                                    ? "grayscale(1)"
+                                    : "",
+                        }}
+                        className={styles.contactContainer}
+                    >
                         <h2>
                             Request more information about{" "}
                             <span>refine Headset.</span>
