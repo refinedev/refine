@@ -117,9 +117,8 @@ const siteConfig = {
                 },
                 { to: "blog", label: "Blog", position: "left" },
                 {
-                    to: new Date().getDate() !== 1 ? "/enterprise" : "/headset",
-                    label:
-                        new Date().getDate() !== 1 ? "Enterprise" : "Headset",
+                    to: "/enterprise",
+                    label: "Enterprise",
                     position: "left",
                 },
                 {

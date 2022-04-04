@@ -33,24 +33,20 @@ const Contact: React.FC = () => {
             <div className={styles.wrapper}>
                 <div className="container">
                     <div className="row row--justify--center row--no-gutters row--align--center">
-                        {new Date().getDate() !== 1 && (
-                            <h1
-                                style={{
-                                    marginBottom: 50,
-                                    fontSize: 62,
-                                }}
-                                className={styles.descriptionTitle}
-                            >
-                                <span>Happy</span>
-                                {` April's`} fool day 🎉
-                            </h1>
-                        )}
+                        <h1
+                            style={{
+                                marginBottom: 50,
+                                fontSize: 62,
+                            }}
+                            className={styles.descriptionTitle}
+                        >
+                            <span>Happy</span>
+                            {` April's`} fool day 🎉
+                        </h1>
+
                         <div
                             style={{
-                                filter:
-                                    new Date().getDate() !== 1
-                                        ? "grayscale(1)"
-                                        : "",
+                                filter: "grayscale(1)",
                             }}
                             className="col col--6"
                         >
@@ -58,10 +54,7 @@ const Contact: React.FC = () => {
                         </div>
                         <div
                             style={{
-                                filter:
-                                    new Date().getDate() !== 1
-                                        ? "grayscale(1)"
-                                        : "",
+                                filter: "grayscale(1)",
                             }}
                             className="col col--6"
                         >
@@ -88,10 +81,7 @@ const Contact: React.FC = () => {
                     </div>
                     <div
                         style={{
-                            filter:
-                                new Date().getDate() !== 1
-                                    ? "grayscale(1)"
-                                    : "",
+                            filter: "grayscale(1)",
                         }}
                         className={styles.contactContainer}
                     >
