@@ -1,10 +1,13 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { List } from "@pankod/refine-antd";
 
+import { RefineWithoutLayout } from "../../.storybook/preview";
+
 export default {
     title: "Example/List",
     component: List,
     argTypes: {},
+    decorators: [(Story) => RefineWithoutLayout(Story)],
 } as ComponentMeta<typeof List>;
 
 const Template: ComponentStory<typeof List> = (args) => <List {...args} />;

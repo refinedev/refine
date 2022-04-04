@@ -1,10 +1,13 @@
 import { ComponentMeta } from "@storybook/react";
 import { List, Table, useTable } from "@pankod/refine-antd";
 
+import { RefineWithLayout } from "../../../.storybook/preview";
+
 export default {
     title: "Example/Table",
     component: List,
     argTypes: {},
+    decorators: [(Story) => RefineWithLayout(Story)],
 } as ComponentMeta<typeof List>;
 
 export const Primary = () => {

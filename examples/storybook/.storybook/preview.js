@@ -6,24 +6,8 @@ import { Layout } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider, { MemoryRouterComponent } from "@pankod/refine-react-router-v6";
 
-export const decorators = [
-  (Story) => (
-    <Refine
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      routerProvider={{
-        ...routerProvider,
-        RouterComponent: MemoryRouterComponent,
-      }}
-      Layout={Layout}
-      resources={[
-        {
-          name: "posts",
-          list: Story,
-        },
-      ]}
-    />
-  ),
-];
+
+
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -34,3 +18,36 @@ export const parameters = {
     },
   },
 }
+
+export const RefineWithLayout = (Story) => (
+  <Refine
+    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+    routerProvider={{
+      ...routerProvider,
+      RouterComponent: MemoryRouterComponent,
+    }}
+    Layout={Layout}
+    resources={[
+      {
+        name: "posts",
+        list: Story,
+      },
+    ]}
+  />
+);
+
+export const RefineWithoutLayout = (Story) => (
+  <Refine
+    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+    routerProvider={{
+      ...routerProvider,
+      RouterComponent: MemoryRouterComponent,
+    }}
+    resources={[
+      {
+        name: "posts",
+        list: Story,
+      },
+    ]}
+  />
+);

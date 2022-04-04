@@ -22,10 +22,13 @@ import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
 
+import { RefineWithLayout } from "../../../.storybook/preview";
+
 export default {
     title: "Example/Table",
     component: List,
     argTypes: {},
+    decorators: [(Story) => RefineWithLayout(Story)],
 } as ComponentMeta<typeof List>;
 
 export const TableEditable = () => {

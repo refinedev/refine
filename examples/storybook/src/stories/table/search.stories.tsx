@@ -24,10 +24,13 @@ import {
 import { HttpError, CrudFilters, useMany } from "@pankod/refine-core";
 import { IPost, IPostFilterVariables, ICategory } from "../../interfaces";
 
+import { RefineWithLayout } from "../../../.storybook/preview";
+
 export default {
     title: "Example/Table",
     component: List,
     argTypes: {},
+    decorators: [(Story) => RefineWithLayout(Story)],
 } as ComponentMeta<typeof List>;
 
 export const TableSearch = () => {
