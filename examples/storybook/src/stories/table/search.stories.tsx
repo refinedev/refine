@@ -27,7 +27,7 @@ import { IPost, IPostFilterVariables, ICategory } from "../../interfaces";
 import { RefineWithLayout } from "../../../.storybook/preview";
 
 export default {
-    title: "Example/Table",
+    title: "Table",
     component: List,
     argTypes: {},
     decorators: [(Story) => RefineWithLayout(Story)],

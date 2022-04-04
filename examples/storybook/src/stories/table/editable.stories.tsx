@@ -25,7 +25,7 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { RefineWithLayout } from "../../../.storybook/preview";
 
 export default {
-    title: "Example/Table",
+    title: "Table",
     component: List,
     argTypes: {},
     decorators: [(Story) => RefineWithLayout(Story)],
