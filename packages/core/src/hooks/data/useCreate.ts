@@ -7,6 +7,7 @@ import {
     HttpError,
     SuccessErrorNotification,
     MetaDataQuery,
+    IQueryKeys,
 } from "../../interfaces";
 import {
     useTranslate,
@@ -22,6 +23,7 @@ type useCreateParams<TVariables> = {
     values: TVariables;
     metaData?: MetaDataQuery;
     dataProviderName?: string;
+    invalidates?: Array<keyof IQueryKeys>;
 } & SuccessErrorNotification;
 
 export type UseCreateReturnType<
@@ -86,6 +88,7 @@ export const useCreate = <
                     resource,
                     successNotification: successNotificationFromProp,
                     dataProviderName,
+                    invalidates = ["list", "many"],
                 },
             ) => {
                 const queryKey = queryKeys(resource, dataProviderName);
