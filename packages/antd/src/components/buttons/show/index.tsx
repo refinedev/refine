@@ -5,10 +5,7 @@ import { EyeOutlined } from "@ant-design/icons";
 import {
     useCan,
     useNavigation,
-    useResourceWithRoute,
-    useRouterContext,
     useTranslate,
-    ResourceRouterParams,
     BaseKey,
     useResource,
 } from "@pankod/refine-core";
