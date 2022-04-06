@@ -46,7 +46,9 @@ describe("useButton Hook without prop", () => {
             wrapper: WrapperWith,
         });
 
-        expect(result.current.resource.route).toBe("custom-route-posts");
+        expect(result.current.resource.options?.route).toBe(
+            "custom-route-posts",
+        );
     });
 });
 
@@ -62,7 +64,7 @@ describe("useButton Hook with resourceName:propResourceName prop", () => {
             </Wrapper>
         );
         const { result } = renderHook(
-            () => useButton({ propResourceName: "categories" }),
+            () => useButton({ resourceName: "categories" }),
             {
                 wrapper: WrapperWith,
             },
