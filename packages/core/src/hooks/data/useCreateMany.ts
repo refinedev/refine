@@ -13,9 +13,9 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useInvalidate,
 } from "@hooks";
 import pluralize from "pluralize";
-import { useInvalidation } from "@hooks/invalidation";
 
 type useCreateManyParams<TVariables> = {
     resource: string;
@@ -58,7 +58,7 @@ export const useCreateMany = <
     const translate = useTranslate();
     const publish = usePublish();
     const handleNotification = useHandleNotification();
-    const invalidateStore = useInvalidation();
+    const invalidateStore = useInvalidate();
 
     const mutation = useMutation<
         CreateManyResponse<TData>,

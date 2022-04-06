@@ -4,14 +4,14 @@ import { useQueryClient } from "react-query";
 import { queryKeys } from "@definitions";
 import { BaseKey, IQueryKeys } from "../../interfaces";
 
-export type UseInvalidationProps = {
+export type UseInvalidateProp = {
     resource: string;
     id?: BaseKey;
     dataProviderName?: string;
     invalidates: Array<keyof IQueryKeys>;
 };
 
-export const useInvalidation = () => {
+export const useInvalidate = (): ((props: UseInvalidateProp) => void) => {
     const queryClient = useQueryClient();
 
     const invalidate = useCallback(
@@ -20,7 +20,7 @@ export const useInvalidation = () => {
             dataProviderName,
             invalidates,
             id,
-        }: UseInvalidationProps) => {
+        }: UseInvalidateProp) => {
             const queryKey = queryKeys(resource, dataProviderName);
             invalidates.forEach((key) => {
                 switch (key) {

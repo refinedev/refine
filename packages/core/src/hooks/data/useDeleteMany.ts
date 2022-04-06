@@ -22,10 +22,10 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useInvalidate,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import { queryKeys } from "@definitions";
-import { useInvalidation } from "@hooks/invalidation";
 
 type DeleteManyParams = {
     ids: BaseKey[];
@@ -76,7 +76,7 @@ export const useDeleteMany = <
     const translate = useTranslate();
     const publish = usePublish();
     const handleNotification = useHandleNotification();
-    const invalidateStore = useInvalidation();
+    const invalidateStore = useInvalidate();
 
     const queryClient = useQueryClient();
 

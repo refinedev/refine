@@ -1,4 +1,5 @@
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
+import pluralize from "pluralize";
 
 import {
     useMutationMode,
@@ -8,9 +9,9 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useInvalidate,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
-import pluralize from "pluralize";
 import {
     DeleteOneResponse,
     MutationMode,
@@ -25,7 +26,6 @@ import {
     IQueryKeys,
 } from "../../interfaces";
 import { queryKeys } from "@definitions/helpers";
-import { useInvalidation } from "@hooks/invalidation";
 
 type DeleteParams = {
     id: BaseKey;
@@ -78,7 +78,7 @@ export const useDelete = <
     const translate = useTranslate();
     const publish = usePublish();
     const handleNotification = useHandleNotification();
-    const invalidateStore = useInvalidation();
+    const invalidateStore = useInvalidate();
 
     const mutation = useMutation<
         DeleteOneResponse<TData>,

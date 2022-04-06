@@ -23,9 +23,9 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useInvalidate,
 } from "@hooks";
 import { queryKeys } from "@definitions/helpers";
-import { useInvalidation } from "@hooks/invalidation";
 
 export type UpdateParams<TVariables> = {
     id: BaseKey;
@@ -79,7 +79,7 @@ export const useUpdate = <
     const publish = usePublish();
     const { notificationDispatch } = useCancelNotification();
     const handleNotification = useHandleNotification();
-    const invalidateStore = useInvalidation();
+    const invalidateStore = useInvalidate();
 
     const mutation = useMutation<
         UpdateResponse<TData>,

@@ -15,8 +15,8 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useInvalidate,
 } from "@hooks";
-import { useInvalidation } from "@hooks/invalidation";
 
 type useCreateParams<TVariables> = {
     resource: string;
@@ -57,7 +57,7 @@ export const useCreate = <
 >(): UseCreateReturnType<TData, TError, TVariables> => {
     const { mutate: checkError } = useCheckError();
     const dataProvider = useDataProvider();
-    const invalidateStore = useInvalidation();
+    const invalidateStore = useInvalidate();
 
     const translate = useTranslate();
     const publish = usePublish();

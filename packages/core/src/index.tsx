@@ -52,6 +52,7 @@ export {
     OpenNotificationParams,
     ResourceErrorRouterParams,
     ITreeMenu,
+    IQueryKeys,
 } from "./interfaces";
 
 export {

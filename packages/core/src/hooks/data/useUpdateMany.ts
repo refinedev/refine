@@ -9,6 +9,7 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useInvalidate,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import {
@@ -25,7 +26,6 @@ import {
     IQueryKeys,
 } from "../../interfaces";
 import { queryKeys } from "@definitions/helpers";
-import { useInvalidation } from "@hooks/invalidation";
 
 type UpdateManyParams<TVariables> = {
     ids: BaseKey[];
@@ -80,7 +80,7 @@ export const useUpdateMany = <
     const { notificationDispatch } = useCancelNotification();
     const publish = usePublish();
     const handleNotification = useHandleNotification();
-    const invalidateStore = useInvalidation();
+    const invalidateStore = useInvalidate();
 
     const mutation = useMutation<
         UpdateManyResponse<TData>,

@@ -25,6 +25,7 @@ import {
     UpdateResponse,
     MutationMode,
     BaseKey,
+    IQueryKeys,
 } from "../../interfaces";
 import { UpdateParams, UseUpdateReturnType } from "../data/useUpdate";
 import { UseCreateReturnType } from "../data/useCreate";
@@ -54,6 +55,7 @@ type ActionFormProps<
     mutationMode?: MutationMode;
     undoableTimeout?: number;
     dataProviderName?: string;
+    invalidates?: Array<keyof IQueryKeys>;
 } & SuccessErrorNotification &
     ActionParams &
     LiveModeProps;
@@ -111,6 +113,7 @@ export const useForm = <
     liveParams,
     undoableTimeout,
     dataProviderName,
+    invalidates,
 }: UseFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
     TData,
     TError,
@@ -189,6 +192,7 @@ export const useForm = <
                 errorNotification,
                 metaData,
                 dataProviderName,
+                invalidates,
             },
             {
                 onSuccess: (data, variables, context) => {
@@ -226,6 +230,7 @@ export const useForm = <
             errorNotification,
             metaData,
             dataProviderName,
+            invalidates,
         };
 
         const onSuccess = () => {

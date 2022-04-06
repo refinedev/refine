@@ -1,10 +1,10 @@
 import { TestWrapper } from "@test";
 import { renderHook } from "@testing-library/react-hooks";
-import { useInvalidation } from ".";
+import { useInvalidate } from ".";
 
 import * as ReactQuery from "react-query";
 
-describe("useInvalidation", () => {
+describe("useInvalidate", () => {
     it("with empty invalidations array", async () => {
         const dispatch = jest.fn();
         const useReducerSpy = jest.spyOn(ReactQuery, "useQueryClient");
@@ -16,7 +16,7 @@ describe("useInvalidation", () => {
                 } as any),
         );
 
-        const { result } = renderHook(() => useInvalidation(), {
+        const { result } = renderHook(() => useInvalidate(), {
             wrapper: TestWrapper({}),
         });
 
@@ -41,7 +41,7 @@ describe("useInvalidation", () => {
                 } as any),
         );
 
-        const { result } = renderHook(() => useInvalidation(), {
+        const { result } = renderHook(() => useInvalidate(), {
             wrapper: TestWrapper({}),
         });
 
@@ -65,7 +65,7 @@ describe("useInvalidation", () => {
                 } as any),
         );
 
-        const { result } = renderHook(() => useInvalidation(), {
+        const { result } = renderHook(() => useInvalidate(), {
             wrapper: TestWrapper({}),
         });
 
@@ -92,7 +92,7 @@ describe("useInvalidation", () => {
                 } as any),
         );
 
-        const { result } = renderHook(() => useInvalidation(), {
+        const { result } = renderHook(() => useInvalidate(), {
             wrapper: TestWrapper({}),
         });
 
