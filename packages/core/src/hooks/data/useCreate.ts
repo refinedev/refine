@@ -16,7 +16,7 @@ import {
     useHandleNotification,
     useDataProvider,
 } from "@hooks";
-import { queryKeys } from "@definitions/helpers";
+import { useInvalidation } from "@hooks/invalidation";
 
 type useCreateParams<TVariables> = {
     resource: string;
@@ -57,9 +57,9 @@ export const useCreate = <
 >(): UseCreateReturnType<TData, TError, TVariables> => {
     const { mutate: checkError } = useCheckError();
     const dataProvider = useDataProvider();
+    const invalidateStore = useInvalidation();
 
     const translate = useTranslate();
-    const queryClient = useQueryClient();
     const publish = usePublish();
     const handleNotification = useHandleNotification();
 
@@ -91,7 +91,6 @@ export const useCreate = <
                     invalidates = ["list", "many"],
                 },
             ) => {
-                const queryKey = queryKeys(resource, dataProviderName);
                 const resourceSingular = pluralize.singular(resource);
 
                 handleNotification(successNotificationFromProp, {
@@ -110,8 +109,11 @@ export const useCreate = <
                     type: "success",
                 });
 
-                queryClient.invalidateQueries(queryKey.list());
-                queryClient.invalidateQueries(queryKey.many());
+                invalidateStore({
+                    resource,
+                    dataProviderName,
+                    invalidates,
+                });
 
                 publish?.({
                     channel: `resources/${resource}`,

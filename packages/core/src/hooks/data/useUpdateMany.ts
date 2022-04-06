@@ -22,8 +22,10 @@ import {
     SuccessErrorNotification,
     MetaDataQuery,
     GetListResponse,
+    IQueryKeys,
 } from "../../interfaces";
 import { queryKeys } from "@definitions/helpers";
+import { useInvalidation } from "@hooks/invalidation";
 
 type UpdateManyParams<TVariables> = {
     ids: BaseKey[];
@@ -34,6 +36,7 @@ type UpdateManyParams<TVariables> = {
     values: TVariables;
     metaData?: MetaDataQuery;
     dataProviderName?: string;
+    invalidates?: Array<keyof IQueryKeys>;
 } & SuccessErrorNotification;
 
 type UseUpdateManyReturnType<
@@ -77,6 +80,7 @@ export const useUpdateMany = <
     const { notificationDispatch } = useCancelNotification();
     const publish = usePublish();
     const handleNotification = useHandleNotification();
+    const invalidateStore = useInvalidation();
 
     const mutation = useMutation<
         UpdateManyResponse<TData>,
@@ -267,13 +271,22 @@ export const useUpdateMany = <
                     queryKey,
                 };
             },
-            onSettled: (_data, _error, { ids, resource }, context) => {
+            onSettled: (_data, _error, { ids, resource, dataProviderName }) => {
                 // invalidate the cache for the list and many queries:
 
-                queryClient.invalidateQueries(context?.queryKey.list());
-                queryClient.invalidateQueries(context?.queryKey.many());
+                invalidateStore({
+                    resource,
+                    invalidates: ["list", "many"],
+                    dataProviderName,
+                });
+
                 ids.forEach((id) =>
-                    queryClient.invalidateQueries(context?.queryKey.detail(id)),
+                    invalidateStore({
+                        resource,
+                        invalidates: ["detail"],
+                        dataProviderName,
+                        id,
+                    }),
                 );
 
                 notificationDispatch({
