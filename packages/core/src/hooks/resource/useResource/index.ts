@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { ResourceContext } from "@contexts/resource";
-import { IResourceContext } from "../../../contexts/resource/IResourceContext";
+
+import { ResourceContext, IResourceContext } from "@contexts/resource";
 import { BaseKey, IResourceItem, ResourceRouterParams } from "src/interfaces";
 import { useRouterContext, useResourceWithRoute } from "@hooks";
 
