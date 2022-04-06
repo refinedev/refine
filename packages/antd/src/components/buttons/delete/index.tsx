@@ -3,17 +3,15 @@ import { Button, ButtonProps, Popconfirm } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import {
     useDelete,
-    useResourceWithRoute,
     useTranslate,
     useMutationMode,
-    useRouterContext,
     useCan,
-    ResourceRouterParams,
     MutationMode,
     SuccessErrorNotification,
     MetaDataQuery,
     BaseKey,
     DeleteOneResponse,
+    useResource,
 } from "@pankod/refine-core";
 
 export type DeleteButtonProps = ButtonProps & {
@@ -58,27 +56,18 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     confirmCancelText,
     ...rest
 }) => {
-    const resourceWithRoute = useResourceWithRoute();
-
     const translate = useTranslate();
+
+    const { resourceName, id } = useResource({
+        resourceName: propResourceName,
+        recordItemId,
+    });
 
     const { mutationMode: mutationModeContext } = useMutationMode();
 
     const mutationMode = mutationModeProp ?? mutationModeContext;
 
-    const { useParams } = useRouterContext();
-
-    const { resource: routeResourceName, id: idFromRoute } =
-        useParams<ResourceRouterParams>();
-
-    const resource = resourceWithRoute(
-        propResourceNameOrRouteName ?? routeResourceName,
-    );
-    const resourceName = propResourceName ?? resource.name;
-
     const { mutate, isLoading, variables } = useDelete();
-
-    const id = recordItemId ?? idFromRoute;
 
     const { data } = useCan({
         resource: resourceName,

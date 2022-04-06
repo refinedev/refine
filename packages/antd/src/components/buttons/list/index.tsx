@@ -4,11 +4,9 @@ import { BarsOutlined } from "@ant-design/icons";
 import {
     useCan,
     useNavigation,
-    useResourceWithRoute,
-    useRouterContext,
     useTranslate,
-    ResourceRouterParams,
     userFriendlyResourceName,
+    useResource,
 } from "@pankod/refine-core";
 
 export type ListButtonProps = ButtonProps & {
@@ -37,20 +35,13 @@ export const ListButton: React.FC<ListButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const resourceWithRoute = useResourceWithRoute();
-
     const { list } = useNavigation();
     const translate = useTranslate();
 
-    const { useParams } = useRouterContext();
-
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-
-    const resource = resourceWithRoute(
-        propResourceNameOrRouteName ?? routeResourceName,
-    );
-
-    const resourceName = propResourceName ?? resource.name;
+    const { resourceName, resource } = useResource({
+        resourceName: propResourceName,
+        resourceNameOrRouteName: propResourceNameOrRouteName,
+    });
 
     const { data } = useCan({
         resource: resourceName,
