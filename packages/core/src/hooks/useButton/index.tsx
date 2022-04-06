@@ -2,7 +2,7 @@ import { useResourceWithRoute, useRouterContext } from "@hooks";
 import { ResourceRouterParams, IResourceItem, BaseKey } from "../../interfaces";
 
 type UseButtonProps = {
-    propResourceName?: string;
+    resourceName?: string;
     resourceNameOrRouteName?: string;
     recordItemId?: BaseKey;
 };
@@ -14,7 +14,7 @@ type UseButtonReturnType = {
 };
 
 export const useButton = ({
-    propResourceName,
+    resourceName: propResourceName,
     resourceNameOrRouteName,
     recordItemId,
 }: UseButtonProps = {}): UseButtonReturnType => {
