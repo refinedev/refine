@@ -8,16 +8,33 @@ title: useResource
 ```ts
 import { useResource } from "@pankod/refine-core";
 
-const resources = useResource();
+const { resources } = useResource();
+
+// it also returns the resource with the props you provide as resourceNameOrRouteName.
+
+const { resource } = useResource({
+         resourceNameOrRouteName
+     });
 ```
 
 ## API Reference
+
+### Properties
+
+| Key                   | Description                                                                                                                                                        | Type                                                        | Default                                                                              |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| resourceNameOrRouteName                                                                                   | Determines which resource to use for redirection | `string`                                                                                                                              | Resource name that it reads from route                           |
+| recordItemId                                                                                              | Adds `id` to the end of the URL                  | [`BaseKey`](/core/interfaces.md#basekey)                                                                                              | Record id that it reads from route                               |
 
 ### Return value
 
 | Description | Type                             |
 | ----------- | -------------------------------- |
-| Resources   | [`IResourceItem[]`](#interfaces) |
+| resources   | [`IResourceItem[]`](#interfaces) |
+| resource   | [`IResourceItem`](#interfaces) |
+| resourceName   | `string` |
+| id   | [`BaseKey`](/core/interfaces.md#basekey) |
+
 
 #### Interfaces
 
