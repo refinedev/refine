@@ -1,4 +1,5 @@
 import { useQueryClient, useMutation, UseMutationResult } from "react-query";
+import pluralize from "pluralize";
 
 import {
     useMutationMode,
@@ -8,9 +9,9 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useInvalidate,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
-import pluralize from "pluralize";
 import {
     DeleteOneResponse,
     MutationMode,
@@ -22,6 +23,7 @@ import {
     SuccessErrorNotification,
     MetaDataQuery,
     PreviousQuery,
+    IQueryKeys,
 } from "../../interfaces";
 import { queryKeys } from "@definitions/helpers";
 
@@ -33,6 +35,7 @@ type DeleteParams = {
     onCancel?: (cancelMutation: () => void) => void;
     metaData?: MetaDataQuery;
     dataProviderName?: string;
+    invalidates?: Array<keyof IQueryKeys>;
 } & SuccessErrorNotification;
 
 type UseDeleteReturnType<
@@ -75,6 +78,7 @@ export const useDelete = <
     const translate = useTranslate();
     const publish = usePublish();
     const handleNotification = useHandleNotification();
+    const invalidateStore = useInvalidate();
 
     const mutation = useMutation<
         DeleteOneResponse<TData>,
@@ -207,11 +211,23 @@ export const useDelete = <
                     queryKey,
                 };
             },
-            onSettled: (_data, _error, { id, resource }, context) => {
+            onSettled: (
+                _data,
+                _error,
+                {
+                    id,
+                    resource,
+                    dataProviderName,
+                    invalidates = ["list", "many"],
+                },
+            ) => {
                 // invalidate the cache for the list and many queries:
 
-                queryClient.invalidateQueries(context?.queryKey.list());
-                queryClient.invalidateQueries(context?.queryKey.many());
+                invalidateStore({
+                    resource,
+                    dataProviderName,
+                    invalidates,
+                });
 
                 notificationDispatch({
                     type: ActionTypes.REMOVE,

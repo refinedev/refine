@@ -12,6 +12,7 @@ import {
     PrevContext as DeleteContext,
     SuccessErrorNotification,
     MetaDataQuery,
+    IQueryKeys,
 } from "../../interfaces";
 import {
     useTranslate,
@@ -21,6 +22,7 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useInvalidate,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import { queryKeys } from "@definitions";
@@ -33,6 +35,7 @@ type DeleteManyParams = {
     onCancel?: (cancelMutation: () => void) => void;
     metaData?: MetaDataQuery;
     dataProviderName?: string;
+    invalidates?: Array<keyof IQueryKeys>;
 } & SuccessErrorNotification;
 
 type UseDeleteManyReturnType<
@@ -73,6 +76,7 @@ export const useDeleteMany = <
     const translate = useTranslate();
     const publish = usePublish();
     const handleNotification = useHandleNotification();
+    const invalidateStore = useInvalidate();
 
     const queryClient = useQueryClient();
 
@@ -229,10 +233,22 @@ export const useDeleteMany = <
                 };
             },
             // Always refetch after error or success:
-            onSettled: (_data, _error, { resource, ids }, context) => {
+            onSettled: (
+                _data,
+                _error,
+                {
+                    resource,
+                    ids,
+                    dataProviderName,
+                    invalidates = ["list", "many"],
+                },
+            ) => {
                 // invalidate the cache for the list and many queries:
-                queryClient.invalidateQueries(context?.queryKey.list());
-                queryClient.invalidateQueries(context?.queryKey.many());
+                invalidateStore({
+                    resource,
+                    dataProviderName,
+                    invalidates,
+                });
 
                 notificationDispatch({
                     type: ActionTypes.REMOVE,

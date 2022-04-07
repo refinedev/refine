@@ -11,6 +11,7 @@ import {
     MetaDataQuery,
     BaseKey,
     DeleteOneResponse,
+    IQueryKeys,
     useResource,
 } from "@pankod/refine-core";
 
@@ -30,6 +31,7 @@ export type DeleteButtonProps = ButtonProps & {
     confirmTitle?: string;
     confirmOkText?: string;
     confirmCancelText?: string;
+    invalidates?: Array<keyof IQueryKeys>;
 } & SuccessErrorNotification;
 
 /**
@@ -54,6 +56,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     confirmTitle,
     confirmOkText,
     confirmCancelText,
+    invalidates,
     ...rest
 }) => {
     const translate = useTranslate();
@@ -93,13 +96,14 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
             onConfirm={(): void => {
                 mutate(
                     {
-                        id: id!,
+                        id: id || "",
                         resource: resourceName,
                         mutationMode,
                         successNotification,
                         errorNotification,
                         metaData,
                         dataProviderName,
+                        invalidates,
                     },
                     {
                         onSuccess: (value) => {
