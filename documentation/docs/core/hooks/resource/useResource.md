@@ -3,16 +3,18 @@ id: useResource
 title: useResource
 ---
 
-`useResource` is used to get `resources` that are defined as property of the `<Refine>` component and it also returns the `resource`, `resourceName` and `id` values ​​that it reads from the root with the props you provide.
+`useResource` is used to get `resources` that are defined as property of the `<Refine>` component.
 
 ```ts
 import { useResource } from "@pankod/refine-core";
 
-const { resources, resource,  resourceName, id } = useResource({
-        resourceName,
-        resourceNameOrRouteName
-        recordItemId,
-    });
+const { resources } = useResource();
+
+// it also returns the resource with the props you provide as resourceNameOrRouteName.
+
+const { resource } = useResource({
+         resourceNameOrRouteName
+     });
 ```
 
 ## API Reference
@@ -22,7 +24,6 @@ const { resources, resource,  resourceName, id } = useResource({
 | Key                   | Description                                                                                                                                                        | Type                                                        | Default                                                                              |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- | ------------------------------------------------------------------------------------ |
 | resourceNameOrRouteName                                                                                   | Determines which resource to use for redirection | `string`                                                                                                                              | Resource name that it reads from route                           |
-| <div className="required-block"><div>resourceName</div> <div className=" required">deprecated</div></div> | Determines which resource to use for redirection | `string`                                                                                                                              | Resource name that it reads from route                           |
 | recordItemId                                                                                              | Adds `id` to the end of the URL                  | [`BaseKey`](/core/interfaces.md#basekey)                                                                                              | Record id that it reads from route                               |
 
 ### Return value
