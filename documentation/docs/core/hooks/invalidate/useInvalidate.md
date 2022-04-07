@@ -3,7 +3,7 @@ id: useInvalidate
 title: useInvalidate
 ---
 
-`useInvalidate` can be used to invalidate the state of a particular `resource` or `dataProvider` (with dataProviderName). The hook is used internal in **refine**. 
+`useInvalidate` can be used to invalidate the state of a particular `resource` or `dataProvider` (with dataProviderName). 
 
 For example, creating a `Posts` with [useCreate](/core/hooks/data/useCreate.md) hook will invalidate the `list` ([useList](/core/hooks/data/useList.md)) and `many` ([useMany](/core/hooks/data/useMany.md)) state of the `Posts` resource.
 
