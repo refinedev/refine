@@ -5,11 +5,9 @@ import { EyeOutlined } from "@ant-design/icons";
 import {
     useCan,
     useNavigation,
-    useResourceWithRoute,
-    useRouterContext,
     useTranslate,
-    ResourceRouterParams,
     BaseKey,
+    useResource,
 } from "@pankod/refine-core";
 
 export type ShowButtonProps = ButtonProps & {
@@ -40,24 +38,15 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const resourceWithRoute = useResourceWithRoute();
-
     const { show } = useNavigation();
 
     const translate = useTranslate();
 
-    const { useParams } = useRouterContext();
-
-    const { resource: routeResourceName, id: idFromRoute } =
-        useParams<ResourceRouterParams>();
-
-    const resource = resourceWithRoute(
-        propResourceNameOrRouteName ?? routeResourceName,
-    );
-
-    const resourceName = propResourceName ?? resource.name;
-
-    const id = recordItemId ?? idFromRoute;
+    const { resourceName, id, resource } = useResource({
+        resourceName: propResourceName,
+        resourceNameOrRouteName: propResourceNameOrRouteName,
+        recordItemId,
+    });
 
     const { data } = useCan({
         resource: resourceName,
