@@ -92,6 +92,11 @@ module.exports = {
                         },
                         {
                             type: "category",
+                            label: "Invalidate",
+                            items: ["core/hooks/invalidate/useInvalidate"],
+                        },
+                        {
+                            type: "category",
                             label: "Live",
                             items: [
                                 "core/hooks/live/usePublish",

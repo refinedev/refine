@@ -30,6 +30,31 @@ describe("useInvalidate", () => {
         expect(dispatch).not.toBeCalled();
     });
 
+    it("with false invalidation", async () => {
+        const dispatch = jest.fn();
+        const useReducerSpy = jest.spyOn(ReactQuery, "useQueryClient");
+
+        useReducerSpy.mockImplementation(
+            () =>
+                ({
+                    invalidateQueries: dispatch,
+                } as any),
+        );
+
+        const { result } = renderHook(() => useInvalidate(), {
+            wrapper: TestWrapper({}),
+        });
+
+        result.current({
+            resource: "posts",
+            invalidates: false,
+            dataProviderName: "rest",
+            id: "1",
+        });
+
+        expect(dispatch).not.toBeCalled();
+    });
+
     it("with list invalidation", async () => {
         const dispatch = jest.fn();
         const useReducerSpy = jest.spyOn(ReactQuery, "useQueryClient");

@@ -5,10 +5,10 @@ import { queryKeys } from "@definitions";
 import { BaseKey, IQueryKeys } from "../../interfaces";
 
 export type UseInvalidateProp = {
-    resource: string;
+    resource?: string;
     id?: BaseKey;
     dataProviderName?: string;
-    invalidates: Array<keyof IQueryKeys>;
+    invalidates: Array<keyof IQueryKeys> | false;
 };
 
 export const useInvalidate = (): ((props: UseInvalidateProp) => void) => {
@@ -21,7 +21,11 @@ export const useInvalidate = (): ((props: UseInvalidateProp) => void) => {
             invalidates,
             id,
         }: UseInvalidateProp) => {
+            if (invalidates === false) {
+                return;
+            }
             const queryKey = queryKeys(resource, dataProviderName);
+
             invalidates.forEach((key) => {
                 switch (key) {
                     case "all":
