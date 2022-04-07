@@ -5,6 +5,9 @@ import { BaseKey, IResourceItem, ResourceRouterParams } from "src/interfaces";
 import { useRouterContext, useResourceWithRoute } from "@hooks";
 
 export type UseResourcePropsType = {
+    /**
+     * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/pankod/refine/issues/1618
+     */
     resourceName?: string;
     resourceNameOrRouteName?: string;
     recordItemId?: BaseKey;
