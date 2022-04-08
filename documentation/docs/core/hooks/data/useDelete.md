@@ -85,6 +85,7 @@ Variables passed to `mutate` must have these types.
 {
     id: BaseKey;
     resource: string;
+    values: TVariables = {};
     mutationMode?: MutationMode;
     undoableTimeout?: number;
     onCancel?: (cancelMutation: () => void) => void;
@@ -166,7 +167,7 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 | errorNotification                                                                                   | Unsuccessful Mutation notification                                                                 | [`SuccessErrorNotification`](/core/interfaces.md#successerrornotification) | "Error (status code: `status`"      |
 | metaData                                                                                            | Metadata query for `dataProvider`                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                       | {}                                  |
 | dataProviderName                                                                                    | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                   | `default`                           |
-| invalidates                                                                                        | You can use it to manage the invalidations that will occur at the end of the mutation.           | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                    | `["list", "many"]`                                                   |
+| invalidates                                                                                         | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                    | `["list", "many"]`                  |
 
 > `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/core/components/refine-config.md)>** component. `useDelete` will use what is passed to `<Refine>` as default but a local value will override it.
 
@@ -174,10 +175,11 @@ After 7.5 seconds the mutation will be executed. The mutation can be cancelled w
 
 ### Type Parameters
 
-| Property | Desription                                                                          | Type                                           | Default                                        |
-| -------- | ----------------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| TData    | Result data of the mutation. Extends [`BaseRecord`](/core/interfaces.md#baserecord) | [`BaseRecord`](/core/interfaces.md#baserecord) | [`BaseRecord`](/core/interfaces.md#baserecord) |
-| TError   | Custom error object that extends [`HttpError`](/core/interfaces.md#httperror)       | [`HttpError`](/core/interfaces.md#httperror)   | [`HttpError`](/core/interfaces.md#httperror)   |
+| Property   | Desription                                                                          | Type                                           | Default                                        |
+| ---------- | ----------------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| TData      | Result data of the mutation. Extends [`BaseRecord`](/core/interfaces.md#baserecord) | [`BaseRecord`](/core/interfaces.md#baserecord) | [`BaseRecord`](/core/interfaces.md#baserecord) |
+| TError     | Custom error object that extends [`HttpError`](/core/interfaces.md#httperror)       | [`HttpError`](/core/interfaces.md#httperror)   | [`HttpError`](/core/interfaces.md#httperror)   |
+| TVariables | Values for mutation function                                                        | `{}`                                           | `{}`                                           |
 
 ### Return value
 

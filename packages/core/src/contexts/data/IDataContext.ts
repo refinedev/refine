@@ -226,14 +226,22 @@ export interface IDataContextProvider {
         variables: TVariables;
         metaData?: MetaDataQuery;
     }) => Promise<UpdateManyResponse<TData>>;
-    deleteOne: <TData extends BaseRecord = BaseRecord>(params: {
+    deleteOne: <
+        TData extends BaseRecord = BaseRecord,
+        TVariables = {},
+    >(params: {
         resource: string;
         id: BaseKey;
+        variables?: TVariables;
         metaData?: MetaDataQuery;
     }) => Promise<DeleteOneResponse<TData>>;
-    deleteMany: <TData extends BaseRecord = BaseRecord>(params: {
+    deleteMany: <
+        TData extends BaseRecord = BaseRecord,
+        TVariables = {},
+    >(params: {
         resource: string;
         ids: BaseKey[];
+        variables?: TVariables;
         metaData?: MetaDataQuery;
     }) => Promise<DeleteManyResponse<TData>>;
     getApiUrl: () => string;

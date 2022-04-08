@@ -18,8 +18,8 @@ A data provider must include following methods:
 const dataProvider = {
     create: ({ resource, variables, metaData }) => Promise,
     createMany: ({ resource, variables, metaData }) => Promise,
-    deleteOne: ({ resource, id, metaData }) => Promise,
-    deleteMany: ({ resource, ids, metaData }) => Promise,
+    deleteOne: ({ resource, id, variables, metaData }) => Promise,
+    deleteMany: ({ resource, ids, variables, metaData }) => Promise,
     getList: ({ resource, pagination, sort, filters, metaData }) => Promise,
     getMany: ({ resource, ids, metaData }) => Promise,
     getOne: ({ resource, id, metaData }) => Promise,
@@ -145,8 +145,8 @@ const SimpleRestDataProvider = (
 ): DataProvider => ({
     create: ({ resource, variables, metaData }) => Promise,
     createMany: ({ resource, variables, metaData }) => Promise,
-    deleteOne: ({ resource, id, metaData }) => Promise,
-    deleteMany: ({ resource, ids, metaData }) => Promise,
+    deleteOne: ({ resource, id, variables, metaData }) => Promise,
+    deleteMany: ({ resource, ids, variables, metaData }) => Promise,
     getList: ({ resource, pagination, sort, filters, metaData }) => Promise,
     getMany: ({ resource, ids, metaData }) => Promise,
     getOne: ({ resource, id, metaData }) => Promise,
@@ -316,10 +316,13 @@ const SimpleRestDataProvider = (
 
 #### Parameter Types
 
-| Name     | Type     | Default |
-| -------- | -------- | ------- |
-| resource | `string` |         |
-| id       | `string` |         |
+| Name      | Type               | Default |
+| --------- | ------------------ | ------- |
+| resource  | `string`           |         |
+| id        | [BaseKey][BaseKey] |         |
+| variables | `TVariables[]`     | `{}`    |
+
+> `TVariables` is a user defined type which can be passed to [`useDelete`](/core/hooks/data/useDelete.md) to type `variables`
 
 <br/>
 
@@ -366,10 +369,13 @@ const SimpleRestDataProvider = (
 
 #### Parameter Types
 
-| Name     | Type       | Default |
-| -------- | ---------- | ------- |
-| resource | `string`   |         |
-| ids      | `string[]` |         |
+| Name      | Type                 | Default |
+| --------- | -------------------- | ------- |
+| resource  | `string`             |         |
+| ids       | [BaseKey[]][BaseKey] |         |
+| variables | `TVariables[]`       | `{}`    |
+
+> `TVariables` is a user defined type which can be passed to [`useDeleteMany`](/core/hooks/data/useDeleteMany.md) to type `variables`
 
 <br/>
 
@@ -417,11 +423,11 @@ const SimpleRestDataProvider = (
 
 #### Parameter Types
 
-| Name      | Type         | Default |
-| --------- | ------------ | ------- |
-| resource  | `string`     |         |
-| id        | `string`     |         |
-| variables | `TVariables` | `{}`    |
+| Name      | Type               | Default |
+| --------- | ------------------ | ------- |
+| resource  | `string`           |         |
+| id        | [BaseKey][BaseKey] |         |
+| variables | `TVariables`       | `{}`    |
 
 > `TVariables` is a user defined type which can be passed to [`useUpdate`](../../core/hooks/data/useUpdate.md#type-parameters) to type `variables`
 
@@ -476,11 +482,11 @@ const SimpleRestDataProvider = (
 
 #### Parameter Types
 
-| Name      | Type         | Default |
-| --------- | ------------ | ------- |
-| resource  | `string`     |         |
-| ids       | `string[]`   |         |
-| variables | `TVariables` | `{}`    |
+| Name      | Type                 | Default |
+| --------- | -------------------- | ------- |
+| resource  | `string`             |         |
+| ids       | [BaseKey[]][BaseKey] |         |
+| variables | `TVariables`         | `{}`    |
 
 > TVariables is a user defined type which can be passed to [`useUpdateMany`](../../core/hooks/data/useUpdateMany.md#type-parameters) to type `variables`
 
@@ -531,10 +537,10 @@ const SimpleRestDataProvider = (
 
 #### Parameter Types
 
-| Name     | Type     | Default |
-| -------- | -------- | ------- |
-| resource | `string` |         |
-| id       | `string` |         |
+| Name     | Type               | Default |
+| -------- | ------------------ | ------- |
+| resource | `string`           |         |
+| id       | [BaseKey][BaseKey] |         |
 
 <br/>
 
@@ -577,10 +583,10 @@ const SimpleRestDataProvider = (
 
 #### Parameter Types
 
-| Name     | Type       | Default |
-| -------- | ---------- | ------- |
-| resource | `string`   |         |
-| ids      | `string[]` |         |
+| Name     | Type                 | Default |
+| -------- | -------------------- | ------- |
+| resource | `string`             |         |
+| ids      | [BaseKey[]][BaseKey] |         |
 
 <br/>
 
@@ -1034,3 +1040,5 @@ axiosInstance.interceptors.response.use(
 );
 ...
 ```
+
+[BaseKey]: /core/interfaces.md#basekey
