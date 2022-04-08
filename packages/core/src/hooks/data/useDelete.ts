@@ -27,7 +27,7 @@ import {
 } from "../../interfaces";
 import { queryKeys } from "@definitions/helpers";
 
-type DeleteParams = {
+export type DeleteParams<TVariables> = {
     id: BaseKey;
     resource: string;
     mutationMode?: MutationMode;
@@ -36,15 +36,17 @@ type DeleteParams = {
     metaData?: MetaDataQuery;
     dataProviderName?: string;
     invalidates?: Array<keyof IQueryKeys>;
+    values?: TVariables;
 } & SuccessErrorNotification;
 
-type UseDeleteReturnType<
+export type UseDeleteReturnType<
     TData extends BaseRecord = BaseRecord,
     TError = HttpError,
+    TVariables = {},
 > = UseMutationResult<
     DeleteOneResponse<TData>,
     TError,
-    DeleteParams,
+    DeleteParams<TVariables>,
     DeleteContext<TData>
 >;
 
@@ -63,7 +65,8 @@ type UseDeleteReturnType<
 export const useDelete = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
->(): UseDeleteReturnType<TData, TError> => {
+    TVariables = {},
+>(): UseDeleteReturnType<TData, TError, TVariables> => {
     const { mutate: checkError } = useCheckError();
     const dataProvider = useDataProvider();
 
@@ -83,7 +86,7 @@ export const useDelete = <
     const mutation = useMutation<
         DeleteOneResponse<TData>,
         TError,
-        DeleteParams,
+        DeleteParams<TVariables>,
         DeleteContext<TData>
     >(
         ({
@@ -94,6 +97,7 @@ export const useDelete = <
             onCancel,
             metaData,
             dataProviderName,
+            values,
         }) => {
             const mutationModePropOrContext =
                 mutationMode ?? mutationModeContext;
@@ -106,6 +110,7 @@ export const useDelete = <
                     resource,
                     id,
                     metaData,
+                    variables: values,
                 });
             }
 
@@ -113,7 +118,12 @@ export const useDelete = <
                 (resolve, reject) => {
                     const doMutation = () => {
                         dataProvider(dataProviderName)
-                            .deleteOne<TData>({ resource, id, metaData })
+                            .deleteOne<TData>({
+                                resource,
+                                id,
+                                metaData,
+                                variables: values,
+                            })
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
                     };
