@@ -316,11 +316,11 @@ const SimpleRestDataProvider = (
 
 #### Parameter Types
 
-| Name      | Type           | Default |
-| --------- | -------------- | ------- |
-| resource  | `string`       |         |
-| id        | `string`       |         |
-| variables | `TVariables[]` | `{}`    |
+| Name      | Type               | Default |
+| --------- | ------------------ | ------- |
+| resource  | `string`           |         |
+| id        | [BaseKey](BaseKey) |         |
+| variables | `TVariables[]`     | `{}`    |
 
 > `TVariables` is a user defined type which can be passed to [`useDelete`](/core/hooks/data/useDelete.md) to type `variables`
 
@@ -369,11 +369,11 @@ const SimpleRestDataProvider = (
 
 #### Parameter Types
 
-| Name      | Type           | Default |
-| --------- | -------------- | ------- |
-| resource  | `string`       |         |
-| ids       | `string[]`     |         |
-| variables | `TVariables[]` | `{}`    |
+| Name      | Type                 | Default |
+| --------- | -------------------- | ------- |
+| resource  | `string`             |         |
+| ids       | [BaseKey[]](BaseKey) |         |
+| variables | `TVariables[]`       | `{}`    |
 
 > `TVariables` is a user defined type which can be passed to [`useDeleteMany`](/core/hooks/data/useDeleteMany.md) to type `variables`
 
@@ -423,11 +423,11 @@ const SimpleRestDataProvider = (
 
 #### Parameter Types
 
-| Name      | Type         | Default |
-| --------- | ------------ | ------- |
-| resource  | `string`     |         |
-| id        | `string`     |         |
-| variables | `TVariables` | `{}`    |
+| Name      | Type               | Default |
+| --------- | ------------------ | ------- |
+| resource  | `string`           |         |
+| id        | [BaseKey](BaseKey) |         |
+| variables | `TVariables`       | `{}`    |
 
 > `TVariables` is a user defined type which can be passed to [`useUpdate`](../../core/hooks/data/useUpdate.md#type-parameters) to type `variables`
 
@@ -482,11 +482,11 @@ const SimpleRestDataProvider = (
 
 #### Parameter Types
 
-| Name      | Type         | Default |
-| --------- | ------------ | ------- |
-| resource  | `string`     |         |
-| ids       | `string[]`   |         |
-| variables | `TVariables` | `{}`    |
+| Name      | Type                 | Default |
+| --------- | -------------------- | ------- |
+| resource  | `string`             |         |
+| ids       | [BaseKey[]](BaseKey) |         |
+| variables | `TVariables`         | `{}`    |
 
 > TVariables is a user defined type which can be passed to [`useUpdateMany`](../../core/hooks/data/useUpdateMany.md#type-parameters) to type `variables`
 
@@ -537,10 +537,10 @@ const SimpleRestDataProvider = (
 
 #### Parameter Types
 
-| Name     | Type     | Default |
-| -------- | -------- | ------- |
-| resource | `string` |         |
-| id       | `string` |         |
+| Name     | Type               | Default |
+| -------- | ------------------ | ------- |
+| resource | `string`           |         |
+| id       | [BaseKey](BaseKey) |         |
 
 <br/>
 
@@ -583,10 +583,10 @@ const SimpleRestDataProvider = (
 
 #### Parameter Types
 
-| Name     | Type       | Default |
-| -------- | ---------- | ------- |
-| resource | `string`   |         |
-| ids      | `string[]` |         |
+| Name     | Type                 | Default |
+| -------- | -------------------- | ------- |
+| resource | `string`             |         |
+| ids      | [BaseKey[]](BaseKey) |         |
 
 <br/>
 
@@ -1040,3 +1040,5 @@ axiosInstance.interceptors.response.use(
 );
 ...
 ```
+
+[BaseKey](/core/interfaces.md#basekey)
