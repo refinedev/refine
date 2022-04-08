@@ -68,6 +68,35 @@ describe("useShow Hook", () => {
         expect(result.current.showId).toEqual("1");
     });
 
+    it("correctly return id undefined when resource different from route", async () => {
+        const { result } = renderHook(
+            () =>
+                useShow({
+                    resource: "categories",
+                }),
+            {
+                wrapper: WrapperWithRoute,
+            },
+        );
+
+        expect(result.current.showId).toEqual(undefined);
+    });
+
+    it("correctly return id when resource different from route", async () => {
+        const { result } = renderHook(
+            () =>
+                useShow({
+                    resource: "categories",
+                    id: "2",
+                }),
+            {
+                wrapper: WrapperWithRoute,
+            },
+        );
+
+        expect(result.current.showId).toEqual("2");
+    });
+
     it("correctly return id value which was set with setShowId after it was set", async () => {
         const { result } = renderHook(() => useShow(), {
             wrapper: WrapperWithRoute,
