@@ -319,7 +319,7 @@ const SimpleRestDataProvider = (
 | Name      | Type               | Default |
 | --------- | ------------------ | ------- |
 | resource  | `string`           |         |
-| id        | [BaseKey](BaseKey) |         |
+| id        | [BaseKey][BaseKey] |         |
 | variables | `TVariables[]`     | `{}`    |
 
 > `TVariables` is a user defined type which can be passed to [`useDelete`](/core/hooks/data/useDelete.md) to type `variables`
@@ -372,7 +372,7 @@ const SimpleRestDataProvider = (
 | Name      | Type                 | Default |
 | --------- | -------------------- | ------- |
 | resource  | `string`             |         |
-| ids       | [BaseKey[]](BaseKey) |         |
+| ids       | [BaseKey[]][BaseKey] |         |
 | variables | `TVariables[]`       | `{}`    |
 
 > `TVariables` is a user defined type which can be passed to [`useDeleteMany`](/core/hooks/data/useDeleteMany.md) to type `variables`
@@ -426,7 +426,7 @@ const SimpleRestDataProvider = (
 | Name      | Type               | Default |
 | --------- | ------------------ | ------- |
 | resource  | `string`           |         |
-| id        | [BaseKey](BaseKey) |         |
+| id        | [BaseKey][BaseKey] |         |
 | variables | `TVariables`       | `{}`    |
 
 > `TVariables` is a user defined type which can be passed to [`useUpdate`](../../core/hooks/data/useUpdate.md#type-parameters) to type `variables`
@@ -485,7 +485,7 @@ const SimpleRestDataProvider = (
 | Name      | Type                 | Default |
 | --------- | -------------------- | ------- |
 | resource  | `string`             |         |
-| ids       | [BaseKey[]](BaseKey) |         |
+| ids       | [BaseKey[]][BaseKey] |         |
 | variables | `TVariables`         | `{}`    |
 
 > TVariables is a user defined type which can be passed to [`useUpdateMany`](../../core/hooks/data/useUpdateMany.md#type-parameters) to type `variables`
@@ -540,7 +540,7 @@ const SimpleRestDataProvider = (
 | Name     | Type               | Default |
 | -------- | ------------------ | ------- |
 | resource | `string`           |         |
-| id       | [BaseKey](BaseKey) |         |
+| id       | [BaseKey][BaseKey] |         |
 
 <br/>
 
@@ -586,7 +586,7 @@ const SimpleRestDataProvider = (
 | Name     | Type                 | Default |
 | -------- | -------------------- | ------- |
 | resource | `string`             |         |
-| ids      | [BaseKey[]](BaseKey) |         |
+| ids      | [BaseKey[]][BaseKey] |         |
 
 <br/>
 
@@ -1041,4 +1041,4 @@ axiosInstance.interceptors.response.use(
 ...
 ```
 
-[BaseKey](/core/interfaces.md#basekey)
+[BaseKey]: /core/interfaces.md#basekey
