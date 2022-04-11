@@ -189,21 +189,22 @@ const JsonServer = (
         };
     },
 
-    deleteOne: async ({ resource, id }) => {
+    deleteOne: async ({ resource, id, variables }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
-        const { data } = await httpClient.delete(url);
+        const { data } = await httpClient.delete(url, variables);
 
         return {
             data,
         };
     },
 
-    deleteMany: async ({ resource, ids }) => {
+    deleteMany: async ({ resource, ids, variables }) => {
         const response = await Promise.all(
             ids.map(async (id) => {
                 const { data } = await httpClient.delete(
                     `${apiUrl}/${resource}/${id}`,
+                    variables
                 );
                 return data;
             }),
