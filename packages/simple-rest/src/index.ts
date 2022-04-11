@@ -204,7 +204,7 @@ const JsonServer = (
             ids.map(async (id) => {
                 const { data } = await httpClient.delete(
                     `${apiUrl}/${resource}/${id}`,
-                    variables
+                    variables,
                 );
                 return data;
             }),
