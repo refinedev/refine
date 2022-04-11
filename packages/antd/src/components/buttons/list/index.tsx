@@ -7,6 +7,7 @@ import {
     useTranslate,
     userFriendlyResourceName,
     useResource,
+    useRouterContext,
 } from "@pankod/refine-core";
 
 export type ListButtonProps = ButtonProps & {
@@ -35,7 +36,8 @@ export const ListButton: React.FC<ListButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const { list } = useNavigation();
+    const { listUrl } = useNavigation();
+    const { Link } = useRouterContext();
     const translate = useTranslate();
 
     const { resourceName, resource } = useResource({
@@ -62,26 +64,32 @@ export const ListButton: React.FC<ListButtonProps> = ({
     };
 
     return (
-        <Button
-            onClick={(e): void =>
-                onClick
-                    ? onClick(e)
-                    : list(propResourceName ?? resource.route!, "push")
-            }
-            icon={<BarsOutlined />}
-            disabled={data?.can === false}
-            title={createButtonDisabledTitle()}
-            {...rest}
+        <Link
+            to={listUrl(propResourceName ?? resource.route!)}
+            replace={false}
+            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+                if (onClick) {
+                    e.preventDefault();
+                    onClick(e);
+                }
+            }}
         >
-            {!hideText &&
-                (children ??
-                    translate(
-                        `${resourceName}.titles.list`,
-                        userFriendlyResourceName(
-                            resource.label ?? resourceName,
-                            "plural",
-                        ),
-                    ))}
-        </Button>
+            <Button
+                icon={<BarsOutlined />}
+                disabled={data?.can === false}
+                title={createButtonDisabledTitle()}
+                {...rest}
+            >
+                {!hideText &&
+                    (children ??
+                        translate(
+                            `${resourceName}.titles.list`,
+                            userFriendlyResourceName(
+                                resource.label ?? resourceName,
+                                "plural",
+                            ),
+                        ))}
+            </Button>
+        </Link>
     );
 };
