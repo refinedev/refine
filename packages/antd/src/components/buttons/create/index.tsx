@@ -6,6 +6,7 @@ import {
     useTranslate,
     useCan,
     useResource,
+    useRouterContext,
 } from "@pankod/refine-core";
 
 export type CreateButtonProps = ButtonProps & {
@@ -36,7 +37,9 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const { create } = useNavigation();
+    const { Link } = useRouterContext();
+
+    const { createUrl } = useNavigation();
 
     const { resourceName, resource } = useResource({
         resourceName: propResourceName,
@@ -62,18 +65,25 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
     };
 
     return (
-        <Button
-            onClick={(e): void =>
-                onClick
-                    ? onClick(e)
-                    : create(propResourceName ?? resource.route!, "push")
-            }
-            icon={<PlusSquareOutlined />}
-            disabled={data?.can === false}
-            title={createButtonDisabledTitle()}
-            {...rest}
+        <Link
+            to={createUrl(propResourceName ?? resource.route!)}
+            replace={false}
+            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+                if (onClick) {
+                    e.preventDefault();
+                    onClick(e);
+                }
+            }}
         >
-            {!hideText && (children ?? translate("buttons.create", "Create"))}
-        </Button>
+            <Button
+                icon={<PlusSquareOutlined />}
+                disabled={data?.can === false}
+                title={createButtonDisabledTitle()}
+                {...rest}
+            >
+                {!hideText &&
+                    (children ?? translate("buttons.create", "Create"))}
+            </Button>
+        </Link>
     );
 };
