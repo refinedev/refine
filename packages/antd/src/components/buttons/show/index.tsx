@@ -8,6 +8,7 @@ import {
     useTranslate,
     BaseKey,
     useResource,
+    useRouterContext,
 } from "@pankod/refine-core";
 
 export type ShowButtonProps = ButtonProps & {
@@ -38,7 +39,8 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const { show } = useNavigation();
+    const { showUrl } = useNavigation();
+    const { Link } = useRouterContext();
 
     const translate = useTranslate();
 
@@ -68,18 +70,24 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     };
 
     return (
-        <Button
-            onClick={(e): void =>
-                onClick
-                    ? onClick(e)
-                    : show(propResourceName ?? resource.route!, id!)
-            }
-            icon={<EyeOutlined />}
-            disabled={data?.can === false}
-            title={createButtonDisabledTitle()}
-            {...rest}
+        <Link
+            to={showUrl(propResourceName ?? resource.route!, id!)}
+            replace={false}
+            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+                if (onClick) {
+                    e.preventDefault();
+                    onClick(e);
+                }
+            }}
         >
-            {!hideText && (children ?? translate("buttons.show", "Show"))}
-        </Button>
+            <Button
+                icon={<EyeOutlined />}
+                disabled={data?.can === false}
+                title={createButtonDisabledTitle()}
+                {...rest}
+            >
+                {!hideText && (children ?? translate("buttons.show", "Show"))}
+            </Button>
+        </Link>
     );
 };
