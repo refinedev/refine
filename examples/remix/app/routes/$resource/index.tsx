@@ -1,7 +1,7 @@
 import { json, LoaderFunction } from "@remix-run/node";
 import dataProvider from "@pankod/refine-simple-rest";
 
-export { NextRouteComponent as default } from "../../remixRouteComponent";
+export { RemixRouteComponent as default } from "@pankod/refine-remix-router";
 
 export const loader: LoaderFunction = async ({ params }) => {
     const API_URL = "https://api.fake-rest.refine.dev";

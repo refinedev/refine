@@ -1,4 +1,5 @@
 import React from "react";
+import { useLoaderData } from "@remix-run/react";
 import {
     useRefineContext,
     LayoutWrapper,
@@ -9,20 +10,18 @@ import {
 } from "@pankod/refine-core";
 import type { ResourceRouterParams } from "@pankod/refine-core";
 
-import { RouterProvider } from "./root";
-import { useLoaderData } from "@remix-run/react";
-
+import { RouterProvider } from "./routerProvider";
 const { useHistory, useLocation, useParams } = RouterProvider;
 
-type NextRouteComponentProps = {
+type RemixRouteComponentProps = {
     initialData?: any;
 };
 
-export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
+export const RemixRouteComponent: React.FC<RemixRouteComponentProps> = ({
     children,
     ...rest
 }) => {
-    const { initialData } = useLoaderData();
+    const loaderData = useLoaderData();
     const { resources } = useResource();
     const { push } = useHistory();
     const {
@@ -98,7 +97,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                                 canEdit={canEdit}
                                 canDelete={canDelete}
                                 canShow={canShow}
-                                initialData={initialData}
+                                initialData={loaderData?.initialData}
                                 options={options}
                                 {...rest}
                             />
@@ -120,7 +119,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                                 canEdit={canEdit}
                                 canDelete={canDelete}
                                 canShow={canShow}
-                                initialData={initialData}
+                                initialData={loaderData?.initialData}
                                 options={options}
                                 {...rest}
                             />
@@ -142,7 +141,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                                 canEdit={canEdit}
                                 canDelete={canDelete}
                                 canShow={canShow}
-                                initialData={initialData}
+                                initialData={loaderData?.initialData}
                                 options={options}
                                 {...rest}
                             />
@@ -164,7 +163,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                                 canEdit={canEdit}
                                 canDelete={canDelete}
                                 canShow={canShow}
-                                initialData={initialData}
+                                initialData={loaderData?.initialData}
                                 options={options}
                                 {...rest}
                             />

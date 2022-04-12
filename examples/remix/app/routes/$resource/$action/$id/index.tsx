@@ -1,1 +1,1 @@
-export { NextRouteComponent as default } from "../../../../remixRouteComponent";
+export { RemixRouteComponent as default } from "@pankod/refine-remix-router";

@@ -6,13 +6,12 @@ import {
     Outlet,
     Scripts,
     ScrollRestoration,
-    useLocation,
-    useNavigate,
-    useParams,
 } from "@remix-run/react";
 
-import { IRouterProvider, Refine } from "@pankod/refine-core";
+import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-remix-router";
+
 import { PostCreate, PostList } from "./pages";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -30,33 +29,9 @@ export default function App() {
         </Document>
     );
 }
-
 interface DocumentProps {
     children: React.ReactNode;
 }
-
-export const RouterProvider: IRouterProvider = {
-    useHistory: () => {
-        const navigate = useNavigate();
-
-        return {
-            push: navigate,
-            replace: (path: string) => {
-                navigate(path, { replace: true });
-            },
-            goBack: () => {
-                navigate(-1);
-            },
-        };
-    },
-    useLocation,
-    useParams: () => {
-        const params = useParams();
-        return params as any;
-    },
-    Prompt: () => null,
-    Link: () => null,
-};
 
 export function Document({ children }: DocumentProps) {
     return (
@@ -69,7 +44,7 @@ export function Document({ children }: DocumentProps) {
             <body>
                 <Refine
                     dataProvider={dataProvider(API_URL)}
-                    routerProvider={RouterProvider}
+                    routerProvider={routerProvider}
                     resources={[
                         {
                             name: "posts",
