@@ -1,4 +1,4 @@
-import { json, LoaderFunction } from "@remix-run/node";
+import { json, LoaderFunction, redirect } from "@remix-run/node";
 import dataProvider from "@pankod/refine-simple-rest";
 
 export { RemixRouteComponent as default } from "@pankod/refine-remix-router";

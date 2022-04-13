@@ -1,4 +1,4 @@
 import { RouterProvider } from "./routerProvider";
 
-export * from "./nextRouteComponent";
+export * from "./remixRouteComponent";
 export default RouterProvider;

@@ -25,6 +25,7 @@
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "jest": "^27.5.1",
     "@remix-run/react": "1.3.4",
+    "@remix-run/node": "1.3.4",
     "ts-jest": "^27.1.3",
     "tslib": "^2.3.1",
     "tsup": "^5.11.13"
@@ -34,6 +35,7 @@
   },
   "peerDependencies": {
     "@remix-run/react": "*",
+    "@remix-run/node": "*",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
