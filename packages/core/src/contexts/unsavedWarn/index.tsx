@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 
 import { IUnsavedWarnContext } from "./IUnsavedWarnContext";
 
@@ -7,7 +7,9 @@ export const UnsavedWarnContext = React.createContext<IUnsavedWarnContext>({
     setWarnWhen: (value: boolean) => value,
 });
 
-export const UnsavedWarnContextProvider: React.FC = ({ children }) => {
+export const UnsavedWarnContextProvider: React.FC<{ children: ReactNode }> = ({
+    children,
+}) => {
     const [warnWhen, setWarnWhen] = useState(false);
 
     return (

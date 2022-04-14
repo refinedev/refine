@@ -1,7 +1,8 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, ReactNode } from "react";
 
 interface GroupProps {
     title: string;
+    children: ReactNode;
 }
 
 const headerStyles: CSSProperties = {

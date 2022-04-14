@@ -16,6 +16,7 @@ export interface ListProps {
     createButtonProps?: CreateButtonProps;
     pageHeaderProps?: PageHeaderProps;
     resource?: string;
+    children?: ReactNode;
 }
 
 /**

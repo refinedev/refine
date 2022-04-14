@@ -5,6 +5,7 @@ import { CanParams } from "../../interfaces";
 
 export type CanAccessProps = CanParams & {
     fallback?: React.ReactNode;
+    children: React.ReactNode;
 };
 
 export const CanAccess: React.FC<CanAccessProps> = ({

@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type Translate = (
     key: string,
     options?: any,
@@ -12,4 +14,5 @@ export interface I18nProvider {
 
 export interface ITranslationContext {
     i18nProvider: I18nProvider;
+    children: ReactNode;
 }

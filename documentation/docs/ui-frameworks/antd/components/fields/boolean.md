@@ -64,11 +64,11 @@ export const PostList: React.FC = () => {
 
 ### Properties
 
-| Property             | Description                                | Type                                                                 | Default                                                    |
-| -------------------- | ------------------------------------------ | -------------------------------------------------------------------- | ---------------------------------------------------------- |
-| value                | Field value                                | `unknown`                                                            |                                                            |
+| Property             | Description                                  | Type                                                                 | Default                                                    |
+| -------------------- | -------------------------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------- |
+| value                | Field value                                  | `unknown`                                                            |                                                            |
 | valueLabelTrue       | If there is a value, this is the text to use | `string`                                                             | `"true"`                                                   |
 | valueLabelFalse      | If there no value, this is the text to use   | `string`                                                             | `"false"`                                                  |
-| trueIcon             | If there is a value, this is the icon to use | `React.FC` \| `object`                                               | [`<CheckOutlined />`](https://ant.design/components/icon/) |
-| falseIcon            | If there no value, this is the icon to use.  | `React.FC` \| `object`                                               | [`<CloseOutlined />`](https://ant.design/components/icon/) |
-| AbstractTooltipProps | Ant Design `Tooltip` properties                | [`AbstractTooltipProps`](https://ant.design/components/tooltip/#API) |                                                            |
+| trueIcon             | If there is a value, this is the icon to use | `React.ReactNode`                                                    | [`<CheckOutlined />`](https://ant.design/components/icon/) |
+| falseIcon            | If there no value, this is the icon to use.  | `React.ReactNode`                                                    | [`<CloseOutlined />`](https://ant.design/components/icon/) |
+| AbstractTooltipProps | Ant Design `Tooltip` properties              | [`AbstractTooltipProps`](https://ant.design/components/tooltip/#API) |                                                            |

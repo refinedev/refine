@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { ReactNode, useReducer } from "react";
 import { createPortal } from "react-dom";
 
 import { UndoableQueue } from "@components";
@@ -51,22 +51,23 @@ export const undoableQueueReducer = (state: IUndoableQueue[], action: any) => {
     }
 };
 
-export const UndoableQueueContextProvider: React.FC = ({ children }) => {
-    const [notifications, notificationDispatch] = useReducer(
-        undoableQueueReducer,
-        initialState,
-    );
+export const UndoableQueueContextProvider: React.FC<{ children: ReactNode }> =
+    ({ children }) => {
+        const [notifications, notificationDispatch] = useReducer(
+            undoableQueueReducer,
+            initialState,
+        );
 
-    const notificationData = { notifications, notificationDispatch };
+        const notificationData = { notifications, notificationDispatch };
 
-    return (
-        <UndoableQueueContext.Provider value={notificationData}>
-            {children}
-            {typeof window !== "undefined" &&
-                createPortal(
-                    <UndoableQueue notifications={notifications} />,
-                    document.body,
-                )}
-        </UndoableQueueContext.Provider>
-    );
-};
+        return (
+            <UndoableQueueContext.Provider value={notificationData}>
+                {children}
+                {typeof window !== "undefined" &&
+                    createPortal(
+                        <UndoableQueue notifications={notifications} />,
+                        document.body,
+                    )}
+            </UndoableQueueContext.Provider>
+        );
+    };

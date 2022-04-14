@@ -18,4 +18,5 @@ export type ILiveContext =
 
 export type ILiveContextProvider = {
     liveProvider: ILiveContext;
+    children: React.ReactNode;
 };

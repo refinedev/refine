@@ -1,5 +1,7 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
-export const DefaultLayout: React.FC = ({ children }) => {
+export const DefaultLayout: React.FC<{ children: ReactNode }> = ({
+    children,
+}) => {
     return <div>{children}</div>;
 };

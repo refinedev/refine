@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Card, PageHeader, PageHeaderProps, Space, Spin } from "antd";
 import {
     useNavigation,
@@ -26,6 +26,7 @@ export interface ShowProps {
     pageHeaderProps?: PageHeaderProps;
     resource?: string;
     recordItemId?: BaseKey;
+    children: ReactNode;
 }
 
 /**

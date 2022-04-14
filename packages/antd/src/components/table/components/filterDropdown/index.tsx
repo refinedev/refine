@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { Button, Space } from "antd";
 import type { FilterDropdownProps as AntdFilterDropdownProps } from "antd/lib/table/interface";
 import { FilterOutlined } from "@ant-design/icons";
@@ -6,6 +6,7 @@ import { useTranslate } from "@pankod/refine-core";
 
 export type FilterDropdownProps = AntdFilterDropdownProps & {
     mapValue?: (selectedKeys: React.Key[]) => any;
+    children: ReactNode;
 };
 
 /**

@@ -5,6 +5,7 @@ import { useAuthenticated, useNavigation, useRouterContext } from "@hooks";
 export type AuthenticatedProps = {
     fallback?: React.ReactNode;
     loading?: React.ReactNode;
+    children: React.ReactNode;
 };
 
 /**

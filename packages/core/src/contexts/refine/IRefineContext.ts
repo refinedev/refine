@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import {
     MutationMode,
@@ -43,4 +43,5 @@ export interface IRefineContextProvider {
     OffLayoutArea?: React.FC;
     liveMode?: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
+    children: ReactNode;
 }
