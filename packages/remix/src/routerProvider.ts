@@ -17,7 +17,11 @@ export const RouterProvider: IRouterProvider = {
             },
         };
     },
-    useLocation,
+    useLocation: () => {
+        const location = useLocation();
+
+        return location;
+    },
     useParams: () => {
         const params = useParams();
         return handleUseParams(params);

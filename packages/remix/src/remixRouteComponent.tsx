@@ -1,6 +1,7 @@
 import React from "react";
 import { useLoaderData } from "@remix-run/react";
-import { redirect } from "@remix-run/node";
+import { Navigate, Route, Routes } from "react-router-dom";
+
 import {
     useRefineContext,
     LayoutWrapper,
@@ -44,7 +45,6 @@ export const RemixRouteComponent: React.FC<RemixRouteComponentProps> = ({
     if (routeResourceName === "login") {
         return LoginPage ? <LoginPage /> : <DefaultLoginPage />;
     }
-
     if (pathname === "/") {
         if (DashboardPage) {
             return (
@@ -59,8 +59,13 @@ export const RemixRouteComponent: React.FC<RemixRouteComponentProps> = ({
                 </LayoutWrapper>
             );
         } else {
-            if (isServer) push(`/${resources[0].route}`);
-            return null;
+            return (
+                <Navigate
+                    to={`/${
+                        resources.find((p) => p.list !== undefined)?.route
+                    }`}
+                />
+            );
         }
     }
 
