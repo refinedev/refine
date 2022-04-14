@@ -204,6 +204,7 @@ You can pass more options to further customize the exporting process.
 | exportOptions    | Used for exporting options                                                                                                 | [`Options`][export-to-csv#api] \| `undefined`                                    |           |
 | metaData         | Metadata query for `dataProvider`                                                                                          | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                             | {}        |
 | dataProviderName | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.                         | `string`                                                                         | `default` |
+| onError          | Callback to handle error events of this hook                                                                               | `(error: any) => void`                                                           |  |
 
 ### `useExport` Return Values
 

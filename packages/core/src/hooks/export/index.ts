@@ -28,6 +28,7 @@ type UseExportOptionsType<
     exportOptions?: Options;
     metaData?: MetaDataQuery;
     dataProviderName?: string;
+    onError?: (error: any) => void;
 };
 
 type UseExportReturnType = {
@@ -57,6 +58,7 @@ export const useExport = <
     exportOptions,
     metaData,
     dataProviderName,
+    onError,
 }: UseExportOptionsType<TData, TVariables> = {}): UseExportReturnType => {
     const [isLoading, setIsLoading] = useState(false);
 
@@ -87,28 +89,37 @@ export const useExport = <
         let current = 1;
         let preparingData = true;
         while (preparingData) {
-            const { data, total } = await getList<TData>({
-                resource,
-                filters,
-                sort: sorter,
-                pagination: {
-                    current,
-                    pageSize,
-                },
-                metaData,
-            });
+            try {
+                const { data, total } = await getList<TData>({
+                    resource,
+                    filters,
+                    sort: sorter,
+                    pagination: {
+                        current,
+                        pageSize,
+                    },
+                    metaData,
+                });
 
-            current++;
+                current++;
 
-            rawData.push(...data);
+                rawData.push(...data);
 
-            if (maxItemCount && rawData.length >= maxItemCount) {
-                rawData = rawData.slice(0, maxItemCount);
+                if (maxItemCount && rawData.length >= maxItemCount) {
+                    rawData = rawData.slice(0, maxItemCount);
+                    preparingData = false;
+                }
+
+                if (total === rawData.length) {
+                    preparingData = false;
+                }
+            } catch (error) {
+                setIsLoading(false);
                 preparingData = false;
-            }
 
-            if (total === rawData.length) {
-                preparingData = false;
+                onError?.(error);
+
+                return;
             }
         }
 
