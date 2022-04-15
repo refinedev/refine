@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { MemoryRouter } from "react-router-dom";
 
 import { Refine } from "@pankod/refine-core";
@@ -39,7 +39,9 @@ interface ITestWrapperProps {
     DashboardPage?: React.FC;
 }
 
-export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
+export const TestWrapper: (
+    props: ITestWrapperProps,
+) => React.FC<{ children: ReactNode }> = ({
     dataProvider,
     authProvider,
     resources,

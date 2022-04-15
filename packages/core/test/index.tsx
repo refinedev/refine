@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 
@@ -51,7 +51,9 @@ interface ITestWrapperProps {
     refineProvider?: IRefineContextProvider;
 }
 
-export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
+export const TestWrapper: (
+    props: ITestWrapperProps,
+) => React.FC<{ children: ReactNode }> = ({
     authProvider,
     dataProvider,
     resources,
