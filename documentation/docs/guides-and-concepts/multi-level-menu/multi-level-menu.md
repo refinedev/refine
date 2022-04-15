@@ -54,8 +54,43 @@ To do this, it is necessary to create an object array with the following [resour
 The `parentName` you give in the resource objects must be strictly equal to the resource name you want to group under.<br />
 A resource given as a group can only have a `name` and a  `parentName`. They should not have other props such as list, edit, create etc.
 
-
 :::
+
+:::caution
+Because of the way next.js handles routing, you will need to use the `route` option to ensure routing continues to work when grouping resources under a parent.
+:::
+```tsx title="pages/_app.tsx"
+        <Refine
+           ...
+            resources={[
+                {
+                    name: "CMS",
+                },
+                {
+                    name: "posts",
+                    parentName: "CMS",
+                    // highlight-start
+                    options: { route: "/posts" },
+                    // highlight-end
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+                {
+                    name: "category",
+                    parentName: "CMS",
+                    // highlight-start
+                    options: { route: "/category" },
+                    // highlight-end
+                    list: CategoryList,
+                    create: CategoryCreate,
+                    edit: CategoryEdit,
+                    canDelete: true,
+                },
+            ]}
+        />
+```
 ### Ant Design
 
 The Sider component allows you to create the groups you want in the sider menu. By default, the sider will group menu items by their top-level heading. However, you can also add sub menu items to each group via `parentName`.
