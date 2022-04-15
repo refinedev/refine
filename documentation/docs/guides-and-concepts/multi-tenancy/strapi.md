@@ -116,7 +116,7 @@ export const authProvider: AuthProvider = {
 import { Refine } from "@pankod/refine-core";
 import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import { DataProvider } from "@pankod/refine-strapi-v4";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 
@@ -227,7 +227,7 @@ export const StoreProvider = (props: any) => {
 import { Refine } from "@pankod/refine-core";
 import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import { DataProvider } from "@pankod/refine-strapi-v4";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 

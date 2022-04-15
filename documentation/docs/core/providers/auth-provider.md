@@ -45,7 +45,7 @@ To use `authProvider` in **refine**, we have to pass the `authProvider` to the `
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-next-line

@@ -1,7 +1,7 @@
 import React from "react";
 import { useTitle } from "@pankod/refine-core";
 import { Menu, useMenu } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 const { Link } = routerProvider;
 

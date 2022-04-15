@@ -7,7 +7,7 @@ import {
 } from "@pankod/refine-antd";
 import { DemoSidebar, useDemoSidebar } from "@pankod/refine-demo-sidebar";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 

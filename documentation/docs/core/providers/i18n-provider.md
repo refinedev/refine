@@ -32,7 +32,7 @@ After creating a `i18nProvider`, you can pass it to the `<Refine>` component.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import i18nProvider from "./i18nProvider";
@@ -131,7 +131,7 @@ Next, we will include the i18n instance and create the `i18nProvider` using `rea
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 // highlight-next-line
 import { useTranslation } from "react-i18next";
 
@@ -509,7 +509,7 @@ Then, we will pass `<Header>` to the `<Refine>` component as a property.
 ```tsx title="src/App.tsx"
 import { Refine, Resource } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import { useTranslation } from "react-i18next";
 import "./i18n";
 

@@ -1,6 +1,6 @@
 import { Refine } from "@pankod/refine";
 
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import "styles/antd.less";
 import nestjsxCrudDataProvider from "@pankod/refine-nestjsx-crud";

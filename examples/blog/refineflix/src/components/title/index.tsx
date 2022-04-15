@@ -1,5 +1,5 @@
 import React from "react";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import { TitleProps } from "@pankod/refine-core";
 

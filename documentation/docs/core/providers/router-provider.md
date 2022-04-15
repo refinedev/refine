@@ -801,7 +801,7 @@ In the example below you can see how to serve the application in a subdirectory.
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 // highlight-next-line
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import "@pankod/refine/dist/styles.min.css";
 
