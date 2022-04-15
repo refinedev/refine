@@ -5,13 +5,11 @@ import { TestWrapper } from "@test";
 
 import { useAuthenticated } from "./";
 
-const mHistory = {
-    replace: jest.fn(),
-};
+const mHistory = jest.fn();
 
 jest.mock("react-router-dom", () => ({
     ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useHistory: jest.fn(() => mHistory),
+    useNavigate: () => mHistory,
 }));
 
 describe("useAuthenticated Hook", () => {
@@ -81,6 +79,6 @@ describe("useAuthenticated Hook", () => {
 
         expect(result.current?.isError).toBeTruthy();
 
-        expect(mHistory.replace).toBeCalledWith("/custom-url", undefined);
+        expect(mHistory).toBeCalledWith("/custom-url", { replace: true });
     });
 });

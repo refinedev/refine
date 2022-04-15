@@ -1,16 +1,14 @@
 import React from "react";
-import ReactRouterDom, { Route } from "react-router-dom";
+import ReactRouterDom, { Route, Routes } from "react-router-dom";
 
 import { fireEvent, render, TestWrapper, waitFor } from "@test";
 import { ShowButton } from "./";
 
-const mHistory = {
-    push: jest.fn(),
-};
+const mHistory = jest.fn();
 
 jest.mock("react-router-dom", () => ({
     ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useHistory: jest.fn(() => mHistory),
+    useNavigate: () => mHistory,
 }));
 
 describe("Show Button", () => {
@@ -148,9 +146,12 @@ describe("Show Button", () => {
 
     it("should create page redirect show route called function successfully if click the button", () => {
         const { getByText } = render(
-            <Route path="/:resource">
-                <ShowButton recordItemId="1" />
-            </Route>,
+            <Routes>
+                <Route
+                    path="/:resource"
+                    element={<ShowButton recordItemId="1" />}
+                />
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts" }],
@@ -161,32 +162,40 @@ describe("Show Button", () => {
 
         fireEvent.click(getByText("Show"));
 
-        expect(mHistory.push).toBeCalledWith("/posts/show/1");
+        expect(mHistory).toBeCalledWith("/posts/show/1");
     });
 
     it("should edit page redirect show route called function successfully if click the button", () => {
         const { getByText } = render(
-            <Route path="/:resource/:id">
-                <ShowButton />
-            </Route>,
+            <Routes>
+                <Route path="/:resource/:action/:id" element={<ShowButton />} />
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts" }],
-                    routerInitialEntries: ["/posts/1"],
+                    routerInitialEntries: ["/posts/show/1"],
                 }),
             },
         );
 
         fireEvent.click(getByText("Show"));
 
-        expect(mHistory.push).toBeCalledWith("/posts/show/1");
+        expect(mHistory).toBeCalledWith("/posts/show/1");
     });
 
     it("should custom resource and recordItemId redirect show route called function successfully if click the button", () => {
         const { getByText } = render(
-            <Route path="/:resource">
-                <ShowButton resourceName="categories" recordItemId="1" />
-            </Route>,
+            <Routes>
+                <Route
+                    path="/:resource"
+                    element={
+                        <ShowButton
+                            resourceName="categories"
+                            recordItemId="1"
+                        />
+                    }
+                />
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts" }, { name: "categories" }],
@@ -197,17 +206,22 @@ describe("Show Button", () => {
 
         fireEvent.click(getByText("Show"));
 
-        expect(mHistory.push).toBeCalledWith("/categories/show/1");
+        expect(mHistory).toBeCalledWith("/categories/show/1");
     });
 
     it("should redirect with custom route called function successfully if click the button", () => {
         const { getByText } = render(
-            <Route path="/:resource">
-                <ShowButton
-                    resourceNameOrRouteName="custom-route-posts"
-                    recordItemId="1"
+            <Routes>
+                <Route
+                    path="/:resource"
+                    element={
+                        <ShowButton
+                            resourceNameOrRouteName="custom-route-posts"
+                            recordItemId="1"
+                        />
+                    }
                 />
-            </Route>,
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     resources: [
@@ -224,6 +238,6 @@ describe("Show Button", () => {
 
         fireEvent.click(getByText("Show"));
 
-        expect(mHistory.push).toBeCalledWith("/custom-route-posts/show/1");
+        expect(mHistory).toBeCalledWith("/custom-route-posts/show/1");
     });
 });

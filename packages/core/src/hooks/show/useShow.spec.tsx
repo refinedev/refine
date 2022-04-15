@@ -1,6 +1,6 @@
 import React from "react";
 import { renderHook } from "@testing-library/react-hooks";
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import { MockJSONServer, TestWrapper, act } from "@test";
 import { posts } from "@test/dataMocks";
@@ -15,7 +15,9 @@ const Wrapper = TestWrapper({
 
 const WrapperWithRoute: React.FC = ({ children }) => (
     <Wrapper>
-        <Route path="/:resource/:action/:id">{children}</Route>
+        <Routes>
+            <Route path="/:resource/:action/:id" element={children} />
+        </Routes>
     </Wrapper>
 );
 describe("useShow Hook", () => {

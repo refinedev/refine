@@ -4,7 +4,7 @@ import { MockJSONServer, TestWrapper, act } from "@test";
 import { useForm } from "./useForm";
 
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import { posts } from "@test/dataMocks";
 
@@ -22,13 +22,17 @@ const CloneWrapper = TestWrapper({
 
 const EditWrapperWithRoute: React.FC = ({ children }) => (
     <EditWrapper>
-        <Route path="/:resource/:action/:id">{children}</Route>
+        <Routes>
+            <Route path="/:resource/:action/:id" element={children} />
+        </Routes>
     </EditWrapper>
 );
 
 const CloneWrapperWithRoute: React.FC = ({ children }) => (
     <CloneWrapper>
-        <Route path="/:resource/:action/:id">{children}</Route>
+        <Routes>
+            <Route path="/:resource/:action/:id" element={children} />
+        </Routes>
     </CloneWrapper>
 );
 
