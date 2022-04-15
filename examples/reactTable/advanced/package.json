@@ -1,11 +1,11 @@
 {
     "name": "refine-advanced-react-table-example",
-    "version": "3.12.3",
+    "version": "3.13.0",
     "private": true,
     "dependencies": {
         "@hookform/error-message": "^2.0.0",
         "@pankod/refine-core": "^3.12.3",
-        "@pankod/refine-react-hook-form": "^3.12.3",
+        "@pankod/refine-react-hook-form": "^3.13.0",
         "@pankod/refine-react-router": "^3.12.3",
         "@pankod/refine-react-table": "^3.12.3",
         "@pankod/refine-simple-rest": "^3.12.3",
