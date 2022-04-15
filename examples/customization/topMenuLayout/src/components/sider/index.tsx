@@ -1,7 +1,7 @@
 import React from "react";
 import { useTitle } from "@pankod/refine-core";
 import { Menu, useMenu } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 const { Link } = routerProvider;
 
@@ -15,7 +15,7 @@ export const CustomSider: React.FC = () => {
             <Menu selectedKeys={[selectedKey]} mode="horizontal">
                 {menuItems.map(({ icon, route, label }) => (
                     <Menu.Item key={route} icon={icon}>
-                        <Link to={route}>{label}</Link>
+                        <Link to={route ?? ""}>{label}</Link>
                     </Menu.Item>
                 ))}
             </Menu>

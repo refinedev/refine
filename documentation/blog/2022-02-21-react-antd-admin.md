@@ -142,7 +142,7 @@ Let's define our i18n provider and give it a **refine**.
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import { notificationProvider, Layout } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import "@pankod/refine-antd/dist/styles.min.css";
@@ -471,7 +471,7 @@ Then pass liveProvider from @pankod/refine-ably to `<Refine>`.
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import { notificationProvider, Layout } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 //highlight-start
 import { liveProvider } from "@pankod/refine-ably";

@@ -1,22 +1,20 @@
 import React from "react";
-import ReactRouterDom, { Route } from "react-router-dom";
+import ReactRouterDom, { Route, Routes } from "react-router-dom";
 import { fireEvent, render, TestWrapper, waitFor } from "@test";
 import { EditButton } from "./";
 
-const mHistory = {
-    push: jest.fn(),
-};
+const mHistory = jest.fn();
 
 jest.mock("react-router-dom", () => ({
     ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useHistory: jest.fn(() => mHistory),
+    useNavigate: () => mHistory,
 }));
 
 describe("Edit Button", () => {
     const edit = jest.fn();
 
     beforeEach(() => {
-        mHistory.push.mockReset();
+        mHistory.mockReset();
     });
 
     it("should render button successfuly", () => {
@@ -151,9 +149,17 @@ describe("Edit Button", () => {
 
     it("should custom resource and recordItemId redirect show route called function successfully if click the button", () => {
         const { getByText } = render(
-            <Route path="/:resource">
-                <EditButton resourceName="categories" recordItemId="1" />
-            </Route>,
+            <Routes>
+                <Route
+                    path="/:resource"
+                    element={
+                        <EditButton
+                            resourceName="categories"
+                            recordItemId="1"
+                        />
+                    }
+                />
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts" }, { name: "categories" }],
@@ -163,17 +169,22 @@ describe("Edit Button", () => {
         );
         fireEvent.click(getByText("Edit"));
 
-        expect(mHistory.push).toBeCalledWith("/categories/edit/1");
+        expect(mHistory).toBeCalledWith("/categories/edit/1");
     });
 
     it("should redirect with custom route called function successfully if click the button", () => {
         const { getByText } = render(
-            <Route path="/:resource">
-                <EditButton
-                    resourceNameOrRouteName="custom-route-posts"
-                    recordItemId={1}
+            <Routes>
+                <Route
+                    path="/:resource"
+                    element={
+                        <EditButton
+                            resourceNameOrRouteName="custom-route-posts"
+                            recordItemId={1}
+                        />
+                    }
                 />
-            </Route>,
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     resources: [
@@ -190,6 +201,6 @@ describe("Edit Button", () => {
 
         fireEvent.click(getByText("Edit"));
 
-        expect(mHistory.push).toBeCalledWith("/custom-route-posts/edit/1");
+        expect(mHistory).toBeCalledWith("/custom-route-posts/edit/1");
     });
 });

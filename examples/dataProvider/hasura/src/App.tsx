@@ -4,7 +4,7 @@ import {
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-hasura";
 import { GraphQLClient } from "graphql-request";
 import "@pankod/refine-antd/dist/styles.min.css";

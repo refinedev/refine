@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { AccessControlProvider } from "@pankod/refine-core";
 import { Button } from "antd";
 
@@ -10,12 +10,17 @@ const renderEdit = (
     edit: ReactNode,
     accessControlProvider?: AccessControlProvider,
 ) => {
-    return render(<Route path="/:resource/edit/:id">{edit}</Route>, {
-        wrapper: TestWrapper({
-            routerInitialEntries: ["/posts/edit/1"],
-            accessControlProvider,
-        }),
-    });
+    return render(
+        <Routes>
+            <Route path="/:resource/edit/:id" element={edit} />
+        </Routes>,
+        {
+            wrapper: TestWrapper({
+                routerInitialEntries: ["/posts/edit/1"],
+                accessControlProvider,
+            }),
+        },
+    );
 };
 
 describe("Edit", () => {
@@ -67,9 +72,9 @@ describe("Edit", () => {
 
     it("should render with label instead of resource name successfully", () => {
         const { getByText } = render(
-            <Route path="/:resource/edit/:id">
-                <Edit />
-            </Route>,
+            <Routes>
+                <Route path="/:resource/edit/:id" element={<Edit />} />
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     resources: [
@@ -100,9 +105,12 @@ describe("Edit", () => {
 
     it("should render optional resource with resource prop", () => {
         const { getByText } = render(
-            <Route>
-                <Edit resource="posts" />
-            </Route>,
+            <Routes>
+                <Route
+                    path="/:resource"
+                    element={<Edit resource="posts" />}
+                ></Route>
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     routerInitialEntries: ["/custom"],
@@ -126,9 +134,9 @@ describe("Edit", () => {
     describe("render delete button", () => {
         it("should render delete button ", () => {
             const { getByText, queryByTestId } = render(
-                <Route path="/:resource/edit/:id">
-                    <Edit />
-                </Route>,
+                <Routes>
+                    <Route path="/:resource/edit/:id" element={<Edit />} />
+                </Routes>,
                 {
                     wrapper: TestWrapper({
                         resources: [{ name: "posts", canDelete: true }],
@@ -144,9 +152,12 @@ describe("Edit", () => {
 
         it("should not render delete button on resource canDelete false", () => {
             const { getByText, queryByTestId } = render(
-                <Route path="/:resource/edit/:id">
-                    <Edit />
-                </Route>,
+                <Routes>
+                    <Route
+                        path="/:resource/edit/:id"
+                        element={<Edit />}
+                    ></Route>
+                </Routes>,
                 {
                     wrapper: TestWrapper({
                         resources: [{ name: "posts", canDelete: false }],
@@ -162,9 +173,13 @@ describe("Edit", () => {
 
         it("should not render delete button on resource canDelete true & canDelete props false on component", () => {
             const { queryByTestId } = render(
-                <Route path="/:resource/edit/:id">
-                    <Edit canDelete={false} />
-                </Route>,
+                <Routes>
+                    <Route
+                        path="/:resource/edit/:id"
+                        element={<Edit canDelete={false} />}
+                    ></Route>
+                </Routes>,
+
                 {
                     wrapper: TestWrapper({
                         resources: [{ name: "posts", canDelete: true }],
@@ -178,9 +193,12 @@ describe("Edit", () => {
 
         it("should render delete button on resource canDelete false & canDelete props true on component", () => {
             const { queryByTestId } = render(
-                <Route path="/:resource/edit/:id">
-                    <Edit canDelete={true} />
-                </Route>,
+                <Routes>
+                    <Route
+                        path="/:resource/edit/:id"
+                        element={<Edit canDelete={true} />}
+                    ></Route>
+                </Routes>,
                 {
                     wrapper: TestWrapper({
                         resources: [{ name: "posts", canDelete: false }],
@@ -194,9 +212,12 @@ describe("Edit", () => {
 
         it("should render delete button on resource canDelete false & deleteButtonProps props not null on component", () => {
             const { queryByTestId } = render(
-                <Route path="/:resource/edit/:id">
-                    <Edit deleteButtonProps={{ size: "large" }} />
-                </Route>,
+                <Routes>
+                    <Route
+                        path="/:resource/edit/:id"
+                        element={<Edit deleteButtonProps={{ size: "large" }} />}
+                    ></Route>
+                </Routes>,
                 {
                     wrapper: TestWrapper({
                         resources: [{ name: "posts", canDelete: false }],

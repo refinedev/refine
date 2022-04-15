@@ -1,5 +1,5 @@
 import React from "react";
-import ReactRouterDom, { Route } from "react-router-dom";
+import ReactRouterDom, { Route, Routes } from "react-router-dom";
 
 import { ErrorComponent } from ".";
 import { render, fireEvent, TestWrapper } from "@test";
@@ -41,11 +41,11 @@ describe("ErrorComponent", () => {
         expect(mHistory.push).toBeCalledWith("/", undefined);
     });
 
-    it("renders error messages if resources action's not found", async () => {
+    fit("renders error messages if resources action's not found", async () => {
         const { getByTestId, findByText } = render(
-            <Route path="/:resource?/:action?">
-                <ErrorComponent />
-            </Route>,
+            <Routes>
+                <Route path="/:resource/:action" element={<ErrorComponent />} />
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     routerInitialEntries: ["/posts/create"],
@@ -64,9 +64,9 @@ describe("ErrorComponent", () => {
 
     it("renders error messages if resource action's is different from 'create, edit, show'", () => {
         const { getByText } = render(
-            <Route path="/:resource?/:action?">
-                <ErrorComponent />
-            </Route>,
+            <Routes>
+                <Route path="/:resource/:action" element={<ErrorComponent />} />
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     routerInitialEntries: ["/posts/invalidActionType"],

@@ -5,18 +5,16 @@ import { act, TestWrapper } from "@test";
 
 import { useLogout } from "./";
 
-const mHistory = {
-    push: jest.fn(),
-};
+const mHistory = jest.fn();
 
 jest.mock("react-router-dom", () => ({
     ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useHistory: jest.fn(() => mHistory),
+    useNavigate: () => mHistory,
 }));
 
 describe("useLogout Hook", () => {
     beforeEach(() => {
-        mHistory.push.mockReset();
+        mHistory.mockReset();
     });
 
     it("logout and redirect to login", async () => {
@@ -45,7 +43,7 @@ describe("useLogout Hook", () => {
         });
 
         await act(async () => {
-            expect(mHistory.push).toBeCalledWith("/login", undefined);
+            expect(mHistory).toBeCalledWith("/login", undefined);
         });
     });
 
@@ -75,7 +73,7 @@ describe("useLogout Hook", () => {
         });
 
         await act(async () => {
-            expect(mHistory.push).not.toBeCalled();
+            expect(mHistory).not.toBeCalled();
         });
     });
 
@@ -108,7 +106,7 @@ describe("useLogout Hook", () => {
         });
 
         await act(async () => {
-            expect(mHistory.push).toBeCalledWith("/custom-path", undefined);
+            expect(mHistory).toBeCalledWith("/custom-path", undefined);
         });
     });
 

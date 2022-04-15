@@ -54,7 +54,7 @@ To use `notificationProvider` in refine, we have to pass the notificationProvide
 
 ```tsx
 import { Refine, NotificationProvider } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 //highlight-start

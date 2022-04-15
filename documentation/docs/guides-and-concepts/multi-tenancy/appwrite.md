@@ -38,7 +38,7 @@ To make this example more visual, we used the [`@pankod/refine-antd`](https://gi
 import { Refine } from "@pankod/refine-core";
 import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import { dataProvider } from "@pankod/refine-appwrite";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 
@@ -124,7 +124,7 @@ export const StoreProvider = (props: any) => {
 import { Refine } from "@pankod/refine-core";
 import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import { dataProvider } from "@pankod/refine-appwrite";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 
@@ -599,7 +599,7 @@ Appwrite Realtime API support is out-of-the-box supported by **refine**, just ad
 import { Refine } from "@pankod/refine-core";
 import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import { dataProvider, liveProvider } from "@pankod/refine-appwrite";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 
