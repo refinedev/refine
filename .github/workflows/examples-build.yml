@@ -34,6 +34,5 @@ jobs:
       - run: |
           npm ci
           npm run bootstrap -- --scope "refine*"
-          npm run build
           npm run build -- --scope "refine*"
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && contains(steps.pr-labels.outputs.labels, ' build-examples '))
