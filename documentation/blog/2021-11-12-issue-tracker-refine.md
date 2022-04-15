@@ -501,7 +501,7 @@ function App() {
         ...routerProvider,
         routes: [
           {
-            component: <Signup />,
+            element: <Signup />,
             path: "/signup",
           },
         ] as typeof routerProvider.routes,
@@ -553,7 +553,7 @@ function App() {
         ...routerProvider,
         routes: [
           {
-            component: <Signup />,
+            element: <Signup />,
             path: "/signup",
           },
         ] as typeof routerProvider.routes,
@@ -1366,7 +1366,7 @@ function App() {
         ...routerProvider,
         routes: [
           {
-            component: <Signup />,
+            element: <Signup />,
             path: "/signup",
           },
         ] as typeof routerProvider.routes,
