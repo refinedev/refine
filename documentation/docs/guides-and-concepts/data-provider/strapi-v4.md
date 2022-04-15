@@ -80,10 +80,10 @@ To make this example more visual, we used the [`@pankod/refine-antd`](https://gi
 
 ```tsx title="App.tsx"
 import { Refine, AuthProvider } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 //highlight-next-line
 import { DataProvider } from "@pankod/refine-strapi-v4";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 const App: React.FC = () => {
     return (

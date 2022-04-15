@@ -479,7 +479,7 @@ export const Signup: React.FC = () => {
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import { dataProvider } from "@pankod/refine-supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
@@ -501,8 +501,7 @@ function App() {
         ...routerProvider,
         routes: [
           {
-            exact: true,
-            component: Signup,
+            element: <Signup />,
             path: "/signup",
           },
         ] as typeof routerProvider.routes,
@@ -534,7 +533,7 @@ We can now create supabase users and log in from our refine interface.
 
 ```tsx
 import { Refine } from "@pankod/refine";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import { dataProvider } from "@pankod/refine-supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
@@ -554,8 +553,7 @@ function App() {
         ...routerProvider,
         routes: [
           {
-            exact: true,
-            component: Signup,
+            element: <Signup />,
             path: "/signup",
           },
         ] as typeof routerProvider.routes,
@@ -1347,7 +1345,7 @@ Final version of our `<App.tsx/>`.
 
 ```tsx
 import { Refine } from "@pankod/refine";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import { dataProvider } from "@pankod/refine-supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
@@ -1368,8 +1366,7 @@ function App() {
         ...routerProvider,
         routes: [
           {
-            exact: true,
-            component: Signup,
+            element: <Signup />,
             path: "/signup",
           },
         ] as typeof routerProvider.routes,

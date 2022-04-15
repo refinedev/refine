@@ -25,7 +25,7 @@ Let's look at an example of modifying the default layout to have a top menu layo
 ```tsx title="/src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import { AntdLayout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import "@pankod/refine-antd/dist/styles.min.css";
@@ -83,7 +83,7 @@ So, we just provided a custom [`<Sider>`][sider]. Here's our custom sider that l
 ```tsx  title="/src/components/sider/index.tsx"
 import { useTitle } from "@pankod/refine-core";
 import { Menu, useMenu } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 const { Link } = routerProvider;
 
@@ -100,7 +100,7 @@ export const CustomSider: React.FC = () => {
             <Menu selectedKeys={[selectedKey]} mode="horizontal">
                 {menuItems.map(({ icon, route, label }) => (
                     <Menu.Item key={route} icon={icon}>
-                        <Link to={route}>{label}</Link>
+                        <Link to={route ?? ""}>{label}</Link>
                     </Menu.Item>
                 ))}
             </Menu>

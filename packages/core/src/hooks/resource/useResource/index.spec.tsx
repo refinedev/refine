@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import { renderHook } from "@testing-library/react-hooks";
 
@@ -59,7 +59,9 @@ describe("useResource Hook without prop", () => {
 
     const WrapperWith: React.FC = ({ children }) => (
         <Wrapper>
-            <Route path="/:resource/:action/:id">{children}</Route>
+            <Routes>
+                <Route path="/:resource/:action/:id" element={children} />
+            </Routes>
         </Wrapper>
     );
 
@@ -84,7 +86,9 @@ describe("useResource Hook without prop", () => {
 
         const WrapperWith: React.FC = ({ children }) => (
             <Wrapper>
-                <Route path="/:resource">{children}</Route>
+                <Routes>
+                    <Route path="/:resource" element={children} />
+                </Routes>
             </Wrapper>
         );
         const { result } = renderHook(() => useResource(), {
@@ -105,7 +109,9 @@ describe("useResource Hook with resourceName:propResourceName prop", () => {
 
         const WrapperWith: React.FC = ({ children }) => (
             <Wrapper>
-                <Route path="/:resource">{children}</Route>
+                <Routes>
+                    <Route path="/:resource" element={children} />
+                </Routes>
             </Wrapper>
         );
         const { result } = renderHook(
@@ -128,7 +134,9 @@ describe("useResource Hook with resourceNameOrRouteName prop", () => {
 
         const WrapperWith: React.FC = ({ children }) => (
             <Wrapper>
-                <Route path="/:resource">{children}</Route>
+                <Routes>
+                    <Route path="/:resource" element={children} />
+                </Routes>
             </Wrapper>
         );
         const { result } = renderHook(
@@ -150,7 +158,9 @@ describe("useResource Hook with recordItemId prop", () => {
 
         const WrappeWith: React.FC = ({ children }) => (
             <Wrapper>
-                <Route path="/:resource">{children}</Route>
+                <Routes>
+                    <Route path="/:resource" element={children} />
+                </Routes>
             </Wrapper>
         );
         const { result } = renderHook(

@@ -1,11 +1,11 @@
 {
   "name": "refine-react-toastify-example",
-  "version": "3.12.3",
+  "version": "3.13.0",
   "private": true,
   "dependencies": {
     "@pankod/refine-core": "^3.12.3",
-    "@pankod/refine-react-hook-form": "^3.12.3",
-    "@pankod/refine-react-router": "^3.12.3",
+    "@pankod/refine-react-hook-form": "^3.13.0",
+    "@pankod/refine-react-router-v6": "^3.12.3",
     "@pankod/refine-react-table": "^3.12.3",
     "@pankod/refine-simple-rest": "^3.12.3",
     "@types/node": "^12.20.11",

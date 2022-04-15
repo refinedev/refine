@@ -4,7 +4,7 @@ import {
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import { dataProvider } from "@pankod/refine-supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
@@ -28,8 +28,7 @@ function App() {
                 ...routerProvider,
                 routes: [
                     {
-                        exact: true,
-                        component: Signup,
+                        element: <Signup />,
                         path: "/signup",
                     },
                 ] as typeof routerProvider.routes,
