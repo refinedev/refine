@@ -1,7 +1,7 @@
 {
   "name": "@pankod/refine-hasura",
   "description": "refine Hasura data provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
-  "version": "3.12.3",
+  "version": "3.14.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -30,7 +30,7 @@
     "typescript": "^4.4.3"
   },
   "dependencies": {
-    "@pankod/refine-core": "^3.12.3",
+    "@pankod/refine-core": "^3.14.0",
     "gql-query-builder": "^3.5.5",
     "graphql": "^15.6.1",
     "graphql-request": "^3.5.0"

@@ -1,12 +1,12 @@
 {
   "name": "custom-pages-example",
-  "version": "3.12.3",
+  "version": "3.14.0",
   "private": true,
   "dependencies": {
-    "@pankod/refine-antd": "^3.12.3",
-    "@pankod/refine-core": "^3.12.3",
-    "@pankod/refine-react-router-v6": "^3.12.3",
-    "@pankod/refine-simple-rest": "^3.12.3",
+    "@pankod/refine-antd": "^3.14.0",
+    "@pankod/refine-core": "^3.14.0",
+    "@pankod/refine-react-router-v6": "^3.14.0",
+    "@pankod/refine-simple-rest": "^3.14.0",
     "@types/node": "^12.20.11",
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.4",

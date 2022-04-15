@@ -1,7 +1,7 @@
 {
   "name": "@pankod/refine-nestjsx-crud",
   "description": "refine Nestjsx Crud data provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
-  "version": "3.12.3",
+  "version": "3.14.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@nestjsx/crud-request": "^5.0.0-alpha.3",
-    "@pankod/refine-core": "^3.12.3",
+    "@pankod/refine-core": "^3.14.0",
     "axios": "^0.21.4",
     "query-string": "^7.0.1"
   },

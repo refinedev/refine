@@ -1,6 +1,6 @@
 {
   "name": "refine-ecommerce-example",
-  "version": "3.12.3",
+  "version": "3.14.0",
   "private": true,
   "scripts": {
     "dev": "NODE_OPTIONS=--max_old_space_size=4096 next dev",
@@ -13,10 +13,10 @@
     "@chakra-ui/react": "^1.8.3",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
-    "@pankod/refine-core": "^3.12.3",
-    "@pankod/refine-nextjs-router": "^3.12.3",
-    "@pankod/refine-strapi": "^3.12.3",
-    "@pankod/refine-strapi-v4": "^3.12.3",
+    "@pankod/refine-core": "^3.14.0",
+    "@pankod/refine-nextjs-router": "^3.14.0",
+    "@pankod/refine-strapi": "^3.14.0",
+    "@pankod/refine-strapi-v4": "^3.14.0",
     "axios": "^0.21.4",
     "framer-motion": "^5.6.0",
     "next": "^12.0.3",
