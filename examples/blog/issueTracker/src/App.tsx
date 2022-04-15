@@ -28,8 +28,7 @@ function App() {
                 ...routerProvider,
                 routes: [
                     {
-                        exact: true,
-                        component: Signup,
+                        component: <Signup />,
                         path: "/signup",
                     },
                 ] as typeof routerProvider.routes,
