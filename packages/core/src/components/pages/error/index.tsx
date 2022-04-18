@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
     useNavigation,
@@ -25,7 +25,7 @@ export const ErrorComponent: React.FC = () => {
     const params = useParams<ResourceErrorRouterParams>();
     const resource = useResourceWithRoute();
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (params.resource) {
             const resourceFromRoute = resource(params.resource);
             if (
