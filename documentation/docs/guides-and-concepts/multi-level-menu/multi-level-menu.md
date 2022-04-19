@@ -54,7 +54,6 @@ To do this, it is necessary to create an object array with the following [resour
 The `parentName` you give in the resource objects must be strictly equal to the resource name you want to group under.<br />
 A resource given as a group can only have a `name` and a  `parentName`. They should not have other props such as list, edit, create etc.
 
-:::
 
 :::caution
 Because of the way next.js handles routing, you will need to use the `route` option to ensure routing continues to work when grouping resources under a parent.
