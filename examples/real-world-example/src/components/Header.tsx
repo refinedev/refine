@@ -1,84 +1,56 @@
-import { useNavigation, useAuthenticated } from "@pankod/refine-core";
+import { useGetIdentity } from "@pankod/refine-core";
 
+import routerProvider from "@pankod/refine-react-router-v6";
+
+const { Link } = routerProvider;
 export const Header: React.FC = () => {
-    const { push } = useNavigation();
-    const { isSuccess } = useAuthenticated();
+    const { isSuccess } = useGetIdentity();
 
     return (
         <>
             <nav className="navbar navbar-light">
                 <div className="container">
-                    <a className="navbar-brand" href="index.html">
+                    <Link className="navbar-brand" to="/">
                         conduit
-                    </a>
+                    </Link>
                     <ul className="nav navbar-nav pull-xs-right">
                         <li className="nav-item">
-                            <a
-                                className="nav-link active"
-                                href=""
-                                onClick={() => {
-                                    push("/home");
-                                }}
-                            >
+                            <Link className="nav-link active" to="/home">
                                 Home
-                            </a>
+                            </Link>
                         </li>
                         {!isSuccess ? (
                             <>
                                 <li className="nav-item">
-                                    <a
-                                        className="nav-link"
-                                        href=""
-                                        onClick={() => {
-                                            push("/login");
-                                        }}
-                                    >
+                                    <Link className="nav-link" to="/login">
                                         Sign in
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a
-                                        className="nav-link"
-                                        href=""
-                                        onClick={() => {
-                                            push("/register");
-                                        }}
-                                    >
+                                    <Link className="nav-link" to="/register">
                                         Sign up
-                                    </a>
+                                    </Link>
                                 </li>
                             </>
                         ) : (
                             <>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="">
+                                    <Link className="nav-link" to="#">
                                         <i className="ion-compose"></i>&nbsp;New
                                         Article
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a
-                                        className="nav-link"
-                                        href=""
-                                        onClick={() => {
-                                            push("/settings");
-                                        }}
-                                    >
+                                    <Link className="nav-link" to="/settings">
                                         <i className="ion-gear-a"></i>
                                         &nbsp;Settings
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a
-                                        className="nav-link"
-                                        href=""
-                                        onClick={() => {
-                                            push("/profile");
-                                        }}
-                                    >
+                                    <Link className="nav-link" to="/profile">
                                         <i className="ion-gear-a"></i>
                                         &nbsp;Profile
-                                    </a>
+                                    </Link>
                                 </li>
                             </>
                         )}

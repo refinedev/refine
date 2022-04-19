@@ -16,6 +16,11 @@ function App() {
                 ...routerProvider,
                 routes: [
                     {
+                        element: <HomePage />,
+                        path: "/",
+                        layout: true,
+                    },
+                    {
                         element: <LoginPage />,
                         path: "/login",
                         layout: true,
@@ -23,11 +28,6 @@ function App() {
                     {
                         element: <RegisterPage />,
                         path: "/register",
-                        layout: true,
-                    },
-                    {
-                        element: <HomePage />,
-                        path: "/home",
                         layout: true,
                     },
                     {
@@ -44,7 +44,8 @@ function App() {
             }}
             dataProvider={dataProvider("https://api.realworld.io/api")}
             authProvider={authProvider}
-            resources={[{ name: "home" }]}
+            // TODO: fix me
+            resources={[{ name: "home", list: HomePage }]}
             Layout={Layout}
         />
     );

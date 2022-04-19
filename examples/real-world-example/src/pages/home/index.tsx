@@ -1,9 +1,11 @@
-import { useList } from "@pankod/refine-core";
+import { useGetIdentity, useList } from "@pankod/refine-core";
 import { ArticleList } from "components/article";
 
 import dayjs from "dayjs";
 
 export const HomePage: React.FC = () => {
+    const { isSuccess } = useGetIdentity();
+
     const tagList: any = useList({
         resource: "tags",
     });
@@ -26,11 +28,16 @@ export const HomePage: React.FC = () => {
                     <div className="col-md-9">
                         <div className="feed-toggle">
                             <ul className="nav nav-pills outline-active">
-                                <li className="nav-item">
-                                    <a className="nav-link disabled" href="">
-                                        Your Feed
-                                    </a>
-                                </li>
+                                {isSuccess && (
+                                    <li className="nav-item">
+                                        <a
+                                            className="nav-link disabled"
+                                            href=""
+                                        >
+                                            Your Feed
+                                        </a>
+                                    </li>
+                                )}
                                 <li className="nav-item">
                                     <a className="nav-link active" href="">
                                         Global Feed
