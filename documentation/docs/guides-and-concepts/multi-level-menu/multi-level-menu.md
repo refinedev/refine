@@ -78,9 +78,8 @@ Since your Next.js applications are routing file-based, you need to manage the n
                 {
                     name: "category",
                     parentName: "CMS",
-                    // highlight-start
+                    // highlight-next-line
                     options: { route: "/category" },
-                    // highlight-end
                     list: CategoryList,
                     create: CategoryCreate,
                     edit: CategoryEdit,
