@@ -21,7 +21,16 @@ export const authProvider = (axiosInstance: AxiosInstance): AuthProvider => {
             return Promise.resolve();
         },
         checkError: () => Promise.resolve(),
-        checkAuth: () => Promise.resolve(),
+        checkAuth: () => {
+            const token = localStorage.getItem(TOKEN_KEY);
+            if (token) {
+                axiosInstance.defaults.headers.common = {
+                    Authorization: `Bearer ${token}`,
+                };
+            }
+
+            return Promise.resolve();
+        },
         getPermissions: () => Promise.resolve(),
         getUserIdentity: async () => {
             const token = localStorage.getItem(TOKEN_KEY);

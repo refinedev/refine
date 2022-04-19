@@ -1,6 +1,6 @@
-import { useGetIdentity, useCustom } from "@pankod/refine-core";
+import { useGetIdentity, useList } from "@pankod/refine-core";
 
-import { IUser } from "interfaces";
+import { IArticle, IUser } from "interfaces";
 import { ArticleList } from "components/article";
 
 import dayjs from "dayjs";
@@ -8,20 +8,15 @@ import dayjs from "dayjs";
 export const ProfilePage: React.FC = () => {
     const { data: user, isLoading } = useGetIdentity<IUser>();
 
-    // const userArticleList = useList({
-    //   resource: "articles?author=mlh&limit=5&offset=0",
-    //   // config: {
-    //   //   filters: [{ field: "author", value: user?.username, operator: "eq" }],
-    //   // }
-    // });
-
-    const { data, isLoading: loading } = useCustom<{ articles: [] }>({
-        url: `https://api.realworld.io/api/articles?author=${user?.username}&limit=5&offset=0`,
-        method: "get",
+    const { data, isLoading: loading } = useList<IArticle>({
+        resource: "articles",
+        queryOptions: {
+            enabled: user !== undefined,
+        },
         config: {
-            headers: {
-                Authorization: `Token ${user?.token}`,
-            },
+            filters: [
+                { field: "author", value: user?.username, operator: "eq" },
+            ],
         },
     });
 
@@ -66,7 +61,7 @@ export const ProfilePage: React.FC = () => {
 
                         {!loading &&
                             user &&
-                            data?.data?.articles.map((item: any) => {
+                            data?.data?.map((item) => {
                                 return (
                                     <ArticleList
                                         key={item.slug}
