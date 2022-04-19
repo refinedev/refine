@@ -20,7 +20,7 @@ const App: React.FC = () => {
         login: (params: any) => {
             if (params.username === "admin") {
                 localStorage.setItem("username", params.username);
-                return Promise.resolve();
+                return Promise.resolve("/hede3");
             }
 
             return Promise.reject();

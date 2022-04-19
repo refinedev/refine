@@ -116,7 +116,7 @@ const JsonServer = (
         const total = +headers["x-total-count"];
 
         return {
-            data,
+            ...data,
             total,
         };
     },

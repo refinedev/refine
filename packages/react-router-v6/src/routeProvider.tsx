@@ -1,6 +1,5 @@
-/* eslint-disable react/display-name */
 import React from "react";
-import { RouteProps, Route, Routes, Navigate, Outlet } from "react-router-dom";
+import { Route, Routes, Navigate, Outlet } from "react-router-dom";
 import {
     LoginPage as DefaultLoginPage,
     ErrorComponent,
@@ -12,6 +11,7 @@ import {
     useRouterContext,
     CanAccess,
     ResourceRouterParams,
+    IRouterProvider,
 } from "@pankod/refine-core";
 import { RefineRouteProps } from "./index";
 
@@ -133,10 +133,14 @@ export const RouteProvider = () => {
     const { resources } = useResource();
     const { catchAll, DashboardPage, LoginPage } = useRefineContext();
 
-    const { routes: customRoutes }: { routes: RouteProps[] } =
-        useRouterContext();
+    const {
+        routes: customRoutes,
+        initialRoute,
+        useLocation,
+    }: IRouterProvider = useRouterContext();
 
     const isAuthenticated = useIsAuthenticated();
+    const location = useLocation();
     const { isLoading } = useAuthenticated({ type: "routeProvider" });
 
     if (isLoading) {
@@ -150,6 +154,8 @@ export const RouteProvider = () => {
     const CustomPathAfterLogin: React.FC = (): JSX.Element | null => {
         const { pathname, search } = location;
         const toURL = `${pathname}${search}`;
+
+        console.log(toURL);
 
         return <Navigate to={`/login?to=${encodeURIComponent(toURL)}`} />;
     };
@@ -176,6 +182,8 @@ export const RouteProvider = () => {
         );
         resourceRoutes.push(route);
     });
+
+    console.log({ initialRoute, location });
 
     const renderAuthorized = () => (
         <Routes>
@@ -208,7 +216,9 @@ export const RouteProvider = () => {
                 <Route
                     index
                     element={
-                        DashboardPage ? (
+                        initialRoute && location.pathname !== initialRoute ? (
+                            <Navigate to={initialRoute} />
+                        ) : DashboardPage ? (
                             <CanAccess
                                 resource="dashboard"
                                 action="list"

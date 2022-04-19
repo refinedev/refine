@@ -2,8 +2,15 @@ import { useContext } from "react";
 import { RouterContext } from "@contexts/router";
 
 export const useRouterContext = () => {
-    const { useHistory, useLocation, useParams, Prompt, Link, routes } =
-        useContext(RouterContext);
+    const {
+        useHistory,
+        useLocation,
+        useParams,
+        Prompt,
+        Link,
+        routes,
+        initialRoute,
+    } = useContext(RouterContext);
 
     return {
         useHistory,
@@ -12,5 +19,6 @@ export const useRouterContext = () => {
         Prompt,
         Link,
         routes,
+        initialRoute,
     };
 };

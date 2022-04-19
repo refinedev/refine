@@ -1,4 +1,4 @@
-import { Refine } from "@pankod/refine-core";
+import { AuthProvider, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -13,9 +13,41 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
+    const authProvider: AuthProvider = {
+        login: (params: any) => {
+            if (params.username === "admin") {
+                localStorage.setItem("username", params.username);
+                return Promise.resolve("/hede3");
+            }
+
+            return Promise.reject();
+        },
+        logout: () => {
+            localStorage.removeItem("username");
+            return Promise.resolve();
+        },
+        checkError: () => Promise.resolve(),
+        checkAuth: () =>
+            localStorage.getItem("username")
+                ? Promise.resolve()
+                : Promise.reject(),
+        getPermissions: () => Promise.resolve(["admin"]),
+        getUserIdentity: () =>
+            Promise.resolve({
+                id: 1,
+                name: "Jane Doe",
+                avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
+            }),
+    };
+
     return (
         <Refine
-            routerProvider={routerProvider}
+            DashboardPage={PostList}
+            authProvider={authProvider}
+            routerProvider={{
+                ...routerProvider,
+                initialRoute: "/hede",
+            }}
             dataProvider={dataProvider(API_URL)}
             resources={[
                 {

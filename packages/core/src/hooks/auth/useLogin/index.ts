@@ -37,9 +37,13 @@ export const useLogin = <TVariables = {}>(): UseMutationResult<
         loginFromContext,
         {
             onSuccess: (redirectPathFromAuth) => {
+                console.log("to", to);
+
                 if (to) {
                     return replace(to as string);
                 }
+
+                console.log("redirectPathFromAuth", redirectPathFromAuth);
 
                 if (redirectPathFromAuth !== false) {
                     if (redirectPathFromAuth) {

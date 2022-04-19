@@ -21,7 +21,9 @@ export const RouterContextProvider: React.FC<IRouterContext> = ({
     Prompt,
     Link,
     routes,
+    initialRoute,
 }) => {
+    console.log(initialRoute);
     return (
         <RouterContext.Provider
             value={{
@@ -31,6 +33,7 @@ export const RouterContextProvider: React.FC<IRouterContext> = ({
                 Prompt,
                 Link,
                 routes,
+                initialRoute,
             }}
         >
             {children}
