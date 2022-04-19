@@ -1,12 +1,12 @@
-import { useGetIdentity, useList } from "@pankod/refine-core";
+import { useGetIdentity, useList, useNavigation } from "@pankod/refine-core";
 
 import { IArticle, IUser } from "interfaces";
 import { ArticleList } from "components/article";
-
 import dayjs from "dayjs";
 
 export const ProfilePage: React.FC = () => {
     const { data: user, isLoading } = useGetIdentity<IUser>();
+    const { push } = useNavigation();
 
     const { data, isLoading: loading } = useList<IArticle>({
         resource: "articles",
@@ -32,7 +32,12 @@ export const ProfilePage: React.FC = () => {
                             />
                             <h4>{isLoading ? "loading" : user?.username}</h4>
                             <p>{isLoading ? "loading" : user?.bio}</p>
-                            <button className="btn btn-sm btn-outline-secondary action-btn">
+                            <button
+                                className="btn btn-sm btn-outline-secondary action-btn"
+                                onClick={() => {
+                                    push("/settings");
+                                }}
+                            >
                                 <i className="ion-plus-round"></i>
                                 &nbsp; Edit Profile Settings
                             </button>
