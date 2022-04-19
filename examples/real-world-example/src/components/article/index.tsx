@@ -3,6 +3,8 @@ type ArticleListProps = {
     image: string;
     title: string;
     description: string;
+    createdAt: string;
+    favCount: number;
     tagList?: string[];
 };
 
@@ -11,6 +13,8 @@ export const ArticleList: React.FC<ArticleListProps> = ({
     image,
     title,
     description,
+    createdAt,
+    favCount,
     tagList,
 }) => {
     return (
@@ -23,10 +27,10 @@ export const ArticleList: React.FC<ArticleListProps> = ({
                     <a href="" className="author">
                         {author}
                     </a>
-                    <span className="date">January 20th</span>
+                    <span className="date">{createdAt}</span>
                 </div>
                 <button className="btn btn-outline-primary btn-sm pull-xs-right">
-                    <i className="ion-heart"></i> 32
+                    <i className="ion-heart"></i> {favCount}
                 </button>
             </div>
             <a href="" className="preview-link">

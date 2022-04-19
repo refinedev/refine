@@ -1,6 +1,8 @@
 import { useList } from "@pankod/refine-core";
 import { ArticleList } from "components/article";
 
+import dayjs from "dayjs";
+
 export const HomePage: React.FC = () => {
     const tagList: any = useList({
         resource: "tags",
@@ -44,7 +46,12 @@ export const HomePage: React.FC = () => {
                                     author={item.author.username}
                                     image={item.author.image}
                                     title={item.title}
+                                    createdAt={dayjs(item.createdAt).format(
+                                        "MMM DD, YYYY",
+                                    )}
+                                    favCount={item.favoritesCount}
                                     description={item.description}
+                                    tagList={item.tagList}
                                 />
                             );
                         })}

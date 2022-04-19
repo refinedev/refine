@@ -1,7 +1,9 @@
-import { useGetIdentity, useList, useCustom } from "@pankod/refine-core";
+import { useGetIdentity, useCustom } from "@pankod/refine-core";
 
 import { IUser } from "interfaces";
 import { ArticleList } from "components/article";
+
+import dayjs from "dayjs";
 
 export const ProfilePage: React.FC = () => {
     const { data: user, isLoading } = useGetIdentity<IUser>();
@@ -71,6 +73,10 @@ export const ProfilePage: React.FC = () => {
                                         author={item.author.username}
                                         image={item.author.image}
                                         title={item.title}
+                                        createdAt={dayjs(item.createdAt).format(
+                                            "MMM DD, YYYY",
+                                        )}
+                                        favCount={item.favoritesCount}
                                         description={item.description}
                                     />
                                 );
