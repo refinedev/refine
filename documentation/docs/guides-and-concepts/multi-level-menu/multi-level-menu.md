@@ -54,10 +54,12 @@ To do this, it is necessary to create an object array with the following [resour
 The `parentName` you give in the resource objects must be strictly equal to the resource name you want to group under.<br />
 A resource given as a group can only have a `name` and a  `parentName`. They should not have other props such as list, edit, create etc.
 
+:::
 
 :::caution
+
 Since your Next.js applications are routing file-based, you need to manage the nested routes yourself. If you use Nested resources only for grouping Menu items in `Sider` and you don't need nested routes, you can give `route` option as a single level routing when defining your `resource`.
-:::
+
 ```tsx title="pages/_app.tsx"
         <Refine
            ...
@@ -88,6 +90,7 @@ Since your Next.js applications are routing file-based, you need to manage the n
             ]}
         />
 ```
+:::
 ### Ant Design
 
 The Sider component allows you to create the groups you want in the sider menu. By default, the sider will group menu items by their top-level heading. However, you can also add sub menu items to each group via `parentName`.
