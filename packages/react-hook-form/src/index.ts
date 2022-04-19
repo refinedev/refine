@@ -4,6 +4,11 @@ export {
     UseStepsFormProps,
     UseStepsFormReturnType,
 } from "./useStepsForm";
+export {
+    useModalForm,
+    UseModalFormProps,
+    UseModalFormReturnType,
+} from "./useModalForm";
 
 export type {
     BatchFieldArrayUpdate,
