@@ -2,15 +2,16 @@ import { useGetIdentity, useList } from "@pankod/refine-core";
 import { ArticleList } from "components/article";
 
 import dayjs from "dayjs";
+import { IArticle, ITag } from "interfaces";
 
 export const HomePage: React.FC = () => {
     const { isSuccess } = useGetIdentity();
 
-    const tagList: any = useList({
+    const tagList = useList<ITag[]>({
         resource: "tags",
     });
 
-    const articleList: any = useList({
+    const articleList = useList<IArticle>({
         resource: "articles",
     });
 
@@ -46,7 +47,7 @@ export const HomePage: React.FC = () => {
                             </ul>
                         </div>
 
-                        {articleList.data?.data.articles.map((item: any) => {
+                        {articleList.data?.data.map((item) => {
                             return (
                                 <ArticleList
                                     key={item.slug}
@@ -68,8 +69,8 @@ export const HomePage: React.FC = () => {
                         <div className="sidebar">
                             <p>Popular Tags</p>
                             <div className="tag-list">
-                                {tagList.data?.data.tags?.map(
-                                    (item: any, index: number) => {
+                                {tagList.data?.data.map(
+                                    (item, index: number) => {
                                         return (
                                             <a
                                                 key={index}

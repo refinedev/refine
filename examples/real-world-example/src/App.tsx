@@ -1,13 +1,17 @@
 import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import axios from "axios";
+
 import { authProvider } from "./authProvider";
+import { dataProvider } from "./dataProvider";
 
 import { Layout } from "components";
 import { LoginPage, RegisterPage } from "./pages/auth";
 import { HomePage } from "pages/home";
 import { ProfilePage } from "pages/profile";
 import { SettingsPage } from "pages/settings";
+
+const axiosInstance = axios.create();
 
 function App() {
     return (
@@ -42,8 +46,8 @@ function App() {
                     },
                 ],
             }}
-            dataProvider={dataProvider("https://api.realworld.io/api")}
-            authProvider={authProvider}
+            dataProvider={dataProvider(axiosInstance)}
+            authProvider={authProvider(axiosInstance)}
             // TODO: fix me
             resources={[{ name: "home", list: HomePage }]}
             Layout={Layout}

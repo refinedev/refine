@@ -5,3 +5,17 @@ export interface IUser {
     image: string;
     token: string;
 }
+
+export type ITag = string;
+export interface IArticle {
+    slug: string;
+    body: string;
+    createdAt: string;
+    description: string;
+    favorited: boolean;
+    favoritesCount: number;
+    tagList: ITag[];
+    title: string;
+    updatedAt: string;
+    author: IUser;
+}
