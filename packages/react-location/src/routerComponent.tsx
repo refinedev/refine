@@ -71,6 +71,36 @@ export const RouterComponent: React.FC<RouterProps> = ({
         );
     }
 
+    const resourceRoutes: Route[] = [];
+
+    resources.map((resource) => {
+        const route: Route = {
+            path: `${resource.route}`,
+            children: [
+                {
+                    path: "/",
+                    element: (
+                        <ResourceComponentWrapper route={resource.route!} />
+                    ),
+                },
+                {
+                    path: `:action`,
+                    element: (
+                        <ResourceComponentWrapper route={resource.route!} />
+                    ),
+                },
+                {
+                    path: `:action/:id`,
+                    element: (
+                        <ResourceComponentWrapper route={resource.route!} />
+                    ),
+                },
+            ],
+        };
+
+        resourceRoutes.push(route);
+    });
+
     const routes: Route[] = [
         ...[...(customRoutes || [])].filter((p: RefineRouteProps) => !p.layout),
         {
@@ -94,36 +124,15 @@ export const RouterComponent: React.FC<RouterProps> = ({
                             <DashboardPage />
                         </CanAccess>
                     ) : (
-                        <Navigate to={`/${resources[0].route}`} />
+                        <Navigate
+                            to={`/${
+                                resources.find((p) => p.list !== undefined)
+                                    ?.route
+                            }`}
+                        />
                     ),
                 },
-                {
-                    path: `:resource`,
-                    children: [
-                        {
-                            path: "/",
-                            element: <ResourceComponentWrapper />,
-                        },
-                    ],
-                },
-                {
-                    path: `:resource/:action`,
-                    children: [
-                        {
-                            path: "/",
-                            element: <ResourceComponentWrapper />,
-                        },
-                    ],
-                },
-                {
-                    path: `:resource/:action/:id`,
-                    children: [
-                        {
-                            path: "/",
-                            element: <ResourceComponentWrapper />,
-                        },
-                    ],
-                },
+                ...[...(resourceRoutes || [])],
             ],
         },
     ];

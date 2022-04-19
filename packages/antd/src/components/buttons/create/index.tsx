@@ -3,11 +3,9 @@ import { Button, ButtonProps } from "antd";
 import { PlusSquareOutlined } from "@ant-design/icons";
 import {
     useNavigation,
-    useRouterContext,
     useTranslate,
     useCan,
-    useResourceWithRoute,
-    ResourceRouterParams,
+    useResource,
 } from "@pankod/refine-core";
 
 export type CreateButtonProps = ButtonProps & {
@@ -36,21 +34,14 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const resourceWithRoute = useResourceWithRoute();
-
     const translate = useTranslate();
 
     const { create } = useNavigation();
 
-    const { useParams } = useRouterContext();
-
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-
-    const resource = resourceWithRoute(
-        propResourceNameOrRouteName ?? routeResourceName,
-    );
-
-    const resourceName = propResourceName ?? resource.name;
+    const { resourceName, resource } = useResource({
+        resourceName: propResourceName,
+        resourceNameOrRouteName: propResourceNameOrRouteName,
+    });
 
     const { data } = useCan({
         resource: resourceName,
@@ -75,7 +66,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
             onClick={(e): void =>
                 onClick
                     ? onClick(e)
-                    : create(propResourceName ?? resource.route, "push")
+                    : create(propResourceName ?? resource.route!, "push")
             }
             icon={<PlusSquareOutlined />}
             disabled={data?.can === false}

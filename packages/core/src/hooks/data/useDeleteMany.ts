@@ -12,6 +12,7 @@ import {
     PrevContext as DeleteContext,
     SuccessErrorNotification,
     MetaDataQuery,
+    IQueryKeys,
 } from "../../interfaces";
 import {
     useTranslate,
@@ -21,11 +22,12 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useInvalidate,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
 import { queryKeys } from "@definitions";
 
-type DeleteManyParams = {
+export type DeleteManyParams<TVariables> = {
     ids: BaseKey[];
     resource: string;
     mutationMode?: MutationMode;
@@ -33,15 +35,18 @@ type DeleteManyParams = {
     onCancel?: (cancelMutation: () => void) => void;
     metaData?: MetaDataQuery;
     dataProviderName?: string;
+    invalidates?: Array<keyof IQueryKeys>;
+    values?: TVariables;
 } & SuccessErrorNotification;
 
-type UseDeleteManyReturnType<
+export type UseDeleteManyReturnType<
     TData extends BaseRecord = BaseRecord,
     TError = HttpError,
+    TVariables = {},
 > = UseMutationResult<
     DeleteManyResponse<TData>,
     TError,
-    DeleteManyParams,
+    DeleteManyParams<TVariables>,
     unknown
 >;
 
@@ -60,7 +65,8 @@ type UseDeleteManyReturnType<
 export const useDeleteMany = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
->(): UseDeleteManyReturnType<TData, TError> => {
+    TVariables = {},
+>(): UseDeleteManyReturnType<TData, TError, TVariables> => {
     const { mutate: checkError } = useCheckError();
 
     const {
@@ -73,13 +79,14 @@ export const useDeleteMany = <
     const translate = useTranslate();
     const publish = usePublish();
     const handleNotification = useHandleNotification();
+    const invalidateStore = useInvalidate();
 
     const queryClient = useQueryClient();
 
     const mutation = useMutation<
         DeleteManyResponse<TData>,
         TError,
-        DeleteManyParams,
+        DeleteManyParams<TVariables>,
         DeleteContext<TData>
     >(
         ({
@@ -90,7 +97,8 @@ export const useDeleteMany = <
             onCancel,
             metaData,
             dataProviderName,
-        }: DeleteManyParams) => {
+            values,
+        }: DeleteManyParams<TVariables>) => {
             const mutationModePropOrContext =
                 mutationMode ?? mutationModeContext;
 
@@ -101,6 +109,7 @@ export const useDeleteMany = <
                     resource,
                     ids,
                     metaData,
+                    variables: values,
                 });
             }
 
@@ -108,7 +117,12 @@ export const useDeleteMany = <
                 (resolve, reject) => {
                     const doMutation = () => {
                         dataProvider(dataProviderName)
-                            .deleteMany<TData>({ resource, ids, metaData })
+                            .deleteMany<TData>({
+                                resource,
+                                ids,
+                                metaData,
+                                variables: values,
+                            })
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
                     };
@@ -229,10 +243,22 @@ export const useDeleteMany = <
                 };
             },
             // Always refetch after error or success:
-            onSettled: (_data, _error, { resource, ids }, context) => {
+            onSettled: (
+                _data,
+                _error,
+                {
+                    resource,
+                    ids,
+                    dataProviderName,
+                    invalidates = ["list", "many"],
+                },
+            ) => {
                 // invalidate the cache for the list and many queries:
-                queryClient.invalidateQueries(context?.queryKey.list());
-                queryClient.invalidateQueries(context?.queryKey.many());
+                invalidateStore({
+                    resource,
+                    dataProviderName,
+                    invalidates,
+                });
 
                 notificationDispatch({
                     type: ActionTypes.REMOVE,

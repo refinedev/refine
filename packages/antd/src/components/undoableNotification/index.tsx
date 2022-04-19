@@ -26,7 +26,7 @@ export const UndoableNotification: React.FC<UndoableNotificationProps> = ({
     >
         <Progress
             type="circle"
-            percent={undoableTimeout * 20}
+            percent={(undoableTimeout ?? 0) * 20}
             format={(time) => time && time / 20}
             width={50}
             strokeColor="#1890ff"
@@ -36,8 +36,8 @@ export const UndoableNotification: React.FC<UndoableNotificationProps> = ({
         <Button
             style={{ flexShrink: 0 }}
             onClick={() => {
-                cancelMutation();
-                notification.close(notificationKey);
+                cancelMutation?.();
+                notification.close(notificationKey ?? "");
             }}
             disabled={undoableTimeout === 0}
             icon={<UndoOutlined />}

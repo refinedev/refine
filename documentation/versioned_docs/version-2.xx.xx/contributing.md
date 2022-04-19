@@ -114,5 +114,5 @@ Please make sure you contribute well tested code.
 [Docusaurus]: https://docusaurus.io/
 [Issues]: https://github.com/pankod/refine/issues
 [CODE_OF_CONDUCT]: https://github.com/pankod/refine/blob/master/CODE_OF_CONDUCT.md
-[Discord Channel]: https://discord.gg/UuU3XCc3J5
+[Discord Channel]: https://discord.gg/refine
 [lerna.json]: https://github.com/pankod/refine/blob/master/lerna.json

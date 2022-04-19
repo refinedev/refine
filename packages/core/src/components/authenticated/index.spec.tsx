@@ -1,5 +1,5 @@
 import React from "react";
-import { wait } from "@testing-library/react";
+import { waitFor } from "@testing-library/react";
 import ReactRouterDom from "react-router-dom";
 
 import { MockJSONServer, render, TestWrapper } from "@test";
@@ -14,15 +14,11 @@ const mockAuthProvider = {
     getUserIdentity: () => Promise.resolve(),
 };
 
-const mHistory = {
-    push: jest.fn(),
-    replace: jest.fn(),
-    goBack: jest.fn(),
-};
+const mHistory = jest.fn();
 
 jest.mock("react-router-dom", () => ({
     ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useHistory: jest.fn(() => mHistory),
+    useNavigate: () => mHistory,
 }));
 
 describe("Authenticated", () => {
@@ -38,7 +34,7 @@ describe("Authenticated", () => {
             },
         );
 
-        await wait(() => getByText("Custom Authenticated"));
+        await waitFor(() => getByText("Custom Authenticated"));
     });
 
     it("not authenticated test", async () => {
@@ -57,9 +53,9 @@ describe("Authenticated", () => {
             },
         );
 
-        await wait(() => {
+        await waitFor(() => {
             expect(queryByText("Custom Authenticated")).toBeNull();
-            expect(mHistory.replace).toBeCalledTimes(1);
+            expect(mHistory).toBeCalledTimes(1);
         });
     });
 
@@ -81,7 +77,7 @@ describe("Authenticated", () => {
             },
         );
 
-        await wait(() => {
+        await waitFor(() => {
             expect(queryByText("Error fallback"));
         });
     });
@@ -104,7 +100,7 @@ describe("Authenticated", () => {
             },
         );
 
-        await wait(() => {
+        await waitFor(() => {
             expect(queryByText("loading"));
         });
     });

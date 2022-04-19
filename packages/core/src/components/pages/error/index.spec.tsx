@@ -1,16 +1,14 @@
 import React from "react";
-import ReactRouterDom, { Route } from "react-router-dom";
+import ReactRouterDom, { Route, Routes } from "react-router-dom";
 
 import { ErrorComponent } from ".";
 import { render, fireEvent, TestWrapper } from "@test";
 
-const mHistory = {
-    push: jest.fn(),
-    replace: jest.fn(),
-};
+const mHistory = jest.fn();
+
 jest.mock("react-router-dom", () => ({
     ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useHistory: jest.fn(() => mHistory),
+    useNavigate: () => mHistory,
 }));
 
 describe("ErrorComponent", () => {
@@ -38,14 +36,17 @@ describe("ErrorComponent", () => {
 
         fireEvent.click(getByText("Back Home"));
 
-        expect(mHistory.push).toBeCalledWith("/", undefined);
+        expect(mHistory).toBeCalledWith("/", undefined);
     });
 
     it("renders error messages if resources action's not found", async () => {
         const { getByText } = render(
-            <Route path="/:resource?/:action?">
-                <ErrorComponent />
-            </Route>,
+            <Routes>
+                <Route
+                    path="/:resource/:action"
+                    element={<ErrorComponent />}
+                ></Route>
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     routerInitialEntries: ["/posts/create"],
@@ -60,9 +61,12 @@ describe("ErrorComponent", () => {
 
     it("renders error messages if resource action's is different from 'create, edit, show'", () => {
         const { getByText } = render(
-            <Route path="/:resource?/:action?">
-                <ErrorComponent />
-            </Route>,
+            <Routes>
+                <Route
+                    path="/:resource/:action"
+                    element={<ErrorComponent />}
+                ></Route>
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts", route: "posts" }],

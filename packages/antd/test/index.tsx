@@ -61,7 +61,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
                     notificationProvider={notificationProvider}
                     resources={resources ?? [{ name: "posts", list: List }]}
                     accessControlProvider={accessControlProvider}
-                    DashboardPage={DashboardPage ?? null}
+                    DashboardPage={DashboardPage ?? undefined}
                 >
                     {children}
                 </Refine>

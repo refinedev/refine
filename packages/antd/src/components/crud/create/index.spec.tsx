@@ -1,16 +1,21 @@
 import React, { ReactNode } from "react";
 import { Button } from "antd";
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import { render, TestWrapper } from "@test";
 import { Create } from "./";
 
 const renderCreate = (create: ReactNode) => {
-    return render(<Route path="/:resource/create">{create}</Route>, {
-        wrapper: TestWrapper({
-            routerInitialEntries: ["/posts/create"],
-        }),
-    });
+    return render(
+        <Routes>
+            <Route path="/:resource/:action" element={create} />
+        </Routes>,
+        {
+            wrapper: TestWrapper({
+                routerInitialEntries: ["/posts/create"],
+            }),
+        },
+    );
 };
 describe("Create", () => {
     it("should render page successfuly", async () => {
@@ -42,9 +47,9 @@ describe("Create", () => {
 
     it("should render with label instead of resource name successfully", () => {
         const { getByText } = render(
-            <Route path="/:resource/create">
-                <Create />
-            </Route>,
+            <Routes>
+                <Route path="/:resource/:action" element={<Create />} />
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     resources: [
@@ -69,9 +74,12 @@ describe("Create", () => {
 
     it("should render optional resource with resource prop", () => {
         const { getByText } = render(
-            <Route>
-                <Create resource="posts" />
-            </Route>,
+            <Routes>
+                <Route
+                    path="/:resource"
+                    element={<Create resource="posts" />}
+                />
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     routerInitialEntries: ["/custom"],
@@ -84,9 +92,12 @@ describe("Create", () => {
 
     it("should render tags", () => {
         const { getByText } = render(
-            <Route path="/:resource/:action/:id">
-                <Create />
-            </Route>,
+            <Routes>
+                <Route
+                    path="/:resource/:action/:id"
+                    element={<Create />}
+                ></Route>
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     routerInitialEntries: ["/posts/clone/1"],

@@ -5,20 +5,16 @@ import { TestWrapper } from "@test";
 
 import { useLogin } from "./";
 
-const mHistory = {
-    push: jest.fn(),
-    replace: jest.fn(),
-    goBack: jest.fn(),
-};
+const mHistory = jest.fn();
 
 jest.mock("react-router-dom", () => ({
     ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useHistory: jest.fn(() => mHistory),
+    useNavigate: () => mHistory,
 }));
 
 describe("useLogin Hook", () => {
     beforeEach(() => {
-        mHistory.replace.mockReset();
+        mHistory.mockReset();
     });
 
     it("succeed login", async () => {
@@ -49,7 +45,7 @@ describe("useLogin Hook", () => {
             return !result.current?.isLoading;
         });
 
-        expect(mHistory.replace).toBeCalledWith("/", undefined);
+        expect(mHistory).toBeCalledWith("/", { replace: true });
     });
 
     it("should successfully login with no redirect", async () => {
@@ -80,7 +76,7 @@ describe("useLogin Hook", () => {
             return !result.current?.isLoading;
         });
 
-        expect(mHistory.replace).not.toBeCalled();
+        expect(mHistory).not.toBeCalled();
     });
 
     it("login and redirect to custom path", async () => {
@@ -111,10 +107,10 @@ describe("useLogin Hook", () => {
             return !result.current?.isLoading;
         });
 
-        expect(mHistory.replace).toBeCalledWith("/custom-path", undefined);
+        expect(mHistory).toBeCalledWith("/custom-path", { replace: true });
     });
 
-    fit("If URL has 'to' params the app will redirect to 'to' values", async () => {
+    it("If URL has 'to' params the app will redirect to 'to' values", async () => {
         const { result, waitFor } = renderHook(() => useLogin(), {
             wrapper: TestWrapper({
                 authProvider: {
@@ -143,7 +139,7 @@ describe("useLogin Hook", () => {
             return !result.current?.isLoading;
         });
 
-        expect(mHistory.replace).toBeCalledWith("/show/posts/5", undefined);
+        expect(mHistory).toBeCalledWith("/show/posts/5", { replace: true });
     });
 
     it("fail login", async () => {

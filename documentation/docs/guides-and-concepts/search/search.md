@@ -58,7 +58,7 @@ Let's not forget to pass the `<Header>` component to the `<Refine>` component in
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import "@pankod/refine-antd/dist/styles.min.css";
@@ -126,7 +126,7 @@ import {
     Icons,
     Typography,
 } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 const { Link } = routerProvider;
 const { Text } = Typography;

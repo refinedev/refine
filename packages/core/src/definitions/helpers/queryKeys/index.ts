@@ -4,14 +4,14 @@ import { QueryKey } from "react-query";
 import { MetaDataQuery } from "src/interfaces";
 
 export const queryKeys = (
-    resource: string,
+    resource?: string,
     dataProviderName?: string,
     metaData?: MetaDataQuery | undefined,
 ): IQueryKeys => {
     const providerName = dataProviderName || "default";
     const keys: IQueryKeys = {
         all: [providerName],
-        resourceAll: [providerName, resource],
+        resourceAll: [providerName, resource || ""],
         list: (config) => [
             ...keys.resourceAll,
             "list",

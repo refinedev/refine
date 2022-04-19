@@ -94,7 +94,7 @@ import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod
 //highlight-start
 import { dataProvider } from "@pankod/refine-appwrite";
 //highlight-end
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 //highlight-start
 import appwriteClient from "./appwriteClient";

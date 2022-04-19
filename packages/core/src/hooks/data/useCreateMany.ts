@@ -6,21 +6,23 @@ import {
     HttpError,
     SuccessErrorNotification,
     MetaDataQuery,
+    IQueryKeys,
 } from "../../interfaces";
 import {
     useTranslate,
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useInvalidate,
 } from "@hooks";
 import pluralize from "pluralize";
-import { queryKeys } from "@definitions/helpers";
 
 type useCreateManyParams<TVariables> = {
     resource: string;
     values: TVariables[];
     metaData?: MetaDataQuery;
     dataProviderName?: string;
+    invalidates?: Array<keyof IQueryKeys>;
 } & SuccessErrorNotification;
 
 export type UseCreateManyReturnType<
@@ -54,9 +56,9 @@ export const useCreateMany = <
     const dataProvider = useDataProvider();
 
     const translate = useTranslate();
-    const queryClient = useQueryClient();
     const publish = usePublish();
     const handleNotification = useHandleNotification();
+    const invalidateStore = useInvalidate();
 
     const mutation = useMutation<
         CreateManyResponse<TData>,
@@ -77,10 +79,13 @@ export const useCreateMany = <
         {
             onSuccess: (
                 response,
-                { resource, successNotification, dataProviderName },
+                {
+                    resource,
+                    successNotification,
+                    dataProviderName,
+                    invalidates = ["list", "many"],
+                },
             ) => {
-                const queryKey = queryKeys(resource, dataProviderName);
-
                 const resourcePlural = pluralize.plural(resource);
 
                 handleNotification(successNotification, {
@@ -99,14 +104,17 @@ export const useCreateMany = <
                     type: "success",
                 });
 
-                queryClient.invalidateQueries(queryKey.list());
-                queryClient.invalidateQueries(queryKey.many());
+                invalidateStore({
+                    resource,
+                    dataProviderName,
+                    invalidates,
+                });
 
                 publish?.({
                     channel: `resources/${resource}`,
                     type: "created",
                     payload: {
-                        ids: response.data
+                        ids: response?.data
                             .filter((item) => item?.id !== undefined)
                             .map((item) => item.id!),
                     },

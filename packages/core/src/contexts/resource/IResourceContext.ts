@@ -13,6 +13,8 @@ export interface ResourceProps extends IResourceComponents {
     canDelete?: boolean;
     icon?: ReactNode;
     options?: OptionsProps;
+    parentName?: string;
+    key?: string;
 }
 export interface IResourceComponentsProps<
     TCrudData = any,
@@ -43,4 +45,6 @@ export interface IResourceItem extends IResourceComponents {
     canShow?: boolean;
     canDelete?: boolean;
     options?: OptionsProps;
+    parentName?: string;
+    key?: string;
 }

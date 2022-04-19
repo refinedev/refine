@@ -12,6 +12,7 @@ import {
     MetaDataQuery,
     PreviousQuery,
     GetListResponse,
+    IQueryKeys,
 } from "../../interfaces";
 import pluralize from "pluralize";
 import {
@@ -22,10 +23,11 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useInvalidate,
 } from "@hooks";
 import { queryKeys } from "@definitions/helpers";
 
-type UpdateParams<TVariables> = {
+export type UpdateParams<TVariables> = {
     id: BaseKey;
     resource: string;
     mutationMode?: MutationMode;
@@ -34,6 +36,7 @@ type UpdateParams<TVariables> = {
     values: TVariables;
     metaData?: MetaDataQuery;
     dataProviderName?: string;
+    invalidates?: Array<keyof IQueryKeys>;
 } & SuccessErrorNotification;
 
 export type UseUpdateReturnType<
@@ -76,6 +79,7 @@ export const useUpdate = <
     const publish = usePublish();
     const { notificationDispatch } = useCancelNotification();
     const handleNotification = useHandleNotification();
+    const invalidateStore = useInvalidate();
 
     const mutation = useMutation<
         UpdateResponse<TData>,
@@ -241,12 +245,22 @@ export const useUpdate = <
                     queryKey,
                 };
             },
-            onSettled: (_data, _error, { id, resource }, context) => {
-                // invalidate the cache for the list and many queries:
-
-                queryClient.invalidateQueries(context?.queryKey.list());
-                queryClient.invalidateQueries(context?.queryKey.many());
-                queryClient.invalidateQueries(context?.queryKey.detail(id));
+            onSettled: (
+                _data,
+                _error,
+                {
+                    id,
+                    resource,
+                    dataProviderName,
+                    invalidates = ["list", "many", "detail"],
+                },
+            ) => {
+                invalidateStore({
+                    resource,
+                    dataProviderName,
+                    invalidates,
+                    id,
+                });
 
                 notificationDispatch({
                     type: ActionTypes.REMOVE,

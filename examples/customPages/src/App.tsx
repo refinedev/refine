@@ -1,9 +1,4 @@
-import {
-    Refine,
-    AuthProvider,
-    Authenticated,
-    LayoutWrapper,
-} from "@pankod/refine-core";
+import { Refine, AuthProvider, Authenticated } from "@pankod/refine-core";
 import {
     notificationProvider,
     LoginPage,
@@ -23,9 +18,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const AuthenticatedPostReview = () => {
     return (
         <Authenticated>
-            <LayoutWrapper>
-                <PostReview />
-            </LayoutWrapper>
+            <PostReview />
         </Authenticated>
     );
 };
@@ -59,12 +52,13 @@ const App: React.FC = () => {
                 ...routerProvider,
                 routes: [
                     {
-                        element: PostReview,
+                        element: <PostReview />,
                         path: "/public-page",
                     },
                     {
-                        element: AuthenticatedPostReview,
+                        element: <AuthenticatedPostReview />,
                         path: "/authenticated-page",
+                        layout: true,
                     },
                 ] as typeof routerProvider.routes,
             }}

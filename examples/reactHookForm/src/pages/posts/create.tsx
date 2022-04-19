@@ -1,17 +1,48 @@
+import { useState } from "react";
 import { useForm } from "@pankod/refine-react-hook-form";
-import { useSelect } from "@pankod/refine-core";
+import { useSelect, useApiUrl } from "@pankod/refine-core";
+
+import axios from "axios";
 
 export const PostCreate: React.FC = () => {
+    const [isUploading, setIsUploading] = useState<boolean>(false);
     const {
         refineCore: { onFinish, formLoading },
         register,
         handleSubmit,
         formState: { errors },
+        setValue,
     } = useForm();
+
+    const apiURL = useApiUrl();
 
     const { options } = useSelect({
         resource: "categories",
     });
+
+    const onSubmitFile = async () => {
+        setIsUploading(true);
+        const inputFile = document.getElementById(
+            "fileInput",
+        ) as HTMLInputElement;
+
+        const formData = new FormData();
+        formData.append("file", inputFile?.files?.item(0) as File);
+
+        const res = await axios.post<{ url: string }>(
+            `${apiURL}/media/upload`,
+            formData,
+            {
+                withCredentials: false,
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                },
+            },
+        );
+
+        setValue("thumbnail", res.data.url);
+        setIsUploading(false);
+    };
 
     return (
         <form onSubmit={handleSubmit(onFinish)}>
@@ -51,7 +82,17 @@ export const PostCreate: React.FC = () => {
             />
             {errors.content && <span>This field is required</span>}
             <br />
-            <input type="submit" value="Submit" />
+            <br />
+            <label>Image: </label>
+            <input id="fileInput" type="file" onChange={onSubmitFile} />
+            <input
+                type="hidden"
+                {...register("thumbnail", { required: true })}
+            />
+            {errors.thumbnail && <span>This field is required</span>}
+            <br />
+            <br />
+            <input type="submit" disabled={isUploading} value="Submit" />
             {formLoading && <p>Loading</p>}
         </form>
     );

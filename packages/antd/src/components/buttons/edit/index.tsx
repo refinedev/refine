@@ -4,11 +4,9 @@ import { EditOutlined } from "@ant-design/icons";
 import {
     useCan,
     useNavigation,
-    useResourceWithRoute,
-    useRouterContext,
     useTranslate,
-    ResourceRouterParams,
     BaseKey,
+    useResource,
 } from "@pankod/refine-core";
 
 export type EditButtonProps = ButtonProps & {
@@ -39,23 +37,15 @@ export const EditButton: React.FC<EditButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const resourceWithRoute = useResourceWithRoute();
-
     const translate = useTranslate();
-
-    const { useParams } = useRouterContext();
-
-    const { resource: routeResourceName, id: idFromRoute } =
-        useParams<ResourceRouterParams>();
-
-    const resource = resourceWithRoute(
-        propResourceNameOrRouteName ?? routeResourceName,
-    );
-    const resourceName = propResourceName ?? resource.name;
 
     const { edit } = useNavigation();
 
-    const id = recordItemId ?? idFromRoute;
+    const { resourceName, id, resource } = useResource({
+        resourceName: propResourceName,
+        resourceNameOrRouteName: propResourceNameOrRouteName,
+        recordItemId,
+    });
 
     const { data } = useCan({
         resource: resourceName,
@@ -81,7 +71,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
             onClick={(e): void =>
                 onClick
                     ? onClick(e)
-                    : edit(propResourceName ?? resource.route, id!)
+                    : edit(propResourceName ?? resource.route!, id!)
             }
             icon={<EditOutlined />}
             disabled={data?.can === false}

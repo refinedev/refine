@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { useTitle, useNavigation, useSubscription } from "@pankod/refine-core";
+import {
+    useTitle,
+    useNavigation,
+    useSubscription,
+    CanAccess,
+    ITreeMenu,
+} from "@pankod/refine-core";
 import {
     AntdLayout,
     Menu,
@@ -14,6 +20,8 @@ export const CustomSider: React.FC = () => {
     const [subscriptionCount, setSubscriptionCount] = useState(0);
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const Title = useTitle();
+    const { SubMenu } = Menu;
+
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
     const { push } = useNavigation();
@@ -26,6 +34,60 @@ export const CustomSider: React.FC = () => {
         onLiveEvent: () => setSubscriptionCount((prev) => prev + 1),
     });
 
+    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
+        return tree.map((item: ITreeMenu) => {
+            const { icon, label, route, name, children, parentName } = item;
+
+            if (children.length > 0) {
+                return (
+                    <SubMenu
+                        key={name}
+                        icon={icon ?? <Icons.UnorderedListOutlined />}
+                        title={label}
+                    >
+                        {renderTreeView(children, selectedKey)}
+                    </SubMenu>
+                );
+            }
+            const isSelected = route === selectedKey;
+            const isRoute = !(
+                parentName !== undefined && children.length === 0
+            );
+            return (
+                <CanAccess
+                    key={route}
+                    resource={name.toLowerCase()}
+                    action="list"
+                >
+                    <Menu.Item
+                        key={selectedKey}
+                        onClick={() => {
+                            push(route ?? "");
+                        }}
+                        style={{
+                            fontWeight: isSelected ? "bold" : "normal",
+                        }}
+                        icon={
+                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
+                        }
+                    >
+                        {label}
+                        {label === "Posts" && (
+                            <Badge
+                                size="small"
+                                count={subscriptionCount}
+                                offset={[2, -15]}
+                            />
+                        )}
+                        {!collapsed && isSelected && (
+                            <div className="ant-menu-tree-arrow" />
+                        )}
+                    </Menu.Item>
+                </CanAccess>
+            );
+        });
+    };
+
     return (
         <AntdLayout.Sider
             collapsible
@@ -36,6 +98,7 @@ export const CustomSider: React.FC = () => {
             style={isMobile ? antLayoutSiderMobile : antLayoutSider}
         >
             {Title && <Title collapsed={collapsed} />}
+
             <Menu
                 selectedKeys={[selectedKey]}
                 mode="inline"
@@ -51,40 +114,7 @@ export const CustomSider: React.FC = () => {
                     push(key as string);
                 }}
             >
-                {menuItems.map(({ icon, label, route }) => {
-                    const isSelected = route === selectedKey;
-                    return (
-                        <Menu.Item
-                            style={{
-                                fontWeight: isSelected ? "bold" : "normal",
-                            }}
-                            key={route}
-                            icon={icon}
-                        >
-                            <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                    alignItems: "center",
-                                }}
-                            >
-                                <div>
-                                    {label}
-                                    {label === "Posts" && (
-                                        <Badge
-                                            size="small"
-                                            count={subscriptionCount}
-                                            offset={[2, -15]}
-                                        />
-                                    )}
-                                </div>
-                                {!collapsed && isSelected && (
-                                    <Icons.RightOutlined />
-                                )}
-                            </div>
-                        </Menu.Item>
-                    );
-                })}
+                {renderTreeView(menuItems, selectedKey)}
             </Menu>
         </AntdLayout.Sider>
     );

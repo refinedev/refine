@@ -130,4 +130,36 @@ describe("useExport Hook", () => {
             })),
         );
     });
+
+    it("should handle getList throwing error", async () => {
+        const onError = jest.fn();
+        const { result } = renderHook(
+            () =>
+                useExport({
+                    onError,
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default,
+                            getList: () => {
+                                throw new Error("Error");
+                            },
+                        } as any,
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await act(async () => {
+            await result.current.triggerExport();
+        });
+
+        expect(result.current.isLoading).toEqual(false);
+        expect(onError).toBeCalledWith(Error("Error"));
+
+        expect(generateCsvMock).not.toBeCalled();
+    });
 });

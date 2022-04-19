@@ -9,7 +9,10 @@ import {
     useNavigate,
 } from "react-router-dom";
 
-import { RouterComponent } from "./routerComponent";
+import {
+    BrowserRouterComponent,
+    MemoryRouterComponent,
+} from "./routerComponent";
 import { Prompt } from "./prompt";
 
 export type RefineRouteProps = RouteProps & {
@@ -40,10 +43,21 @@ const RouterProvider: IReactRouterProvider = {
     useLocation,
     useParams: () => {
         const params = useParams();
-        return handleUseParams(params);
+        const { pathname } = useLocation();
+
+        const paramsString = `/${Object.values(params).join("/")}`;
+        return handleUseParams({
+            ...params,
+            resource:
+                Object.keys(params).length === 0
+                    ? pathname.substring(1)
+                    : pathname.substring(1).replace(paramsString, ""),
+        });
     },
     Prompt: Prompt as any,
     Link,
-    RouterComponent,
+    RouterComponent: BrowserRouterComponent,
 };
 export default RouterProvider;
+
+export { MemoryRouterComponent };

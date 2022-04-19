@@ -135,8 +135,8 @@ export const useTable = <
         setSorter(crudSorting);
 
         // tablePropsSunflower.onChange(pagination, filters, sorter);
-        setCurrent(pagination.current);
-        setPageSize(pagination.pageSize);
+        setCurrent(pagination.current || 1);
+        setPageSize(pagination.pageSize || 10);
     };
 
     const onFinish = async (value: TSearchVariables) => {

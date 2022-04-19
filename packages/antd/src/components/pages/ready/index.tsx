@@ -81,7 +81,7 @@ export const ReadyPage: React.FC = () => {
                         </Button>
                     </a>
                     <a
-                        href="https://discord.gg/UuU3XCc3J5"
+                        href="https://discord.gg/refine"
                         target="_blank"
                         rel="noreferrer"
                     >

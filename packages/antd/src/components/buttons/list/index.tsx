@@ -4,11 +4,9 @@ import { BarsOutlined } from "@ant-design/icons";
 import {
     useCan,
     useNavigation,
-    useResourceWithRoute,
-    useRouterContext,
     useTranslate,
-    ResourceRouterParams,
     userFriendlyResourceName,
+    useResource,
 } from "@pankod/refine-core";
 
 export type ListButtonProps = ButtonProps & {
@@ -37,22 +35,14 @@ export const ListButton: React.FC<ListButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const resourceWithRoute = useResourceWithRoute();
-
     const { list } = useNavigation();
     const translate = useTranslate();
 
-    const { useParams } = useRouterContext();
+    const { resourceName, resource } = useResource({
+        resourceName: propResourceName,
+        resourceNameOrRouteName: propResourceNameOrRouteName,
+    });
 
-    const { resource: routeResourceName } = useParams<ResourceRouterParams>();
-
-    const resource = resourceWithRoute(
-        propResourceNameOrRouteName ?? routeResourceName,
-    );
-
-    const resourceName = propResourceName ?? resource.name;
-
-    console.log("resourceName", propResourceName, resource, resourceName);
     const { data } = useCan({
         resource: resourceName,
         action: "list",
@@ -76,7 +66,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
             onClick={(e): void =>
                 onClick
                     ? onClick(e)
-                    : list(propResourceName ?? resource.route, "push")
+                    : list(propResourceName ?? resource.route!, "push")
             }
             icon={<BarsOutlined />}
             disabled={data?.can === false}

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Layout, Menu, Grid } from "antd";
-import { RightOutlined, LogoutOutlined } from "@ant-design/icons";
+import { LogoutOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import {
     useTranslate,
     useLogout,
     useTitle,
     useNavigation,
     CanAccess,
+    ITreeMenu,
     useIsExistAuthentication,
 } from "@pankod/refine-core";
 
@@ -15,6 +16,7 @@ import { Title as DefaultTitle } from "@components";
 import { useMenu } from "@hooks";
 
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
+const { SubMenu } = Menu;
 
 export const Sider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
@@ -22,13 +24,58 @@ export const Sider: React.FC = () => {
     const { mutate: logout } = useLogout();
     const Title = useTitle();
     const translate = useTranslate();
-    const { menuItems, selectedKey } = useMenu();
+    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const { push } = useNavigation();
     const breakpoint = Grid.useBreakpoint();
 
     const isMobile = !breakpoint.lg;
 
     const RenderToTitle = Title ?? DefaultTitle;
+
+    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
+        return tree.map((item: ITreeMenu) => {
+            const { icon, label, route, name, children, parentName } = item;
+
+            if (children.length > 0) {
+                return (
+                    <SubMenu
+                        key={name}
+                        icon={icon ?? <UnorderedListOutlined />}
+                        title={label}
+                    >
+                        {renderTreeView(children, selectedKey)}
+                    </SubMenu>
+                );
+            }
+            const isSelected = route === selectedKey;
+            const isRoute = !(
+                parentName !== undefined && children.length === 0
+            );
+            return (
+                <CanAccess
+                    key={route}
+                    resource={name.toLowerCase()}
+                    action="list"
+                >
+                    <Menu.Item
+                        key={selectedKey}
+                        onClick={() => {
+                            push(route ?? "");
+                        }}
+                        style={{
+                            fontWeight: isSelected ? "bold" : "normal",
+                        }}
+                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
+                    >
+                        {label}
+                        {!collapsed && isSelected && (
+                            <div className="ant-menu-tree-arrow" />
+                        )}
+                    </Menu.Item>
+                </CanAccess>
+            );
+        });
+    };
 
     return (
         <Layout.Sider
@@ -42,6 +89,7 @@ export const Sider: React.FC = () => {
             <RenderToTitle collapsed={collapsed} />
             <Menu
                 selectedKeys={[selectedKey]}
+                defaultOpenKeys={defaultOpenKeys}
                 mode="inline"
                 onClick={({ key }) => {
                     if (key === "logout") {
@@ -56,36 +104,7 @@ export const Sider: React.FC = () => {
                     push(key as string);
                 }}
             >
-                {menuItems.map(({ icon, label, route, name }) => {
-                    const isSelected = route === selectedKey;
-                    return (
-                        <CanAccess
-                            key={route}
-                            resource={name.toLowerCase()}
-                            action="list"
-                        >
-                            <Menu.Item
-                                style={{
-                                    fontWeight: isSelected ? "bold" : "normal",
-                                }}
-                                icon={icon}
-                            >
-                                <div
-                                    style={{
-                                        display: "flex",
-                                        justifyContent: "space-between",
-                                        alignItems: "center",
-                                    }}
-                                >
-                                    {label}
-                                    {!collapsed && isSelected && (
-                                        <RightOutlined />
-                                    )}
-                                </div>
-                            </Menu.Item>
-                        </CanAccess>
-                    );
-                })}
+                {renderTreeView(menuItems, selectedKey)}
 
                 {isExistAuthentication && (
                     <Menu.Item key="logout" icon={<LogoutOutlined />}>

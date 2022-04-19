@@ -3,7 +3,14 @@ import { useTable, useNavigation } from "@pankod/refine-core";
 import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
-    const { tableQueryResult } = useTable<IPost>();
+    const { tableQueryResult } = useTable<IPost>({
+        initialSorter: [
+            {
+                field: "id",
+                order: "desc",
+            },
+        ],
+    });
     const { edit, create } = useNavigation();
 
     return (

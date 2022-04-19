@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { AccessControlProvider } from "@pankod/refine-core";
 import { Table } from "antd";
 
@@ -10,12 +10,17 @@ const renderList = (
     list: ReactNode,
     accessControlProvider?: AccessControlProvider,
 ) => {
-    return render(<Route path="/:resource">{list}</Route>, {
-        wrapper: TestWrapper({
-            routerInitialEntries: ["/posts"],
-            accessControlProvider,
-        }),
-    });
+    return render(
+        <Routes>
+            <Route path="/:resource" element={list} />
+        </Routes>,
+        {
+            wrapper: TestWrapper({
+                routerInitialEntries: ["/posts"],
+                accessControlProvider,
+            }),
+        },
+    );
 };
 describe("<List/>", () => {
     describe("JSON Rest Server", () => {
@@ -51,9 +56,9 @@ describe("<List/>", () => {
 
         it("should render with label instead of resource name successfully", () => {
             const { getByText } = render(
-                <Route path="/:resource">
-                    <List />
-                </Route>,
+                <Routes>
+                    <Route path="/:resource" element={<List />} />
+                </Routes>,
                 {
                     wrapper: TestWrapper({
                         resources: [
@@ -73,9 +78,9 @@ describe("<List/>", () => {
         describe("render create button", () => {
             it("should create edit button", () => {
                 const { getByText, queryByTestId } = render(
-                    <Route path="/:resource">
-                        <List />
-                    </Route>,
+                    <Routes>
+                        <Route path="/:resource" element={<List />} />
+                    </Routes>,
                     {
                         wrapper: TestWrapper({
                             resources: [
@@ -96,9 +101,9 @@ describe("<List/>", () => {
 
             it("should not render create button on resource canCreate false", () => {
                 const { getByText, queryByTestId } = render(
-                    <Route path="/:resource">
-                        <List />
-                    </Route>,
+                    <Routes>
+                        <Route path="/:resource" element={<List />} />
+                    </Routes>,
                     {
                         wrapper: TestWrapper({
                             resources: [
@@ -118,9 +123,14 @@ describe("<List/>", () => {
 
             it("should render create button on resource canCreate false & createButtonProps props not null on component", () => {
                 const { getByText, queryByTestId } = render(
-                    <Route path="/:resource">
-                        <List createButtonProps={{ size: "large" }} />
-                    </Route>,
+                    <Routes>
+                        <Route
+                            path="/:resource"
+                            element={
+                                <List createButtonProps={{ size: "large" }} />
+                            }
+                        ></Route>
+                    </Routes>,
                     {
                         wrapper: TestWrapper({
                             routerInitialEntries: ["/posts"],
@@ -135,9 +145,14 @@ describe("<List/>", () => {
 
             it("should render create button on resource canCreate true & createButtonProps props not null on component", () => {
                 const { getByText, queryByTestId } = render(
-                    <Route path="/:resource">
-                        <List createButtonProps={{ size: "large" }} />
-                    </Route>,
+                    <Routes>
+                        <Route
+                            path="/:resource"
+                            element={
+                                <List createButtonProps={{ size: "large" }} />
+                            }
+                        ></Route>
+                    </Routes>,
                     {
                         wrapper: TestWrapper({
                             resources: [
@@ -158,9 +173,12 @@ describe("<List/>", () => {
 
             it("should not render create button on resource canCreate true & canCreate props false on component", () => {
                 const { queryByTestId } = render(
-                    <Route path="/:resource">
-                        <List canCreate={false} />
-                    </Route>,
+                    <Routes>
+                        <Route
+                            path="/:resource"
+                            element={<List canCreate={false} />}
+                        ></Route>
+                    </Routes>,
                     {
                         wrapper: TestWrapper({
                             resources: [
@@ -179,9 +197,12 @@ describe("<List/>", () => {
 
             it("should render create button on resource canCreate false & canCreate props true on component", () => {
                 const { queryByTestId } = render(
-                    <Route path="/:resource">
-                        <List canCreate={true} />
-                    </Route>,
+                    <Routes>
+                        <Route
+                            path="/:resource"
+                            element={<List canCreate={true} />}
+                        ></Route>
+                    </Routes>,
                     {
                         wrapper: TestWrapper({
                             resources: [

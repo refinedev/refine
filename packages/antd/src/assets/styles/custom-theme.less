@@ -39,3 +39,34 @@
 .ant-page-header {
     border-radius: @border-radius-base;
 }
+.ant-menu-submenu-popup > .ant-menu {
+    background-color: #2a132e;
+}
+.ant-menu-tree-arrow {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    width: 10px;
+    color: #fff;
+    transform: translateY(-50%);
+    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.ant-menu-tree-arrow::before,
+.ant-menu-tree-arrow::after {
+    position: absolute;
+    width: 6px;
+    height: 1.5px;
+    background-color: currentcolor;
+    border-radius: 2px;
+    transition: background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+        transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+        top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+        color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    content: "";
+}
+.ant-menu-tree-arrow::before {
+    transform: rotate(45deg) translateY(-2.5px);
+}
+.ant-menu-tree-arrow::after {
+    transform: rotate(-45deg) translateY(2.5px);
+}

@@ -25,8 +25,9 @@ import {
     UpdateResponse,
     MutationMode,
     BaseKey,
+    IQueryKeys,
 } from "../../interfaces";
-import { UseUpdateReturnType } from "../data/useUpdate";
+import { UpdateParams, UseUpdateReturnType } from "../data/useUpdate";
 import { UseCreateReturnType } from "../data/useCreate";
 
 export type ActionParams = {
@@ -54,6 +55,7 @@ type ActionFormProps<
     mutationMode?: MutationMode;
     undoableTimeout?: number;
     dataProviderName?: string;
+    invalidates?: Array<keyof IQueryKeys>;
 } & SuccessErrorNotification &
     ActionParams &
     LiveModeProps;
@@ -111,6 +113,7 @@ export const useForm = <
     liveParams,
     undoableTimeout,
     dataProviderName,
+    invalidates,
 }: UseFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
     TData,
     TError,
@@ -181,42 +184,62 @@ export const useForm = <
 
     const onFinishCreate = async (values: TVariables) => {
         setWarnWhen(false);
-        mutateCreate(
-            {
-                values,
-                resource: resource.name,
-                successNotification,
-                errorNotification,
-                metaData,
-                dataProviderName,
-            },
-            {
-                onSuccess: (data, variables, context) => {
-                    if (onMutationSuccess) {
-                        onMutationSuccess(data, values, context);
-                    }
 
-                    const id = data?.data?.id;
+        const onSuccess = (id?: BaseKey) => {
+            handleSubmitWithRedirect({
+                redirect,
+                resource,
+                id,
+            });
+        };
 
-                    handleSubmitWithRedirect({
-                        redirect,
-                        resource,
-                        id,
-                    });
+        if (mutationMode !== "pessimistic") {
+            setTimeout(() => {
+                onSuccess();
+            });
+        }
+
+        return new Promise<void>((resolve, reject) => {
+            if (mutationMode !== "pessimistic") {
+                resolve();
+            }
+            return mutateCreate(
+                {
+                    values,
+                    resource: resource.name,
+                    successNotification,
+                    errorNotification,
+                    metaData,
+                    dataProviderName,
+                    invalidates,
                 },
-                onError: (error: TError, variables, context) => {
-                    if (onMutationError) {
-                        return onMutationError(error, values, context);
-                    }
+                {
+                    onSuccess: (data, _, context) => {
+                        if (onMutationSuccess) {
+                            onMutationSuccess(data, values, context);
+                        }
+
+                        const id = data?.data?.id;
+
+                        onSuccess(id);
+
+                        resolve();
+                    },
+                    onError: (error: TError, _, context) => {
+                        if (onMutationError) {
+                            return onMutationError(error, values, context);
+                        }
+                        reject();
+                    },
                 },
-            },
-        );
+            );
+        });
     };
 
     const onFinishUpdate = async (values: TVariables) => {
         setWarnWhen(false);
 
-        const variables = {
+        const variables: UpdateParams<TVariables> = {
             id: id ?? "",
             values,
             resource: resource.name,
@@ -225,6 +248,8 @@ export const useForm = <
             successNotification,
             errorNotification,
             metaData,
+            dataProviderName,
+            invalidates,
         };
 
         const onSuccess = () => {
@@ -245,8 +270,11 @@ export const useForm = <
         }
 
         // setTimeout is required to make onSuccess e.g. callbacks to work if component unmounts i.e. on route change
-        return new Promise<void>((resolve, reject) =>
-            setTimeout(() => {
+        return new Promise<void>((resolve, reject) => {
+            if (mutationMode !== "pessimistic") {
+                resolve();
+            }
+            return setTimeout(() => {
                 mutateUpdate(variables, {
                     onSuccess: (data, _, context) => {
                         if (onMutationSuccess) {
@@ -259,15 +287,15 @@ export const useForm = <
 
                         resolve();
                     },
-                    onError: (error: TError, variables, context) => {
+                    onError: (error: TError, _, context) => {
                         if (onMutationError) {
                             return onMutationError(error, values, context);
                         }
                         reject();
                     },
                 });
-            }),
-        );
+            });
+        });
     };
 
     const createResult = {

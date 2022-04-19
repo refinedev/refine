@@ -5,20 +5,16 @@ import { act, TestWrapper } from "@test";
 
 import { useCheckError } from "./";
 
-const mHistory = {
-    push: jest.fn(),
-    replace: jest.fn(),
-    goBack: jest.fn(),
-};
+const mHistory = jest.fn();
 
 jest.mock("react-router-dom", () => ({
     ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useHistory: jest.fn(() => mHistory),
+    useNavigate: () => mHistory,
 }));
 
 describe("useCheckError Hook", () => {
     beforeEach(() => {
-        mHistory.push.mockReset();
+        mHistory.mockReset();
     });
 
     it("logout and redirect to login if check error rejected", async () => {
@@ -47,7 +43,7 @@ describe("useCheckError Hook", () => {
         });
 
         expect(logoutMock).toBeCalledTimes(1);
-        expect(mHistory.push).toBeCalledWith("/login", undefined);
+        expect(mHistory).toBeCalledWith("/login", undefined);
     });
 
     it("logout and redirect to custom path if check error rejected", async () => {
@@ -76,7 +72,7 @@ describe("useCheckError Hook", () => {
         });
 
         await act(async () => {
-            expect(mHistory.push).toBeCalledWith("/customPath", undefined);
+            expect(mHistory).toBeCalledWith("/customPath", undefined);
         });
     });
 });

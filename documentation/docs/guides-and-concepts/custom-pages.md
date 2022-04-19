@@ -99,7 +99,7 @@ export default App;
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 // highlight-next-line
 import { CustomPage } from "pages/custom-page";
@@ -277,7 +277,7 @@ export default App;
 ```tsx title="src/App.tsx"
 // highlight-start
 import { Refine, Authenticated, AuthProvider } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 // highlight-end
 
 // highlight-next-line
