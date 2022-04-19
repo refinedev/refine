@@ -68,9 +68,8 @@ Since your Next.js applications are routing file-based, you need to manage the n
                 {
                     name: "posts",
                     parentName: "CMS",
-                    // highlight-start
+                    // highlight-next-line
                     options: { route: "/posts" },
-                    // highlight-end
                     list: PostList,
                     create: PostCreate,
                     edit: PostEdit,
