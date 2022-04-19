@@ -20,11 +20,6 @@ function App() {
                 ...routerProvider,
                 routes: [
                     {
-                        element: <HomePage />,
-                        path: "/",
-                        layout: true,
-                    },
-                    {
                         element: <LoginPage />,
                         path: "/login",
                         layout: true,
@@ -34,22 +29,15 @@ function App() {
                         path: "/register",
                         layout: true,
                     },
-                    {
-                        element: <ProfilePage />,
-                        path: "/profile",
-                        layout: true,
-                    },
-                    {
-                        element: <SettingsPage />,
-                        path: "/settings",
-                        layout: true,
-                    },
                 ],
             }}
             dataProvider={dataProvider(axiosInstance)}
             authProvider={authProvider(axiosInstance)}
-            // TODO: fix me
-            resources={[{ name: "home", list: HomePage }]}
+            DashboardPage={HomePage}
+            resources={[
+                { name: "profile", list: ProfilePage },
+                { name: "settings", list: SettingsPage },
+            ]}
             Layout={Layout}
         />
     );
