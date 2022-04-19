@@ -17,6 +17,9 @@ describe("useModalForm Hook", () => {
         const { result } = renderHook(
             () =>
                 useModalForm({
+                    refineCoreProps: {
+                        resource: "posts",
+                    },
                     modalOptions: {
                         defaultVisible: true,
                     },
@@ -98,6 +101,9 @@ describe("useModalForm Hook", () => {
         const { result } = renderHook(
             () =>
                 useModalForm({
+                    refineCoreProps: {
+                        resource: "posts",
+                    },
                     modalOptions: {
                         autoSubmitClose: true,
                     },
@@ -117,6 +123,9 @@ describe("useModalForm Hook", () => {
         const { result } = renderHook(
             () =>
                 useModalForm({
+                    refineCoreProps: {
+                        resource: "posts",
+                    },
                     modalOptions: {
                         autoSubmitClose: false,
                     },
@@ -133,9 +142,13 @@ describe("useModalForm Hook", () => {
     });
 
     it("autoResetForm is true, 'reset' should be called when 'submit' is called", async () => {
-        const { result } = renderHook(
+        const { result, waitFor } = renderHook(
             () =>
                 useModalForm({
+                    refineCoreProps: {
+                        resource: "posts",
+                        action: "create",
+                    },
                     modalOptions: {
                         autoResetForm: true,
                     },
@@ -145,14 +158,12 @@ describe("useModalForm Hook", () => {
             },
         );
 
-        const reset = jest.fn();
-
-        result.current.reset = reset;
-
         result.current.modal.show();
         result.current.register("test");
         result.current.setValue("test", "test");
         result.current.modal.submit({ test: "test" });
+
+        await waitFor(() => result.current.refineCore.mutationResult.isSuccess);
 
         expect(result.current.getValues()).toStrictEqual({});
     });
@@ -161,6 +172,9 @@ describe("useModalForm Hook", () => {
         const { result } = renderHook(
             () =>
                 useModalForm({
+                    refineCoreProps: {
+                        resource: "posts",
+                    },
                     modalOptions: {
                         autoResetForm: false,
                     },
@@ -169,10 +183,6 @@ describe("useModalForm Hook", () => {
                 wrapper: TestWrapper({}),
             },
         );
-
-        const reset = jest.fn();
-
-        result.current.reset = reset;
 
         result.current.modal.show();
         result.current.register("test");
