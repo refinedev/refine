@@ -56,7 +56,7 @@ A resource given as a group can only have a `name` and a  `parentName`. They sho
 
 
 :::caution
-Because of the way next.js handles routing, you will need to use the `route` option to ensure routing continues to work when grouping resources under a parent.
+Since your Next.js applications are routing file-based, you need to manage the nested routes yourself. If you use Nested resources only for grouping Menu items in `Sider` and you don't need nested routes, you can give `route` option as a single level routing when defining your `resource`.
 :::
 ```tsx title="pages/_app.tsx"
         <Refine
