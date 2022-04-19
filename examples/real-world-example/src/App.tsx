@@ -10,6 +10,7 @@ import { LoginPage, RegisterPage } from "./pages/auth";
 import { HomePage } from "pages/home";
 import { ProfilePage } from "pages/profile";
 import { SettingsPage } from "pages/settings";
+import { EditorPage } from "pages/editor";
 
 const axiosInstance = axios.create();
 
@@ -37,6 +38,7 @@ function App() {
             resources={[
                 { name: "profile", list: ProfilePage },
                 { name: "settings", list: SettingsPage },
+                { name: "editor", list: EditorPage },
             ]}
             Layout={Layout}
         />

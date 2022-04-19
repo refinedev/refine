@@ -35,7 +35,7 @@ export const Header: React.FC = () => {
                         ) : (
                             <>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="#">
+                                    <Link className="nav-link" to="/editor">
                                         <i className="ion-compose"></i>&nbsp;New
                                         Article
                                     </Link>
