@@ -350,7 +350,7 @@ const authProvider = {
    ...
 // highlight-start
     checkAuth: () => {
-        localStorage.getItem("auth") ? Promise.resolve() : Promise.reject();
+        return localStorage.getItem("auth") ? Promise.resolve() : Promise.reject();
     },
 // highlight-end
    ...
@@ -366,7 +366,7 @@ const authProvider = {
    ...
 // highlight-next-line
     checkAuth: () => {
-        localStorage.getItem("auth")
+        return localStorage.getItem("auth")
             ? Promise.resolve()
             : Promise.reject({ redirectPath: "/custom-url" });
     },
