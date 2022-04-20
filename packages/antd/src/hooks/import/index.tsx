@@ -39,7 +39,7 @@ export const useImport = <
     onProgress: onProgressFromProp,
 }: ImportOptions<TItem, TVariables, TData> = {}): Omit<
     UseImportReturnType<TData, TVariables, TError>,
-    "handleChange"
+    "handleChange" | "inputProps"
 > & {
     uploadProps: UploadProps;
     buttonProps: ButtonProps;
@@ -121,15 +121,6 @@ export const useImport = <
     });
 
     return {
-        inputProps: {
-            type: "file",
-            accept: ".cvs",
-            onChange: (event) => {
-                if (event.target.files && event.target.files.length > 0) {
-                    handleChange(event.target.files[0]);
-                }
-            },
-        },
         uploadProps: {
             onChange: handleChange,
             beforeUpload: () => false,
