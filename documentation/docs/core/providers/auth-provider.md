@@ -610,6 +610,8 @@ axiosInstance.interceptors.request.use(
                 Authorization: `Bearer ${token}`,
             };
         }
+
+        return request;
     },
 );
 
