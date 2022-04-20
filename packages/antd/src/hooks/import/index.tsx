@@ -121,6 +121,15 @@ export const useImport = <
     });
 
     return {
+        inputProps: {
+            type: "file",
+            accept: ".cvs",
+            onChange: (event) => {
+                if (event.target.files && event.target.files.length > 0) {
+                    handleChange(event.target.files[0]);
+                }
+            },
+        },
         uploadProps: {
             onChange: handleChange,
             beforeUpload: () => false,
