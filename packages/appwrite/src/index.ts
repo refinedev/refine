@@ -4,30 +4,11 @@ import {
     LiveEvent,
     CrudFilters,
     CrudSorting,
+    CrudFilter,
 } from "@pankod/refine-core";
-import { Appwrite } from "appwrite";
+import { Appwrite, Query } from "appwrite";
 
 export * from "appwrite";
-
-const operators = {
-    eq: "=",
-    ne: "!=",
-    lt: "<",
-    gt: ">",
-    lte: "<=",
-    gte: ">=",
-    in: undefined,
-    nin: undefined,
-    contains: undefined,
-    containss: undefined,
-    ncontains: undefined,
-    ncontainss: undefined,
-    null: undefined,
-    between: undefined,
-    nbetween: undefined,
-    nnull: undefined,
-    or: undefined,
-};
 
 const appwriteEventToRefineEvent = {
     "database.documents.create": "created",
@@ -58,6 +39,27 @@ type GetAppwriteSortingType = {
     };
 };
 
+const generateFilter = (filter: CrudFilter) => {
+    switch (filter.operator) {
+        case "eq":
+            return Query.equal(filter.field, filter.value);
+        case "ne":
+            return Query.notEqual(filter.field, filter.value);
+        case "gt":
+            return Query.greater(filter.field, filter.value);
+        case "gte":
+            return Query.greaterEqual(filter.field, filter.value);
+        case "lt":
+            return Query.lesser(filter.field, filter.value);
+        case "lte":
+            return Query.lesserEqual(filter.field, filter.value);
+        case "contains":
+            return Query.search(filter.field, `%${filter.value}%`);
+        default:
+            throw new Error(`Operator ${filter.operator} is not supported`);
+    }
+};
+
 export const getAppwriteFilters: GetAppwriteFiltersType = (filters) => {
     if (!filters) {
         return undefined;
@@ -66,16 +68,15 @@ export const getAppwriteFilters: GetAppwriteFiltersType = (filters) => {
     const appwriteFilters: string[] = [];
 
     for (const filter of filters) {
-        const operator = operators[filter.operator];
-
-        if (!operator) {
-            throw new Error(`Operator ${filter.operator} is not supported`);
-        }
-
         if (filter.operator !== "or") {
             const filterField = filter.field === "id" ? "$id" : filter.field;
 
-            appwriteFilters.push(`${filterField}${operator}${filter.value}`);
+            appwriteFilters.push(
+                generateFilter({
+                    ...filter,
+                    field: filterField,
+                }),
+            );
         }
     }
 
@@ -160,8 +161,7 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
             const { $id, ...restData } =
                 await appwriteClient.database.createDocument(
                     resource,
-                    // TODO: Make this configureable
-                    "unique()",
+                    metaData?.documentId ?? "unique()",
                     variables as unknown as object,
                     metaData?.readPermissions ?? ["role:all"],
                     metaData?.writePermissions ?? ["role:all"],
@@ -179,8 +179,7 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
                 variables.map((document) =>
                     appwriteClient.database.createDocument<any>(
                         resource,
-                        // TODO: Make this configureable
-                        "unique()",
+                        metaData?.documentId ?? "unique()",
                         document as unknown as object,
                         metaData?.readPermissions ?? ["role:all"],
                         metaData?.writePermissions ?? ["role:all"],

@@ -545,8 +545,8 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                                                 "default",
                                                 rcFile.name,
                                                 rcFile,
-                                                ["*"],
-                                                ["*"],
+                                                ["role:all"],
+                                                ["role:all"],
                                             );
 
                                         const url =

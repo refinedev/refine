@@ -65,6 +65,8 @@ export const EditProduct: React.FC<EditProductProps> = ({
                                             "default",
                                             rcFile.name,
                                             rcFile,
+                                            ["role:all"],
+                                            ["role:all"],
                                         );
 
                                     const url =
