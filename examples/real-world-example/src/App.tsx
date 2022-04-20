@@ -1,6 +1,6 @@
 import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
 import { authProvider } from "./authProvider";
 import { dataProvider } from "./dataProvider";
@@ -11,8 +11,22 @@ import { HomePage } from "pages/home";
 import { ProfilePage } from "pages/profile";
 import { SettingsPage } from "pages/settings";
 import { EditorPage } from "pages/editor";
+import { TOKEN_KEY } from "./constants";
 
 const axiosInstance = axios.create();
+
+axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
+    const token = localStorage.getItem(TOKEN_KEY);
+    if (request.headers) {
+        request.headers["Authorization"] = `Bearer ${token}`;
+    } else {
+        request.headers = {
+            Authorization: `Bearer ${token}`,
+        };
+    }
+
+    return request;
+});
 
 function App() {
     return (

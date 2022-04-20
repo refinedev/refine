@@ -103,5 +103,14 @@ export const dataProvider = (axios: AxiosInstance): DataProvider => {
                 total: data[`${resource}Count`] || undefined,
             };
         },
+        update: async ({ resource, id, variables }) => {
+            const url = `${API_URL}/${resource}/${id}`;
+
+            const { data } = await axios.put(url, variables);
+
+            return {
+                data,
+            };
+        },
     };
 };
