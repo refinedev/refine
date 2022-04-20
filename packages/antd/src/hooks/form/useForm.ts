@@ -111,7 +111,7 @@ export const useForm = <
         return () => {
             form.resetFields();
         };
-    }, [queryResult?.data?.data, id, queryResult?.isFetching]);
+    }, [queryResult?.data?.data, id]);
 
     const onKeyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
         if (submitOnEnter && event.key === "Enter") {
