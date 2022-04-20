@@ -90,6 +90,8 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
 
                                         const { $id } =
                                             await appwriteClient.storage.createFile(
+                                                "default",
+                                                rcFile.name,
                                                 rcFile,
                                                 ["*"],
                                                 ["*"],
@@ -97,6 +99,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
 
                                         const url =
                                             appwriteClient.storage.getFileView(
+                                                "default",
                                                 $id,
                                             );
 

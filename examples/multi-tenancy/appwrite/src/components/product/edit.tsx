@@ -62,11 +62,16 @@ export const EditProduct: React.FC<EditProductProps> = ({
 
                                     const { $id } =
                                         await appwriteClient.storage.createFile(
+                                            "default",
+                                            rcFile.name,
                                             rcFile,
                                         );
 
                                     const url =
-                                        appwriteClient.storage.getFileView($id);
+                                        appwriteClient.storage.getFileView(
+                                            "default",
+                                            $id,
+                                        );
 
                                     onSuccess?.({ url }, new XMLHttpRequest());
                                 } catch (error) {

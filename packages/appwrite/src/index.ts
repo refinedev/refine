@@ -90,7 +90,7 @@ export const getAppwriteSorting: GetAppwriteSortingType = (sort) => {
     if (sort) {
         sort.map((item) => {
             _sort.orderField.push(item.field);
-            _sort.orderType.push(item.order);
+            _sort.orderType.push(item.order.toUpperCase());
         });
     }
     return _sort;
@@ -121,7 +121,7 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
                 data: data.map(({ $id, ...restData }: { $id: string }) => ({
                     id: $id,
                     ...restData,
-                })),
+                })) as any,
                 total,
             };
         },
