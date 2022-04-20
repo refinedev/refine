@@ -16,12 +16,7 @@ import { PostsCreate, PostsList, PostsEdit, PostsShow } from "pages/posts";
 const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
         try {
-            const hede = await appwriteClient.account.createSession(
-                email,
-                password,
-            );
-            const jwt = await appwriteClient.account.createJWT();
-            console.log("providerAccessToken", hede, jwt);
+            await appwriteClient.account.createSession(email, password);
             return Promise.resolve();
         } catch (e) {
             return Promise.reject();
