@@ -64,6 +64,25 @@ const categoryQueryResult = useMany<ICategory>({
 
 <br />
 
+:::tip
+`useQuery` options also allows you to implement dependent queries whereby a query is only runned after a particular query result is fetched. This is particularly useful if you have queries that are dependent on the query results of a preceding query.  
+
+[Refer to react-query docs on **dependent queries** for more information.](https://react-query.tanstack.com/guides/dependent-queries)
+
+-   Suppose you want this query to run after `id_query_result` is fetched by a preceding query, you can set  `enabled` to `!!id_query_result`. 
+
+```tsx
+
+const categoryQueryResult = useMany<ICategory>({
+    resource: "categories",
+    ids: ids_query_result,
+    queryOptions: { enabled: !!id_query_result },
+});
+```
+:::
+
+<br />
+
 After query runs, the `categoryQueryResult` will include the retrieved data:
 
 ```json title="categoryQueryResult.data"
