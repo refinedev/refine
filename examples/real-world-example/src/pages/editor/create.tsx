@@ -1,6 +1,9 @@
+import { useNavigation } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 
 export const EditorPage: React.FC = () => {
+    const { push } = useNavigation();
+
     const {
         refineCore: { onFinish, formLoading },
         register,
@@ -13,8 +16,9 @@ export const EditorPage: React.FC = () => {
         },
     });
 
-    const onSubmit = (data: any) => {
-        onFinish({ article: data });
+    const onSubmit = async (data: any) => {
+        await onFinish({ article: data });
+        push("/");
     };
 
     return (

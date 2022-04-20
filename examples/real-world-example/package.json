@@ -15,7 +15,7 @@
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.4",
     "axios": "^0.21.4",
-    "dayjs": "^1.11.1",
+    "dayjs": "^1.10.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "^5.0.0",
