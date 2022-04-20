@@ -56,9 +56,6 @@ export const useForm = <
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesRefine;
 
     const useFormCoreResult = useFormCore<TData, TError, TVariables>({
-        onMutationSuccess: () => {
-            reset();
-        },
         ...refineCoreProps,
     });
 
@@ -82,6 +79,10 @@ export const useForm = <
         );
 
         reset(fields as any);
+
+        return () => {
+            reset();
+        };
     }, [queryResult?.data]);
 
     useEffect(() => {
