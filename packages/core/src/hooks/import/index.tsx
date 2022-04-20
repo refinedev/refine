@@ -64,11 +64,17 @@ export type HandleChangeType<TVariables, TData> = (onChangeParams: {
     file: Partial<File>;
 }) => Promise<CreatedValuesType<TVariables, TData>[]>;
 
+export type InpuPropsType = {
+    type: "file";
+    onChange: (event: any) => void;
+};
+
 export type UseImportReturnType<
     TData extends BaseRecord = BaseRecord,
     TVariables = {},
     TError extends HttpError = HttpError,
 > = {
+    inputProps: InpuPropsType;
     mutationResult:
         | UseCreateReturnType<TData, TError, TVariables>
         | UseCreateManyReturnType<TData, TError, TVariables>;
@@ -280,6 +286,14 @@ export const useImport = <
     };
 
     return {
+        inputProps: {
+            type: "file",
+            onChange: (event) => {
+                if (event.target.files) {
+                    handleChange(event.target.files[0]);
+                }
+            },
+        },
         mutationResult,
         isLoading,
         handleChange,
