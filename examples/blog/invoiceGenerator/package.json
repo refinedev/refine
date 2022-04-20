@@ -1,9 +1,9 @@
 {
   "name": "refine-invoice-generator",
-  "version": "3.14.2",
+  "version": "3.14.5",
   "private": true,
   "dependencies": {
-    "@pankod/refine-antd": "^3.14.2",
+    "@pankod/refine-antd": "^3.14.5",
     "@pankod/refine-core": "^3.14.2",
     "@pankod/refine-react-router-v6": "^3.14.2",
     "@pankod/refine-strapi": "^3.14.2",
