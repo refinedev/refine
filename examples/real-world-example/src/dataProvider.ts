@@ -67,7 +67,7 @@ const generateFilter = (filters?: CrudFilters) => {
 export const dataProvider = (axios: AxiosInstance): DataProvider => {
     return {
         ...restDataProvider(API_URL, axios),
-        getList: async ({ resource, pagination, filters, sort }) => {
+        getList: async ({ resource, pagination, filters, sort, metaData }) => {
             const url = `${API_URL}/${resource}`;
 
             // pagination
@@ -97,10 +97,20 @@ export const dataProvider = (axios: AxiosInstance): DataProvider => {
                 `${url}?${stringify(query)}&${stringify(queryFilters)}`,
             );
 
-            console.log(data, resource, data[resource]);
             return {
                 data: data[resource],
                 total: data[`${resource}Count`] || undefined,
+            };
+        },
+        getOne: async ({ resource, id, metaData }) => {
+            const url = metaData?.getComments
+                ? `${API_URL}/${resource}/${id}/comments`
+                : `${API_URL}/${resource}/${id}`;
+
+            const { data } = await axios.get(url);
+
+            return {
+                data: data[metaData?.resource || resource],
             };
         },
         update: async ({ resource, id, variables }) => {

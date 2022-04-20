@@ -1,4 +1,7 @@
+import { useNavigation } from "@pankod/refine-core";
+
 type ArticleListProps = {
+    slug: string;
     author: string;
     image: string;
     title: string;
@@ -9,6 +12,7 @@ type ArticleListProps = {
 };
 
 export const ArticleList: React.FC<ArticleListProps> = ({
+    slug,
     author,
     image,
     title,
@@ -17,6 +21,8 @@ export const ArticleList: React.FC<ArticleListProps> = ({
     favCount,
     tagList,
 }) => {
+    const { push } = useNavigation();
+
     return (
         <div className="article-preview">
             <div className="article-meta">
@@ -33,7 +39,13 @@ export const ArticleList: React.FC<ArticleListProps> = ({
                     <i className="ion-heart"></i> {favCount}
                 </button>
             </div>
-            <a href="" className="preview-link">
+            <a
+                href=""
+                className="preview-link"
+                onClick={() => {
+                    push(`/article/${slug}`);
+                }}
+            >
                 <h1>{title}</h1>
                 <p>{description}</p>
                 <span>Read more...</span>

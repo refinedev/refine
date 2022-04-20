@@ -30,7 +30,6 @@ export const authProvider = (axiosInstance: AxiosInstance): AuthProvider => {
             }
 
             const userInfo = await axiosInstance.get(CURRENT_USER);
-            console.log("userInfo", userInfo);
 
             return Promise.resolve(userInfo.data.user);
         },

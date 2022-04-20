@@ -70,6 +70,7 @@ export const ProfilePage: React.FC = () => {
                                 return (
                                     <ArticleList
                                         key={item.slug}
+                                        slug={item.slug}
                                         author={item.author.username}
                                         image={item.author.image}
                                         title={item.title}

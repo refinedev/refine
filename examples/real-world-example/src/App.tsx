@@ -11,6 +11,8 @@ import { HomePage } from "pages/home";
 import { ProfilePage } from "pages/profile";
 import { SettingsPage } from "pages/settings";
 import { EditorPage } from "pages/editor";
+import { ArticlePage } from "pages/article";
+
 import { TOKEN_KEY } from "./constants";
 
 const axiosInstance = axios.create();
@@ -42,6 +44,11 @@ function App() {
                     {
                         element: <RegisterPage />,
                         path: "/register",
+                        layout: true,
+                    },
+                    {
+                        element: <ArticlePage />,
+                        path: "/article/:slug",
                         layout: true,
                     },
                 ],
