@@ -85,6 +85,7 @@ When the form is submitted, the `onSearch` method runs and we get the search for
 
 ```tsx title="pages/list.tsx"
 ...
+import { HttpError } from "@pankod/refine-core";
 import { Dayjs } from "dayjs";
 
 const { searchFormProps } = useTable<IPost, HttpError, { title: string; createdAt: [Dayjs, Dayjs] }>({
