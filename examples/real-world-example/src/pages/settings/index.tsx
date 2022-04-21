@@ -107,6 +107,14 @@ export const SettingsPage: React.FC = () => {
                                 </button>
                             </fieldset>
                         </form>
+                        <button
+                            className="btn btn-outline-danger"
+                            onClick={() => {
+                                logout();
+                            }}
+                        >
+                            Or click here to logout.
+                        </button>
                     </div>
                 </div>
             </div>
