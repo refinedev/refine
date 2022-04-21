@@ -94,7 +94,7 @@ interface IPostFile {
 <br />
 
 :::tip 
-The `useImport` hook contains all the props that the HTML Input element needs (type, accept, onChange etc.) so you can use directly `inputProps` in your html input elements like this
+The `useImport` hook contains all the props that the HTML Input element needs (`type`, `accept`, `onChange`) so you can use directly `inputProps` in your HTML input elements like this
 
 ```tsx
 import React from "react";
@@ -104,17 +104,12 @@ import {
 } from "@pankod/refine-core";
 
 export const PostList: React.FC = () => {
-
-    // highlight-start
+        // highlight-next-line
        const { inputProps } = useImport();
-    // highlight-end
-
-
     return (
             <input
-                // highlight-start
+                // highlight-next-line
                 {...inputProps}
-                // highlight-end
             />
     );
 };
