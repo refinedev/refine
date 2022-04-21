@@ -1,12 +1,12 @@
 {
   "name": "refeedback",
-  "version": "3.15.0",
+  "version": "3.15.1",
   "private": true,
   "dependencies": {
-    "@pankod/refine-antd": "^3.15.0",
-    "@pankod/refine-core": "^3.15.0",
-    "@pankod/refine-react-router-v6": "^3.15.0",
-    "@pankod/refine-strapi": "^3.15.0",
+    "@pankod/refine-antd": "^3.15.1",
+    "@pankod/refine-core": "^3.15.1",
+    "@pankod/refine-react-router-v6": "^3.15.1",
+    "@pankod/refine-strapi": "^3.15.1",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
