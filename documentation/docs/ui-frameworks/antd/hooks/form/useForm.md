@@ -85,7 +85,7 @@ const { formProps, saveButtonProps } = useForm({ action: "edit" });
 
 ### `action: "edit"`
 
-`action: "edit"` is used for editing an existing record. Form will initially be filled with the data of the record.
+`action: "edit"` is used for editing an existing record. Form will initially be filled with the data of the record. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
 
 `useForm` uses [`useUpdate`](/core/hooks/data/useUpdate.md) under the hood for mutations on edit mode.
 
@@ -104,8 +104,8 @@ Alternatively, if route doesn't have those parameters, action can be set with `a
 
 ```tsx 
 const { setId, id } = useForm({
-   	 	action: "clone",
-	});
+    action: "clone",
+});
 ```
 
 :::tip
@@ -220,7 +220,8 @@ interface IPost {
 | Property                                                     | Description                                                                                                                                                        | Type                                                                            | Default                                                                                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | action                                                       | Type of the form mode                                                                                                                                              | `"edit"` \| `"create"` \| `"clone"`                                             |                                                                                                                                      |
-| resource                                                     | Resource name for API data interactions                                                                                                                            | `string`                                                                        |                                                                                                                                      |
+| resource                                                     | Resource name for API data interactions                                                                                                                            | `string`                                                                        |                                                              |
+| id                                                           | Record id for fetching                                                                                                                                             | [`BaseKey`](/core/interfaces.md#basekey)                                        | Id that it reads from the url                                                                                                        |
 | onMutationSuccess                                            | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) is successful                                                                     | `(data: UpdateResponse<M>, variables: any, context: any) => void`               |                                                                                                                                      |
 | onMutationError                                              | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error                                                               | `(error: any, variables: any, context: any) => void`                            |                                                                                                                                      |
 | mutationMode                                                 | [Determines when mutations are executed](guides-and-concepts/mutation-mode.md)                                                                                     | ` "pessimistic` \| `"optimistic` \| `"undoable"`                                | `"pessimistic"`\*                                                                                                                    |
@@ -235,7 +236,7 @@ interface IPost {
 | liveParams                                                   | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: BaseKey[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | `undefined`                                                                                                                          |
 | onLiveEvent                                                  | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)               | `undefined`                                                                                                                          |
 | invalidates                                                  | You can use it to manage the invalidations that will occur at the end of the mutation.                                                                             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                         | `["list", "many", "detail"]`                                                                                                         |
-| queryOptions                                                 | `react-query` `queryOptions` of `useOne` hook used while in edit mode.                                                                                                                   | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                     |
+| queryOptions                                                 | `react-query` `queryOptions` of `useOne` hook used while in edit mode.                                                                                             | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                     |
 
 > `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/core/components/refine-config.md)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
