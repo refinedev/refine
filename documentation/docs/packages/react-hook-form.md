@@ -240,7 +240,7 @@ export const PostEdit: React.FC = () => {
     // highlight-end
 
     return (
-        <form onSubmit={handleSubmit(onFinish())}>
+        <form onSubmit={handleSubmit(onFinish)}>
             <label>Title: </label>
             <input {...register("title", { required: true })} />
             {errors.title && <span>This field is required</span>}
