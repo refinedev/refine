@@ -20,7 +20,6 @@ export type UseFormProps<
 > = UseFormPropsCore<TData, TError, TVariables> & {
     submitOnEnter?: boolean;
     warnWhenUnsavedChanges?: boolean;
-    onSetValue?: (values: TData) => any;
 };
 
 export type UseFormReturnType<
@@ -67,7 +66,9 @@ export const useForm = <
     mutationMode,
     dataProviderName,
     onLiveEvent,
-    onSetValue,
+    invalidates,
+    undoableTimeout,
+    queryOptions,
 }: UseFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
     TData,
     TError,
@@ -95,6 +96,9 @@ export const useForm = <
         mutationMode,
         dataProviderName,
         onLiveEvent,
+        invalidates,
+        undoableTimeout,
+        queryOptions,
     });
 
     const { formLoading, onFinish, queryResult, id } = useFormCoreResult;
@@ -107,11 +111,7 @@ export const useForm = <
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesRefine;
 
     React.useEffect(() => {
-        const normalizedData = onSetValue
-            ? onSetValue(queryResult?.data?.data as any)
-            : (queryResult?.data?.data as any);
-
-        form.setFieldsValue(normalizedData);
+        form.setFieldsValue(queryResult?.data?.data as any);
         return () => {
             form.resetFields();
         };

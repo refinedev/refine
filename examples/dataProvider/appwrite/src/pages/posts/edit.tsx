@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { HttpError, IResourceComponentsProps } from "@pankod/refine-core";
+import {
+    HttpError,
+    IResourceComponentsProps,
+    useShow,
+} from "@pankod/refine-core";
 
 import {
     Edit,
@@ -21,18 +25,27 @@ import { IPost, IPostVariables, ICategory } from "interfaces";
 import { appwriteClient, normalizeFile } from "utility";
 
 export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
+    const { queryResult: useShowQueryResult } = useShow();
     const { formProps, saveButtonProps, queryResult } = useForm<
         IPost,
         HttpError,
         IPostVariables
     >({
-        onSetValue: (values) => {
-            return {
-                ...values,
-                images: values?.images ? JSON.parse(values?.images) : undefined,
-            };
+        queryOptions: {
+            select: ({ data }) => {
+                return {
+                    data: {
+                        ...data,
+                        images: data.images
+                            ? JSON.parse(data.images)
+                            : undefined,
+                    },
+                };
+            },
         },
     });
+
+    console.log({ useShowQueryResult, queryResult });
 
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
