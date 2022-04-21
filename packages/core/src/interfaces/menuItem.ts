@@ -1,4 +1,4 @@
-import { IResourceItem } from "src";
+import { IResourceItem } from "src/contexts/resource/IResourceContext";
 
 export type ITreeMenu = IResourceItem & {
     children: ITreeMenu[];
