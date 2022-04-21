@@ -99,18 +99,18 @@ The `useImport` hook contains all the props that the HTML Input element needs (`
 ```tsx
 import React from "react";
 import {
-// highlight-next-line
+    // highlight-next-line
     useImport,
 } from "@pankod/refine-core";
 
 export const PostList: React.FC = () => {
-        // highlight-next-line
-       const { inputProps } = useImport();
+    // highlight-next-line
+    const { inputProps } = useImport();
     return (
-            <input
-                // highlight-next-line
-                {...inputProps}
-            />
+        <input
+            // highlight-next-line
+            {...inputProps}
+        />
     );
 };
 ```
