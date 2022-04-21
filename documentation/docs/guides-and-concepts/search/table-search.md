@@ -87,7 +87,7 @@ When the form is submitted, the `onSearch` method runs and we get the search for
 ...
 import { Dayjs } from "dayjs";
 
-const { searchFormProps } = useTable<IPost, { title: string; createdAt: [Dayjs, Dayjs] }>({
+const { searchFormProps } = useTable<IPost, HttpError, { title: string; createdAt: [Dayjs, Dayjs] }>({
     onSearch: (params) => {
         const filters: CrudFilters = [];
         const { q, createdAt } = params;
