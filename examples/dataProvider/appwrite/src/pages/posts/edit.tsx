@@ -45,8 +45,6 @@ export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
         },
     });
 
-    console.log({ useShowQueryResult, queryResult });
-
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "61c43adc284ac",
