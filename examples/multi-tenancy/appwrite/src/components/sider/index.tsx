@@ -84,6 +84,10 @@ export const CustomSider: React.FC = () => {
                     if (key !== "/") {
                         push(key as string);
                     }
+
+                    if (!breakpoint.lg) {
+                        setCollapsed(true);
+                    }
                 }}
             >
                 <Menu.Item key={"/"} icon={<Icons.AppstoreAddOutlined />}>
