@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { HttpError, IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
     Create,
@@ -17,11 +17,12 @@ import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, IPostVariables, ICategory } from "interfaces";
 import { appwriteClient, normalizeFile } from "utility";
 
 export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+    const { formProps, saveButtonProps } =
+        useForm<IPost, HttpError, IPostVariables>();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "61c43adc284ac",
@@ -34,7 +35,16 @@ export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
+            <Form
+                {...formProps}
+                layout="vertical"
+                onFinish={(values) => {
+                    formProps.onFinish?.({
+                        ...values,
+                        images: JSON.stringify(values.images),
+                    });
+                }}
+            >
                 <Form.Item
                     label="Title"
                     name="title"
@@ -97,11 +107,16 @@ export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
 
                                     const { $id } =
                                         await appwriteClient.storage.createFile(
+                                            "default",
+                                            rcFile.name,
                                             rcFile,
                                         );
 
                                     const url =
-                                        appwriteClient.storage.getFileView($id);
+                                        appwriteClient.storage.getFileView(
+                                            "default",
+                                            $id,
+                                        );
 
                                     onSuccess?.({ url }, new XMLHttpRequest());
                                 } catch (error) {
