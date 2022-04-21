@@ -14,8 +14,13 @@ import { appwriteClient } from "utility";
 import { PostsCreate, PostsList, PostsEdit, PostsShow } from "pages/posts";
 
 const authProvider: AuthProvider = {
-    login: ({ email, password }) => {
-        return appwriteClient.account.createSession(email, password);
+    login: async ({ email, password }) => {
+        try {
+            await appwriteClient.account.createSession(email, password);
+            return Promise.resolve();
+        } catch (e) {
+            return Promise.reject();
+        }
     },
     logout: async () => {
         await appwriteClient.account.deleteSession("current");

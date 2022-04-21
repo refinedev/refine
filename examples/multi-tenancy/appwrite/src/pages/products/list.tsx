@@ -35,8 +35,18 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         modalProps: editModalProps,
         formProps: editFormProps,
         show: editShow,
-    } = useModalForm<IProduct, HttpError, IProduct>({
+    } = useModalForm<IProduct, HttpError>({
         action: "edit",
+        queryOptions: {
+            select: ({ data }) => {
+                return {
+                    data: {
+                        ...data,
+                        image: data.image ? JSON.parse(data.image) : undefined,
+                    },
+                };
+            },
+        },
     });
 
     return (

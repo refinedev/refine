@@ -79,10 +79,6 @@ export const useForm = <
         );
 
         reset(fields as any);
-
-        return () => {
-            reset();
-        };
     }, [queryResult?.data]);
 
     useEffect(() => {

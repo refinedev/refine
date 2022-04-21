@@ -16,7 +16,7 @@ import permission from '@site/static/img/guides-and-concepts/data-provider/appwr
 **refine** and [Appwrite](https://appwrite.io/) work in harmony, offering you quick development options. You can use your data (API, Database) very simply by using **refine**'s Appwrite data provider.
 
 :::info
-[Appwrite](https://appwrite.io/) version >= 0.12 is required
+[Appwrite](https://appwrite.io/) version >= 0.13 is required
 :::
 
 You can only focus on your UI as we can handle your data quickly and simply.
@@ -59,8 +59,13 @@ import { AuthProvider } from "@pankod/refine-core";
 import appwriteClient from "./appwriteClient";
 
 export const authProvider: AuthProvider = {
-    login: ({ email, password }) => {
-        return appwriteClient.account.createSession(email, password);
+    login: async ({ email, password }) => {
+        try {
+            await appwriteClient.account.createSession(email, password);
+            return Promise.resolve();
+        } catch (e) {
+            return Promise.reject();
+        }
     },
     logout: async () => {
         await appwriteClient.account.deleteSession("current");
@@ -400,7 +405,7 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter } = useTable<IPost>({
         initialSorter: [
             {
-                field: "id",
+                field: "$id",
                 order: "asc",
             },
         ],
@@ -588,11 +593,16 @@ export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
 
                                     const { $id } =
                                         await appwriteClient.storage.createFile(
+                                            "default",
+                                            rcFile.name,
                                             rcFile,
                                         );
 
                                     const url =
-                                        appwriteClient.storage.getFileView($id);
+                                        appwriteClient.storage.getFileView(
+                                            "default",
+                                            $id,
+                                        );
 
                                     onSuccess?.({ url }, new XMLHttpRequest());
                                 } catch (error) {
@@ -750,11 +760,16 @@ export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
 
                                     const { $id } =
                                         await appwriteClient.storage.createFile(
+                                            "default",
+                                            rcFile.name,
                                             rcFile,
                                         );
 
                                     const url =
-                                        appwriteClient.storage.getFileView($id);
+                                        appwriteClient.storage.getFileView(
+                                            "default",
+                                            $id,
+                                        );
 
                                     onSuccess?.({ url }, new XMLHttpRequest());
                                 } catch (error) {

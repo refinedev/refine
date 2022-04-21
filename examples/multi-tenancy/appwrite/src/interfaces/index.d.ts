@@ -3,7 +3,7 @@ export interface IProduct {
     title: string;
     description: string;
     storeId: string;
-    image: any;
+    image: string;
 }
 
 export interface IOrder {

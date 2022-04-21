@@ -21,7 +21,17 @@ export const EditProduct: React.FC<EditProductProps> = ({
 }) => {
     return (
         <Modal {...modalProps}>
-            <Form {...formProps} wrapperCol={{ span: 12 }} layout="vertical">
+            <Form
+                {...formProps}
+                wrapperCol={{ span: 12 }}
+                layout="vertical"
+                onFinish={(values) => {
+                    formProps.onFinish?.({
+                        ...values,
+                        image: JSON.stringify(values.image),
+                    });
+                }}
+            >
                 <Form.Item
                     label="Title"
                     name="title"
@@ -62,11 +72,18 @@ export const EditProduct: React.FC<EditProductProps> = ({
 
                                     const { $id } =
                                         await appwriteClient.storage.createFile(
+                                            "default",
+                                            rcFile.name,
                                             rcFile,
+                                            ["role:all"],
+                                            ["role:all"],
                                         );
 
                                     const url =
-                                        appwriteClient.storage.getFileView($id);
+                                        appwriteClient.storage.getFileView(
+                                            "default",
+                                            $id,
+                                        );
 
                                     onSuccess?.({ url }, new XMLHttpRequest());
                                 } catch (error) {

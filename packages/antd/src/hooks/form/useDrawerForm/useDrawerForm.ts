@@ -24,7 +24,7 @@ export type UseDrawerFormProps<
     TError extends HttpError = HttpError,
     TVariables = {},
 > = UseFormPropsCore<TData, TError, TVariables> &
-    UseFormProps &
+    UseFormProps<TData, TError, TVariables> &
     UseDrawerFormConfig &
     LiveModeProps;
 

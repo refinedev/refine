@@ -27,7 +27,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
     saveButtonProps,
 }) => {
     const breakpoint = Grid.useBreakpoint();
-    const [store, setStore] = useContext(StoreContext);
+    const [store] = useContext(StoreContext);
 
     return (
         <Drawer
@@ -46,6 +46,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                         return formProps.onFinish?.({
                             ...values,
                             storeId: store,
+                            image: JSON.stringify(values.image),
                         });
                     }}
                 >
@@ -90,13 +91,16 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
 
                                         const { $id } =
                                             await appwriteClient.storage.createFile(
+                                                "default",
+                                                rcFile.name,
                                                 rcFile,
-                                                ["*"],
-                                                ["*"],
+                                                ["role:all"],
+                                                ["role:all"],
                                             );
 
                                         const url =
                                             appwriteClient.storage.getFileView(
+                                                "default",
                                                 $id,
                                             );
 
