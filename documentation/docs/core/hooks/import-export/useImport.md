@@ -94,10 +94,30 @@ interface IPostFile {
 <br />
 
 :::tip 
-With the use of an `useImport` hook, you can access props that return by inputProps .
+The `useImport` hook contains all the props that the HTML Input element needs (type, accept, onChange etc.) so you can use directly `inputProps` in your html input elements like this
 
 ```tsx
-    const { inputProps } = useImport();
+import React from "react";
+import {
+// highlight-next-line
+    useImport,
+} from "@pankod/refine-core";
+
+export const PostList: React.FC = () => {
+
+    // highlight-start
+       const { inputProps } = useImport();
+    // highlight-end
+
+
+    return (
+            <input
+                // highlight-start
+                {...inputProps}
+                // highlight-end
+            />
+    );
+};
 ```
 :::
 
@@ -187,7 +207,7 @@ Now, parsed data is mapped to conform our APIs requirements.
 
 | Property       | Description                                                            | Type                                                                                                                                                                                                                                                                                             |
 | -------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| inputProps   | Props to that you can pass `<input />` element props.              | [`InputProps`][InputProps]     
+| inputProps   | Props to that you can pass `<input />` element props.              | [`UseImportInputPropsType`][UseImportInputPropsType]     
 | handleChange   | Props to handle `<input type="file">` element `onChange`               | `function`                                                                                                                                                                                                                                                                                      |
 | isLoading      | It can be used to handle the `loading` status for the Import operation | `boolean`                                                                                                                                                                                                                                                                                        |
 | mutationResult | Result of the mutation/mutations of creating imported resources        | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { resource: string; values: TVariables; },`<br/>` unknown>`][useMutation])  \| [`UseMutationResult<`<br/>`{ data: TData[]},`<br/>`TError,`<br/>`  { resource: string; values: TVariables[]; },`<br/>` unknown>`][useMutation]) |
@@ -210,7 +230,7 @@ Now, parsed data is mapped to conform our APIs requirements.
 [useMutation]: https://react-query.tanstack.com/reference/useMutation
 [Number.MAX_SAFE_INTEGER]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
 [SuccessErrorNotification]: /core/interfaces.md#successerrornotification
-[InputProps]: /core/interfaces.md#inputprops
+[UseImportInputPropsType]: /core/interfaces.md#useimportinputpropstype
 
 ## Live Codesandbox Example
 
