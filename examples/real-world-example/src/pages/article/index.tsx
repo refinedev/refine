@@ -251,7 +251,9 @@ export const ArticlePage: React.FC = () => {
                                                 {item?.author.username}
                                             </a>
                                             <span className="date-posted">
-                                                {item?.createdAt}
+                                                {dayjs(item.createdAt).format(
+                                                    "MMM DD, YYYY",
+                                                )}
                                             </span>
                                             {item.author.username ===
                                                 user?.username && (
