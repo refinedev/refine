@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-    HttpError,
-    IResourceComponentsProps,
-    useShow,
-} from "@pankod/refine-core";
+import { HttpError, IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
     Edit,
@@ -25,7 +21,6 @@ import { IPost, IPostVariables, ICategory } from "interfaces";
 import { appwriteClient, normalizeFile } from "utility";
 
 export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
-    const { queryResult: useShowQueryResult } = useShow();
     const { formProps, saveButtonProps, queryResult } = useForm<
         IPost,
         HttpError,
