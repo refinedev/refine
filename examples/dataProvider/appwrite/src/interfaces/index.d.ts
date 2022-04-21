@@ -18,5 +18,13 @@ export interface IPost {
     title: string;
     content: string;
     categoryId: string;
-    images: IFile[];
+    images: string;
+}
+
+export interface IPostVariables {
+    id: string;
+    title: string;
+    content: string;
+    categoryId: string;
+    images: string;
 }

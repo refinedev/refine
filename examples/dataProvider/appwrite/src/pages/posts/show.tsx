@@ -8,7 +8,7 @@ import {
     ImageField,
 } from "@pankod/refine-antd";
 
-import { IPost, ICategory } from "interfaces";
+import { IPost, ICategory, IFile } from "interfaces";
 
 const { Title, Text } = Typography;
 
@@ -16,6 +16,8 @@ export const PostsShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;
+
+    const images = record?.images ? (JSON.parse(record.images) as IFile[]) : [];
 
     const { data: categoryData, isLoading: categoryIsLoading } =
         useOne<ICategory>({
@@ -45,7 +47,7 @@ export const PostsShow: React.FC<IResourceComponentsProps> = () => {
             <Title level={5}>Images</Title>
             <Space wrap>
                 {record?.images ? (
-                    record?.images.map((img) => (
+                    images.map((img) => (
                         <ImageField
                             key={img.name}
                             value={img.url}
