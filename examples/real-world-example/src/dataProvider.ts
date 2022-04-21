@@ -8,7 +8,8 @@ import restDataProvider from "@pankod/refine-simple-rest";
 import { stringify } from "query-string";
 import axios, { AxiosInstance } from "axios";
 
-const API_URL = "https://api.realworld.io/api";
+//TEMP URL
+const API_URL = "https://refine-real-world.herokuapp.com/api";
 
 const mapOperator = (operator: CrudOperators): string => {
     switch (operator) {

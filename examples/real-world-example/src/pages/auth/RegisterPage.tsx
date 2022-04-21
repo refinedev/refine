@@ -1,6 +1,22 @@
-import { useNavigation } from "@pankod/refine-core";
+import { useNavigation, useLogin } from "@pankod/refine-core";
+import { useForm } from "@pankod/refine-react-hook-form";
 
 export const RegisterPage: React.FC = () => {
+    const {
+        refineCore: { onFinish },
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        refineCoreProps: {
+            resource: "users",
+            redirect: false,
+            onMutationSuccess: () => {
+                push("/login");
+            },
+        },
+    });
+
     const { push } = useNavigation();
 
     return (
@@ -20,31 +36,45 @@ export const RegisterPage: React.FC = () => {
                             </a>
                         </p>
 
-                        {/* <ul className="error-messages">
-              <li>That email is already taken</li>
-            </ul> */}
-
-                        <form>
+                        <form onSubmit={handleSubmit(onFinish)}>
                             <fieldset className="form-group">
                                 <input
+                                    {...register("user.username", {
+                                        required: true,
+                                    })}
                                     className="form-control form-control-lg"
                                     type="text"
                                     placeholder="Your Name"
                                 />
+                                {errors.username && (
+                                    <span>This field is required</span>
+                                )}
                             </fieldset>
                             <fieldset className="form-group">
                                 <input
+                                    {...register("user.email", {
+                                        required: true,
+                                    })}
                                     className="form-control form-control-lg"
                                     type="text"
                                     placeholder="Email"
                                 />
+                                {errors.email && (
+                                    <span>This field is required</span>
+                                )}
                             </fieldset>
                             <fieldset className="form-group">
                                 <input
+                                    {...register("user.password", {
+                                        required: true,
+                                    })}
                                     className="form-control form-control-lg"
                                     type="password"
                                     placeholder="Password"
                                 />
+                                {errors.password && (
+                                    <span>This field is required</span>
+                                )}
                             </fieldset>
                             <button className="btn btn-lg btn-primary pull-xs-right">
                                 Sign up

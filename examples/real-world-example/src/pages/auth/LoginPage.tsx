@@ -28,10 +28,6 @@ export const LoginPage: React.FC = () => {
                             </a>
                         </p>
 
-                        {/* <ul className="error-messages">
-              <li>That email is already taken</li>
-            </ul> */}
-
                         <form
                             onSubmit={handleSubmit((values) => login(values))}
                         >

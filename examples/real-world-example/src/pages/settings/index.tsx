@@ -1,11 +1,12 @@
 import { useEffect } from "react";
-import { useNavigation } from "@pankod/refine-core";
+import { useNavigation, useLogout } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 
 import { TOKEN_KEY } from "../../constants";
 
 export const SettingsPage: React.FC = () => {
     const { push } = useNavigation();
+    const { mutate: logout } = useLogout();
 
     const {
         register,
