@@ -69,6 +69,7 @@ export const useForm = <
     invalidates,
     undoableTimeout,
     queryOptions,
+    id: idFromProps,
 }: UseFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
     TData,
     TError,
@@ -99,6 +100,7 @@ export const useForm = <
         invalidates,
         undoableTimeout,
         queryOptions,
+        id: idFromProps,
     });
 
     const { formLoading, onFinish, queryResult, id } = useFormCoreResult;
