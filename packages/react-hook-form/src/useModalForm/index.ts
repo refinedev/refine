@@ -20,10 +20,9 @@ export type UseModalFormReturnType<
     TContext extends object = {},
 > = UseFormReturnType<TData, TError, TVariables, TContext> & {
     modal: {
-        submitButtonProps: {
+        saveButtonProps: {
             disabled: boolean;
-            onClick: (values: TVariables) => void;
-            loading: boolean;
+            onClick: () => void;
         };
         submit: (values: TVariables) => void;
         close: () => void;
@@ -39,7 +38,7 @@ export type UseModalFormProps<
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
 > = UseFormProps<TData, TError, TVariables, TContext> & {
-    modalOptions?: {
+    modalProps?: {
         defaultVisible?: boolean;
         autoSubmitClose?: boolean;
         autoResetForm?: boolean;
@@ -52,7 +51,7 @@ export const useModalForm = <
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
 >({
-    modalOptions,
+    modalProps,
     refineCoreProps,
     ...rest
 }: UseModalFormProps<
@@ -69,14 +68,15 @@ export const useModalForm = <
         defaultVisible = false,
         autoSubmitClose = true,
         autoResetForm = true,
-    } = modalOptions ?? {};
+    } = modalProps ?? {};
 
-    const useHookFormResult = useForm({
+    const useHookFormResult = useForm<TData, TError, TVariables, TContext>({
         refineCoreProps,
         ...rest,
     });
 
     const {
+        handleSubmit,
         reset,
         refineCore: { onFinish, formLoading, setId },
     } = useHookFormResult;
@@ -128,10 +128,9 @@ export const useModalForm = <
         show();
     }, []);
 
-    const submitButtonProps = {
+    const saveButtonProps = {
         disabled: formLoading,
-        onClick: submit,
-        loading: formLoading,
+        onClick: handleSubmit(submit as any),
     };
 
     const title = translate(
@@ -144,7 +143,7 @@ export const useModalForm = <
 
     return {
         modal: {
-            submitButtonProps,
+            saveButtonProps,
             submit,
             close: handleClose,
             show: handleShow,

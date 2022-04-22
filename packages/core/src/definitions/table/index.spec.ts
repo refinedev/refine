@@ -147,9 +147,21 @@ describe("definitions/table", () => {
                         value: "crud",
                     },
                 ],
+                [
+                    {
+                        field: "baz",
+                        operator: "in",
+                        value: "prev",
+                    },
+                ],
             ),
         ).toMatchInlineSnapshot(`
             Array [
+              Object {
+                "field": "baz",
+                "operator": "in",
+                "value": "prev",
+              },
               Object {
                 "field": "bar",
                 "operator": "in",
@@ -186,9 +198,26 @@ describe("definitions/table", () => {
                         value: "crud",
                     },
                 ],
+                [
+                    {
+                        field: "bar",
+                        operator: "in",
+                        value: "prev",
+                    },
+                    {
+                        field: "baz",
+                        operator: "in",
+                        value: "prev",
+                    },
+                ],
             ),
         ).toMatchInlineSnapshot(`
             Array [
+              Object {
+                "field": "baz",
+                "operator": "in",
+                "value": "prev",
+              },
               Object {
                 "field": "bar",
                 "operator": "in",
@@ -217,6 +246,13 @@ describe("definitions/table", () => {
                         field: "bar",
                         operator: "in",
                         value: undefined,
+                    },
+                ],
+                [
+                    {
+                        field: "bar",
+                        operator: "in",
+                        value: "prev",
                     },
                     {
                         field: "baz",

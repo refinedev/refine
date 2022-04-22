@@ -1199,7 +1199,7 @@ export const TaskShow: React.FC = () => {
 <br />
  
 
-By using Refine's basic views such as [create](https://refine.dev/docs/ui-framewors/antd/components/basic-views/create), [edit](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/edit/) and [show](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/show/), we can now create tasks, edit these tasks and view their details.
+By using Refine's basic views such as [create](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/create), [edit](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/edit/) and [show](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/show/), we can now create tasks, edit these tasks and view their details.
 
 
 Let's see how to add a dashboard page to our project together.
