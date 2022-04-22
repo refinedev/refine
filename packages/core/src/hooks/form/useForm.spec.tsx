@@ -62,6 +62,14 @@ describe("useForm Hook", () => {
         );
     });
 
+    it("correctly render edit form from route", async () => {
+        const { result } = renderHook(() => useForm(), {
+            wrapper: EditWrapperWithRoute,
+        });
+
+        expect(result.current.id).toEqual("1");
+    });
+
     it("correctly return id value from route", async () => {
         const { result } = renderHook(
             () =>
@@ -74,6 +82,52 @@ describe("useForm Hook", () => {
         );
 
         expect(result.current.id).toEqual("1");
+    });
+
+    it("correctly return id value from props", async () => {
+        const { result, waitFor } = renderHook(
+            () =>
+                useForm({
+                    resource: "posts",
+                    id: 2,
+                }),
+            {
+                wrapper: EditWrapperWithRoute,
+            },
+        );
+
+        await waitFor(() => {
+            return !result.current.formLoading;
+        });
+
+        expect(result.current.queryResult?.data?.data.title).toEqual(
+            posts[0].title,
+        );
+        expect(result.current.id).toEqual(2);
+    });
+
+    it("correctly return id value from route with custom resource", async () => {
+        const { result, waitFor } = renderHook(
+            () =>
+                useForm({
+                    resource: "categories",
+                    action: "edit",
+                    id: 2,
+                }),
+            {
+                wrapper: EditWrapperWithRoute,
+            },
+        );
+
+        await waitFor(() => {
+            return !result.current.formLoading;
+        });
+
+        expect(result.current.queryResult?.data?.data.title).toEqual(
+            posts[0].title,
+        );
+
+        expect(result.current.id).toEqual(2);
     });
 
     it("correctly return id value which was set with setId after it was set", async () => {
@@ -94,6 +148,20 @@ describe("useForm Hook", () => {
         });
 
         expect(result.current.id).toEqual("3");
+    });
+
+    it("correctly return id undefined when route and options is different", async () => {
+        const { result } = renderHook(
+            () =>
+                useForm({
+                    resource: "categories",
+                }),
+            {
+                wrapper: EditWrapperWithRoute,
+            },
+        );
+
+        expect(result.current.id).toEqual(undefined);
     });
 
     it("fetches data and puts in the form while cloning", async () => {
