@@ -130,7 +130,7 @@ ButtonProps
 | percent | `number`                                                             |
 | status  | `"error"` \| `"success"` \| `"done" `\| `"uploading"` \| `"removed"` |
 
-## InputPropsReturnType
+## UseImportInputPropsType
 
 | Key     | Type                                                                 |
 | ------- | -------------------------------------------------------------------- |
