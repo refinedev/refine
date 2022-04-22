@@ -30,9 +30,7 @@ export const UserCreate: React.FC = () => {
     const [name, setName] = useState();
     const [surname, setSurname] = useState();
 
-    const { onFinish } = useForm({
-        action: "create",
-    });
+    const { onFinish } = useForm();
 
     const onSubmit = async (e) => {
         e.preventDefault();
