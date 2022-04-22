@@ -1,10 +1,10 @@
 {
   "name": "hackathonize",
-  "version": "3.16.0",
+  "version": "3.16.1",
   "private": true,
   "dependencies": {
     "@pankod/refine": "2.0.12",
-    "@pankod/refine-antd": "^3.16.0",
+    "@pankod/refine-antd": "^3.16.1",
     "@pankod/refine-core": "^3.16.0",
     "@pankod/refine-react-router-v6": "^3.16.0",
     "@pankod/refine-supabase": "^3.16.0",
