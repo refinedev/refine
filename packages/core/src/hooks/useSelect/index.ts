@@ -61,7 +61,7 @@ export const useSelect = <
         debounce: debounceValue = 300,
         successNotification,
         errorNotification,
-        defaultValueQueryOptions,
+        defaultValueQueryOptions: defaultValueQueryOptionsFromProps,
         queryOptions,
         fetchSize,
         liveMode,
@@ -85,6 +85,9 @@ export const useSelect = <
             })),
         );
     };
+
+    const defaultValueQueryOptions =
+        defaultValueQueryOptionsFromProps ?? (queryOptions as any);
 
     const defaultValueQueryResult = useMany<TData, TError>({
         resource,

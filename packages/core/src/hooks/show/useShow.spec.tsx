@@ -1,6 +1,6 @@
 import React from "react";
 import { renderHook } from "@testing-library/react-hooks";
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import { MockJSONServer, TestWrapper, act } from "@test";
 import { posts } from "@test/dataMocks";
@@ -15,7 +15,9 @@ const Wrapper = TestWrapper({
 
 const WrapperWithRoute: React.FC = ({ children }) => (
     <Wrapper>
-        <Route path="/:resource/:action/:id">{children}</Route>
+        <Routes>
+            <Route path="/:resource/:action/:id" element={children} />
+        </Routes>
     </Wrapper>
 );
 describe("useShow Hook", () => {
@@ -66,6 +68,35 @@ describe("useShow Hook", () => {
         });
 
         expect(result.current.showId).toEqual("1");
+    });
+
+    it("correctly return id undefined when resource different from route", async () => {
+        const { result } = renderHook(
+            () =>
+                useShow({
+                    resource: "categories",
+                }),
+            {
+                wrapper: WrapperWithRoute,
+            },
+        );
+
+        expect(result.current.showId).toEqual(undefined);
+    });
+
+    it("correctly return id when resource different from route", async () => {
+        const { result } = renderHook(
+            () =>
+                useShow({
+                    resource: "categories",
+                    id: "2",
+                }),
+            {
+                wrapper: WrapperWithRoute,
+            },
+        );
+
+        expect(result.current.showId).toEqual("2");
     });
 
     it("correctly return id value which was set with setShowId after it was set", async () => {

@@ -3,12 +3,10 @@ import { Button, ButtonProps } from "antd";
 import { RedoOutlined } from "@ant-design/icons";
 import {
     useOne,
-    useResourceWithRoute,
-    useRouterContext,
     useTranslate,
     MetaDataQuery,
-    ResourceRouterParams,
     BaseKey,
+    useResource,
 } from "@pankod/refine-core";
 
 export type RefreshButtonProps = ButtonProps & {
@@ -41,20 +39,12 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     ...rest
 }) => {
     const translate = useTranslate();
-    const resourceWithRoute = useResourceWithRoute();
 
-    const { useParams } = useRouterContext();
-
-    const { resource: routeResourceName, id: idFromRoute } =
-        useParams<ResourceRouterParams>();
-
-    const resource = resourceWithRoute(
-        propResourceNameOrRouteName ?? routeResourceName,
-    );
-
-    const resourceName = propResourceName ?? resource.name;
-
-    const id = recordItemId ?? idFromRoute;
+    const { resourceName, id } = useResource({
+        resourceName: propResourceName,
+        resourceNameOrRouteName: propResourceNameOrRouteName,
+        recordItemId,
+    });
 
     const { refetch, isFetching } = useOne({
         resource: resourceName,

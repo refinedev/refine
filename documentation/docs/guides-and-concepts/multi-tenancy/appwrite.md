@@ -38,7 +38,7 @@ To make this example more visual, we used the [`@pankod/refine-antd`](https://gi
 import { Refine } from "@pankod/refine-core";
 import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import { dataProvider } from "@pankod/refine-appwrite";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 
@@ -88,7 +88,7 @@ We need three collections for our Cake House application. Let's create these col
 
 -   Title: text
 -   Description: text
--   Image: wilcard
+-   Image: text
 -   StoreId: text
 
 `orders`
@@ -124,7 +124,7 @@ export const StoreProvider = (props: any) => {
 import { Refine } from "@pankod/refine-core";
 import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import { dataProvider } from "@pankod/refine-appwrite";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 
@@ -163,11 +163,8 @@ import { Select, useSelect } from "@pankod/refine-antd";
 import { StoreContext } from "context/store";
 import { IStore } from "interfaces";
 
-type SelectProps = {
-    onSelect: () => void;
-};
 
-export const StoreSelect: React.FC<SelectProps> = ({ onSelect }) => {
+export const StoreSelect: React.FC = ({ onSelect }) => {
     //highlight-start
     const [store, setStore] = useContext(StoreContext);
     //highlight-end
@@ -189,7 +186,7 @@ export const StoreSelect: React.FC<SelectProps> = ({ onSelect }) => {
             defaultValue={store}
             style={{ width: 130 }}
             onChange={handleChange}
-            onSelect={onSelect}
+            onSelect={() => false)}
         >
             {storeSelectProps.options?.map(({ value, label }) => (
                 <Select.Option key={value} value={value}>
@@ -299,19 +296,18 @@ export const CustomSider: React.FC = () => {
                 selectedKeys={[selectedKey]}
                 mode="inline"
                 onClick={({ key }) => {
-                    push(key as string);
+                    if (key !== "/") {
+                        push(key as string);
+                    }
+
+                    if (!breakpoint.lg) {
+                        setCollapsed(true);
+                    }
                 }}
             >
                 //highlight-start
-                <Menu.Item
-                    key={selectedKey}
-                    icon={<Icons.AppstoreAddOutlined />}
-                >
-                    <StoreSelect
-                        onSelect={() => {
-                            setCollapsed(true);
-                        }}
-                    />
+                <Menu.Item key={"/"} icon={<Icons.AppstoreAddOutlined />}>
+                    <StoreSelect />
                 </Menu.Item>
                 //highlight-end
                 {renderTreeView(menuItems, selectedKey)}
@@ -496,6 +492,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                             formProps.onFinish?.({
                                 ...values,
                                 storeId: store,
+                                image: JSON.stringify(values.image),
                             })
                         );
                     }}
@@ -542,13 +539,16 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
 
                                         const { $id } =
                                             await appwriteClient.storage.createFile(
+                                                "default",
+                                                rcFile.name,
                                                 rcFile,
-                                                ["*"],
-                                                ["*"],
+                                                ["role:all"],
+                                                ["role:all"],
                                             );
 
                                         const url =
                                             appwriteClient.storage.getFileView(
+                                                "default",
                                                 $id,
                                             );
 
@@ -599,7 +599,7 @@ Appwrite Realtime API support is out-of-the-box supported by **refine**, just ad
 import { Refine } from "@pankod/refine-core";
 import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import { dataProvider, liveProvider } from "@pankod/refine-appwrite";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 

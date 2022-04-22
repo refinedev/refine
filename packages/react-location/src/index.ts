@@ -49,20 +49,24 @@ const RouterProvider: IReactRouterProvider = {
     useLocation: () => {
         const location = useLocation();
         return {
-            pathname: location.current.pathname,
-            search: location.current.searchStr,
+            pathname: location?.current.pathname,
+            search: location?.current.searchStr,
         };
     },
     useParams: () => {
-        const { params } = useMatch();
+        const match = useMatch();
+        if (!match) {
+            return {};
+        }
+
         const pathname = useLocation();
 
-        const paramsString = `/${Object.values(params).join("/")}`;
+        const paramsString = `/${Object.values(match.params).join("/")}`;
 
         return handleUseParams({
-            ...params,
+            ...match.params,
             resource:
-                Object.keys(params).length === 0
+                Object.keys(match.params).length === 0
                     ? pathname.current.pathname.substring(1)
                     : pathname.current.pathname
                           .substring(1)

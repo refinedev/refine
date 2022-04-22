@@ -31,7 +31,7 @@ describe("ReadyPage", () => {
         );
         expect(getByText("Community").closest("a")).toHaveAttribute(
             "href",
-            "https://discord.gg/UuU3XCc3J5",
+            "https://discord.gg/refine",
         );
     });
 });

@@ -56,6 +56,7 @@ export {
     ILogData,
     ILog,
     ITreeMenu,
+    IQueryKeys,
 } from "./interfaces";
 
 export {

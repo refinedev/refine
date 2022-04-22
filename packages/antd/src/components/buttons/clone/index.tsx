@@ -4,11 +4,9 @@ import { PlusSquareOutlined } from "@ant-design/icons";
 import {
     useCan,
     useNavigation,
-    useResourceWithRoute,
-    useRouterContext,
     useTranslate,
-    ResourceRouterParams,
     BaseKey,
+    useResource,
 } from "@pankod/refine-core";
 
 export type CloneButtonProps = ButtonProps & {
@@ -39,24 +37,15 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const resourceWithRoute = useResourceWithRoute();
-
     const { clone } = useNavigation();
 
     const translate = useTranslate();
 
-    const { useParams } = useRouterContext();
-
-    const { resource: routeResourceName, id: idFromRoute } =
-        useParams<ResourceRouterParams>();
-
-    const resource = resourceWithRoute(
-        propResourceNameOrRouteName ?? routeResourceName,
-    );
-
-    const resourceName = propResourceName ?? resource.name;
-
-    const id = recordItemId ?? idFromRoute;
+    const { id, resourceName, resource } = useResource({
+        resourceNameOrRouteName: propResourceNameOrRouteName,
+        recordItemId,
+        resourceName: propResourceName,
+    });
 
     const { data } = useCan({
         resource: resourceName,

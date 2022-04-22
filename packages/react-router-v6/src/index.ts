@@ -9,7 +9,10 @@ import {
     useNavigate,
 } from "react-router-dom";
 
-import { RouterComponent } from "./routerComponent";
+import {
+    BrowserRouterComponent,
+    MemoryRouterComponent,
+} from "./routerComponent";
 import { Prompt } from "./prompt";
 
 export type RefineRouteProps = RouteProps & {
@@ -53,6 +56,8 @@ const RouterProvider: IReactRouterProvider = {
     },
     Prompt: Prompt as any,
     Link,
-    RouterComponent,
+    RouterComponent: BrowserRouterComponent,
 };
 export default RouterProvider;
+
+export { MemoryRouterComponent };

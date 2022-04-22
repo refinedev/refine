@@ -56,7 +56,7 @@ export const useResourceSubscription = ({
                 types,
                 callback: (event) => {
                     if (liveMode === "auto") {
-                        queryClient.invalidateQueries(queryKey.all);
+                        queryClient.invalidateQueries(queryKey.resourceAll);
                     }
 
                     onLiveEvent?.(event);

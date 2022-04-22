@@ -123,7 +123,7 @@ In refine, authentication and authorization processes are performed with the aut
 import { Refine, AuthProvider } from "@pankod/refine-core";
 import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import "@pankod/refine-antd/dist/styles.min.css";

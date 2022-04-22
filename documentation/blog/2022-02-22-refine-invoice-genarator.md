@@ -145,7 +145,7 @@ export const authProvider: AuthProvider = {
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine-core";
 import { notificationProvider, Layout, LoginPage } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 //highlight-start
 import { DataProvider } from "@pankod/refine-strapi-v4";
 import { authProvider, axiosInstance } from "./authProvider";

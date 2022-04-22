@@ -7,6 +7,7 @@ import {
     HttpError,
     SuccessErrorNotification,
     MetaDataQuery,
+    IQueryKeys,
 } from "../../interfaces";
 import {
     useTranslate,
@@ -15,14 +16,15 @@ import {
     useHandleNotification,
     useDataProvider,
     useLog,
+    useInvalidate,
 } from "@hooks";
-import { queryKeys } from "@definitions/helpers";
 
 type useCreateParams<TVariables> = {
     resource: string;
     values: TVariables;
     metaData?: MetaDataQuery;
     dataProviderName?: string;
+    invalidates?: Array<keyof IQueryKeys>;
 } & SuccessErrorNotification;
 
 export type UseCreateReturnType<
@@ -56,9 +58,9 @@ export const useCreate = <
 >(): UseCreateReturnType<TData, TError, TVariables> => {
     const { mutate: checkError } = useCheckError();
     const dataProvider = useDataProvider();
+    const invalidateStore = useInvalidate();
 
     const translate = useTranslate();
-    const queryClient = useQueryClient();
     const publish = usePublish();
     const { log, isConfigured } = useLog();
     const handleNotification = useHandleNotification();
@@ -88,9 +90,9 @@ export const useCreate = <
                     resource,
                     successNotification: successNotificationFromProp,
                     dataProviderName,
+                    invalidates = ["list", "many"],
                 },
             ) => {
-                const queryKey = queryKeys(resource, dataProviderName);
                 const resourceSingular = pluralize.singular(resource);
 
                 handleNotification(successNotificationFromProp, {
@@ -109,14 +111,17 @@ export const useCreate = <
                     type: "success",
                 });
 
-                queryClient.invalidateQueries(queryKey.list());
-                queryClient.invalidateQueries(queryKey.many());
+                invalidateStore({
+                    resource,
+                    dataProviderName,
+                    invalidates,
+                });
 
                 publish?.({
                     channel: `resources/${resource}`,
                     type: "created",
                     payload: {
-                        ids: data.data?.id ? [data.data.id] : undefined,
+                        ids: data?.data?.id ? [data.data.id] : undefined,
                     },
                     date: new Date(),
                 });

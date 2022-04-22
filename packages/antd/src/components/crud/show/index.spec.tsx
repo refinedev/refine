@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Button } from "antd";
 import { AccessControlProvider } from "@pankod/refine-core";
 
@@ -11,12 +11,17 @@ const renderShow = (
     show: ReactNode,
     accessControlProvider?: AccessControlProvider,
 ) => {
-    return render(<Route path="/:resource/show/:id">{show}</Route>, {
-        wrapper: TestWrapper({
-            routerInitialEntries: ["/posts/show/1"],
-            accessControlProvider,
-        }),
-    });
+    return render(
+        <Routes>
+            <Route path="/:resource/:action/:id" element={show} />
+        </Routes>,
+        {
+            wrapper: TestWrapper({
+                routerInitialEntries: ["/posts/show/1"],
+                accessControlProvider,
+            }),
+        },
+    );
 };
 describe("Show", () => {
     it("should render page successfuly", () => {
@@ -90,9 +95,9 @@ describe("Show", () => {
 
     it("should render with label instead of resource name successfully", () => {
         const { getByText } = render(
-            <Route path="/:resource/show/:id">
-                <Show />
-            </Route>,
+            <Routes>
+                <Route path="/:resource/:action/:id" element={<Show />}></Route>
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     resources: [
@@ -117,9 +122,12 @@ describe("Show", () => {
 
     it("should render optional resource with resource prop", () => {
         const { getByText } = render(
-            <Route>
-                <Show resource="posts" />
-            </Route>,
+            <Routes>
+                <Route
+                    path="/:resource"
+                    element={<Show resource="posts" />}
+                ></Route>
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     routerInitialEntries: ["/custom"],
@@ -143,9 +151,12 @@ describe("Show", () => {
     describe("render edit button", () => {
         it("should render edit button", () => {
             const { getByText, queryByTestId } = render(
-                <Route path="/:resource/show/:id">
-                    <Show />
-                </Route>,
+                <Routes>
+                    <Route
+                        path="/:resource/:action/:id"
+                        element={<Show />}
+                    ></Route>
+                </Routes>,
                 {
                     wrapper: TestWrapper({
                         resources: [{ name: "posts", edit: () => null }],
@@ -161,9 +172,9 @@ describe("Show", () => {
 
         it("should not render edit button on resource canEdit false", () => {
             const { getByText, queryByTestId } = render(
-                <Route path="/:resource/show/:id">
-                    <Show />
-                </Route>,
+                <Routes>
+                    <Route path="/:resource/:action/:id" element={<Show />} />
+                </Routes>,
                 {
                     wrapper: TestWrapper({
                         resources: [{ name: "posts" }],
@@ -179,9 +190,12 @@ describe("Show", () => {
 
         it("should not render edit button on resource canEdit true & canEdit props false on component", () => {
             const { queryByTestId } = render(
-                <Route path="/:resource/show/:id">
-                    <Show canEdit={false} />
-                </Route>,
+                <Routes>
+                    <Route
+                        path="/:resource/:action/:id"
+                        element={<Show canEdit={false} />}
+                    />
+                </Routes>,
                 {
                     wrapper: TestWrapper({
                         resources: [{ name: "posts", edit: () => null }],
@@ -195,9 +209,12 @@ describe("Show", () => {
 
         it("should render edit button on resource canEdit false & canEdit props true on component", () => {
             const { queryByTestId } = render(
-                <Route path="/:resource/show/:id">
-                    <Show canEdit={true} />
-                </Route>,
+                <Routes>
+                    <Route
+                        path="/:resource/:action/:id"
+                        element={<Show canEdit={true} />}
+                    />
+                </Routes>,
                 {
                     wrapper: TestWrapper({
                         resources: [{ name: "posts" }],
@@ -211,9 +228,12 @@ describe("Show", () => {
 
         it("should render edit button with recordItemId prop", () => {
             const { getByText, queryByTestId } = render(
-                <Route path="/:resource/show/:id">
-                    <Show recordItemId="1" />
-                </Route>,
+                <Routes>
+                    <Route
+                        path="/:resource/:action/:id"
+                        element={<Show recordItemId="1" />}
+                    />
+                </Routes>,
                 {
                     wrapper: TestWrapper({
                         resources: [{ name: "posts", edit: () => null }],
@@ -231,9 +251,9 @@ describe("Show", () => {
     describe("render delete button", () => {
         it("should render delete button", () => {
             const { queryByTestId } = render(
-                <Route path="/:resource/show/:id">
-                    <Show />
-                </Route>,
+                <Routes>
+                    <Route path="/:resource/:action/:id" element={<Show />} />
+                </Routes>,
                 {
                     wrapper: TestWrapper({
                         resources: [{ name: "posts", canDelete: true }],
@@ -247,9 +267,10 @@ describe("Show", () => {
 
         it("should not render delete button on resource canDelete false", () => {
             const { queryByTestId } = render(
-                <Route path="/:resource/show/:id">
-                    <Show />
-                </Route>,
+                <Routes>
+                    <Route path="/:resource/:action/:id" element={<Show />} />
+                </Routes>,
+
                 {
                     wrapper: TestWrapper({
                         resources: [{ name: "posts", canDelete: false }],
@@ -263,9 +284,12 @@ describe("Show", () => {
 
         it("should not render delete button on resource canDelete true & canDelete props false on component", () => {
             const { queryByTestId } = render(
-                <Route path="/:resource/show/:id">
-                    <Show canDelete={false} />
-                </Route>,
+                <Routes>
+                    <Route
+                        path="/:resource/:action/:id"
+                        element={<Show canDelete={false} />}
+                    />
+                </Routes>,
                 {
                     wrapper: TestWrapper({
                         resources: [{ name: "posts", canDelete: true }],
@@ -279,9 +303,12 @@ describe("Show", () => {
 
         it("should render delete button on resource canDelete false & canDelete props true on component", () => {
             const { queryByTestId } = render(
-                <Route path="/:resource/show/:id">
-                    <Show canDelete={true} />
-                </Route>,
+                <Routes>
+                    <Route
+                        path="/:resource/:action/:id"
+                        element={<Show canDelete={true} />}
+                    />
+                </Routes>,
                 {
                     wrapper: TestWrapper({
                         resources: [{ name: "posts", canDelete: false }],
@@ -295,9 +322,12 @@ describe("Show", () => {
 
         it("should render delete button with recordItemId prop", () => {
             const { queryByTestId } = render(
-                <Route path="/:resource/show/:id">
-                    <Show recordItemId="1" />
-                </Route>,
+                <Routes>
+                    <Route
+                        path="/:resource/:action/:id"
+                        element={<Show recordItemId="1" />}
+                    />
+                </Routes>,
                 {
                     wrapper: TestWrapper({
                         resources: [{ name: "posts", canDelete: true }],

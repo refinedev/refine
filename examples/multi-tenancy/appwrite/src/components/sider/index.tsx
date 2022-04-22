@@ -81,18 +81,17 @@ export const CustomSider: React.FC = () => {
                 selectedKeys={[selectedKey]}
                 mode="inline"
                 onClick={({ key }) => {
-                    push(key as string);
+                    if (key !== "/") {
+                        push(key as string);
+                    }
+
+                    if (!breakpoint.lg) {
+                        setCollapsed(true);
+                    }
                 }}
             >
-                <Menu.Item
-                    key={selectedKey}
-                    icon={<Icons.AppstoreAddOutlined />}
-                >
-                    <StoreSelect
-                        onSelect={() => {
-                            setCollapsed(true);
-                        }}
-                    />
+                <Menu.Item key={"/"} icon={<Icons.AppstoreAddOutlined />}>
+                    <StoreSelect />
                 </Menu.Item>
                 {renderTreeView(menuItems, selectedKey)}
             </Menu>

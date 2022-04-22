@@ -44,6 +44,7 @@ describe("FilterDropdown", () => {
         fireEvent.click(getByText("Filter"));
 
         expect(confirm).toHaveBeenCalled();
+        expect(setSelectedKeys).toHaveBeenCalled();
     });
 
     it("should render called clearFilter function successfully if click the clear button", async () => {
@@ -58,7 +59,7 @@ describe("FilterDropdown", () => {
         expect(clearFilters).toHaveBeenCalled();
     });
 
-    it("should render called onChange function successfully", async () => {
+    it("should not called setSelectedKeys on onChange function", async () => {
         const { getByTestId } = render(
             <FilterDropdown {...props}>
                 <Input data-testid="input" />
@@ -71,7 +72,7 @@ describe("FilterDropdown", () => {
             },
         });
 
-        expect(setSelectedKeys).toHaveBeenCalled();
+        expect(setSelectedKeys).not.toHaveBeenCalled();
     });
 
     it("should call mapValue", async () => {

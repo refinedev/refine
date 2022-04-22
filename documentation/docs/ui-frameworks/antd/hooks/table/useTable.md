@@ -32,22 +32,22 @@ Lets say that the data we are going to show on the table came like this from the
 
 If we want to make a sorting page where we show the `id`, `title` and `content` values:
 
-```tsx  title="/src/pages/posts/list.tsx"
+```tsx title="/src/pages/posts/list.tsx"
 import { List, Table, TextField, useTable } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
-// highlight-next-line
+    // highlight-next-line
     const { tableProps } = useTable<IPost>();
 
     return (
         <List>
-// highlight-start
+            // highlight-start
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
                 <Table.Column dataIndex="title" title="Title" />
                 <Table.Column dataIndex="content" title="Content" />
             </Table>
-// highlight-end
+            // highlight-end
         </List>
     );
 };
@@ -81,13 +81,13 @@ const { tableProps } = useTable<IPost>();
 <Table
     {...tableProps}
     rowKey="id"
-// highlight-start
+    // highlight-start
     pagination={{
         ...tableProps.pagination,
         position: ["bottomCenter"],
         size: "small",
     }}
-// highlight-end
+    // highlight-end
 >
     ...
 </Table>;
@@ -99,11 +99,19 @@ const { tableProps } = useTable<IPost>();
 
 If we want to give a column the sorting property, the corresponding `<Table.Column>` component must be given the [sorter](https://ant.design/components/table/#components-table-demo-head) property.
 
-```tsx  title="/src/pages/posts/list.tsx"
-import { List, Table, TextField, useTable } from "@pankod/refine-antd";
+```tsx title="/src/pages/posts/list.tsx"
+import {
+    List,
+    Table,
+    TextField,
+    useTable,
+    // highlight-next-line
+    getDefaultSortOrder,
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+    // highlight-next-line
+    const { tableProps, sorter } = useTable<IPost>();
 
     return (
         <List>
@@ -112,15 +120,19 @@ export const PostList: React.FC = () => {
                     dataIndex="id"
                     title="ID"
                     render={(value) => <TextField value={value} />}
-// highlight-next-line
+                    // highlight-start
                     sorter
+                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
+                    // highlight-end
                 />
                 <Table.Column
                     dataIndex="title"
                     title="Title"
                     render={(value) => <TextField value={value} />}
-// highlight-next-line
+                    // highlight-start
                     sorter={{ multiple: 1 }}
+                    defaultSortOrder={getDefaultSortOrder("title", sorter)}
+                    // highlight-end
                 />
                 <Table.Column dataIndex="content" title="Content" />
             </Table>
@@ -128,6 +140,13 @@ export const PostList: React.FC = () => {
     );
 };
 ```
+
+:::caution
+
+During the sorting process, the `key` property of your `<Column />` component is used as the property name in the API request. If your Column component does not have a `key` value, the `dataIndex` property is used.
+It can be used when your DataIndex and your sorting key are different.
+
+:::
 
 :::tip
 When using multiple sorting, `multiple` value we had given to the `sorter` property specifies the priority of this column in sorting.
@@ -146,18 +165,35 @@ When using multiple sorting, `multiple` value we had given to the `sorter` prope
 
 ```ts title="/src/pages/posts/list.tsx"
 const { tableProps, sorter } = useTable<IPost>({
-// highlight-start
+    // highlight-start
     initialSorter: [
         {
             field: "title",
             order: "asc",
         },
     ],
-// highlight-end
+    // highlight-end
 });
 ```
 
 By using `initialSorter` setting, you can select which `field` is going to start with which sorting status (`"asc"` or `"desc"`).
+
+:::caution
+If you're using the `initialSorter`, don't forget to add `getDefaultSortOrder` to your `<Table.Column>` component. Otherwise, during filter and paging operations, the `initialSorter` might be lost.
+
+```tsx
+...
+<Table.Column
+    dataIndex="title"
+    title="Title"
+    sorter={{ multiple: 2 }}
+    // highlight-next-line
+    defaultSortOrder={getDefaultSortOrder("title", sorter)}
+/>
+...
+```
+
+:::
 
 ## Filtering
 
@@ -175,14 +211,14 @@ Every `post` that comes from endpoint has a `status` value. This value can eithe
 
 We can use the `filterDropdown` property to make filtering based on the `status` value. In order to do this, we need to put the filtering form inside the `<FilterDropdown>` component and pass the properties coming to the function to these component's properties:
 
-```tsx  title="/src/pages/posts/list.tsx"
+```tsx title="/src/pages/posts/list.tsx"
 import {
     List,
     Table,
-// highlight-start
+    // highlight-start
     Radio,
     FilterDropdown,
-// highlight-end
+    // highlight-end
     TagField,
     useTable,
     getDefaultSortOrder,
@@ -217,7 +253,7 @@ export const PostList: React.FC = () => {
                     dataIndex="status"
                     title="Status"
                     render={(value) => <TagField value={value} />}
-// highlight-start
+                    // highlight-start
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
                             <Radio.Group>
@@ -227,7 +263,7 @@ export const PostList: React.FC = () => {
                             </Radio.Group>
                         </FilterDropdown>
                     )}
-// highlight-end
+                    // highlight-end
                 />
             </Table>
         </List>
@@ -268,14 +304,14 @@ const { tableProps, sorter, filters } = useTable<IPost>({
 
 If you give default filter values, `defaultFilteredValue` property needs to be properly given to the relevant `<Table.Column>` components so that those filter fields come with default values when the page is opened.
 
-```tsx  title="/src/pages/posts/list.tsx"
+```tsx title="/src/pages/posts/list.tsx"
 import {
     List,
     Table,
     Radio,
     FilterDropdown,
     TagField,
-// highlight-next-line
+    // highlight-next-line
     getDefaultFilter,
     useTable,
     getDefaultSortOrder,
@@ -289,7 +325,7 @@ export const PostList: React.FC = () => {
                 order: "asc",
             },
         ],
-// highlight-start
+        // highlight-start
         initialFilter: [
             {
                 field: "status",
@@ -297,7 +333,7 @@ export const PostList: React.FC = () => {
                 value: "draft",
             },
         ],
-// highlight-end
+        // highlight-end
     });
 
     return (
@@ -328,7 +364,7 @@ export const PostList: React.FC = () => {
                             </Radio.Group>
                         </FilterDropdown>
                     )}
-// highlight-next-line
+                    // highlight-next-line
                     defaultFilteredValue={getDefaultFilter("status", filters)}
                 />
             </Table>
@@ -345,22 +381,22 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 
 ### Properties
 
-| Key              | Description                                                                                                                                       | Type                                                             | Default                                                                              |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| resource         | The resource to use for table data                                                                                                                | `string` \| `undefined`                                          | Resource name that it reads from the url                                             |
-| permanentFilter  | Default and unchangeable filter                                                                                                                   | [`CrudFilters`][crudfilters]                                     | `[]`                                                                                 |
-| permanentSorter       | Default and unchangeable sorter state                                                                                                                              | [`CrudSorting`][crudsorting]                                   | `[]`                                                                                 |
-| initialCurrent   | Initial page index                                                                                                                                | `number`                                                         | `1`                                                                                  |
-| initialPageSize  | Number of records shown per initial number of pages                                                                                               | `number`                                                         | `10`                                                                                 |
-| initialSorter    | Initial sorting                                                                                                                                   | [`CrudSorting`][crudsorting]                                     |
-| initialFilter    | Initial filtering                                                                                                                                 | [`CrudFilters`][crudfilters]                                     |
-| syncWithLocation | Sortings, filters, page index and records shown per page are tracked by browser history                                                           | `boolean`                                                        | Value set in [Refine][refine swl]. If a custom resource is given, it will be `false` |
-| onSearch         | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][table search] to learn how to create a search form | `Function`                                                       |
-| queryOptions     | `react-query`'s `useQuery` options                                                                                                                | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`      |
-| metaData         | Metadata query for `dataProvider`                                                                                                                 | [`MetaDataQuery`](/core/interfaces.md#metadataquery) | {}                                                                                   |
-| [liveMode](/core/providers/live-provider.md#usage-in-a-hook)                                                                                            | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)       | `"off"`                             |
-| liveParams                                                                                          | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                     | [`{ ids?: string[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | `undefined`                         |
-| onLiveEvent                                                                                         | Callback to handle all related live events of this hook.                                                                                                                                   | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)                           | `undefined`                                  |
+| Key                                                          | Description                                                                                                                                                        | Type                                                                           | Default                                                                              |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| resource                                                     | The resource to use for table data                                                                                                                                 | `string` \| `undefined`                                                        | Resource name that it reads from the url                                             |
+| permanentFilter                                              | Default and unchangeable filter                                                                                                                                    | [`CrudFilters`][crudfilters]                                                   | `[]`                                                                                 |
+| permanentSorter                                              | Default and unchangeable sorter state                                                                                                                              | [`CrudSorting`][crudsorting]                                                   | `[]`                                                                                 |
+| initialCurrent                                               | Initial page index                                                                                                                                                 | `number`                                                                       | `1`                                                                                  |
+| initialPageSize                                              | Number of records shown per initial number of pages                                                                                                                | `number`                                                                       | `10`                                                                                 |
+| initialSorter                                                | Initial sorting                                                                                                                                                    | [`CrudSorting`][crudsorting]                                                   |
+| initialFilter                                                | Initial filtering                                                                                                                                                  | [`CrudFilters`][crudfilters]                                                   |
+| syncWithLocation                                             | Sortings, filters, page index and records shown per page are tracked by browser history                                                                            | `boolean`                                                                      | Value set in [Refine][refine swl]. If a custom resource is given, it will be `false` |
+| onSearch                                                     | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][table search] to learn how to create a search form                  | `Function`                                                                     |
+| queryOptions                                                 | `react-query`'s `useQuery` options                                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                    |
+| metaData                                                     | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                           | {}                                                                                   |
+| [liveMode](/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)         | `"off"`                                                                              |
+| liveParams                                                   | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: string[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | `undefined`                                                                          |
+| onLiveEvent                                                  | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)              | `undefined`                                                                          |
 
 ### Type Parameters
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import {
     fireEvent,
@@ -204,9 +204,12 @@ describe("Delete Button", () => {
             const onSuccessMock = jest.fn();
 
             const { getByText, getAllByText } = render(
-                <Route path="/:resource/:action/:id">
-                    <DeleteButton onSuccess={onSuccessMock} />
-                </Route>,
+                <Routes>
+                    <Route
+                        path="/:resource/:action/:id"
+                        element={<DeleteButton onSuccess={onSuccessMock} />}
+                    />
+                </Routes>,
                 {
                     wrapper: TestWrapper({
                         dataProvider: {
@@ -240,14 +243,19 @@ describe("Delete Button", () => {
             const onSuccessMock = jest.fn();
 
             const { getByText, getAllByText, debug } = render(
-                <Route path="/:resource/:action/:id">
-                    <DeleteButton
-                        onSuccess={onSuccessMock}
-                        confirmOkText="confirmOkText"
-                        confirmCancelText="confirmCancelText"
-                        confirmTitle="confirmTitle"
+                <Routes>
+                    <Route
+                        path="/:resource/:action/:id"
+                        element={
+                            <DeleteButton
+                                onSuccess={onSuccessMock}
+                                confirmOkText="confirmOkText"
+                                confirmCancelText="confirmCancelText"
+                                confirmTitle="confirmTitle"
+                            />
+                        }
                     />
-                </Route>,
+                </Routes>,
                 {
                     wrapper: TestWrapper({
                         dataProvider: {
@@ -278,9 +286,12 @@ describe("Delete Button", () => {
 
     it("should render with custom mutationMode", () => {
         const { getByText } = render(
-            <Route path="/:resource">
-                <DeleteButton mutationMode="pessimistic" />
-            </Route>,
+            <Routes>
+                <Route
+                    path="/:resource"
+                    element={<DeleteButton mutationMode="pessimistic" />}
+                />
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts" }],
@@ -294,9 +305,12 @@ describe("Delete Button", () => {
 
     it("should render with custom resource", () => {
         const { getByText } = render(
-            <Route path="/:resource">
-                <DeleteButton resourceName="categories" />
-            </Route>,
+            <Routes>
+                <Route
+                    path="/:resource"
+                    element={<DeleteButton resourceName="categories" />}
+                />
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts" }, { name: "categories" }],
@@ -310,9 +324,15 @@ describe("Delete Button", () => {
 
     it("should render with resourceNameOrRouteName", () => {
         const { getByText } = render(
-            <Route path="/:resource">
-                <DeleteButton resourceNameOrRouteName="categories" />
-            </Route>,
+            <Routes>
+                <Route
+                    path="/:resource"
+                    element={
+                        <DeleteButton resourceNameOrRouteName="categories" />
+                    }
+                />
+            </Routes>,
+
             {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts" }, { name: "categories" }],

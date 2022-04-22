@@ -48,7 +48,7 @@ export const PostEdit: React.FC = () => {
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 //highlight-next-line
@@ -240,7 +240,7 @@ export const PostEdit: React.FC = () => {
     // highlight-end
 
     return (
-        <form onSubmit={handleSubmit(onFinish())}>
+        <form onSubmit={handleSubmit(onFinish)}>
             <label>Title: </label>
             <input {...register("title", { required: true })} />
             {errors.title && <span>This field is required</span>}

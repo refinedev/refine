@@ -132,7 +132,7 @@ const siteConfig = {
                     className: "header-icon-link header-github-link",
                 },
                 {
-                    href: "https://discord.gg/UuU3XCc3J5",
+                    href: "https://discord.gg/refine",
                     position: "right",
                     className: "header-icon-link header-discord-link",
                 },

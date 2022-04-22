@@ -130,6 +130,14 @@ ButtonProps
 | percent | `number`                                                             |
 | status  | `"error"` \| `"success"` \| `"done" `\| `"uploading"` \| `"removed"` |
 
+## UseImportInputPropsType
+
+| Key     | Type                                                                 |
+| ------- | -------------------------------------------------------------------- |
+| type     | `"file"`                                                             |
+| accept    | `".cvs"`                                                             |
+| onChange     | `function`                                                             |
+
 ## SuccessErrorNotification
 
 | Key                 | Type                                                                                 |

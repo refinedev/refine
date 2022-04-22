@@ -52,7 +52,7 @@ We didn't give any property to `useShow` because it can read `resource` and `id`
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-json-server";
 
 // highlight-next-line
@@ -176,7 +176,7 @@ Finally, let's pass this page to the `resources` as a list component.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-json-server";
 
 // highlight-next-line
