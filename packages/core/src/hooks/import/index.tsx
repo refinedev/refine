@@ -67,7 +67,7 @@ export type HandleChangeType<TVariables, TData> = (onChangeParams: {
 export type InputPropsReturnType = {
     type: "file";
     accept: string;
-    onChange: (event: any) => void;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export type UseImportReturnType<
