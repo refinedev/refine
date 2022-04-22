@@ -1,6 +1,7 @@
 import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
+import { Layout } from "@pankod/refine-antd";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 
@@ -13,6 +14,7 @@ const App: React.FC = () => {
         <Refine
             dataProvider={dataProvider(API_URL)}
             routerProvider={routerProvider}
+            Layout={Layout}
             resources={[
                 {
                     name: "posts",
