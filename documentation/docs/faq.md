@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 You may need to modify the form data before it is sent to the API. 
 
-For example, for `Base64` upload, converting `File` object to `Base64` string would be suitable for this need.
+For example, Let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`.
 
 
 <Tabs
@@ -23,31 +23,31 @@ values={[
 <TabItem value="core">
 
 ```tsx
-import { useState } from "react";
-import { useForm, file2Base64 } from "@pankod/refine-core";
+import React, { useState } from "react";
+import { useForm } from "@pankod/refine-core";
 
-export const PostCreate = () => {
-    const [file, setFile] = useState();
+export const UserCreate: React.FC = () => {
+    const [name, setName] = useState();
+    const [surname, setSurname] = useState();
+
     const { onFinish } = useForm({
         action: "create",
     });
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const base64String = await file2Base64(file);
-        onFinish({ file: base64String });
+        const fullName = `${name} ${surname}`;
+        onFinish({
+            fullName: fullName,
+            name,
+            surname,
+        });
     };
 
     return (
         <form onSubmit={onSubmit}>
-            <input
-                type="file" 
-                onChange={(event) => {
-                    if (event.target.files) {
-                        setFile(event.target.files[0]);
-                    }
-                }}
-            />
+            <input onChange={(e) => setName(e.target.value)} />
+            <input onChange={(e) => setSurname(e.target.value)} />
             <button type="submit">Submit</button>
         </form>
     );
@@ -58,8 +58,8 @@ export const PostCreate = () => {
 <TabItem value="antd">
 
 ```tsx
-import { file2Base64 } from "@pankod/refine-core";
-import { Form, useForm } from "@pankod/refine-antd";
+import React from "react";
+import { useForm, Form, Input } from "@pankod/refine-antd";
 
 export const UserCreate: React.FC = () => {
     const { formProps } = useForm();
@@ -67,32 +67,25 @@ export const UserCreate: React.FC = () => {
     return (
         <Form
             {...formProps}
-            onFinish={async (values) => {
-                const base64Files = [];
-                const { avatar } = values;
-
-                for (const file of avatar) {
-                    if (file.originFileObj) {
-                        const base64String = await file2Base64(file);
-
-                        base64Files.push({
-                            ...file,
-                            base64String,
-                        });
-                    } else {
-                        base64Files.push(file);
-                    }
-                }
+            onFinish={(values) => {
+                const { name, surname } = values;
+                const fullName = `${name} ${surname}`;
 
                 return (
                     formProps.onFinish &&
                     formProps.onFinish({
                         ...values,
-                        avatar: base64Files,
+                        fullName,
                     })
                 );
             }}
         >
+            <Form.Item label="Name" name="name">
+                <Input />
+            </Form.Item>
+            <Form.Item label="Surname" name="surname">
+                <Input />
+            </Form.Item>
         </Form>
     );
 };
@@ -103,10 +96,10 @@ export const UserCreate: React.FC = () => {
 <TabItem value="react-hook-form">
 
 ```tsx
-import { file2Base64 } from "@pankod/refine-core";
+import React from "react";
 import { useForm } from "@pankod/refine-react-hook-form";
 
-export const PostCreate: React.FC = () => {
+export const UserCreate: React.FC = () => {
     const {
         refineCore: { onFinish, formLoading },
         register,
@@ -114,17 +107,18 @@ export const PostCreate: React.FC = () => {
     } = useForm();
 
     const handleSubmitPostCreate = (values) => {
-        const { file } = values;
-        const base64String = await file2Base64(file);
-        onFinish({ file: base64String });
+        const { name, surname } = values;
+        const fullName = `${name} ${surname}`;
+        onFinish({ 
+            ...value, 
+            fullName 
+        });
     };
 
     return (    
         <form onSubmit={handleSubmit(handleSubmitPostCreate)}>
-            <input
-                {...register("file")}
-                type="file" 
-            />
+            <input {...register("name")} />
+            <input {...register("surname")} />
         </form>
     );
 };
