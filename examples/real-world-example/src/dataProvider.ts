@@ -9,7 +9,9 @@ import { stringify } from "query-string";
 import axios, { AxiosInstance } from "axios";
 
 //TEMP URL
-const API_URL = "https://refine-real-world.herokuapp.com/api";
+//const API_URL = "https://refine-real-world.herokuapp.com/api";
+
+const API_URL = "https://api.realworld.io/api";
 
 const mapOperator = (operator: CrudOperators): string => {
     switch (operator) {
@@ -114,10 +116,26 @@ export const dataProvider = (axios: AxiosInstance): DataProvider => {
                 data: data[metaData?.resource || resource],
             };
         },
-        update: async ({ resource, id, variables }) => {
+        update: async ({ resource, id, variables, metaData }) => {
             const url = `${API_URL}/${resource}/${id}`;
 
-            const { data } = await axios.put(url, variables);
+            const favUrl = `${API_URL}/${resource}/${id}/favorite`;
+
+            const { data } = metaData?.favorite
+                ? await axios.post(favUrl)
+                : await axios.put(url, variables);
+
+            return {
+                data,
+            };
+        },
+
+        deleteOne: async ({ resource, id, variables, metaData }) => {
+            const url = metaData?.favorited
+                ? `${API_URL}/${resource}/${id}/favorite`
+                : `${API_URL}/${resource}/${id}`;
+
+            const { data } = await axios.delete(url, variables);
 
             return {
                 data,

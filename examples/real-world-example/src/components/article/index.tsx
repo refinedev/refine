@@ -9,6 +9,8 @@ type ArticleListProps = {
     createdAt: string;
     favCount: number;
     tagList?: string[];
+    favArticle: (slug: string) => void;
+    isItemFavorited: boolean;
 };
 
 export const ArticleList: React.FC<ArticleListProps> = ({
@@ -20,6 +22,8 @@ export const ArticleList: React.FC<ArticleListProps> = ({
     createdAt,
     favCount,
     tagList,
+    favArticle,
+    isItemFavorited,
 }) => {
     const { push } = useNavigation();
 
@@ -35,7 +39,16 @@ export const ArticleList: React.FC<ArticleListProps> = ({
                     </a>
                     <span className="date">{createdAt}</span>
                 </div>
-                <button className="btn btn-outline-primary btn-sm pull-xs-right">
+                <button
+                    className={
+                        !isItemFavorited
+                            ? "btn btn-outline-primary btn-sm pull-xs-right"
+                            : "btn btn-primary btn-sm pull-xs-right"
+                    }
+                    onClick={() => {
+                        favArticle(slug);
+                    }}
+                >
                     <i className="ion-heart"></i> {favCount}
                 </button>
             </div>

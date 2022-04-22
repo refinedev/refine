@@ -1,4 +1,10 @@
-import { useGetIdentity, useList, useNavigation } from "@pankod/refine-core";
+import {
+    useGetIdentity,
+    useList,
+    useNavigation,
+    useDelete,
+    useUpdate,
+} from "@pankod/refine-core";
 
 import { IArticle, IUser } from "interfaces";
 import { ArticleList } from "components/article";
@@ -7,6 +13,8 @@ import dayjs from "dayjs";
 export const ProfilePage: React.FC = () => {
     const { data: user, isLoading } = useGetIdentity<IUser>();
     const { push } = useNavigation();
+    const { mutate } = useUpdate();
+    const { mutate: deleteMutate } = useDelete();
 
     const { data, isLoading: loading } = useList<IArticle>({
         resource: "articles",
@@ -19,6 +27,28 @@ export const ProfilePage: React.FC = () => {
             ],
         },
     });
+
+    const favArticle = (slug: string) => {
+        mutate({
+            resource: "articles",
+            id: slug,
+            metaData: {
+                favorite: true,
+            },
+            values: "",
+        });
+    };
+
+    const unFavArticle = (slug: string) => {
+        deleteMutate({
+            resource: "articles",
+            id: slug,
+            metaData: {
+                favorited: true,
+            },
+            values: "",
+        });
+    };
 
     return (
         <div className="profile-page">
@@ -79,6 +109,12 @@ export const ProfilePage: React.FC = () => {
                                         )}
                                         favCount={item.favoritesCount}
                                         description={item.description}
+                                        favArticle={(slug: string) => {
+                                            item.favorited
+                                                ? unFavArticle(slug)
+                                                : favArticle(slug);
+                                        }}
+                                        isItemFavorited={item.favorited}
                                     />
                                 );
                             })}
