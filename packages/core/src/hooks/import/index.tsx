@@ -290,7 +290,7 @@ export const useImport = <
         inputProps: {
             type: "file",
             accept: ".csv",
-            onChange: (event) => {
+            onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                 if (event.target.files && event.target.files.length > 0) {
                     handleChange({ file: event.target.files[0] });
                 }
