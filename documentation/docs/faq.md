@@ -6,7 +6,7 @@ title: FAQ
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## How can I change the form data before submitting it to the API
+## How can I change the form data before submitting it to the API?
 
 You may need to modify the form data before it is sent to the API. 
 
@@ -32,7 +32,7 @@ export const UserCreate: React.FC = () => {
 
     const { onFinish } = useForm();
 
-    const onSubmit = async (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
         const fullName = `${name} ${surname}`;
         onFinish({
@@ -125,3 +125,85 @@ export const UserCreate: React.FC = () => {
 </TabItem>
 </Tabs>
 
+## How can I refetch data?
+
+**Refine** automatically invalidates the affected resources after mutations. However, in some cases you may want to refetch manually.
+
+<Tabs
+defaultValue="refetch"
+values={[
+{label: 'React Query Refetch', value: 'refetch'},
+{label: 'useInvalidate Hook', value: 'useinvalidate'},
+]}>
+<TabItem value="refetch">
+
+```tsx
+import { useTable, useList, useForm, useShow, useEditableTable } from "@pankod/refine-core";
+
+// All "data" related hooks provided by Refine can use queryOptions' refetch function
+const { queryOptions: { refetch } } = useTable();
+const { queryOptions: { refetch } } = useForm();
+const { queryOptions: { refetch } } = useList();
+...
+...
+const { queryOptions: { refetch } } = useShow();
+const { queryOptions: { refetch } } = useEditableTable();
+...
+...
+```
+
+</TabItem>
+<TabItem value="useinvalidate">
+
+
+```tsx
+import { useInvalidate } from "@pankod/refine-core";
+
+const invalidate = useInvalidate();
+
+// To invalidate the list and many states of the Posts resource
+invalidate({
+    resource: "posts",
+    invalidates: ["list", "many"]
+});
+
+// To invalidate the state of a Posts with an id of 1
+invalidate({
+    resource: "posts",
+    invalidates: ["detail"],
+    id: 1,
+});
+
+// To invalidate the list and many states of the Posts resource of the dataProvider named "second-data-provider"
+invalidate({
+    resource: "posts",
+    dataProviderName: "second-data-provider",
+    invalidates: ["list"],
+});
+
+// To invalidate all states of dataprovider named "second-data-provider"
+invalidate({
+    dataProviderName: "second-data-provider",
+    invalidates: ["all"],
+});
+
+```
+
+[Refer to the **refine** useInvalidate hook documentation for more information. →](/docs/core/hooks/invalidate/useInvalidate)
+
+</TabItem>
+</Tabs>
+
+## How can I request an API with nested route?
+
+**Refine**'s way of doing this is with the `resource` property on all data hooks. You can think of the `resource` property as the URL. 
+
+For example, If you want to make a request of the URL `/user/1/posts`.
+
+```tsx
+import { useTable, useOne } from "@pankod/refine-core";
+
+useTable({
+    resource: "/users/1/posts"
+});
+```
