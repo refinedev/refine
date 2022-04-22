@@ -1,4 +1,9 @@
-import { useGetIdentity, useList } from "@pankod/refine-core";
+import {
+    useGetIdentity,
+    useList,
+    useUpdate,
+    useDelete,
+} from "@pankod/refine-core";
 import { ArticleList } from "components/article";
 
 import dayjs from "dayjs";
@@ -6,6 +11,8 @@ import { IArticle, ITag } from "interfaces";
 
 export const HomePage: React.FC = () => {
     const { isSuccess } = useGetIdentity();
+    const { mutate } = useUpdate();
+    const { mutate: deleteMutate } = useDelete();
 
     const tagList = useList<ITag[]>({
         resource: "tags",
@@ -14,6 +21,28 @@ export const HomePage: React.FC = () => {
     const articleList = useList<IArticle>({
         resource: "articles",
     });
+
+    const favArticle = (slug: string) => {
+        mutate({
+            resource: "articles",
+            id: slug,
+            metaData: {
+                favorite: true,
+            },
+            values: "",
+        });
+    };
+
+    const unFavArticle = (slug: string) => {
+        deleteMutate({
+            resource: "articles",
+            id: slug,
+            metaData: {
+                favorited: true,
+            },
+            values: "",
+        });
+    };
 
     return (
         <div className="home-page">
@@ -61,6 +90,12 @@ export const HomePage: React.FC = () => {
                                     favCount={item.favoritesCount}
                                     description={item.description}
                                     tagList={item.tagList}
+                                    favArticle={(slug: string) => {
+                                        item.favorited
+                                            ? unFavArticle(slug)
+                                            : favArticle(slug);
+                                    }}
+                                    isItemFavorited={item.favorited}
                                 />
                             );
                         })}
