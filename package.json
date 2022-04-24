@@ -50,6 +50,6 @@
         "typescript": "^4.4.3"
     },
     "dependencies": {
-        "prettier": "2.3.0"
+        "prettier": "2.6.2"
     }
 }
