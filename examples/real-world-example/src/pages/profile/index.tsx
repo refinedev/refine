@@ -46,7 +46,7 @@ export const ProfilePage: React.FC = () => {
             resource: "articles",
             id: slug,
             metaData: {
-                favorite: true,
+                resource: "favorite",
             },
             values: "",
         });
@@ -57,7 +57,7 @@ export const ProfilePage: React.FC = () => {
             resource: "articles",
             id: slug,
             metaData: {
-                favorited: true,
+                resource: "favorite",
             },
             values: "",
         });
