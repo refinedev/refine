@@ -30,11 +30,11 @@ export const ArticleList: React.FC<ArticleListProps> = ({
     return (
         <div className="article-preview">
             <div className="article-meta">
-                <a href="">
+                <a href={`/profile/@${author}`}>
                     <img src={image} />
                 </a>
                 <div className="info">
-                    <a href="" className="author">
+                    <a href={`/profile/@${author}`} className="author">
                         {author}
                     </a>
                     <span className="date">{createdAt}</span>

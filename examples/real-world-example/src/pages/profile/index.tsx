@@ -4,27 +4,40 @@ import {
     useNavigation,
     useDelete,
     useUpdate,
+    useOne,
 } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
 
-import { IArticle, IUser } from "interfaces";
+import { IArticle, IProfile, IUser } from "interfaces";
 import { ArticleList } from "components/article";
 import dayjs from "dayjs";
 
+const { useParams } = routerProvider;
+
 export const ProfilePage: React.FC = () => {
-    const { data: user, isLoading } = useGetIdentity<IUser>();
+    const { data: user } = useGetIdentity<IUser>();
     const { push } = useNavigation();
     const { mutate } = useUpdate();
     const { mutate: deleteMutate } = useDelete();
+    const params = useParams();
 
     const { data, isLoading: loading } = useList<IArticle>({
         resource: "articles",
         queryOptions: {
-            enabled: user !== undefined,
+            enabled: params?.username !== undefined,
         },
         config: {
             filters: [
-                { field: "author", value: user?.username, operator: "eq" },
+                { field: "author", value: params?.username, operator: "eq" },
             ],
+        },
+    });
+
+    const { data: profileData, isLoading: isLoading } = useOne<IProfile>({
+        resource: "profiles",
+        id: params?.username,
+        metaData: {
+            resource: "profile",
         },
     });
 
@@ -57,19 +70,34 @@ export const ProfilePage: React.FC = () => {
                     <div className="row">
                         <div className="col-xs-12 col-md-10 offset-md-1">
                             <img
-                                src={isLoading ? "" : user?.image}
+                                src={isLoading ? "" : profileData?.data.image}
                                 className="user-img"
                             />
-                            <h4>{isLoading ? "loading" : user?.username}</h4>
-                            <p>{isLoading ? "loading" : user?.bio}</p>
+                            <h4>
+                                {isLoading
+                                    ? "loading"
+                                    : profileData?.data.username}
+                            </h4>
+                            <p>
+                                {isLoading ? "loading" : profileData?.data.bio}
+                            </p>
                             <button
                                 className="btn btn-sm btn-outline-secondary action-btn"
                                 onClick={() => {
-                                    push("/settings");
+                                    if (params?.username === user?.username) {
+                                        push("/settings");
+                                    } else {
+                                        console.log(
+                                            "follow feauture will be added on new commit",
+                                        );
+                                    }
                                 }}
                             >
                                 <i className="ion-plus-round"></i>
-                                &nbsp; Edit Profile Settings
+                                &nbsp;
+                                {params?.username === user?.username
+                                    ? `Edit Profile Settings`
+                                    : `Follow ${profileData?.data.username}`}
                             </button>
                         </div>
                     </div>
@@ -95,7 +123,7 @@ export const ProfilePage: React.FC = () => {
                         </div>
 
                         {!loading &&
-                            user &&
+                            params?.username &&
                             data?.data?.map((item) => {
                                 return (
                                     <ArticleList

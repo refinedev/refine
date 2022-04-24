@@ -51,13 +51,17 @@ function App() {
                         path: "/article/:slug",
                         layout: true,
                     },
+                    {
+                        element: <ProfilePage />,
+                        path: "profile/@:username",
+                        layout: true,
+                    },
                 ],
             }}
             dataProvider={dataProvider(axiosInstance)}
             authProvider={authProvider(axiosInstance)}
             DashboardPage={HomePage}
             resources={[
-                { name: "profile", list: ProfilePage },
                 { name: "settings", list: SettingsPage },
                 { name: "editor", list: EditorPage },
             ]}

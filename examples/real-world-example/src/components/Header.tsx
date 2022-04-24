@@ -4,7 +4,7 @@ import routerProvider from "@pankod/refine-react-router-v6";
 
 const { Link } = routerProvider;
 export const Header: React.FC = () => {
-    const { isSuccess } = useGetIdentity();
+    const { data: user, isSuccess } = useGetIdentity();
 
     return (
         <>
@@ -47,7 +47,10 @@ export const Header: React.FC = () => {
                                     </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/profile">
+                                    <Link
+                                        className="nav-link"
+                                        to={`profile/@${user?.username}`}
+                                    >
                                         <i className="ion-gear-a"></i>
                                         &nbsp;Profile
                                     </Link>
