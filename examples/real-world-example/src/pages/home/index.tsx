@@ -27,7 +27,7 @@ export const HomePage: React.FC = () => {
             resource: "articles",
             id: slug,
             metaData: {
-                favorite: true,
+                resource: "favorite",
             },
             values: "",
         });
@@ -38,7 +38,7 @@ export const HomePage: React.FC = () => {
             resource: "articles",
             id: slug,
             metaData: {
-                favorited: true,
+                resource: "favorite",
             },
             values: "",
         });

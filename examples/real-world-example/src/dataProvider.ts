@@ -117,12 +117,12 @@ export const dataProvider = (axios: AxiosInstance): DataProvider => {
             };
         },
         update: async ({ resource, id, variables, metaData }) => {
-            const url = `${API_URL}/${resource}/${id}`;
+            const url = metaData?.resource
+                ? `${API_URL}/${resource}/${id}/${metaData.resource}`
+                : `${API_URL}/${resource}/${id}`;
 
-            const favUrl = `${API_URL}/${resource}/${id}/favorite`;
-
-            const { data } = metaData?.favorite
-                ? await axios.post(favUrl)
+            const { data } = metaData?.resource
+                ? await axios.post(url)
                 : await axios.put(url, variables);
 
             return {
@@ -131,8 +131,8 @@ export const dataProvider = (axios: AxiosInstance): DataProvider => {
         },
 
         deleteOne: async ({ resource, id, variables, metaData }) => {
-            const url = metaData?.favorited
-                ? `${API_URL}/${resource}/${id}/favorite`
+            const url = metaData?.resource
+                ? `${API_URL}/${resource}/${id}/${metaData.resource}`
                 : `${API_URL}/${resource}/${id}`;
 
             const { data } = await axios.delete(url, variables);
