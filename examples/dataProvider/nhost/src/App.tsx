@@ -5,7 +5,7 @@ import {
     LoginPage,
     ErrorComponent,
 } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-nhost";
 import { NhostAuthProvider } from "@nhost/react-auth";
 

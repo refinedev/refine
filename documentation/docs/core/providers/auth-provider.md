@@ -45,7 +45,7 @@ To use `authProvider` in **refine**, we have to pass the `authProvider` to the `
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-next-line
@@ -350,7 +350,7 @@ const authProvider = {
    ...
 // highlight-start
     checkAuth: () => {
-        localStorage.getItem("auth") ? Promise.resolve() : Promise.reject();
+        return localStorage.getItem("auth") ? Promise.resolve() : Promise.reject();
     },
 // highlight-end
    ...
@@ -366,7 +366,7 @@ const authProvider = {
    ...
 // highlight-next-line
     checkAuth: () => {
-        localStorage.getItem("auth")
+        return localStorage.getItem("auth")
             ? Promise.resolve()
             : Promise.reject({ redirectPath: "/custom-url" });
     },
@@ -610,6 +610,8 @@ axiosInstance.interceptors.request.use(
                 Authorization: `Bearer ${token}`,
             };
         }
+
+        return request;
     },
 );
 

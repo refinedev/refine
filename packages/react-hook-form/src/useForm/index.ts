@@ -56,9 +56,6 @@ export const useForm = <
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesRefine;
 
     const useFormCoreResult = useFormCore<TData, TError, TVariables>({
-        onMutationSuccess: () => {
-            reset();
-        },
         ...refineCoreProps,
     });
 

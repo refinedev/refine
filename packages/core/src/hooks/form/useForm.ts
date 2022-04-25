@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { QueryObserverResult } from "react-query";
+import { QueryObserverResult, UseQueryOptions } from "react-query";
 
 import {
     useResourceWithRoute,
@@ -51,11 +51,13 @@ type ActionFormProps<
     ) => void;
     redirect?: RedirectionTypes;
     resource?: string;
+    id?: BaseKey;
     metaData?: MetaDataQuery;
     mutationMode?: MutationMode;
     undoableTimeout?: number;
     dataProviderName?: string;
     invalidates?: Array<keyof IQueryKeys>;
+    queryOptions?: UseQueryOptions<GetOneResponse<TData>, HttpError>;
 } & SuccessErrorNotification &
     ActionParams &
     LiveModeProps;
@@ -101,6 +103,7 @@ export const useForm = <
 >({
     action: actionFromProps,
     resource: resourceFromProps,
+    id: idFromProps,
     onMutationSuccess,
     onMutationError,
     redirect: redirectFromProps,
@@ -114,6 +117,7 @@ export const useForm = <
     undoableTimeout,
     dataProviderName,
     invalidates,
+    queryOptions,
 }: UseFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
     TData,
     TError,
@@ -128,8 +132,9 @@ export const useForm = <
 
     const defaultId =
         !resourceFromProps || resourceFromProps === resourceFromRoute
-            ? idFromParams
-            : undefined;
+            ? idFromProps ?? idFromParams
+            : idFromProps;
+
     // id state is needed to determine selected record in a context for example useModal
     const [id, setId] = React.useState<BaseKey | undefined>(defaultId);
 
@@ -160,6 +165,7 @@ export const useForm = <
         id: id ?? "",
         queryOptions: {
             enabled: enableQuery,
+            ...queryOptions,
         },
         liveMode,
         onLiveEvent,
@@ -184,37 +190,56 @@ export const useForm = <
 
     const onFinishCreate = async (values: TVariables) => {
         setWarnWhen(false);
-        mutateCreate(
-            {
-                values,
-                resource: resource.name,
-                successNotification,
-                errorNotification,
-                metaData,
-                dataProviderName,
-                invalidates,
-            },
-            {
-                onSuccess: (data, variables, context) => {
-                    if (onMutationSuccess) {
-                        onMutationSuccess(data, values, context);
-                    }
 
-                    const id = data?.data?.id;
+        const onSuccess = (id?: BaseKey) => {
+            handleSubmitWithRedirect({
+                redirect,
+                resource,
+                id,
+            });
+        };
 
-                    handleSubmitWithRedirect({
-                        redirect,
-                        resource,
-                        id,
-                    });
+        if (mutationMode !== "pessimistic") {
+            setTimeout(() => {
+                onSuccess();
+            });
+        }
+
+        return new Promise<void>((resolve, reject) => {
+            if (mutationMode !== "pessimistic") {
+                resolve();
+            }
+            return mutateCreate(
+                {
+                    values,
+                    resource: resource.name,
+                    successNotification,
+                    errorNotification,
+                    metaData,
+                    dataProviderName,
+                    invalidates,
                 },
-                onError: (error: TError, variables, context) => {
-                    if (onMutationError) {
-                        return onMutationError(error, values, context);
-                    }
+                {
+                    onSuccess: (data, _, context) => {
+                        if (onMutationSuccess) {
+                            onMutationSuccess(data, values, context);
+                        }
+
+                        const id = data?.data?.id;
+
+                        onSuccess(id);
+
+                        resolve();
+                    },
+                    onError: (error: TError, _, context) => {
+                        if (onMutationError) {
+                            return onMutationError(error, values, context);
+                        }
+                        reject();
+                    },
                 },
-            },
-        );
+            );
+        });
     };
 
     const onFinishUpdate = async (values: TVariables) => {
@@ -251,8 +276,11 @@ export const useForm = <
         }
 
         // setTimeout is required to make onSuccess e.g. callbacks to work if component unmounts i.e. on route change
-        return new Promise<void>((resolve, reject) =>
-            setTimeout(() => {
+        return new Promise<void>((resolve, reject) => {
+            if (mutationMode !== "pessimistic") {
+                resolve();
+            }
+            return setTimeout(() => {
                 mutateUpdate(variables, {
                     onSuccess: (data, _, context) => {
                         if (onMutationSuccess) {
@@ -265,15 +293,15 @@ export const useForm = <
 
                         resolve();
                     },
-                    onError: (error: TError, variables, context) => {
+                    onError: (error: TError, _, context) => {
                         if (onMutationError) {
                             return onMutationError(error, values, context);
                         }
                         reject();
                     },
                 });
-            }),
-        );
+            });
+        });
     };
 
     const createResult = {

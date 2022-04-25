@@ -119,7 +119,7 @@ export const useCreate = <
                     channel: `resources/${resource}`,
                     type: "created",
                     payload: {
-                        ids: data.data?.id ? [data.data.id] : undefined,
+                        ids: data?.data?.id ? [data.data.id] : undefined,
                     },
                     date: new Date(),
                 });

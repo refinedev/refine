@@ -1,16 +1,14 @@
 import React from "react";
-import ReactRouterDom, { Route } from "react-router-dom";
+import ReactRouterDom, { Route, Routes } from "react-router-dom";
 
 import { fireEvent, render, TestWrapper, waitFor } from "@test";
 import { CreateButton } from "./";
 
-const mHistory = {
-    push: jest.fn(),
-};
+const mHistory = jest.fn();
 
 jest.mock("react-router-dom", () => ({
     ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useHistory: jest.fn(() => mHistory),
+    useNavigate: () => mHistory,
 }));
 
 describe("Create Button", () => {
@@ -132,9 +130,12 @@ describe("Create Button", () => {
 
     it("should redirect custom resource route called function successfully if click the button", () => {
         const { getByText } = render(
-            <Route path="/:resource">
-                <CreateButton resourceName="categories" />
-            </Route>,
+            <Routes>
+                <Route
+                    path="/:resource"
+                    element={<CreateButton resourceName="categories" />}
+                />
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts" }, { name: "categories" }],
@@ -145,14 +146,14 @@ describe("Create Button", () => {
 
         fireEvent.click(getByText("Create"));
 
-        expect(mHistory.push).toBeCalledWith("/categories/create");
+        expect(mHistory).toBeCalledWith("/categories/create");
     });
 
     it("should redirect create route called function successfully if click the button", () => {
         const { getByText } = render(
-            <Route path="/:resource">
-                <CreateButton />
-            </Route>,
+            <Routes>
+                <Route path="/:resource" element={<CreateButton />} />
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts" }],
@@ -163,14 +164,19 @@ describe("Create Button", () => {
 
         fireEvent.click(getByText("Create"));
 
-        expect(mHistory.push).toBeCalledWith("/posts/create");
+        expect(mHistory).toBeCalledWith("/posts/create");
     });
 
     it("should redirect with custom route called function successfully if click the button", () => {
         const { getByText } = render(
-            <Route path="/:resource">
-                <CreateButton resourceNameOrRouteName="custom-route-posts" />
-            </Route>,
+            <Routes>
+                <Route
+                    path="/:resource"
+                    element={
+                        <CreateButton resourceNameOrRouteName="custom-route-posts" />
+                    }
+                />
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     resources: [
@@ -187,6 +193,6 @@ describe("Create Button", () => {
 
         fireEvent.click(getByText("Create"));
 
-        expect(mHistory.push).toBeCalledWith("/custom-route-posts/create");
+        expect(mHistory).toBeCalledWith("/custom-route-posts/create");
     });
 });

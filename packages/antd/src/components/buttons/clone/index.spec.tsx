@@ -1,16 +1,14 @@
 import React from "react";
-import ReactRouterDom, { Route } from "react-router-dom";
+import ReactRouterDom, { Route, Routes } from "react-router-dom";
 
 import { fireEvent, render, TestWrapper, waitFor } from "@test";
 import { CloneButton } from "./";
 
-const mHistory = {
-    push: jest.fn(),
-};
+const mHistory = jest.fn();
 
 jest.mock("react-router-dom", () => ({
     ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useHistory: jest.fn(() => mHistory),
+    useNavigate: () => mHistory,
 }));
 
 describe("Clone Button", () => {
@@ -159,9 +157,12 @@ describe("Clone Button", () => {
 
     it("should create page redirect clone route called function successfully if click the button", () => {
         const { getByText } = render(
-            <Route path="/:resource">
-                <CloneButton recordItemId="1" />
-            </Route>,
+            <Routes>
+                <Route
+                    path="/:resource"
+                    element={<CloneButton recordItemId="1" />}
+                />
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     routerInitialEntries: ["/posts"],
@@ -171,14 +172,17 @@ describe("Clone Button", () => {
 
         fireEvent.click(getByText("Clone"));
 
-        expect(mHistory.push).toBeCalledWith("/posts/clone/1");
+        expect(mHistory).toBeCalledWith("/posts/clone/1");
     });
 
     it("should edit page redirect clone route called function successfully if click the button", () => {
         const { getByText } = render(
-            <Route path="/:resource/:id">
-                <CloneButton />
-            </Route>,
+            <Routes>
+                <Route
+                    path="/:resource/:action/:id"
+                    element={<CloneButton />}
+                />
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     routerInitialEntries: ["/posts/edit/1"],
@@ -188,14 +192,22 @@ describe("Clone Button", () => {
 
         fireEvent.click(getByText("Clone"));
 
-        expect(mHistory.push).toBeCalledWith("/posts/clone/1");
+        expect(mHistory).toBeCalledWith("/posts/clone/1");
     });
 
     it("should custom resource and recordItemId redirect clone route called function successfully if click the button", () => {
         const { getByText } = render(
-            <Route path="/:resource">
-                <CloneButton resourceName="categories" recordItemId="1" />
-            </Route>,
+            <Routes>
+                <Route
+                    path="/:resource"
+                    element={
+                        <CloneButton
+                            resourceName="categories"
+                            recordItemId="1"
+                        />
+                    }
+                />
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts" }, { name: "categories" }],
@@ -206,17 +218,22 @@ describe("Clone Button", () => {
 
         fireEvent.click(getByText("Clone"));
 
-        expect(mHistory.push).toBeCalledWith("/categories/clone/1");
+        expect(mHistory).toBeCalledWith("/categories/clone/1");
     });
 
     it("should redirect with custom route called function successfully if click the button", () => {
         const { getByText } = render(
-            <Route path="/:resource">
-                <CloneButton
-                    resourceNameOrRouteName="custom-route-posts"
-                    recordItemId="1"
+            <Routes>
+                <Route
+                    path="/:resource"
+                    element={
+                        <CloneButton
+                            resourceNameOrRouteName="custom-route-posts"
+                            recordItemId="1"
+                        />
+                    }
                 />
-            </Route>,
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     resources: [
@@ -233,6 +250,6 @@ describe("Clone Button", () => {
 
         fireEvent.click(getByText("Clone"));
 
-        expect(mHistory.push).toBeCalledWith("/custom-route-posts/clone/1");
+        expect(mHistory).toBeCalledWith("/custom-route-posts/clone/1");
     });
 });

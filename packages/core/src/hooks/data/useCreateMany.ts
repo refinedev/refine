@@ -114,7 +114,7 @@ export const useCreateMany = <
                     channel: `resources/${resource}`,
                     type: "created",
                     payload: {
-                        ids: response.data
+                        ids: response?.data
                             .filter((item) => item?.id !== undefined)
                             .map((item) => item.id!),
                     },

@@ -10,10 +10,10 @@
         "start": "lerna run start --stream --parallel --scope @pankod/refine-core",
         "test": "lerna run test --stream --parallel --scope @pankod/refine*",
         "test:coverage": "npm run test --stream -- -- -- --coverage",
-        "bootstrap": "cd packages/codemod && npm ci && cd ../.. && lerna bootstrap --hoist --strict --ignore-scripts --ignore @pankod/refine-codemod --scope @pankod/refine*",
+        "bootstrap": "cd packages/codemod && npm ci && cd ../.. && lerna bootstrap --hoist --strict --ignore-scripts --ignore @pankod/refine-codemod --ignore @pankod/refine-react-router --scope @pankod/refine*",
         "lint": "eslint -c ./.eslintrc packages examples",
         "lint:fix": "npm run lint -- --quiet --fix",
-        "build": "lerna run build --scope @pankod/refine*",
+        "build": "lerna run build --ignore @pankod/refine-react-router --scope @pankod/refine*",
         "versionup": "npm run lerna version --conventional-commits --no-git-tag-version --scope @pankod/refine*",
         "nuke": "rm -rf node_modules; for d in for d in packages/*/node_modules; do echo $d; rm -rf $d; done; for d in for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in examples/*/node_modules; do echo $d; rm -rf $d; done;  for d in examples/*/package-lock.json; do echo $d; rm -rf $d; done;",
         "coffee": "npm run nuke && npm i && npm run bootstrap && npm run build"

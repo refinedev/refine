@@ -52,7 +52,7 @@ We didn't give any property to `useShow` because it can read `resource` and `id`
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-json-server";
 
 // highlight-next-line
@@ -176,7 +176,7 @@ Finally, let's pass this page to the `resources` as a list component.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-json-server";
 
 // highlight-next-line
@@ -213,15 +213,15 @@ To show data in the drawer, you can do it by simply replacing `<Modal>` with `<D
 
 ### Properties
 
-| Property                                                     | Description                                                                                                                                                        | Type                                                                           | Default                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ---------------------------------------- |
-| resource                                                     | Resource name for API data interactions                                                                                                                            | `string`                                                                       | Resource name that it reads from the url |
-| id                                                           | Record id for fetching                                                                                                                                             | [`BaseKey`](/core/interfaces.md#basekey)                                                                       | Id that it reads from the url            |
-| metaData                                                     | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                           | {}                                       |
-| dataProviderName                                             | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.                                                                 | `string`                                                                       | `default`                                |
-| [liveMode](/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)         | `"off"`                                  |
+| Property                                                     | Description                                                                                                                                                        | Type                                                                            | Default                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------- | ---------------------------------------- |
+| resource                                                     | Resource name for API data interactions                                                                                                                            | `string`                                                                        | Resource name that it reads from the url |
+| id                                                           | Record id for fetching                                                                                                                                             | [`BaseKey`](/core/interfaces.md#basekey)                                        | Id that it reads from the URL            |
+| metaData                                                     | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                            | {}                                       |
+| dataProviderName                                             | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.                                                                 | `string`                                                                        | `default`                                |
+| [liveMode](/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)          | `"off"`                                  |
 | liveParams                                                   | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: BaseKey[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | `undefined`                              |
-| onLiveEvent                                                  | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)              | `undefined`                              |
+| onLiveEvent                                                  | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)               | `undefined`                              |
 
 ### Return values
 

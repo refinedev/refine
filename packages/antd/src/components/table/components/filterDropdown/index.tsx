@@ -23,6 +23,7 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = ({
     children,
 }) => {
     const [value, setValue] = useState<any[] | undefined>(selectedKeys);
+    const translate = useTranslate();
 
     const clearFilter = () => {
         if (clearFilters) {
@@ -32,7 +33,10 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = ({
     };
 
     const onFilter = () => {
-        if (confirm) confirm();
+        const _mappedValue = mappedValue(value);
+        setSelectedKeys(_mappedValue);
+
+        confirm?.();
     };
 
     const mappedValue = (value: any) => (mapValue ? mapValue(value) : value);
@@ -50,14 +54,12 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = ({
             const { target }: React.ChangeEvent<HTMLInputElement> = e;
             const _mappedValue = mappedValue(target.value);
             setValue(_mappedValue);
-
-            return setSelectedKeys(_mappedValue);
+            return;
         }
 
         const _mappedValue = mappedValue(e);
 
         setValue(_mappedValue);
-        return setSelectedKeys(_mappedValue);
     };
 
     const childrenWithProps = React.Children.map(children, (child) => {
@@ -69,7 +71,6 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = ({
         }
         return child;
     });
-    const translate = useTranslate();
     return (
         <div
             style={{

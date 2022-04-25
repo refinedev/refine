@@ -54,7 +54,42 @@ To do this, it is necessary to create an object array with the following [resour
 The `parentName` you give in the resource objects must be strictly equal to the resource name you want to group under.<br />
 A resource given as a group can only have a `name` and a  `parentName`. They should not have other props such as list, edit, create etc.
 
+:::
 
+:::caution
+
+Since your Next.js applications are routing file-based, you need to manage the nested routes yourself. If you use Nested resources only for grouping Menu items in `Sider` and you don't need nested routes, you can give `route` option as a single level routing when defining your `resource`.
+
+```tsx title="pages/_app.tsx"
+        <Refine
+           ...
+            resources={[
+                {
+                    name: "CMS",
+                },
+                {
+                    name: "posts",
+                    parentName: "CMS",
+                    // highlight-next-line
+                    options: { route: "/posts" },
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+                {
+                    name: "category",
+                    parentName: "CMS",
+                    // highlight-next-line
+                    options: { route: "/category" },
+                    list: CategoryList,
+                    create: CategoryCreate,
+                    edit: CategoryEdit,
+                    canDelete: true,
+                },
+            ]}
+        />
+```
 :::
 ### Ant Design
 

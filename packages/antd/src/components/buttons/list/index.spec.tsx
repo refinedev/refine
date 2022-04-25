@@ -1,16 +1,14 @@
 import React from "react";
-import ReactRouterDom, { Route } from "react-router-dom";
+import ReactRouterDom, { Route, Routes } from "react-router-dom";
 
 import { fireEvent, render, TestWrapper, waitFor } from "@test";
 import { ListButton } from "./";
 
-const mHistory = {
-    push: jest.fn(),
-};
+const mHistory = jest.fn();
 
 jest.mock("react-router-dom", () => ({
     ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useHistory: jest.fn(() => mHistory),
+    useNavigate: () => mHistory,
 }));
 
 describe("List Button", () => {
@@ -33,9 +31,9 @@ describe("List Button", () => {
 
     it("should render label as children if specified", async () => {
         const { container, getByText } = render(
-            <Route path="/:resource">
-                <ListButton />
-            </Route>,
+            <Routes>
+                <Route path="/:resource" element={<ListButton />}></Route>
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts", options: { label: "test" } }],
@@ -155,9 +153,14 @@ describe("List Button", () => {
 
     it("should redirect with custom route called function successfully if click the button", () => {
         const { getByText } = render(
-            <Route path="/:resource">
-                <ListButton resourceNameOrRouteName="custom-route-posts" />
-            </Route>,
+            <Routes>
+                <Route
+                    path="/:resource"
+                    element={
+                        <ListButton resourceNameOrRouteName="custom-route-posts" />
+                    }
+                />
+            </Routes>,
             {
                 wrapper: TestWrapper({
                     resources: [
@@ -174,6 +177,6 @@ describe("List Button", () => {
 
         fireEvent.click(getByText("Posts"));
 
-        expect(mHistory.push).toBeCalledWith("/custom-route-posts");
+        expect(mHistory).toBeCalledWith("/custom-route-posts");
     });
 });

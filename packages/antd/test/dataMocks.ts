@@ -1,4 +1,4 @@
-import { useHistory, useParams, useLocation, Link } from "react-router-dom";
+import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
 
 /* import {
     IDataContext,
@@ -50,10 +50,26 @@ const MockDataProvider = () => {
 
 export const MockJSONServer = MockDataProvider() as any;
 
-export const MockRouterProvider: any = {
-    useHistory,
+export const MockRouterProvider = {
+    useHistory: () => {
+        const navigate = useNavigate();
+
+        return {
+            push: navigate,
+            replace: (path: string) => {
+                navigate(path, { replace: true });
+            },
+            goBack: () => {
+                navigate(-1);
+            },
+        };
+    },
     useLocation,
-    useParams,
+    useParams: () => {
+        const params = useParams();
+
+        return params as any;
+    },
     Link,
     Prompt: () => null,
 };

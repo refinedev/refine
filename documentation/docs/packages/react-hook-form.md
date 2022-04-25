@@ -48,7 +48,7 @@ export const PostEdit: React.FC = () => {
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 //highlight-next-line
@@ -208,7 +208,8 @@ export const PostCreate: React.FC = () => {
 
 ### Edit Form
 
-Edit form is very similar to create form. `@pankod/refine-react-hook-form` sets the default values for the form fields according to the `id` of the route and fetch the data from the server.
+Edit form is very similar to create form. `@pankod/refine-react-hook-form` sets the default values for the form fields according to the `id` of the route and fetch the data from the server. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
+
 
 However, we need to pass `defaultValues` to the `useSelect` hook to make sure that the category id from data is in the options. Otherwise, the category will not match the existing options. Since the options are async, we need to reset the relavent field every time the options are changed.
 
@@ -240,7 +241,7 @@ export const PostEdit: React.FC = () => {
     // highlight-end
 
     return (
-        <form onSubmit={handleSubmit(onFinish())}>
+        <form onSubmit={handleSubmit(onFinish)}>
             <label>Title: </label>
             <input {...register("title", { required: true })} />
             {errors.title && <span>This field is required</span>}
