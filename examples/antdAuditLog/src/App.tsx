@@ -15,32 +15,40 @@ import {
     CategoryEdit,
     CategoryShow,
 } from "pages/categories";
+import { LoginPage } from "pages/login";
+import { ILoginDto } from "interfaces";
+
+import refineSDK from "utils/refine-sdk";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const authProvider: AuthProvider = {
-    login: (params: any) => {
-        if (params.username === "admin") {
-            localStorage.setItem("username", params.username);
-            return Promise.resolve();
-        }
+    login: async (payload: ILoginDto) => {
+        const { email, password, provider } = payload;
 
-        return Promise.reject();
-    },
-    logout: () => {
-        localStorage.removeItem("username");
+        await refineSDK.auth.login({
+            email,
+            password,
+            provider,
+        });
+
         return Promise.resolve();
     },
+    logout: async () => refineSDK.auth.logout(),
     checkError: () => Promise.resolve(),
-    checkAuth: () =>
-        localStorage.getItem("username") ? Promise.resolve() : Promise.reject(),
-    getPermissions: () => Promise.resolve(["admin"]),
+    checkAuth: async () => {
+        // for social login
+        refineSDK.auth.getSessionFromUrl();
+
+        return refineSDK.auth
+            .session()
+            .then(() => Promise.resolve())
+            .catch(() => Promise.reject());
+    },
+    getPermissions: () => Promise.resolve(),
     getUserIdentity: async () => {
-        return Promise.resolve({
-            id: 1,
-            name: "Jane Doe",
-            avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
-        });
+        const { user } = await refineSDK.auth.session();
+        return user;
     },
 };
 
@@ -84,14 +92,23 @@ const App: React.FC = () => {
             Layout={Layout}
             catchAll={<ErrorComponent />}
             Header={() => null}
+            LoginPage={LoginPage}
             auditLogProvider={{
                 log: (params) => {
+                    console.log(
+                        `-- log create params: ${JSON.stringify(params)}`,
+                    );
                     dataProvider(API_URL).create({
                         resource: "logs",
                         variables: params,
                     });
                 },
                 list: async ({ resource, params }) => {
+                    console.log(
+                        `-- log list resource: ${resource} params: ${JSON.stringify(
+                            params,
+                        )}`,
+                    );
                     const { data } = await dataProvider(API_URL).getList({
                         resource: "logs",
                         filters: [
@@ -110,6 +127,7 @@ const App: React.FC = () => {
                     return data;
                 },
                 rename: async ({ id, name }) => {
+                    console.log(`-- log rename id: ${id} name: ${name}`);
                     const { data } = await dataProvider(API_URL).update({
                         resource: "logs",
                         id,
