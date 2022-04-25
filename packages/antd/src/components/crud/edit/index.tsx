@@ -39,7 +39,7 @@ export interface EditProps {
     deleteButtonProps?: DeleteButtonProps;
     resource?: string;
     isLoading?: boolean;
-    children: ReactNode;
+    children?: ReactNode;
 }
 
 /**

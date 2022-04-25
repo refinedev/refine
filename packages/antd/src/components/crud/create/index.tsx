@@ -26,7 +26,7 @@ export interface CreateProps {
     pageHeaderProps?: PageHeaderProps;
     resource?: string;
     isLoading?: boolean;
-    children: ReactNode;
+    children?: ReactNode;
 }
 
 /**

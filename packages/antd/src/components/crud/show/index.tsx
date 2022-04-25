@@ -26,7 +26,7 @@ export interface ShowProps {
     pageHeaderProps?: PageHeaderProps;
     resource?: string;
     recordItemId?: BaseKey;
-    children: ReactNode;
+    children?: ReactNode;
 }
 
 /**
