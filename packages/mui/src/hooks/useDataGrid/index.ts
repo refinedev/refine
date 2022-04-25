@@ -2,6 +2,9 @@ import {
     BaseRecord,
     CrudFilters,
     HttpError,
+    useTable as useTableCore,
+    useTableProps as useTablePropsCore,
+    useTableReturnType as useTableReturnTypeCore,
     useLiveMode,
 } from "@pankod/refine-core";
 import {
@@ -9,12 +12,6 @@ import {
     GridFilterModel,
     GridSortModel,
 } from "@mui/x-data-grid";
-
-import {
-    useTable as useTableCore,
-    useTableProps as useTablePropsCore,
-    useTableReturnType as useTableReturnTypeCore,
-} from "../useTable";
 
 import {
     transformCrudSortingToSortModel,
