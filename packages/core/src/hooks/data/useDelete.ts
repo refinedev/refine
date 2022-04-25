@@ -234,7 +234,6 @@ export const useDelete = <
                 },
             ) => {
                 // invalidate the cache for the list and many queries:
-
                 invalidateStore({
                     resource,
                     dataProviderName,
