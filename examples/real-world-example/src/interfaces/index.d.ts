@@ -17,11 +17,19 @@ export interface IArticle {
     tagList: ITag[];
     title: string;
     updatedAt: string;
-    author: IUser;
+    author: IAuhtor;
 }
 export interface IProfile {
     email: string;
     username: string;
     bio: string | null;
     image: string;
+    following: boolean;
+}
+
+export interface IAuhtor {
+    bio: string;
+    following: boolean;
+    image: string;
+    username: string;
 }

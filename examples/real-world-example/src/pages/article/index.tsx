@@ -3,6 +3,7 @@ import {
     useGetIdentity,
     useDelete,
     useNavigation,
+    useUpdate,
 } from "@pankod/refine-core";
 import router from "@pankod/refine-react-router-v6";
 import { useForm } from "@pankod/refine-react-hook-form";
@@ -17,6 +18,10 @@ export const ArticlePage: React.FC = () => {
     const { data: user } = useGetIdentity();
     const { mutate } = useDelete();
     const { push } = useNavigation();
+    const { mutate: favoriteMutate } = useUpdate();
+    const { mutate: unFavoriteMutate } = useDelete();
+    const { mutate: followMutate } = useUpdate();
+    const { mutate: unFollowMutate } = useDelete();
 
     const {
         register,
@@ -31,7 +36,7 @@ export const ArticlePage: React.FC = () => {
 
     const { data: item } = useOne<IArticle>({
         resource: "articles",
-        id: params.slug,
+        id: params?.slug,
         metaData: {
             resource: "article",
         },
@@ -62,6 +67,48 @@ export const ArticlePage: React.FC = () => {
             id: params.slug,
         });
         push("/");
+    };
+
+    const favArticle = () => {
+        favoriteMutate({
+            resource: "articles",
+            id: params?.slug,
+            metaData: {
+                resource: "favorite",
+            },
+            values: "",
+        });
+    };
+
+    const unFavArticle = () => {
+        unFavoriteMutate({
+            resource: "articles",
+            id: params?.slug,
+            metaData: {
+                resource: "favorite",
+            },
+        });
+    };
+
+    const followUser = (username: string) => {
+        followMutate({
+            resource: "profiles",
+            id: username,
+            metaData: {
+                resource: "follow",
+            },
+            values: "",
+        });
+    };
+
+    const unFollowUser = (username: string) => {
+        unFollowMutate({
+            resource: "profiles",
+            id: username,
+            metaData: {
+                resource: "follow",
+            },
+        });
     };
 
     return (
@@ -105,14 +152,46 @@ export const ArticlePage: React.FC = () => {
                             </>
                         ) : (
                             <>
-                                <button className="btn btn-sm btn-outline-secondary">
+                                <button
+                                    className={
+                                        item?.data.author.following
+                                            ? "btn btn-sm action-btn ng-binding btn-secondary"
+                                            : "btn btn-sm btn-outline-secondary"
+                                    }
+                                    onClick={() => {
+                                        item?.data.author.following
+                                            ? unFollowUser(
+                                                  item?.data.author.username,
+                                              )
+                                            : followUser(
+                                                  item!.data.author.username,
+                                              );
+                                    }}
+                                >
                                     <i className="ion-plus-round"></i>
-                                    &nbsp; Follow {item?.data.author.username}
+                                    &nbsp;{" "}
+                                    {item?.data.author.following
+                                        ? `Unfollow ${item?.data.author.username}`
+                                        : `Follow ${item?.data.author.username}`}
                                 </button>
                                 &nbsp;
-                                <button className="btn btn-sm btn-outline-primary">
+                                <button
+                                    className={
+                                        item?.data.favorited
+                                            ? "btn btn-sm btn-primary"
+                                            : "btn btn-sm btn-outline-primary"
+                                    }
+                                    onClick={() => {
+                                        item?.data.favorited
+                                            ? unFavArticle()
+                                            : favArticle();
+                                    }}
+                                >
                                     <i className="ion-heart"></i>
-                                    &nbsp; Favorite Post{" "}
+                                    &nbsp;{" "}
+                                    {item?.data.favorited
+                                        ? "Unfavorite Article"
+                                        : "Favorite Article"}{" "}
                                     <span className="counter">
                                         {item?.data.favoritesCount}
                                     </span>
@@ -182,14 +261,41 @@ export const ArticlePage: React.FC = () => {
                             </>
                         ) : (
                             <>
-                                <button className="btn btn-sm btn-outline-secondary">
+                                <button
+                                    className={
+                                        item?.data.author.following
+                                            ? "btn btn-sm action-btn ng-binding btn-secondary"
+                                            : "btn btn-sm btn-outline-secondary"
+                                    }
+                                    onClick={() => {
+                                        item?.data.author.following
+                                            ? unFollowUser(
+                                                  item?.data.author.username,
+                                              )
+                                            : followUser(
+                                                  item!.data.author.username,
+                                              );
+                                    }}
+                                >
                                     <i className="ion-plus-round"></i>
-                                    &nbsp; Follow {item?.data.author.username}
+                                    &nbsp;{" "}
+                                    {item?.data.author.following
+                                        ? `Unfollow ${item?.data.author.username}`
+                                        : `Follow ${item?.data.author.username}`}
                                 </button>
                                 &nbsp;
-                                <button className="btn btn-sm btn-outline-primary">
+                                <button
+                                    className={
+                                        item?.data.favorited
+                                            ? "btn btn-sm btn-primary"
+                                            : "btn btn-sm btn-outline-primary"
+                                    }
+                                >
                                     <i className="ion-heart"></i>
-                                    &nbsp; Favorite Post{" "}
+                                    &nbsp;{" "}
+                                    {item?.data.favorited
+                                        ? "Unfavorite Article"
+                                        : "Favorite Article"}{" "}
                                     <span className="counter">
                                         {item?.data.favoritesCount}
                                     </span>

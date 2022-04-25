@@ -17,8 +17,10 @@ const { useParams } = routerProvider;
 export const ProfilePage: React.FC = () => {
     const { data: user } = useGetIdentity<IUser>();
     const { push } = useNavigation();
-    const { mutate } = useUpdate();
+    const { mutate: updateMutate } = useUpdate();
     const { mutate: deleteMutate } = useDelete();
+    const { mutate: followMutate } = useUpdate();
+    const { mutate: unFollowMutate } = useDelete();
     const params = useParams();
 
     const { data, isLoading: loading } = useList<IArticle>({
@@ -42,7 +44,7 @@ export const ProfilePage: React.FC = () => {
     });
 
     const favArticle = (slug: string) => {
-        mutate({
+        updateMutate({
             resource: "articles",
             id: slug,
             metaData: {
@@ -60,6 +62,27 @@ export const ProfilePage: React.FC = () => {
                 resource: "favorite",
             },
             values: "",
+        });
+    };
+
+    const followUser = (username: string) => {
+        followMutate({
+            resource: "profiles",
+            id: username,
+            metaData: {
+                resource: "follow",
+            },
+            values: "",
+        });
+    };
+
+    const unFollowUser = (username: string) => {
+        unFollowMutate({
+            resource: "profiles",
+            id: username,
+            metaData: {
+                resource: "follow",
+            },
         });
     };
 
@@ -82,21 +105,25 @@ export const ProfilePage: React.FC = () => {
                                 {isLoading ? "loading" : profileData?.data.bio}
                             </p>
                             <button
-                                className="btn btn-sm btn-outline-secondary action-btn"
+                                className={
+                                    profileData?.data.following
+                                        ? `btn btn-sm action-btn ng-binding btn-secondary`
+                                        : `btn btn-sm action-btn ng-binding btn-outline-secondary`
+                                }
                                 onClick={() => {
-                                    if (params?.username === user?.username) {
-                                        push("/settings");
-                                    } else {
-                                        console.log(
-                                            "follow feauture will be added on new commit",
-                                        );
-                                    }
+                                    params.username === user?.username
+                                        ? push("/settings")
+                                        : profileData?.data.following
+                                        ? unFollowUser(params?.username)
+                                        : followUser(params?.username);
                                 }}
                             >
                                 <i className="ion-plus-round"></i>
                                 &nbsp;
                                 {params?.username === user?.username
                                     ? `Edit Profile Settings`
+                                    : profileData?.data.following
+                                    ? `Unfollow ${profileData?.data.username}`
                                     : `Follow ${profileData?.data.username}`}
                             </button>
                         </div>
