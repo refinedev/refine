@@ -17,7 +17,7 @@ export interface IArticle {
     tagList: ITag[];
     title: string;
     updatedAt: string;
-    author: IAuhtor;
+    author: IAuthor;
 }
 export interface IProfile {
     email: string;
@@ -27,7 +27,7 @@ export interface IProfile {
     following: boolean;
 }
 
-export interface IAuhtor {
+export interface IAuthor {
     bio: string;
     following: boolean;
     image: string;

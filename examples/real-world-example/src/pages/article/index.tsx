@@ -300,6 +300,11 @@ export const ArticlePage: React.FC = () => {
                                             ? "btn btn-sm btn-primary"
                                             : "btn btn-sm btn-outline-primary"
                                     }
+                                    onClick={() => {
+                                        item?.data.favorited
+                                            ? unFavArticle()
+                                            : favArticle();
+                                    }}
                                 >
                                     <i className="ion-heart"></i>
                                     &nbsp;{" "}
