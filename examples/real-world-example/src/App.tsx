@@ -14,6 +14,7 @@ import { EditorPage } from "pages/editor";
 import { ArticlePage } from "pages/article";
 
 import { TOKEN_KEY } from "./constants";
+import { EditArticlePage } from "pages/editor/edit";
 
 const axiosInstance = axios.create();
 
@@ -54,6 +55,11 @@ function App() {
                     {
                         element: <ProfilePage />,
                         path: "profile/@:username",
+                        layout: true,
+                    },
+                    {
+                        element: <EditArticlePage />,
+                        path: "editor/:slug",
                         layout: true,
                     },
                 ],

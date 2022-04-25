@@ -135,7 +135,12 @@ export const ArticlePage: React.FC = () => {
                         {user &&
                         user?.username === item?.data.author.username ? (
                             <>
-                                <button className="btn btn-outline-secondary btn-sm">
+                                <button
+                                    className="btn btn-outline-secondary btn-sm"
+                                    onClick={() => {
+                                        push(`/editor/${item?.data.slug}`);
+                                    }}
+                                >
                                     <i className="ion-edit"></i>
                                     &nbsp; Edit Article
                                 </button>
@@ -244,7 +249,12 @@ export const ArticlePage: React.FC = () => {
                         {user &&
                         user?.username === item?.data.author.username ? (
                             <>
-                                <button className="btn btn-outline-secondary btn-sm">
+                                <button
+                                    className="btn btn-outline-secondary btn-sm"
+                                    onClick={() => {
+                                        push(`/editor/${item?.data.slug}`);
+                                    }}
+                                >
                                     <i className="ion-edit"></i>
                                     &nbsp; Edit Article
                                 </button>
