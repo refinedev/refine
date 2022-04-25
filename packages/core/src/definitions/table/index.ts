@@ -75,11 +75,8 @@ export const compareSorters = (left: CrudSort, right: CrudSort): boolean =>
 export const unionFilters = (
     permanentFilter: CrudFilters,
     newFilters: CrudFilters,
-    prevFilters: CrudFilters,
 ): CrudFilters =>
-    reverse(
-        unionWith(permanentFilter, newFilters, prevFilters, compareFilters),
-    ).filter(
+    reverse(unionWith(permanentFilter, newFilters, compareFilters)).filter(
         (crudFilter) =>
             crudFilter.value !== undefined && crudFilter.value !== null,
     );
