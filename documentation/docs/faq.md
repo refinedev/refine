@@ -207,3 +207,22 @@ useTable({
     resource: "/users/1/posts"
 });
 ```
+
+## How can I ensure a query is only runned after a certain variable is available and not on load?       
+
+Note that `useMany` can also accept all `useQuery` options, which allows you to implement dependent queries whereby a query is only runned after a certain data  is available. This is particularly useful if you want `useMany` to only run after a certain data is available and not on load.  
+
+[Refer to react-query docs on **dependent queries** for more information.](https://react-query.tanstack.com/guides/dependent-queries)
+
+-   Suppose you want this query to run after `categoryIds` is fetched by a preceding query, you can set  `enabled` to `categoryIds.length > 0`. This will ensure that `useMany` is only runned after `categoryIds` is fetched.
+
+```tsx
+const categoryQueryResult = useMany<ICategory>({
+    resource: "categories",
+    ids: ids_query_result,
+    // highlight-start
+    queryOptions: { enabled: categoryIds.length > 0 },
+    // highlight-end
+});
+```
+
