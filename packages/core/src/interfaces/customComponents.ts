@@ -11,5 +11,5 @@ export type LayoutProps = {
     Footer?: React.FC;
     OffLayoutArea?: React.FC;
     dashboard?: boolean;
-    children: ReactNode;
+    children?: ReactNode;
 };

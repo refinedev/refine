@@ -17,7 +17,7 @@ const file = new File(
     { type: "text/csv" },
 );
 
-afterEach(() => {
+beforeEach(() => {
     jest.clearAllMocks();
     jest.useRealTimers();
 });
@@ -48,6 +48,8 @@ describe("useImport hook", () => {
     });
 
     it("should open notification", async () => {
+        jest.useFakeTimers();
+
         const { result } = renderHook(
             () =>
                 useImport({
@@ -63,15 +65,12 @@ describe("useImport hook", () => {
         );
 
         await act(async () => {
-            jest.useFakeTimers();
-
             await result.current.uploadProps.onChange?.({
                 fileList: [],
                 file: file as unknown as UploadFile,
             });
-
-            jest.runAllTimers();
         });
+        jest.runAllTimers();
 
         expect(notificationOpenSpy).toBeCalled();
         expect(notificationCloseSpy).toBeCalled();
