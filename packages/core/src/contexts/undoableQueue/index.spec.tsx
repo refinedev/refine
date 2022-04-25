@@ -53,7 +53,7 @@ describe("Notification Reducer", () => {
             const [, dispatch] = result.current;
 
             dispatch({
-                type: "DELETE",
+                type: "REMOVE",
                 payload: providerProps.notifications[0],
             });
 

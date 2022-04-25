@@ -14,10 +14,11 @@ export const defaultProvider: ITranslationContext = {
 export const TranslationContext =
     React.createContext<ITranslationContext>(defaultProvider);
 
-export const TranslationContextProvider: React.FC<ITranslationContext> = ({
-    children,
-    i18nProvider,
-}) => {
+export const TranslationContextProvider: React.FC<
+    ITranslationContext & {
+        children?: React.ReactNode;
+    }
+> = ({ children, i18nProvider }) => {
     return (
         <TranslationContext.Provider
             value={{

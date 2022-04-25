@@ -13,7 +13,11 @@ export const defaultProvider: IRouterContext = {
 export const RouterContext =
     React.createContext<IRouterContext>(defaultProvider);
 
-export const RouterContextProvider: React.FC<IRouterContext> = ({
+export const RouterContextProvider: React.FC<
+    IRouterContext & {
+        children?: React.ReactNode;
+    }
+> = ({
     children,
     useHistory,
     useLocation,

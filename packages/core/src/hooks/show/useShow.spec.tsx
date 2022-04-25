@@ -13,7 +13,9 @@ const Wrapper = TestWrapper({
     routerInitialEntries: ["/posts/show/1"],
 });
 
-const WrapperWithRoute: React.FC = ({ children }) => (
+const WrapperWithRoute: React.FC<{ children: React.ReactNode }> = ({
+    children,
+}) => (
     <Wrapper>
         <Routes>
             <Route path="/:resource/:action/:id" element={children} />

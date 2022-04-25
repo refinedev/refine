@@ -20,7 +20,9 @@ const CloneWrapper = TestWrapper({
     routerInitialEntries: ["/posts/clone/1"],
 });
 
-const EditWrapperWithRoute: React.FC = ({ children }) => (
+const EditWrapperWithRoute: React.FC<{
+    children?: React.ReactNode;
+}> = ({ children }) => (
     <EditWrapper>
         <Routes>
             <Route path="/:resource/:action/:id" element={children} />
@@ -28,7 +30,9 @@ const EditWrapperWithRoute: React.FC = ({ children }) => (
     </EditWrapper>
 );
 
-const CloneWrapperWithRoute: React.FC = ({ children }) => (
+const CloneWrapperWithRoute: React.FC<{
+    children?: React.ReactNode;
+}> = ({ children }) => (
     <CloneWrapper>
         <Routes>
             <Route path="/:resource/:action/:id" element={children} />

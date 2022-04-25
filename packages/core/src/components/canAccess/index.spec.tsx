@@ -1,5 +1,5 @@
 import React from "react";
-import { render, TestWrapper, wait } from "@test";
+import { render, TestWrapper, waitFor } from "@test";
 
 import { CanAccess } from ".";
 
@@ -24,7 +24,7 @@ describe("CanAccess Component", () => {
         );
 
         expect(container).toBeTruthy();
-        await wait(() => getByText("Accessible"));
+        await waitFor(() => getByText("Accessible"));
     });
 
     it("should not render children", async () => {
@@ -42,7 +42,7 @@ describe("CanAccess Component", () => {
         );
 
         expect(container).toBeTruthy();
-        await wait(() =>
+        await waitFor(() =>
             expect(queryByText("Accessible")).not.toBeInTheDocument(),
         );
     });
@@ -63,7 +63,7 @@ describe("CanAccess Component", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(
                 getByText("Accessible").closest("p")?.getAttribute("data-id"),
             ).toBe("refine"),
@@ -90,9 +90,9 @@ describe("CanAccess Component", () => {
 
         expect(container).toBeTruthy();
 
-        await wait(() =>
+        await waitFor(() =>
             expect(queryByText("Accessible")).not.toBeInTheDocument(),
         );
-        await wait(() => getByText("Access Denied"));
+        await waitFor(() => getByText("Access Denied"));
     });
 });

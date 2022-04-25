@@ -43,5 +43,5 @@ export interface IRefineContextProvider {
     OffLayoutArea?: React.FC;
     liveMode?: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
-    children: ReactNode;
+    children?: ReactNode;
 }
