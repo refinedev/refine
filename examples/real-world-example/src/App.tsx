@@ -20,12 +20,14 @@ const axiosInstance = axios.create();
 
 axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
     const token = localStorage.getItem(TOKEN_KEY);
-    if (request.headers) {
-        request.headers["Authorization"] = `Bearer ${token}`;
-    } else {
-        request.headers = {
-            Authorization: `Bearer ${token}`,
-        };
+    if (token) {
+        if (request.headers) {
+            request.headers["Authorization"] = `Bearer ${token}`;
+        } else {
+            request.headers = {
+                Authorization: `Bearer ${token}`,
+            };
+        }
     }
 
     return request;
@@ -57,6 +59,11 @@ function App() {
                         path: "profile/@:username",
                         layout: true,
                     },
+                    // {
+                    //     element: <ProfilePage />,
+                    //     path: "profile/@:username/:page",
+                    //     layout: true,
+                    // },
                     {
                         element: <EditArticlePage />,
                         path: "editor/:slug",

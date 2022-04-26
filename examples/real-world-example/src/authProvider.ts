@@ -10,9 +10,13 @@ export const authProvider = (axiosInstance: AxiosInstance): AuthProvider => {
         }: {
             user: { email: string; password: string };
         }) => {
-            axios.post(LOGIN_URL, { user }).then((res: any) => {
-                localStorage.setItem(TOKEN_KEY, res.data.user.token);
-            });
+            try {
+                const { data } = await axios.post(LOGIN_URL, { user });
+
+                localStorage.setItem(TOKEN_KEY, data.user.token);
+            } catch (error) {
+                return Promise.reject(error);
+            }
 
             return Promise.resolve();
         },

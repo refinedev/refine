@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
     useGetIdentity,
     useList,
@@ -10,20 +11,30 @@ import dayjs from "dayjs";
 import { IArticle, ITag } from "interfaces";
 
 export const HomePage: React.FC = () => {
+    const [activeTab, setActiveTab] = useState<"global" | "yourFeed">("global");
     const { isSuccess } = useGetIdentity();
-    const { mutate } = useUpdate();
-    const { mutate: deleteMutate } = useDelete();
+    const { mutate: favoriteMutate, isLoading: favoriteIsLoading } =
+        useUpdate();
+    const { mutate: unFavoriteMutate, isLoading: unFavoriteIsLoading } =
+        useDelete();
 
     const tagList = useList<ITag[]>({
         resource: "tags",
     });
 
-    const articleList = useList<IArticle>({
-        resource: "articles",
-    });
+    const { data: articleList, isFetching: isFetchingArticle } =
+        useList<IArticle>({
+            resource: activeTab === "global" ? "articles" : "articles/feed",
+            metaData: {
+                resource: "articles",
+            },
+        });
+
+    const favoriteUnFavoriteIslLoading =
+        isFetchingArticle || favoriteIsLoading || unFavoriteIsLoading;
 
     const favArticle = (slug: string) => {
-        mutate({
+        favoriteMutate({
             resource: "articles",
             id: slug,
             metaData: {
@@ -34,7 +45,7 @@ export const HomePage: React.FC = () => {
     };
 
     const unFavArticle = (slug: string) => {
-        deleteMutate({
+        unFavoriteMutate({
             resource: "articles",
             id: slug,
             metaData: {
@@ -62,22 +73,35 @@ export const HomePage: React.FC = () => {
                                 {isSuccess && (
                                     <li className="nav-item">
                                         <a
-                                            className="nav-link disabled"
-                                            href=""
+                                            className={`nav-link ${
+                                                activeTab === "yourFeed"
+                                                    ? "active"
+                                                    : ""
+                                            }`}
+                                            onClick={() =>
+                                                setActiveTab("yourFeed")
+                                            }
                                         >
                                             Your Feed
                                         </a>
                                     </li>
                                 )}
                                 <li className="nav-item">
-                                    <a className="nav-link active" href="">
+                                    <a
+                                        className={`nav-link ${
+                                            activeTab === "global"
+                                                ? "active"
+                                                : ""
+                                        }`}
+                                        onClick={() => setActiveTab("global")}
+                                    >
                                         Global Feed
                                     </a>
                                 </li>
                             </ul>
                         </div>
 
-                        {articleList.data?.data.map((item) => {
+                        {articleList?.data?.map((item) => {
                             return (
                                 <ArticleList
                                     key={item.slug}
@@ -97,6 +121,7 @@ export const HomePage: React.FC = () => {
                                             : favArticle(slug);
                                     }}
                                     isItemFavorited={item.favorited}
+                                    isItemLoading={favoriteUnFavoriteIslLoading}
                                 />
                             );
                         })}

@@ -11,6 +11,7 @@ type ArticleListProps = {
     tagList?: string[];
     favArticle: (slug: string) => void;
     isItemFavorited: boolean;
+    isItemLoading?: boolean;
 };
 
 export const ArticleList: React.FC<ArticleListProps> = ({
@@ -24,6 +25,7 @@ export const ArticleList: React.FC<ArticleListProps> = ({
     tagList,
     favArticle,
     isItemFavorited,
+    isItemLoading,
 }) => {
     const { push } = useNavigation();
 
@@ -40,11 +42,11 @@ export const ArticleList: React.FC<ArticleListProps> = ({
                     <span className="date">{createdAt}</span>
                 </div>
                 <button
-                    className={
+                    className={`${
                         !isItemFavorited
                             ? "btn btn-outline-primary btn-sm pull-xs-right"
                             : "btn btn-primary btn-sm pull-xs-right"
-                    }
+                    } ${isItemLoading ? "disabled" : ""}`}
                     onClick={() => {
                         favArticle(slug);
                     }}

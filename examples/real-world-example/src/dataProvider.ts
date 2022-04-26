@@ -101,8 +101,9 @@ export const dataProvider = (axios: AxiosInstance): DataProvider => {
             );
 
             return {
-                data: data[resource],
-                total: data[`${resource}Count`] || undefined,
+                data: data[metaData?.resource ?? resource],
+                total:
+                    data[`${metaData?.resource ?? resource}Count`] || undefined,
             };
         },
         getOne: async ({ resource, id, metaData }) => {

@@ -12,7 +12,7 @@ import { IArticle, IProfile, IUser } from "interfaces";
 import { ArticleList } from "components/article";
 import dayjs from "dayjs";
 
-const { useParams } = routerProvider;
+const { useParams, Link } = routerProvider;
 
 export const ProfilePage: React.FC = () => {
     const { data: user } = useGetIdentity<IUser>();
@@ -137,14 +137,21 @@ export const ProfilePage: React.FC = () => {
                         <div className="articles-toggle">
                             <ul className="nav nav-pills outline-active">
                                 <li className="nav-item">
-                                    <a className="nav-link active" href="">
+                                    <Link
+                                        className="nav-link active"
+                                        to={`/profile/@${user?.username}`}
+                                    >
                                         My Articles
-                                    </a>
+                                    </Link>
                                 </li>
+                                {/* Create a profiles/favorite root and show user favorite list(active <li>) */}
                                 <li className="nav-item">
-                                    <a className="nav-link" href="">
+                                    {/* <Link
+                                        className="nav-link"
+                                        to={`/profile/@${user?.username}/favorites`}
+                                    >
                                         Favorited Articles
-                                    </a>
+                                    </Link> */}
                                 </li>
                             </ul>
                         </div>

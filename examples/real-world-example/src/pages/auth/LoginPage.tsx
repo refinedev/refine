@@ -5,6 +5,7 @@ export const LoginPage: React.FC = () => {
     const {
         register,
         handleSubmit,
+        setError,
         formState: { errors },
     } = useForm();
 
@@ -28,8 +29,30 @@ export const LoginPage: React.FC = () => {
                             </a>
                         </p>
 
+                        {errors.api && (
+                            <ul className="error-messages">
+                                {Object.keys(errors.api).map((key) => {
+                                    if (key === "ref") return null;
+                                    return (
+                                        <li key={key}>
+                                            {key} {errors.api[key]}
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        )}
+
                         <form
-                            onSubmit={handleSubmit((values) => login(values))}
+                            onSubmit={handleSubmit((values) => {
+                                login(values, {
+                                    onError: (error: any) => {
+                                        setError(
+                                            "api",
+                                            error?.response?.data.errors,
+                                        );
+                                    },
+                                });
+                            })}
                         >
                             <fieldset className="form-group">
                                 <input

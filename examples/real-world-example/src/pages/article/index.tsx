@@ -16,25 +16,21 @@ const { useParams } = router;
 export const ArticlePage: React.FC = () => {
     const params = useParams();
     const { data: user } = useGetIdentity();
-    const { mutate } = useDelete();
+    const { mutateAsync: deleteMutate } = useDelete();
     const { push } = useNavigation();
-    const { mutate: favoriteMutate } = useUpdate();
-    const { mutate: unFavoriteMutate } = useDelete();
-    const { mutate: followMutate } = useUpdate();
-    const { mutate: unFollowMutate } = useDelete();
+    const { mutate: favoriteMutate, isLoading: favoriteIsLoading } =
+        useUpdate();
+    const { mutate: unFavoriteMutate, isLoading: unFavoriteIsLoading } =
+        useDelete();
+    const { mutate: followMutate, isLoading: followIsLoading } = useUpdate();
+    const { mutate: unFollowMutate, isLoading: unfollowIsLoading } =
+        useDelete();
 
     const {
-        register,
-        handleSubmit,
-        refineCore: { onFinish },
-    } = useForm({
-        refineCoreProps: {
-            resource: `articles/${params.slug}/comments`,
-            redirect: false,
-        },
-    });
-
-    const { data: item } = useOne<IArticle>({
+        data: article,
+        refetch: refetchArticle,
+        isFetching: isFetchingArticle,
+    } = useOne<IArticle>({
         resource: "articles",
         id: params?.slug,
         metaData: {
@@ -45,7 +41,13 @@ export const ArticlePage: React.FC = () => {
         },
     });
 
-    const { data: commentData } = useOne({
+    const favoriteUnFavoriteIslLoading =
+        isFetchingArticle || favoriteIsLoading || unFavoriteIsLoading;
+
+    const followUnfollowMutationIsLoading =
+        isFetchingArticle || followIsLoading || unfollowIsLoading;
+
+    const { data: commentData, refetch: refetchArticleComments } = useOne({
         resource: "articles",
         id: params.slug,
         metaData: {
@@ -57,12 +59,28 @@ export const ArticlePage: React.FC = () => {
         },
     });
 
+    const {
+        register,
+        handleSubmit,
+        refineCore: { onFinish },
+        reset,
+    } = useForm({
+        refineCoreProps: {
+            resource: `articles/${params.slug}/comments`,
+            redirect: false,
+            onMutationSuccess: () => {
+                refetchArticleComments();
+                reset();
+            },
+        },
+    });
+
     const handleSubmitComment = (data: {}) => {
         onFinish({ comment: data });
     };
 
     const deleteArticle = async () => {
-        await mutate({
+        await deleteMutate({
             resource: `articles`,
             id: params.slug,
         });
@@ -91,54 +109,70 @@ export const ArticlePage: React.FC = () => {
     };
 
     const followUser = (username: string) => {
-        followMutate({
-            resource: "profiles",
-            id: username,
-            metaData: {
-                resource: "follow",
+        followMutate(
+            {
+                resource: "profiles",
+                id: username,
+                metaData: {
+                    resource: "follow",
+                },
+                values: "",
             },
-            values: "",
-        });
+            {
+                onSuccess: () => {
+                    refetchArticle();
+                },
+            },
+        );
+
+        refetchArticle();
     };
 
     const unFollowUser = (username: string) => {
-        unFollowMutate({
-            resource: "profiles",
-            id: username,
-            metaData: {
-                resource: "follow",
+        unFollowMutate(
+            {
+                resource: "profiles",
+                id: username,
+                metaData: {
+                    resource: "follow",
+                },
             },
-        });
+            {
+                onSuccess: () => {
+                    refetchArticle();
+                },
+            },
+        );
     };
 
     return (
         <div className="article-page">
             <div className="banner">
                 <div className="container">
-                    <h1>{item?.data.title}</h1>
+                    <h1>{article?.data.title}</h1>
 
                     <div className="article-meta">
                         <a href="">
-                            <img src={item?.data.author.image} />
+                            <img src={article?.data.author.image} />
                         </a>
                         <div className="info">
                             <a href="" className="author">
-                                {item?.data.author.username}
+                                {article?.data.author.username}
                             </a>
                             <span className="date">
-                                {dayjs(item?.data.createdAt).format(
+                                {dayjs(article?.data.createdAt).format(
                                     "MMM DD, YYYY",
                                 )}
                             </span>
                         </div>
 
                         {user &&
-                        user?.username === item?.data.author.username ? (
+                        user?.username === article?.data.author.username ? (
                             <>
                                 <button
                                     className="btn btn-outline-secondary btn-sm"
                                     onClick={() => {
-                                        push(`/editor/${item?.data.slug}`);
+                                        push(`/editor/${article?.data.slug}`);
                                     }}
                                 >
                                     <i className="ion-edit"></i>
@@ -158,47 +192,55 @@ export const ArticlePage: React.FC = () => {
                         ) : (
                             <>
                                 <button
-                                    className={
-                                        item?.data.author.following
+                                    className={`${
+                                        article?.data.author.following
                                             ? "btn btn-sm action-btn ng-binding btn-secondary"
                                             : "btn btn-sm btn-outline-secondary"
-                                    }
+                                    } ${
+                                        followUnfollowMutationIsLoading
+                                            ? "disabled"
+                                            : ""
+                                    }`}
                                     onClick={() => {
-                                        item?.data.author.following
+                                        article?.data.author.following
                                             ? unFollowUser(
-                                                  item?.data.author.username,
+                                                  article?.data.author.username,
                                               )
                                             : followUser(
-                                                  item!.data.author.username,
+                                                  article!.data.author.username,
                                               );
                                     }}
                                 >
                                     <i className="ion-plus-round"></i>
                                     &nbsp;{" "}
-                                    {item?.data.author.following
-                                        ? `Unfollow ${item?.data.author.username}`
-                                        : `Follow ${item?.data.author.username}`}
+                                    {article?.data.author.following
+                                        ? `Unfollow ${article?.data.author.username}`
+                                        : `Follow ${article?.data.author.username}`}
                                 </button>
                                 &nbsp;
                                 <button
-                                    className={
-                                        item?.data.favorited
+                                    className={`${
+                                        article?.data.favorited
                                             ? "btn btn-sm btn-primary"
                                             : "btn btn-sm btn-outline-primary"
-                                    }
+                                    } ${
+                                        favoriteUnFavoriteIslLoading
+                                            ? "disabled"
+                                            : ""
+                                    }`}
                                     onClick={() => {
-                                        item?.data.favorited
+                                        article?.data.favorited
                                             ? unFavArticle()
                                             : favArticle();
                                     }}
                                 >
                                     <i className="ion-heart"></i>
                                     &nbsp;{" "}
-                                    {item?.data.favorited
+                                    {article?.data.favorited
                                         ? "Unfavorite Article"
                                         : "Favorite Article"}{" "}
                                     <span className="counter">
-                                        {item?.data.favoritesCount}
+                                        {article?.data.favoritesCount}
                                     </span>
                                 </button>
                             </>
@@ -210,10 +252,10 @@ export const ArticlePage: React.FC = () => {
             <div className="container page">
                 <div className="row article-content">
                     <div className="col-md-12">
-                        <p>{item?.data.body}</p>
+                        <p>{article?.data.body}</p>
                         <ul className="tag-list">
-                            {item?.data.tagList &&
-                                item?.data.tagList.map((tag, index) => {
+                            {article?.data.tagList &&
+                                article?.data.tagList.map((tag, index) => {
                                     return (
                                         <li
                                             key={index}
@@ -232,27 +274,27 @@ export const ArticlePage: React.FC = () => {
                 <div className="article-actions">
                     <div className="article-meta">
                         <a href="profile.html">
-                            <img src={item?.data.author.image} />
+                            <img src={article?.data.author.image} />
                         </a>
                         <div className="info">
                             <a href="" className="author">
-                                {item?.data.author.username}
+                                {article?.data.author.username}
                             </a>
 
                             <span className="date">
-                                {dayjs(item?.data.createdAt).format(
+                                {dayjs(article?.data.createdAt).format(
                                     "MMM DD, YYYY",
                                 )}
                             </span>
                         </div>
 
                         {user &&
-                        user?.username === item?.data.author.username ? (
+                        user?.username === article?.data.author.username ? (
                             <>
                                 <button
                                     className="btn btn-outline-secondary btn-sm"
                                     onClick={() => {
-                                        push(`/editor/${item?.data.slug}`);
+                                        push(`/editor/${article?.data.slug}`);
                                     }}
                                 >
                                     <i className="ion-edit"></i>
@@ -273,46 +315,46 @@ export const ArticlePage: React.FC = () => {
                             <>
                                 <button
                                     className={
-                                        item?.data.author.following
+                                        article?.data.author.following
                                             ? "btn btn-sm action-btn ng-binding btn-secondary"
                                             : "btn btn-sm btn-outline-secondary"
                                     }
                                     onClick={() => {
-                                        item?.data.author.following
+                                        article?.data.author.following
                                             ? unFollowUser(
-                                                  item?.data.author.username,
+                                                  article?.data.author.username,
                                               )
                                             : followUser(
-                                                  item!.data.author.username,
+                                                  article!.data.author.username,
                                               );
                                     }}
                                 >
                                     <i className="ion-plus-round"></i>
                                     &nbsp;{" "}
-                                    {item?.data.author.following
-                                        ? `Unfollow ${item?.data.author.username}`
-                                        : `Follow ${item?.data.author.username}`}
+                                    {article?.data.author.following
+                                        ? `Unfollow ${article?.data.author.username}`
+                                        : `Follow ${article?.data.author.username}`}
                                 </button>
                                 &nbsp;
                                 <button
                                     className={
-                                        item?.data.favorited
+                                        article?.data.favorited
                                             ? "btn btn-sm btn-primary"
                                             : "btn btn-sm btn-outline-primary"
                                     }
                                     onClick={() => {
-                                        item?.data.favorited
+                                        article?.data.favorited
                                             ? unFavArticle()
                                             : favArticle();
                                     }}
                                 >
                                     <i className="ion-heart"></i>
                                     &nbsp;{" "}
-                                    {item?.data.favorited
+                                    {article?.data.favorited
                                         ? "Unfavorite Article"
                                         : "Favorite Article"}{" "}
                                     <span className="counter">
-                                        {item?.data.favoritesCount}
+                                        {article?.data.favoritesCount}
                                     </span>
                                 </button>
                             </>
@@ -381,11 +423,12 @@ export const ArticlePage: React.FC = () => {
                                                 <span className="mod-options">
                                                     <i
                                                         className="ion-trash-a"
-                                                        onClick={() => {
-                                                            mutate({
+                                                        onClick={async () => {
+                                                            await deleteMutate({
                                                                 resource: `articles/${params.slug}/comments`,
                                                                 id: item.id,
                                                             });
+                                                            refetchArticleComments();
                                                         }}
                                                     />
                                                 </span>
