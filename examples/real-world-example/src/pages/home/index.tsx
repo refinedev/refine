@@ -101,6 +101,12 @@ export const HomePage: React.FC = () => {
                             </ul>
                         </div>
 
+                        {!articleList?.total && (
+                            <div className="article-preview">
+                                No articles are here... yet
+                            </div>
+                        )}
+
                         {articleList?.data?.map((item) => {
                             return (
                                 <ArticleList

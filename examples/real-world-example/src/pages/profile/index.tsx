@@ -30,7 +30,11 @@ export const ProfilePage: React.FC = () => {
         },
         config: {
             filters: [
-                { field: "author", value: params?.username, operator: "eq" },
+                {
+                    field: !params?.page ? "author" : "favorited",
+                    value: params?.username,
+                    operator: "eq",
+                },
             ],
         },
     });
@@ -144,17 +148,22 @@ export const ProfilePage: React.FC = () => {
                                         My Articles
                                     </Link>
                                 </li>
-                                {/* Create a profiles/favorite root and show user favorite list(active <li>) */}
                                 <li className="nav-item">
-                                    {/* <Link
+                                    <Link
                                         className="nav-link"
                                         to={`/profile/@${user?.username}/favorites`}
                                     >
                                         Favorited Articles
-                                    </Link> */}
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
+
+                        {!data?.total && (
+                            <div className="article-preview">
+                                No articles are here... yet.
+                            </div>
+                        )}
 
                         {!loading &&
                             params?.username &&

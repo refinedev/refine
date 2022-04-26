@@ -59,11 +59,11 @@ function App() {
                         path: "profile/@:username",
                         layout: true,
                     },
-                    // {
-                    //     element: <ProfilePage />,
-                    //     path: "profile/@:username/:page",
-                    //     layout: true,
-                    // },
+                    {
+                        element: <ProfilePage />,
+                        path: "profile/@:username/:page",
+                        layout: true,
+                    },
                     {
                         element: <EditArticlePage />,
                         path: "editor/:slug",
