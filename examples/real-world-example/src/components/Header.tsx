@@ -55,7 +55,7 @@ export const Header: React.FC = () => {
                                             src={user?.image}
                                             className="user-pic"
                                         />
-                                        &nbsp;Profile
+                                        &nbsp; {user?.username}
                                     </Link>
                                 </li>
                             </>
