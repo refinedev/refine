@@ -1,7 +1,7 @@
 import * as React from "react";
+import { useForm } from "@pankod/refine-react-hook-form";
 import {
     Button,
-    CssBaseline,
     TextField,
     FormControlLabel,
     Checkbox,
@@ -12,36 +12,36 @@ import {
     Container,
     Card,
     CardContent,
+    useTheme,
 } from "@mui/material";
 
 import { useLogin, useTranslate } from "@pankod/refine-core";
 
 import refine from "../../../assets/images/refine.svg";
 
-export interface ILoginForm {
+interface ILoginForm {
     username: string;
     password: string;
     remember?: boolean;
 }
 
 export const LoginPage: React.FC = () => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<ILoginForm>();
+
     const { mutate: login, isLoading } = useLogin<ILoginForm>();
     const translate = useTranslate();
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+    const onSubmit: any = (data: ILoginForm) => login(data);
 
-        const data = new FormData(event.currentTarget);
-        const payload: ILoginForm = {
-            username: data.get("username") as string,
-            password: data.get("password") as string,
-        };
+    const { typography, palette } = useTheme();
 
-        login(payload);
-    };
     return (
-        <div
-            style={{
+        <Box
+            sx={{
                 background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
                 backgroundSize: "cover",
                 height: "100vh",
@@ -58,7 +58,6 @@ export const LoginPage: React.FC = () => {
                     height: "100vh",
                 }}
             >
-                <CssBaseline />
                 <Box
                     sx={{
                         display: "flex",
@@ -74,26 +73,48 @@ export const LoginPage: React.FC = () => {
                         <Card>
                             <CardContent>
                                 <Typography
+                                    fontFamily={typography.fontFamily}
                                     component="h1"
-                                    variant="h5"
+                                    variant="h4"
                                     align="center"
-                                    color="#626262"
+                                    sx={{
+                                        fontWeight: "700",
+                                        fontSize: "30px",
+                                        letterSpacing: "-0.04px",
+                                        lineHeight: "38px",
+                                        color: palette.text.secondary,
+                                    }}
                                 >
-                                    {translate(
-                                        "pages.login.title",
-                                        "Sign in your account",
-                                    )}
+                                    <Box
+                                        component="span"
+                                        color={palette.primary.main}
+                                    >
+                                        {translate(
+                                            "pages.login.title",
+                                            "Sign in ",
+                                        )}
+                                    </Box>
+                                    <Box component="span">
+                                        {translate(
+                                            "pages.login.title",
+                                            "your account",
+                                        )}
+                                    </Box>
                                 </Typography>
+
                                 <Box
                                     component="form"
-                                    onSubmit={handleSubmit}
+                                    onSubmit={handleSubmit(onSubmit)}
                                     noValidate
                                     sx={{ mt: 1 }}
+                                    autoComplete="off"
                                 >
                                     <TextField
+                                        {...register("username", {
+                                            required: true,
+                                        })}
                                         id="username"
                                         margin="normal"
-                                        required
                                         fullWidth
                                         label={translate(
                                             "pages.login.username",
@@ -104,37 +125,74 @@ export const LoginPage: React.FC = () => {
                                         autoFocus
                                     />
                                     <TextField
+                                        {...register("password", {
+                                            required: true,
+                                        })}
                                         id="password"
                                         margin="normal"
-                                        required
                                         fullWidth
                                         name="password"
                                         label={translate(
                                             "pages.login.password",
                                             "Password",
                                         )}
+                                        helperText={errors?.password?.message}
                                         type="password"
                                         placeholder="●●●●●●●●"
                                         autoComplete="current-password"
                                     />
-                                    <FormControlLabel
-                                        id="remember"
-                                        control={
-                                            <Checkbox
-                                                value="remember"
-                                                color="primary"
-                                            />
-                                        }
-                                        label={translate(
-                                            "pages.login.remember",
-                                            "Remember me",
-                                        )}
-                                    />
+                                    <Box
+                                        component="div"
+                                        sx={{
+                                            display: "flex",
+                                            justifyContent: "space-between",
+                                            alignItems: "center",
+                                        }}
+                                    >
+                                        <FormControlLabel
+                                            sx={{
+                                                span: {
+                                                    fontSize: "12px",
+                                                    color: palette.text
+                                                        .secondary,
+                                                },
+                                            }}
+                                            color="secondary"
+                                            control={
+                                                <Checkbox
+                                                    size="small"
+                                                    id="remember"
+                                                    {...register("remember")}
+                                                />
+                                            }
+                                            label={translate(
+                                                "pages.login.remember",
+                                                "Remember me",
+                                            )}
+                                        />
+                                        <Link
+                                            href="#"
+                                            sx={{
+                                                fontSize: "12px",
+                                                color: palette.text.secondary,
+                                                textDecoration: "none",
+                                            }}
+                                        >
+                                            {translate(
+                                                "pages.login.forgotPassword",
+                                                "Forgot?",
+                                            )}
+                                        </Link>
+                                    </Box>
                                     <Button
                                         type="submit"
                                         fullWidth
                                         variant="contained"
-                                        sx={{ mt: 3, mb: 2 }}
+                                        sx={{
+                                            my: "8px",
+                                            height: "64px",
+                                            color: "white",
+                                        }}
                                         disabled={isLoading}
                                     >
                                         {translate(
@@ -142,34 +200,62 @@ export const LoginPage: React.FC = () => {
                                             "Sign in",
                                         )}
                                     </Button>
-                                    <Grid container>
-                                        <Grid item xs>
-                                            <Link href="#" variant="body2">
-                                                {translate(
-                                                    "pages.login.forgotPassword",
-                                                    "Forgot password?",
-                                                )}
-                                            </Link>
-                                        </Grid>
-                                        <Grid item>
-                                            <Link href="#" variant="body2">
-                                                {translate(
-                                                    "pages.login.noAccount",
-                                                    "Don’t have an account?",
-                                                )}{" "}
-                                                {translate(
-                                                    "pages.login.signup",
-                                                    "Sign up",
-                                                )}
-                                            </Link>
-                                        </Grid>
-                                    </Grid>
+                                    <Link
+                                        href="#"
+                                        sx={{
+                                            textDecoration: "none",
+                                            display: "flex",
+                                        }}
+                                    >
+                                        <Typography
+                                            sx={{
+                                                fontSize: "12px",
+                                                letterSpacing: "-0.04px",
+                                                lineHeight: "38px",
+                                                color: palette.text.secondary,
+                                            }}
+                                        >
+                                            {translate(
+                                                "pages.login.noAccount",
+                                                "Don’t have an account? ",
+                                            )}{" "}
+                                        </Typography>
+                                        <Typography
+                                            sx={{
+                                                fontWeight: "700",
+                                                fontSize: "12px",
+                                                letterSpacing: "-0.04px",
+                                                lineHeight: "38px",
+                                                color: palette.primary.main,
+                                                marginLeft: "2px",
+                                            }}
+                                        >
+                                            {translate(
+                                                "pages.login.signup",
+                                                " Sign up",
+                                            )}
+                                        </Typography>
+                                        <Typography
+                                            sx={{
+                                                fontSize: "12px",
+                                                letterSpacing: "-0.04px",
+                                                lineHeight: "38px",
+                                                color: palette.text.secondary,
+                                                marginLeft: "2px",
+                                            }}
+                                        >
+                                            {translate(
+                                                "pages.login.noAccount",
+                                                "here ",
+                                            )}{" "}
+                                        </Typography>
+                                    </Link>
                                 </Box>
                             </CardContent>
                         </Card>
                     </Box>
                 </Box>
             </Container>
-        </div>
+        </Box>
     );
 };
