@@ -1,49 +1,43 @@
 import React from "react";
 
-import { Button, ButtonProps } from "@mui/material";
-import { useTranslate } from "@pankod/refine-core";
-import { styled } from "@mui/material/styles";
+import { LoadingButton } from "@mui/lab";
 import ImportExportOutlinedIcon from "@mui/icons-material/ImportExportOutlined";
 
+import { useTranslate, UseImportInputPropsType } from "@pankod/refine-core";
+
 export type ImportButtonProps = {
-    buttonProps: ButtonProps;
+    inputProps: UseImportInputPropsType;
     hideText?: boolean;
+    loading?: boolean;
 };
 
 /**
- * `<ImportButton>` is compatible with the {@link `useImport`} hook and is meant to be used as it's upload button.
+ * `<ImportButton>` is compatible with the {@link https://refine.dev/docs/core/hooks/import-export/useImport/ `useImport`} core hook.
  * It uses Material UI {@link https://mui.com/components/buttons/  `<Button>`} .
  *
  */
 export const ImportButton: React.FC<ImportButtonProps> = ({
-    buttonProps,
+    inputProps,
     hideText = false,
+    loading = false,
     children,
 }) => {
     const translate = useTranslate();
 
-    const Input = styled("input")({
-        display: "none",
-    });
-
     return (
-        <label htmlFor="import-button">
-            <Input
-                data-testid="import-input"
-                id="contained-button-file"
-                multiple
-                type="file"
-            />
-            <Button
+        <label htmlFor="contained-button-file">
+            <input {...inputProps} id="contained-button-file" multiple hidden />
+            <LoadingButton
+                component="span"
                 startIcon={!hideText && <ImportExportOutlinedIcon />}
-                {...buttonProps}
+                loading={loading}
             >
                 {hideText ? (
                     <ImportExportOutlinedIcon />
                 ) : (
                     children ?? translate("buttons.import", "Import")
                 )}
-            </Button>
+            </LoadingButton>
         </label>
     );
 };

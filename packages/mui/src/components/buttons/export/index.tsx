@@ -1,11 +1,12 @@
 import React from "react";
 import { useTranslate } from "@pankod/refine-core";
 
-import { Button, ButtonProps } from "@mui/material";
 import ImportExportOutlinedIcon from "@mui/icons-material/ImportExportOutlined";
+import { LoadingButton, LoadingButtonProps } from "@mui/lab";
 
-export type ExportButtonProps = ButtonProps & {
+export type ExportButtonProps = LoadingButtonProps & {
     hideText?: boolean;
+    loading?: boolean;
 };
 
 /**
@@ -16,22 +17,22 @@ export type ExportButtonProps = ButtonProps & {
 export const ExportButton: React.FC<ExportButtonProps> = ({
     hideText = false,
     children,
+    loading = false,
     ...rest
 }) => {
     const translate = useTranslate();
 
     return (
-        <>
-            <Button
-                {...rest}
-                startIcon={!hideText && <ImportExportOutlinedIcon />}
-            >
-                {hideText ? (
-                    <ImportExportOutlinedIcon />
-                ) : (
-                    children ?? translate("buttons.export", "Export")
-                )}
-            </Button>
-        </>
+        <LoadingButton
+            {...rest}
+            loading={loading}
+            startIcon={!hideText && <ImportExportOutlinedIcon />}
+        >
+            {hideText ? (
+                <ImportExportOutlinedIcon />
+            ) : (
+                children ?? translate("LoadingButtons.export", "Export")
+            )}
+        </LoadingButton>
     );
 };
