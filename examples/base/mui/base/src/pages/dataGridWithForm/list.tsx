@@ -1,32 +1,22 @@
-import {
-    BaseRecord,
-    CrudFilters,
-    HttpError,
-    useOne,
-} from "@pankod/refine-core";
+import { BaseRecord, CrudFilters, HttpError } from "@pankod/refine-core";
 import {
     useDataGrid,
     DataGrid,
     GridColumns,
     Grid,
     Box,
-    FormControl,
-    FormHelperText,
-    InputLabel,
     MenuItem,
-    Select,
     TextField,
     Card,
     CardContent,
-    SaveButton,
     Button,
 } from "@pankod/refine-mui";
 import { useForm } from "@pankod/refine-react-hook-form";
 import { IPost } from "interfaces";
 
 type FormFilterValues = {
-    title: "string";
-    status: "draft" | "published" | "rejected";
+    title: string;
+    status: string;
 };
 
 const columns: GridColumns = [
@@ -38,21 +28,6 @@ const columns: GridColumns = [
         headerAlign: "center",
     },
     { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
-    // {
-    //     field: "category.id",
-    //     headerName: "Category",
-    //     align: "left",
-    //     headerAlign: "left",
-    //     flex: 1,
-    //     type: "number",
-    //     valueGetter: (params) => {
-    //         const { data } = useOne({
-    //             resource: "categories",
-    //             id: params.row.category.id,
-    //         });
-    //         return data?.data.title;
-    //     },
-    // },
     { field: "status", headerName: "Status", flex: 1 },
 ];
 
@@ -68,19 +43,21 @@ export const DataGridWithForm: React.FC = () => {
             const filters: CrudFilters = [];
             const { title, status } = params;
 
-            filters.push(
-                {
+            if (title) {
+                filters.push({
                     field: "title",
                     operator: "contains",
                     value: title,
-                },
+                });
+            }
 
-                {
+            if (status) {
+                filters.push({
                     field: "status",
                     operator: "eq",
                     value: status,
-                },
-            );
+                });
+            }
 
             return filters;
         },
@@ -128,11 +105,10 @@ export const DataGridWithForm: React.FC = () => {
             </Grid>
             <Grid item xs={9}>
                 <Card>
-                    <CardContent>
+                    <CardContent sx={{ height: "700px" }}>
                         <DataGrid
                             {...dataGridProps}
                             rowsPerPageOptions={[10, 20, 50, 100]}
-                            autoPageSize
                             autoHeight
                         />
                     </CardContent>

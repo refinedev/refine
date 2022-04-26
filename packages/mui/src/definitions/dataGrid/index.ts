@@ -184,6 +184,7 @@ export const transformCrudFiltersToFilterModel = (
                     column?.type,
                 ),
                 value,
+                id: field + value + operator,
             });
         });
     } else {
@@ -197,6 +198,7 @@ export const transformCrudFiltersToFilterModel = (
                     column?.type,
                 ),
                 value,
+                id: field + value + operator,
             });
         });
     }

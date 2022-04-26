@@ -1,6 +1,6 @@
 {
   "name": "refine-mui-storybook",
-  "version": "3.10.0",
+  "version": "3.16.0",
   "private": true,
   "dependencies": {
     "@pankod/refine-mui": "^3.16.0",
