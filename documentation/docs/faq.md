@@ -212,7 +212,7 @@ useTable({
 
 Note that `data` related hooks (`useMany`, `useOne`, etc.) can also accept all `useQuery` options, which allows you to implement dependent queries whereby a query is only runned after a certain data  is available. This is particularly useful if you want `useMany` to only run after a certain data is available and not on load.  
 
-[Refer to react-query docs on **dependent queries** for more information.](https://react-query.tanstack.com/guides/dependent-queries)
+[Refer to react-query docs on **dependent queries** for more information  → ](https://react-query.tanstack.com/guides/dependent-queries)
 
 -   Suppose you want this query to run after `categoryIds` is fetched by a preceding query, you can set  `enabled` to `categoryIds.length > 0`. This will ensure that `useMany` is only runned after `categoryIds` is fetched.
 
@@ -225,3 +225,8 @@ useMany({
 });
 ```
 
+## Can I work with JavaScript?
+
+**Yes!** You can work with JavaScript! 
+
+[Refer to **Refine JavaScript** example  → ](https://github.com/pankod/refine/tree/master/examples/javascript)
