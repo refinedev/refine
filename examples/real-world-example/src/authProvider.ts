@@ -18,7 +18,7 @@ export const authProvider = (axiosInstance: AxiosInstance): AuthProvider => {
                 return Promise.reject(error);
             }
 
-            return Promise.resolve();
+            return Promise.resolve("/");
         },
         logout: () => {
             localStorage.removeItem(TOKEN_KEY);

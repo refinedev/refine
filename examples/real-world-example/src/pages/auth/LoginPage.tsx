@@ -1,11 +1,13 @@
 import { useNavigation, useLogin } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
+import { ErrorList } from "components/Error";
 
 export const LoginPage: React.FC = () => {
     const {
         register,
         handleSubmit,
         setError,
+        clearErrors,
         formState: { errors },
     } = useForm();
 
@@ -29,31 +31,8 @@ export const LoginPage: React.FC = () => {
                             </a>
                         </p>
 
-                        {errors.api && (
-                            <ul className="error-messages">
-                                {Object.keys(errors.api).map((key) => {
-                                    if (key === "ref") return null;
-                                    return (
-                                        <li key={key}>
-                                            {key} {errors.api[key]}
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                        )}
-
-                        <form
-                            onSubmit={handleSubmit((values) => {
-                                login(values, {
-                                    onError: (error: any) => {
-                                        setError(
-                                            "api",
-                                            error?.response?.data.errors,
-                                        );
-                                    },
-                                });
-                            })}
-                        >
+                        {errors.api && <ErrorList errors={errors.api} />}
+                        <form>
                             <fieldset className="form-group">
                                 <input
                                     {...register("user.email", {
@@ -63,8 +42,10 @@ export const LoginPage: React.FC = () => {
                                     type="text"
                                     placeholder="Email"
                                 />
-                                {errors.email && (
-                                    <span>This field is required</span>
+                                {errors.user?.email && (
+                                    <ul className="error-messages">
+                                        <li>This field is required</li>
+                                    </ul>
                                 )}
                             </fieldset>
                             <fieldset className="form-group">
@@ -75,14 +56,32 @@ export const LoginPage: React.FC = () => {
                                     className="form-control form-control-lg"
                                     type="password"
                                     placeholder="Password"
+                                    autoComplete=""
                                 />
-                                {errors.password && (
-                                    <span>This field is required</span>
+                                {errors.user?.password && (
+                                    <ul className="error-messages">
+                                        <li>This field is required</li>
+                                    </ul>
                                 )}
                             </fieldset>
-                            <button className="btn btn-lg btn-primary pull-xs-right">
-                                Sign in
-                            </button>
+                            <input
+                                onClick={() => {
+                                    clearErrors();
+                                    handleSubmit((values) => {
+                                        login(values, {
+                                            onError: (error: any) => {
+                                                setError(
+                                                    "api",
+                                                    error?.response?.data
+                                                        .errors,
+                                                );
+                                            },
+                                        });
+                                    })();
+                                }}
+                                className="btn btn-lg btn-primary pull-xs-right"
+                                value="Submit"
+                            />
                         </form>
                     </div>
                 </div>

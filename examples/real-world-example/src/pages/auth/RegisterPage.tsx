@@ -1,16 +1,23 @@
 import { useNavigation, useLogin } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
+import { ErrorList } from "components/Error";
 
 export const RegisterPage: React.FC = () => {
     const {
         refineCore: { onFinish },
         register,
         handleSubmit,
+        setError,
+        clearErrors,
+        reset,
         formState: { errors },
     } = useForm({
         refineCoreProps: {
             resource: "users",
             redirect: false,
+            onMutationError: (error) => {
+                setError("api", error.response.data.errors);
+            },
             onMutationSuccess: () => {
                 push("/login");
             },
@@ -36,6 +43,8 @@ export const RegisterPage: React.FC = () => {
                             </a>
                         </p>
 
+                        {errors.api && <ErrorList errors={errors.api} />}
+
                         <form onSubmit={handleSubmit(onFinish)}>
                             <fieldset className="form-group">
                                 <input
@@ -46,8 +55,10 @@ export const RegisterPage: React.FC = () => {
                                     type="text"
                                     placeholder="Your Name"
                                 />
-                                {errors.username && (
-                                    <span>This field is required</span>
+                                {errors?.user?.username && (
+                                    <ul className="error-messages">
+                                        <span>This field is required</span>
+                                    </ul>
                                 )}
                             </fieldset>
                             <fieldset className="form-group">
@@ -59,8 +70,10 @@ export const RegisterPage: React.FC = () => {
                                     type="text"
                                     placeholder="Email"
                                 />
-                                {errors.email && (
-                                    <span>This field is required</span>
+                                {errors?.user?.email && (
+                                    <ul className="error-messages">
+                                        <span>This field is required</span>
+                                    </ul>
                                 )}
                             </fieldset>
                             <fieldset className="form-group">
@@ -72,11 +85,20 @@ export const RegisterPage: React.FC = () => {
                                     type="password"
                                     placeholder="Password"
                                 />
-                                {errors.password && (
-                                    <span>This field is required</span>
+                                {errors?.user?.password && (
+                                    <ul className="error-messages">
+                                        <span>This field is required</span>
+                                    </ul>
                                 )}
                             </fieldset>
-                            <button className="btn btn-lg btn-primary pull-xs-right">
+                            <button
+                                type="submit"
+                                className="btn btn-lg btn-primary pull-xs-right"
+                                onClick={() => {
+                                    clearErrors();
+                                    handleSubmit(onFinish);
+                                }}
+                            >
                                 Sign up
                             </button>
                         </form>

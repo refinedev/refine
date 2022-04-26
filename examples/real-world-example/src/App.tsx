@@ -42,7 +42,7 @@ function App() {
                     {
                         element: <LoginPage />,
                         path: "/login",
-                        layout: true,
+                        // layout: true,
                     },
                     {
                         element: <RegisterPage />,
