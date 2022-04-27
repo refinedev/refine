@@ -49,14 +49,14 @@ describe("useDataGrid Hook", () => {
 
         expect(result.current.filters).toEqual([
             {
-                field: "status",
-                operator: "eq",
-                value: "draft",
-            },
-            {
                 field: "title",
                 operator: "contains",
                 value: "test",
+            },
+            {
+                field: "status",
+                operator: "eq",
+                value: "draft",
             },
         ]);
         expect(result.current.current).toEqual(1);
