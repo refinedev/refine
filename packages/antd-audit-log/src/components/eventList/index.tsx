@@ -75,11 +75,11 @@ export const EventList: React.FC<EventListProps> = ({
                     >
                         <Text strong>
                             {log.name ??
-                                dayjs(log.timestamp).format(
+                                dayjs(log.createdAt).format(
                                     "MM/DD/YYYY, hh:mm",
                                 )}
                         </Text>
-                        <Badge color="blue" text={log?.author?.name} />
+                        <Badge color="blue" text={log?.user?.email} />
                     </Button>
                 </AntdList.Item>
             )}

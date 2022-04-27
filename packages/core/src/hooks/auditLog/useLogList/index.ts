@@ -25,7 +25,7 @@ export const useLogList = <TData = any, TError extends HttpError = HttpError>({
     }
 
     if (!auditLogContext.get) {
-        throw new Error("auditLogProvider's `list` is not defined.");
+        throw new Error("auditLogProvider's `get` is not defined.");
     }
 
     const queryKey = queryKeys(resource, undefined, metaData);
