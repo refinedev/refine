@@ -42,13 +42,17 @@ const authProvider: AuthProvider = {
 
         return refineSDK.auth
             .session()
-            .then(() => Promise.resolve())
+            .then(() => {
+                return Promise.resolve();
+            })
             .catch(() => Promise.reject());
     },
     getPermissions: () => Promise.resolve(),
     getUserIdentity: async () => {
-        const { user } = await refineSDK.auth.session();
-        return user;
+        return refineSDK.auth
+            .session()
+            .then((response) => Promise.resolve(response))
+            .catch(() => Promise.reject());
     },
 };
 
@@ -94,46 +98,19 @@ const App: React.FC = () => {
             Header={() => null}
             LoginPage={LoginPage}
             auditLogProvider={{
-                log: (params) => {
-                    console.log(
-                        `-- log create params: ${JSON.stringify(params)}`,
-                    );
-                    dataProvider(API_URL).create({
-                        resource: "logs",
-                        variables: params,
+                create: async ({ author, ...params }) => {
+                    await refineSDK.log.create(params);
+                },
+                get: async ({ resource, meta }) => {
+                    return await refineSDK.log.get({
+                        resource,
+                        meta,
                     });
                 },
-                list: async ({ resource, params }) => {
-                    console.log(
-                        `-- log list resource: ${resource} params: ${JSON.stringify(
-                            params,
-                        )}`,
-                    );
-                    const { data } = await dataProvider(API_URL).getList({
-                        resource: "logs",
-                        filters: [
-                            {
-                                field: "resource",
-                                operator: "eq",
-                                value: resource,
-                            },
-                            {
-                                field: "data.id",
-                                operator: "eq",
-                                value: params?.id,
-                            },
-                        ],
+                update: async ({ id, name }) => {
+                    return await refineSDK.log.update(id, {
+                        name,
                     });
-                    return data;
-                },
-                rename: async ({ id, name }) => {
-                    console.log(`-- log rename id: ${id} name: ${name}`);
-                    const { data } = await dataProvider(API_URL).update({
-                        resource: "logs",
-                        id,
-                        variables: { name },
-                    });
-                    return data;
                 },
             }}
         />
