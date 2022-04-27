@@ -29,5 +29,3 @@ example/.cache
 examples/**/*/package-lock.json
 !examples/fineFoods/package-lock.json
 .next
-
-packages/mui
