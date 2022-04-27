@@ -10,9 +10,11 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import { useTranslation } from "react-i18next";
 
 import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
+import LocalPizzaIcon from "@mui/icons-material/LocalPizza";
 
 import { authProvider } from "authProvider";
 import { OrderList, OrderShow } from "pages/orders";
+import { ProductList } from "pages/products";
 
 const App: React.FC = () => {
     const { t, i18n } = useTranslation();
@@ -41,6 +43,11 @@ const App: React.FC = () => {
                     list: OrderList,
                     show: OrderShow,
                     icon: <AddShoppingCartOutlinedIcon />,
+                },
+                {
+                    name: "products",
+                    list: ProductList,
+                    icon: <LocalPizzaIcon />,
                 },
             ]}
         />
