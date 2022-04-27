@@ -5,13 +5,13 @@ import {
     useNavigation,
     useUpdate,
 } from "@pankod/refine-core";
-import router from "@pankod/refine-react-router-v6";
+import routerProvider from "@pankod/refine-react-router-v6";
 import { useForm } from "@pankod/refine-react-hook-form";
 
 import { IArticle } from "interfaces";
 import dayjs from "dayjs";
 
-const { useParams } = router;
+const { useParams, Link } = routerProvider;
 
 export const ArticlePage: React.FC = () => {
     const params = useParams();
@@ -154,13 +154,18 @@ export const ArticlePage: React.FC = () => {
                             <h1>{article?.data.title}</h1>
 
                             <div className="article-meta">
-                                <a href="">
+                                <Link
+                                    to={`/profile/@${article?.data.author.username}`}
+                                >
                                     <img src={article?.data.author.image} />
-                                </a>
+                                </Link>
                                 <div className="info">
-                                    <a href="" className="author">
+                                    <Link
+                                        to={`/profile/@${article?.data.author.username}`}
+                                        className="author"
+                                    >
                                         {article?.data.author.username}
-                                    </a>
+                                    </Link>
                                     <span className="date">
                                         {dayjs(article?.data.createdAt).format(
                                             "MMM DD, YYYY",
@@ -287,13 +292,18 @@ export const ArticlePage: React.FC = () => {
 
                         <div className="article-actions">
                             <div className="article-meta">
-                                <a href="profile.html">
+                                <Link
+                                    to={`/profile/@${article?.data.author.username}`}
+                                >
                                     <img src={article?.data.author.image} />
-                                </a>
+                                </Link>
                                 <div className="info">
-                                    <a href="" className="author">
+                                    <Link
+                                        to={`/profile/@${article?.data.author.username}`}
+                                        className="author"
+                                    >
                                         {article?.data.author.username}
-                                    </a>
+                                    </Link>
 
                                     <span className="date">
                                         {dayjs(article?.data.createdAt).format(
@@ -416,8 +426,8 @@ export const ArticlePage: React.FC = () => {
                                                     </p>
                                                 </div>
                                                 <div className="card-footer">
-                                                    <a
-                                                        href=""
+                                                    <Link
+                                                        to={`/profile/@${article?.data.author.username}`}
                                                         className="comment-author"
                                                     >
                                                         <img
@@ -427,14 +437,14 @@ export const ArticlePage: React.FC = () => {
                                                             }
                                                             className="comment-author-img"
                                                         />
-                                                    </a>
+                                                    </Link>
                                                     &nbsp;
-                                                    <a
-                                                        href=""
+                                                    <Link
+                                                        to={`/profile/@${article?.data.author.username}`}
                                                         className="comment-author"
                                                     >
                                                         {item?.author.username}
-                                                    </a>
+                                                    </Link>
                                                     <span className="date-posted">
                                                         {dayjs(
                                                             item.createdAt,

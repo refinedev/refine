@@ -1,4 +1,7 @@
 import { useNavigation } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+const { Link } = routerProvider;
 
 type ArticleListProps = {
     slug: string;
@@ -32,13 +35,13 @@ export const ArticleList: React.FC<ArticleListProps> = ({
     return (
         <div className="article-preview">
             <div className="article-meta">
-                <a href={`/profile/@${author}`}>
+                <Link to={`/profile/@${author}`}>
                     <img src={image} />
-                </a>
+                </Link>
                 <div className="info">
-                    <a href={`/profile/@${author}`} className="author">
+                    <Link to={`/profile/@${author}`} className="author">
                         {author}
-                    </a>
+                    </Link>
                     <span className="date">{createdAt}</span>
                 </div>
                 <button
@@ -54,13 +57,7 @@ export const ArticleList: React.FC<ArticleListProps> = ({
                     <i className="ion-heart"></i> {favCount}
                 </button>
             </div>
-            <a
-                href=""
-                className="preview-link"
-                onClick={() => {
-                    push(`/article/${slug}`);
-                }}
-            >
+            <Link to={`/article/${slug}`} className="preview-link">
                 <h1>{title}</h1>
                 <p>{description}</p>
                 <span>Read more...</span>
@@ -77,7 +74,7 @@ export const ArticleList: React.FC<ArticleListProps> = ({
                             );
                         })}
                 </ul>
-            </a>
+            </Link>
         </div>
     );
 };

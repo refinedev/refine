@@ -5,10 +5,14 @@ import {
     useUpdate,
     useDelete,
 } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+
 import { ArticleList } from "components/article";
 
 import dayjs from "dayjs";
 import { IArticle, ITag } from "interfaces";
+
+const { Link } = routerProvider;
 
 export const HomePage: React.FC = () => {
     const [activeTab, setActiveTab] = useState<"global" | "yourFeed">("global");
@@ -72,7 +76,8 @@ export const HomePage: React.FC = () => {
                             <ul className="nav nav-pills outline-active">
                                 {isSuccess && (
                                     <li className="nav-item">
-                                        <a
+                                        <Link
+                                            to={"/"}
                                             className={`nav-link ${
                                                 activeTab === "yourFeed"
                                                     ? "active"
@@ -83,11 +88,12 @@ export const HomePage: React.FC = () => {
                                             }
                                         >
                                             Your Feed
-                                        </a>
+                                        </Link>
                                     </li>
                                 )}
                                 <li className="nav-item">
-                                    <a
+                                    <Link
+                                        to={"/"}
                                         className={`nav-link ${
                                             activeTab === "global"
                                                 ? "active"
@@ -96,7 +102,7 @@ export const HomePage: React.FC = () => {
                                         onClick={() => setActiveTab("global")}
                                     >
                                         Global Feed
-                                    </a>
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
@@ -140,13 +146,13 @@ export const HomePage: React.FC = () => {
                                 {tagList.data?.data.map(
                                     (item, index: number) => {
                                         return (
-                                            <a
+                                            <Link
                                                 key={index}
-                                                href=""
+                                                to="/"
                                                 className="tag-pill tag-default"
                                             >
                                                 {item}
-                                            </a>
+                                            </Link>
                                         );
                                     },
                                 )}

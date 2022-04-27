@@ -1,6 +1,10 @@
 import { useNavigation, useLogin } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
+import routerProvider from "@pankod/refine-react-router-v6";
+
 import { ErrorList } from "components/Error";
+
+const { Link } = routerProvider;
 
 export const LoginPage: React.FC = () => {
     const {
@@ -21,14 +25,7 @@ export const LoginPage: React.FC = () => {
                     <div className="col-md-6 offset-md-3 col-xs-12">
                         <h1 className="text-xs-center">Sign in</h1>
                         <p className="text-xs-center">
-                            <a
-                                href=""
-                                onClick={() => {
-                                    push("/register");
-                                }}
-                            >
-                                Need an account?
-                            </a>
+                            <Link to={`/register`}>Need an account?</Link>
                         </p>
 
                         {errors.api && <ErrorList errors={errors.api} />}
