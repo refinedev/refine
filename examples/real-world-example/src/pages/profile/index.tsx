@@ -96,10 +96,15 @@ export const ProfilePage: React.FC = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-xs-12 col-md-10 offset-md-1">
-                            <img
-                                src={isLoading ? "" : profileData?.data.image}
-                                className="user-img"
-                            />
+                            {isLoading ? null : (
+                                <img
+                                    src={
+                                        isLoading ? "" : profileData?.data.image
+                                    }
+                                    className="user-img"
+                                />
+                            )}
+
                             <h4>
                                 {isLoading
                                     ? "loading"
@@ -143,7 +148,7 @@ export const ProfilePage: React.FC = () => {
                                 <li className="nav-item">
                                     <Link
                                         className="nav-link active"
-                                        to={`/profile/@${user?.username}`}
+                                        to={`/profile/@${profileData?.data.username}`}
                                     >
                                         My Articles
                                     </Link>
@@ -151,7 +156,7 @@ export const ProfilePage: React.FC = () => {
                                 <li className="nav-item">
                                     <Link
                                         className="nav-link"
-                                        to={`/profile/@${user?.username}/favorites`}
+                                        to={`/profile/@${profileData?.data.username}/favorites`}
                                     >
                                         Favorited Articles
                                     </Link>
