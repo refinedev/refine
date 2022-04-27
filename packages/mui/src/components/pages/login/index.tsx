@@ -6,46 +6,45 @@ import {
     FormControlLabel,
     Checkbox,
     Link,
-    Grid,
     Box,
     Typography,
     Container,
     Card,
     CardContent,
-    useTheme,
 } from "@mui/material";
 
-import { useLogin, useTranslate } from "@pankod/refine-core";
+import {
+    BaseRecord,
+    HttpError,
+    useLogin,
+    useTranslate,
+} from "@pankod/refine-core";
 
 import refine from "../../../assets/images/refine.svg";
 
-interface ILoginForm {
+type ILoginForm = {
     username: string;
     password: string;
     remember?: boolean;
-}
+};
 
 export const LoginPage: React.FC = () => {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<ILoginForm>();
+    } = useForm<BaseRecord, HttpError, ILoginForm>();
 
     const { mutate: login, isLoading } = useLogin<ILoginForm>();
     const translate = useTranslate();
 
-    const onSubmit: any = (data: ILoginForm) => login(data);
-
-    const { typography, palette } = useTheme();
-
     return (
         <Box
+            component="div"
             sx={{
                 background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
                 backgroundSize: "cover",
                 height: "100vh",
-                color: "white",
             }}
         >
             <Container
@@ -73,7 +72,6 @@ export const LoginPage: React.FC = () => {
                         <Card>
                             <CardContent>
                                 <Typography
-                                    fontFamily={typography.fontFamily}
                                     component="h1"
                                     variant="h4"
                                     align="center"
@@ -82,32 +80,30 @@ export const LoginPage: React.FC = () => {
                                         fontSize: "30px",
                                         letterSpacing: "-0.04px",
                                         lineHeight: "38px",
-                                        color: palette.text.secondary,
+                                        color: "text.primary",
                                     }}
                                 >
-                                    <Box
-                                        component="span"
-                                        color={palette.primary.main}
-                                    >
+                                    <Box component="span" color="primary.main">
                                         {translate(
                                             "pages.login.title",
                                             "Sign in ",
                                         )}
                                     </Box>
-                                    <Box component="span">
+                                    <Box
+                                        component="span"
+                                        sx={{ color: "text.secondary" }}
+                                    >
                                         {translate(
                                             "pages.login.title",
                                             "your account",
                                         )}
                                     </Box>
                                 </Typography>
-
                                 <Box
                                     component="form"
-                                    onSubmit={handleSubmit(onSubmit)}
-                                    noValidate
-                                    sx={{ mt: 1 }}
-                                    autoComplete="off"
+                                    onSubmit={handleSubmit((data) => {
+                                        login(data);
+                                    })}
                                 >
                                     <TextField
                                         {...register("username", {
@@ -153,8 +149,7 @@ export const LoginPage: React.FC = () => {
                                             sx={{
                                                 span: {
                                                     fontSize: "12px",
-                                                    color: palette.text
-                                                        .secondary,
+                                                    color: "text.secondary",
                                                 },
                                             }}
                                             color="secondary"
@@ -174,14 +169,16 @@ export const LoginPage: React.FC = () => {
                                             href="#"
                                             sx={{
                                                 fontSize: "12px",
-                                                color: palette.text.secondary,
+                                                color: "text.secondary",
                                                 textDecoration: "none",
                                             }}
                                         >
-                                            {translate(
-                                                "pages.login.forgotPassword",
-                                                "Forgot?",
-                                            )}
+                                            <Typography>
+                                                {translate(
+                                                    "pages.login.forgotPassword",
+                                                    "Forgot?",
+                                                )}
+                                            </Typography>
                                         </Link>
                                     </Box>
                                     <Button
@@ -212,7 +209,7 @@ export const LoginPage: React.FC = () => {
                                                 fontSize: "12px",
                                                 letterSpacing: "-0.04px",
                                                 lineHeight: "38px",
-                                                color: palette.text.secondary,
+                                                color: "text.secondary",
                                             }}
                                         >
                                             {translate(
@@ -226,7 +223,7 @@ export const LoginPage: React.FC = () => {
                                                 fontSize: "12px",
                                                 letterSpacing: "-0.04px",
                                                 lineHeight: "38px",
-                                                color: palette.primary.main,
+                                                color: "primary.main",
                                                 marginLeft: "2px",
                                             }}
                                         >
@@ -240,7 +237,7 @@ export const LoginPage: React.FC = () => {
                                                 fontSize: "12px",
                                                 letterSpacing: "-0.04px",
                                                 lineHeight: "38px",
-                                                color: palette.text.secondary,
+                                                color: "text.secondary",
                                                 marginLeft: "2px",
                                             }}
                                         >
