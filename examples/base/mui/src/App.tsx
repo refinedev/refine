@@ -23,6 +23,7 @@ import {
     UseStepsFormEdit,
 } from "pages/useStepsForm";
 import { UseModalFormList } from "pages/useModalForm";
+import "@pankod/refine-mui/dist/styles.min.css";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
