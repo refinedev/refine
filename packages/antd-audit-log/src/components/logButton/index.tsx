@@ -55,7 +55,7 @@ export const LogButton: React.FC<LogButtonProps> = ({
 
     const logQueryResult = useLogList<ILogData>({
         resource: resourceName,
-        params: { id },
+        meta: { id },
         queryOptions: {
             enabled: modalProps.visible,
             onSuccess: (result) => {
