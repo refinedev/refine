@@ -9,18 +9,18 @@ export type LogParams = {
         [key: string]: any;
     };
     previousData?: any;
-    meta?: any;
+    meta: Record<number | string, any>;
 };
 
 export type IAuditLogContext =
     | {
-          log?: (params: LogParams) => void;
-          list?: (params: {
+          create?: (params: LogParams) => void;
+          get?: (params: {
               resource: string;
-              params?: { id?: BaseKey; [key: string]: any };
+              meta: Record<number | string, any>;
               metaData?: MetaDataQuery;
           }) => Promise<any>;
-          rename?: (params: {
+          update?: (params: {
               id: BaseKey;
               name: string;
               [key: string]: any;

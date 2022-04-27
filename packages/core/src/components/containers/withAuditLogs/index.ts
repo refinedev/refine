@@ -23,7 +23,7 @@ export const withAuditLogs = (
 
     const queryResult = useLogList({
         resource: resource.name,
-        params: { id },
+        meta: { id },
         metaData: resource.options,
         queryOptions: {
             enabled: hasPermission(

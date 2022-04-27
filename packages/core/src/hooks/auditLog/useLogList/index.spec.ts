@@ -12,13 +12,13 @@ describe("useLogList Hook", () => {
             () =>
                 useLogList({
                     resource: "posts",
-                    params: { id: 1 },
+                    meta: { id: 1 },
                     metaData: { fields: ["id", "action", "data"] },
                 }),
             {
                 wrapper: TestWrapper({
                     auditLogProvider: {
-                        list: logListMock,
+                        get: logListMock,
                     },
                 }),
             },
@@ -37,7 +37,7 @@ describe("useLogList Hook", () => {
             {
                 wrapper: TestWrapper({
                     auditLogProvider: {
-                        list: ({ resource }) => {
+                        get: ({ resource }) => {
                             if (resource === "posts") {
                                 return Promise.resolve([
                                     {

@@ -133,6 +133,7 @@ export const useCreate = <
                         data: data.data,
                         meta: {
                             dataProviderName,
+                            id: data?.data?.id ?? undefined,
                         },
                     });
                 }

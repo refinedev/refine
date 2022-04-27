@@ -49,7 +49,7 @@ export const useLog = <
                 throw new Error("auditLogProvider is not defined.");
             }
 
-            if (!auditLogContext.log) {
+            if (!auditLogContext.create) {
                 throw new Error("auditLogProvider's `log` is not defined.");
             }
 
@@ -65,7 +65,7 @@ export const useLog = <
                         authorData = await refetch();
                     }
 
-                    auditLogContext.log({
+                    auditLogContext.create({
                         ...params,
                         author: identityData ?? authorData?.data,
                     });
@@ -91,11 +91,11 @@ export const useLog = <
                 throw new Error("auditLogProvider is not defined.");
             }
 
-            if (!auditLogContext.rename) {
+            if (!auditLogContext.update) {
                 throw new Error("auditLogProvider's `rename` is not defined.");
             }
 
-            return await auditLogContext.rename?.(params);
+            return await auditLogContext.update?.(params);
         },
         {
             onSuccess: (data) => {
