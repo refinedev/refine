@@ -15,35 +15,11 @@ const API_URL = "https://api.realworld.io/api";
 
 const mapOperator = (operator: CrudOperators): string => {
     switch (operator) {
-        case "ne":
-        case "gte":
-        case "lte":
-            return `_${operator}`;
-        case "contains":
-            return "_like";
         case "eq":
-        default:
             return "";
+        default:
+            throw new Error(`Operator ${operator} is not supported`);
     }
-};
-
-const generateSort = (sort?: CrudSorting) => {
-    if (sort && sort.length > 0) {
-        const _sort: string[] = [];
-        const _order: string[] = [];
-
-        sort.map((item) => {
-            _sort.push(item.field);
-            _order.push(item.order);
-        });
-
-        return {
-            _sort,
-            _order,
-        };
-    }
-
-    return;
 };
 
 const generateFilter = (filters?: CrudFilters) => {
@@ -52,11 +28,6 @@ const generateFilter = (filters?: CrudFilters) => {
         filters.map((filter) => {
             if (filter.operator !== "or") {
                 const { field, operator, value } = filter;
-
-                if (field === "q") {
-                    queryFilters[field] = value;
-                    return;
-                }
 
                 const mappedOperator = mapOperator(operator);
                 queryFilters[`${field}${mappedOperator}`] = value;
@@ -70,7 +41,7 @@ const generateFilter = (filters?: CrudFilters) => {
 export const dataProvider = (axios: AxiosInstance): DataProvider => {
     return {
         ...restDataProvider(API_URL, axios),
-        getList: async ({ resource, pagination, filters, sort, metaData }) => {
+        getList: async ({ resource, pagination, filters, metaData }) => {
             const url = `${API_URL}/${resource}`;
 
             // pagination
@@ -79,22 +50,15 @@ export const dataProvider = (axios: AxiosInstance): DataProvider => {
 
             const queryFilters = generateFilter(filters);
 
+            // current 20
+            // offset: 0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200
             const query: {
                 _start: number;
                 _end: number;
-                _sort?: string;
-                _order?: string;
             } = {
                 _start: (current - 1) * pageSize,
                 _end: current * pageSize,
             };
-
-            const generatedSort = generateSort(sort);
-            if (generatedSort) {
-                const { _sort, _order } = generatedSort;
-                query._sort = _sort.join(",");
-                query._order = _order.join(",");
-            }
 
             const { data } = await axios.get(
                 `${url}?${stringify(query)}&${stringify(queryFilters)}`,
