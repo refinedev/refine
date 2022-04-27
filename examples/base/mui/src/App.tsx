@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import { Refine } from "@pankod/refine-core";
 import {
     Layout,
@@ -8,6 +8,7 @@ import {
     ThemeProvider,
     LightTheme,
     DarkTheme,
+    useMediaQuery,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -25,25 +26,15 @@ import { UseModalFormList } from "pages/useModalForm";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
-    const [theme, setTheme] = useState<"light" | "dark">("light");
+    const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
-    const setThemePreference = () => {
-        const day = new Date();
-        const currentHour = day.getHours();
-
-        if (currentHour >= 19 || currentHour <= 6) {
-            setTheme("dark");
-        } else {
-            setTheme("light");
-        }
-    };
-
-    useEffect(() => {
-        setThemePreference();
-    }, []);
+    const theme = useMemo(
+        () => (prefersDarkMode ? DarkTheme : LightTheme),
+        [prefersDarkMode],
+    );
 
     return (
-        <ThemeProvider theme={theme === "dark" ? DarkTheme : LightTheme}>
+        <ThemeProvider theme={theme}>
             <Refine
                 authProvider={authProvider}
                 routerProvider={routerProvider}
