@@ -50,14 +50,12 @@ export const dataProvider = (axios: AxiosInstance): DataProvider => {
 
             const queryFilters = generateFilter(filters);
 
-            // current 20
-            // offset: 0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200
             const query: {
-                _start: number;
-                _end: number;
+                limit: number;
+                offset: number;
             } = {
-                _start: (current - 1) * pageSize,
-                _end: current * pageSize,
+                offset: (current - 1) * pageSize,
+                limit: pageSize,
             };
 
             const { data } = await axios.get(

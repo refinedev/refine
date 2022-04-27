@@ -107,13 +107,14 @@ export const HomePage: React.FC = () => {
                             </ul>
                         </div>
 
-                        {!articleList?.total && (
+                        {!articleList?.data.length && (
                             <div className="article-preview">
                                 No articles are here... yet
                             </div>
                         )}
 
                         {articleList?.data?.map((item) => {
+                            console.log(item.author.username);
                             return (
                                 <ArticleList
                                     key={item.slug}
