@@ -130,40 +130,6 @@ describe("definitions/table", () => {
         ]);
     });
 
-    it("unionFilters puts higher priority filters at the end", () => {
-        expect(
-            unionFilters(
-                [
-                    {
-                        field: "foo",
-                        operator: "in",
-                        value: "permenant",
-                    },
-                ],
-                [
-                    {
-                        field: "bar",
-                        operator: "in",
-                        value: "crud",
-                    },
-                ],
-            ),
-        ).toMatchInlineSnapshot(`
-            Array [
-              Object {
-                "field": "bar",
-                "operator": "in",
-                "value": "crud",
-              },
-              Object {
-                "field": "foo",
-                "operator": "in",
-                "value": "permenant",
-              },
-            ]
-        `);
-    });
-
     it("unionFilters should override same filters", () => {
         expect(
             unionFilters(
@@ -190,14 +156,14 @@ describe("definitions/table", () => {
         ).toMatchInlineSnapshot(`
             Array [
               Object {
-                "field": "bar",
-                "operator": "in",
-                "value": "crud",
-              },
-              Object {
                 "field": "foo",
                 "operator": "in",
                 "value": "permenant",
+              },
+              Object {
+                "field": "bar",
+                "operator": "in",
+                "value": "crud",
               },
             ]
         `);
@@ -268,36 +234,6 @@ describe("definitions/table", () => {
         ).toBe(false);
     });
 
-    it("unionSorters puts higher priority sorter at the end", () => {
-        expect(
-            unionSorters(
-                [
-                    {
-                        field: "foo",
-                        order: "asc",
-                    },
-                ],
-                [
-                    {
-                        field: "bar",
-                        order: "asc",
-                    },
-                ],
-            ),
-        ).toMatchInlineSnapshot(`
-            Array [
-              Object {
-                "field": "bar",
-                "order": "asc",
-              },
-              Object {
-                "field": "foo",
-                "order": "asc",
-              },
-            ]
-        `);
-    });
-
     it("unionSorters should override same sorter", () => {
         expect(
             unionSorters(
@@ -321,11 +257,11 @@ describe("definitions/table", () => {
         ).toMatchInlineSnapshot(`
             Array [
               Object {
-                "field": "bar",
+                "field": "foo",
                 "order": "asc",
               },
               Object {
-                "field": "foo",
+                "field": "bar",
                 "order": "asc",
               },
             ]
@@ -338,11 +274,11 @@ describe("definitions/table", () => {
                 [],
                 [
                     {
-                        field: "foo",
+                        field: "bar",
                         order: "asc",
                     },
                     {
-                        field: "bar",
+                        field: "foo",
                         order: "asc",
                     },
                 ],
