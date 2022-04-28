@@ -48,6 +48,8 @@ export const ProductItem: React.FC<IProduct> = ({
                 display: "flex",
                 flexDirection: "column",
                 position: "relative",
+                boxShadow: "none",
+                border: "1px solid #e0e0e0",
             }}
         >
             <CardHeader
