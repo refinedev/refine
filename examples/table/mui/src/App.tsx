@@ -25,9 +25,7 @@ const App: React.FC = () => {
                 {
                     name: "posts",
                     list: PostList,
-                    options: {
-                        "name: "Table",
-                    }
+                    options: { name: "Table" },
                 },
                 {
                     name: "posts",
