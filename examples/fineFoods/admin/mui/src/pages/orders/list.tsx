@@ -7,11 +7,11 @@ import {
     HttpError,
     useTranslate,
     useNavigation,
+    useUpdate,
 } from "@pankod/refine-core";
 import {
     useDataGrid,
     DataGrid,
-    GridColDef,
     Grid,
     Box,
     MenuItem,
@@ -19,104 +19,157 @@ import {
     Card,
     CardContent,
     Button,
-    GridRenderCellParams,
     NumberField,
     Tooltip,
     Typography,
     DateField,
+    GridColumns,
+    GridActionsCellItem,
+    Stack,
 } from "@pankod/refine-mui";
 import { useForm } from "@pankod/refine-react-hook-form";
+import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
-import { OrderStatus } from "components";
-import {
-    IOrder,
-    IOrderFilterVariables,
-    IOrderStatus,
-    IProduct,
-} from "interfaces";
+import { OrderStatus, CustomTooltip } from "components";
+import { IOrder, IOrderFilterVariables } from "interfaces";
 
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
+    const { mutate } = useUpdate();
 
-    const columns: GridColDef[] = React.useMemo(
+    const columns = React.useMemo<GridColumns<IOrder>>(
         () => [
             {
                 field: "orderNumber",
                 headerName: t("orders.fields.orderNumber"),
                 description: t("orders.fields.orderNumber"),
                 flex: 1,
+                headerAlign: "center",
+                align: "center",
             },
             {
                 field: "status",
                 headerName: t("orders.fields.status"),
                 flex: 1,
-                renderCell: (params: GridRenderCellParams<IOrderStatus>) => (
-                    <OrderStatus status={params.value?.text} />
+                headerAlign: "center",
+                align: "center",
+                renderCell: ({ row }) => (
+                    <OrderStatus status={row.status.text} />
                 ),
             },
             {
                 field: "amount",
                 headerName: t("orders.fields.amount"),
                 flex: 1,
-                renderCell: (params: GridRenderCellParams<number>) =>
-                    params.value && (
-                        <NumberField
-                            options={{
-                                currency: "USD",
-                                style: "currency",
-                            }}
-                            value={params.value / 100}
-                        />
-                    ),
+                headerAlign: "center",
+                align: "center",
+                renderCell: ({ row }) => (
+                    <NumberField
+                        options={{
+                            currency: "USD",
+                            style: "currency",
+                        }}
+                        value={row.amount / 100}
+                        sx={{ fontSize: "14px" }}
+                    />
+                ),
             },
             {
                 field: "store",
                 headerName: t("orders.fields.store"),
                 flex: 1,
-                valueGetter: ({ value }) => value.title,
+                valueGetter: ({ row }) => row.store.title,
             },
             {
                 field: "user",
                 headerName: t("orders.fields.user"),
                 flex: 1,
-                valueGetter: ({ value }) => value.fullName,
+                valueGetter: ({ row }) => row.user.fullName,
             },
             {
                 field: "products",
                 headerName: t("orders.fields.products"),
                 flex: 1,
-                renderCell: (params: GridRenderCellParams<IProduct[]>) =>
-                    params.value && (
-                        <Tooltip
-                            title={
-                                <ul>
-                                    {params.value.map((product) => (
-                                        <li key={product.id}>{product.name}</li>
-                                    ))}
-                                </ul>
-                            }
-                        >
-                            <Typography>
-                                {t("orders.fields.itemsAmount", {
-                                    amount: params.value.length,
-                                })}
-                            </Typography>
-                        </Tooltip>
-                    ),
+                headerAlign: "center",
+                align: "center",
+                renderCell: ({ row }) => (
+                    <CustomTooltip
+                        arrow
+                        placement="top"
+                        title={
+                            <Stack sx={{ padding: "2px" }}>
+                                {row.products.map((product) => (
+                                    <li key={product.id}>{product.name}</li>
+                                ))}
+                            </Stack>
+                        }
+                    >
+                        <Typography sx={{ fontSize: "14px" }}>
+                            {t("orders.fields.itemsAmount", {
+                                amount: row.products.length,
+                            })}
+                        </Typography>
+                    </CustomTooltip>
+                ),
             },
             {
                 field: "createdAt",
                 headerName: t("orders.fields.createdAt"),
                 flex: 1,
-                renderCell: (params: GridRenderCellParams<string>) =>
-                    params.value && (
-                        <DateField value={params.value} format="LLL" />
-                    ),
+                renderCell: ({ row }) => (
+                    <DateField
+                        value={row.createdAt}
+                        format="LLL"
+                        sx={{ whiteSpace: "pre-wrap", fontSize: "14px" }}
+                    />
+                ),
             },
             {
                 field: "actions",
+                type: "actions",
                 headerName: t("table.actions"),
-                width: 100,
+                width: 80,
+                getActions: ({ id }) => [
+                    <GridActionsCellItem
+                        key={1}
+                        icon={<CheckOutlinedIcon color="success" />}
+                        sx={{ padding: "2px 6px" }}
+                        label="Accept"
+                        showInMenu
+                        onClick={() => {
+                            mutate({
+                                resource: "orders",
+                                id,
+                                values: {
+                                    status: {
+                                        id: 2,
+                                        text: "Ready",
+                                    },
+                                },
+                            });
+                        }}
+                    />,
+                    <GridActionsCellItem
+                        key={2}
+                        icon={<CloseOutlinedIcon color="error" />}
+                        sx={{ padding: "2px 6px" }}
+                        label="Reject"
+                        showInMenu
+                        onClick={() =>
+                            mutate({
+                                resource: "orders",
+                                id,
+                                values: {
+                                    status: {
+                                        id: 5,
+                                        text: "Cancelled",
+                                    },
+                                },
+                            })
+                        }
+                    />,
+                ],
             },
         ],
         [],
@@ -269,7 +322,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         <DataGrid
                             {...dataGridProps}
                             rowsPerPageOptions={[10, 20, 50, 100]}
-                            autoHeight
                         />
                     </CardContent>
                 </Card>
