@@ -25,11 +25,14 @@ const App: React.FC = () => {
                 {
                     name: "posts",
                     list: PostList,
+                    options: {
+                        "name: "Table",
+                    }
                 },
                 {
                     name: "posts",
                     list: BasicDataGrid,
-                    options: { route: "basic-data-grid" },
+                    options: { route: "basic-data-grid", name: "Data table" },
                 },
             ]}
         />
