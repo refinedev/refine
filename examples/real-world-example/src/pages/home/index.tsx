@@ -1,4 +1,3 @@
-/* eslint @typescript-eslint/no-non-null-asserted-optional-chain: "error" */
 import { useState } from "react";
 import {
     useGetIdentity,
@@ -175,7 +174,9 @@ export const HomePage: React.FC = () => {
                             defaultValue={1}
                             min={1}
                             max={Math.ceil(
-                                tableQueryResult?.data!.total / pageSize,
+                                tableQueryResult.data?.total
+                                    ? tableQueryResult.data.total / pageSize
+                                    : 1,
                             )}
                             onChange={(e) => {
                                 const page = e.target.value
