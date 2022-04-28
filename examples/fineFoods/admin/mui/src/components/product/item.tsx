@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
     Card,
     CardHeader,
@@ -6,9 +8,13 @@ import {
     CardMedia,
     CardContent,
     Typography,
-    padding,
+    Tooltip,
+    Popover,
+    Button,
 } from "@pankod/refine-mui";
+
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import EditIcon from "@mui/icons-material/Edit";
 
 import { IProduct } from "interfaces";
 
@@ -23,19 +29,65 @@ export const ProductItem: React.FC<IProduct> = ({
     category,
     stock,
 }) => {
+    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const open = Boolean(anchorEl);
+    const popoverId = open ? "simple-popover" : undefined;
+
     return (
         <Card
             sx={{
                 display: "flex",
                 flexDirection: "column",
+                position: "relative",
             }}
         >
             <CardHeader
                 action={
-                    <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                    </IconButton>
+                    <Box component="div">
+                        <IconButton
+                            aria-describedby={popoverId}
+                            onClick={handleClick}
+                            sx={{ marginRight: "10px", marginTop: "4px" }}
+                            aria-label="settings"
+                        >
+                            <MoreVertIcon />
+                        </IconButton>
+                        <Popover
+                            id={popoverId}
+                            open={open}
+                            anchorEl={anchorEl}
+                            onClose={handleClose}
+                            anchorOrigin={{
+                                vertical: "bottom",
+                                horizontal: "left",
+                            }}
+                        >
+                            <Button
+                                onClick={() => console.log("edit drawer open")} // gonna open edit drawer
+                                sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    outline: "none",
+                                    margin: "5px",
+                                }}
+                                size="small"
+                                startIcon={<EditIcon />}
+                            >
+                                <Typography>Edit Product</Typography>
+                            </Button>
+                        </Popover>
+                    </Box>
                 }
+                sx={{ padding: 0 }}
             />
             <Box
                 sx={{
@@ -47,8 +99,8 @@ export const ProductItem: React.FC<IProduct> = ({
                 <Box
                     component="div"
                     sx={{
-                        width: "192px",
-                        height: "192px",
+                        width: "160px",
+                        height: "160px",
                     }}
                 >
                     <CardMedia
@@ -71,33 +123,47 @@ export const ProductItem: React.FC<IProduct> = ({
                         borderTop: "1px solid #999999",
                     }}
                 >
-                    <Typography
-                        variant="h4"
-                        sx={{
-                            fontWeight: 800,
-                            fontSize: "24px",
-                            lineHeight: "27px",
-                            color: "text.secondary",
-                            mb: "12px",
-                            marginTop: "18px",
-                            minHeight: "60px",
-                        }}
-                    >
-                        {name}
-                    </Typography>
-                    <Typography
-                        sx={{
-                            fontWeight: 500,
-                            fontSize: "16px",
-                            lineHeight: "20px",
-                            color: "text.secondary",
-                            letterSpacing: "-0.02em",
-                            mb: "12px",
-                            minHeight: "100px",
-                        }}
-                    >
-                        {description}
-                    </Typography>
+                    <Tooltip title={name}>
+                        <Typography
+                            variant="h4"
+                            sx={{
+                                fontWeight: 800,
+                                fontSize: "24px",
+                                lineHeight: "27px",
+                                color: "text.secondary",
+                                marginTop: "18px",
+                                height: "54px",
+                                overflow: "hidden",
+                                whiteSpace: "nowrap",
+                                textOverflow: "ellipsis",
+                            }}
+                        >
+                            {name}
+                        </Typography>
+                    </Tooltip>
+                    <Tooltip title={description}>
+                        <Typography
+                            component="div"
+                            sx={{
+                                overflowWrap: "break-word",
+                                fontWeight: 500,
+                                fontSize: "16px",
+                                lineHeight: "20px",
+                                color: "text.secondary",
+                                letterSpacing: "-0.02em",
+                                mb: "12px",
+                                maxHeight: "70px",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                                display: "-webkit-box",
+                                WebkitLineClamp: "3",
+                                WebkitBoxOrient: "vertical",
+                                height: "60px",
+                            }}
+                        >
+                            {description}
+                        </Typography>
+                    </Tooltip>
                     <Typography
                         sx={{
                             fontWeight: 700,
@@ -106,6 +172,7 @@ export const ProductItem: React.FC<IProduct> = ({
                             color: "#999999",
                             letterSpacing: "-0.02em",
                             mb: "17px",
+                            mt: "17px",
                         }}
                     >{`#10000${id}`}</Typography>
                     <Typography
@@ -115,6 +182,7 @@ export const ProductItem: React.FC<IProduct> = ({
                             lineHeight: "32px",
                             color: "text.secondary",
                             letterSpacing: "-0.02em",
+                            marginBottom: "17px",
                         }}
                     >{`${price / 100}$`}</Typography>
                 </Box>
