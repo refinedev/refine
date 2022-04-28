@@ -14,7 +14,6 @@ export const lightPalette: PaletteOptions = {
     },
     background: {
         default: "#2a132e",
-        paper: "#f0f2f5",
     },
     common: {
         black: "#000",
