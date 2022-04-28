@@ -7,12 +7,16 @@ import { typography } from "./typography";
 
 const LightTheme = createTheme({
     palette: lightPalette,
-    ...typography, // typography is a property of the theme
+    typography: {
+        ...typography,
+    },
 });
 
 const DarkTheme = createTheme({
     palette: darkPalette,
-    ...typography, // typography is a property of the theme
+    typography: {
+        ...typography,
+    },
 });
 
 export { LightTheme, DarkTheme };
