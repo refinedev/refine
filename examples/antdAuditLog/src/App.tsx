@@ -16,6 +16,7 @@ import {
     CategoryShow,
 } from "pages/categories";
 import { LoginPage } from "pages/login";
+import { DashboardPage } from "pages/dashboard";
 import { ILoginDto } from "interfaces";
 
 import refineSDK from "utils/refine-sdk";
@@ -97,14 +98,17 @@ const App: React.FC = () => {
             catchAll={<ErrorComponent />}
             Header={() => null}
             LoginPage={LoginPage}
+            DashboardPage={DashboardPage}
             auditLogProvider={{
                 create: async ({ author, ...params }) => {
                     await refineSDK.log.create(params);
                 },
-                get: async ({ resource, meta }) => {
+                get: async ({ resource, action, meta, author }) => {
                     return await refineSDK.log.get({
                         resource,
+                        action,
                         meta,
+                        author,
                     });
                 },
                 update: async ({ id, name }) => {
