@@ -9,7 +9,6 @@ import {
     Button,
     TextField,
     Stack,
-    Select,
     Toolbar,
     Typography,
     MenuItem,
@@ -87,7 +86,7 @@ export const PostList: React.FC = () => {
                 id: "category.id",
                 Header: "Category",
                 accessor: "category.id",
-                Cell: ({ value }: any) => {
+                Cell: ({ value }) => {
                     const { data } = useOne<ICategory>({
                         resource: "categories",
                         id: value,
@@ -101,7 +100,7 @@ export const PostList: React.FC = () => {
                 Header: "Actions",
                 accessor: "id",
                 //eslint-disable-next-line react/display-name
-                Cell: ({ value, row }: any) => {
+                Cell: ({ value }: any) => {
                     return (
                         <Stack direction="row">
                             <EditButton
@@ -165,7 +164,7 @@ export const PostList: React.FC = () => {
         useExpanded,
         usePagination,
         useRowSelect,
-        (hooks: { visibleColumns: ((columns: any) => any[])[] }) => {
+        (hooks: { visibleColumns: any }) => {
             hooks.visibleColumns.push((columns: any) => [
                 {
                     id: "selection",
