@@ -12,6 +12,7 @@ import {
     InputBase,
     IconButton,
     Stack,
+    Pagination,
 } from "@pankod/refine-mui";
 
 import SearchIcon from "@mui/icons-material/Search";
@@ -23,12 +24,20 @@ import { IProduct } from "interfaces";
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
 
-    const { tableQueryResult, setPageSize } = useTable<IProduct>({
-        resource: "products",
-    });
+    const { tableQueryResult, setFilters, setCurrent, current } =
+        useTable<IProduct>({
+            resource: "products",
+            initialPageSize: 12,
+        });
+
+    const paginationCount =
+        tableQueryResult.data && Math.ceil(tableQueryResult.data?.total / 12);
 
     return (
-        <Box component="div" sx={{ backgroundColor: "common.white" }}>
+        <Box
+            component="div"
+            sx={{ backgroundColor: "common.white", padding: "20px" }}
+        >
             <Grid container columns={16}>
                 <Grid item xs={12}>
                     <Stack
@@ -48,12 +57,11 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                                 marginBottom: "5px",
                             }}
                         >
-                            Product
+                            {t("products.products")}
                         </Typography>
                         <Paper
                             component="form"
                             sx={{
-                                p: "2px 4px",
                                 display: "flex",
                                 alignItems: "center",
                                 width: 400,
@@ -64,9 +72,18 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                         >
                             <InputBase
                                 sx={{ ml: 1, flex: 1 }}
-                                placeholder="Product Search"
+                                placeholder={t("stores.productSearch")}
                                 inputProps={{
                                     "aria-label": "product search",
+                                }}
+                                onChange={(e) => {
+                                    setFilters([
+                                        {
+                                            field: "name",
+                                            operator: "contains",
+                                            value: e.target.value,
+                                        },
+                                    ]);
                                 }}
                             />
                             <IconButton
@@ -78,10 +95,10 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                             </IconButton>
                         </Paper>
                         <CreateButton
-                            variant="contained"
+                            variant="outlined"
                             sx={{ marginBottom: "5px" }}
                         >
-                            ADD PRODUCT
+                            {t("stores.buttons.addProduct")}
                         </CreateButton>
                     </Stack>
                     <Grid container>
@@ -109,6 +126,21 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                             </Grid>
                         ))}
                     </Grid>
+                    <Pagination
+                        count={paginationCount}
+                        variant="outlined"
+                        color="primary"
+                        shape="rounded"
+                        sx={{
+                            display: "flex",
+                            justifyContent: "end",
+                            paddingY: "20px",
+                        }}
+                        onChange={(event, page: number) => {
+                            event.preventDefault();
+                            setCurrent(page);
+                        }}
+                    />
                 </Grid>
                 <Grid item xs={4}>
                     fillter wrapper
