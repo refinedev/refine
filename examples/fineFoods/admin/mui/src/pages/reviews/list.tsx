@@ -15,6 +15,7 @@ import {
     GridToolbar,
     Avatar,
     Rating,
+    Stack,
 } from "@pankod/refine-mui";
 
 import { IReview } from "interfaces";
@@ -29,10 +30,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
             field: "avatar",
             headerName: "Avatar",
             renderCell: (param) => (
-                <Avatar
-                    alt={param.row.user.firstName}
-                    src={param.row.user.avatar[0].url}
-                />
+                <Avatar>{param.row.user.firstName.charAt(0)}</Avatar>
             ),
         },
         {
@@ -49,6 +47,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
             renderCell: (param) => (
                 <Typography>{`#${param.row.order.id}`}</Typography>
             ),
+            width: 150,
         },
         {
             field: "comment",
@@ -61,15 +60,20 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
         {
             field: "review",
             headerName: t("reviews.fields.rating"),
+            headerAlign: "center",
             renderCell: (param) => (
-                <Rating
-                    name="rating"
-                    defaultValue={param.row.star}
-                    precision={0.5}
-                    readOnly
-                />
+                <Stack alignItems="center">
+                    <Typography variant="h5" fontWeight="bold">
+                        {param.row.star}
+                    </Typography>
+                    <Rating
+                        name="rating"
+                        defaultValue={param.row.star}
+                        readOnly
+                    />
+                </Stack>
             ),
-            flex: 1,
+            width: 150,
         },
         {
             field: "actions",
@@ -99,6 +103,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
             <DataGrid
                 {...dataGridProps}
                 checkboxSelection={checkboxSelection}
+                density="comfortable"
                 components={{
                     Toolbar: GridToolbar,
                 }}
