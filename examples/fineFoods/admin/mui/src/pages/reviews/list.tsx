@@ -17,6 +17,7 @@ import {
     Rating,
     Stack,
 } from "@pankod/refine-mui";
+import { Check, Clear } from "@mui/icons-material";
 
 import { IReview } from "interfaces";
 
@@ -25,35 +26,33 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
 
     const t = useTranslate();
 
-    const columns: GridColumns = [
+    const columns: GridColumns<IReview> = [
         {
             field: "avatar",
             headerName: "Avatar",
-            renderCell: (param) => (
-                <Avatar>{param.row.user.firstName.charAt(0)}</Avatar>
+            renderCell: ({ row }) => (
+                <Avatar>{row.user.firstName.charAt(0)}</Avatar>
             ),
         },
         {
             field: "user",
             headerName: t("reviews.fields.user"),
-            renderCell: (param) => (
-                <Typography>{param.row.user.fullName}</Typography>
-            ),
+            valueGetter: ({ row }) => row.user.fullName,
             flex: 1,
         },
         {
-            field: "orderId",
+            field: "order",
             headerName: t("reviews.fields.orderId"),
-            renderCell: (param) => (
-                <Typography>{`#${param.row.order.id}`}</Typography>
-            ),
+            valueGetter: ({ row }) => `#${row.order.id}`,
             width: 150,
         },
         {
             field: "comment",
             headerName: t("reviews.fields.review"),
-            renderCell: (param) => (
-                <Typography>{`${param.row.comment[0]}`}</Typography>
+            valueGetter: ({ row }) => (
+                <Typography
+                    style={{ whiteSpace: "pre-line" }}
+                >{`${row.comment[0]}`}</Typography>
             ),
             flex: 1,
         },
@@ -61,16 +60,12 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
             field: "review",
             headerName: t("reviews.fields.rating"),
             headerAlign: "center",
-            renderCell: (param) => (
+            renderCell: ({ row }) => (
                 <Stack alignItems="center">
                     <Typography variant="h5" fontWeight="bold">
-                        {param.row.star}
+                        {row.star}
                     </Typography>
-                    <Rating
-                        name="rating"
-                        defaultValue={param.row.star}
-                        readOnly
-                    />
+                    <Rating name="rating" defaultValue={row.star} readOnly />
                 </Stack>
             ),
             width: 150,
@@ -82,12 +77,14 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
             getActions: () => [
                 <GridActionsCellItem
                     key={1}
-                    label={t("buttons.acceptAll")}
+                    label={t("buttons.accept")}
+                    icon={<Check color="success" />}
                     showInMenu
                 />,
                 <GridActionsCellItem
                     key={2}
-                    label={t("buttons.rejectAll")}
+                    label={t("buttons.reject")}
+                    icon={<Clear color="error" />}
                     showInMenu
                 />,
             ],
