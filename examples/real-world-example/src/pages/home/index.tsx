@@ -12,6 +12,7 @@ import { ArticleList } from "components/article";
 
 import dayjs from "dayjs";
 import { IArticle, ITag } from "interfaces";
+import { Pagination } from "components/Pagination";
 
 const { Link } = routerProvider;
 
@@ -27,7 +28,7 @@ export const HomePage: React.FC = () => {
         resource: "tags",
     });
 
-    const { tableQueryResult, pageSize, setPageSize, setCurrent, current } =
+    const { tableQueryResult, pageSize, setPageSize, setCurrent } =
         useTable<IArticle>({
             resource: activeTab === "global" ? "articles" : "articles/feed",
             metaData: {
@@ -163,44 +164,11 @@ export const HomePage: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <div
-                    style={{ display: "flex", justifyContent: "flex-end" }}
-                    className="col-md-12"
-                >
-                    <span>
-                        Go to page: &nbsp;
-                        <input
-                            type="number"
-                            defaultValue={1}
-                            min={1}
-                            max={Math.ceil(
-                                tableQueryResult.data?.total
-                                    ? tableQueryResult.data.total / pageSize
-                                    : 1,
-                            )}
-                            onChange={(e) => {
-                                const page = e.target.value
-                                    ? Number(e.target.value)
-                                    : 0;
-                                setCurrent(Number(page));
-                            }}
-                            style={{ width: "100px" }}
-                        />
-                    </span>{" "}
-                    <select
-                        style={{ marginLeft: "4px" }}
-                        value={pageSize}
-                        onChange={(e) => {
-                            setPageSize(Number(e.target.value));
-                        }}
-                    >
-                        {[6, 12, 18, 24].map((pageSize) => (
-                            <option key={pageSize} value={pageSize}>
-                                Show {pageSize}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+                <Pagination
+                    pageSize={pageSize}
+                    setCurrent={setCurrent}
+                    total={tableQueryResult.data?.total}
+                />
             </div>
         </div>
     );
