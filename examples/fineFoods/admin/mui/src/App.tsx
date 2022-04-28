@@ -1,9 +1,13 @@
+import { useMemo } from "react";
 import { Refine } from "@pankod/refine-core";
 import {
     Layout,
-    LoginPage,
     ErrorComponent,
     ReadyPage,
+    ThemeProvider,
+    useMediaQuery,
+    DarkTheme,
+    LightTheme,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -15,6 +19,7 @@ import LocalPizzaIcon from "@mui/icons-material/LocalPizza";
 import { authProvider } from "authProvider";
 import { OrderList, OrderShow } from "pages/orders";
 import { ProductList } from "pages/products";
+import { LoginPage } from "pages/login";
 
 const App: React.FC = () => {
     const { t, i18n } = useTranslation();
@@ -25,32 +30,41 @@ const App: React.FC = () => {
         getLocale: () => i18n.language,
     };
 
+    const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+
+    const theme = useMemo(
+        () => (prefersDarkMode ? DarkTheme : LightTheme),
+        [prefersDarkMode],
+    );
+
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-            authProvider={authProvider}
-            i18nProvider={i18nProvider}
-            ReadyPage={ReadyPage}
-            Layout={Layout}
-            LoginPage={LoginPage}
-            catchAll={<ErrorComponent />}
-            syncWithLocation
-            warnWhenUnsavedChanges
-            resources={[
-                {
-                    name: "orders",
-                    list: OrderList,
-                    show: OrderShow,
-                    icon: <AddShoppingCartOutlinedIcon />,
-                },
-                {
-                    name: "products",
-                    list: ProductList,
-                    icon: <LocalPizzaIcon />,
-                },
-            ]}
-        />
+        <ThemeProvider theme={theme}>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider("https://api.finefoods.refine.dev")}
+                authProvider={authProvider}
+                i18nProvider={i18nProvider}
+                ReadyPage={ReadyPage}
+                Layout={Layout}
+                LoginPage={LoginPage}
+                catchAll={<ErrorComponent />}
+                syncWithLocation
+                warnWhenUnsavedChanges
+                resources={[
+                    {
+                        name: "orders",
+                        list: OrderList,
+                        show: OrderShow,
+                        icon: <AddShoppingCartOutlinedIcon />,
+                    },
+                    {
+                        name: "products",
+                        list: ProductList,
+                        icon: <LocalPizzaIcon />,
+                    },
+                ]}
+            />
+        </ThemeProvider>
     );
 };
 
