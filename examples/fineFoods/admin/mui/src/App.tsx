@@ -9,10 +9,14 @@ import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 import { useTranslation } from "react-i18next";
 
-import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
+import {
+    AddShoppingCartOutlined,
+    StarBorderOutlined,
+} from "@mui/icons-material";
 
 import { authProvider } from "authProvider";
 import { OrderList, OrderShow } from "pages/orders";
+import { ReviewsList } from "pages/reviews";
 
 const App: React.FC = () => {
     const { t, i18n } = useTranslation();
@@ -40,7 +44,12 @@ const App: React.FC = () => {
                     name: "orders",
                     list: OrderList,
                     show: OrderShow,
-                    icon: <AddShoppingCartOutlinedIcon />,
+                    icon: <AddShoppingCartOutlined />,
+                },
+                {
+                    name: "reviews",
+                    list: ReviewsList,
+                    icon: <StarBorderOutlined />,
                 },
             ]}
         />
