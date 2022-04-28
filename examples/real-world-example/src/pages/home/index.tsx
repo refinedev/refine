@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
     useGetIdentity,
     useList,
+    useTable,
     useUpdate,
     useDelete,
 } from "@pankod/refine-core";
@@ -26,16 +27,18 @@ export const HomePage: React.FC = () => {
         resource: "tags",
     });
 
-    const { data: articleList, isFetching: isFetchingArticle } =
-        useList<IArticle>({
+    const { tableQueryResult, pageSize, setPageSize, current, setCurrent } =
+        useTable<IArticle>({
             resource: activeTab === "global" ? "articles" : "articles/feed",
             metaData: {
                 resource: "articles",
             },
+            initialCurrent: 1,
+            initialPageSize: 6,
         });
 
     const favoriteUnFavoriteIslLoading =
-        isFetchingArticle || favoriteIsLoading || unFavoriteIsLoading;
+        tableQueryResult.isFetching || favoriteIsLoading || unFavoriteIsLoading;
 
     const favArticle = (slug: string) => {
         favoriteMutate({
@@ -107,14 +110,13 @@ export const HomePage: React.FC = () => {
                             </ul>
                         </div>
 
-                        {!articleList?.data.length && (
+                        {!tableQueryResult.data?.data?.length && (
                             <div className="article-preview">
                                 No articles are here... yet
                             </div>
                         )}
 
-                        {articleList?.data?.map((item) => {
-                            console.log(item.author.username);
+                        {tableQueryResult?.data?.data.map((item) => {
                             return (
                                 <ArticleList
                                     key={item.slug}
@@ -160,6 +162,34 @@ export const HomePage: React.FC = () => {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className="pagination">
+                    <span>
+                        | Go to page:
+                        <input
+                            type="number"
+                            defaultValue={1}
+                            onChange={(e) => {
+                                const page = e.target.value
+                                    ? Number(e.target.value) - 1
+                                    : 0;
+                                setCurrent(page);
+                            }}
+                            style={{ width: "100px" }}
+                        />
+                    </span>{" "}
+                    <select
+                        value={pageSize}
+                        onChange={(e) => {
+                            setPageSize(Number(e.target.value));
+                        }}
+                    >
+                        {[6, 12, 18, 24].map((pageSize) => (
+                            <option key={pageSize} value={pageSize}>
+                                Show {pageSize}
+                            </option>
+                        ))}
+                    </select>
                 </div>
             </div>
         </div>
