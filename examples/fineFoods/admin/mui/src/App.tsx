@@ -2,13 +2,12 @@ import { useMemo } from "react";
 import { Refine } from "@pankod/refine-core";
 import {
     Layout,
-    LoginPage,
     ErrorComponent,
     ReadyPage,
     ThemeProvider,
+    useMediaQuery,
     DarkTheme,
     LightTheme,
-    useMediaQuery,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -18,6 +17,7 @@ import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutl
 
 import { authProvider } from "authProvider";
 import { OrderList, OrderShow } from "pages/orders";
+import { LoginPage } from "pages/login";
 
 const App: React.FC = () => {
     const { t, i18n } = useTranslation();
