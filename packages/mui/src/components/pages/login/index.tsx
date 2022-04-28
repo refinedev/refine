@@ -178,11 +178,14 @@ export const LoginPage: React.FC = () => {
                                                 href="#"
                                                 sx={{
                                                     fontSize: "12px",
-                                                    color: "text.secondary",
                                                     textDecoration: "none",
                                                 }}
                                             >
-                                                <Typography>
+                                                <Typography
+                                                    sx={{
+                                                        fontSize: "12px",
+                                                    }}
+                                                >
                                                     {translate(
                                                         "pages.login.forgotPassword",
                                                         "Forgot?",
