@@ -1,3 +1,4 @@
+/* eslint @typescript-eslint/no-non-null-asserted-optional-chain: "error" */
 import { useState } from "react";
 import {
     useGetIdentity,
@@ -27,7 +28,7 @@ export const HomePage: React.FC = () => {
         resource: "tags",
     });
 
-    const { tableQueryResult, pageSize, setPageSize, current, setCurrent } =
+    const { tableQueryResult, pageSize, setPageSize, setCurrent, current } =
         useTable<IArticle>({
             resource: activeTab === "global" ? "articles" : "articles/feed",
             metaData: {
@@ -163,22 +164,30 @@ export const HomePage: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <div className="pagination">
+                <div
+                    style={{ display: "flex", justifyContent: "flex-end" }}
+                    className="col-md-12"
+                >
                     <span>
-                        | Go to page:
+                        Go to page: &nbsp;
                         <input
                             type="number"
                             defaultValue={1}
+                            min={1}
+                            max={Math.ceil(
+                                tableQueryResult?.data!.total / pageSize,
+                            )}
                             onChange={(e) => {
                                 const page = e.target.value
-                                    ? Number(e.target.value) - 1
+                                    ? Number(e.target.value)
                                     : 0;
-                                setCurrent(page);
+                                setCurrent(Number(page));
                             }}
                             style={{ width: "100px" }}
                         />
                     </span>{" "}
                     <select
+                        style={{ marginLeft: "4px" }}
                         value={pageSize}
                         onChange={(e) => {
                             setPageSize(Number(e.target.value));
