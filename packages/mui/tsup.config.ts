@@ -1,6 +1,5 @@
 import { defineConfig } from "tsup";
 import { NodeResolvePlugin } from "@esbuild-plugins/node-resolve";
-import copyStaticFiles from "esbuild-copy-static-files";
 
 import * as fs from "fs";
 import path from "path";
