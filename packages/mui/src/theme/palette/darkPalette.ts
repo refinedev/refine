@@ -10,6 +10,7 @@ export const darkPalette: PaletteOptions = {
     },
     text: {
         primary: "#fff",
+        secondary: "#aba499",
     },
     background: {
         default: "#2a132e",
