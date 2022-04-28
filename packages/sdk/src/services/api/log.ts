@@ -1,3 +1,5 @@
+import { stringify } from "query-string";
+
 import { Client } from "../../client";
 import { Resource } from "@interfaces";
 
@@ -32,12 +34,17 @@ class LogApi {
         action?: string;
         startDate?: string;
         endDate?: string;
-        meta: Record<number | string, any>;
+        meta?: Record<number | string, any>;
+        author?: Record<number | string, any>;
     }): Promise<Resource> {
         return await this.client.call({
             method: "get",
             url: "/log",
-            params,
+            params: {
+                ...params,
+                meta: stringify(params?.meta || {}),
+                author: stringify(params?.author || {}),
+            },
         });
     }
 

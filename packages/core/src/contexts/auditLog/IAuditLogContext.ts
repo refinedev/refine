@@ -17,7 +17,9 @@ export type IAuditLogContext =
           create?: (params: LogParams) => void;
           get?: (params: {
               resource: string;
-              meta: Record<number | string, any>;
+              action?: string;
+              meta?: Record<number | string, any>;
+              author?: Record<number | string, any>;
               metaData?: MetaDataQuery;
           }) => Promise<any>;
           update?: (params: {

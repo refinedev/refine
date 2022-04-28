@@ -7,14 +7,18 @@ import { HttpError, MetaDataQuery } from "../../../interfaces";
 
 export type UseLogProps<TData, TError> = {
     resource: string;
-    meta: Record<number | string, any>;
+    action?: string;
+    meta?: Record<number | string, any>;
+    author?: Record<number | string, any>;
     queryOptions?: UseQueryOptions<TData, TError>;
     metaData?: MetaDataQuery;
 };
 
 export const useLogList = <TData = any, TError extends HttpError = HttpError>({
     resource,
+    action,
     meta,
+    author,
     metaData,
     queryOptions,
 }: UseLogProps<TData, TError>): UseQueryResult<TData> => {
@@ -35,6 +39,8 @@ export const useLogList = <TData = any, TError extends HttpError = HttpError>({
         () =>
             auditLogContext.get!({
                 resource,
+                action,
+                author,
                 meta,
                 metaData,
             }),
