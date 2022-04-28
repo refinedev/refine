@@ -17,7 +17,7 @@ import {
 
 import SearchIcon from "@mui/icons-material/Search";
 
-import { ProductItem } from "components";
+import { CategoryFilter, ProductItem } from "components";
 
 import { IProduct } from "interfaces";
 
@@ -143,7 +143,12 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                     />
                 </Grid>
                 <Grid item xs={4}>
-                    fillter wrapper
+                    <Stack padding="8px">
+                        <Typography sx={{ fontWeight: 500 }}>
+                            {t("stores.tagFilterDescription")}
+                        </Typography>
+                        <CategoryFilter />
+                    </Stack>
                 </Grid>
             </Grid>
         </Box>
