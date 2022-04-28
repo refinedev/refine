@@ -55,10 +55,6 @@ export default defineConfig({
                 });
             },
         },
-        copyStaticFiles({
-            src: "./src/assets/styles/styles.min.css",
-            dest: "./dist/styles.min.css",
-        }),
         NodeResolvePlugin({
             extensions: [".js", "ts", "tsx", "jsx"],
             onResolved: (resolved) => {
