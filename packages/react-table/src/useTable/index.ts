@@ -6,12 +6,14 @@ import {
     LogicalFilter,
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
+    useTableReturnType,
 } from "@pankod/refine-core";
 import { useTable as useTableRT, PluginHook, TableOptions } from "react-table";
 
-export type UseTableReturnType = ReturnType<typeof useTableRT> & {
-    refineCore: ReturnType<typeof useTableCore>;
-};
+export type UseTableReturnType<TData extends BaseRecord = BaseRecord> =
+    ReturnType<typeof useTableRT> & {
+        refineCore: useTableReturnType<TData>;
+    };
 
 export type UseTableProps<
     TData extends BaseRecord = BaseRecord,
@@ -26,7 +28,7 @@ export const useTable = <
 >(
     { refineCoreProps, ...rest }: UseTableProps<TData, TError>,
     ...plugins: Array<PluginHook<{}>>
-): UseTableReturnType => {
+): UseTableReturnType<TData> => {
     const useTableResult = useTableCore<TData, TError>({
         ...refineCoreProps,
     });
