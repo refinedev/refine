@@ -159,7 +159,11 @@ export const ProfilePage: React.FC = () => {
                             <ul className="nav nav-pills outline-active">
                                 <li className="nav-item">
                                     <Link
-                                        className="nav-link active"
+                                        className={`nav-link ${
+                                            params?.page === "favorites"
+                                                ? ""
+                                                : "active"
+                                        }`}
                                         to={`/profile/@${profileData?.data.username}`}
                                         onClick={() => {
                                             // this is a temp fix the filters are not getting reset
@@ -182,7 +186,11 @@ export const ProfilePage: React.FC = () => {
                                 </li>
                                 <li className="nav-item">
                                     <Link
-                                        className="nav-link"
+                                        className={`nav-link ${
+                                            params?.page === "favorites"
+                                                ? "active"
+                                                : ""
+                                        }`}
                                         to={`/profile/@${profileData?.data.username}/favorites`}
                                         onClick={() => {
                                             // this is a temp fix the filters are not getting reset
