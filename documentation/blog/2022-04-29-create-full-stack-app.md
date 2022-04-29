@@ -315,6 +315,6 @@ One of the biggest features that distinguishes **refine** from other frameworks 
 
 You can develop any web application or admin panel you want in a very short time with **refine**.
 
-Give **refine** a star on GitHub if you like it - your support will help us continue making this tool amazing!
+Give **refine** a star on [GitHub](https://github.com/pankod/refine) if you like it - your support will help us continue making this tool amazing!
 
 
