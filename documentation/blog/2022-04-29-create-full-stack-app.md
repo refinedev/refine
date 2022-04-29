@@ -306,3 +306,15 @@ As you have seen, we have listed and paginated the titles coming from an API by 
 [Learn the **refine** basics →](docs/getting-started/basics/)
 
 [Comparison | Refine vs React-Admin vs AdminBro vs Retool →](/docs/comparison/)
+
+## Conclusion
+
+In this article, we went through **refine** and showed you how to create a full stack application with backend providers that are integrated with it. You may rapidly and flexibly create a web application with **refine**. **refine** is a very successful and developing open source `internal tool` framework. It solves the deficiencies in `B2B`, `B2`C and `Admin panel` development processes well and offers features suitable for needs. 
+
+One of the biggest features that distinguishes **refine** from other frameworks is that it is customizable. Combined with *refine* `headless`, it now provides more customization options. This provides a great deal of convenience in the project you will develop.
+
+You can develop any web application or admin panel you want in a very short time with **refine**.
+
+Give **refine** a star on GitHub if you like it - your support will help us continue making this tool amazing!
+
+
