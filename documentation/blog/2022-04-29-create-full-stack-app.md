@@ -11,6 +11,11 @@ hide_table_of_contents: false
 import benchmarkChart from '@site/static/img/getting-started/benchmark.png';
 import create from '@site/static/img/blog/2022-04-29-create-full-stack-app/create.gif';
 import first from '@site/static/img/blog/2022-04-29-create-full-stack-app/first.png';
+import client_menu from '@site/static/img/blog/2022-04-29-create-full-stack-app/client_menu.png';
+import client_home from '@site/static/img/blog/2022-04-29-create-full-stack-app/client_home.png';
+import dashboard from '@site/static/img/blog/2022-04-29-create-full-stack-app/dashboard.png';
+import products from '@site/static/img/blog/2022-04-29-create-full-stack-app/products.png';
+import reviews from '@site/static/img/blog/2022-04-29-create-full-stack-app/reviews.png';
 
 We frequently require quick development and sometimes flexibility while developing a Full Stack application. Aside from speed and flexibility, we must establish the application architecture correctly at the start so that we are not subjected to any more needless work throughout the development process.
 
@@ -227,7 +232,59 @@ As you have seen, we have listed and paginated the titles coming from an API by 
 ## Refine Demo Apps
 
 -   Refine Client Example -> [Refine Headless + Refine Core + Next.js (SSR) + Tailwind CSS](https://refine.dev/demo/)
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={client_home} alt="Refine Client App" />
+</div>
+<br />
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={client_menu} alt="Refine Client App" />
+</div>
+<br />
+
+
 -   Refine Admin Panel Example -> [Refine Antd + Refine Core ](https://example.admin.refine.dev/)
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={dashboard} alt="Refine Dashboard" />
+</div>
+<br />
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={products} alt="Refine Admin Panel Producst Page" />
+</div>
+<br />
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={reviews} alt="Refine Reviews Page" />
+</div>
+<br />
 
 ## Powerful Features of Refine
 
