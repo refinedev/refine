@@ -20,7 +20,7 @@ describe("useModalForm Hook", () => {
                     refineCoreProps: {
                         resource: "posts",
                     },
-                    modalOptions: {
+                    modalProps: {
                         defaultVisible: true,
                     },
                 }),
@@ -36,7 +36,7 @@ describe("useModalForm Hook", () => {
         const { result } = renderHook(
             () =>
                 useModalForm({
-                    modalOptions: {
+                    modalProps: {
                         defaultVisible: true,
                     },
                 }),
@@ -54,7 +54,7 @@ describe("useModalForm Hook", () => {
         const { result } = renderHook(
             () =>
                 useModalForm({
-                    modalOptions: {
+                    modalProps: {
                         defaultVisible: false,
                     },
                 }),
@@ -104,7 +104,7 @@ describe("useModalForm Hook", () => {
                     refineCoreProps: {
                         resource: "posts",
                     },
-                    modalOptions: {
+                    modalProps: {
                         autoSubmitClose: true,
                     },
                 }),
@@ -126,7 +126,7 @@ describe("useModalForm Hook", () => {
                     refineCoreProps: {
                         resource: "posts",
                     },
-                    modalOptions: {
+                    modalProps: {
                         autoSubmitClose: false,
                     },
                 }),
@@ -149,7 +149,7 @@ describe("useModalForm Hook", () => {
                         resource: "posts",
                         action: "create",
                     },
-                    modalOptions: {
+                    modalProps: {
                         autoResetForm: true,
                     },
                 }),
@@ -175,7 +175,7 @@ describe("useModalForm Hook", () => {
                     refineCoreProps: {
                         resource: "posts",
                     },
-                    modalOptions: {
+                    modalProps: {
                         autoResetForm: false,
                     },
                 }),

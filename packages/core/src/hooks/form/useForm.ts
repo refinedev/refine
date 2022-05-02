@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { QueryObserverResult } from "react-query";
+import { QueryObserverResult, UseQueryOptions } from "react-query";
 
 import {
     useResourceWithRoute,
@@ -51,11 +51,13 @@ type ActionFormProps<
     ) => void;
     redirect?: RedirectionTypes;
     resource?: string;
+    id?: BaseKey;
     metaData?: MetaDataQuery;
     mutationMode?: MutationMode;
     undoableTimeout?: number;
     dataProviderName?: string;
     invalidates?: Array<keyof IQueryKeys>;
+    queryOptions?: UseQueryOptions<GetOneResponse<TData>, HttpError>;
 } & SuccessErrorNotification &
     ActionParams &
     LiveModeProps;
@@ -101,6 +103,7 @@ export const useForm = <
 >({
     action: actionFromProps,
     resource: resourceFromProps,
+    id: idFromProps,
     onMutationSuccess,
     onMutationError,
     redirect: redirectFromProps,
@@ -114,6 +117,7 @@ export const useForm = <
     undoableTimeout,
     dataProviderName,
     invalidates,
+    queryOptions,
 }: UseFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
     TData,
     TError,
@@ -128,8 +132,9 @@ export const useForm = <
 
     const defaultId =
         !resourceFromProps || resourceFromProps === resourceFromRoute
-            ? idFromParams
-            : undefined;
+            ? idFromProps ?? idFromParams
+            : idFromProps;
+
     // id state is needed to determine selected record in a context for example useModal
     const [id, setId] = React.useState<BaseKey | undefined>(defaultId);
 
@@ -160,6 +165,7 @@ export const useForm = <
         id: id ?? "",
         queryOptions: {
             enabled: enableQuery,
+            ...queryOptions,
         },
         liveMode,
         onLiveEvent,

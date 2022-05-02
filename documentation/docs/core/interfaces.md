@@ -130,6 +130,14 @@ ButtonProps
 | percent | `number`                                                             |
 | status  | `"error"` \| `"success"` \| `"done" `\| `"uploading"` \| `"removed"` |
 
+## UseImportInputPropsType
+
+| Key     | Type                                                                 |
+| ------- | -------------------------------------------------------------------- |
+| type     | `"file"`                                                             |
+| accept    | `".cvs"`                                                             |
+| onChange     | `(event: React.ChangeEvent<HTMLInputElement>) => void`                                                             |
+
 ## SuccessErrorNotification
 
 | Key                 | Type                                                                                 |

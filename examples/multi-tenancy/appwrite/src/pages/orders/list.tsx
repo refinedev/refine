@@ -62,14 +62,19 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                             return <TextField value="Loading..." />;
                         }
 
+                        const image = productData?.data.find(
+                            (item) => item.id === value && item.image,
+                        )?.image;
+
                         return (
                             <ImageField
-                                value={productData?.data
-                                    .find(
-                                        (item) =>
-                                            item.id === value && item.image,
-                                    )
-                                    ?.image.map((img: any) => img.url)}
+                                value={
+                                    image
+                                        ? JSON.parse(image).map(
+                                              (p: { url: string }) => p.url,
+                                          )
+                                        : undefined
+                                }
                                 width={72}
                                 preview={{ mask: <></> }}
                             />
