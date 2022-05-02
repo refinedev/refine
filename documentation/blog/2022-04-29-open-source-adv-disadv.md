@@ -1,7 +1,7 @@
 ---
 title: The Advantages and Disadvantages of Working on Open Source Projects
 description: We'll looking The Advantages and Disadvantages of Working on Open Source Projects
-slug: best-react-frameworks
+slug: open-source-advantages-disadvantages
 authors: ozkalai
 tags: [refine, react, framework, webdev, opensource, ant-design, material-ui, react-bootstrap, opensource]
 image: https://refine.dev/img/refine_social.png
