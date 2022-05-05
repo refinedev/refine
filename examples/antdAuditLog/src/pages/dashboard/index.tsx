@@ -19,11 +19,11 @@ export const DashboardPage: React.FC = () => {
         resource: "auth",
         action: "login",
         // meta: {
-        //     id: "1",
+        //     username: "yildirayunlu",
         // },
-        // author: {
-        //     email: "test@mail.com",
-        // },
+        author: {
+            email: "test@mail.com",
+        },
     });
 
     const send = async (values: any) => {

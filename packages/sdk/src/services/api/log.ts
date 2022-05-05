@@ -42,8 +42,8 @@ class LogApi {
             url: "/log",
             params: {
                 ...params,
-                meta: stringify(params?.meta || {}),
-                author: stringify(params?.author || {}),
+                meta: params?.meta ? stringify(params?.meta) : undefined,
+                author: params?.author ? stringify(params?.author) : undefined,
             },
         });
     }

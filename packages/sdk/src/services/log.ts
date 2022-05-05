@@ -30,7 +30,7 @@ class Log {
         });
     }
 
-    async get(params: {
+    async get(params?: {
         meta?: Record<number | string, any>;
         author?: Record<number | string, any>;
         resource?: string;
@@ -38,14 +38,13 @@ class Log {
         startDate?: string;
         endDate?: string;
     }): Promise<Resource> {
-        console.log("params", params);
         return await this.client.call({
             method: "get",
             url: "/log/client",
             params: {
                 ...params,
-                meta: stringify(params?.meta || {}),
-                author: stringify(params?.author || {}),
+                meta: params?.meta ? stringify(params?.meta) : undefined,
+                author: params?.author ? stringify(params?.author) : undefined,
             },
         });
     }
