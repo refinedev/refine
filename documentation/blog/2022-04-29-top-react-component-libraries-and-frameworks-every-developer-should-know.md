@@ -1,6 +1,18 @@
+---
+title: Top React Component Libraries and Frameworks Every Developer Should Know
+description: Learn about the top React component libraries and frameworks.
+slug: top-react-component-libraries-and-frameworks-every-developer-should-know
+authors: salih
+tags: [refine, react, ant design, antd, material ui, mui, storybook, chackra ui, mantine]
+image: https://refine.dev/img/refine_social.png
+hide_table_of_contents: false
+---
+
 # Top React Component Libraries and Frameworks Every Developer Should Know
 
 React is the most popular JavaScript library for building user interfaces. It's easy to use, flexible, and powerful enough that you can build anything from simple apps to complex web applications with it! In this article, we're looking at some UI component frameworks which make developing your next project easier by providing ready-to-go components like buttons or navigation bars - saving time in both design creation as well as coding when getting started quickly.
+
+<!--truncate-->
 
 ## Material UI
 
