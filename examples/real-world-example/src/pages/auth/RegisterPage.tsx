@@ -1,4 +1,4 @@
-import { useNavigation } from "@pankod/refine-core";
+import { useLogin, useNavigation } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 import routerProvider from "@pankod/refine-react-router-v6";
 
@@ -7,14 +7,15 @@ import { ErrorList } from "components/Error";
 const { Link } = routerProvider;
 
 export const RegisterPage: React.FC = () => {
+    const { mutate: login } = useLogin();
+
     const {
         refineCore: { onFinish },
         register,
         handleSubmit,
         setError,
         clearErrors,
-        reset,
-        formState: { errors },
+        formState: { errors, isSubmitting },
     } = useForm({
         refineCoreProps: {
             resource: "users",
@@ -22,13 +23,8 @@ export const RegisterPage: React.FC = () => {
             onMutationError: (error) => {
                 setError("api", error.response.data.errors);
             },
-            onMutationSuccess: () => {
-                push("/login");
-            },
         },
     });
-
-    const { push } = useNavigation();
 
     return (
         <div className="auth-page">
@@ -42,7 +38,7 @@ export const RegisterPage: React.FC = () => {
 
                         {errors.api && <ErrorList errors={errors.api} />}
 
-                        <form onSubmit={handleSubmit(onFinish)}>
+                        <form>
                             <fieldset className="form-group">
                                 <input
                                     {...register("user.username", {
@@ -88,16 +84,18 @@ export const RegisterPage: React.FC = () => {
                                     </ul>
                                 )}
                             </fieldset>
-                            <button
-                                type="submit"
+                            <input
                                 className="btn btn-lg btn-primary pull-xs-right"
                                 onClick={() => {
                                     clearErrors();
-                                    handleSubmit(onFinish);
+                                    handleSubmit(async (values) => {
+                                        await onFinish(values);
+                                        login(values);
+                                    })();
                                 }}
-                            >
-                                Sign up
-                            </button>
+                                disabled={isSubmitting}
+                                value="Sign up"
+                            />
                         </form>
                     </div>
                 </div>

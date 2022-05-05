@@ -12,9 +12,10 @@ export const SettingsPage: React.FC = () => {
         register,
         handleSubmit,
         formState: { errors },
-        refineCore: { onFinish, setId },
+        refineCore: { onFinish },
     } = useForm({
         refineCoreProps: {
+            id: "",
             action: "edit",
             resource: "user",
             redirect: false,
@@ -24,10 +25,6 @@ export const SettingsPage: React.FC = () => {
             },
         },
     });
-
-    useEffect(() => {
-        setId("");
-    }, []);
 
     return (
         <div className="settings-page">

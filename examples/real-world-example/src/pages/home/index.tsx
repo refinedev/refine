@@ -20,7 +20,7 @@ const { Link } = routerProvider;
 
 export const HomePage: React.FC = () => {
     const [activeTab, setActiveTab] = useState<"global" | "yourFeed">("global");
-    const { isSuccess } = useGetIdentity();
+    const { isSuccess, isLoading } = useGetIdentity();
     const { mutate: favoriteMutate, isLoading: favoriteIsLoading } =
         useUpdate();
     const { mutate: unFavoriteMutate, isLoading: unFavoriteIsLoading } =
@@ -67,7 +67,7 @@ export const HomePage: React.FC = () => {
 
     return (
         <div className="home-page">
-            {!isSuccess && <Banner />}
+            {!isSuccess && !isLoading && <Banner />}
             <div className="container page">
                 <div className="row">
                     <div className="col-md-9">
@@ -97,45 +97,57 @@ export const HomePage: React.FC = () => {
                             }
                         />
 
-                        {!tableQueryResult.data?.data?.length && (
+                        {tableQueryResult.isFetching && (
                             <div className="article-preview">
-                                No articles are here... yet
+                                Loading arcticles...
                             </div>
                         )}
 
-                        {tableQueryResult?.data?.data.map((item) => {
-                            return (
-                                <ArticleList
-                                    key={item.slug}
-                                    slug={item.slug}
-                                    author={item.author.username}
-                                    image={item.author.image}
-                                    title={item.title}
-                                    createdAt={dayjs(item.createdAt).format(
-                                        "MMM DD, YYYY",
-                                    )}
-                                    favCount={item.favoritesCount}
-                                    description={item.description}
-                                    tagList={item.tagList}
-                                    favArticle={(slug: string) => {
-                                        item.favorited
-                                            ? unFavArticle(slug)
-                                            : favArticle(slug);
-                                    }}
-                                    isItemFavorited={item.favorited}
-                                    isItemLoading={favoriteUnFavoriteIslLoading}
-                                />
-                            );
-                        })}
+                        {!tableQueryResult.data?.data?.length &&
+                            !tableQueryResult.isFetching && (
+                                <div className="article-preview">
+                                    No articles are here... yet
+                                </div>
+                            )}
+
+                        {!tableQueryResult.isFetching &&
+                            tableQueryResult?.data?.data.map((item) => {
+                                return (
+                                    <ArticleList
+                                        key={item.slug}
+                                        slug={item.slug}
+                                        author={item.author.username}
+                                        image={item.author.image}
+                                        title={item.title}
+                                        createdAt={dayjs(item.createdAt).format(
+                                            "MMM DD, YYYY",
+                                        )}
+                                        favCount={item.favoritesCount}
+                                        description={item.description}
+                                        tagList={item.tagList}
+                                        favArticle={(slug: string) => {
+                                            item.favorited
+                                                ? unFavArticle(slug)
+                                                : favArticle(slug);
+                                        }}
+                                        isItemFavorited={item.favorited}
+                                        isItemLoading={
+                                            favoriteUnFavoriteIslLoading
+                                        }
+                                    />
+                                );
+                            })}
                     </div>
                     <Tag tags={tagList.data?.data} />
                 </div>
-                <Pagination
-                    pageSize={pageSize}
-                    current={current}
-                    setCurrent={setCurrent}
-                    total={tableQueryResult.data?.total}
-                />
+                {(tagList.data?.total || 0) > 6 && (
+                    <Pagination
+                        pageSize={pageSize}
+                        current={current}
+                        setCurrent={setCurrent}
+                        total={tableQueryResult.data?.total}
+                    />
+                )}
             </div>
         </div>
     );

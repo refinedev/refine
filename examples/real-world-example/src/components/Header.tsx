@@ -15,7 +15,7 @@ export const Header: React.FC = () => {
                     </Link>
                     <ul className="nav navbar-nav pull-xs-right">
                         <li className="nav-item">
-                            <Link className="nav-link active" to="/">
+                            <Link className="nav-link" to="/">
                                 Home
                             </Link>
                         </li>
