@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { LoadingButton } from "@mui/lab";
-import { CrudFilter, useList, useTranslate } from "@pankod/refine-core";
+import { CrudFilters, useList, useTranslate } from "@pankod/refine-core";
 import { Stack, Grid } from "@pankod/refine-mui";
 
 import { ICategory } from "interfaces";
 
 type ProductItemProps = {
-    setFilters?: (filters: CrudFilter[]) => void;
-    filters: CrudFilter[];
+    setFilters?: (filters: CrudFilters) => void;
+    filters: CrudFilters;
 };
 
 export const CategoryFilter: React.FC<ProductItemProps> = ({
@@ -20,13 +20,12 @@ export const CategoryFilter: React.FC<ProductItemProps> = ({
 
     useEffect(() => {
         setFilters?.([
+            { ...filters[0] },
             {
                 field: "category.id",
                 operator: "contains",
-                value:
-                    filterCategories.length > 0 ? filterCategories : undefined,
+                value: filterCategories,
             },
-            ...filters,
         ]);
     }, [filterCategories]);
 
