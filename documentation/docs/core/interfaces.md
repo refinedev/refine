@@ -136,7 +136,7 @@ ButtonProps
 | ------- | -------------------------------------------------------------------- |
 | type     | `"file"`                                                             |
 | accept    | `".cvs"`                                                             |
-| onChange     | `function`                                                             |
+| onChange     | `(event: React.ChangeEvent<HTMLInputElement>) => void`                                                             |
 
 ## SuccessErrorNotification
 

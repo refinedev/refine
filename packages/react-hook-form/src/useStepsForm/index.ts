@@ -10,8 +10,10 @@ export type UseStepsFormReturnType<
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
 > = UseFormReturnType<TData, TError, TVariables, TContext> & {
-    currentStep: number;
-    gotoStep: (step: number) => void;
+    steps: {
+        currentStep: number;
+        gotoStep: (step: number) => void;
+    };
 };
 
 export type UseStepsFormProps<
@@ -20,8 +22,10 @@ export type UseStepsFormProps<
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
 > = UseFormProps<TData, TError, TVariables, TContext> & {
-    defaultCurrent?: number;
-    isBackValidate?: boolean;
+    stepsProps?: {
+        defaultStep?: number;
+        isBackValidate?: boolean;
+    };
 };
 
 export const useStepsForm = <
@@ -30,8 +34,7 @@ export const useStepsForm = <
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
 >({
-    defaultCurrent = 0,
-    isBackValidate = true,
+    stepsProps,
     ...rest
 }: UseStepsFormProps<
     TData,
@@ -39,7 +42,8 @@ export const useStepsForm = <
     TVariables,
     TContext
 > = {}): UseStepsFormReturnType<TData, TError, TVariables, TContext> => {
-    const [current, setCurrent] = useState(defaultCurrent);
+    const { defaultStep = 0, isBackValidate = true } = stepsProps ?? {};
+    const [current, setCurrent] = useState(defaultStep);
 
     const useHookFormResult = useForm({
         ...rest,
@@ -98,7 +102,9 @@ export const useStepsForm = <
 
     return {
         ...useHookFormResult,
-        currentStep: current,
-        gotoStep,
+        steps: {
+            currentStep: current,
+            gotoStep,
+        },
     };
 };

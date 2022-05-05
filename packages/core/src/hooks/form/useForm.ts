@@ -51,6 +51,7 @@ type ActionFormProps<
     ) => void;
     redirect?: RedirectionTypes;
     resource?: string;
+    id?: BaseKey;
     metaData?: MetaDataQuery;
     mutationMode?: MutationMode;
     undoableTimeout?: number;
@@ -102,6 +103,7 @@ export const useForm = <
 >({
     action: actionFromProps,
     resource: resourceFromProps,
+    id: idFromProps,
     onMutationSuccess,
     onMutationError,
     redirect: redirectFromProps,
@@ -130,8 +132,9 @@ export const useForm = <
 
     const defaultId =
         !resourceFromProps || resourceFromProps === resourceFromRoute
-            ? idFromParams
-            : undefined;
+            ? idFromProps ?? idFromParams
+            : idFromProps;
+
     // id state is needed to determine selected record in a context for example useModal
     const [id, setId] = React.useState<BaseKey | undefined>(defaultId);
 

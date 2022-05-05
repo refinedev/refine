@@ -66,8 +66,8 @@ export type HandleChangeType<TVariables, TData> = (onChangeParams: {
 
 export type UseImportInputPropsType = {
     type: "file";
-    accept: ".cvs";
-    onChange: (event: any) => void;
+    accept: string;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export type UseImportReturnType<
@@ -156,6 +156,7 @@ export const useImport = <
         };
 
         onFinish?.(result);
+        setIsLoading(false);
     };
 
     useEffect(() => {
@@ -289,10 +290,10 @@ export const useImport = <
     return {
         inputProps: {
             type: "file",
-            accept: ".cvs",
-            onChange: (event) => {
+            accept: ".csv",
+            onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                 if (event.target.files && event.target.files.length > 0) {
-                    handleChange(event.target.files[0]);
+                    handleChange({ file: event.target.files[0] });
                 }
             },
         },

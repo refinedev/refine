@@ -29,7 +29,6 @@ import {
     AntdLayout,
     Menu,
     Grid,
-    Link,
     Icons,
 // highlight-next-line
     useMenu,
@@ -45,6 +44,7 @@ export const CustomMenu: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
 
     const breakpoint = Grid.useBreakpoint();
+    const { push } = useNavigation()
     const isMobile = !breakpoint.lg;
 
     const RenderToTitle = Title ?? DefaultTitle;
