@@ -3,10 +3,28 @@ title: Top React Component Libraries and Frameworks Every Developer Should Know
 description: Learn about the top React component libraries and frameworks.
 slug: top-react-component-libraries-and-frameworks-every-developer-should-know
 authors: salih
-tags: [refine, react, ant design, antd, material ui, mui, storybook, chackra ui, mantine]
+tags:
+    [
+        refine,
+        react,
+        ant design,
+        antd,
+        material ui,
+        mui,
+        storybook,
+        chackra ui,
+        mantine,
+    ]
 image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
 ---
+
+import mui from '@site/static/img/blog/2022-04-29-top-react-component-libraries-and-frameworks-every-developer-should-know/mui.png';
+import antd from '@site/static/img/blog/2022-04-29-top-react-component-libraries-and-frameworks-every-developer-should-know/antd.png';
+import chakra from '@site/static/img/blog/2022-04-29-top-react-component-libraries-and-frameworks-every-developer-should-know/chakra.png';
+import mantine from '@site/static/img/blog/2022-04-29-top-react-component-libraries-and-frameworks-every-developer-should-know/mantine.png';
+import refine from '@site/static/img/blog/2022-04-29-top-react-component-libraries-and-frameworks-every-developer-should-know/refine.png';
+import storybook from '@site/static/img/blog/2022-04-29-top-react-component-libraries-and-frameworks-every-developer-should-know/storybook.png';
 
 # Top React Component Libraries and Frameworks Every Developer Should Know
 
@@ -15,6 +33,8 @@ React is the most popular JavaScript library for building user interfaces. It's 
 <!--truncate-->
 
 ## Material UI
+
+<img src={mui} alt="Material UI" />
 
 [MUI](https://mui.com) offers a wide range of high-quality components that have helped us ship features more quickly. With nearly 77k+ stars on [GitHub](https://github.com/mui), the popularity of MUI is rather clear. The Google design system has been integrated into an extended React library with great success.
 
@@ -31,6 +51,8 @@ The best part of MUI is how many people use it. There are countless free resourc
 👉 [Showcase](https://mui.com/material-ui/discover-more/showcase/)
 
 ## Ant Design
+
+<img src={antd} alt="Ant Design" />
 
 [Ant Design](https://ant.design/) is a UI library and design system for enterprise applications. It is the most popular components library on [GitHub](https://github.com/ant-design/ant-design) with over 79k stars.
 
@@ -49,6 +71,8 @@ One of the drawbacks of Ant Design is that it has a large bundle size, when comp
 
 ## Chakra UI
 
+<img src={chakra} alt="Chakra UI" />
+
 [Chakra UI](https://chakra-ui.com/) is one of the fastest-growing React UI libraries. It is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications. With over 22.5k stars on [GitHub](https://github.com/chakra-ui/chakra-ui).
 
 Simplicity is one of the terms that come to mind when describing Chakra UI. Its library, as its name suggests, emphasizes the development process rather than just focusing on code. It has excellent documentation will certainly aid with that.
@@ -63,6 +87,8 @@ Simplicity is one of the terms that come to mind when describing Chakra UI. Its 
 👉 [Showcase](https://chakra-ui.com/showcase)
 
 ## Mantine
+
+<img src={mantine} alt="Mantine" />
 
 [Mantine](https://mantine.dev) is a full-featured React component library with 100+ customizable components and 30+ hooks that allows you to create fully functional and accessible web applications quickly. Mantine has a lot of packages and components that are ready-to-use and can be used in any project. With over 10k stars on [GitHub](https://github.com/mantinedev/mantine).
 
@@ -79,6 +105,8 @@ It stands out from other UI design systems with its simple structure and modular
 
 ## Storybook
 
+<img src={storybook} alt="Storybook" />
+
 [Storybook](https://storybook.js.org/) is a JavaScript tool that allows developers to create organized UI systems making both the building process and documentation more efficient and easier to use. With over 70k stars on [GitHub](https://github.com/storybookjs/storybook/).
 
 It makes development faster and easier by isolating components. This allows you to work on one component at a time. You can develop entire UIs without needing to start up a complex dev stack, force certain data into your database, or navigate around your application.
@@ -93,6 +121,8 @@ It makes development faster and easier by isolating components. This allows you 
 👉 [Showcase](https://storybook.js.org/showcase/)
 
 ## Refine
+
+<img src={refine} alt="refine" />
 
 [Refine](https://refine.dev/) A React-based framework for building internal tools, rapidly. It provides lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards. With over 2.1k stars on [Github](https://github.com/pankod/refine) even though it has been released recently.
 
