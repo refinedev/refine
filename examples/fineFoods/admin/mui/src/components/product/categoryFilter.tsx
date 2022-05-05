@@ -1,10 +1,35 @@
+import { useState, useEffect } from "react";
 import { LoadingButton } from "@mui/lab";
-import { useList } from "@pankod/refine-core";
+import { CrudFilter, useList, useTranslate } from "@pankod/refine-core";
 import { Stack, Grid } from "@pankod/refine-mui";
 
 import { ICategory } from "interfaces";
 
-export const CategoryFilter: React.FC = () => {
+type ProductItemProps = {
+    setFilters?: (filters: CrudFilter[]) => void;
+    filters: CrudFilter[];
+};
+
+export const CategoryFilter: React.FC<ProductItemProps> = ({
+    setFilters,
+    filters,
+}) => {
+    const t = useTranslate();
+
+    const [filterCategories, setFilterCategories] = useState<string[]>([]);
+
+    useEffect(() => {
+        setFilters?.([
+            {
+                field: "category.id",
+                operator: "contains",
+                value:
+                    filterCategories.length > 0 ? filterCategories : undefined,
+            },
+            ...filters,
+        ]);
+    }, [filterCategories]);
+
     const { data: categoryData, isLoading: categoryIsLoading } =
         useList<ICategory>({
             resource: "categories",
@@ -13,10 +38,43 @@ export const CategoryFilter: React.FC = () => {
             },
         });
 
+    const toggleFilterCategory = (clickedCategory: string) => {
+        const target = filterCategories.findIndex(
+            (category) => category === clickedCategory,
+        );
+
+        if (target < 0) {
+            setFilterCategories((prevCategories) => {
+                return [...prevCategories, clickedCategory];
+            });
+        } else {
+            const copyFilterCategories = [...filterCategories];
+
+            copyFilterCategories.splice(target, 1);
+
+            setFilterCategories(copyFilterCategories);
+        }
+    };
+
     return (
         <Stack>
             <Grid container columns={6} marginTop="10px">
-                {categoryData?.data.map((category) => (
+                <LoadingButton
+                    onClick={() => setFilterCategories([])}
+                    variant={
+                        filterCategories.length === 0 ? "contained" : "outlined"
+                    }
+                    size="small"
+                    loading={categoryIsLoading}
+                    sx={{
+                        borderRadius: "50px",
+                        marginRight: "10px",
+                        marginBottom: "5px",
+                    }}
+                >
+                    {t("stores.all")}
+                </LoadingButton>
+                {categoryData?.data.map((category: ICategory) => (
                     <Grid
                         item
                         key={category.id}
@@ -24,12 +82,21 @@ export const CategoryFilter: React.FC = () => {
                         marginBottom="5px"
                     >
                         <LoadingButton
-                            variant="outlined"
+                            variant={
+                                filterCategories.includes(
+                                    category.id.toString(),
+                                )
+                                    ? "contained"
+                                    : "outlined"
+                            }
                             size="small"
                             loading={categoryIsLoading}
                             sx={{
                                 borderRadius: "50px",
                             }}
+                            onClick={() =>
+                                toggleFilterCategory(category.id.toString())
+                            }
                         >
                             {category.title}
                         </LoadingButton>
