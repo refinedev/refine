@@ -12,6 +12,7 @@ import { ArticleList } from "components/article";
 
 import dayjs from "dayjs";
 import { IArticle, ITag } from "interfaces";
+import { Tag } from "components/tag";
 import { Pagination } from "components/Pagination";
 
 const { Link } = routerProvider;
@@ -28,7 +29,7 @@ export const HomePage: React.FC = () => {
         resource: "tags",
     });
 
-    const { tableQueryResult, pageSize, setPageSize, setCurrent } =
+    const { tableQueryResult, pageSize, current, setCurrent } =
         useTable<IArticle>({
             resource: activeTab === "global" ? "articles" : "articles/feed",
             metaData: {
@@ -142,30 +143,11 @@ export const HomePage: React.FC = () => {
                             );
                         })}
                     </div>
-
-                    <div className="col-md-3">
-                        <div className="sidebar">
-                            <p>Popular Tags</p>
-                            <div className="tag-list">
-                                {tagList.data?.data.map(
-                                    (item, index: number) => {
-                                        return (
-                                            <Link
-                                                key={index}
-                                                to="/"
-                                                className="tag-pill tag-default"
-                                            >
-                                                {item}
-                                            </Link>
-                                        );
-                                    },
-                                )}
-                            </div>
-                        </div>
-                    </div>
+                    <Tag tags={tagList.data?.data} />
                 </div>
                 <Pagination
                     pageSize={pageSize}
+                    current={current}
                     setCurrent={setCurrent}
                     total={tableQueryResult.data?.total}
                 />

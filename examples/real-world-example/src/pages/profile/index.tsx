@@ -1,6 +1,5 @@
 import {
     useGetIdentity,
-    useList,
     useTable,
     useNavigation,
     useDelete,
@@ -25,29 +24,19 @@ export const ProfilePage: React.FC = () => {
     const { mutate: unFollowMutate } = useDelete();
     const params = useParams();
 
-    // const { data, isLoading: loading } = useList<IArticle>({
-    //     resource: "articles",
-    //     queryOptions: {
-    //         enabled: params?.username !== undefined,
-    //     },
-    //     config: {
-    //         filters: [
-    //             {
-    //                 field: !params?.page ? "author" : "favorited",
-    //                 value: params?.username,
-    //                 operator: "eq",
-    //             },
-    //         ],
-    //     },
-    // });
-
-    const { tableQueryResult, pageSize, setCurrent, setFilters, filters } =
-        useTable<IArticle>({
-            resource: "articles",
-            queryOptions: {
-                enabled: params?.username !== undefined,
-            },
-        });
+    const {
+        tableQueryResult,
+        pageSize,
+        current,
+        setCurrent,
+        setFilters,
+        filters,
+    } = useTable<IArticle>({
+        resource: "articles",
+        queryOptions: {
+            enabled: params?.username !== undefined,
+        },
+    });
 
     console.log("filters", filters);
 
@@ -247,6 +236,7 @@ export const ProfilePage: React.FC = () => {
                         <Pagination
                             total={tableQueryResult.data?.total}
                             pageSize={pageSize}
+                            current={current}
                             setCurrent={setCurrent}
                         />
                     </div>

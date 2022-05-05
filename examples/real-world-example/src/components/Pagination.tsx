@@ -1,12 +1,14 @@
 type PaginationProps = {
     total: number | undefined;
     pageSize: number;
+    current: number;
     setCurrent: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export const Pagination: React.FC<PaginationProps> = ({
     total,
     pageSize,
+    current,
     setCurrent,
 }) => {
     return (
@@ -15,7 +17,12 @@ export const Pagination: React.FC<PaginationProps> = ({
                 {[...Array(total ? Math.ceil(total / pageSize) : 1)].map(
                     (_, index) => {
                         return (
-                            <li key={index} className="page-item">
+                            <li
+                                key={index}
+                                className={`page-item${
+                                    current !== index + 1 ? "" : " active"
+                                }`}
+                            >
                                 <button
                                     className="page-link"
                                     onClick={() => {
