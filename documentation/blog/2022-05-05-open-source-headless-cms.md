@@ -8,12 +8,12 @@ image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
 ---
 
-import appwrite from '@site/static/img/2022-05-05-open-source-headless-cms/appwrite.jpg';
-import directus from '@site/static/img/2022-05-05-open-source-headless-cms/directus.jpg';
-import keystone from '@site/static/img/2022-05-05-open-source-headless-cms/keystone.jpg';
-import netlify from '@site/static/img/2022-05-05-open-source-headless-cms/netlify.jpg';
-import refine from '@site/static/img/2022-05-05-open-source-headless-cms/refine.jpg';
-import strapi from '@site/static/img/2022-05-05-open-source-headless-cms/strapi.jpg';
+import appwrite from '@site/static/img/blog/2022-05-05-open-source-headless-cms/appwrite.jpg';
+import directus from '@site/static/img/blog/2022-05-05-open-source-headless-cms/directus.jpg';
+import keystone from '@site/static/img/blog/2022-05-05-open-source-headless-cms/keystone.jpg';
+import netlify from '@site/static/img/blog/2022-05-05-open-source-headless-cms/netlify.jpg';
+import refine from '@site/static/img/blog/2022-05-05-open-source-headless-cms/refine.jpg';
+import strapi from '@site/static/img/blog/2022-05-05-open-source-headless-cms/strapi.jpg';
 
 
 ## Best Open-Source Headless CMS to Try for Your Next Application
