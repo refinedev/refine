@@ -13,6 +13,7 @@ import { ArticleList } from "components/article";
 import dayjs from "dayjs";
 import { IArticle, ITag } from "interfaces";
 import { Tag } from "components/tag";
+import { Banner, HomeNav } from "components/home";
 import { Pagination } from "components/Pagination";
 
 const { Link } = routerProvider;
@@ -66,51 +67,35 @@ export const HomePage: React.FC = () => {
 
     return (
         <div className="home-page">
-            {!isSuccess && (
-                <div className="banner">
-                    <div className="container">
-                        <h1 className="logo-font">conduit</h1>
-                        <p>A place to share your knowledge.</p>
-                    </div>
-                </div>
-            )}
+            {!isSuccess && <Banner />}
             <div className="container page">
                 <div className="row">
                     <div className="col-md-9">
-                        <div className="feed-toggle">
-                            <ul className="nav nav-pills outline-active">
-                                {isSuccess && (
-                                    <li className="nav-item">
-                                        <Link
-                                            to={"/"}
-                                            className={`nav-link ${
-                                                activeTab === "yourFeed"
-                                                    ? "active"
-                                                    : ""
-                                            }`}
-                                            onClick={() =>
-                                                setActiveTab("yourFeed")
-                                            }
-                                        >
-                                            Your Feed
-                                        </Link>
-                                    </li>
-                                )}
-                                <li className="nav-item">
-                                    <Link
-                                        to={"/"}
-                                        className={`nav-link ${
-                                            activeTab === "global"
-                                                ? "active"
-                                                : ""
-                                        }`}
-                                        onClick={() => setActiveTab("global")}
-                                    >
-                                        Global Feed
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
+                        <HomeNav
+                            isSuccess={isSuccess}
+                            feed={
+                                <Link
+                                    to={"/"}
+                                    className={`nav-link ${
+                                        activeTab === "yourFeed" ? "active" : ""
+                                    }`}
+                                    onClick={() => setActiveTab("yourFeed")}
+                                >
+                                    Your Feed
+                                </Link>
+                            }
+                            global={
+                                <Link
+                                    to={"/"}
+                                    className={`nav-link ${
+                                        activeTab === "global" ? "active" : ""
+                                    }`}
+                                    onClick={() => setActiveTab("global")}
+                                >
+                                    Global Feed
+                                </Link>
+                            }
+                        />
 
                         {!tableQueryResult.data?.data?.length && (
                             <div className="article-preview">

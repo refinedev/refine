@@ -12,6 +12,7 @@ import { IArticle, IProfile, IUser } from "interfaces";
 import { ArticleList } from "components/article";
 import dayjs from "dayjs";
 import { Pagination } from "components/Pagination";
+import { UserInfo, ProfileNav } from "components/profile";
 
 const { useParams, Link } = routerProvider;
 
@@ -91,117 +92,58 @@ export const ProfilePage: React.FC = () => {
         });
     };
 
+    console.log(params);
+
     return (
         <div className="profile-page">
-            <div className="user-info">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-xs-12 col-md-10 offset-md-1">
-                            {isLoading ? null : (
-                                <img
-                                    src={
-                                        isLoading ? "" : profileData?.data.image
-                                    }
-                                    className="user-img"
-                                />
-                            )}
-
-                            <h4>
-                                {isLoading
-                                    ? "loading"
-                                    : profileData?.data.username}
-                            </h4>
-                            <p>
-                                {isLoading ? "loading" : profileData?.data.bio}
-                            </p>
-                            <button
-                                className={
-                                    profileData?.data.following
-                                        ? `btn btn-sm action-btn ng-binding btn-secondary`
-                                        : `btn btn-sm action-btn ng-binding btn-outline-secondary`
-                                }
-                                onClick={() => {
-                                    params.username === user?.username
-                                        ? push("/settings")
-                                        : profileData?.data.following
-                                        ? unFollowUser(params?.username)
-                                        : followUser(params?.username);
-                                }}
-                            >
-                                <i className="ion-plus-round"></i>
-                                &nbsp;
-                                {params?.username === user?.username
-                                    ? `Edit Profile Settings`
-                                    : profileData?.data.following
-                                    ? `Unfollow ${profileData?.data.username}`
-                                    : `Follow ${profileData?.data.username}`}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <UserInfo
+                loading={isLoading}
+                profile={profileData}
+                params={params}
+                user={user}
+                followUser={(userName) => {
+                    followUser(userName);
+                }}
+                unFollowUser={(userName) => {
+                    unFollowUser(userName);
+                }}
+            />
 
             <div className="container">
                 <div className="row">
                     <div className="col-xs-12 col-md-10 offset-md-1">
-                        <div className="articles-toggle">
-                            <ul className="nav nav-pills outline-active">
-                                <li className="nav-item">
-                                    <Link
-                                        className={`nav-link ${
-                                            params?.page === "favorites"
-                                                ? ""
-                                                : "active"
-                                        }`}
-                                        to={`/profile/@${profileData?.data.username}`}
-                                        onClick={() => {
-                                            // this is a temp fix the filters are not getting reset
-                                            setFilters([
-                                                {
-                                                    field: "favorited",
-                                                    value: undefined,
-                                                    operator: "eq",
-                                                },
-                                                {
-                                                    field: "author",
-                                                    value: params?.username,
-                                                    operator: "eq",
-                                                },
-                                            ]);
-                                        }}
-                                    >
-                                        My Articles
-                                    </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link
-                                        className={`nav-link ${
-                                            params?.page === "favorites"
-                                                ? "active"
-                                                : ""
-                                        }`}
-                                        to={`/profile/@${profileData?.data.username}/favorites`}
-                                        onClick={() => {
-                                            // this is a temp fix the filters are not getting reset
-                                            setFilters([
-                                                {
-                                                    field: "author",
-                                                    value: undefined,
-                                                    operator: "eq",
-                                                },
-                                                {
-                                                    field: "favorited",
-                                                    value: params?.username,
-                                                    operator: "eq",
-                                                },
-                                            ]);
-                                        }}
-                                    >
-                                        Favorited Articles
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
+                        <ProfileNav
+                            params={params}
+                            profileData={profileData}
+                            filters={() => {
+                                // this is a temp fix the filters are not getting reset
+                                params?.page
+                                    ? setFilters([
+                                          {
+                                              field: "favorited",
+                                              value: undefined,
+                                              operator: "eq",
+                                          },
+                                          {
+                                              field: "author",
+                                              value: params?.username,
+                                              operator: "eq",
+                                          },
+                                      ])
+                                    : setFilters([
+                                          {
+                                              field: "author",
+                                              value: undefined,
+                                              operator: "eq",
+                                          },
+                                          {
+                                              field: "favorited",
+                                              value: params?.username,
+                                              operator: "eq",
+                                          },
+                                      ]);
+                            }}
+                        />
 
                         {!tableQueryResult.data?.total && (
                             <div className="article-preview">

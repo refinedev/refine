@@ -1,4 +1,3 @@
-import { useNavigation } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 const { Link } = routerProvider;
@@ -30,8 +29,6 @@ export const ArticleList: React.FC<ArticleListProps> = ({
     isItemFavorited,
     isItemLoading,
 }) => {
-    const { push } = useNavigation();
-
     return (
         <div className="article-preview">
             <div className="article-meta">
