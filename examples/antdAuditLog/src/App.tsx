@@ -85,12 +85,7 @@ const App: React.FC = () => {
                     edit: CategoryEdit,
                     show: CategoryShow,
                     canDelete: true,
-                    options: {
-                        auditLog: {
-                            permissions: ["create", "delete", "update"],
-                            autoFetch: ["*"],
-                        },
-                    },
+                    options: {},
                 },
             ]}
             notificationProvider={notificationProvider}
