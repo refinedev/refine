@@ -1,3 +1,4 @@
+import React from "react";
 import {
     useTranslate,
     IResourceComponentsProps,
@@ -24,10 +25,14 @@ import { IProduct } from "interfaces";
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
 
-    const { tableQueryResult, setFilters, setCurrent, current } =
+    const { tableQueryResult, setFilters, setCurrent, filters } =
         useTable<IProduct>({
             resource: "products",
             initialPageSize: 12,
+            initialFilter: [
+                { field: "name", operator: "contains", value: "" },
+                { field: "category.id", operator: "contains", value: "" },
+            ],
         });
 
     const paginationCount =
@@ -76,13 +81,16 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                                 inputProps={{
                                     "aria-label": "product search",
                                 }}
-                                onChange={(e) => {
+                                onChange={(
+                                    e: React.ChangeEvent<HTMLInputElement>,
+                                ) => {
                                     setFilters([
                                         {
                                             field: "name",
                                             operator: "contains",
                                             value: e.target.value,
                                         },
+                                        { ...filters[1] },
                                     ]);
                                 }}
                             />
@@ -136,7 +144,10 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                             justifyContent: "end",
                             paddingY: "20px",
                         }}
-                        onChange={(event, page: number) => {
+                        onChange={(
+                            event: React.ChangeEvent<unknown>,
+                            page: number,
+                        ) => {
                             event.preventDefault();
                             setCurrent(page);
                         }}
@@ -147,7 +158,10 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                         <Typography sx={{ fontWeight: 500 }}>
                             {t("stores.tagFilterDescription")}
                         </Typography>
-                        <CategoryFilter />
+                        <CategoryFilter
+                            setFilters={setFilters}
+                            filters={filters}
+                        />
                     </Stack>
                 </Grid>
             </Grid>
