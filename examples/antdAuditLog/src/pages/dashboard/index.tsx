@@ -18,12 +18,12 @@ export const DashboardPage: React.FC = () => {
     const { data } = useLogList({
         resource: "auth",
         action: "login",
-        // meta: {
-        //     username: "yildirayunlu",
-        // },
-        author: {
-            email: "test@mail.com",
+        meta: {
+            username: "yildirayunlu",
         },
+        // author: {
+        //     email: "test@mail.com",
+        // },
     });
 
     const send = async (values: any) => {
