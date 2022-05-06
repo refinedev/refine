@@ -125,9 +125,8 @@ export interface IOrderFilterVariables {
 export interface IUserFilterVariables {
     q: string;
     status: boolean;
-    createdAt: [Dayjs, Dayjs];
     gender: string;
-    isActive: boolean;
+    isActive: boolean | string;
 }
 
 export interface ICourier {
