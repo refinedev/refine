@@ -3,6 +3,8 @@ import { useForm } from "@pankod/refine-react-hook-form";
 import routerProvider from "@pankod/refine-react-router-v6";
 import { ErrorList } from "components/Error";
 import { IArticle } from "interfaces";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const { useParams } = routerProvider;
 
@@ -10,8 +12,10 @@ export const EditArticlePage: React.FC = () => {
     const { push } = useNavigation();
     const params = useParams();
 
+    const [tags, setTags] = useState<string[]>([]);
+
     const {
-        refineCore: { onFinish, formLoading },
+        refineCore: { onFinish, formLoading, queryResult },
         register,
         handleSubmit,
         formState: { errors },
@@ -26,10 +30,6 @@ export const EditArticlePage: React.FC = () => {
                 setError("api", error?.response?.data.errors);
             },
             onMutationSuccess: (response) => {
-                console.log(
-                    "`/article/${response.data.article.slug}`",
-                    `/article/${response.data.article.slug}`,
-                );
                 push(`/article/${response.data.article.slug}`);
             },
         },
@@ -43,8 +43,12 @@ export const EditArticlePage: React.FC = () => {
         },
     });
 
+    useEffect(() => {
+        setTags(defaultValue?.data?.data?.tagList || []);
+    }, [defaultValue?.data]);
+
     const onSubmit = (data: any) => {
-        onFinish({ article: data });
+        onFinish({ article: { ...data, tagList: tags } });
     };
 
     return (
@@ -54,7 +58,7 @@ export const EditArticlePage: React.FC = () => {
                     <div className="col-md-10 offset-md-1 col-xs-12">
                         {errors.api && <ErrorList errors={errors.api} />}
                         <form>
-                            <fieldset>
+                            <fieldset disabled={formLoading}>
                                 <fieldset className="form-group">
                                     <input
                                         {...register("title", {
@@ -111,17 +115,48 @@ export const EditArticlePage: React.FC = () => {
                                 </fieldset>
                                 <fieldset className="form-group">
                                     <input
-                                        {...register("tagList")}
                                         type="text"
                                         className="form-control"
                                         placeholder="Enter tags"
+                                        onKeyUp={(e: any) => {
+                                            e.preventDefault();
+                                            if (e.key === "Enter") {
+                                                const value = e.target.value;
+                                                if (!tags.includes(value)) {
+                                                    setTags([...tags, value]);
+                                                    e.target.value = "";
+                                                }
+                                            }
+                                        }}
                                     />
-                                    <div className="tag-list"></div>
+                                    <div className="tag-list">
+                                        {tags.map((item) => {
+                                            return (
+                                                <span
+                                                    key={item}
+                                                    className="tag-default tag-pill"
+                                                >
+                                                    <i
+                                                        className="ion-close-round"
+                                                        onClick={() => {
+                                                            setTags(
+                                                                tags.filter(
+                                                                    (tag) =>
+                                                                        tag !==
+                                                                        item,
+                                                                ),
+                                                            );
+                                                        }}
+                                                    ></i>
+                                                    {item}
+                                                </span>
+                                            );
+                                        })}
+                                    </div>
                                 </fieldset>
                                 <button
                                     className="btn btn-lg pull-xs-right btn-primary"
-                                    type="submit"
-                                    disabled={formLoading}
+                                    type="button"
                                     onClick={(e) => {
                                         e.preventDefault();
                                         clearErrors();

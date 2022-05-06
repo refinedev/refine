@@ -20,9 +20,9 @@ export const authProvider = (axiosInstance: AxiosInstance): AuthProvider => {
 
             return Promise.resolve("/");
         },
-        logout: ({ redirectPath }) => {
+        logout: (props) => {
             localStorage.removeItem(TOKEN_KEY);
-            return Promise.resolve(redirectPath);
+            return Promise.resolve(props?.redirectPath);
         },
         checkError: (error) => {
             if (error?.response?.status === 401) {

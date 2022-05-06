@@ -32,58 +32,59 @@ export const LoginPage: React.FC = () => {
 
                             {errors.api && <ErrorList errors={errors.api} />}
                             <form>
-                                <fieldset className="form-group">
-                                    <input
-                                        {...register("user.email", {
-                                            required: true,
-                                        })}
-                                        className="form-control form-control-lg"
-                                        type="text"
-                                        placeholder="Email"
-                                    />
-                                    {errors.user?.email && (
-                                        <ul className="error-messages">
-                                            <li>This field is required</li>
-                                        </ul>
-                                    )}
+                                <fieldset disabled={isLoading}>
+                                    <fieldset className="form-group">
+                                        <input
+                                            {...register("user.email", {
+                                                required: true,
+                                            })}
+                                            className="form-control form-control-lg"
+                                            type="text"
+                                            placeholder="Email"
+                                        />
+                                        {errors.user?.email && (
+                                            <ul className="error-messages">
+                                                <li>This field is required</li>
+                                            </ul>
+                                        )}
+                                    </fieldset>
+                                    <fieldset className="form-group">
+                                        <input
+                                            {...register("user.password", {
+                                                required: true,
+                                            })}
+                                            className="form-control form-control-lg"
+                                            type="password"
+                                            placeholder="Password"
+                                            autoComplete=""
+                                        />
+                                        {errors.user?.password && (
+                                            <ul className="error-messages">
+                                                <li>This field is required</li>
+                                            </ul>
+                                        )}
+                                    </fieldset>
+                                    <button
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            clearErrors();
+                                            handleSubmit((values) => {
+                                                return login(values, {
+                                                    onError: (error: any) => {
+                                                        setError(
+                                                            "api",
+                                                            error?.response
+                                                                ?.data.errors,
+                                                        );
+                                                    },
+                                                });
+                                            })();
+                                        }}
+                                        className="btn btn-lg btn-primary pull-xs-right"
+                                    >
+                                        Submit
+                                    </button>
                                 </fieldset>
-                                <fieldset className="form-group">
-                                    <input
-                                        {...register("user.password", {
-                                            required: true,
-                                        })}
-                                        className="form-control form-control-lg"
-                                        type="password"
-                                        placeholder="Password"
-                                        autoComplete=""
-                                    />
-                                    {errors.user?.password && (
-                                        <ul className="error-messages">
-                                            <li>This field is required</li>
-                                        </ul>
-                                    )}
-                                </fieldset>
-                                <button
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        clearErrors();
-                                        handleSubmit((values) => {
-                                            return login(values, {
-                                                onError: (error: any) => {
-                                                    setError(
-                                                        "api",
-                                                        error?.response?.data
-                                                            .errors,
-                                                    );
-                                                },
-                                            });
-                                        })();
-                                    }}
-                                    className="btn btn-lg btn-primary pull-xs-right"
-                                    disabled={isLoading}
-                                >
-                                    Submit
-                                </button>
                             </form>
                         </div>
                     </div>

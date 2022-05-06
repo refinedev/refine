@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useNavigation, useLogout } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 
@@ -12,7 +11,7 @@ export const SettingsPage: React.FC = () => {
         register,
         handleSubmit,
         formState: { errors },
-        refineCore: { onFinish },
+        refineCore: { onFinish, formLoading },
     } = useForm({
         refineCoreProps: {
             id: "",
@@ -21,10 +20,14 @@ export const SettingsPage: React.FC = () => {
             redirect: false,
             onMutationSuccess: ({ data }) => {
                 localStorage.setItem(TOKEN_KEY, data.user.token);
-                push("/profile");
+                push(`/profile/@${data.user.username}`);
             },
         },
     });
+
+    const onSubmit = (data: Record<string, string>) => {
+        onFinish({ user: data });
+    };
 
     return (
         <div className="settings-page">
@@ -34,10 +37,10 @@ export const SettingsPage: React.FC = () => {
                         <h1 className="text-xs-center">Your Settings</h1>
 
                         <form onSubmit={handleSubmit(onFinish)}>
-                            <fieldset>
+                            <fieldset disabled={formLoading}>
                                 <fieldset className="form-group">
                                     <input
-                                        {...register("user.image", {
+                                        {...register("image", {
                                             required: true,
                                         })}
                                         className="form-control"
@@ -52,7 +55,7 @@ export const SettingsPage: React.FC = () => {
                                 </fieldset>
                                 <fieldset className="form-group">
                                     <input
-                                        {...register("user.username", {
+                                        {...register("username", {
                                             required: true,
                                         })}
                                         className="form-control form-control-lg"
@@ -67,7 +70,7 @@ export const SettingsPage: React.FC = () => {
                                 </fieldset>
                                 <fieldset className="form-group">
                                     <textarea
-                                        {...register("user.bio")}
+                                        {...register("bio")}
                                         className="form-control form-control-lg"
                                         rows={8}
                                         placeholder="Short bio about you"
@@ -75,7 +78,7 @@ export const SettingsPage: React.FC = () => {
                                 </fieldset>
                                 <fieldset className="form-group">
                                     <input
-                                        {...register("user.email", {
+                                        {...register("email", {
                                             required: true,
                                         })}
                                         className="form-control form-control-lg"
@@ -90,15 +93,20 @@ export const SettingsPage: React.FC = () => {
                                 </fieldset>
                                 <fieldset className="form-group">
                                     <input
-                                        {...register("user.password")}
+                                        {...register("password")}
                                         className="form-control form-control-lg"
                                         type="password"
                                         placeholder="Password"
                                     />
                                 </fieldset>
                                 <button
-                                    type="submit"
                                     className="btn btn-lg btn-primary pull-xs-right"
+                                    type="submit"
+                                    disabled={formLoading}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handleSubmit(onSubmit)();
+                                    }}
                                 >
                                     Update Settings
                                 </button>
@@ -107,6 +115,7 @@ export const SettingsPage: React.FC = () => {
                         <button
                             className="btn btn-outline-danger"
                             onClick={() => {
+                                console.log("logout");
                                 logout();
                             }}
                         >

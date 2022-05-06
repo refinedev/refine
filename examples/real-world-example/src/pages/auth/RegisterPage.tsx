@@ -42,65 +42,68 @@ export const RegisterPage: React.FC = () => {
                         {errors.api && <ErrorList errors={errors.api} />}
 
                         <form>
-                            <fieldset className="form-group">
-                                <input
-                                    {...register("user.username", {
-                                        required: true,
-                                    })}
-                                    className="form-control form-control-lg"
-                                    type="text"
-                                    placeholder="Your Name"
-                                />
-                                {errors?.user?.username && (
-                                    <ul className="error-messages">
-                                        <span>This field is required</span>
-                                    </ul>
-                                )}
-                            </fieldset>
-                            <fieldset className="form-group">
-                                <input
-                                    {...register("user.email", {
-                                        required: true,
-                                    })}
-                                    className="form-control form-control-lg"
-                                    type="text"
-                                    placeholder="Email"
-                                />
-                                {errors?.user?.email && (
-                                    <ul className="error-messages">
-                                        <span>This field is required</span>
-                                    </ul>
-                                )}
-                            </fieldset>
-                            <fieldset className="form-group">
-                                <input
-                                    {...register("user.password", {
-                                        required: true,
-                                    })}
-                                    className="form-control form-control-lg"
-                                    type="password"
-                                    placeholder="Password"
-                                />
-                                {errors?.user?.password && (
-                                    <ul className="error-messages">
-                                        <span>This field is required</span>
-                                    </ul>
-                                )}
-                            </fieldset>
-                            <button
-                                className="btn btn-lg btn-primary pull-xs-right"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    clearErrors();
-                                    handleSubmit(async (values) => {
-                                        await onFinish(values);
-                                        login(values);
-                                    })();
-                                }}
+                            <fieldset
                                 disabled={isLoadingLogin || isLoadingRegister}
                             >
-                                Sign up
-                            </button>
+                                <fieldset className="form-group">
+                                    <input
+                                        {...register("user.username", {
+                                            required: true,
+                                        })}
+                                        className="form-control form-control-lg"
+                                        type="text"
+                                        placeholder="Your Name"
+                                    />
+                                    {errors?.user?.username && (
+                                        <ul className="error-messages">
+                                            <span>This field is required</span>
+                                        </ul>
+                                    )}
+                                </fieldset>
+                                <fieldset className="form-group">
+                                    <input
+                                        {...register("user.email", {
+                                            required: true,
+                                        })}
+                                        className="form-control form-control-lg"
+                                        type="text"
+                                        placeholder="Email"
+                                    />
+                                    {errors?.user?.email && (
+                                        <ul className="error-messages">
+                                            <span>This field is required</span>
+                                        </ul>
+                                    )}
+                                </fieldset>
+                                <fieldset className="form-group">
+                                    <input
+                                        {...register("user.password", {
+                                            required: true,
+                                        })}
+                                        className="form-control form-control-lg"
+                                        type="password"
+                                        placeholder="Password"
+                                    />
+                                    {errors?.user?.password && (
+                                        <ul className="error-messages">
+                                            <span>This field is required</span>
+                                        </ul>
+                                    )}
+                                </fieldset>
+                                <button
+                                    className="btn btn-lg btn-primary pull-xs-right"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        clearErrors();
+                                        handleSubmit(async (values) => {
+                                            await onFinish(values);
+                                            login(values);
+                                        })();
+                                    }}
+                                >
+                                    Sign up
+                                </button>
+                            </fieldset>
                         </form>
                     </div>
                 </div>
