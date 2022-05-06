@@ -14,9 +14,11 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import { useTranslation } from "react-i18next";
 
 import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
+import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 
 import { authProvider } from "authProvider";
 import { OrderList, OrderShow } from "pages/orders";
+import { UserList, UserShow } from "pages/users";
 import { LoginPage } from "pages/login";
 
 const App: React.FC = () => {
@@ -54,6 +56,12 @@ const App: React.FC = () => {
                         list: OrderList,
                         show: OrderShow,
                         icon: <AddShoppingCartOutlinedIcon />,
+                    },
+                    {
+                        name: "users",
+                        list: UserList,
+                        show: UserShow,
+                        icon: <PeopleOutlineIcon />,
                     },
                 ]}
             />
