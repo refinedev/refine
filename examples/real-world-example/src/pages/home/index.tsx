@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
     useGetIdentity,
     useList,
@@ -13,13 +13,14 @@ import { ArticleList } from "components/article";
 import dayjs from "dayjs";
 import { IArticle, ITag } from "interfaces";
 import { Tag } from "components/tag";
-import { Banner, HomeNav } from "components/home";
+import { Banner } from "components/home";
 import { Pagination } from "components/Pagination";
 
 const { Link } = routerProvider;
 
 export const HomePage: React.FC = () => {
-    const [activeTab, setActiveTab] = useState<"global" | "yourFeed">("global");
+    const [activeTab, setActiveTab] =
+        useState<"global" | "yourFeed" | "tags">("global");
     const { isSuccess } = useGetIdentity();
     const { mutate: favoriteMutate, isLoading: favoriteIsLoading } =
         useUpdate();
@@ -30,15 +31,21 @@ export const HomePage: React.FC = () => {
         resource: "tags",
     });
 
-    const { tableQueryResult, pageSize, current, setCurrent } =
-        useTable<IArticle>({
-            resource: activeTab === "global" ? "articles" : "articles/feed",
-            metaData: {
-                resource: "articles",
-            },
-            initialCurrent: 1,
-            initialPageSize: 6,
-        });
+    const {
+        tableQueryResult,
+        pageSize,
+        current,
+        setCurrent,
+        filters,
+        setFilters,
+    } = useTable<IArticle>({
+        resource: activeTab === "yourFeed" ? "articles/feed" : "articles",
+        metaData: {
+            resource: "articles",
+        },
+        initialCurrent: 1,
+        initialPageSize: 6,
+    });
 
     const favoriteUnFavoriteIslLoading =
         tableQueryResult.isFetching || favoriteIsLoading || unFavoriteIsLoading;
@@ -65,37 +72,80 @@ export const HomePage: React.FC = () => {
         });
     };
 
+    useEffect(() => {
+        setCurrent(1);
+    }, [activeTab]);
+
     return (
         <div className="home-page">
             {!isSuccess && <Banner />}
             <div className="container page">
                 <div className="row">
                     <div className="col-md-9">
-                        <HomeNav
-                            isSuccess={isSuccess}
-                            feed={
-                                <Link
-                                    to={"/"}
-                                    className={`nav-link ${
-                                        activeTab === "yourFeed" ? "active" : ""
-                                    }`}
-                                    onClick={() => setActiveTab("yourFeed")}
-                                >
-                                    Your Feed
-                                </Link>
-                            }
-                            global={
-                                <Link
-                                    to={"/"}
-                                    className={`nav-link ${
-                                        activeTab === "global" ? "active" : ""
-                                    }`}
-                                    onClick={() => setActiveTab("global")}
-                                >
-                                    Global Feed
-                                </Link>
-                            }
-                        />
+                        <div className="feed-toggle">
+                            <ul className="nav nav-pills outline-active">
+                                <li className="nav-item">
+                                    <Link
+                                        to={"/"}
+                                        className={`nav-link ${
+                                            activeTab === "yourFeed"
+                                                ? "active"
+                                                : ""
+                                        }`}
+                                        onClick={() => {
+                                            setActiveTab("yourFeed");
+                                            setFilters([
+                                                {
+                                                    field: "tag",
+                                                    operator: "eq",
+                                                    value: undefined,
+                                                },
+                                            ]);
+                                        }}
+                                    >
+                                        Your Feed
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link
+                                        to={"/"}
+                                        className={`nav-link ${
+                                            activeTab === "global"
+                                                ? "active"
+                                                : ""
+                                        }`}
+                                        onClick={() => {
+                                            setActiveTab("global");
+                                            setFilters([
+                                                {
+                                                    field: "tag",
+                                                    operator: "eq",
+                                                    value: undefined,
+                                                },
+                                            ]);
+                                        }}
+                                    >
+                                        Global Feed
+                                    </Link>
+                                </li>
+                                {filters.map((filter, index) => {
+                                    return (
+                                        <li className="nav-item" key={index}>
+                                            <Link
+                                                to="/"
+                                                className={`nav-link ${
+                                                    activeTab === "tags"
+                                                        ? "active"
+                                                        : ""
+                                                }`}
+                                            >
+                                                # {filter.value}
+                                            </Link>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </div>
 
                         {!tableQueryResult.data?.data?.length && (
                             <div className="article-preview">
@@ -128,7 +178,13 @@ export const HomePage: React.FC = () => {
                             );
                         })}
                     </div>
-                    <Tag tags={tagList.data?.data} />
+                    <Tag
+                        tags={tagList.data?.data}
+                        setFilter={setFilters}
+                        onTagClick={() => {
+                            setActiveTab("tags");
+                        }}
+                    />
                 </div>
                 <Pagination
                     pageSize={pageSize}

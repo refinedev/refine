@@ -23,14 +23,16 @@ export const Pagination: React.FC<PaginationProps> = ({
                                     current !== index + 1 ? "" : " active"
                                 }`}
                             >
-                                <button
-                                    className="page-link"
-                                    onClick={() => {
-                                        setCurrent(index + 1);
-                                    }}
-                                >
-                                    {index + 1}
-                                </button>
+                                {total && total / pageSize > 1 && (
+                                    <button
+                                        className="page-link"
+                                        onClick={() => {
+                                            setCurrent(index + 1);
+                                        }}
+                                    >
+                                        {index + 1}
+                                    </button>
+                                )}
                             </li>
                         );
                     },

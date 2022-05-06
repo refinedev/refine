@@ -1,4 +1,3 @@
-import { IArticle, IProfile, IUser } from "interfaces";
 import routerProvider from "@pankod/refine-react-router-v6";
 import { CrudFilters } from "@pankod/refine-core";
 
@@ -7,13 +6,13 @@ const { Link } = routerProvider;
 type ProfileNavProps = {
     params: any;
     profileData: any;
-    filters: () => void;
+    setFilters: (filters: CrudFilters) => void;
 };
 
 export const ProfileNav: React.FC<ProfileNavProps> = ({
     params,
     profileData,
-    filters,
+    setFilters,
 }) => {
     return (
         <div className="articles-toggle">
@@ -25,7 +24,18 @@ export const ProfileNav: React.FC<ProfileNavProps> = ({
                         }`}
                         to={`/profile/@${profileData?.data.username}`}
                         onClick={() => {
-                            filters();
+                            setFilters([
+                                {
+                                    field: "favorited",
+                                    value: undefined,
+                                    operator: "eq",
+                                },
+                                {
+                                    field: "author",
+                                    value: params?.username,
+                                    operator: "eq",
+                                },
+                            ]);
                         }}
                     >
                         My Articles
@@ -38,7 +48,18 @@ export const ProfileNav: React.FC<ProfileNavProps> = ({
                         }`}
                         to={`/profile/@${profileData?.data.username}/favorites`}
                         onClick={() => {
-                            filters();
+                            setFilters([
+                                {
+                                    field: "author",
+                                    value: undefined,
+                                    operator: "eq",
+                                },
+                                {
+                                    field: "favorited",
+                                    value: params?.username,
+                                    operator: "eq",
+                                },
+                            ]);
                         }}
                     >
                         Favorited Articles

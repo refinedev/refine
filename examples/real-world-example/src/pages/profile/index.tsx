@@ -1,45 +1,55 @@
+import { useEffect } from "react";
 import {
     useGetIdentity,
     useTable,
-    useNavigation,
     useDelete,
     useUpdate,
     useOne,
 } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
-
-import { IArticle, IProfile, IUser } from "interfaces";
-import { ArticleList } from "components/article";
 import dayjs from "dayjs";
+
+import { ArticleList } from "components/article";
 import { Pagination } from "components/Pagination";
 import { UserInfo, ProfileNav } from "components/profile";
 
-const { useParams, Link } = routerProvider;
+import { IArticle, IProfile, IUser } from "interfaces";
+
+const { useParams } = routerProvider;
 
 export const ProfilePage: React.FC = () => {
     const { data: user } = useGetIdentity<IUser>();
-    const { push } = useNavigation();
     const { mutate: updateMutate } = useUpdate();
     const { mutate: deleteMutate } = useDelete();
-    const { mutate: followMutate } = useUpdate();
-    const { mutate: unFollowMutate } = useDelete();
+
     const params = useParams();
 
-    const {
-        tableQueryResult,
-        pageSize,
-        current,
-        setCurrent,
-        setFilters,
-        filters,
-    } = useTable<IArticle>({
-        resource: "articles",
-        queryOptions: {
-            enabled: params?.username !== undefined,
-        },
-    });
+    const { tableQueryResult, pageSize, current, setCurrent, setFilters } =
+        useTable<IArticle>({
+            resource: "articles",
+            queryOptions: {
+                enabled: params?.username !== undefined,
+            },
+        });
 
-    console.log("filters", filters);
+    useEffect(() => {
+        setFilters([
+            {
+                field: "author",
+                value: params?.username,
+                operator: "eq",
+            },
+            {
+                field: "favorited",
+                value: undefined,
+                operator: "eq",
+            },
+        ]);
+    }, [params?.username]);
+
+    useEffect(() => {
+        setCurrent(1);
+    }, [params?.username, params?.page]);
 
     const { data: profileData, isLoading: isLoading } = useOne<IProfile>({
         resource: "profiles",
@@ -72,7 +82,7 @@ export const ProfilePage: React.FC = () => {
     };
 
     const followUser = (username: string) => {
-        followMutate({
+        updateMutate({
             resource: "profiles",
             id: username,
             metaData: {
@@ -83,7 +93,7 @@ export const ProfilePage: React.FC = () => {
     };
 
     const unFollowUser = (username: string) => {
-        unFollowMutate({
+        deleteMutate({
             resource: "profiles",
             id: username,
             metaData: {
@@ -91,8 +101,6 @@ export const ProfilePage: React.FC = () => {
             },
         });
     };
-
-    console.log(params);
 
     return (
         <div className="profile-page">
@@ -115,34 +123,7 @@ export const ProfilePage: React.FC = () => {
                         <ProfileNav
                             params={params}
                             profileData={profileData}
-                            filters={() => {
-                                // this is a temp fix the filters are not getting reset
-                                params?.page
-                                    ? setFilters([
-                                          {
-                                              field: "favorited",
-                                              value: undefined,
-                                              operator: "eq",
-                                          },
-                                          {
-                                              field: "author",
-                                              value: params?.username,
-                                              operator: "eq",
-                                          },
-                                      ])
-                                    : setFilters([
-                                          {
-                                              field: "author",
-                                              value: undefined,
-                                              operator: "eq",
-                                          },
-                                          {
-                                              field: "favorited",
-                                              value: params?.username,
-                                              operator: "eq",
-                                          },
-                                      ]);
-                            }}
+                            setFilters={setFilters}
                         />
 
                         {!tableQueryResult.data?.total && (
