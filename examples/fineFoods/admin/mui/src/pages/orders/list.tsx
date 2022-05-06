@@ -251,6 +251,8 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         resource: "orderStatuses",
     });
 
+    console.log({ orderAutocompleteProps, storeAutocompleteProps });
+
     //TODO: Add type to useAutocomplete
     const { autocompleteProps: userAutocompleteProps } = useAutocomplete({
         resource: "users",
@@ -286,10 +288,11 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                         {...orderAutocompleteProps}
                                         {...field}
                                         onChange={(_, value) => {
-                                            field.onChange(value.text);
+                                            console.log(value);
+                                            field.onChange(value?.text);
                                         }}
                                         getOptionLabel={(item) => {
-                                            return item.title ? item.title : "";
+                                            return item.text ? item.text : "";
                                         }}
                                         isOptionEqualToValue={(option, value) =>
                                             value === undefined ||
@@ -320,7 +323,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                         {...storeAutocompleteProps}
                                         {...field}
                                         onChange={(_, value) => {
-                                            field.onChange(value.id);
+                                            field.onChange(value?.id);
                                         }}
                                         getOptionLabel={(item) => {
                                             return item.title ? item.title : "";
@@ -354,10 +357,12 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                         {...userAutocompleteProps}
                                         {...field}
                                         onChange={(_, value) => {
-                                            field.onChange(value.id);
+                                            field.onChange(value?.id);
                                         }}
                                         getOptionLabel={(item) => {
-                                            return item.title ? item.title : "";
+                                            return item.fullName
+                                                ? item.fullName
+                                                : "";
                                         }}
                                         isOptionEqualToValue={(option, value) =>
                                             value === undefined ||
@@ -380,7 +385,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                     />
                                 )}
                             />
-                            <TextField
+                            {/*            <TextField
                                 {...register("createdAt")}
                                 label={t("orders.filter.createdAt.label")}
                                 placeholder={t(
@@ -392,7 +397,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                 <MenuItem value="published">Published</MenuItem>
                                 <MenuItem value="draft">Draft</MenuItem>
                                 <MenuItem value="rejected">Rejected</MenuItem>
-                            </TextField>
+                            </TextField> */}
                             <br />
                             <Button type="submit" variant="contained">
                                 {t("orders.filter.submit")}
