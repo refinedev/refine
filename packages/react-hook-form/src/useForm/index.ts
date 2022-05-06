@@ -65,7 +65,7 @@ export const useForm = <
         ...rest,
     });
 
-    const { watch, reset, getValues } = useHookFormResult;
+    const { watch, reset, getValues, handleSubmit } = useHookFormResult;
 
     useEffect(() => {
         const fields: any = {};
@@ -99,6 +99,10 @@ export const useForm = <
 
     return {
         ...useHookFormResult,
+        handleSubmit: (values) => {
+            setWarnWhen(false);
+            return handleSubmit(values);
+        },
         refineCore: useFormCoreResult,
     };
 };
