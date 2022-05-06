@@ -287,9 +287,11 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                     <Autocomplete
                                         {...orderAutocompleteProps}
                                         {...field}
+                                        multiple
                                         onChange={(_, value) => {
-                                            console.log(value);
-                                            field.onChange(value?.text);
+                                            field.onChange(
+                                                value.map((p) => p.text),
+                                            );
                                         }}
                                         getOptionLabel={(item) => {
                                             return item.text ? item.text : "";

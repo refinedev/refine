@@ -117,7 +117,7 @@ export interface IOrderFilterVariables {
     store?: string;
     user?: string;
     createdAt?: string;
-    status?: string;
+    status?: string[];
 }
 
 export interface IUserFilterVariables {
