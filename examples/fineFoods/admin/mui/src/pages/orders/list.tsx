@@ -14,7 +14,6 @@ import {
     DataGrid,
     Grid,
     Box,
-    MenuItem,
     TextField,
     Card,
     CardContent,
@@ -33,7 +32,8 @@ import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 import { OrderStatus, CustomTooltip } from "components";
-import { IOrder, IOrderFilterVariables, IStore } from "interfaces";
+import { IOrder, IOrderFilterVariables } from "interfaces";
+import { getDefaultFilter } from "@pankod/refine-antd";
 
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
@@ -176,7 +176,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         [],
     );
 
-    const { dataGridProps, onSearch } = useDataGrid<
+    const { dataGridProps, onSearch, filters } = useDataGrid<
         IOrder,
         HttpError,
         IOrderFilterVariables
@@ -187,45 +187,35 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
             const filters: CrudFilters = [];
             const { q, store, user, createdAt, status } = params;
 
-            if (q) {
-                filters.push({
-                    field: "q",
-                    operator: "eq",
-                    value: q,
-                });
-            }
+            filters.push({
+                field: "q",
+                operator: "eq",
+                value: q !== "" ? q : undefined,
+            });
 
-            if (store) {
-                filters.push({
-                    field: "store.id",
-                    operator: "eq",
-                    value: store,
-                });
-            }
+            filters.push({
+                field: "store.id",
+                operator: "eq",
+                value: (store ?? [].length) > 0 ? store : undefined,
+            });
 
-            if (user) {
-                filters.push({
-                    field: "user.id",
-                    operator: "eq",
-                    value: user,
-                });
-            }
+            filters.push({
+                field: "user.id",
+                operator: "eq",
+                value: user,
+            });
 
-            if (status) {
-                filters.push({
-                    field: "status.text",
-                    operator: "in",
-                    value: status,
-                });
-            }
+            filters.push({
+                field: "status.text",
+                operator: "in",
+                value: (status ?? []).length > 0 ? status : undefined,
+            });
 
-            if (createdAt) {
-                filters.push({
-                    field: "createdAt",
-                    operator: "eq",
-                    value: createdAt,
-                });
-            }
+            filters.push({
+                field: "createdAt",
+                operator: "eq",
+                value: createdAt,
+            });
 
             return filters;
         },
@@ -233,24 +223,32 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
 
     const { show } = useNavigation();
 
-    const { register, handleSubmit, control } =
-        useForm<BaseRecord, HttpError, IOrderFilterVariables>();
-
-    //TODO: Add type to useAutocomplete
-    const { autocompleteProps: storeAutocompleteProps } = useAutocomplete({
-        resource: "stores",
+    const { register, handleSubmit, control } = useForm<
+        BaseRecord,
+        HttpError,
+        IOrderFilterVariables
+    >({
+        defaultValues: {
+            status: getDefaultFilter("status.text", filters, "in"),
+            q: getDefaultFilter("q", filters, "eq"),
+            store: getDefaultFilter("store.id", filters, "eq"),
+            user: getDefaultFilter("user.id", filters, "eq"),
+        },
     });
 
-    //TODO: Add type to useAutocomplete
+    const { autocompleteProps: storeAutocompleteProps } = useAutocomplete({
+        resource: "stores",
+        defaultValue: getDefaultFilter("store.id", filters, "eq"),
+    });
+
     const { autocompleteProps: orderAutocompleteProps } = useAutocomplete({
         resource: "orderStatuses",
     });
 
-    console.log({ orderAutocompleteProps, storeAutocompleteProps });
-
-    //TODO: Add type to useAutocomplete
     const { autocompleteProps: userAutocompleteProps } = useAutocomplete({
         resource: "users",
+        optionLabel: "fullName",
+        defaultValue: getDefaultFilter("user.id", filters, "eq"),
     });
 
     return (
@@ -285,16 +283,23 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                         multiple
                                         onChange={(_, value) => {
                                             field.onChange(
-                                                value.map((p) => p.text),
+                                                value.map((p) => p.text ?? p),
                                             );
                                         }}
                                         getOptionLabel={(item) => {
-                                            return item.text ? item.text : "";
+                                            return item?.text
+                                                ? item.text
+                                                : item;
                                         }}
-                                        isOptionEqualToValue={(option, value) =>
-                                            value === undefined ||
-                                            option.text === value.text
-                                        }
+                                        isOptionEqualToValue={(
+                                            option,
+                                            value,
+                                        ) => {
+                                            return (
+                                                value === undefined ||
+                                                option.text === value
+                                            );
+                                        }}
                                         renderInput={(params) => (
                                             <TextField
                                                 {...params}
@@ -320,14 +325,21 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                         {...storeAutocompleteProps}
                                         {...field}
                                         onChange={(_, value) => {
-                                            field.onChange(value?.id);
+                                            field.onChange(value?.id ?? value);
                                         }}
                                         getOptionLabel={(item) => {
-                                            return item.title ? item.title : "";
+                                            return item.title
+                                                ? item.title
+                                                : storeAutocompleteProps?.options?.find(
+                                                      (p) =>
+                                                          p.id.toString() ===
+                                                          item.toString(),
+                                                  )?.title ?? "";
                                         }}
                                         isOptionEqualToValue={(option, value) =>
                                             value === undefined ||
-                                            option.id === value.id
+                                            option.id.toString() ===
+                                                value.toString()
                                         }
                                         renderInput={(params) => (
                                             <TextField
@@ -354,17 +366,26 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                         {...userAutocompleteProps}
                                         {...field}
                                         onChange={(_, value) => {
-                                            field.onChange(value?.id);
+                                            field.onChange(value?.id ?? value);
                                         }}
                                         getOptionLabel={(item) => {
                                             return item.fullName
                                                 ? item.fullName
-                                                : "";
+                                                : userAutocompleteProps?.options?.find(
+                                                      (p) =>
+                                                          p.id.toString() ===
+                                                          item.toString(),
+                                                  )?.fullName ?? "";
                                         }}
-                                        isOptionEqualToValue={(option, value) =>
-                                            value === undefined ||
-                                            option.id === value.id
-                                        }
+                                        isOptionEqualToValue={(
+                                            option,
+                                            value,
+                                        ) => {
+                                            return (
+                                                value === undefined ||
+                                                option.id === value
+                                            );
+                                        }}
                                         renderInput={(params) => (
                                             <TextField
                                                 {...params}
