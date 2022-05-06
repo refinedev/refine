@@ -23,7 +23,7 @@ export const UserList: React.FC = () => {
             {
                 field: "gsm",
                 headerName: t("users.fields.gsm"),
-                flex: 1,
+                width: 150,
             },
             {
                 field: "avatar",
@@ -34,12 +34,12 @@ export const UserList: React.FC = () => {
             {
                 field: "firstName",
                 headerName: t("users.fields.firstName"),
-                flex: 1,
+                width: 150,
             },
             {
                 field: "lastName",
                 headerName: t("users.fields.lastName"),
-                flex: 1,
+                width: 150,
             },
             {
                 field: "gender",
@@ -58,7 +58,7 @@ export const UserList: React.FC = () => {
                 renderCell: ({ row }) => (
                     <DateField value={row.createdAt} format="LLL" />
                 ),
-                flex: 1,
+                width: 200,
             },
             {
                 field: "actions",
@@ -71,6 +71,9 @@ export const UserList: React.FC = () => {
                         recordItemId={row.id}
                     />
                 ),
+                align: "center",
+                headerAlign: "center",
+                flex: 1,
             },
         ],
         [],
