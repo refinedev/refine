@@ -156,6 +156,7 @@ export const useImport = <
         };
 
         onFinish?.(result);
+        setIsLoading(false);
     };
 
     useEffect(() => {

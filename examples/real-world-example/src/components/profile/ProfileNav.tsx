@@ -1,5 +1,4 @@
 import routerProvider from "@pankod/refine-react-router-v6";
-import { CrudFilters } from "@pankod/refine-core";
 
 const { Link } = routerProvider;
 

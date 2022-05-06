@@ -1,6 +1,6 @@
-import { GetListResponse } from "@pankod/refine-core";
-import { IArticle, IProfile, IUser } from "interfaces";
 import { useNavigation } from "@pankod/refine-core";
+
+import { IUser } from "interfaces";
 
 type UserInfoProps = {
     loading: boolean;

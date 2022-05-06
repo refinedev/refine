@@ -14,6 +14,7 @@ export const Tag: React.FC<TagProps> = ({ tags, setFilter, onTagClick }) => {
         <div className="col-md-3">
             <div className="sidebar">
                 <p>Popular Tags</p>
+                {!tags && <p>Loading tags...</p>}
                 <div className="tag-list">
                     {tags?.map((item, index: number) => {
                         return (

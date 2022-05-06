@@ -24,6 +24,7 @@ export const useCheckError = (): UseMutationResult<
 
     const queryResponse = useMutation("useCheckError", checkErrorFromContext, {
         onError: (redirectPath?: string) => {
+            console.log(redirectPath);
             logout({ redirectPath });
         },
     });

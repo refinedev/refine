@@ -20,11 +20,16 @@ export const authProvider = (axiosInstance: AxiosInstance): AuthProvider => {
 
             return Promise.resolve("/");
         },
-        logout: () => {
+        logout: (props) => {
             localStorage.removeItem(TOKEN_KEY);
+            return Promise.resolve(props?.redirectPath);
+        },
+        checkError: (error) => {
+            if (error?.response?.status === 401) {
+                return Promise.reject("/register");
+            }
             return Promise.resolve();
         },
-        checkError: () => Promise.resolve(),
         checkAuth: () => Promise.resolve(),
         getPermissions: () => Promise.resolve(),
         getUserIdentity: async () => {

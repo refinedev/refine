@@ -21,7 +21,7 @@ const { Link } = routerProvider;
 export const HomePage: React.FC = () => {
     const [activeTab, setActiveTab] =
         useState<"global" | "yourFeed" | "tags">("global");
-    const { isSuccess } = useGetIdentity();
+    const { isSuccess, isFetching } = useGetIdentity();
     const { mutate: favoriteMutate, isLoading: favoriteIsLoading } =
         useUpdate();
     const { mutate: unFavoriteMutate, isLoading: unFavoriteIsLoading } =
@@ -73,12 +73,22 @@ export const HomePage: React.FC = () => {
     };
 
     useEffect(() => {
+        if (isSuccess) {
+            setActiveTab("yourFeed");
+        }
+    }, [isSuccess]);
+
+    useEffect(() => {
         setCurrent(1);
     }, [activeTab]);
 
+    if (isFetching) {
+        return null;
+    }
+
     return (
         <div className="home-page">
-            {!isSuccess && <Banner />}
+            {!isSuccess && !isFetching && <Banner />}
             <div className="container page">
                 <div className="row">
                     <div className="col-md-9">
@@ -147,11 +157,18 @@ export const HomePage: React.FC = () => {
                             </ul>
                         </div>
 
-                        {!tableQueryResult.data?.data?.length && (
+                        {tableQueryResult.isLoading && (
                             <div className="article-preview">
-                                No articles are here... yet
+                                Loading arcticles...
                             </div>
                         )}
+
+                        {!tableQueryResult.data?.data?.length &&
+                            !tableQueryResult.isFetching && (
+                                <div className="article-preview">
+                                    No articles are here... yet
+                                </div>
+                            )}
 
                         {tableQueryResult?.data?.data.map((item) => {
                             return (
@@ -186,12 +203,14 @@ export const HomePage: React.FC = () => {
                         }}
                     />
                 </div>
-                <Pagination
-                    pageSize={pageSize}
-                    current={current}
-                    setCurrent={setCurrent}
-                    total={tableQueryResult.data?.total}
-                />
+                {(tableQueryResult.data?.total || 0) > 6 && (
+                    <Pagination
+                        pageSize={pageSize}
+                        current={current}
+                        setCurrent={setCurrent}
+                        total={tableQueryResult.data?.total}
+                    />
+                )}
             </div>
         </div>
     );
