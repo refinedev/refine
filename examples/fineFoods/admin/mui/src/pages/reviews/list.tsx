@@ -38,6 +38,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
             resource: "reviews",
             ids: [id],
             values: { status },
+            mutationMode: "undoable",
         });
     };
 
@@ -137,6 +138,13 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
 
     const { dataGridProps } = useDataGrid<IReview>({
         columns,
+        permanentFilter: [
+            {
+                field: "status",
+                operator: "eq",
+                value: "pending",
+            },
+        ],
     });
 
     const EnhancedTableToolbar = (props: { numSelected: React.Key[] }) => {
