@@ -25,7 +25,6 @@ export const authProvider = (axiosInstance: AxiosInstance): AuthProvider => {
             return Promise.resolve();
         },
         checkError: (error) => {
-            console.log(error.response);
             if (error?.response?.status === 401) {
                 return Promise.reject();
             }
