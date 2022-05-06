@@ -49,6 +49,7 @@
         "@mui/icons-material": "^5.5.1",
         "@mui/lab": "^5.0.0-alpha.75",
         "@pankod/refine-core": "^3.15.2",
+        "@pankod/refine-react-hook-form": "^3.16.0",
         "notistack": "^2.0.4",
         "dayjs": "^1.10.7",
         "react-markdown": "^6.0.1",
