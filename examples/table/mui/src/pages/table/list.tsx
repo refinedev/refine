@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 import React, { useState, useCallback } from "react";
-import { useDeleteMany, useOne, useSelect } from "@pankod/refine-core";
+import { BaseKey, useDeleteMany, useOne, useSelect } from "@pankod/refine-core";
 import { alpha } from "@mui/material/styles";
 import {
     DeleteButton,
@@ -110,9 +110,7 @@ export const PostList: React.FC = () => {
                             >
                                 Edit
                             </EditButton>
-                            <DeleteButton
-                                onClick={() => deleteSelectedItems([value])}
-                            >
+                            <DeleteButton recordItemId={value}>
                                 Delete
                             </DeleteButton>
                         </Stack>
@@ -194,9 +192,7 @@ export const PostList: React.FC = () => {
     );
 
     const categoryIds =
-        tableData?.data?.map(
-            (item: { category: { id: any } }) => item.category.id,
-        ) ?? [];
+        tableData?.data?.map((item: any) => item.category.id) ?? [];
 
     const { options } = useSelect<ICategory>({
         resource: "categories",
@@ -302,10 +298,10 @@ export const PostList: React.FC = () => {
 
     const EnhancedTableToolbar = (props: {
         numSelected: number;
+
         onDelete: () => void;
     }) => {
         const { numSelected, onDelete } = props;
-
         return (
             <Toolbar
                 sx={{
@@ -390,9 +386,13 @@ export const PostList: React.FC = () => {
                         </Box>
                         <EnhancedTableToolbar
                             numSelected={Object.keys(selectedRowIds).length}
-                            onDelete={() =>
-                                deleteSelectedItems(Object.keys(selectedRowIds))
-                            }
+                            onDelete={() => {
+                                console.log("selectedRowIds", selectedRowIds);
+
+                                deleteSelectedItems(
+                                    Object.keys(selectedRowIds),
+                                );
+                            }}
                         />
                         <TableContainer>
                             <Table {...getTableProps()} size="small">
