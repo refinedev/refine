@@ -412,6 +412,9 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         <DataGrid
                             {...dataGridProps}
                             filterModel={undefined}
+                            onRowClick={({ id }) => {
+                                show("orders", id);
+                            }}
                             rowsPerPageOptions={[10, 20, 50, 100]}
                         />
                     </CardContent>
