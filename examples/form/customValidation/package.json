@@ -1,12 +1,12 @@
 {
   "name": "refine-custom-validation-example-app",
-  "version": "3.16.0",
+  "version": "3.16.2",
   "private": true,
   "dependencies": {
-    "@pankod/refine-antd": "^3.16.0",
-    "@pankod/refine-core": "^3.16.0",
-    "@pankod/refine-react-router-v6": "^3.16.0",
-    "@pankod/refine-simple-rest": "^3.16.0",
+    "@pankod/refine-antd": "*",
+    "@pankod/refine-core": "*",
+    "@pankod/refine-react-router-v6": "*",
+    "@pankod/refine-simple-rest": "*",
     "@types/node": "^12.20.11",
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.4",
