@@ -62,6 +62,7 @@ You can find access control examples made with **refine**
 
 -   **Casbin** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/casbin) - [Demo](https://codesandbox.io/s/access-control-casbin-react-l06vy)
 -   **Cerbos** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/cerbos) - [Demo](https://codesandbox.io/s/access-control-cerbos-react-mbhei)
+-   **Permify** &#8594 [Source Code](https://github.com/Permify/permify-refine) - [Demo](https://codesandbox.io/s/access-control-permify-react-tcs2g1)
 
 :::
 
