@@ -85,7 +85,6 @@ const App: React.FC = () => {
                     edit: CategoryEdit,
                     show: CategoryShow,
                     canDelete: true,
-                    options: {},
                 },
             ]}
             notificationProvider={notificationProvider}
