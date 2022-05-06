@@ -1,5 +1,6 @@
 import { useNavigation } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
+import { ErrorList } from "components/Error";
 
 export const EditorPage: React.FC = () => {
     const { push } = useNavigation();
@@ -9,16 +10,23 @@ export const EditorPage: React.FC = () => {
         register,
         handleSubmit,
         formState: { errors },
+        setError,
+        clearErrors,
     } = useForm({
         refineCoreProps: {
             resource: "articles",
             redirect: false,
+            onMutationError: (error) => {
+                setError("api", error?.response?.data.errors);
+            },
+            onMutationSuccess: (response) => {
+                push(`/article/${response.data.article.slug}`);
+            },
         },
     });
 
-    const onSubmit = async (data: any) => {
-        await onFinish({ article: data });
-        push("/");
+    const onSubmit = (data: any) => {
+        onFinish({ article: data });
     };
 
     return (
@@ -26,7 +34,8 @@ export const EditorPage: React.FC = () => {
             <div className="container page">
                 <div className="row">
                     <div className="col-md-10 offset-md-1 col-xs-12">
-                        <form onSubmit={handleSubmit(onSubmit)}>
+                        {errors.api && <ErrorList errors={errors.api} />}
+                        <form>
                             <fieldset>
                                 <fieldset className="form-group">
                                     <input
@@ -85,11 +94,16 @@ export const EditorPage: React.FC = () => {
                                 <button
                                     className="btn btn-lg pull-xs-right btn-primary"
                                     type="submit"
+                                    disabled={formLoading}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        clearErrors();
+                                        handleSubmit(onSubmit)();
+                                    }}
                                 >
                                     Publish Article
                                 </button>
                             </fieldset>
-                            {formLoading && <p>Loading</p>}
                         </form>
                     </div>
                 </div>

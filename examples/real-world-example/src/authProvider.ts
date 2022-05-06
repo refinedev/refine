@@ -24,7 +24,13 @@ export const authProvider = (axiosInstance: AxiosInstance): AuthProvider => {
             localStorage.removeItem(TOKEN_KEY);
             return Promise.resolve();
         },
-        checkError: () => Promise.resolve(),
+        checkError: (error) => {
+            console.log(error.response);
+            if (error?.response?.status === 401) {
+                return Promise.reject();
+            }
+            return Promise.resolve();
+        },
         checkAuth: () => Promise.resolve(),
         getPermissions: () => Promise.resolve(),
         getUserIdentity: async () => {

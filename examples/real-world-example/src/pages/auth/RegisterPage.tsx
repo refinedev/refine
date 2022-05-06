@@ -7,15 +7,18 @@ import { ErrorList } from "components/Error";
 const { Link } = routerProvider;
 
 export const RegisterPage: React.FC = () => {
-    const { mutate: login } = useLogin();
+    const { mutate: login, isLoading: isLoadingLogin } = useLogin();
 
     const {
-        refineCore: { onFinish },
+        refineCore: {
+            onFinish,
+            mutationResult: { isLoading: isLoadingRegister },
+        },
         register,
         handleSubmit,
         setError,
         clearErrors,
-        formState: { errors, isSubmitting },
+        formState: { errors },
     } = useForm({
         refineCoreProps: {
             resource: "users",
@@ -84,18 +87,20 @@ export const RegisterPage: React.FC = () => {
                                     </ul>
                                 )}
                             </fieldset>
-                            <input
+                            <button
                                 className="btn btn-lg btn-primary pull-xs-right"
-                                onClick={() => {
+                                onClick={(e) => {
+                                    e.preventDefault();
                                     clearErrors();
                                     handleSubmit(async (values) => {
                                         await onFinish(values);
                                         login(values);
                                     })();
                                 }}
-                                disabled={isSubmitting}
-                                value="Sign up"
-                            />
+                                disabled={isLoadingLogin || isLoadingRegister}
+                            >
+                                Sign up
+                            </button>
                         </form>
                     </div>
                 </div>

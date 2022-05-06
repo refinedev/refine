@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
     useGetIdentity,
     useList,
@@ -29,6 +29,12 @@ export const HomePage: React.FC = () => {
     const tagList = useList<ITag[]>({
         resource: "tags",
     });
+
+    useEffect(() => {
+        if (isSuccess) {
+            setActiveTab("yourFeed");
+        }
+    }, [isSuccess]);
 
     const { tableQueryResult, pageSize, current, setCurrent } =
         useTable<IArticle>({
@@ -97,7 +103,7 @@ export const HomePage: React.FC = () => {
                             }
                         />
 
-                        {tableQueryResult.isFetching && (
+                        {tableQueryResult.isLoading && (
                             <div className="article-preview">
                                 Loading arcticles...
                             </div>
@@ -110,37 +116,34 @@ export const HomePage: React.FC = () => {
                                 </div>
                             )}
 
-                        {!tableQueryResult.isFetching &&
-                            tableQueryResult?.data?.data.map((item) => {
-                                return (
-                                    <ArticleList
-                                        key={item.slug}
-                                        slug={item.slug}
-                                        author={item.author.username}
-                                        image={item.author.image}
-                                        title={item.title}
-                                        createdAt={dayjs(item.createdAt).format(
-                                            "MMM DD, YYYY",
-                                        )}
-                                        favCount={item.favoritesCount}
-                                        description={item.description}
-                                        tagList={item.tagList}
-                                        favArticle={(slug: string) => {
-                                            item.favorited
-                                                ? unFavArticle(slug)
-                                                : favArticle(slug);
-                                        }}
-                                        isItemFavorited={item.favorited}
-                                        isItemLoading={
-                                            favoriteUnFavoriteIslLoading
-                                        }
-                                    />
-                                );
-                            })}
+                        {tableQueryResult?.data?.data.map((item) => {
+                            return (
+                                <ArticleList
+                                    key={item.slug}
+                                    slug={item.slug}
+                                    author={item.author.username}
+                                    image={item.author.image}
+                                    title={item.title}
+                                    createdAt={dayjs(item.createdAt).format(
+                                        "MMM DD, YYYY",
+                                    )}
+                                    favCount={item.favoritesCount}
+                                    description={item.description}
+                                    tagList={item.tagList}
+                                    favArticle={(slug: string) => {
+                                        item.favorited
+                                            ? unFavArticle(slug)
+                                            : favArticle(slug);
+                                    }}
+                                    isItemFavorited={item.favorited}
+                                    isItemLoading={favoriteUnFavoriteIslLoading}
+                                />
+                            );
+                        })}
                     </div>
                     <Tag tags={tagList.data?.data} />
                 </div>
-                {(tagList.data?.total || 0) > 6 && (
+                {(tableQueryResult.data?.total || 0) > 6 && (
                     <Pagination
                         pageSize={pageSize}
                         current={current}

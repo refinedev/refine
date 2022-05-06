@@ -16,7 +16,7 @@ export const LoginPage: React.FC = () => {
         formState: { errors },
     } = useForm();
 
-    const { mutate: login } = useLogin();
+    const { mutate: login, isLoading } = useLogin();
 
     return (
         <>
@@ -63,11 +63,12 @@ export const LoginPage: React.FC = () => {
                                         </ul>
                                     )}
                                 </fieldset>
-                                <input
-                                    onClick={() => {
+                                <button
+                                    onClick={(e) => {
+                                        e.preventDefault();
                                         clearErrors();
                                         handleSubmit((values) => {
-                                            login(values, {
+                                            return login(values, {
                                                 onError: (error: any) => {
                                                     setError(
                                                         "api",
@@ -79,8 +80,10 @@ export const LoginPage: React.FC = () => {
                                         })();
                                     }}
                                     className="btn btn-lg btn-primary pull-xs-right"
-                                    value="Submit"
-                                />
+                                    disabled={isLoading}
+                                >
+                                    Submit
+                                </button>
                             </form>
                         </div>
                     </div>

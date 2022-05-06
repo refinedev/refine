@@ -15,17 +15,12 @@ const { useParams, Link } = routerProvider;
 
 export const ArticlePage: React.FC = () => {
     const params = useParams();
-    const { data: user } = useGetIdentity();
-    const { mutateAsync: deleteMutate, isLoading: deleteArticleIsLoading } =
-        useDelete();
+    const { data: user, isFetching: userIsFetching } = useGetIdentity();
+
     const { push } = useNavigation();
-    const { mutate: favoriteMutate, isLoading: favoriteIsLoading } =
-        useUpdate();
-    const { mutate: unFavoriteMutate, isLoading: unFavoriteIsLoading } =
-        useDelete();
-    const { mutate: followMutate, isLoading: followIsLoading } = useUpdate();
-    const { mutate: unFollowMutate, isLoading: unfollowIsLoading } =
-        useDelete();
+
+    const { mutate: updateMutate, isLoading: updateIsLoading } = useUpdate();
+    const { mutate: deleteMutate, isLoading: deleteIsLoading } = useDelete();
 
     const {
         data: article,
@@ -43,11 +38,7 @@ export const ArticlePage: React.FC = () => {
         },
     });
 
-    const favoriteUnFavoriteIslLoading =
-        isFetchingArticle || favoriteIsLoading || unFavoriteIsLoading;
-
-    const followUnfollowMutationIsLoading =
-        isFetchingArticle || followIsLoading || unfollowIsLoading;
+    const isLoading = isFetchingArticle || updateIsLoading || deleteIsLoading;
 
     const { data: commentData, refetch: refetchArticleComments } = useOne({
         resource: "articles",
@@ -81,16 +72,22 @@ export const ArticlePage: React.FC = () => {
         onFinish({ comment: data });
     };
 
-    const deleteArticle = async () => {
-        await deleteMutate({
-            resource: `articles`,
-            id: params.slug,
-        });
-        push("/");
+    const deleteArticle = () => {
+        deleteMutate(
+            {
+                resource: `articles`,
+                id: params.slug,
+            },
+            {
+                onSuccess: () => {
+                    push("/");
+                },
+            },
+        );
     };
 
     const favArticle = () => {
-        favoriteMutate({
+        updateMutate({
             resource: "articles",
             id: params?.slug,
             metaData: {
@@ -101,7 +98,7 @@ export const ArticlePage: React.FC = () => {
     };
 
     const unFavArticle = () => {
-        unFavoriteMutate({
+        deleteMutate({
             resource: "articles",
             id: params?.slug,
             metaData: {
@@ -111,7 +108,7 @@ export const ArticlePage: React.FC = () => {
     };
 
     const followUser = (username: string) => {
-        followMutate(
+        updateMutate(
             {
                 resource: "profiles",
                 id: username,
@@ -129,7 +126,7 @@ export const ArticlePage: React.FC = () => {
     };
 
     const unFollowUser = (username: string) => {
-        unFollowMutate(
+        deleteMutate(
             {
                 resource: "profiles",
                 id: username,
@@ -177,7 +174,6 @@ export const ArticlePage: React.FC = () => {
                                 user?.username ===
                                     article?.data.author.username ? (
                                     <>
-                                        {}
                                         <button
                                             className="btn btn-outline-secondary btn-sm"
                                             onClick={() => {
@@ -192,7 +188,7 @@ export const ArticlePage: React.FC = () => {
                                         &nbsp;
                                         <button
                                             className={`${
-                                                deleteArticleIsLoading
+                                                deleteIsLoading
                                                     ? "btn btn-outline-danger btn-sm disabled"
                                                     : "btn btn-outline-danger btn-sm"
                                             }`}
@@ -211,11 +207,7 @@ export const ArticlePage: React.FC = () => {
                                                 article?.data.author.following
                                                     ? "btn btn-sm action-btn ng-binding btn-secondary"
                                                     : "btn btn-sm btn-outline-secondary"
-                                            } ${
-                                                followUnfollowMutationIsLoading
-                                                    ? "disabled"
-                                                    : ""
-                                            }`}
+                                            } ${isLoading ? "disabled" : ""}`}
                                             onClick={() => {
                                                 article?.data.author.following
                                                     ? unFollowUser(
@@ -240,11 +232,7 @@ export const ArticlePage: React.FC = () => {
                                                 article?.data.favorited
                                                     ? "btn btn-sm btn-primary"
                                                     : "btn btn-sm btn-outline-primary"
-                                            } ${
-                                                favoriteUnFavoriteIslLoading
-                                                    ? "disabled"
-                                                    : ""
-                                            }`}
+                                            } ${isLoading ? "disabled" : ""}`}
                                             onClick={() => {
                                                 article?.data.favorited
                                                     ? unFavArticle()
@@ -393,28 +381,41 @@ export const ArticlePage: React.FC = () => {
 
                         <div className="row">
                             <div className="col-xs-12 col-md-8 offset-md-2">
-                                <form
-                                    onSubmit={handleSubmit(handleSubmitComment)}
-                                    className="card comment-form"
-                                >
-                                    <div className="card-block">
-                                        <textarea
-                                            {...register("body")}
-                                            className="form-control"
-                                            placeholder="Write a comment..."
-                                            rows={3}
-                                        ></textarea>
+                                {user && (
+                                    <form
+                                        onSubmit={handleSubmit(
+                                            handleSubmitComment,
+                                        )}
+                                        className="card comment-form"
+                                    >
+                                        <div className="card-block">
+                                            <textarea
+                                                {...register("body")}
+                                                className="form-control"
+                                                placeholder="Write a comment..."
+                                                rows={3}
+                                            ></textarea>
+                                        </div>
+                                        <div className="card-footer">
+                                            <img
+                                                src={user?.image}
+                                                className="comment-author-img"
+                                            />
+                                            <button className="btn btn-sm btn-primary">
+                                                Post Comment
+                                            </button>
+                                        </div>
+                                    </form>
+                                )}
+
+                                {!user && !userIsFetching && (
+                                    <div>
+                                        <Link to="/login">Sign in</Link> or{" "}
+                                        <Link to="/register">sign up</Link> to
+                                        add comments on this article.
                                     </div>
-                                    <div className="card-footer">
-                                        <img
-                                            src={user?.image}
-                                            className="comment-author-img"
-                                        />
-                                        <button className="btn btn-sm btn-primary">
-                                            Post Comment
-                                        </button>
-                                    </div>
-                                </form>
+                                )}
+                                <br />
 
                                 <div className="card">
                                     {commentData?.data.map((item: any) => {

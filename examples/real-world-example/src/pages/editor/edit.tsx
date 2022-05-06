@@ -1,6 +1,7 @@
 import { useNavigation, useOne } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 import routerProvider from "@pankod/refine-react-router-v6";
+import { ErrorList } from "components/Error";
 import { IArticle } from "interfaces";
 
 const { useParams } = routerProvider;
@@ -14,10 +15,23 @@ export const EditArticlePage: React.FC = () => {
         register,
         handleSubmit,
         formState: { errors },
+        setError,
+        clearErrors,
     } = useForm({
         refineCoreProps: {
             resource: `articles/${params?.slug}`,
             action: "edit",
+            redirect: false,
+            onMutationError: (error) => {
+                setError("api", error?.response?.data.errors);
+            },
+            onMutationSuccess: (response) => {
+                console.log(
+                    "`/article/${response.data.article.slug}`",
+                    `/article/${response.data.article.slug}`,
+                );
+                push(`/article/${response.data.article.slug}`);
+            },
         },
     });
 
@@ -29,9 +43,8 @@ export const EditArticlePage: React.FC = () => {
         },
     });
 
-    const onSubmit = async (data: any) => {
-        await onFinish({ article: data });
-        push("/");
+    const onSubmit = (data: any) => {
+        onFinish({ article: data });
     };
 
     return (
@@ -39,7 +52,8 @@ export const EditArticlePage: React.FC = () => {
             <div className="container page">
                 <div className="row">
                     <div className="col-md-10 offset-md-1 col-xs-12">
-                        <form onSubmit={handleSubmit(onSubmit)}>
+                        {errors.api && <ErrorList errors={errors.api} />}
+                        <form>
                             <fieldset>
                                 <fieldset className="form-group">
                                     <input
@@ -107,11 +121,16 @@ export const EditArticlePage: React.FC = () => {
                                 <button
                                     className="btn btn-lg pull-xs-right btn-primary"
                                     type="submit"
+                                    disabled={formLoading}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        clearErrors();
+                                        handleSubmit(onSubmit)();
+                                    }}
                                 >
                                     Publish Article
                                 </button>
                             </fieldset>
-                            {formLoading && <p>Loading</p>}
                         </form>
                     </div>
                 </div>
