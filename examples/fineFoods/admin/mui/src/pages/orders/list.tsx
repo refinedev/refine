@@ -233,13 +233,8 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
 
     const { show } = useNavigation();
 
-    const { register, handleSubmit, control } = useForm<
-        BaseRecord,
-        HttpError,
-        IOrderFilterVariables
-    >({
-        warnWhenUnsavedChanges: false,
-    });
+    const { register, handleSubmit, control } =
+        useForm<BaseRecord, HttpError, IOrderFilterVariables>();
 
     //TODO: Add type to useAutocomplete
     const { autocompleteProps: storeAutocompleteProps } = useAutocomplete({
