@@ -20,7 +20,7 @@ const { Link } = routerProvider;
 
 export const HomePage: React.FC = () => {
     const [activeTab, setActiveTab] = useState<"global" | "yourFeed">("global");
-    const { isSuccess, isLoading } = useGetIdentity();
+    const { isSuccess, isFetching } = useGetIdentity();
     const { mutate: favoriteMutate, isLoading: favoriteIsLoading } =
         useUpdate();
     const { mutate: unFavoriteMutate, isLoading: unFavoriteIsLoading } =
@@ -71,9 +71,13 @@ export const HomePage: React.FC = () => {
         });
     };
 
+    if (isFetching) {
+        return null;
+    }
+
     return (
         <div className="home-page">
-            {!isSuccess && !isLoading && <Banner />}
+            {!isSuccess && !isFetching && <Banner />}
             <div className="container page">
                 <div className="row">
                     <div className="col-md-9">
