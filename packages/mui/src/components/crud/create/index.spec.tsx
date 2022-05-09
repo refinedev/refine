@@ -68,7 +68,9 @@ describe("Create", () => {
     });
 
     it("should render optional title with title prop", async () => {
-        const { getByText } = renderCreate(<Create title="New Title" />);
+        const { getByText } = renderCreate(
+            <Create cardHeaderProps={{ title: "New Title" }} />,
+        );
 
         getByText("New Title");
     });
