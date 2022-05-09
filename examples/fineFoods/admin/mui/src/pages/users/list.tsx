@@ -127,7 +127,7 @@ export const UserList: React.FC = () => {
 
     return (
         <Grid container spacing={2}>
-            <Grid item xs={3}>
+            <Grid item xs={12} lg={3}>
                 <Paper>
                     <Box
                         component="form"
@@ -199,7 +199,7 @@ export const UserList: React.FC = () => {
                     </Box>
                 </Paper>
             </Grid>
-            <Grid item xs={9}>
+            <Grid item xs={12} lg={9}>
                 <Paper sx={{ height: "700px" }}>
                     <DataGrid {...dataGridProps} filterModel={undefined} />
                 </Paper>
