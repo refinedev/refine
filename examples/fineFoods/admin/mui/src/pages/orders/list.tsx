@@ -26,6 +26,7 @@ import {
     Stack,
     useAutocomplete,
     Autocomplete,
+    Paper,
 } from "@pankod/refine-mui";
 import { Controller, useForm } from "@pankod/refine-react-hook-form";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
@@ -185,7 +186,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         initialPageSize: 10,
         onSearch: (params) => {
             const filters: CrudFilters = [];
-            const { q, store, user, createdAt, status } = params;
+            const { q, store, user, status } = params;
 
             filters.push({
                 field: "q",
@@ -209,12 +210,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 field: "status.text",
                 operator: "in",
                 value: (status ?? []).length > 0 ? status : undefined,
-            });
-
-            filters.push({
-                field: "createdAt",
-                operator: "eq",
-                value: createdAt,
             });
 
             return filters;
@@ -254,175 +249,150 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     return (
         <Grid container spacing={2}>
             <Grid item xs={3}>
-                <Card>
-                    <CardContent>
-                        <Box
-                            component="form"
-                            sx={{ display: "flex", flexDirection: "column" }}
-                            autoComplete="off"
-                            onSubmit={handleSubmit(onSearch)}
-                        >
-                            <TextField
-                                {...register("q")}
-                                label={t("orders.filter.search.label")}
-                                placeholder={t(
-                                    "orders.filter.search.placeholder",
-                                )}
-                                margin="normal"
-                                fullWidth
-                                autoFocus
-                                size="small"
-                            />
-                            <Controller
-                                control={control}
-                                name="status"
-                                render={({ field }) => (
-                                    <Autocomplete
-                                        {...orderAutocompleteProps}
-                                        {...field}
-                                        multiple
-                                        onChange={(_, value) => {
-                                            field.onChange(
-                                                value.map((p) => p.text ?? p),
-                                            );
-                                        }}
-                                        getOptionLabel={(item) => {
-                                            return item?.text
-                                                ? item.text
-                                                : item;
-                                        }}
-                                        isOptionEqualToValue={(
-                                            option,
-                                            value,
-                                        ) => {
-                                            return (
-                                                value === undefined ||
-                                                option.text === value
-                                            );
-                                        }}
-                                        renderInput={(params) => (
-                                            <TextField
-                                                {...params}
-                                                label={t(
-                                                    "orders.filter.status.label",
-                                                )}
-                                                placeholder={t(
-                                                    "orders.filter.status.placeholder",
-                                                )}
-                                                margin="normal"
-                                                variant="outlined"
-                                                size="small"
-                                            />
-                                        )}
-                                    />
-                                )}
-                            />
-                            <Controller
-                                control={control}
-                                name="store"
-                                render={({ field }) => (
-                                    <Autocomplete
-                                        {...storeAutocompleteProps}
-                                        {...field}
-                                        onChange={(_, value) => {
-                                            field.onChange(value?.id ?? value);
-                                        }}
-                                        getOptionLabel={(item) => {
-                                            return item.title
-                                                ? item.title
-                                                : storeAutocompleteProps?.options?.find(
-                                                      (p) =>
-                                                          p.id.toString() ===
-                                                          item.toString(),
-                                                  )?.title ?? "";
-                                        }}
-                                        isOptionEqualToValue={(option, value) =>
+                <Paper sx={{ p: 2 }}>
+                    <Box
+                        component="form"
+                        sx={{ display: "flex", flexDirection: "column" }}
+                        autoComplete="off"
+                        onSubmit={handleSubmit(onSearch)}
+                    >
+                        <TextField
+                            {...register("q")}
+                            label={t("orders.filter.search.label")}
+                            placeholder={t("orders.filter.search.placeholder")}
+                            margin="normal"
+                            fullWidth
+                            autoFocus
+                            size="small"
+                        />
+                        <Controller
+                            control={control}
+                            name="status"
+                            render={({ field }) => (
+                                <Autocomplete
+                                    {...orderAutocompleteProps}
+                                    {...field}
+                                    multiple
+                                    onChange={(_, value) => {
+                                        field.onChange(
+                                            value.map((p) => p.text ?? p),
+                                        );
+                                    }}
+                                    getOptionLabel={(item) => {
+                                        return item?.text ? item.text : item;
+                                    }}
+                                    isOptionEqualToValue={(option, value) => {
+                                        return (
                                             value === undefined ||
-                                            option.id.toString() ===
-                                                value.toString()
-                                        }
-                                        renderInput={(params) => (
-                                            <TextField
-                                                {...params}
-                                                label={t(
-                                                    "orders.filter.store.label",
-                                                )}
-                                                placeholder={t(
-                                                    "orders.filter.store.placeholder",
-                                                )}
-                                                margin="normal"
-                                                variant="outlined"
-                                                size="small"
-                                            />
-                                        )}
-                                    />
-                                )}
-                            />
-                            <Controller
-                                control={control}
-                                name="user"
-                                render={({ field }) => (
-                                    <Autocomplete
-                                        {...userAutocompleteProps}
-                                        {...field}
-                                        onChange={(_, value) => {
-                                            field.onChange(value?.id ?? value);
-                                        }}
-                                        getOptionLabel={(item) => {
-                                            return item.fullName
-                                                ? item.fullName
-                                                : userAutocompleteProps?.options?.find(
-                                                      (p) =>
-                                                          p.id.toString() ===
-                                                          item.toString(),
-                                                  )?.fullName ?? "";
-                                        }}
-                                        isOptionEqualToValue={(
-                                            option,
-                                            value,
-                                        ) => {
-                                            return (
-                                                value === undefined ||
-                                                option.id === value
-                                            );
-                                        }}
-                                        renderInput={(params) => (
-                                            <TextField
-                                                {...params}
-                                                label={t(
-                                                    "orders.filter.user.label",
-                                                )}
-                                                placeholder={t(
-                                                    "orders.filter.user.placeholder",
-                                                )}
-                                                margin="normal"
-                                                variant="outlined"
-                                                size="small"
-                                            />
-                                        )}
-                                    />
-                                )}
-                            />
-                            {/*            <TextField
-                                {...register("createdAt")}
-                                label={t("orders.filter.createdAt.label")}
-                                placeholder={t(
-                                    "orders.filter.store.placeholder",
-                                )}
-                                margin="normal"
-                                select
-                            >
-                                <MenuItem value="published">Published</MenuItem>
-                                <MenuItem value="draft">Draft</MenuItem>
-                                <MenuItem value="rejected">Rejected</MenuItem>
-                            </TextField> */}
-                            <br />
-                            <Button type="submit" variant="contained">
-                                {t("orders.filter.submit")}
-                            </Button>
-                        </Box>
-                    </CardContent>
-                </Card>
+                                            option.text === value
+                                        );
+                                    }}
+                                    renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            label={t(
+                                                "orders.filter.status.label",
+                                            )}
+                                            placeholder={t(
+                                                "orders.filter.status.placeholder",
+                                            )}
+                                            margin="normal"
+                                            variant="outlined"
+                                            size="small"
+                                        />
+                                    )}
+                                />
+                            )}
+                        />
+                        <Controller
+                            control={control}
+                            name="store"
+                            render={({ field }) => (
+                                <Autocomplete
+                                    {...storeAutocompleteProps}
+                                    {...field}
+                                    onChange={(_, value) => {
+                                        field.onChange(value?.id ?? value);
+                                    }}
+                                    getOptionLabel={(item) => {
+                                        return item.title
+                                            ? item.title
+                                            : storeAutocompleteProps?.options?.find(
+                                                  (p) =>
+                                                      p.id.toString() ===
+                                                      item.toString(),
+                                              )?.title ?? "";
+                                    }}
+                                    isOptionEqualToValue={(option, value) =>
+                                        value === undefined ||
+                                        option.id.toString() ===
+                                            value.toString()
+                                    }
+                                    renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            label={t(
+                                                "orders.filter.store.label",
+                                            )}
+                                            placeholder={t(
+                                                "orders.filter.store.placeholder",
+                                            )}
+                                            margin="normal"
+                                            variant="outlined"
+                                            size="small"
+                                        />
+                                    )}
+                                />
+                            )}
+                        />
+                        <Controller
+                            control={control}
+                            name="user"
+                            render={({ field }) => (
+                                <Autocomplete
+                                    {...userAutocompleteProps}
+                                    {...field}
+                                    onChange={(_, value) => {
+                                        field.onChange(value?.id ?? value);
+                                    }}
+                                    getOptionLabel={(item) => {
+                                        return item.fullName
+                                            ? item.fullName
+                                            : userAutocompleteProps?.options?.find(
+                                                  (p) =>
+                                                      p.id.toString() ===
+                                                      item.toString(),
+                                              )?.fullName ?? "";
+                                    }}
+                                    isOptionEqualToValue={(option, value) => {
+                                        return (
+                                            value === undefined ||
+                                            option.id === value
+                                        );
+                                    }}
+                                    renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            label={t(
+                                                "orders.filter.user.label",
+                                            )}
+                                            placeholder={t(
+                                                "orders.filter.user.placeholder",
+                                            )}
+                                            margin="normal"
+                                            variant="outlined"
+                                            size="small"
+                                        />
+                                    )}
+                                />
+                            )}
+                        />
+                        <br />
+                        <Button type="submit" variant="contained">
+                            {t("orders.filter.submit")}
+                        </Button>
+                    </Box>
+                </Paper>
             </Grid>
             <Grid item xs={9}>
                 <Card>
