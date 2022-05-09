@@ -18,6 +18,7 @@ import {
     Stack,
     Toolbar,
     Button,
+    List,
 } from "@pankod/refine-mui";
 import { Check, Clear } from "@mui/icons-material";
 
@@ -87,22 +88,19 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                     #{row.order.id}
                 </Button>
             ),
-            width: 150,
         },
         {
             field: "comment",
             headerName: t("reviews.fields.review"),
-            renderCell: ({ row }) => (
-                <Typography style={{ whiteSpace: "pre-line" }}>
-                    {row.comment[0]}
-                </Typography>
-            ),
+            valueGetter: ({ row }) => row.comment[0],
             flex: 1,
         },
         {
             field: "review",
             headerName: t("reviews.fields.rating"),
             headerAlign: "center",
+            flex: 1,
+            align: "center",
             renderCell: ({ row }) => (
                 <Stack alignItems="center">
                     <Typography variant="h5" fontWeight="bold">
@@ -111,7 +109,6 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                     <Rating name="rating" defaultValue={row.star} readOnly />
                 </Stack>
             ),
-            width: 150,
         },
         {
             field: "actions",
@@ -138,13 +135,13 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
 
     const { dataGridProps } = useDataGrid<IReview>({
         columns,
-        permanentFilter: [
-            {
-                field: "status",
-                operator: "eq",
-                value: "pending",
-            },
-        ],
+        // permanentFilter: [
+        //     {
+        //         field: "status",
+        //         operator: "eq",
+        //         value: "pending",
+        //     },
+        // ],
     });
 
     const EnhancedTableToolbar = (props: { numSelected: React.Key[] }) => {
@@ -152,25 +149,15 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
         return (
             <Toolbar>
                 {numSelected.length > 0 && (
-                    <Stack direction="row" pt={2}>
-                        <Typography
-                            color="inherit"
-                            variant="subtitle1"
-                            component="div"
-                            style={{ flex: 1 }}
-                        >
-                            Reviews
-                        </Typography>
+                    <Stack direction="row">
                         <Button
                             startIcon={<Check color="success" />}
-                            sx={{ display: "flex", width: "100%" }}
                             onClick={() => updateSelectedItems("approved")}
                         >
                             {t("buttons.acceptAll")}
                         </Button>
                         <Button
                             startIcon={<Clear color="error" />}
-                            sx={{ display: "flex", width: "100%" }}
                             onClick={() => updateSelectedItems("rejected")}
                         >
                             {t("buttons.rejectAll")}
@@ -182,21 +169,26 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
     };
 
     return (
-        <div style={{ display: "flex", height: 700, width: "100%" }}>
-            <DataGrid
-                {...dataGridProps}
-                checkboxSelection
-                density="comfortable"
-                onSelectionModelChange={(newSelectionModel) => {
-                    setSelectedRowKeys(newSelectionModel as React.Key[]);
-                }}
-                selectionModel={selectedRowKeys}
-                components={{
-                    Toolbar: () => (
-                        <EnhancedTableToolbar numSelected={selectedRowKeys} />
-                    ),
-                }}
-            />
-        </div>
+        <List>
+            <div style={{ display: "flex", height: 700, width: "100%" }}>
+                <DataGrid
+                    {...dataGridProps}
+                    autoHeight
+                    checkboxSelection
+                    density="comfortable"
+                    onSelectionModelChange={(newSelectionModel) => {
+                        setSelectedRowKeys(newSelectionModel as React.Key[]);
+                    }}
+                    selectionModel={selectedRowKeys}
+                    components={{
+                        Header: () => (
+                            <EnhancedTableToolbar
+                                numSelected={selectedRowKeys}
+                            />
+                        ),
+                    }}
+                />
+            </div>
+        </List>
     );
 };
