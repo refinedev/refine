@@ -8,11 +8,15 @@ import { ICategory } from "interfaces";
 type ProductItemProps = {
     setFilters?: (filters: CrudFilters) => void;
     filters: CrudFilters;
+    categoryData: ICategory[];
+    isLoading: boolean;
 };
 
 export const CategoryFilter: React.FC<ProductItemProps> = ({
     setFilters,
     filters,
+    categoryData,
+    isLoading,
 }) => {
     const t = useTranslate();
 
@@ -28,14 +32,6 @@ export const CategoryFilter: React.FC<ProductItemProps> = ({
             },
         ]);
     }, [filterCategories]);
-
-    const { data: categoryData, isLoading: categoryIsLoading } =
-        useList<ICategory>({
-            resource: "categories",
-            config: {
-                pagination: { pageSize: 30 },
-            },
-        });
 
     const toggleFilterCategory = (clickedCategory: string) => {
         const target = filterCategories.findIndex(
@@ -64,7 +60,7 @@ export const CategoryFilter: React.FC<ProductItemProps> = ({
                         filterCategories.length === 0 ? "contained" : "outlined"
                     }
                     size="small"
-                    loading={categoryIsLoading}
+                    loading={isLoading}
                     sx={{
                         borderRadius: "50px",
                         marginRight: "10px",
@@ -73,7 +69,7 @@ export const CategoryFilter: React.FC<ProductItemProps> = ({
                 >
                     {t("stores.all")}
                 </LoadingButton>
-                {categoryData?.data.map((category: ICategory) => (
+                {categoryData?.map((category: ICategory) => (
                     <Grid
                         item
                         key={category.id}
@@ -89,7 +85,7 @@ export const CategoryFilter: React.FC<ProductItemProps> = ({
                                     : "outlined"
                             }
                             size="small"
-                            loading={categoryIsLoading}
+                            loading={isLoading}
                             sx={{
                                 borderRadius: "50px",
                             }}
