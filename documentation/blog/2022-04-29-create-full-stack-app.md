@@ -303,7 +303,7 @@ As you have seen, we have listed and paginated the titles coming from an API by 
 
 [For more information about all **refine** features and **refine** →](/docs/getting-started/overview/)
 
-[Learn the **refine** basics →](docs/getting-started/basics/)
+[Learn the **refine** basics →](/docs/getting-started/basics/)
 
 [Comparison | Refine vs React-Admin vs AdminBro vs Retool →](/docs/comparison/)
 
