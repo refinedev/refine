@@ -1,5 +1,7 @@
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import routerProvider, {
+    HashRouterComponent,
+} from "@pankod/refine-react-router-v6";
 import axios, { AxiosRequestConfig } from "axios";
 
 import { authProvider } from "./authProvider";
@@ -69,6 +71,7 @@ function App() {
                         layout: true,
                     },
                 ],
+                RouterComponent: HashRouterComponent,
             }}
             dataProvider={dataProvider(axiosInstance)}
             authProvider={authProvider(axiosInstance)}
