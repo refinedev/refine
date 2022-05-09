@@ -418,6 +418,11 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                             show("orders", id);
                         }}
                         rowsPerPageOptions={[10, 20, 50, 100]}
+                        sx={{
+                            "& .MuiDataGrid-row": {
+                                cursor: "pointer",
+                            },
+                        }}
                     />
                 </List>
             </Grid>
