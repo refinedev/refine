@@ -147,9 +147,23 @@ export const UserShow: React.FC = () => {
         syncWithLocation: false,
     });
 
+    const UserInfoText: React.FC = ({ children }) => (
+        <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent={{
+                sm: "center",
+                lg: "flex-start",
+            }}
+            gap={1}
+        >
+            {children}
+        </Stack>
+    );
+
     return (
         <Grid container spacing={2}>
-            <Grid item xs={3}>
+            <Grid item xs={12} lg={3}>
                 <Paper sx={{ p: 2 }}>
                     <Stack alignItems="center" spacing={1}>
                         <Avatar
@@ -162,65 +176,61 @@ export const UserShow: React.FC = () => {
                     </Stack>
                     <br />
                     <Stack spacing={1}>
-                        <Stack direction="row" alignItems="center" gap={1}>
+                        <UserInfoText>
                             <PersonOutlineOutlinedIcon />
                             <Typography variant="body1">
                                 {t(`users.fields.gender.${user?.gender}`)}
                             </Typography>
-                        </Stack>
-                        <Stack direction="row" alignItems="center" gap={1}>
+                        </UserInfoText>
+                        <UserInfoText>
                             <LocalPhoneOutlinedIcon />
                             <Typography variant="body1">{user?.gsm}</Typography>
-                        </Stack>
-                        <Stack direction="row" alignItems="center" gap={1}>
+                        </UserInfoText>
+                        <UserInfoText>
                             <DateRangeOutlinedIcon />
                             <Typography variant="body1">
                                 {user?.createdAt}
                             </Typography>
-                        </Stack>
-                        <Stack direction="row" alignItems="center" gap={1}>
+                        </UserInfoText>
+                        <UserInfoText>
                             <CheckOutlinedIcon />
                             <Typography variant="body1">
                                 {user?.isActive
                                     ? t("users.fields.isActive.true")
                                     : t("users.fields.isActive.false")}
                             </Typography>
-                        </Stack>
+                        </UserInfoText>
                     </Stack>
                 </Paper>
             </Grid>
-            <Grid item xs={9}>
-                <Grid container direction={"column"} spacing={2}>
-                    <Grid item>
-                        <Paper>
-                            <DataGrid
-                                {...dataGridProps}
-                                autoHeight
-                                rowsPerPageOptions={[4, 10, 20, 100]}
-                            />
-                        </Paper>
-                    </Grid>
-                    <Grid item>
-                        <TableContainer component={Paper}>
-                            <Table>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>
-                                            {t("users.addresses.address")}
-                                        </TableCell>
+            <Grid item xs={12} lg={9}>
+                <Stack direction="column" spacing={2}>
+                    <Paper>
+                        <DataGrid
+                            {...dataGridProps}
+                            autoHeight
+                            rowsPerPageOptions={[4, 10, 20, 100]}
+                        />
+                    </Paper>
+                    <TableContainer component={Paper}>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>
+                                        {t("users.addresses.address")}
+                                    </TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {user?.addresses.map((row) => (
+                                    <TableRow key={row.text}>
+                                        <TableCell>{row.text}</TableCell>
                                     </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {user?.addresses.map((row) => (
-                                        <TableRow key={row.text}>
-                                            <TableCell>{row.text}</TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    </Grid>
-                </Grid>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Stack>
             </Grid>
         </Grid>
     );
