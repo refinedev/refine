@@ -1,6 +1,6 @@
 {
   "name": "refine-ecommerce-example",
-  "version": "3.16.2",
+  "version": "3.16.3",
   "private": true,
   "scripts": {
     "dev": "NODE_OPTIONS=--max_old_space_size=4096 next dev",
