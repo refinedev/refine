@@ -32,7 +32,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const { show } = useNavigation();
 
-    const { mutate, isLoading } = useUpdateMany<IReview>();
+    const { mutate } = useUpdateMany<IReview>();
 
     const handleUpdate = (id: string, status: IReview["status"]) => {
         mutate({
