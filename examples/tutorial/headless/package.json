@@ -1,11 +1,11 @@
 {
   "name": "refine-headless-tutorial-example",
-  "version": "3.16.4",
+  "version": "3.17.0",
   "private": true,
   "dependencies": {
     "@pankod/refine-core": "^3.16.4",
     "@pankod/refine-react-hook-form": "^3.16.4",
-    "@pankod/refine-react-router-v6": "^3.16.4",
+    "@pankod/refine-react-router-v6": "^3.17.0",
     "@pankod/refine-react-table": "^3.16.4",
     "@pankod/refine-simple-rest": "^3.16.4",
     "@types/node": "^12.20.11",
