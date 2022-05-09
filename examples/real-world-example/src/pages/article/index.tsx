@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import {
     useOne,
     useGetIdentity,
@@ -9,7 +10,6 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import { useForm } from "@pankod/refine-react-hook-form";
 
 import { IArticle } from "interfaces";
-import dayjs from "dayjs";
 
 const { useParams, Link } = routerProvider;
 
@@ -91,7 +91,7 @@ export const ArticlePage: React.FC = () => {
             resource: "articles",
             id: params?.slug,
             metaData: {
-                resource: "favorite",
+                URLSuffix: "favorite",
             },
             values: "",
         });
@@ -102,7 +102,7 @@ export const ArticlePage: React.FC = () => {
             resource: "articles",
             id: params?.slug,
             metaData: {
-                resource: "favorite",
+                URLSuffix: "favorite",
             },
         });
     };
@@ -300,9 +300,8 @@ export const ArticlePage: React.FC = () => {
                                     </span>
                                 </div>
 
-                                {user &&
-                                user?.username ===
-                                    article?.data.author.username ? (
+                                {user?.username ===
+                                article?.data.author.username ? (
                                     <>
                                         <button
                                             className="btn btn-outline-secondary btn-sm"

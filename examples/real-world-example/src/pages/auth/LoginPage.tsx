@@ -2,8 +2,7 @@ import { useLogin } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import { Header } from "components";
-import { ErrorList } from "components/Error";
+import { Header, ErrorList } from "components";
 
 const { Link } = routerProvider;
 

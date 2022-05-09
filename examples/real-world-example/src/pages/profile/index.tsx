@@ -19,8 +19,8 @@ const { useParams } = routerProvider;
 
 export const ProfilePage: React.FC = () => {
     const { data: user } = useGetIdentity<IUser>();
-    const { mutate: updateMutate } = useUpdate();
-    const { mutate: deleteMutate } = useDelete();
+    const { mutate: updateMutation } = useUpdate();
+    const { mutate: deleteMutation } = useDelete();
 
     const params = useParams();
 
@@ -60,44 +60,43 @@ export const ProfilePage: React.FC = () => {
     });
 
     const favArticle = (slug: string) => {
-        updateMutate({
+        updateMutation({
             resource: "articles",
             id: slug,
             metaData: {
-                resource: "favorite",
+                URLSuffix: "favorite",
             },
-            values: "",
+            values: {},
         });
     };
 
     const unFavArticle = (slug: string) => {
-        deleteMutate({
+        deleteMutation({
             resource: "articles",
             id: slug,
             metaData: {
-                resource: "favorite",
+                URLSuffix: "favorite",
             },
-            values: "",
         });
     };
 
     const followUser = (username: string) => {
-        updateMutate({
+        updateMutation({
             resource: "profiles",
             id: username,
             metaData: {
-                resource: "follow",
+                URLSuffix: "follow",
             },
-            values: "",
+            values: {},
         });
     };
 
     const unFollowUser = (username: string) => {
-        deleteMutate({
+        deleteMutation({
             resource: "profiles",
             id: username,
             metaData: {
-                resource: "follow",
+                URLSuffix: "follow",
             },
         });
     };
@@ -126,14 +125,19 @@ export const ProfilePage: React.FC = () => {
                             setFilters={setFilters}
                         />
 
+                        {tableQueryResult.isLoading && (
+                            <div className="article-preview">
+                                Loading articles...
+                            </div>
+                        )}
+
                         {!tableQueryResult.data?.total && (
                             <div className="article-preview">
                                 No articles are here... yet.
                             </div>
                         )}
 
-                        {!tableQueryResult.isLoading &&
-                            params?.username &&
+                        {params?.username &&
                             tableQueryResult?.data?.data?.map((item) => {
                                 return (
                                     <ArticleList

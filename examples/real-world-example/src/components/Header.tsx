@@ -4,7 +4,7 @@ import routerProvider from "@pankod/refine-react-router-v6";
 
 const { Link } = routerProvider;
 export const Header: React.FC = () => {
-    const { data: user, isSuccess } = useGetIdentity();
+    const { data: user, isSuccess: isLoggedIn } = useGetIdentity();
 
     return (
         <>
@@ -19,7 +19,7 @@ export const Header: React.FC = () => {
                                 Home
                             </Link>
                         </li>
-                        {!isSuccess ? (
+                        {!isLoggedIn ? (
                             <>
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/login">

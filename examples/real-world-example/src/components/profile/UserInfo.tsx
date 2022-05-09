@@ -1,10 +1,10 @@
-import { useNavigation } from "@pankod/refine-core";
+import { GetOneResponse, useNavigation } from "@pankod/refine-core";
 
-import { IUser } from "interfaces";
+import { IProfile, IUser } from "interfaces";
 
 type UserInfoProps = {
     loading: boolean;
-    profile: any;
+    profile: GetOneResponse<IProfile> | undefined;
     params: IUser;
     user: IUser | undefined;
     followUser: (userName: string) => void;

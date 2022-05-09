@@ -21,10 +21,11 @@ const { Link } = routerProvider;
 export const HomePage: React.FC = () => {
     const [activeTab, setActiveTab] =
         useState<"global" | "yourFeed" | "tags">("global");
-    const { isSuccess, isFetching } = useGetIdentity();
-    const { mutate: favoriteMutate, isLoading: favoriteIsLoading } =
+
+    const { isSuccess: isLoggedIn, isLoading: isFetching } = useGetIdentity();
+    const { mutate: updateMutation, isLoading: updateMutationIsLoading } =
         useUpdate();
-    const { mutate: unFavoriteMutate, isLoading: unFavoriteIsLoading } =
+    const { mutate: deleteMutation, isLoading: deleteMutationIsLoading } =
         useDelete();
 
     const tagList = useList<ITag[]>({
@@ -48,35 +49,36 @@ export const HomePage: React.FC = () => {
     });
 
     const favoriteUnFavoriteIslLoading =
-        tableQueryResult.isFetching || favoriteIsLoading || unFavoriteIsLoading;
+        tableQueryResult.isFetching ||
+        updateMutationIsLoading ||
+        deleteMutationIsLoading;
 
     const favArticle = (slug: string) => {
-        favoriteMutate({
+        updateMutation({
             resource: "articles",
             id: slug,
             metaData: {
-                resource: "favorite",
+                URLSuffix: "favorite",
             },
-            values: "",
+            values: {},
         });
     };
 
     const unFavArticle = (slug: string) => {
-        unFavoriteMutate({
+        deleteMutation({
             resource: "articles",
             id: slug,
             metaData: {
-                resource: "favorite",
+                URLSuffix: "favorite",
             },
-            values: "",
         });
     };
 
     useEffect(() => {
-        if (isSuccess) {
+        if (isLoggedIn) {
             setActiveTab("yourFeed");
         }
-    }, [isSuccess]);
+    }, [isLoggedIn]);
 
     useEffect(() => {
         setCurrent(1);
@@ -88,34 +90,36 @@ export const HomePage: React.FC = () => {
 
     return (
         <div className="home-page">
-            {!isSuccess && !isFetching && <Banner />}
+            {!isLoggedIn && !isFetching && <Banner />}
             <div className="container page">
                 <div className="row">
                     <div className="col-md-9">
                         <div className="feed-toggle">
                             <ul className="nav nav-pills outline-active">
-                                <li className="nav-item">
-                                    <Link
-                                        to={"/"}
-                                        className={`nav-link ${
-                                            activeTab === "yourFeed"
-                                                ? "active"
-                                                : ""
-                                        }`}
-                                        onClick={() => {
-                                            setActiveTab("yourFeed");
-                                            setFilters([
-                                                {
-                                                    field: "tag",
-                                                    operator: "eq",
-                                                    value: undefined,
-                                                },
-                                            ]);
-                                        }}
-                                    >
-                                        Your Feed
-                                    </Link>
-                                </li>
+                                {isLoggedIn && (
+                                    <li className="nav-item">
+                                        <Link
+                                            to={"/"}
+                                            className={`nav-link ${
+                                                activeTab === "yourFeed"
+                                                    ? "active"
+                                                    : ""
+                                            }`}
+                                            onClick={() => {
+                                                setActiveTab("yourFeed");
+                                                setFilters([
+                                                    {
+                                                        field: "tag",
+                                                        operator: "eq",
+                                                        value: undefined,
+                                                    },
+                                                ]);
+                                            }}
+                                        >
+                                            Your Feed
+                                        </Link>
+                                    </li>
+                                )}
                                 <li className="nav-item">
                                     <Link
                                         to={"/"}
@@ -159,7 +163,7 @@ export const HomePage: React.FC = () => {
 
                         {tableQueryResult.isLoading && (
                             <div className="article-preview">
-                                Loading arcticles...
+                                Loading articles...
                             </div>
                         )}
 

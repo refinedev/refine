@@ -15,7 +15,7 @@ export const EditArticlePage: React.FC = () => {
     const [tags, setTags] = useState<string[]>([]);
 
     const {
-        refineCore: { onFinish, formLoading, queryResult },
+        refineCore: { onFinish, formLoading },
         register,
         handleSubmit,
         formState: { errors },

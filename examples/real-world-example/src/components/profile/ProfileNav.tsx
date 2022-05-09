@@ -1,11 +1,13 @@
-import { CrudFilters } from "@pankod/refine-core";
+import { CrudFilters, GetOneResponse } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
+
+import { IProfile } from "interfaces";
 
 const { Link } = routerProvider;
 
 type ProfileNavProps = {
-    params: any;
-    profileData: any;
+    params: { page: string; username: string };
+    profileData: GetOneResponse<IProfile> | undefined;
     setFilters: (filters: CrudFilters) => void;
 };
 

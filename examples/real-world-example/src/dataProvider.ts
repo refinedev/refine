@@ -1,17 +1,12 @@
-import {
-    CrudFilters,
-    CrudOperators,
-    CrudSorting,
-    DataProvider,
-} from "@pankod/refine-core";
+import { CrudFilters, CrudOperators, DataProvider } from "@pankod/refine-core";
 import restDataProvider from "@pankod/refine-simple-rest";
 import { stringify } from "query-string";
-import axios, { AxiosInstance } from "axios";
+import { AxiosInstance } from "axios";
 
 //TEMP URL
 //const API_URL = "https://refine-real-world.herokuapp.com/api";
 
-const API_URL = "https://api.realworld.io/api";
+import { API_URL } from "./constants";
 
 const mapOperator = (operator: CrudOperators): string => {
     switch (operator) {
@@ -80,11 +75,11 @@ export const dataProvider = (axios: AxiosInstance): DataProvider => {
             };
         },
         update: async ({ resource, id, variables, metaData }) => {
-            const url = metaData?.resource
-                ? `${API_URL}/${resource}/${id}/${metaData.resource}`
+            const url = metaData?.URLSuffix
+                ? `${API_URL}/${resource}/${id}/${metaData.URLSuffix}`
                 : `${API_URL}/${resource}/${id}`;
 
-            const { data } = metaData?.resource
+            const { data } = metaData?.URLSuffix
                 ? await axios.post(url)
                 : await axios.put(url, variables);
 
@@ -94,8 +89,8 @@ export const dataProvider = (axios: AxiosInstance): DataProvider => {
         },
 
         deleteOne: async ({ resource, id, variables, metaData }) => {
-            const url = metaData?.resource
-                ? `${API_URL}/${resource}/${id}/${metaData.resource}`
+            const url = metaData?.URLSuffix
+                ? `${API_URL}/${resource}/${id}/${metaData.URLSuffix}`
                 : `${API_URL}/${resource}/${id}`;
 
             const { data } = await axios.delete(url, variables);

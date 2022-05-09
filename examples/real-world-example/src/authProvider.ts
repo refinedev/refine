@@ -1,6 +1,6 @@
 import { AuthProvider } from "@pankod/refine-core";
 
-import { TOKEN_KEY, LOGIN_URL, CURRENT_USER } from "./constants";
+import { TOKEN_KEY, API_URL } from "./constants";
 import axios, { AxiosInstance } from "axios";
 
 export const authProvider = (axiosInstance: AxiosInstance): AuthProvider => {
@@ -11,7 +11,9 @@ export const authProvider = (axiosInstance: AxiosInstance): AuthProvider => {
             user: { email: string; password: string };
         }) => {
             try {
-                const { data } = await axios.post(LOGIN_URL, { user });
+                const { data } = await axios.post(`${API_URL}/users/login`, {
+                    user,
+                });
 
                 localStorage.setItem(TOKEN_KEY, data.user.token);
             } catch (error) {
@@ -38,7 +40,7 @@ export const authProvider = (axiosInstance: AxiosInstance): AuthProvider => {
                 return Promise.reject();
             }
 
-            const userInfo = await axiosInstance.get(CURRENT_USER);
+            const userInfo = await axiosInstance.get(`${API_URL}/user`);
 
             return Promise.resolve(userInfo.data.user);
         },

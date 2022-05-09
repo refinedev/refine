@@ -112,6 +112,7 @@ export const SettingsPage: React.FC = () => {
                                 </button>
                             </fieldset>
                         </form>
+                        <hr />
                         <button
                             className="btn btn-outline-danger"
                             onClick={() => {
