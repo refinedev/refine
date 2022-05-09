@@ -15,8 +15,6 @@ import {
     Grid,
     Box,
     TextField,
-    Card,
-    CardContent,
     Button,
     NumberField,
     Typography,
@@ -395,18 +393,17 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 </Paper>
             </Grid>
             <Grid item xs={9}>
-                <Card>
-                    <CardContent sx={{ height: "700px" }}>
-                        <DataGrid
-                            {...dataGridProps}
-                            filterModel={undefined}
-                            onRowClick={({ id }) => {
-                                show("orders", id);
-                            }}
-                            rowsPerPageOptions={[10, 20, 50, 100]}
-                        />
-                    </CardContent>
-                </Card>
+                <Paper sx={{ p: 2 }}>
+                    <DataGrid
+                        {...dataGridProps}
+                        filterModel={undefined}
+                        autoHeight
+                        onRowClick={({ id }) => {
+                            show("orders", id);
+                        }}
+                        rowsPerPageOptions={[10, 20, 50, 100]}
+                    />
+                </Paper>
             </Grid>
         </Grid>
     );
