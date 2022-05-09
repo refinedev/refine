@@ -246,7 +246,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Grid container spacing={2}>
-            <Grid item xs={3}>
+            <Grid item xs={12} lg={3}>
                 <Paper sx={{ p: 2 }}>
                     <Box
                         component="form"
@@ -392,7 +392,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                     </Box>
                 </Paper>
             </Grid>
-            <Grid item xs={9}>
+            <Grid item xs={12} lg={9}>
                 <Paper sx={{ p: 2 }}>
                     <DataGrid
                         {...dataGridProps}
