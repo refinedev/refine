@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 import React, { useState, useCallback } from "react";
-import { BaseKey, useDeleteMany, useOne, useSelect } from "@pankod/refine-core";
+import { useDeleteMany, useOne, useSelect } from "@pankod/refine-core";
 import { alpha } from "@mui/material/styles";
 import {
     DeleteButton,
@@ -100,7 +100,7 @@ export const PostList: React.FC = () => {
                 Header: "Actions",
                 accessor: "id",
                 //eslint-disable-next-line react/display-name
-                Cell: ({ value }: any) => {
+                Cell: ({ value }) => {
                     return (
                         <Stack direction="row">
                             <EditButton
@@ -149,7 +149,8 @@ export const PostList: React.FC = () => {
         gotoPage,
         setPageSize,
         setFilter,
-        state: { pageIndex, pageSize, filters, selectedRowIds },
+        selectedFlatRows,
+        state: { pageIndex, pageSize, filters },
         refineCore: {
             tableQueryResult: { data: tableData },
         },
@@ -385,12 +386,12 @@ export const PostList: React.FC = () => {
                             </Stack>
                         </Box>
                         <EnhancedTableToolbar
-                            numSelected={Object.keys(selectedRowIds).length}
+                            numSelected={Object.keys(selectedFlatRows).length}
                             onDelete={() => {
-                                console.log("selectedRowIds", selectedRowIds);
-
                                 deleteSelectedItems(
-                                    Object.keys(selectedRowIds),
+                                    selectedFlatRows.map(
+                                        (r: any) => r.original.id,
+                                    ),
                                 );
                             }}
                         />
