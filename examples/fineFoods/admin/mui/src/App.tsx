@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { Refine } from "@pankod/refine-core";
+
 import {
     Layout,
     ErrorComponent,
@@ -8,17 +9,21 @@ import {
     useMediaQuery,
     DarkTheme,
     LightTheme,
+    notificationProviderHandle,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 import { useTranslation } from "react-i18next";
-
-import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
+import {
+    AddShoppingCartOutlined,
+    StarBorderOutlined,
+} from "@mui/icons-material";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 
 import { authProvider } from "authProvider";
 import { OrderList, OrderShow } from "pages/orders";
 import { UserList, UserShow } from "pages/users";
+import { ReviewsList } from "pages/reviews";
 import { LoginPage } from "pages/login";
 
 const App: React.FC = () => {
@@ -36,6 +41,7 @@ const App: React.FC = () => {
         () => (prefersDarkMode ? DarkTheme : LightTheme),
         [prefersDarkMode],
     );
+    const notificationProvider = notificationProviderHandle();
 
     return (
         <ThemeProvider theme={theme}>
@@ -50,12 +56,18 @@ const App: React.FC = () => {
                 catchAll={<ErrorComponent />}
                 syncWithLocation
                 warnWhenUnsavedChanges
+                notificationProvider={notificationProvider}
                 resources={[
                     {
                         name: "orders",
                         list: OrderList,
                         show: OrderShow,
-                        icon: <AddShoppingCartOutlinedIcon />,
+                        icon: <AddShoppingCartOutlined />,
+                    },
+                    {
+                        name: "reviews",
+                        list: ReviewsList,
+                        icon: <StarBorderOutlined />,
                     },
                     {
                         name: "users",
