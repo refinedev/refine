@@ -192,6 +192,7 @@ export const PostList: React.FC = () => {
         },
     );
 
+    // TODO: fix item interface
     const categoryIds =
         tableData?.data?.map((item: any) => item.category.id) ?? [];
 
