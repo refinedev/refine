@@ -8,6 +8,7 @@ import {
     useTranslate,
     useNavigation,
     useUpdate,
+    useExport,
 } from "@pankod/refine-core";
 import {
     useDataGrid,
@@ -28,6 +29,7 @@ import {
     Card,
     CardHeader,
     List,
+    ExportButton,
 } from "@pankod/refine-mui";
 import { Controller, useForm } from "@pankod/refine-react-hook-form";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
@@ -178,7 +180,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         [],
     );
 
-    const { dataGridProps, onSearch, filters } = useDataGrid<
+    const { dataGridProps, onSearch, filters, sorter } = useDataGrid<
         IOrder,
         HttpError,
         IOrderFilterVariables
@@ -219,6 +221,23 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
 
     const { show } = useNavigation();
 
+    const { isLoading, triggerExport } = useExport<IOrder>({
+        sorter,
+        filters,
+        pageSize: 50,
+        maxItemCount: 50,
+        mapData: (item) => {
+            return {
+                id: item.id,
+                amount: item.amount,
+                orderNumber: item.orderNumber,
+                status: item.status.text,
+                store: item.store.title,
+                user: item.user.firstName,
+            };
+        },
+    });
+
     const { register, handleSubmit, control } = useForm<
         BaseRecord,
         HttpError,
@@ -252,7 +271,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
             <Grid item xs={12} lg={3}>
                 <Card>
                     <CardHeader title="Filters" />
-                    <CardContent>
+                    <CardContent sx={{ pt: 0 }}>
                         <Box
                             component="form"
                             sx={{ display: "flex", flexDirection: "column" }}
@@ -409,7 +428,16 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 </Card>
             </Grid>
             <Grid item xs={12} lg={9}>
-                <List>
+                <List
+                    cardHeaderProps={{
+                        action: (
+                            <ExportButton
+                                onClick={triggerExport}
+                                loading={isLoading}
+                            />
+                        ),
+                    }}
+                >
                     <DataGrid
                         {...dataGridProps}
                         filterModel={undefined}
