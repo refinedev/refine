@@ -7,6 +7,16 @@ import { typography } from "./typography";
 
 const LightTheme = createTheme({
     palette: lightPalette,
+    shape: {
+        borderRadius: 6,
+    },
+    components: {
+        MuiAppBar: {
+            defaultProps: {
+                color: "transparent",
+            },
+        },
+    },
     typography: {
         ...typography,
     },
@@ -14,6 +24,16 @@ const LightTheme = createTheme({
 
 const DarkTheme = createTheme({
     palette: darkPalette,
+    shape: {
+        borderRadius: 6,
+    },
+    components: {
+        MuiAppBar: {
+            defaultProps: {
+                color: "transparent",
+            },
+        },
+    },
     typography: {
         ...typography,
     },

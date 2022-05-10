@@ -12,6 +12,7 @@ import {
     GridFilterModel,
     GridSortModel,
 } from "@mui/x-data-grid";
+import { useTheme } from "@mui/material";
 
 import {
     transformCrudSortingToSortModel,
@@ -38,6 +39,7 @@ type DataGridPropsType = Pick<DataGridProps, "filterModel"> &
             | "onSortModelChange"
             | "filterMode"
             | "onFilterModelChange"
+            | "sx"
         >
     >;
 
@@ -113,6 +115,8 @@ export const useDataGrid = <
         dataProviderName,
     });
 
+    const theme = useTheme();
+
     const { data, isFetched, isLoading } = tableQueryResult;
 
     const liveMode = useLiveMode(liveModeFromProp);
@@ -160,6 +164,21 @@ export const useDataGrid = <
             filterMode: "server",
             filterModel: transformCrudFiltersToFilterModel(filters, columns),
             onFilterModelChange: handleFilterModelChange,
+            sx: {
+                border: "none",
+                "& .MuiDataGrid-columnHeaders": {
+                    background:
+                        theme.palette.mode === "light" ? "#fafafa" : "#1b1d1e",
+                    borderBottom: `1px solid ${
+                        theme.palette.mode === "light" ? "#f0f0f0" : "#34393b"
+                    }`,
+                },
+                "& .MuiDataGrid-cell": {
+                    borderBottom: `1px solid ${
+                        theme.palette.mode === "light" ? "#f0f0f0" : "#34393b"
+                    }`,
+                },
+            },
         },
         current,
         setCurrent,
