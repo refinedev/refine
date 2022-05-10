@@ -1,23 +1,26 @@
 import React from "react";
-import { Box, Card, CardHeader, Grid } from "@pankod/refine-mui";
+import { Card, CardHeader, Grid } from "@pankod/refine-mui";
 import { useTranslate } from "@pankod/refine-core";
 
-import { DeliveryMap } from "components/dashboard";
+import { DeliveryMap, OrderTimeline } from "components/dashboard";
 
 export const DashboardPage: React.FC = () => {
     const t = useTranslate();
 
     return (
-        <Grid container>
+        <Grid container spacing={2}>
             <Grid item xs={12} lg={9}>
-                <Card>
+                <Card sx={{ height: 600 }}>
                     <CardHeader title={t("dashboard.deliveryMap.title")} />
-                    <Box sx={{ height: 500 }}>
-                        <DeliveryMap />
-                    </Box>
+                    <DeliveryMap />
                 </Card>
             </Grid>
-            <Grid item xs={12} lg={3}></Grid>
+            <Grid item xs={12} lg={3}>
+                <Card sx={{ maxHeight: 600, overflowY: "scroll" }}>
+                    <CardHeader title={t("dashboard.timeline.title")} />
+                    <OrderTimeline />
+                </Card>
+            </Grid>
         </Grid>
     );
 };
