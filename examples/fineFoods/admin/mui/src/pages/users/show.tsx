@@ -6,6 +6,7 @@ import {
     DateField,
     Grid,
     GridColumns,
+    List,
     NumberField,
     Paper,
     Stack,
@@ -205,13 +206,13 @@ export const UserShow: React.FC = () => {
             </Grid>
             <Grid item xs={12} lg={9}>
                 <Stack direction="column" spacing={2}>
-                    <Paper>
+                    <List cardHeaderProps={{ title: t("orders.orders") }}>
                         <DataGrid
                             {...dataGridProps}
                             autoHeight
                             rowsPerPageOptions={[4, 10, 20, 100]}
                         />
-                    </Paper>
+                    </List>
                     <TableContainer component={Paper}>
                         <Table>
                             <TableHead>
