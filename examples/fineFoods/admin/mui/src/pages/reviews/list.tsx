@@ -67,7 +67,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                 field: "avatar",
                 headerName: "Avatar",
                 renderCell: ({ row }) => (
-                    <Avatar>{row.user.firstName.charAt(0)}</Avatar>
+                    <Avatar src={row.user.avatar[0].url} />
                 ),
             },
             {
