@@ -16,17 +16,24 @@ import {
     ButtonProps,
     CardContent,
     IconButton,
+    CardProps,
+    CardHeaderProps,
+    CardContentProps,
+    CardActionsProps,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 import { SaveButton } from "@components";
 
 export interface CreateProps {
-    title?: string;
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
     resource?: string;
     isLoading?: boolean;
+    cardProps?: CardProps;
+    cardHeaderProps?: CardHeaderProps;
+    cardContentProps?: CardContentProps;
+    cardActionsProps?: CardActionsProps;
 }
 
 /**
@@ -35,12 +42,15 @@ export interface CreateProps {
  *
  */
 export const Create: React.FC<CreateProps> = ({
-    title,
     actionButtons,
     children,
     saveButtonProps,
     resource: resourceFromProps,
     isLoading = false,
+    cardProps,
+    cardHeaderProps,
+    cardContentProps,
+    cardActionsProps,
 }) => {
     const { goBack } = useNavigation();
 
@@ -56,26 +66,27 @@ export const Create: React.FC<CreateProps> = ({
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
     return (
-        <Card>
+        <Card {...cardProps}>
             <CardHeader
-                title={
-                    title ??
-                    translate(
-                        `${resource.name}.titles.create`,
-                        `Create ${userFriendlyResourceName(
-                            resource.label ?? resource.name,
-                            "singular",
-                        )}`,
-                    )
-                }
+                title={translate(
+                    `${resource.name}.titles.create`,
+                    `Create ${userFriendlyResourceName(
+                        resource.label ?? resource.name,
+                        "singular",
+                    )}`,
+                )}
                 avatar={
                     <IconButton onClick={routeFromAction ? goBack : undefined}>
                         <ArrowBackIcon />
                     </IconButton>
                 }
+                {...cardHeaderProps}
             />
-            <CardContent>{children}</CardContent>
-            <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <CardContent {...cardContentProps}>{children}</CardContent>
+            <CardActions
+                sx={{ display: "flex", justifyContent: "flex-end" }}
+                {...cardActionsProps}
+            >
                 {actionButtons ?? (
                     <SaveButton loading={isLoading} {...saveButtonProps} />
                 )}

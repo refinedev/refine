@@ -56,21 +56,33 @@ This guide will help you learn and get information of basic **refine** concepts.
 
 **[i18n Provider](https://refine.dev/docs/core/providers/i18n-provider/)**
 
--   `React - i18next` - [Example](https://refine.dev/docs/examples/i18n/i18n-react/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/i18n/react/src/App.tsx#L17)
--   `Next.js - next-i18next` - [Example](https://refine.dev/docs/examples/i18n/i18n-nextjs/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/i18n/nextjs/pages/_app.tsx#L20)
+-   React - [i18next](https://react.i18next.com/) - [Example](https://refine.dev/docs/examples/i18n/i18n-react/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/i18n/react/src/App.tsx#L17)
+-   Next.js - [next-i18next](https://github.com/isaachinman/next-i18next) - [Example](https://refine.dev/docs/examples/i18n/i18n-nextjs/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/i18n/nextjs/pages/_app.tsx#L20)
 
 **[Access Control Provider](https://refine.dev/docs/api-references/providers/accessControl-provider/)**
 
--   `Casbin` - [Example](https://refine.dev/docs/examples/access-control/casbin/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/accessControl/casbin/src/App.tsx#L27)
--   `Cerbos` - [Example](https://refine.dev/docs/examples/access-control/cerbos/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/accessControl/cerbos/src/App.tsx#L37)
+-   [Casbin](https://casbin.org/) - [Example](https://refine.dev/docs/examples/access-control/casbin/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/accessControl/casbin/src/App.tsx#L27)
+-   [Cerbos](https://cerbos.dev/) - [Example](https://refine.dev/docs/examples/access-control/cerbos/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/accessControl/cerbos/src/App.tsx#L37)
+-   [Permify](https://www.permify.co/) - [Example](https://refine.dev/docs/examples/access-control/permify/) - [Source Code](https://github.com/Permify/permify-refine/blob/master/src/App.tsx#L43)
 
 **[Auth Provider](https://refine.dev/docs/api-references/providers/auth-provider/)**
 
--   `Auth0` - [Example](https://refine.dev/docs/examples/auth-provider/auth0/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/authProvider/auth0/src/App.tsx#L23)
--   `Google Auth` - [Example](https://refine.dev/docs/examples/auth-provider/google-auth/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/authProvider/googleLogin/src/App.tsx#L23)
+-   [Auth0](https://auth0.com/) - [Example](https://refine.dev/docs/examples/auth-provider/auth0/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/authProvider/auth0/src/App.tsx#L23)
+-   [Google Auth](https://developers.google.com/identity/protocols/oauth2) - [Example](https://refine.dev/docs/examples/auth-provider/google-auth/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/authProvider/googleLogin/src/App.tsx#L23)
+
+## Complete Application Examples
+
+-  [RealWorld](https://github.com/gothinkster/realworld) - Exemplary fullstack [Medium.com](https://medium.com) Clone - [Live Example](http://refine.dev/docs/examples/real-world-refine-example/) - [Source Code](https://github.com/pankod/refine/tree/master/examples/real-world-example/src)
+-  We are going back to 1995! - Win95 Style Admin Panel - [Blog Post](https://refine.dev/blog/awesome-react-windows95-ui-with-refine/) - [Live Example](https://win95.refine.dev) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/win95)
+-  Invoice Generator App with Strapi & Refine & Ant Design - [Blog Post](https://refine.dev/blog/refine-react-admin-invoice-genarator/) - [Live Example](https://codesandbox.io/s/refine-invoice-generator-n59710) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/invoiceGenerator/src)
+-  Refeedback! - Feedback Admin Panel with Strapi & Refine & Ant Design - [Blog Post](https://refine.dev/blog/create-a-feedback-admin-panel-with-refine-and-strapi/) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/refeedback)
+-  E-mail Subscription Panel with Refine and Strapi & Ant Design - [Blog Post](https://refine.dev/blog/e-mail-subscription-panel-with-refine/) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/mailSubscription)
+-  Internal Issue Tracker With Refine and Supabase - [Blog Post](https://refine.dev/blog/customizable-issue-tracker-with-refine-and-supabase/) - [Live Example](https://codesandbox.io/s/refine-supabase-issue-tracker-vbz3w) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/issueTracker)
+-  Next.js E-commerce App with Strapi & Chakra UI & Refine - [Blog Post](https://refine.dev/blog/handcrafted-nextjs-e-commerce-app-tutorial-strapi-chakra-ui/) - [Live Example](https://codesandbox.io/s/refine-ecommerce-example-9rvzv) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/ecommerce)
+-  Multi-tenancy Example - [Appwrite Guide](https://refine.dev/docs/guides-and-concepts/multi-tenancy/appwrite/) - [Strapi Guide](https://refine.dev/docs/guides-and-concepts/multi-tenancy/strapi-v4/)
 
 
-### Roadmap
+## Roadmap
 
 You can find Refine's [Public Roadmap here!](https://github.com/pankod/refine/projects/1)
 ## Next Steps

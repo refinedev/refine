@@ -19,6 +19,10 @@ import {
     IconButton,
     CardContent,
     CardActions,
+    CardProps,
+    CardHeaderProps,
+    CardContentProps,
+    CardActionsProps,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
@@ -31,7 +35,6 @@ import {
 import { DeleteButtonProps } from "@components";
 
 export interface EditProps {
-    title?: string;
     actionButtons?: React.ReactNode;
     saveButtonProps?: ButtonProps;
     mutationMode?: MutationMode;
@@ -40,6 +43,10 @@ export interface EditProps {
     deleteButtonProps?: DeleteButtonProps;
     resource?: string;
     isLoading?: boolean;
+    cardProps?: CardProps;
+    cardHeaderProps?: CardHeaderProps;
+    cardContentProps?: CardContentProps;
+    cardActionsProps?: CardActionsProps;
 }
 
 /**
@@ -48,7 +55,6 @@ export interface EditProps {
  *
  */
 export const Edit: React.FC<EditProps> = ({
-    title,
     actionButtons,
     saveButtonProps,
     mutationMode: mutationModeProp,
@@ -58,6 +64,10 @@ export const Edit: React.FC<EditProps> = ({
     canDelete,
     resource: resourceFromProps,
     isLoading = false,
+    cardProps,
+    cardHeaderProps,
+    cardContentProps,
+    cardActionsProps,
 }) => {
     const translate = useTranslate();
 
@@ -85,18 +95,15 @@ export const Edit: React.FC<EditProps> = ({
     const id = recordItemId ?? idFromRoute;
 
     return (
-        <Card>
+        <Card {...cardProps}>
             <CardHeader
-                title={
-                    title ??
-                    translate(
-                        `${resource.name}.titles.create`,
-                        `Edit ${userFriendlyResourceName(
-                            resource.label ?? resource.name,
-                            "singular",
-                        )}`,
-                    )
-                }
+                title={translate(
+                    `${resource.name}.titles.create`,
+                    `Edit ${userFriendlyResourceName(
+                        resource.label ?? resource.name,
+                        "singular",
+                    )}`,
+                )}
                 avatar={
                     <IconButton onClick={routeFromAction ? goBack : undefined}>
                         <ArrowBackIcon />
@@ -116,9 +123,13 @@ export const Edit: React.FC<EditProps> = ({
                         />
                     </>
                 }
+                {...cardHeaderProps}
             />
-            <CardContent>{children}</CardContent>
-            <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <CardContent {...cardContentProps}>{children}</CardContent>
+            <CardActions
+                sx={{ display: "flex", justifyContent: "flex-end" }}
+                {...cardActionsProps}
+            >
                 {actionButtons ?? (
                     <>
                         {isDeleteButtonVisible && (
