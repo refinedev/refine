@@ -14,14 +14,15 @@ import {
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 import { useTranslation } from "react-i18next";
-
 import {
     AddShoppingCartOutlined,
     StarBorderOutlined,
 } from "@mui/icons-material";
+import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 
 import { authProvider } from "authProvider";
 import { OrderList, OrderShow } from "pages/orders";
+import { UserList, UserShow } from "pages/users";
 import { ReviewsList } from "pages/reviews";
 import { LoginPage } from "pages/login";
 
@@ -67,6 +68,12 @@ const App: React.FC = () => {
                         name: "reviews",
                         list: ReviewsList,
                         icon: <StarBorderOutlined />,
+                    },
+                    {
+                        name: "users",
+                        list: UserList,
+                        show: UserShow,
+                        icon: <PeopleOutlineIcon />,
                     },
                 ]}
             />
