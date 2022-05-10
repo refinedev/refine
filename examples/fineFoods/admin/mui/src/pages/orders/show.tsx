@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React from "react";
 import {
     IResourceComponentsProps,
@@ -22,6 +23,8 @@ import {
     StepLabel,
     Stepper,
     Typography,
+    List,
+    Paper,
 } from "@pankod/refine-mui";
 import dayjs from "dayjs";
 import GoogleMapReact from "google-map-react";
@@ -52,7 +55,6 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 field: "name",
                 headerName: t("orders.deliverables.fields.items"),
                 flex: 1,
-                // eslint-disable-next-line react/display-name
                 renderCell: ({ row }) => (
                     <Stack direction="row" spacing={4} alignItems="center">
                         <Avatar
@@ -233,77 +235,66 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 </GoogleMapReact>
             </Box>
 
-            <Card>
-                <CardContent>
-                    <Grid container spacing={2}>
-                        <Grid item xl={6} lg={5}>
-                            <Stack
-                                direction="row"
-                                spacing={3}
-                                alignItems="center"
-                            >
-                                <Avatar
-                                    alt="Travis Howard"
-                                    src="https://mui.com/static/images/avatar/3.jpg"
-                                    sx={{ width: 100, height: 100 }}
-                                />
-                                <Box>
-                                    <Typography>COURIER</Typography>
-                                    <Typography variant="h6">
-                                        {record?.courier.name}{" "}
-                                        {record?.courier.surname}
-                                    </Typography>
-                                    <Typography variant="caption">
-                                        ID #{record?.courier.id}
-                                    </Typography>
-                                </Box>
-                            </Stack>
-                        </Grid>
-                        <Grid item xl={6} lg={7} md={12}>
-                            <Stack
-                                direction="row"
-                                spacing={2}
-                                alignItems="center"
-                                justifyContent="flex-end"
-                                height={"100%"}
-                            >
-                                <CourierInfoBox
-                                    text={t("orders.courier.phone")}
-                                    icon={
-                                        <PhoneIphoneIcon
-                                            sx={{ fontSize: 36 }}
-                                        />
-                                    }
-                                    value={record?.courier.gsm}
-                                />
-                                <CourierInfoBox
-                                    text={t("orders.courier.deliveryTime")}
-                                    icon={<MopedIcon sx={{ fontSize: 36 }} />}
-                                    value="15:05"
-                                />
-                            </Stack>
-                        </Grid>
+            <Paper sx={{ p: 2 }}>
+                <Grid container spacing={2}>
+                    <Grid item xl={6} lg={5}>
+                        <Stack direction="row" spacing={3} alignItems="center">
+                            <Avatar
+                                alt="Travis Howard"
+                                src="https://mui.com/static/images/avatar/3.jpg"
+                                sx={{ width: 100, height: 100 }}
+                            />
+                            <Box>
+                                <Typography>COURIER</Typography>
+                                <Typography variant="h6">
+                                    {record?.courier.name}{" "}
+                                    {record?.courier.surname}
+                                </Typography>
+                                <Typography variant="caption">
+                                    ID #{record?.courier.id}
+                                </Typography>
+                            </Box>
+                        </Stack>
                     </Grid>
-                </CardContent>
-            </Card>
+                    <Grid item xl={6} lg={7} md={12}>
+                        <Stack
+                            direction="row"
+                            spacing={2}
+                            alignItems="center"
+                            justifyContent="flex-end"
+                            height={"100%"}
+                        >
+                            <CourierInfoBox
+                                text={t("orders.courier.phone")}
+                                icon={<PhoneIphoneIcon sx={{ fontSize: 36 }} />}
+                                value={record?.courier.gsm}
+                            />
+                            <CourierInfoBox
+                                text={t("orders.courier.deliveryTime")}
+                                icon={<MopedIcon sx={{ fontSize: 36 }} />}
+                                value="15:05"
+                            />
+                        </Stack>
+                    </Grid>
+                </Grid>
+            </Paper>
 
-            <Card>
-                <CardContent>
-                    <Typography variant="h5">
-                        {t("orders.deliverables.deliverables")}
-                    </Typography>
-                    <DataGrid
-                        autoHeight
-                        columns={columns}
-                        rows={record?.products || []}
-                        hideFooterPagination
-                        rowHeight={124}
-                        components={{
-                            Footer: CustomFooter,
-                        }}
-                    />
-                </CardContent>
-            </Card>
+            <List
+                cardHeaderProps={{
+                    title: t("orders.deliverables.deliverables"),
+                }}
+            >
+                <DataGrid
+                    autoHeight
+                    columns={columns}
+                    rows={record?.products || []}
+                    hideFooterPagination
+                    rowHeight={124}
+                    components={{
+                        Footer: CustomFooter,
+                    }}
+                />
+            </List>
         </Stack>
     );
 };
