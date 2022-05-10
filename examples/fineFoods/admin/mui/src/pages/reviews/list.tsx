@@ -16,7 +16,6 @@ import {
     Avatar,
     Rating,
     Stack,
-    Toolbar,
     Button,
     List,
 } from "@pankod/refine-mui";
@@ -173,18 +172,17 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                 ),
             }}
         >
-            <div style={{ display: "flex", height: 700, width: "100%" }}>
-                <DataGrid
-                    {...dataGridProps}
-                    autoHeight
-                    checkboxSelection
-                    density="comfortable"
-                    onSelectionModelChange={(newSelectionModel) => {
-                        setSelectedRowKeys(newSelectionModel as React.Key[]);
-                    }}
-                    selectionModel={selectedRowKeys}
-                />
-            </div>
+            <DataGrid
+                {...dataGridProps}
+                autoHeight
+                checkboxSelection
+                density="comfortable"
+                onSelectionModelChange={(newSelectionModel) => {
+                    setSelectedRowKeys(newSelectionModel as React.Key[]);
+                }}
+                rowsPerPageOptions={[10]}
+                selectionModel={selectedRowKeys}
+            />
         </List>
     );
 };
