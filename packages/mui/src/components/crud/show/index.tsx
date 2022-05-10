@@ -16,6 +16,10 @@ import {
     CardHeader,
     IconButton,
     Box,
+    CardProps,
+    CardHeaderProps,
+    CardContentProps,
+    CardActionsProps,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
@@ -27,13 +31,16 @@ import {
 } from "@components";
 
 export interface ShowProps {
-    title?: string;
     canEdit?: boolean;
     canDelete?: boolean;
     actionButtons?: React.ReactNode;
     isLoading?: boolean;
     resource?: string;
     recordItemId?: BaseKey;
+    cardProps?: CardProps;
+    cardHeaderProps?: CardHeaderProps;
+    cardContentProps?: CardContentProps;
+    cardActionsProps?: CardActionsProps;
 }
 
 /**
@@ -42,7 +49,6 @@ export interface ShowProps {
  *
  */
 export const Show: React.FC<ShowProps> = ({
-    title,
     canEdit,
     canDelete,
     actionButtons,
@@ -50,6 +56,10 @@ export const Show: React.FC<ShowProps> = ({
     children,
     resource: resourceFromProps,
     recordItemId,
+    cardProps,
+    cardHeaderProps,
+    cardContentProps,
+    cardActionsProps,
 }) => {
     const translate = useTranslate();
 
@@ -74,18 +84,15 @@ export const Show: React.FC<ShowProps> = ({
     const id = recordItemId ?? idFromRoute;
 
     return (
-        <Card>
+        <Card {...cardProps}>
             <CardHeader
-                title={
-                    title ??
-                    translate(
-                        `${resource.name}.titles.create`,
-                        `Show ${userFriendlyResourceName(
-                            resource.label ?? resource.name,
-                            "singular",
-                        )}`,
-                    )
-                }
+                title={translate(
+                    `${resource.name}.titles.create`,
+                    `Show ${userFriendlyResourceName(
+                        resource.label ?? resource.name,
+                        "singular",
+                    )}`,
+                )}
                 avatar={
                     <IconButton onClick={routeFromAction ? goBack : undefined}>
                         <ArrowBackIcon />
@@ -123,9 +130,10 @@ export const Show: React.FC<ShowProps> = ({
                         />
                     </Box>
                 }
+                {...cardHeaderProps}
             />
-            <CardContent>{children}</CardContent>
-            <CardActions>
+            <CardContent {...cardContentProps}>{children}</CardContent>
+            <CardActions {...cardActionsProps}>
                 {actionButtons ? [actionButtons] : undefined}
             </CardActions>
         </Card>

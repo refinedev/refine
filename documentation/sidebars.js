@@ -380,6 +380,7 @@ module.exports = {
             label: "Examples",
             items: [
                 "examples/tutorial-example",
+                "examples/real-world-example",
                 {
                     type: "category",
                     label: "Access Control",

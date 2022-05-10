@@ -8,6 +8,7 @@ import {
     useTranslate,
     useNavigation,
     useUpdate,
+    useExport,
 } from "@pankod/refine-core";
 import {
     useDataGrid,
@@ -15,8 +16,6 @@ import {
     Grid,
     Box,
     TextField,
-    Card,
-    CardContent,
     Button,
     NumberField,
     Typography,
@@ -26,6 +25,11 @@ import {
     Stack,
     useAutocomplete,
     Autocomplete,
+    CardContent,
+    Card,
+    CardHeader,
+    List,
+    ExportButton,
 } from "@pankod/refine-mui";
 import { Controller, useForm } from "@pankod/refine-react-hook-form";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
@@ -176,7 +180,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         [],
     );
 
-    const { dataGridProps, onSearch, filters } = useDataGrid<
+    const { dataGridProps, onSearch, filters, sorter } = useDataGrid<
         IOrder,
         HttpError,
         IOrderFilterVariables
@@ -185,7 +189,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         initialPageSize: 10,
         onSearch: (params) => {
             const filters: CrudFilters = [];
-            const { q, store, user, createdAt, status } = params;
+            const { q, store, user, status } = params;
 
             filters.push({
                 field: "q",
@@ -211,17 +215,28 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 value: (status ?? []).length > 0 ? status : undefined,
             });
 
-            filters.push({
-                field: "createdAt",
-                operator: "eq",
-                value: createdAt,
-            });
-
             return filters;
         },
     });
 
     const { show } = useNavigation();
+
+    const { isLoading, triggerExport } = useExport<IOrder>({
+        sorter,
+        filters,
+        pageSize: 50,
+        maxItemCount: 50,
+        mapData: (item) => {
+            return {
+                id: item.id,
+                amount: item.amount,
+                orderNumber: item.orderNumber,
+                status: item.status.text,
+                store: item.store.title,
+                user: item.user.firstName,
+            };
+        },
+    });
 
     const { register, handleSubmit, control } = useForm<
         BaseRecord,
@@ -253,9 +268,10 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Grid container spacing={2}>
-            <Grid item xs={3}>
+            <Grid item xs={12} lg={3}>
                 <Card>
-                    <CardContent>
+                    <CardHeader title="Filters" />
+                    <CardContent sx={{ pt: 0 }}>
                         <Box
                             component="form"
                             sx={{ display: "flex", flexDirection: "column" }}
@@ -403,19 +419,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                     />
                                 )}
                             />
-                            {/*            <TextField
-                                {...register("createdAt")}
-                                label={t("orders.filter.createdAt.label")}
-                                placeholder={t(
-                                    "orders.filter.store.placeholder",
-                                )}
-                                margin="normal"
-                                select
-                            >
-                                <MenuItem value="published">Published</MenuItem>
-                                <MenuItem value="draft">Draft</MenuItem>
-                                <MenuItem value="rejected">Rejected</MenuItem>
-                            </TextField> */}
                             <br />
                             <Button type="submit" variant="contained">
                                 {t("orders.filter.submit")}
@@ -424,19 +427,32 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                     </CardContent>
                 </Card>
             </Grid>
-            <Grid item xs={9}>
-                <Card>
-                    <CardContent sx={{ height: "700px" }}>
-                        <DataGrid
-                            {...dataGridProps}
-                            filterModel={undefined}
-                            onRowClick={({ id }) => {
-                                show("orders", id);
-                            }}
-                            rowsPerPageOptions={[10, 20, 50, 100]}
-                        />
-                    </CardContent>
-                </Card>
+            <Grid item xs={12} lg={9}>
+                <List
+                    cardHeaderProps={{
+                        action: (
+                            <ExportButton
+                                onClick={triggerExport}
+                                loading={isLoading}
+                            />
+                        ),
+                    }}
+                >
+                    <DataGrid
+                        {...dataGridProps}
+                        filterModel={undefined}
+                        autoHeight
+                        onRowClick={({ id }) => {
+                            show("orders", id);
+                        }}
+                        rowsPerPageOptions={[10, 20, 50, 100]}
+                        sx={{
+                            "& .MuiDataGrid-row": {
+                                cursor: "pointer",
+                            },
+                        }}
+                    />
+                </List>
             </Grid>
         </Grid>
     );

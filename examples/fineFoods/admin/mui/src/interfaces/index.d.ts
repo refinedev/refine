@@ -116,7 +116,6 @@ export interface IOrderFilterVariables {
     q?: string;
     store?: string;
     user?: string;
-    createdAt?: string;
     status?: string[];
 }
 

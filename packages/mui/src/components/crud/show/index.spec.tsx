@@ -115,7 +115,13 @@ describe("Show", () => {
     });
 
     it("should render optional title with title prop", () => {
-        const { getByText } = renderShow(<Show title="Test Title" />);
+        const { getByText } = renderShow(
+            <Show
+                cardHeaderProps={{
+                    title: "Test Title",
+                }}
+            />,
+        );
 
         getByText("Test Title");
     });

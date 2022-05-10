@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
 import {
     useResourceWithRoute,
@@ -8,15 +8,24 @@ import {
     ResourceRouterParams,
 } from "@pankod/refine-core";
 
-import { Card, CardHeader, CardContent } from "@mui/material";
+import {
+    Card,
+    CardHeader,
+    CardContent,
+    CardProps,
+    CardHeaderProps,
+    CardContentProps,
+} from "@mui/material";
 
 import { CreateButton, CreateButtonProps } from "@components";
 
 export interface ListProps {
     canCreate?: boolean;
-    title?: ReactNode;
     createButtonProps?: CreateButtonProps;
     resource?: string;
+    cardProps?: CardProps;
+    cardHeaderProps?: CardHeaderProps;
+    cardContentProps?: CardContentProps;
 }
 
 /**
@@ -26,10 +35,12 @@ export interface ListProps {
  */
 export const List: React.FC<ListProps> = ({
     canCreate,
-    title,
     children,
     createButtonProps,
     resource: resourceFromProps,
+    cardProps,
+    cardHeaderProps,
+    cardContentProps,
 }) => {
     const { useParams } = useRouterContext();
 
@@ -53,21 +64,19 @@ export const List: React.FC<ListProps> = ({
     );
 
     return (
-        <Card>
+        <Card {...cardProps}>
             <CardHeader
-                title={
-                    title ??
-                    translate(
-                        `${resource.name}.titles.list`,
-                        userFriendlyResourceName(
-                            resource.label ?? resource.name,
-                            "plural",
-                        ),
-                    )
-                }
+                title={translate(
+                    `${resource.name}.titles.list`,
+                    userFriendlyResourceName(
+                        resource.label ?? resource.name,
+                        "plural",
+                    ),
+                )}
                 action={defaultExtra}
+                {...cardHeaderProps}
             />
-            <CardContent>{children}</CardContent>
+            <CardContent {...cardContentProps}>{children}</CardContent>
         </Card>
     );
 };

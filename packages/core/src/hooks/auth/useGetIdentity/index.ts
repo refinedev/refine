@@ -18,9 +18,14 @@ export const useGetIdentity = <TData = any>(): UseQueryResult<
 > => {
     const { getUserIdentity } = React.useContext<IAuthContext>(AuthContext);
 
-    const queryResponse = useQuery<TData>("getUserIdentity", getUserIdentity!, {
-        enabled: !!getUserIdentity,
-    });
+    const queryResponse = useQuery<TData>(
+        ["getUserIdentity"],
+        getUserIdentity!,
+        {
+            enabled: !!getUserIdentity,
+            retry: false,
+        },
+    );
 
     return queryResponse;
 };

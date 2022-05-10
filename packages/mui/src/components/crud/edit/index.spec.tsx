@@ -92,7 +92,13 @@ describe("Edit", () => {
     });
 
     it("should render optional title with title prop", () => {
-        const { getByText } = renderEdit(<Edit title="New Title" />);
+        const { getByText } = renderEdit(
+            <Edit
+                cardHeaderProps={{
+                    title: "New Title",
+                }}
+            />,
+        );
 
         getByText("New Title");
     });
