@@ -18,6 +18,7 @@ import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutl
 import { authProvider } from "authProvider";
 import { OrderList, OrderShow } from "pages/orders";
 import { LoginPage } from "pages/login";
+import { DashboardPage } from "pages/dashboard";
 
 const App: React.FC = () => {
     const { t, i18n } = useTranslation();
@@ -42,6 +43,7 @@ const App: React.FC = () => {
                 dataProvider={dataProvider("https://api.finefoods.refine.dev")}
                 authProvider={authProvider}
                 i18nProvider={i18nProvider}
+                DashboardPage={DashboardPage}
                 ReadyPage={ReadyPage}
                 Layout={Layout}
                 LoginPage={LoginPage}
