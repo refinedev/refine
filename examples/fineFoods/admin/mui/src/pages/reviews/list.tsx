@@ -28,6 +28,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
     const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>(
         [],
     );
+    const hasSelected = selectedRowKeys.length > 0;
 
     const t = useTranslate();
     const { show } = useNavigation();
@@ -151,11 +152,10 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
         ],
     });
 
-    const EnhancedTableToolbar = (props: { numSelected: React.Key[] }) => {
-        const { numSelected } = props;
-        return (
-            <Toolbar>
-                {numSelected.length > 0 && (
+    return (
+        <List
+            cardHeaderProps={{
+                subheader: hasSelected && (
                     <Stack direction="row">
                         <Button
                             startIcon={<Check color="success" />}
@@ -170,13 +170,9 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                             {t("buttons.rejectAll")}
                         </Button>
                     </Stack>
-                )}
-            </Toolbar>
-        );
-    };
-
-    return (
-        <List>
+                ),
+            }}
+        >
             <div style={{ display: "flex", height: 700, width: "100%" }}>
                 <DataGrid
                     {...dataGridProps}
@@ -187,13 +183,6 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                         setSelectedRowKeys(newSelectionModel as React.Key[]);
                     }}
                     selectionModel={selectedRowKeys}
-                    components={{
-                        Header: () => (
-                            <EnhancedTableToolbar
-                                numSelected={selectedRowKeys}
-                            />
-                        ),
-                    }}
                 />
             </div>
         </List>
