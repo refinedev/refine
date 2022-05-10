@@ -1,6 +1,6 @@
 {
     "name": "refine-advanced-react-table-example",
-    "version": "3.16.2",
+    "version": "3.17.0",
     "private": true,
     "dependencies": {
         "@hookform/error-message": "^2.0.0",

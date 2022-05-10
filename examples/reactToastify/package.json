@@ -1,6 +1,6 @@
 {
   "name": "refine-react-toastify-example",
-  "version": "3.16.2",
+  "version": "3.17.0",
   "private": true,
   "dependencies": {
     "@pankod/refine-core": "*",
