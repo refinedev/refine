@@ -6,7 +6,7 @@ import { Stack, Grid } from "@pankod/refine-mui";
 import { ICategory } from "interfaces";
 
 type ProductItemProps = {
-    setFilters?: (filters: CrudFilters) => void;
+    setFilters: (filters: CrudFilters) => void;
     filters: CrudFilters;
 };
 
