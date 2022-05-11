@@ -66,14 +66,11 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         refineCoreProps: { action: "edit" },
     });
 
-    const { tableQueryResult, setFilters, setCurrent, filters } =
+    const { tableQueryResult, setFilters, setCurrent, filters, pageCount } =
         useTable<IProduct>({
             resource: "products",
             initialPageSize: 12,
         });
-
-    const paginationCount =
-        tableQueryResult.data && Math.ceil(tableQueryResult.data?.total / 12);
 
     return (
         <>
@@ -187,7 +184,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                             )}
                         </Grid>
                         <Pagination
-                            count={paginationCount}
+                            count={pageCount}
                             variant="outlined"
                             color="primary"
                             shape="rounded"
