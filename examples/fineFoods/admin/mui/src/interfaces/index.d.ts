@@ -122,9 +122,8 @@ export interface IOrderFilterVariables {
 export interface IUserFilterVariables {
     q: string;
     status: boolean;
-    createdAt: string;
     gender: string;
-    isActive: boolean;
+    isActive: boolean | string;
 }
 
 export interface ICourier {

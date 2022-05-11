@@ -4,20 +4,16 @@ export const lightPalette: PaletteOptions = {
     mode: "light",
     primary: {
         main: "#67be23",
+        contrastText: "#fff",
+    },
+    secondary: {
+        main: "#fa541c",
     },
     error: {
         main: "#fa541c",
     },
+    divider: "rgba(0,0,0,0)",
     text: {
         primary: "#626262",
-        secondary: "#9F9F9F",
-    },
-    background: {
-        default: "#2a132e",
-        paper: "#f0f2f5",
-    },
-    common: {
-        black: "#000",
-        white: "#fff",
     },
 };
