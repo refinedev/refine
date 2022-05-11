@@ -24,7 +24,7 @@ export const ProfilePage: React.FC = () => {
 
     const params = useParams();
 
-    const { tableQueryResult, pageSize, current, setCurrent, setFilters } =
+    const { tableQueryResult, current, pageCount, setCurrent, setFilters } =
         useTable<IArticle>({
             resource: "articles",
             queryOptions: {
@@ -161,8 +161,7 @@ export const ProfilePage: React.FC = () => {
                                 );
                             })}
                         <Pagination
-                            total={tableQueryResult.data?.total}
-                            pageSize={pageSize}
+                            total={pageCount}
                             current={current}
                             setCurrent={setCurrent}
                         />
