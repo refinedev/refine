@@ -9,7 +9,13 @@ import {
     TimelineSeparator,
 } from "@mui/lab";
 import { useTranslate, useNavigation, useTable } from "@pankod/refine-core";
-import { Box, Button, Tooltip, Typography } from "@pankod/refine-mui";
+import {
+    Box,
+    Button,
+    Tooltip,
+    Typography,
+    Pagination,
+} from "@pankod/refine-mui";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
@@ -21,16 +27,17 @@ export const OrderTimeline: React.FC = () => {
     const t = useTranslate();
     const { show } = useNavigation();
 
-    const { tableQueryResult } = useTable<IOrder>({
-        resource: "orders",
-        initialSorter: [
-            {
-                field: "createdAt",
-                order: "desc",
-            },
-        ],
-        initialPageSize: 6,
-    });
+    const { tableQueryResult, current, setCurrent, pageCount } =
+        useTable<IOrder>({
+            resource: "orders",
+            initialSorter: [
+                {
+                    field: "createdAt",
+                    order: "desc",
+                },
+            ],
+            initialPageSize: 6,
+        });
 
     const { data } = tableQueryResult;
 
@@ -68,67 +75,79 @@ export const OrderTimeline: React.FC = () => {
     };
 
     return (
-        <Timeline position="right">
-            {data?.data.map(({ createdAt, orderNumber, status, id }) => {
-                const text = orderStatusColor(status.id.toString())?.text;
-                const color = orderStatusColor(status.id.toString())?.color;
-                const dotColor = orderStatusColor(
-                    status.id.toString(),
-                )?.dotColor;
+        <>
+            <Timeline position="right">
+                {data?.data.map(({ createdAt, orderNumber, status, id }) => {
+                    const text = orderStatusColor(status.id.toString())?.text;
+                    const color = orderStatusColor(status.id.toString())?.color;
+                    const dotColor = orderStatusColor(
+                        status.id.toString(),
+                    )?.dotColor;
 
-                return (
-                    <TimelineItem key={orderNumber}>
-                        <TimelineOppositeContent
-                            sx={{ display: "none" }}
-                        ></TimelineOppositeContent>
-                        <TimelineSeparator>
-                            <TimelineDot
-                                variant="outlined"
-                                sx={{ borderColor: dotColor }}
-                            />
-                            <TimelineConnector sx={{ width: "1px" }} />
-                        </TimelineSeparator>
-                        <TimelineContent>
-                            <Box
-                                sx={{
-                                    backgroundColor: color,
-                                    borderRadius: 2,
-                                    p: 1,
-                                }}
-                            >
-                                <Tooltip
-                                    arrow
-                                    title={dayjs(createdAt).format("lll")}
+                    return (
+                        <TimelineItem key={orderNumber}>
+                            <TimelineOppositeContent
+                                sx={{ display: "none" }}
+                            ></TimelineOppositeContent>
+                            <TimelineSeparator>
+                                <TimelineDot
+                                    variant="outlined"
+                                    sx={{ borderColor: dotColor }}
+                                />
+                                <TimelineConnector sx={{ width: "1px" }} />
+                            </TimelineSeparator>
+                            <TimelineContent>
+                                <Box
+                                    sx={{
+                                        backgroundColor: color,
+                                        borderRadius: 2,
+                                        p: 1,
+                                    }}
                                 >
-                                    <Typography
-                                        variant="caption"
-                                        sx={{ fontStyle: "italic" }}
+                                    <Tooltip
+                                        arrow
+                                        title={dayjs(createdAt).format("lll")}
                                     >
-                                        {dayjs(createdAt).fromNow()}
+                                        <Typography
+                                            variant="caption"
+                                            sx={{ fontStyle: "italic" }}
+                                        >
+                                            {dayjs(createdAt).fromNow()}
+                                        </Typography>
+                                    </Tooltip>
+                                    <Typography variant="subtitle2">
+                                        {t(
+                                            `dashboard.timeline.orderStatuses.${text}`,
+                                        )}
                                     </Typography>
-                                </Tooltip>
-                                <Typography variant="subtitle2">
-                                    {t(
-                                        `dashboard.timeline.orderStatuses.${text}`,
-                                    )}
-                                </Typography>
-                                <Button
-                                    variant="text"
-                                    onClick={() => show("orders", id)}
-                                    size="small"
-                                >
-                                    <Typography
-                                        variant="subtitle2"
-                                        sx={{ color: "text.primary" }}
+                                    <Button
+                                        variant="text"
+                                        onClick={() => show("orders", id)}
+                                        size="small"
                                     >
-                                        #{orderNumber}
-                                    </Typography>
-                                </Button>
-                            </Box>
-                        </TimelineContent>
-                    </TimelineItem>
-                );
-            })}
-        </Timeline>
+                                        <Typography
+                                            variant="subtitle2"
+                                            sx={{ color: "text.primary" }}
+                                        >
+                                            #{orderNumber}
+                                        </Typography>
+                                    </Button>
+                                </Box>
+                            </TimelineContent>
+                        </TimelineItem>
+                    );
+                })}
+                <Box sx={{ display: "flex", justifyContent: "center", mt: 1 }}>
+                    <Pagination
+                        count={pageCount}
+                        page={current}
+                        siblingCount={0}
+                        onChange={(e, page) => setCurrent(page)}
+                        size="small"
+                        color="primary"
+                    />
+                </Box>
+            </Timeline>
+        </>
     );
 };
