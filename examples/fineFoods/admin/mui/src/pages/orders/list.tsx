@@ -447,6 +447,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         }}
                         rowsPerPageOptions={[10, 20, 50, 100]}
                         sx={{
+                            ...dataGridProps.sx,
                             "& .MuiDataGrid-row": {
                                 cursor: "pointer",
                             },

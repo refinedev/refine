@@ -43,6 +43,7 @@ export const useTable = <
         setSorter,
         filters: filtersCore,
         setFilters,
+        pageCount,
     } = useTableResult;
 
     const logicalFilters: LogicalFilter[] = [];
@@ -68,7 +69,7 @@ export const useTable = <
                     value: filter.value,
                 })),
             },
-            pageCount: Math.ceil((data?.total || 0) / pageSizeCore),
+            pageCount: pageCount,
             manualPagination: true,
             manualSortBy: true,
             manualFilters: true,

@@ -34,11 +34,11 @@ export const HomePage: React.FC = () => {
 
     const {
         tableQueryResult,
-        pageSize,
         current,
         setCurrent,
         filters,
         setFilters,
+        pageCount,
     } = useTable<IArticle>({
         resource: activeTab === "yourFeed" ? "articles/feed" : "articles",
         metaData: {
@@ -207,14 +207,11 @@ export const HomePage: React.FC = () => {
                         }}
                     />
                 </div>
-                {(tableQueryResult.data?.total || 0) > 6 && (
-                    <Pagination
-                        pageSize={pageSize}
-                        current={current}
-                        setCurrent={setCurrent}
-                        total={tableQueryResult.data?.total}
-                    />
-                )}
+                <Pagination
+                    current={current}
+                    setCurrent={setCurrent}
+                    total={pageCount}
+                />
             </div>
         </div>
     );

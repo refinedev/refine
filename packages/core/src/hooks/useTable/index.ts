@@ -57,6 +57,7 @@ export type useTableReturnType<TData extends BaseRecord = BaseRecord> = {
     setCurrent: ReactSetState<useTableReturnType["current"]>;
     pageSize: number;
     setPageSize: ReactSetState<useTableReturnType["pageSize"]>;
+    pageCount: number;
 };
 
 /**
@@ -175,6 +176,8 @@ export const useTable = <
         setSorter(() => unionSorters(permanentSorter, newSorter));
     };
 
+    const pageCount = Math.ceil((queryResult.data?.total ?? 0) / pageSize);
+
     return {
         tableQueryResult: queryResult,
         sorter,
@@ -185,5 +188,6 @@ export const useTable = <
         setCurrent,
         pageSize,
         setPageSize,
+        pageCount,
     };
 };
