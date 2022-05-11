@@ -13,6 +13,7 @@ import {
     useDataGrid,
     GridColumns,
     GridActionsCellItem,
+    Tooltip,
     Avatar,
     Rating,
     Stack,
@@ -93,7 +94,18 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
             {
                 field: "comment",
                 headerName: t("reviews.fields.review"),
-                valueGetter: ({ row }) => row.comment[0],
+                renderCell: ({ row }) => (
+                    <Tooltip title={row.comment[0]}>
+                        <Typography
+                            sx={{
+                                textOverflow: "ellipsis",
+                                overflow: "hidden",
+                            }}
+                        >
+                            {row.comment[0]}
+                        </Typography>
+                    </Tooltip>
+                ),
                 flex: 1,
             },
             {
