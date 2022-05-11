@@ -1,10 +1,13 @@
 import React from "react";
+
 import {
     useTranslate,
     IResourceComponentsProps,
     useTable,
-    useList,
 } from "@pankod/refine-core";
+
+import { useModalForm } from "@pankod/refine-react-hook-form";
+
 import {
     Grid,
     Paper,
@@ -19,36 +22,54 @@ import {
 
 import SearchIcon from "@mui/icons-material/Search";
 
-import { CategoryFilter, ProductItem, CreateProduct } from "components";
+import {
+    CategoryFilter,
+    ProductItem,
+    CreateProduct,
+    EditProduct,
+} from "components";
 
-import { ICategory, IProduct } from "interfaces";
-import { useModalForm } from "@pankod/refine-react-hook-form";
+import { IProduct } from "interfaces";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
 
-    const { data: categories, isLoading } = useList<ICategory>({
-        resource: "categories",
+    const {
+        modal: { visible, close, show, saveButtonProps },
+        register,
+        refineCore: { onFinish },
+        formState: { errors },
+        handleSubmit,
+        watch,
+        setValue,
+        reset,
+        control,
+    } = useModalForm<IProduct>({
+        refineCoreProps: { action: "create" },
     });
 
     const {
-        modal: { visible, close, show },
-        register,
-        formState: { errors },
-        handleSubmit,
-        setValue,
+        modal: {
+            visible: visibleEditDrawer,
+            close: closeEditDrawer,
+            show: showEditDrawer,
+            saveButtonProps: editSaveButtonProps,
+        },
+        refineCore: { onFinish: editOnFinish },
+        register: editRegister,
+        formState: { errors: editErrors },
+        handleSubmit: editHandleSubmit,
+        watch: editWatch,
+        setValue: editSetValue,
+        control: editControl,
     } = useModalForm<IProduct>({
-        refineCoreProps: { action: "create" },
+        refineCoreProps: { action: "edit" },
     });
 
     const { tableQueryResult, setFilters, setCurrent, filters } =
         useTable<IProduct>({
             resource: "products",
             initialPageSize: 12,
-            initialFilter: [
-                { field: "name", operator: "contains", value: "" },
-                { field: "category.id", operator: "contains", value: "" },
-            ],
         });
 
     const paginationCount =
@@ -56,16 +77,31 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <>
-            {categories?.data && (
-                <CreateProduct
-                    register={register}
-                    close={close}
-                    visible={visible}
-                    handleSubmit={handleSubmit}
-                    categoryData={categories.data}
-                    setValue={setValue}
-                />
-            )}
+            <CreateProduct
+                register={register}
+                close={close}
+                visible={visible}
+                handleSubmit={handleSubmit}
+                setValue={setValue}
+                errors={errors}
+                watch={watch}
+                onFinish={onFinish}
+                control={control}
+                saveButtonProps={saveButtonProps}
+                reset={reset}
+            />
+            <EditProduct
+                register={editRegister}
+                close={closeEditDrawer}
+                visible={visibleEditDrawer}
+                handleSubmit={editHandleSubmit}
+                setValue={editSetValue}
+                errors={editErrors}
+                watch={editWatch}
+                onFinish={editOnFinish}
+                control={editControl}
+                saveButtonProps={editSaveButtonProps}
+            />
             <Box
                 component="div"
                 sx={{
@@ -85,15 +121,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                             padding={1}
                             direction="row"
                         >
-                            <Typography
-                                sx={{
-                                    fontWeight: 800,
-                                    fontSize: "24px",
-                                    lineHeight: "32px",
-                                    color: "#626262",
-                                    marginBottom: "5px",
-                                }}
-                            >
+                            <Typography variant="h5">
                                 {t("products.products")}
                             </Typography>
                             <Paper
@@ -102,9 +130,6 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                                     display: "flex",
                                     alignItems: "center",
                                     width: 400,
-                                    boxShadow: "none",
-                                    border: "1px solid #e0e0e0",
-                                    marginBottom: "5px",
                                 }}
                             >
                                 <InputBase
@@ -122,7 +147,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                                                 operator: "contains",
                                                 value: e.target.value,
                                             },
-                                            { ...filters[1] },
+                                            ...filters,
                                         ]);
                                     }}
                                 />
@@ -143,30 +168,23 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                             </Button>
                         </Stack>
                         <Grid container>
-                            {tableQueryResult.data?.data.map((i: IProduct) => (
-                                <Grid
-                                    item
-                                    xs={12}
-                                    md={4}
-                                    lg={3}
-                                    key={i.id}
-                                    sx={{ padding: "8px" }}
-                                >
-                                    <ProductItem
-                                        name={i.name}
-                                        key={i.id}
-                                        images={i.images}
-                                        price={i.price}
-                                        id={i.id}
-                                        description={i.description}
-                                        isActive={i.isActive}
-                                        createdAt={i.createdAt}
-                                        category={i.category}
-                                        stock={i.stock}
-                                        show={show}
-                                    />
-                                </Grid>
-                            ))}
+                            {tableQueryResult.data?.data.map(
+                                (product: IProduct) => (
+                                    <Grid
+                                        item
+                                        xs={12}
+                                        md={4}
+                                        lg={3}
+                                        key={product.id}
+                                        sx={{ padding: "8px" }}
+                                    >
+                                        <ProductItem
+                                            product={product}
+                                            show={showEditDrawer}
+                                        />
+                                    </Grid>
+                                ),
+                            )}
                         </Grid>
                         <Pagination
                             count={paginationCount}
@@ -189,17 +207,13 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                     </Grid>
                     <Grid item md={4}>
                         <Stack padding="8px">
-                            <Typography sx={{ fontWeight: 500 }}>
+                            <Typography variant="subtitle1">
                                 {t("stores.tagFilterDescription")}
                             </Typography>
-                            {categories?.data && (
-                                <CategoryFilter
-                                    setFilters={setFilters}
-                                    filters={filters}
-                                    categoryData={categories.data}
-                                    isLoading={isLoading}
-                                />
-                            )}
+                            <CategoryFilter
+                                setFilters={setFilters}
+                                filters={filters}
+                            />
                         </Stack>
                     </Grid>
                 </Grid>
