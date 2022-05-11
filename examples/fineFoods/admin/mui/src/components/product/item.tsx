@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useTranslate, BaseKey } from "@pankod/refine-core";
 import {
     Card,
     CardHeader,
@@ -11,6 +11,7 @@ import {
     Tooltip,
     Popover,
     Button,
+    Divider,
 } from "@pankod/refine-mui";
 
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -18,17 +19,15 @@ import EditIcon from "@mui/icons-material/Edit";
 
 import { IProduct } from "interfaces";
 
-export const ProductItem: React.FC<IProduct> = ({
-    id,
-    name,
-    isActive,
-    description,
-    images,
-    createdAt,
-    price,
-    category,
-    stock,
-}) => {
+type PropductItem = {
+    product: IProduct;
+    show: (id: BaseKey) => void;
+};
+
+export const ProductItem: React.FC<PropductItem> = ({ product, show }) => {
+    const t = useTranslate();
+    const { id, name, description, images, price } = product;
+
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -48,8 +47,6 @@ export const ProductItem: React.FC<IProduct> = ({
                 display: "flex",
                 flexDirection: "column",
                 position: "relative",
-                boxShadow: "none",
-                border: "1px solid #e0e0e0",
             }}
         >
             <CardHeader
@@ -74,120 +71,87 @@ export const ProductItem: React.FC<IProduct> = ({
                             }}
                         >
                             <Button
-                                onClick={() => console.log("edit drawer open")} // gonna open edit drawer
-                                sx={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    outline: "none",
-                                    margin: "5px",
+                                onClick={() => {
+                                    show(id);
+                                    setAnchorEl(null);
                                 }}
                                 size="small"
                                 startIcon={<EditIcon />}
                             >
-                                <Typography>Edit Product</Typography>
+                                {t("stores.buttons.edit")}
                             </Button>
                         </Popover>
                     </Box>
                 }
                 sx={{ padding: 0 }}
             />
+
             <Box
                 sx={{
-                    width: "100%",
                     display: "flex",
                     justifyContent: "center",
                 }}
             >
-                <Box
-                    component="div"
+                <CardMedia
+                    component="img"
                     sx={{
                         width: "160px",
                         height: "160px",
+                        borderRadius: "50%",
                     }}
-                >
-                    <CardMedia
-                        component="img"
-                        sx={{
-                            width: "100%",
-                            height: "100%",
-                            borderRadius: "50%",
-                            objectFit: "cover",
-                        }}
-                        alt={name}
-                        image={images[0].url}
-                    />
-                </Box>
+                    alt={name}
+                    image={images[0].url}
+                />
             </Box>
-
             <CardContent sx={{ paddingX: "36px" }}>
-                <Box
-                    sx={{
-                        borderTop: "1px solid #999999",
-                    }}
-                >
-                    <Tooltip title={name}>
-                        <Typography
-                            variant="h4"
-                            sx={{
-                                fontWeight: 800,
-                                fontSize: "24px",
-                                lineHeight: "27px",
-                                color: "text.secondary",
-                                marginTop: "18px",
-                                height: "54px",
-                                overflow: "hidden",
-                                whiteSpace: "nowrap",
-                                textOverflow: "ellipsis",
-                            }}
-                        >
-                            {name}
-                        </Typography>
-                    </Tooltip>
-                    <Tooltip title={description}>
-                        <Typography
-                            component="div"
-                            sx={{
-                                overflowWrap: "break-word",
-                                fontWeight: 500,
-                                fontSize: "16px",
-                                lineHeight: "20px",
-                                color: "text.secondary",
-                                letterSpacing: "-0.02em",
-                                mb: "12px",
-                                maxHeight: "70px",
-                                overflow: "hidden",
-                                textOverflow: "ellipsis",
-                                display: "-webkit-box",
-                                WebkitLineClamp: "3",
-                                WebkitBoxOrient: "vertical",
-                                height: "60px",
-                            }}
-                        >
-                            {description}
-                        </Typography>
-                    </Tooltip>
+                <Divider />
+                <Tooltip title={name}>
                     <Typography
-                        sx={{
-                            fontWeight: 700,
-                            fontSize: "20px",
-                            lineHeight: "18px",
-                            color: "#999999",
-                            letterSpacing: "-0.02em",
-                            mb: "17px",
-                            mt: "17px",
-                        }}
-                    >{`#10000${id}`}</Typography>
-                    <Typography
+                        variant="h4"
                         sx={{
                             fontWeight: 800,
-                            fontSize: "32px",
-                            lineHeight: "32px",
+                            fontSize: "24px",
                             color: "text.secondary",
-                            letterSpacing: "-0.02em",
-                            marginBottom: "17px",
+                            overflow: "hidden",
+                            whiteSpace: "nowrap",
+                            textOverflow: "ellipsis",
                         }}
-                    >{`${price / 100}$`}</Typography>
-                </Box>
+                    >
+                        {name}
+                    </Typography>
+                </Tooltip>
+                <Tooltip title={description}>
+                    <Typography
+                        variant="body1"
+                        sx={{
+                            mt: 2,
+                            overflowWrap: "break-word",
+                            color: "text.secondary",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            display: "-webkit-box",
+                            WebkitLineClamp: "3",
+                            WebkitBoxOrient: "vertical",
+                        }}
+                    >
+                        {description}
+                    </Typography>
+                </Tooltip>
+                <Typography
+                    sx={{
+                        fontWeight: 700,
+                        fontSize: "20px",
+                        color: "#999999",
+                        my: 1,
+                    }}
+                >{`#10000${id}`}</Typography>
+                <Typography
+                    sx={{
+                        fontWeight: 800,
+                        fontSize: "32px",
+                        color: "text.secondary",
+                    }}
+                >{`${price / 100}$`}</Typography>
             </CardContent>
         </Card>
     );
