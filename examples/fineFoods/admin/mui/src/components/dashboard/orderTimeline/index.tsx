@@ -141,7 +141,6 @@ export const OrderTimeline: React.FC = () => {
                     <Pagination
                         count={pageCount}
                         page={current}
-                        siblingCount={0}
                         onChange={(e, page) => setCurrent(page)}
                         size="small"
                         color="primary"
