@@ -18,11 +18,13 @@ import { useTranslation } from "react-i18next";
 import {
     AddShoppingCartOutlined,
     StarBorderOutlined,
+    BikeScooterOutlined,
 } from "@mui/icons-material";
 
 import { authProvider } from "authProvider";
 import { OrderList, OrderShow } from "pages/orders";
 import { ReviewsList } from "pages/reviews";
+import { CourierList } from "pages/couriers";
 import { LoginPage } from "pages/login";
 
 const App: React.FC = () => {
@@ -62,6 +64,11 @@ const App: React.FC = () => {
                         list: OrderList,
                         show: OrderShow,
                         icon: <AddShoppingCartOutlined />,
+                    },
+                    {
+                        name: "couriers",
+                        list: CourierList,
+                        icon: <BikeScooterOutlined />,
                     },
                     {
                         name: "reviews",
