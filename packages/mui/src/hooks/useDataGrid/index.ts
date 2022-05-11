@@ -96,6 +96,7 @@ export const useDataGrid = <
         setFilters,
         sorter,
         setSorter,
+        pageCount,
     } = useTableCore({
         permanentSorter,
         permanentFilter,
@@ -189,5 +190,6 @@ export const useDataGrid = <
         filters,
         setFilters,
         onSearch,
+        pageCount,
     };
 };

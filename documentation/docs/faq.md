@@ -138,16 +138,14 @@ values={[
 <TabItem value="refetch">
 
 ```tsx
-import { useTable, useList, useForm, useShow, useEditableTable } from "@pankod/refine-core";
+import { useTable, useForm, useShow } from "@pankod/refine-core";
 
-// All "data" related hooks provided by Refine can use queryOptions' refetch function
-const { queryOptions: { refetch } } = useTable();
-const { queryOptions: { refetch } } = useForm();
-const { queryOptions: { refetch } } = useList();
+// All "data" related hooks provided by Refine can use queryResult' refetch function
+const { tableQueryResult: { refetch } } = useTable();
+const { queryResult: { refetch } } = useForm();
 ...
 ...
-const { queryOptions: { refetch } } = useShow();
-const { queryOptions: { refetch } } = useEditableTable();
+const { queryResult: { refetch } } = useShow();
 ...
 ...
 ```
