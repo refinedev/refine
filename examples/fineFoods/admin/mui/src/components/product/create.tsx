@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
+import axios from "axios";
 
-import { useTranslate, useForm, useApiUrl } from "@pankod/refine-core";
+import { useTranslate, useApiUrl } from "@pankod/refine-core";
 
 import {
     FieldValues,
     UseFormRegister,
     UseFormHandleSubmit,
     UseFormSetValue,
+    UseFormWatch,
+    Controller,
+    Control,
 } from "@pankod/refine-react-hook-form";
-
-import axios from "axios";
 
 import {
     Drawer,
@@ -17,8 +19,6 @@ import {
     Input,
     Radio,
     RadioGroup,
-    Select,
-    MenuItem,
     Avatar,
     Typography,
     FormLabel,
@@ -26,27 +26,33 @@ import {
     useTheme,
     Box,
     IconButton,
-    SaveButton,
     FormControl,
-    InputLabel,
-    SelectChangeEvent,
+    Autocomplete,
     OutlinedInput,
     InputAdornment,
+    FormHelperText,
+    Create,
+    useAutocomplete,
+    SaveButtonProps,
+    TextField,
 } from "@pankod/refine-mui";
 
 import CloseIcon from "@mui/icons-material/Close";
 
 import { ICategory } from "interfaces";
 
-import TextArea from "antd/lib/input/TextArea"; //todo: should export from mui
-
 type CreateProductProps = {
     visible: boolean;
     close: () => void;
     register: UseFormRegister<FieldValues>;
     handleSubmit: UseFormHandleSubmit<FieldValues>;
-    categoryData: ICategory[];
     setValue: UseFormSetValue<FieldValues>;
+    errors: { [x: string]: any };
+    watch: UseFormWatch<FieldValues>;
+    onFinish: (values: FieldValues) => void;
+    control: Control<FieldValues>;
+    saveButtonProps: SaveButtonProps;
+    reset: any;
 };
 
 export const CreateProduct: React.FC<CreateProductProps> = ({
@@ -54,24 +60,25 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
     close,
     register,
     handleSubmit,
-    categoryData,
     setValue,
+    errors,
+    watch,
+    onFinish,
+    saveButtonProps,
+    control,
+    reset,
 }) => {
     const t = useTranslate();
-
-    const [uploadedImage, setUploadedImage] = useState(
-        "/images/product-default-img.png",
-    );
-
-    const [selectedCategory, setSelectedCategory] = useState("");
 
     const theme = useTheme();
 
     const apiUrl = useApiUrl();
 
-    const { onFinish } = useForm({
-        action: "create",
+    const { autocompleteProps } = useAutocomplete<ICategory>({
+        resource: "categories",
     });
+
+    const imageInput = watch("images");
 
     const onChangeHandler = async (
         event: React.ChangeEvent<HTMLInputElement>,
@@ -93,7 +100,6 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                 },
             },
         );
-        setUploadedImage(res.data.url);
 
         const { name, size, type, lastModified } = file;
 
@@ -107,14 +113,11 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
             },
         ];
 
-        setValue("images", imagePaylod);
+        setValue("images", imagePaylod, { shouldValidate: true });
     };
 
     return (
         <Drawer
-            ModalProps={{
-                keepMounted: true, // Better open performance on mobile.
-            }}
             sx={{
                 "& .MuiDrawer-paper": {
                     [theme.breakpoints.down("sm")]: {
@@ -124,158 +127,240 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                 },
             }}
             open={visible}
-            onClose={() => close()}
+            onClose={close}
             anchor="right"
         >
-            <Stack marginX="30px" marginY="20px">
-                <IconButton onClick={() => close()} sx={{ width: "30px" }}>
-                    <CloseIcon />
-                </IconButton>
-                <Typography fontWeight="bold">{t("Create Product")}</Typography>
-            </Stack>
-            <Stack width="100%">
-                <Box
-                    paddingX="50px"
-                    justifyContent="center"
-                    alignItems="center"
-                    marginBottom="50px"
-                >
-                    <form onSubmit={handleSubmit(onFinish)}>
-                        <FormLabel>
-                            {t("products.fields.images.label")}
-                        </FormLabel>
-                        <Stack
-                            display="flex"
-                            alignItems="center"
-                            border="1px dashed  "
-                            borderColor="primary.main"
-                            borderRadius="5px"
-                            padding="10px"
-                            marginTop="5px"
-                            sx={{
-                                backgroundColor: "#fafafa",
-                            }}
+            <Create
+                saveButtonProps={saveButtonProps}
+                cardHeaderProps={{
+                    avatar: (
+                        <IconButton
+                            onClick={() => close()}
+                            sx={{ width: "30px", height: "30px", mb: "5px" }}
                         >
-                            <label htmlFor="images">
-                                <Input
-                                    id="images"
-                                    type="file"
+                            <CloseIcon />
+                        </IconButton>
+                    ),
+                    action: null,
+                }}
+                cardProps={{ sx: { overflowY: "scroll", height: "100vh" } }}
+            >
+                <Stack>
+                    <Box
+                        paddingX="50px"
+                        justifyContent="center"
+                        alignItems="center"
+                        marginBottom="50px"
+                    >
+                        <form onSubmit={handleSubmit(onFinish)}>
+                            <FormControl sx={{ width: "100%" }}>
+                                <FormLabel required>
+                                    {t("products.fields.images.label")}
+                                </FormLabel>
+                                <Stack
+                                    display="flex"
+                                    alignItems="center"
+                                    border="1px dashed  "
+                                    borderColor="primary.main"
+                                    borderRadius="5px"
+                                    padding="10px"
+                                    marginTop="5px"
                                     sx={{
-                                        display: "none",
+                                        backgroundColor: "#fafafa",
                                     }}
-                                    onChange={onChangeHandler}
-                                />
-                                <Avatar
-                                    sx={{
-                                        cursor: "pointer",
-                                        width: "200px",
-                                        height: "200px",
-                                    }}
-                                    src={uploadedImage}
-                                    alt="Store Location"
-                                />
-                            </label>
-                            <Typography
-                                style={{
-                                    fontWeight: 800,
-                                    fontSize: "16px",
-                                    marginTop: "8px",
-                                }}
-                            >
-                                {t("products.fields.images.description")}
-                            </Typography>
-                            <Typography style={{ fontSize: "12px" }}>
-                                {t("products.fields.images.validation")}
-                            </Typography>
-                        </Stack>
-                        <Stack gap="10px" marginTop="10px">
-                            <FormLabel>{t("products.fields.name")}</FormLabel>
-                            <OutlinedInput
-                                id="name"
-                                {...register("name", { required: true })}
-                                style={{ height: "40px" }}
-                            />
-                            <FormLabel>
-                                {t("products.fields.description")}
-                            </FormLabel>
-                            <TextArea
-                                id="description"
-                                {...register("description", { required: true })}
-                                style={{ minHeight: "200px" }}
-                            />
-                            <FormLabel>{t("products.fields.price")}</FormLabel>
-                            <OutlinedInput
-                                id="price"
-                                {...register("price", { required: true })}
-                                style={{ width: "150px", height: "40px" }}
-                                startAdornment={
-                                    <InputAdornment position="start">
-                                        $
-                                    </InputAdornment>
-                                }
-                            />
-
-                            <FormControl fullWidth sx={{ marginTop: "20px" }}>
-                                <InputLabel id="select-label">
-                                    Category
-                                </InputLabel>
-                                <Select
-                                    id="category"
-                                    {...register("category", {
-                                        required: true,
-                                    })}
-                                    labelId="category"
-                                    value={selectedCategory}
-                                    label="Category"
-                                    onChange={(event: SelectChangeEvent) => {
-                                        setSelectedCategory(
-                                            event.target.value as string,
-                                        );
-                                    }}
-                                    sx={{ height: "50px" }}
                                 >
-                                    {categoryData.map((category) => {
-                                        return (
-                                            <MenuItem
-                                                key={category.id}
-                                                value={category.title}
-                                            >
-                                                {category.title}
-                                            </MenuItem>
-                                        );
-                                    })}
-                                </Select>
+                                    <label htmlFor="images-input">
+                                        <Input
+                                            id="images-input"
+                                            type="file"
+                                            sx={{
+                                                display: "none",
+                                            }}
+                                            onChange={onChangeHandler}
+                                        />
+                                        <input
+                                            id="file"
+                                            {...register("images", {
+                                                required: "Image ",
+                                            })}
+                                            type="hidden"
+                                        />
+                                        <Avatar
+                                            sx={{
+                                                cursor: "pointer",
+                                                width: "200px",
+                                                height: "200px",
+                                            }}
+                                            src={
+                                                imageInput && imageInput[0].url
+                                            }
+                                            alt="Store Location"
+                                        />
+                                    </label>
+                                    <Typography
+                                        style={{
+                                            fontWeight: 800,
+                                            fontSize: "16px",
+                                            marginTop: "8px",
+                                        }}
+                                    >
+                                        {t(
+                                            "products.fields.images.description",
+                                        )}
+                                    </Typography>
+                                    <Typography style={{ fontSize: "12px" }}>
+                                        {t("products.fields.images.validation")}
+                                    </Typography>
+                                </Stack>
+                                {errors.images && (
+                                    <FormHelperText error>
+                                        {errors.images.message}
+                                    </FormHelperText>
+                                )}
                             </FormControl>
-                            <FormLabel sx={{ marginTop: "10px" }}>
-                                {t("products.fields.isActive")}
-                            </FormLabel>
-                            <RadioGroup
-                                id="isActive"
-                                {...register("active", { required: true })}
-                                row
-                            >
-                                <FormControlLabel
-                                    value={true}
-                                    control={<Radio />}
-                                    label={t("status.enable")}
+                            <Stack gap="10px" marginTop="10px">
+                                <FormControl>
+                                    <FormLabel required>
+                                        {t("products.fields.name")}
+                                    </FormLabel>
+                                    <OutlinedInput
+                                        id="name"
+                                        {...register("name", {
+                                            required: "Name required",
+                                        })}
+                                        style={{ height: "40px" }}
+                                    />
+                                    {errors.name && (
+                                        <FormHelperText error>
+                                            {errors.name.message}
+                                        </FormHelperText>
+                                    )}
+                                </FormControl>
+                                <FormControl>
+                                    <FormLabel required>
+                                        {t("products.fields.description")}
+                                    </FormLabel>
+                                    <OutlinedInput
+                                        id="description"
+                                        {...register("description", {
+                                            required: "Description required",
+                                        })}
+                                        multiline
+                                        maxRows={5}
+                                    />
+                                    {errors.description && (
+                                        <FormHelperText error>
+                                            {errors.description.message}
+                                        </FormHelperText>
+                                    )}
+                                </FormControl>
+                                <FormControl>
+                                    <FormLabel required>
+                                        {t("products.fields.price")}
+                                    </FormLabel>
+                                    <OutlinedInput
+                                        id="price"
+                                        {...register("price", {
+                                            required: "Price required",
+                                        })}
+                                        style={{
+                                            width: "150px",
+                                            height: "40px",
+                                        }}
+                                        startAdornment={
+                                            <InputAdornment position="start">
+                                                $
+                                            </InputAdornment>
+                                        }
+                                    />
+                                    {errors.price && (
+                                        <FormHelperText error>
+                                            {errors.price.message}
+                                        </FormHelperText>
+                                    )}
+                                </FormControl>
+                                <Controller
+                                    control={control}
+                                    name="category"
+                                    rules={{ required: true }}
+                                    render={({ field }) => (
+                                        <Autocomplete
+                                            {...autocompleteProps}
+                                            {...field}
+                                            onChange={(_, value) => {
+                                                field.onChange(value);
+                                            }}
+                                            getOptionLabel={(item) => {
+                                                return item.title
+                                                    ? item.title
+                                                    : "";
+                                            }}
+                                            isOptionEqualToValue={(
+                                                option,
+                                                value,
+                                            ) =>
+                                                value === undefined ||
+                                                option.id === value.id
+                                            }
+                                            renderInput={(params) => (
+                                                <TextField
+                                                    {...params}
+                                                    label="Category"
+                                                    margin="normal"
+                                                    variant="outlined"
+                                                    error={!!errors.item}
+                                                    helperText={
+                                                        errors.item &&
+                                                        "Categoty required"
+                                                    }
+                                                    required
+                                                />
+                                            )}
+                                        />
+                                    )}
                                 />
-                                <FormControlLabel
-                                    value={false}
-                                    control={<Radio />}
-                                    label={t("status.disable")}
-                                />
-                            </RadioGroup>
-                        </Stack>
-                        <Stack
-                            flexDirection="row"
-                            justifyContent="flex-end"
-                            marginTop="30px"
-                        >
-                            <SaveButton type="submit" />
-                        </Stack>
-                    </form>
-                </Box>
-            </Stack>
+                                <FormControl>
+                                    <FormLabel
+                                        sx={{ marginTop: "10px" }}
+                                        required
+                                    >
+                                        {t("products.fields.isActive")}
+                                    </FormLabel>
+                                    <Controller
+                                        control={control}
+                                        name="isActive"
+                                        defaultValue={true}
+                                        rules={{ required: true }}
+                                        render={({ field }) => (
+                                            <RadioGroup
+                                                id="isActive"
+                                                {...field}
+                                                row
+                                            >
+                                                <FormControlLabel
+                                                    value={true}
+                                                    control={<Radio />}
+                                                    label={t("status.enable")}
+                                                />
+                                                <FormControlLabel
+                                                    value={false}
+                                                    control={<Radio />}
+                                                    label={t("status.disable")}
+                                                />
+                                            </RadioGroup>
+                                        )}
+                                    />
+                                    {errors.isActive && (
+                                        <FormHelperText error>
+                                            {errors.isActive.message}
+                                        </FormHelperText>
+                                    )}
+                                </FormControl>
+                            </Stack>
+                        </form>
+                    </Box>
+                </Stack>
+            </Create>
         </Drawer>
     );
 };

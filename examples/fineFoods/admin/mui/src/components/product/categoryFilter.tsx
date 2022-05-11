@@ -8,28 +8,28 @@ import { ICategory } from "interfaces";
 type ProductItemProps = {
     setFilters?: (filters: CrudFilters) => void;
     filters: CrudFilters;
-    categoryData: ICategory[];
-    isLoading: boolean;
 };
 
 export const CategoryFilter: React.FC<ProductItemProps> = ({
     setFilters,
     filters,
-    categoryData,
-    isLoading,
 }) => {
     const t = useTranslate();
 
     const [filterCategories, setFilterCategories] = useState<string[]>([]);
 
+    const { data: categories, isLoading } = useList<ICategory>({
+        resource: "categories",
+    });
+
     useEffect(() => {
         setFilters?.([
-            { ...filters[0] },
             {
                 field: "category.id",
                 operator: "contains",
                 value: filterCategories,
             },
+            ...filters,
         ]);
     }, [filterCategories]);
 
@@ -69,7 +69,7 @@ export const CategoryFilter: React.FC<ProductItemProps> = ({
                 >
                     {t("stores.all")}
                 </LoadingButton>
-                {categoryData?.map((category: ICategory) => (
+                {categories?.data.map((category: ICategory) => (
                     <Grid
                         item
                         key={category.id}
