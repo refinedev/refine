@@ -19,12 +19,14 @@ import {
     StarBorderOutlined,
 } from "@mui/icons-material";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
+import StoreIcon from "@mui/icons-material/Store";
 
 import { authProvider } from "authProvider";
 import { OrderList, OrderShow } from "pages/orders";
 import { UserList, UserShow } from "pages/users";
 import { ReviewsList } from "pages/reviews";
 import { LoginPage } from "pages/login";
+import { StoreList } from "pages/stores";
 
 const App: React.FC = () => {
     const { t, i18n } = useTranslation();
@@ -58,16 +60,21 @@ const App: React.FC = () => {
                 warnWhenUnsavedChanges
                 notificationProvider={notificationProvider}
                 resources={[
-                    {
-                        name: "orders",
-                        list: OrderList,
-                        show: OrderShow,
-                        icon: <AddShoppingCartOutlined />,
-                    },
+                    // {
+                    //     name: "orders",
+                    //     list: OrderList,
+                    //     show: OrderShow,
+                    //     icon: <AddShoppingCartOutlined />,
+                    // },
                     {
                         name: "reviews",
                         list: ReviewsList,
                         icon: <StarBorderOutlined />,
+                    },
+                    {
+                        name: "stores",
+                        list: StoreList,
+                        icon: <StoreIcon />,
                     },
                     {
                         name: "users",
