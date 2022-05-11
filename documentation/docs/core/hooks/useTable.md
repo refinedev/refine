@@ -190,7 +190,7 @@ console.log(filters); // [{ field: "title", operator: "contains", value: "A" }, 
 | ---------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | tableQueryResult | Result of the `react-query`'s `useQuery`    | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery] |
 | current          | Current page index state                    | `number`                                                                                          |
-| totalPage        | Total page size                             | `number`                                                                                          |
+| totalPage        | Total page count                             | `number`                                                                                          |
 | setCurrent       | A function that changes the current         | `React.Dispatch<React.SetStateAction<number>>`                                                    |
 | pageSize         | Current pageSize state                      | `number`                                                                                          |
 | setPageSize      | A function that changes the pageSize.       | `React.Dispatch<React.SetStateAction<number>>`                                                    |
