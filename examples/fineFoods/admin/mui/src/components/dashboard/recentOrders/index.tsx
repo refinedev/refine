@@ -125,7 +125,7 @@ export const RecentOrders: React.FC = () => {
                         key={1}
                         icon={<CheckOutlinedIcon color="success" />}
                         sx={{ padding: "2px 6px" }}
-                        label="Accept"
+                        label={t("buttons.accept")}
                         showInMenu
                         onClick={() => {
                             mutate({
@@ -144,7 +144,7 @@ export const RecentOrders: React.FC = () => {
                         key={2}
                         icon={<CloseOutlinedIcon color="error" />}
                         sx={{ padding: "2px 6px" }}
-                        label="Reject"
+                        label={t("buttons.reject")}
                         showInMenu
                         onClick={() =>
                             mutate({
