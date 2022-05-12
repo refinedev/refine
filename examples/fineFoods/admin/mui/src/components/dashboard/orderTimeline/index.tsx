@@ -86,9 +86,7 @@ export const OrderTimeline: React.FC = () => {
 
                     return (
                         <TimelineItem key={orderNumber}>
-                            <TimelineOppositeContent
-                                sx={{ display: "none" }}
-                            ></TimelineOppositeContent>
+                            <TimelineOppositeContent sx={{ display: "none" }} />
                             <TimelineSeparator>
                                 <TimelineDot
                                     variant="outlined"
