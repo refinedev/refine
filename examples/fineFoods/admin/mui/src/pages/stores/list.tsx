@@ -1,7 +1,6 @@
+/* eslint-disable react/display-name */
 import React from "react";
-
-import { useTranslate } from "@pankod/refine-core";
-
+import { useTranslate, useNavigation } from "@pankod/refine-core";
 import {
     Avatar,
     DataGrid,
@@ -10,24 +9,26 @@ import {
     GridColumns,
     GridActionsCellItem,
     DateField,
+    BooleanField,
+    TextFieldComponent,
 } from "@pankod/refine-mui";
+import { EditOutlined } from "@mui/icons-material";
 
 import { IStore } from "interfaces";
 
-import { Check, Clear } from "@mui/icons-material";
-import EditIcon from "@mui/icons-material/Edit";
-
 export const StoreList: React.FC = () => {
     const t = useTranslate();
+    const { edit, create } = useNavigation();
 
     const columns = React.useMemo<GridColumns<IStore>>(
         () => [
             {
                 field: "avatar",
-                headerName: "Avatar",
-                // eslint-disable-next-line react/display-name
+                headerName: "",
+                align: "center",
                 renderCell: () => (
                     <Avatar
+                        sx={{ width: 64, height: 64 }}
                         src="/images/default-store-img.png"
                         alt="Default Store Image"
                     />
@@ -56,44 +57,55 @@ export const StoreList: React.FC = () => {
                 field: "address",
                 headerName: t("stores.fields.address"),
                 flex: 2,
-                // eslint-disable-next-line react/display-name
-                renderCell: ({ row }) => <div>{row.address.text}</div>,
+                renderCell: ({ row }) => (
+                    <TextFieldComponent
+                        fontSize={14}
+                        value={row.address.text}
+                    />
+                ),
             },
             {
                 field: "createdAt",
                 headerName: t("stores.fields.createdAt"),
                 flex: 1,
-                // eslint-disable-next-line react/display-name
-                renderCell: ({ row }) => {
-                    return <DateField value={row.createdAt} />;
-                },
+                renderCell: ({ row }) => (
+                    <DateField fontSize={14} value={row.createdAt} />
+                ),
             },
             {
                 field: "isActive",
                 headerName: t("stores.fields.isActive"),
                 flex: 0.5,
-                // eslint-disable-next-line react/display-name
-                renderCell: ({ row }) => {
-                    return row.isActive ? <Check /> : <Clear />;
-                },
+                align: "center",
+                headerAlign: "center",
+                renderCell: ({ row }) => (
+                    <BooleanField
+                        sx={{ fontSize: "0.875rem" }}
+                        value={row.isActive}
+                    />
+                ),
             },
             {
                 field: "actions",
                 headerName: t("table.actions"),
                 type: "actions",
-                getActions: () => [
+                getActions: ({ row }) => [
                     <GridActionsCellItem
                         key={1}
                         label={t("buttons.edit")}
-                        icon={<EditIcon />}
+                        icon={<EditOutlined />}
                         showInMenu
+                        onClick={() => edit("stores", row.id)}
                     />,
-                    <GridActionsCellItem
-                        key={2}
-                        label={t("buttons.reject")}
-                        icon={<EditIcon />}
-                        showInMenu
-                    />,
+                    // <GridActionsCellItem
+                    //     onClick={() => {
+                    //         console.log("clicked");
+                    //     }}
+                    //     key={2}
+                    //     label={t("buttons.reject")}
+                    //     icon={<EditOutlined />}
+                    //     showInMenu
+                    // />,
                 ],
             },
         ],
@@ -101,6 +113,7 @@ export const StoreList: React.FC = () => {
     );
 
     const { dataGridProps } = useDataGrid<IStore>({
+        initialPageSize: 10,
         columns,
         permanentFilter: [
             {
@@ -113,7 +126,12 @@ export const StoreList: React.FC = () => {
 
     return (
         <List canCreate>
-            <DataGrid autoHeight density="comfortable" {...dataGridProps} />
+            <DataGrid
+                rowHeight={80}
+                autoHeight
+                density="comfortable"
+                {...dataGridProps}
+            />
         </List>
     );
 };
