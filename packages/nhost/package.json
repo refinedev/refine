@@ -35,6 +35,9 @@
     "gql-query-builder": "^3.5.5",
     "graphql": "^15.6.1"
   },
+  "peerDependencies": {
+    "@pankod/refine-core": "^3.18.2"
+  },
   "publishConfig": {
     "access": "public"
   },

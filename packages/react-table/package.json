@@ -24,7 +24,8 @@
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0",
-    "react-table": "^7.7.0"
+    "react-table": "^7.7.0",
+    "@pankod/refine-core": "^3.18.2"
   },
   "devDependencies": {
     "@types/react-table": "^7.7.9",

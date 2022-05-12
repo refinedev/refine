@@ -35,6 +35,9 @@
     "graphql": "^15.6.1",
     "graphql-request": "^3.5.0"
   },
+  "peerDependencies": {
+    "@pankod/refine-core": "^3.18.2"
+  },
   "publishConfig": {
     "access": "public"
   },
