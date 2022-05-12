@@ -3,7 +3,8 @@ import {
     CrudOperators,
     CrudSorting,
     CrudFilter,
-    LogicalFilter,
+    getDefaultFilter as getDefaultFilterCore,
+    getDefaultSortOrder as getDefaultSortOrderCore,
 } from "@pankod/refine-core";
 import { SortOrder, SorterResult } from "antd/lib/table/interface";
 
@@ -11,37 +12,24 @@ export const getDefaultSortOrder = (
     columnName: string,
     sorter?: CrudSorting,
 ): SortOrder | undefined => {
-    if (!sorter) {
-        return undefined;
-    }
+    const sort = getDefaultSortOrderCore(columnName, sorter);
 
-    const sortItem = sorter.find((item) => item.field === columnName);
-
-    if (sortItem) {
-        return `${sortItem.order}end` as SortOrder;
+    if (sort) {
+        return `${sort}end`;
     }
 
     return undefined;
 };
 
+/**
+ * @deprecated getDefaultFilter moved to `@pankod/refine-core`. Use from `@pankod/refine-core`
+ */
 export const getDefaultFilter = (
     columnName: string,
     filters?: CrudFilters,
     operatorType: CrudOperators = "eq",
 ): CrudFilter["value"] | undefined => {
-    const filter = filters?.find((filter) => {
-        if (filter.operator !== "or") {
-            const { operator, field } = filter;
-            return field === columnName && operator === operatorType;
-        }
-        return undefined;
-    });
-
-    if (filter) {
-        return filter.value || [];
-    }
-
-    return undefined;
+    return getDefaultFilterCore(columnName, filters, operatorType);
 };
 
 export const mapAntdSorterToCrudSorting = (
