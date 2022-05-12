@@ -1,6 +1,6 @@
 {
     "name": "refine-multiple-data-provider-example",
-    "version": "3.18.0",
+    "version": "3.18.1",
     "private": true,
     "dependencies": {
         "@pankod/refine-antd": "^3.18.0",
