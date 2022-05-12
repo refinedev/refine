@@ -1,0 +1,73 @@
+import { useList } from "@pankod/refine-core";
+import {
+    Avatar,
+    Typography,
+    Box,
+    Stack,
+    NumberField,
+} from "@pankod/refine-mui";
+
+import { IOrder } from "interfaces";
+
+export const TrendingMenu: React.FC = () => {
+    const { data } = useList<IOrder>({
+        resource: "orders",
+        config: {
+            pagination: { pageSize: 5 },
+        },
+    });
+
+    return (
+        <Stack spacing={3} sx={{ px: 1, pb: 4 }}>
+            {data?.data.map((order, index) => (
+                <Stack
+                    key={order.id}
+                    direction="row"
+                    alignItems="center"
+                    spacing={2}
+                >
+                    <Box sx={{ position: "relative" }}>
+                        <Avatar
+                            sx={{ width: 108, height: 108 }}
+                            src={order?.products[0]?.images[0].url}
+                        />
+                        <Box
+                            sx={{
+                                position: "absolute",
+                                bgcolor: "primary.main",
+                                color: "primary.contrastText",
+                                fontWeight: 800,
+                                transform: "translate(-50%, -50%)",
+                                top: "100%",
+                                left: "50%",
+                                border: "4px solid #ffffff",
+                                borderRadius: "50%",
+                                width: "44px",
+                                height: "44px",
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                            }}
+                        >
+                            #{index + 1}
+                        </Box>
+                    </Box>
+                    <Stack spacing={1}>
+                        <Typography sx={{ fontWeight: 700 }}>
+                            {order.products[0]?.name}
+                        </Typography>
+                        <NumberField
+                            sx={{ fontWeight: 700 }}
+                            options={{
+                                currency: "USD",
+                                style: "currency",
+                                notation: "standard",
+                            }}
+                            value={order.amount / 100}
+                        />
+                    </Stack>
+                </Stack>
+            ))}
+        </Stack>
+    );
+};
