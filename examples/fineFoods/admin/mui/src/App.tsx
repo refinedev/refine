@@ -17,16 +17,16 @@ import { useTranslation } from "react-i18next";
 import {
     AddShoppingCartOutlined,
     StarBorderOutlined,
+    StoreOutlined,
 } from "@mui/icons-material";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
-import StoreIcon from "@mui/icons-material/Store";
 
 import { authProvider } from "authProvider";
 import { OrderList, OrderShow } from "pages/orders";
 import { UserList, UserShow } from "pages/users";
 import { ReviewsList } from "pages/reviews";
 import { LoginPage } from "pages/login";
-import { StoreList } from "pages/stores";
+import { StoreList, StoreEdit, StoreCreate } from "pages/stores";
 
 const App: React.FC = () => {
     const { t, i18n } = useTranslation();
@@ -74,7 +74,9 @@ const App: React.FC = () => {
                     {
                         name: "stores",
                         list: StoreList,
-                        icon: <StoreIcon />,
+                        edit: StoreEdit,
+                        create: StoreCreate,
+                        icon: <StoreOutlined />,
                     },
                     {
                         name: "users",
