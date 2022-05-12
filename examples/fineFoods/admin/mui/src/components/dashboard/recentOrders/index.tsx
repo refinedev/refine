@@ -1,8 +1,6 @@
 /* eslint-disable react/display-name */
 import React from "react";
 import { useNavigation, useTranslate, useUpdate } from "@pankod/refine-core";
-
-import { IOrder } from "interfaces";
 import {
     Avatar,
     Button,
@@ -14,11 +12,10 @@ import {
     Typography,
     useDataGrid,
 } from "@pankod/refine-mui";
-
-import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import { CheckOutlined, CloseOutlined } from "@mui/icons-material";
 
 import { OrderStatus } from "components/orderStatus";
+import { IOrder } from "interfaces";
 
 export const RecentOrders: React.FC = () => {
     const t = useTranslate();
@@ -123,7 +120,7 @@ export const RecentOrders: React.FC = () => {
                 getActions: ({ id }) => [
                     <GridActionsCellItem
                         key={1}
-                        icon={<CheckOutlinedIcon color="success" />}
+                        icon={<CheckOutlined color="success" />}
                         sx={{ padding: "2px 6px" }}
                         label={t("buttons.accept")}
                         showInMenu
@@ -142,7 +139,7 @@ export const RecentOrders: React.FC = () => {
                     />,
                     <GridActionsCellItem
                         key={2}
-                        icon={<CloseOutlinedIcon color="error" />}
+                        icon={<CloseOutlined color="error" />}
                         sx={{ padding: "2px 6px" }}
                         label={t("buttons.reject")}
                         showInMenu
