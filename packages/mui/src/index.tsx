@@ -4,7 +4,91 @@ export * from "@mui/system";
 import * as colors from "@mui/material/colors";
 
 export { colors };
-// export * from "@mui/material/styles";
+export {
+    alpha,
+    createStyles,
+    createTheme,
+    css,
+    darken,
+    decomposeColor,
+    duration,
+    easing,
+    emphasize,
+    experimentalStyled,
+    experimental_extendTheme,
+    experimental_sx,
+    getContrastRatio,
+    getInitColorSchemeScript,
+    getLuminance,
+    hexToRgb,
+    hslToRgb,
+    keyframes,
+    lighten,
+    makeStyles,
+    recomposeColor,
+    responsiveFontSizes,
+    rgbToHex,
+    styled,
+    unstable_createMuiStrictModeTheme,
+    unstable_getUnit,
+    unstable_toUnitless,
+    useColorScheme,
+    useTheme,
+    useThemeProps,
+    withStyles,
+    withTheme,
+} from "@mui/material/styles";
+export type {
+    Breakpoint,
+    BreakpointOverrides,
+    Breakpoints,
+    BreakpointsOptions,
+    CSSInterpolation,
+    CSSObject,
+    ClassNameMap,
+    ColorFormat,
+    ColorObject,
+    ColorSchemeOverrides,
+    ComponentNameToClassKey,
+    Components,
+    ComponentsOverrides,
+    ComponentsProps,
+    ComponentsPropsList,
+    ComponentsVariants,
+    CreateMUIStyled,
+    DefaultColorScheme,
+    DeprecatedThemeOptions,
+    Direction,
+    Duration,
+    Easing,
+    Experimental_CssVarsProvider,
+    ExtendedColorScheme,
+    Interpolation,
+    Opacity,
+    Palette,
+    PaletteColor,
+    PaletteColorOptions,
+    PaletteOptions,
+    SimplePaletteColorOptions,
+    StyledComponentProps,
+    SupportedColorScheme,
+    SxProps,
+    Theme,
+    ThemeInput,
+    ThemeOptions,
+    ThemeProvider,
+    ThemeWithProps,
+    ThemedProps,
+    Transitions,
+    TransitionsOptions,
+    TypeAction,
+    TypeBackground,
+    TypeText,
+    TypographyStyle,
+    TypographyVariant,
+    TypographyVariants,
+    TypographyVariantsOptions,
+} from "@mui/material/styles";
 
 export * from "@mui/material/utils";
 
@@ -51,7 +135,6 @@ export { default as BottomNavigationAction } from "@mui/material/BottomNavigatio
 export * from "@mui/material/BottomNavigationAction";
 
 export { default as Box } from "@mui/material/Box";
-// export * from "@mui/material/Box";
 
 export { default as Breadcrumbs } from "@mui/material/Breadcrumbs";
 export * from "@mui/material/Breadcrumbs";
@@ -153,7 +236,17 @@ export { default as FormLabel } from "@mui/material/FormLabel";
 export * from "@mui/material/FormLabel";
 
 export { default as Grid } from "@mui/material/Grid";
-// export * from "@mui/material/Grid";
+export { getGridUtilityClass, gridClasses } from "@mui/material/Grid";
+export type {
+    GridClassKey,
+    GridClasses,
+    GridDirection,
+    GridProps,
+    GridSize,
+    GridSpacing,
+    GridTypeMap,
+    GridWrap,
+} from "@mui/material/Grid";
 
 export { default as Grow } from "@mui/material/Grow";
 export * from "@mui/material/Grow";
@@ -194,8 +287,16 @@ export * from "@mui/material/LinearProgress";
 export { default as Link } from "@mui/material/Link";
 export * from "@mui/material/Link";
 
-// export { default as List } from "@mui/material/List";
-// export * from "@mui/material/List";
+export { default as MuiList } from "@mui/material/List";
+export { getListUtilityClass, listClasses } from "@mui/material/List";
+export type {
+    ExtendList,
+    ExtendListTypeMap,
+    ListClassKey,
+    ListClasses,
+    ListProps as MuiListProps,
+    ListTypeMap,
+} from "@mui/material/List";
 
 export { default as ListItem } from "@mui/material/ListItem";
 export * from "@mui/material/ListItem";
@@ -387,7 +488,17 @@ export { default as Tooltip } from "@mui/material/Tooltip";
 export * from "@mui/material/Tooltip";
 
 export { default as Typography } from "@mui/material/Typography";
-// export * from "@mui/material/Typography";
+export {
+    getTypographyUtilityClass,
+    typographyClasses,
+} from "@mui/material/Typography";
+export type {
+    TypographyClassKey,
+    TypographyClasses,
+    TypographyPropsVariantOverrides,
+    TypographyProps,
+    TypographyTypeMap,
+} from "@mui/material/Typography";
 
 export { default as useMediaQuery } from "@mui/material/useMediaQuery";
 export * from "@mui/material/useMediaQuery";
@@ -401,11 +512,9 @@ export * from "@mui/material/useScrollTrigger";
 export { default as Zoom } from "@mui/material/Zoom";
 export * from "@mui/material/Zoom";
 
-// createFilterOptions is exported from Autocomplete
-// export { default as useAutocomplete } from "@mui/material/useAutocomplete";
+export { default as useAutocompleteMui } from "@mui/material/useAutocomplete";
 
 export { default as GlobalStyles } from "@mui/material/GlobalStyles";
-// export * from "@mui/material/GlobalStyles";
 
 export { StyledEngineProvider } from "@mui/material/styles";
 
@@ -417,7 +526,6 @@ export * from "@mui/base/generateUtilityClass";
 export { default as generateUtilityClasses } from "@mui/base/generateUtilityClasses";
 
 export * from "./components";
-
 export * from "./hooks";
 export * from "./theme";
 export * from "./providers";
