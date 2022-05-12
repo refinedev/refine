@@ -277,46 +277,50 @@ export const EditProduct: React.FC<EditProductProps> = ({
                                         </FormHelperText>
                                     )}
                                 </FormControl>
-                                <Controller
-                                    control={control}
-                                    name="category"
-                                    rules={{ required: true }}
-                                    render={({ field }) => (
-                                        <Autocomplete
-                                            {...autocompleteProps}
-                                            {...field}
-                                            onChange={(_, value) => {
-                                                field.onChange(value);
-                                            }}
-                                            getOptionLabel={(item) => {
-                                                return item.title
-                                                    ? item.title
-                                                    : "";
-                                            }}
-                                            isOptionEqualToValue={(
-                                                option,
-                                                value,
-                                            ) =>
-                                                value === undefined ||
-                                                option.id === value.id
-                                            }
-                                            renderInput={(params) => (
-                                                <TextField
-                                                    {...params}
-                                                    label="Category"
-                                                    margin="normal"
-                                                    variant="outlined"
-                                                    error={!!errors.item}
-                                                    helperText={
-                                                        errors.item &&
-                                                        "Categoty required"
-                                                    }
-                                                    required
-                                                />
-                                            )}
-                                        />
+                                <FormControl>
+                                    <Controller
+                                        control={control}
+                                        name="category"
+                                        rules={{
+                                            required: "Category required",
+                                        }}
+                                        render={({ field }) => (
+                                            <Autocomplete
+                                                {...autocompleteProps}
+                                                {...field}
+                                                onChange={(_, value) => {
+                                                    field.onChange(value);
+                                                }}
+                                                getOptionLabel={(item) => {
+                                                    return item.title
+                                                        ? item.title
+                                                        : "";
+                                                }}
+                                                isOptionEqualToValue={(
+                                                    option,
+                                                    value,
+                                                ) =>
+                                                    value === undefined ||
+                                                    option.id === value.id
+                                                }
+                                                renderInput={(params) => (
+                                                    <TextField
+                                                        {...params}
+                                                        label="Category"
+                                                        variant="outlined"
+                                                        error={!!errors.item}
+                                                        required
+                                                    />
+                                                )}
+                                            />
+                                        )}
+                                    />
+                                    {errors.category && (
+                                        <FormHelperText error>
+                                            {errors.category.message}
+                                        </FormHelperText>
                                     )}
-                                />
+                                </FormControl>
                                 <FormControl>
                                     <FormLabel
                                         sx={{ marginTop: "10px" }}

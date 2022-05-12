@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import { Refine } from "@pankod/refine-core";
-
 import {
     Layout,
     ErrorComponent,
@@ -17,9 +16,9 @@ import { useTranslation } from "react-i18next";
 import {
     AddShoppingCartOutlined,
     StarBorderOutlined,
+    LocalPizzaOutlined,
+    PeopleOutlineOutlined,
 } from "@mui/icons-material";
-import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
-import LocalPizzaIcon from "@mui/icons-material/LocalPizza";
 
 import { authProvider } from "authProvider";
 import { OrderList, OrderShow } from "pages/orders";
@@ -75,12 +74,12 @@ const App: React.FC = () => {
                         name: "users",
                         list: UserList,
                         show: UserShow,
-                        icon: <PeopleOutlineIcon />,
+                        icon: <PeopleOutlineOutlined />,
                     },
                     {
                         name: "products",
                         list: ProductList,
-                        icon: <LocalPizzaIcon />,
+                        icon: <LocalPizzaOutlined />,
                     },
                 ]}
             />

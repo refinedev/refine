@@ -1,13 +1,10 @@
 import React from "react";
-
 import {
     useTranslate,
     IResourceComponentsProps,
     useTable,
 } from "@pankod/refine-core";
-
 import { useModalForm } from "@pankod/refine-react-hook-form";
-
 import {
     Grid,
     Paper,
@@ -19,7 +16,6 @@ import {
     Pagination,
     Button,
 } from "@pankod/refine-mui";
-
 import SearchIcon from "@mui/icons-material/Search";
 
 import {
@@ -28,7 +24,6 @@ import {
     CreateProduct,
     EditProduct,
 } from "components";
-
 import { IProduct } from "interfaces";
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
@@ -42,7 +37,6 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         handleSubmit,
         watch,
         setValue,
-        reset,
         control,
     } = useModalForm<IProduct>({
         refineCoreProps: { action: "create" },
@@ -85,7 +79,6 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 onFinish={onFinish}
                 control={control}
                 saveButtonProps={saveButtonProps}
-                reset={reset}
             />
             <EditProduct
                 register={editRegister}
