@@ -17,11 +17,8 @@ import {
     Pagination,
 } from "@pankod/refine-mui";
 import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
 
 import { IOrder } from "interfaces";
-
-dayjs.extend(relativeTime);
 
 export const OrderTimeline: React.FC = () => {
     const t = useTranslate();
