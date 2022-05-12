@@ -48,6 +48,7 @@ export const DeliveryMap: React.FC = () => {
                         lng={order.adress.coordinate[1]}
                     >
                         <LocationIcon
+                            sx={{ width: "36px", height: "36px" }}
                             onClick={() => show("orders", order.id)}
                         />
                     </MapMarker>
@@ -61,7 +62,10 @@ export const DeliveryMap: React.FC = () => {
                         lat={order.store.address.coordinate[0]}
                         lng={order.store.address.coordinate[1]}
                     >
-                        <CourierIcon onClick={() => show("orders", order.id)} />
+                        <CourierIcon
+                            sx={{ width: "64px", height: "64px" }}
+                            onClick={() => show("orders", order.id)}
+                        />
                     </MapMarker>
                 );
             })}
