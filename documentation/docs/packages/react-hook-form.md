@@ -453,6 +453,11 @@ const {
 } = useForm({ ... });
 ```
 
+| Property        | Description               | Type                                          |
+| --------------- | ------------------------- | --------------------------------------------- |
+| saveButtonProps | Props for a submit button | `{ disabled: boolean; onClick: () => void; }` |
+
+
 ### Type Parameters
 
 | Property   | Desription                                                   | Type                       | Default                    |
