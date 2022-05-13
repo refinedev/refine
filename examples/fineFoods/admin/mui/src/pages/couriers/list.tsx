@@ -14,6 +14,7 @@ import {
     Stack,
     Avatar,
     Typography,
+    Tooltip,
 } from "@pankod/refine-mui";
 import { Edit, Close } from "@mui/icons-material";
 
@@ -46,11 +47,10 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
             {
                 field: "gsm",
                 headerName: t("couriers.fields.gsm"),
-                valueGetter: ({ row }) => row.gsm,
                 flex: 1,
             },
             {
-                field: "order",
+                field: "email",
                 headerName: t("couriers.fields.email"),
                 valueGetter: ({ row }) => row.email,
                 flex: 1,
@@ -60,9 +60,17 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                 headerName: t("couriers.fields.address"),
                 // eslint-disable-next-line react/display-name
                 renderCell: ({ row }) => (
-                    <Typography sx={{ whiteSpace: "normal" }}>
-                        {row.address}
-                    </Typography>
+                    <Tooltip title={row.address}>
+                        <Typography
+                            sx={{
+                                textOverflow: "ellipsis",
+                                overflow: "hidden",
+                            }}
+                        >
+                            {console.log("row", row)}
+                            {row.address}
+                        </Typography>
+                    </Tooltip>
                 ),
                 flex: 1,
             },
@@ -115,6 +123,14 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                 autoHeight
                 density="comfortable"
                 rowsPerPageOptions={[10]}
+                sx={{
+                    "& .MuiDataGrid-cell:hover": {
+                        cursor: "pointer",
+                    },
+                }}
+                onCellClick={(row) => {
+                    show("couriers", row.id);
+                }}
             />
         </List>
     );
