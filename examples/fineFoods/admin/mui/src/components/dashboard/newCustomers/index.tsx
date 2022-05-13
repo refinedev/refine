@@ -27,9 +27,10 @@ export const NewCustomers: React.FC = () => {
             sx={{
                 height: "230px",
                 p: 1,
-                background: "url(images/daily-order.png)",
-                backgroundColor: "#332a4b",
+                background: "url(images/new-orders.png)",
+                backgroundColor: "#3d335b",
                 backgroundRepeat: "no-repeat",
+                backgroundPosition: "right",
             }}
         >
             <Stack direction="row" justifyContent="space-between">
@@ -66,14 +67,20 @@ export const NewCustomers: React.FC = () => {
             </Stack>
             <Box sx={{ height: "130px" }}>
                 <ResponsiveContainer>
-                    <BarChart data={data?.data.data}>
+                    <BarChart data={data?.data.data} barSize={12}>
                         <Bar
                             type="natural"
                             dataKey="value"
                             fill="rgba(255, 255, 255, 0.5)"
                             radius={[4, 4, 0, 0]}
                         />
-                        <Tooltip content={<ChartTooltip />} />
+                        <Tooltip
+                            cursor={{
+                                fill: "rgba(255, 255, 255, 0.2)",
+                                radius: 4,
+                            }}
+                            content={<ChartTooltip />}
+                        />
                     </BarChart>
                 </ResponsiveContainer>
             </Box>

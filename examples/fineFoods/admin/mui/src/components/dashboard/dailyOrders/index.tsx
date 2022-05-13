@@ -59,14 +59,20 @@ export const DailyOrders: React.FC = () => {
             </Stack>
             <Box sx={{ height: "130px" }}>
                 <ResponsiveContainer>
-                    <BarChart data={data?.data.data}>
+                    <BarChart data={data?.data.data} barSize={12}>
                         <Bar
                             type="natural"
                             dataKey="value"
                             fill="rgba(255, 255, 255, 0.5)"
                             radius={[4, 4, 0, 0]}
                         />
-                        <Tooltip content={<ChartTooltip />} />
+                        <Tooltip
+                            cursor={{
+                                fill: "rgba(255, 255, 255, 0.2)",
+                                radius: 4,
+                            }}
+                            content={<ChartTooltip />}
+                        />
                     </BarChart>
                 </ResponsiveContainer>
             </Box>
