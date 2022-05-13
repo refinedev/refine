@@ -6,6 +6,7 @@ import {
     DailyOrders,
     DailyRevenue,
     DeliveryMap,
+    NewCustomers,
     OrderTimeline,
     RecentOrders,
     TrendingMenu,
@@ -16,18 +17,20 @@ export const DashboardPage: React.FC = () => {
 
     return (
         <Grid container columns={24} spacing={2}>
-            <Grid item xs={24} md={10}>
+            <Grid item xs={24} sm={24} md={24} lg={24} xl={10}>
                 <Card>
                     <DailyRevenue />
                 </Card>
             </Grid>
-            <Grid item xs={24} md={7}>
+            <Grid item xs={24} sm={24} md={24} lg={12} xl={7}>
                 <Card>
                     <DailyOrders />
                 </Card>
             </Grid>
-            <Grid item xs={24} md={7}>
-                <Card></Card>
+            <Grid item xs={24} sm={24} md={24} lg={12} xl={7}>
+                <Card>
+                    <NewCustomers />
+                </Card>
             </Grid>
             <Grid item xs={24} md={16} xl={18}>
                 <Card sx={{ height: "100%", minHeight: "600px" }}>
