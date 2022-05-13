@@ -62,7 +62,6 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
     saveButtonProps,
     control,
 }) => {
-    console.log("errors", errors);
     const t = useTranslate();
 
     const theme = useTheme();
