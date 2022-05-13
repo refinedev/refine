@@ -6,7 +6,7 @@ const drawerWidth = 240;
 export const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== "drawerOpen",
 })<{ drawerOpen?: boolean }>(({ theme, drawerOpen }) => ({
-    zIndex: theme.zIndex.drawer + 1,
+    zIndex: theme.zIndex.drawer - 1,
     backgroundColor: "#2a132e",
     transition: theme.transitions.create(["width", "margin"], {
         easing: theme.transitions.easing.sharp,
