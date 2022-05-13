@@ -13,7 +13,7 @@ export const ChartTooltip: React.FC<TooltipProps<number, string>> = ({
                     fontWeight: 600,
                 }}
             >
-                ${payload[0].value} $
+                ${payload[0]?.value} $
             </Box>
         );
     }
