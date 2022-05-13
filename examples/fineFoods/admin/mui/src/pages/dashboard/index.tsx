@@ -3,6 +3,7 @@ import { Card, CardHeader, Grid } from "@pankod/refine-mui";
 import { useTranslate } from "@pankod/refine-core";
 
 import {
+    DailyOrders,
     DailyRevenue,
     DeliveryMap,
     OrderTimeline,
@@ -21,7 +22,9 @@ export const DashboardPage: React.FC = () => {
                 </Card>
             </Grid>
             <Grid item xs={24} md={7}>
-                <Card></Card>
+                <Card>
+                    <DailyOrders />
+                </Card>
             </Grid>
             <Grid item xs={24} md={7}>
                 <Card></Card>
