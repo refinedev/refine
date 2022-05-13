@@ -3,6 +3,7 @@ import {
     IResourceComponentsProps,
     CrudFilters,
     HttpError,
+    getDefaultFilter,
 } from "@pankod/refine-core";
 
 import {
@@ -16,7 +17,6 @@ import {
     Icons,
     Typography,
     useDrawerForm,
-    getDefaultFilter,
 } from "@pankod/refine-antd";
 
 const { Text } = Typography;
