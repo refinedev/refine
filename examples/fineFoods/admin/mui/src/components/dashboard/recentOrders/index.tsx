@@ -28,11 +28,14 @@ export const RecentOrders: React.FC = () => {
                 field: "avatar",
                 renderCell: ({ row }) => (
                     <Avatar
-                        sx={{ width: 144, height: 144 }}
+                        sx={{
+                            width: { xs: 60, sm: 84, lg: 108, xl: 144 },
+                            height: { xs: 60, sm: 84, lg: 108, xl: 144 },
+                        }}
                         src={row?.products[0]?.images[0].url}
                     />
                 ),
-                width: 200,
+                flex: 0.5,
             },
             {
                 field: "summary",
@@ -88,7 +91,7 @@ export const RecentOrders: React.FC = () => {
                         <Typography>{row.adress.text}</Typography>
                     </Stack>
                 ),
-                width: 200,
+                flex: 1,
             },
             {
                 field: "amount",

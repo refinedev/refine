@@ -18,7 +18,7 @@ export const TrendingMenu: React.FC = () => {
     });
 
     return (
-        <Stack spacing={3} sx={{ px: 1, pb: 4 }}>
+        <Stack spacing={3} sx={{ p: 1 }}>
             {data?.data.map((order, index) => (
                 <Stack
                     key={order.id}

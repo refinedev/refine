@@ -33,7 +33,7 @@ export const OrderTimeline: React.FC = () => {
                     order: "desc",
                 },
             ],
-            initialPageSize: 6,
+            initialPageSize: 5,
         });
 
     const { data } = tableQueryResult;
@@ -73,7 +73,7 @@ export const OrderTimeline: React.FC = () => {
 
     return (
         <>
-            <Timeline position="right">
+            <Timeline position="right" sx={{ mt: 0, pt: 0 }}>
                 {data?.data.map(({ createdAt, orderNumber, status, id }) => {
                     const text = orderStatusColor(status.id.toString())?.text;
                     const color = orderStatusColor(status.id.toString())?.color;
@@ -137,6 +137,8 @@ export const OrderTimeline: React.FC = () => {
                         count={pageCount}
                         page={current}
                         onChange={(e, page) => setCurrent(page)}
+                        siblingCount={0}
+                        boundaryCount={0}
                         size="small"
                         color="primary"
                     />
