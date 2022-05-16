@@ -21,6 +21,7 @@ import {
 } from "@mui/icons-material";
 
 import { authProvider } from "authProvider";
+import { DashboardPage } from "pages/dashboard";
 import { OrderList, OrderShow } from "pages/orders";
 import { UserList, UserShow } from "pages/users";
 import { ReviewsList } from "pages/reviews";
@@ -51,6 +52,7 @@ const App: React.FC = () => {
                 dataProvider={dataProvider("https://api.finefoods.refine.dev")}
                 authProvider={authProvider}
                 i18nProvider={i18nProvider}
+                DashboardPage={DashboardPage}
                 ReadyPage={ReadyPage}
                 Layout={Layout}
                 LoginPage={LoginPage}
