@@ -141,7 +141,15 @@ export const StoreEdit: React.FC = () => {
                                 )}
                             </FormControl>
                             <FormControl>
-                                <FormLabel sx={{ marginTop: "10px" }} required>
+                                <FormLabel
+                                    sx={{
+                                        marginBottom: "8px",
+                                        fontWeight: "700",
+                                        fontSize: "14px",
+                                        color: "text.primary",
+                                    }}
+                                    required
+                                >
                                     {t("products.fields.isActive")}
                                 </FormLabel>
                                 <Controller

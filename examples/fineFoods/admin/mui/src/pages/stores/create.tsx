@@ -141,14 +141,22 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                                 )}
                             </FormControl>
                             <FormControl>
-                                <FormLabel sx={{ marginTop: "10px" }} required>
+                                <FormLabel
+                                    sx={{
+                                        marginBottom: "8px",
+                                        fontWeight: "700",
+                                        fontSize: "14px",
+                                        color: "text.primary",
+                                    }}
+                                    required
+                                >
                                     {t("products.fields.isActive")}
                                 </FormLabel>
                                 <Controller
                                     control={control}
                                     name="isActive"
                                     defaultValue={""}
-                                    rules={{ required: true }}
+                                    rules={{ required: "Selection required" }}
                                     render={({ field }) => (
                                         <RadioGroup
                                             id="isActive"
@@ -168,6 +176,11 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                                         </RadioGroup>
                                     )}
                                 />
+                                {errors.isActive && (
+                                    <FormHelperText error>
+                                        {errors.isActive.message}
+                                    </FormHelperText>
+                                )}
                             </FormControl>
                         </Stack>
                     </Grid>
