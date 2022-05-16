@@ -21,7 +21,7 @@ export const ChartTooltip: React.FC<ChartTooltipProps> = ({
                     borderRadius: "4px",
                 }}
             >
-                {payload[0]?.value} {suffix}
+                {`${payload[0]?.value} ${suffix}`}
             </Box>
         );
     }
