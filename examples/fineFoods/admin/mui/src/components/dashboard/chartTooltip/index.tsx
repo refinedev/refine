@@ -8,7 +8,7 @@ type ChartTooltipProps = TooltipProps<number, string> & {
 export const ChartTooltip: React.FC<ChartTooltipProps> = ({
     active,
     payload,
-    suffix,
+    suffix = "",
 }) => {
     if (active && payload?.length) {
         return (
@@ -21,7 +21,7 @@ export const ChartTooltip: React.FC<ChartTooltipProps> = ({
                     borderRadius: "4px",
                 }}
             >
-                {payload[0]?.value} {suffix}
+                {`${payload[0]?.value} ${suffix}`}
             </Box>
         );
     }

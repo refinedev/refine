@@ -32,7 +32,7 @@ export const RecentOrders: React.FC = () => {
                             width: { xs: 60, sm: 84, lg: 108, xl: 144 },
                             height: { xs: 60, sm: 84, lg: 108, xl: 144 },
                         }}
-                        src={row?.products[0]?.images[0].url}
+                        src={row?.products[0]?.images[0]?.url}
                     />
                 ),
                 flex: 0.5,
