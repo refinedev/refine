@@ -1,4 +1,4 @@
-import { useTranslate } from "@pankod/refine-core";
+import { IResourceComponentsProps, useTranslate } from "@pankod/refine-core";
 import { Controller, useForm } from "@pankod/refine-react-hook-form";
 import {
     FormControl,
@@ -17,7 +17,7 @@ import {
 
 import { IStore } from "interfaces";
 
-export const StoreCreate: React.FC = () => {
+export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const {
         refineCore: { onFinish },

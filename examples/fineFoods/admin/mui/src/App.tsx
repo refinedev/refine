@@ -61,12 +61,12 @@ const App: React.FC = () => {
                 warnWhenUnsavedChanges
                 notificationProvider={notificationProvider}
                 resources={[
-                    // {
-                    //     name: "orders",
-                    //     list: OrderList,
-                    //     show: OrderShow,
-                    //     icon: <AddShoppingCartOutlined />,
-                    // },
+                    {
+                        name: "orders",
+                        list: OrderList,
+                        show: OrderShow,
+                        icon: <AddShoppingCartOutlined />,
+                    },
                     {
                         name: "reviews",
                         list: ReviewsList,

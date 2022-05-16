@@ -20,7 +20,6 @@ import {
 import { EditOutlined } from "@mui/icons-material";
 
 import { IStore } from "interfaces";
-
 import { StoreProducts } from "components/store";
 
 export const StoreList: React.FC = () => {

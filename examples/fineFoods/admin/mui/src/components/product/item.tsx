@@ -20,7 +20,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { IProduct } from "interfaces";
 
 type PropductItem = {
-    updateStock?: (changedValue: any, clickedProduct: IProduct) => void;
+    updateStock?: (changedValue: number, clickedProduct: IProduct) => void;
     product: IProduct;
     show: (id: BaseKey) => void;
 };
@@ -182,7 +182,7 @@ export const ProductItem: React.FC<PropductItem> = ({
                             value={product.stock || 0}
                             onChange={(e) => {
                                 e.preventDefault();
-                                updateStock(e.target.value, product);
+                                updateStock(parseInt(e.target.value), product);
                             }}
                         />
                     </Paper>
