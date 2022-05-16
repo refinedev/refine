@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
     ErrorComponent,
     ReadyPage,
     ThemeProvider,
@@ -27,6 +26,8 @@ import { UserList, UserShow } from "pages/users";
 import { ReviewsList } from "pages/reviews";
 import { LoginPage } from "pages/login";
 import { ProductList } from "pages/products";
+
+import { Layout } from "components/layout/components/layout";
 
 const App: React.FC = () => {
     const { t, i18n } = useTranslation();
