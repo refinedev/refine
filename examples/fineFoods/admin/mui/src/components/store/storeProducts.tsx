@@ -106,25 +106,21 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
     };
 
     const style = {
-        position: "absolute" as const,
+        width: "100%",
+        position: "absolute",
         top: "50%",
         left: "50%",
-        maxHeight: 650,
         transform: "translate(-50%, -50%)",
-        width: 1000,
-        innerHeight: 800,
+        maxWidth: { xs: 380, sm: 580, md: 880, lg: 1000 },
+        maxHeight: 650,
         bgcolor: "background.paper",
-        p: 3,
+        p: 2,
+        my: 2,
         borderRadius: "8px",
     };
 
     return (
-        <Modal
-            closeAfterTransition
-            open={modalVisible}
-            onClose={modalClose}
-            sx={{ borderRadius: "30px" }}
-        >
+        <Modal closeAfterTransition open={modalVisible} onClose={modalClose}>
             <Fade in={modalVisible}>
                 <Box sx={style}>
                     <CreateProduct
@@ -166,17 +162,17 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
                         component="div"
                         sx={{
                             backgroundColor: "common.white",
-                            width: "100%",
                         }}
                     >
                         <Grid container columns={16}>
-                            <Grid item xs={16} md={12}>
+                            <Grid item xs={16} sm={12}>
                                 <Stack
                                     display="flex"
                                     justifyContent="space-between"
                                     alignItems="center"
                                     flexWrap="wrap"
                                     direction="row"
+                                    gap="10px"
                                 >
                                     <Typography variant="h5">
                                         {t("products.products")}
@@ -187,7 +183,6 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
                                             display: "flex",
                                             alignItems: "center",
                                             height: "30px",
-                                            width: 280,
                                         }}
                                     >
                                         <InputBase
@@ -231,19 +226,21 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
                                         {t("stores.buttons.addProduct")}
                                     </Button>
                                 </Stack>
-                                <Stack maxHeight="560px">
-                                    <Grid
-                                        height="100%"
-                                        overflow="scroll"
-                                        container
-                                    >
+                                <Stack
+                                    maxHeight={{
+                                        xs: 500,
+                                        lg: 580,
+                                    }}
+                                    overflow="scroll"
+                                >
+                                    <Grid container>
                                         {mergedData?.map(
                                             (product: IProduct) => (
                                                 <Grid
                                                     item
                                                     xs={12}
+                                                    sm={6}
                                                     md={4}
-                                                    lg={4}
                                                     key={product.id}
                                                     sx={{ padding: "8px" }}
                                                 >
@@ -278,7 +275,12 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
                                     />
                                 </Stack>
                             </Grid>
-                            <Grid item md={4}>
+                            <Grid
+                                item
+                                xs={0}
+                                sm={4}
+                                sx={{ display: { xs: "none", sm: "block" } }}
+                            >
                                 <Stack paddingX="8px">
                                     <Typography variant="subtitle1">
                                         {t("stores.tagFilterDescription")}
