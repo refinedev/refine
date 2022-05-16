@@ -4,13 +4,8 @@ import axios from "axios";
 import { useTranslate, useApiUrl } from "@pankod/refine-core";
 
 import {
-    FieldValues,
-    UseFormRegister,
-    UseFormHandleSubmit,
-    UseFormSetValue,
-    UseFormWatch,
     Controller,
-    Control,
+    UseModalFormReturnType,
 } from "@pankod/refine-react-hook-form";
 
 import {
@@ -34,36 +29,20 @@ import {
     FormHelperText,
     Autocomplete,
     Edit,
-    SaveButtonProps,
 } from "@pankod/refine-mui";
-
 import CloseIcon from "@mui/icons-material/Close";
 
 import { ICategory } from "interfaces";
 
-type EditProductProps = {
-    visible: boolean;
-    close: () => void;
-    register: UseFormRegister<FieldValues>;
-    handleSubmit: UseFormHandleSubmit<FieldValues>;
-    setValue: UseFormSetValue<FieldValues>;
-    errors: { [x: string]: any };
-    watch: UseFormWatch<FieldValues>;
-    onFinish: (values: FieldValues) => Promise<void>;
-    control: Control<FieldValues>;
-    saveButtonProps: SaveButtonProps;
-};
-
-export const EditProduct: React.FC<EditProductProps> = ({
-    visible,
-    close,
-    register,
-    handleSubmit,
-    setValue,
-    errors,
+export const EditProduct: React.FC<UseModalFormReturnType> = ({
     watch,
-    onFinish,
+    setValue,
+    register,
+    formState: { errors },
     control,
+    refineCore: { onFinish },
+    handleSubmit,
+    modal: { visible, close },
     saveButtonProps,
 }) => {
     const t = useTranslate();
@@ -123,6 +102,7 @@ export const EditProduct: React.FC<EditProductProps> = ({
                     },
                     width: "500px",
                 },
+                zIndex: "1301",
             }}
             open={visible}
             onClose={close}
@@ -286,6 +266,7 @@ export const EditProduct: React.FC<EditProductProps> = ({
                                         }}
                                         render={({ field }) => (
                                             <Autocomplete
+                                                disablePortal
                                                 {...autocompleteProps}
                                                 {...field}
                                                 onChange={(_, value) => {

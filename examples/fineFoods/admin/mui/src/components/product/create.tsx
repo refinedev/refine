@@ -3,12 +3,8 @@ import axios from "axios";
 import { useTranslate, useApiUrl } from "@pankod/refine-core";
 import {
     FieldValues,
-    UseFormRegister,
-    UseFormHandleSubmit,
-    UseFormSetValue,
-    UseFormWatch,
     Controller,
-    Control,
+    UseModalFormReturnType,
 } from "@pankod/refine-react-hook-form";
 import {
     Drawer,
@@ -30,37 +26,22 @@ import {
     FormHelperText,
     Create,
     useAutocomplete,
-    SaveButtonProps,
     TextField,
 } from "@pankod/refine-mui";
 import { CloseOutlined } from "@mui/icons-material";
 
 import { ICategory } from "interfaces";
 
-type CreateProductProps = {
-    visible: boolean;
-    close: () => void;
-    register: UseFormRegister<FieldValues>;
-    handleSubmit: UseFormHandleSubmit<FieldValues>;
-    setValue: UseFormSetValue<FieldValues>;
-    errors: { [x: string]: any };
-    watch: UseFormWatch<FieldValues>;
-    onFinish: (values: FieldValues) => void;
-    control: Control<FieldValues>;
-    saveButtonProps: SaveButtonProps;
-};
-
-export const CreateProduct: React.FC<CreateProductProps> = ({
-    visible,
-    close,
-    register,
-    handleSubmit,
-    setValue,
-    errors,
+export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
     watch,
-    onFinish,
-    saveButtonProps,
+    setValue,
+    register,
+    formState: { errors },
     control,
+    refineCore: { onFinish },
+    handleSubmit,
+    modal: { visible, close },
+    saveButtonProps,
 }) => {
     const t = useTranslate();
 
@@ -119,6 +100,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                     },
                     width: "500px",
                 },
+                zIndex: "1301",
             }}
             open={visible}
             onClose={close}
@@ -130,7 +112,11 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                     avatar: (
                         <IconButton
                             onClick={() => close()}
-                            sx={{ width: "30px", height: "30px", mb: "5px" }}
+                            sx={{
+                                width: "30px",
+                                height: "30px",
+                                mb: "5px",
+                            }}
                         >
                             <CloseOutlined />
                         </IconButton>
@@ -282,6 +268,7 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                                         }}
                                         render={({ field }) => (
                                             <Autocomplete
+                                                disablePortal
                                                 {...autocompleteProps}
                                                 {...field}
                                                 onChange={(_, value) => {
