@@ -8,7 +8,7 @@ type ChartTooltipProps = TooltipProps<number, string> & {
 export const ChartTooltip: React.FC<ChartTooltipProps> = ({
     active,
     payload,
-    suffix,
+    suffix = "",
 }) => {
     if (active && payload?.length) {
         return (
