@@ -75,7 +75,7 @@ export const DailyRevenue: React.FC = () => {
                             dot={false}
                             strokeWidth={4}
                         />
-                        <Tooltip content={<ChartTooltip />} />
+                        <Tooltip content={<ChartTooltip suffix="$" />} />
                     </LineChart>
                 </ResponsiveContainer>
             </Box>

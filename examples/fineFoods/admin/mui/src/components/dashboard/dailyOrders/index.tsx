@@ -59,7 +59,7 @@ export const DailyOrders: React.FC = () => {
             </Stack>
             <Box sx={{ height: "130px" }}>
                 <ResponsiveContainer>
-                    <BarChart data={data?.data.data} barSize={12}>
+                    <BarChart data={data?.data.data} barSize={15}>
                         <Bar
                             type="natural"
                             dataKey="value"
