@@ -12,19 +12,24 @@ import {
     Popover,
     Button,
     Divider,
+    Paper,
 } from "@pankod/refine-mui";
-
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditIcon from "@mui/icons-material/Edit";
 
 import { IProduct } from "interfaces";
 
 type PropductItem = {
+    updateStock?: (changedValue: number, clickedProduct: IProduct) => void;
     product: IProduct;
     show: (id: BaseKey) => void;
 };
 
-export const ProductItem: React.FC<PropductItem> = ({ product, show }) => {
+export const ProductItem: React.FC<PropductItem> = ({
+    product,
+    show,
+    updateStock,
+}) => {
     const t = useTranslate();
     const { id, name, description, images, price } = product;
 
@@ -95,8 +100,8 @@ export const ProductItem: React.FC<PropductItem> = ({ product, show }) => {
                 <CardMedia
                     component="img"
                     sx={{
-                        width: "160px",
-                        height: "160px",
+                        width: { xs: 60, sm: 84, lg: 108, xl: 144 },
+                        height: { xs: 60, sm: 84, lg: 108, xl: 144 },
                         borderRadius: "50%",
                     }}
                     alt={name}
@@ -152,6 +157,36 @@ export const ProductItem: React.FC<PropductItem> = ({ product, show }) => {
                         color: "text.secondary",
                     }}
                 >{`${price / 100}$`}</Typography>
+                {updateStock && (
+                    <Paper
+                        sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                            height: "32px",
+                            alignItems: "center",
+                            marginTop: "4px",
+                            boxShadow: "none",
+                            border: "1px solid #e0e0e0",
+                        }}
+                    >
+                        <input
+                            style={{
+                                width: "70px",
+                                height: "30px",
+                                border: "none",
+                                borderRadius: "5px",
+                                margin: "10px 0",
+                                outline: "none",
+                            }}
+                            type="number"
+                            value={product.stock || 0}
+                            onChange={(e) => {
+                                e.preventDefault();
+                                updateStock(parseInt(e.target.value), product);
+                            }}
+                        />
+                    </Paper>
+                )}
             </CardContent>
         </Card>
     );
