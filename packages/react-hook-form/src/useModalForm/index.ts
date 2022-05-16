@@ -151,5 +151,6 @@ export const useModalForm = <
             title,
         },
         ...useHookFormResult,
+        saveButtonProps,
     };
 };
