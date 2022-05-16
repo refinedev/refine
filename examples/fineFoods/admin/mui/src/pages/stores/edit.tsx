@@ -20,25 +20,14 @@ import { IStore } from "interfaces";
 export const StoreEdit: React.FC = () => {
     const t = useTranslate();
     const {
-        refineCore: { onFinish },
         register,
         control,
-        handleSubmit,
         formState: { errors },
-    } = useForm<IStore>({
-        refineCoreProps: {
-            resource: "stores",
-        },
-    });
+        saveButtonProps,
+    } = useForm<IStore>();
 
     return (
-        <Edit
-            saveButtonProps={{
-                onClick: () => {
-                    handleSubmit(onFinish)();
-                },
-            }}
-        >
+        <Edit saveButtonProps={saveButtonProps}>
             <form>
                 <Grid
                     container

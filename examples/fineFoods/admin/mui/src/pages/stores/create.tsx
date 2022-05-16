@@ -20,25 +20,14 @@ import { IStore } from "interfaces";
 export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const {
-        refineCore: { onFinish },
         register,
         control,
-        handleSubmit,
         formState: { errors },
-    } = useForm<IStore>({
-        refineCoreProps: {
-            resource: "stores",
-        },
-    });
+        saveButtonProps,
+    } = useForm<IStore>();
 
     return (
-        <Create
-            saveButtonProps={{
-                onClick: () => {
-                    handleSubmit(onFinish)();
-                },
-            }}
-        >
+        <Create saveButtonProps={saveButtonProps}>
             <form>
                 <Grid
                     container
