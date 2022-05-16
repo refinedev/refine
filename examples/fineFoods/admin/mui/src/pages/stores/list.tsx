@@ -1,6 +1,11 @@
 /* eslint-disable react/display-name */
 import React from "react";
-import { useTranslate, useNavigation } from "@pankod/refine-core";
+import {
+    useTranslate,
+    useNavigation,
+    useModal,
+    useShow,
+} from "@pankod/refine-core";
 import {
     Avatar,
     DataGrid,
@@ -16,9 +21,18 @@ import { EditOutlined } from "@mui/icons-material";
 
 import { IStore } from "interfaces";
 
+import { StoreProducts } from "components/store";
+
 export const StoreList: React.FC = () => {
     const t = useTranslate();
-    const { edit, create } = useNavigation();
+    const { edit } = useNavigation();
+
+    const { show, visible, close } = useModal();
+
+    const { queryResult, setShowId } = useShow<IStore>();
+
+    const { data: showQueryResult } = queryResult;
+    const record = showQueryResult?.data;
 
     const columns = React.useMemo<GridColumns<IStore>>(
         () => [
@@ -60,7 +74,7 @@ export const StoreList: React.FC = () => {
                 renderCell: ({ row }) => (
                     <TextFieldComponent
                         fontSize={14}
-                        value={row.address.text}
+                        value={row.address?.text}
                     />
                 ),
             },
@@ -97,15 +111,16 @@ export const StoreList: React.FC = () => {
                         showInMenu
                         onClick={() => edit("stores", row.id)}
                     />,
-                    // <GridActionsCellItem
-                    //     onClick={() => {
-                    //         console.log("clicked");
-                    //     }}
-                    //     key={2}
-                    //     label={t("buttons.reject")}
-                    //     icon={<EditOutlined />}
-                    //     showInMenu
-                    // />,
+                    <GridActionsCellItem
+                        onClick={() => {
+                            show();
+                            setShowId(row.id);
+                        }}
+                        key={2}
+                        label={t("stores.buttons.edit")}
+                        icon={<EditOutlined />}
+                        showInMenu
+                    />,
                 ],
             },
         ],
@@ -125,13 +140,22 @@ export const StoreList: React.FC = () => {
     });
 
     return (
-        <List canCreate>
-            <DataGrid
-                rowHeight={80}
-                autoHeight
-                density="comfortable"
-                {...dataGridProps}
-            />
-        </List>
+        <>
+            <List canCreate>
+                <DataGrid
+                    rowHeight={80}
+                    autoHeight
+                    density="comfortable"
+                    {...dataGridProps}
+                />
+            </List>
+            {record && (
+                <StoreProducts
+                    record={record}
+                    close={close}
+                    visible={visible}
+                />
+            )}
+        </>
     );
 };
