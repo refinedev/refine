@@ -35,7 +35,7 @@ export const DeliveryMap: React.FC = () => {
     return (
         <GoogleMapReact
             bootstrapURLKeys={{
-                key: "AIzaSyCt_mVu05C71LMf-kRFCDlDI_UlBq9bOOY",
+                key: process.env.REACT_APP_MAP_ID,
             }}
             defaultCenter={defaultProps.center}
             defaultZoom={defaultProps.zoom}
