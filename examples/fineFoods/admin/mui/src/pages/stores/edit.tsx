@@ -156,7 +156,7 @@ export const StoreEdit: React.FC = () => {
                                     control={control}
                                     name="isActive"
                                     defaultValue={""}
-                                    rules={{ required: true }}
+                                    rules={{ required: "Selection required" }}
                                     render={({ field }) => (
                                         <RadioGroup
                                             id="isActive"
@@ -176,6 +176,11 @@ export const StoreEdit: React.FC = () => {
                                         </RadioGroup>
                                     )}
                                 />
+                                {errors.isActive && (
+                                    <FormHelperText error>
+                                        {errors.isActive.message}
+                                    </FormHelperText>
+                                )}
                             </FormControl>
                         </Stack>
                     </Grid>
