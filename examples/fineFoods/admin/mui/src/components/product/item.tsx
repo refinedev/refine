@@ -52,6 +52,7 @@ export const ProductItem: React.FC<PropductItem> = ({
                 display: "flex",
                 flexDirection: "column",
                 position: "relative",
+                height: "100%",
             }}
         >
             <CardHeader
@@ -108,7 +109,14 @@ export const ProductItem: React.FC<PropductItem> = ({
                     image={images[0].url}
                 />
             </Box>
-            <CardContent sx={{ paddingX: "36px" }}>
+            <CardContent
+                sx={{
+                    paddingX: "36px",
+                    display: "flex",
+                    flexDirection: "column",
+                    flex: 1,
+                }}
+            >
                 <Divider />
                 <Tooltip title={name}>
                     <Typography
@@ -137,6 +145,7 @@ export const ProductItem: React.FC<PropductItem> = ({
                             display: "-webkit-box",
                             WebkitLineClamp: "3",
                             WebkitBoxOrient: "vertical",
+                            flex: 1,
                         }}
                     >
                         {description}
@@ -182,7 +191,10 @@ export const ProductItem: React.FC<PropductItem> = ({
                             value={product.stock || 0}
                             onChange={(e) => {
                                 e.preventDefault();
-                                updateStock(parseInt(e.target.value), product);
+                                updateStock(
+                                    parseInt(e.target.value, 10),
+                                    product,
+                                );
                             }}
                         />
                     </Paper>
