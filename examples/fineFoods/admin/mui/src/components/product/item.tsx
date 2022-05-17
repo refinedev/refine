@@ -159,13 +159,19 @@ export const ProductItem: React.FC<PropductItem> = ({
                         my: 1,
                     }}
                 >{`#10000${id}`}</Typography>
-                <Typography
-                    sx={{
-                        fontWeight: 800,
-                        fontSize: "32px",
-                        color: "text.secondary",
-                    }}
-                >{`${price / 100}$`}</Typography>
+                <Tooltip title={`${price / 100}$`}>
+                    <Typography
+                        sx={{
+                            fontWeight: 800,
+                            fontSize: "24px",
+                            color: "text.secondary",
+                            overflowWrap: "break-word",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            display: "-webkit-box",
+                        }}
+                    >{`${price / 100}$`}</Typography>
+                </Tooltip>
                 {updateStock && (
                     <Paper
                         sx={{
