@@ -100,6 +100,21 @@ export const useTable = <
     const { search, pathname } = useLocation();
     const liveMode = useLiveMode(liveModeFromProp);
 
+    let defaultCurrent = initialCurrent;
+    let defaultPageSize = initialPageSize;
+    let defaultSorter = initialSorter;
+    let defaultFilter = initialFilter;
+
+    if (syncWithLocation) {
+        const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
+            parseTableParams(search);
+
+        defaultCurrent = parsedCurrent || defaultCurrent;
+        defaultPageSize = parsedPageSize || defaultPageSize;
+        defaultSorter = parsedSorter.length ? parsedSorter : defaultSorter;
+        defaultFilter = parsedFilters.length ? parsedFilters : defaultFilter;
+    }
+
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const { push } = useNavigation();
@@ -108,20 +123,20 @@ export const useTable = <
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
     const [sorter, setSorter] = useState<CrudSorting>(
-        setInitialSorters(permanentSorter, initialSorter ?? []),
+        setInitialSorters(permanentSorter, defaultSorter ?? []),
     );
     const [filters, setFilters] = useState<CrudFilters>(
-        setInitialFilters(permanentFilter, initialFilter ?? []),
+        setInitialFilters(permanentFilter, defaultFilter ?? []),
     );
-    const [current, setCurrent] = useState<number>(initialCurrent);
-    const [pageSize, setPageSize] = useState<number>(initialPageSize);
+    const [current, setCurrent] = useState<number>(defaultCurrent);
+    const [pageSize, setPageSize] = useState<number>(defaultPageSize);
 
     useEffect(() => {
         if (syncWithLocation && search === "") {
-            setCurrent(initialCurrent);
-            setPageSize(initialPageSize);
-            setSorter(setInitialSorters(permanentSorter, initialSorter ?? []));
-            setFilters(setInitialFilters(permanentFilter, initialFilter ?? []));
+            setCurrent(defaultCurrent);
+            setPageSize(defaultPageSize);
+            setSorter(setInitialSorters(permanentSorter, defaultSorter ?? []));
+            setFilters(setInitialFilters(permanentFilter, defaultFilter ?? []));
         }
     }, [syncWithLocation, search]);
 
