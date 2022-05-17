@@ -210,7 +210,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
             <Box sx={{ height: 500 }}>
                 <GoogleMapReact
                     bootstrapURLKeys={{
-                        key: "AIzaSyCt_mVu05C71LMf-kRFCDlDI_UlBq9bOOY",
+                        key: process.env.REACT_APP_MAP_ID,
                     }}
                     defaultCenter={{
                         lat: 40.73061,
