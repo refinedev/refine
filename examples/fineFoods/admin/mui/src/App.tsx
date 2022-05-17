@@ -27,7 +27,7 @@ import { ReviewsList } from "pages/reviews";
 import { LoginPage } from "pages/login";
 import { ProductList } from "pages/products";
 
-import { Layout } from "components/layout/components/layout";
+import { Layout } from "components/layout";
 
 const App: React.FC = () => {
     const { t, i18n } = useTranslation();
