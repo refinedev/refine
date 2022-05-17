@@ -29,7 +29,7 @@ import {
     StoreOutlined,
 } from "@mui/icons-material";
 
-import { ICourier, IOrderFilterVariables, IReview } from "interfaces";
+import { ICourier, IReview } from "interfaces";
 
 export const CourierShow: React.FC = () => {
     const t = useTranslate();
@@ -116,11 +116,7 @@ export const CourierShow: React.FC = () => {
         [],
     );
 
-    const { dataGridProps } = useDataGrid<
-        IReview,
-        HttpError,
-        IOrderFilterVariables
-    >({
+    const { dataGridProps } = useDataGrid<IReview, HttpError>({
         columns,
         resource: "reviews",
         initialSorter: [

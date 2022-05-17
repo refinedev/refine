@@ -25,7 +25,12 @@ import { authProvider } from "authProvider";
 import { OrderList, OrderShow } from "pages/orders";
 import { UserList, UserShow } from "pages/users";
 import { ReviewsList } from "pages/reviews";
-import { CourierList, CourierShow } from "pages/couriers";
+import {
+    CourierList,
+    CourierShow,
+    CourierCreate,
+    CourierEdit,
+} from "pages/couriers";
 import { LoginPage } from "pages/login";
 
 const App: React.FC = () => {
@@ -70,6 +75,8 @@ const App: React.FC = () => {
                         name: "couriers",
                         list: CourierList,
                         show: CourierShow,
+                        create: CourierCreate,
+                        edit: CourierEdit,
                         icon: <BikeScooterOutlined />,
                     },
                     {

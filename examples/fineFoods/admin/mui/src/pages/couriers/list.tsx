@@ -52,7 +52,6 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
             {
                 field: "email",
                 headerName: t("couriers.fields.email"),
-                valueGetter: ({ row }) => row.email,
                 flex: 1,
             },
             {
@@ -67,7 +66,6 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                                 overflow: "hidden",
                             }}
                         >
-                            {console.log("row", row)}
                             {row.address}
                         </Typography>
                     </Tooltip>
@@ -107,17 +105,16 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
 
     const { dataGridProps } = useDataGrid<ICourier>({
         columns,
-        permanentFilter: [
+        initialSorter: [
             {
-                field: "status",
-                operator: "eq",
-                value: "pending",
+                field: "id",
+                order: "desc",
             },
         ],
     });
 
     return (
-        <List>
+        <List canCreate>
             <DataGrid
                 {...dataGridProps}
                 autoHeight
@@ -128,7 +125,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                         cursor: "pointer",
                     },
                 }}
-                onCellClick={(row) => {
+                onRowClick={(row) => {
                     show("couriers", row.id);
                 }}
             />
