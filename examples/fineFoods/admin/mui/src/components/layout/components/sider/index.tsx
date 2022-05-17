@@ -61,6 +61,7 @@ export const Sider: React.FC = () => {
                             <ListItemButton
                                 key={primaryText}
                                 selected={i === 0}
+                                component={to ? Link : "div"}
                             >
                                 <ListItemIcon>
                                     <Send />
