@@ -338,16 +338,8 @@
     },
     "errors": {
         "required": {
-            "image": "Bild ist erforderlich",
-            "name": "Name ist erforderlich",
-            "description": "Beschreibung ist erforderlich",
-            "price": "Preis ist erforderlich",
-            "category": "Kategorie ist erforderlich",
-            "title": "Titel ist erforderlich",
-            "email": "E-Mail ist erforderlich",
-            "gsm": "Telefon ist erforderlich",
-            "address": "Adresse ist erforderlich",
-            "field": "Dieses Feld wird benötigt"
+            "field": "'{{ field }}' ist erforderlich",
+            "common": "Dieses Feld wird benötigt"
         }
     }
 }

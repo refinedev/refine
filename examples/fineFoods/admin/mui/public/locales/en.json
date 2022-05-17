@@ -341,16 +341,8 @@
     },
     "errors": {
         "required": {
-            "image": "Image is required",
-            "name": "Name is required",
-            "description": "Description is required",
-            "price": "Price is required",
-            "category": "Category is required",
-            "title": "Title is required",
-            "email": "Email is required",
-            "gsm": "Phone is required",
-            "address": "Address is required",
-            "field": "This field is required"
+            "field": "'{{ field }}' is required",
+            "common": "This field is required"
         }
     }
 }

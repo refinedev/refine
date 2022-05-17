@@ -162,7 +162,8 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                             id="file"
                                             {...register("images", {
                                                 required: t(
-                                                    "errors.required.image",
+                                                    "errors.required.field",
+                                                    { field: "Image" },
                                                 ),
                                             })}
                                             type="hidden"
@@ -208,7 +209,10 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                     <OutlinedInput
                                         id="name"
                                         {...register("name", {
-                                            required: t("errors.required.name"),
+                                            required: t(
+                                                "errors.required.field",
+                                                { field: "Name" },
+                                            ),
                                         })}
                                         style={{ height: "40px" }}
                                     />
@@ -226,7 +230,8 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                         id="description"
                                         {...register("description", {
                                             required: t(
-                                                "errors.required.description",
+                                                "errors.required.field",
+                                                { field: "Description" },
                                             ),
                                         })}
                                         multiline
@@ -247,7 +252,8 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                         id="price"
                                         {...register("price", {
                                             required: t(
-                                                "errors.required.price",
+                                                "errors.required.field",
+                                                { field: "Price" },
                                             ),
                                         })}
                                         style={{
@@ -272,7 +278,8 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                         name="category"
                                         rules={{
                                             required: t(
-                                                "errors.required.category",
+                                                "errors.required.field",
+                                                { field: "Category" },
                                             ),
                                         }}
                                         render={({ field }) => (
@@ -326,7 +333,7 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                         defaultValue=""
                                         rules={{
                                             required: t(
-                                                "errors.required.field",
+                                                "errors.required.common",
                                             ),
                                         }}
                                         render={({ field }) => (

@@ -76,7 +76,9 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                                 </FormLabel>
                                 <TextField
                                     {...register("title", {
-                                        required: t("errors.required.title"),
+                                        required: t("errors.required.field", {
+                                            field: "Title",
+                                        }),
                                     })}
                                     size="small"
                                     margin="none"
@@ -102,7 +104,9 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                                 </FormLabel>
                                 <TextField
                                     {...register("email", {
-                                        required: t("errors.required.email"),
+                                        required: t("errors.required.field", {
+                                            field: "Email",
+                                        }),
                                     })}
                                     size="small"
                                     margin="none"
@@ -128,7 +132,9 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                                 </FormLabel>
                                 <TextField
                                     {...register("gsm", {
-                                        required: t("errors.required.gsm"),
+                                        required: t("errors.required.field", {
+                                            field: "Phone",
+                                        }),
                                     })}
                                     size="small"
                                     margin="none"
@@ -157,7 +163,7 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                                     name="isActive"
                                     defaultValue={""}
                                     rules={{
-                                        required: t("errors.required.field"),
+                                        required: t("errors.required.common"),
                                     }}
                                     render={({ field }) => (
                                         <RadioGroup
@@ -201,7 +207,9 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                             </FormLabel>
                             <TextField
                                 {...register("address.text", {
-                                    required: t("errors.required.address"),
+                                    required: t("errors.required.field", {
+                                        field: "Address",
+                                    }),
                                 })}
                                 margin="none"
                                 variant="outlined"

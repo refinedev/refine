@@ -77,7 +77,9 @@ export const StoreEdit: React.FC = () => {
                                 </FormLabel>
                                 <TextField
                                     {...register("title", {
-                                        required: t("errors.required.title"),
+                                        required: t("errors.required.field", {
+                                            field: "Title",
+                                        }),
                                     })}
                                     size="small"
                                     margin="none"
@@ -103,7 +105,9 @@ export const StoreEdit: React.FC = () => {
                                 </FormLabel>
                                 <TextField
                                     {...register("email", {
-                                        required: t("errors.required.email"),
+                                        required: t("errors.required.field", {
+                                            field: "Email",
+                                        }),
                                     })}
                                     size="small"
                                     margin="none"
@@ -129,7 +133,9 @@ export const StoreEdit: React.FC = () => {
                                 </FormLabel>
                                 <TextField
                                     {...register("gsm", {
-                                        required: t("errors.required.gsm"),
+                                        required: t("errors.required.field", {
+                                            field: "Phone",
+                                        }),
                                     })}
                                     size="small"
                                     margin="none"
@@ -157,7 +163,7 @@ export const StoreEdit: React.FC = () => {
                                     control={control}
                                     name="isActive"
                                     rules={{
-                                        required: t("errors.required.field"),
+                                        required: t("errors.required.common"),
                                     }}
                                     defaultValue=""
                                     render={({ field }) => (
@@ -203,7 +209,9 @@ export const StoreEdit: React.FC = () => {
                             </FormLabel>
                             <TextField
                                 {...register("address.text", {
-                                    required: t("errors.required.address"),
+                                    required: t("errors.required.field", {
+                                        field: "Address",
+                                    }),
                                 })}
                                 margin="none"
                                 variant="outlined"
