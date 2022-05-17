@@ -125,12 +125,20 @@ export const useTable = <
     const [sorter, setSorter] = useState<CrudSorting>(
         setInitialSorters(permanentSorter, defaultSorter ?? []),
     );
-
     const [filters, setFilters] = useState<CrudFilters>(
         setInitialFilters(permanentFilter, defaultFilter ?? []),
     );
     const [current, setCurrent] = useState<number>(defaultCurrent);
     const [pageSize, setPageSize] = useState<number>(defaultPageSize);
+
+    useEffect(() => {
+        if (syncWithLocation && search === "") {
+            setCurrent(defaultCurrent);
+            setPageSize(defaultPageSize);
+            setSorter(setInitialSorters(permanentSorter, defaultSorter ?? []));
+            setFilters(setInitialFilters(permanentFilter, defaultFilter ?? []));
+        }
+    }, [syncWithLocation, search]);
 
     useEffect(() => {
         if (syncWithLocation) {
