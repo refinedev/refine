@@ -161,7 +161,9 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                         <input
                                             id="file"
                                             {...register("images", {
-                                                required: "Image ",
+                                                required: t(
+                                                    "errors.required.image",
+                                                ),
                                             })}
                                             type="hidden"
                                         />
@@ -206,7 +208,7 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                     <OutlinedInput
                                         id="name"
                                         {...register("name", {
-                                            required: "Name required",
+                                            required: t("errors.required.name"),
                                         })}
                                         style={{ height: "40px" }}
                                     />
@@ -223,7 +225,9 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                     <OutlinedInput
                                         id="description"
                                         {...register("description", {
-                                            required: "Description required",
+                                            required: t(
+                                                "errors.required.description",
+                                            ),
                                         })}
                                         multiline
                                         maxRows={5}
@@ -239,9 +243,12 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                         {t("products.fields.price")}
                                     </FormLabel>
                                     <OutlinedInput
+                                        type="number"
                                         id="price"
                                         {...register("price", {
-                                            required: "Price required",
+                                            required: t(
+                                                "errors.required.price",
+                                            ),
                                         })}
                                         style={{
                                             width: "150px",
@@ -264,7 +271,9 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                         control={control}
                                         name="category"
                                         rules={{
-                                            required: "Category required",
+                                            required: t(
+                                                "errors.required.category",
+                                            ),
                                         }}
                                         render={({ field }) => (
                                             <Autocomplete
@@ -314,8 +323,12 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                     <Controller
                                         control={control}
                                         name="isActive"
-                                        defaultValue={true}
-                                        rules={{ required: true }}
+                                        defaultValue=""
+                                        rules={{
+                                            required: t(
+                                                "errors.required.field",
+                                            ),
+                                        }}
                                         render={({ field }) => (
                                             <RadioGroup
                                                 id="isActive"

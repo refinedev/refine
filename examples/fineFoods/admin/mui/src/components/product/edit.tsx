@@ -44,6 +44,7 @@ export const EditProduct: React.FC<UseModalFormReturnType> = ({
     handleSubmit,
     modal: { visible, close },
     saveButtonProps,
+    getValues,
 }) => {
     const t = useTranslate();
 
@@ -159,7 +160,9 @@ export const EditProduct: React.FC<UseModalFormReturnType> = ({
                                         <input
                                             id="file"
                                             {...register("images", {
-                                                required: "Image ",
+                                                required: t(
+                                                    "errors.required.image",
+                                                ),
                                             })}
                                             type="hidden"
                                         />
@@ -204,7 +207,7 @@ export const EditProduct: React.FC<UseModalFormReturnType> = ({
                                     <OutlinedInput
                                         id="name"
                                         {...register("name", {
-                                            required: "Name required",
+                                            required: t("errors.required.name"),
                                         })}
                                         style={{ height: "40px" }}
                                     />
@@ -221,7 +224,9 @@ export const EditProduct: React.FC<UseModalFormReturnType> = ({
                                     <OutlinedInput
                                         id="description"
                                         {...register("description", {
-                                            required: "Description required",
+                                            required: t(
+                                                "errors.required.description",
+                                            ),
                                         })}
                                         multiline
                                         maxRows={5}
@@ -237,9 +242,12 @@ export const EditProduct: React.FC<UseModalFormReturnType> = ({
                                         {t("products.fields.price")}
                                     </FormLabel>
                                     <OutlinedInput
+                                        type="number"
                                         id="price"
                                         {...register("price", {
-                                            required: "Price required",
+                                            required: t(
+                                                "errors.required.price",
+                                            ),
                                         })}
                                         style={{
                                             width: "150px",
@@ -257,13 +265,16 @@ export const EditProduct: React.FC<UseModalFormReturnType> = ({
                                         </FormHelperText>
                                     )}
                                 </FormControl>
-                                <FormControl>
+                                <FormControl sx={{ marginTop: "10px" }}>
                                     <Controller
                                         control={control}
                                         name="category"
                                         rules={{
-                                            required: "Category required",
+                                            required: t(
+                                                "errors.required.category",
+                                            ),
                                         }}
+                                        defaultValue=""
                                         render={({ field }) => (
                                             <Autocomplete
                                                 disablePortal
@@ -275,14 +286,19 @@ export const EditProduct: React.FC<UseModalFormReturnType> = ({
                                                 getOptionLabel={(item) => {
                                                     return item.title
                                                         ? item.title
-                                                        : "";
+                                                        : autocompleteProps?.options?.find(
+                                                              (p) =>
+                                                                  p.id.toString() ===
+                                                                  item.toString(),
+                                                          )?.title ?? "";
                                                 }}
                                                 isOptionEqualToValue={(
                                                     option,
                                                     value,
                                                 ) =>
                                                     value === undefined ||
-                                                    option.id === value.id
+                                                    option.id.toString() ===
+                                                        value.toString()
                                                 }
                                                 renderInput={(params) => (
                                                     <TextField
@@ -303,35 +319,45 @@ export const EditProduct: React.FC<UseModalFormReturnType> = ({
                                     )}
                                 </FormControl>
                                 <FormControl>
-                                    <FormLabel
-                                        sx={{ marginTop: "10px" }}
-                                        required
-                                    >
+                                    <FormLabel required>
                                         {t("products.fields.isActive")}
                                     </FormLabel>
                                     <Controller
                                         control={control}
                                         name="isActive"
-                                        defaultValue={""}
-                                        rules={{ required: true }}
-                                        render={({ field }) => (
-                                            <RadioGroup
-                                                id="isActive"
-                                                {...field}
-                                                row
-                                            >
-                                                <FormControlLabel
-                                                    value={true}
-                                                    control={<Radio />}
-                                                    label={t("status.enable")}
-                                                />
-                                                <FormControlLabel
-                                                    value={false}
-                                                    control={<Radio />}
-                                                    label={t("status.disable")}
-                                                />
-                                            </RadioGroup>
-                                        )}
+                                        rules={{
+                                            required: t(
+                                                "errors.required.field",
+                                            ),
+                                        }}
+                                        defaultValue=""
+                                        render={({ field }) => {
+                                            return (
+                                                <RadioGroup
+                                                    id="isActive"
+                                                    defaultValue={getValues(
+                                                        "isActive",
+                                                    )}
+                                                    {...field}
+                                                    row
+                                                >
+                                                    <FormControlLabel
+                                                        value={true}
+                                                        control={<Radio />}
+                                                        label={t(
+                                                            "status.enable",
+                                                        )}
+                                                    />
+                                                    <FormControlLabel
+                                                        value={false}
+                                                        control={<Radio />}
+                                                        label={t(
+                                                            "status.disable",
+                                                        )}
+                                                    />
+                                                </RadioGroup>
+                                            );
+                                        }}
                                     />
                                     {errors.isActive && (
                                         <FormHelperText error>
