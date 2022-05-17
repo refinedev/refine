@@ -100,21 +100,6 @@ export const useTable = <
     const { search, pathname } = useLocation();
     const liveMode = useLiveMode(liveModeFromProp);
 
-    let defaultCurrent = initialCurrent;
-    let defaultPageSize = initialPageSize;
-    let defaultSorter = initialSorter;
-    let defaultFilter = initialFilter;
-
-    if (syncWithLocation) {
-        const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
-            parseTableParams(search);
-
-        defaultCurrent = parsedCurrent || defaultCurrent;
-        defaultPageSize = parsedPageSize || defaultPageSize;
-        defaultSorter = parsedSorter.length ? parsedSorter : defaultSorter;
-        defaultFilter = parsedFilters.length ? parsedFilters : defaultFilter;
-    }
-
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const { push } = useNavigation();
@@ -122,15 +107,39 @@ export const useTable = <
 
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
-    const [sorter, setSorter] = useState<CrudSorting>(
-        setInitialSorters(permanentSorter, defaultSorter ?? []),
-    );
+    const [sorter, setSorter] = useState<CrudSorting>(permanentSorter);
 
-    const [filters, setFilters] = useState<CrudFilters>(
-        setInitialFilters(permanentFilter, defaultFilter ?? []),
-    );
-    const [current, setCurrent] = useState<number>(defaultCurrent);
-    const [pageSize, setPageSize] = useState<number>(defaultPageSize);
+    const [filters, setFilters] = useState<CrudFilters>(permanentFilter);
+    const [current, setCurrent] = useState<number>(initialCurrent);
+    const [pageSize, setPageSize] = useState<number>(initialPageSize);
+
+    useEffect(() => {
+        if (syncWithLocation) {
+            const {
+                parsedCurrent,
+                parsedPageSize,
+                parsedSorter,
+                parsedFilters,
+            } = parseTableParams(search);
+
+            setCurrent(parsedCurrent || initialCurrent);
+            setPageSize(parsedPageSize || initialPageSize);
+
+            setSorter(
+                setInitialSorters(
+                    permanentSorter,
+                    parsedSorter.length ? parsedSorter : [],
+                ),
+            );
+
+            setFilters(
+                setInitialFilters(
+                    permanentFilter,
+                    parsedFilters.length ? parsedFilters : [],
+                ),
+            );
+        }
+    }, [syncWithLocation, search]);
 
     useEffect(() => {
         if (syncWithLocation) {
