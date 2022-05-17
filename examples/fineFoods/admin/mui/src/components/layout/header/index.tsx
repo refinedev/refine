@@ -1,23 +1,27 @@
 import { AppBar, IconButton, Toolbar } from "@pankod/refine-mui";
 import { ChevronLeft, ChevronRight, MenuRounded } from "@mui/icons-material";
 
-import { useConfig } from "components/layout/context";
+type HeaderProps = {
+    collapsed: boolean;
+    setCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
+    setOpened: React.Dispatch<React.SetStateAction<boolean>>;
+    drawerWidth: number;
+};
 
-export const Header: React.FC = ({ children }) => {
-    const { collapsed, setCollapsed, setOpened } = useConfig();
-
-    const drawerWidth = () => {
-        if (collapsed) return 64;
-        return 256;
-    };
-
+export const Header: React.FC<HeaderProps> = ({
+    collapsed,
+    setCollapsed,
+    setOpened,
+    drawerWidth,
+    children,
+}) => {
     return (
         <AppBar
             color="default"
             position="fixed"
             sx={{
-                width: { sm: `calc(100% - ${drawerWidth()}px)` },
-                ml: { sm: `${drawerWidth()}px` },
+                width: { sm: `calc(100% - ${drawerWidth}px)` },
+                ml: { sm: `${drawerWidth}px` },
             }}
         >
             <Toolbar>

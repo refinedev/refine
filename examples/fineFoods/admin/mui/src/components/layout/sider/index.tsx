@@ -10,8 +10,6 @@ import {
 } from "@pankod/refine-mui";
 import { Send } from "@mui/icons-material";
 
-import { useConfig } from "components/layout/context";
-
 const list = [
     {
         primaryText: "My Files",
@@ -30,14 +28,17 @@ const list = [
     },
 ];
 
-export const Sider: React.FC = () => {
-    const { opened, setOpened, collapsed } = useConfig();
+type SiderProps = {
+    opened: boolean;
+    setOpened: React.Dispatch<React.SetStateAction<boolean>>;
+    drawerWidth: number;
+};
 
-    const drawerWidth = () => {
-        if (collapsed) return 64;
-        return 256;
-    };
-
+export const Sider: React.FC<SiderProps> = ({
+    opened,
+    setOpened,
+    drawerWidth,
+}) => {
     const drawer = (
         <MuiList>
             {list.map(({ primaryText, to }, i) => (
@@ -62,7 +63,7 @@ export const Sider: React.FC = () => {
     return (
         <Box
             component="nav"
-            sx={{ width: { sm: drawerWidth() }, flexShrink: { sm: 0 } }}
+            sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         >
             <Drawer
                 variant="temporary"
@@ -75,7 +76,7 @@ export const Sider: React.FC = () => {
                     display: { xs: "block", sm: "none" },
                     "& .MuiDrawer-paper": {
                         boxSizing: "border-box",
-                        width: drawerWidth(),
+                        width: drawerWidth,
                     },
                 }}
             >
@@ -87,7 +88,7 @@ export const Sider: React.FC = () => {
                     display: { xs: "none", sm: "block" },
                     "& .MuiDrawer-paper": {
                         boxSizing: "border-box",
-                        width: drawerWidth(),
+                        width: drawerWidth,
                     },
                 }}
                 open
