@@ -1,32 +1,29 @@
+import { useState } from "react";
 import {
     Box,
     Drawer,
-    Link,
     MuiList,
     ListItemButton,
     ListItemIcon,
     ListItemText,
     ListItem,
+    useMenu,
+    Collapse,
 } from "@pankod/refine-mui";
-import { Send } from "@mui/icons-material";
-
-const list = [
-    {
-        primaryText: "My Files",
-        icon: "folder",
-        to: "/my-files",
-    },
-    {
-        primaryText: "Shared with me",
-        icon: "people",
-        to: "/shared-with-me",
-    },
-    {
-        primaryText: "Starred",
-        icon: "star",
-        to: "/starred",
-    },
-];
+import {
+    ListOutlined,
+    Logout,
+    ExpandLess,
+    ExpandMore,
+} from "@mui/icons-material";
+import {
+    CanAccess,
+    ITreeMenu,
+    useIsExistAuthentication,
+    useLogout,
+    useNavigation,
+    useTranslate,
+} from "@pankod/refine-core";
 
 type SiderProps = {
     opened: boolean;
@@ -39,24 +36,91 @@ export const Sider: React.FC<SiderProps> = ({
     setOpened,
     drawerWidth,
 }) => {
-    const drawer = (
-        <MuiList>
-            {list.map(({ primaryText, to }, i) => (
-                <ListItem key={primaryText} disablePadding>
+    const t = useTranslate();
+    const { push } = useNavigation();
+    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
+    const isExistAuthentication = useIsExistAuthentication();
+    const { mutate: logout } = useLogout();
+
+    const [open, setOpen] = useState<{ [k: string]: any }>(defaultOpenKeys);
+
+    const handleClick = (key: string) => {
+        setOpen({ ...open, [key]: !open[key] });
+    };
+
+    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
+        return tree.map((item: ITreeMenu) => {
+            const { icon, label, route, name, children } = item;
+            const isOpen = open[route || ""] || false;
+
+            if (children.length > 0) {
+                return (
+                    <div key={route}>
+                        <ListItem
+                            button
+                            onClick={() => handleClick(route || "")}
+                        >
+                            <ListItemIcon>
+                                {icon ?? <ListOutlined />}
+                            </ListItemIcon>
+                            <ListItemText
+                                primary={label}
+                                primaryTypographyProps={{ noWrap: true }}
+                            />
+                            {isOpen ? <ExpandLess /> : <ExpandMore />}
+                        </ListItem>
+                        <Collapse
+                            in={open[route || ""]}
+                            timeout="auto"
+                            unmountOnExit
+                        >
+                            <MuiList component="div" disablePadding>
+                                {renderTreeView(children, selectedKey)}
+                            </MuiList>
+                        </Collapse>
+                    </div>
+                );
+            }
+            const isSelected = route === selectedKey;
+
+            return (
+                <CanAccess
+                    key={route}
+                    resource={name.toLowerCase()}
+                    action="list"
+                >
                     <ListItemButton
-                        selected={i === 0}
-                        component={to ? Link : "div"}
+                        selected={isSelected}
+                        onClick={() => {
+                            setOpened(false);
+                            push(route ?? "");
+                        }}
                     >
-                        <ListItemIcon>
-                            <Send />
-                        </ListItemIcon>
+                        <ListItemIcon>{icon ?? <ListOutlined />}</ListItemIcon>
                         <ListItemText
-                            primary={primaryText}
+                            primary={label}
                             primaryTypographyProps={{ noWrap: true }}
                         />
                     </ListItemButton>
-                </ListItem>
-            ))}
+                </CanAccess>
+            );
+        });
+    };
+
+    const drawer = (
+        <MuiList disablePadding>
+            {renderTreeView(menuItems, selectedKey)}
+            {isExistAuthentication && (
+                <ListItemButton key="logout" onClick={() => logout()}>
+                    <ListItemIcon>
+                        <Logout />
+                    </ListItemIcon>
+                    <ListItemText
+                        primary={t("buttons.logout", "Logout")}
+                        primaryTypographyProps={{ noWrap: true }}
+                    />
+                </ListItemButton>
+            )}
         </MuiList>
     );
 
@@ -72,7 +136,12 @@ export const Sider: React.FC<SiderProps> = ({
                 ModalProps={{
                     keepMounted: true, // Better open performance on mobile.
                 }}
-                sx={{ display: { xs: "block", sm: "none" } }}
+                sx={{
+                    display: { xs: "block", sm: "none" },
+                    "& .MuiDrawer-paper": {
+                        width: 256,
+                    },
+                }}
             >
                 {drawer}
             </Drawer>

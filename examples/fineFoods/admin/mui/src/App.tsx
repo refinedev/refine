@@ -84,6 +84,18 @@ const App: React.FC = () => {
                         list: ProductList,
                         icon: <LocalPizzaOutlined />,
                     },
+                    {
+                        parentName: "products",
+                        name: "Add Product",
+                        list: ProductList,
+                        icon: <LocalPizzaOutlined />,
+                    },
+                    {
+                        parentName: "products",
+                        name: "Sell Product",
+                        list: ProductList,
+                        icon: <LocalPizzaOutlined />,
+                    },
                 ]}
             />
         </ThemeProvider>
