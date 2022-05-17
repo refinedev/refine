@@ -88,7 +88,7 @@ export const Show: React.FC<ShowProps> = ({
         <Card {...cardProps}>
             <CardHeader
                 title={
-                    <Typography sx={{ fontSize: "20px", fontWeight: 600 }}>
+                    <Typography variant="h5">
                         {translate(
                             `${resource.name}.titles.show`,
                             `Show ${userFriendlyResourceName(

@@ -70,7 +70,7 @@ export const Create: React.FC<CreateProps> = ({
         <Card {...cardProps}>
             <CardHeader
                 title={
-                    <Typography sx={{ fontSize: "20px", fontWeight: 600 }}>
+                    <Typography variant="h5">
                         {translate(
                             `${resource.name}.titles.create`,
                             `Create ${userFriendlyResourceName(

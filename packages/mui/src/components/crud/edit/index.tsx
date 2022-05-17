@@ -24,7 +24,6 @@ import {
     CardContentProps,
     CardActionsProps,
     Typography,
-    CssBaseline,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
@@ -100,7 +99,7 @@ export const Edit: React.FC<EditProps> = ({
         <Card {...cardProps}>
             <CardHeader
                 title={
-                    <Typography sx={{ fontSize: "20px", fontWeight: 600 }}>
+                    <Typography variant="h5">
                         {translate(
                             `${resource.name}.titles.edit`,
                             `Edit ${userFriendlyResourceName(
