@@ -5,6 +5,7 @@ import {
     CrudFilters,
     CrudSorting,
     DataProvider,
+    HttpError,
 } from "@pankod/refine-core";
 
 export type HasuraSortingType = Record<string, "asc" | "desc">;
@@ -106,7 +107,20 @@ export const generateFilters: any = (filters?: CrudFilters) => {
     return resultFilter;
 };
 
+const handleError = (error: object | Error) => {
+    const customError: HttpError = {
+        ...error,
+        message: Array.isArray(error)
+            ? error.map((p) => p.message).join(", ")
+            : JSON.stringify(error),
+        statusCode: 200,
+    };
+
+    return Promise.reject(customError);
+};
+
 const dataProvider = (client: NhostClient): DataProvider => {
+    client;
     return {
         getOne: async ({ resource, id, metaData }) => {
             const operation = `${metaData?.operation ?? resource}_by_pk`;
@@ -120,7 +134,14 @@ const dataProvider = (client: NhostClient): DataProvider => {
                 fields: metaData?.fields,
             });
 
-            const { data } = await client.graphql.request(query, variables);
+            const { data, error } = await client.graphql.request(
+                query,
+                variables,
+            );
+
+            if (error) {
+                return await handleError(error);
+            }
 
             return {
                 data: (data as any)?.[operation],
@@ -145,7 +166,14 @@ const dataProvider = (client: NhostClient): DataProvider => {
                 },
             });
 
-            const { data } = await client.graphql.request(query, variables);
+            const { data, error } = await client.graphql.request(
+                query,
+                variables,
+            );
+
+            if (error) {
+                return await handleError(error);
+            }
 
             return {
                 data: (data as any)?.[operation],
@@ -200,7 +228,14 @@ const dataProvider = (client: NhostClient): DataProvider => {
                 },
             ]);
 
-            const { data } = await client.graphql.request(query, variables);
+            const { data, error } = await client.graphql.request(
+                query,
+                variables,
+            );
+
+            if (error) {
+                return await handleError(error);
+            }
 
             return {
                 data: (data as any)?.[operation],
@@ -226,8 +261,14 @@ const dataProvider = (client: NhostClient): DataProvider => {
                 fields: metaData?.fields ?? ["id", ...Object.keys(variables)],
             });
 
-            const { data } = await client.graphql.request(query, gqlVariables);
+            const { data, error } = await client.graphql.request(
+                query,
+                gqlVariables,
+            );
 
+            if (error) {
+                return await handleError(error);
+            }
             return {
                 data: (data as any)?.[insertOperation],
             };
@@ -255,7 +296,14 @@ const dataProvider = (client: NhostClient): DataProvider => {
                 ],
             });
 
-            const { data } = await client.graphql.request(query, gqlVariables);
+            const { data, error } = await client.graphql.request(
+                query,
+                gqlVariables,
+            );
+
+            if (error) {
+                return await handleError(error);
+            }
 
             return {
                 data: (data as any)?.[insertOperation]?.["returning"],
@@ -289,7 +337,14 @@ const dataProvider = (client: NhostClient): DataProvider => {
                 fields: metaData?.fields ?? ["id"],
             });
 
-            const { data } = await client.graphql.request(query, gqlVariables);
+            const { data, error } = await client.graphql.request(
+                query,
+                gqlVariables,
+            );
+
+            if (error) {
+                return await handleError(error);
+            }
 
             return {
                 data: (data as any)?.[updateOperation],
@@ -328,7 +383,14 @@ const dataProvider = (client: NhostClient): DataProvider => {
                 ],
             });
 
-            const { data } = await client.graphql.request(query, gqlVariables);
+            const { data, error } = await client.graphql.request(
+                query,
+                gqlVariables,
+            );
+
+            if (error) {
+                return await handleError(error);
+            }
 
             return {
                 data: (data as any)?.[updateOperation]?.["returning"],
@@ -349,7 +411,14 @@ const dataProvider = (client: NhostClient): DataProvider => {
                 fields: metaData?.fields ?? ["id"],
             });
 
-            const { data } = await client.graphql.request(query, variables);
+            const { data, error } = await client.graphql.request(
+                query,
+                variables,
+            );
+
+            if (error) {
+                return await handleError(error);
+            }
 
             return {
                 data: (data as any)?.[deleteOperation],
@@ -383,7 +452,14 @@ const dataProvider = (client: NhostClient): DataProvider => {
                 },
             });
 
-            const { data } = await client.graphql.request(query, variables);
+            const { data, error } = await client.graphql.request(
+                query,
+                variables,
+            );
+
+            if (error) {
+                return await handleError(error);
+            }
 
             return {
                 data: (data as any)?.[deleteOperation]?.["returning"],

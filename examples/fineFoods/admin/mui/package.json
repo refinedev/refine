@@ -16,6 +16,7 @@
     "react-i18next": "^11.8.11",
     "google-map-react": "^2.1.10",
     "i18next": "^20.1.0",
+    "recharts": "^2.1.9",
 		"i18next-browser-languagedetector": "^6.1.1",
 		"i18next-xhr-backend": "^3.2.2",
     "react": "^17.0.2",

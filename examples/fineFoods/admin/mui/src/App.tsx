@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import { Refine } from "@pankod/refine-core";
-
 import {
     Layout,
     ErrorComponent,
@@ -18,10 +17,13 @@ import {
     AddShoppingCartOutlined,
     StarBorderOutlined,
     BikeScooterOutlined,
+    StoreOutlined,
+    LocalPizzaOutlined,
+    PeopleOutlineOutlined,
 } from "@mui/icons-material";
-import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 
 import { authProvider } from "authProvider";
+import { DashboardPage } from "pages/dashboard";
 import { OrderList, OrderShow } from "pages/orders";
 import { UserList, UserShow } from "pages/users";
 import { ReviewsList } from "pages/reviews";
@@ -32,6 +34,8 @@ import {
     CourierEdit,
 } from "pages/couriers";
 import { LoginPage } from "pages/login";
+import { StoreList, StoreEdit, StoreCreate } from "pages/stores";
+import { ProductList } from "pages/products";
 
 const App: React.FC = () => {
     const { t, i18n } = useTranslation();
@@ -57,6 +61,7 @@ const App: React.FC = () => {
                 dataProvider={dataProvider("https://api.finefoods.refine.dev")}
                 authProvider={authProvider}
                 i18nProvider={i18nProvider}
+                DashboardPage={DashboardPage}
                 ReadyPage={ReadyPage}
                 Layout={Layout}
                 LoginPage={LoginPage}
@@ -85,10 +90,22 @@ const App: React.FC = () => {
                         icon: <StarBorderOutlined />,
                     },
                     {
+                        name: "stores",
+                        list: StoreList,
+                        edit: StoreEdit,
+                        create: StoreCreate,
+                        icon: <StoreOutlined />,
+                    },
+                    {
                         name: "users",
                         list: UserList,
                         show: UserShow,
-                        icon: <PeopleOutlineIcon />,
+                        icon: <PeopleOutlineOutlined />,
+                    },
+                    {
+                        name: "products",
+                        list: ProductList,
+                        icon: <LocalPizzaOutlined />,
                     },
                 ]}
             />

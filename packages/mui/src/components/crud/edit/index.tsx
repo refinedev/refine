@@ -98,7 +98,7 @@ export const Edit: React.FC<EditProps> = ({
         <Card {...cardProps}>
             <CardHeader
                 title={translate(
-                    `${resource.name}.titles.create`,
+                    `${resource.name}.titles.edit`,
                     `Edit ${userFriendlyResourceName(
                         resource.label ?? resource.name,
                         "singular",
