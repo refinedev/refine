@@ -107,37 +107,21 @@ export const useTable = <
 
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
 
-    const [sorter, setSorter] = useState<CrudSorting>(permanentSorter);
-
-    const [filters, setFilters] = useState<CrudFilters>(permanentFilter);
+    const [sorter, setSorter] = useState<CrudSorting>(
+        setInitialSorters(permanentSorter, initialSorter ?? []),
+    );
+    const [filters, setFilters] = useState<CrudFilters>(
+        setInitialFilters(permanentFilter, initialFilter ?? []),
+    );
     const [current, setCurrent] = useState<number>(initialCurrent);
     const [pageSize, setPageSize] = useState<number>(initialPageSize);
 
     useEffect(() => {
-        if (syncWithLocation) {
-            const {
-                parsedCurrent,
-                parsedPageSize,
-                parsedSorter,
-                parsedFilters,
-            } = parseTableParams(search);
-
-            setCurrent(parsedCurrent || initialCurrent);
-            setPageSize(parsedPageSize || initialPageSize);
-
-            setSorter(
-                setInitialSorters(
-                    permanentSorter,
-                    parsedSorter.length ? parsedSorter : [],
-                ),
-            );
-
-            setFilters(
-                setInitialFilters(
-                    permanentFilter,
-                    parsedFilters.length ? parsedFilters : [],
-                ),
-            );
+        if (syncWithLocation && search === "") {
+            setCurrent(initialCurrent);
+            setPageSize(initialPageSize);
+            setSorter(setInitialSorters(permanentSorter, initialSorter ?? []));
+            setFilters(setInitialFilters(permanentFilter, initialFilter ?? []));
         }
     }, [syncWithLocation, search]);
 
