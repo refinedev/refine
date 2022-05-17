@@ -1,34 +1,26 @@
-import { AppBar, Toolbar } from "@pankod/refine-mui";
+import { Box, Toolbar } from "@pankod/refine-mui";
 
 import { useConfig } from "components/layout/context";
 
 export const Content: React.FC = ({ children }) => {
-    const { collapsed, opened } = useConfig();
+    const { collapsed } = useConfig();
 
-    const getWidth = () => {
-        if (!opened) return "100%";
-        if (collapsed) return `calc(100% - ${64}px)`;
-        return `calc(100% - ${256}px)`;
-    };
-
-    const getMargin = () => {
-        if (!opened) return "0px";
-        if (collapsed) return "64px";
-        return "256px";
+    const drawerWidth = () => {
+        if (collapsed) return 64;
+        return 256;
     };
 
     return (
-        <AppBar
-            position="static"
+        <Box
             component="main"
-            elevation={0}
             sx={{
-                backgroundColor: "#E6E8EB",
-                width: getWidth(),
-                marginLeft: getMargin(),
+                flexGrow: 1,
+                p: 3,
+                width: { sm: `calc(100% - ${drawerWidth()}px)` },
             }}
         >
-            <Toolbar sx={{ overflow: "hidden" }}>{children}</Toolbar>
-        </AppBar>
+            <Toolbar />
+            {children}
+        </Box>
     );
 };

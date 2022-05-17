@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { LayoutProps } from "@pankod/refine-core";
-import { CssBaseline } from "@pankod/refine-mui";
+import { Box, CssBaseline } from "@pankod/refine-mui";
 
 import { LayoutContext } from "../../context";
 import { Header } from "../header";
@@ -20,10 +20,12 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 setOpened,
             }}
         >
-            <CssBaseline />
-            <Header />
-            {opened && <Sider />}
-            <Content>{children}</Content>
+            <Box sx={{ display: "flex" }}>
+                <CssBaseline />
+                <Header />
+                <Sider />
+                <Content>{children}</Content>
+            </Box>
         </LayoutContext.Provider>
     );
 };

@@ -1,14 +1,14 @@
 import {
     Box,
-    Button,
     Drawer,
     Link,
     MuiList,
     ListItemButton,
     ListItemIcon,
     ListItemText,
+    ListItem,
 } from "@pankod/refine-mui";
-import { ChevronLeft, ChevronRight, Send } from "@mui/icons-material";
+import { Send } from "@mui/icons-material";
 
 import { useConfig } from "components/layout/context";
 
@@ -31,53 +31,69 @@ const list = [
 ];
 
 export const Sider: React.FC = () => {
-    const { opened, setOpened, collapsed, setCollapsed } = useConfig();
+    const { opened, setOpened, collapsed } = useConfig();
 
-    const getWidth = () => {
-        if (collapsed) return "64px";
-        return "256px";
+    const drawerWidth = () => {
+        if (collapsed) return 64;
+        return 256;
     };
 
+    const drawer = (
+        <MuiList>
+            {list.map(({ primaryText, to }, i) => (
+                <ListItem key={primaryText} disablePadding>
+                    <ListItemButton
+                        selected={i === 0}
+                        component={to ? Link : "div"}
+                    >
+                        <ListItemIcon>
+                            <Send />
+                        </ListItemIcon>
+                        <ListItemText
+                            primary={primaryText}
+                            primaryTypographyProps={{ noWrap: true }}
+                        />
+                    </ListItemButton>
+                </ListItem>
+            ))}
+        </MuiList>
+    );
+
     return (
-        <Drawer
-            open={opened}
-            onClose={() => setOpened(false)}
-            variant="permanent"
+        <Box
+            component="nav"
+            sx={{ width: { sm: drawerWidth() }, flexShrink: { sm: 0 } }}
         >
-            <Box
+            <Drawer
+                variant="temporary"
+                open={opened}
+                onClose={() => setOpened(false)}
+                ModalProps={{
+                    keepMounted: true, // Better open performance on mobile.
+                }}
                 sx={{
-                    overflow: "hidden",
-                    display: "flex",
-                    flexDirection: "column",
-                    flexGrow: 1,
-                    width: getWidth(),
+                    display: { xs: "block", sm: "none" },
+                    "& .MuiDrawer-paper": {
+                        boxSizing: "border-box",
+                        width: drawerWidth(),
+                    },
                 }}
             >
-                <Box
-                    sx={{ flexGrow: 1, overflowX: "hidden", overflowY: "auto" }}
-                >
-                    <MuiList>
-                        {list.map(({ primaryText, to }, i) => (
-                            <ListItemButton
-                                key={primaryText}
-                                selected={i === 0}
-                                component={to ? Link : "div"}
-                            >
-                                <ListItemIcon>
-                                    <Send />
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary={primaryText}
-                                    primaryTypographyProps={{ noWrap: true }}
-                                />
-                            </ListItemButton>
-                        ))}
-                    </MuiList>
-                </Box>
-                <Button fullWidth onClick={() => setCollapsed((prev) => !prev)}>
-                    {collapsed ? <ChevronRight /> : <ChevronLeft />}
-                </Button>
-            </Box>
-        </Drawer>
+                {drawer}
+            </Drawer>
+            <Drawer
+                variant="permanent"
+                sx={{
+                    display: { xs: "none", sm: "block" },
+                    "& .MuiDrawer-paper": {
+                        boxSizing: "border-box",
+                        width: drawerWidth(),
+                    },
+                }}
+                open
+            >
+                {drawer}
+            </Drawer>
+        </Box>
     );
 };
