@@ -72,13 +72,7 @@ export const Sider: React.FC<SiderProps> = ({
                 ModalProps={{
                     keepMounted: true, // Better open performance on mobile.
                 }}
-                sx={{
-                    display: { xs: "block", sm: "none" },
-                    "& .MuiDrawer-paper": {
-                        boxSizing: "border-box",
-                        width: drawerWidth,
-                    },
-                }}
+                sx={{ display: { xs: "block", sm: "none" } }}
             >
                 {drawer}
             </Drawer>
@@ -87,7 +81,6 @@ export const Sider: React.FC<SiderProps> = ({
                 sx={{
                     display: { xs: "none", sm: "block" },
                     "& .MuiDrawer-paper": {
-                        boxSizing: "border-box",
                         width: drawerWidth,
                     },
                 }}
