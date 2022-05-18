@@ -35,7 +35,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                     <Stack alignItems="center" direction="row" spacing={2}>
                         <Avatar
                             alt={`${row.name} ${row.surname}`}
-                            src={row.avatar[0].url}
+                            src={row.avatar[0]?.url}
                         />
                         <Typography>
                             {row.name} {row.surname}
