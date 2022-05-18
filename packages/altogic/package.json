@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@pankod/refine-core": "^3.20.1",
-    "axios": "^0.21.4",
+    "axios": "^0.27.2",
     "query-string": "^7.0.1"
   },
   "peerDependencies": {
