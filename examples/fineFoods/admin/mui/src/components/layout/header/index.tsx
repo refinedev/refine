@@ -1,5 +1,30 @@
-import { AppBar, IconButton, Toolbar } from "@pankod/refine-mui";
+import { useState, useEffect } from "react";
+import {
+    AppBar,
+    IconButton,
+    Link,
+    Avatar,
+    Typography,
+    TextField,
+    Toolbar,
+    Box,
+    Autocomplete,
+    Stack,
+    FormControl,
+    MenuItem,
+    Select,
+} from "@pankod/refine-mui";
+import {
+    useList,
+    useTranslate,
+    useGetIdentity,
+    useGetLocale,
+    useSetLocale,
+} from "@pankod/refine-core";
 import { ChevronLeft, ChevronRight, MenuRounded } from "@mui/icons-material";
+import i18n from "i18n";
+
+import { IOrder, IStore, ICourier } from "interfaces";
 
 type HeaderProps = {
     collapsed: boolean;
@@ -8,13 +33,110 @@ type HeaderProps = {
     drawerWidth: number;
 };
 
+interface IOptions {
+    label: string;
+    url: string;
+    link: string;
+    category: string;
+}
+
 export const Header: React.FC<HeaderProps> = ({
     collapsed,
     setCollapsed,
     setOpened,
     drawerWidth,
-    children,
 }) => {
+    const [value, setValue] = useState("");
+    const [options, setOptions] = useState<IOptions[]>([]);
+
+    const changeLanguage = useSetLocale();
+    const locale = useGetLocale();
+    const currentLocale = locale();
+    const { data: user } = useGetIdentity();
+
+    const t = useTranslate();
+
+    const { refetch: refetchOrders } = useList<IOrder>({
+        resource: "orders",
+        config: {
+            filters: [{ field: "q", operator: "contains", value }],
+        },
+        queryOptions: {
+            enabled: false,
+            onSuccess: (data) => {
+                const orderOptionGroup = data.data.map((item) => {
+                    return {
+                        label: `${item.store.title} / #${item.orderNumber}`,
+                        url: "/images/default-order-img.png",
+                        link: `/orders/show/${item.id}`,
+                        category: t("orders.orders"),
+                    };
+                });
+                if (orderOptionGroup.length > 0) {
+                    setOptions((prevOptions) => [
+                        ...prevOptions,
+                        ...orderOptionGroup,
+                    ]);
+                }
+            },
+        },
+    });
+
+    const { refetch: refetchStores } = useList<IStore>({
+        resource: "stores",
+        config: {
+            filters: [{ field: "q", operator: "contains", value }],
+        },
+        queryOptions: {
+            enabled: false,
+            onSuccess: (data) => {
+                const storeOptionGroup = data.data.map((item) => {
+                    return {
+                        label: item.title,
+                        url: "images/default-store-img.png",
+                        link: `/stores/edit/${item.id}`,
+                        category: t("stores.stores"),
+                    };
+                });
+                setOptions((prevOptions) => [
+                    ...prevOptions,
+                    ...storeOptionGroup,
+                ]);
+            },
+        },
+    });
+
+    const { refetch: refetchCouriers } = useList<ICourier>({
+        resource: "couriers",
+        config: {
+            filters: [{ field: "q", operator: "contains", value }],
+        },
+        queryOptions: {
+            enabled: false,
+            onSuccess: (data) => {
+                const courierOptionGroup = data.data.map((item) => {
+                    return {
+                        label: `${item.name} ${item.surname}`,
+                        url: item.avatar[0].url,
+                        link: `/stores/edit/${item.id}`,
+                        category: t("couriers.couriers"),
+                    };
+                });
+                setOptions((prevOptions) => [
+                    ...prevOptions,
+                    ...courierOptionGroup,
+                ]);
+            },
+        },
+    });
+
+    useEffect(() => {
+        setOptions([]);
+        refetchOrders();
+        refetchCouriers();
+        refetchStores();
+    }, [value]);
+
     return (
         <AppBar
             color="default"
@@ -25,21 +147,127 @@ export const Header: React.FC<HeaderProps> = ({
             }}
         >
             <Toolbar>
-                <IconButton
-                    edge="start"
-                    sx={{ display: { xs: "none", sm: "flex" } }}
-                    onClick={() => setCollapsed((prev) => !prev)}
+                <Stack
+                    direction="row"
+                    width="100%"
+                    justifyContent="space-between"
+                    alignItems="center"
                 >
-                    {collapsed ? <ChevronRight /> : <ChevronLeft />}
-                </IconButton>
-                <IconButton
-                    edge="start"
-                    sx={{ display: { sm: "none" } }}
-                    onClick={() => setOpened((prev) => !prev)}
-                >
-                    <MenuRounded />
-                </IconButton>
-                {children}
+                    <Stack direction="row" flex={1}>
+                        <IconButton
+                            edge="start"
+                            sx={{ display: { xs: "none", sm: "flex" } }}
+                            onClick={() => setCollapsed((prev) => !prev)}
+                        >
+                            {collapsed ? <ChevronRight /> : <ChevronLeft />}
+                        </IconButton>
+                        <IconButton
+                            edge="start"
+                            sx={{ display: { sm: "none" } }}
+                            onClick={() => setOpened((prev) => !prev)}
+                        >
+                            <MenuRounded />
+                        </IconButton>
+                        <Autocomplete
+                            id="search-autocomplete"
+                            disableClearable
+                            options={options}
+                            filterOptions={(x) => x}
+                            fullWidth
+                            size="small"
+                            sx={{ maxWidth: 550 }}
+                            onInputChange={(event, value) => {
+                                if (event?.type === "change") {
+                                    setValue(value);
+                                }
+                            }}
+                            groupBy={(option) => option.category}
+                            renderOption={(props, option: IOptions) => {
+                                return (
+                                    <Link href={option.link} underline="none">
+                                        <Box
+                                            {...props}
+                                            component="li"
+                                            sx={{
+                                                display: "flex",
+                                                padding: "10px",
+                                                alignItems: "center",
+                                                gap: "10px",
+                                            }}
+                                        >
+                                            <Avatar
+                                                sx={{ width: 64, height: 64 }}
+                                                src={option.url}
+                                            />
+                                            <Typography
+                                                style={{ fontSize: "16px" }}
+                                            >
+                                                {option.label}
+                                            </Typography>
+                                        </Box>
+                                    </Link>
+                                );
+                            }}
+                            renderInput={(params) => {
+                                return (
+                                    <TextField
+                                        {...params}
+                                        label={t("search.placeholder")}
+                                        InputProps={{
+                                            ...params.InputProps,
+                                            type: "search",
+                                        }}
+                                    />
+                                );
+                            }}
+                        />
+                    </Stack>
+                    <Stack direction="row" gap="20px" alignItems="center">
+                        <FormControl sx={{ m: 1, minWidth: 120 }}>
+                            <Select
+                                defaultValue="en"
+                                displayEmpty
+                                inputProps={{ "aria-label": "Without label" }}
+                                variant="standard"
+                            >
+                                {[...(i18n.languages ?? [])]
+                                    .sort()
+                                    .map((lang: string) => (
+                                        <MenuItem
+                                            selected={currentLocale === lang}
+                                            key={lang}
+                                            defaultValue="en"
+                                            onClick={() => {
+                                                changeLanguage(lang);
+                                            }}
+                                            value={lang}
+                                        >
+                                            <Stack
+                                                direction="row"
+                                                alignItems="center"
+                                            >
+                                                <Avatar
+                                                    sx={{
+                                                        width: "16px",
+                                                        height: "16px",
+                                                        marginRight: "5px",
+                                                    }}
+                                                    src={`/images/flags/${lang}.svg`}
+                                                />
+                                                {lang === "en"
+                                                    ? "English"
+                                                    : "German"}
+                                            </Stack>
+                                        </MenuItem>
+                                    ))}
+                            </Select>
+                        </FormControl>
+                        <Typography variant="subtitle2">
+                            {user?.name}
+                        </Typography>
+                        <Avatar src={user?.avatar} alt={user?.name} />
+                    </Stack>
+                </Stack>
             </Toolbar>
         </AppBar>
     );
