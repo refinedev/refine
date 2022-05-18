@@ -182,7 +182,12 @@ export { default as Collapse } from "@mui/material/Collapse";
 export * from "@mui/material/Collapse";
 
 export { default as Container } from "@mui/material/Container";
-export * from "@mui/material/Container";
+export type {
+    ContainerClassKey,
+    ContainerClasses,
+    ContainerProps,
+    ContainerTypeMap,
+} from "@mui/material/Container";
 
 export { default as CssBaseline } from "@mui/material/CssBaseline";
 export * from "@mui/material/CssBaseline";
