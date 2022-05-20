@@ -126,7 +126,12 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                         />
                                         <input
                                             id="file"
-                                            {...register("avatar")}
+                                            {...register("Avatar", {
+                                                required: t(
+                                                    "errors.required.field",
+                                                    { field: "Avatar" },
+                                                ),
+                                            })}
                                             type="hidden"
                                         />
                                         <Avatar
