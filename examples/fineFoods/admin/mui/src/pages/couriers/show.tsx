@@ -183,7 +183,10 @@ export const CourierShow: React.FC = () => {
             </Grid>
             <Grid item xs={12} lg={9}>
                 <Stack direction="column" spacing={2}>
-                    <List cardHeaderProps={{ title: t("orders.orders") }}>
+                    <List
+                        cardHeaderProps={{ title: t("orders.orders") }}
+                        canCreate={false}
+                    >
                         <DataGrid
                             {...dataGridProps}
                             autoHeight
