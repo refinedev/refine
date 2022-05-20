@@ -27,9 +27,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             <Sider
                 opened={opened}
                 setOpened={setOpened}
+                collapsed={collapsed}
+                setCollapsed={setCollapsed}
                 drawerWidth={drawerWidth()}
             />
-            <Content drawerWidth={drawerWidth()}>{children}</Content>
+            <Content>{children}</Content>
         </Box>
     );
 };

@@ -72,6 +72,14 @@ title: Interface References
 | `"asc"`      | Ascending order  |
 | `"desc"`     | Descending order |
 
+## SortOrder
+```ts
+"desc" |
+    "asc" |
+    "null";
+
+```
+
 ## Pagination
 
 | Key      | Type     |
