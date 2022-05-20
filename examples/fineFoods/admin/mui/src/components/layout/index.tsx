@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { LayoutProps } from "@pankod/refine-core";
-import { Box, CssBaseline } from "@pankod/refine-mui";
+import { Box, CssBaseline, Toolbar } from "@pankod/refine-mui";
 
 import { Header } from "./header";
 import { Sider } from "./sider";
-import { Content } from "./content";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const [collapsed, setCollapsed] = useState(false);
@@ -31,7 +30,17 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 setCollapsed={setCollapsed}
                 drawerWidth={drawerWidth()}
             />
-            <Content>{children}</Content>
+            <Box
+                component="main"
+                sx={{
+                    p: 3,
+                    minHeight: "100vh",
+                    width: "100%",
+                }}
+            >
+                <Toolbar />
+                {children}
+            </Box>
         </Box>
     );
 };
