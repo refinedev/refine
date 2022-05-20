@@ -279,7 +279,10 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                                     disabled={false}
                                                     {...register("gsm", {
                                                         required:
-                                                            "Phone is required",
+                                                   t(
+                                                        "errors.required.field",
+                                                        { field: "Phone" },
+                                                    ),
                                                     })}
                                                 >
                                                     {(props: any) => (
