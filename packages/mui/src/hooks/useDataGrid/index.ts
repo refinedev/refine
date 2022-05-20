@@ -40,6 +40,7 @@ type DataGridPropsType = Pick<DataGridProps, "filterModel"> &
             | "filterMode"
             | "onFilterModelChange"
             | "sx"
+            | "disableSelectionOnClick"
         >
     >;
 
@@ -151,6 +152,7 @@ export const useDataGrid = <
         tableQueryResult,
         dataGridProps: {
             columns,
+            disableSelectionOnClick: true,
             rows: data?.data || [],
             loading: liveMode === "auto" ? isLoading : !isFetched,
             paginationMode: "server",

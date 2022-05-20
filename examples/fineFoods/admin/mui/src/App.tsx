@@ -16,6 +16,7 @@ import { useTranslation } from "react-i18next";
 import {
     AddShoppingCartOutlined,
     StarBorderOutlined,
+    BikeScooterOutlined,
     StoreOutlined,
     LocalPizzaOutlined,
     PeopleOutlineOutlined,
@@ -26,6 +27,12 @@ import { DashboardPage } from "pages/dashboard";
 import { OrderList, OrderShow } from "pages/orders";
 import { UserList, UserShow } from "pages/users";
 import { ReviewsList } from "pages/reviews";
+import {
+    CourierList,
+    CourierShow,
+    CourierCreate,
+    CourierEdit,
+} from "pages/couriers";
 import { LoginPage } from "pages/login";
 import { StoreList, StoreEdit, StoreCreate } from "pages/stores";
 import { ProductList } from "pages/products";
@@ -68,6 +75,14 @@ const App: React.FC = () => {
                         list: OrderList,
                         show: OrderShow,
                         icon: <AddShoppingCartOutlined />,
+                    },
+                    {
+                        name: "couriers",
+                        list: CourierList,
+                        show: CourierShow,
+                        create: CourierCreate,
+                        edit: CourierEdit,
+                        icon: <BikeScooterOutlined />,
                     },
                     {
                         name: "reviews",
