@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { LayoutProps } from "@pankod/refine-core";
-import { Box, CssBaseline, Toolbar } from "@pankod/refine-mui";
+import { Box, CssBaseline, IconButton /* Toolbar */ } from "@pankod/refine-mui";
+import { MenuRounded } from "@mui/icons-material";
 
 import { Header } from "./header";
 import { Sider } from "./sider";
@@ -17,7 +18,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <Box>
             <CssBaseline />
-            <Header setOpened={setOpened} drawerWidth={drawerWidth()} />
+            {/* <Header setOpened={setOpened} drawerWidth={drawerWidth()} /> */}
             <Sider
                 opened={opened}
                 setOpened={setOpened}
@@ -35,8 +36,25 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                         "margin-left 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
                 }}
             >
-                <Toolbar />
+                {/* <Toolbar /> */}
                 {children}
+            </Box>
+            <Box
+                sx={{
+                    display: { xs: "block", sm: "none" },
+                    position: "fixed",
+                    top: "64px",
+                    left: "0px",
+                    borderRadius: "0 6px 6px 0",
+                    bgcolor: "#2a132e",
+                }}
+            >
+                <IconButton
+                    sx={{ color: "#fff" }}
+                    onClick={() => setOpened((prev) => !prev)}
+                >
+                    <MenuRounded />
+                </IconButton>
             </Box>
         </Box>
     );
