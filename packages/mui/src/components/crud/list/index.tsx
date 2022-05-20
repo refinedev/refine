@@ -15,6 +15,7 @@ import {
     CardProps,
     CardHeaderProps,
     CardContentProps,
+    Typography,
 } from "@mui/material";
 
 import { CreateButton, CreateButtonProps } from "@components";
@@ -66,13 +67,17 @@ export const List: React.FC<ListProps> = ({
     return (
         <Card {...cardProps}>
             <CardHeader
-                title={translate(
-                    `${resource.name}.titles.list`,
-                    userFriendlyResourceName(
-                        resource.label ?? resource.name,
-                        "plural",
-                    ),
-                )}
+                title={
+                    <Typography variant="h5">
+                        {translate(
+                            `${resource.name}.titles.list`,
+                            userFriendlyResourceName(
+                                resource.label ?? resource.name,
+                                "plural",
+                            ),
+                        )}
+                    </Typography>
+                }
                 action={defaultExtra}
                 {...cardHeaderProps}
             />

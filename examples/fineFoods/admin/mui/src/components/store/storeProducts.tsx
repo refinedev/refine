@@ -37,42 +37,27 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
 }) => {
     const t = useTranslate();
 
-    const {
-        modal: { visible, close, show, saveButtonProps },
-        register,
-        refineCore: { onFinish },
-        formState: { errors },
-        handleSubmit,
-        watch,
-        setValue,
-        control,
-    } = useModalForm<IProduct>({
-        refineCoreProps: { action: "create" },
-    });
-
-    const {
-        modal: {
-            visible: visibleEditDrawer,
-            close: closeEditDrawer,
-            show: showEditDrawer,
-            saveButtonProps: editSaveButtonProps,
-        },
-        refineCore: { onFinish: editOnFinish },
-        register: editRegister,
-        formState: { errors: editErrors },
-        handleSubmit: editHandleSubmit,
-        watch: editWatch,
-        setValue: editSetValue,
-        control: editControl,
-    } = useModalForm<IProduct>({
-        refineCoreProps: { action: "edit" },
-    });
-
     const { tableQueryResult, setFilters, setCurrent, filters, pageCount } =
         useTable<IProduct>({
             resource: "products",
             initialPageSize: 12,
         });
+
+    const createDrawerFormProps = useModalForm<IProduct>({
+        refineCoreProps: { action: "create", resource: "products" },
+    });
+
+    const {
+        modal: { show: showCreateDrawer },
+    } = createDrawerFormProps;
+
+    const editDrawerFormProps = useModalForm<IProduct>({
+        refineCoreProps: { action: "edit", resource: "products" },
+    });
+
+    const {
+        modal: { show: showEditDrawer },
+    } = editDrawerFormProps;
 
     const { data: productData } = tableQueryResult;
 
@@ -123,30 +108,8 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
         <Modal closeAfterTransition open={modalVisible} onClose={modalClose}>
             <Fade in={modalVisible}>
                 <Box sx={style}>
-                    <CreateProduct
-                        register={register}
-                        close={close}
-                        visible={visible}
-                        handleSubmit={handleSubmit}
-                        setValue={setValue}
-                        errors={errors}
-                        watch={watch}
-                        onFinish={onFinish}
-                        control={control}
-                        saveButtonProps={saveButtonProps}
-                    />
-                    <EditProduct
-                        register={editRegister}
-                        close={closeEditDrawer}
-                        visible={visibleEditDrawer}
-                        handleSubmit={editHandleSubmit}
-                        setValue={editSetValue}
-                        errors={editErrors}
-                        watch={editWatch}
-                        onFinish={editOnFinish}
-                        control={editControl}
-                        saveButtonProps={editSaveButtonProps}
-                    />
+                    <CreateProduct {...createDrawerFormProps} />
+                    <EditProduct {...editDrawerFormProps} />
                     <Stack
                         position="absolute"
                         top={12}
@@ -219,7 +182,7 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
                                         </IconButton>
                                     </Paper>
                                     <Button
-                                        onClick={() => show()}
+                                        onClick={() => showCreateDrawer()}
                                         variant="outlined"
                                         sx={{ marginBottom: "5px" }}
                                     >
