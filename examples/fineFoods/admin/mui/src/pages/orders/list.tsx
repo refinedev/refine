@@ -9,6 +9,7 @@ import {
     useNavigation,
     useUpdate,
     useExport,
+    getDefaultFilter,
 } from "@pankod/refine-core";
 import {
     useDataGrid,
@@ -37,7 +38,6 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 import { OrderStatus, CustomTooltip } from "components";
 import { IOrder, IOrderFilterVariables } from "interfaces";
-import { getDefaultFilter } from "@pankod/refine-antd";
 
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
