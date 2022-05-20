@@ -506,8 +506,10 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                     </FormLabel>
                                     <TextField
                                         {...register("accountNumber", {
-                                            required:
-                                                "Account Number is required",
+                                            required: t(
+                                                        "errors.required.field",
+                                                        { field: "Account Number" },
+                                               ),
                                             maxLength: {
                                                 value: 10,
                                                 message:
