@@ -207,12 +207,14 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                                     )}
                                                 </FormLabel>
                                                 <TextField
-                                                  {...register("surname", {
-                                                    required: t(
-                                                        "errors.required.field",
-                                                        { field: "Surname" },
-                                                    ),
-                                                  })}
+                                                    {...register("surname", {
+                                                        required: t(
+                                                            "errors.required.field",
+                                                            {
+                                                                field: "Surname",
+                                                            },
+                                                        ),
+                                                    })}
                                                     size="small"
                                                     margin="none"
                                                     variant="outlined"
@@ -241,12 +243,10 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                                     select
                                                     {...register("gender", {
                                                         required: t(
-                                                        "errors.required.field",
-                                                        { field: "Gender" },
-                                                    ),
-                                                            
+                                                            "errors.required.field",
+                                                            { field: "Gender" },
+                                                        ),
                                                     })}
-                                                    
                                                     size="small"
                                                     margin="none"
                                                     variant="outlined"
@@ -289,11 +289,10 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                                     mask="(999) 999 99 99"
                                                     disabled={false}
                                                     {...register("gsm", {
-                                                        required:
-                                                   t(
-                                                        "errors.required.field",
-                                                        { field: "Phone" },
-                                                    ),
+                                                        required: t(
+                                                            "errors.required.field",
+                                                            { field: "Phone" },
+                                                        ),
                                                     })}
                                                 >
                                                     {(props: any) => (
@@ -325,11 +324,10 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                                 </FormLabel>
                                                 <TextField
                                                     {...register("email", {
-                                                        required:
-                                                    t(
-                                                        "errors.required.field",
-                                                        { field: "Email" },
-                                                    ),
+                                                        required: t(
+                                                            "errors.required.field",
+                                                            { field: "Email" },
+                                                        ),
                                                         pattern: {
                                                             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                                                             message:
@@ -372,9 +370,9 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                         <TextField
                                             {...register("address", {
                                                 required: t(
-                                                        "errors.required.field",
-                                                        { field: "Address" },
-                                                    ),
+                                                    "errors.required.field",
+                                                    { field: "Address" },
+                                                ),
                                             })}
                                             margin="none"
                                             variant="outlined"
@@ -473,11 +471,10 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                         </FormLabel>
                                         <TextField
                                             {...register("licensePlate", {
-                                                required:
-                                                   t(
-                                                        "errors.required.field",
-                                                        { field: "Vehicle Number" },
-                                                    ),
+                                                required: t(
+                                                    "errors.required.field",
+                                                    { field: "Vehicle Number" },
+                                                ),
                                             })}
                                             size="small"
                                             margin="none"
@@ -507,9 +504,9 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                     <TextField
                                         {...register("accountNumber", {
                                             required: t(
-                                                        "errors.required.field",
-                                                        { field: "Account Number" },
-                                               ),
+                                                "errors.required.field",
+                                                { field: "Account Number" },
+                                            ),
                                             maxLength: {
                                                 value: 10,
                                                 message:
