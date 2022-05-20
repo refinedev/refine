@@ -571,7 +571,15 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
             >
                 <Stepper nonLinear activeStep={currentStep}>
                     {stepTitles.map((label, index) => (
-                        <Step key={label}>
+                        <Step
+                            key={label}
+                            sx={{
+                                "& .MuiStepLabel-label": {
+                                    fontSize: "18px",
+                                    lineHeight: "32px",
+                                },
+                            }}
+                        >
                             <StepButton onClick={() => gotoStep(index)}>
                                 {label}
                             </StepButton>
