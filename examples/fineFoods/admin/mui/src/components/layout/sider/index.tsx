@@ -9,8 +9,6 @@ import {
     useMenu,
     Collapse,
     Tooltip,
-    Toolbar,
-    Button,
 } from "@pankod/refine-mui";
 import {
     ListOutlined,
@@ -168,51 +166,37 @@ export const Sider: React.FC<SiderProps> = ({
     };
 
     const drawer = (
-        <>
-            <Toolbar
-                sx={{
-                    maxHeight: 64,
-                    px: { sm: 0 },
-                    display: "flex",
-                    justifyContent: "center",
-                }}
-            >
-                <Button size="small" variant="text">
-                    <RenderToTitle collapsed={collapsed} />
-                </Button>
-            </Toolbar>
-            <MuiList disablePadding sx={{ mt: 1 }}>
-                {renderTreeView(menuItems, selectedKey)}
-                {isExistAuthentication && (
-                    <Tooltip
-                        title={t("buttons.logout", "Logout")}
-                        placement="right"
-                        disableHoverListener={!collapsed}
-                        arrow
+        <MuiList disablePadding sx={{ mt: 1 }}>
+            {renderTreeView(menuItems, selectedKey)}
+            {isExistAuthentication && (
+                <Tooltip
+                    title={t("buttons.logout", "Logout")}
+                    placement="right"
+                    disableHoverListener={!collapsed}
+                    arrow
+                >
+                    <ListItemButton
+                        key="logout"
+                        onClick={() => logout()}
+                        sx={{ justifyContent: "center", color: "#fff" }}
                     >
-                        <ListItemButton
-                            key="logout"
-                            onClick={() => logout()}
-                            sx={{ justifyContent: "center", color: "#fff" }}
+                        <ListItemIcon
+                            sx={{
+                                justifyContent: "center",
+                                minWidth: 36,
+                                color: "#fff",
+                            }}
                         >
-                            <ListItemIcon
-                                sx={{
-                                    justifyContent: "center",
-                                    minWidth: 36,
-                                    color: "#fff",
-                                }}
-                            >
-                                <Logout />
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={t("buttons.logout", "Logout")}
-                                primaryTypographyProps={{ noWrap: true }}
-                            />
-                        </ListItemButton>
-                    </Tooltip>
-                )}
-            </MuiList>
-        </>
+                            <Logout />
+                        </ListItemIcon>
+                        <ListItemText
+                            primary={t("buttons.logout", "Logout")}
+                            primaryTypographyProps={{ noWrap: true }}
+                        />
+                    </ListItemButton>
+                </Tooltip>
+            )}
+        </MuiList>
     );
 
     return (
@@ -238,6 +222,9 @@ export const Sider: React.FC<SiderProps> = ({
                     },
                 }}
             >
+                <Box sx={{ height: 64, display: "flex", alignItems: "center" }}>
+                    <RenderToTitle collapsed={false} />
+                </Box>
                 {drawer}
             </Drawer>
             <Drawer
@@ -248,10 +235,14 @@ export const Sider: React.FC<SiderProps> = ({
                     "& .MuiDrawer-paper": {
                         width: drawerWidth,
                         bgcolor: "#2a132e",
+                        overflow: "hidden",
                     },
                 }}
                 open
             >
+                <Box sx={{ height: 64, display: "flex", alignItems: "center" }}>
+                    <RenderToTitle collapsed={collapsed} />
+                </Box>
                 {drawer}
             </Drawer>
         </Box>
