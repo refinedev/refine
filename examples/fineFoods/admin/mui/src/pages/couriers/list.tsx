@@ -55,7 +55,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                 flex: 1,
             },
             {
-                field: "comment",
+                field: "address",
                 headerName: t("couriers.fields.address"),
                 // eslint-disable-next-line react/display-name
                 renderCell: ({ row }) => (
@@ -114,7 +114,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
     });
 
     return (
-        <List canCreate>
+        <List>
             <DataGrid
                 {...dataGridProps}
                 autoHeight

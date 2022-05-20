@@ -75,7 +75,7 @@ export const CourierShow: React.FC = () => {
             },
 
             {
-                field: "comment",
+                field: "review",
                 headerName: t("reviews.fields.review"),
                 // eslint-disable-next-line react/display-name
                 renderCell: ({ row }) => (
@@ -93,7 +93,7 @@ export const CourierShow: React.FC = () => {
                 flex: 1,
             },
             {
-                field: "review",
+                field: "rating",
                 headerName: t("reviews.fields.rating"),
                 headerAlign: "center",
                 flex: 1,
