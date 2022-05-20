@@ -17,12 +17,12 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
     return (
         <AppBar
-            color="default"
             position="fixed"
             elevation={1}
             sx={{
                 width: { sm: `calc(100% - ${drawerWidth}px)` },
                 ml: { sm: `${drawerWidth}px` },
+                backgroundColor: "#fff",
             }}
         >
             <Toolbar>
