@@ -287,6 +287,7 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
     return (
         <Form
             layout="vertical"
+            {...formProps}
             initialValues={{
                 q: getDefaultFilter("q", filters),
                 store: getDefaultFilter("store.id", filters),
@@ -294,7 +295,6 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
                 status: getDefaultFilter("status.text", filters, "in"),
                 createdAt,
             }}
-            {...formProps}
         >
             <Row gutter={[10, 0]} align="bottom">
                 <Col xl={24} md={8} sm={12} xs={24}>

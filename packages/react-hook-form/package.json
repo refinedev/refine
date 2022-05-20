@@ -1,5 +1,5 @@
 {
-  "version": "3.20.0",
+  "version": "3.20.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -36,7 +36,7 @@
     "tsup": "^5.11.13"
   },
   "dependencies": {
-    "@pankod/refine-core": "^3.20.0",
+    "@pankod/refine-core": "^3.20.1",
     "react-hook-form": "^7.30.0"
   },
   "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
