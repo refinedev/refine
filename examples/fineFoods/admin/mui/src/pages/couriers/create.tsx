@@ -326,7 +326,10 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                                 <TextField
                                                     {...register("email", {
                                                         required:
-                                                            "Email is required",
+                                                    t(
+                                                        "errors.required.field",
+                                                        { field: "Email" },
+                                                    ),
                                                         pattern: {
                                                             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                                                             message:
