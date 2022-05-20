@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
     AppBar,
     IconButton,
@@ -21,10 +21,18 @@ import {
     useGetLocale,
     useSetLocale,
 } from "@pankod/refine-core";
-import { ChevronLeft, ChevronRight, MenuRounded } from "@mui/icons-material";
+import {
+    ChevronLeft,
+    ChevronRight,
+    MenuRounded,
+    SearchOutlined,
+    DarkModeOutlined,
+    LightModeOutlined,
+} from "@mui/icons-material";
 import i18n from "i18n";
 
 import { IOrder, IStore, ICourier } from "interfaces";
+import { ColorModeContext } from "contexts";
 
 type HeaderProps = {
     collapsed: boolean;
@@ -48,6 +56,8 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
     const [value, setValue] = useState("");
     const [options, setOptions] = useState<IOptions[]>([]);
+
+    const colorMode = useContext(ColorModeContext);
 
     const changeLanguage = useSetLocale();
     const locale = useGetLocale();
@@ -170,13 +180,16 @@ export const Header: React.FC<HeaderProps> = ({
                             <MenuRounded />
                         </IconButton>
                         <Autocomplete
+                            sx={{
+                                maxWidth: 550,
+                            }}
                             id="search-autocomplete"
-                            disableClearable
                             options={options}
                             filterOptions={(x) => x}
+                            disableClearable
+                            freeSolo
                             fullWidth
                             size="small"
-                            sx={{ maxWidth: 550 }}
                             onInputChange={(event, value) => {
                                 if (event?.type === "change") {
                                     setValue(value);
@@ -211,23 +224,48 @@ export const Header: React.FC<HeaderProps> = ({
                             }}
                             renderInput={(params) => {
                                 return (
-                                    <TextField
-                                        {...params}
-                                        label={t("search.placeholder")}
-                                        InputProps={{
-                                            ...params.InputProps,
-                                            type: "search",
-                                        }}
-                                    />
+                                    <Box position="relative">
+                                        <TextField
+                                            {...params}
+                                            label={t("search.placeholder")}
+                                            InputProps={{
+                                                ...params.InputProps,
+                                            }}
+                                        />
+                                        <IconButton
+                                            sx={{
+                                                position: "absolute",
+                                                right: 0,
+                                                top: 0,
+                                                "&:hover": {
+                                                    backgroundColor:
+                                                        "transparent",
+                                                },
+                                            }}
+                                        >
+                                            <SearchOutlined />
+                                        </IconButton>
+                                    </Box>
                                 );
                             }}
                         />
                     </Stack>
                     <Stack direction="row" gap="20px" alignItems="center">
+                        <IconButton
+                            onClick={() => {
+                                colorMode.toggleColorMode();
+                            }}
+                        >
+                            {colorMode.mode === "light" ? (
+                                <LightModeOutlined />
+                            ) : (
+                                <DarkModeOutlined />
+                            )}
+                        </IconButton>
                         <FormControl sx={{ m: 1, minWidth: 120 }}>
                             <Select
-                                defaultValue="en"
-                                displayEmpty
+                                disableUnderline
+                                defaultValue={currentLocale}
                                 inputProps={{ "aria-label": "Without label" }}
                                 variant="standard"
                             >
