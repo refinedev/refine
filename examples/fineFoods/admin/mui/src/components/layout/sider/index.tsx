@@ -76,9 +76,13 @@ export const Sider: React.FC<SiderProps> = ({
                         >
                             <ListItemButton
                                 onClick={() => {
-                                    handleClick(route || "");
                                     if (collapsed) {
                                         setCollapsed(false);
+                                        if (!isOpen) {
+                                            handleClick(route || "");
+                                        }
+                                    } else {
+                                        handleClick(route || "");
                                     }
                                 }}
                                 sx={{
