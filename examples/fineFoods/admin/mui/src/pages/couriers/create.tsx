@@ -454,7 +454,10 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                         <TextField
                                             {...register("licensePlate", {
                                                 required:
-                                                    "Vehicle Number is required",
+                                                   t(
+                                                        "errors.required.field",
+                                                        { field: "Vehicle Number" },
+                                                    ),
                                             })}
                                             size="small"
                                             margin="none"
