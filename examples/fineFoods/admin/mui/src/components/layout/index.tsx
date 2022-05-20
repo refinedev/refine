@@ -17,12 +17,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <Box>
             <CssBaseline />
-            <Header
-                collapsed={collapsed}
-                setCollapsed={setCollapsed}
-                setOpened={setOpened}
-                drawerWidth={drawerWidth()}
-            />
+            <Header setOpened={setOpened} drawerWidth={drawerWidth()} />
             <Sider
                 opened={opened}
                 setOpened={setOpened}

@@ -9,6 +9,7 @@ import {
     useMenu,
     Collapse,
     Tooltip,
+    Button,
 } from "@pankod/refine-mui";
 import {
     ListOutlined,
@@ -25,6 +26,7 @@ import {
     useTitle,
     useTranslate,
 } from "@pankod/refine-core";
+import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 
 import { Title as DefaultTitle } from "../title";
 
@@ -206,7 +208,7 @@ export const Sider: React.FC<SiderProps> = ({
                 position: "fixed",
                 zIndex: 1101,
                 width: { sm: drawerWidth },
-                flexShrink: { sm: 0 },
+                display: "flex",
             }}
         >
             <Drawer
@@ -247,7 +249,24 @@ export const Sider: React.FC<SiderProps> = ({
                 <Box sx={{ height: 64, display: "flex", alignItems: "center" }}>
                     <RenderToTitle collapsed={collapsed} />
                 </Box>
-                {drawer}
+                <Box
+                    sx={{ flexGrow: 1, overflowX: "hidden", overflowY: "auto" }}
+                >
+                    {drawer}
+                </Box>
+                <Button
+                    sx={{
+                        color: "#fff",
+                        textAlign: "center",
+                        borderRadius: 0,
+                        borderTop: "1px solid #ffffff1a",
+                    }}
+                    fullWidth
+                    size="large"
+                    onClick={() => setCollapsed((prev) => !prev)}
+                >
+                    {collapsed ? <ChevronRight /> : <ChevronLeft />}
+                </Button>
             </Drawer>
         </Box>
     );
