@@ -371,7 +371,10 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                         </FormLabel>
                                         <TextField
                                             {...register("address", {
-                                                required: "Address is required",
+                                                required: t(
+                                                        "errors.required.field",
+                                                        { field: "Address" },
+                                                    ),
                                             })}
                                             margin="none"
                                             variant="outlined"
