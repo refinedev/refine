@@ -339,7 +339,10 @@
     "errors": {
         "required": {
             "field": "'{{ field }}' ist erforderlich",
-            "common": "Dieses Feld wird benötigt"
+            "common": "Dieses Feld wird benötigt",
+            "min": "Dieses Feld muss mindestens {{ min }} Zeichen lang sein",
+            "max": "Dieses Feld darf höchstens {{ max }} Zeichen lang sein",
+            "invalidMail": "Dieses Feld muss eine gültige E-Mail-Adresse sein"
         }
     }
 }

@@ -88,7 +88,6 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                 url: res.data.url,
             },
         ];
-        console.log(imagePaylod);
         setValue("avatar", imagePaylod, {
             shouldDirty: true,
         });
@@ -126,12 +125,7 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                         />
                                         <input
                                             id="file"
-                                            {...register("Avatar", {
-                                                required: t(
-                                                    "errors.required.field",
-                                                    { field: "Avatar" },
-                                                ),
-                                            })}
+                                            {...register("Avatar")}
                                             type="hidden"
                                         />
                                         <Avatar
@@ -179,8 +173,12 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                                 </FormLabel>
                                                 <TextField
                                                     {...register("name", {
-                                                        required:
-                                                            "Name is required",
+                                                        required: t(
+                                                            "errors.required.field",
+                                                            {
+                                                                field: "Name",
+                                                            },
+                                                        ),
                                                     })}
                                                     size="small"
                                                     margin="none"
@@ -250,7 +248,7 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                                     size="small"
                                                     margin="none"
                                                     variant="outlined"
-                                                    defaultValue="Male"
+                                                    defaultValue=""
                                                 >
                                                     <MenuItem value="Male">
                                                         {t(
@@ -330,8 +328,9 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                                         ),
                                                         pattern: {
                                                             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                                            message:
-                                                                "invalid email address",
+                                                            message: t(
+                                                                "errors.required.invalidMail",
+                                                            ),
                                                         },
                                                     })}
                                                     size="small"
@@ -509,13 +508,17 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                             ),
                                             maxLength: {
                                                 value: 10,
-                                                message:
-                                                    "Account Number must be 10 digits",
+                                                message: t(
+                                                    "errors.required.max",
+                                                    { max: 10 },
+                                                ),
                                             },
                                             minLength: {
                                                 value: 10,
-                                                message:
-                                                    "Account Number must be 10 digits",
+                                                message: t(
+                                                    "errors.required.min",
+                                                    { min: 10 },
+                                                ),
                                             },
                                         })}
                                         size="small"
@@ -546,12 +549,12 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                 gotoStep(currentStep - 1);
                             }}
                         >
-                            Previous
+                            {t("buttons.previousStep")}
                         </Button>
                     )}
                     {currentStep < stepTitles.length - 1 && (
                         <Button onClick={() => gotoStep(currentStep + 1)}>
-                            Next
+                            {t("buttons.nextStep")}
                         </Button>
                     )}
                     {currentStep === stepTitles.length - 1 && (
