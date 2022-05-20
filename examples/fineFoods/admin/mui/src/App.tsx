@@ -101,7 +101,19 @@ const App: React.FC = () => {
                     },
                     {
                         parentName: "products",
-                        name: "Sell Product",
+                        name: "SellProduct",
+                        list: ProductList,
+                        icon: <LocalPizzaOutlined />,
+                    },
+                    {
+                        parentName: "SellProduct",
+                        name: "123",
+                        list: ProductList,
+                        icon: <LocalPizzaOutlined />,
+                    },
+                    {
+                        parentName: "SellProduct",
+                        name: "456",
                         list: ProductList,
                         icon: <LocalPizzaOutlined />,
                     },

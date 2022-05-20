@@ -65,6 +65,9 @@ export const Sider: React.FC<SiderProps> = ({
             const { icon, label, route, name, children, parentName } = item;
             const isOpen = open[route || ""] || false;
 
+            const isSelected = route === selectedKey;
+            const isNested = !(parentName === undefined);
+
             if (children.length > 0) {
                 return (
                     <div key={route}>
@@ -86,6 +89,7 @@ export const Sider: React.FC<SiderProps> = ({
                                     }
                                 }}
                                 sx={{
+                                    pl: isNested ? 4 : 2,
                                     justifyContent: "center",
                                     color: "#fff",
                                 }}
@@ -121,10 +125,6 @@ export const Sider: React.FC<SiderProps> = ({
                     </div>
                 );
             }
-            const isSelected = route === selectedKey;
-            const isRoute = !(
-                parentName !== undefined && children.length === 0
-            );
 
             return (
                 <CanAccess
@@ -145,8 +145,8 @@ export const Sider: React.FC<SiderProps> = ({
                                 push(route ?? "");
                             }}
                             sx={{
-                                pl: isRoute ? 2 : 4,
-                                py: isRoute ? 1 : 1.25,
+                                pl: isNested ? 4 : 2,
+                                py: isNested ? 1.25 : 1,
                                 justifyContent: "center",
                                 color: "#fff",
                             }}
