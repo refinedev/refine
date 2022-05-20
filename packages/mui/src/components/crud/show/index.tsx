@@ -20,6 +20,7 @@ import {
     CardHeaderProps,
     CardContentProps,
     CardActionsProps,
+    Typography,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
@@ -86,13 +87,17 @@ export const Show: React.FC<ShowProps> = ({
     return (
         <Card {...cardProps}>
             <CardHeader
-                title={translate(
-                    `${resource.name}.titles.create`,
-                    `Show ${userFriendlyResourceName(
-                        resource.label ?? resource.name,
-                        "singular",
-                    )}`,
-                )}
+                title={
+                    <Typography variant="h5">
+                        {translate(
+                            `${resource.name}.titles.show`,
+                            `Show ${userFriendlyResourceName(
+                                resource.label ?? resource.name,
+                                "singular",
+                            )}`,
+                        )}
+                    </Typography>
+                }
                 avatar={
                     <IconButton onClick={routeFromAction ? goBack : undefined}>
                         <ArrowBackIcon />
