@@ -88,7 +88,7 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
             },
         ];
 
-        setValue("avatar", imagePaylod, { shouldValidate: true });
+        setValue("avatar", imagePaylod, { shouldDirty: true });
     };
 
     const { autocompleteProps } = useAutocomplete<IStore>({

@@ -89,7 +89,9 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
             },
         ];
         console.log(imagePaylod);
-        setValue("avatar", imagePaylod, { shouldValidate: true });
+        setValue("avatar", imagePaylod, {
+            shouldDirty: true,
+        });
     };
 
     const { autocompleteProps } = useAutocomplete<IStore>({
@@ -559,6 +561,3 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
         </Create>
     );
 };
-function setFieldValue(arg0: string, value: string) {
-    throw new Error("Function not implemented.");
-}
