@@ -19,9 +19,11 @@ import {
     NumberField,
     DateField,
     Grid,
+    useDrawerForm,
 } from "@pankod/refine-antd";
 
 import { ICategory, IProduct } from "interfaces";
+import { EditProduct } from "components/product";
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const {
@@ -136,7 +138,6 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                         title={t("table.actions")}
                         dataIndex="actions"
                         key="actions"
-                        fixed="right"
                         align="center"
                         render={(_text, record) => {
                             if (isEditing(record.id)) {
@@ -191,6 +192,17 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
         syncWithLocation: false,
     });
 
+    const {
+        drawerProps: editDrawerProps,
+        formProps: editFormProps,
+        saveButtonProps: editSaveButtonProps,
+        show: editShow,
+    } = useDrawerForm<IProduct>({
+        action: "edit",
+        resource: "products",
+        redirect: false,
+    });
+
     const moreMenu = (record: IProduct) => (
         <Menu
             mode="vertical"
@@ -213,7 +225,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                         }}
                     />
                 }
-                onClick={() => false}
+                onClick={() => editShow(record.id)}
             >
                 {t("buttons.edit")}
             </Menu.Item>
@@ -266,7 +278,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                     sorter
                 />
                 <Table.Column<IProduct>
-                    dataIndex="actions"
+                    dataIndex="products_actions"
                     title={t("table.actions")}
                     render={(_, record) => (
                         <Dropdown
@@ -283,6 +295,11 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                     )}
                 />
             </Table>
+            <EditProduct
+                drawerProps={editDrawerProps}
+                formProps={editFormProps}
+                saveButtonProps={editSaveButtonProps}
+            />
         </List>
     );
 };

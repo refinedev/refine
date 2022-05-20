@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next";
 import {
     AddShoppingCartOutlined,
     StarBorderOutlined,
+    StoreOutlined,
     LocalPizzaOutlined,
     PeopleOutlineOutlined,
 } from "@mui/icons-material";
@@ -25,6 +26,7 @@ import { OrderList, OrderShow } from "pages/orders";
 import { UserList, UserShow } from "pages/users";
 import { ReviewsList } from "pages/reviews";
 import { LoginPage } from "pages/login";
+import { StoreList, StoreEdit, StoreCreate } from "pages/stores";
 import { ProductList } from "pages/products";
 
 import { Layout } from "components/layout";
@@ -72,6 +74,13 @@ const App: React.FC = () => {
                         name: "reviews",
                         list: ReviewsList,
                         icon: <StarBorderOutlined />,
+                    },
+                    {
+                        name: "stores",
+                        list: StoreList,
+                        edit: StoreEdit,
+                        create: StoreCreate,
+                        icon: <StoreOutlined />,
                     },
                     {
                         name: "users",

@@ -105,13 +105,13 @@ Determines the value passed to children. `mapValue` takes `selectedKeys` as an a
 For example when using `useSelect` for `<Select>` component. In this case values must be mapped to `number`s using `mapValue`.
 
 ```tsx 
+import { getDefaultFilter } from "@pankod/refine-core";
 import {
     useTable,
     Table,
     FilterDropdown,
     Select,
     useSelect,
-    getDefaultFilter,
 } from "@pankod/refine-antd";
 
 const { tableProps, filters } = useTable<IPost>({

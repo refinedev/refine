@@ -1,4 +1,8 @@
-import { IResourceComponentsProps, useMany } from "@pankod/refine-core";
+import {
+    IResourceComponentsProps,
+    useMany,
+    getDefaultFilter,
+} from "@pankod/refine-core";
 
 import {
     List,
@@ -11,13 +15,11 @@ import {
     Select,
     Radio,
     TagField,
-    getDefaultFilter,
     Collapse,
     useTable,
     useSelect,
     useSimpleList,
     AntdList,
-    NumberField,
 } from "@pankod/refine-antd";
 
 import { IPost, ICategory, IProducts } from "interfaces";
