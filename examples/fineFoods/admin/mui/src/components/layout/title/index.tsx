@@ -11,12 +11,16 @@ export const Title: React.FC<TitleProps> = ({ collapsed }) => {
             <Link to="/" href="/">
                 {collapsed ? (
                     <img
-                        src={"images/refine-collapsed.svg"}
+                        src={"/images/refine-collapsed.svg"}
                         alt="Refine"
                         width="28px"
                     />
                 ) : (
-                    <img src={"images/refine.svg"} alt="Refine" width="140px" />
+                    <img
+                        src={"/images/refine.svg"}
+                        alt="Refine"
+                        width="140px"
+                    />
                 )}
             </Link>
         </Button>

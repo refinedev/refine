@@ -16,16 +16,14 @@ export const Header: React.FC<HeaderProps> = ({
     children,
 }) => {
     return (
-        <AppBar
-            position="fixed"
-            elevation={1}
-            sx={{
-                width: { sm: `calc(100% - ${drawerWidth}px)` },
-                ml: { sm: `${drawerWidth}px` },
-                backgroundColor: "#fff",
-            }}
-        >
-            <Toolbar>
+        <AppBar position="fixed" elevation={1} sx={{ backgroundColor: "#fff" }}>
+            <Toolbar
+                sx={{
+                    ml: { sm: `${drawerWidth}px` },
+                    transition:
+                        "margin-left 200ms cubic-bezier(0, 0, 0.2, 1) 0ms",
+                }}
+            >
                 <IconButton
                     edge="start"
                     sx={{ display: { xs: "none", sm: "flex" } }}

@@ -15,7 +15,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     };
 
     return (
-        <Box sx={{ display: "flex" }}>
+        <Box>
             <CssBaseline />
             <Header
                 collapsed={collapsed}
@@ -35,7 +35,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 sx={{
                     p: 3,
                     minHeight: "100vh",
-                    width: "100%",
+                    marginLeft: { sm: `${drawerWidth()}px` },
+                    transition:
+                        "margin-left 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
                 }}
             >
                 <Toolbar />

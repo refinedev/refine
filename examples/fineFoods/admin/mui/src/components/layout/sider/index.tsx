@@ -203,6 +203,8 @@ export const Sider: React.FC<SiderProps> = ({
         <Box
             component="nav"
             sx={{
+                position: "fixed",
+                zIndex: 1101,
                 width: { sm: drawerWidth },
                 flexShrink: { sm: 0 },
             }}
@@ -236,6 +238,8 @@ export const Sider: React.FC<SiderProps> = ({
                         width: drawerWidth,
                         bgcolor: "#2a132e",
                         overflow: "hidden",
+                        transition:
+                            "width 200ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
                     },
                 }}
                 open
