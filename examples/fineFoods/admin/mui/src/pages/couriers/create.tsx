@@ -240,9 +240,13 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                                 <TextField
                                                     select
                                                     {...register("gender", {
-                                                        required:
-                                                            "Gender is required",
+                                                        required: t(
+                                                        "errors.required.field",
+                                                        { field: "Gender" },
+                                                    ),
+                                                            
                                                     })}
+                                                    
                                                     size="small"
                                                     margin="none"
                                                     variant="outlined"
