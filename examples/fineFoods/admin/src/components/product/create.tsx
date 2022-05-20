@@ -48,8 +48,9 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
             {...drawerProps}
             width={breakpoint.sm ? "500px" : "100%"}
             bodyStyle={{ padding: 0 }}
+            zIndex={1001}
         >
-            <Create saveButtonProps={saveButtonProps}>
+            <Create resource="products" saveButtonProps={saveButtonProps}>
                 <Form
                     {...formProps}
                     layout="vertical"

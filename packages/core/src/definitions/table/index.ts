@@ -7,6 +7,8 @@ import {
     CrudSorting,
     CrudFilter,
     CrudSort,
+    CrudOperators,
+    SortOrder,
 } from "../../interfaces";
 
 export const parseTableParams = (url: string) => {
@@ -104,3 +106,40 @@ export const setInitialSorters = (
     ...differenceWith(defaultSorter, permanentSorter, compareSorters),
     ...permanentSorter,
 ];
+
+export const getDefaultSortOrder = (
+    columnName: string,
+    sorter?: CrudSorting,
+): SortOrder | undefined => {
+    if (!sorter) {
+        return undefined;
+    }
+
+    const sortItem = sorter.find((item) => item.field === columnName);
+
+    if (sortItem) {
+        return sortItem.order as SortOrder;
+    }
+
+    return undefined;
+};
+
+export const getDefaultFilter = (
+    columnName: string,
+    filters?: CrudFilters,
+    operatorType: CrudOperators = "eq",
+): CrudFilter["value"] | undefined => {
+    const filter = filters?.find((filter) => {
+        if (filter.operator !== "or") {
+            const { operator, field } = filter;
+            return field === columnName && operator === operatorType;
+        }
+        return undefined;
+    });
+
+    if (filter) {
+        return filter.value || [];
+    }
+
+    return undefined;
+};
