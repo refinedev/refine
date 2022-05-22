@@ -48,10 +48,12 @@ export const EditProduct: React.FC<EditProductProps> = ({
             {...drawerProps}
             width={breakpoint.sm ? "500px" : "100%"}
             bodyStyle={{ padding: 0 }}
+            zIndex={1001}
         >
             <Edit
                 saveButtonProps={saveButtonProps}
                 pageHeaderProps={{ extra: null }}
+                resource="products"
             >
                 <Form {...formProps} layout="vertical">
                     <Form.Item label={t("products.fields.images.label")}>

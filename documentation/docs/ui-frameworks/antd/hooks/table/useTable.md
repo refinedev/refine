@@ -305,14 +305,14 @@ const { tableProps, sorter, filters } = useTable<IPost>({
 If you give default filter values, `defaultFilteredValue` property needs to be properly given to the relevant `<Table.Column>` components so that those filter fields come with default values when the page is opened.
 
 ```tsx title="/src/pages/posts/list.tsx"
+// highlight-next-line
+import { getDefaultFilter } from "@pankod/refine-core";
 import {
     List,
     Table,
     Radio,
     FilterDropdown,
     TagField,
-    // highlight-next-line
-    getDefaultFilter,
     useTable,
     getDefaultSortOrder,
 } from "@pankod/refine-antd";

@@ -25,6 +25,7 @@ export {
     CrudOperators,
     CrudSorting,
     CrudSort,
+    SortOrder,
     GetListResponse,
     GetOneResponse,
     GetManyResponse,
@@ -63,6 +64,8 @@ export {
     setInitialFilters,
     unionSorters,
     setInitialSorters,
+    getDefaultFilter,
+    getDefaultSortOrder,
 } from "./definitions/table";
 export {
     userFriendlyResourceName,
