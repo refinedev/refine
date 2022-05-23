@@ -1,11 +1,11 @@
 {
     "name": "refine-react95-example",
-    "version": "3.20.1",
+    "version": "3.20.2",
     "private": true,
     "dependencies": {
         "@pankod/refine-core": "^3.20.1",
         "@pankod/refine-react-hook-form": "^3.20.1",
-        "@pankod/refine-react-router-v6": "^3.20.1",
+        "@pankod/refine-react-router-v6": "^3.20.2",
         "@pankod/refine-react-table": "^3.20.1",
         "@pankod/refine-supabase": "^3.20.1",
         "@testing-library/jest-dom": "^5.12.0",
