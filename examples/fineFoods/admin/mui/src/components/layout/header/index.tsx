@@ -256,7 +256,7 @@ export const Header: React.FC<HeaderProps> = ({
                                 colorMode.toggleColorMode();
                             }}
                         >
-                            {colorMode.mode === "light" ? (
+                            {colorMode.mode === "dark" ? (
                                 <LightModeOutlined />
                             ) : (
                                 <DarkModeOutlined />
