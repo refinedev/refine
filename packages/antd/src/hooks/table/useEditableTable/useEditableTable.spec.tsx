@@ -1,8 +1,6 @@
-import React from "react";
 import { renderHook } from "@testing-library/react-hooks";
-import { Route } from "react-router-dom";
 
-import { MockJSONServer, TestWrapper } from "@test";
+import { TestWrapper } from "@test";
 import { posts } from "@test/dataMocks";
 
 import { useEditableTable } from "./useEditableTable";
@@ -10,9 +8,12 @@ import { act } from "react-dom/test-utils";
 
 describe("useEditableTable Hook", () => {
     it("fetches table and form data", async () => {
-        const { result, waitFor } = renderHook(() => useEditableTable(), {
-            wrapper: TestWrapper({}),
-        });
+        const { result, waitFor, waitForNextUpdate } = renderHook(
+            () => useEditableTable(),
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
 
         await waitFor(() => {
             return !result.current.tableProps.loading;
@@ -34,7 +35,7 @@ describe("useEditableTable Hook", () => {
             return !result.current.formLoading;
         });
 
-        expect(result.current.form.getFieldValue("title")).toEqual(
+        expect(result.current.formProps.initialValues?.title).toEqual(
             examplePost.title,
         );
     });
