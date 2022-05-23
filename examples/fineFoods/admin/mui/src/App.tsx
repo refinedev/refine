@@ -107,6 +107,14 @@ const App: React.FC = () => {
                             icon: <AddShoppingCartOutlined />,
                         },
                         {
+                            name: "couriers",
+                            list: CourierList,
+                            show: CourierShow,
+                            create: CourierCreate,
+                            edit: CourierEdit,
+                            icon: <BikeScooterOutlined />,
+                        },
+                        {
                             name: "reviews",
                             list: ReviewsList,
                             icon: <StarBorderOutlined />,
