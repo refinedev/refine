@@ -5,7 +5,6 @@ import {
     useTranslate,
     useLogout,
     useTitle,
-    useNavigation,
     CanAccess,
     ITreeMenu,
     useIsExistAuthentication,

@@ -204,16 +204,16 @@ Firstly, let's implement a custom sider like in [this example](/examples/customi
 
 ```tsx title="src/components/sider.tsx"
 import React, { useState } from "react";
-import { useTitle, useNavigation, ITreeMenu, CanAccess } from "@pankod/refine-core";
+import { useTitle, ITreeMenu, CanAccess, useRouterContext } from "@pankod/refine-core";
 import { AntdLayout, Menu, useMenu, Grid, Icons } from "@pankod/refine-antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 export const CustomSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
+    const { Link } = useRouterContext();
     const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
-    const { push } = useNavigation();
 
     const isMobile = !breakpoint.lg;
     
@@ -244,15 +244,12 @@ export const CustomSider: React.FC = () => {
                 >
                     <Menu.Item
                         key={selectedKey}
-                        onClick={() => {
-                            push(route ?? "");
-                        }}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
                         icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
                     >
-                            {label}
+                            <Link to={route}>{label}</Link>
                             {!collapsed && isSelected && (
                                 <Icons.UnorderedListOutlined />
                             )}
@@ -279,8 +276,6 @@ export const CustomSider: React.FC = () => {
                     if (!breakpoint.lg) {
                         setCollapsed(true);
                     }
-
-                    push(key as string);
                 }}
             >
                 {renderTreeView(menuItems, selectedKey)}
@@ -298,7 +293,6 @@ Now, let's add a badge for number of create and update events for **_posts_** me
 import React, { useState } from "react";
 import {
     useTitle,
-    useNavigation,
     ITreeMenu,
     CanAccess,
     //highlight-start
@@ -320,10 +314,10 @@ import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 export const CustomSider: React.FC = () => {
     const [subscriptionCount, setSubscriptionCount] = useState(0);
     const [collapsed, setCollapsed] = useState<boolean>(false);
+    const { Link } = useRouterContext();
     const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
-    const { push } = useNavigation();
 
     const isMobile = !breakpoint.lg;
 
@@ -362,9 +356,6 @@ export const CustomSider: React.FC = () => {
                 >
                     <Menu.Item
                         key={selectedKey}
-                        onClick={() => {
-                            push(route ?? "");
-                        }}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
@@ -372,7 +363,7 @@ export const CustomSider: React.FC = () => {
                     >
                             //highlight-start
                                 <div>
-                                    {label}
+                                    <Link to={route}>{label}</Link>
                                     {label === "Posts" && (
                                         <Badge
                                             size="small"
@@ -401,7 +392,7 @@ export const CustomSider: React.FC = () => {
             <Menu
                 selectedKeys={[selectedKey]}
                 mode="inline"
-                onClick={({ key }) => {
+                onClick={() => {
                     if (!breakpoint.lg) {
                         setCollapsed(true);
                     }
@@ -411,8 +402,6 @@ export const CustomSider: React.FC = () => {
                         setSubscriptionCount(0);
                     }
                     //highlight-end
-
-                    push(key as string);
                 }}
             >
                 {renderTreeView(menuItems, selectedKey)}

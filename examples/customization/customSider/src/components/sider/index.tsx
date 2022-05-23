@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import {
     useTitle,
-    useNavigation,
     ITreeMenu,
     CanAccess,
+    useRouterContext,
 } from "@pankod/refine-core";
 import { AntdLayout, Menu, useMenu, Grid } from "@pankod/refine-antd";
 import { UnorderedListOutlined } from "@ant-design/icons";
@@ -12,11 +12,11 @@ import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 export const CustomSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const Title = useTitle();
+    const { Link } = useRouterContext();
     const { SubMenu } = Menu;
 
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
-    const { push } = useNavigation();
 
     const isMobile = !breakpoint.lg;
 
@@ -47,15 +47,12 @@ export const CustomSider: React.FC = () => {
                 >
                     <Menu.Item
                         key={selectedKey}
-                        onClick={() => {
-                            push(route ?? "");
-                        }}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
                         icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
-                        {label}
+                        <Link to={route}>{label}</Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
@@ -78,12 +75,10 @@ export const CustomSider: React.FC = () => {
             <Menu
                 selectedKeys={[selectedKey]}
                 mode="inline"
-                onClick={({ key }) => {
+                onClick={() => {
                     if (!breakpoint.lg) {
                         setCollapsed(true);
                     }
-
-                    push(key as string);
                 }}
             >
                 {renderTreeView(menuItems, selectedKey)}

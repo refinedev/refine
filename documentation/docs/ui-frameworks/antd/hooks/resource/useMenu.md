@@ -24,7 +24,7 @@ First we define `<CustomMenu>`:
 
 ```tsx  title="src/CustomMenu.tsx"
 import { useState, CSSProperties } from "react";
-import { useTitle, ITreeMenu, CanAccess } from "@pankod/refine-core";
+import { useTitle, ITreeMenu, CanAccess, useRouterContext } from "@pankod/refine-core";
 import {
     AntdLayout,
     Menu,
@@ -36,6 +36,7 @@ import {
 
 export const CustomMenu: React.FC = () => {
     const Title = useTitle();
+    const { Link } = useRouterContext();
     const { SubMenu } = Menu;
 
 // highlight-next-line
@@ -44,7 +45,6 @@ export const CustomMenu: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
 
     const breakpoint = Grid.useBreakpoint();
-    const { push } = useNavigation()
     const isMobile = !breakpoint.lg;
 
     const RenderToTitle = Title ?? DefaultTitle;
@@ -77,15 +77,12 @@ export const CustomMenu: React.FC = () => {
                 >
                     <Menu.Item
                         key={selectedKey}
-                        onClick={() => {
-                            push(route ?? "");
-                        }}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
                         icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
                     >
-                        {label}
+                        <Link to={route}>{label}</Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
@@ -108,7 +105,16 @@ export const CustomMenu: React.FC = () => {
         >
             <RenderToTitle collapsed={collapsed} />
 // highlight-start
-            <Menu defaultOpenKeys={defaultOpenKeys} selectedKeys={[selectedKey]} mode="inline">
+            <Menu 
+                defaultOpenKeys={defaultOpenKeys} 
+                selectedKeys={[selectedKey]} 
+                mode="inline"
+                onClick={() => {
+                    if (!breakpoint.lg) {
+                        setCollapsed(true);
+                    }
+                }}
+                >
                {renderTreeView(menuItems, selectedKey)}
             </Menu>
 // highlight-end
@@ -168,7 +174,7 @@ We can also add a logout button:
 
 ```tsx  title="src/CustomMenu.tsx"
 import { useState, CSSProperties } from "react";
-import { useTitle } from "@pankod/refine-core";
+import { useTitle, useRouterContext } from "@pankod/refine-core";
 import {
     AntdLayout,
     Menu,
@@ -176,7 +182,6 @@ import {
     Grid,
 // highlight-start
     Icons,
-    useNavigation,
     useLogout,
 // highlight-end
     useMenu,
@@ -184,6 +189,7 @@ import {
 
 export const CustomMenu: React.FC = () => {
     const Title = useTitle();
+    const { Link } = useRouterContext();
     const { menuItems, selectedKey } = useMenu();
 
     const [collapsed, setCollapsed] = useState<boolean>(false);
@@ -220,15 +226,12 @@ export const CustomMenu: React.FC = () => {
                 >
                     <Menu.Item
                         key={selectedKey}
-                        onClick={() => {
-                            push(route ?? "");
-                        }}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
                         icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
                     >
-                        {label}
+                        <Link to={route}>{label}</Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
@@ -240,7 +243,6 @@ export const CustomMenu: React.FC = () => {
 
 // highlight-start
     const { mutate: logout } = useLogout();
-    const { push } = useNavigation();
 // highlight-end
 
     return (
@@ -254,29 +256,25 @@ export const CustomMenu: React.FC = () => {
         >
             <RenderToTitle collapsed={collapsed} />
             <Menu
+                defaultOpenKeys={defaultOpenKeys} 
                 selectedKeys={[selectedKey]}
                 mode="inline"
-// highlight-start
-                onClick={({ key }) => {
-                    if (key === "logout") {
-                        logout();
-                        return;
-                    }
-
+                onClick={() => {
                     if (!breakpoint.lg) {
                         setCollapsed(true);
                     }
-
-                    push(key as string);
                 }}
-// highlight-end
             >
                 {renderTreeView(menuItems, selectedKey)}
 // highlight-start
-                <Menu.Item key="logout" icon={<Icons.LogoutOutlined />}>
+                <Menu.Item 
+                    key="logout" 
+                    onClick={() => logout()} 
+                    icon={<Icons.LogoutOutlined />}
+                >
                     Logout
-// highlight-end
                 </Menu.Item>
+// highlight-end
             </Menu>
         </AntdLayout.Sider>
     );
@@ -292,7 +290,7 @@ const antLayoutSiderMobile: CSSProperties = {
 };
 ```
 
-`useLogout` provides the logout functionality. We also have a `push` function from `useNavigation` for directing users to homepage after logging out.
+`useLogout` provides the logout functionality.
 
 :::caution
 `useLogout` hook can only be used if the `authProvider` is provided.  

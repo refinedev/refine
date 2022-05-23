@@ -315,10 +315,10 @@ Let's define the select component in the **refine** Sider Menu. First, we need t
 import React, { useState } from "react";
 import {
     useTitle,
-    useNavigation,
     useLogout,
     CanAccess,
     ITreeMenu,
+    useRouterContext,
 } from "@pankod/refine-core";
 import { AntdLayout, Menu, useMenu, Grid, Icons } from "@pankod/refine-antd";
 
@@ -328,10 +328,10 @@ import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 export const CustomSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const { mutate: logout } = useLogout();
+    const { Link } = useRouterContext();
     const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
-    const { push } = useNavigation();
 
     const isMobile = !breakpoint.lg;
     
@@ -362,15 +362,12 @@ export const CustomSider: React.FC = () => {
                 >
                     <Menu.Item
                         key={selectedKey}
-                        onClick={() => {
-                            push(route ?? "");
-                        }}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
                         icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
                     >
-                        {label}
+                        <Link to={route}>{label}</Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
@@ -393,13 +390,10 @@ export const CustomSider: React.FC = () => {
             <Menu
                 selectedKeys={[selectedKey]}
                 mode="inline"
-                onClick={({ key }) => {
-                    if (key === "logout") {
-                        logout();
-                        return;
+                onClick={() => {
+                    if (!breakpoint.lg) {
+                        setCollapsed(true);
                     }
-
-                    push(key as string);
                 }}
             >
                 <Menu.Item
@@ -413,7 +407,7 @@ export const CustomSider: React.FC = () => {
                     />
                 </Menu.Item>
                 {renderTreeView(menuItems, selectedKey)}
-                <Menu.Item key={"logout"} icon={<Icons.LoginOutlined />}>
+                <Menu.Item key="logout" onClick={() => logout()} icon={<Icons.LoginOutlined />}>
                     Logout
                 </Menu.Item>
             </Menu>

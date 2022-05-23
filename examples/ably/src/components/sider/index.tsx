@@ -5,6 +5,7 @@ import {
     useSubscription,
     CanAccess,
     ITreeMenu,
+    useRouterContext,
 } from "@pankod/refine-core";
 import {
     AntdLayout,
@@ -19,6 +20,7 @@ import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 export const CustomSider: React.FC = () => {
     const [subscriptionCount, setSubscriptionCount] = useState(0);
     const [collapsed, setCollapsed] = useState<boolean>(false);
+    const { Link } = useRouterContext();
     const Title = useTitle();
     const { SubMenu } = Menu;
 
@@ -61,9 +63,6 @@ export const CustomSider: React.FC = () => {
                 >
                     <Menu.Item
                         key={selectedKey}
-                        onClick={() => {
-                            push(route ?? "");
-                        }}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
@@ -71,7 +70,7 @@ export const CustomSider: React.FC = () => {
                             icon ?? (isRoute && <Icons.UnorderedListOutlined />)
                         }
                     >
-                        {label}
+                        <Link to={route}>{label}</Link>
                         {label === "Posts" && (
                             <Badge
                                 size="small"
@@ -110,8 +109,6 @@ export const CustomSider: React.FC = () => {
                     if (key === "/posts") {
                         setSubscriptionCount(0);
                     }
-
-                    push(key as string);
                 }}
             >
                 {renderTreeView(menuItems, selectedKey)}
