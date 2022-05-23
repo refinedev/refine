@@ -1,69 +1,70 @@
-import React from "react";
-import Box from "@mui/material/Box";
+import React, { useState } from "react";
+import { MenuRounded } from "@mui/icons-material";
 import { LayoutProps } from "@pankod/refine-core";
 
-import { CssBaseline, Toolbar, Container } from "@mui/material";
-import { Header as DefaultHeader } from "./header";
+import { Box, CssBaseline, IconButton } from "@mui/material";
+
 import { Sider as DefaultSider } from "./sider";
 
 export const Layout: React.FC<LayoutProps> = ({
-    children,
-    Header,
     Sider,
+    Header,
     Footer,
     OffLayoutArea,
+    children,
 }) => {
-    const [open, setOpen] = React.useState(true);
-    const toggleDrawer = () => {
-        setOpen(!open);
+    const [collapsed, setCollapsed] = useState(false);
+    const [opened, setOpened] = useState(false);
+
+    const drawerWidth = () => {
+        if (collapsed) return 64;
+        return 256;
     };
 
-    const HeaderToRender = Header ?? DefaultHeader;
     const SiderToRender = Sider ?? DefaultSider;
 
     return (
-        <>
-            <Box sx={{ display: "flex" }}>
-                <CssBaseline />
-                <HeaderToRender
-                    drawerOpen={open}
-                    toggleDrawer={() => toggleDrawer()}
-                />
-                <SiderToRender
-                    drawerOpen={open}
-                    toggleDrawer={() => toggleDrawer()}
-                />
-                <Box
-                    component="main"
-                    sx={{
-                        backgroundColor: (theme) =>
-                            theme.palette.mode === "light"
-                                ? theme.palette.grey[100]
-                                : theme.palette.grey[900],
-                        flexGrow: 1,
-                        height: "100vh",
-                        overflow: "auto",
-                    }}
+        <Box>
+            <CssBaseline />
+            {Header && <Header />}
+            <SiderToRender
+                opened={opened}
+                setOpened={setOpened}
+                collapsed={collapsed}
+                setCollapsed={setCollapsed}
+                drawerWidth={drawerWidth()}
+            />
+            <Box
+                sx={{
+                    display: { xs: "block", sm: "none" },
+                    position: "fixed",
+                    top: "64px",
+                    left: "0px",
+                    borderRadius: "0 6px 6px 0",
+                    bgcolor: "#2a132e",
+                }}
+            >
+                <IconButton
+                    sx={{ color: "#fff" }}
+                    onClick={() => setOpened((prev) => !prev)}
                 >
-                    <Toolbar />
-                    <Container
-                        style={{ maxWidth: "100%" }}
-                        sx={{
-                            padding: {
-                                xs: "12px",
-                                sm: "12px",
-                                md: "24px",
-                                lg: "36px",
-                                xl: "48px",
-                            },
-                        }}
-                    >
-                        {children}
-                    </Container>
-                    {OffLayoutArea && <OffLayoutArea />}
-                </Box>
+                    <MenuRounded />
+                </IconButton>
+            </Box>
+            <Box
+                component="main"
+                sx={{
+                    p: 3,
+                    minHeight: "100vh",
+                    marginLeft: { sm: `${drawerWidth()}px` },
+                    transition:
+                        "margin-left 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+                }}
+            >
+                {children}
                 {Footer && <Footer />}
             </Box>
-        </>
+            {OffLayoutArea && <OffLayoutArea />}
+        </Box>
     );
 };
