@@ -8,12 +8,9 @@ import { act } from "react-dom/test-utils";
 
 describe("useEditableTable Hook", () => {
     it("fetches table and form data", async () => {
-        const { result, waitFor, waitForNextUpdate } = renderHook(
-            () => useEditableTable(),
-            {
-                wrapper: TestWrapper({}),
-            },
-        );
+        const { result, waitFor } = renderHook(() => useEditableTable(), {
+            wrapper: TestWrapper({}),
+        });
 
         await waitFor(() => {
             return !result.current.tableProps.loading;
