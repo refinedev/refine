@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { LayoutProps } from "@pankod/refine-core";
-import { Box, CssBaseline } from "@pankod/refine-mui";
+import { Box, CssBaseline, IconButton /* Toolbar */ } from "@pankod/refine-mui";
+import { MenuRounded } from "@mui/icons-material";
 
 import { Header } from "./header";
 import { Sider } from "./sider";
-import { Content } from "./content";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const [collapsed, setCollapsed] = useState(false);
@@ -16,14 +16,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     };
 
     return (
-        <Box sx={{ display: "flex" }}>
+        <Box>
             <CssBaseline />
-            <Header
-                collapsed={collapsed}
-                setCollapsed={setCollapsed}
-                setOpened={setOpened}
-                drawerWidth={drawerWidth()}
-            />
+            {/* <Header setOpened={setOpened} drawerWidth={drawerWidth()} /> */}
             <Sider
                 opened={opened}
                 setOpened={setOpened}
@@ -31,7 +26,36 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 setCollapsed={setCollapsed}
                 drawerWidth={drawerWidth()}
             />
-            <Content>{children}</Content>
+            <Box
+                component="main"
+                sx={{
+                    p: 3,
+                    minHeight: "100vh",
+                    marginLeft: { sm: `${drawerWidth()}px` },
+                    transition:
+                        "margin-left 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+                }}
+            >
+                {/* <Toolbar /> */}
+                {children}
+            </Box>
+            <Box
+                sx={{
+                    display: { xs: "block", sm: "none" },
+                    position: "fixed",
+                    top: "64px",
+                    left: "0px",
+                    borderRadius: "0 6px 6px 0",
+                    bgcolor: "#2a132e",
+                }}
+            >
+                <IconButton
+                    sx={{ color: "#fff" }}
+                    onClick={() => setOpened((prev) => !prev)}
+                >
+                    <MenuRounded />
+                </IconButton>
+            </Box>
         </Box>
     );
 };

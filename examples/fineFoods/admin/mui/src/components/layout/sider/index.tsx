@@ -9,7 +9,6 @@ import {
     useMenu,
     Collapse,
     Tooltip,
-    Toolbar,
     Button,
 } from "@pankod/refine-mui";
 import {
@@ -27,6 +26,7 @@ import {
     useTitle,
     useTranslate,
 } from "@pankod/refine-core";
+import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 
 import { Title as DefaultTitle } from "../title";
 
@@ -65,6 +65,9 @@ export const Sider: React.FC<SiderProps> = ({
             const { icon, label, route, name, children, parentName } = item;
             const isOpen = open[route || ""] || false;
 
+            const isSelected = route === selectedKey;
+            const isNested = !(parentName === undefined);
+
             if (children.length > 0) {
                 return (
                     <div key={route}>
@@ -76,12 +79,17 @@ export const Sider: React.FC<SiderProps> = ({
                         >
                             <ListItemButton
                                 onClick={() => {
-                                    handleClick(route || "");
                                     if (collapsed) {
                                         setCollapsed(false);
+                                        if (!isOpen) {
+                                            handleClick(route || "");
+                                        }
+                                    } else {
+                                        handleClick(route || "");
                                     }
                                 }}
                                 sx={{
+                                    pl: isNested ? 4 : 2,
                                     justifyContent: "center",
                                     color: "#fff",
                                 }}
@@ -117,10 +125,6 @@ export const Sider: React.FC<SiderProps> = ({
                     </div>
                 );
             }
-            const isSelected = route === selectedKey;
-            const isRoute = !(
-                parentName !== undefined && children.length === 0
-            );
 
             return (
                 <CanAccess
@@ -141,8 +145,8 @@ export const Sider: React.FC<SiderProps> = ({
                                 push(route ?? "");
                             }}
                             sx={{
-                                pl: isRoute ? 2 : 4,
-                                py: isRoute ? 1 : 1.25,
+                                pl: isNested ? 4 : 2,
+                                py: isNested ? 1.25 : 1,
                                 justifyContent: "center",
                                 color: "#fff",
                             }}
@@ -168,59 +172,47 @@ export const Sider: React.FC<SiderProps> = ({
     };
 
     const drawer = (
-        <>
-            <Toolbar
-                sx={{
-                    maxHeight: 64,
-                    px: { sm: 0 },
-                    display: "flex",
-                    justifyContent: "center",
-                }}
-            >
-                <Button size="small" variant="text">
-                    <RenderToTitle collapsed={collapsed} />
-                </Button>
-            </Toolbar>
-            <MuiList disablePadding sx={{ mt: 1 }}>
-                {renderTreeView(menuItems, selectedKey)}
-                {isExistAuthentication && (
-                    <Tooltip
-                        title={t("buttons.logout", "Logout")}
-                        placement="right"
-                        disableHoverListener={!collapsed}
-                        arrow
+        <MuiList disablePadding sx={{ mt: 1 }}>
+            {renderTreeView(menuItems, selectedKey)}
+            {isExistAuthentication && (
+                <Tooltip
+                    title={t("buttons.logout", "Logout")}
+                    placement="right"
+                    disableHoverListener={!collapsed}
+                    arrow
+                >
+                    <ListItemButton
+                        key="logout"
+                        onClick={() => logout()}
+                        sx={{ justifyContent: "center", color: "#fff" }}
                     >
-                        <ListItemButton
-                            key="logout"
-                            onClick={() => logout()}
-                            sx={{ justifyContent: "center", color: "#fff" }}
+                        <ListItemIcon
+                            sx={{
+                                justifyContent: "center",
+                                minWidth: 36,
+                                color: "#fff",
+                            }}
                         >
-                            <ListItemIcon
-                                sx={{
-                                    justifyContent: "center",
-                                    minWidth: 36,
-                                    color: "#fff",
-                                }}
-                            >
-                                <Logout />
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={t("buttons.logout", "Logout")}
-                                primaryTypographyProps={{ noWrap: true }}
-                            />
-                        </ListItemButton>
-                    </Tooltip>
-                )}
-            </MuiList>
-        </>
+                            <Logout />
+                        </ListItemIcon>
+                        <ListItemText
+                            primary={t("buttons.logout", "Logout")}
+                            primaryTypographyProps={{ noWrap: true }}
+                        />
+                    </ListItemButton>
+                </Tooltip>
+            )}
+        </MuiList>
     );
 
     return (
         <Box
             component="nav"
             sx={{
+                position: "fixed",
+                zIndex: 1101,
                 width: { sm: drawerWidth },
-                flexShrink: { sm: 0 },
+                display: "flex",
             }}
         >
             <Drawer
@@ -238,6 +230,9 @@ export const Sider: React.FC<SiderProps> = ({
                     },
                 }}
             >
+                <Box sx={{ height: 64, display: "flex", alignItems: "center" }}>
+                    <RenderToTitle collapsed={false} />
+                </Box>
                 {drawer}
             </Drawer>
             <Drawer
@@ -248,11 +243,34 @@ export const Sider: React.FC<SiderProps> = ({
                     "& .MuiDrawer-paper": {
                         width: drawerWidth,
                         bgcolor: "#2a132e",
+                        overflow: "hidden",
+                        transition:
+                            "width 200ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
                     },
                 }}
                 open
             >
-                {drawer}
+                <Box sx={{ height: 64, display: "flex", alignItems: "center" }}>
+                    <RenderToTitle collapsed={collapsed} />
+                </Box>
+                <Box
+                    sx={{ flexGrow: 1, overflowX: "hidden", overflowY: "auto" }}
+                >
+                    {drawer}
+                </Box>
+                <Button
+                    sx={{
+                        color: "#fff",
+                        textAlign: "center",
+                        borderRadius: 0,
+                        borderTop: "1px solid #ffffff1a",
+                    }}
+                    fullWidth
+                    size="large"
+                    onClick={() => setCollapsed((prev) => !prev)}
+                >
+                    {collapsed ? <ChevronRight /> : <ChevronLeft />}
+                </Button>
             </Drawer>
         </Box>
     );

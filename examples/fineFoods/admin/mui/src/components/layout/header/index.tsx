@@ -35,10 +35,10 @@ import { IOrder, IStore, ICourier } from "interfaces";
 import { ColorModeContext } from "contexts";
 
 type HeaderProps = {
-    collapsed: boolean;
-    setCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
     setOpened: React.Dispatch<React.SetStateAction<boolean>>;
     drawerWidth: number;
+    collapsed: boolean;
+    setCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 interface IOptions {
