@@ -31,11 +31,6 @@ import i18n from "i18n";
 import { IOrder, IStore, ICourier } from "interfaces";
 import { ColorModeContext } from "contexts";
 
-type HeaderProps = {
-    setOpened: React.Dispatch<React.SetStateAction<boolean>>;
-    drawerWidth: number;
-};
-
 interface IOptions {
     label: string;
     url: string;
@@ -43,7 +38,7 @@ interface IOptions {
     category: string;
 }
 
-export const Header: React.FC<HeaderProps> = ({ setOpened, drawerWidth }) => {
+export const Header: React.FC = () => {
     const [value, setValue] = useState("");
     const [options, setOptions] = useState<IOptions[]>([]);
 
@@ -138,15 +133,7 @@ export const Header: React.FC<HeaderProps> = ({ setOpened, drawerWidth }) => {
     }, [value]);
 
     return (
-        <AppBar
-            color="default"
-            position="fixed"
-            elevation={1}
-            sx={{
-                width: { sm: `calc(100% - ${drawerWidth}px)` },
-                ml: { sm: `${drawerWidth}px` },
-            }}
-        >
+        <AppBar color="default" position="sticky" elevation={1}>
             <Toolbar>
                 <Stack
                     direction="row"

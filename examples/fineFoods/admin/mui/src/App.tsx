@@ -7,6 +7,7 @@ import {
     DarkTheme,
     LightTheme,
     notificationProviderHandle,
+    Layout,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -34,7 +35,7 @@ import {
 import { LoginPage } from "pages/login";
 import { StoreList, StoreEdit, StoreCreate } from "pages/stores";
 import { ProductList } from "pages/products";
-import { Layout } from "components/layout";
+import { Header } from "components";
 import { ColorModeContext } from "contexts";
 
 const App: React.FC = () => {
@@ -94,6 +95,7 @@ const App: React.FC = () => {
                     DashboardPage={DashboardPage}
                     ReadyPage={ReadyPage}
                     Layout={Layout}
+                    Header={Header}
                     LoginPage={LoginPage}
                     catchAll={<ErrorComponent />}
                     syncWithLocation

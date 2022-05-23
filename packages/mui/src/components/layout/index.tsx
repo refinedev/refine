@@ -26,7 +26,6 @@ export const Layout: React.FC<LayoutProps> = ({
     return (
         <Box>
             <CssBaseline />
-            {Header && <Header />}
             <SiderToRender
                 opened={opened}
                 setOpened={setOpened}
@@ -52,16 +51,25 @@ export const Layout: React.FC<LayoutProps> = ({
                 </IconButton>
             </Box>
             <Box
-                component="main"
                 sx={{
-                    p: 3,
+                    display: "flex",
+                    flexDirection: "column",
                     minHeight: "100vh",
                     marginLeft: { sm: `${drawerWidth()}px` },
                     transition:
                         "margin-left 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
                 }}
             >
-                {children}
+                {Header && <Header />}
+                <Box
+                    component="main"
+                    sx={{
+                        p: 3,
+                        flexGrow: 1,
+                    }}
+                >
+                    {children}
+                </Box>
                 {Footer && <Footer />}
             </Box>
             {OffLayoutArea && <OffLayoutArea />}
