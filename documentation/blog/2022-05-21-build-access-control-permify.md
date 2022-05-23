@@ -11,9 +11,8 @@ hide_table_of_contents: false
 import create_option from '@site/static/img/blog/2022-05-21-build-access-control-permify/create_option.png';
 import create_resource from '@site/static/img/blog/2022-05-21-build-access-control-permify/create_resource.png';
 import create_rule_working_hours from '@site/static/img/blog/2022-05-21-build-access-control-permify/create_rule_working_hours.png';
-import create-rule from '@site/static/img/blog/2022-05-21-build-access-control-permify/create-rule.png';
+import create_rule from '@site/static/img/blog/2022-05-21-build-access-control-permify/create_rule.png';
 import edit_owner_id_attribute from '@site/static/img/blog/2022-05-21-build-access-control-permify/edit_owner_id_attribute.png';
-import create_option from '@site/static/img/blog/2022-05-21-build-access-control-permify/policy_table.png';
 import rule_template from '@site/static/img/blog/2022-05-21-build-access-control-permify/rule_template.png';
 
 ## Build Access Control Mechanism using Permify
