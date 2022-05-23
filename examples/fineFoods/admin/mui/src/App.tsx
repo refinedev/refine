@@ -42,12 +42,19 @@ const App: React.FC = () => {
 
     const [mode, setMode] = useState(colorModeFromLocalStorage || "light");
 
+    const setModeWithLocalStorage = (mode: string) => {
+        window.localStorage.setItem("colorMode", mode);
+        setMode(mode);
+    };
+
     const colorMode = useMemo(
         () => ({
             toggleColorMode: () => {
-                setMode((prevMode) =>
-                    prevMode === "light" ? "dark" : "light",
-                );
+                if (mode === "light") {
+                    setModeWithLocalStorage("dark");
+                } else {
+                    setModeWithLocalStorage("light");
+                }
             },
             mode,
         }),
@@ -55,8 +62,15 @@ const App: React.FC = () => {
     );
 
     useEffect(() => {
-        localStorage.setItem("colorMode", mode);
-    }, [mode]);
+        const localTheme = localStorage.getItem("colorMode");
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches &&
+        !localTheme
+            ? setMode("dark")
+            : localTheme
+            ? setModeWithLocalStorage(localTheme)
+            : setMode("light");
+    }, []);
 
     const { t, i18n } = useTranslation();
     const i18nProvider = {
