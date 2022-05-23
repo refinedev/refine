@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { MenuRounded } from "@mui/icons-material";
 import { LayoutProps } from "@pankod/refine-core";
 
-import { Box, CssBaseline, IconButton } from "@mui/material";
+import { Box, GlobalStyles, IconButton } from "@mui/material";
 
 import { Sider as DefaultSider } from "./sider";
 
@@ -25,7 +25,7 @@ export const Layout: React.FC<LayoutProps> = ({
 
     return (
         <Box>
-            <CssBaseline />
+            <GlobalStyles styles={{ body: { margin: "0px" } }} />
             <SiderToRender
                 opened={opened}
                 setOpened={setOpened}
@@ -66,6 +66,10 @@ export const Layout: React.FC<LayoutProps> = ({
                     sx={{
                         p: 3,
                         flexGrow: 1,
+                        bgcolor: (theme) =>
+                            theme.palette.mode === "light"
+                                ? theme.palette.grey[100]
+                                : theme.palette.grey[900],
                     }}
                 >
                     {children}

@@ -7,7 +7,7 @@ export const darkPalette: PaletteOptions = {
         contrastText: "#fff",
     },
     secondary: {
-        main: "#fa541c",
+        main: "#2a132e",
     },
     error: {
         main: "#fa541c",

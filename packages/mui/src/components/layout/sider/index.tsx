@@ -92,14 +92,13 @@ export const Sider: React.FC<SiderProps> = ({
                                 sx={{
                                     pl: isNested ? 4 : 2,
                                     justifyContent: "center",
-                                    color: "#fff",
                                 }}
                             >
                                 <ListItemIcon
                                     sx={{
                                         justifyContent: "center",
                                         minWidth: 36,
-                                        color: "#fff",
+                                        color: "primary.contrastText",
                                     }}
                                 >
                                     {icon ?? <ListOutlined />}
@@ -149,14 +148,13 @@ export const Sider: React.FC<SiderProps> = ({
                                 pl: isNested ? 4 : 2,
                                 py: isNested ? 1.25 : 1,
                                 justifyContent: "center",
-                                color: "#fff",
                             }}
                         >
                             <ListItemIcon
                                 sx={{
                                     justifyContent: "center",
                                     minWidth: 36,
-                                    color: "#fff",
+                                    color: "primary.contrastText",
                                 }}
                             >
                                 {icon ?? <ListOutlined />}
@@ -173,7 +171,7 @@ export const Sider: React.FC<SiderProps> = ({
     };
 
     const drawer = (
-        <List disablePadding sx={{ mt: 1 }}>
+        <List disablePadding sx={{ mt: 1, color: "primary.contrastText" }}>
             {renderTreeView(menuItems, selectedKey)}
             {isExistAuthentication && (
                 <Tooltip
@@ -185,13 +183,13 @@ export const Sider: React.FC<SiderProps> = ({
                     <ListItemButton
                         key="logout"
                         onClick={() => logout()}
-                        sx={{ justifyContent: "center", color: "#fff" }}
+                        sx={{ justifyContent: "center" }}
                     >
                         <ListItemIcon
                             sx={{
                                 justifyContent: "center",
                                 minWidth: 36,
-                                color: "#fff",
+                                color: "primary.contrastText",
                             }}
                         >
                             <Logout />
@@ -227,7 +225,7 @@ export const Sider: React.FC<SiderProps> = ({
                     display: { xs: "block", sm: "none" },
                     "& .MuiDrawer-paper": {
                         width: 256,
-                        bgcolor: "#2a132e",
+                        bgcolor: "secondary.main",
                     },
                 }}
             >
@@ -243,7 +241,7 @@ export const Sider: React.FC<SiderProps> = ({
                     display: { xs: "none", sm: "block" },
                     "& .MuiDrawer-paper": {
                         width: drawerWidth,
-                        bgcolor: "#2a132e",
+                        bgcolor: "secondary.main",
                         overflow: "hidden",
                         transition:
                             "width 200ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
@@ -261,7 +259,7 @@ export const Sider: React.FC<SiderProps> = ({
                 </Box>
                 <Button
                     sx={{
-                        color: "#fff",
+                        color: "primary.contrastText",
                         textAlign: "center",
                         borderRadius: 0,
                         borderTop: "1px solid #ffffff1a",

@@ -42,7 +42,7 @@ export const Header: React.FC = () => {
     const [value, setValue] = useState("");
     const [options, setOptions] = useState<IOptions[]>([]);
 
-    const colorMode = useContext(ColorModeContext);
+    const { mode, setColorMode } = useContext(ColorModeContext);
 
     const changeLanguage = useSetLocale();
     const locale = useGetLocale();
@@ -216,10 +216,10 @@ export const Header: React.FC = () => {
                     <Stack direction="row" gap="20px" alignItems="center">
                         <IconButton
                             onClick={() => {
-                                colorMode.toggleColorMode();
+                                setColorMode();
                             }}
                         >
-                            {colorMode.mode === "dark" ? (
+                            {mode === "dark" ? (
                                 <LightModeOutlined />
                             ) : (
                                 <DarkModeOutlined />
