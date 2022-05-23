@@ -34,7 +34,7 @@ describe("useTable Hook", () => {
         } = result.current;
 
         expect(dataSource).toHaveLength(2);
-        expect(pagination).toEqual(defaultPagination);
+        expect(pagination).toEqual(expect.objectContaining(defaultPagination));
     });
 
     it("with initial pagination parameters", async () => {
@@ -57,7 +57,7 @@ describe("useTable Hook", () => {
             tableProps: { pagination },
         } = result.current;
 
-        expect(pagination).toEqual(customPagination);
+        expect(pagination).toEqual(expect.objectContaining(customPagination));
     });
 
     it("with custom resource", async () => {

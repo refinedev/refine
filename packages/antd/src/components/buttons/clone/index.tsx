@@ -7,6 +7,7 @@ import {
     useTranslate,
     BaseKey,
     useResource,
+    useRouterContext,
 } from "@pankod/refine-core";
 
 export type CloneButtonProps = ButtonProps & {
@@ -37,7 +38,8 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const { clone } = useNavigation();
+    const { cloneUrl } = useNavigation();
+    const { Link } = useRouterContext();
 
     const translate = useTranslate();
 
@@ -67,18 +69,24 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     };
 
     return (
-        <Button
-            onClick={(e): void =>
-                onClick
-                    ? onClick(e)
-                    : clone(propResourceName ?? resource.route!, id!)
-            }
-            icon={<PlusSquareOutlined />}
-            disabled={data?.can === false}
-            title={createButtonDisabledTitle()}
-            {...rest}
+        <Link
+            to={cloneUrl(propResourceName ?? resource.route!, id!)}
+            replace={false}
+            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+                if (onClick) {
+                    e.preventDefault();
+                    onClick(e);
+                }
+            }}
         >
-            {!hideText && (children ?? translate("buttons.clone", "Clone"))}
-        </Button>
+            <Button
+                icon={<PlusSquareOutlined />}
+                disabled={data?.can === false}
+                title={createButtonDisabledTitle()}
+                {...rest}
+            >
+                {!hideText && (children ?? translate("buttons.clone", "Clone"))}
+            </Button>
+        </Link>
     );
 };

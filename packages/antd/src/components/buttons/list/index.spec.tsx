@@ -1,15 +1,8 @@
 import React from "react";
-import ReactRouterDom, { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import { fireEvent, render, TestWrapper, waitFor } from "@test";
 import { ListButton } from "./";
-
-const mHistory = jest.fn();
-
-jest.mock("react-router-dom", () => ({
-    ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useNavigate: () => mHistory,
-}));
 
 describe("List Button", () => {
     const list = jest.fn();
@@ -177,6 +170,6 @@ describe("List Button", () => {
 
         fireEvent.click(getByText("Posts"));
 
-        expect(mHistory).toBeCalledWith("/custom-route-posts");
+        expect(window.location.pathname).toBe("/custom-route-posts");
     });
 });

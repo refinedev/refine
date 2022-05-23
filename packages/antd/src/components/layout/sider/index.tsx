@@ -9,6 +9,7 @@ import {
     CanAccess,
     ITreeMenu,
     useIsExistAuthentication,
+    useRouterContext,
 } from "@pankod/refine-core";
 
 import { Title as DefaultTitle } from "@components";
@@ -21,11 +22,11 @@ const { SubMenu } = Menu;
 export const Sider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const isExistAuthentication = useIsExistAuthentication();
+    const { Link } = useRouterContext();
     const { mutate: logout } = useLogout();
     const Title = useTitle();
     const translate = useTranslate();
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
-    const { push } = useNavigation();
     const breakpoint = Grid.useBreakpoint();
 
     const isMobile = !breakpoint.lg;
@@ -59,15 +60,12 @@ export const Sider: React.FC = () => {
                 >
                     <Menu.Item
                         key={selectedKey}
-                        onClick={() => {
-                            push(route ?? "");
-                        }}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
                         icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
-                        {label}
+                        <Link to={route}>{label}</Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
@@ -91,23 +89,20 @@ export const Sider: React.FC = () => {
                 selectedKeys={[selectedKey]}
                 defaultOpenKeys={defaultOpenKeys}
                 mode="inline"
-                onClick={({ key }) => {
-                    if (key === "logout") {
-                        logout();
-                        return;
-                    }
-
+                onClick={() => {
                     if (!breakpoint.lg) {
                         setCollapsed(true);
                     }
-
-                    push(key as string);
                 }}
             >
                 {renderTreeView(menuItems, selectedKey)}
 
                 {isExistAuthentication && (
-                    <Menu.Item key="logout" icon={<LogoutOutlined />}>
+                    <Menu.Item
+                        key="logout"
+                        onClick={() => logout()}
+                        icon={<LogoutOutlined />}
+                    >
                         {translate("buttons.logout", "Logout")}
                     </Menu.Item>
                 )}

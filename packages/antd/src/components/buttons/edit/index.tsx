@@ -7,6 +7,7 @@ import {
     useTranslate,
     BaseKey,
     useResource,
+    useRouterContext,
 } from "@pankod/refine-core";
 
 export type EditButtonProps = ButtonProps & {
@@ -39,7 +40,8 @@ export const EditButton: React.FC<EditButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const { edit } = useNavigation();
+    const { editUrl } = useNavigation();
+    const { Link } = useRouterContext();
 
     const { resourceName, id, resource } = useResource({
         resourceName: propResourceName,
@@ -67,18 +69,24 @@ export const EditButton: React.FC<EditButtonProps> = ({
     };
 
     return (
-        <Button
-            onClick={(e): void =>
-                onClick
-                    ? onClick(e)
-                    : edit(propResourceName ?? resource.route!, id!)
-            }
-            icon={<EditOutlined />}
-            disabled={data?.can === false}
-            title={createButtonDisabledTitle()}
-            {...rest}
+        <Link
+            to={editUrl(propResourceName ?? resource.route!, id!)}
+            replace={false}
+            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+                if (onClick) {
+                    e.preventDefault();
+                    onClick(e);
+                }
+            }}
         >
-            {!hideText && (children ?? translate("buttons.edit", "Edit"))}
-        </Button>
+            <Button
+                icon={<EditOutlined />}
+                disabled={data?.can === false}
+                title={createButtonDisabledTitle()}
+                {...rest}
+            >
+                {!hideText && (children ?? translate("buttons.edit", "Edit"))}
+            </Button>
+        </Link>
     );
 };
