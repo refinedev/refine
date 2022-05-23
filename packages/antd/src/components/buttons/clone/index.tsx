@@ -71,6 +71,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     return (
         <Link
             to={cloneUrl(propResourceName ?? resource.route!, id!)}
+            href={cloneUrl(propResourceName ?? resource.route!, id!)}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
                 if (onClick) {

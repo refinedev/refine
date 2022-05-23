@@ -72,6 +72,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     return (
         <Link
             to={showUrl(propResourceName ?? resource.route!, id!)}
+            href={showUrl(propResourceName ?? resource.route!, id!)}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
                 if (onClick) {
