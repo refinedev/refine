@@ -23,38 +23,42 @@ jest.mock("react-router-dom", () => ({
 }));
 
 const defaultProps = {
-    drawerOpen: true,
-    toggleDrawer: jest.fn(),
+    opened: true,
+    setOpened: jest.fn(),
+    collapsed: true,
+    setCollapsed: jest.fn(),
+    drawerWidth: 256,
 };
 
 describe("Sider", () => {
     it("should render successful", async () => {
-        const { getByText } = render(<Sider {...defaultProps} />, {
+        const { getAllByText } = render(<Sider {...defaultProps} />, {
             wrapper: TestWrapper({}),
         });
 
-        await waitFor(() => getByText("Posts"));
+        await waitFor(() => getAllByText("Posts"));
+        expect(getAllByText("Posts")).toHaveLength(2);
     });
 
     it("should render logout menu item successful", async () => {
-        const { getByText } = render(<Sider {...defaultProps} />, {
+        const { getAllByText } = render(<Sider {...defaultProps} />, {
             wrapper: TestWrapper({
                 authProvider: mockAuthProvider,
             }),
         });
 
-        await waitFor(() => getByText("Posts"));
-        getByText("Logout");
+        await waitFor(() => getAllByText("Posts"));
+        expect(getAllByText("Logout")).toHaveLength(2);
     });
 
     it("should work menu item click", async () => {
-        const { getByText } = render(<Sider {...defaultProps} />, {
+        const { getAllByText } = render(<Sider {...defaultProps} />, {
             wrapper: TestWrapper({
                 authProvider: mockAuthProvider,
             }),
         });
 
-        await waitFor(() => fireEvent.click(getByText("Posts")));
+        await waitFor(() => fireEvent.click(getAllByText("Posts")[0]));
         expect(mHistory).toBeCalledWith("/posts", undefined);
     });
 
@@ -63,14 +67,14 @@ describe("Sider", () => {
             ...mockAuthProvider,
             logout: jest.fn().mockImplementation(() => Promise.resolve()),
         };
-        const { getByText } = render(<Sider {...defaultProps} />, {
+        const { getAllByText } = render(<Sider {...defaultProps} />, {
             wrapper: TestWrapper({
                 authProvider: logoutMockedAuthProvider,
             }),
         });
 
         await act(async () => {
-            fireEvent.click(getByText("Logout"));
+            fireEvent.click(getAllByText("Logout")[0]);
         });
 
         expect(logoutMockedAuthProvider.logout).toBeCalledTimes(1);
@@ -89,24 +93,27 @@ describe("Sider", () => {
     });
 
     it("should render only allowed menu items", async () => {
-        const { getByText, queryByText } = render(<Sider {...defaultProps} />, {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }, { name: "users" }],
-                accessControlProvider: {
-                    can: ({ action, resource }) => {
-                        if (action === "list" && resource === "posts") {
-                            return Promise.resolve({ can: true });
-                        }
-                        if (action === "list" && resource === "users") {
+        const { getAllByText, queryByText } = render(
+            <Sider {...defaultProps} />,
+            {
+                wrapper: TestWrapper({
+                    resources: [{ name: "posts" }, { name: "users" }],
+                    accessControlProvider: {
+                        can: ({ action, resource }) => {
+                            if (action === "list" && resource === "posts") {
+                                return Promise.resolve({ can: true });
+                            }
+                            if (action === "list" && resource === "users") {
+                                return Promise.resolve({ can: false });
+                            }
                             return Promise.resolve({ can: false });
-                        }
-                        return Promise.resolve({ can: false });
+                        },
                     },
-                },
-            }),
-        });
+                }),
+            },
+        );
 
-        await waitFor(() => getByText("Posts"));
+        await waitFor(() => getAllByText("Posts"));
         await waitFor(() => expect(queryByText("Users")).toBeNull());
     });
 });
