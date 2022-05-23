@@ -22,9 +22,6 @@ import {
     useSetLocale,
 } from "@pankod/refine-core";
 import {
-    ChevronLeft,
-    ChevronRight,
-    MenuRounded,
     SearchOutlined,
     DarkModeOutlined,
     LightModeOutlined,
@@ -37,8 +34,6 @@ import { ColorModeContext } from "contexts";
 type HeaderProps = {
     setOpened: React.Dispatch<React.SetStateAction<boolean>>;
     drawerWidth: number;
-    collapsed: boolean;
-    setCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 interface IOptions {
@@ -48,12 +43,7 @@ interface IOptions {
     category: string;
 }
 
-export const Header: React.FC<HeaderProps> = ({
-    collapsed,
-    setCollapsed,
-    setOpened,
-    drawerWidth,
-}) => {
+export const Header: React.FC<HeaderProps> = ({ setOpened, drawerWidth }) => {
     const [value, setValue] = useState("");
     const [options, setOptions] = useState<IOptions[]>([]);
 
@@ -165,20 +155,6 @@ export const Header: React.FC<HeaderProps> = ({
                     alignItems="center"
                 >
                     <Stack direction="row" flex={1}>
-                        <IconButton
-                            edge="start"
-                            sx={{ display: { xs: "none", sm: "flex" } }}
-                            onClick={() => setCollapsed((prev) => !prev)}
-                        >
-                            {collapsed ? <ChevronRight /> : <ChevronLeft />}
-                        </IconButton>
-                        <IconButton
-                            edge="start"
-                            sx={{ display: { sm: "none" } }}
-                            onClick={() => setOpened((prev) => !prev)}
-                        >
-                            <MenuRounded />
-                        </IconButton>
                         <Autocomplete
                             sx={{
                                 maxWidth: 550,
