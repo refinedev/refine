@@ -251,7 +251,7 @@ export const Header: React.FC<HeaderProps> = ({ setOpened, drawerWidth }) => {
                                         <MenuItem
                                             selected={currentLocale === lang}
                                             key={lang}
-                                            defaultValue="en"
+                                            defaultValue={lang}
                                             onClick={() => {
                                                 changeLanguage(lang);
                                             }}
