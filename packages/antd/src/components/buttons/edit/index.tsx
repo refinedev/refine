@@ -40,7 +40,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const { editUrl } = useNavigation();
+    const { editUrl: generateEditUrl } = useNavigation();
     const { Link } = useRouterContext();
 
     const { resourceName, id, resource } = useResource({
@@ -68,10 +68,12 @@ export const EditButton: React.FC<EditButtonProps> = ({
             );
     };
 
+    const editUrl = generateEditUrl(propResourceName ?? resource.route!, id!);
+
     return (
         <Link
-            to={editUrl(propResourceName ?? resource.route!, id!)}
-            href={editUrl(propResourceName ?? resource.route!, id!)}
+            to={editUrl}
+            href={editUrl}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
                 if (onClick) {

@@ -36,7 +36,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const { listUrl } = useNavigation();
+    const { listUrl: generateListUrl } = useNavigation();
     const { Link } = useRouterContext();
     const translate = useTranslate();
 
@@ -63,10 +63,12 @@ export const ListButton: React.FC<ListButtonProps> = ({
             );
     };
 
+    const listUrl = generateListUrl(propResourceName ?? resource.route!);
+
     return (
         <Link
-            to={listUrl(propResourceName ?? resource.route!)}
-            href={listUrl(propResourceName ?? resource.route!)}
+            to={listUrl}
+            href={listUrl}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
                 if (onClick) {

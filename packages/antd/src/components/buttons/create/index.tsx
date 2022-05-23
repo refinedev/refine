@@ -39,7 +39,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
 
     const { Link } = useRouterContext();
 
-    const { createUrl } = useNavigation();
+    const { createUrl: generateCreateUrl } = useNavigation();
 
     const { resourceName, resource } = useResource({
         resourceName: propResourceName,
@@ -64,10 +64,12 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
             );
     };
 
+    const createUrl = generateCreateUrl(propResourceName ?? resource.route!);
+
     return (
         <Link
-            to={createUrl(propResourceName ?? resource.route!)}
-            href={createUrl(propResourceName ?? resource.route!)}
+            to={createUrl}
+            href={createUrl}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
                 if (onClick) {
