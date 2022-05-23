@@ -20,25 +20,15 @@ import { IStore } from "interfaces";
 export const StoreEdit: React.FC = () => {
     const t = useTranslate();
     const {
-        refineCore: { onFinish },
         register,
         control,
-        handleSubmit,
         formState: { errors },
-    } = useForm<IStore>({
-        refineCoreProps: {
-            resource: "stores",
-        },
-    });
+        saveButtonProps,
+        getValues,
+    } = useForm<IStore>();
 
     return (
-        <Edit
-            saveButtonProps={{
-                onClick: () => {
-                    handleSubmit(onFinish)();
-                },
-            }}
-        >
+        <Edit saveButtonProps={saveButtonProps}>
             <form>
                 <Grid
                     container
@@ -87,7 +77,9 @@ export const StoreEdit: React.FC = () => {
                                 </FormLabel>
                                 <TextField
                                     {...register("title", {
-                                        required: "Title is required",
+                                        required: t("errors.required.field", {
+                                            field: "Title",
+                                        }),
                                     })}
                                     size="small"
                                     margin="none"
@@ -113,7 +105,9 @@ export const StoreEdit: React.FC = () => {
                                 </FormLabel>
                                 <TextField
                                     {...register("email", {
-                                        required: "Email is required",
+                                        required: t("errors.required.field", {
+                                            field: "Email",
+                                        }),
                                     })}
                                     size="small"
                                     margin="none"
@@ -139,7 +133,9 @@ export const StoreEdit: React.FC = () => {
                                 </FormLabel>
                                 <TextField
                                     {...register("gsm", {
-                                        required: "Phone is required",
+                                        required: t("errors.required.field", {
+                                            field: "Phone",
+                                        }),
                                     })}
                                     size="small"
                                     margin="none"
@@ -152,17 +148,28 @@ export const StoreEdit: React.FC = () => {
                                 )}
                             </FormControl>
                             <FormControl>
-                                <FormLabel sx={{ marginTop: "10px" }} required>
+                                <FormLabel
+                                    sx={{
+                                        marginBottom: "8px",
+                                        fontWeight: "700",
+                                        fontSize: "14px",
+                                        color: "text.primary",
+                                    }}
+                                    required
+                                >
                                     {t("products.fields.isActive")}
                                 </FormLabel>
                                 <Controller
                                     control={control}
                                     name="isActive"
-                                    defaultValue={""}
-                                    rules={{ required: true }}
+                                    rules={{
+                                        required: t("errors.required.common"),
+                                    }}
+                                    defaultValue=""
                                     render={({ field }) => (
                                         <RadioGroup
                                             id="isActive"
+                                            defaultValue={getValues("isActive")}
                                             {...field}
                                             row
                                         >
@@ -179,6 +186,11 @@ export const StoreEdit: React.FC = () => {
                                         </RadioGroup>
                                     )}
                                 />
+                                {errors.isActive && (
+                                    <FormHelperText error>
+                                        {errors.isActive.message}
+                                    </FormHelperText>
+                                )}
                             </FormControl>
                         </Stack>
                     </Grid>
@@ -197,7 +209,9 @@ export const StoreEdit: React.FC = () => {
                             </FormLabel>
                             <TextField
                                 {...register("address.text", {
-                                    required: "Address is required",
+                                    required: t("errors.required.field", {
+                                        field: "Address",
+                                    }),
                                 })}
                                 margin="none"
                                 variant="outlined"
