@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 
 type ColorModeContextType = {
     mode: string;
-    setColorMode: () => void;
+    setMode: () => void;
 };
 
 export const ColorModeContext = createContext<ColorModeContextType>(
@@ -35,7 +35,7 @@ export const ColorModeContextProvider: React.FC = ({ children }) => {
     return (
         <ColorModeContext.Provider
             value={{
-                setColorMode,
+                setMode: setColorMode,
                 mode,
             }}
         >
