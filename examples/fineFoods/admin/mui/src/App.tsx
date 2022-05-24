@@ -39,6 +39,7 @@ import { StoreList, StoreEdit, StoreCreate } from "pages/stores";
 import { ProductList } from "pages/products";
 import { Header } from "components";
 import { ColorModeContext } from "contexts";
+import { BikeWhiteIcon } from "components/icons/bike-white";
 
 const App: React.FC = () => {
     const { mode } = useContext(ColorModeContext);
@@ -77,26 +78,6 @@ const App: React.FC = () => {
                         icon: <AddShoppingCartOutlined />,
                     },
                     {
-                        name: "couriers",
-                        list: CourierList,
-                        show: CourierShow,
-                        create: CourierCreate,
-                        edit: CourierEdit,
-                        icon: <BikeScooterOutlined />,
-                    },
-                    {
-                        name: "reviews",
-                        list: ReviewsList,
-                        icon: <StarBorderOutlined />,
-                    },
-                    {
-                        name: "stores",
-                        list: StoreList,
-                        edit: StoreEdit,
-                        create: StoreCreate,
-                        icon: <StoreOutlined />,
-                    },
-                    {
                         name: "users",
                         list: UserList,
                         show: UserShow,
@@ -106,6 +87,26 @@ const App: React.FC = () => {
                         name: "products",
                         list: ProductList,
                         icon: <LocalPizzaOutlined />,
+                    },
+                    {
+                        name: "stores",
+                        list: StoreList,
+                        edit: StoreEdit,
+                        create: StoreCreate,
+                        icon: <StoreOutlined />,
+                    },
+                    {
+                        name: "couriers",
+                        list: CourierList,
+                        show: CourierShow,
+                        create: CourierCreate,
+                        edit: CourierEdit,
+                        icon: <BikeWhiteIcon />,
+                    },
+                    {
+                        name: "reviews",
+                        list: ReviewsList,
+                        icon: <StarBorderOutlined />,
                     },
                 ]}
             />
