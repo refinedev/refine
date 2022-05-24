@@ -20,9 +20,7 @@ export interface CustomTheme {
 }
 
 declare module "@pankod/refine-mui" {
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
     interface Theme extends import("@pankod/refine-mui").Theme, CustomTheme {}
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
     interface ThemeOptions
         extends import("@pankod/refine-mui").ThemeOptions,
             CustomTheme {}
