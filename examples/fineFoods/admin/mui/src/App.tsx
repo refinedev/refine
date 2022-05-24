@@ -16,6 +16,7 @@ import { useTranslation } from "react-i18next";
 import {
     AddShoppingCartOutlined,
     StarBorderOutlined,
+    CategoryOutlined,
     BikeScooterOutlined,
     StoreOutlined,
     LocalPizzaOutlined,
@@ -36,6 +37,7 @@ import {
 import { LoginPage } from "pages/login";
 import { StoreList, StoreEdit, StoreCreate } from "pages/stores";
 import { ProductList } from "pages/products";
+import { CategoryList } from "pages/categories";
 
 const App: React.FC = () => {
     const { t, i18n } = useTranslation();
@@ -77,6 +79,29 @@ const App: React.FC = () => {
                         icon: <AddShoppingCartOutlined />,
                     },
                     {
+                        name: "users",
+                        list: UserList,
+                        show: UserShow,
+                        icon: <PeopleOutlineOutlined />,
+                    },
+                    {
+                        name: "products",
+                        list: ProductList,
+                        icon: <LocalPizzaOutlined />,
+                    },
+                    {
+                        name: "stores",
+                        list: StoreList,
+                        edit: StoreEdit,
+                        create: StoreCreate,
+                        icon: <StoreOutlined />,
+                    },
+                    {
+                        name: "categories",
+                        list: CategoryList,
+                        icon: <CategoryOutlined />,
+                    },
+                    {
                         name: "couriers",
                         list: CourierList,
                         show: CourierShow,
@@ -88,24 +113,6 @@ const App: React.FC = () => {
                         name: "reviews",
                         list: ReviewsList,
                         icon: <StarBorderOutlined />,
-                    },
-                    {
-                        name: "stores",
-                        list: StoreList,
-                        edit: StoreEdit,
-                        create: StoreCreate,
-                        icon: <StoreOutlined />,
-                    },
-                    {
-                        name: "users",
-                        list: UserList,
-                        show: UserShow,
-                        icon: <PeopleOutlineOutlined />,
-                    },
-                    {
-                        name: "products",
-                        list: ProductList,
-                        icon: <LocalPizzaOutlined />,
                     },
                 ]}
             />
