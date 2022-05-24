@@ -4,8 +4,6 @@ import {
     ErrorComponent,
     ReadyPage,
     ThemeProvider,
-    DarkTheme,
-    LightTheme,
     notificationProviderHandle,
     Layout,
     GlobalStyles,
@@ -24,6 +22,7 @@ import {
 } from "@mui/icons-material";
 
 import { authProvider } from "authProvider";
+import { DarkTheme, LightTheme } from "theme";
 import { DashboardPage } from "pages/dashboard";
 import { OrderList, OrderShow } from "pages/orders";
 import { UserList, UserShow } from "pages/users";
