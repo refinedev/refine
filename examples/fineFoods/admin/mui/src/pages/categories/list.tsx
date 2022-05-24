@@ -1,15 +1,9 @@
 import React, { useCallback } from "react";
 import { useTranslate, IResourceComponentsProps } from "@pankod/refine-core";
-import { ICategory } from "interfaces";
+import { ICategory, ICourier, IProduct } from "interfaces";
 
-import { useForm, Controller } from "@pankod/refine-react-hook-form";
-
-import {
-    useTable,
-    Column,
-    usePagination,
-    useExpanded,
-} from "@pankod/refine-react-table";
+import { useForm, useModalForm } from "@pankod/refine-react-hook-form";
+import { useTable, Column, useExpanded } from "@pankod/refine-react-table";
 import {
     Edit,
     AddCircleOutline,
@@ -34,14 +28,22 @@ import {
     IconButton,
     Typography,
     TablePagination,
+    useDataGrid,
+    Avatar,
+    GridColumns,
+    DataGrid,
+    Paper,
+    DateField,
+    NumberField,
+    GridActionsCellItem,
 } from "@pankod/refine-mui";
+import { EditProduct } from "components";
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const {
         refineCore: { onFinish, id, setId },
         register,
         handleSubmit,
-        control,
     } = useForm<ICategory>({
         refineCoreProps: {
             redirect: false,
@@ -125,11 +127,11 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
         gotoPage,
         setPageSize,
         prepareRow,
-        state: { pageIndex, pageSize, filters },
+        state: { pageIndex, pageSize },
     } = useTable<ICategory>({ columns }, useExpanded);
 
     const renderRowSubComponent = useCallback(
-        ({ row }) => <div>EXPANDED</div>,
+        ({ row }) => <CategoryProductsTable record={row.original} />,
         [],
     );
 
@@ -305,6 +307,131 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                     }}
                 />
             </form>
+        </List>
+    );
+};
+
+const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
+    const t = useTranslate();
+
+    const columns = React.useMemo<GridColumns<IProduct>>(
+        () => [
+            {
+                field: "image",
+                // eslint-disable-next-line react/display-name
+                renderHeader: () => <></>,
+                filterable: false,
+                filterOperators: undefined,
+                disableColumnMenu: true,
+                hideSortIcons: true,
+
+                // eslint-disable-next-line react/display-name
+                renderCell: ({ row }) => (
+                    <Avatar
+                        alt={`${row.name}`}
+                        src={row.images[0]?.url}
+                        sx={{ width: 74, height: 74 }}
+                    />
+                ),
+            },
+            {
+                field: "name",
+                headerName: t("products.fields.name"),
+                flex: 1,
+            },
+            {
+                field: "price",
+                headerName: t("products.fields.price"),
+                // eslint-disable-next-line react/display-name
+                renderCell: ({ value }) => (
+                    <NumberField
+                        options={{
+                            currency: "USD",
+                            style: "currency",
+                            notation: "compact",
+                        }}
+                        value={value / 100}
+                    />
+                ),
+            },
+            {
+                field: "isActive",
+
+                headerName: t("products.fields.isActive"),
+                // eslint-disable-next-line react/display-name
+                renderCell: ({ row }) => {
+                    console.log("row", row.name, typeof row.isActive);
+
+                    return <BooleanField value={row.isActive} />;
+                },
+            },
+            {
+                field: "createdAt",
+                headerName: t("products.fields.createdAt"),
+                // eslint-disable-next-line react/display-name
+                renderCell: ({ row }) => (
+                    <DateField value={row.createdAt} format="LLL" />
+                ),
+                flex: 1,
+            },
+
+            {
+                field: "actions",
+                headerName: t("table.actions"),
+                type: "actions",
+                getActions: ({ row }) => [
+                    <GridActionsCellItem
+                        key={1}
+                        label={t("buttons.edit")}
+                        icon={<Edit />}
+                        onClick={() => showEditDrawer(row.id)}
+                        showInMenu
+                    />,
+                ],
+            },
+        ],
+        [],
+    );
+
+    const { dataGridProps } = useDataGrid<IProduct>({
+        columns,
+        resource: "products",
+        permanentFilter: [
+            {
+                field: "category.id",
+                operator: "eq",
+                value: record.id,
+            },
+        ],
+        syncWithLocation: false,
+    });
+
+    const editDrawerFormProps = useModalForm<IProduct>({
+        refineCoreProps: {
+            action: "edit",
+            resource: "products",
+            redirect: false,
+        },
+    });
+
+    const {
+        modal: { show: showEditDrawer },
+    } = editDrawerFormProps;
+
+    return (
+        <List
+            cardHeaderProps={{
+                title: t("products.products"),
+            }}
+        >
+            <DataGrid
+                {...dataGridProps}
+                rowHeight={80}
+                autoHeight
+                density="comfortable"
+                rowsPerPageOptions={[5, 10, 25, 50, 100]}
+            />
+            <EditProduct {...editDrawerFormProps} />
         </List>
     );
 };
