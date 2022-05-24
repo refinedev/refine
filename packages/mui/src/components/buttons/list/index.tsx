@@ -5,6 +5,7 @@ import {
     useTranslate,
     userFriendlyResourceName,
     useResource,
+    useRouterContext,
 } from "@pankod/refine-core";
 
 import { Button, ButtonProps } from "@mui/material";
@@ -34,7 +35,8 @@ export const ListButton: React.FC<ListButtonProps> = ({
         resourceNameOrRouteName,
     });
 
-    const { list } = useNavigation();
+    const { listUrl: generateListUrl } = useNavigation();
+    const { Link } = useRouterContext();
 
     const translate = useTranslate();
 
@@ -56,28 +58,40 @@ export const ListButton: React.FC<ListButtonProps> = ({
             );
     };
 
+    const listUrl = generateListUrl(resource.route!);
+
     return (
-        <Button
-            onClick={(e): void =>
-                onClick ? onClick(e) : list(resource.route!, "push")
-            }
-            disabled={data?.can === false}
-            startIcon={!hideText && <ListOutlinedIcon />}
-            title={disabledTitle()}
-            {...rest}
+        <Link
+            to={listUrl}
+            href={listUrl}
+            replace={false}
+            onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+                if (onClick) {
+                    e.preventDefault();
+                    onClick(e);
+                }
+            }}
+            style={{ textDecoration: "none" }}
         >
-            {hideText ? (
-                <ListOutlinedIcon />
-            ) : (
-                children ??
-                translate(
-                    `${resourceName}.titles.list`,
-                    userFriendlyResourceName(
-                        resource.label ?? resourceName,
-                        "plural",
-                    ),
-                )
-            )}
-        </Button>
+            <Button
+                disabled={data?.can === false}
+                startIcon={!hideText && <ListOutlinedIcon />}
+                title={disabledTitle()}
+                {...rest}
+            >
+                {hideText ? (
+                    <ListOutlinedIcon />
+                ) : (
+                    children ??
+                    translate(
+                        `${resourceName}.titles.list`,
+                        userFriendlyResourceName(
+                            resource.label ?? resourceName,
+                            "plural",
+                        ),
+                    )
+                )}
+            </Button>
+        </Link>
     );
 };

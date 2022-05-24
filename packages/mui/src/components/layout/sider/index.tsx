@@ -23,9 +23,9 @@ import {
     ITreeMenu,
     useIsExistAuthentication,
     useLogout,
-    useNavigation,
     useTitle,
     useTranslate,
+    useRouterContext,
 } from "@pankod/refine-core";
 
 import { useMenu } from "@hooks";
@@ -47,7 +47,8 @@ export const Sider: React.FC<SiderProps> = ({
     drawerWidth,
 }) => {
     const t = useTranslate();
-    const { push } = useNavigation();
+    const { Link } = useRouterContext();
+
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const isExistAuthentication = useIsExistAuthentication();
     const { mutate: logout } = useLogout();
@@ -145,10 +146,12 @@ export const Sider: React.FC<SiderProps> = ({
                         arrow
                     >
                         <ListItemButton
+                            component={Link}
+                            href={route}
+                            to={route}
                             selected={isSelected}
                             onClick={() => {
                                 setOpened(false);
-                                push(route ?? "");
                             }}
                             sx={{
                                 pl: isNested ? 4 : 2,

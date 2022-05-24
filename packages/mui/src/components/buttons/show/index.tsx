@@ -6,6 +6,7 @@ import {
     useTranslate,
     BaseKey,
     useResource,
+    useRouterContext,
 } from "@pankod/refine-core";
 
 import { Button, ButtonProps } from "@mui/material";
@@ -38,7 +39,8 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
         recordItemId,
     });
 
-    const { show } = useNavigation();
+    const { showUrl: generateShowUrl } = useNavigation();
+    const { Link } = useRouterContext();
 
     const translate = useTranslate();
 
@@ -61,21 +63,33 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
             );
     };
 
+    const showUrl = generateShowUrl(resource.route!, id!);
+
     return (
-        <Button
-            onClick={(e): void =>
-                onClick ? onClick(e) : show(resource.route!, id!)
-            }
-            disabled={data?.can === false}
-            startIcon={!hideText && <VisibilityOutlinedIcon />}
-            title={disabledTitle()}
-            {...rest}
+        <Link
+            to={showUrl}
+            href={showUrl}
+            replace={false}
+            onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+                if (onClick) {
+                    e.preventDefault();
+                    onClick(e);
+                }
+            }}
+            style={{ textDecoration: "none" }}
         >
-            {hideText ? (
-                <VisibilityOutlinedIcon />
-            ) : (
-                children ?? translate("buttons.show", "Show")
-            )}
-        </Button>
+            <Button
+                disabled={data?.can === false}
+                startIcon={!hideText && <VisibilityOutlinedIcon />}
+                title={disabledTitle()}
+                {...rest}
+            >
+                {hideText ? (
+                    <VisibilityOutlinedIcon />
+                ) : (
+                    children ?? translate("buttons.show", "Show")
+                )}
+            </Button>
+        </Link>
     );
 };

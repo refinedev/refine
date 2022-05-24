@@ -5,6 +5,7 @@ import {
     useTranslate,
     useCan,
     useResource,
+    useRouterContext,
 } from "@pankod/refine-core";
 
 import { Button, ButtonProps } from "@mui/material";
@@ -33,9 +34,10 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
         resourceNameOrRouteName,
     });
 
-    const translate = useTranslate();
+    const { Link } = useRouterContext();
+    const { createUrl: generateCreateUrl } = useNavigation();
 
-    const { create } = useNavigation();
+    const translate = useTranslate();
 
     const { data } = useCan({
         resource: resourceName,
@@ -55,21 +57,33 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
             );
     };
 
+    const createUrl = generateCreateUrl(resource.route!);
+
     return (
-        <Button
-            onClick={(e): void =>
-                onClick ? onClick(e) : create(resource.route!, "push")
-            }
-            disabled={data?.can === false}
-            startIcon={!hideText && <AddBoxOutlinedIcon />}
-            title={disabledTitle()}
-            {...rest}
+        <Link
+            to={createUrl}
+            href={createUrl}
+            replace={false}
+            onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+                if (onClick) {
+                    e.preventDefault();
+                    onClick(e);
+                }
+            }}
+            style={{ textDecoration: "none" }}
         >
-            {hideText ? (
-                <AddBoxOutlinedIcon />
-            ) : (
-                children ?? translate("buttons.create", "Create")
-            )}
-        </Button>
+            <Button
+                disabled={data?.can === false}
+                startIcon={!hideText && <AddBoxOutlinedIcon />}
+                title={disabledTitle()}
+                {...rest}
+            >
+                {hideText ? (
+                    <AddBoxOutlinedIcon />
+                ) : (
+                    children ?? translate("buttons.create", "Create")
+                )}
+            </Button>
+        </Link>
     );
 };
