@@ -105,7 +105,13 @@ export const Sider: React.FC<SiderProps> = ({
                                 </ListItemIcon>
                                 <ListItemText
                                     primary={label}
-                                    primaryTypographyProps={{ noWrap: true }}
+                                    primaryTypographyProps={{
+                                        noWrap: true,
+                                        fontSize: "14px",
+                                        fontWeight: isSelected
+                                            ? "bold"
+                                            : "normal",
+                                    }}
                                 />
                                 {!collapsed &&
                                     (isOpen ? <ExpandLess /> : <ExpandMore />)}
@@ -161,7 +167,11 @@ export const Sider: React.FC<SiderProps> = ({
                             </ListItemIcon>
                             <ListItemText
                                 primary={label}
-                                primaryTypographyProps={{ noWrap: true }}
+                                primaryTypographyProps={{
+                                    noWrap: true,
+                                    fontSize: "14px",
+                                    fontWeight: isSelected ? "bold" : "normal",
+                                }}
                             />
                         </ListItemButton>
                     </Tooltip>
@@ -196,7 +206,10 @@ export const Sider: React.FC<SiderProps> = ({
                         </ListItemIcon>
                         <ListItemText
                             primary={t("buttons.logout", "Logout")}
-                            primaryTypographyProps={{ noWrap: true }}
+                            primaryTypographyProps={{
+                                noWrap: true,
+                                fontSize: "14px",
+                            }}
                         />
                     </ListItemButton>
                 </Tooltip>
@@ -259,6 +272,7 @@ export const Sider: React.FC<SiderProps> = ({
                 </Box>
                 <Button
                     sx={{
+                        background: "rgba(0,0,0,.5)",
                         color: "primary.contrastText",
                         textAlign: "center",
                         borderRadius: 0,
