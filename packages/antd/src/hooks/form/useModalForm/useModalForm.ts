@@ -160,6 +160,7 @@ export const useModalForm = <
         close: handleClose,
         formProps: {
             ...modalFormProps,
+            ...useFormProps.formProps,
             onValuesChange: formProps?.onValuesChange,
             onKeyUp: formProps?.onKeyUp,
             onFinish: formProps?.onFinish,
@@ -179,6 +180,7 @@ export const useModalForm = <
             cancelText: translate("buttons.cancel", "Cancel"),
             onCancel: handleClose,
             getContainer: false,
+            forceRender: true,
         },
         formLoading,
     };
