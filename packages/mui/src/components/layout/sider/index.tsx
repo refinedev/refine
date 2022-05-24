@@ -245,7 +245,14 @@ export const Sider: React.FC<SiderProps> = ({
                     },
                 }}
             >
-                <Box sx={{ height: 64, display: "flex", alignItems: "center" }}>
+                <Box
+                    sx={{
+                        height: 64,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}
+                >
                     <RenderToTitle collapsed={false} />
                 </Box>
                 {drawer}
@@ -265,7 +272,14 @@ export const Sider: React.FC<SiderProps> = ({
                 }}
                 open
             >
-                <Box sx={{ height: 64, display: "flex", alignItems: "center" }}>
+                <Box
+                    sx={{
+                        height: 64,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}
+                >
                     <RenderToTitle collapsed={collapsed} />
                 </Box>
                 <Box

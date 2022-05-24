@@ -37,6 +37,7 @@ export const OrderTimeline: React.FC = () => {
                 },
             ],
             initialPageSize: 5,
+            syncWithLocation: false,
         });
 
     const { data } = tableQueryResult;
