@@ -991,10 +991,26 @@ export const PostEdit: React.FC = () => {
     return (
         <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
-                <Form.Item label="Title" name="title">
+                <Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
                     <Input />
                 </Form.Item>
-                <Form.Item label="Status" name="status">
+                <Form.Item
+                    label="Status"
+                    name="status"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
                     <Select
                         options={[
                             {
@@ -1012,7 +1028,15 @@ export const PostEdit: React.FC = () => {
                         ]}
                     />
                 </Form.Item>
-                <Form.Item label="Category" name={["category", "id"]}>
+                <Form.Item
+                    label="Category"
+                    name={["category", "id"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
                     <Select {...categorySelectProps} />
                 </Form.Item>
             </Form>
@@ -1238,10 +1262,26 @@ export const PostCreate = () => {
         // highlight-start
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
-                <Form.Item label="Title" name="title">
+                <Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
                     <Input />
                 </Form.Item>
-                <Form.Item label="Status" name="status">
+                <Form.Item
+                    label="Status"
+                    name="status"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
                     <Select
                         options={[
                             {
@@ -1259,7 +1299,15 @@ export const PostCreate = () => {
                         ]}
                     />
                 </Form.Item>
-                <Form.Item label="Category" name={["category", "id"]}>
+                <Form.Item
+                    label="Category"
+                    name={["category", "id"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
                     <Select {...categorySelectProps} />
                 </Form.Item>
             </Form>
