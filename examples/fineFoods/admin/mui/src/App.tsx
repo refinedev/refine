@@ -17,7 +17,6 @@ import { useTranslation } from "react-i18next";
 import {
     AddShoppingCartOutlined,
     StarBorderOutlined,
-    BikeScooterOutlined,
     StoreOutlined,
     LocalPizzaOutlined,
     PeopleOutlineOutlined,
@@ -37,7 +36,7 @@ import {
 import { LoginPage } from "pages/login";
 import { StoreList, StoreEdit, StoreCreate } from "pages/stores";
 import { ProductList } from "pages/products";
-import { Header } from "components";
+import { Header, Title } from "components";
 import { ColorModeContext } from "contexts";
 import { BikeWhiteIcon } from "components/icons/bike-white";
 
@@ -62,6 +61,7 @@ const App: React.FC = () => {
                 authProvider={authProvider}
                 i18nProvider={i18nProvider}
                 DashboardPage={DashboardPage}
+                Title={Title}
                 ReadyPage={ReadyPage}
                 Layout={Layout}
                 Header={Header}
