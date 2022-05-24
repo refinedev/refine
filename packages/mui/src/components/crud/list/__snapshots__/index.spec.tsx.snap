@@ -11,11 +11,11 @@ exports[`<List/> JSON Rest Server renders given data 1`] = `
       <div
         class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
       >
-        <span
-          class="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-1qvr50w-MuiTypography-root"
+        <h5
+          class="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
         >
           Posts
-        </span>
+        </h5>
       </div>
     </div>
     <div
