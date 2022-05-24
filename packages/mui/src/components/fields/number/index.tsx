@@ -31,7 +31,7 @@ export const NumberField: React.FC<NumberFieldProps> = ({
     const number = parseFloat(value.toString());
 
     return (
-        <Typography {...rest}>
+        <Typography variant="body2" {...rest}>
             {toLocaleStringSupportsOptions()
                 ? number.toLocaleString(locale, options)
                 : number}
