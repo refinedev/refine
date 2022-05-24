@@ -1,42 +1,36 @@
-import { createTheme } from "@mui/material";
+import { createTheme, ThemeOptions } from "@mui/material";
 
 import { lightPalette } from "./palette/lightPalette";
 import { darkPalette } from "./palette/darkPalette";
 
 import { typography } from "./typography";
 
-const LightTheme = createTheme({
-    palette: lightPalette,
+const commonThemeProperties: ThemeOptions = {
     shape: {
         borderRadius: 6,
     },
-    components: {
-        MuiAppBar: {
-            defaultProps: {
-                color: "transparent",
-            },
-        },
-    },
     typography: {
         ...typography,
+    },
+};
+
+const LightTheme = createTheme({
+    ...commonThemeProperties,
+    palette: lightPalette,
+    components: {
+        MuiAppBar: {
+            styleOverrides: {
+                colorDefault: {
+                    backgroundColor: "#fff",
+                },
+            },
+        },
     },
 });
 
 const DarkTheme = createTheme({
+    ...commonThemeProperties,
     palette: darkPalette,
-    shape: {
-        borderRadius: 6,
-    },
-    components: {
-        MuiAppBar: {
-            defaultProps: {
-                color: "transparent",
-            },
-        },
-    },
-    typography: {
-        ...typography,
-    },
 });
 
 export { LightTheme, DarkTheme };

@@ -1,69 +1,81 @@
-import React from "react";
-import Box from "@mui/material/Box";
+import React, { useState } from "react";
+import { MenuRounded } from "@mui/icons-material";
 import { LayoutProps } from "@pankod/refine-core";
 
-import { CssBaseline, Toolbar, Container } from "@mui/material";
-import { Header as DefaultHeader } from "./header";
+import { Box, IconButton } from "@mui/material";
+
 import { Sider as DefaultSider } from "./sider";
 
 export const Layout: React.FC<LayoutProps> = ({
-    children,
-    Header,
     Sider,
+    Header,
     Footer,
     OffLayoutArea,
+    children,
 }) => {
-    const [open, setOpen] = React.useState(true);
-    const toggleDrawer = () => {
-        setOpen(!open);
+    const [collapsed, setCollapsed] = useState(false);
+    const [opened, setOpened] = useState(false);
+
+    const drawerWidth = () => {
+        if (collapsed) return 64;
+        return 200;
     };
 
-    const HeaderToRender = Header ?? DefaultHeader;
     const SiderToRender = Sider ?? DefaultSider;
 
     return (
-        <>
-            <Box sx={{ display: "flex" }}>
-                <CssBaseline />
-                <HeaderToRender
-                    drawerOpen={open}
-                    toggleDrawer={() => toggleDrawer()}
-                />
-                <SiderToRender
-                    drawerOpen={open}
-                    toggleDrawer={() => toggleDrawer()}
-                />
+        <Box>
+            <SiderToRender
+                opened={opened}
+                setOpened={setOpened}
+                collapsed={collapsed}
+                setCollapsed={setCollapsed}
+                drawerWidth={drawerWidth()}
+            />
+            <Box
+                sx={{
+                    display: { xs: "block", sm: "none" },
+                    position: "fixed",
+                    top: "64px",
+                    left: "0px",
+                    borderRadius: "0 6px 6px 0",
+                    bgcolor: "secondary.main",
+                }}
+            >
+                <IconButton
+                    sx={{ color: "#fff" }}
+                    onClick={() => setOpened((prev) => !prev)}
+                >
+                    <MenuRounded />
+                </IconButton>
+            </Box>
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    minHeight: "100vh",
+                    marginLeft: { sm: `${drawerWidth()}px` },
+                    transition:
+                        "margin-left 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+                }}
+            >
+                {Header && <Header />}
                 <Box
                     component="main"
                     sx={{
-                        backgroundColor: (theme) =>
+                        p: 3,
+                        flexGrow: 1,
+                        bgcolor: (theme) =>
                             theme.palette.mode === "light"
                                 ? theme.palette.grey[100]
                                 : theme.palette.grey[900],
-                        flexGrow: 1,
-                        height: "100vh",
-                        overflow: "auto",
                     }}
                 >
-                    <Toolbar />
-                    <Container
-                        style={{ maxWidth: "100%" }}
-                        sx={{
-                            padding: {
-                                xs: "12px",
-                                sm: "12px",
-                                md: "24px",
-                                lg: "36px",
-                                xl: "48px",
-                            },
-                        }}
-                    >
-                        {children}
-                    </Container>
-                    {OffLayoutArea && <OffLayoutArea />}
+                    {children}
                 </Box>
                 {Footer && <Footer />}
             </Box>
-        </>
+            {OffLayoutArea && <OffLayoutArea />}
+        </Box>
     );
 };
