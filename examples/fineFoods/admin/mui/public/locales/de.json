@@ -301,7 +301,7 @@
                 "Female": "Frau"
             },
             "gsm": "GSM",
-            "createdAt": "Erstellt am",
+            "createdAt": "Erstellt",
             "isActive": {
                 "label": "Aktiv",
                 "true": "Ja",
