@@ -113,7 +113,7 @@ export const Header: React.FC = () => {
                     return {
                         label: `${item.name} ${item.surname}`,
                         url: item.avatar[0].url,
-                        link: `/stores/edit/${item.id}`,
+                        link: `/couriers/edit/${item.id}`,
                         category: t("couriers.couriers"),
                     };
                 });
