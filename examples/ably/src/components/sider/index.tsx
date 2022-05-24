@@ -70,7 +70,9 @@ export const CustomSider: React.FC = () => {
                             icon ?? (isRoute && <Icons.UnorderedListOutlined />)
                         }
                     >
-                        <Link to={route}>{label}</Link>
+                        <Link href={route} to={route}>
+                            {label}
+                        </Link>
                         {label === "Posts" && (
                             <Badge
                                 size="small"

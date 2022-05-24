@@ -249,7 +249,7 @@ export const CustomSider: React.FC = () => {
                         }}
                         icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
                     >
-                            <Link to={route}>{label}</Link>
+                            <Link href={route} to={route}>{label}</Link>
                             {!collapsed && isSelected && (
                                 <Icons.UnorderedListOutlined />
                             )}
@@ -363,7 +363,7 @@ export const CustomSider: React.FC = () => {
                     >
                             //highlight-start
                                 <div>
-                                    <Link to={route}>{label}</Link>
+                                    <Link href={route} to={route}>{label}</Link>
                                     {label === "Posts" && (
                                         <Badge
                                             size="small"

@@ -56,7 +56,9 @@ export const CustomSider: React.FC = () => {
                             icon ?? (isRoute && <Icons.UnorderedListOutlined />)
                         }
                     >
-                        <Link to={route}>{label}</Link>
+                        <Link href={route} to={route}>
+                            {label}
+                        </Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
