@@ -38,7 +38,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const { cloneUrl } = useNavigation();
+    const { cloneUrl: generateCloneUrl } = useNavigation();
     const { Link } = useRouterContext();
 
     const translate = useTranslate();
@@ -68,9 +68,12 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
             );
     };
 
+    const cloneUrl = generateCloneUrl(propResourceName ?? resource.route!, id!);
+
     return (
         <Link
-            to={cloneUrl(propResourceName ?? resource.route!, id!)}
+            to={cloneUrl}
+            href={cloneUrl}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
                 if (onClick) {

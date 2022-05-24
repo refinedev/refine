@@ -39,7 +39,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     onClick,
     ...rest
 }) => {
-    const { showUrl } = useNavigation();
+    const { showUrl: generateShowUrl } = useNavigation();
     const { Link } = useRouterContext();
 
     const translate = useTranslate();
@@ -69,9 +69,12 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
             );
     };
 
+    const showUrl = generateShowUrl(propResourceName ?? resource.route!, id!);
+
     return (
         <Link
-            to={showUrl(propResourceName ?? resource.route!, id!)}
+            to={showUrl}
+            href={showUrl}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
                 if (onClick) {

@@ -12,6 +12,7 @@ export const PaginationLink = ({ to, element }: PaginationLinkProps) => {
     return (
         <Link
             to={to}
+            href={to}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
                 e.preventDefault();
