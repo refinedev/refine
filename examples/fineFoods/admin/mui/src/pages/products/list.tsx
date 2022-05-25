@@ -58,7 +58,6 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
             <Box
                 component="div"
                 sx={{
-                    backgroundColor: "common.white",
                     padding: "20px",
 
                     width: "100%",
