@@ -1,9 +1,12 @@
 import React, { useCallback } from "react";
 import { useTranslate, IResourceComponentsProps } from "@pankod/refine-core";
-import { ICategory, ICourier, IProduct } from "interfaces";
-
 import { useForm, useModalForm } from "@pankod/refine-react-hook-form";
-import { useTable, Column, useExpanded } from "@pankod/refine-react-table";
+import {
+    useTable,
+    Column,
+    useExpanded,
+    CellProps,
+} from "@pankod/refine-react-table";
 import {
     Edit,
     AddCircleOutline,
@@ -37,6 +40,7 @@ import {
     NumberField,
     GridActionsCellItem,
 } from "@pankod/refine-mui";
+import { ICategory, IProduct } from "interfaces";
 import { EditProduct } from "components";
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
@@ -59,7 +63,9 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                 Header: t("categories.fields.title"),
                 accessor: "title",
                 // eslint-disable-next-line react/display-name
-                Cell: ({ row }: any) => {
+                Cell: ({
+                    row,
+                }: React.PropsWithChildren<CellProps<ICategory>>) => {
                     return (
                         <Stack direction="row" spacing={3}>
                             <span {...row.getToggleRowExpandedProps()}>
@@ -79,14 +85,20 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                 Header: t("categories.fields.isActive"),
                 accessor: "isActive",
                 // eslint-disable-next-line react/display-name
-                Cell: ({ value }: any) => <BooleanField value={value} />,
+                Cell: ({
+                    value,
+                }: React.PropsWithChildren<CellProps<ICategory>>) => (
+                    <BooleanField value={value} />
+                ),
             },
             {
                 id: "actions",
                 Header: "Actions",
                 accessor: "id",
                 //eslint-disable-next-line react/display-name
-                Cell: ({ value }: any) => {
+                Cell: ({
+                    value,
+                }: React.PropsWithChildren<CellProps<{ id: number }>>) => {
                     return (
                         <Stack direction="row">
                             {id ? (
@@ -296,9 +308,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                     count={pageCount}
                     rowsPerPage={pageSize}
                     page={pageIndex}
-                    onPageChange={(event: unknown, newPage: number) =>
-                        gotoPage(newPage)
-                    }
+                    onPageChange={(_, newPage: number) => gotoPage(newPage)}
                     onRowsPerPageChange={(
                         event: React.ChangeEvent<HTMLInputElement>,
                     ) => {
@@ -324,7 +334,6 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                 filterOperators: undefined,
                 disableColumnMenu: true,
                 hideSortIcons: true,
-
                 // eslint-disable-next-line react/display-name
                 renderCell: ({ row }) => (
                     <Avatar
@@ -359,11 +368,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
 
                 headerName: t("products.fields.isActive"),
                 // eslint-disable-next-line react/display-name
-                renderCell: ({ row }) => {
-                    console.log("row", row.name, typeof row.isActive);
-
-                    return <BooleanField value={row.isActive} />;
-                },
+                renderCell: ({ row }) => <BooleanField value={row.isActive} />,
             },
             {
                 field: "createdAt",
@@ -430,6 +435,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                 autoHeight
                 density="comfortable"
                 rowsPerPageOptions={[5, 10, 25, 50, 100]}
+                pageSize={5}
             />
             <EditProduct {...editDrawerFormProps} />
         </List>
