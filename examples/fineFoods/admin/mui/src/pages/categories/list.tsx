@@ -212,7 +212,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                 </>
             );
         },
-        [register("isActive")],
+        [],
     );
 
     return (
