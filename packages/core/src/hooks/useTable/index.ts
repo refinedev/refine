@@ -112,15 +112,15 @@ export const useTable = <
     let defaultSorter = initialSorter;
     let defaultFilter = initialFilter;
 
-    if (syncWithLocation) {
-        const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
-            parseTableParams(search);
+    // We want to always parse the query string even when syncWithLocation is
+    // deactivated, for hotlinking to work properly
+    const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
+        parseTableParams(search);
 
-        defaultCurrent = parsedCurrent || defaultCurrent;
-        defaultPageSize = parsedPageSize || defaultPageSize;
-        defaultSorter = parsedSorter.length ? parsedSorter : defaultSorter;
-        defaultFilter = parsedFilters.length ? parsedFilters : defaultFilter;
-    }
+    defaultCurrent = parsedCurrent || defaultCurrent;
+    defaultPageSize = parsedPageSize || defaultPageSize;
+    defaultSorter = parsedSorter.length ? parsedSorter : defaultSorter;
+    defaultFilter = parsedFilters.length ? parsedFilters : defaultFilter;
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
@@ -155,13 +155,13 @@ export const useTable = <
     };
 
     useEffect(() => {
-        if (syncWithLocation && search === "") {
+        if (search === "") {
             setCurrent(defaultCurrent);
             setPageSize(defaultPageSize);
             setSorter(setInitialSorters(permanentSorter, defaultSorter ?? []));
             setFilters(setInitialFilters(permanentFilter, defaultFilter ?? []));
         }
-    }, [syncWithLocation, search]);
+    }, [search]);
 
     useEffect(() => {
         if (syncWithLocation) {
