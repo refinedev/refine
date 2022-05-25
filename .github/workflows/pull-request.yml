@@ -193,7 +193,14 @@ jobs:
           id: pr-branch-name
           with:
             repo-token: ${{ secrets.GITHUB_TOKEN }}
-        - name: web docker build
+        - name: Substring PR Branch Name
+          id: substring-pr-branch-name
+          run: |
+            id=$(echo ${branch:0:7})
+            echo "::set-output name=substring::$id"
+          env:
+            branch: ${{ steps.pr-branch-name.outputs.branch }}
+        - name: docker build
           uses: docker/build-push-action@v1
           with:
             username: ${{ secrets.DOCKER_USERNAME }}
