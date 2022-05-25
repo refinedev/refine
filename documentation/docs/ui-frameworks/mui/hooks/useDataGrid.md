@@ -182,8 +182,8 @@ You can pass `initialSorter` prop to set initial sorting and `permanentSorter` p
 ```tsx
 const { dataGridProps } = useDataGrid({
     columns,
-    permanentSorter: [{ field: "title", order: "asc" }],
     initialSorter: [{ field: "id", order: "desc" }],
+    permanentSorter: [{ field: "title", order: "asc" }],
 });
 ```
 
@@ -191,7 +191,7 @@ const { dataGridProps } = useDataGrid({
 
 :::tip
 
-If you want to sort externally from the DataGrid component. You can use `setSorter` like this:
+If you want to sort externally from the `<DataGrid>` component. You can use `setSorter` like this:
 
 ```tsx
 import {
@@ -252,5 +252,133 @@ When `sortModel` is not passed, it supports more than one criteria at a time, bu
 :::
 
 ## Filtering
+
+The hook handles filtering by setting the `filterMode`, `filterModel` and `onFilterModelChange`props that are compatible with `<DataGrid>`.
+
+```tsx
+export const PostsList: React.FC = () => {
+    const { dataGridProps } = useDataGrid({
+        columns,
+    });
+
+    //highlight-start
+    const {
+        filterMode,
+        filterModel,
+        onFilterModelChange,
+        ...restDataGridProps
+    } = dataGridProps;
+    //highlight-end
+
+    return (
+        <List>
+            <DataGrid
+                {...restDataGridProps}
+                //highlight-start
+                filterMode={filterMode}
+                filterModel={filterModel}
+                onFilterModelChange={onFilterModelChange}
+                //highlight-end
+                autoHeight
+            />
+        </List>
+    );
+};
+```
+
+Above, you can see the filtering properties from `dataGridProps`.
+
+:::note
+To see how the filtering works, you can look at the [source code][source-code] of the `useDataGrid` hook.
+:::
+
+:::tip
+You can pass `initialFilter` prop to set initial filter and `permanentFilter` prop to set permanent filter.
+
+```tsx
+const { dataGridProps } = useDataGrid({
+    columns,
+    initialFilter: [{ field: "title", value: "lorem", operator: "contains" }],
+    permanentFilter: [{ field: "status", value: "draft", operator: "eq" }],
+});
+```
+
+:::
+
+:::tip
+
+If you want to filter externally from the `<DataGrid>` component. You can use `setFilter` like this:
+
+```tsx
+import {
+    useDataGrid,
+    DataGrid,
+    GridColumns,
+    List,
+    FormControlLabel,
+    Checkbox,
+} from "@pankod/refine-mui";
+
+const columns: GridColumns = [
+    {
+        field: "id",
+        headerName: "ID",
+        type: "number",
+    },
+    { field: "title", headerName: "Title", flex: 1 },
+    { field: "status", headerName: "Status" },
+];
+
+export const PostsList: React.FC = () => {
+    const { dataGridProps, setFilters } = useDataGrid({
+        columns,
+    });
+
+    const handleFilter = (
+        e: React.ChangeEvent<HTMLInputElement>,
+        checked: boolean,
+    ) => {
+        if (checked) {
+            setFilters([
+                {
+                    field: "status",
+                    value: "draft",
+                    operator: "eq",
+                },
+            ]);
+        } else {
+            setFilters([
+                {
+                    field: "status",
+                    value: undefined,
+                    operator: "eq",
+                },
+            ]);
+        }
+    };
+
+    return (
+        <List>
+            <FormControlLabel
+                label="Filter by Draft Status"
+                control={<Checkbox onChange={handleFilter} />}
+            />
+            <DataGrid {...dataGridProps} autoHeight />
+        </List>
+    );
+};
+```
+
+Mui X community version only filter the rows according to one criterion at a time. To use multi-filtering, you need to upgrade to the [Pro plan](#).
+
+However, multiple filtering can be done as server-side without specifying the `filterModel`.
+
+```tsx
+return <DataGrid {...dataGridProps} filterModel={undefined} autoHeight />;
+```
+
+When `filterModel` is not passed, it supports more than one criteria at a time, but cannot show which fields are filtered in `<DataGrid>` headers.
+
+:::
 
 [source-code]: https://github.com/pankod/refine/blob/master/packages/mui/src/hooks/useDataGrid/index.ts
