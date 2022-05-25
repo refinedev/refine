@@ -1,6 +1,7 @@
 import React from "react";
 import {
     HttpError,
+    IResourceComponentsProps,
     useNavigation,
     useShow,
     useTranslate,
@@ -40,21 +41,28 @@ export const CourierShow: React.FC = () => {
     } = useShow<ICourier>();
     const courier = data?.data;
 
-    const CourierInfoText: React.FC<{ icon: React.ReactNode; text?: string }> =
-        ({ icon, text }) => (
-            <Stack
-                direction="row"
-                alignItems="center"
-                justifyContent={{
-                    sm: "center",
-                    lg: "flex-start",
-                }}
-                gap={1}
-            >
-                {icon}
-                <Typography variant="body1">{text}</Typography>
-            </Stack>
-        );
+    type CourierInfoTextProps = IResourceComponentsProps & {
+        icon: React.ReactNode;
+        text?: string;
+    };
+
+    const CourierInfoText: React.FC<CourierInfoTextProps> = ({
+        icon,
+        text,
+    }) => (
+        <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent={{
+                sm: "center",
+                lg: "flex-start",
+            }}
+            gap={1}
+        >
+            {icon}
+            <Typography variant="body1">{text}</Typography>
+        </Stack>
+    );
 
     const columns = React.useMemo<GridColumns<IReview>>(
         () => [

@@ -16,6 +16,7 @@ import {
 import {
     BaseRecord,
     HttpError,
+    IResourceComponentsProps,
     useLogin,
     useTranslate,
 } from "@pankod/refine-core";
@@ -26,7 +27,7 @@ type ILoginForm = {
     remember?: boolean;
 };
 
-export const LoginPage: React.FC = () => {
+export const LoginPage: React.FC<IResourceComponentsProps> = () => {
     const {
         register,
         handleSubmit,

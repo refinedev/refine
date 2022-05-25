@@ -5,6 +5,7 @@ import {
     useNavigation,
     useModal,
     useShow,
+    IResourceComponentsProps,
 } from "@pankod/refine-core";
 import {
     Avatar,
@@ -22,7 +23,7 @@ import { EditOutlined } from "@mui/icons-material";
 import { IStore } from "interfaces";
 import { StoreProducts } from "components/store";
 
-export const StoreList: React.FC = () => {
+export const StoreList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const { edit } = useNavigation();
 
