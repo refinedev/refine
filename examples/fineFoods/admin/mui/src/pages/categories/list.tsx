@@ -1,5 +1,9 @@
 import React, { useCallback } from "react";
-import { useTranslate, IResourceComponentsProps } from "@pankod/refine-core";
+import {
+    useTranslate,
+    IResourceComponentsProps,
+    setInitialSorters,
+} from "@pankod/refine-core";
 import { useForm, useModalForm } from "@pankod/refine-react-hook-form";
 import {
     useTable,
@@ -140,7 +144,15 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
         setPageSize,
         prepareRow,
         state: { pageIndex, pageSize },
-    } = useTable<ICategory>({ columns }, useExpanded);
+    } = useTable<ICategory>(
+        {
+            columns,
+            initialState: {
+                sortBy: [{ id: "title", desc: false }],
+            },
+        },
+        useExpanded,
+    );
 
     const renderRowSubComponent = useCallback(
         ({ row }) => <CategoryProductsTable record={row.original} />,
