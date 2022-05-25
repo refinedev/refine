@@ -1,57 +1,31 @@
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { IResourceComponentsProps, useList } from "@pankod/refine-core";
 
-import { Badge, BadgeProps, Calendar, Show } from '@pankod/refine-antd';
+import { Badge, BadgeProps, Calendar, Show } from "@pankod/refine-antd";
 import { CalendarMode } from "antd/lib/calendar/generateCalendar";
 import dayjs from "dayjs";
+
+import { IEvent } from "interfaces";
+
 import "./index.css";
 
-const getListData = (value: dayjs.Dayjs) => {
-    let listData;
-    switch (value.date()) {
-        case 8:
-            listData = [
-                { type: "warning", content: "This is warning event." },
-                { type: "success", content: "This is usual event." },
-            ];
-            break;
-        case 10:
-            listData = [
-                { type: "warning", content: "This is warning event." },
-                { type: "success", content: "This is usual event." },
-                { type: "error", content: "This is error event." },
-            ];
-            break;
-        case 15:
-            listData = [
-                { type: "warning", content: "This is warning event" },
-                {
-                    type: "success",
-                    content: "This is very long usual event。。....",
-                },
-                { type: "error", content: "This is error event 1." },
-                { type: "error", content: "This is error event 2." },
-                { type: "error", content: "This is error event 3." },
-                { type: "error", content: "This is error event 4." },
-            ];
-            break;
-        default:
-    }
-    return listData || [];
-};
-
-const getMonthData = (value: dayjs.Dayjs) => {
-    if (value.month() === 8) {
-        return 1394;
-    }
-};
-
 export const CalendarPage: React.FC<IResourceComponentsProps> = () => {
+    const { data } = useList<IEvent>({
+        resource: "events",
+        config: {
+            pagination: {
+                pageSize: 100,
+            },
+        },
+    });
+
     const monthCellRender = (value: dayjs.Dayjs) => {
-        const num = getMonthData(value);
-        return num ? (
+        const listData =
+            data?.data?.filter((p) => dayjs(p.date).isSame(value, "month")) ??
+            [];
+        return listData.length > 0 ? (
             <div className="notes-month">
-                <section>{num}</section>
-                <span>Backlog number</span>
+                <section>{listData.length}</section>
+                <span>Events</span>
             </div>
         ) : null;
     };
@@ -61,14 +35,16 @@ export const CalendarPage: React.FC<IResourceComponentsProps> = () => {
     };
 
     const dateCellRender = (value: dayjs.Dayjs) => {
-        const listData = getListData(value);
+        const listData = data?.data?.filter((p) =>
+            dayjs(p.date).isSame(value, "day"),
+        );
         return (
             <ul className="events">
-                {listData.map((item) => (
-                    <li key={item.content}>
+                {listData?.map((item) => (
+                    <li key={item.id}>
                         <Badge
                             status={item.type as BadgeProps["status"]}
-                            text={item.content}
+                            text={item.title}
                         />
                     </li>
                 ))}
