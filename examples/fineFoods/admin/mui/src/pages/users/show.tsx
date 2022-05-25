@@ -19,7 +19,12 @@ import {
     Typography,
     useDataGrid,
 } from "@pankod/refine-mui";
-import { HttpError, useShow, useTranslate } from "@pankod/refine-core";
+import {
+    HttpError,
+    IResourceComponentsProps,
+    useShow,
+    useTranslate,
+} from "@pankod/refine-core";
 
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
@@ -30,7 +35,7 @@ import { CustomTooltip, OrderStatus } from "components";
 
 import { IOrder, IOrderFilterVariables, IUser } from "interfaces";
 
-export const UserShow: React.FC = () => {
+export const UserShow: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
 
     const { queryResult } = useShow<IUser>();
