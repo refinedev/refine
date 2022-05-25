@@ -401,6 +401,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
     const { dataGridProps } = useDataGrid<IProduct>({
         columns,
         resource: "products",
+        initialPageSize: 5,
         permanentFilter: [
             {
                 field: "category.id",
@@ -435,7 +436,6 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                 autoHeight
                 density="comfortable"
                 rowsPerPageOptions={[5, 10, 25, 50, 100]}
-                pageSize={5}
             />
             <EditProduct {...editDrawerFormProps} />
         </List>
