@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import {
     useTitle,
-    useNavigation,
     ITreeMenu,
     CanAccess,
+    useRouterContext,
 } from "@pankod/refine-core";
 import { AntdLayout, Menu, useMenu, Grid, Icons } from "@pankod/refine-antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
@@ -12,11 +12,11 @@ import { StoreSelect } from "components/select";
 
 export const CustomSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
+    const { Link } = useRouterContext();
     const Title = useTitle();
     const { SubMenu } = Menu;
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
-    const { push } = useNavigation();
 
     const isMobile = !breakpoint.lg;
 
@@ -47,9 +47,6 @@ export const CustomSider: React.FC = () => {
                 >
                     <Menu.Item
                         key={selectedKey}
-                        onClick={() => {
-                            push(route ?? "");
-                        }}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
@@ -57,7 +54,9 @@ export const CustomSider: React.FC = () => {
                             icon ?? (isRoute && <Icons.UnorderedListOutlined />)
                         }
                     >
-                        {label}
+                        <Link href={route} to={route}>
+                            {label}
+                        </Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
@@ -80,11 +79,7 @@ export const CustomSider: React.FC = () => {
             <Menu
                 selectedKeys={[selectedKey]}
                 mode="inline"
-                onClick={({ key }) => {
-                    if (key !== "/") {
-                        push(key as string);
-                    }
-
+                onClick={() => {
                     if (!breakpoint.lg) {
                         setCollapsed(true);
                     }

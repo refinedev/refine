@@ -11,7 +11,6 @@ import {
     Container,
     Card,
     CardContent,
-    CssBaseline,
 } from "@pankod/refine-mui";
 
 import {
@@ -39,7 +38,6 @@ export const LoginPage: React.FC = () => {
 
     return (
         <>
-            <CssBaseline />
             <Box
                 component="div"
                 sx={{

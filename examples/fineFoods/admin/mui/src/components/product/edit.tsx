@@ -144,9 +144,6 @@ export const EditProduct: React.FC<UseModalFormReturnType> = ({
                                     borderRadius="5px"
                                     padding="10px"
                                     marginTop="5px"
-                                    sx={{
-                                        backgroundColor: "#fafafa",
-                                    }}
                                 >
                                     <label htmlFor="images-input">
                                         <Input

@@ -6,15 +6,18 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
 import App from "./App";
+import { ColorModeContextProvider } from "contexts";
 
 dayjs.extend(relativeTime);
 
 ReactDOM.render(
     <React.StrictMode>
         <React.Suspense fallback="loading">
-            <SnackbarProvider>
-                <App />
-            </SnackbarProvider>
+            <ColorModeContextProvider>
+                <SnackbarProvider>
+                    <App />
+                </SnackbarProvider>
+            </ColorModeContextProvider>
         </React.Suspense>
     </React.StrictMode>,
     document.getElementById("root"),

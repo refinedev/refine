@@ -71,19 +71,14 @@ export const StoreList: React.FC = () => {
                 headerName: t("stores.fields.address"),
                 flex: 2,
                 renderCell: ({ row }) => (
-                    <TextFieldComponent
-                        fontSize={14}
-                        value={row.address?.text}
-                    />
+                    <TextFieldComponent value={row.address?.text} />
                 ),
             },
             {
                 field: "createdAt",
                 headerName: t("stores.fields.createdAt"),
                 flex: 1,
-                renderCell: ({ row }) => (
-                    <DateField fontSize={14} value={row.createdAt} />
-                ),
+                renderCell: ({ row }) => <DateField value={row.createdAt} />,
             },
             {
                 field: "isActive",
@@ -93,7 +88,7 @@ export const StoreList: React.FC = () => {
                 headerAlign: "center",
                 renderCell: ({ row }) => (
                     <BooleanField
-                        sx={{ fontSize: "0.875rem" }}
+                        svgIconProps={{ sx: { width: "16px", height: "16px" } }}
                         value={row.isActive}
                     />
                 ),

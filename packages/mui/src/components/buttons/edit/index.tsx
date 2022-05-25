@@ -5,6 +5,7 @@ import {
     useTranslate,
     BaseKey,
     useResource,
+    useRouterContext,
 } from "@pankod/refine-core";
 
 import { Button, ButtonProps } from "@mui/material";
@@ -39,7 +40,8 @@ export const EditButton: React.FC<EditButtonProps> = ({
 
     const translate = useTranslate();
 
-    const { edit } = useNavigation();
+    const { editUrl: generateEditUrl } = useNavigation();
+    const { Link } = useRouterContext();
 
     const { data } = useCan({
         resource: resourceName,
@@ -60,21 +62,33 @@ export const EditButton: React.FC<EditButtonProps> = ({
             );
     };
 
+    const editUrl = generateEditUrl(resource.route!, id!);
+
     return (
-        <Button
-            onClick={(e): void =>
-                onClick ? onClick(e) : edit(resource.route!, id!)
-            }
-            disabled={data?.can === false}
-            startIcon={!hideText && <EditOutlinedIcon />}
-            title={disabledTitle()}
-            {...rest}
+        <Link
+            to={editUrl}
+            href={editUrl}
+            replace={false}
+            onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+                if (onClick) {
+                    e.preventDefault();
+                    onClick(e);
+                }
+            }}
+            style={{ textDecoration: "none" }}
         >
-            {hideText ? (
-                <EditOutlinedIcon />
-            ) : (
-                children ?? translate("buttons.edit", "Edit")
-            )}
-        </Button>
+            <Button
+                disabled={data?.can === false}
+                startIcon={!hideText && <EditOutlinedIcon />}
+                title={disabledTitle()}
+                {...rest}
+            >
+                {hideText ? (
+                    <EditOutlinedIcon />
+                ) : (
+                    children ?? translate("buttons.edit", "Edit")
+                )}
+            </Button>
+        </Link>
     );
 };

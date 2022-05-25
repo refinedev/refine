@@ -145,9 +145,6 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                     borderRadius="5px"
                                     padding="10px"
                                     marginTop="5px"
-                                    sx={{
-                                        backgroundColor: "#fafafa",
-                                    }}
                                 >
                                     <label htmlFor="images-input">
                                         <Input

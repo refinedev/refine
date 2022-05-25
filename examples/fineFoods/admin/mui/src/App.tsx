@@ -1,14 +1,13 @@
-import { useMemo } from "react";
+import { useContext } from "react";
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
     ErrorComponent,
     ReadyPage,
     ThemeProvider,
-    useMediaQuery,
-    DarkTheme,
-    LightTheme,
     notificationProviderHandle,
+    Layout,
+    GlobalStyles,
+    CssBaseline,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -24,6 +23,7 @@ import {
 } from "@mui/icons-material";
 
 import { authProvider } from "authProvider";
+import { DarkTheme, LightTheme } from "theme";
 import { DashboardPage } from "pages/dashboard";
 import { OrderList, OrderShow } from "pages/orders";
 import { UserList, UserShow } from "pages/users";
@@ -38,34 +38,35 @@ import { LoginPage } from "pages/login";
 import { StoreList, StoreEdit, StoreCreate } from "pages/stores";
 import { ProductList } from "pages/products";
 import { CategoryList } from "pages/categories";
+import { Header, Title } from "components";
+import { ColorModeContext } from "contexts";
+import { BikeWhiteIcon } from "components/icons/bike-white";
 
 const App: React.FC = () => {
+    const { mode } = useContext(ColorModeContext);
     const { t, i18n } = useTranslation();
-
     const i18nProvider = {
         translate: (key: string, params: object) => t(key, params),
         changeLocale: (lang: string) => i18n.changeLanguage(lang),
         getLocale: () => i18n.language,
     };
 
-    const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-
-    const theme = useMemo(
-        () => (prefersDarkMode ? DarkTheme : LightTheme),
-        [prefersDarkMode],
-    );
     const notificationProvider = notificationProviderHandle();
 
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={mode === "dark" ? DarkTheme : LightTheme}>
+            <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider("https://api.finefoods.refine.dev")}
                 authProvider={authProvider}
                 i18nProvider={i18nProvider}
                 DashboardPage={DashboardPage}
+                Title={Title}
                 ReadyPage={ReadyPage}
                 Layout={Layout}
+                Header={Header}
                 LoginPage={LoginPage}
                 catchAll={<ErrorComponent />}
                 syncWithLocation

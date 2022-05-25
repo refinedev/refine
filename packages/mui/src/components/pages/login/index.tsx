@@ -11,7 +11,6 @@ import {
     Container,
     Card,
     CardContent,
-    CssBaseline,
 } from "@mui/material";
 
 import {
@@ -41,7 +40,6 @@ export const LoginPage: React.FC = () => {
 
     return (
         <>
-            <CssBaseline />
             <Box
                 component="div"
                 sx={{

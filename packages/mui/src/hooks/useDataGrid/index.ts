@@ -98,6 +98,7 @@ export const useDataGrid = <
         sorter,
         setSorter,
         pageCount,
+        createLinkForSyncWithLocation,
     } = useTableCore({
         permanentSorter,
         permanentFilter,
@@ -193,5 +194,6 @@ export const useDataGrid = <
         setFilters,
         onSearch,
         pageCount,
+        createLinkForSyncWithLocation,
     };
 };

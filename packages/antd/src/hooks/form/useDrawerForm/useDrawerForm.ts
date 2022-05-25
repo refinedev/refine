@@ -151,6 +151,7 @@ export const useDrawerForm = <
         close: handleClose,
         formProps: {
             form,
+            ...useFormProps.formProps,
             onValuesChange: formProps?.onValuesChange,
             onKeyUp: formProps?.onKeyUp,
             onFinish: formProps?.onFinish,
@@ -160,6 +161,7 @@ export const useDrawerForm = <
             onClose: handleClose,
             visible,
             getContainer: false,
+            forceRender: true,
         },
         saveButtonProps,
         deleteButtonProps,

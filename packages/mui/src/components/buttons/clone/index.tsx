@@ -6,6 +6,7 @@ import {
     useTranslate,
     BaseKey,
     useResource,
+    useRouterContext,
 } from "@pankod/refine-core";
 
 import { Button, ButtonProps } from "@mui/material";
@@ -38,7 +39,8 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
         recordItemId,
     });
 
-    const { clone } = useNavigation();
+    const { cloneUrl: generateCloneUrl } = useNavigation();
+    const { Link } = useRouterContext();
 
     const translate = useTranslate();
 
@@ -61,21 +63,33 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
             );
     };
 
+    const cloneUrl = generateCloneUrl(resource.route!, id!);
+
     return (
-        <Button
-            onClick={(e): void =>
-                onClick ? onClick(e) : clone(resource.route!, id!)
-            }
-            disabled={data?.can === false}
-            startIcon={!hideText && <AddBoxOutlinedIcon />}
-            title={disabledTitle()}
-            {...rest}
+        <Link
+            to={cloneUrl}
+            href={cloneUrl}
+            replace={false}
+            onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+                if (onClick) {
+                    e.preventDefault();
+                    onClick(e);
+                }
+            }}
+            style={{ textDecoration: "none" }}
         >
-            {hideText ? (
-                <AddBoxOutlinedIcon />
-            ) : (
-                children ?? translate("buttons.clone", "Clone")
-            )}
-        </Button>
+            <Button
+                disabled={data?.can === false}
+                startIcon={!hideText && <AddBoxOutlinedIcon />}
+                title={disabledTitle()}
+                {...rest}
+            >
+                {hideText ? (
+                    <AddBoxOutlinedIcon />
+                ) : (
+                    children ?? translate("buttons.clone", "Clone")
+                )}
+            </Button>
+        </Link>
     );
 };

@@ -14,7 +14,7 @@ import {
     IconButton,
     Stack,
     Pagination,
-    Button,
+    CreateButton,
 } from "@pankod/refine-mui";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -58,7 +58,6 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
             <Box
                 component="div"
                 sx={{
-                    backgroundColor: "common.white",
                     padding: "20px",
 
                     width: "100%",
@@ -112,13 +111,13 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                                     <SearchIcon />
                                 </IconButton>
                             </Paper>
-                            <Button
+                            <CreateButton
                                 onClick={() => showCreateDrawer()}
                                 variant="outlined"
                                 sx={{ marginBottom: "5px" }}
                             >
                                 {t("stores.buttons.addProduct")}
-                            </Button>
+                            </CreateButton>
                         </Stack>
                         <Grid container>
                             {tableQueryResult.data?.data.map(

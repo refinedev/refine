@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Tooltip, TooltipProps } from "@mui/material";
+import { Tooltip, TooltipProps, SvgIconProps } from "@mui/material";
 import { CheckOutlined, CloseOutlined } from "@mui/icons-material";
 
 import { FieldProps } from "src/interfaces/field";
@@ -16,6 +16,7 @@ export type BooleanFieldProps = FieldProps<unknown> &
         valueLabelFalse?: string;
         trueIcon?: React.FC | object;
         falseIcon?: React.FC | object;
+        svgIconProps?: SvgIconProps;
     };
 
 /**
@@ -26,13 +27,18 @@ export const BooleanField: React.FC<BooleanFieldProps> = ({
     value,
     valueLabelTrue = "true",
     valueLabelFalse = "false",
-    trueIcon = <CheckOutlined />,
-    falseIcon = <CloseOutlined />,
+    trueIcon,
+    falseIcon,
+    svgIconProps,
     ...rest
 }) => {
     return (
         <Tooltip {...rest} title={value ? valueLabelTrue : valueLabelFalse}>
-            {value ? <span>{trueIcon}</span> : <span>{falseIcon}</span>}
+            {value ? (
+                <span>{trueIcon ?? <CheckOutlined {...svgIconProps} />}</span>
+            ) : (
+                <span>{falseIcon ?? <CloseOutlined {...svgIconProps} />}</span>
+            )}
         </Tooltip>
     );
 };

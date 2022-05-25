@@ -37,7 +37,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                             alt={`${row.name} ${row.surname}`}
                             src={row.avatar[0]?.url}
                         />
-                        <Typography>
+                        <Typography variant="body2">
                             {row.name} {row.surname}
                         </Typography>
                     </Stack>
@@ -61,6 +61,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                 renderCell: ({ row }) => (
                     <Tooltip title={row.address}>
                         <Typography
+                            variant="body2"
                             sx={{
                                 textOverflow: "ellipsis",
                                 overflow: "hidden",
