@@ -3,7 +3,7 @@ id: useDataGrid
 title: useDataGrid
 ---
 
-By using `useDataGrid`, you are able to get properties that are compatible with MUI X `<DataGrid>` component. All features such as sorting, filtering and pagination comes as out of box. For all the other features, you can refer to the MUI X [`<DataGrid>`](https://mui.com/x/react-data-grid/) documentation.
+By using `useDataGrid`, you are able to get properties that are compatible with MUI X `<DataGrid>` component. All features such as sorting, filtering and pagination comes as out of box. For all the other features, you can refer to the MUI X [`<DataGrid>`][data-grid] documentation.
 
 This hook is extended from [`useTable`](/core/hooks/useTable.md) from the [`@pankod/refine-core`](https://github.com/pankod/refine/tree/master/packages/core) package.
 
@@ -39,7 +39,7 @@ const columns: GridColumns = [
         headerName: "ID",
         type: "number",
     },
-    { field: "title", headerName: "Title", flex: 1 },
+    { field: "title", headerName: "Title" },
     { field: "status", headerName: "Status" },
 ];
 
@@ -209,7 +209,7 @@ const columns: GridColumns = [
         headerName: "ID",
         type: "number",
     },
-    { field: "title", headerName: "Title", flex: 1 },
+    { field: "title", headerName: "Title" },
     { field: "status", headerName: "Status" },
 ];
 
@@ -325,7 +325,7 @@ const columns: GridColumns = [
         headerName: "ID",
         type: "number",
     },
-    { field: "title", headerName: "Title", flex: 1 },
+    { field: "title", headerName: "Title" },
     { field: "status", headerName: "Status" },
 ];
 
@@ -381,4 +381,85 @@ When `filterModel` is not passed, it supports more than one criteria at a time, 
 
 :::
 
+## API
+
+### Properties
+
+| Key                                                          | Description                                                                                                                                                        | Type                                                                           | Default                                                                              |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| columns<div className=" required">Required</div>             | Set of columns of type `GridColumns`                                                                                                                               | [`GridColDef`](https://mui.com/x/api/data-grid/grid-col-def)                   |                                                                                      |
+| resource                                                     | The resource to use for table data                                                                                                                                 | `string` \| `undefined`                                                        | Resource name that it reads from the url                                             |
+| permanentFilter                                              | Default and unchangeable filter                                                                                                                                    | [`CrudFilters`][crudfilters]                                                   | `[]`                                                                                 |
+| permanentSorter                                              | Default and unchangeable sorter state                                                                                                                              | [`CrudSorting`][crudsorting]                                                   | `[]`                                                                                 |
+| initialCurrent                                               | Initial page index                                                                                                                                                 | `number`                                                                       | `1`                                                                                  |
+| initialPageSize                                              | Number of records shown per initial number of pages                                                                                                                | `number`                                                                       | `25`                                                                                 |
+| initialSorter                                                | Initial sorting                                                                                                                                                    | [`CrudSorting`][crudsorting]                                                   |
+| initialFilter                                                | Initial filtering                                                                                                                                                  | [`CrudFilters`][crudfilters]                                                   |
+| syncWithLocation                                             | Sortings, filters, page index and records shown per page are tracked by browser history                                                                            | `boolean`                                                                      | Value set in [Refine][refine swl]. If a custom resource is given, it will be `false` |
+| onSearch                                                     | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][table search] to learn how to create a search form                  | `Function`                                                                     |
+| queryOptions                                                 | `react-query`'s `useQuery` options                                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                    |
+| metaData                                                     | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                           | {}                                                                                   |
+| [liveMode](/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)         | `"off"`                                                                              |
+| liveParams                                                   | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled                                                                                     | [`{ ids?: string[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | `undefined`                                                                          |
+| onLiveEvent                                                  | Callback to handle all related live events of this hook                                                                                                            | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)              | `undefined`                                                                          |
+
+### Type Parameters
+
+| Property         | Desription                                                   | Type                       | Default                    |
+| ---------------- | ------------------------------------------------------------ | -------------------------- | -------------------------- |
+| TData            | Result data of the query. Extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError           | Custom error object that extends [`HttpError`][httperror]    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+| TSearchVariables | Values for search params                                     |                            | `{}`                       |
+
+### Return values
+
+| Property                      | Description                                                    | Type                                                                                              |
+| ----------------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| dataGridProps                 | MUI X [`<DataGrid>`][data-grid] props                          | `DataGridPropsType`\*                                                                             |
+| tableQueryResult              | Result of the `react-query`'s `useQuery`                       | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery] |
+| onSearch                      | It sends the parameters it receives to its `onSearch` function | `(value: TSearchVariables) => Promise<void>`                                                      |
+| current                       | Current page index state                                       | `number`                                                                                          |
+| totalPage                     | Total page count                                               | `number`                                                                                          |
+| setCurrent                    | A function that changes the current                            | `React.Dispatch<React.SetStateAction<number>>`                                                    |
+| pageSize                      | Current pageSize state                                         | `number`                                                                                          |
+| setPageSize                   | A function that changes the pageSize                           | `React.Dispatch<React.SetStateAction<number>>`                                                    |
+| sorter                        | Current sorting state                                          | [`CrudSorting`][crudsorting]                                                                      |
+| setSorter                     | A function that accepts a new sorter state                     | `(sorter: CrudSorting) => void`                                                                   |
+| filters                       | Current filters state                                          | [`CrudFilters`][crudfilters]                                                                      |
+| setFilters                    | A function that accepts a new filter state                     | `(filters: CrudFilters) => void`                                                                  |
+| createLinkForSyncWithLocation | A function create accessible links for syncWithLocation        | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`                         |
+
+> **DataGridProps**
+>
+> | Property                | Default    | Property            | Default    |
+> | ----------------------- | ---------- | ------------------- | ---------- |
+> | columns                 |            | pageSize            | `25`       |
+> | rows                    | `[]`       | onPageSizeChange    |            |
+> | rowCount                | `0`        | sortingMode         | `"server"` |
+> | disableSelectionOnClick | `true`     | sortModel           |            |
+> | loading                 | `false`    | onSortModelChange   |            |
+> | paginationMode          | `"server"` | filterMode          | `"server"` |
+> | page                    | `0`        | filterModel         |            |
+> | onPageChange            |            | onFilterModelChange |            |
+
+<br/>
+
+## Live Codesandbox Example
+
+<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/calendar?autoresize=1&fontsize=16&theme=dark&view=preview"
+    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+    title="refine-tutorial"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+
 [source-code]: https://github.com/pankod/refine/blob/master/packages/mui/src/hooks/useDataGrid/index.ts
+[syncwithlocationparams]: /core/interfaces.md#syncwithlocationparams
+[crudsorting]: /core/interfaces.md#crudsorting
+[crudfilters]: /core/interfaces.md#crudfilters
+[usequery]: https://react-query.tanstack.com/reference/useQuery
+[baserecord]: /core/interfaces.md#baserecord
+[httperror]: /core/interfaces.md#httperror
+[refine swl]: /core/components/refine-config.md#syncwithlocation
+[table search]: /guides-and-concepts/search/table-search.md
+[data-grid]: https://mui.com/x/react-data-grid/
