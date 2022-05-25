@@ -1,9 +1,5 @@
 import React, { useCallback } from "react";
-import {
-    useTranslate,
-    IResourceComponentsProps,
-    setInitialSorters,
-} from "@pankod/refine-core";
+import { useTranslate, IResourceComponentsProps } from "@pankod/refine-core";
 import { useForm, useModalForm } from "@pankod/refine-react-hook-form";
 import {
     useTable,
@@ -16,7 +12,6 @@ import {
     AddCircleOutline,
     RemoveCircleOutline,
 } from "@mui/icons-material";
-
 import {
     List,
     BooleanField,
@@ -39,7 +34,6 @@ import {
     Avatar,
     GridColumns,
     DataGrid,
-    Paper,
     DateField,
     NumberField,
     GridActionsCellItem,
@@ -248,9 +242,9 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                             )}
                         </TableHead>
                         <TableBody {...getTableBodyProps()}>
-                            {rows.map((row: any) => {
+                            {rows.map((row) => {
                                 prepareRow(row);
-                                if (id === (row.original as any).id) {
+                                if (id === (row.original as ICategory).id) {
                                     return renderEditRow(row);
                                 } else
                                     return (
