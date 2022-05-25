@@ -15,7 +15,7 @@ const columns: GridColumns = [
 export const PostsList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>({
         columns,
-        initialCurrent: 1,
+        initialCurrent: 2,
         initialPageSize: 10,
         initialSorter: [
             {
