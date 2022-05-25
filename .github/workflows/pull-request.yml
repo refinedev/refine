@@ -230,6 +230,7 @@ jobs:
               --set ingress.tls[0].hosts[0]==${{ env.branch }}-${{ env.domain }} \
           env:
             domain: "mui.refine.dev"
+            branch: ${{ steps.substring-pr-branch-name.outputs.substring }}
         - uses: tzkhan/pr-update-action@v2
           with:
             repo-token: "${{ secrets.PANKOD_BOT_TOKEN }}"
