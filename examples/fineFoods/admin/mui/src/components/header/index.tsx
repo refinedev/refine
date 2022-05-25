@@ -173,11 +173,27 @@ export const Header: React.FC = () => {
                                             }}
                                         >
                                             <Avatar
-                                                sx={{ width: 64, height: 64 }}
+                                                sx={{
+                                                    width: {
+                                                        sm: "48px",
+                                                        md: "54px",
+                                                        lg: "64px",
+                                                    },
+                                                    height: {
+                                                        sm: "48px",
+                                                        md: "54px",
+                                                        lg: "64px",
+                                                    },
+                                                }}
                                                 src={option.url}
                                             />
                                             <Typography
-                                                style={{ fontSize: "16px" }}
+                                                sx={{
+                                                    fontSize: {
+                                                        md: "14px",
+                                                        lg: "16px",
+                                                    },
+                                                }}
                                             >
                                                 {option.label}
                                             </Typography>
@@ -187,7 +203,15 @@ export const Header: React.FC = () => {
                             }}
                             renderInput={(params) => {
                                 return (
-                                    <Box position="relative">
+                                    <Box
+                                        position="relative"
+                                        sx={{
+                                            display: {
+                                                xs: "none",
+                                                sm: "block",
+                                            },
+                                        }}
+                                    >
                                         <TextField
                                             {...params}
                                             label={t("search.placeholder")}
@@ -213,7 +237,7 @@ export const Header: React.FC = () => {
                             }}
                         />
                     </Stack>
-                    <Stack direction="row" gap="20px" alignItems="center">
+                    <Stack direction="row" alignItems="center">
                         <IconButton
                             onClick={() => {
                                 setMode();
@@ -264,10 +288,17 @@ export const Header: React.FC = () => {
                                     ))}
                             </Select>
                         </FormControl>
-                        <Typography variant="subtitle2">
-                            {user?.name}
-                        </Typography>
-                        <Avatar src={user?.avatar} alt={user?.name} />
+                        <Stack
+                            direction="row"
+                            gap="4px"
+                            alignItems="center"
+                            justifyContent="center"
+                        >
+                            <Typography variant="subtitle2">
+                                {user?.name}
+                            </Typography>
+                            <Avatar src={user?.avatar} alt={user?.name} />
+                        </Stack>
                     </Stack>
                 </Stack>
             </Toolbar>

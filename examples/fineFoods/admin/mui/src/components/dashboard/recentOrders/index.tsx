@@ -29,13 +29,14 @@ export const RecentOrders: React.FC = () => {
                 renderCell: ({ row }) => (
                     <Avatar
                         sx={{
-                            width: { xs: 60, sm: 84, lg: 108, xl: 144 },
-                            height: { xs: 60, sm: 84, lg: 108, xl: 144 },
+                            width: { xs: 40, sm: 56, lg: 72, xl: 102 },
+                            height: { xs: 40, sm: 56, lg: 72, xl: 102 },
                         }}
                         src={row?.products[0]?.images[0]?.url}
                     />
                 ),
                 flex: 0.5,
+                align: "center",
             },
             {
                 field: "summary",
@@ -54,6 +55,7 @@ export const RecentOrders: React.FC = () => {
                                 display: "-webkit-box",
                                 WebkitLineClamp: "3",
                                 WebkitBoxOrient: "vertical",
+                                minWidth: "100px",
                             }}
                         >
                             {row.products[0]?.description}
