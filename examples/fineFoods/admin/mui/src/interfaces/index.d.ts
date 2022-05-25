@@ -59,6 +59,8 @@ export interface IEvent {
 
 export interface IStore {
     id: string;
+    gsm: string;
+    email: string;
     title: string;
     isActive: boolean;
     createdAt: string;

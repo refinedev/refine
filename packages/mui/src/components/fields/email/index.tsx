@@ -13,7 +13,7 @@ export type EmailFieldProps = FieldProps<ReactNode> & LinkProps;
  */
 export const EmailField: React.FC<EmailFieldProps> = ({ value, ...rest }) => {
     return (
-        <Typography>
+        <Typography variant="body2">
             <Link href={`mailto:${value}`} {...rest}>
                 {value}
             </Link>

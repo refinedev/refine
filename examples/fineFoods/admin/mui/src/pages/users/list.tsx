@@ -67,7 +67,14 @@ export const UserList: React.FC = () => {
             {
                 field: "isActive",
                 headerName: t("users.fields.isActive.label"),
-                renderCell: ({ row }) => <BooleanField value={row.isActive} />,
+                align: "center",
+                headerAlign: "center",
+                renderCell: ({ row }) => (
+                    <BooleanField
+                        svgIconProps={{ sx: { width: "16px", height: "16px" } }}
+                        value={row.isActive}
+                    />
+                ),
             },
             {
                 field: "createdAt",

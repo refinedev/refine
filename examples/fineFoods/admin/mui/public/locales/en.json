@@ -306,7 +306,7 @@
             "gsm": "Gsm Number",
             "createdAt": "CreatedAt",
             "isActive": {
-                "label": "Is Active",
+                "label": "Active",
                 "true": "Yes",
                 "false": "No"
             }
