@@ -15,7 +15,7 @@ const App: React.FC = () => {
             dataProvider={dataProvider(API_URL)}
             resources={[
                 {
-                    name: "calendar",
+                    name: "events",
                     list: CalendarPage,
                 },
             ]}
