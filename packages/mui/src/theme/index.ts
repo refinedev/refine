@@ -9,6 +9,21 @@ const commonThemeProperties: ThemeOptions = {
     shape: {
         borderRadius: 6,
     },
+    components: {
+        MuiAppBar: {
+            defaultProps: {
+                color: "transparent",
+            },
+        },
+        MuiTypography: {
+            styleOverrides: {
+                h5: {
+                    fontWeight: 800,
+                    lineHeight: "2rem",
+                },
+            },
+        },
+    },
     typography: {
         ...typography,
     },
@@ -22,6 +37,14 @@ const LightTheme = createTheme({
             styleOverrides: {
                 colorDefault: {
                     backgroundColor: "#fff",
+                },
+            },
+        },
+        MuiTypography: {
+            styleOverrides: {
+                h5: {
+                    fontWeight: 800,
+                    lineHeight: "2rem",
                 },
             },
         },

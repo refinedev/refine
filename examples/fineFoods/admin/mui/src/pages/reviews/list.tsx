@@ -97,6 +97,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                 renderCell: ({ row }) => (
                     <Tooltip title={row.comment[0]}>
                         <Typography
+                            variant="body2"
                             sx={{
                                 textOverflow: "ellipsis",
                                 overflow: "hidden",
@@ -116,9 +117,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                 align: "center",
                 renderCell: ({ row }) => (
                     <Stack alignItems="center">
-                        <Typography variant="h5" fontWeight="bold">
-                            {row.star}
-                        </Typography>
+                        <Typography variant="h5">{row.star}</Typography>
                         <Rating
                             name="rating"
                             defaultValue={row.star}

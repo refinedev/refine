@@ -11,7 +11,11 @@ export type TextFieldProps = FieldProps<ReactNode> & TypographyProps;
  *
  */
 const TextField: React.FC<TextFieldProps> = ({ value, ...rest }) => {
-    return <Typography {...rest}>{value}</Typography>;
+    return (
+        <Typography variant="body2" {...rest}>
+            {value}
+        </Typography>
+    );
 };
 
 export { TextField as TextFieldComponent };

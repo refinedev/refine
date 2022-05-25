@@ -31,20 +31,17 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                 field: "name",
                 headerName: t("couriers.fields.name"),
                 // eslint-disable-next-line react/display-name
-                renderCell: ({ row }) => {
-                    console.log("render cell");
-                    return (
-                        <Stack alignItems="center" direction="row" spacing={2}>
-                            <Avatar
-                                alt={`${row.name} ${row.surname}`}
-                                src={row.avatar[0]?.url}
-                            />
-                            <Typography>
-                                {row.name} {row.surname}
-                            </Typography>
-                        </Stack>
-                    );
-                },
+                renderCell: ({ row }) => (
+                    <Stack alignItems="center" direction="row" spacing={2}>
+                        <Avatar
+                            alt={`${row.name} ${row.surname}`}
+                            src={row.avatar[0]?.url}
+                        />
+                        <Typography variant="body2">
+                            {row.name} {row.surname}
+                        </Typography>
+                    </Stack>
+                ),
                 flex: 1,
             },
             {
@@ -64,6 +61,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                 renderCell: ({ row }) => (
                     <Tooltip title={row.address}>
                         <Typography
+                            variant="body2"
                             sx={{
                                 textOverflow: "ellipsis",
                                 overflow: "hidden",
