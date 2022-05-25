@@ -331,13 +331,8 @@ export const EditProduct: React.FC<UseModalFormReturnType> = ({
                                     </FormLabel>
                                     <Controller
                                         control={control}
-                                        name="isActive"
-                                        rules={{
-                                            required: t(
-                                                "errors.required.common",
-                                            ),
-                                        }}
-                                        defaultValue=""
+                                        {...register("isActive")}
+                                        defaultValue={false}
                                         render={({ field }) => {
                                             return (
                                                 <RadioGroup
@@ -346,6 +341,23 @@ export const EditProduct: React.FC<UseModalFormReturnType> = ({
                                                         "isActive",
                                                     )}
                                                     {...field}
+                                                    onChange={(event) => {
+                                                        const value =
+                                                            event.target
+                                                                .value ===
+                                                            "true";
+
+                                                        setValue(
+                                                            "isActive",
+                                                            value,
+                                                            {
+                                                                shouldValidate:
+                                                                    true,
+                                                            },
+                                                        );
+
+                                                        return value;
+                                                    }}
                                                     row
                                                 >
                                                     <FormControlLabel
