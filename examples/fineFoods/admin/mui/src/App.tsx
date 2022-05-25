@@ -16,7 +16,6 @@ import {
     AddShoppingCartOutlined,
     StarBorderOutlined,
     CategoryOutlined,
-    BikeScooterOutlined,
     StoreOutlined,
     LocalPizzaOutlined,
     PeopleOutlineOutlined,
@@ -108,7 +107,7 @@ const App: React.FC = () => {
                         show: CourierShow,
                         create: CourierCreate,
                         edit: CourierEdit,
-                        icon: <BikeScooterOutlined />,
+                        icon: <BikeWhiteIcon />,
                     },
                     {
                         name: "reviews",
