@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardHeader, Grid } from "@pankod/refine-mui";
-import { IResourceComponentsProps, useTranslate } from "@pankod/refine-core";
+import { useTranslate } from "@pankod/refine-core";
 
 import {
     DailyOrders,
@@ -12,7 +12,7 @@ import {
     TrendingMenu,
 } from "components/dashboard";
 
-export const DashboardPage: React.FC<IResourceComponentsProps> = () => {
+export const DashboardPage: React.FC = () => {
     const t = useTranslate();
 
     return (

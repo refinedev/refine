@@ -32,7 +32,7 @@ import {
 
 import { ICourier, IReview } from "interfaces";
 
-export const CourierShow: React.FC = () => {
+export const CourierShow: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const { show } = useNavigation();
 
@@ -41,7 +41,7 @@ export const CourierShow: React.FC = () => {
     } = useShow<ICourier>();
     const courier = data?.data;
 
-    type CourierInfoTextProps = IResourceComponentsProps & {
+    type CourierInfoTextProps = {
         icon: React.ReactNode;
         text?: string;
     };
