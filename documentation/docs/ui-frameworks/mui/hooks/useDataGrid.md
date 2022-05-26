@@ -31,6 +31,7 @@ Let's assume that the data we are going to show on the table came like this from
 To see basic usage, let's create a table with the `id`, `title` and `content` columns.
 
 ```tsx title="/src/pages/posts/list.tsx"
+import React from "react";
 import { useDataGrid, DataGrid, GridColumns, List } from "@pankod/refine-mui";
 
 const columns: GridColumns = [
@@ -239,7 +240,7 @@ export const PostsList: React.FC = () => {
 };
 ```
 
-Mui X community version only sort the rows according to one criterion at a time. To use multi-sorting, you need to upgrade to the [Pro plan](#).
+Mui X community version only sorts the rows according to one criterion at a time. To use multi-sorting, you need to upgrade to the [Pro plan](https://mui.com/pricing/).
 
 However, multiple sorting can be done as server-side without specifying the `sortModel`.
 
@@ -387,8 +388,8 @@ When `filterModel` is not passed, it supports more than one criteria at a time, 
 
 | Key                                                          | Description                                                                                                                                                        | Type                                                                           | Default                                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| columns<div className=" required">Required</div>             | Set of columns of type `GridColumns`                                                                                                                               | [`GridColDef`](https://mui.com/x/api/data-grid/grid-col-def)                   |                                                                                      |
-| resource                                                     | The resource to use for table data                                                                                                                                 | `string` \| `undefined`                                                        | Resource name that it reads from the url                                             |
+|  <div className="required-block"><div>columns</div> <div className=" required">Required</div></div>             | Set of columns of type `GridColumns`                                                                                                                               | [`GridColDef`](https://mui.com/x/api/data-grid/grid-col-def)                   |                                                                                      |
+| resource                                                     | The resource to use for table data                                                                                                                                 | `string` \| `undefined`                                                        | Resource name that it reads from the URL                                             |
 | permanentFilter                                              | Default and unchangeable filter                                                                                                                                    | [`CrudFilters`][crudfilters]                                                   | `[]`                                                                                 |
 | permanentSorter                                              | Default and unchangeable sorter state                                                                                                                              | [`CrudSorting`][crudsorting]                                                   | `[]`                                                                                 |
 | initialCurrent                                               | Initial page index                                                                                                                                                 | `number`                                                                       | `1`                                                                                  |
