@@ -293,8 +293,8 @@ Refer to the [`accessControlProvider`](https://refine.dev/docs/core/providers/ac
 
 ### Out-of-the-box access control providers
 
--   Casbin - [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/casbin) - [Demo](https://codesandbox.io/s/access-control-casbin-react-l06vy)
--   Cerbos - [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/cerbos) - [Demo](https://codesandbox.io/s/access-control-cerbos-react-mbhei)
+-   Casbin - [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/casbin) - [Demo](https://codesandbox.io/s/github/pankod/refine/tree/master/examples/accessControl/casbin)
+-   Cerbos - [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/cerbos) - [Demo](https://codesandbox.io/s/github/pankod/refine/tree/master/examples/accessControl/cerbos)
 
 ## Internationalization
 
