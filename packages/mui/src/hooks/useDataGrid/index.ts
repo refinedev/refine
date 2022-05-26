@@ -139,6 +139,7 @@ export const useDataGrid = <
     const handleFilterModelChange = (filterModel: GridFilterModel) => {
         const crudFilters = transformFilterModelToCrudFilters(filterModel);
         setFilters(crudFilters);
+        setCurrent(1);
     };
 
     const onSearch = async (value: TSearchVariables) => {
