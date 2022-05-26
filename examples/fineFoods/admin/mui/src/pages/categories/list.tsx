@@ -158,62 +158,59 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
         setId(editId);
     };
 
-    const renderEditRow = useCallback(
-        (row) => {
-            const { id, title, isActive } = row.original;
+    const renderEditRow = useCallback((row) => {
+        const { id, title, isActive } = row.original;
 
-            return (
-                <>
-                    <TableRow key={`edit-${id}-inputs`}>
-                        <TableCell>
-                            <Stack
-                                direction="row"
-                                spacing={3}
-                                alignContent="center"
-                                alignItems="center"
-                            >
-                                <span {...row.getToggleRowExpandedProps()}>
-                                    {row.isExpanded ? (
-                                        <RemoveCircleOutline />
-                                    ) : (
-                                        <AddCircleOutline />
-                                    )}
-                                </span>
-                                <TextField
-                                    fullWidth
-                                    id="title"
-                                    type="text"
-                                    defaultValue={title}
-                                    {...register("title", {
-                                        required: t("errors.required.field", {
-                                            field: "Title",
-                                        }),
-                                    })}
-                                />
-                            </Stack>
-                        </TableCell>
-                        <TableCell>
-                            <Checkbox
-                                id="isActive"
-                                defaultChecked={isActive}
-                                {...register("isActive")}
+        return (
+            <>
+                <TableRow key={`edit-${id}-inputs`}>
+                    <TableCell>
+                        <Stack
+                            direction="row"
+                            spacing={3}
+                            alignContent="center"
+                            alignItems="center"
+                        >
+                            <span {...row.getToggleRowExpandedProps()}>
+                                {row.isExpanded ? (
+                                    <RemoveCircleOutline />
+                                ) : (
+                                    <AddCircleOutline />
+                                )}
+                            </span>
+                            <TextField
+                                fullWidth
+                                id="title"
+                                type="text"
+                                defaultValue={title}
+                                {...register("title", {
+                                    required: t("errors.required.field", {
+                                        field: "Title",
+                                    }),
+                                })}
                             />
-                        </TableCell>
+                        </Stack>
+                    </TableCell>
+                    <TableCell>
+                        <Checkbox
+                            id="isActive"
+                            defaultChecked={isActive}
+                            {...register("isActive")}
+                        />
+                    </TableCell>
 
-                        <TableCell>
-                            <SaveButton type="submit">
-                                {t("buttons.save")}
-                            </SaveButton>
-                            <Button onClick={() => setId(undefined)}>
-                                {t("buttons.cancel")}
-                            </Button>
-                        </TableCell>
-                    </TableRow>
-                </>
-            );
-        },
-        [],
-    );
+                    <TableCell>
+                        <SaveButton type="submit">
+                            {t("buttons.save")}
+                        </SaveButton>
+                        <Button onClick={() => setId(undefined)}>
+                            {t("buttons.cancel")}
+                        </Button>
+                    </TableCell>
+                </TableRow>
+            </>
+        );
+    }, []);
 
     return (
         <List>
