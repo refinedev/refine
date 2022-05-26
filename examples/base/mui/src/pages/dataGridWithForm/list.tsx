@@ -32,7 +32,7 @@ const columns: GridColumns = [
 ];
 
 export const DataGridWithForm: React.FC = () => {
-    const { dataGridProps, onSearch } = useDataGrid<
+    const { dataGridProps, search } = useDataGrid<
         IPost,
         HttpError,
         FormFilterValues
@@ -75,7 +75,7 @@ export const DataGridWithForm: React.FC = () => {
                             component="form"
                             sx={{ display: "flex", flexDirection: "column" }}
                             autoComplete="off"
-                            onSubmit={handleSubmit(onSearch)}
+                            onSubmit={handleSubmit(search)}
                         >
                             <TextField
                                 {...register("title")}

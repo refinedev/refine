@@ -116,7 +116,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
         [],
     );
 
-    const { dataGridProps, onSearch } = useDataGrid<
+    const { dataGridProps, search } = useDataGrid<
         IUser,
         HttpError,
         IUserFilterVariables
@@ -159,7 +159,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                             component="form"
                             sx={{ display: "flex", flexDirection: "column" }}
                             autoComplete="off"
-                            onSubmit={handleSubmit(onSearch)}
+                            onSubmit={handleSubmit(search)}
                         >
                             <TextField
                                 {...register("q")}

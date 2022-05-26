@@ -57,7 +57,7 @@ export type UseDataGridReturnType<
     TSearchVariables = unknown,
 > = useTableReturnTypeCore<TData> & {
     dataGridProps: DataGridPropsType;
-    onSearch: (value: TSearchVariables) => Promise<void>;
+    search: (value: TSearchVariables) => Promise<void>;
 };
 
 export const useDataGrid = <
@@ -142,7 +142,7 @@ export const useDataGrid = <
         setCurrent(1);
     };
 
-    const onSearch = async (value: TSearchVariables) => {
+    const search = async (value: TSearchVariables) => {
         if (onSearchProp) {
             const searchFilters = await onSearchProp(value);
             setFilters(searchFilters);
@@ -193,7 +193,7 @@ export const useDataGrid = <
         setSorter,
         filters,
         setFilters,
-        onSearch,
+        search,
         pageCount,
         createLinkForSyncWithLocation,
     };
