@@ -296,13 +296,13 @@ describe("transformCrudFiltersToFilterModel", () => {
                     columnField: "rating",
                     operatorValue: ">",
                     value: 4,
-                    id: "rating4gt",
+                    id: "ratinggt",
                 },
                 {
                     columnField: "isAdmin",
                     operatorValue: "is",
                     value: true,
-                    id: "isAdmintrueeq",
+                    id: "isAdmineq",
                 },
             ],
             linkOperator: GridLinkOperator.Or,
@@ -338,13 +338,13 @@ describe("transformCrudFiltersToFilterModel", () => {
                     columnField: "rating",
                     operatorValue: ">",
                     value: 4,
-                    id: "rating4gt",
+                    id: "ratinggt",
                 },
                 {
                     columnField: "isAdmin",
                     operatorValue: "is",
                     value: true,
-                    id: "isAdmintrueeq",
+                    id: "isAdmineq",
                 },
             ],
             linkOperator: GridLinkOperator.And,
@@ -395,13 +395,13 @@ describe("transformCrudFiltersToFilterModel", () => {
                     columnField: "rating",
                     operatorValue: ">",
                     value: 4,
-                    id: "rating4gt",
+                    id: "ratinggt",
                 },
                 {
                     columnField: "isAdmin",
                     operatorValue: "is",
                     value: true,
-                    id: "isAdmintrueeq",
+                    id: "isAdmineq",
                 },
             ],
             linkOperator: GridLinkOperator.Or,
@@ -412,13 +412,14 @@ describe("transformCrudFiltersToFilterModel", () => {
         );
     });
 
-    it("Map crud filters to filter model with no filters, should return 'undefined'", () => {
+    it("Map crud filters to filter model with no filters, should return default mui filter mui", () => {
         const crudFilters: CrudFilters = [];
 
         const column: GridColumns = [];
 
-        expect(transformCrudFiltersToFilterModel(crudFilters, column)).toEqual(
-            undefined,
-        );
+        expect(transformCrudFiltersToFilterModel(crudFilters, column)).toEqual({
+            items: [],
+            linkOperator: "and",
+        });
     });
 });

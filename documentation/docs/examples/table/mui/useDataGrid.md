@@ -5,7 +5,8 @@ title: useDataGrid
 
 You may use the `useDataGrid` hook to process your data with features compatible with the MUI X [DataGrid](https://mui.com/x/react-data-grid/) and [DataGridPro](https://mui.com/x/react-data-grid/) component. You can be used as an out-of-the-box feature without needing to do extra operations for sorting, filtering, and pagination.
 
-[Refer to the `useDataGrid` hook documentation for more information. →](/docs/ui-frameworks/mui/hooks/table/useDataGrid/)
+[Refer to the `useDataGrid` hook documentation for more information. →](/docs/ui-frameworks/mui/hooks/useDataGrid)
+
 
 ## With `DataGrid` Component
 
