@@ -5,6 +5,10 @@ title: useDataGrid
 
 By using `useDataGrid`, you are able to get properties that are compatible with MUI X `<DataGrid>` component. All features such as sorting, filtering and pagination comes as out of box. For all the other features, you can refer to the MUI X [`<DataGrid>`][data-grid] documentation.
 
+:::info
+The `useDataGrid` hook works in compatible with both the `<DataGrid>` and the `<DataGridPro>` component.
+:::
+
 This hook is extended from [`useTable`](/core/hooks/useTable.md) from the [`@pankod/refine-core`](https://github.com/pankod/refine/tree/master/packages/core) package.
 
 ## Basic usage
