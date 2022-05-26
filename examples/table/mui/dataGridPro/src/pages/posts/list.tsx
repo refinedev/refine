@@ -40,6 +40,7 @@ export const PostsList: React.FC = () => {
                 value: "A",
             },
         ],
+        syncWithLocation: true,
     });
 
     return (
