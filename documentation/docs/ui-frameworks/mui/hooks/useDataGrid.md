@@ -239,7 +239,7 @@ export const PostsList: React.FC = () => {
 };
 ```
 
-Mui X community version only sort the rows according to one criterion at a time. To use multi-sorting, you need to upgrade to the [Pro plan](#).
+Mui X community version only sorts the rows according to one criterion at a time. To use multi-sorting, you need to upgrade to the [Pro plan](https://mui.com/pricing/).
 
 However, multiple sorting can be done as server-side without specifying the `sortModel`.
 
