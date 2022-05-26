@@ -15,12 +15,15 @@ import {
     Tooltip,
     Typography,
     Pagination,
+    useTheme,
 } from "@pankod/refine-mui";
 import dayjs from "dayjs";
 
 import { IOrder } from "interfaces";
 
 export const OrderTimeline: React.FC = () => {
+    const theme = useTheme();
+
     const t = useTranslate();
     const { show } = useNavigation();
 
@@ -34,6 +37,7 @@ export const OrderTimeline: React.FC = () => {
                 },
             ],
             initialPageSize: 5,
+            syncWithLocation: false,
         });
 
     const { data } = tableQueryResult;
@@ -44,29 +48,33 @@ export const OrderTimeline: React.FC = () => {
         switch (id) {
             case "1":
                 return {
-                    color: "#fff7e6",
+                    color: theme.timeLine.color.pending,
                     text: "pending",
-                    dotColor: "#ffa940",
+                    dotColor: theme.timeLine.dotColor.pending,
                 };
             case "2":
-                return { color: "#e6fffb", text: "ready", dotColor: "#36cfc9" };
+                return {
+                    color: theme.timeLine.color.ready,
+                    text: "ready",
+                    dotColor: theme.timeLine.dotColor.ready,
+                };
             case "3":
                 return {
-                    color: "#f6ffed",
+                    color: theme.timeLine.color.onTheWay,
                     text: "on the way",
-                    dotColor: "#73d13d",
+                    dotColor: theme.timeLine.dotColor.onTheWay,
                 };
             case "4":
                 return {
-                    color: "#e6f7ff",
+                    color: theme.timeLine.color.delivered,
                     text: "delivered",
-                    dotColor: "#40a9ff",
+                    dotColor: theme.timeLine.dotColor.delivered,
                 };
             default:
                 return {
-                    color: "#fff1f0",
+                    color: theme.timeLine.color.cancelled,
                     text: "cancelled",
-                    dotColor: "#ff4d4f",
+                    dotColor: theme.timeLine.dotColor.cancelled,
                 };
         }
     };

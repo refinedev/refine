@@ -58,7 +58,6 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
             <Box
                 component="div"
                 sx={{
-                    backgroundColor: "common.white",
                     padding: "20px",
 
                     width: "100%",
@@ -73,6 +72,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                             flexWrap="wrap"
                             padding={1}
                             direction="row"
+                            gap={2}
                         >
                             <Typography variant="h5">
                                 {t("products.products")}

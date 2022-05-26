@@ -145,9 +145,6 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                     borderRadius="5px"
                                     padding="10px"
                                     marginTop="5px"
-                                    sx={{
-                                        backgroundColor: "#fafafa",
-                                    }}
                                 >
                                     <label htmlFor="images-input">
                                         <Input
@@ -329,17 +326,28 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                     </FormLabel>
                                     <Controller
                                         control={control}
-                                        name="isActive"
-                                        defaultValue=""
-                                        rules={{
-                                            required: t(
-                                                "errors.required.common",
-                                            ),
-                                        }}
+                                        {...register("isActive")}
+                                        defaultValue={false}
                                         render={({ field }) => (
                                             <RadioGroup
                                                 id="isActive"
                                                 {...field}
+                                                onChange={(event) => {
+                                                    const value =
+                                                        event.target.value ===
+                                                        "true";
+
+                                                    setValue(
+                                                        "isActive",
+                                                        value,
+                                                        {
+                                                            shouldValidate:
+                                                                true,
+                                                        },
+                                                    );
+
+                                                    return value;
+                                                }}
                                                 row
                                             >
                                                 <FormControlLabel

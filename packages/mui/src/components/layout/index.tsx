@@ -34,7 +34,7 @@ export const Layout: React.FC<LayoutProps> = ({
             />
             <Box
                 sx={{
-                    display: { xs: "block", sm: "none" },
+                    display: { xs: "block", md: "none" },
                     position: "fixed",
                     top: "64px",
                     left: "0px",
@@ -54,7 +54,7 @@ export const Layout: React.FC<LayoutProps> = ({
                     display: "flex",
                     flexDirection: "column",
                     minHeight: "100vh",
-                    marginLeft: { sm: `${drawerWidth()}px` },
+                    marginLeft: { md: `${drawerWidth()}px` },
                     transition:
                         "margin-left 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
                 }}

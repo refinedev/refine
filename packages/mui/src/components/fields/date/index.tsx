@@ -27,5 +27,9 @@ export const DateField: React.FC<DateFieldProps> = ({
     format: dateFormat = "L",
     ...rest
 }) => {
-    return <Typography {...rest}>{dayjs(value).format(dateFormat)}</Typography>;
+    return (
+        <Typography variant="body2" {...rest}>
+            {dayjs(value).format(dateFormat)}
+        </Typography>
+    );
 };

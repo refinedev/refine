@@ -1,15 +1,8 @@
 import React from "react";
-import ReactRouterDom, { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import { fireEvent, render, TestWrapper, waitFor } from "@test";
 import { CreateButton } from "./";
-
-const mHistory = jest.fn();
-
-jest.mock("react-router-dom", () => ({
-    ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useNavigate: () => mHistory,
-}));
 
 describe("Create Button", () => {
     const create = jest.fn();
@@ -143,7 +136,7 @@ describe("Create Button", () => {
 
         fireEvent.click(getByText("Create"));
 
-        expect(mHistory).toBeCalledWith("/posts/create");
+        expect(window.location.pathname).toBe("/posts/create");
     });
 
     it("should redirect with custom route called function successfully if click the button", () => {
@@ -172,6 +165,6 @@ describe("Create Button", () => {
 
         fireEvent.click(getByText("Create"));
 
-        expect(mHistory).toBeCalledWith("/custom-route-posts/create");
+        expect(window.location.pathname).toBe("/custom-route-posts/create");
     });
 });

@@ -1,6 +1,11 @@
 /* eslint-disable react/display-name */
 import React from "react";
-import { CrudFilters, HttpError, useTranslate } from "@pankod/refine-core";
+import {
+    CrudFilters,
+    HttpError,
+    IResourceComponentsProps,
+    useTranslate,
+} from "@pankod/refine-core";
 import {
     DataGrid,
     Grid,
@@ -29,7 +34,7 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
 import { IUser, IUserFilterVariables } from "interfaces";
 
-export const UserList: React.FC = () => {
+export const UserList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
 
     const { register, handleSubmit } =
@@ -67,7 +72,14 @@ export const UserList: React.FC = () => {
             {
                 field: "isActive",
                 headerName: t("users.fields.isActive.label"),
-                renderCell: ({ row }) => <BooleanField value={row.isActive} />,
+                align: "center",
+                headerAlign: "center",
+                renderCell: ({ row }) => (
+                    <BooleanField
+                        svgIconProps={{ sx: { width: "16px", height: "16px" } }}
+                        value={row.isActive}
+                    />
+                ),
             },
             {
                 field: "createdAt",

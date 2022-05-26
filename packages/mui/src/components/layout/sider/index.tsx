@@ -238,14 +238,21 @@ export const Sider: React.FC<SiderProps> = ({
                     keepMounted: true, // Better open performance on mobile.
                 }}
                 sx={{
-                    display: { xs: "block", sm: "none" },
+                    display: { xs: "block", md: "none" },
                     "& .MuiDrawer-paper": {
                         width: 256,
                         bgcolor: "secondary.main",
                     },
                 }}
             >
-                <Box sx={{ height: 64, display: "flex", alignItems: "center" }}>
+                <Box
+                    sx={{
+                        height: 64,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}
+                >
                     <RenderToTitle collapsed={false} />
                 </Box>
                 {drawer}
@@ -254,7 +261,7 @@ export const Sider: React.FC<SiderProps> = ({
                 variant="permanent"
                 PaperProps={{ elevation: 1 }}
                 sx={{
-                    display: { xs: "none", sm: "block" },
+                    display: { xs: "none", md: "block" },
                     "& .MuiDrawer-paper": {
                         width: drawerWidth,
                         bgcolor: "secondary.main",
@@ -265,7 +272,14 @@ export const Sider: React.FC<SiderProps> = ({
                 }}
                 open
             >
-                <Box sx={{ height: 64, display: "flex", alignItems: "center" }}>
+                <Box
+                    sx={{
+                        height: 64,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}
+                >
                     <RenderToTitle collapsed={collapsed} />
                 </Box>
                 <Box

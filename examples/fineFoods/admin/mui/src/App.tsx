@@ -4,8 +4,6 @@ import {
     ErrorComponent,
     ReadyPage,
     ThemeProvider,
-    DarkTheme,
-    LightTheme,
     notificationProviderHandle,
     Layout,
     GlobalStyles,
@@ -17,13 +15,14 @@ import { useTranslation } from "react-i18next";
 import {
     AddShoppingCartOutlined,
     StarBorderOutlined,
-    BikeScooterOutlined,
+    CategoryOutlined,
     StoreOutlined,
     LocalPizzaOutlined,
     PeopleOutlineOutlined,
 } from "@mui/icons-material";
 
 import { authProvider } from "authProvider";
+import { DarkTheme, LightTheme } from "theme";
 import { DashboardPage } from "pages/dashboard";
 import { OrderList, OrderShow } from "pages/orders";
 import { UserList, UserShow } from "pages/users";
@@ -37,7 +36,8 @@ import {
 import { LoginPage } from "pages/login";
 import { StoreList, StoreEdit, StoreCreate } from "pages/stores";
 import { ProductList } from "pages/products";
-import { Header } from "components";
+import { CategoryList } from "pages/categories";
+import { Header, Title } from "components";
 import { ColorModeContext } from "contexts";
 import { BikeWhiteIcon } from "components/icons/bike-white";
 
@@ -62,6 +62,7 @@ const App: React.FC = () => {
                 authProvider={authProvider}
                 i18nProvider={i18nProvider}
                 DashboardPage={DashboardPage}
+                Title={Title}
                 ReadyPage={ReadyPage}
                 Layout={Layout}
                 Header={Header}
@@ -94,6 +95,11 @@ const App: React.FC = () => {
                         edit: StoreEdit,
                         create: StoreCreate,
                         icon: <StoreOutlined />,
+                    },
+                    {
+                        name: "categories",
+                        list: CategoryList,
+                        icon: <CategoryOutlined />,
                     },
                     {
                         name: "couriers",

@@ -20,7 +20,7 @@ export const UrlField: React.FC<UrlFieldProps> = ({
     ...rest
 }) => {
     return (
-        <Typography>
+        <Typography variant="body2">
             <Link href={value} {...rest}>
                 {children ?? value}
             </Link>
