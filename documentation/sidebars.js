@@ -549,6 +549,11 @@ module.exports = {
                     type: "category",
                     label: "Table",
                     items: [
+                        {
+                            type: "category",
+                            label: "MUI",
+                            items: ["examples/table/mui/useDataGrid"],
+                        },
                         "examples/table/advancedTable",
                         "examples/table/tableFilter",
                         "examples/table/useDeleteMany",
