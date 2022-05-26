@@ -31,6 +31,7 @@ Let's assume that the data we are going to show on the table came like this from
 To see basic usage, let's create a table with the `id`, `title` and `content` columns.
 
 ```tsx title="/src/pages/posts/list.tsx"
+import React from "react";
 import { useDataGrid, DataGrid, GridColumns, List } from "@pankod/refine-mui";
 
 const columns: GridColumns = [
