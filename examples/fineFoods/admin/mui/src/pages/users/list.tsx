@@ -96,7 +96,7 @@ export const UserList: React.FC = () => {
         [],
     );
 
-    const { dataGridProps, onSearch } = useDataGrid<
+    const { dataGridProps, search } = useDataGrid<
         IUser,
         HttpError,
         IUserFilterVariables
@@ -139,7 +139,7 @@ export const UserList: React.FC = () => {
                             component="form"
                             sx={{ display: "flex", flexDirection: "column" }}
                             autoComplete="off"
-                            onSubmit={handleSubmit(onSearch)}
+                            onSubmit={handleSubmit(search)}
                         >
                             <TextField
                                 {...register("q")}
