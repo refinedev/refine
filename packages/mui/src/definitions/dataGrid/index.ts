@@ -184,7 +184,7 @@ export const transformCrudFiltersToFilterModel = (
                     column?.type,
                 ),
                 value,
-                id: field + value + operator,
+                id: field + operator,
             });
         });
     } else {
@@ -198,13 +198,9 @@ export const transformCrudFiltersToFilterModel = (
                     column?.type,
                 ),
                 value,
-                id: field + value + operator,
+                id: field + operator,
             });
         });
-    }
-
-    if (gridFilterItems.length === 0) {
-        return undefined;
     }
 
     return {
