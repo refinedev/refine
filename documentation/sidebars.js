@@ -56,6 +56,11 @@ module.exports = {
                         },
                         {
                             type: "category",
+                            label: "Breadcrumb",
+                            items: ["core/hooks/useBreadcrumb"],
+                        },
+                        {
+                            type: "category",
                             label: "Data",
                             items: [
                                 "core/hooks/data/useApiUrl",
@@ -400,6 +405,7 @@ module.exports = {
                         "examples/auth-provider/otpLogin",
                     ],
                 },
+                "examples/breadcrumb/useBreadcrumb",
                 "examples/antd-calendar-example",
                 {
                     type: "category",
