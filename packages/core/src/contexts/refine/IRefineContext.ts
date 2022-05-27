@@ -12,7 +12,7 @@ export interface IRefineContext {
     mutationMode: MutationMode;
     warnWhenUnsavedChanges: boolean;
     syncWithLocation: boolean;
-    syncWithLocationLocaleStorage: boolean;
+    syncWithLocationLocalStorage: boolean;
     undoableTimeout: number;
     catchAll?: React.ReactNode;
     DashboardPage?: React.FC;
@@ -32,7 +32,7 @@ export interface IRefineContextProvider {
     mutationMode: MutationMode;
     warnWhenUnsavedChanges: boolean;
     syncWithLocation: boolean;
-    syncWithLocationLocaleStorage: boolean;
+    syncWithLocationLocalStorage: boolean;
     undoableTimeout: number;
     catchAll?: React.ReactNode;
     DashboardPage?: React.FC;

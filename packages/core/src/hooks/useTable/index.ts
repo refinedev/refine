@@ -39,7 +39,7 @@ export type useTableProps<TData, TError> = {
     initialFilter?: CrudFilters;
     permanentFilter?: CrudFilters;
     syncWithLocation?: boolean;
-    syncWithLocationLocaleStorage?: boolean;
+    syncWithLocationLocalStorage?: boolean;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     metaData?: MetaDataQuery;
     dataProviderName?: string;
@@ -90,7 +90,7 @@ export const useTable = <
     initialFilter,
     permanentFilter = defaultPermanentFilter,
     syncWithLocation: syncWithLocationProp,
-    syncWithLocationLocaleStorage: syncWithLocationLocaleStorageProp,
+    syncWithLocationLocalStorage: syncWithLocationLocalStorageProp,
     resource: resourceFromProp,
     successNotification,
     errorNotification,
@@ -103,13 +103,12 @@ export const useTable = <
 }: useTableProps<TData, TError> = {}): useTableReturnType<TData> => {
     const {
         syncWithLocation: syncWithLocationContext,
-        syncWithLocationLocaleStorage: syncWithLocationLocaleStorageContext,
+        syncWithLocationLocalStorage: syncWithLocationLocalStorageContext,
     } = useSyncWithLocation();
 
     const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
-    const syncWithLocationLocaleStorage =
-        syncWithLocationLocaleStorageProp ??
-        syncWithLocationLocaleStorageContext;
+    const syncWithLocationLocalStorage =
+        syncWithLocationLocalStorageProp ?? syncWithLocationLocalStorageContext;
 
     const { useLocation, useParams } = useRouterContext();
     const { search, pathname } = useLocation();
@@ -135,7 +134,7 @@ export const useTable = <
     const resourceWithRoute = useResourceWithRoute();
 
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
-    const defaultSyncWithLocationLocaleStorageKey = `refine-table-sync-with-location-${resource.name}`;
+    const defaultsyncWithLocationLocalStorageKey = `refine-table-sync-with-location-${resource.name}`;
 
     const [sorter, setSorter] = useState<CrudSorting>(
         setInitialSorters(permanentSorter, defaultSorter ?? []),
@@ -173,8 +172,8 @@ export const useTable = <
     }, [search]);
 
     useEffect(() => {
-        if (!syncWithLocationLocaleStorage) {
-            localStorage.removeItem(defaultSyncWithLocationLocaleStorageKey);
+        if (!syncWithLocationLocalStorage) {
+            localStorage.removeItem(defaultsyncWithLocationLocalStorageKey);
         }
         if (syncWithLocation) {
             const stringifyParams = stringifyTableParams({
@@ -185,16 +184,16 @@ export const useTable = <
                 sorter,
                 filters,
             });
-            if (syncWithLocationLocaleStorage) {
+            if (syncWithLocationLocalStorage) {
                 localStorage.setItem(
-                    defaultSyncWithLocationLocaleStorageKey,
+                    defaultsyncWithLocationLocalStorageKey,
                     `${pathname}?${stringifyParams}`,
                 );
             }
 
             // Careful! This triggers render
             return push(`${pathname}?${stringifyParams}`);
-        } else if (syncWithLocationLocaleStorage) {
+        } else if (syncWithLocationLocalStorage) {
             const stringifyParams = stringifyTableParams({
                 pagination: {
                     pageSize,
@@ -205,7 +204,7 @@ export const useTable = <
             });
 
             localStorage.setItem(
-                defaultSyncWithLocationLocaleStorageKey,
+                defaultsyncWithLocationLocalStorageKey,
                 `${pathname}?${stringifyParams}`,
             );
 
@@ -213,7 +212,7 @@ export const useTable = <
         }
     }, [
         syncWithLocation,
-        syncWithLocationLocaleStorage,
+        syncWithLocationLocalStorage,
         current,
         pageSize,
         sorter,

@@ -58,7 +58,7 @@ export const useSimpleList = <
     onSearch,
     queryOptions,
     syncWithLocation: syncWithLocationProp,
-    syncWithLocationLocaleStorage: syncWithLocationLocaleStorageProp,
+    syncWithLocationLocalStorage: syncWithLocationLocalStorageProp,
     successNotification,
     errorNotification,
     liveMode: liveModeFromProp,
@@ -100,7 +100,7 @@ export const useSimpleList = <
         liveParams,
         metaData,
         syncWithLocation: syncWithLocationProp,
-        syncWithLocationLocaleStorage: syncWithLocationLocaleStorageProp,
+        syncWithLocationLocalStorage: syncWithLocationLocalStorageProp,
         dataProviderName,
     });
 

@@ -66,7 +66,7 @@ export interface RefineProps {
     ReadyPage?: React.FC;
     mutationMode?: MutationMode;
     syncWithLocation?: boolean;
-    syncWithLocationLocaleStorage?: boolean;
+    syncWithLocationLocalStorage?: boolean;
     warnWhenUnsavedChanges?: boolean;
     undoableTimeout?: number;
     Layout?: React.FC<LayoutProps>;
@@ -104,7 +104,7 @@ export const Refine: React.FC<RefineProps> = ({
     i18nProvider = defaultProvider.i18nProvider,
     mutationMode = "pessimistic",
     syncWithLocation = false,
-    syncWithLocationLocaleStorage = false,
+    syncWithLocationLocalStorage = false,
     warnWhenUnsavedChanges = false,
     undoableTimeout = 5000,
     Title,
@@ -186,8 +186,8 @@ export const Refine: React.FC<RefineProps> = ({
                                                     syncWithLocation={
                                                         syncWithLocation
                                                     }
-                                                    syncWithLocationLocaleStorage={
-                                                        syncWithLocationLocaleStorage
+                                                    syncWithLocationLocalStorage={
+                                                        syncWithLocationLocalStorage
                                                     }
                                                     Title={Title}
                                                     undoableTimeout={
