@@ -1,22 +1,48 @@
-import { Refine } from "@pankod/refine-core";
+import { Refine, DataProvider } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-simple-rest";
+import simpleRestDataProvider from "@pankod/refine-simple-rest";
+import nestjsxCrudDataProvider from "@pankod/refine-nestjsx-crud";
 import routerProvider from "@pankod/refine-react-router-v6";
 import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
 
-const API_URL = "https://api.fake-rest.refine.dev";
+const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
+const NESTJSX_CRUD_API_URL = "https://api.nestjsx-crud.refine.dev";
+
+const simpleRest = simpleRestDataProvider(SIMPLE_REST_API_URL);
+const nestjsxCrud = nestjsxCrudDataProvider(NESTJSX_CRUD_API_URL);
+
+const dataProvider = new Proxy(simpleRest, {
+    get: (target, name) => {
+        return (params: any) => {
+            if (typeof name === "symbol" || name === "then") {
+                return;
+            }
+
+            if (params.resource === "categories") {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                return nestjsxCrud[name](params);
+            }
+
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            return simpleRest[name](params);
+        };
+    },
+});
 
 const App: React.FC = () => {
     return (
         <Refine
             routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
+            dataProvider={dataProvider}
             resources={[
                 {
                     name: "posts",
@@ -25,6 +51,12 @@ const App: React.FC = () => {
                     edit: PostEdit,
                     show: PostShow,
                     canDelete: true,
+                },
+                {
+                    name: "categories",
+                    list: CategoryList,
+                    create: CategoryCreate,
+                    edit: CategoryEdit,
                 },
             ]}
             notificationProvider={notificationProvider}
