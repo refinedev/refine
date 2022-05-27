@@ -9,7 +9,7 @@ import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 import "@pankod/refine-antd/dist/styles.min.css";
 
-const { AimOutlined, TagOutlined } = Icons;
+const { ReadOutlined, TagOutlined } = Icons;
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
@@ -32,7 +32,7 @@ const App: React.FC = () => {
                     options: { route: "custom-route" },
                     show: PostShow,
                     canDelete: true,
-                    icon: <AimOutlined />,
+                    icon: <ReadOutlined />,
                 },
                 {
                     name: "cms",
