@@ -394,7 +394,7 @@ Default value is `false`.
 
 :::tip
 
-To activate syncWithLocation from locale storage syncWithLocationLocalStorage needs to be set to `true` and use default `refine-table-sync-with-location-resource.name` key for the storage. Using from local storage helps you get back to the page you left off while editing and deleting 
+To activate syncWithLocation from locale storage syncWithLocationLocalStorage needs to be set to `true` and use default `refine-table-sync-with-location-{{resource.name}}` key for the storage. Using from local storage helps you get back to the page you left off while editing and deleting 
 
 ```tsx
 
