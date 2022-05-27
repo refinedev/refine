@@ -392,6 +392,12 @@ Users are able to change current page, items count per page, sort and filter par
 
 Default value is `false`.
 
+:::tip
+
+To activate syncWithLocation from locale storage syncWithLocationLocaleStorage needs to be set to `true` and use default `refine-table-sync-with-location-resource.name` key for the storage. Using from local storage helps you get back to the page you left off while editing and deleting 
+
+```tsx
+
 <br />
 
 ## `warnWhenUnsavedChanges`
