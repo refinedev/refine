@@ -3,10 +3,13 @@ import {
     notificationProvider,
     Layout,
     ErrorComponent,
+    Icons,
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 import "@pankod/refine-antd/dist/styles.min.css";
+
+const { AimOutlined, TagOutlined } = Icons;
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
@@ -19,21 +22,34 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
+            DashboardPage={() => <div>Dashboard</div>}
             resources={[
                 {
                     name: "posts",
                     list: PostList,
                     create: PostCreate,
                     edit: PostEdit,
+                    options: { label: "Hello" },
                     show: PostShow,
                     canDelete: true,
+                    icon: <AimOutlined />,
                 },
                 {
-                    name: "CMS",
+                    name: "cms",
                 },
                 {
                     name: "users",
-                    parentName: "CMS",
+                    parentName: "cms",
+                    list: UserList,
+                    create: UserCreate,
+                    edit: UserEdit,
+                    show: UserShow,
+                },
+                {
+                    name: "tags",
+                    options: { label: "Cms Tags" },
+                    parentName: "users",
+                    icon: <TagOutlined />,
                     list: UserList,
                     create: UserCreate,
                     edit: UserEdit,
@@ -41,7 +57,7 @@ const App: React.FC = () => {
                 },
                 {
                     name: "categories",
-                    parentName: "CMS",
+                    parentName: "cms",
                     list: CategoryList,
                     create: CategoryCreate,
                     edit: CategoryEdit,

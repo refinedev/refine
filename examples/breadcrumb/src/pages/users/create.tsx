@@ -3,13 +3,17 @@ import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import { Create, Form, Input, useForm } from "@pankod/refine-antd";
 
+import { Breadcrumb } from "components/breadcrumb";
 import { IUser } from "interfaces";
 
 export const UserCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IUser>();
 
     return (
-        <Create saveButtonProps={saveButtonProps}>
+        <Create
+            pageHeaderProps={{ breadcrumb: <Breadcrumb /> }}
+            saveButtonProps={saveButtonProps}
+        >
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="First Name"

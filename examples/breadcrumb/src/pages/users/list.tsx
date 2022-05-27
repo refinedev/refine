@@ -11,13 +11,14 @@ import {
     EmailField,
 } from "@pankod/refine-antd";
 
+import { Breadcrumb } from "components/breadcrumb";
 import { IUser } from "interfaces";
 
 export const UserList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IUser>();
 
     return (
-        <List>
+        <List pageHeaderProps={{ breadcrumb: <Breadcrumb /> }}>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="firstName" title="First Name" />
                 <Table.Column dataIndex="lastName" title="Last Name" />

@@ -3,13 +3,17 @@ import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import { Edit, Form, Input, useForm } from "@pankod/refine-antd";
 
+import { Breadcrumb } from "components/breadcrumb";
 import { IUser } from "interfaces";
 
 export const UserEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IUser>();
 
     return (
-        <Edit saveButtonProps={saveButtonProps}>
+        <Edit
+            pageHeaderProps={{ breadcrumb: <Breadcrumb /> }}
+            saveButtonProps={saveButtonProps}
+        >
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="First Name"

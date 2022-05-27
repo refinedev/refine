@@ -3,7 +3,6 @@ import {
     useMany,
     getDefaultFilter,
 } from "@pankod/refine-core";
-
 import {
     List,
     Table,
@@ -15,10 +14,11 @@ import {
     Select,
     Radio,
     TagField,
+    useTable,
+    useSelect,
 } from "@pankod/refine-antd";
 
-import { useTable, useSelect } from "@pankod/refine-antd";
-
+import { Breadcrumb } from "components/breadcrumb";
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
@@ -42,7 +42,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     });
 
     return (
-        <List>
+        <List pageHeaderProps={{ breadcrumb: <Breadcrumb /> }}>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
                 <Table.Column dataIndex="title" title="Title" />

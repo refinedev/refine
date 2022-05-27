@@ -2,6 +2,7 @@ import { useShow, IResourceComponentsProps, useOne } from "@pankod/refine-core";
 
 import { Show, Typography, MarkdownField } from "@pankod/refine-antd";
 
+import { Breadcrumb } from "components/breadcrumb";
 import { IPost, ICategory } from "interfaces";
 
 const { Title, Text } = Typography;
@@ -21,7 +22,10 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
         });
 
     return (
-        <Show isLoading={isLoading}>
+        <Show
+            pageHeaderProps={{ breadcrumb: <Breadcrumb /> }}
+            isLoading={isLoading}
+        >
             <Title level={5}>Id</Title>
             <Text>{record?.id}</Text>
 
