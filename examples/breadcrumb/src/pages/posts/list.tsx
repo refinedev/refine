@@ -22,9 +22,7 @@ import { useTable, useSelect } from "@pankod/refine-antd";
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, filters } = useTable<IPost>({
-        syncWithLocation: true,
-    });
+    const { tableProps, filters } = useTable<IPost>();
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
