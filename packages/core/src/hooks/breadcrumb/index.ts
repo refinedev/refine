@@ -4,8 +4,6 @@ import humanizeString from "humanize-string";
 import { useResource, useRouterContext } from "@hooks";
 import { ResourceRouterParams } from "src/interfaces";
 
-export type UseBreadcrumbPropsType = {};
-
 export type BreadcrumbsType = {
     label: string;
     to?: string;
@@ -16,34 +14,31 @@ type UseBreadcrumbReturnType = {
     breadcrumbs: BreadcrumbsType[];
 };
 
-export const useBreadcrumb =
-    ({}: UseBreadcrumbPropsType = {}): UseBreadcrumbReturnType => {
-        const { useParams } = useRouterContext();
-        const { resources, resource } = useResource();
+export const useBreadcrumb = (): UseBreadcrumbReturnType => {
+    const { useParams } = useRouterContext();
+    const { resources, resource } = useResource();
 
-        const { action } = useParams<ResourceRouterParams>();
+    const { action } = useParams<ResourceRouterParams>();
 
-        const breadcrumbs: BreadcrumbsType[] = [];
+    const breadcrumbs: BreadcrumbsType[] = [];
 
-        resource.route?.split("/").forEach((route) => {
-            const resource = resources.find(
-                (resource) => resource.route === route,
-            );
+    resource.route?.split("/").forEach((route) => {
+        const resource = resources.find((resource) => resource.route === route);
 
-            if (resource) {
-                breadcrumbs.push({
-                    label: humanizeString(resource.label ?? resource.name),
-                    to: !!resource.list ? `/${resource.route}` : undefined,
-                    icon: resource.icon,
-                });
-            }
-        });
-
-        if (action) {
-            breadcrumbs.push({ label: humanizeString(action) });
+        if (resource) {
+            breadcrumbs.push({
+                label: humanizeString(resource.label ?? resource.name),
+                to: !!resource.list ? `/${resource.route}` : undefined,
+                icon: resource.icon,
+            });
         }
+    });
 
-        return {
-            breadcrumbs,
-        };
+    if (action) {
+        breadcrumbs.push({ label: humanizeString(action) });
+    }
+
+    return {
+        breadcrumbs,
     };
+};
