@@ -118,6 +118,71 @@ const App: React.FC = () => {
 };
 ```
 :::
+
+
+## Combining Data Providers
+
+The `<Refine />` component supports only one data provider. However, in some applications we need more than one API. Let's simulate this situation with the following example.
+
+For example, the following app uses [Simple REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest) for all resources and [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud) for categories resource.
+
+```ts title="dataProvider.ts"
+import { Refine } from "@pankod/refine-core";
+import simpleRestDataProvider from "@pankod/refine-simple-rest";
+import nestjsxCrudDataProvider from "@pankod/refine-nestjsx-crud";
+
+const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
+const NESTJSX_CRUD_API_URL = "https://api.nestjsx-crud.refine.dev";
+
+const simpleRest = simpleRestDataProvider(SIMPLE_REST_API_URL);
+const nestjsxCrud = nestjsxCrudDataProvider(NESTJSX_CRUD_API_URL);
+
+const dataProvider = new Proxy(simpleRest, {
+    get: (target, name) => {
+        return (params: any) => {
+            if (typeof name === "symbol" || name === "then") {
+                return;
+            }
+
+            if (params.resource === "categories") {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                return nestjsxCrud[name](params);
+            }
+
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            return simpleRest[name](params);
+        };
+    },
+});
+
+export const App: React.FC = () => {
+    return (
+        <Refine
+            dataProvider={dataProvider}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                    canDelete: true,
+                },
+                {
+                    name: "categories",
+                    list: CategoryList,
+                    create: CategoryCreate,
+                    edit: CategoryEdit,
+                },
+            ]}
+        />
+    );
+};
+```
+
+
 ## Creating a data provider
 
 We will build **"Simple REST Dataprovider"** of `@pankod/refine-simple-rest` from scratch to show the logic of how data provider methods interact with the API.

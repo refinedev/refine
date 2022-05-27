@@ -1,4 +1,4 @@
-import { Refine, DataProvider } from "@pankod/refine-core";
+import { Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
