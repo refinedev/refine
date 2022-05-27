@@ -34,6 +34,7 @@ export const StoreEdit: React.FC<IResourceComponentsProps> = () => {
                 layout="vertical"
                 initialValues={{
                     isActive: true,
+                    ...formProps.initialValues,
                 }}
             >
                 <Row gutter={[64, 0]} wrap>
