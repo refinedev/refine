@@ -22,7 +22,7 @@ export const Breadcrumb: React.FC = () => {
             {breadcrumbs.map((breadcrumb, index) => {
                 return (
                     <AntdBreadcrumb.Item key={index}>
-                        {breadcrumb.icon && breadcrumb.icon}
+                        {breadcrumb.icon}
                         {breadcrumb.to ? (
                             <Link to={breadcrumb.to}>{breadcrumb.label}</Link>
                         ) : (
