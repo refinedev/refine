@@ -34,7 +34,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
     const { DashboardPage, catchAll, LoginPage } = useRefineContext();
 
     const resource = resources.find(
-        (res) =>
+        (res: any) =>
             res.name === routeResourceName || res.route === routeResourceName,
     );
 
