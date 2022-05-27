@@ -94,16 +94,16 @@ describe("useBreadcrumb Hook", () => {
         ]);
     });
 
-    it("if the resource has a label, the breadcrumb label should be equal to that label", async () => {
+    it("if resource has custom `route` should shown with resource `label`", async () => {
         const Wrapper = TestWrapper({
             resources: [
                 {
                     name: "users",
                     label: "Hello",
-                    route: "users",
+                    route: "custom-route",
                 },
             ],
-            routerInitialEntries: ["/users"],
+            routerInitialEntries: ["/custom-route"],
         });
 
         const WrapperWith: React.FC = ({ children }) => (

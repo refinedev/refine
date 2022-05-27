@@ -27,7 +27,7 @@ export const useBreadcrumb =
 
         resource.route?.split("/").forEach((route) => {
             const resource = resources.find(
-                (resource) => resource.name === route,
+                (resource) => resource.route === route,
             );
 
             if (resource) {

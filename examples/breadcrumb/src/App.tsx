@@ -29,7 +29,7 @@ const App: React.FC = () => {
                     list: PostList,
                     create: PostCreate,
                     edit: PostEdit,
-                    options: { label: "Hello" },
+                    options: { route: "custom-route" },
                     show: PostShow,
                     canDelete: true,
                     icon: <AimOutlined />,
@@ -47,7 +47,7 @@ const App: React.FC = () => {
                 },
                 {
                     name: "tags",
-                    options: { label: "Cms Tags" },
+                    options: { label: "Cms Tags", route: "Custom" },
                     parentName: "users",
                     icon: <TagOutlined />,
                     list: UserList,
