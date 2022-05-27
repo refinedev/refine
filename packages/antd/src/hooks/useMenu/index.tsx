@@ -36,13 +36,13 @@ export const useMenu: () => useMenuReturnType = () => {
     const { hasDashboard } = useRefineContext();
 
     let selectedResource = resources.find(
-        (el) => location?.pathname === `/${el.route}`,
+        (el: any) => location?.pathname === `/${el.route}`,
     );
 
     // for no ssr
     if (!selectedResource) {
         selectedResource = resources.find(
-            (el) => params?.resource === (el.route as string),
+            (el: any) => params?.resource === (el.route as string),
         );
     }
 
@@ -68,7 +68,7 @@ export const useMenu: () => useMenuReturnType = () => {
                       },
                   ]
                 : []),
-            ...resources.map((resource) => {
+            ...resources.map((resource: any) => {
                 const route = `/${resource.route}`;
 
                 return {

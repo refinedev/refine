@@ -124,6 +124,7 @@ export const useForm = <
     TVariables
 > => {
     const { useParams } = useRouterContext();
+
     const {
         resource: resourceFromRoute,
         action: actionFromRoute,

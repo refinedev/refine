@@ -23,6 +23,14 @@ export const useRedirectionAfterSubmission: UseRedirectionAfterSubmissionType =
                 resource: IResourceItem;
                 id?: BaseKey;
             }) => {
+                const localStorageredirectUrl = localStorage.getItem(
+                    `refine-table-sync-with-location-${resource.route}`,
+                );
+                const redirectListUrl =
+                    localStorageredirectUrl && localStorageredirectUrl !== null
+                        ? localStorageredirectUrl.substring(1)
+                        : resource.route;
+
                 if (redirect && resource.route) {
                     if (resource.canShow && redirect === "show" && id) {
                         return show(resource.route, id);
@@ -36,7 +44,7 @@ export const useRedirectionAfterSubmission: UseRedirectionAfterSubmissionType =
                         return create(resource.route);
                     }
 
-                    return list(resource.route, "push");
+                    return list(redirectListUrl ?? resource.route, "push");
                 } else {
                     return;
                 }

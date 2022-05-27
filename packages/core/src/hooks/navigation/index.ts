@@ -45,6 +45,12 @@ export const useNavigation = () => {
 
     const listUrl = (resource: string) => {
         const resourceName = resourceWithRoute(resource);
+        const redirectListUrl = localStorage.getItem(
+            `refine-table-sync-with-location-${resourceName.route}`,
+        );
+        if (redirectListUrl && redirectListUrl !== null) {
+            return redirectListUrl;
+        }
         return `/${resourceName.route}`;
     };
 

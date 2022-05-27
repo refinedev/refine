@@ -39,6 +39,7 @@ export type useTableProps<TData, TError> = {
     initialFilter?: CrudFilters;
     permanentFilter?: CrudFilters;
     syncWithLocation?: boolean;
+    syncWithLocationLocaleStorage?: boolean;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     metaData?: MetaDataQuery;
     dataProviderName?: string;
@@ -89,6 +90,7 @@ export const useTable = <
     initialFilter,
     permanentFilter = defaultPermanentFilter,
     syncWithLocation: syncWithLocationProp,
+    syncWithLocationLocaleStorage: syncWithLocationLocaleStorageProp,
     resource: resourceFromProp,
     successNotification,
     errorNotification,
@@ -99,9 +101,15 @@ export const useTable = <
     metaData,
     dataProviderName,
 }: useTableProps<TData, TError> = {}): useTableReturnType<TData> => {
-    const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
+    const {
+        syncWithLocation: syncWithLocationContext,
+        syncWithLocationLocaleStorage: syncWithLocationLocaleStorageContext,
+    } = useSyncWithLocation();
 
     const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
+    const syncWithLocationLocaleStorage =
+        syncWithLocationLocaleStorageProp ??
+        syncWithLocationLocaleStorageContext;
 
     const { useLocation, useParams } = useRouterContext();
     const { search, pathname } = useLocation();
@@ -121,13 +129,13 @@ export const useTable = <
     defaultPageSize = parsedPageSize || defaultPageSize;
     defaultSorter = parsedSorter.length ? parsedSorter : defaultSorter;
     defaultFilter = parsedFilters.length ? parsedFilters : defaultFilter;
-
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
     const { push } = useNavigation();
     const resourceWithRoute = useResourceWithRoute();
 
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
+    const defaultSyncWithLocationLocaleStorageKey = `refine-table-sync-with-location-${resource.name}`;
 
     const [sorter, setSorter] = useState<CrudSorting>(
         setInitialSorters(permanentSorter, defaultSorter ?? []),
@@ -151,6 +159,7 @@ export const useTable = <
             sorter,
             filters,
         });
+
         return `${pathname}?${stringifyParams}`;
     };
 
@@ -164,6 +173,9 @@ export const useTable = <
     }, [search]);
 
     useEffect(() => {
+        if (!syncWithLocationLocaleStorage) {
+            localStorage.removeItem(defaultSyncWithLocationLocaleStorageKey);
+        }
         if (syncWithLocation) {
             const stringifyParams = stringifyTableParams({
                 pagination: {
@@ -173,11 +185,40 @@ export const useTable = <
                 sorter,
                 filters,
             });
+            if (syncWithLocationLocaleStorage) {
+                localStorage.setItem(
+                    defaultSyncWithLocationLocaleStorageKey,
+                    `${pathname}?${stringifyParams}`,
+                );
+            }
 
             // Careful! This triggers render
             return push(`${pathname}?${stringifyParams}`);
+        } else if (syncWithLocationLocaleStorage) {
+            const stringifyParams = stringifyTableParams({
+                pagination: {
+                    pageSize,
+                    current,
+                },
+                sorter,
+                filters,
+            });
+
+            localStorage.setItem(
+                defaultSyncWithLocationLocaleStorageKey,
+                `${pathname}?${stringifyParams}`,
+            );
+
+            return push(`${pathname}?${stringifyParams}`);
         }
-    }, [syncWithLocation, current, pageSize, sorter, filters]);
+    }, [
+        syncWithLocation,
+        syncWithLocationLocaleStorage,
+        current,
+        pageSize,
+        sorter,
+        filters,
+    ]);
 
     const queryResult = useList<TData, TError>({
         resource: resource.name,
