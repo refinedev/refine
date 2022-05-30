@@ -1,3 +1,4 @@
+import { createElement } from "react";
 import { Grid, FormProps, Form, TablePaginationConfig, TableProps } from "antd";
 import { QueryObserverResult } from "react-query";
 import { useForm as useFormSF } from "sunflower-antd";
@@ -21,6 +22,7 @@ import {
     mapAntdSorterToCrudSorting,
     mapAntdFilterToCrudFilter,
 } from "../../../definitions/table";
+import { PaginationLink } from "./paginationLink";
 
 export type useTableProps<TData, TError, TSearchVariables = unknown> =
     useTablePropsCore<TData, TError> &
@@ -88,6 +90,7 @@ export const useTable = <
         setFilters,
         sorter,
         setSorter,
+        createLinkForSyncWithLocation,
     } = useTableCore({
         permanentSorter,
         permanentFilter,
@@ -157,6 +160,20 @@ export const useTable = <
             loading: liveMode === "auto" ? isLoading : !isFetched,
             onChange,
             pagination: {
+                itemRender: (page, type, element) => {
+                    const link = createLinkForSyncWithLocation({
+                        pagination: {
+                            pageSize,
+                            current: page,
+                        },
+                        sorter,
+                        filters,
+                    });
+                    return createElement(PaginationLink, {
+                        to: link,
+                        element,
+                    });
+                },
                 pageSize,
                 current,
                 simple: !breakpoint.sm,

@@ -1,15 +1,8 @@
 import React from "react";
-import ReactRouterDom, { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import { fireEvent, render, TestWrapper, waitFor } from "@test";
 import { ShowButton } from "./";
-
-const mHistory = jest.fn();
-
-jest.mock("react-router-dom", () => ({
-    ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useNavigate: () => mHistory,
-}));
 
 describe("Show Button", () => {
     const show = jest.fn();
@@ -162,7 +155,7 @@ describe("Show Button", () => {
 
         fireEvent.click(getByText("Show"));
 
-        expect(mHistory).toBeCalledWith("/posts/show/1");
+        expect(window.location.pathname).toBe("/posts/show/1");
     });
 
     it("should edit page redirect show route called function successfully if click the button", () => {
@@ -180,7 +173,7 @@ describe("Show Button", () => {
 
         fireEvent.click(getByText("Show"));
 
-        expect(mHistory).toBeCalledWith("/posts/show/1");
+        expect(window.location.pathname).toBe("/posts/show/1");
     });
 
     it("should custom resource and recordItemId redirect show route called function successfully if click the button", () => {
@@ -206,7 +199,7 @@ describe("Show Button", () => {
 
         fireEvent.click(getByText("Show"));
 
-        expect(mHistory).toBeCalledWith("/categories/show/1");
+        expect(window.location.pathname).toBe("/categories/show/1");
     });
 
     it("should redirect with custom route called function successfully if click the button", () => {
@@ -238,6 +231,6 @@ describe("Show Button", () => {
 
         fireEvent.click(getByText("Show"));
 
-        expect(mHistory).toBeCalledWith("/custom-route-posts/show/1");
+        expect(window.location.pathname).toBe("/custom-route-posts/show/1");
     });
 });

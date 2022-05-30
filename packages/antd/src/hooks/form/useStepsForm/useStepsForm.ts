@@ -61,6 +61,7 @@ export const useStepsForm = <
         ...stepsPropsSunflower,
         formProps: {
             ...stepsPropsSunflower.formProps,
+            ...useFormProps.formProps,
             onValuesChange: formProps?.onValuesChange,
             onKeyUp: formProps?.onKeyUp,
         },

@@ -1439,7 +1439,7 @@ For other examples and articles that will interest you with refine:  [https://re
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-supabase-issue-tracker-ifuh4?autoresize=1fontsize=14&=1&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/blog/issueTracker?autoresize=1fontsize=14&=1&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-supabase-issue-tracker"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

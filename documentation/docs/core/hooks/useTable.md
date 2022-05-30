@@ -186,18 +186,19 @@ console.log(filters); // [{ field: "title", operator: "contains", value: "A" }, 
 
 ### Return values
 
-| Property         | Description                                 | Type                                                                                              |
-| ---------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| tableQueryResult | Result of the `react-query`'s `useQuery`    | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery] |
-| current          | Current page index state                    | `number`                                                                                          |
-| totalPage        | Total page count                             | `number`                                                                                          |
-| setCurrent       | A function that changes the current         | `React.Dispatch<React.SetStateAction<number>>`                                                    |
-| pageSize         | Current pageSize state                      | `number`                                                                                          |
-| setPageSize      | A function that changes the pageSize.       | `React.Dispatch<React.SetStateAction<number>>`                                                    |
-| sorter           | Current sorting state                       | [`CrudSorting`][crudsorting]                                                                      |
-| setSorter        | A function that accepts a new sorter state. | `(sorter: CrudSorting) => void`                                                                   |
-| filters          | Current filters state                       | [`CrudFilters`][crudfilters]                                                                      |
-| setFilters       | A function that accepts a new filter state  | `(filters: CrudFilters) => void`                                                                  |
+| Property                      | Description                                             | Type                                                                                              |
+| ----------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| tableQueryResult              | Result of the `react-query`'s `useQuery`                | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery] |
+| current                       | Current page index state                                | `number`                                                                                          |
+| totalPage                     | Total page count                                        | `number`                                                                                          |
+| setCurrent                    | A function that changes the current                     | `React.Dispatch<React.SetStateAction<number>>`                                                    |
+| pageSize                      | Current pageSize state                                  | `number`                                                                                          |
+| setPageSize                   | A function that changes the pageSize.                   | `React.Dispatch<React.SetStateAction<number>>`                                                    |
+| sorter                        | Current sorting state                                   | [`CrudSorting`][crudsorting]                                                                      |
+| setSorter                     | A function that accepts a new sorter state.             | `(sorter: CrudSorting) => void`                                                                   |
+| filters                       | Current filters state                                   | [`CrudFilters`][crudfilters]                                                                      |
+| setFilters                    | A function that accepts a new filter state              | `(filters: CrudFilters) => void`                                                                  |
+| createLinkForSyncWithLocation | A function create accessible links for syncWithLocation | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`                                                |
 
 <br />
 
@@ -212,3 +213,4 @@ console.log(filters); // [{ field: "title", operator: "contains", value: "A" }, 
 [refine swl]: /core/components/refine-config.md#syncwithlocation
 [live mode]: /core/providers/live-provider.md#usage-in-a-hook
 [live mod props]: /core/interfaces.md#livemodeprops
+[syncwithlocationparams]: /core/interfaces.md#syncwithlocationparams

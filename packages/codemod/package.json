@@ -38,6 +38,11 @@
     "jscodeshift": "^0.6.4",
     "meow": "7.0.1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pankod/refine.git",
+    "directory": "packages/codemod"
+  },
   "publishConfig": {
     "access": "public"
   },

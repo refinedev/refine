@@ -1,5 +1,5 @@
 {
-  "version": "3.20.1",
+  "version": "3.22.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -37,10 +37,15 @@
     "tsup": "^5.11.13"
   },
   "dependencies": {
-    "@pankod/refine-core": "^3.20.1",
+    "@pankod/refine-core": "^3.22.1",
     "react-table": "^7.7.0"
   },
-  "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pankod/refine.git",
+    "directory": "packages/react-table"
+  },
+  "gitHead": "17dd5af3e4c9f7f09e1e707362c6f5a9d1cab8a8",
   "publishConfig": {
     "access": "public"
   }

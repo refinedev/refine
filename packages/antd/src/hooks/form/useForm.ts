@@ -113,10 +113,7 @@ export const useForm = <
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesRefine;
 
     React.useEffect(() => {
-        form.setFieldsValue(queryResult?.data?.data as any);
-        return () => {
-            form.resetFields();
-        };
+        form.resetFields();
     }, [queryResult?.data?.data, id]);
 
     const onKeyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
@@ -146,6 +143,7 @@ export const useForm = <
             onFinish,
             onKeyUp,
             onValuesChange,
+            initialValues: queryResult?.data?.data,
         },
         saveButtonProps,
         ...useFormCoreResult,

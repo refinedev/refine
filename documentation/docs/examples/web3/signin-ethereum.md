@@ -9,7 +9,7 @@ A web3 wallet is a type of cryptocurrency wallet that allows you to send, receiv
 
 [View Sign-In with Ethereum Example Source](https://github.com/pankod/refine/tree/master/examples/web3/ethereumLogin)
 
-<iframe src="https://codesandbox.io/embed/signin-with-ethereum-kj36m?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/web3/ethereumLogin?autoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="signin-with-ethereum"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
