@@ -12,7 +12,7 @@ While most "todo" demos provide an excellent cursory glance at a framework's cap
 
 [View Source Code](https://github.com/pankod/refine/tree/master/examples/real-world-example)
 
-<iframe src="https://codesandbox.io/embed/refine-realworld-example-lviiok?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/real-world-example?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-tutorial"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

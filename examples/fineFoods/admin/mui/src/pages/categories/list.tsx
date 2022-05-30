@@ -6,12 +6,10 @@ import {
     Column,
     useExpanded,
     CellProps,
+    useFilters,
+    useSortBy,
+    usePagination,
 } from "@pankod/refine-react-table";
-import {
-    Edit,
-    AddCircleOutline,
-    RemoveCircleOutline,
-} from "@mui/icons-material";
 import {
     List,
     BooleanField,
@@ -38,6 +36,12 @@ import {
     NumberField,
     GridActionsCellItem,
 } from "@pankod/refine-mui";
+
+import {
+    Edit,
+    AddCircleOutline,
+    RemoveCircleOutline,
+} from "@mui/icons-material";
 
 import { ICategory, IProduct } from "interfaces";
 import { EditProduct } from "components";
@@ -146,7 +150,10 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                 sortBy: [{ id: "title", desc: false }],
             },
         },
+        useFilters,
+        useSortBy,
         useExpanded,
+        usePagination,
     );
 
     const renderRowSubComponent = useCallback(

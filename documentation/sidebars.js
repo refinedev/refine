@@ -412,6 +412,7 @@ module.exports = {
                         "examples/auth-provider/otpLogin",
                     ],
                 },
+                "examples/antd-calendar-example",
                 {
                     type: "category",
                     label: "Core",
