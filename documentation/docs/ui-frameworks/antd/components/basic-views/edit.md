@@ -20,7 +20,7 @@ When clicked on, the delete button executes the `useDelete` method provided by t
 
 [Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](/ui-frameworks/antd/components/buttons/delete.md)
 
-```tsx 
+```tsx
 import { usePermissions } from "@pankod/refine-core";
 import { Edit } from "@pankod/refine-antd";
 
@@ -48,7 +48,7 @@ Clicking on the save button will submit your form.
 
 [Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/ui-frameworks/antd/components/buttons/save.md)
 
-```tsx 
+```tsx
 import { Edit } from "@pankod/refine-antd";
 
 export const EditPage: React.FC = () => {
@@ -60,7 +60,7 @@ export const EditPage: React.FC = () => {
 
 It allows adding titles inside the `<Edit>` component. if you don't pass title props it uses the "Edit" prefix and singular resource name by default. For example, for the "posts" resource, it will be "Edit post".
 
-```tsx 
+```tsx
 import { Edit } from "@pankod/refine-antd";
 
 export const EditPage: React.FC = () => {
@@ -72,7 +72,7 @@ export const EditPage: React.FC = () => {
 
 `<Edit>` uses the Ant Design [`<Card>`](https://ant.design/components/card) component. The `action` property of the `<Card>` component shows `<SaveButton>` or `<DeleteButton>` based on your resource definition in the `resources` property you pass to `<Refine>`. If you want to use other things instead of these buttons, you can use the `actionButton` property like the code below.
 
-```tsx 
+```tsx
 import { Edit, Button } from "@pankod/refine-antd";
 
 export const EditPage: React.FC = () => {
@@ -105,9 +105,10 @@ export const EditPage: React.FC = () => {
 ### `pageHeaderProps`
 
 `<Edit>` uses the Ant Design [`<PageHeader>`](https://ant.design/components/page-header/#API) components, which means that you can customize the properties of `pageHeaderProps`.
-By default, the `extra` property of the `<PageHeader>` component shows `<RefreshButton>` or `<ListButton>` based on your resource definition in the `resources` property you pass to `<Refine>`.
 
-```tsx 
+By default, the `extra` property of the `<PageHeader>` component shows `<RefreshButton>` or `<ListButton>` based on your resource definition in the `resources` property you pass to `<Refine>` and the `breadcrumb` property shows [`<Breadcrumb>`][breadcrumb-component] component.
+
+```tsx
 import { Edit } from "@pankod/refine-antd";
 
 export const EditPage: React.FC = () => {
@@ -139,7 +140,7 @@ export const EditPage: React.FC = () => {
 
 The `<Edit>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL(when used on a custom page, modal or drawer).
 
-```tsx 
+```tsx
 import { Edit, Modal, useModalForm } from "@pankod/refine-antd";
 
 export const EditPage: React.FC = () => {
@@ -168,7 +169,7 @@ Determines which mode mutation will have while executing `<DeleteButton>` .
 
 [Refer to the mutation mode docs for further information. &#8594](guides-and-concepts/mutation-mode.md)
 
-```tsx 
+```tsx
 import { Edit } from "@pankod/refine-antd";
 
 export const EditPage: React.FC = () => {
@@ -205,7 +206,7 @@ export const App: React.FC = () => {
                         element: <CustomPage />,
                         path: "/custom",
                     },
-                ]
+                ],
                 // highlight-end
             }}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
@@ -223,16 +224,18 @@ export const App: React.FC = () => {
 
 ### Properties
 
-| Property          | Description                                                                     | Type                                                              | Default                                                                        |
-| ----------------- | ------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| canDelete         | Adds a delete button                                                            | `boolean`                                                         | If the resource has `canDelete` prop it is `true` else `false` `false`             |
-| deleteButtonProps | Adds properties for delete button                                               | [`DeleteButtonProps`](/core/interfaces.md#delete-button-props)    | `<DeleteButton>`                                                               |
-| saveButtonProps   | Adds properties for create button                                               | `{ disabled: boolean; onClick: () => void; loading: boolean; }`   | `<SaveButton>`                                                                 |
-| title             | Adds the title                                                                  | `string`                                                          | `"Edit"` prefix and singular of `resource.name`                                |
-| actionButtons     | Passes properties for `<PageHeader>`                                            | `React.ReactNode`                                                 | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
-| pageHeaderProps   | Passes properties for `<PageHeader>`                                            | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` } |
-| recordItemId      | The record id for `<RefreshButton>`                                             | [`BaseKey`](/core/interfaces.md#basekey)                          |                                                                                |
-| mutationMode      | [Determines when mutations are executed](/guides-and-concepts/mutation-mode.md) | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  | `"pessimistic"`\*                                                              |
-| resource          | Resource name for API data interactions                                         | `string`                                                          | Resource name that it reads from the URL.                                      |
+| Property          | Description                                                                     | Type                                                              | Default                                                                                                                        |
+| ----------------- | ------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| canDelete         | Adds a delete button                                                            | `boolean`                                                         | If the resource has `canDelete` prop it is `true` else `false` `false`                                                         |
+| deleteButtonProps | Adds properties for delete button                                               | [`DeleteButtonProps`](/core/interfaces.md#delete-button-props)    | `<DeleteButton>`                                                                                                               |
+| saveButtonProps   | Adds properties for create button                                               | `{ disabled: boolean; onClick: () => void; loading: boolean; }`   | `<SaveButton>`                                                                                                                 |
+| title             | Adds the title                                                                  | `string`                                                          | `"Edit"` prefix and singular of `resource.name`                                                                                |
+| actionButtons     | Passes properties for `<PageHeader>`                                            | `React.ReactNode`                                                 | `<SaveButton>` and depending on your resource configuration (`canDelete` prop)                                                 |
+| pageHeaderProps   | Passes properties for `<PageHeader>`                                            | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>`, breadcrumb: [Breadcrumb][breadcrumb-component] } |
+| recordItemId      | The record id for `<RefreshButton>`                                             | [`BaseKey`](/core/interfaces.md#basekey)                          |                                                                                                                                |
+| mutationMode      | [Determines when mutations are executed](/guides-and-concepts/mutation-mode.md) | ` "pessimistic` \| `"optimistic` \| `"undoable"`                  | `"pessimistic"`\*                                                                                                              |
+| resource          | Resource name for API data interactions                                         | `string`                                                          | Resource name that it reads from the URL.                                                                                      |
 
 > `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/core/components/refine-config.md)>** component.
+
+[breadcrumb-component]: /docs/ui-frameworks/antd/components/breadcrumb

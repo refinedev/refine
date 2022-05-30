@@ -21,7 +21,7 @@ When clicked on, delete button executes the `useDelete` method provided by the [
 
 Refer to the [`<DeleteButton>`](/ui-frameworks/antd/components/buttons/delete.md) and the [`<EditButton>`](/ui-frameworks/antd/components/buttons/edit.md) documentation for detailed usage.
 
-```tsx 
+```tsx
 import { usePermissions } from "@pankod/refine-core";
 import { Show } from "@pankod/refine-antd";
 
@@ -45,7 +45,7 @@ export const ShowPage: React.FC = () => {
 
 It allows adding a title for the `<Show>` component. if you don't pass title props it uses the "Show" prefix and the singular resource name by default. For example, for the "posts" resource, it will be "Show post".
 
-```tsx 
+```tsx
 import { Show } from "@pankod/refine-antd";
 
 export const ShowPage: React.FC = () => {
@@ -57,7 +57,7 @@ export const ShowPage: React.FC = () => {
 
 `<Show>` uses the Ant Design [`<Card>`](https://ant.design/components/card/) component so you can customize the `action` property with the properties of `actionButtons`. By default, the `action` property of the `<Card>` component shows nothing in the `<Show>` component.
 
-```tsx 
+```tsx
 import { Show, Space, Button } from "@pankod/refine-antd";
 
 export const ShowPage: React.FC = () => {
@@ -90,7 +90,7 @@ export const ShowPage: React.FC = () => {
 
 Since `<Show>` uses the Ant Design [`<Card>`](https://ant.design/components/card/) component, the `isLoading` property can be set like the below.
 
-```tsx 
+```tsx
 import { useState } from "react";
 import { useShow } from "@pankod/refine-core";
 import { Show, Modal, ShowButton } from "@pankod/refine-antd";
@@ -115,9 +115,11 @@ export const ShowPage: React.FC = () => {
 
 ### `pageHeaderProps`
 
-`<Show>` uses the Ant Design [`<PageHeader>`](https://ant.design/components/page-header/#API) components so you can customize it with the properties of `pageHeaderProps`. By default, the `extra` property of the `<PageHeader>` component shows `<RefreshButton>`, `<ListButton>`, `<EditButton>` and `<DeleteButton>` based on your resource definition in the `resources` property you pass to `<Refine>`.
+`<Show>` uses the Ant Design [`<PageHeader>`](https://ant.design/components/page-header/#API) components so you can customize it with the properties of `pageHeaderProps`.
 
-```tsx 
+By default, the `extra` property of the `<PageHeader>` component shows `<RefreshButton>`, `<ListButton>`, `<EditButton>` and `<DeleteButton>` based on your resource definition in the `resources` property you pass to `<Refine>` and the `breadcrumb` property shows [`<Breadcrumb>`][breadcrumb-component] component.
+
+```tsx
 import { Show } from "@pankod/refine-antd";
 
 export const ShowPage: React.FC = () => {
@@ -148,7 +150,7 @@ export const ShowPage: React.FC = () => {
 
 `<Show>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL (when used on a custom page, modal or drawer).
 
-```tsx 
+```tsx
 import { useState } from "react";
 import { useShow } from "@pankod/refine-core";
 import { Show, Modal, ShowButton } from "@pankod/refine-antd";
@@ -218,7 +220,7 @@ export const App: React.FC = () => {
                         element: <CustomPage />,
                         path: "/custom",
                     },
-                ]
+                ],
                 // highlight-end
             }}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
@@ -236,13 +238,15 @@ The `<Show>` component needs the `id` information for work properly, so if you u
 
 ### Properties
 
-| Property        | Description                                       | Type                                                              | Default                                                                        |
-| --------------- | ------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| canDelete       | Adds a delete button                              | `boolean`                                                         | If the resource has `canDelete` prop it is `true` else `false`                 |
-| canEdit         | Adds an edit button                               | `boolean`                                                         | If the resource has `canEdit` prop it is `true` else `false`                   |
-| title           | Adds a title                                      | `string`                                                          | `"Show"` prefix and singular of `resource.name`                                |
-| actionButtons   | Gets passed to the `extra` prop of the `<Card>`   | `React.ReactNode`                                                 | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
-| isLoading       | Gets passed to the `loading` prop of the `<Card>` | `boolean`                                                         | `false`                                                                        |
-| pageHeaderProps | Passes props for `<PageHeader>`                   | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` } |
-| recordItemId    | Record id for `<RefreshButton>`                   | [`BaseKey`](/core/interfaces.md#basekey)                          |                                                                                |
-| resource        | Resource name for API data interactions           | `string`                                                          | Resource name that it reads from the URL.                                      |
+| Property        | Description                                       | Type                                                              | Default                                                                                                                        |
+| --------------- | ------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| canDelete       | Adds a delete button                              | `boolean`                                                         | If the resource has `canDelete` prop it is `true` else `false`                                                                 |
+| canEdit         | Adds an edit button                               | `boolean`                                                         | If the resource has `canEdit` prop it is `true` else `false`                                                                   |
+| title           | Adds a title                                      | `string`                                                          | `"Show"` prefix and singular of `resource.name`                                                                                |
+| actionButtons   | Gets passed to the `extra` prop of the `<Card>`   | `React.ReactNode`                                                 | `<SaveButton>` and depending on your resource configuration (`canDelete` prop)                                                 |
+| isLoading       | Gets passed to the `loading` prop of the `<Card>` | `boolean`                                                         | `false`                                                                                                                        |
+| pageHeaderProps | Passes props for `<PageHeader>`                   | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>`, breadcrumb: [Breadcrumb][breadcrumb-component] } |
+| recordItemId    | Record id for `<RefreshButton>`                   | [`BaseKey`](/core/interfaces.md#basekey)                          |                                                                                                                                |
+| resource        | Resource name for API data interactions           | `string`                                                          | Resource name that it reads from the URL.                                                                                      |
+
+[breadcrumb-component]: /docs/ui-frameworks/antd/components/breadcrumb

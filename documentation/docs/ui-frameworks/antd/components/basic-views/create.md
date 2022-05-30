@@ -16,7 +16,7 @@ We'll show what `<Create>` does using properties with examples.
 
 It allows adding title inside the `<Create>` component. if you don't pass title props it uses "Create" prefix and singular resource name by default. For example, for the `/posts/create` resource, it will be "Create post".
 
-```tsx 
+```tsx
 import { Create } from "@pankod/refine-antd";
 
 export const CreatePage: React.FC = () => {
@@ -30,7 +30,7 @@ export const CreatePage: React.FC = () => {
 
 [Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/ui-frameworks/antd/components/buttons/save.md)
 
-```tsx 
+```tsx
 import { Create } from "@pankod/refine-antd";
 
 export const CreatePage: React.FC = () => {
@@ -42,7 +42,7 @@ export const CreatePage: React.FC = () => {
 
 `<Create>` uses the Ant Design [`<Card>`](https://ant.design/components/card) component. The `action` property of the `<Card>` component shows `<SaveButton>` and `<DeleteButton>` based on your resource definition in the `resources` property you pass to `<Refine>`. If you want to use other things instead of these buttons, you can use the `actionButton` property like the code below.
 
-```tsx 
+```tsx
 import { Create, Button } from "@pankod/refine-antd";
 
 export const CreatePage: React.FC = () => {
@@ -76,10 +76,12 @@ export const CreatePage: React.FC = () => {
 
 `<Create>` uses the Ant Design `<PageHeader>` components so you can customize with the props of `pageHeaderProps`.
 
+By default, the `breadcrumb` property of the `<PageHeader>` component shows [`<Breadcrumb>`][breadcrumb-component] component.
+
 [Refer to the `<PageHeader>` documentation for detailed usage. &#8594](https://ant.design/components/page-header/#API)
 
-```tsx 
-import { Create } from "@pankod/refine-antd";
+```tsx
+import { Create, Breadcrumb } from "@pankod/refine-antd";
 
 export const CreatePage: React.FC = () => {
     return (
@@ -87,6 +89,7 @@ export const CreatePage: React.FC = () => {
             pageHeaderProps={{
                 onBack: () => console.log("Hello, refine"),
                 subTitle: "Subtitle",
+                breadcrumb: <Breadcrumb breadcrumbProps={{ separator: "-" }} />,
             }}
         >
             ...
@@ -135,7 +138,7 @@ export const App: React.FC = () => {
                         element: <CustomPage />,
                         path: "/custom",
                     },
-                ]
+                ],
                 // highlight-end
             }}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
@@ -149,10 +152,12 @@ export const App: React.FC = () => {
 
 ### Properties
 
-| Property        | Description                             | Type                                                              | Default                                                                        |
-| --------------- | --------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| saveButtonProps | Adds props for create button            | `{ disabled: boolean; onClick: () => void; loading: boolean; }`   | `<SaveButton>`                                                                 |
-| title           | Adds title                              | `string`                                                          | `"Edit"` prefix and singular of `resource.name`                                |
-| actionButtons   | Passes the props for `<PageHeader>`     | `React.ReactNode`                                                 | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
-| pageHeaderProps | Passes the props for `<PageHeader>`     | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>` } |
-| resource        | Resource name for API data interactions | `string`                                                          | Resource name that it reads from the URL.                                      |
+| Property        | Description                             | Type                                                              | Default                                                                                                                        |
+| --------------- | --------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| saveButtonProps | Adds props for create button            | `{ disabled: boolean; onClick: () => void; loading: boolean; }`   | `<SaveButton>`                                                                                                                 |
+| title           | Adds title                              | `string`                                                          | `"Edit"` prefix and singular of `resource.name`                                                                                |
+| actionButtons   | Passes the props for `<PageHeader>`     | `React.ReactNode`                                                 | `<SaveButton>` and depending on your resource configuration (`canDelete` prop)                                                 |
+| pageHeaderProps | Passes the props for `<PageHeader>`     | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>`, breadcrumb: [Breadcrumb][breadcrumb-component] } |
+| resource        | Resource name for API data interactions | `string`                                                          | Resource name that it reads from the URL.                                                                                      |
+
+[breadcrumb-component]: /docs/ui-frameworks/antd/components/breadcrumb

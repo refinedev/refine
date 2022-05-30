@@ -18,7 +18,7 @@ We will show what `<List>` does using properties with examples.
 
 Create button redirects to the create page of the resource according to the value it reads from the URL.
 
-```tsx 
+```tsx
 import { usePermissions } from "@pankod/refine-core";
 import { List } from "@pankod/refine-antd";
 
@@ -42,7 +42,7 @@ export const ListPage: React.FC = () => {
 
 It allows adding a title for the `<List>` component. if you don't pass title props, it uses plural from of resource name by default.
 
-```tsx 
+```tsx
 import { List } from "@pankod/refine-antd";
 
 export const ListPage: React.FC = () => {
@@ -54,9 +54,11 @@ export const ListPage: React.FC = () => {
 
 `<List>` uses ant-design `<PageHeader>` components so you can customize with the props of `pageHeaderProps`.
 
+By default, the `breadcrumb` property of the `<PageHeader>` component shows [`<Breadcrumb>`][breadcrumb-component] component.
+
 [Refer to the `<PageHeader>` documentation for detailed usage. &#8594](https://ant.design/components/page-header/#API)
 
-```tsx 
+```tsx
 import { List } from "@pankod/refine-antd";
 
 export const ListPage: React.FC = () => {
@@ -114,7 +116,7 @@ export const App: React.FC = () => {
                         element: <CustomPage />,
                         path: "/custom",
                     },
-                ]
+                ],
                 // highlight-end
             }}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
@@ -128,10 +130,12 @@ export const App: React.FC = () => {
 
 ### Properties
 
-| Property          | Description                             | Type                                                                                  | Default                                                       |
-| ----------------- | --------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| canCreate         | Adds create button                      | `boolean`                                                                             | If the resource is passed a create component, `true` else `false` |
-| createButtonProps | Adds props for create button            | [ButtonProps](https://ant.design/components/button/#API) & `{ resourceName: string }` | `<CreateButton />`                                            |
-| title             | Adds title                              | `string`                                                                              | Plural of `resource.name`                                     |
-| pageHeaderProps   | Passes properties for `<PageHeader>`    | [PageHeaderProps](https://ant.design/components/page-header/#API)                     | { ghost: false, [title](#title), extra: `<CreateButton />` }  |
-| resource          | Resource name for API data interactions | `string`                                                                              | Resource name that it reads from the url.                     |
+| Property          | Description                             | Type                                                                                  | Default                                                                                                      |
+| ----------------- | --------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| canCreate         | Adds create button                      | `boolean`                                                                             | If the resource is passed a create component, `true` else `false`                                            |
+| createButtonProps | Adds props for create button            | [ButtonProps](https://ant.design/components/button/#API) & `{ resourceName: string }` | `<CreateButton />`                                                                                           |
+| title             | Adds title                              | `string`                                                                              | Plural of `resource.name`                                                                                    |
+| pageHeaderProps   | Passes properties for `<PageHeader>`    | [PageHeaderProps](https://ant.design/components/page-header/#API)                     | { ghost: false, [title](#title), extra: `<CreateButton />`, breadcrumb: [Breadcrumb][breadcrumb-component] } |
+| resource          | Resource name for API data interactions | `string`                                                                              | Resource name that it reads from the url.                                                                    |
+
+[breadcrumb-component]: /docs/ui-frameworks/antd/components/breadcrumb
