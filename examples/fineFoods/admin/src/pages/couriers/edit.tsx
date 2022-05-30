@@ -281,6 +281,7 @@ export const CouriersEdit: React.FC<IResourceComponentsProps> = () => {
                     layout="vertical"
                     initialValues={{
                         isActive: true,
+                        ...formProps.initialValues,
                     }}
                 >
                     {formList[current]}
