@@ -189,4 +189,41 @@ describe("useBreadcrumb Hook", () => {
             { label: "Create" },
         ]);
     });
+
+    it("if resources has nested resources with custom `route`, `parentName` should come in breadcrumbs", async () => {
+        const Wrapper = TestWrapper({
+            resources: [
+                {
+                    name: "cms",
+                },
+                {
+                    parentName: "cms",
+                    name: "users",
+                    route: "custom-route",
+                    icon: dummyIcon,
+                    list: DummyResourcePage,
+                    create: DummyResourcePage,
+                },
+            ],
+            routerInitialEntries: ["/users/create"],
+        });
+
+        const WrapperWith: React.FC = ({ children }) => (
+            <Wrapper>
+                <Routes>
+                    <Route path="/:resource/:action" element={children} />
+                </Routes>
+            </Wrapper>
+        );
+
+        const { result } = renderHook(() => useBreadcrumb(), {
+            wrapper: WrapperWith,
+        });
+
+        expect(result.current.breadcrumbs).toEqual([
+            { label: "Cms" },
+            { icon: <div>icon</div>, label: "Users", to: "/custom-route" },
+            { label: "Create" },
+        ]);
+    });
 });
