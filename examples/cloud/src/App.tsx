@@ -12,6 +12,12 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
+// temporary set for refine-cluod-dev-tools
+window.localStorage.setItem(
+    "refine-cloud-token",
+    process.env.REACT_APP_REFINE_CLOUD_TOKEN as string,
+);
+
 const App: React.FC = () => {
     return (
         <Refine
@@ -30,6 +36,10 @@ const App: React.FC = () => {
             notificationProvider={notificationProvider}
             Layout={Layout}
             catchAll={<ErrorComponent />}
+            cloudConfig={{
+                baseUrl: "https://awesome.cloud.api.refine.dev",
+                clientId: process.env.REACT_APP_REFINE_CLIENT_ID as string,
+            }}
         />
     );
 };
