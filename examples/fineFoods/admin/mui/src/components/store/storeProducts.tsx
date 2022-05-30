@@ -121,12 +121,7 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
                             <CloseOutlined />
                         </IconButton>
                     </Stack>
-                    <Box
-                        component="div"
-                        sx={{
-                            backgroundColor: "common.white",
-                        }}
-                    >
+                    <Box component="div">
                         <Grid container columns={16}>
                             <Grid item xs={16} sm={12}>
                                 <Stack
