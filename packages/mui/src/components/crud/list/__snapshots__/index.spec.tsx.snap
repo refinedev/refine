@@ -6,7 +6,7 @@ exports[`<List/> JSON Rest Server renders given data 1`] = `
     class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-bhp9pd-MuiPaper-root-MuiCard-root"
   >
     <div
-      class="MuiCardHeader-root css-185gdzj-MuiCardHeader-root"
+      class="MuiCardHeader-root css-12qh39f-MuiCardHeader-root"
     >
       <div
         class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
