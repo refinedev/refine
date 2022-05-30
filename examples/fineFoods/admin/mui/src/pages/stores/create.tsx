@@ -31,13 +31,13 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
             <form>
                 <Grid
                     container
-                    marginX="-32px"
                     marginTop="8px"
                     sx={{
                         marginX: { xs: "0px" },
+                        paddingX: { xs: 1, md: 4 },
                     }}
                 >
-                    <Grid paddingX={4} item xs={12} md={4}>
+                    <Grid mb={1} item xs={12} md={4}>
                         <Stack
                             gap={1}
                             justifyContent="center"
@@ -46,21 +46,22 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                             <Avatar
                                 src="/images/default-store-img-lg.png"
                                 sx={{
-                                    width: 256,
-                                    height: 256,
+                                    width: {
+                                        xs: 180,
+                                        md: 256,
+                                    },
+                                    height: {
+                                        xs: 180,
+                                        md: 256,
+                                    },
                                 }}
                             />
-                            <Typography
-                                sx={{
-                                    fontSize: "14px",
-                                    fontWeight: "bold",
-                                }}
-                            >
+                            <Typography fontWeight="bold" variant="body2">
                                 {t("stores.selectLocation")}
                             </Typography>
                         </Stack>
                     </Grid>
-                    <Grid paddingX={4} item xs={12} md={4}>
+                    <Grid item xs={12} md={4}>
                         <Stack gap="24px">
                             <FormControl>
                                 <FormLabel
@@ -192,7 +193,17 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                             </FormControl>
                         </Stack>
                     </Grid>
-                    <Grid paddingX={4} item xs={12} md={4}>
+                    <Grid
+                        sx={{
+                            paddingX: {
+                                xs: 0,
+                                md: 4,
+                            },
+                        }}
+                        item
+                        xs={12}
+                        md={4}
+                    >
                         <FormControl fullWidth>
                             <FormLabel
                                 required

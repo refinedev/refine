@@ -130,7 +130,12 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                         paddingX="50px"
                         justifyContent="center"
                         alignItems="center"
-                        marginBottom="50px"
+                        sx={{
+                            paddingX: {
+                                xs: 1,
+                                md: 6,
+                            },
+                        }}
                     >
                         <form onSubmit={handleSubmit(onFinish)}>
                             <FormControl sx={{ width: "100%" }}>
@@ -168,8 +173,14 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                         <Avatar
                                             sx={{
                                                 cursor: "pointer",
-                                                width: "200px",
-                                                height: "200px",
+                                                width: {
+                                                    xs: 100,
+                                                    md: 180,
+                                                },
+                                                height: {
+                                                    xs: 100,
+                                                    md: 180,
+                                                },
                                             }}
                                             src={
                                                 imageInput && imageInput[0].url
@@ -178,9 +189,9 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                         />
                                     </label>
                                     <Typography
+                                        variant="body2"
                                         style={{
                                             fontWeight: 800,
-                                            fontSize: "16px",
                                             marginTop: "8px",
                                         }}
                                     >

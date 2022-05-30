@@ -40,10 +40,12 @@ export const Layout: React.FC<LayoutProps> = ({
                     left: "0px",
                     borderRadius: "0 6px 6px 0",
                     bgcolor: "secondary.main",
+                    zIndex: 1199,
+                    width: "36px",
                 }}
             >
                 <IconButton
-                    sx={{ color: "#fff" }}
+                    sx={{ color: "#fff", width: "36px" }}
                     onClick={() => setOpened((prev) => !prev)}
                 >
                     <MenuRounded />
@@ -63,7 +65,7 @@ export const Layout: React.FC<LayoutProps> = ({
                 <Box
                     component="main"
                     sx={{
-                        p: 3,
+                        p: { xs: 1, md: 2, lg: 3 },
                         flexGrow: 1,
                         bgcolor: (theme) =>
                             theme.palette.mode === "light"

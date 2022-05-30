@@ -126,10 +126,15 @@ export const EditProduct: React.FC<UseModalFormReturnType> = ({
             >
                 <Stack>
                     <Box
-                        paddingX="50px"
                         justifyContent="center"
                         alignItems="center"
                         marginBottom="50px"
+                        sx={{
+                            paddingX: {
+                                xs: 1,
+                                md: 6,
+                            },
+                        }}
                     >
                         <form onSubmit={handleSubmit(onFinish)}>
                             <FormControl sx={{ width: "100%" }}>
@@ -167,8 +172,14 @@ export const EditProduct: React.FC<UseModalFormReturnType> = ({
                                         <Avatar
                                             sx={{
                                                 cursor: "pointer",
-                                                width: "200px",
-                                                height: "200px",
+                                                width: {
+                                                    xs: 100,
+                                                    md: 180,
+                                                },
+                                                height: {
+                                                    xs: 100,
+                                                    md: 180,
+                                                },
                                             }}
                                             src={
                                                 imageInput && imageInput[0].url
@@ -177,9 +188,9 @@ export const EditProduct: React.FC<UseModalFormReturnType> = ({
                                         />
                                     </label>
                                     <Typography
+                                        variant="body2"
                                         sx={{
                                             fontWeight: 800,
-                                            fontSize: "16px",
                                             marginTop: "8px",
                                         }}
                                     >

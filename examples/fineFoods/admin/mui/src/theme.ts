@@ -2,6 +2,7 @@ import {
     createTheme,
     DarkTheme as DefaultDarkTheme,
     LightTheme as DefaultLightTheme,
+    responsiveFontSizes,
 } from "@pankod/refine-mui";
 
 const LightTheme = createTheme({
@@ -44,4 +45,7 @@ const DarkTheme = createTheme({
     },
 });
 
-export { LightTheme, DarkTheme };
+const DarkThemeWithResponsiveFontSizes = responsiveFontSizes(DarkTheme);
+const LightThemeWithResponsiveFontSizes = responsiveFontSizes(LightTheme);
+
+export { LightThemeWithResponsiveFontSizes, DarkThemeWithResponsiveFontSizes };

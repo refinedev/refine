@@ -18,17 +18,27 @@ export const TrendingMenu: React.FC = () => {
     });
 
     return (
-        <Stack spacing={3} sx={{ p: 1 }}>
+        <Stack spacing={3} sx={{ p: 3 }}>
             {data?.data.map((order, index) => (
                 <Stack
                     key={order.id}
                     direction="row"
                     alignItems="center"
-                    spacing={2}
+                    spacing={3}
+                    paddingY={1}
                 >
                     <Box sx={{ position: "relative" }}>
                         <Avatar
-                            sx={{ width: 108, height: 108 }}
+                            sx={{
+                                width: {
+                                    xs: 64,
+                                    md: 108,
+                                },
+                                height: {
+                                    xs: 64,
+                                    md: 108,
+                                },
+                            }}
                             src={order?.products[0]?.images[0].url}
                         />
                         <Box

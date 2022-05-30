@@ -75,7 +75,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                 field: "user",
                 headerName: t("reviews.fields.user"),
                 valueGetter: ({ row }) => row.user.fullName,
-                flex: 1,
+                width: 200,
             },
             {
                 field: "order",
@@ -107,16 +107,19 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                         </Typography>
                     </Tooltip>
                 ),
-                flex: 1,
+                width: 200,
             },
             {
                 field: "review",
                 headerName: t("reviews.fields.rating"),
                 headerAlign: "center",
-                flex: 1,
+                width: 250,
                 align: "center",
                 renderCell: ({ row }) => (
-                    <Stack alignItems="center">
+                    <Stack
+                        alignItems="center"
+                        sx={{ whiteSpace: "break-spaces" }}
+                    >
                         <Typography variant="h5">{row.star}</Typography>
                         <Rating
                             name="rating"
@@ -164,6 +167,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <List
+            cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
             cardHeaderProps={{
                 subheader: hasSelected && (
                     <Stack direction="row">

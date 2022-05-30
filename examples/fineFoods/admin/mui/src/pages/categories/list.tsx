@@ -220,7 +220,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     }, []);
 
     return (
-        <List>
+        <List cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
             <form onSubmit={handleSubmit(onFinish)}>
                 <TableContainer>
                     <Table {...getTableProps()} size="small">
@@ -357,7 +357,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
             {
                 field: "name",
                 headerName: t("products.fields.name"),
-                flex: 1,
+                width: 180,
             },
             {
                 field: "price",
@@ -388,7 +388,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                 renderCell: ({ row }) => (
                     <DateField value={row.createdAt} format="LLL" />
                 ),
-                flex: 1,
+                width: 200,
             },
 
             {
