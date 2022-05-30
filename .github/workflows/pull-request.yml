@@ -223,17 +223,18 @@ jobs:
             echo ${{ env.domain }}
             mv ./k8s/refine-example/Chart.yaml ./k8s/refine-example/Chart.old.yaml &&
             cat ./k8s/refine-example/Chart.old.yaml | grep -v appVersion > ./k8s/refine-example/Chart.yaml &&
-            echo -e "\r\nappVersion: sha-${{ steps.current-time.outputs.formattedTime }}\r\n" >> ./k8s/refine-example/Chart.yaml &&
+            echo -e "\r\nappVersion: sha-${GITHUB_SHA::7}\r\n" >> ./k8s/refine-example/Chart.yaml &&
             cat ./k8s/refine-example/Chart.yaml
+            helm delete ${{ env.branch }}-mui-refine-example || :
             helm upgrade ${{ env.branch }}-mui-refine-example ./k8s/refine-example --install --values=./k8s/refine-example/values.yaml \
               --set ingress.enabled=true \
               --set ingress.annotations."kubernetes\.io/ingress\.class"=nginx \
               --set ingress.annotations."cert-manager\.io/issuer"=letsencrypt-prod \
-              --set ingress.hosts[0].host==${{ env.branch }}-${{ env.domain }} \
+              --set ingress.hosts[0].host=${{ env.branch }}-${{ env.domain }} \
               --set ingress.hosts[0].paths[0].path="/" \
               --set ingress.hosts[0].paths[0].pathType=ImplementationSpecific \
-              --set ingress.tls[0].secretName==${{ env.branch }}-${{ env.domain }} \
-              --set ingress.tls[0].hosts[0]==${{ env.branch }}-${{ env.domain }} \
+              --set ingress.tls[0].secretName=${{ env.branch }}-${{ env.domain }} \
+              --set ingress.tls[0].hosts[0]=${{ env.branch }}-${{ env.domain }} \
           env:
             domain: "mui.refine.dev"
             branch: ${{ steps.substring-pr-branch-name.outputs.substring }}

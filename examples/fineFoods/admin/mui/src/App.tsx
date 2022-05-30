@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next";
 import {
     AddShoppingCartOutlined,
     StarBorderOutlined,
+    CategoryOutlined,
     StoreOutlined,
     LocalPizzaOutlined,
     PeopleOutlineOutlined,
@@ -35,6 +36,7 @@ import {
 import { LoginPage } from "pages/login";
 import { StoreList, StoreEdit, StoreCreate } from "pages/stores";
 import { ProductList } from "pages/products";
+import { CategoryList } from "pages/categories";
 import { Header, Title } from "components";
 import { ColorModeContext } from "contexts";
 import { BikeWhiteIcon } from "components/icons/bike-white";
@@ -93,6 +95,11 @@ const App: React.FC = () => {
                         edit: StoreEdit,
                         create: StoreCreate,
                         icon: <StoreOutlined />,
+                    },
+                    {
+                        name: "categories",
+                        list: CategoryList,
+                        icon: <CategoryOutlined />,
                     },
                     {
                         name: "couriers",

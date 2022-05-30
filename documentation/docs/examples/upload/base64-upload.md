@@ -7,9 +7,9 @@ title: Base64 Upload
 
 [Refer to the **refine** Base64 Upload documentation for more information. →](/docs/guides-and-concepts/upload/base64-upload/)
 
-[View Base64 Upload Example Source](https://github.com/pankod/refine/tree/master/examples/upload/multipartUpload)
+[View Base64 Upload Example Source](https://github.com/pankod/refine/tree/master/examples/upload/base64Upload)
 
-<iframe src="https://codesandbox.io/embed/refine-base64-upload-example-sn0kj?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/upload/base64Upload?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-base64-upload-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

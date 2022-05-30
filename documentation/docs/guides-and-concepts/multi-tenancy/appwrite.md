@@ -647,7 +647,7 @@ In this guide and in our example app, we talked about how we can build Multitena
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/cake-house-41kgm?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/multi-tenancy/appwrite?autoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="cake-house"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

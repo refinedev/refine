@@ -164,7 +164,7 @@ You can review the example to examine the multi-level menu concept in more detai
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/multi-level-menu)
 
-<iframe src="https://codesandbox.io/embed/refine-multi-level-menu-example-ur4kq0?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/multi-level-menu?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-multi-level-menu-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
