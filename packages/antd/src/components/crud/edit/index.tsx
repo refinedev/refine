@@ -25,7 +25,7 @@ import {
     RefreshButton,
     ListButton,
     SaveButton,
-    BreadcrumbComponent,
+    Breadcrumb,
 } from "@components";
 import { DeleteButtonProps } from "../../../components";
 
@@ -111,7 +111,7 @@ export const Edit: React.FC<EditProps> = ({
                     />
                 </Space>
             }
-            breadcrumb={<BreadcrumbComponent />}
+            breadcrumb={<Breadcrumb />}
             {...pageHeaderProps}
         >
             <Spin spinning={isLoading}>

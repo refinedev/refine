@@ -16,7 +16,7 @@ import {
     ResourceRouterParams,
 } from "@pankod/refine-core";
 
-import { BreadcrumbComponent, SaveButton } from "@components";
+import { Breadcrumb, SaveButton } from "@components";
 
 export interface CreateProps {
     title?: string;
@@ -67,7 +67,7 @@ export const Create: React.FC<CreateProps> = ({
                     )}`,
                 )
             }
-            breadcrumb={<BreadcrumbComponent />}
+            breadcrumb={<Breadcrumb />}
             {...pageHeaderProps}
         >
             <Spin spinning={isLoading}>
