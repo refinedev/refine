@@ -10,13 +10,13 @@ import {
 } from "antd";
 import { HomeOutlined } from "@ant-design/icons";
 
-export type BreadcrumbComponentProps = {
+export type BreadcrumbProps = {
     breadcrumbProps?: AntdBreadcrumbProps;
     showHome?: boolean;
     hideIcons?: boolean;
 };
 
-export const Breadcrumb: React.FC<BreadcrumbComponentProps> = ({
+export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     breadcrumbProps,
     showHome = true,
     hideIcons = false,
