@@ -1,9 +1,7 @@
-import { useContext } from "react";
 import { Refine } from "@pankod/refine-core";
 import {
     ErrorComponent,
     ReadyPage,
-    ThemeProvider,
     notificationProviderHandle,
     Layout,
     GlobalStyles,
@@ -21,7 +19,6 @@ import {
 } from "@mui/icons-material";
 
 import { authProvider } from "authProvider";
-import { DarkTheme, LightTheme } from "theme";
 import { DashboardPage } from "pages/dashboard";
 import { OrderList, OrderShow } from "pages/orders";
 import { UserList, UserShow } from "pages/users";
@@ -36,11 +33,9 @@ import { LoginPage } from "pages/login";
 import { StoreList, StoreEdit, StoreCreate } from "pages/stores";
 import { ProductList } from "pages/products";
 import { Header, Title } from "components";
-import { ColorModeContext } from "contexts";
 import { BikeWhiteIcon } from "components/icons/bike-white";
 
 const App: React.FC = () => {
-    const { mode } = useContext(ColorModeContext);
     const { t, i18n } = useTranslation();
     const i18nProvider = {
         translate: (key: string, params: object) => t(key, params),
@@ -51,7 +46,7 @@ const App: React.FC = () => {
     const notificationProvider = notificationProviderHandle();
 
     return (
-        <ThemeProvider theme={mode === "dark" ? DarkTheme : LightTheme}>
+        <>
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <Refine
@@ -109,7 +104,7 @@ const App: React.FC = () => {
                     },
                 ]}
             />
-        </ThemeProvider>
+        </>
     );
 };
 
