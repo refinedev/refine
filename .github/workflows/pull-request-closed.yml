@@ -38,8 +38,6 @@ jobs:
       - name: Delete helm release
         run: |
           echo ${{ steps.substring-pr-branch-name.outputs.substring }}
-          helm delete ${{ env.branch }}-refine-example || :
-          helm delete ${{ env.branch }}-client-refine-example || :
           helm delete ${{ env.branch }}-refine-documentation || :
           helm delete ${{ env.branch }}-refine-mui-example || :
         env:
