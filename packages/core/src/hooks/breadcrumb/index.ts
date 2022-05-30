@@ -6,7 +6,7 @@ import { ResourceRouterParams } from "src/interfaces";
 
 export type BreadcrumbsType = {
     label: string;
-    to?: string;
+    href?: string;
     icon?: React.ReactNode;
 };
 
@@ -36,7 +36,7 @@ export const useBreadcrumb = (): UseBreadcrumbReturnType => {
                 label: humanizeString(
                     parentResource.label ?? parentResource.name,
                 ),
-                to: !!parentResource.list
+                href: !!parentResource.list
                     ? `/${parentResource.route}`
                     : undefined,
                 icon: parentResource.icon,
@@ -50,7 +50,7 @@ export const useBreadcrumb = (): UseBreadcrumbReturnType => {
 
     breadcrumbs.push({
         label: humanizeString(resource.label ?? resource.name),
-        to: !!resource.list ? `/${resource.route}` : undefined,
+        href: !!resource.list ? `/${resource.route}` : undefined,
         icon: resource.icon,
     });
 
