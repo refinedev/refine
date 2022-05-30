@@ -14,7 +14,7 @@
         "packages/nestjsx-crud",
         "packages/nextjs-router",
         "packages/nhost",
-        "packages/raect-hook-form",
+        "packages/react-hook-form",
         "packages/react-location",
         "packages/react-router-v6",
         "packages/react-table",
