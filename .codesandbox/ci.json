@@ -1,0 +1,4 @@
+{
+    "node": "16",
+    "sandboxes": ["examples/fineFoods/admin", "examples/ably"]
+  }
