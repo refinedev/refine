@@ -1,5 +1,5 @@
 {
     "node": "16",
-    "installCommand": "bootstrap",
+    "buildCommand": "bootstrap",
     "sandboxes": ["examples/fineFoods/admin", "examples/ably"]
   }
