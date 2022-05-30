@@ -12,10 +12,11 @@ Congratulations [@salihozdemir](https://github.com/salihozdemir)! It was great s
 :::
 
 -   `label`: the label of the resource.
--   `to`: the route of the resource.
+-   `href`: the route of the resource.
 -   `icon`: the icon of the resource.
 
 ```tsx
+import React from "react";
 import { useBreadcrumb } from "@pankod/refine-core";
 
 export const Breadcrumb: React.FC = () => {
@@ -23,10 +24,10 @@ export const Breadcrumb: React.FC = () => {
 
     return (
         <ul>
-            {breadcrumbs.map(({ label, to, icon }) => (
+            {breadcrumbs.map(({ label, href, icon }) => (
                 <li key={label}>
                     {icon}
-                    {to ? <a href={to}>{label}</a> : label}
+                    {href ? <a href={href}>{label}</a> : label}
                 </li>
             ))}
         </ul>
@@ -48,13 +49,13 @@ The `breadcrumbs` are created with your resource definitions. For example, if yo
 ```
 
 -   On the `list` page of the `posts` resource, the breadcrumbs look like this:  
-    `[ { label: "Posts", to: "/posts", icon: <div>icon</div> } ]`
+    `[ { label: "Posts", href: "/posts", icon: <div>icon</div> } ]`
 
 -   On the `create` page of the `posts` resource, the breadcrumbs look like this:  
-    `[ { label: "Posts", to: "/posts", icon: <div>icon</div>, }, { label: "Create" } ];`
+    `[ { label: "Posts", href: "/posts", icon: <div>icon</div>, }, { label: "Create" } ];`
 
 :::info
-If resource has no `icon` property, the `icon` property of the breadcrumbs is `undefined`. Likewise, if the resource's list page is not found, the `to` property of the breadcrumbs is `undefined`.
+If resource has no `icon` property, the `icon` property of the breadcrumbs is `undefined`. Likewise, if the resource's list page is not found, the `href` property of the breadcrumbs is `undefined`.
 :::
 
 :::tip
@@ -78,10 +79,10 @@ If you have a nested resource definition as below:
 ```
 
 -   On the `list` page of the `users` resource, the breadcrumbs look like this:  
-    `[ { label: "Cms" }, { label: "Posts", to: "/posts" } ]`
+    `[ { label: "Cms" }, { label: "Posts", href: "/posts" } ]`
 
 -   On the `create` page of the `users` resource, the breadcrumbs look like this:  
-    `[ { label: "Cms" }, { label: "Posts", to: "/posts" }, {label: "Create"} ]`
+    `[ { label: "Cms" }, { label: "Posts", href: "/posts" }, {label: "Create"} ]`
 
 ## API Reference
 
@@ -96,7 +97,7 @@ If you have a nested resource definition as below:
 > ```tsx
 > type BreadcrumbsType = {
 >     label: string;
->     to?: string;
+>     href?: string;
 >     icon?: React.ReactNode;
 > };
 > ```
