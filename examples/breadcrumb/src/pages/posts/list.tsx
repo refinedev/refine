@@ -18,7 +18,6 @@ import {
     useSelect,
 } from "@pankod/refine-antd";
 
-import { Breadcrumb } from "components/breadcrumb";
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
@@ -42,7 +41,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     });
 
     return (
-        <List pageHeaderProps={{ breadcrumb: <Breadcrumb /> }}>
+        <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
                 <Table.Column dataIndex="title" title="Title" />

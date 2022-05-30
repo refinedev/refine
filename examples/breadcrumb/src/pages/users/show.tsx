@@ -8,7 +8,6 @@ import {
     Space,
 } from "@pankod/refine-antd";
 
-import { Breadcrumb } from "components/breadcrumb";
 import { IUser } from "interfaces";
 
 const { Title, Text } = Typography;
@@ -19,10 +18,7 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
     const record = data?.data;
 
     return (
-        <Show
-            pageHeaderProps={{ breadcrumb: <Breadcrumb /> }}
-            isLoading={isLoading}
-        >
+        <Show isLoading={isLoading}>
             <Title level={5}>Id</Title>
             <Text>{record?.id}</Text>
 
@@ -37,7 +33,7 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
 
             <Title level={5}>Images</Title>
             <Space wrap>
-                {record?.avatar.map((img) => (
+                {record?.avatar?.map((img) => (
                     <ImageField
                         key={img.name}
                         value={img.url}

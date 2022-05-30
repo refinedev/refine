@@ -2,17 +2,13 @@ import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import { Checkbox, Create, Form, Input, useForm } from "@pankod/refine-antd";
 
-import { Breadcrumb } from "components/breadcrumb";
 import { ICategory } from "interfaces";
 
 export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<ICategory>();
 
     return (
-        <Create
-            pageHeaderProps={{ breadcrumb: <Breadcrumb /> }}
-            saveButtonProps={saveButtonProps}
-        >
+        <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"

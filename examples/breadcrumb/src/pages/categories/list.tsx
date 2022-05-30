@@ -10,14 +10,13 @@ import {
     BooleanField,
 } from "@pankod/refine-antd";
 
-import { Breadcrumb } from "components/breadcrumb";
 import { ICategory } from "interfaces";
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<ICategory>();
 
     return (
-        <List pageHeaderProps={{ breadcrumb: <Breadcrumb /> }}>
+        <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
                 <Table.Column dataIndex="title" title="Title" />

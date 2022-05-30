@@ -10,7 +10,6 @@ import ReactMde from "react-mde";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
 
-import { Breadcrumb } from "components/breadcrumb";
 import { IPost, ICategory } from "interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
@@ -28,10 +27,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         useState<"write" | "preview">("write");
 
     return (
-        <Edit
-            pageHeaderProps={{ breadcrumb: <Breadcrumb /> }}
-            saveButtonProps={saveButtonProps}
-        >
+        <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Title"
