@@ -17,6 +17,7 @@ export const ResourceContextProvider: React.FC<IResourceContext> = ({
     resources,
     children,
 }) => {
+    // useEffect(() => {}, [])
     return (
         <ResourceContext.Provider value={{ resources }}>
             {children}
