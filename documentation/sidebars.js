@@ -256,6 +256,7 @@ module.exports = {
                                         "ui-frameworks/antd/components/basic-views/show",
                                     ],
                                 },
+                                "ui-frameworks/antd/components/breadcrumb",
                                 {
                                     type: "category",
                                     label: "Buttons",
