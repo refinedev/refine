@@ -28,11 +28,10 @@ export const Cloud: React.FC<{}> = () => {
                 },
             );
 
-            sdk.draftResource
-                .create({
-                    resources,
-                })
-                .then((res) => console.log("-- res", res));
+            // send cloud sdk
+            sdk.draftResource.create({
+                resources,
+            });
         }
     }, [resourceContext.resources]);
 
