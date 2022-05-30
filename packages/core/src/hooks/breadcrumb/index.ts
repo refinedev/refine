@@ -22,16 +22,36 @@ export const useBreadcrumb = (): UseBreadcrumbReturnType => {
 
     const breadcrumbs: BreadcrumbsType[] = [];
 
-    resource.route?.split("/").forEach((route) => {
-        const resource = resources.find((resource) => resource.route === route);
+    const addBreadcrumb = (parentName: string) => {
+        const parentResource = resources.find(
+            (resource) => resource.name === parentName,
+        );
 
-        if (resource) {
+        if (parentResource) {
+            if (parentResource.parentName) {
+                addBreadcrumb(parentResource.parentName);
+            }
+
             breadcrumbs.push({
-                label: humanizeString(resource.label ?? resource.name),
-                to: !!resource.list ? `/${resource.route}` : undefined,
-                icon: resource.icon,
+                label: humanizeString(
+                    parentResource.label ?? parentResource.name,
+                ),
+                to: !!parentResource.list
+                    ? `/${parentResource.route}`
+                    : undefined,
+                icon: parentResource.icon,
             });
         }
+    };
+
+    if (resource.parentName) {
+        addBreadcrumb(resource.parentName);
+    }
+
+    breadcrumbs.push({
+        label: humanizeString(resource.label ?? resource.name),
+        to: !!resource.list ? `/${resource.route}` : undefined,
+        icon: resource.icon,
     });
 
     if (action) {
