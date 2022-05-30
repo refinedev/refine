@@ -39,6 +39,11 @@
   "peerDependencies": {
     "@pankod/refine-core": "^3.18.2"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pankod/refine.git",
+    "directory": "packages/nhost"
+  },
   "publishConfig": {
     "access": "public"
   }

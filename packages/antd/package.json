@@ -54,6 +54,11 @@
     "author": "Pankod",
     "license": "MIT",
     "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/pankod/refine.git",
+        "directory": "packages/antd"
+    },
     "publishConfig": {
         "access": "public"
     }
