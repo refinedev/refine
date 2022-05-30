@@ -144,7 +144,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
     return (
         <Grid container spacing={2}>
             <Grid item xs={12} lg={3}>
-                <Card>
+                <Card sx={{ paddingX: { xs: 2, md: 0 } }}>
                     <CardHeader title="Filters" />
                     <CardContent sx={{ pt: 0 }}>
                         <Box
@@ -222,7 +222,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                 </Card>
             </Grid>
             <Grid item xs={12} lg={9}>
-                <List>
+                <List cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
                     <DataGrid
                         {...dataGridProps}
                         filterModel={undefined}

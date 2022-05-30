@@ -170,7 +170,7 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
     return (
         <Grid container spacing={2}>
             <Grid item xs={12} lg={3}>
-                <Paper sx={{ p: 2 }}>
+                <Paper sx={{ p: 2, paddingX: { xs: 4, md: 2 } }}>
                     <Stack alignItems="center" spacing={1}>
                         <Avatar
                             src={user?.avatar?.[0].url}
@@ -211,7 +211,10 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
             </Grid>
             <Grid item xs={12} lg={9}>
                 <Stack direction="column" spacing={2}>
-                    <List cardHeaderProps={{ title: t("orders.orders") }}>
+                    <List
+                        cardHeaderProps={{ title: t("orders.orders") }}
+                        cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
+                    >
                         <DataGrid
                             {...dataGridProps}
                             autoHeight
