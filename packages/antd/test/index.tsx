@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, MemoryRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import { Refine } from "@pankod/refine-core";
 
@@ -13,22 +13,10 @@ import {
     IResourceItem,
 } from "@pankod/refine-core";
 
-/* interface ITestWrapperProps {
-    authProvider?: IAuthContext;
-    dataProvider?: IDataContext;
-    i18nProvider?: I18nProvider;
-    accessControlProvider?: IAccessControlContext;
-    liveProvider?: ILiveContext;
-    resources?: IResourceItem[];
-    children?: React.ReactNode;
-    routerInitialEntries?: string[];
-    refineProvider?: IRefineContextProvider;
-} */
-
 const List = () => {
     return <div>hede</div>;
 };
-interface ITestWrapperProps {
+export interface ITestWrapperProps {
     dataProvider?: DataProvider;
     authProvider?: AuthProvider;
     resources?: IResourceItem[];
