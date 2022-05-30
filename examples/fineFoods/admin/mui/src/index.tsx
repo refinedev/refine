@@ -4,19 +4,34 @@ import { SnackbarProvider } from "notistack";
 import "i18n";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { styled } from "@pankod/refine-mui";
 
 import App from "./App";
 import { ColorModeContextProvider } from "contexts";
-
 dayjs.extend(relativeTime);
+
+const StyledSnackbarProvider = styled(SnackbarProvider)`
+    &.SnackbarItem-contentRoot {
+        background-color: ${(props) => props.theme.palette.background.paper};
+        color: ${(props) => props.theme.palette.text.primary};
+    }
+    &.SnackbarItem-variantSuccess {
+        background-color: ${(props) => props.theme.palette.primary.main};
+        color: ${(props) => props.theme.palette.common.white};
+    }
+    &.SnackbarItem-variantError {
+        background-color: ${(props) => props.theme.palette.error.main};
+        color: ${(props) => props.theme.palette.common.white};
+    }
+`;
 
 ReactDOM.render(
     <React.StrictMode>
         <React.Suspense fallback="loading">
             <ColorModeContextProvider>
-                <SnackbarProvider>
+                <StyledSnackbarProvider maxSnack={3}>
                     <App />
-                </SnackbarProvider>
+                </StyledSnackbarProvider>
             </ColorModeContextProvider>
         </React.Suspense>
     </React.StrictMode>,
