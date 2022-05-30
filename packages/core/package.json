@@ -48,6 +48,11 @@
         "react-query": "^3.19.2",
         "tslib": "^2.3.1"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/pankod/refine.git",
+        "directory": "packages/core"
+    },
     "author": "Pankod",
     "license": "MIT",
     "gitHead": "17dd5af3e4c9f7f09e1e707362c6f5a9d1cab8a8",

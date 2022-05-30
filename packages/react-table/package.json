@@ -40,6 +40,11 @@
     "@pankod/refine-core": "^3.22.1",
     "react-table": "^7.7.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pankod/refine.git",
+    "directory": "packages/react-table"
+  },
   "gitHead": "17dd5af3e4c9f7f09e1e707362c6f5a9d1cab8a8",
   "publishConfig": {
     "access": "public"
