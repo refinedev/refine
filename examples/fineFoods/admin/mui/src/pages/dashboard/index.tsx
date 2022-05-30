@@ -33,25 +33,45 @@ export const DashboardPage: React.FC = () => {
                 </Card>
             </Grid>
             <Grid item xs={24} md={16} xl={18}>
-                <Card sx={{ height: "100%", minHeight: "600px" }}>
-                    <CardHeader title={t("dashboard.deliveryMap.title")} />
+                <Card
+                    sx={{
+                        height: "100%",
+                        minHeight: "600px",
+                    }}
+                >
+                    <CardHeader
+                        sx={{
+                            paddingX: { xs: 4 },
+                        }}
+                        title={t("dashboard.deliveryMap.title")}
+                    />
                     <DeliveryMap />
                 </Card>
             </Grid>
             <Grid item xs={24} md={8} xl={6}>
-                <Card>
+                <Card
+                    sx={{
+                        paddingX: { xs: 2 },
+                        fontSize: { xs: "16px" },
+                    }}
+                >
                     <CardHeader title={t("dashboard.timeline.title")} />
                     <OrderTimeline />
                 </Card>
             </Grid>
             <Grid item xs={24} lg={16} xl={18}>
-                <Card sx={{ height: "100%" }}>
+                <Card sx={{ height: "100%", paddingX: { xs: 2 } }}>
                     <CardHeader title={t("dashboard.recentOrders.title")} />
                     <RecentOrders />
                 </Card>
             </Grid>
             <Grid item xs={24} lg={8} xl={6}>
-                <Card sx={{ height: "100%" }}>
+                <Card
+                    sx={{
+                        height: "100%",
+                        paddingX: { xs: 2 },
+                    }}
+                >
                     <CardHeader title={t("dashboard.trendingMenus.title")} />
                     <TrendingMenu />
                 </Card>
