@@ -9,7 +9,6 @@ import {
     Grid,
     Paper,
     Typography,
-    Box,
     InputBase,
     IconButton,
     Stack,
@@ -55,12 +54,11 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         <>
             <CreateProduct {...createDrawerFormProps} />
             <EditProduct {...editDrawerFormProps} />
-            <Box
-                component="div"
+            <Paper
                 sx={{
-                    padding: "20px",
-
-                    width: "100%",
+                    paddingX: { xs: 3, md: 2 },
+                    paddingY: { xs: 2, md: 3 },
+                    my: 0.5,
                 }}
             >
                 <Grid container columns={16}>
@@ -158,7 +156,17 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                             }}
                         />
                     </Grid>
-                    <Grid item md={4}>
+                    <Grid
+                        item
+                        sm={0}
+                        md={4}
+                        sx={{
+                            display: {
+                                xs: "none",
+                                md: "block",
+                            },
+                        }}
+                    >
                         <Stack padding="8px">
                             <Typography variant="subtitle1">
                                 {t("stores.tagFilterDescription")}
@@ -170,7 +178,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                         </Stack>
                     </Grid>
                 </Grid>
-            </Box>
+            </Paper>
         </>
     );
 };
