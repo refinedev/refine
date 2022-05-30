@@ -8,7 +8,11 @@ import {
     ResourceRouterParams,
 } from "@pankod/refine-core";
 
-import { CreateButton, CreateButtonProps } from "../../../components";
+import {
+    BreadcrumbComponent,
+    CreateButton,
+    CreateButtonProps,
+} from "@components";
 
 export interface ListProps {
     canCreate?: boolean;
@@ -66,6 +70,7 @@ export const List: React.FC<ListProps> = ({
                 )
             }
             extra={defaultExtra}
+            breadcrumb={<BreadcrumbComponent />}
             {...pageHeaderProps}
         >
             {children}
