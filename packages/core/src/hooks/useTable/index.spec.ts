@@ -33,11 +33,13 @@ describe("useTable Hook", () => {
             tableQueryResult: { data },
             pageSize,
             current,
+            pageCount,
         } = result.current;
 
         expect(data?.data).toHaveLength(2);
         expect(pageSize).toEqual(defaultPagination.pageSize);
         expect(current).toEqual(defaultPagination.current);
+        expect(pageCount).toEqual(1);
     });
 
     it("with initial pagination parameters", async () => {
@@ -59,10 +61,11 @@ describe("useTable Hook", () => {
             return !result.current.tableQueryResult.isLoading;
         });
 
-        const { pageSize, current } = result.current;
+        const { pageSize, current, pageCount } = result.current;
 
         expect(pageSize).toEqual(customPagination.pageSize);
         expect(current).toEqual(customPagination.current);
+        expect(pageCount).toEqual(2);
     });
 
     it("with custom resource", async () => {

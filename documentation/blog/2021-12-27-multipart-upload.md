@@ -158,7 +158,7 @@ The Multipart file upload process with **refine** is very simple. How to use it 
 [View Source](https://github.com/pankod/refine/tree/master/examples/upload/multipartUpload)
 
 ## Refine Multipart Upload Live Codesandbox Example
-<iframe src="https://codesandbox.io/embed/refine-multipart-upload-example-88thp?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/upload/multipartUpload?autoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-multipart-upload-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

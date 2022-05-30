@@ -18,7 +18,7 @@ export const usePermissions = <TData = any>(
     const { getPermissions } = useContext<IAuthContext>(AuthContext);
 
     const queryResponse = useQuery<TData>(
-        "usePermissions",
+        ["usePermissions"],
         getPermissions,
         options,
     );

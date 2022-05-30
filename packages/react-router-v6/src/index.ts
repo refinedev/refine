@@ -12,6 +12,7 @@ import {
 import {
     BrowserRouterComponent,
     MemoryRouterComponent,
+    HashRouterComponent,
 } from "./routerComponent";
 import { Prompt } from "./prompt";
 
@@ -60,4 +61,4 @@ const RouterProvider: IReactRouterProvider = {
 };
 export default RouterProvider;
 
-export { MemoryRouterComponent };
+export { MemoryRouterComponent, HashRouterComponent };

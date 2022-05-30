@@ -1,11 +1,14 @@
-import { IResourceComponentsProps, useMany } from "@pankod/refine-core";
+import {
+    IResourceComponentsProps,
+    useMany,
+    getDefaultFilter,
+} from "@pankod/refine-core";
 
 import {
     List,
     Table,
     Radio,
     FilterDropdown,
-    getDefaultFilter,
     TagField,
     useTable,
     getDefaultSortOrder,

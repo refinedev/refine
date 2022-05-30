@@ -138,16 +138,14 @@ values={[
 <TabItem value="refetch">
 
 ```tsx
-import { useTable, useList, useForm, useShow, useEditableTable } from "@pankod/refine-core";
+import { useTable, useForm, useShow } from "@pankod/refine-core";
 
-// All "data" related hooks provided by Refine can use queryOptions' refetch function
-const { queryOptions: { refetch } } = useTable();
-const { queryOptions: { refetch } } = useForm();
-const { queryOptions: { refetch } } = useList();
+// All "data" related hooks provided by Refine can use queryResult' refetch function
+const { tableQueryResult: { refetch } } = useTable();
+const { queryResult: { refetch } } = useForm();
 ...
 ...
-const { queryOptions: { refetch } } = useShow();
-const { queryOptions: { refetch } } = useEditableTable();
+const { queryResult: { refetch } } = useShow();
 ...
 ...
 ```
@@ -207,3 +205,26 @@ useTable({
     resource: "/users/1/posts"
 });
 ```
+
+## How can I ensure a query is only runned after a certain variable is available and not on load?       
+
+Note that `data` related hooks (`useMany`, `useOne`, etc.) can also accept all `useQuery` options, which allows you to implement dependent queries whereby a query is only runned after a certain data  is available. This is particularly useful if you want `useMany` to only run after a certain data is available and not on load.  
+
+[Refer to react-query docs on **dependent queries** for more information  → ](https://react-query.tanstack.com/guides/dependent-queries)
+
+-   Suppose you want this query to run after `categoryIds` is fetched by a preceding query, you can set  `enabled` to `categoryIds.length > 0`. This will ensure that `useMany` is only runned after `categoryIds` is fetched.
+
+```tsx
+useMany({
+    resource: "categories",
+    ids: categoryIds,
+    // highlight-next-line
+    queryOptions: { enabled: categoryIds.length > 0 },
+});
+```
+
+## Can I work with JavaScript?
+
+**Yes!** You can work with JavaScript! 
+
+[Refer to **Refine JavaScript** example  → ](https://github.com/pankod/refine/tree/master/examples/javascript)

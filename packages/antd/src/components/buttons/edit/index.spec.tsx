@@ -1,22 +1,10 @@
 import React from "react";
-import ReactRouterDom, { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { fireEvent, render, TestWrapper, waitFor } from "@test";
 import { EditButton } from "./";
 
-const mHistory = jest.fn();
-
-jest.mock("react-router-dom", () => ({
-    ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useNavigate: () => mHistory,
-}));
-
 describe("Edit Button", () => {
     const edit = jest.fn();
-
-    beforeEach(() => {
-        mHistory.mockReset();
-    });
-
     it("should render button successfuly", () => {
         const { container, getByText } = render(
             <EditButton onClick={() => edit()} />,
@@ -169,7 +157,7 @@ describe("Edit Button", () => {
         );
         fireEvent.click(getByText("Edit"));
 
-        expect(mHistory).toBeCalledWith("/categories/edit/1");
+        expect(window.location.pathname).toBe("/categories/edit/1");
     });
 
     it("should redirect with custom route called function successfully if click the button", () => {
@@ -201,6 +189,6 @@ describe("Edit Button", () => {
 
         fireEvent.click(getByText("Edit"));
 
-        expect(mHistory).toBeCalledWith("/custom-route-posts/edit/1");
+        expect(window.location.pathname).toBe("/custom-route-posts/edit/1");
     });
 });

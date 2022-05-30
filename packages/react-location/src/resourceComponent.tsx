@@ -67,6 +67,9 @@ export const ResourceComponentWrapper: React.FC<{ route: string }> = ({
                             resource={name}
                             action="create"
                             fallback={catchAll ?? <ErrorComponent />}
+                            params={{
+                                id: id ? decodeURIComponent(id) : undefined,
+                            }}
                         >
                             <Create
                                 name={name}
@@ -84,7 +87,9 @@ export const ResourceComponentWrapper: React.FC<{ route: string }> = ({
                         <CanAccess
                             resource={name}
                             action="edit"
-                            params={{ id }}
+                            params={{
+                                id: id ? decodeURIComponent(id) : undefined,
+                            }}
                             fallback={catchAll ?? <ErrorComponent />}
                         >
                             <Edit
@@ -103,7 +108,9 @@ export const ResourceComponentWrapper: React.FC<{ route: string }> = ({
                         <CanAccess
                             resource={name}
                             action="show"
-                            params={{ id }}
+                            params={{
+                                id: id ? decodeURIComponent(id) : undefined,
+                            }}
                             fallback={catchAll ?? <ErrorComponent />}
                         >
                             <Show

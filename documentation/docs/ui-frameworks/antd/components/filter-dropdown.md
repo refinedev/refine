@@ -105,13 +105,13 @@ Determines the value passed to children. `mapValue` takes `selectedKeys` as an a
 For example when using `useSelect` for `<Select>` component. In this case values must be mapped to `number`s using `mapValue`.
 
 ```tsx 
+import { getDefaultFilter } from "@pankod/refine-core";
 import {
     useTable,
     Table,
     FilterDropdown,
     Select,
     useSelect,
-    getDefaultFilter,
 } from "@pankod/refine-antd";
 
 const { tableProps, filters } = useTable<IPost>({
@@ -166,7 +166,7 @@ If [syncWithLocation](/core/components/refine-config.md#syncwithlocation) is ena
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-use-table-example-159uj?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/table/useTable?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-table-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
