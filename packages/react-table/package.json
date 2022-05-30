@@ -29,6 +29,11 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
+    "@testing-library/jest-dom": "^5.12.0",
+    "@testing-library/react": "^11.2.6",
+    "@testing-library/react-hooks": "^5.0.3",
+    "@testing-library/user-event": "^12.8.3",
+    "@types/testing-library__jest-dom": "^5.9.5",
     "@types/react-table": "^7.7.9",
     "jest": "^27.5.1",
     "react-router-dom": "^6.0.0",
