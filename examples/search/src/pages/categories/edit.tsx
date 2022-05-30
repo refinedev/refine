@@ -14,6 +14,7 @@ export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
                 layout="vertical"
                 initialValues={{
                     isActive: true,
+                    ...formProps.initialValues,
                 }}
             >
                 <Form.Item
