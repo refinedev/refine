@@ -7,6 +7,7 @@ export {
     IDataContextProvider as DataProvider,
     ILiveContext as LiveProvider,
     LiveEvent,
+    IResourceContext as ResourceProvider,
     ITranslationContext as TranslationProvider,
     IAccessControlContext as AccessControlProvider,
     INotificationContext as NotificationProvider,

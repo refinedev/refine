@@ -36,7 +36,7 @@
 		"web-vitals": "^1.1.1"
 	},
 	"scripts": {
-		"start": "DISABLE_ESLINT_PLUGIN=true craco start",
+		"start": "FAST_REFRESH=false DISABLE_ESLINT_PLUGIN=true craco start",
 		"build": "DISABLE_ESLINT_PLUGIN=true craco build",
 		"test": "craco test --passWithNoTests --watchAll=false",
 		"eject": "craco eject"

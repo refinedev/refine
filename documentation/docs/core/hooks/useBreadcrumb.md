@@ -5,6 +5,12 @@ title: useBreadcrumb
 
 It is a hook that returns `breadcrumbs` to create breadcrumbs for the current page. The `breadcrumbs` are an array of objects with the following properties:
 
+:::info Congratulations 🥇
+The feature won first place with the joint votes of our team members in a May 2022 internal hackathon!
+
+Congratulations [@salihozdemir](https://github.com/salihozdemir)! It was great seeing your project take first place! We're all very proud of you. Keep up the good work and don't forget to have fun while working here 🎉
+:::
+
 -   `label`: the label of the resource.
 -   `to`: the route of the resource.
 -   `icon`: the icon of the resource.
