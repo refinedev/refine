@@ -42,17 +42,17 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                         </Typography>
                     </Stack>
                 ),
-                flex: 1,
+                width: 200,
             },
             {
                 field: "gsm",
                 headerName: t("couriers.fields.gsm"),
-                flex: 1,
+                width: 200,
             },
             {
                 field: "email",
                 headerName: t("couriers.fields.email"),
-                flex: 1,
+                width: 300,
             },
             {
                 field: "address",
@@ -71,7 +71,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                         </Typography>
                     </Tooltip>
                 ),
-                flex: 1,
+                width: 300,
             },
             {
                 field: "actions",
@@ -115,7 +115,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
     });
 
     return (
-        <List>
+        <List cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
             <DataGrid
                 {...dataGridProps}
                 autoHeight
