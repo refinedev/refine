@@ -6,7 +6,6 @@ interface MessageType extends Types.Message {
 }
 
 const liveProvider = (client: Ably.Realtime): LiveProvider => {
-    console.log("TEST");
     return {
         subscribe: ({ channel, types, params, callback }) => {
             const channelInstance = client.channels.get(channel);
