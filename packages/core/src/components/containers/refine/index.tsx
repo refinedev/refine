@@ -31,6 +31,7 @@ import {
 import { CloudContextProvider } from "@contexts/cloud";
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
 import { routeGenerator } from "@definitions";
+import { Cloud } from "@components/cloud";
 
 import {
     MutationMode,
@@ -221,7 +222,7 @@ export const Refine: React.FC<RefineProps> = ({
                                                         <UnsavedWarnContextProvider>
                                                             <>
                                                                 {children}
-                                                                {/* <CloudComponent /> */}
+                                                                <Cloud />
                                                                 {RouterComponent ? (
                                                                     <RouterComponent>
                                                                         <RouteChangeHandler />
