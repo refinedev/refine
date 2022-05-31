@@ -31,10 +31,10 @@ describe("Show", () => {
     });
 
     it("should render default list and refresh buttons successfuly", async () => {
-        const { container, getByText, getAllByText } = renderShow(<Show />);
+        const { container, getByText, queryByTestId } = renderShow(<Show />);
 
         expect(container.querySelector("button")).toBeTruthy();
-        expect(getAllByText("Posts")).toHaveLength(2);
+        expect(queryByTestId("show-list-button")).toBeTruthy();
         getByText("Refresh");
     });
 
