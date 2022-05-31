@@ -1,6 +1,6 @@
 {
-  "short_name": "refine react hook form example",
-  "name": "refine react hook form example",
+  "short_name": "refine react hook form useForm example",
+  "name": "refine react hook form useForm example",
   "icons": [
     {
       "src": "favicon.ico",
