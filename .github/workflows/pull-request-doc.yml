@@ -11,6 +11,7 @@ on:
       - "documentation/**"
 jobs:
   documentation:
+    if: ${{ 'pankod/refine' == github.repository }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -30,9 +31,7 @@ jobs:
           dist: build
           teardown: 'true'
           build: |
-            cd documentation
-            npm install
-            npm run build
+            cd ./documentation && npm install && npm run build
       - name: Send custom variable to Meercode Build
         uses: meercodeio/meercode-custom-variable@0.1.0
         with:
