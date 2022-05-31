@@ -44,9 +44,10 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: npx changeset publish
+          publish: npm publish
           commit: "ci(changesets): version packages"
           title: "ci(changesets): version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
