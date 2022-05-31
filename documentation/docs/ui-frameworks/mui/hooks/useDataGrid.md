@@ -343,23 +343,13 @@ export const PostsList: React.FC = () => {
         e: React.ChangeEvent<HTMLInputElement>,
         checked: boolean,
     ) => {
-        if (checked) {
-            setFilters([
-                {
-                    field: "status",
-                    value: "draft",
-                    operator: "eq",
-                },
-            ]);
-        } else {
-            setFilters([
-                {
-                    field: "status",
-                    value: undefined,
-                    operator: "eq",
-                },
-            ]);
-        }
+        setFilters([
+            {
+                field: "status",
+                value: checked ? "draft" : undefined,
+                operator: "eq",
+            },
+        ]);
     };
 
     return (
