@@ -1,0 +1,28 @@
+{
+    "node": "16",
+    "buildCommand": "bootstrap",
+    "packages": [
+        "packages/ably",
+        "packages/airtable",
+        "packages/altogic",
+        "packages/antd",
+        "packages/appwrite",
+        "packages/core",
+        "packages/demo-sidebar",
+        "packages/graphql",
+        "packages/hasura",
+        "packages/nestjsx-crud",
+        "packages/nextjs-router",
+        "packages/nhost",
+        "packages/react-hook-form",
+        "packages/react-location",
+        "packages/react-router-v6",
+        "packages/react-table",
+        "packages/simple-rest",
+        "packages/strapi",
+        "packages/strapi-graphql",
+        "packages/strapi-v4",
+        "packages/supabase"
+    ],
+    "sandboxes": ["/examples/fineFoods/admin", "/examples/fineFoods/client"]
+  }
