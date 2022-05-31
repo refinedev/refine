@@ -9,7 +9,7 @@ export const CloudContextProvider: React.FC<IContextContextProvider> = ({
     cloudConfig,
     children,
 }) => {
-    let sdk: Client | undefined;
+    let sdk: Client | undefined = undefined;
 
     if (cloudConfig && cloudConfig.baseUrl && cloudConfig.clientId) {
         const { baseUrl, clientId } = cloudConfig;
@@ -17,8 +17,6 @@ export const CloudContextProvider: React.FC<IContextContextProvider> = ({
             baseUrl,
             clientId,
         });
-    } else {
-        console.warn("cloudConfig is not defined!");
     }
 
     return (
