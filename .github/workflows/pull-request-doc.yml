@@ -11,7 +11,6 @@ on:
       - "documentation/**"
 jobs:
   documentation:
-    if: ${{ 'pankod/refine' == github.repository }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -53,16 +52,3 @@ jobs:
           dist: documentation/build
           teardown: 'true'
           build: echo
-      - name: Send custom variable to Meercode Build
-        uses: meercodeio/meercode-custom-variable@0.1.0
-        with:
-          meercode-token: ${{ secrets.MEERCODE_TOKEN }}
-          url: '${{ steps.preview_step.outputs.preview_url }}'
-      - uses: tzkhan/pr-update-action@v2
-        with:
-          repo-token: "${{ secrets.PANKOD_BOT_TOKEN }}"
-          base-branch-regex: '[a-z\d-_.\\/]+'
-          head-branch-regex: '[a-z\d-_.\\/]+'
-          body-template: |
-            [Documentation preview!](${{ steps.preview_step.outputs.preview_url }})
-          body-update-action: 'suffix'
