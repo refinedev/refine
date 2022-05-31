@@ -9,7 +9,8 @@
         "packages/react-hook-form",
         "packages/react-location",
         "packages/react-router-v6",
-        "packages/react-table"
+        "packages/react-table",
+        "packages/simple-rest"
     ],
     "sandboxes": ["/examples/fineFoods/admin", "/examples/fineFoods/client", "/examples/fineFoods/admin/mui"]
   }

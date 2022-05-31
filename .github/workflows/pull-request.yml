@@ -9,3 +9,9 @@ jobs:
         with:
           fetch-depth: 0
       #- uses: wagoid/commitlint-github-action@v4
+      - uses: nick-fields/private-action-loader@v3
+        if: ${{ 'pankod/refine' == github.repository }}
+        with:
+          pal-repo-name: refinedev/doc-change-check@v1.4
+          pal-repo-token: ${{ secrets.PANKOD_BOT_TOKEN }}
+          github-token: ${{ secrets.PANKOD_BOT_TOKEN }}
