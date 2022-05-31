@@ -222,13 +222,16 @@ export const Refine: React.FC<RefineProps> = ({
                                                         <UnsavedWarnContextProvider>
                                                             <>
                                                                 {children}
-                                                                <Cloud />
                                                                 {RouterComponent ? (
                                                                     <RouterComponent>
+                                                                        <Cloud />
                                                                         <RouteChangeHandler />
                                                                     </RouterComponent>
                                                                 ) : (
-                                                                    <RouteChangeHandler />
+                                                                    <>
+                                                                        <Cloud />
+                                                                        <RouteChangeHandler />
+                                                                    </>
                                                                 )}
                                                             </>
                                                         </UnsavedWarnContextProvider>
