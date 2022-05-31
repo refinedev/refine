@@ -48,11 +48,26 @@ The `breadcrumbs` are created with your resource definitions. For example, if yo
 ];
 ```
 
--   On the `list` page of the `posts` resource, the breadcrumbs look like this:  
-    `[ { label: "Posts", href: "/posts", icon: <div>icon</div> } ]`
+-   On the `list` page of the `posts` resource, the breadcrumbs look like this:
 
--   On the `create` page of the `posts` resource, the breadcrumbs look like this:  
-    `[ { label: "Posts", href: "/posts", icon: <div>icon</div>, }, { label: "Create" } ];`
+    ```json
+    [
+        {
+            label: "Posts",
+            href: "/posts",
+            icon: <div>icon</div>,
+        }
+    ]
+    ```
+
+-   On the `create` page of the `posts` resource, the breadcrumbs look like this:
+
+    ```json
+    [
+        { label: "Posts", href: "/posts", icon: <div>icon</div> },
+        { label: "Create" }
+    ];
+    ```
 
 :::info
 If resource has no `icon` property, the `icon` property of the breadcrumbs is `undefined`. Likewise, if the resource's list page is not found, the `href` property of the breadcrumbs is `undefined`.
@@ -78,11 +93,24 @@ If you have a nested resource definition as below:
 ];
 ```
 
--   On the `list` page of the `users` resource, the breadcrumbs look like this:  
-    `[ { label: "Cms" }, { label: "Posts", href: "/posts" } ]`
+-   On the `list` page of the `users` resource, the breadcrumbs look like this:
 
--   On the `create` page of the `users` resource, the breadcrumbs look like this:  
-    `[ { label: "Cms" }, { label: "Posts", href: "/posts" }, {label: "Create"} ]`
+    ```json
+    [
+        { label: "Cms" },
+        { label: "Users", href: "/users" }
+    ];
+    ```
+
+-   On the `create` page of the `users` resource, the breadcrumbs look like this:
+
+    ```json
+    [
+        { label: "Cms" },
+        { label: "Users", href: "/users" },
+        { label: "Create" }
+    ];
+    ```
 
 ## API Reference
 
