@@ -2,227 +2,180 @@ import React from "react";
 import { renderHook } from "@testing-library/react-hooks";
 import { Route, Routes } from "react-router-dom";
 
-import { TestWrapper } from "@test";
+import { TestWrapper, ITestWrapperProps } from "@test";
 
 import { useBreadcrumb } from ".";
 
-const dummyIcon = <div>icon</div>;
+const renderWrapper = (
+    wrapperProps: ITestWrapperProps = {},
+    hasAction?: boolean,
+) => {
+    const Wrapper = TestWrapper(wrapperProps);
+
+    const WrapperWith: React.FC = ({ children }) => (
+        <Wrapper>
+            <Routes>
+                <Route
+                    path={hasAction ? "/:resource/:action" : "/:resource"}
+                    element={children}
+                />
+            </Routes>
+        </Wrapper>
+    );
+
+    return WrapperWith;
+};
+
 const DummyResourcePage = () => <div>resource page</div>;
+const DummyIcon = <div>icon</div>;
 
 describe("useBreadcrumb Hook", () => {
-    it("Should only return `label` without `icon` and `to`", async () => {
-        const Wrapper = TestWrapper({
-            resources: [
-                {
-                    name: "users",
-                    route: "users",
-                },
-            ],
-            routerInitialEntries: ["/users"],
-        });
-
-        const WrapperWith: React.FC = ({ children }) => (
-            <Wrapper>
-                <Routes>
-                    <Route path="/:resource" element={children} />
-                </Routes>
-            </Wrapper>
-        );
-
+    it("Should only return `label` without `icon` and `href`", async () => {
         const { result } = renderHook(() => useBreadcrumb(), {
-            wrapper: WrapperWith,
+            wrapper: renderWrapper({
+                resources: [{ name: "posts" }],
+                routerInitialEntries: ["/posts"],
+            }),
         });
 
-        expect(result.current.breadcrumbs).toEqual([{ label: "Users" }]);
+        expect(result.current.breadcrumbs).toEqual([{ label: "Posts" }]);
     });
 
-    it("Should return `label` and `icon` without `to`", async () => {
-        const Wrapper = TestWrapper({
-            resources: [
-                {
-                    name: "users",
-                    route: "users",
-                    icon: dummyIcon,
-                },
-            ],
-            routerInitialEntries: ["/users"],
-        });
-
-        const WrapperWith: React.FC = ({ children }) => (
-            <Wrapper>
-                <Routes>
-                    <Route path="/:resource" element={children} />
-                </Routes>
-            </Wrapper>
-        );
-
+    it("Should return `label` and `icon` without `href`", async () => {
         const { result } = renderHook(() => useBreadcrumb(), {
-            wrapper: WrapperWith,
+            wrapper: renderWrapper({
+                resources: [
+                    {
+                        name: "posts",
+                        icon: DummyIcon,
+                    },
+                ],
+                routerInitialEntries: ["/posts"],
+            }),
         });
 
         expect(result.current.breadcrumbs).toEqual([
-            { icon: <div>icon</div>, label: "Users" },
+            { icon: <div>icon</div>, label: "Posts" },
         ]);
     });
 
-    it("if resource has `list` resource page should successfully return `to`", async () => {
-        const Wrapper = TestWrapper({
-            resources: [
-                {
-                    name: "users",
-                    route: "users",
-                    list: DummyResourcePage,
-                },
-            ],
-            routerInitialEntries: ["/users"],
-        });
-
-        const WrapperWith: React.FC = ({ children }) => (
-            <Wrapper>
-                <Routes>
-                    <Route path="/:resource" element={children} />
-                </Routes>
-            </Wrapper>
-        );
-
+    it("if resource has `list` resource page should successfully return `href`", async () => {
         const { result } = renderHook(() => useBreadcrumb(), {
-            wrapper: WrapperWith,
+            wrapper: renderWrapper({
+                resources: [
+                    {
+                        name: "posts",
+                        route: "posts",
+                        list: DummyResourcePage,
+                    },
+                ],
+                routerInitialEntries: ["/posts"],
+            }),
         });
 
         expect(result.current.breadcrumbs).toEqual([
-            { label: "Users", to: "/users" },
+            { label: "Posts", href: "/posts" },
         ]);
     });
 
     it("if resource has custom `route` should shown with resource `label`", async () => {
-        const Wrapper = TestWrapper({
-            resources: [
-                {
-                    name: "users",
-                    label: "Hello",
-                    route: "custom-route",
-                },
-            ],
-            routerInitialEntries: ["/custom-route"],
-        });
-
-        const WrapperWith: React.FC = ({ children }) => (
-            <Wrapper>
-                <Routes>
-                    <Route path="/:resource" element={children} />
-                </Routes>
-            </Wrapper>
-        );
-
         const { result } = renderHook(() => useBreadcrumb(), {
-            wrapper: WrapperWith,
+            wrapper: renderWrapper({
+                resources: [
+                    {
+                        name: "posts",
+                        label: "Hello",
+                        route: "custom-route",
+                    },
+                ],
+                routerInitialEntries: ["/custom-route"],
+            }),
         });
 
         expect(result.current.breadcrumbs).toEqual([{ label: "Hello" }]);
     });
 
     it("if the user is on the resource action page, the action name should be last in the breadcrumbs", async () => {
-        const Wrapper = TestWrapper({
-            resources: [
-                {
-                    name: "users",
-                    route: "users",
-                    icon: dummyIcon,
-                    list: DummyResourcePage,
-                    create: DummyResourcePage,
-                },
-            ],
-            routerInitialEntries: ["/users/create"],
-        });
-
-        const WrapperWith: React.FC = ({ children }) => (
-            <Wrapper>
-                <Routes>
-                    <Route path="/:resource/:action" element={children} />
-                </Routes>
-            </Wrapper>
-        );
-
         const { result } = renderHook(() => useBreadcrumb(), {
-            wrapper: WrapperWith,
+            wrapper: renderWrapper(
+                {
+                    resources: [
+                        {
+                            name: "posts",
+                            route: "posts",
+                            icon: DummyIcon,
+                            list: DummyResourcePage,
+                            create: DummyResourcePage,
+                        },
+                    ],
+                    routerInitialEntries: ["/posts/create"],
+                },
+                true,
+            ),
         });
 
         expect(result.current.breadcrumbs).toEqual([
-            { icon: <div>icon</div>, label: "Users", to: "/users" },
+            { icon: <div>icon</div>, label: "Posts", href: "/posts" },
             { label: "Create" },
         ]);
     });
 
     it("if resources has nested resources, `parentName` should come in breadcrumbs", async () => {
-        const Wrapper = TestWrapper({
-            resources: [
-                {
-                    name: "cms",
-                },
-                {
-                    parentName: "cms",
-                    name: "users",
-                    route: "cms/users",
-                    icon: dummyIcon,
-                    list: DummyResourcePage,
-                    create: DummyResourcePage,
-                },
-            ],
-            routerInitialEntries: ["/users/create"],
-        });
-
-        const WrapperWith: React.FC = ({ children }) => (
-            <Wrapper>
-                <Routes>
-                    <Route path="/:resource/:action" element={children} />
-                </Routes>
-            </Wrapper>
-        );
-
         const { result } = renderHook(() => useBreadcrumb(), {
-            wrapper: WrapperWith,
+            wrapper: renderWrapper(
+                {
+                    resources: [
+                        {
+                            name: "cms",
+                        },
+                        {
+                            parentName: "cms",
+                            name: "posts",
+                            route: "cms/posts",
+                            icon: DummyIcon,
+                            list: DummyResourcePage,
+                            create: DummyResourcePage,
+                        },
+                    ],
+                    routerInitialEntries: ["/posts/create"],
+                },
+                true,
+            ),
         });
 
         expect(result.current.breadcrumbs).toEqual([
             { label: "Cms" },
-            { icon: <div>icon</div>, label: "Users", to: "/cms/users" },
+            { icon: <div>icon</div>, label: "Posts", href: "/cms/posts" },
             { label: "Create" },
         ]);
     });
 
     it("if resources has nested resources with custom `route`, `parentName` should come in breadcrumbs", async () => {
-        const Wrapper = TestWrapper({
-            resources: [
-                {
-                    name: "cms",
-                },
-                {
-                    parentName: "cms",
-                    name: "users",
-                    route: "custom-route",
-                    icon: dummyIcon,
-                    list: DummyResourcePage,
-                    create: DummyResourcePage,
-                },
-            ],
-            routerInitialEntries: ["/users/create"],
-        });
-
-        const WrapperWith: React.FC = ({ children }) => (
-            <Wrapper>
-                <Routes>
-                    <Route path="/:resource/:action" element={children} />
-                </Routes>
-            </Wrapper>
-        );
-
         const { result } = renderHook(() => useBreadcrumb(), {
-            wrapper: WrapperWith,
+            wrapper: renderWrapper(
+                {
+                    resources: [
+                        {
+                            name: "cms",
+                        },
+                        {
+                            parentName: "cms",
+                            name: "posts",
+                            route: "custom-route",
+                            icon: DummyIcon,
+                            list: DummyResourcePage,
+                            create: DummyResourcePage,
+                        },
+                    ],
+                    routerInitialEntries: ["/posts/create"],
+                },
+                true,
+            ),
         });
 
         expect(result.current.breadcrumbs).toEqual([
             { label: "Cms" },
-            { icon: <div>icon</div>, label: "Users", to: "/custom-route" },
+            { icon: <div>icon</div>, label: "Posts", href: "/custom-route" },
             { label: "Create" },
         ]);
     });
