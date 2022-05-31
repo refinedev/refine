@@ -20,7 +20,7 @@ export type DateFieldProps = FieldProps<ConfigType> &
 
 /**
  * This field is used to display dates. It uses {@link https://day.js.org/docs/en/display/format `Day.js`} to display date format and
- * Material UI {@link https://mui.com/material-ui/react-typography/#main-content `<Typography.Link>`} component
+ * Material UI {@link https://mui.com/material-ui/react-typography/#main-content `<Typography>`} component
  */
 export const DateField: React.FC<DateFieldProps> = ({
     value,
