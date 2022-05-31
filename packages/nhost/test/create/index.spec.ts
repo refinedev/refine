@@ -1,5 +1,6 @@
 import dataProvider from "../../src/index";
 import nhost from "../nhost";
+import "./index.mock";
 
 describe("create", () => {
     beforeAll(async () => {
