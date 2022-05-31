@@ -353,11 +353,14 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                         sx={{ width: 74, height: 74 }}
                     />
                 ),
+                flex: 1,
+                minWidth: 100,
             },
             {
                 field: "name",
                 headerName: t("products.fields.name"),
-                width: 180,
+                flex: 1,
+                minWidth: 180,
             },
             {
                 field: "price",
@@ -373,6 +376,8 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                         value={value / 100}
                     />
                 ),
+                flex: 1,
+                minWidth: 100,
             },
             {
                 field: "isActive",
@@ -380,6 +385,8 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                 headerName: t("products.fields.isActive"),
                 // eslint-disable-next-line react/display-name
                 renderCell: ({ row }) => <BooleanField value={row.isActive} />,
+                flex: 0.5,
+                minWidth: 100,
             },
             {
                 field: "createdAt",
@@ -388,7 +395,8 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                 renderCell: ({ row }) => (
                     <DateField value={row.createdAt} format="LLL" />
                 ),
-                width: 200,
+                flex: 1,
+                minWidth: 200,
             },
 
             {
@@ -404,6 +412,8 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                         showInMenu
                     />,
                 ],
+                flex: 0.5,
+                minWidth: 100,
             },
         ],
         [],

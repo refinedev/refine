@@ -51,6 +51,8 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 description: t("orders.fields.orderNumber"),
                 headerAlign: "center",
                 align: "center",
+                flex: 1,
+                minWidth: 100,
             },
             {
                 field: "status",
@@ -60,6 +62,8 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 renderCell: ({ row }) => (
                     <OrderStatus status={row.status.text} />
                 ),
+                flex: 1,
+                minWidth: 100,
             },
             {
                 field: "amount",
@@ -76,18 +80,22 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         sx={{ fontSize: "14px" }}
                     />
                 ),
+                flex: 1,
+                minWidth: 100,
             },
             {
                 field: "store",
                 headerName: t("orders.fields.store"),
                 valueGetter: ({ row }) => row.store.title,
-                width: 150,
+                flex: 1,
+                minWidth: 150,
             },
             {
                 field: "user",
                 headerName: t("orders.fields.user"),
                 valueGetter: ({ row }) => row.user.fullName,
-                width: 150,
+                flex: 1,
+                minWidth: 150,
             },
             {
                 field: "products",
@@ -113,11 +121,14 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         </Typography>
                     </CustomTooltip>
                 ),
+                flex: 1,
+                minWidth: 100,
             },
             {
                 field: "createdAt",
                 headerName: t("orders.fields.createdAt"),
-                width: 170,
+                flex: 1,
+                minWidth: 170,
                 renderCell: ({ row }) => (
                     <DateField
                         value={row.createdAt}
@@ -130,7 +141,8 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 field: "actions",
                 type: "actions",
                 headerName: t("table.actions"),
-                width: 80,
+                flex: 1,
+                minWidth: 100,
                 getActions: ({ id }) => [
                     <GridActionsCellItem
                         key={1}
