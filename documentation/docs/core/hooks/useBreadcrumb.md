@@ -50,22 +50,26 @@ The `breadcrumbs` are created with your resource definitions. For example, if yo
 
 -   On the `list` page of the `posts` resource, the breadcrumbs look like this:
 
-    ```json
+    ```tsx
     [
         {
             label: "Posts",
             href: "/posts",
             icon: <div>icon</div>,
-        }
-    ]
+        },
+    ];
     ```
 
 -   On the `create` page of the `posts` resource, the breadcrumbs look like this:
 
-    ```json
+    ```tsx
     [
-        { label: "Posts", href: "/posts", icon: <div>icon</div> },
-        { label: "Create" }
+        {
+            label: "Posts",
+            href: "/posts",
+            icon: <div>icon</div>,
+        },
+        { label: "Create" },
     ];
     ```
 
@@ -95,20 +99,26 @@ If you have a nested resource definition as below:
 
 -   On the `list` page of the `users` resource, the breadcrumbs look like this:
 
-    ```json
+    ```tsx
     [
         { label: "Cms" },
-        { label: "Users", href: "/users" }
+        {
+            label: "Users",
+            href: "/users",
+        },
     ];
     ```
 
 -   On the `create` page of the `users` resource, the breadcrumbs look like this:
 
-    ```json
+    ```tsx
     [
         { label: "Cms" },
-        { label: "Users", href: "/users" },
-        { label: "Create" }
+        {
+            label: "Users",
+            href: "/users",
+        },
+        { label: "Create" },
     ];
     ```
 
