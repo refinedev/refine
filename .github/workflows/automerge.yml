@@ -2,6 +2,7 @@ name: Check PR can be merged
 on: [pull_request, pull_request_review, issue_comment]
 jobs:
   automerge:
+    if: ${{ 'pankod/refine' == github.repository }}
     runs-on: ubuntu-latest
     steps:
       - name: Run PR Helper
