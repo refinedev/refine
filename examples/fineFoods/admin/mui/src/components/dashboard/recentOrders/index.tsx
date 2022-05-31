@@ -36,6 +36,8 @@ export const RecentOrders: React.FC = () => {
                     />
                 ),
                 align: "center",
+                flex: 1,
+                minWidth: 100,
             },
             {
                 field: "summary",
@@ -73,7 +75,8 @@ export const RecentOrders: React.FC = () => {
                         </Button>
                     </Stack>
                 ),
-                width: 200,
+                flex: 2,
+                minWidth: 200,
             },
             {
                 field: "summary2",
@@ -92,7 +95,8 @@ export const RecentOrders: React.FC = () => {
                         <Typography>{row.adress.text}</Typography>
                     </Stack>
                 ),
-                width: 100,
+                flex: 1,
+                minWidth: 100,
             },
             {
                 field: "amount",
@@ -107,6 +111,7 @@ export const RecentOrders: React.FC = () => {
                         value={row.amount / 100}
                     />
                 ),
+                flex: 1,
                 width: 80,
             },
             {
