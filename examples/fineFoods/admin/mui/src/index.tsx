@@ -29,7 +29,7 @@ ReactDOM.render(
     <React.StrictMode>
         <React.Suspense fallback="loading">
             <ColorModeContextProvider>
-                <StyledSnackbarProvider maxSnack={3}>
+                <StyledSnackbarProvider>
                     <App />
                 </StyledSnackbarProvider>
             </ColorModeContextProvider>
