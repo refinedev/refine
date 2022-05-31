@@ -1,6 +1,11 @@
 /* eslint-disable react/display-name */
 import React from "react";
-import { CrudFilters, HttpError, useTranslate } from "@pankod/refine-core";
+import {
+    CrudFilters,
+    HttpError,
+    IResourceComponentsProps,
+    useTranslate,
+} from "@pankod/refine-core";
 import {
     DataGrid,
     Grid,
@@ -29,7 +34,7 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
 import { IUser, IUserFilterVariables } from "interfaces";
 
-export const UserList: React.FC = () => {
+export const UserList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
 
     const { register, handleSubmit } =
@@ -40,23 +45,27 @@ export const UserList: React.FC = () => {
             {
                 field: "gsm",
                 headerName: t("users.fields.gsm"),
-                width: 150,
+                minWidth: 150,
+                flex: 1,
             },
             {
                 field: "avatar",
                 headerName: t("users.fields.avatar.label"),
                 renderCell: ({ row }) => <Avatar src={row.avatar[0].url} />,
-                width: 100,
+                minWidth: 100,
+                flex: 1,
             },
             {
                 field: "firstName",
                 headerName: t("users.fields.firstName"),
-                width: 150,
+                minWidth: 150,
+                flex: 1,
             },
             {
                 field: "lastName",
                 headerName: t("users.fields.lastName"),
-                width: 150,
+                minWidth: 150,
+                flex: 1,
             },
             {
                 field: "gender",
@@ -75,6 +84,8 @@ export const UserList: React.FC = () => {
                         value={row.isActive}
                     />
                 ),
+                minWidth: 80,
+                flex: 0.5,
             },
             {
                 field: "createdAt",
@@ -82,7 +93,8 @@ export const UserList: React.FC = () => {
                 renderCell: ({ row }) => (
                     <DateField value={row.createdAt} format="LLL" />
                 ),
-                width: 200,
+                minWidth: 200,
+                flex: 1,
             },
             {
                 field: "actions",
@@ -98,6 +110,7 @@ export const UserList: React.FC = () => {
                 align: "center",
                 headerAlign: "center",
                 flex: 1,
+                minWidth: 80,
             },
         ],
         [],
@@ -139,7 +152,7 @@ export const UserList: React.FC = () => {
     return (
         <Grid container spacing={2}>
             <Grid item xs={12} lg={3}>
-                <Card>
+                <Card sx={{ paddingX: { xs: 2, md: 0 } }}>
                     <CardHeader title="Filters" />
                     <CardContent sx={{ pt: 0 }}>
                         <Box
@@ -217,7 +230,7 @@ export const UserList: React.FC = () => {
                 </Card>
             </Grid>
             <Grid item xs={12} lg={9}>
-                <List>
+                <List cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
                     <DataGrid
                         {...dataGridProps}
                         filterModel={undefined}

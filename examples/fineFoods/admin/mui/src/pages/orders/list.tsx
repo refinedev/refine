@@ -49,24 +49,25 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 field: "orderNumber",
                 headerName: t("orders.fields.orderNumber"),
                 description: t("orders.fields.orderNumber"),
-                flex: 1,
                 headerAlign: "center",
                 align: "center",
+                flex: 1,
+                minWidth: 100,
             },
             {
                 field: "status",
                 headerName: t("orders.fields.status"),
-                flex: 1,
                 headerAlign: "center",
                 align: "center",
                 renderCell: ({ row }) => (
                     <OrderStatus status={row.status.text} />
                 ),
+                flex: 1,
+                minWidth: 100,
             },
             {
                 field: "amount",
                 headerName: t("orders.fields.amount"),
-                flex: 1,
                 headerAlign: "center",
                 align: "center",
                 renderCell: ({ row }) => (
@@ -79,23 +80,26 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         sx={{ fontSize: "14px" }}
                     />
                 ),
+                flex: 1,
+                minWidth: 100,
             },
             {
                 field: "store",
                 headerName: t("orders.fields.store"),
-                flex: 1,
                 valueGetter: ({ row }) => row.store.title,
+                flex: 1,
+                minWidth: 150,
             },
             {
                 field: "user",
                 headerName: t("orders.fields.user"),
-                flex: 1,
                 valueGetter: ({ row }) => row.user.fullName,
+                flex: 1,
+                minWidth: 150,
             },
             {
                 field: "products",
                 headerName: t("orders.fields.products"),
-                flex: 1,
                 headerAlign: "center",
                 align: "center",
                 renderCell: ({ row }) => (
@@ -117,16 +121,19 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         </Typography>
                     </CustomTooltip>
                 ),
+                flex: 1,
+                minWidth: 100,
             },
             {
                 field: "createdAt",
                 headerName: t("orders.fields.createdAt"),
                 flex: 1,
+                minWidth: 170,
                 renderCell: ({ row }) => (
                     <DateField
                         value={row.createdAt}
                         format="LLL"
-                        sx={{ whiteSpace: "pre-wrap", fontSize: "14px" }}
+                        sx={{ fontSize: "14px" }}
                     />
                 ),
             },
@@ -134,7 +141,8 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 field: "actions",
                 type: "actions",
                 headerName: t("table.actions"),
-                width: 80,
+                flex: 1,
+                minWidth: 100,
                 getActions: ({ id }) => [
                     <GridActionsCellItem
                         key={1}
@@ -269,7 +277,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     return (
         <Grid container spacing={2}>
             <Grid item xs={12} lg={3}>
-                <Card>
+                <Card sx={{ paddingX: { xs: 2, md: 0 } }}>
                     <CardHeader title="Filters" />
                     <CardContent sx={{ pt: 0 }}>
                         <Box
@@ -429,6 +437,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
             </Grid>
             <Grid item xs={12} lg={9}>
                 <List
+                    cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
                     cardHeaderProps={{
                         action: (
                             <ExportButton

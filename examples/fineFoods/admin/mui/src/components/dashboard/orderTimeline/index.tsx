@@ -50,31 +50,31 @@ export const OrderTimeline: React.FC = () => {
                 return {
                     color: theme.timeLine.color.pending,
                     text: "pending",
-                    dotColor: "#ffa940",
+                    dotColor: theme.timeLine.dotColor.pending,
                 };
             case "2":
                 return {
                     color: theme.timeLine.color.ready,
                     text: "ready",
-                    dotColor: "#36cfc9",
+                    dotColor: theme.timeLine.dotColor.ready,
                 };
             case "3":
                 return {
                     color: theme.timeLine.color.onTheWay,
                     text: "on the way",
-                    dotColor: "#73d13d",
+                    dotColor: theme.timeLine.dotColor.onTheWay,
                 };
             case "4":
                 return {
                     color: theme.timeLine.color.delivered,
                     text: "delivered",
-                    dotColor: "#40a9ff",
+                    dotColor: theme.timeLine.dotColor.delivered,
                 };
             default:
                 return {
                     color: theme.timeLine.color.cancelled,
                     text: "cancelled",
-                    dotColor: "#ff4d4f",
+                    dotColor: theme.timeLine.dotColor.cancelled,
                 };
         }
     };

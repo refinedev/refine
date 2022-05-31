@@ -19,8 +19,9 @@ export const notificationProviderHandle = (): NotificationProvider => {
                             cancelMutation?.();
                             closeSnackbar(key);
                         }}
+                        color="inherit"
                     >
-                        <UndoOutlined color="secondary" />
+                        <UndoOutlined />
                     </IconButton>
                 );
                 enqueueSnackbar(

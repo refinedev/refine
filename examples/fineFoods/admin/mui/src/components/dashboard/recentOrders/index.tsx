@@ -35,8 +35,9 @@ export const RecentOrders: React.FC = () => {
                         src={row?.products[0]?.images[0]?.url}
                     />
                 ),
-                flex: 0.5,
                 align: "center",
+                flex: 1,
+                minWidth: 100,
             },
             {
                 field: "summary",
@@ -74,7 +75,8 @@ export const RecentOrders: React.FC = () => {
                         </Button>
                     </Stack>
                 ),
-                flex: 1,
+                flex: 2,
+                minWidth: 200,
             },
             {
                 field: "summary2",
@@ -94,6 +96,7 @@ export const RecentOrders: React.FC = () => {
                     </Stack>
                 ),
                 flex: 1,
+                minWidth: 100,
             },
             {
                 field: "amount",
@@ -108,6 +111,7 @@ export const RecentOrders: React.FC = () => {
                         value={row.amount / 100}
                     />
                 ),
+                flex: 1,
                 width: 80,
             },
             {
@@ -192,7 +196,11 @@ export const RecentOrders: React.FC = () => {
             {...dataGridProps}
             autoHeight
             headerHeight={0}
-            rowHeight={170}
+            rowHeight={200}
+            sx={{
+                paddingX: { xs: 3 },
+                border: "none",
+            }}
         />
     );
 };

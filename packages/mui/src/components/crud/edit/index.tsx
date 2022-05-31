@@ -98,6 +98,7 @@ export const Edit: React.FC<EditProps> = ({
     return (
         <Card {...cardProps}>
             <CardHeader
+                sx={{ display: "flex", flexWrap: "wrap" }}
                 title={
                     <Typography variant="h5">
                         {translate(

@@ -16,7 +16,7 @@ export const PerfectImplementation = () => {
                     )}
                 >
                     <iframe
-                        src="https://codesandbox.io/embed/tutorial-ov79u?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+                        src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/tutorial/antd?autoresize=1&fontsize=16&theme=dark"
                         style={{
                             width: "100%",
                             height: "70vh",

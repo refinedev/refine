@@ -1,8 +1,12 @@
-name: npm Publish [released]
+name: Release
 
 on:
-  release:
-    types: [released]
+  push:
+    paths:
+      - ".changeset/**"
+      - "packages/**"
+    branches:
+      - master
 
 jobs:
   publish-npm:
@@ -19,12 +23,30 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
-      - run: |
+      - name: Creating .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Install Dependencies
+        run: |
           npm ci
           npm run bootstrap
-          npm run build
-          npm run lint
-          npm test
-          npm run lerna publish from-package -- --yes
+      - name: Build
+        run: npm run build
+      - name: Lint
+        run: npm run lint
+      - name: Test
+        run: npm test
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: npx changeset publish
+          commit: "ci(changesets): version packages"
+          title: "ci(changesets): version packages"
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

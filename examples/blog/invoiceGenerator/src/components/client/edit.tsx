@@ -41,6 +41,7 @@ export const EditClient: React.FC<EditClientProps> = ({
                     layout="vertical"
                     initialValues={{
                         isActive: true,
+                        ...formProps.initialValues,
                     }}
                 >
                     <Form.Item

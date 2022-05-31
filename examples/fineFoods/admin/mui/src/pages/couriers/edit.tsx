@@ -129,8 +129,14 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                         <Avatar
                                             sx={{
                                                 cursor: "pointer",
-                                                width: "200px",
-                                                height: "200px",
+                                                width: {
+                                                    xs: "120px",
+                                                    md: "200px",
+                                                },
+                                                height: {
+                                                    xs: "120px",
+                                                    md: "200px",
+                                                },
                                             }}
                                             src={
                                                 imageInput && imageInput[0].url

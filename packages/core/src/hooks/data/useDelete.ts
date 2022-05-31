@@ -252,7 +252,7 @@ export const useDelete = <
                 const resourceSingular = pluralize.singular(resource);
 
                 // Remove the queries from the cache:
-                queryClient.removeQueries(context.queryKey.detail(id));
+                queryClient.removeQueries(context?.queryKey.detail(id));
 
                 handleNotification(successNotification, {
                     key: `${id}-${resource}-notification`,

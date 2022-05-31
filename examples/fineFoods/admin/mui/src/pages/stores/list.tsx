@@ -5,6 +5,7 @@ import {
     useNavigation,
     useModal,
     useShow,
+    IResourceComponentsProps,
 } from "@pankod/refine-core";
 import {
     Avatar,
@@ -16,13 +17,14 @@ import {
     DateField,
     BooleanField,
     TextFieldComponent,
+    Paper,
 } from "@pankod/refine-mui";
 import { EditOutlined } from "@mui/icons-material";
 
 import { IStore } from "interfaces";
 import { StoreProducts } from "components/store";
 
-export const StoreList: React.FC = () => {
+export const StoreList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const { edit } = useNavigation();
 
@@ -49,27 +51,32 @@ export const StoreList: React.FC = () => {
             },
             {
                 field: "id",
+                align: "center",
                 headerName: t("stores.fields.id"),
             },
             {
                 field: "title",
                 headerName: t("stores.fields.title"),
                 flex: 1,
+                minWidth: 160,
             },
             {
                 field: "email",
                 headerName: t("stores.fields.email"),
-                flex: 1,
+                flex: 2,
+                minWidth: 300,
             },
             {
                 field: "gsm",
                 headerName: t("stores.fields.gsm"),
                 flex: 1,
+                minWidth: 150,
             },
             {
                 field: "address",
                 headerName: t("stores.fields.address"),
                 flex: 2,
+                minWidth: 300,
                 renderCell: ({ row }) => (
                     <TextFieldComponent value={row.address?.text} />
                 ),
@@ -78,6 +85,7 @@ export const StoreList: React.FC = () => {
                 field: "createdAt",
                 headerName: t("stores.fields.createdAt"),
                 flex: 1,
+                minWidth: 100,
                 renderCell: ({ row }) => <DateField value={row.createdAt} />,
             },
             {
@@ -134,8 +142,8 @@ export const StoreList: React.FC = () => {
     });
 
     return (
-        <>
-            <List canCreate>
+        <Paper>
+            <List canCreate cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
                 <DataGrid
                     rowHeight={80}
                     autoHeight
@@ -150,6 +158,6 @@ export const StoreList: React.FC = () => {
                     visible={visible}
                 />
             )}
-        </>
+        </Paper>
     );
 };
