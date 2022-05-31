@@ -34,7 +34,7 @@ export const CircularDeterminate: React.FC<CircularDeterminateProps> = ({
         <>
             <Box sx={{ position: "relative", display: "inline-flex" }}>
                 <CircularProgress
-                    color="secondary"
+                    color="inherit"
                     variant="determinate"
                     value={progress}
                 />

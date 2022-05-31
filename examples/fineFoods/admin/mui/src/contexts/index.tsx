@@ -1,6 +1,9 @@
 import React, { createContext, useEffect, useState } from "react";
 import { ThemeProvider } from "@mui/system";
-import { DarkTheme, LightTheme } from "@pankod/refine-mui";
+import {
+    DarkThemeWithResponsiveFontSizes as DarkTheme,
+    LightThemeWithResponsiveFontSizes as LightTheme,
+} from "theme";
 
 type ColorModeContextType = {
     mode: string;

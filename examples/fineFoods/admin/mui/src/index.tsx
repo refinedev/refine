@@ -12,12 +12,12 @@ dayjs.extend(relativeTime);
 
 const StyledSnackbarProvider = styled(SnackbarProvider)`
     &.SnackbarItem-contentRoot {
-        background-color: ${(props) => props.theme.palette.background.paper};
-        color: ${(props) => props.theme.palette.text.primary};
+        background-color: ${(props) => props.theme.palette.background.default};
+        color: ${(props) => props.theme.palette.primary.main};
     }
     &.SnackbarItem-variantSuccess {
         background-color: ${(props) => props.theme.palette.primary.main};
-        color: ${(props) => props.theme.palette.common.white};
+        color: ${(props) => props.theme.palette.primary.contrastText}; s
     }
     &.SnackbarItem-variantError {
         background-color: ${(props) => props.theme.palette.error.main};
