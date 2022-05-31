@@ -22,16 +22,22 @@ jobs:
         uses: rokroskar/workflow-run-cleanup-action@v0.2.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
       - uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: |
+          cd documentation
+          npm ci
+          npm run build
       - uses: afc163/surge-preview@v1
         id: preview_step
         with:
           surge_token: ${{ secrets.SURGE_TOKEN }}
           github_token: ${{ secrets.PANKOD_BOT_TOKEN }}
-          dist: build
+          dist: documentation/build
           teardown: 'true'
-          build: |
-            cd ./documentation && npm install && npm run build
+          build: echo
       - name: Send custom variable to Meercode Build
         uses: meercodeio/meercode-custom-variable@0.1.0
         with:
