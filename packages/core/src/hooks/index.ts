@@ -17,3 +17,4 @@ export * from "./accessControl";
 export * from "./useSelect";
 export * from "./useTable";
 export * from "./invalidate";
+export * from "./breadcrumb";

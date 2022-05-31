@@ -15,6 +15,7 @@ import {
     DeleteButton,
     RefreshButton,
     ListButton,
+    Breadcrumb,
 } from "@components";
 
 export interface ShowProps {
@@ -112,6 +113,7 @@ export const Show: React.FC<ShowProps> = ({
                     />
                 </Space>
             }
+            breadcrumb={<Breadcrumb />}
             {...pageHeaderProps}
         >
             <Spin spinning={isLoading}>
