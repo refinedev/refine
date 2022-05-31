@@ -51,27 +51,32 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
             },
             {
                 field: "id",
+                align: "center",
                 headerName: t("stores.fields.id"),
             },
             {
                 field: "title",
                 headerName: t("stores.fields.title"),
-                width: 160,
+                flex: 1,
+                minWidth: 160,
             },
             {
                 field: "email",
                 headerName: t("stores.fields.email"),
-                width: 250,
+                flex: 2,
+                minWidth: 300,
             },
             {
                 field: "gsm",
                 headerName: t("stores.fields.gsm"),
-                width: 150,
+                flex: 1,
+                minWidth: 150,
             },
             {
                 field: "address",
                 headerName: t("stores.fields.address"),
-                width: 300,
+                flex: 2,
+                minWidth: 300,
                 renderCell: ({ row }) => (
                     <TextFieldComponent value={row.address?.text} />
                 ),
@@ -79,7 +84,8 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
             {
                 field: "createdAt",
                 headerName: t("stores.fields.createdAt"),
-                width: 100,
+                flex: 1,
+                minWidth: 100,
                 renderCell: ({ row }) => <DateField value={row.createdAt} />,
             },
             {

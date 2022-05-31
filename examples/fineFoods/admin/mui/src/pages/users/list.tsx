@@ -45,23 +45,27 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
             {
                 field: "gsm",
                 headerName: t("users.fields.gsm"),
-                width: 150,
+                minWidth: 150,
+                flex: 1,
             },
             {
                 field: "avatar",
                 headerName: t("users.fields.avatar.label"),
                 renderCell: ({ row }) => <Avatar src={row.avatar[0].url} />,
-                width: 100,
+                minWidth: 100,
+                flex: 1,
             },
             {
                 field: "firstName",
                 headerName: t("users.fields.firstName"),
-                width: 150,
+                minWidth: 150,
+                flex: 1,
             },
             {
                 field: "lastName",
                 headerName: t("users.fields.lastName"),
-                width: 150,
+                minWidth: 150,
+                flex: 1,
             },
             {
                 field: "gender",
@@ -80,6 +84,8 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                         value={row.isActive}
                     />
                 ),
+                minWidth: 80,
+                flex: 0.5,
             },
             {
                 field: "createdAt",
@@ -87,7 +93,8 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                 renderCell: ({ row }) => (
                     <DateField value={row.createdAt} format="LLL" />
                 ),
-                width: 200,
+                minWidth: 200,
+                flex: 1,
             },
             {
                 field: "actions",
@@ -103,6 +110,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                 align: "center",
                 headerAlign: "center",
                 flex: 1,
+                minWidth: 80,
             },
         ],
         [],

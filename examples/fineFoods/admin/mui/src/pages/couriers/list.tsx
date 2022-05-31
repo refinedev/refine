@@ -42,17 +42,20 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                         </Typography>
                     </Stack>
                 ),
-                width: 200,
+                flex: 1,
+                minWidth: 200,
             },
             {
                 field: "gsm",
                 headerName: t("couriers.fields.gsm"),
-                width: 200,
+                flex: 1,
+                minWidth: 200,
             },
             {
                 field: "email",
                 headerName: t("couriers.fields.email"),
-                width: 300,
+                flex: 1,
+                minWidth: 300,
             },
             {
                 field: "address",
@@ -71,7 +74,8 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                         </Typography>
                     </Tooltip>
                 ),
-                width: 300,
+                flex: 1,
+                minWidth: 300,
             },
             {
                 field: "actions",

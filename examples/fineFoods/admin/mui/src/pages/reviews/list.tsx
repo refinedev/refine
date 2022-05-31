@@ -75,7 +75,8 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                 field: "user",
                 headerName: t("reviews.fields.user"),
                 valueGetter: ({ row }) => row.user.fullName,
-                width: 200,
+                minWidth: 200,
+                flex: 1,
             },
             {
                 field: "order",
@@ -90,6 +91,8 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                         #{row.order.id}
                     </Button>
                 ),
+                minWidth: 100,
+                flex: 0.5,
             },
             {
                 field: "comment",
@@ -107,13 +110,15 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                         </Typography>
                     </Tooltip>
                 ),
-                width: 200,
+                minWidth: 200,
+                flex: 1,
             },
             {
                 field: "review",
                 headerName: t("reviews.fields.rating"),
                 headerAlign: "center",
-                width: 250,
+                flex: 1,
+                minWidth: 250,
                 align: "center",
                 renderCell: ({ row }) => (
                     <Stack
