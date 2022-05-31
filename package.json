@@ -48,6 +48,7 @@
         "typescript": "^4.4.3"
     },
     "dependencies": {
+        "@changesets/changelog-github": "^0.4.4",
         "@changesets/cli": "^2.22.0",
         "prettier": "2.3.0"
     }
