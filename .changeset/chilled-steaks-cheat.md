@@ -1,5 +1,4 @@
 ---
-"mui-fine-foods": minor
 "@pankod/refine-mui": patch
 ---
 
