@@ -7,8 +7,7 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-
-import { Button, ButtonProps } from "@mui/material";
+import { Button, ButtonProps, SvgIconProps } from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
 export type EditButtonProps = ButtonProps & {
@@ -16,6 +15,7 @@ export type EditButtonProps = ButtonProps & {
     recordItemId?: BaseKey;
     hideText?: boolean;
     ignoreAccessControlProvider?: boolean;
+    svgIconProps?: SvgIconProps;
 };
 
 /**
@@ -29,6 +29,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
     recordItemId,
     hideText = false,
     ignoreAccessControlProvider = false,
+    svgIconProps,
     children,
     onClick,
     ...rest
@@ -79,12 +80,12 @@ export const EditButton: React.FC<EditButtonProps> = ({
         >
             <Button
                 disabled={data?.can === false}
-                startIcon={!hideText && <EditOutlinedIcon />}
+                startIcon={!hideText && <EditOutlinedIcon {...svgIconProps} />}
                 title={disabledTitle()}
                 {...rest}
             >
                 {hideText ? (
-                    <EditOutlinedIcon />
+                    <EditOutlinedIcon {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.edit", "Edit")
                 )}

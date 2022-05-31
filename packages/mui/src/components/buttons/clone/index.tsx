@@ -8,8 +8,7 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-
-import { Button, ButtonProps } from "@mui/material";
+import { Button, ButtonProps, SvgIconProps } from "@mui/material";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 
 export type CloneButtonProps = ButtonProps & {
@@ -17,6 +16,7 @@ export type CloneButtonProps = ButtonProps & {
     recordItemId?: BaseKey;
     hideText?: boolean;
     ignoreAccessControlProvider?: boolean;
+    svgIconProps?: SvgIconProps;
 };
 
 /**
@@ -30,6 +30,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     recordItemId,
     hideText = false,
     ignoreAccessControlProvider = false,
+    svgIconProps,
     children,
     onClick,
     ...rest
@@ -80,12 +81,14 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
         >
             <Button
                 disabled={data?.can === false}
-                startIcon={!hideText && <AddBoxOutlinedIcon />}
+                startIcon={
+                    !hideText && <AddBoxOutlinedIcon {...svgIconProps} />
+                }
                 title={disabledTitle()}
                 {...rest}
             >
                 {hideText ? (
-                    <AddBoxOutlinedIcon />
+                    <AddBoxOutlinedIcon {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.clone", "Clone")
                 )}
