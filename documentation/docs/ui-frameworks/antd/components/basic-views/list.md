@@ -138,4 +138,4 @@ export const App: React.FC = () => {
 | pageHeaderProps   | Passes properties for `<PageHeader>`    | [PageHeaderProps](https://ant.design/components/page-header/#API)                     | { ghost: false, [title](#title), extra: `<CreateButton />`, breadcrumb: [Breadcrumb][breadcrumb-component] } |
 | resource          | Resource name for API data interactions | `string`                                                                              | Resource name that it reads from the url.                                                                    |
 
-[breadcrumb-component]: /docs/ui-frameworks/antd/components/breadcrumb
+[breadcrumb-component]: /ui-frameworks/antd/components/breadcrumb.md

@@ -238,4 +238,4 @@ export const App: React.FC = () => {
 
 > `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/core/components/refine-config.md)>** component.
 
-[breadcrumb-component]: /docs/ui-frameworks/antd/components/breadcrumb
+[breadcrumb-component]: /ui-frameworks/antd/components/breadcrumb.md

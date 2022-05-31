@@ -249,4 +249,4 @@ The `<Show>` component needs the `id` information for work properly, so if you u
 | recordItemId    | Record id for `<RefreshButton>`                   | [`BaseKey`](/core/interfaces.md#basekey)                          |                                                                                                                                |
 | resource        | Resource name for API data interactions           | `string`                                                          | Resource name that it reads from the URL.                                                                                      |
 
-[breadcrumb-component]: /docs/ui-frameworks/antd/components/breadcrumb
+[breadcrumb-component]: /ui-frameworks/antd/components/breadcrumb.md
