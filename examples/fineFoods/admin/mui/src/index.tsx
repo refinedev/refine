@@ -17,7 +17,7 @@ const StyledSnackbarProvider = styled(SnackbarProvider)`
     }
     &.SnackbarItem-variantSuccess {
         background-color: ${(props) => props.theme.palette.primary.main};
-        color: ${(props) => props.theme.palette.primary.contrastText}; s
+        color: ${(props) => props.theme.palette.primary.contrastText};
     }
     &.SnackbarItem-variantError {
         background-color: ${(props) => props.theme.palette.error.main};
