@@ -1,9 +1,8 @@
 ---
-"refine-cloud-example": minor
 "@pankod/refine-core": minor
 ---
 
-Added a exampe app for RefineCloud.
+Added an example app for RefineCloud.
 Add `cloudConfig` prop on <Refine/>. 
 
 ```

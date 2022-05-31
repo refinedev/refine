@@ -3,7 +3,6 @@ import {
     useMany,
     getDefaultFilter,
 } from "@pankod/refine-core";
-
 import {
     List,
     Table,
@@ -16,7 +15,6 @@ import {
     Radio,
     TagField,
 } from "@pankod/refine-antd";
-
 import { useTable, useSelect } from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
