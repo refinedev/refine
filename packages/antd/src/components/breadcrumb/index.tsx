@@ -25,6 +25,10 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     const { Link } = useRouterContext();
     const { hasDashboard } = useRefineContext();
 
+    if (breadcrumbs.length === 1) {
+        return null;
+    }
+
     return (
         <AntdBreadcrumb {...breadcrumbProps}>
             {showHome && hasDashboard && (
