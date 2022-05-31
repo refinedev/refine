@@ -19,7 +19,12 @@ import {
     Typography,
     useDataGrid,
 } from "@pankod/refine-mui";
-import { HttpError, useShow, useTranslate } from "@pankod/refine-core";
+import {
+    HttpError,
+    IResourceComponentsProps,
+    useShow,
+    useTranslate,
+} from "@pankod/refine-core";
 
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
@@ -30,7 +35,7 @@ import { CustomTooltip, OrderStatus } from "components";
 
 import { IOrder, IOrderFilterVariables, IUser } from "interfaces";
 
-export const UserShow: React.FC = () => {
+export const UserShow: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
 
     const { queryResult } = useShow<IUser>();
@@ -165,7 +170,7 @@ export const UserShow: React.FC = () => {
     return (
         <Grid container spacing={2}>
             <Grid item xs={12} lg={3}>
-                <Paper sx={{ p: 2 }}>
+                <Paper sx={{ p: 2, paddingX: { xs: 4, md: 2 } }}>
                     <Stack alignItems="center" spacing={1}>
                         <Avatar
                             src={user?.avatar?.[0].url}
@@ -206,7 +211,10 @@ export const UserShow: React.FC = () => {
             </Grid>
             <Grid item xs={12} lg={9}>
                 <Stack direction="column" spacing={2}>
-                    <List cardHeaderProps={{ title: t("orders.orders") }}>
+                    <List
+                        cardHeaderProps={{ title: t("orders.orders") }}
+                        cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
+                    >
                         <DataGrid
                             {...dataGridProps}
                             autoHeight

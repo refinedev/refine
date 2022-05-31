@@ -34,16 +34,18 @@ export const Layout: React.FC<LayoutProps> = ({
             />
             <Box
                 sx={{
-                    display: { xs: "block", sm: "none" },
+                    display: { xs: "block", md: "none" },
                     position: "fixed",
                     top: "64px",
                     left: "0px",
                     borderRadius: "0 6px 6px 0",
                     bgcolor: "secondary.main",
+                    zIndex: 1199,
+                    width: "36px",
                 }}
             >
                 <IconButton
-                    sx={{ color: "#fff" }}
+                    sx={{ color: "#fff", width: "36px" }}
                     onClick={() => setOpened((prev) => !prev)}
                 >
                     <MenuRounded />
@@ -54,7 +56,7 @@ export const Layout: React.FC<LayoutProps> = ({
                     display: "flex",
                     flexDirection: "column",
                     minHeight: "100vh",
-                    marginLeft: { sm: `${drawerWidth()}px` },
+                    marginLeft: { md: `${drawerWidth()}px` },
                     transition:
                         "margin-left 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
                 }}
@@ -63,7 +65,7 @@ export const Layout: React.FC<LayoutProps> = ({
                 <Box
                     component="main"
                     sx={{
-                        p: 3,
+                        p: { xs: 1, md: 2, lg: 3 },
                         flexGrow: 1,
                         bgcolor: (theme) =>
                             theme.palette.mode === "light"

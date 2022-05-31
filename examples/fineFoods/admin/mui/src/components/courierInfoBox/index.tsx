@@ -16,18 +16,18 @@ export const CourierInfoBox: React.FC<CourierInfoBoxProps> = ({
             display="flex"
             alignItems="center"
             sx={{
-                minWidth: "200px",
+                maxWidth: "200px",
                 borderRadius: "8px",
                 color: "white",
                 padding: "10px 12px",
                 backgroundColor: "primary.main",
+                maxHeight: "100px",
             }}
         >
             <Avatar
                 sx={{
                     bgcolor: "transparent",
                     color: "white",
-                    marginRight: "10px",
                 }}
             >
                 {icon}

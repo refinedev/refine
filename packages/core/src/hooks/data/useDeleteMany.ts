@@ -272,7 +272,7 @@ export const useDeleteMany = <
             ) => {
                 // Remove the queries from the cache:
                 ids.forEach((id) =>
-                    queryClient.removeQueries(context.queryKey.detail(id)),
+                    queryClient.removeQueries(context?.queryKey.detail(id)),
                 );
 
                 handleNotification(successNotification, {

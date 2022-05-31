@@ -15,7 +15,6 @@ import {
     CardContent,
     CardHeader,
     DataGrid,
-    Grid,
     GridColumns,
     IconButton,
     Stack,
@@ -25,6 +24,8 @@ import {
     Typography,
     List,
     Paper,
+    useMediaQuery,
+    useTheme,
 } from "@pankod/refine-mui";
 import dayjs from "dayjs";
 import GoogleMapReact from "google-map-react";
@@ -49,12 +50,16 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     const { goBack } = useNavigation();
     const { mutate } = useUpdate();
 
+    const theme = useTheme();
+
+    const isSmallOrLess = useMediaQuery(theme.breakpoints.down("sm"));
+
     const columns = React.useMemo<GridColumns<IProduct>>(
         () => [
             {
                 field: "name",
                 headerName: t("orders.deliverables.fields.items"),
-                flex: 1,
+                width: 300,
                 renderCell: ({ row }) => (
                     <Stack direction="row" spacing={4} alignItems="center">
                         <Avatar
@@ -76,7 +81,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
             {
                 field: "quantity",
                 headerName: t("orders.deliverables.fields.quantity"),
-                width: 100,
+                width: 150,
                 sortable: false,
                 valueGetter: () => "1x",
             },
@@ -109,6 +114,12 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
         <Stack spacing={2}>
             <Card>
                 <CardHeader
+                    sx={{
+                        width: "100%",
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: 2,
+                    }}
                     title={
                         <Stack direction="row" alignItems="center" spacing={1}>
                             <Typography variant="h6">
@@ -185,6 +196,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                         activeStep={record?.events.findIndex(
                             (el) => el.status === record?.status?.text,
                         )}
+                        orientation={isSmallOrLess ? "vertical" : "horizontal"}
                     >
                         {record?.events.map((event: IEvent, index: number) => (
                             <Step key={index}>
@@ -235,48 +247,52 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 </GoogleMapReact>
             </Box>
 
-            <Paper sx={{ p: 2 }}>
-                <Grid container spacing={2}>
-                    <Grid item xl={6} lg={5}>
-                        <Stack direction="row" spacing={3} alignItems="center">
-                            <Avatar
-                                alt="Travis Howard"
-                                src="https://mui.com/static/images/avatar/3.jpg"
-                                sx={{ width: 100, height: 100 }}
-                            />
-                            <Box>
-                                <Typography>COURIER</Typography>
-                                <Typography variant="h6">
-                                    {record?.courier.name}{" "}
-                                    {record?.courier.surname}
-                                </Typography>
-                                <Typography variant="caption">
-                                    ID #{record?.courier.id}
-                                </Typography>
-                            </Box>
-                        </Stack>
-                    </Grid>
-                    <Grid item xl={6} lg={7} md={12}>
-                        <Stack
-                            direction="row"
-                            spacing={2}
-                            alignItems="center"
-                            justifyContent="flex-end"
-                            height={"100%"}
-                        >
-                            <CourierInfoBox
-                                text={t("orders.courier.phone")}
-                                icon={<PhoneIphoneIcon sx={{ fontSize: 36 }} />}
-                                value={record?.courier.gsm}
-                            />
-                            <CourierInfoBox
-                                text={t("orders.courier.deliveryTime")}
-                                icon={<MopedIcon sx={{ fontSize: 36 }} />}
-                                value="15:05"
-                            />
-                        </Stack>
-                    </Grid>
-                </Grid>
+            <Paper sx={{ padding: 2 }}>
+                <Stack
+                    direction="row"
+                    flexWrap="wrap"
+                    justifyContent={isSmallOrLess ? "center" : "space-between"}
+                >
+                    <Stack
+                        direction={isSmallOrLess ? "column" : "row"}
+                        alignItems={isSmallOrLess ? "center" : "flex-start"}
+                        textAlign={isSmallOrLess ? "center" : "left"}
+                        gap={2}
+                    >
+                        <Avatar
+                            alt={record?.courier.name}
+                            src={record?.courier.avatar[0].url}
+                            sx={{ width: 100, height: 100 }}
+                        />
+                        <Box>
+                            <Typography>COURIER</Typography>
+                            <Typography variant="h6">
+                                {record?.courier.name} {record?.courier.surname}
+                            </Typography>
+                            <Typography variant="caption">
+                                ID #{record?.courier.id}
+                            </Typography>
+                        </Box>
+                    </Stack>
+                    <Stack
+                        direction="row"
+                        gap={2}
+                        padding={1}
+                        flexWrap="wrap"
+                        justifyContent="center"
+                    >
+                        <CourierInfoBox
+                            text={t("orders.courier.phone")}
+                            icon={<PhoneIphoneIcon sx={{ fontSize: 36 }} />}
+                            value={record?.courier.gsm}
+                        />
+                        <CourierInfoBox
+                            text={t("orders.courier.deliveryTime")}
+                            icon={<MopedIcon sx={{ fontSize: 36 }} />}
+                            value="15:05"
+                        />
+                    </Stack>
+                </Stack>
             </Paper>
 
             <List

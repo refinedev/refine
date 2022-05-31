@@ -13,12 +13,17 @@ import { useTranslation } from "react-i18next";
 import {
     AddShoppingCartOutlined,
     StarBorderOutlined,
+    CategoryOutlined,
     StoreOutlined,
     LocalPizzaOutlined,
     PeopleOutlineOutlined,
 } from "@mui/icons-material";
 
 import { authProvider } from "authProvider";
+import {
+    DarkThemeWithResponsiveFontSizes as DarkTheme,
+    LightThemeWithResponsiveFontSizes as LightTheme,
+} from "theme";
 import { DashboardPage } from "pages/dashboard";
 import { OrderList, OrderShow } from "pages/orders";
 import { UserList, UserShow } from "pages/users";
@@ -32,6 +37,7 @@ import {
 import { LoginPage } from "pages/login";
 import { StoreList, StoreEdit, StoreCreate } from "pages/stores";
 import { ProductList } from "pages/products";
+import { CategoryList } from "pages/categories";
 import { Header, Title } from "components";
 import { BikeWhiteIcon } from "components/icons/bike-white";
 
@@ -88,6 +94,11 @@ const App: React.FC = () => {
                         edit: StoreEdit,
                         create: StoreCreate,
                         icon: <StoreOutlined />,
+                    },
+                    {
+                        name: "categories",
+                        list: CategoryList,
+                        icon: <CategoryOutlined />,
                     },
                     {
                         name: "couriers",

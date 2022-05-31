@@ -1,6 +1,11 @@
 /* eslint-disable react/display-name */
 import React from "react";
-import { CrudFilters, HttpError, useTranslate } from "@pankod/refine-core";
+import {
+    CrudFilters,
+    HttpError,
+    IResourceComponentsProps,
+    useTranslate,
+} from "@pankod/refine-core";
 import {
     DataGrid,
     Grid,
@@ -29,7 +34,7 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
 import { IUser, IUserFilterVariables } from "interfaces";
 
-export const UserList: React.FC = () => {
+export const UserList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
 
     const { register, handleSubmit } =
@@ -139,7 +144,7 @@ export const UserList: React.FC = () => {
     return (
         <Grid container spacing={2}>
             <Grid item xs={12} lg={3}>
-                <Card>
+                <Card sx={{ paddingX: { xs: 2, md: 0 } }}>
                     <CardHeader title="Filters" />
                     <CardContent sx={{ pt: 0 }}>
                         <Box
@@ -217,7 +222,7 @@ export const UserList: React.FC = () => {
                 </Card>
             </Grid>
             <Grid item xs={12} lg={9}>
-                <List>
+                <List cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
                     <DataGrid
                         {...dataGridProps}
                         filterModel={undefined}

@@ -9,7 +9,7 @@ title: Next.js
 
 [View i18n-Nextjs Example Source](https://github.com/pankod/refine/tree/master/examples/i18n)
 
-<iframe src="https://codesandbox.io/embed/refine-i18n-example-8v9eu?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/i18n?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
 style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-i18n-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

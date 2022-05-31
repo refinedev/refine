@@ -48,7 +48,6 @@ export const LoginPage: React.FC = () => {
             >
                 <Container
                     component="main"
-                    maxWidth="xs"
                     sx={{
                         display: "flex",
                         flexDirection: "column",
@@ -64,24 +63,25 @@ export const LoginPage: React.FC = () => {
                             alignItems: "center",
                         }}
                     >
-                        <div>
+                        <Box
+                            sx={{
+                                width: { xs: 200, lg: "auto" },
+                            }}
+                        >
                             <img
                                 src="/images/fine-foods-login.svg"
                                 alt="fineFoods Logo"
+                                style={{ width: "100%" }}
                             />
-                        </div>
-                        <Box mt={4}>
-                            <Card>
+                        </Box>
+                        <Box maxWidth="400px" mt={4}>
+                            <Card sx={{ padding: 1 }}>
                                 <CardContent>
                                     <Typography
-                                        component="h1"
                                         variant="h4"
                                         align="center"
                                         sx={{
                                             fontWeight: "700",
-                                            fontSize: "30px",
-                                            letterSpacing: "-0.04px",
-                                            lineHeight: "38px",
                                             color: "text.primary",
                                         }}
                                     >
@@ -199,7 +199,6 @@ export const LoginPage: React.FC = () => {
                                             variant="contained"
                                             sx={{
                                                 my: "8px",
-                                                height: "64px",
                                                 color: "white",
                                             }}
                                             disabled={isLoading}
@@ -243,20 +242,6 @@ export const LoginPage: React.FC = () => {
                                                     "pages.login.signup",
                                                     " Sign up",
                                                 )}
-                                            </Typography>
-                                            <Typography
-                                                sx={{
-                                                    fontSize: "12px",
-                                                    letterSpacing: "-0.04px",
-                                                    lineHeight: "38px",
-                                                    color: "text.secondary",
-                                                    marginLeft: "2px",
-                                                }}
-                                            >
-                                                {translate(
-                                                    "pages.login.noAccount",
-                                                    "here ",
-                                                )}{" "}
                                             </Typography>
                                         </Link>
                                     </Box>
