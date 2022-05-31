@@ -14,11 +14,12 @@ export const Cloud: React.FC<{}> = () => {
 
             const resources: IResource[] = resourceContext.resources.map(
                 (i) => {
-                    const { name, list, create, edit, show, canDelete } = i;
+                    const { name, route, list, create, edit, show, canDelete } =
+                        i;
 
                     return {
                         name: name,
-                        key: name,
+                        key: route!,
                         hasList: !!list,
                         hasCreate: !!create,
                         hasEdit: !!edit,
