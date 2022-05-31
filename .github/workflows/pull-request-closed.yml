@@ -7,6 +7,7 @@ on:
 
 jobs:
   api:
+    if: ${{ 'pankod/refine' == github.repository }}
     runs-on: ubuntu-latest
 
     steps:
