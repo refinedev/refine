@@ -29,7 +29,7 @@ export const PostList: React.FC = () => {
 
 ### `showHome`
 
-If your application has a [DashboardPage](/core/components/refine-config/#dashboardpage), the home button is shown to the top of the hierarchy by default. If you don't want to show the home button, you can set `showHome` to `false`.
+If your application has a [DashboardPage](/core/components/refine-config.md#dashboardpage), the home button is shown to the top of the hierarchy by default. If you don't want to show the home button, you can set `showHome` to `false`.
 
 ```tsx
 import { List, Breadcrumb } from "@pankod/refine-antd";
