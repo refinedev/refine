@@ -11,6 +11,7 @@ on:
       - "documentation/**"
 jobs:
   documentation:
+    if: ${{ 'pankod/refine' == github.repository }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
