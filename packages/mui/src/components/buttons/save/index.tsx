@@ -4,9 +4,11 @@ import { useTranslate } from "@pankod/refine-core";
 
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import { LoadingButton, LoadingButtonProps } from "@mui/lab";
+import { SvgIconProps } from "@mui/material";
 
 export type SaveButtonProps = LoadingButtonProps & {
     hideText?: boolean;
+    svgIconProps?: SvgIconProps;
 };
 
 /**
@@ -16,15 +18,19 @@ export type SaveButtonProps = LoadingButtonProps & {
  */
 export const SaveButton: React.FC<SaveButtonProps> = ({
     hideText = false,
+    svgIconProps,
     children,
     ...rest
 }) => {
     const translate = useTranslate();
 
     return (
-        <LoadingButton startIcon={!hideText && <SaveOutlinedIcon />} {...rest}>
+        <LoadingButton
+            startIcon={!hideText && <SaveOutlinedIcon {...svgIconProps} />}
+            {...rest}
+        >
             {hideText ? (
-                <SaveOutlinedIcon />
+                <SaveOutlinedIcon {...svgIconProps} />
             ) : (
                 children ?? translate("buttons.save", "Save")
             )}

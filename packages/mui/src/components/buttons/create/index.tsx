@@ -7,14 +7,14 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-
-import { Button, ButtonProps } from "@mui/material";
+import { Button, ButtonProps, SvgIconProps } from "@mui/material";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 
 export type CreateButtonProps = ButtonProps & {
     resourceNameOrRouteName?: string;
     hideText?: boolean;
     ignoreAccessControlProvider?: boolean;
+    svgIconProps?: SvgIconProps;
 };
 
 /**
@@ -26,6 +26,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
     resourceNameOrRouteName,
     hideText = false,
     ignoreAccessControlProvider = false,
+    svgIconProps,
     children,
     onClick,
     ...rest
@@ -74,12 +75,15 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
         >
             <Button
                 disabled={data?.can === false}
-                startIcon={!hideText && <AddBoxOutlinedIcon />}
+                startIcon={
+                    !hideText && <AddBoxOutlinedIcon {...svgIconProps} />
+                }
                 title={disabledTitle()}
+                variant="contained"
                 {...rest}
             >
                 {hideText ? (
-                    <AddBoxOutlinedIcon />
+                    <AddBoxOutlinedIcon {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.create", "Create")
                 )}

@@ -8,13 +8,14 @@ import {
     useRouterContext,
 } from "@pankod/refine-core";
 
-import { Button, ButtonProps } from "@mui/material";
+import { Button, ButtonProps, SvgIconProps } from "@mui/material";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 
 export type ListButtonProps = ButtonProps & {
     resourceNameOrRouteName?: string;
     hideText?: boolean;
     ignoreAccessControlProvider?: boolean;
+    svgIconProps?: SvgIconProps;
 };
 
 /**
@@ -27,6 +28,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
     resourceNameOrRouteName,
     hideText = false,
     ignoreAccessControlProvider = false,
+    svgIconProps,
     children,
     onClick,
     ...rest
@@ -75,12 +77,12 @@ export const ListButton: React.FC<ListButtonProps> = ({
         >
             <Button
                 disabled={data?.can === false}
-                startIcon={!hideText && <ListOutlinedIcon />}
+                startIcon={!hideText && <ListOutlinedIcon {...svgIconProps} />}
                 title={disabledTitle()}
                 {...rest}
             >
                 {hideText ? (
-                    <ListOutlinedIcon />
+                    <ListOutlinedIcon {...svgIconProps} />
                 ) : (
                     children ??
                     translate(

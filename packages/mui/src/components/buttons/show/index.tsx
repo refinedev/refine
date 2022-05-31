@@ -9,7 +9,7 @@ import {
     useRouterContext,
 } from "@pankod/refine-core";
 
-import { Button, ButtonProps } from "@mui/material";
+import { Button, ButtonProps, SvgIconProps } from "@mui/material";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 
 export type ShowButtonProps = ButtonProps & {
@@ -17,6 +17,7 @@ export type ShowButtonProps = ButtonProps & {
     recordItemId?: BaseKey;
     hideText?: boolean;
     ignoreAccessControlProvider?: boolean;
+    svgIconProps?: SvgIconProps;
 };
 
 /**
@@ -30,6 +31,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     recordItemId,
     hideText = false,
     ignoreAccessControlProvider = false,
+    svgIconProps,
     children,
     onClick,
     ...rest
@@ -80,12 +82,14 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
         >
             <Button
                 disabled={data?.can === false}
-                startIcon={!hideText && <VisibilityOutlinedIcon />}
+                startIcon={
+                    !hideText && <VisibilityOutlinedIcon {...svgIconProps} />
+                }
                 title={disabledTitle()}
                 {...rest}
             >
                 {hideText ? (
-                    <VisibilityOutlinedIcon />
+                    <VisibilityOutlinedIcon {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.show", "Show")
                 )}

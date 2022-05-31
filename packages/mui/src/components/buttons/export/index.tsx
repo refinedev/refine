@@ -3,10 +3,12 @@ import { useTranslate } from "@pankod/refine-core";
 
 import ImportExportOutlinedIcon from "@mui/icons-material/ImportExportOutlined";
 import { LoadingButton, LoadingButtonProps } from "@mui/lab";
+import { SvgIconProps } from "@mui/material";
 
 export type ExportButtonProps = LoadingButtonProps & {
     hideText?: boolean;
     loading?: boolean;
+    svgIconProps?: SvgIconProps;
 };
 
 /**
@@ -18,6 +20,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
     hideText = false,
     children,
     loading = false,
+    svgIconProps,
     ...rest
 }) => {
     const translate = useTranslate();
@@ -26,12 +29,14 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
         <LoadingButton
             {...rest}
             loading={loading}
-            startIcon={!hideText && <ImportExportOutlinedIcon />}
+            startIcon={
+                !hideText && <ImportExportOutlinedIcon {...svgIconProps} />
+            }
         >
             {hideText ? (
-                <ImportExportOutlinedIcon />
+                <ImportExportOutlinedIcon {...svgIconProps} />
             ) : (
-                children ?? translate("LoadingButtons.export", "Export")
+                children ?? translate("buttons.export", "Export")
             )}
         </LoadingButton>
     );

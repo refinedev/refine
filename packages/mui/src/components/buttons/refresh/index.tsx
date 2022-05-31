@@ -8,7 +8,7 @@ import {
     useResource,
 } from "@pankod/refine-core";
 
-import { ButtonProps } from "@mui/material";
+import { ButtonProps, SvgIconProps } from "@mui/material";
 import RefreshOutlinedIcon from "@mui/icons-material/RefreshOutlined";
 import { LoadingButton } from "@mui/lab";
 
@@ -18,6 +18,7 @@ export type RefreshButtonProps = ButtonProps & {
     hideText?: boolean;
     metaData?: MetaDataQuery;
     dataProviderName?: string;
+    svgIconProps?: SvgIconProps;
 };
 
 /**
@@ -31,6 +32,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     hideText = false,
     metaData,
     dataProviderName,
+    svgIconProps,
     children,
     onClick,
     ...rest
@@ -55,13 +57,13 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
 
     return (
         <LoadingButton
-            startIcon={!hideText && <RefreshOutlinedIcon />}
+            startIcon={!hideText && <RefreshOutlinedIcon {...svgIconProps} />}
             loading={isFetching}
             onClick={(e) => (onClick ? onClick(e) : refetch())}
             {...rest}
         >
             {hideText ? (
-                <RefreshOutlinedIcon />
+                <RefreshOutlinedIcon {...svgIconProps} />
             ) : (
                 children ?? translate("buttons.refresh", "Refresh")
             )}
