@@ -28,7 +28,7 @@ jobs:
       - name: Install Dependencies
         run: |
           cd documentation
-          npm ci
+          npm install
           npm run build
       - uses: afc163/surge-preview@v1
         id: preview_step
