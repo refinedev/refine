@@ -52,8 +52,8 @@ jobs:
       - name: Release to @next-dev tag
         if: steps.changesets.outputs.published != 'true'
         run: |
-          npm run changeset version --snapshot next-dev
-          npm run changeset publish --tag next-dev
+          npm run changeset version -- --snapshot next-dev
+          npm run changeset publish -- --tag next-dev
         env:
           GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
