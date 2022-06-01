@@ -7,8 +7,8 @@
   "access": "public",
   "baseBranch": "master",
   "updateInternalDependencies": "patch",
-  "ignore": ["!@pankod/refine-*"],
+  "ignore": [],
   "___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH": {
-    "updateInternalDependents": "always"
+    "onlyUpdatePeerDependentsWhenOutOfRange": true
   }
 }
