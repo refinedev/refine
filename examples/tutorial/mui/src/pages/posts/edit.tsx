@@ -77,15 +77,7 @@ export const PostEdit: React.FC = () => {
                     control={control}
                     name="category"
                     rules={{ required: true }}
-                    defaultValue={() => {
-                        return (
-                            autocompleteProps.options.find(
-                                (p) =>
-                                    p.id ===
-                                    queryResult?.data?.data.category.id,
-                            )?.id ?? null
-                        );
-                    }}
+                    defaultValue=""
                     render={({ field }) => (
                         <Autocomplete
                             {...autocompleteProps}
@@ -94,10 +86,17 @@ export const PostEdit: React.FC = () => {
                                 field.onChange(value);
                             }}
                             getOptionLabel={(item) => {
-                                return item.title ? item.title : "";
+                                return (
+                                    autocompleteProps?.options?.find(
+                                        (p) =>
+                                            p.id.toString() ===
+                                            item.id.toString(),
+                                    )?.title ?? ""
+                                );
                             }}
                             isOptionEqualToValue={(option, value) =>
-                                value === undefined || option.id === value.id
+                                value === undefined ||
+                                option.id.toString() === value.toString()
                             }
                             renderInput={(params) => (
                                 <TextField
