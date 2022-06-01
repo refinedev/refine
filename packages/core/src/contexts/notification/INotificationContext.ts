@@ -8,6 +8,6 @@ export interface OpenNotificationParams {
 }
 
 export interface INotificationContext {
-    open: (params: OpenNotificationParams) => void;
-    close: (key: string) => void;
+    open?: (params: OpenNotificationParams) => void;
+    close?: (key: string) => void;
 }
