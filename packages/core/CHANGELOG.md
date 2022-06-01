@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.23.1
+
+### Patch Changes
+
+-   [`3281378b11`](https://github.com/pankod/refine/commit/3281378b119c698be3ae4ecb3866b40b883494d8) Thanks [@rassie](https://github.com/rassie)! - Fix: Don't "humanize" labels in breadcrumbs
+
 ## 3.23.0
 
 ### Minor Changes
