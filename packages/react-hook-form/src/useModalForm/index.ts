@@ -135,6 +135,7 @@ export const useModalForm = <
 
     const title = translate(
         `${resourceName}.titles.${actionProp}`,
+        undefined,
         `${userFriendlyResourceName(
             `${actionProp} ${resourceName}`,
             "singular",
