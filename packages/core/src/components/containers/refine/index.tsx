@@ -11,10 +11,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
 import { LiveContextProvider } from "@contexts/live";
-import {
-    defaultProvider,
-    TranslationContextProvider,
-} from "@contexts/translation";
+import { TranslationContextProvider } from "@contexts/translation";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { RefineContextProvider } from "@contexts/refine";
 import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
@@ -94,7 +91,7 @@ export const Refine: React.FC<RefineProps> = ({
     catchAll,
     children,
     liveProvider,
-    i18nProvider = defaultProvider.i18nProvider,
+    i18nProvider,
     mutationMode = "pessimistic",
     syncWithLocation = false,
     warnWhenUnsavedChanges = false,
