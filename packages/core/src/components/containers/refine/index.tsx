@@ -21,10 +21,7 @@ import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 import { UnsavedWarnContextProvider } from "@contexts/unsavedWarn";
 import { RouterContextProvider } from "@contexts/router";
 import { AccessControlContextProvider } from "@contexts/accessControl";
-import {
-    NotificationContextProvider,
-    defaultNotificationProvider,
-} from "@contexts/notification";
+import { NotificationContextProvider } from "@contexts/notification";
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
 import {
     MutationMode,
@@ -53,7 +50,7 @@ export interface RefineProps {
     dataProvider: IDataContextProvider | IDataMultipleContextProvider;
     liveProvider?: ILiveContext;
     routerProvider: IRouterProvider;
-    notificationProvider?: INotificationContext;
+    notificationProvider?: Required<INotificationContext>;
     accessControlProvider?: Required<IAccessControlContext>;
     resources?: ResourceProps[];
     i18nProvider?: I18nProvider;
@@ -88,7 +85,7 @@ export const Refine: React.FC<RefineProps> = ({
     authProvider,
     dataProvider,
     routerProvider,
-    notificationProvider = defaultNotificationProvider,
+    notificationProvider,
     accessControlProvider,
     resources: resourcesFromProps,
     DashboardPage,
@@ -157,7 +154,7 @@ export const Refine: React.FC<RefineProps> = ({
 
     return (
         <QueryClientProvider client={queryClient}>
-            <NotificationContextProvider {...notificationProvider}>
+            <NotificationContextProvider {...(notificationProvider ?? {})}>
                 <AuthContextProvider
                     {...authProvider}
                     isProvided={!!authProvider}
@@ -170,7 +167,7 @@ export const Refine: React.FC<RefineProps> = ({
                                         i18nProvider={i18nProvider}
                                     >
                                         <AccessControlContextProvider
-                                            {...accessControlProvider}
+                                            {...(accessControlProvider ?? {})}
                                         >
                                             <UndoableQueueContextProvider>
                                                 <RefineContextProvider
