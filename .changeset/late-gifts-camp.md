@@ -1,6 +1,6 @@
 ---
-"@pankod/refine-antd": minor
-"@pankod/refine-core": minor
+"@pankod/refine-antd": patch
+"@pankod/refine-core": patch
 ---
 
 Removed dummy default values from internal contexts.
