@@ -28,7 +28,11 @@ import {
     NotificationContextProvider,
     defaultNotificationProvider,
 } from "@contexts/notification";
+import { CloudContextProvider } from "@contexts/cloud";
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
+import { routeGenerator } from "@definitions";
+import { Cloud } from "@components/cloud";
+
 import {
     MutationMode,
     IDataContextProvider,
@@ -43,8 +47,8 @@ import {
     IAccessControlContext,
     INotificationContext,
     IDataMultipleContextProvider,
+    ICloudConfig,
 } from "../../../interfaces";
-import { routeGenerator } from "@definitions";
 
 interface QueryClientConfig {
     queryCache?: QueryCache;
@@ -78,6 +82,7 @@ export interface RefineProps {
     reactQueryDevtoolConfig?: any;
     liveMode?: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
+    cloudConfig?: ICloudConfig;
 }
 
 /**
@@ -115,6 +120,7 @@ export const Refine: React.FC<RefineProps> = ({
     reactQueryDevtoolConfig,
     liveMode,
     onLiveEvent,
+    cloudConfig,
 }) => {
     const queryClient = new QueryClient({
         ...reactQueryClientConfig,
@@ -160,74 +166,86 @@ export const Refine: React.FC<RefineProps> = ({
 
     return (
         <QueryClientProvider client={queryClient}>
-            <NotificationContextProvider {...notificationProvider}>
-                <AuthContextProvider
-                    {...authProvider}
-                    isProvided={!!authProvider}
-                >
-                    <DataContextProvider {...dataProvider}>
-                        <LiveContextProvider liveProvider={liveProvider}>
-                            <RouterContextProvider {...routerProvider}>
-                                <ResourceContextProvider resources={resources}>
-                                    <TranslationContextProvider
-                                        i18nProvider={i18nProvider}
+            <CloudContextProvider cloudConfig={cloudConfig}>
+                <NotificationContextProvider {...notificationProvider}>
+                    <AuthContextProvider
+                        {...authProvider}
+                        isProvided={!!authProvider}
+                    >
+                        <DataContextProvider {...dataProvider}>
+                            <LiveContextProvider liveProvider={liveProvider}>
+                                <RouterContextProvider {...routerProvider}>
+                                    <ResourceContextProvider
+                                        resources={resources}
                                     >
-                                        <AccessControlContextProvider
-                                            {...accessControlProvider}
+                                        <TranslationContextProvider
+                                            i18nProvider={i18nProvider}
                                         >
-                                            <UndoableQueueContextProvider>
-                                                <RefineContextProvider
-                                                    mutationMode={mutationMode}
-                                                    warnWhenUnsavedChanges={
-                                                        warnWhenUnsavedChanges
-                                                    }
-                                                    syncWithLocation={
-                                                        syncWithLocation
-                                                    }
-                                                    Title={Title}
-                                                    undoableTimeout={
-                                                        undoableTimeout
-                                                    }
-                                                    catchAll={catchAll}
-                                                    DashboardPage={
-                                                        DashboardPage
-                                                    }
-                                                    LoginPage={LoginPage}
-                                                    Layout={Layout}
-                                                    Sider={Sider}
-                                                    Footer={Footer}
-                                                    Header={Header}
-                                                    OffLayoutArea={
-                                                        OffLayoutArea
-                                                    }
-                                                    hasDashboard={
-                                                        !!DashboardPage
-                                                    }
-                                                    liveMode={liveMode}
-                                                    onLiveEvent={onLiveEvent}
-                                                >
-                                                    <UnsavedWarnContextProvider>
-                                                        <>
-                                                            {children}
-                                                            {RouterComponent ? (
-                                                                <RouterComponent>
-                                                                    <RouteChangeHandler />
-                                                                </RouterComponent>
-                                                            ) : (
-                                                                <RouteChangeHandler />
-                                                            )}
-                                                        </>
-                                                    </UnsavedWarnContextProvider>
-                                                </RefineContextProvider>
-                                            </UndoableQueueContextProvider>
-                                        </AccessControlContextProvider>
-                                    </TranslationContextProvider>
-                                </ResourceContextProvider>
-                            </RouterContextProvider>
-                        </LiveContextProvider>
-                    </DataContextProvider>
-                </AuthContextProvider>
-            </NotificationContextProvider>
+                                            <AccessControlContextProvider
+                                                {...accessControlProvider}
+                                            >
+                                                <UndoableQueueContextProvider>
+                                                    <RefineContextProvider
+                                                        mutationMode={
+                                                            mutationMode
+                                                        }
+                                                        warnWhenUnsavedChanges={
+                                                            warnWhenUnsavedChanges
+                                                        }
+                                                        syncWithLocation={
+                                                            syncWithLocation
+                                                        }
+                                                        Title={Title}
+                                                        undoableTimeout={
+                                                            undoableTimeout
+                                                        }
+                                                        catchAll={catchAll}
+                                                        DashboardPage={
+                                                            DashboardPage
+                                                        }
+                                                        LoginPage={LoginPage}
+                                                        Layout={Layout}
+                                                        Sider={Sider}
+                                                        Footer={Footer}
+                                                        Header={Header}
+                                                        OffLayoutArea={
+                                                            OffLayoutArea
+                                                        }
+                                                        hasDashboard={
+                                                            !!DashboardPage
+                                                        }
+                                                        liveMode={liveMode}
+                                                        onLiveEvent={
+                                                            onLiveEvent
+                                                        }
+                                                    >
+                                                        <UnsavedWarnContextProvider>
+                                                            <>
+                                                                {children}
+                                                                {RouterComponent ? (
+                                                                    <RouterComponent>
+                                                                        <Cloud />
+                                                                        <RouteChangeHandler />
+                                                                    </RouterComponent>
+                                                                ) : (
+                                                                    <>
+                                                                        <Cloud />
+                                                                        <RouteChangeHandler />
+                                                                    </>
+                                                                )}
+                                                            </>
+                                                        </UnsavedWarnContextProvider>
+                                                    </RefineContextProvider>
+                                                </UndoableQueueContextProvider>
+                                            </AccessControlContextProvider>
+                                        </TranslationContextProvider>
+                                    </ResourceContextProvider>
+                                </RouterContextProvider>
+                            </LiveContextProvider>
+                        </DataContextProvider>
+                    </AuthContextProvider>
+                </NotificationContextProvider>
+            </CloudContextProvider>
             <ReactQueryDevtools
                 initialIsOpen={false}
                 position="bottom-right"
