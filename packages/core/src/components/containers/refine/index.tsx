@@ -20,10 +20,7 @@ import { RefineContextProvider } from "@contexts/refine";
 import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 import { UnsavedWarnContextProvider } from "@contexts/unsavedWarn";
 import { RouterContextProvider } from "@contexts/router";
-import {
-    defaultAccessControlContext,
-    AccessControlContextProvider,
-} from "@contexts/accessControl";
+import { AccessControlContextProvider } from "@contexts/accessControl";
 import {
     NotificationContextProvider,
     defaultNotificationProvider,
@@ -92,7 +89,7 @@ export const Refine: React.FC<RefineProps> = ({
     dataProvider,
     routerProvider,
     notificationProvider = defaultNotificationProvider,
-    accessControlProvider = defaultAccessControlContext,
+    accessControlProvider,
     resources: resourcesFromProps,
     DashboardPage,
     ReadyPage,
