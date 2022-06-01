@@ -43,7 +43,19 @@ interface QueryClientConfig {
     defaultOptions?: DefaultOptions;
 }
 export interface RefineProps {
-    authProvider?: IAuthContext;
+    authProvider?: Partial<
+        Omit<IAuthContext, "isProvided" | "isAuthenticated">
+    > &
+        Required<
+            Pick<
+                IAuthContext,
+                | "login"
+                | "logout"
+                | "checkAuth"
+                | "checkError"
+                | "getPermissions"
+            >
+        >;
     dataProvider: IDataContextProvider | IDataMultipleContextProvider;
     liveProvider?: ILiveContext;
     routerProvider: IRouterProvider;
@@ -153,8 +165,8 @@ export const Refine: React.FC<RefineProps> = ({
         <QueryClientProvider client={queryClient}>
             <NotificationContextProvider {...(notificationProvider ?? {})}>
                 <AuthContextProvider
-                    {...authProvider}
-                    isProvided={!!authProvider}
+                    {...(authProvider ?? {})}
+                    isProvided={Boolean(authProvider)}
                 >
                     <DataContextProvider {...dataProvider}>
                         <LiveContextProvider liveProvider={liveProvider}>
