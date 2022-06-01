@@ -1,4 +1,4 @@
-import { createElement } from "react";
+import React, { cloneElement, createElement } from "react";
 import { Grid, FormProps, Form, TablePaginationConfig, TableProps } from "antd";
 import { QueryObserverResult } from "react-query";
 import { useForm as useFormSF } from "sunflower-antd";
@@ -169,10 +169,29 @@ export const useTable = <
                         sorter,
                         filters,
                     });
-                    return createElement(PaginationLink, {
-                        to: link,
-                        element,
-                    });
+
+                    if (type === "page") {
+                        return createElement(PaginationLink, {
+                            to: link,
+                            element: page,
+                        });
+                    }
+                    if (type === "next" || type === "prev") {
+                        return createElement(PaginationLink, {
+                            to: link,
+                            element: element,
+                        });
+                    }
+
+                    if (type === "jump-next" || type === "jump-prev") {
+                        return createElement(PaginationLink, {
+                            to: link,
+                            element: (element as React.ReactElement)?.props
+                                ?.children,
+                        });
+                    }
+
+                    return element;
                 },
                 pageSize,
                 current,
