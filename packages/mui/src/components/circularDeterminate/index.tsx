@@ -53,7 +53,14 @@ export const CircularDeterminate: React.FC<CircularDeterminateProps> = ({
                     <Typography component="div">{timeCount}</Typography>
                 </Box>
             </Box>
-            <Box sx={{ marginLeft: "10px" }}>{message}</Box>
+            <Box
+                sx={{
+                    marginLeft: "10px",
+                    maxWidth: { xs: "150px", md: "100%" },
+                }}
+            >
+                <Typography variant="subtitle2">{message}</Typography>
+            </Box>
         </>
     );
 };
