@@ -229,7 +229,7 @@ It allows you to manage your forms and send data to your server with the [refine
 
 [Refer to the refine-react-hook-form adapter documentation for detailed information. →](/docs/packages/react-hook-form/)
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/reactHookForm)
+[View Source](https://github.com/pankod/refine/tree/master/examples/reactHookForm/useForm)
 
 You can manage your form very easily with the `refine-react-hook-form adapter`. The data created in the form will be automatically saved to the database with the **refine** `onFinish` method.
 
@@ -361,7 +361,7 @@ As you can see, we have easily saved both our data such as title, category, stat
 
 ## Refine Multipart Upload Live CodeSandbox Example
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/reactHookForm?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/reactHookForm/useForm?autoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-react-hook-form-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
