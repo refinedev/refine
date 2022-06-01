@@ -9,7 +9,7 @@ export const Cloud: React.FC<{}> = () => {
     const { resources: contextResources } = useResource();
 
     useEffect(() => {
-        if (cloud && cloud.sdk) {
+        if (cloud?.sdk) {
             const { sdk } = cloud;
 
             const resources: IResource[] = contextResources.map((i) => {
