@@ -11,7 +11,7 @@ export const CloudContextProvider: React.FC<IContextContextProvider> = ({
 }) => {
     let sdk: Client | undefined = undefined;
 
-    if (cloudConfig && cloudConfig.baseUrl && cloudConfig.clientId) {
+    if (cloudConfig?.baseUrl && cloudConfig?.clientId) {
         const { baseUrl, clientId } = cloudConfig;
         sdk = createClient({
             baseUrl,
