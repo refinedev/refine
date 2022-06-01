@@ -11,10 +11,16 @@ export const useTranslate = () => {
     const { i18nProvider } = useContext(TranslationContext);
 
     return useCallback(
-        (key: string, options?: any, defaultMessage?: string) =>
-            i18nProvider?.translate(key, options, defaultMessage) ??
-            defaultMessage ??
-            key,
+        (key: string, options: string | unknown, defaultMessage?: string) => {
+            return (
+                i18nProvider?.translate(key, options, defaultMessage) ??
+                defaultMessage ??
+                (typeof options === "string" &&
+                typeof defaultMessage === "undefined"
+                    ? options
+                    : key)
+            );
+        },
         [],
     );
 };
