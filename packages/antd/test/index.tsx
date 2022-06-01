@@ -1,27 +1,24 @@
-import React from "react";
+import React, { ComponentProps } from "react";
 import { BrowserRouter } from "react-router-dom";
 
 import { Refine } from "@pankod/refine-core";
 
 import { MockRouterProvider, MockJSONServer } from "@test";
-import {
-    I18nProvider,
-    AccessControlProvider,
-    AuthProvider,
-    DataProvider,
-    NotificationProvider,
-    IResourceItem,
-} from "@pankod/refine-core";
+import { I18nProvider, DataProvider, IResourceItem } from "@pankod/refine-core";
 
 const List = () => {
     return <div>hede</div>;
 };
 export interface ITestWrapperProps {
     dataProvider?: DataProvider;
-    authProvider?: AuthProvider;
+    authProvider?: ComponentProps<typeof Refine>["authProvider"];
     resources?: IResourceItem[];
-    notificationProvider?: NotificationProvider;
-    accessControlProvider?: AccessControlProvider;
+    notificationProvider?: ComponentProps<
+        typeof Refine
+    >["notificationProvider"];
+    accessControlProvider?: ComponentProps<
+        typeof Refine
+    >["accessControlProvider"];
     i18nProvider?: I18nProvider;
     routerInitialEntries?: string[];
     DashboardPage?: React.FC;

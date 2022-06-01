@@ -1,6 +1,6 @@
-import React, { ReactNode } from "react";
+import React, { ComponentProps, ReactNode } from "react";
 import { Route, Routes } from "react-router-dom";
-import { AccessControlProvider } from "@pankod/refine-core";
+import { Refine } from "@pankod/refine-core";
 import { Button } from "antd";
 
 import { render, TestWrapper, waitFor } from "@test";
@@ -8,7 +8,9 @@ import { Edit } from "./";
 
 const renderEdit = (
     edit: ReactNode,
-    accessControlProvider?: AccessControlProvider,
+    accessControlProvider?: ComponentProps<
+        typeof Refine
+    >["accessControlProvider"],
 ) => {
     return render(
         <Routes>
