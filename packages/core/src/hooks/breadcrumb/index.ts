@@ -33,9 +33,7 @@ export const useBreadcrumb = (): UseBreadcrumbReturnType => {
             }
 
             breadcrumbs.push({
-                label: humanizeString(
-                    parentResource.label ?? parentResource.name,
-                ),
+                label: parentResource.label ?? humanizeString(parentResource.name),
                 href: !!parentResource.list
                     ? `/${parentResource.route}`
                     : undefined,
@@ -49,7 +47,7 @@ export const useBreadcrumb = (): UseBreadcrumbReturnType => {
     }
 
     breadcrumbs.push({
-        label: humanizeString(resource.label ?? resource.name),
+        label: resource.label ?? humanizeString(resource.name),
         href: !!resource.list ? `/${resource.route}` : undefined,
         icon: resource.icon,
     });
