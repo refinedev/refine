@@ -1,4 +1,4 @@
-name: Pull Request Documentation [synchronize]
+name: Pull Request Documentation [closed]
 
 on:
   pull_request:
