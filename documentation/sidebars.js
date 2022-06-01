@@ -295,6 +295,12 @@ module.exports = {
                         },
                     ],
                 },
+                {
+                    type: "category",
+                    label: "Material UI",
+                    collapsed: false,
+                    items: ["ui-frameworks/mui/tutorial"],
+                },
             ],
         },
         {
