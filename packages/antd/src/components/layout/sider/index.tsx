@@ -87,6 +87,7 @@ export const Sider: React.FC = () => {
         >
             <RenderToTitle collapsed={collapsed} />
             <Menu
+                theme="dark"
                 selectedKeys={[selectedKey]}
                 defaultOpenKeys={defaultOpenKeys}
                 mode="inline"
