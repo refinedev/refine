@@ -12,7 +12,9 @@ export const useTranslate = () => {
 
     return useCallback(
         (key: string, options?: any, defaultMessage?: string) =>
-            i18nProvider?.translate(key, options, defaultMessage),
+            i18nProvider?.translate(key, options, defaultMessage) ??
+            defaultMessage ??
+            key,
         [],
     );
 };
