@@ -1,15 +1,12 @@
-import { useMemo } from "react";
 import { Refine } from "@pankod/refine-core";
 import {
     Layout,
-    LoginPage,
     ErrorComponent,
     ReadyPage,
     LightTheme,
-    DarkTheme,
-    useMediaQuery,
     CssBaseline,
     ThemeProvider,
+    notificationProviderHandle,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -19,23 +16,18 @@ import { PostCreate, PostEdit, PostList, PostShow } from "pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
-    const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-
-    const theme = useMemo(
-        () => (prefersDarkMode ? DarkTheme : LightTheme),
-        [prefersDarkMode],
-    );
+    const notificationProvider = notificationProviderHandle();
 
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={LightTheme}>
             <CssBaseline />
             <Refine
                 authProvider={authProvider}
-                routerProvider={routerProvider as any}
+                routerProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}
+                notificationProvider={notificationProvider}
                 ReadyPage={ReadyPage}
                 Layout={Layout}
-                LoginPage={LoginPage}
                 catchAll={<ErrorComponent />}
                 resources={[
                     {
@@ -44,6 +36,7 @@ const App: React.FC = () => {
                         create: PostCreate,
                         edit: PostEdit,
                         show: PostShow,
+                        canDelete: true,
                     },
                 ]}
             />
