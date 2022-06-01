@@ -54,7 +54,7 @@ export interface RefineProps {
     liveProvider?: ILiveContext;
     routerProvider: IRouterProvider;
     notificationProvider?: INotificationContext;
-    accessControlProvider?: IAccessControlContext;
+    accessControlProvider?: Required<IAccessControlContext>;
     resources?: ResourceProps[];
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
