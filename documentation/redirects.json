@@ -1047,6 +1047,10 @@
         {
             "from": "/docs/next/ui-frameworks/antd/tutorial/",
             "to": "/docs/ui-frameworks/antd/tutorial/"
+        },
+        {
+            "from": "/docs/packages/react-hook-form/",
+            "to": "/docs/packages/react-hook-form/useForm/"
         }
     ]
 }
