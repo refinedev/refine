@@ -13,3 +13,4 @@ Updated contexts:
 -   Notification
 -   Translation (i18n)
 -   unsavedWarn
+-   **BREAKING:** `useGetLocale` hook now can return `undefined` instead of a fallback value of `en` in cases of `i18nProvider` being `undefined`.
