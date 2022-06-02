@@ -34,24 +34,23 @@ export const PostList: React.FC = () => {
             field: "status",
             headerName: "Status",
             minWidth: 150,
-            // eslint-disable-next-line react/display-name
-            renderCell: (params) => <TagField value={params.row.status} />,
+            renderCell: function render(params) {
+                return <TagField value={params.row.status} />;
+            },
         },
         {
             field: "createdAt",
             headerName: "CreatedAt",
-            minWidth: 150,
-            // eslint-disable-next-line react/display-name
-            renderCell: (params) => (
-                <DateField format="LLL" value={params.row.createdAt} />
-            ),
+            minWidth: 200,
+            renderCell: function render(params) {
+                return <DateField format="LLL" value={params.row.createdAt} />;
+            },
         },
         {
             headerName: "Actions",
             field: "actions",
             minWidth: 250,
-            // eslint-disable-next-line react/display-name
-            renderCell: (params) => {
+            renderCell: function render(params) {
                 return (
                     <Stack direction="row" spacing={1}>
                         <EditButton
