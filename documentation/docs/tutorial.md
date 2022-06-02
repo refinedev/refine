@@ -32,5 +32,10 @@ Step by step, you're going to learn how to consume a _REST API_ and add basic CR
         title={"Refine Core & Ant Design - CRA"}
         direction={"/docs/ui-frameworks/antd/tutorial"}
     />
+    <Card
+        iconPath={"#"}
+        title={"Refine Core & Material UI - CRA"}
+        direction={"/docs/ui-frameworks/mui/tutorial"}
+    />
 </div>
 
