@@ -44,7 +44,7 @@ jobs:
       - name: Release to @next tag
         run: |
           git checkout next
-          npm run changeset pre enter next
+          npm run changeset pre enter next || :
           npm run changeset version
           git add .
           git commit -m "ci(changesets): version packages"
