@@ -18,7 +18,7 @@ export const checkAuthentication = async (
     }
 
     try {
-        await authProvider.checkAuth(context);
+        await authProvider.checkAuth?.(context);
         isAuthenticated = true;
     } catch (error) {
         const encodeURI = () => {

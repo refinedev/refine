@@ -1,17 +1,15 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
-import { Refine } from "@pankod/refine-core";
-
-import { MockRouterProvider, MockJSONServer } from "@test";
 import {
-    I18nProvider,
     AccessControlProvider,
     AuthProvider,
-    DataProvider,
     NotificationProvider,
-    IResourceItem,
+    Refine,
 } from "@pankod/refine-core";
+
+import { MockRouterProvider, MockJSONServer } from "@test";
+import { I18nProvider, DataProvider, IResourceItem } from "@pankod/refine-core";
 
 const List = () => {
     return <div>hede</div>;
