@@ -34,6 +34,10 @@ jobs:
         run: |
           npm ci
           npm run bootstrap
+      - name: Lint
+        run: npm run lint
+      - name: Test
+        run: npm test
       - run: |
           git config --global user.email "bot@pankod.com"
           git config --global user.name "pankod-bot"
