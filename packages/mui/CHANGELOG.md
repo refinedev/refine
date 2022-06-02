@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 3.18.0-next.1
+
+### Minor Changes
+
+-   [#1877](https://github.com/pankod/refine/pull/1877) [`5bc54c25d6`](https://github.com/pankod/refine/commit/5bc54c25d60bce9af44ae3feb1c9e4cb38c8b866) Thanks [@aliemir](https://github.com/aliemir)! - Add `useDataGrid` hook documentation.
+
 ## 3.17.1-next.0
 
 ### Patch Changes
