@@ -19,3 +19,4 @@ jobs:
         uses: calibreapp/image-actions@main
         with:
           githubToken: ${{ secrets.PANKOD_BOT_TOKEN }}
+          commit-message: "doc(compress): compressed images"
