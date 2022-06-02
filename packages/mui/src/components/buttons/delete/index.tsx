@@ -17,6 +17,7 @@ import {
     Dialog,
     DialogActions,
     DialogTitle,
+    SvgIconProps,
 } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { LoadingButton } from "@mui/lab";
@@ -33,6 +34,7 @@ export type DeleteButtonProps = ButtonProps & {
     confirmTitle?: string;
     confirmOkText?: string;
     confirmCancelText?: string;
+    svgIconProps?: SvgIconProps;
 } & SuccessErrorNotification;
 
 /**
@@ -55,6 +57,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     confirmTitle,
     confirmOkText,
     confirmCancelText,
+    svgIconProps,
     ...rest
 }) => {
     const { resourceName, id } = useResource({
@@ -115,11 +118,11 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                 onClick={handleClickOpen}
                 disabled={data?.can === false}
                 loading={id === variables?.id && isLoading}
-                startIcon={!hideText && <DeleteOutlineIcon />}
+                startIcon={!hideText && <DeleteOutlineIcon {...svgIconProps} />}
                 {...rest}
             >
                 {hideText ? (
-                    <DeleteOutlineIcon />
+                    <DeleteOutlineIcon {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.delete", "Delete")
                 )}
