@@ -186,8 +186,6 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 [Refer to the `dataProvider` documentation for detailed usage. &#8594](/core/providers/data-provider.md)
 :::
 
-## Bootstrapping the Index
-
 ## Bootstrapping the Application
 
 Replace the contents of `index.tsx` with the following code:
@@ -370,7 +368,7 @@ export const App: React.FC = () => {
 `resources` is a property of `<Refine/>` representing API Endpoints. The `name` property of every single resource should match one of the endpoints in your API!
 :::
 
-Instead of showing the welcome page, the application should redirect now? to an URL defined by the `name` property. Open your application to check that the URL is routed to **/posts**:
+Instead of showing the welcome page, the application should redirect now to an URL defined by the `name` property. Open your application to check that the URL is routed to **/posts**:
 
 <>
 
@@ -413,7 +411,7 @@ We'll be using **title**, **status** and **createdAt** fields of every **post** 
 
 Now, create a new folder named _"pages/posts"_ under _"/src"_. Under that folder, create a _"list.tsx"_ file with the following code:
 
-```tsx title="pages/posts/list.tsx"
+```tsx title="src/pages/posts/list.tsx"
 import {
     useDataGrid,
     DataGrid,
@@ -431,15 +429,17 @@ const columns: GridColumns = [
         field: "status",
         headerName: "Status",
         minWidth: 150,
-        renderCell: (params) => <TagField value={params.row.status} />,
+        renderCell: function render(params) {
+            return <TagField value={params.row.status} />;
+        },
     },
     {
         field: "createdAt",
         headerName: "CreatedAt",
         minWidth: 150,
-        renderCell: (params) => (
-            <DateField format="LLL" value={params.row.createdAt} />
-        ),
+        renderCell: function render(params) {
+            return <DateField format="LLL" value={params.row.createdAt} />;
+        },
     },
 ];
 
@@ -456,6 +456,16 @@ export const PostList: React.FC = () => {
 };
 ```
 
+:::note
+We didn't use arrow functions for rendering cell because of the react/display-name is not compatible with arrow functions. If you want to use arrow functions, you can use like this:
+
+```tsx title="pages/posts/list.tsx"
+// eslint-disable-next-line react/display-name
+renderCell: (params) => <TagField value={params.row.status} />;
+```
+
+:::
+
 <br/>
 
 Let's break down the `<PostList/>` component to understand what's going on here:
@@ -468,7 +478,7 @@ Let's break down the `<PostList/>` component to understand what's going on here:
 You may refer to [Material UI Docs](https://mui.com/x/api/data-grid/data-grid/) for further information about the `<DataGrid/>` component.
 :::
 
-✳️ `useDataGrid<IPost>();` is passed to the `<DataGrid/>` component as `{...dataGridProps}`.
+✳️ `useDataGrid` hook is a helper function to simplify the creation of a `<DataGrid/>` component. `useDataGrid()` is passed to the `<DataGrid/>` component as `{...dataGridProps}`.
 
 This is the point where the ✨real magic✨ happens!
 
@@ -476,13 +486,15 @@ This is the point where the ✨real magic✨ happens!
 
 :::note
 **refine** depends heavily on hooks and `useDataGrid()` is only one among many others.
-On [useTable() documentation](/core/hooks/useTable.md) you may find more information about the usage of this hook.
+On [useDataGrid() documentation](#) you may find more information about the usage of this hook.
 :::
+<!-- On [useDataGrid() documentation](/ui-frameworks/mui/hooks/useDataGrid.md) you may find more information about the usage of this hook. -->
 
 ✳️ `columns` array are used for mapping and formatting each field shown on the `<DataGrid/>`. `field` prop maps the field to a matching key from the API response. `renderCell` prop is used to choose the appropriate **Field** component for the given data type and also you can use `valueGetter` prop is used to format the data.
 
 :::note
-The example uses `<TagField>` and `<DateField>` components. To get the full list of available components, you may refer to the [Field Components Documentation](/ui-frameworks/mui/components/fields/boolean.md).
+The example uses `<TagField>` and `<DateField>` components. To get the full list of available components, you may refer to the [Field Components Documentation](#).
+<!-- [Field Components Documentation](/ui-frameworks/mui/components/fields/boolean.md). -->
 :::
 
 ✳️ `<List>` is a **refine** component. It acts as a wrapper to `<DataGrid>` to add some extras like _Create Button_ and _title_.
@@ -575,7 +587,7 @@ On the next step, we are going to add a category field to the table which involv
 
 ## Handling relationships
 
-Remember the records from `/posts` endpoint that had a category id field?
+Remember the records from `/posts` endpoint that had a category id field.
 
 ```ts title="https://api.fake-rest.refine.dev/posts/1"
 ...
@@ -599,7 +611,7 @@ The category title data can be obtained from the `/categories` endpoint for each
 
 <br />
 
-At this point, we need to join records from different resources. For this, we're goint to use the refine hook `useMany`.
+At this point, we need to join records from different resources. For this, we're going to use the refine hook `useOne`.
 
 Before we start, just edit our interface for the new `ICategory` type:
 
@@ -623,7 +635,7 @@ export interface IPost {
 
 So we can update our `list.tsx` with the highlighted lines:
 
-```tsx title="pages/posts/list.tsx"
+```tsx title="src/pages/posts/list.tsx"
 // highlight-next-line
 import { useOne } from "@pankod/refine-core";
 import {
@@ -660,15 +672,17 @@ export const PostList: React.FC = () => {
             field: "status",
             headerName: "Status",
             minWidth: 150,
-            renderCell: (params) => <TagField value={params.row.status} />,
+            renderCell: function render(params) {
+                return <TagField value={params.row.status} />;
+            },
         },
         {
             field: "createdAt",
             headerName: "CreatedAt",
             minWidth: 150,
-            renderCell: (params) => (
-                <DateField format="LLL" value={params.row.createdAt} />
-            ),
+            renderCell: function render(params) {
+                return <DateField format="LLL" value={params.row.createdAt} />;
+            },
         },
     ];
 
@@ -701,7 +715,8 @@ enabled: categoryIds.length > 0;
 Here, we set a condition to start fetching only when data is available.
 :::
 
-To get more detailed information about this hook, please refer the [useOne Documentation](/core/hooks/data/useOne.md).
+To get more detailed information about this hook, please refer the [useOne Documentation](#).
+<!-- To get more detailed information about this hook, please refer the [useOne Documentation](/core/hooks/data/useOne.md). -->
 
 ## Adding search and filters
 
@@ -709,7 +724,7 @@ We're done with displaying `post` records on our `<DataGrid>`. Let's add search 
 
 We are going to use `<Table.Column>`'s [`filterDropdown`](https://ant.design/components/table/#Column) property and `<FilterDropdown>` component as following:
 
-```tsx title="pages/posts/list.tsx"
+```tsx title="src/pages/posts/list.tsx"
 import { useOne } from "@pankod/refine-core";
 import {
     useDataGrid,
@@ -788,7 +803,8 @@ export const PostList: React.FC = () => {
 ```
 
 :::note
-To see how the filtering works, you can look at the [`useDataGrid`](/ui-frameworks/mui/hooks/useDataGrid.md) hook.
+To see how the filtering works, you can look at the [`useDataGrid`](#) hook.
+<!-- To see how the filtering works, you can look at the [`useDataGrid`](/ui-frameworks/mui/hooks/useDataGrid.md) hook. -->
 :::
 
 ## Showing a single record
@@ -797,7 +813,7 @@ At this point we are able to list all _post_ records on the table component with
 
 Let's create a `<PostShow>` component on `/pages/posts` folder:
 
-```tsx title="pages/posts/show.tsx"
+```tsx title="src/pages/posts/show.tsx"
 import { useOne, useShow } from "@pankod/refine-core";
 import { Show, Stack, Typography } from "@pankod/refine-mui";
 import { ICategory, IPost } from "interfaces";
@@ -839,7 +855,7 @@ export const PostShow: React.FC = () => {
 };
 ```
 
-✳️ `useShow()` is a **refine** hook used to fetch a single record data. The `queryResult` has the response and also `isLoading` state.
+✳️ `useShow()` is a **refine** hook used to fetch a single record of data. The `queryResult` has the response and also `isLoading` state.
 
 [Refer to the `useShow` documentation for detailed usage information. &#8594](/core/hooks/show/useShow.md)
 
@@ -848,13 +864,14 @@ export const PostShow: React.FC = () => {
 [Refer to the `useOne` documentation for detailed usage information. &#8594](/core/hooks/data/useOne.md)
 
 :::caution attention
-`useShow()` is the preferred hook for fetching data from current resource. For query foreign resources you may use the low-level `useOne()` hook.
+`useShow()` is the preferred hook for fetching data from the current resource. To query foreign resources you may use the low-level `useOne()` hook.
 :::
 
-Since we've got access to raw data returning from `useShow()`, there is no restriction how it's displayed on your components. If you prefer presenting your content with a nicer wrapper, **refine** provides you
+Since we've got access to raw data returning from `useShow()`, there is no restriction on how it's displayed on your components. If you prefer presenting your content with a nicer wrapper, **refine** provides you
 the `<Show>` component which has extra features like `list` and `refresh` buttons.
 
-[Refer to the `<Show>` documentation for detailed usage information. &#8594](/ui-frameworks/mui/components/basic-views/show.md)
+[Refer to the `<Show>` documentation for detailed usage information. &#8594](#)
+<!-- [Refer to the `<Show>` documentation for detailed usage information. &#8594](/ui-frameworks/mui/components/basic-views/show.md) -->
 
 <br />
 
@@ -944,22 +961,24 @@ export const PostList: React.FC = () => {
             field: "status",
             headerName: "Status",
             minWidth: 150,
-            renderCell: (params) => <TagField value={params.row.status} />,
+            renderCell: function render(params) {
+                return <TagField value={params.row.status} />;
+            },
         },
         {
             field: "createdAt",
             headerName: "CreatedAt",
             minWidth: 150,
-            renderCell: (params) => (
-                <DateField format="LLL" value={params.row.createdAt} />
-            ),
+            renderCell: function render(params) {
+                return <DateField format="LLL" value={params.row.createdAt} />;
+            },
         },
         // highlight-start
         {
             headerName: "Actions",
             field: "actions",
             minWidth: 250,
-            renderCell: (params) => {
+            renderCell: function render(params) {
                 return (
                     <ShowButton
                         hideText
@@ -1012,7 +1031,7 @@ export const PostList: React.FC = () => {
 
 ## `Editing` a record
 
-Until this point, we were basically working with read operations such as fetching and displaying data from resources. From now on, we are going to start creating and updating records by using **refine**.
+Until this point, we were basically working with reading operations such as fetching and displaying data from resources. From now on, we are going to start creating and updating records by using **refine**.
 
 Let's start by creating a new `<PostEdit>` page responsible for `editing` a single record:
 
@@ -1136,29 +1155,31 @@ export const PostEdit: React.FC = () => {
     );
 };
 ```
+
 <br />
 
 Let's see what's going on our `<PostEdit>` component in detail:
 
 ✳️ `useForm` is a refine hook for handling form data.
-On the example it returns `formProps` and `saveButtonProps`, where the former includes all necessary props to build the form and the latter has the ones for the save button.
+In the example, it returns `formProps` and `saveButtonProps`, where the former includes all necessary props to build the form and the latter has the ones for the save button.
 
 :::caution Attention
 In edit page, `useForm` hook initializes the form with current record values.
 
-[Refer to the `useForm` documentation for detailed usage information . &#8594](/ui-frameworks/mui/hooks/form/useForm.md)
+[Refer to the `useForm` documentation for detailed usage information . &#8594](#)
+<!-- [Refer to the `useForm` documentation for detailed usage information . &#8594](/ui-frameworks/mui/hooks/form/useForm.md) -->
 
 ✳️ You can give form property to `<Box>` component and it will render the form.
 
 ✳️ `<TextField>` is Material UI components to build form inputs.
 
-✳️ `<Autocomplete>` is a text input that helps you find what you're looking for by suggesting options. You may refer to the [Field Components Documentation](/ui-frameworks/mui/components/fields/autocomplete.md) to get the full information about `<Autocomplete>`, 
+✳️ `<Autocomplete>` is a text input that helps you find what you're looking for by suggesting options. You may refer to the [Field Components Documentation](#) to get the full information about `<Autocomplete>`,
 
 ✳️ `<Edit>` is a wrapper **refine** component for `<form>`. It provides save, delete and refresh buttons that can be used for form actions.
 
 ✳️ Form data is set automatically with `register` coming out of the`useForm` hook, whenever children inputs `<TextField>`'s are edited.
 
-✳️ Save button submits the form by executing the `useUpdate` method provided by the [`dataProvider`](/core/providers/data-provider.md). After a succesfull response, the application will be redirected to the listing page.
+✳️ Save button submits the form by executing the `useUpdate` method provided by the [`dataProvider`](/core/providers/data-provider.md). After a successfull response, the application will be redirected to the listing page.
 
 <br />
 
@@ -1171,7 +1192,6 @@ In edit page, `useForm` hook initializes the form with current record values.
     <img src="" alt="Edit record action" />
 </div>
 <br/>
-
 
 :::
 <br />
@@ -1224,9 +1244,9 @@ const App: React.FC = () => {
 };
 ```
 
-We are going to need an _edit_ button on each row to diplay the `<PostEdit>` component. **refine** doesn't automatically add one, so we have to update our `<PostList>` component to add a `<EditButton>` for each record:
+We are going to need an _edit_ button on each row to display the `<PostEdit>` component. **refine** doesn't automatically add one, so we have to update our `<PostList>` component to add a `<EditButton>` for each record:
 
-```tsx title="components/pages/posts.tsx"
+```tsx title="src/pages/posts/list.tsx"
 import { useOne } from "@pankod/refine-core";
 import {
     useDataGrid,
@@ -1264,21 +1284,23 @@ export const PostList: React.FC = () => {
             field: "status",
             headerName: "Status",
             minWidth: 150,
-            renderCell: (params) => <TagField value={params.row.status} />,
+            renderCell: function render(params) {
+                return <TagField value={params.row.status} />;
+            },
         },
         {
             field: "createdAt",
             headerName: "CreatedAt",
             minWidth: 150,
-            renderCell: (params) => (
-                <DateField format="LLL" value={params.row.createdAt} />
-            ),
+            renderCell: function render(params) {
+                return <DateField format="LLL" value={params.row.createdAt} />;
+            },
         },
         {
             headerName: "Actions",
             field: "actions",
             minWidth: 250,
-            renderCell: (params) => {
+            renderCell: function render(params){
                 return (
                     // highlight-start
                     <Stack direction="row" spacing={1}>
@@ -1326,10 +1348,10 @@ export const PostList: React.FC = () => {
 };
 ```
 
-[Refer to the `<EditButton>` documentation for detailed usage information. &#8594](/ui-frameworks/mui/components/buttons/edit.md)
+[Refer to the `<EditButton>` documentation for detailed usage information. &#8594](#)
+<!-- [Refer to the `<EditButton>` documentation for detailed usage information. &#8594](/ui-frameworks/mui/components/buttons/edit.md) -->
 
 You can try using edit buttons which will trigger the edit forms for each record, allowing you to update the record data.
-
 
 ## Creating a record
 
@@ -1337,7 +1359,7 @@ Creating a record in **refine** follows a similar flow as `editing` records.
 
 First, we'll create a `<PostCreate>` page:
 
-```tsx title="pages/posts/create.tsx"
+```tsx title="src/pages/posts/create.tsx"
 import {
     Box,
     TextField,
@@ -1511,7 +1533,7 @@ const App: React.FC = () => {
 };
 ```
 
-And that's it! Try it on browser and see if you can create new posts from scratch.
+And that's it! Try it on the browser and see if you can create new posts from scratch.
 
 <br />
 
@@ -1530,9 +1552,9 @@ And that's it! Try it on browser and see if you can create new posts from scratc
 
 Deleting a record can be done in two ways.
 
-First way is adding an delete button on each row since _refine_ doesn't automatically add one, so we have to update our `<PostList>` component to add a `<DeleteButton>` for each record:
+The first way is adding a delete button on each row since _refine_ doesn't automatically add one, so we have to update our `<PostList>` component to add a `<DeleteButton>` for each record:
 
-```tsx title="components/pages/posts.tsx"
+```tsx title="src/pages/posts/list.tsx"
 import { useOne } from "@pankod/refine-core";
 import {
     useDataGrid,
@@ -1570,21 +1592,23 @@ export const PostList: React.FC = () => {
             field: "status",
             headerName: "Status",
             minWidth: 150,
-            renderCell: (params) => <TagField value={params.row.status} />,
+            renderCell: function render(params) {
+                return <TagField value={params.row.status} />;
+            },
         },
         {
             field: "createdAt",
             headerName: "CreatedAt",
             minWidth: 150,
-            renderCell: (params) => (
-                <DateField format="LLL" value={params.row.createdAt} />
-            ),
+            renderCell: function render(params) {
+                return <DateField format="LLL" value={params.row.createdAt} />;
+            },
         },
         {
             headerName: "Actions",
             field: "actions",
             minWidth: 250,
-            renderCell: (params) => {
+            renderCell: function render(params) {
                 return (
                     <Stack direction="row" spacing={1}>
                         <EditButton
@@ -1638,7 +1662,8 @@ export const PostList: React.FC = () => {
 };
 ```
 
-[Refer to the `<DeleteButton>` documentation for detailed usage information. &#8594](/ui-frameworks/mui/components/buttons/delete.md)
+[Refer to the `<DeleteButton>` documentation for detailed usage information. &#8594](#)
+<!-- [Refer to the `<DeleteButton>` documentation for detailed usage information. &#8594](/ui-frameworks/mui/components/buttons/delete.md) -->
 
 Now you can try deleting records yourself. Just click on the delete button of the record you want to delete and confirm.
 
