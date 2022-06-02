@@ -129,13 +129,20 @@ export const useTable = <
         >,
         sorter: SorterResult<any> | SorterResult<any>[],
     ) => {
-        // Map Antd:Filter -> refine:CrudFilter
-        const crudFilters = mapAntdFilterToCrudFilter(tableFilters, filters);
-        setFilters(crudFilters);
+        if (tableFilters && Object.keys(tableFilters).length > 0) {
+            // Map Antd:Filter -> refine:CrudFilter
+            const crudFilters = mapAntdFilterToCrudFilter(
+                tableFilters,
+                filters,
+            );
+            setFilters(crudFilters);
+        }
 
-        // Map Antd:Sorter -> refine:CrudSorting
-        const crudSorting = mapAntdSorterToCrudSorting(sorter);
-        setSorter(crudSorting);
+        if (sorter && Object.keys(sorter).length > 0) {
+            // Map Antd:Sorter -> refine:CrudSorting
+            const crudSorting = mapAntdSorterToCrudSorting(sorter);
+            setSorter(crudSorting);
+        }
 
         // tablePropsSunflower.onChange(pagination, filters, sorter);
         setCurrent(pagination.current || 1);
