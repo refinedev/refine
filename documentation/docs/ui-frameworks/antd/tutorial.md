@@ -325,7 +325,7 @@ export const App: React.FC = () => {
 `resources` is a property of `<Refine/>` representing API Endpoints. The `name` property of every single resource should match one of the endpoints in your API!
 :::
 
-Instead of showing the welcome page, the application should redirect now? to an URL defined by the `name` property. Open your application to check that the URL is routed to **/posts**:
+Instead of showing the welcome page, the application should redirect now to an URL defined by the `name` property. Open your application to check that the URL is routed to **/posts**:
 
 <>
 
@@ -368,7 +368,7 @@ We'll be using **title**, **status** and **createdAt** fields of every **post** 
 
 Now, create a new folder named _"pages/posts"_ under _"/src"_. Under that folder, create a _"list.tsx"_ file with the following code:
 
-```tsx title="pages/posts/list.tsx"
+```tsx title="src/pages/posts/list.tsx"
 import {
     List,
     TextField,
@@ -507,7 +507,7 @@ On the next step, we are going to add a category field to the table which involv
 
 ## Handling relationships
 
-Remember the records from `/posts` endpoint that had a category id field?
+Remember the records from `/posts` endpoint that had a category id field.
 
 ```ts title="https://api.fake-rest.refine.dev/posts/1"
 ...
@@ -531,7 +531,7 @@ The category title data can be obtained from the `/categories` endpoint for each
 
 <br />
 
-At this point, we need to join records from different resources. For this, we're goint to use the refine hook `useMany`.
+At this point, we need to join records from different resources. For this, we're going to use the refine hook `useMany`.
 
 Before we start, just edit our interface for the new `ICategory` type:
 
@@ -555,7 +555,7 @@ export interface IPost {
 
 So we can update our `list.tsx` with the highlighted lines:
 
-```tsx title="pages/posts/list.tsx"
+```tsx title="src/pages/posts/list.tsx"
 // highlight-next-line
 import { useMany } from "@pankod/refine-core";
 import {
@@ -658,7 +658,7 @@ We're done with displaying `post` records on our `<Table>`. Let's add search and
 
 We are going to use `<Table.Column>`'s [`filterDropdown`](https://ant.design/components/table/#Column) property and `<FilterDropdown>` component as following:
 
-```tsx title="pages/posts/list.tsx"
+```tsx title="src/pages/posts/list.tsx"
 import { useMany } from "@pankod/refine-core";
 import {
     List,
@@ -765,7 +765,7 @@ At this point we are able to list all _post_ records on the table component with
 
 Let's create a `<PostShow>` component on `/pages/posts` folder:
 
-```tsx title="pages/posts/show.tsx"
+```tsx title="src/pages/posts/show.tsx"
 import { useShow, useOne } from "@pankod/refine-core";
 import { Show, Typography, Tag } from "@pankod/refine-antd";
 
@@ -941,7 +941,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-✳️ `useShow()` is a **refine** hook used to fetch a single record data. The `queryResult` has the response and also `isLoading` state.
+✳️ `useShow()` is a **refine** hook used to fetch a single record of data. The `queryResult` has the response and also `isLoading` state.
 
 [Refer to the `useShow` documentation for detailed usage information. &#8594](/core/hooks/show/useShow.md)
 
@@ -950,10 +950,10 @@ export const PostList: React.FC = () => {
 [Refer to the `useOne` documentation for detailed usage information. &#8594](/core/hooks/data/useOne.md)
 
 :::caution attention
-`useShow()` is the preferred hook for fetching data from current resource. For query foreign resources you may use the low-level `useOne()` hook.
+`useShow()` is the preferred hook for fetching data from the current resource. To query foreign resources you may use the low-level `useOne()` hook.
 :::
 
-Since we've got access to raw data returning from `useShow()`, there is no restriction how it's displayed on your components. If you prefer presenting your content with a nicer wrapper, **refine** provides you
+Since we've got access to raw data returning from `useShow()`, there is no restriction on how it's displayed on your components. If you prefer presenting your content with a nicer wrapper, **refine** provides you
 the `<Show>` component which has extra features like `list` and `refresh` buttons.
 
 [Refer to the `<Show>` documentation for detailed usage information. &#8594](/ui-frameworks/antd/components/basic-views/show.md)
@@ -972,11 +972,11 @@ the `<Show>` component which has extra features like `list` and `refresh` button
 
 ## Editing a record
 
-Until this point, we were basically working with read operations such as fetching and displaying data from resources. From now on, we are going to start creating and updating records by using **refine**.
+Until this point, we were basically working with reading operations such as fetching and displaying data from resources. From now on, we are going to start creating and updating records by using **refine**.
 
 Let's start by creating a new `<PostEdit>` page responsible for editing a single record:
 
-```tsx title="pages/posts/edit.tsx"
+```tsx title="src/pages/posts/edit.tsx"
 import { useForm, Form, Input, Select, Edit, useSelect } from "@pankod/refine-antd";
 import { IPost } from "interfaces";
 
@@ -1084,9 +1084,9 @@ export const App: React.FC = () => {
 };
 ```
 
-We are going to need an _edit_ button on each row to diplay the `<PostEdit>` component. **refine** doesn't automatically add one, so we have to update our `<PostList>` component to add a `<EditButton>` for each record:
+We are going to need an _edit_ button on each row to display the `<PostEdit>` component. **refine** doesn't automatically add one, so we have to update our `<PostList>` component to add a `<EditButton>` for each record:
 
-```tsx title="components/pages/posts.tsx"
+```tsx title="src/pages/posts/list.tsx"
 import { useMany } from "@pankod/refine-core";
 import {
     List,
@@ -1202,7 +1202,7 @@ You can try using edit buttons which will trigger the edit forms for each record
 Let's see what's going on our `<PostEdit>` component in detail:
 
 ✳️ `useForm` is a refine hook for handling form data.
-On the example it returns `formProps` and `saveButtonProps`, where the former includes all necessary props to build the form and the latter has the ones for the save button.
+In the example, it returns `formProps` and `saveButtonProps`, where the former includes all necessary props to build the form and the latter has the ones for the save button.
 
 :::caution Attention
 In edit page, `useForm` hook initializes the form with current record values.
@@ -1215,7 +1215,7 @@ In edit page, `useForm` hook initializes the form with current record values.
 
 ✳️ Form data is set automatically, whenever children inputs `<Form.Item>`'s are edited.
 
-✳️ Save button submits the form by executing the `useUpdate` method provided by the [`dataProvider`](/core/providers/data-provider.md). After a succesfull response, the application will be redirected to the listing page.
+✳️ Save button submits the form by executing the `useUpdate` method provided by the [`dataProvider`](/core/providers/data-provider.md). After a successfull response, the application will be redirected to the listing page.
 
 <br />
 
@@ -1239,9 +1239,8 @@ Creating a record in **refine** follows a similar flow as editing records.
 
 First, we'll create a `<PostCreate>` page:
 
-```tsx title="pages/posts/create.tsx"
+```tsx title="src/pages/posts/create.tsx"
 import {
-    // highlight-next-line
     Create,
     Form,
     Input,
@@ -1259,7 +1258,6 @@ export const PostCreate = () => {
     });
 
     return (
-        // highlight-start
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
@@ -1312,7 +1310,6 @@ export const PostCreate = () => {
                 </Form.Item>
             </Form>
         </Create>
-        // highlight-end
     );
 };
 ```
@@ -1361,7 +1358,7 @@ export const App: React.FC = () => {
 
 <br />
 
-And that's it! Try it on browser and see if you can create new posts from scratch.
+And that's it! Try it on the browser and see if you can create new posts from scratch.
 
 We should notice some minor differences from the edit example:
 
@@ -1388,9 +1385,9 @@ We should notice some minor differences from the edit example:
 
 Deleting a record can be done in two ways.
 
-First way is adding an delete button on each row since _refine_ doesn't automatically add one, so we have to update our `<PostList>` component to add a `<DeleteButton>` for each record:
+The first way is adding a delete button on each row since _refine_ doesn't automatically add one, so we have to update our `<PostList>` component to add a `<DeleteButton>` for each record:
 
-```tsx title="components/pages/posts.tsx"
+```tsx title="src/pages/posts/list.tsx"
 import { useMany } from "@pankod/refine-core";
 import {
     List,
