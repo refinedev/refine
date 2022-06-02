@@ -1,7 +1,7 @@
 import { useStepsForm } from "@pankod/refine-react-hook-form";
 import { useSelect } from "@pankod/refine-core";
 
-const stepTitles = ["Title", "Status", "Content"];
+const stepTitles = ["Title", "Status", "Category and content"];
 
 export const PostCreate: React.FC = () => {
     const {
