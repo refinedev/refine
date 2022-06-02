@@ -690,7 +690,7 @@ You may quickly handle sorting and paging operations by simply adding a few line
 
 ## Refine Create and Edit Page
 
-We have created our post page. Now we will create pages where we can create and edit posts. **refine** provides a [`refine-react-hook-form`](/docs/packages/react-hook-form/) adapter that you can use with the headless feature. All the features of [React Hook Form](https://react-hook-form.com/) work in harmony with **refine** and the form you will create.
+We have created our post page. Now we will create pages where we can create and edit posts. **refine** provides a [`refine-react-hook-form`](/docs/packages/react-hook-form/useForm/) adapter that you can use with the headless feature. All the features of [React Hook Form](https://react-hook-form.com/) work in harmony with **refine** and the form you will create.
 
 -   `Create Page`
 

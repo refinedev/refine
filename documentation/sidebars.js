@@ -523,7 +523,10 @@ module.exports = {
                 {
                     type: "category",
                     label: "React Hook Form",
-                    items: ["examples/react-hook-form/react-hook-form"],
+                    items: [
+                        "examples/react-hook-form/useForm",
+                        "examples/react-hook-form/useStepsForm",
+                    ],
                 },
                 {
                     type: "category",

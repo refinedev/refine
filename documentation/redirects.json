@@ -1051,6 +1051,10 @@
         {
             "from": "/docs/packages/react-hook-form/",
             "to": "/docs/packages/react-hook-form/useForm/"
+        },
+        {
+            "from": "/docs/examples/react-hook-form/react-hook-form/",
+            "to": "/docs/examples/react-hook-form/useForm/"
         }
     ]
 }
