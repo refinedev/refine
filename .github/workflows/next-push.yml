@@ -38,6 +38,9 @@ jobs:
         run: npm run lint
       - name: Test
         run: npm test
+      - run: |
+          git config --global user.email "bot@pankod.com"
+          git config --global user.name "pankod-bot"
       - name: Release to @next tag
         run: |
           npm run changeset pre enter next
