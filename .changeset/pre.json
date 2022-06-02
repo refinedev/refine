@@ -110,9 +110,17 @@
     "@pankod/refine-strapi": "3.22.1",
     "@pankod/refine-strapi-graphql": "3.22.1",
     "@pankod/refine-strapi-v4": "3.22.1",
-    "@pankod/refine-supabase": "3.22.1"
+    "@pankod/refine-supabase": "3.22.1",
+    "refine-mui-base-example": "3.9.1-next.0",
+    "mui-fine-foods": "3.16.2-next.0",
+    "refine-mui-import-export-example": "3.9.1-next.0",
+    "refine-mui-storybook": "3.16.1-next.0",
+    "refine-mui-table-example": "3.9.1-next.0",
+    "@pankod/refine-mui": "3.17.0"
   },
   "changesets": [
+    "chilled-steaks-cheat",
+    "proud-clocks-count",
     "stale-glasses-allow"
   ]
 }

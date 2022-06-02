@@ -3,7 +3,7 @@
   "version": "3.16.1-next.0",
   "private": true,
   "dependencies": {
-    "@pankod/refine-mui": "^3.17.0",
+    "@pankod/refine-mui": "^3.17.1-next.0",
     "@pankod/refine-core": "^3.16.0",
     "@pankod/refine-react-router-v6": "^3.16.0",
     "@pankod/refine-simple-rest": "^3.16.0",
