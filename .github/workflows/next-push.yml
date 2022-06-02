@@ -38,14 +38,6 @@ jobs:
         run: npm run lint
       - name: Test
         run: npm test
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          commit: "ci(changesets): version packages"
-          title: "ci(changesets): version packages"
-        env:
-          GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
       - name: Release to @next tag
         run: |
           npm run changeset pre enter next
@@ -53,7 +45,7 @@ jobs:
           git add .
           git commit -m "ci(changesets): version packages"
           npm run changeset publish
-          git push --follow-tags
+          git push --set-upstream origin changeset-release/next --follow-tags
         env:
           GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
