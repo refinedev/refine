@@ -11,12 +11,17 @@ It can be useful when redirecting the app to the create page with the record id 
 ## Usage
 
 ```tsx
+import { useTable } from "@pankod/refine-core";
+
 import {
     List,
     Table,
-    useTable,
     // highlight-next-line
     CloneButton,
+    TableHead,
+    TableRow,
+    TableCell,
+    TableBody,
 } from "@pankod/refine-mui";
 
 export const PostList: React.FC = () => {
@@ -29,26 +34,20 @@ export const PostList: React.FC = () => {
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
+                        <TableCell>ID</TableCell>
                         <TableCell>Title</TableCell>
-                        <TableCell align="right">ID</TableCell>
                         <TableCell align="center">Action</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {data?.data.map((row) => (
-                        <TableRow
-                            key={row.id}
-                            sx={{
-                                "&:last-child td, &:last-child th": {
-                                    border: 0,
-                                },
-                            }}
-                        >
+                        <TableRow key={row.id}>
+                            <TableCell>{row.id}</TableCell>
                             <TableCell component="th" scope="row">
                                 {row.title}
                             </TableCell>
-                            <TableCell align="right">{row.id}</TableCell>
                             <TableCell align="center">
+                                // highlight-next-line
                                 <CloneButton recordItemId={row.id} />
                             </TableCell>
                         </TableRow>
@@ -145,4 +144,5 @@ export const MyListComponent = () => {
 | ignoreAccessControlProvider | Skip access control                              | `boolean`                                                                                                    | `false`                                                                                                                       |
 | children                    | Sets the button text                             | `ReactNode`                                                                                                  | `"Clone"`                                                                                                                     |
 | startIcon                   | Sets the icon component of button                | `ReactNode`                                                                                                  | [`<AddBoxOutlinedIcon />`](https://mui.com/material-ui/material-icons/?query=add+box&theme=Outlined&selected=AddBoxOutlined/) |
+| svgIconProps                | Allows to set icon props                         | [`SvgIconProps`](https://mui.com/material-ui/api/svg-icon/#props)                                            |                                                                                                                               |
 | onClick                     | Sets the handler to handle click event           | `(event) => void`                                                                                            | Triggers navigation for redirection to the create page of resource                                                            |
