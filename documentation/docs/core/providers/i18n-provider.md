@@ -454,7 +454,7 @@ export const Header: React.FC = () => {
     const currentLocale = locale();
 
     const menu = (
-        <Menu selectedKeys={[currentLocale]}>
+        <Menu selectedKeys={currentLocale ? [currentLocale] : []}>
             {[...(i18n.languages || [])].sort().map((lang: string) => (
                 <Menu.Item
                     key={lang}

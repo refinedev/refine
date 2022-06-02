@@ -2,12 +2,11 @@ import React from "react";
 
 import { IAccessControlContext } from "./IAccessControlContext";
 
-export const defaultAccessControlContext: IAccessControlContext = {
-    can: () => Promise.resolve({ can: true }),
-};
+/** @deprecated default value for access control context has no use and is an empty object. */
+export const defaultAccessControlContext: IAccessControlContext = {};
 
 export const AccessControlContext = React.createContext<IAccessControlContext>(
-    defaultAccessControlContext,
+    {},
 );
 
 export const AccessControlContextProvider: React.FC<IAccessControlContext> = ({

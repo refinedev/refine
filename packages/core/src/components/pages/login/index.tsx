@@ -32,7 +32,12 @@ export const LoginPage: React.FC = () => {
                     <tbody>
                         <tr>
                             <td>
-                                {translate("pages.login.username", "username")}:
+                                {translate(
+                                    "pages.login.username",
+                                    undefined,
+                                    "username",
+                                )}
+                                :
                             </td>
                             <td>
                                 <input
@@ -52,7 +57,12 @@ export const LoginPage: React.FC = () => {
                         </tr>
                         <tr>
                             <td>
-                                {translate("pages.login.password", "password")}:
+                                {translate(
+                                    "pages.login.password",
+                                    undefined,
+                                    "password",
+                                )}
+                                :
                             </td>
                             <td>
                                 <input
