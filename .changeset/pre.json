@@ -116,10 +116,14 @@
     "refine-mui-import-export-example": "3.9.1-next.0",
     "refine-mui-storybook": "3.16.1-next.0",
     "refine-mui-table-example": "3.9.1-next.0",
-    "@pankod/refine-mui": "3.17.0"
+    "@pankod/refine-mui": "3.17.0",
+    "refine-mui-datagridpro-example": "3.9.0",
+    "refine-mui-use-data-grid-example": "3.9.0"
   },
   "changesets": [
+    "chatty-bikes-film",
     "chilled-steaks-cheat",
+    "polite-impalas-attack",
     "proud-clocks-count",
     "stale-glasses-allow"
   ]
