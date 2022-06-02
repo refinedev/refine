@@ -188,7 +188,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         [],
     );
 
-    const { dataGridProps, onSearch, filters, sorter } = useDataGrid<
+    const { dataGridProps, search, filters, sorter } = useDataGrid<
         IOrder,
         HttpError,
         IOrderFilterVariables
@@ -284,7 +284,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                             component="form"
                             sx={{ display: "flex", flexDirection: "column" }}
                             autoComplete="off"
-                            onSubmit={handleSubmit(onSearch)}
+                            onSubmit={handleSubmit(search)}
                         >
                             <TextField
                                 {...register("q")}

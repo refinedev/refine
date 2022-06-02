@@ -44,7 +44,7 @@ describe("useDataGrid Hook", () => {
         });
 
         await act(async () => {
-            result.current.onSearch({ title: "test", status: "draft" });
+            result.current.search({ title: "test", status: "draft" });
         });
 
         expect(result.current.filters).toEqual([
