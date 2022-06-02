@@ -23,7 +23,6 @@ import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
 import {
     MutationMode,
     IDataContextProvider,
-    IAuthContext,
     I18nProvider,
     LayoutProps,
     TitleProps,
@@ -31,9 +30,10 @@ import {
     ResourceProps,
     ILiveContext,
     LiveModeProps,
-    IAccessControlContext,
-    INotificationContext,
     IDataMultipleContextProvider,
+    AuthProvider,
+    NotificationProvider,
+    AccessControlProvider,
 } from "../../../interfaces";
 import { routeGenerator } from "@definitions";
 
@@ -43,24 +43,12 @@ interface QueryClientConfig {
     defaultOptions?: DefaultOptions;
 }
 export interface RefineProps {
-    authProvider?: Partial<
-        Omit<IAuthContext, "isProvided" | "isAuthenticated">
-    > &
-        Required<
-            Pick<
-                IAuthContext,
-                | "login"
-                | "logout"
-                | "checkAuth"
-                | "checkError"
-                | "getPermissions"
-            >
-        >;
+    authProvider?: AuthProvider;
     dataProvider: IDataContextProvider | IDataMultipleContextProvider;
     liveProvider?: ILiveContext;
     routerProvider: IRouterProvider;
-    notificationProvider?: Required<INotificationContext>;
-    accessControlProvider?: Required<IAccessControlContext>;
+    notificationProvider?: NotificationProvider;
+    accessControlProvider?: AccessControlProvider;
     resources?: ResourceProps[];
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;

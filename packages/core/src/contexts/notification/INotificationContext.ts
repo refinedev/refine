@@ -11,3 +11,5 @@ export interface INotificationContext {
     open?: (params: OpenNotificationParams) => void;
     close?: (key: string) => void;
 }
+
+export type NotificationProvider = Required<INotificationContext>;

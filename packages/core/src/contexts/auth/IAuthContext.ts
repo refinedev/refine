@@ -11,3 +11,13 @@ export interface IAuthContext {
     isProvided?: boolean;
     isAuthenticated?: boolean;
 }
+
+export type AuthProvider = Partial<
+    Omit<IAuthContext, "isProvided" | "isAuthenticated">
+> &
+    Required<
+        Pick<
+            IAuthContext,
+            "login" | "logout" | "checkAuth" | "checkError" | "getPermissions"
+        >
+    >;

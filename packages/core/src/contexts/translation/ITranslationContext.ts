@@ -13,3 +13,5 @@ export interface I18nProvider {
 export interface ITranslationContext {
     i18nProvider?: I18nProvider;
 }
+
+export type TranslationProvider = Required<ITranslationContext>;
