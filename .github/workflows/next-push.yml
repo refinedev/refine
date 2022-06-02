@@ -48,7 +48,7 @@ jobs:
           git add .
           git commit -m "ci(changesets): version packages"
           npm run changeset publish
-          git push --set-upstream origin changeset-release/next --follow-tags
+          git push origin changeset-release/next --follow-tags
         env:
           GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
