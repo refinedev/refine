@@ -93,7 +93,7 @@ export const PostCreate: React.FC = () => {
                 ))}
             </div>
             <form autoComplete="off">{renderFormByStep(currentStep)}</form>
-            <div>
+            <div style={{ display: "flex", gap: 8 }}>
                 {currentStep > 0 && (
                     <button
                         onClick={() => {

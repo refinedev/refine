@@ -1,7 +1,7 @@
 import { useStepsForm } from "@pankod/refine-react-hook-form";
 import { useSelect } from "@pankod/refine-core";
 
-const stepTitles = ["Edit title", "Edit status", "Edit category and content"];
+const stepTitles = ["Title", "Status", "Category and content"];
 
 export const PostEdit: React.FC = () => {
     const {
@@ -93,7 +93,7 @@ export const PostEdit: React.FC = () => {
                 ))}
             </div>
             <form autoComplete="off">{renderFormByStep(currentStep)}</form>
-            <div>
+            <div style={{ display: "flex", gap: 8 }}>
                 {currentStep > 0 && (
                     <button
                         onClick={() => {
