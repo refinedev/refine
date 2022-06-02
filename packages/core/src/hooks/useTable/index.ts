@@ -186,7 +186,7 @@ export const useTable = <
                 current,
                 pageSize,
             },
-            filters: unionFilters(permanentFilter, [], filters),
+            filters: unionFilters(permanentFilter, filters),
             sort: unionSorters(permanentSorter, sorter),
         },
         queryOptions,
@@ -200,9 +200,7 @@ export const useTable = <
     });
 
     const setFiltersWithUnion = (newFilters: CrudFilters) => {
-        setFilters((prevFilters) =>
-            unionFilters(permanentFilter, newFilters, prevFilters),
-        );
+        setFilters(() => unionFilters(permanentFilter, newFilters));
     };
 
     const setSortWithUnion = (newSorter: CrudSorting) => {
