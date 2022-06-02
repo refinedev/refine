@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-mui": minor
+"@pankod/refine-mui": patch
 ---
 
 Passed svgButtonProps to mui buttons
