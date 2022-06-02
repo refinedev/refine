@@ -34,21 +34,18 @@ jobs:
         run: |
           npm ci
           npm run bootstrap
-      - name: Lint
-        run: npm run lint
-      - name: Test
-        run: npm test
       - run: |
           git config --global user.email "bot@pankod.com"
           git config --global user.name "pankod-bot"
       - name: Release to @next tag
         run: |
+          git checkout next
           npm run changeset pre enter next
           npm run changeset version
           git add .
           git commit -m "ci(changesets): version packages"
           npm run changeset publish
-          git push origin changeset-release/next --follow-tags
+          git push --follow-tags
         env:
           GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
