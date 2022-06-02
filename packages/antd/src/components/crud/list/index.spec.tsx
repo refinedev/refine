@@ -1,6 +1,6 @@
-import React, { ComponentProps, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Refine } from "@pankod/refine-core";
+import { AccessControlProvider } from "@pankod/refine-core";
 import { Table } from "antd";
 
 import { render, TestWrapper, waitFor } from "@test";
@@ -8,9 +8,7 @@ import { List } from "./index";
 
 const renderList = (
     list: ReactNode,
-    accessControlProvider?: ComponentProps<
-        typeof Refine
-    >["accessControlProvider"],
+    accessControlProvider?: AccessControlProvider,
 ) => {
     return render(
         <Routes>
