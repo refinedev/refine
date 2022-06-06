@@ -3,6 +3,10 @@ id: useStepsForm
 title: useStepsForm
 ---
 
+import listPage from '@site/static/img/packages/react-hook-form/useStepsForm/list-page.png';
+import createForm from '@site/static/img/packages/react-hook-form/useStepsForm/create-form.gif';
+import editForm from '@site/static/img/packages/react-hook-form/useStepsForm/edit-form.gif';
+
 `useStepsForm` allows you to manage a form with multiple steps. It provides features such as which step is currently active, the ability to go to a specific step and validation when changing steps etc.
 
 :::info
@@ -100,7 +104,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-## List Page
+### List Page
 
 In this component we will use [`useNavigation`](/core/hooks/navigation/useNavigation.md) to redirect to the `<PostCreate>` and `<PostEdit>` components.
 
@@ -170,16 +174,16 @@ export const PostList: React.FC = () => {
 };
 ```
 
-<div class="img-container">
+<div class="img-container" style={{"max-width": "800px"}}>
     <div class="window">
         <div class="control red"></div>
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="" alt="List Page" />
+    <img src={listPage} alt="List Page" />
 </div>
 
-## Create Page
+### Create Page
 
 In this component you can see how `useStepsForm` is used to manage the steps and form.
 
@@ -314,16 +318,16 @@ export const PostCreate: React.FC = () => {
 };
 ```
 
-<div class="img-container">
+<div class="img-container" style={{"max-width": "800px"}}>
     <div class="window">
         <div class="control red"></div>
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="" alt="Create Form" />
+    <img src={createForm} alt="Create Form" />
 </div>
 
-## Edit Page
+### Edit Page
 
 Magic, `<PostCreate>` and `<PostEdit>` pages are almost the same. So how are the form's default values set? `useStepsForm` does this with te `id` parameter it reads from the URL and fetches the data from the server.
 
@@ -463,6 +467,15 @@ export const PostEdit: React.FC = () => {
     );
 };
 ```
+
+<div class="img-container" style={{"max-width": "800px"}}>
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={editForm} alt="Edit Form" />
+</div>
 
 ## API
 
