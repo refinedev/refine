@@ -322,10 +322,9 @@ describe("useTable Filters", () => {
         });
 
         expect(result.current.filters).toBeInstanceOf(Array);
-        expect(result.current.filters).toEqual([
-            ...initialFilter,
-            ...newFilters,
-        ]);
+        expect(result.current.filters).toEqual(
+            expect.arrayContaining([...initialFilter, ...newFilters]),
+        );
         expect(result.current.filters).toHaveLength(2);
     });
 
@@ -366,10 +365,9 @@ describe("useTable Filters", () => {
         );
 
         expect(result.current.filters).toBeInstanceOf(Array);
-        expect(result.current.filters).toEqual([
-            ...initialFilter,
-            ...permanentFilter,
-        ]);
+        expect(result.current.filters).toEqual(
+            expect.arrayContaining([...initialFilter, ...permanentFilter]),
+        );
         expect(result.current.filters).toHaveLength(2);
 
         act(() => {
@@ -377,10 +375,10 @@ describe("useTable Filters", () => {
         });
 
         expect(result.current.filters).toBeInstanceOf(Array);
-        expect(result.current.filters).toEqual([
-            ...initialFilter,
-            ...permanentFilter,
-        ]);
+        expect(result.current.filters).toEqual(
+            expect.arrayContaining([...initialFilter, ...permanentFilter]),
+        );
+        expect(result.current.filters).toHaveLength(2);
         // should not contain newFilters elements
         expect(result.current.filters).toEqual(
             expect.not.arrayContaining(newFilters),
@@ -435,10 +433,10 @@ describe("useTable Filters", () => {
         });
 
         expect(result.current.filters).toBeInstanceOf(Array);
-        expect(result.current.filters).toEqual([
-            ...newFilters,
-            ...permanentFilter,
-        ]);
+        expect(result.current.filters).toEqual(
+            expect.arrayContaining([...newFilters, ...permanentFilter]),
+        );
+        expect(result.current.filters).toHaveLength(2);
         // should not contain initialFilter elements
         expect(result.current.filters).toEqual(
             expect.not.arrayContaining(initialFilter),
@@ -646,10 +644,9 @@ describe("useTable Filters", () => {
         });
 
         expect(result.current.filters).toBeInstanceOf(Array);
-        expect(result.current.filters).toEqual([
-            ...initialFilter,
-            ...newFilters,
-        ]);
+        expect(result.current.filters).toEqual(
+            expect.arrayContaining([...initialFilter, ...newFilters]),
+        );
         expect(result.current.filters).toHaveLength(2);
     });
 
