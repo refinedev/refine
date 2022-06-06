@@ -1,5 +1,7 @@
-import { useTable, useNavigation } from "@pankod/refine-core";
+import { useTable } from "@pankod/refine-core";
+import { useModalForm } from "@pankod/refine-react-hook-form";
 
+import { CreatePost, EditPost } from "components";
 import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
@@ -11,17 +13,31 @@ export const PostList: React.FC = () => {
             },
         ],
     });
-    const { edit, create } = useNavigation();
+
+    const createModalFormReturnValues = useModalForm({
+        refineCoreProps: { action: "create" },
+    });
+    const editModalFormReturnValues = useModalForm({
+        refineCoreProps: { action: "edit" },
+    });
+
+    const {
+        modal: { show: showCreateModal },
+    } = createModalFormReturnValues;
+    const {
+        modal: { show: showEditModal },
+    } = editModalFormReturnValues;
 
     return (
         <div>
-            <button onClick={() => create("posts")}>Create Post</button>
+            <CreatePost {...createModalFormReturnValues} />
+            <EditPost {...editModalFormReturnValues} />
+            <button onClick={() => showCreateModal()}>Create Post</button>
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Title</th>
-                        <th>Category</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -31,8 +47,9 @@ export const PostList: React.FC = () => {
                         <tr key={post.id}>
                             <td>{post.id}</td>
                             <td>{post.title}</td>
+                            <td>{post.status}</td>
                             <td>
-                                <button onClick={() => edit("posts", post.id)}>
+                                <button onClick={() => showEditModal(post.id)}>
                                     Edit
                                 </button>
                             </td>

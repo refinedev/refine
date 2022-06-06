@@ -2,7 +2,9 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import { PostCreate, PostEdit, PostList } from "pages/posts";
+import "./styles.css";
+
+import { PostList } from "pages/posts";
 
 const App: React.FC = () => {
     return (
@@ -12,9 +14,7 @@ const App: React.FC = () => {
             resources={[
                 {
                     name: "posts",
-                    create: PostCreate,
                     list: PostList,
-                    edit: PostEdit,
                 },
             ]}
         />
