@@ -50,7 +50,6 @@ export const PostList: React.FC = () => {
                             <TableCell align="center">
                                 //highlight-start
                                 <DeleteButton
-                                    size="small"
                                     recordItemId={row.id}
                                 />
                                 //highlight-end
