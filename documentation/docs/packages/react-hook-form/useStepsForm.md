@@ -483,7 +483,7 @@ export const PostEdit: React.FC = () => {
 
 Supports all the properties supported by the `useForm` hook are available in the [React Hook Form][react-hook-form-use-form] documentation. Also, we added the following properties:
 
-`stepsForm`: You can see all the properties [here](#stepsprops).
+`stepsProps`: You can see all the properties [here](#stepsprops).
 
 `refineCoreProps`: You can define all properties provided by [`useForm`][use-form-core] here. You can see all of them in [here](/core/hooks/useForm.md#properties).
 
