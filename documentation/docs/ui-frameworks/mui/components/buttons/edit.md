@@ -5,7 +5,7 @@ title: Edit
 
 import editButton from '@site/static/img/guides-and-concepts/components/buttons/edit/edit-mui.png';
 
-`<EditButton>` uses Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses the `create` method from [`useNavigation`](/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of resource.
+`<EditButton>` uses Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses the `edit` method from [`useNavigation`](/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the edit page route of resource.
 
 ## Usage
 
@@ -78,17 +78,17 @@ Will look like this:
 
 ### `resourceNameOrRouteName`
 
-It is used to redirect the app to the `/create` endpoint of the given resource name. By default, the app redirects to a URL with `/create` defined by the name property of resource object.
+It is used to redirect the app to the `/edit` endpoint of the given resource name. By default, the app redirects to a URL with `/edit` defined by the name property of resource object.
 
 ```tsx
 import { EditButton } from "@pankod/refine-mui";
 
-export const MyCreateComponent = () => {
-    return <EditButton resourceNameOrRouteName="posts" />;
+export const MyEditComponent = () => {
+    return <EditButton resourceNameOrRouteName="posts" recordItemId="2" />;
 };
 ```
 
-Clicking the button will trigger the `create` method of [`useNavigation`](/core/hooks/navigation/useNavigation.md) and then redirect to `/posts/create`.
+Clicking the button will trigger the `edit` method of [`useNavigation`](/core/hooks/navigation/useNavigation.md) and then redirect to `/posts/edit/2`.
 
 ### `hideText`
 
@@ -97,7 +97,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 ```tsx
 import { EditButton } from "@pankod/refine-mui";
 
-export const MyCreateComponent = () => {
+export const MyEditComponent = () => {
     return <EditButton hideText />;
 };
 ```
@@ -124,7 +124,7 @@ export const MyListComponent = () => {
 | resourceNameOrRouteName     | Determines which resource to use for redirection | `string`                                                          | Resource name that it reads from route                                                                                |
 | hideText                    | Allows to hide button text                       | `boolean`                                                         | `false`                                                                                                               |
 | ignoreAccessControlProvider | Skip access control                              | `boolean`                                                         | `false`                                                                                                               |
-| children                    | Sets the button text                             | `ReactNode`                                                       | `"Create"`                                                                                                            |
+| children                    | Sets the button text                             | `ReactNode`                                                       | `"Edit"`                                                                                                              |
 | startIcon                   | Sets the icon component of button                | `ReactNode`                                                       | [`<EditOutlinedIcon />`](https://mui.com/material-ui/material-icons/?query=edit&theme=Outlined&selected=EditOutlined) |
 | svgIconProps                | Allows to set icon props                         | [`SvgIconProps`](https://mui.com/material-ui/api/svg-icon/#props) |                                                                                                                       |
-| onClick                     | Sets the handler to handle click event           | `(event) => void`                                                 | Triggers navigation for redirect to the create page of resource                                                       |
+| onClick                     | Sets the handler to handle click event           | `(event) => void`                                                 | Triggers navigation for redirect to the edit page of resource                                                         |

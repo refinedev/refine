@@ -19,7 +19,7 @@ import {
     Table,
     // highlight-next-line
     DeleteButton,
-    TableHead,
+    TableHead,ev
     TableRow,
     TableCell,
     TableBody,
@@ -106,7 +106,7 @@ export const MyDeleteComponent = () => {
 };
 ```
 
-Clicking the button will trigger the [`useDelete`](/core/hooks/data/useDelete.md) method and then the record whose resource is "post" and whose id is "1" gets deleted.
+Clicking the button will trigger the [`useDelete`](/core/hooks/data/useDelete.md) method and then the record whose resource is `post` and whose id is `1` gets deleted.
 
 :::note
 **`<DeleteButton>`** component reads the id information from the route by default.
@@ -156,7 +156,6 @@ export const PostList: React.FC = () => {
                             </TableCell>
                             <TableCell align="center">
                                 <DeleteButton
-                                    size="small"
                                     recordItemId={record.id}
                                     // highlight-start
                                     onSuccess={(value) => {
@@ -223,8 +222,7 @@ export const PostList: React.FC = () => {
                             </TableCell>
                             <TableCell align="center">
                                 <DeleteButton
-                                    size="small"
-                                    recordItemId={record.id}
+                                    recordItemId={row.id}
                                     // highlight-next-line
                                     mutationMode="undoable"
                                 />
