@@ -265,7 +265,7 @@ module.exports = {
                                         "ui-frameworks/mui/components/buttons/delete-button",
                                         "ui-frameworks/mui/components/buttons/edit-button",
                                         "ui-frameworks/mui/components/buttons/export-button",
-                                        // "ui-frameworks/mui/components/buttons/import-button",
+                                        "ui-frameworks/mui/components/buttons/import-button",
                                         // "ui-frameworks/mui/components/buttons/list-button",
                                         // "ui-frameworks/mui/components/buttons/refresh-button",
                                         // "ui-frameworks/mui/components/buttons/save-button",
