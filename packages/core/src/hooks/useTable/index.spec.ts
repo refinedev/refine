@@ -447,6 +447,53 @@ describe("useTable Filters", () => {
         );
     });
 
+    it("[behavior=merge] should remove the filter when value is undefined/null", () => {
+        const initialFilter = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "test",
+            },
+        ] as CrudFilters;
+
+        const newFilters = [
+            {
+                field: "name",
+                operator: "contains",
+                value: undefined,
+            },
+        ] as CrudFilters;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialFilter,
+                }),
+            {
+                wrapper,
+            },
+        );
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(initialFilter);
+        expect(result.current.filters).toHaveLength(1);
+
+        act(() => {
+            result.current.setFilters(newFilters, "merge");
+        });
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toHaveLength(0);
+        // should not contain initialFilter elements
+        expect(result.current.filters).toEqual(
+            expect.not.arrayContaining(initialFilter),
+        );
+        // should contain newFilter elements
+        expect(result.current.filters).toEqual(
+            expect.not.arrayContaining(newFilters),
+        );
+    });
+
     it("[behavior=replace] should replace the existing filters with newFilters", () => {
         const initialFilter = [
             {
