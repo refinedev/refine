@@ -537,7 +537,7 @@ describe("useTable Filters", () => {
         });
 
         expect(result.current.filters).toBeInstanceOf(Array);
-        expect(result.current.filters).toEqual([permanentFilter]);
+        expect(result.current.filters).toEqual(permanentFilter);
         // should not contain newFilters elements
         expect(result.current.filters).toEqual(
             expect.not.arrayContaining(newFilters),
@@ -566,12 +566,12 @@ describe("useTable Filters", () => {
             {
                 field: "name",
                 operator: "contains",
-                value: "ali",
+                value: "this-should-be-in-it",
             },
             {
                 field: "name",
                 operator: "contains",
-                value: "this-should-be-in-it",
+                value: "ali",
             },
         ] as CrudFilters;
 
@@ -594,7 +594,9 @@ describe("useTable Filters", () => {
         });
 
         expect(result.current.filters).toBeInstanceOf(Array);
-        expect(result.current.filters).toEqual(newFilters);
+        expect(result.current.filters).toEqual(
+            expect.arrayContaining([newFilters[0], newFilters[1]]),
+        );
         expect(result.current.filters).toHaveLength(2);
 
         // should not contain initialFilter elements
@@ -602,9 +604,9 @@ describe("useTable Filters", () => {
             expect.not.arrayContaining(initialFilter),
         );
 
-        // item at index = 1 should be overwritten by the index 2
+        // item at index = 2 should be ignored because of index = 1
         expect(result.current.filters).toEqual(
-            expect.not.arrayContaining([newFilters[1]]),
+            expect.not.arrayContaining([newFilters[2]]),
         );
     });
 
