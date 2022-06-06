@@ -49,7 +49,7 @@ const stepsFormReturnValues = useStepsForm({
 
 ### `steps`
 
-**`currentStep`**: It is the current step.
+**`currentStep`**: It is a number that represents the current step.
 
 **`gotoStep`**: It allows you to go to a specific step.
 
