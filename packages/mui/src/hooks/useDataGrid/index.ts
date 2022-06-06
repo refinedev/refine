@@ -107,6 +107,7 @@ export const useDataGrid = <
         initialSorter,
         initialFilter,
         syncWithLocation: syncWithLocationProp,
+        defaultSetFilterBehavior: "replace",
         resource: resourceFromProp,
         successNotification,
         errorNotification,
