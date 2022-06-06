@@ -103,7 +103,9 @@ It is used to redirect the app to the `/clone` endpoint of the given resource na
 import { CloneButton } from "@pankod/refine-mui";
 
 export const MyCloneComponent = () => {
-    return <CloneButton resourceNameOrRouteName="posts" recordItemId="2" />;
+    return (
+        <CloneButton resourceNameOrRouteName="categories" recordItemId="2" />
+    );
 };
 ```
 
@@ -128,21 +130,21 @@ It is used to skip access control for the button so that it doesn't check for ac
 ```tsx
 import { CloneButton } from "@pankod/refine-mui";
 
-export const MyListComponent = () => {
+export const MyCloneComponent = () => {
     return <CloneButton ignoreAccessControlProvider />;
 };
 ```
 
 ## API Reference
 
-| Property                    | Description                                      | Type                                                                                                         | Default                                                                                                                       |
-| --------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
-| props                       | Material UI button props                         | [`ButtonProps`](https://mui.com/material-ui/api/button/) & `{ recordItemId?: BaseKey; hideText?: boolean; }` |                                                                                                                               |
-| resourceNameOrRouteName     | Determines which resource to use for redirection | `string`                                                                                                     | Resource name that it reads from route                                                                                        |
-| recordItemId                | Adds `id` to the end of the URL                  | [`BaseKey`](/core/interfaces.md#basekey)                                                                     | Record id that it reads from route                                                                                            |
-| hideText                    | Allows to hide button text                       | `boolean`                                                                                                    | `false`                                                                                                                       |
-| ignoreAccessControlProvider | Skip access control                              | `boolean`                                                                                                    | `false`                                                                                                                       |
-| children                    | Sets the button text                             | `ReactNode`                                                                                                  | `"Clone"`                                                                                                                     |
-| startIcon                   | Sets the icon component of button                | `ReactNode`                                                                                                  | [`<AddBoxOutlinedIcon />`](https://mui.com/material-ui/material-icons/?query=add+box&theme=Outlined&selected=AddBoxOutlined/) |
-| svgIconProps                | Allows to set icon props                         | [`SvgIconProps`](https://mui.com/material-ui/api/svg-icon/#props)                                            |                                                                                                                               |
-| onClick                     | Sets the handler to handle click event           | `(event) => void`                                                                                            | Triggers navigation for redirection to the create page of resource                                                            |
+| Property                    | Description                                      | Type                                                              | Default                                                                                                                       |
+| --------------------------- | ------------------------------------------------ | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| props                       | Material UI button props                         | [`ButtonProps`](https://mui.com/material-ui/api/button/)          |                                                                                                                               |
+| resourceNameOrRouteName     | Determines which resource to use for redirection | `string`                                                          | Resource name that it reads from route                                                                                        |
+| recordItemId                | Adds `id` to the end of the URL                  | [`BaseKey`](/core/interfaces.md#basekey)                          | Record id that it reads from route                                                                                            |
+| hideText                    | Allows to hide button text                       | `boolean`                                                         | `false`                                                                                                                       |
+| ignoreAccessControlProvider | Skip access control                              | `boolean`                                                         | `false`                                                                                                                       |
+| children                    | Sets the button text                             | `ReactNode`                                                       | `"Clone"`                                                                                                                     |
+| startIcon                   | Sets the icon component of button                | `ReactNode`                                                       | [`<AddBoxOutlinedIcon />`](https://mui.com/material-ui/material-icons/?query=add+box&theme=Outlined&selected=AddBoxOutlined/) |
+| svgIconProps                | Allows to set icon props                         | [`SvgIconProps`](https://mui.com/material-ui/api/svg-icon/#props) |                                                                                                                               |
+| onClick                     | Sets the handler to handle click event           | `(event) => void`                                                 | Triggers navigation for redirection to the create page of resource                                                            |
