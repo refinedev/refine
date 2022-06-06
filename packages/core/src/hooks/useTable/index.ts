@@ -30,12 +30,15 @@ import {
     LiveModeProps,
 } from "../../interfaces";
 
+type SetFilterFilterBehavior = "merge" | "replace";
+
 export type useTableProps<TData, TError> = {
     resource?: string;
     initialCurrent?: number;
     initialPageSize?: number;
     initialSorter?: CrudSorting;
     permanentSorter?: CrudSorting;
+    defaultSetFilterBehavior?: SetFilterFilterBehavior;
     initialFilter?: CrudFilters;
     permanentFilter?: CrudFilters;
     syncWithLocation?: boolean;
@@ -58,7 +61,10 @@ export type useTableReturnType<TData extends BaseRecord = BaseRecord> = {
     sorter: CrudSorting;
     setSorter: (sorter: CrudSorting) => void;
     filters: CrudFilters;
-    setFilters: (filters: CrudFilters) => void;
+    setFilters: (
+        filters: CrudFilters,
+        behavior?: SetFilterFilterBehavior,
+    ) => void;
     current: number;
     setCurrent: ReactSetState<useTableReturnType["current"]>;
     pageSize: number;
@@ -86,6 +92,7 @@ export const useTable = <
     initialPageSize = 10,
     initialSorter,
     permanentSorter = defaultPermanentSorter,
+    defaultSetFilterBehavior = "merge",
     initialFilter,
     permanentFilter = defaultPermanentFilter,
     syncWithLocation: syncWithLocationProp,
@@ -205,6 +212,18 @@ export const useTable = <
         );
     };
 
+    const setFiltersFn = (
+        newFilters: CrudFilters,
+        behavior: SetFilterFilterBehavior = defaultSetFilterBehavior,
+    ) => {
+        if (behavior === "replace") {
+            setFiltersWithUnion(newFilters);
+        } else {
+            // merge (default and fallback)
+            setFiltersWithUnion(newFilters);
+        }
+    };
+
     const setSortWithUnion = (newSorter: CrudSorting) => {
         setSorter(() => unionSorters(permanentSorter, newSorter));
     };
@@ -216,7 +235,7 @@ export const useTable = <
         sorter,
         setSorter: setSortWithUnion,
         filters,
-        setFilters: setFiltersWithUnion,
+        setFilters: setFiltersFn,
         current,
         setCurrent,
         pageSize,
