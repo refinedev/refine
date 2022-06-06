@@ -157,7 +157,7 @@ describe("useTable Filters", () => {
     });
 
     it("should be empty initially", () => {
-        const { result, waitFor } = renderHook(() => useTable(), {
+        const { result } = renderHook(() => useTable(), {
             wrapper,
         });
 
@@ -174,7 +174,7 @@ describe("useTable Filters", () => {
             },
         ] as CrudFilters;
 
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     permanentFilter,
@@ -198,7 +198,7 @@ describe("useTable Filters", () => {
             },
         ] as CrudFilters;
 
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     initialFilter,
@@ -229,7 +229,7 @@ describe("useTable Filters", () => {
             },
         ] as CrudFilters;
 
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     initialFilter,
@@ -270,7 +270,7 @@ describe("useTable Filters", () => {
             },
         ] as CrudFilters;
 
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     permanentFilter,
@@ -303,7 +303,7 @@ describe("useTable Filters", () => {
             },
         ] as CrudFilters;
 
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     initialFilter,
@@ -354,7 +354,7 @@ describe("useTable Filters", () => {
             },
         ] as CrudFilters;
 
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     permanentFilter,
@@ -412,7 +412,7 @@ describe("useTable Filters", () => {
             },
         ] as CrudFilters;
 
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     permanentFilter,
@@ -466,7 +466,7 @@ describe("useTable Filters", () => {
             },
         ] as CrudFilters;
 
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     initialFilter,
@@ -514,7 +514,7 @@ describe("useTable Filters", () => {
             },
         ] as CrudFilters;
 
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     permanentFilter,
@@ -575,7 +575,7 @@ describe("useTable Filters", () => {
             },
         ] as CrudFilters;
 
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     initialFilter,
@@ -625,7 +625,7 @@ describe("useTable Filters", () => {
             },
         ] as CrudFilters;
 
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     initialFilter,
@@ -668,7 +668,7 @@ describe("useTable Filters", () => {
             },
         ] as CrudFilters;
 
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     initialFilter,
