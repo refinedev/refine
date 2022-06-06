@@ -1,34 +1,20 @@
 import React from "react";
-import { MemoryRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
-import { Refine } from "@pankod/refine-core";
-
-import { MockRouterProvider, MockJSONServer } from "@test";
 import {
-    I18nProvider,
     AccessControlProvider,
     AuthProvider,
-    DataProvider,
     NotificationProvider,
-    IResourceItem,
+    Refine,
 } from "@pankod/refine-core";
 
-/* interface ITestWrapperProps {
-    authProvider?: IAuthContext;
-    dataProvider?: IDataContext;
-    i18nProvider?: I18nProvider;
-    accessControlProvider?: IAccessControlContext;
-    liveProvider?: ILiveContext;
-    resources?: IResourceItem[];
-    children?: React.ReactNode;
-    routerInitialEntries?: string[];
-    refineProvider?: IRefineContextProvider;
-} */
+import { MockRouterProvider, MockJSONServer } from "@test";
+import { I18nProvider, DataProvider, IResourceItem } from "@pankod/refine-core";
 
 const List = () => {
     return <div>hede</div>;
 };
-interface ITestWrapperProps {
+export interface ITestWrapperProps {
     dataProvider?: DataProvider;
     authProvider?: AuthProvider;
     resources?: IResourceItem[];
@@ -49,10 +35,22 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     DashboardPage,
     i18nProvider,
 }) => {
+    // Previously, MemoryRouter was used in this wrapper. However, the
+    // recommendation by react-router developers (see
+    // https://github.com/remix-run/react-router/discussions/8241#discussioncomment-159686)
+    // is essentially to use the same router as your actual application. Besides
+    // that, it's impossible to check for location changes with MemoryRouter if
+    // needed.
+    if (routerInitialEntries) {
+        routerInitialEntries.forEach((route) => {
+            window.history.replaceState({}, "", route);
+        });
+    }
+
     // eslint-disable-next-line react/display-name
     return ({ children }): React.ReactElement => {
         return (
-            <MemoryRouter initialEntries={routerInitialEntries}>
+            <BrowserRouter>
                 <Refine
                     dataProvider={dataProvider ?? MockJSONServer}
                     i18nProvider={i18nProvider}
@@ -65,7 +63,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
                 >
                     {children}
                 </Refine>
-            </MemoryRouter>
+            </BrowserRouter>
         );
     };
 };

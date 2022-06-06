@@ -40,7 +40,7 @@ const queryClient = new QueryClient({
     },
 });
 
-interface ITestWrapperProps {
+export interface ITestWrapperProps {
     authProvider?: IAuthContext;
     dataProvider?: IDataContextProvider | IDataMultipleContextProvider;
     i18nProvider?: I18nProvider;

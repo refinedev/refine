@@ -42,6 +42,8 @@ export type CrudOperators =
     | "nnull"
     | "or";
 
+export type SortOrder = "desc" | "asc" | null;
+
 export type LogicalFilter = {
     field: string;
     operator: Exclude<CrudOperators, "or">;

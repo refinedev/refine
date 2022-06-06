@@ -47,6 +47,12 @@ export type useTableProps<TData, TError> = {
 
 type ReactSetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
+type SyncWithLocationParams = {
+    pagination: { current?: number; pageSize?: number };
+    sorter: CrudSorting;
+    filters: CrudFilters;
+};
+
 export type useTableReturnType<TData extends BaseRecord = BaseRecord> = {
     tableQueryResult: QueryObserverResult<GetListResponse<TData>>;
     sorter: CrudSorting;
@@ -57,6 +63,8 @@ export type useTableReturnType<TData extends BaseRecord = BaseRecord> = {
     setCurrent: ReactSetState<useTableReturnType["current"]>;
     pageSize: number;
     setPageSize: ReactSetState<useTableReturnType["pageSize"]>;
+    pageCount: number;
+    createLinkForSyncWithLocation: (params: SyncWithLocationParams) => string;
 };
 
 /**
@@ -104,15 +112,15 @@ export const useTable = <
     let defaultSorter = initialSorter;
     let defaultFilter = initialFilter;
 
-    if (syncWithLocation) {
-        const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
-            parseTableParams(search);
+    // We want to always parse the query string even when syncWithLocation is
+    // deactivated, for hotlinking to work properly
+    const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
+        parseTableParams(search);
 
-        defaultCurrent = parsedCurrent || defaultCurrent;
-        defaultPageSize = parsedPageSize || defaultPageSize;
-        defaultSorter = parsedSorter.length ? parsedSorter : defaultSorter;
-        defaultFilter = parsedFilters.length ? parsedFilters : defaultFilter;
-    }
+    defaultCurrent = parsedCurrent || defaultCurrent;
+    defaultPageSize = parsedPageSize || defaultPageSize;
+    defaultSorter = parsedSorter.length ? parsedSorter : defaultSorter;
+    defaultFilter = parsedFilters.length ? parsedFilters : defaultFilter;
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
@@ -124,12 +132,36 @@ export const useTable = <
     const [sorter, setSorter] = useState<CrudSorting>(
         setInitialSorters(permanentSorter, defaultSorter ?? []),
     );
-
     const [filters, setFilters] = useState<CrudFilters>(
         setInitialFilters(permanentFilter, defaultFilter ?? []),
     );
     const [current, setCurrent] = useState<number>(defaultCurrent);
     const [pageSize, setPageSize] = useState<number>(defaultPageSize);
+
+    const createLinkForSyncWithLocation = ({
+        pagination: { current, pageSize },
+        sorter,
+        filters,
+    }: SyncWithLocationParams) => {
+        const stringifyParams = stringifyTableParams({
+            pagination: {
+                pageSize,
+                current,
+            },
+            sorter,
+            filters,
+        });
+        return `${pathname}?${stringifyParams}`;
+    };
+
+    useEffect(() => {
+        if (search === "") {
+            setCurrent(defaultCurrent);
+            setPageSize(defaultPageSize);
+            setSorter(setInitialSorters(permanentSorter, defaultSorter ?? []));
+            setFilters(setInitialFilters(permanentFilter, defaultFilter ?? []));
+        }
+    }, [search]);
 
     useEffect(() => {
         if (syncWithLocation) {
@@ -177,6 +209,8 @@ export const useTable = <
         setSorter(() => unionSorters(permanentSorter, newSorter));
     };
 
+    const pageCount = Math.ceil((queryResult.data?.total ?? 0) / pageSize);
+
     return {
         tableQueryResult: queryResult,
         sorter,
@@ -187,5 +221,7 @@ export const useTable = <
         setCurrent,
         pageSize,
         setPageSize,
+        pageCount,
+        createLinkForSyncWithLocation,
     };
 };

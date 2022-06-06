@@ -1,4 +1,8 @@
-import { IResourceComponentsProps, useMany } from "@pankod/refine-core";
+import {
+    IResourceComponentsProps,
+    useMany,
+    getDefaultFilter,
+} from "@pankod/refine-core";
 
 import {
     List,
@@ -11,13 +15,11 @@ import {
     Select,
     Radio,
     TagField,
-    getDefaultFilter,
     Collapse,
     useTable,
     useSelect,
     useSimpleList,
     AntdList,
-    NumberField,
 } from "@pankod/refine-antd";
 
 import { IPost, ICategory, IProducts } from "interfaces";
@@ -52,16 +54,10 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     });
 
     const renderItem = (item: IProducts) => {
-        const { name, price, description } = item;
+        const { name, description } = item;
 
         return (
-            <AntdList.Item
-                actions={[
-                    <Space key={item.id} direction="vertical" align="end">
-                        <NumberField value={price} />
-                    </Space>,
-                ]}
-            >
+            <AntdList.Item>
                 <AntdList.Item.Meta title={name} description={description} />
             </AntdList.Item>
         );
@@ -152,9 +148,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     </Table>
                 </Panel>
                 <Panel header="Fine Foods Data Provider" key="2">
-                    <div>
-                        <AntdList {...listProps} renderItem={renderItem} />
-                    </div>
+                    <AntdList {...listProps} renderItem={renderItem} />
                 </Panel>
             </Collapse>
         </List>

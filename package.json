@@ -1,7 +1,7 @@
 {
     "version": "0.1.0",
     "license": "MIT",
-    "private": false,
+    "private": true,
     "engines": {
         "node": ">=10"
     },
@@ -10,27 +10,26 @@
         "start": "lerna run start --stream --parallel --scope @pankod/refine-core",
         "test": "lerna run test --stream --parallel --scope @pankod/refine*",
         "test:coverage": "npm run test --stream -- -- -- --coverage",
-        "bootstrap": "cd packages/codemod && npm ci && cd ../.. && lerna bootstrap --hoist --strict --ignore-scripts --ignore @pankod/refine-codemod --ignore @pankod/refine-react-router --scope @pankod/refine*",
+        "bootstrap": "cd packages/codemod && npm ci && cd ../.. && lerna bootstrap --hoist --strict --ignore @pankod/refine-codemod --ignore @pankod/refine-react-router --scope @pankod/refine*",
         "lint": "eslint -c ./.eslintrc packages examples",
         "lint:fix": "npm run lint -- --quiet --fix",
         "build": "lerna run build --ignore @pankod/refine-react-router --scope @pankod/refine*",
         "versionup": "npm run lerna version --conventional-commits --no-git-tag-version --scope @pankod/refine*",
         "nuke": "rm -rf node_modules; for d in for d in packages/*/node_modules; do echo $d; rm -rf $d; done; for d in for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in examples/*/node_modules; do echo $d; rm -rf $d; done;  for d in examples/*/package-lock.json; do echo $d; rm -rf $d; done;",
-        "coffee": "npm run nuke && npm i && npm run bootstrap && npm run build"
+        "coffee": "npm run nuke && npm i && npm run bootstrap && npm run build",
+        "prepare": "husky install",
+        "changeset": "changeset"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx}": [
             "npm run lint:fix"
         ]
     },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
     "name": "refinejs-repo",
     "author": "Pankod",
     "devDependencies": {
+        "@commitlint/cli": "^17.0.1",
+        "@commitlint/config-conventional": "^17.0.0",
         "@types/jest": "^26.0.24",
         "@types/react": "^17.0.4",
         "@types/react-dom": "^17.0.4",
@@ -39,7 +38,7 @@
         "eslint": "7.27.0",
         "eslint-plugin-prettier": "3.4.0",
         "eslint-plugin-react": "7.23.2",
-        "husky": "^4.3.8",
+        "husky": "^8.0.1",
         "jest": "^27.5.1",
         "lerna": "^4.0.0",
         "lint-staged": "^10.5.4",
@@ -50,6 +49,8 @@
         "typescript": "^4.4.3"
     },
     "dependencies": {
+        "@changesets/changelog-github": "^0.4.4",
+        "@changesets/cli": "^2.22.0",
         "prettier": "2.3.0"
     }
 }

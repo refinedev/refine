@@ -4,25 +4,12 @@ import { useQueryClient } from "react-query";
 import { useNavigation } from "@hooks";
 import { IAuthContext } from "../../interfaces";
 
-const defaultProvider: IAuthContext = {
-    login: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-export const AuthContext = React.createContext<IAuthContext>(defaultProvider);
+export const AuthContext = React.createContext<IAuthContext>({});
 
-export const AuthContextProvider: React.FC<Partial<IAuthContext>> = ({
-    login = defaultProvider.login,
-    logout = defaultProvider.logout,
-    checkAuth = defaultProvider.checkAuth,
-    checkError = defaultProvider.checkError,
-    getPermissions = defaultProvider.getPermissions,
-    getUserIdentity = defaultProvider.getUserIdentity,
-    isProvided,
+export const AuthContextProvider: React.FC<IAuthContext> = ({
     children,
+    isProvided,
+    ...authOperations
 }) => {
     const { replace } = useNavigation();
     const [isAuthenticated, setAuthenticated] = useState(false);
@@ -30,11 +17,13 @@ export const AuthContextProvider: React.FC<Partial<IAuthContext>> = ({
 
     useEffect(() => {
         queryClient.invalidateQueries(["useAuthenticated"]);
+        queryClient.invalidateQueries(["getUserIdentity"]);
+        queryClient.invalidateQueries(["usePermissions"]);
     }, [isAuthenticated]);
 
     const loginFunc = async (params: any) => {
         try {
-            const result = await login(params);
+            const result = await authOperations.login?.(params);
             setAuthenticated(true);
             return Promise.resolve(result);
         } catch (error) {
@@ -45,7 +34,7 @@ export const AuthContextProvider: React.FC<Partial<IAuthContext>> = ({
 
     const logoutFunc = async (params: any) => {
         try {
-            const redirectPath = await logout(params);
+            const redirectPath = await authOperations.logout?.(params);
             setAuthenticated(false);
 
             return Promise.resolve(redirectPath);
@@ -57,7 +46,7 @@ export const AuthContextProvider: React.FC<Partial<IAuthContext>> = ({
 
     const checkAuthFunc = async (params: any) => {
         try {
-            await checkAuth(params);
+            await authOperations.checkAuth?.(params);
             setAuthenticated(true);
         } catch (error) {
             if ((error as { redirectPath?: string })?.redirectPath) {
@@ -71,14 +60,12 @@ export const AuthContextProvider: React.FC<Partial<IAuthContext>> = ({
     return (
         <AuthContext.Provider
             value={{
+                ...authOperations,
                 login: loginFunc,
                 logout: logoutFunc,
                 checkAuth: checkAuthFunc,
-                checkError,
-                getPermissions,
-                getUserIdentity,
-                isAuthenticated,
                 isProvided,
+                isAuthenticated,
             }}
         >
             {children}

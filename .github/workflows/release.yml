@@ -1,8 +1,12 @@
-name: npm Publish [released]
+name: Release
 
 on:
-  release:
-    types: [released]
+  push:
+    paths:
+      - ".changeset/**"
+      - "packages/**"
+    branches:
+      - master
 
 jobs:
   publish-npm:
@@ -19,12 +23,55 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
-      - run: |
+      - name: Creating .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Install Dependencies & Build
+        run: |
           npm ci
           npm run bootstrap
-          npm run build
-          npm run lint
-          npm test
-          npm run lerna publish from-package -- --yes
+      - name: Lint
+        run: npm run lint
+      - name: Test
+        run: npm test
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: npm run changeset publish
+          commit: "ci(changesets): version packages"
+          title: "ci(changesets): version packages"
         env:
+          GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - name: Add key to allow access to repository
+        if: steps.changesets.outputs.published == 'true'
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          echo "${{ secrets.GH_PAGES_DEPLOY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          cat <<EOT >> ~/.ssh/config
+          Host github.com
+          HostName github.com
+          IdentityFile ~/.ssh/id_rsa
+          EOT
+      - name: Release to GitHub Pages
+        if: steps.changesets.outputs.published == 'true'
+        env:
+          USE_SSH: true
+          GIT_USER: pankod-bot
+          NODE_ENV: production
+        run: |
+          cd documentation
+          git config --global user.email "bot@pankod.com"
+          git config --global user.name "pankod-bot"
+          npm install
+          npm run deploy

@@ -1,6 +1,6 @@
 {
     "name": "@pankod/refine-core",
-    "version": "3.16.2",
+    "version": "3.23.2",
     "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
     "private": false,
     "main": "dist/index.js",
@@ -13,7 +13,6 @@
         "prepare": "npm run build"
     },
     "peerDependencies": {
-        "antd": "^4.17.1",
         "react": "^17.0.0 || ^18.0.0",
         "react-dom": "^17.0.0 || ^18.0.0"
     },
@@ -49,9 +48,14 @@
         "react-query": "^3.19.2",
         "tslib": "^2.3.1"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/pankod/refine.git",
+        "directory": "packages/core"
+    },
     "author": "Pankod",
     "license": "MIT",
-    "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
+    "gitHead": "17dd5af3e4c9f7f09e1e707362c6f5a9d1cab8a8",
     "publishConfig": {
         "access": "public"
     }

@@ -1,5 +1,4 @@
 import React from "react";
-import ReactRouterDom from "react-router-dom";
 import { waitFor } from "@testing-library/react";
 import { render, fireEvent, TestWrapper, act } from "@test";
 
@@ -14,13 +13,6 @@ const mockAuthProvider = {
     getUserIdentity: () => Promise.resolve(),
     isProvided: true,
 };
-
-const mHistory = jest.fn();
-
-jest.mock("react-router-dom", () => ({
-    ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useNavigate: () => mHistory,
-}));
 
 describe("Sider", () => {
     it("should render successful", async () => {
@@ -50,7 +42,7 @@ describe("Sider", () => {
         });
 
         await waitFor(() => fireEvent.click(getByText("Posts")));
-        expect(mHistory).toBeCalledWith("/posts", undefined);
+        expect(window.location.pathname).toBe("/posts");
     });
 
     it("should work logout menu item click", async () => {

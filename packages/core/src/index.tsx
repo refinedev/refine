@@ -2,15 +2,20 @@ export * from "./components";
 export * from "./hooks";
 
 export {
-    IAuthContext as AuthProvider,
+    IAuthContext,
+    AuthProvider,
     Pagination,
     IDataContextProvider as DataProvider,
     ILiveContext as LiveProvider,
     LiveEvent,
-    ITranslationContext as TranslationProvider,
-    IAccessControlContext as AccessControlProvider,
-    INotificationContext as NotificationProvider,
+    IResourceContext as ResourceProvider,
     IAuditLogContext as AuditLogProvider,
+    ITranslationContext,
+    TranslationProvider,
+    IAccessControlContext,
+    AccessControlProvider,
+    INotificationContext,
+    NotificationProvider,
     I18nProvider,
     MutationMode,
     IResourceComponents,
@@ -26,6 +31,7 @@ export {
     CrudOperators,
     CrudSorting,
     CrudSort,
+    SortOrder,
     GetListResponse,
     GetOneResponse,
     GetManyResponse,
@@ -67,6 +73,8 @@ export {
     setInitialFilters,
     unionSorters,
     setInitialSorters,
+    getDefaultFilter,
+    getDefaultSortOrder,
 } from "./definitions/table";
 export {
     userFriendlyResourceName,

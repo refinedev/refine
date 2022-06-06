@@ -305,14 +305,14 @@ const { tableProps, sorter, filters } = useTable<IPost>({
 If you give default filter values, `defaultFilteredValue` property needs to be properly given to the relevant `<Table.Column>` components so that those filter fields come with default values when the page is opened.
 
 ```tsx title="/src/pages/posts/list.tsx"
+// highlight-next-line
+import { getDefaultFilter } from "@pankod/refine-core";
 import {
     List,
     Table,
     Radio,
     FilterDropdown,
     TagField,
-    // highlight-next-line
-    getDefaultFilter,
     useTable,
     getDefaultSortOrder,
 } from "@pankod/refine-antd";
@@ -420,7 +420,7 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-use-table-example-159uj?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/table/useTable?autoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-use-table-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

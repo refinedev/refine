@@ -212,9 +212,9 @@ Let's define the select component in the **refine** Sider Menu. First, we need t
 import React, { useState } from "react";
 import {
     useTitle,
-    useNavigation,
     ITreeMenu,
     CanAccess,
+    useRouterContext,
 } from "@pankod/refine-core";
 import {
     AntdLayout,
@@ -229,11 +229,11 @@ import { StoreSelect } from "components/select";
 
 export const CustomSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
+    const { Link } = useRouterContext();
     const Title = useTitle();
     const { SubMenu } = Menu;
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
-    const { push } = useNavigation();
 
     const isMobile = !breakpoint.lg;
     
@@ -264,15 +264,12 @@ export const CustomSider: React.FC = () => {
                 >
                     <Menu.Item
                         key={selectedKey}
-                        onClick={() => {
-                            push(route ?? "");
-                        }}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
                         icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
                     >
-                        {label}
+                        <Link href={route} to={route}>{label}</Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
@@ -295,11 +292,7 @@ export const CustomSider: React.FC = () => {
             <Menu
                 selectedKeys={[selectedKey]}
                 mode="inline"
-                onClick={({ key }) => {
-                    if (key !== "/") {
-                        push(key as string);
-                    }
-
+                onClick={() => {
                     if (!breakpoint.lg) {
                         setCollapsed(true);
                     }
@@ -654,7 +647,7 @@ In this guide and in our example app, we talked about how we can build Multitena
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/cake-house-41kgm?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/multi-tenancy/appwrite?autoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="cake-house"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

@@ -11,30 +11,20 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
 import { LiveContextProvider } from "@contexts/live";
-import {
-    defaultProvider,
-    TranslationContextProvider,
-} from "@contexts/translation";
+import { TranslationContextProvider } from "@contexts/translation";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { RefineContextProvider } from "@contexts/refine";
 import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 import { UnsavedWarnContextProvider } from "@contexts/unsavedWarn";
 import { RouterContextProvider } from "@contexts/router";
-import {
-    defaultAccessControlContext,
-    AccessControlContextProvider,
-} from "@contexts/accessControl";
-import {
-    NotificationContextProvider,
-    defaultNotificationProvider,
-} from "@contexts/notification";
+import { AccessControlContextProvider } from "@contexts/accessControl";
+import { NotificationContextProvider } from "@contexts/notification";
 import { AuditLogContextProvider } from "@contexts/auditLog";
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
 import { withAuditLogs } from "../withAuditLogs";
 import {
     MutationMode,
     IDataContextProvider,
-    IAuthContext,
     I18nProvider,
     LayoutProps,
     TitleProps,
@@ -42,10 +32,11 @@ import {
     ResourceProps,
     ILiveContext,
     LiveModeProps,
-    IAccessControlContext,
-    INotificationContext,
     IDataMultipleContextProvider,
     IAuditLogContext,
+    AuthProvider,
+    NotificationProvider,
+    AccessControlProvider,
 } from "../../../interfaces";
 import { routeGenerator } from "@definitions";
 
@@ -55,12 +46,12 @@ interface QueryClientConfig {
     defaultOptions?: DefaultOptions;
 }
 export interface RefineProps {
-    authProvider?: Omit<IAuthContext, "isProvided" | "isAuthenticated">;
+    authProvider?: AuthProvider;
     dataProvider: IDataContextProvider | IDataMultipleContextProvider;
     liveProvider?: ILiveContext;
     routerProvider: IRouterProvider;
-    notificationProvider?: INotificationContext;
-    accessControlProvider?: IAccessControlContext;
+    notificationProvider?: NotificationProvider;
+    accessControlProvider?: AccessControlProvider;
     auditLogProvider?: IAuditLogContext;
     resources?: ResourceProps[];
     i18nProvider?: I18nProvider;
@@ -95,8 +86,8 @@ export const Refine: React.FC<RefineProps> = ({
     authProvider,
     dataProvider,
     routerProvider,
-    notificationProvider = defaultNotificationProvider,
-    accessControlProvider = defaultAccessControlContext,
+    notificationProvider,
+    accessControlProvider,
     auditLogProvider,
     resources: resourcesFromProps,
     DashboardPage,
@@ -105,7 +96,7 @@ export const Refine: React.FC<RefineProps> = ({
     catchAll,
     children,
     liveProvider,
-    i18nProvider = defaultProvider.i18nProvider,
+    i18nProvider,
     mutationMode = "pessimistic",
     syncWithLocation = false,
     warnWhenUnsavedChanges = false,
@@ -173,10 +164,10 @@ export const Refine: React.FC<RefineProps> = ({
 
     return (
         <QueryClientProvider client={queryClient}>
-            <NotificationContextProvider {...notificationProvider}>
+            <NotificationContextProvider {...(notificationProvider ?? {})}>
                 <AuthContextProvider
-                    {...authProvider}
-                    isProvided={!!authProvider}
+                    {...(authProvider ?? {})}
+                    isProvided={Boolean(authProvider)}
                 >
                     <DataContextProvider {...dataProvider}>
                         <LiveContextProvider liveProvider={liveProvider}>
@@ -186,7 +177,7 @@ export const Refine: React.FC<RefineProps> = ({
                                         i18nProvider={i18nProvider}
                                     >
                                         <AccessControlContextProvider
-                                            {...accessControlProvider}
+                                            {...(accessControlProvider ?? {})}
                                         >
                                             <AuditLogContextProvider
                                                 auditLogProvider={

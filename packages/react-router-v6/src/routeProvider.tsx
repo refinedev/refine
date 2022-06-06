@@ -69,6 +69,9 @@ const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
                             resource={name}
                             action="create"
                             fallback={catchAll ?? <ErrorComponent />}
+                            params={{
+                                id: id ? decodeURIComponent(id) : undefined,
+                            }}
                         >
                             <Create
                                 name={name}
@@ -86,7 +89,9 @@ const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
                         <CanAccess
                             resource={name}
                             action="edit"
-                            params={{ id }}
+                            params={{
+                                id: id ? decodeURIComponent(id) : undefined,
+                            }}
                             fallback={catchAll ?? <ErrorComponent />}
                         >
                             <Edit
@@ -105,7 +110,9 @@ const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
                         <CanAccess
                             resource={name}
                             action="show"
-                            params={{ id }}
+                            params={{
+                                id: id ? decodeURIComponent(id) : undefined,
+                            }}
                             fallback={catchAll ?? <ErrorComponent />}
                         >
                             <Show

@@ -667,8 +667,8 @@ import {
     DateField,
     Table,
     useTable,
-    FilterDropdown,
     // highlight-start
+    FilterDropdown,
     Select,
     useSelect,
     // highlight-end
@@ -991,10 +991,26 @@ export const PostEdit: React.FC = () => {
     return (
         <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
-                <Form.Item label="Title" name="title">
+                <Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
                     <Input />
                 </Form.Item>
-                <Form.Item label="Status" name="status">
+                <Form.Item
+                    label="Status"
+                    name="status"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
                     <Select
                         options={[
                             {
@@ -1012,7 +1028,15 @@ export const PostEdit: React.FC = () => {
                         ]}
                     />
                 </Form.Item>
-                <Form.Item label="Category" name={["category", "id"]}>
+                <Form.Item
+                    label="Category"
+                    name={["category", "id"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
                     <Select {...categorySelectProps} />
                 </Form.Item>
             </Form>
@@ -1238,10 +1262,26 @@ export const PostCreate = () => {
         // highlight-start
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
-                <Form.Item label="Title" name="title">
+                <Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
                     <Input />
                 </Form.Item>
-                <Form.Item label="Status" name="status">
+                <Form.Item
+                    label="Status"
+                    name="status"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
                     <Select
                         options={[
                             {
@@ -1259,7 +1299,15 @@ export const PostCreate = () => {
                         ]}
                     />
                 </Form.Item>
-                <Form.Item label="Category" name={["category", "id"]}>
+                <Form.Item
+                    label="Category"
+                    name={["category", "id"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
                     <Select {...categorySelectProps} />
                 </Form.Item>
             </Form>
@@ -1503,7 +1551,7 @@ After adding `canDelete` prop, `<DeleteButton>` will appear in edit form.
 
 Our tutorial is complete. Below you'll find a live Codesandbox example displaying what we have done so far:
 
-<iframe src="https://codesandbox.io/embed/tutorial-ov79u?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/tutorial/antd?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-tutorial"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

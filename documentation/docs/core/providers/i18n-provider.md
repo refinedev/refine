@@ -454,7 +454,7 @@ export const Header: React.FC = () => {
     const currentLocale = locale();
 
     const menu = (
-        <Menu selectedKeys={[currentLocale]}>
+        <Menu selectedKeys={currentLocale ? [currentLocale] : []}>
             {[...(i18n.languages || [])].sort().map((lang: string) => (
                 <Menu.Item
                     key={lang}
@@ -651,7 +651,7 @@ export interface IPost {
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-i18n-example-k22ps?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/i18n?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-i18n-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

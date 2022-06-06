@@ -21,10 +21,15 @@ export const useGetIdentity = <TData = any>({
 }: UseGetIdentityProps<TData> = {}): UseQueryResult<TData, unknown> => {
     const { getUserIdentity } = React.useContext<IAuthContext>(AuthContext);
 
-    const queryResponse = useQuery<TData>("getUserIdentity", getUserIdentity!, {
-        enabled: !!getUserIdentity,
-        ...queryOptions,
-    });
+    const queryResponse = useQuery<TData>(
+        ["getUserIdentity"],
+        // Enabled check for `getUserIdentity` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
+        getUserIdentity ?? (() => Promise.resolve(undefined)),
+        {
+            enabled: !!getUserIdentity,
+            retry: false,
+        },
+    );
 
     return queryResponse;
 };

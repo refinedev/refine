@@ -272,6 +272,11 @@ export const useDeleteMany = <
                 { ids, resource, successNotification, dataProviderName },
                 context,
             ) => {
+                // Remove the queries from the cache:
+                ids.forEach((id) =>
+                    queryClient.removeQueries(context?.queryKey.detail(id)),
+                );
+
                 handleNotification(successNotification, {
                     key: `${ids}-${resource}-notification`,
                     description: translate("notifications.success", "Success"),

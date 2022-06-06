@@ -72,6 +72,14 @@ title: Interface References
 | `"asc"`      | Ascending order  |
 | `"desc"`     | Descending order |
 
+## SortOrder
+```ts
+"desc" |
+    "asc" |
+    "null";
+
+```
+
 ## Pagination
 
 | Key      | Type     |
@@ -132,11 +140,11 @@ ButtonProps
 
 ## UseImportInputPropsType
 
-| Key     | Type                                                                 |
-| ------- | -------------------------------------------------------------------- |
-| type     | `"file"`                                                             |
-| accept    | `".cvs"`                                                             |
-| onChange     | `(event: React.ChangeEvent<HTMLInputElement>) => void`                                                             |
+| Key      | Type                                                   |
+| -------- | ------------------------------------------------------ |
+| type     | `"file"`                                               |
+| accept   | `".cvs"`                                               |
+| onChange | `(event: React.ChangeEvent<HTMLInputElement>) => void` |
 
 ## SuccessErrorNotification
 
@@ -244,3 +252,10 @@ ButtonProps
 | parentName? | `string`    |
 
 
+## SyncWithLocationParams
+
+| Key         | Type                                      |
+| ----------- | ----------------------------------------- |
+| pagination? | `{ current?: number; pageSize?: number }` |
+| sorter?     | [`CrudSorting`](#crudsorting)             |
+| filters?    | [`CrudSCrudFiltersorting`](#crudfilters)  |
