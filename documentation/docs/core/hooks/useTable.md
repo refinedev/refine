@@ -8,9 +8,9 @@ title: useTable
 :::info
 If you're looking for a complete table library, Refine supports two table libraries out-of-the-box.
 
-- [React Table](https://react-table.tanstack.com/) (for Headless users) - [Documentation](/packages/react-table.md) - [Example](/examples/react-table/react-table.md)
-- [Ant Design Table](https://ant.design/components/table/#header) (for Ant Design users) - [Documentation](/ui-frameworks/antd/hooks/table/useTable.md) - [Example](/examples/table/useTable.md)
-:::
+-   [React Table](https://react-table.tanstack.com/) (for Headless users) - [Documentation](/packages/react-table.md) - [Example](/examples/react-table/react-table.md)
+-   [Ant Design Table](https://ant.design/components/table/#header) (for Ant Design users) - [Documentation](/ui-frameworks/antd/hooks/table/useTable.md) - [Example](/examples/table/useTable.md)
+    :::
 
 Lets say you have a endpoint that returns the following data:
 
@@ -122,6 +122,10 @@ console.log(sorter); // [{ field: "createdAt", order: "desc" }, { field: "id", o
 
 Also you can add initial filter state by passing the `initialFilter` prop and permanent filter state by passing the `permanentFilter` prop to the `useTable` hook. Even if you change the filter state, the `permanentFilter` will be used together with the filter state.
 
+`setFilters` function can work in two different behaviors; `merge` (default) and `replace`. You can set the behavior by passing it as the 2nd parameter.
+
+You can also call `setFilters` with a setter function.
+
 ```tsx
 import { useTable } from "@pankod/core";
 
@@ -154,28 +158,73 @@ setFilter([
 ]);
 
 console.log(filters); // [{ field: "title", operator: "contains", value: "A" }, { field: "status", operator: "equals", value: "published" }]
+
+setFilter([
+    {
+        field: "author",
+        operator: "contains",
+        value: "Ali",
+    },
+    "merge", // default
+]);
+
+console.log(filters);
+/*
+[
+    { field: "title", operator: "contains", value: "A" },
+    { field: "author", operator: "contains", value: "Ali" },
+    { field: "status", operator: "equals", value: "published" }
+]
+*/
+
+setFilter([
+    {
+        field: "author",
+        operator: "ne",
+        value: "Ali",
+    },
+    "replace",
+]);
+
+console.log(filters);
+/*
+[
+    { field: "author", operator: "ne", value: "Ali" },
+    { field: "status", operator: "equals", value: "published" }
+]
+*/
+
+setFilters((prev) => prev.filter((filter) => filter.field !== "author"));
+
+console.log(filters);
+/*
+[
+    { field: "status", operator: "equals", value: "published" }
+]
+*/
 ```
 
 ## API
 
 ### Properties
 
-| Key                   | Description                                                                                                                                                        | Type                                                         | Default                                                                              |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| resource              | Resource name for API data interactions                                                                                                                            | `string` \| `undefined`                                      | Resource name that it reads from the URL                                             |
-| initialCurrent        | Initial page index                                                                                                                                                 | `number`                                                     | `1`                                                                                  |
-| initialPageSize       | Initial number of items per page                                                                                                                                   | `number`                                                     | `10`                                                                                 |
-| initialSorter         | Initial sorter state                                                                                                                                               | [`CrudSorting`][crudsorting]                                 |                                                                                      |
-| permanentSorter       | Default and unchangeable sorter state                                                                                                                              | [`CrudSorting`][crudsorting]                                 | `[]`                                                                                 |
-| initialFilter         | Initial filter state                                                                                                                                               | [`CrudFilters`][crudfilters]                                 |                                                                                      |
-| permanentFilter       | Default and unchangeable filter state                                                                                                                              | [`CrudFilters`][crudfilters]                                 | `[]`                                                                                 |
-| syncWithLocation      | Sortings, filters, page index and records shown per page are tracked by browser history                                                                            | `boolean`                                                    | Value set in [Refine][refine swl]. If a custom resource is given, it will be `false` |
-| queryOptions          | `react-query`'s `useQuery` options                                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`  |
-| metaData              | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)         | {}                                                                                   |
-| dataProviderName      | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.                                                                 | `string`                                                     | `default`                                                                            |
-| [liveMode][live mode] | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`][live mod props]          | `"off"`                                                                              |
-| liveParams            | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: BaseKey[]; [key: string]: any; }`][live mod props] | `undefined`                                                                          |
-| onLiveEvent           | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`][live mod props]               | `undefined`                                                                          |
+| Key                      | Description                                                                                                                                                        | Type                                                         | Default                                                                              |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| resource                 | Resource name for API data interactions                                                                                                                            | `string` \| `undefined`                                      | Resource name that it reads from the URL                                             |
+| initialCurrent           | Initial page index                                                                                                                                                 | `number`                                                     | `1`                                                                                  |
+| initialPageSize          | Initial number of items per page                                                                                                                                   | `number`                                                     | `10`                                                                                 |
+| initialSorter            | Initial sorter state                                                                                                                                               | [`CrudSorting`][crudsorting]                                 |                                                                                      |
+| permanentSorter          | Default and unchangeable sorter state                                                                                                                              | [`CrudSorting`][crudsorting]                                 | `[]`                                                                                 |
+| defaultSetFilterBehavior | Default behavior of the `setFilters` function                                                                                                                      | `"merge"` \| `"replace"`                                     | `merge`                                                                              |
+| initialFilter            | Initial filter state                                                                                                                                               | [`CrudFilters`][crudfilters]                                 |                                                                                      |
+| permanentFilter          | Default and unchangeable filter state                                                                                                                              | [`CrudFilters`][crudfilters]                                 | `[]`                                                                                 |
+| syncWithLocation         | Sortings, filters, page index and records shown per page are tracked by browser history                                                                            | `boolean`                                                    | Value set in [Refine][refine swl]. If a custom resource is given, it will be `false` |
+| queryOptions             | `react-query`'s `useQuery` options                                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`  |
+| metaData                 | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)         | {}                                                                                   |
+| dataProviderName         | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.                                                                 | `string`                                                     | `default`                                                                            |
+| [liveMode][live mode]    | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`][live mod props]          | `"off"`                                                                              |
+| liveParams               | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: BaseKey[]; [key: string]: any; }`][live mod props] | `undefined`                                                                          |
+| onLiveEvent              | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`][live mod props]               | `undefined`                                                                          |
 
 ### Type Parameters
 
@@ -186,19 +235,19 @@ console.log(filters); // [{ field: "title", operator: "contains", value: "A" }, 
 
 ### Return values
 
-| Property                      | Description                                             | Type                                                                                              |
-| ----------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| tableQueryResult              | Result of the `react-query`'s `useQuery`                | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery] |
-| current                       | Current page index state                                | `number`                                                                                          |
-| totalPage                     | Total page count                                        | `number`                                                                                          |
-| setCurrent                    | A function that changes the current                     | `React.Dispatch<React.SetStateAction<number>>`                                                    |
-| pageSize                      | Current pageSize state                                  | `number`                                                                                          |
-| setPageSize                   | A function that changes the pageSize.                   | `React.Dispatch<React.SetStateAction<number>>`                                                    |
-| sorter                        | Current sorting state                                   | [`CrudSorting`][crudsorting]                                                                      |
-| setSorter                     | A function that accepts a new sorter state.             | `(sorter: CrudSorting) => void`                                                                   |
-| filters                       | Current filters state                                   | [`CrudFilters`][crudfilters]                                                                      |
-| setFilters                    | A function that accepts a new filter state              | `(filters: CrudFilters) => void`                                                                  |
-| createLinkForSyncWithLocation | A function create accessible links for syncWithLocation | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`                                                |
+| Property                      | Description                                             | Type                                                                                                                                                    |
+| ----------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| tableQueryResult              | Result of the `react-query`'s `useQuery`                | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery]                                                       |
+| current                       | Current page index state                                | `number`                                                                                                                                                |
+| totalPage                     | Total page count                                        | `number`                                                                                                                                                |
+| setCurrent                    | A function that changes the current                     | `React.Dispatch<React.SetStateAction<number>>`                                                                                                          |
+| pageSize                      | Current pageSize state                                  | `number`                                                                                                                                                |
+| setPageSize                   | A function that changes the pageSize.                   | `React.Dispatch<React.SetStateAction<number>>`                                                                                                          |
+| sorter                        | Current sorting state                                   | [`CrudSorting`][crudsorting]                                                                                                                            |
+| setSorter                     | A function that accepts a new sorter state.             | `(sorter: CrudSorting) => void`                                                                                                                         |
+| filters                       | Current filters state                                   | [`CrudFilters`][crudfilters]                                                                                                                            |
+| setFilters                    | A function that accepts a new filter state              | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` <br/> - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
+| createLinkForSyncWithLocation | A function create accessible links for syncWithLocation | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`                                                                               |
 
 <br />
 
