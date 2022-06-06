@@ -690,4 +690,152 @@ describe("useTable Filters", () => {
         expect(result.current.filters).toEqual(newFilters);
         expect(result.current.filters).toHaveLength(1);
     });
+
+    it("[setter function] should set the return value of the setter function as filters", () => {
+        const initialFilter = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "test",
+            },
+        ] as CrudFilters;
+
+        const newFilters = [
+            {
+                field: "id",
+                operator: "ne",
+                value: 5,
+            },
+        ] as CrudFilters;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialFilter,
+                }),
+            {
+                wrapper,
+            },
+        );
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(initialFilter);
+        expect(result.current.filters).toHaveLength(1);
+
+        act(() => {
+            result.current.setFilters(() => newFilters);
+        });
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(newFilters);
+        expect(result.current.filters).toHaveLength(1);
+    });
+
+    it("[setter function] should pass the existing filters as first argument", () => {
+        const initialFilter = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "test",
+            },
+        ] as CrudFilters;
+
+        const newFilters = [
+            {
+                field: "id",
+                operator: "ne",
+                value: 5,
+            },
+        ] as CrudFilters;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialFilter,
+                }),
+            {
+                wrapper,
+            },
+        );
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(initialFilter);
+        expect(result.current.filters).toHaveLength(1);
+
+        const setterFunction = jest.fn(
+            (prevFilters) => [...prevFilters, ...newFilters] as CrudFilters,
+        );
+
+        act(() => {
+            result.current.setFilters(setterFunction);
+        });
+
+        expect(setterFunction).toBeCalledTimes(1);
+        expect(setterFunction).toBeCalledWith(initialFilter);
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(
+            expect.arrayContaining([...initialFilter, ...newFilters]),
+        );
+        expect(result.current.filters).toHaveLength(2);
+    });
+
+    it("[setter function] should not be able to overwrite permanent filters", () => {
+        const initialFilter = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "test",
+            },
+        ] as CrudFilters;
+
+        const newFilters = [
+            {
+                field: "id",
+                operator: "gte",
+                value: 3,
+            },
+        ] as CrudFilters;
+
+        const permanentFilter = [
+            {
+                field: "id",
+                operator: "gte",
+                value: 5,
+            },
+        ] as CrudFilters;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialFilter,
+                    permanentFilter,
+                }),
+            {
+                wrapper,
+            },
+        );
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(
+            expect.arrayContaining([...initialFilter, ...permanentFilter]),
+        );
+        expect(result.current.filters).toHaveLength(2);
+
+        act(() => {
+            result.current.setFilters(() => newFilters);
+        });
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(
+            expect.arrayContaining(permanentFilter),
+        );
+        expect(result.current.filters).toEqual(
+            expect.not.arrayContaining(newFilters),
+        );
+        expect(result.current.filters).toEqual(
+            expect.not.arrayContaining(initialFilter),
+        );
+        expect(result.current.filters).toHaveLength(1);
+    });
 });
