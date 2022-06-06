@@ -337,7 +337,7 @@ Another part that is different from `<PostCreate>` and `<PostEdit>` is the `defa
 
 [Refer to the `useSelect` documentation for detailed information. &#8594](/core/hooks/useSelect.md)
 
-```tsx title="src/posts/edit.tsx"
+```tsx title="src/pages/posts/edit.tsx"
 //highlight-next-line
 import { useStepsForm } from "@pankod/refine-react-hook-form";
 import { useSelect } from "@pankod/refine-core";
