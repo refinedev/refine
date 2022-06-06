@@ -5,7 +5,7 @@ title: useForm
 
 **refine** allows you to use all the features of [React Hook Form](https://react-hook-form.com/) library with `@pankod/refine-react-hook-form` adapter. Using this package, you can create your own **headless** forms and use all the features provided by React Hook Form in your **refine** project in a compatible way. For more information, you can view the live example or review the source code.
 
-[Refer to the **refine** React Hook Form documentation for more information. →](/docs/packages/react-hook-form/useForm/)
+[Refer to the **refine** React Hook Form documentation for more information. →](/packages/react-hook-form/useForm.md)
 
 [View React Hook Form Example Source](https://github.com/pankod/refine/tree/master/examples/reactHookForm/useForm)
 

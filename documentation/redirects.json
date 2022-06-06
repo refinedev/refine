@@ -713,10 +713,6 @@
             "to": "/docs/examples/notification-provider/react-toastify/"
         },
         {
-            "from": "/docs/next/examples/react-hook-form/react-hook-form/",
-            "to": "/docs/examples/react-hook-form/react-hook-form/"
-        },
-        {
             "from": "/docs/next/examples/react-table/advanced-react-table/",
             "to": "/docs/examples/react-table/advanced-react-table/"
         },
@@ -879,10 +875,6 @@
         {
             "from": "/docs/next/migration-guide/",
             "to": "/docs/migration-guide/"
-        },
-        {
-            "from": "/docs/next/packages/react-hook-form/",
-            "to": "/docs/packages/react-hook-form/"
         },
         {
             "from": "/docs/next/packages/react-table/",

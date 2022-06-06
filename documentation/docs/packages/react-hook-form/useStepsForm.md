@@ -528,6 +528,6 @@ const {
 ></iframe>
 
 [@pankod/refine-react-hook-form]: https://github.com/pankod/refine/tree/master/packages/react-hook-form
-[refine-react-hook-form-use-form]: /docs/packages/react-hook-form/useForm.md
+[refine-react-hook-form-use-form]: /packages/react-hook-form/useForm.md
 [react-hook-form-use-form]: https://react-hook-form.com/api/useform
 [use-form-core]: /core/hooks/useForm.md
