@@ -301,6 +301,18 @@ module.exports = {
                         },
                     ],
                 },
+                {
+                    type: "category",
+                    label: "Material Design",
+                    collapsed: false,
+                    items: [
+                        {
+                            type: "category",
+                            label: "Hooks",
+                            items: ["ui-frameworks/mui/hooks/useDataGrid"],
+                        },
+                    ],
+                },
             ],
         },
         {
@@ -537,6 +549,11 @@ module.exports = {
                     type: "category",
                     label: "Table",
                     items: [
+                        {
+                            type: "category",
+                            label: "MUI",
+                            items: ["examples/table/mui/useDataGrid"],
+                        },
                         "examples/table/advancedTable",
                         "examples/table/tableFilter",
                         "examples/table/useDeleteMany",

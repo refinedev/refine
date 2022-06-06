@@ -193,7 +193,7 @@ export const useTable = <
                 current,
                 pageSize,
             },
-            filters: unionFilters(permanentFilter, [], filters),
+            filters: unionFilters(permanentFilter, filters),
             sort: unionSorters(permanentSorter, sorter),
         },
         queryOptions,

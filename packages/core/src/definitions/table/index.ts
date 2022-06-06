@@ -1,6 +1,5 @@
 import qs, { IStringifyOptions } from "qs";
 import unionWith from "lodash/unionWith";
-import reverse from "lodash/reverse";
 import differenceWith from "lodash/differenceWith";
 
 import {
@@ -79,9 +78,7 @@ export const unionFilters = (
     newFilters: CrudFilters,
     prevFilters: CrudFilters = [],
 ): CrudFilters =>
-    reverse(
-        unionWith(permanentFilter, newFilters, prevFilters, compareFilters),
-    ).filter(
+    unionWith(permanentFilter, newFilters, prevFilters, compareFilters).filter(
         (crudFilter) =>
             crudFilter.value !== undefined && crudFilter.value !== null,
     );
@@ -90,7 +87,7 @@ export const unionSorters = (
     permanentSorter: CrudSorting,
     newSorters: CrudSorting,
 ): CrudSorting =>
-    reverse(unionWith(permanentSorter, newSorters, compareSorters)).filter(
+    unionWith(permanentSorter, newSorters, compareSorters).filter(
         (crudSorter) =>
             crudSorter.order !== undefined && crudSorter.order !== null,
     );
