@@ -1,112 +1,125 @@
 import * as React from "react";
-import { Stack, Grid, Typography, Button } from "@mui/material";
+import {
+    Stack,
+    Grid,
+    Typography,
+    Button,
+    CssBaseline,
+    Link,
+} from "@mui/material";
 
 import logo from "../../../assets/images/refine.svg";
 
-const styles: { [key: string]: React.CSSProperties } = {
-    root: {
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundImage:
-            "url('https://refine.ams3.cdn.digitaloceanspaces.com/login-background/background.png')",
-        backgroundSize: "cover",
-    },
-    title: {
-        color: "white",
-        fontWeight: 800,
-        fontSize: "64px",
-        marginBottom: "8px",
-    },
-    p1: {
-        color: "white",
-        marginBottom: 0,
-        fontSize: "20px",
-        fontWeight: "bold",
-    },
-    p2: {
-        color: "white",
-        fontSize: "20px",
-    },
-    code: {
-        backgroundColor: "white",
-        color: "#331049",
-    },
-    logo: {
-        display: "flex",
-        justifyContent: "center",
-    },
-    content: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-    },
-};
-
 export const ReadyPage: React.FC = () => {
-    return (
-        <Grid
-            container
-            spacing={2}
-            style={styles.root}
+    const renderCode = (text: string) => (
+        <Typography
             sx={{
-                backgroundColor: (theme) => theme.palette.background.default,
+                backgroundColor: "white",
+                color: (theme) => theme.palette.secondary.main,
+                display: "inline-block",
+                fontFamily: "monospace",
             }}
         >
-            <div style={styles.content}>
-                <div style={styles.logo}>
-                    <img
-                        style={{ marginBottom: "48px" }}
-                        src={logo}
-                        alt="Refine Logo"
-                    />
-                </div>
-                <Typography style={styles.title}>Welcome on board</Typography>
-                <Typography style={styles.p1}>
-                    Your configuration is completed.
-                </Typography>
-                <Typography style={styles.p2}>
-                    Now you can get started by adding your resources to the{" "}
-                    <code style={styles.code}>{`resources`}</code> property of{" "}
-                    <code style={styles.code}>{`<Refine>`}</code>
-                </Typography>
-                <Grid item sm={12} mt={12}>
-                    <Stack spacing={2} direction="row">
-                        <a
-                            href="https://refine.dev"
-                            target="_blank"
-                            rel="noreferrer"
-                            style={{
-                                textDecoration: "none",
-                            }}
+            {text}
+        </Typography>
+    );
+    return (
+        <>
+            <CssBaseline />
+            <Grid
+                container
+                sx={{
+                    backgroundColor: (theme) => theme.palette.secondary.main,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100vh",
+                    backgroundImage:
+                        "url('https://refine.ams3.cdn.digitaloceanspaces.com/login-background/background.png')",
+                    backgroundSize: "cover",
+                }}
+                p={3}
+            >
+                <Grid
+                    display="flex"
+                    flexDirection="column"
+                    flex={1}
+                    alignItems="center"
+                >
+                    <Typography display="flex" justifyContent="center">
+                        <img
+                            style={{ marginBottom: "48px" }}
+                            src={logo}
+                            alt="Refine Logo"
+                        />
+                    </Typography>
+                    <Typography
+                        variant="h2"
+                        fontWeight="bold"
+                        display="flex"
+                        justifyContent="center"
+                    >
+                        Welcome on board
+                    </Typography>
+                    <Typography variant="h5" mt={2}>
+                        Your configuration is completed.
+                    </Typography>
+                    <Typography variant="h6" mt={2}>
+                        Now you can get started by adding your resources to the{" "}
+                        {renderCode(`resources`)} property of{" "}
+                        {renderCode(`Refine`)}
+                    </Typography>
+                    <Grid
+                        item
+                        sm={12}
+                        mt={12}
+                        display="flex"
+                        justifyContent="center"
+                    >
+                        <Stack
+                            spacing={2}
+                            direction={{ xs: "column", sm: "row" }}
                         >
-                            <Button variant="outlined">Documentation</Button>
-                        </a>
-                        <a
-                            href="https://refine.dev/docs/examples/tutorial"
-                            target="_blank"
-                            rel="noreferrer"
-                            style={{
-                                textDecoration: "none",
-                            }}
-                        >
-                            <Button variant="outlined">Examples</Button>
-                        </a>
-                        <a
-                            href="https://discord.gg/refine"
-                            target="_blank"
-                            rel="noreferrer"
-                            style={{
-                                textDecoration: "none",
-                            }}
-                        >
-                            <Button variant="outlined">Community</Button>
-                        </a>
-                    </Stack>
+                            <Link
+                                href="https://refine.dev"
+                                target="_blank"
+                                rel="noreferrer"
+                                style={{
+                                    textDecoration: "none",
+                                }}
+                            >
+                                <Button variant="outlined" fullWidth>
+                                    Documentation
+                                </Button>
+                            </Link>
+                            <Link
+                                href="https://refine.dev/docs/examples/tutorial"
+                                target="_blank"
+                                rel="noreferrer"
+                                style={{
+                                    textDecoration: "none",
+                                }}
+                            >
+                                <Button variant="outlined" fullWidth>
+                                    Examples
+                                </Button>
+                            </Link>
+                            <Link
+                                href="https://discord.gg/refine"
+                                target="_blank"
+                                rel="noreferrer"
+                                style={{
+                                    textDecoration: "none",
+                                }}
+                            >
+                                <Button variant="outlined" fullWidth>
+                                    Community
+                                </Button>
+                            </Link>
+                        </Stack>
+                    </Grid>
                 </Grid>
-            </div>
-        </Grid>
+            </Grid>
+        </>
     );
 };
