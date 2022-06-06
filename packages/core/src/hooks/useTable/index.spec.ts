@@ -286,7 +286,7 @@ describe("useTable Filters", () => {
         expect(result.current.filters).toHaveLength(1);
     });
 
-    it("[behavior=merge(default)] should merge new filters with existing ones", () => {
+    it("[behavior=merge] should merge new filters with existing ones", () => {
         const initialFilter = [
             {
                 field: "name",
@@ -329,7 +329,7 @@ describe("useTable Filters", () => {
         expect(result.current.filters).toHaveLength(2);
     });
 
-    it("[behavior=merge(default)] permanent filter should not be overwritten", () => {
+    it("[behavior=merge] permanent filter should not be overwritten", () => {
         const initialFilter = [
             {
                 field: "name",
@@ -387,7 +387,7 @@ describe("useTable Filters", () => {
         );
     });
 
-    it("[behavior=merge(default)] should merge new filters and remove duplicates", () => {
+    it("[behavior=merge] should merge new filters and remove duplicates", () => {
         const initialFilter = [
             {
                 field: "name",
