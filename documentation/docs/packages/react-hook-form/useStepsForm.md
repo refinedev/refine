@@ -187,7 +187,7 @@ export const PostList: React.FC = () => {
 
 In this component you can see how `useStepsForm` is used to manage the steps and form.
 
-```tsx title="src/posts/create.tsx"
+```tsx title="src/pages/posts/create.tsx"
 //highlight-next-line
 import { useStepsForm } from "@pankod/refine-react-hook-form";
 import { useSelect } from "@pankod/refine-core";
