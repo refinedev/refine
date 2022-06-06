@@ -108,7 +108,7 @@ export default App;
 
 In this component we will use [`useNavigation`](/core/hooks/navigation/useNavigation.md) to redirect to the `<PostCreate>` and `<PostEdit>` components.
 
-```tsx title="src/posts/list.tsx"
+```tsx title="src/pages/posts/list.tsx"
 import { useTable, useNavigation, useMany } from "@pankod/refine-core";
 
 import { ICategory, IPost } from "interfaces";
