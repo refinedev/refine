@@ -30,7 +30,7 @@ import {
     LiveModeProps,
 } from "../../interfaces";
 
-type SetFilterFilterBehavior = "merge" | "replace";
+type SetFilterBehavior = "merge" | "replace";
 
 export type useTableProps<TData, TError> = {
     resource?: string;
@@ -38,7 +38,7 @@ export type useTableProps<TData, TError> = {
     initialPageSize?: number;
     initialSorter?: CrudSorting;
     permanentSorter?: CrudSorting;
-    defaultSetFilterBehavior?: SetFilterFilterBehavior;
+    defaultSetFilterBehavior?: SetFilterBehavior;
     initialFilter?: CrudFilters;
     permanentFilter?: CrudFilters;
     syncWithLocation?: boolean;
@@ -61,10 +61,8 @@ export type useTableReturnType<TData extends BaseRecord = BaseRecord> = {
     sorter: CrudSorting;
     setSorter: (sorter: CrudSorting) => void;
     filters: CrudFilters;
-    setFilters: (
-        filters: CrudFilters,
-        behavior?: SetFilterFilterBehavior,
-    ) => void;
+    setFilters: ((filters: CrudFilters, behavior?: SetFilterBehavior) => void) &
+        ((setter: (prevFilters: CrudFilters) => CrudFilters) => void);
     current: number;
     setCurrent: ReactSetState<useTableReturnType["current"]>;
     pageSize: number;
@@ -216,14 +214,24 @@ export const useTable = <
         setFilters(unionFilters(permanentFilter, newFilters));
     };
 
-    const setFiltersFn = (
-        newFilters: CrudFilters,
-        behavior: SetFilterFilterBehavior = defaultSetFilterBehavior,
+    const setFiltersWithSetter = (
+        setter: (prevFilters: CrudFilters) => CrudFilters,
     ) => {
-        if (behavior === "replace") {
-            setFiltersAsReplace(newFilters);
+        setFilters((prev) => unionFilters(permanentFilter, setter(prev)));
+    };
+
+    const setFiltersFn: useTableReturnType<TData>["setFilters"] = (
+        setterOrFilters,
+        behavior: SetFilterBehavior = defaultSetFilterBehavior,
+    ) => {
+        if (typeof setterOrFilters === "function") {
+            setFiltersWithSetter(setterOrFilters);
         } else {
-            setFiltersAsMerge(newFilters);
+            if (behavior === "replace") {
+                setFiltersAsReplace(setterOrFilters);
+            } else {
+                setFiltersAsMerge(setterOrFilters);
+            }
         }
     };
 
