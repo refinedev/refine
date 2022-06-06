@@ -206,10 +206,14 @@ export const useTable = <
         dataProviderName,
     });
 
-    const setFiltersWithUnion = (newFilters: CrudFilters) => {
+    const setFiltersAsMerge = (newFilters: CrudFilters) => {
         setFilters((prevFilters) =>
             unionFilters(permanentFilter, newFilters, prevFilters),
         );
+    };
+
+    const setFiltersAsReplace = (newFilters: CrudFilters) => {
+        setFilters(unionFilters(permanentFilter, newFilters));
     };
 
     const setFiltersFn = (
@@ -217,10 +221,9 @@ export const useTable = <
         behavior: SetFilterFilterBehavior = defaultSetFilterBehavior,
     ) => {
         if (behavior === "replace") {
-            setFiltersWithUnion(newFilters);
+            setFiltersAsReplace(newFilters);
         } else {
-            // merge (default and fallback)
-            setFiltersWithUnion(newFilters);
+            setFiltersAsMerge(newFilters);
         }
     };
 
