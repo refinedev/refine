@@ -48,10 +48,10 @@ export const useLogin = <TVariables = {}>(): UseMutationResult<
                         replace("/");
                     }
                 }
-                close("login-error");
+                close?.("login-error");
             },
             onError: (error: any) => {
-                open({
+                open?.({
                     message: error?.name || "Login Error",
                     description: error?.message || "Invalid credentials",
                     key: "login-error",

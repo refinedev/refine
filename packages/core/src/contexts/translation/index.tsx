@@ -2,17 +2,10 @@ import React from "react";
 
 import { ITranslationContext } from "../../interfaces";
 
-export const defaultProvider: ITranslationContext = {
-    i18nProvider: {
-        translate: (key: string, options: any, defaultMessage?: string) =>
-            defaultMessage || options,
-        changeLocale: () => Promise.resolve(),
-        getLocale: () => "en",
-    },
-};
+/** @deprecated default value for translation context has no use and is an empty object.  */
+export const defaultProvider: ITranslationContext = {};
 
-export const TranslationContext =
-    React.createContext<ITranslationContext>(defaultProvider);
+export const TranslationContext = React.createContext<ITranslationContext>({});
 
 export const TranslationContextProvider: React.FC<ITranslationContext> = ({
     children,

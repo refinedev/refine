@@ -6,5 +6,5 @@ import { IAuthContext } from "../../../interfaces";
 export const useIsAuthenticated = () => {
     const { isAuthenticated } = useContext<IAuthContext>(AuthContext);
 
-    return isAuthenticated;
+    return Boolean(isAuthenticated);
 };

@@ -9,5 +9,7 @@ export type CanReturnType = {
     reason?: string;
 };
 export interface IAccessControlContext {
-    can: ({ resource, action, params }: CanParams) => Promise<CanReturnType>;
+    can?: ({ resource, action, params }: CanParams) => Promise<CanReturnType>;
 }
+
+export type AccessControlProvider = Required<IAccessControlContext>;
