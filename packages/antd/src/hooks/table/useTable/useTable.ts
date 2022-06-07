@@ -61,7 +61,6 @@ export const useTable = <
 >({
     onSearch,
     initialCurrent,
-    defaultSetFilterBehavior,
     initialPageSize,
     initialSorter,
     permanentSorter,
@@ -98,7 +97,6 @@ export const useTable = <
         initialCurrent,
         initialPageSize,
         initialSorter,
-        defaultSetFilterBehavior,
         initialFilter,
         syncWithLocation: syncWithLocationProp,
         resource: resourceFromProp,
