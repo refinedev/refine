@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-antd": patch
+"@pankod/refine-antd": minor
 ---
 
 -   Add `defaultSetFilterBehavior` property to `useTable` options.
