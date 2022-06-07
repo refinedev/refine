@@ -102,7 +102,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
         );
 
         const withAuidtLogProvider = auditLogProvider ? (
-            <AuditLogContextProvider auditLogProvider={auditLogProvider}>
+            <AuditLogContextProvider {...auditLogProvider}>
                 {withAccessControl}
             </AuditLogContextProvider>
         ) : (

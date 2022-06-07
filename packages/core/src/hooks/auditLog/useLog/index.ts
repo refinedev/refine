@@ -43,14 +43,6 @@ export const useLog = <
 
     const log = useCallback(
         async (params: LogParams) => {
-            if (!auditLogContext) {
-                throw new Error("auditLogProvider is not defined.");
-            }
-
-            if (!auditLogContext.create) {
-                throw new Error("auditLogProvider's `log` is not defined.");
-            }
-
             const resource = resources.find((p) => p.name === params.resource);
             const logPermissions = resource?.options?.auditLog?.permissions;
 
@@ -63,7 +55,7 @@ export const useLog = <
                         authorData = await refetch();
                     }
 
-                    auditLogContext.create({
+                    auditLogContext.create?.({
                         ...params,
                         author: identityData ?? authorData?.data,
                     });
@@ -85,14 +77,6 @@ export const useLog = <
         unknown
     >(
         async (params) => {
-            if (!auditLogContext) {
-                throw new Error("auditLogProvider is not defined.");
-            }
-
-            if (!auditLogContext.update) {
-                throw new Error("auditLogProvider's `rename` is not defined.");
-            }
-
             return await auditLogContext.update?.(params);
         },
         {

@@ -22,29 +22,22 @@ export const useLogList = <TData = any, TError extends HttpError = HttpError>({
     metaData,
     queryOptions,
 }: UseLogProps<TData, TError>): UseQueryResult<TData> => {
-    const auditLogContext = useContext(AuditLogContext);
-
-    if (!auditLogContext) {
-        throw new Error("auditLogProvider is not defined.");
-    }
-
-    if (!auditLogContext.get) {
-        throw new Error("auditLogProvider's `get` is not defined.");
-    }
+    const { get } = useContext(AuditLogContext);
 
     const queryKey = queryKeys(resource, undefined, metaData);
 
     const queryResponse = useQuery<TData, TError>(
         queryKey.logList(meta),
         () =>
-            auditLogContext.get!({
+            get?.({
                 resource,
                 action,
                 author,
                 meta,
                 metaData,
-            }),
+            }) ?? Promise.resolve([]),
         {
+            enabled: typeof get !== "undefined",
             ...queryOptions,
             retry: false,
         },
