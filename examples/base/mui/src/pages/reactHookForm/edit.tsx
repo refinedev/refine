@@ -55,7 +55,7 @@ export const PostEdit: React.FC = () => {
                     fullWidth
                     error={!!errors?.status}
                 >
-                    <InputLabel id="status">Age</InputLabel>
+                    <InputLabel id="status">Status</InputLabel>
                     <Select
                         {...register("status")}
                         labelId="status"
