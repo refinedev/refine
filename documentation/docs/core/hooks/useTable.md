@@ -163,7 +163,7 @@ setFilter([
     {
         field: "author",
         operator: "contains",
-        value: "Ali",
+        value: "Foo",
     },
     "merge", // default
 ]);
