@@ -25,7 +25,6 @@ export const ReadyPage: React.FC = () => {
     );
     return (
         <>
-            <CssBaseline />
             <Grid
                 container
                 sx={{
