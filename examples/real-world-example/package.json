@@ -1,12 +1,12 @@
 {
   "name": "refine-realworld-example",
-  "version": "3.22.1",
+  "version": "3.24.0-next.0",
   "private": true,
   "dependencies": {
-    "@pankod/refine-core": "^3.23.2",
-    "@pankod/refine-react-hook-form": "^3.22.2",
-    "@pankod/refine-react-router-v6": "^3.22.2",
-    "@pankod/refine-simple-rest": "^3.22.2",
+    "@pankod/refine-core": "^3.24.0-next.0",
+    "@pankod/refine-react-hook-form": "^3.24.0-next.0",
+    "@pankod/refine-react-router-v6": "^3.24.0-next.0",
+    "@pankod/refine-simple-rest": "^3.24.0-next.0",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
