@@ -1,6 +1,6 @@
 {
   "name": "refine-ably-example",
-  "version": "3.22.1",
+  "version": "3.22.2-next.0",
   "private": true,
   "dependencies": {
     "@pankod/refine-ably": "^3.22.2",

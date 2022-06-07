@@ -38,22 +38,18 @@ jobs:
         run: npm run lint
       - name: Test
         run: npm test
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          publish: npm run changeset publish
-          commit: "ci(changesets): version packages"
-          title: "ci(changesets): version packages"
-        env:
-          GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-      - name: Release to @next-dev tag
-        if: steps.changesets.outputs.published != 'true'
+      - run: |
+          git config --global user.email "bot@pankod.com"
+          git config --global user.name "pankod-bot"
+      - name: Release to @next tag
         run: |
-          npm run changeset version --snapshot next-dev
-          npm run changeset publish --tag next-dev
+          git checkout next
+          npm run changeset pre enter next || :
+          npm run changeset version
+          git add .
+          git commit -m "ci(changesets): version packages"
+          npm run changeset publish
+          git push --follow-tags
         env:
           GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
