@@ -42,6 +42,10 @@ export const DashboardPage: React.FC = () => {
         });
     };
 
+    refineSDK.config
+        .get()
+        .then((config) => console.log(JSON.stringify(config, null, 2)));
+
     return (
         <AntdLayout className="layout">
             <Title level={3} className="title">
@@ -68,6 +72,7 @@ export const DashboardPage: React.FC = () => {
                     </Form>
                 </Col>
                 <Col span="12">
+                    <pre>{JSON.stringify(data, null, 2)}</pre>
                     <pre>{JSON.stringify(data, null, 2)}</pre>
                 </Col>
             </Row>
