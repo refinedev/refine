@@ -15,8 +15,12 @@ export const CreatePost: React.FC<UseModalFormReturnType> = ({
             <form className="form" onSubmit={handleSubmit(onFinish)}>
                 <div className="form-group">
                     <label>Title: </label>
-                    <input {...register("title", { required: true })} />
-                    {errors.title && <span>This field is required</span>}
+                    <input
+                        {...register("title", {
+                            required: "This field is required",
+                        })}
+                    />
+                    {errors.title && <span>{errors.title.message}</span>}
                 </div>
                 <div className="form-group">
                     <label>Status: </label>
@@ -29,12 +33,13 @@ export const CreatePost: React.FC<UseModalFormReturnType> = ({
                 <div className="form-group">
                     <label>Content: </label>
                     <textarea
-                        {...register("content", { required: true })}
+                        {...register("content", {
+                            required: "This field is required",
+                        })}
                         rows={10}
                     />
-                    {errors.content && <span>This field is required</span>}
+                    {errors.content && <span>{errors.content.message}</span>}
                 </div>
-
                 <button type="submit" {...saveButtonProps}>
                     {formLoading ? "Loading" : "Save"}
                 </button>
