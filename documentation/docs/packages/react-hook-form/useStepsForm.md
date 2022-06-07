@@ -25,7 +25,7 @@ Let's create our `<PostList>` to redirect to create and edit pages.
 
 In this component we will use [`useNavigation`](/core/hooks/navigation/useNavigation.md) to redirect to the `<PostCreate>` and `<PostEdit>` components.
 
-```tsx title="src/posts/list.tsx"
+```tsx title="src/pages/posts/list.tsx"
 //highlight-next-line
 import { useTable, useNavigation, useMany } from "@pankod/refine-core";
 
