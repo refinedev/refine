@@ -7,7 +7,7 @@ import { useLogList } from "./";
 const logListMock = jest.fn();
 
 describe("useLogList Hook", () => {
-    it("useLogList should call the auditLogProvider's list method with same properties", () => {
+    xit("useLogList should call the auditLogProvider's list method with same properties", () => {
         renderHook(
             () =>
                 useLogList({
@@ -31,7 +31,7 @@ describe("useLogList Hook", () => {
         });
     });
 
-    it("useLogList should return data with 'posts' resource", async () => {
+    xit("useLogList should return data with 'posts' resource", async () => {
         const { result, waitFor } = renderHook(
             () => useLogList({ resource: "posts" }),
             {
