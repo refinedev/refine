@@ -634,7 +634,7 @@ On the next step, we are going to add a category field to the table which involv
 
 ### Handling relationships
 
-Remember the records from `/posts` endpoint that had a category id field?
+Remember the records from `/posts` endpoint that had a category id field.
 
 ```ts title="https://api.fake-rest.refine.dev/posts/1"
 ...
@@ -654,7 +654,7 @@ The category title data can be obtained from the `/categories` endpoint for each
   }
 ```
 
-At this point, we need to join records from different resources. For this, we're goint to use the **refine** hook `useOne`.
+At this point, we need to join records from different resources. For this, we're going to use the **refine** hook `useOne`.
 
 Before we start, just edit our interface for the new `ICategory` type:
 
@@ -678,7 +678,7 @@ export interface IPost {
 
 So we can update our `list.tsx` with the highlighted lines:
 
-```tsx title="pages/posts/list.tsx"
+```tsx title="src/pages/posts/list.tsx"
 import React from "react";
 import { useTable, Column } from "@pankod/refine-react-table";
 //highlight-next-line
@@ -801,7 +801,7 @@ Try the result on your browser and you'll notice that the category column is fil
 
 We can add pagination to our table by using the `usePagination` hook that **react-table** provides.
 
-```tsx title="pages/posts/list.tsx"
+```tsx title="src/pages/posts/list.tsx"
 import React from "react";
 import { useOne } from "@pankod/refine-core";
 //highlight-next-line
@@ -1085,7 +1085,7 @@ export const ChevronsRightIcon = (
 
 We can add sorting and filtering to our table by adding the following codes to the table:
 
-```tsx
+```tsx title="src/pages/posts/list.tsx"
 import React from "react";
 import {
     useTable,
@@ -1320,7 +1320,7 @@ At this point we are able to list all _post_ records on the table component. Nex
 
 Let's create a `<PostShow>` component on `/pages/posts` folder:
 
-```tsx title="pages/posts/show.tsx"
+```tsx title="src/pages/posts/show.tsx"
 import { useShow, useOne } from "@pankod/refine-core";
 
 import { IPost, ICategory } from "interfaces";
@@ -1485,7 +1485,7 @@ export const ShowIcon = (
 </p>
 </details>
 
-✳️ `useShow()` is a **refine** hook used to fetch a single record data. The `queryResult` has the response and also `isLoading` state.
+✳️ `useShow()` is a **refine** hook used to fetch a single record of data. The `queryResult` has the response and also `isLoading` state.
 
 [Refer to the `useShow` documentation for detailed usage information. &#8594](/core/hooks/show/useShow.md)
 
@@ -1494,10 +1494,10 @@ export const ShowIcon = (
 [Refer to the `useOne` documentation for detailed usage information. &#8594](/core/hooks/data/useOne.md)
 
 :::caution attention
-`useShow()` is the preferred hook for fetching data from current resource. For query foreign resources you may use the low-level `useOne()` hook.
+`useShow()` is the preferred hook for fetching data from the current resource. To query foreign resources you may use the low-level `useOne()` hook.
 :::
 
-Since we've got access to raw data returning from `useShow()`, there is no restriction how it's displayed on your components.
+Since we've got access to raw data returning from `useShow()`, there is no restriction on how it's displayed on your components.
 
 <div class="img-container">
     <div class="window">
@@ -1512,13 +1512,13 @@ Since we've got access to raw data returning from `useShow()`, there is no restr
 
 First, we'll install [`@pankod/refine-react-hook-form`](https://github.com/pankod/refine/tree/master/packages/react-hook-form) package to use the `useForm` hook.
 
-Until this point, we were basically working with read operations such as fetching and displaying data from resources. From now on, we are going to start creating and updating records by using `@pankod/refine-react-hook-form`.
+Until this point, we were basically working with reading operations such as fetching and displaying data from resources. From now on, we are going to start creating and updating records by using `@pankod/refine-react-hook-form`.
 
 [Refer to the `@pankod/refine-react-hook-form` documentation for detailed usage information. &#8594](/packages/react-hook-form.md)
 
 Let's start by creating a new `<PostEdit>` page responsible for editing a single record:
 
-```tsx title="pages/posts/edit.tsx"
+```tsx title="src/pages/posts/edit.tsx"
 import { useEffect } from "react";
 import { useForm } from "@pankod/refine-react-hook-form";
 import { useSelect } from "@pankod/refine-core";
@@ -1711,7 +1711,7 @@ export const App: React.FC = () => {
 
 We are going to need an _edit_ button on each row to display the `<PostEdit>` component. **refine** doesn't automatically add one, so we have to update our `<PostList>` component to add a edit button for each record:
 
-```tsx title="components/pages/posts.tsx"
+```tsx title="src/pages/posts/list.tsx"
 ...
 
 import { useNavigation } from "@pankod/refine-core";
@@ -1802,7 +1802,7 @@ Creating a record in **refine** follows a similar flow as editing records.
 
 First, we'll create a `<PostCreate>` page:
 
-```tsx title="pages/posts/create.tsx"
+```tsx title="src/pages/posts/create.tsx"
 import { useForm } from "@pankod/refine-react-hook-form";
 import { useSelect } from "@pankod/refine-core";
 
@@ -1963,7 +1963,7 @@ export const App: React.FC = () => {
 
 <br />
 
-And that's it! Try it on browser and see if you can create new posts from scratch.
+And that's it! Try it on the browser and see if you can create new posts from scratch.
 
 We should notice some minor differences from the edit example:
 
@@ -1975,7 +1975,7 @@ We should notice some minor differences from the edit example:
 
 Finally, We are going to need an _create_ button on top of the right side of the `PostList` page to create new posts. It redirects to create page.
 
-```tsx
+```tsx title="src/pages/posts/list.tsx"
 ...
 
 // highlight-next-line
@@ -2063,7 +2063,7 @@ Deleting a record can be done with `useDelete` hook.
 
 We are adding an _delete_ button on each row since _refine_ doesn't automatically add one, so we have to update our `<PostList>` component to add a _delete_ button for each record:
 
-```tsx title="components/pages/posts.tsx"
+```tsx title="src/pages/posts/list.tsx"
 ...
 
 //highlight-next-line

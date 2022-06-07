@@ -303,9 +303,10 @@ module.exports = {
                 },
                 {
                     type: "category",
-                    label: "Material Design",
+                    label: "Material UI",
                     collapsed: false,
                     items: [
+                        "ui-frameworks/mui/tutorial",
                         {
                             type: "category",
                             label: "Hooks",
