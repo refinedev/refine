@@ -180,9 +180,7 @@ export const Refine: React.FC<RefineProps> = ({
                                             {...(accessControlProvider ?? {})}
                                         >
                                             <AuditLogContextProvider
-                                                auditLogProvider={
-                                                    auditLogProvider
-                                                }
+                                                {...(auditLogProvider ?? {})}
                                             >
                                                 <UndoableQueueContextProvider>
                                                     <RefineContextProvider
