@@ -1,12 +1,12 @@
 {
   "name": "javascript-example",
-  "version": "3.24.0-next.3",
+  "version": "3.24.0-next.4",
   "private": true,
   "dependencies": {
-    "@pankod/refine-antd": "^3.24.0-next.3",
-    "@pankod/refine-core": "^3.24.0-next.3",
-    "@pankod/refine-react-router-v6": "^3.24.0-next.3",
-    "@pankod/refine-simple-rest": "^3.24.0-next.3",
+    "@pankod/refine-antd": "^3.24.0-next.4",
+    "@pankod/refine-core": "^3.24.0-next.4",
+    "@pankod/refine-react-router-v6": "^3.24.0-next.4",
+    "@pankod/refine-simple-rest": "^3.24.0-next.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-markdown": "^6.0.1",

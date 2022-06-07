@@ -8,7 +8,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "3.24.0-next.3",
+  "version": "3.24.0-next.4",
   "command": {
     "bootstrap": {
       "nohoist": [
