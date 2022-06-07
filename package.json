@@ -14,7 +14,7 @@
         "lint": "eslint -c ./.eslintrc packages examples",
         "lint:fix": "npm run lint -- --quiet --fix",
         "build": "lerna run build --ignore @pankod/refine-react-router --scope @pankod/refine*",
-        "publish-next": "npm run lerna version -- --preid next --conventional-commits --conventional-prerelease --no-push --no-changelog",
+        "publish-next": "npm run lerna version -- --preid next --conventional-commits --conventional-prerelease --no-changelog --force-publish && release pre next --skip-questions --pre-suffix next --show-url",
         "versionup": "npm run lerna version --conventional-commits --no-git-tag-version --scope @pankod/refine*",
         "nuke": "rm -rf node_modules; for d in for d in packages/*/node_modules; do echo $d; rm -rf $d; done; for d in for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in examples/*/node_modules; do echo $d; rm -rf $d; done;  for d in examples/*/package-lock.json; do echo $d; rm -rf $d; done;",
         "coffee": "npm run nuke && npm i && npm run bootstrap && npm run build",
@@ -52,6 +52,7 @@
     "dependencies": {
         "@changesets/changelog-github": "^0.4.4",
         "@changesets/cli": "^2.22.0",
-        "prettier": "2.3.0"
+        "prettier": "2.3.0",
+        "release": "github:aliemir/release"
     }
 }
