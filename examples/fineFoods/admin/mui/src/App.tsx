@@ -20,10 +20,6 @@ import {
 } from "@mui/icons-material";
 
 import { authProvider } from "authProvider";
-import {
-    DarkThemeWithResponsiveFontSizes as DarkTheme,
-    LightThemeWithResponsiveFontSizes as LightTheme,
-} from "theme";
 import { DashboardPage } from "pages/dashboard";
 import { OrderList, OrderShow } from "pages/orders";
 import { UserList, UserShow } from "pages/users";
