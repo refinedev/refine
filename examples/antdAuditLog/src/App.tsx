@@ -74,7 +74,6 @@ const App: React.FC = () => {
                     options: {
                         auditLog: {
                             permissions: ["create", "delete", "update"],
-                            autoFetch: ["*"],
                         },
                     },
                 },

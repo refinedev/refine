@@ -13,16 +13,6 @@ const auditLogPermissions = [
 ] as const;
 type AuditLogPermissions = typeof auditLogPermissions;
 
-const autoFetchPermissions = [
-    "edit",
-    "show",
-    "create",
-    "clone",
-    "list",
-    "*",
-] as const;
-type AuditLogAutoFetchPermissions = typeof autoFetchPermissions;
-
 export interface IResourceContext {
     resources: IResourceItem[];
 }
@@ -32,7 +22,6 @@ type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
     route?: string;
     auditLog?: {
         permissions?: AuditLogPermissions[number][] | string[];
-        autoFetch?: AuditLogAutoFetchPermissions[number][];
     };
     [key: string]: any;
 };
