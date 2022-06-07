@@ -13,102 +13,20 @@ import editForm from '@site/static/img/packages/react-hook-form/useStepsForm/edi
 `useStepsForm` hook is extended from [`useForm`][refine-react-hook-form-use-form] from the [`@pankod/refine-react-hook-form`][@pankod/refine-react-hook-form] package.
 :::
 
-## Properties
+## Usage
 
-### `stepsProps`
+We'll show two examples, one for creating and one for editing a post. Let's see how `useStepsForm` is used in both.
 
-**`defaultStep`**: It allows you to set the initial step. By default it is `0`.
+Let's create our `<PostList>` to redirect to create and edit pages.
 
-```tsx
-const stepsFormReturnValues = useStepsForm({
-    stepsProps: {
-        defaultStep: 1,
-    },
-});
-```
-
-**`isBackValidate`**: Should the validation be done when going back to a previous step? By default it is `false`.
-
-```tsx
-const stepsFormReturnValues = useStepsForm({
-    stepsProps: {
-        isBackValidate: true,
-    },
-});
-```
-
-### `refineCoreProps`
-
-[Refer to the useForm documentation in core for seeing properties. →](/core/hooks/useForm.md#properties)
-
-### Other props
-
-[Refer to the useForm documentation in React Hook Form for seeing properties. →][react-hook-form-use-form]
-
-## Return values
-
-### `steps`
-
-**`currentStep`**: It is the current step.
-
-**`gotoStep`**: It allows you to go to a specific step.
-
-```tsx
-const {
-    steps: { currentStep, gotoStep },
-} = useStepsForm();
-
-// Example usage
-const goToPreviousStep = () => gotoStep(currentStep - 1);
-```
-
-### `refineCore`
-
-[Refer to the useForm documentation in core for seeing return values. →](/core/hooks/useForm.md#return-values)
-
-### Other return values
-
-[Refer to the useForm documentation in React Hook Form for return values. →][react-hook-form-use-form]
-
-## Example
-
-First, we need to create resource pages. Let's assume we have a resource called `posts` and simply a `<PostList>`, `<PostCreate>` and `<PostEdit>` components.
-
-```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
-
-//highlight-next-line
-import { PostList, PostCreate, PostEdit } from "pages/posts";
-
-const App: React.FC = () => {
-    return (
-        <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            routerProvider={routerProvider}
-            //highlight-start
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                },
-            ]}
-            //highlight-end
-        />
-    );
-};
-
-export default App;
-```
-
-### List Page
+<details>
+  <summary>PostList</summary>
+  <div>
 
 In this component we will use [`useNavigation`](/core/hooks/navigation/useNavigation.md) to redirect to the `<PostCreate>` and `<PostEdit>` components.
 
 ```tsx title="src/posts/list.tsx"
+//highlight-next-line
 import { useTable, useNavigation, useMany } from "@pankod/refine-core";
 
 import { ICategory, IPost } from "interfaces";
@@ -122,6 +40,7 @@ export const PostList: React.FC = () => {
             },
         ],
     });
+    //highlight-next-line
     const { edit, create } = useNavigation();
 
     const categoryIds =
@@ -136,6 +55,7 @@ export const PostList: React.FC = () => {
 
     return (
         <div>
+            //highlight-next-line
             <button onClick={() => create("posts")}>Create Post</button>
             <table>
                 <thead>
@@ -161,9 +81,11 @@ export const PostList: React.FC = () => {
                             </td>
                             <td>{post.status}</td>
                             <td>
+                                //highlight-start
                                 <button onClick={() => edit("posts", post.id)}>
                                     Edit
                                 </button>
+                                //highlight-end
                             </td>
                         </tr>
                     ))}
@@ -174,6 +96,9 @@ export const PostList: React.FC = () => {
 };
 ```
 
+  </div>
+</details>
+
 <div class="img-container" style={{"max-width": "800px"}}>
     <div class="window">
         <div class="control red"></div>
@@ -183,7 +108,7 @@ export const PostList: React.FC = () => {
     <img src={listPage} alt="List Page" />
 </div>
 
-### Create Page
+### Create Form
 
 In this component you can see how `useStepsForm` is used to manage the steps and form.
 
@@ -197,7 +122,7 @@ const stepTitles = ["Title", "Status", "Content"];
 export const PostCreate: React.FC = () => {
     //highlight-start
     const {
-        refineCore: { onFinish, formLoading, queryResult },
+        refineCore: { onFinish, formLoading },
         register,
         handleSubmit,
         formState: { errors },
@@ -210,15 +135,19 @@ export const PostCreate: React.FC = () => {
         defaultValue: queryResult?.data?.data.category.id,
     });
 
-    // It handles which form elements render at which step.
+    // Where buttons are shown and where the form is submitted
     const renderFormByStep = (step: number) => {
         switch (step) {
             case 0:
                 return (
                     <>
                         <label>Title: </label>
-                        <input {...register("title", { required: true })} />
-                        {errors.title && <span>This field is required</span>}
+                        <input
+                            {...register("title", {
+                                required: "This field is required",
+                            })}
+                        />
+                        {errors.title && <span>{errors.title.message}</span>}
                     </>
                 );
             case 1:
@@ -238,9 +167,8 @@ export const PostCreate: React.FC = () => {
                         <label>Category: </label>
                         <select
                             {...register("category.id", {
-                                required: true,
+                                required: "This field is required",
                             })}
-                            defaultValue={queryResult?.data?.data.category.id}
                         >
                             {options?.map((category) => (
                                 <option
@@ -251,16 +179,22 @@ export const PostCreate: React.FC = () => {
                                 </option>
                             ))}
                         </select>
-                        {errors.category && <span>This field is required</span>}
+                        {errors.category && (
+                            <span>{errors.category.message}</span>
+                        )}
                         <br />
                         <br />
                         <label>Content: </label>
                         <textarea
-                            {...register("content", { required: true })}
+                            {...register("content", {
+                                required: "This field is required",
+                            })}
                             rows={10}
                             cols={50}
                         />
-                        {errors.content && <span>This field is required</span>}
+                        {errors.content && (
+                            <span>{errors.content.message}</span>
+                        )}
                     </>
                 );
         }
@@ -289,7 +223,7 @@ export const PostCreate: React.FC = () => {
             </div>
             //highlight-next-line
             <form autoComplete="off">{renderFormByStep(currentStep)}</form>
-            // Where buttons are shown and where the form is submitted
+            // Where buttons are shown
             <div style={{ display: "flex", gap: 8 }}>
                 {currentStep > 0 && (
                     <button
@@ -333,7 +267,7 @@ Magic, `<PostCreate>` and `<PostEdit>` pages are almost the same. So how are the
 
 You can change the `id` as you want with the `setId` that comes out of `refineCore`.
 
-Another part that is different from `<PostCreate>` and `<PostEdit>` is the `defaultValue` value passed to the `useSelect` hook.
+Another part that is different from `<PostCreate>` and `<PostEdit>` is the `defaultValue` value passed to the `useSelect` hook and the `<select>` element.
 
 [Refer to the `useSelect` documentation for detailed information. &#8594](/core/hooks/useSelect.md)
 
@@ -357,6 +291,7 @@ export const PostEdit: React.FC = () => {
 
     const { options } = useSelect({
         resource: "categories",
+        //highlight-next-line
         defaultValue: queryResult?.data?.data.category.id,
     });
 
@@ -367,8 +302,12 @@ export const PostEdit: React.FC = () => {
                 return (
                     <>
                         <label>Title: </label>
-                        <input {...register("title", { required: true })} />
-                        {errors.title && <span>This field is required</span>}
+                        <input
+                            {...register("title", {
+                                required: "This field is required",
+                            })}
+                        />
+                        {errors.title && <span>{errors.title.message}</span>}
                     </>
                 );
             case 1:
@@ -388,8 +327,9 @@ export const PostEdit: React.FC = () => {
                         <label>Category: </label>
                         <select
                             {...register("category.id", {
-                                required: true,
+                                required: "This field is required",
                             })}
+                            //highlight-next-line
                             defaultValue={queryResult?.data?.data.category.id}
                         >
                             {options?.map((category) => (
@@ -401,16 +341,22 @@ export const PostEdit: React.FC = () => {
                                 </option>
                             ))}
                         </select>
-                        {errors.category && <span>This field is required</span>}
+                        {errors.category && (
+                            <span>{errors.category.message}</span>
+                        )}
                         <br />
                         <br />
                         <label>Content: </label>
                         <textarea
-                            {...register("content", { required: true })}
+                            {...register("content", {
+                                required: "This field is required",
+                            })}
                             rows={10}
                             cols={50}
                         />
-                        {errors.content && <span>This field is required</span>}
+                        {errors.content && (
+                            <span>{errors.content.message}</span>
+                        )}
                     </>
                 );
         }
@@ -439,7 +385,7 @@ export const PostEdit: React.FC = () => {
             </div>
             //highlight-next-line
             <form autoComplete="off">{renderFormByStep(currentStep)}</form>
-            // Where buttons are shown and where the form is submitted
+            // Where buttons are shown
             <div style={{ display: "flex", gap: 8 }}>
                 {currentStep > 0 && (
                     <button
@@ -477,59 +423,41 @@ export const PostEdit: React.FC = () => {
     <img src={editForm} alt="Edit Form" />
 </div>
 
-## API
+## API Reference
 
 ### Properties
 
-Supports all the properties supported by the `useForm` hook are available in the [React Hook Form][react-hook-form-use-form] documentation. Also, we added the following properties:
+| Property                   | Description                                                         | Type                                                |
+| -------------------------- | ------------------------------------------------------------------- | --------------------------------------------------- |
+| stepsProps                 | Configuration object for the steps                                  | [`StepsPropsType`](#stepspropstype)                 |
+| refineCoreProps            | Configuration object for the core of the [`useForm`][use-form-core] | [`UseFormProps`](/core/hooks/useForm.md#properties) |
+| React Hook Form Properties | See [React Hook Form][react-hook-form-use-form] documentation       |
 
-`stepsForm`: You can see all the properties [here](#stepsprops).
+<br />
 
-`refineCoreProps`: You can define all properties provided by [`useForm`][use-form-core] here. You can see all of them in [here](/core/hooks/useForm.md#properties).
-
-> For example, we can define the `refineCoreProps` and `stepsProps` properties in the `useStepsForm` hook as:
-
-```tsx
-import { useStepsForm } from "@pankod/refine-react-hook-form";
-
-const { ... } = useStepsForm({
-    ...,
-    // You can define all properties provided by React Hook Form useForm
-    refineCoreProps: {
-        ...
-        // You can define all properties provided by refine useForm
-    },
-    stepsProps: {
-        ...
-        // You can define all properties provided by refine React Hook Form useStepsForm
-    },
-});
-```
+> -   #### StepsPropsType
+>
+> | Property       | Description                                             | Type      | Default |
+> | -------------- | ------------------------------------------------------- | --------- | ------- |
+> | defaultStep    | Allows you to set the initial step                      | `number`  | `0`     |
+> | isBackValidate | Whether to validation the current step when going back. | `boolean` | `false` |
 
 ### Return values
 
-Returns all the properties returned by [React Hook Form][react-hook-form-use-form] of the `useForm` hook. Also, we added the following return values:
+| Property                      | Description                                                     | Type                                                          |
+| ----------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------- |
+| steps                         | Relevant state and method to control the steps                  | [`StepsReturnValues`](#stepsreturnvalues)                     |
+| refineCore                    | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/core/hooks/useForm.md#return-values) |
+| React Hook Form Return Values | See [React Hook Form][react-hook-form-use-form] documentation   |
 
-`steps`: You can see all the return values [here](#steps).
+<br />
 
-`refineCore`: Returns all values returned by [`useForm`][use-form-core]. You can see all of them in [here](/core/hooks/useForm.md##return-values).
-
-> For example, we can access the `refineCore` and `steps` return values in the `useStepsForm` hook as:
-
-```tsx
-import { useStepsForm } from "@pankod/refine-react-hook-form";
-
-const {
-    ... // You can access all properties returned by React Hook Form useForm
-    steps: { currentStep, gotoStep },
-    refineCore: { queryResult, ... },
-    saveButtonProps,
-} = useStepsForm({ ... });
-```
-
-| Property        | Description               | Type                                          |
-| --------------- | ------------------------- | --------------------------------------------- |
-| saveButtonProps | Props for a submit button | `{ disabled: boolean; onClick: () => void; }` |
+> -   #### StepsReturnValues
+>
+> | Property    | Description                          | Type                     |
+> | ----------- | ------------------------------------ | ------------------------ |
+> | currentStep | Current step                         | `boolean`                |
+> | gotoStep    | Allows you to go to a specific step. | `(step: number) => void` |
 
 ## Live Codesandbox Example
 

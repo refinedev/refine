@@ -23,8 +23,12 @@ export const PostEdit: React.FC = () => {
                 return (
                     <>
                         <label>Title: </label>
-                        <input {...register("title", { required: true })} />
-                        {errors.title && <span>This field is required</span>}
+                        <input
+                            {...register("title", {
+                                required: "This field is required",
+                            })}
+                        />
+                        {errors.title && <span>{errors.title.message}</span>}
                     </>
                 );
             case 1:
@@ -44,7 +48,7 @@ export const PostEdit: React.FC = () => {
                         <label>Category: </label>
                         <select
                             {...register("category.id", {
-                                required: true,
+                                required: "This field is required",
                             })}
                             defaultValue={queryResult?.data?.data.category.id}
                         >
@@ -57,16 +61,22 @@ export const PostEdit: React.FC = () => {
                                 </option>
                             ))}
                         </select>
-                        {errors.category && <span>This field is required</span>}
+                        {errors.category && (
+                            <span>{errors.category.message}</span>
+                        )}
                         <br />
                         <br />
                         <label>Content: </label>
                         <textarea
-                            {...register("content", { required: true })}
+                            {...register("content", {
+                                required: "This field is required",
+                            })}
                             rows={10}
                             cols={50}
                         />
-                        {errors.content && <span>This field is required</span>}
+                        {errors.content && (
+                            <span>{errors.content.message}</span>
+                        )}
                     </>
                 );
         }

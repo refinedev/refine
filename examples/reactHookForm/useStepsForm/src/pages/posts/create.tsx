@@ -5,7 +5,7 @@ const stepTitles = ["Title", "Status", "Category and content"];
 
 export const PostCreate: React.FC = () => {
     const {
-        refineCore: { onFinish, formLoading, queryResult },
+        refineCore: { onFinish, formLoading },
         register,
         handleSubmit,
         formState: { errors },
@@ -14,7 +14,6 @@ export const PostCreate: React.FC = () => {
 
     const { options } = useSelect({
         resource: "categories",
-        defaultValue: queryResult?.data?.data.category.id,
     });
 
     const renderFormByStep = (step: number) => {
@@ -23,8 +22,12 @@ export const PostCreate: React.FC = () => {
                 return (
                     <>
                         <label>Title: </label>
-                        <input {...register("title", { required: true })} />
-                        {errors.title && <span>This field is required</span>}
+                        <input
+                            {...register("title", {
+                                required: "This field is required",
+                            })}
+                        />
+                        {errors.title && <span>{errors.title.message}</span>}
                     </>
                 );
             case 1:
@@ -44,9 +47,8 @@ export const PostCreate: React.FC = () => {
                         <label>Category: </label>
                         <select
                             {...register("category.id", {
-                                required: true,
+                                required: "This field is required",
                             })}
-                            defaultValue={queryResult?.data?.data.category.id}
                         >
                             {options?.map((category) => (
                                 <option
@@ -57,16 +59,22 @@ export const PostCreate: React.FC = () => {
                                 </option>
                             ))}
                         </select>
-                        {errors.category && <span>This field is required</span>}
+                        {errors.category && (
+                            <span>{errors.category.message}</span>
+                        )}
                         <br />
                         <br />
                         <label>Content: </label>
                         <textarea
-                            {...register("content", { required: true })}
+                            {...register("content", {
+                                required: "This field is required",
+                            })}
                             rows={10}
                             cols={50}
                         />
-                        {errors.content && <span>This field is required</span>}
+                        {errors.content && (
+                            <span>{errors.content.message}</span>
+                        )}
                     </>
                 );
         }
