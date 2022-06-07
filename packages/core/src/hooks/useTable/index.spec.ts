@@ -266,7 +266,7 @@ describe("useTable Filters", () => {
             {
                 field: "name",
                 operator: "contains",
-                value: "ali",
+                value: "foo",
             },
         ] as CrudFilters;
 
@@ -406,7 +406,7 @@ describe("useTable Filters", () => {
             {
                 field: "name",
                 operator: "contains",
-                value: "ali",
+                value: "foo",
             },
         ] as CrudFilters;
 
@@ -616,7 +616,7 @@ describe("useTable Filters", () => {
             {
                 field: "name",
                 operator: "contains",
-                value: "ali",
+                value: "foo",
             },
         ] as CrudFilters;
 
