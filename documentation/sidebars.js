@@ -246,16 +246,16 @@ module.exports = {
                             type: "category",
                             label: "Components",
                             items: [
-                                // {
-                                //     type: "category",
-                                //     label: "Basic Views",
-                                //     items: [
-                                //         "ui-frameworks/antd/components/basic-views/create",
-                                //         "ui-frameworks/antd/components/basic-views/edit",
-                                //         "ui-frameworks/antd/components/basic-views/list",
-                                //         "ui-frameworks/antd/components/basic-views/show",
-                                //     ],
-                                // },
+                                {
+                                    type: "category",
+                                    label: "Basic Views",
+                                    items: [
+                                        "ui-frameworks/mui/components/basic-views/create",
+                                        "ui-frameworks/mui/components/basic-views/edit",
+                                        "ui-frameworks/mui/components/basic-views/list",
+                                        // "ui-frameworks/mui/components/basic-views/show",
+                                    ],
+                                },
                                 {
                                     type: "category",
                                     label: "Buttons",
