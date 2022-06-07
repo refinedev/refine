@@ -42,10 +42,6 @@ export const DashboardPage: React.FC = () => {
         });
     };
 
-    refineSDK.config
-        .get()
-        .then((config) => console.log(JSON.stringify(config, null, 2)));
-
     return (
         <AntdLayout className="layout">
             <Title level={3} className="title">
