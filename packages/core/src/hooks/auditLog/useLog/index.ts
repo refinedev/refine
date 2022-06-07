@@ -22,7 +22,6 @@ export type UseLogReturnType<TLogRenameData> = {
             name: string;
         }
     >;
-    isConfigured: boolean;
 };
 
 export const useLog = <
@@ -30,7 +29,6 @@ export const useLog = <
 >(): UseLogReturnType<TLogRenameData> => {
     const queryClient = useQueryClient();
     const auditLogContext = useContext(AuditLogContext);
-    const isConfigured = auditLogContext !== undefined;
 
     const { resources } = useContext(ResourceContext);
     const {
@@ -107,5 +105,5 @@ export const useLog = <
         },
     );
 
-    return { log, rename, isConfigured };
+    return { log, rename };
 };

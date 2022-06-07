@@ -78,7 +78,7 @@ export const useUpdate = <
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const publish = usePublish();
-    const { log, isConfigured } = useLog();
+    const { log } = useLog();
     const { notificationDispatch } = useCancelNotification();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
@@ -304,22 +304,21 @@ export const useUpdate = <
                     date: new Date(),
                 });
 
-                if (isConfigured) {
-                    const previousData = queryClient.getQueryData<
-                        UpdateResponse<TData>
-                    >(context.queryKey.detail(id))?.data;
+                // TODO: get previous data from context
+                // const previousData = queryClient.getQueryData<
+                //     UpdateResponse<TData>
+                // >(context.queryKey.detail(id))?.data;
 
-                    log({
-                        action: "update",
-                        resource,
-                        data: data.data,
-                        previousData,
-                        meta: {
-                            id,
-                            dataProviderName,
-                        },
-                    });
-                }
+                log?.({
+                    action: "update",
+                    resource,
+                    data: data.data,
+                    previousData: {},
+                    meta: {
+                        id,
+                        dataProviderName,
+                    },
+                });
             },
             onError: (
                 err: TError,

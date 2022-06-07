@@ -62,7 +62,7 @@ export const useOne = <
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const handleNotification = useHandleNotification();
-    const { log, isConfigured } = useLog();
+    const { log } = useLog();
 
     useResourceSubscription({
         resource,
@@ -83,18 +83,16 @@ export const useOne = <
                 queryOptions?.onSuccess?.(data);
                 handleNotification(successNotification);
 
-                if (isConfigured) {
-                    log({
-                        action: "getOne",
-                        resource,
-                        data: data.data,
-                        meta: {
-                            id,
-                            metaData,
-                            dataProviderName,
-                        },
-                    });
-                }
+                log?.({
+                    action: "getOne",
+                    resource,
+                    data: data.data,
+                    meta: {
+                        id,
+                        metaData,
+                        dataProviderName,
+                    },
+                });
             },
             onError: (err: TError) => {
                 checkError(err);

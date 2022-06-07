@@ -58,7 +58,7 @@ export const useCreateMany = <
 
     const translate = useTranslate();
     const publish = usePublish();
-    const { log, isConfigured } = useLog();
+    const { log } = useLog();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
 
@@ -123,16 +123,14 @@ export const useCreateMany = <
                     date: new Date(),
                 });
 
-                if (isConfigured) {
-                    log({
-                        action: "create",
-                        resource,
-                        data: response.data,
-                        meta: {
-                            dataProviderName,
-                        },
-                    });
-                }
+                log?.({
+                    action: "create",
+                    resource,
+                    data: response.data,
+                    meta: {
+                        dataProviderName,
+                    },
+                });
             },
             onError: (err: TError, { resource, errorNotification }) => {
                 handleNotification(errorNotification, {

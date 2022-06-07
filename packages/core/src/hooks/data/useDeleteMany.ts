@@ -79,7 +79,7 @@ export const useDeleteMany = <
     const { notificationDispatch } = useCancelNotification();
     const translate = useTranslate();
     const publish = usePublish();
-    const { log, isConfigured } = useLog();
+    const { log } = useLog();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
 
@@ -300,27 +300,18 @@ export const useDeleteMany = <
                     date: new Date(),
                 });
 
-                if (isConfigured) {
-                    const previousData = ids.map((id) => {
-                        return queryClient.getQueryData<
-                            DeleteManyResponse<TData>
-                        >(context.queryKey.detail(id))?.data;
-                    });
-
-                    log({
-                        action: "delete",
-                        resource,
-                        previousData,
-                        meta: {
-                            ids,
-                            dataProviderName,
-                        },
-                    });
-                }
+                log?.({
+                    action: "delete",
+                    resource,
+                    meta: {
+                        ids,
+                        dataProviderName,
+                    },
+                });
 
                 // Remove the queries from the cache:
                 ids.forEach((id) =>
-                    queryClient.removeQueries(context.queryKey.detail(id)),
+                    queryClient.removeQueries(context?.queryKey.detail(id)),
                 );
             },
             onError: (err, { ids, resource, errorNotification }, context) => {

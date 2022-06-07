@@ -62,7 +62,7 @@ export const useCreate = <
 
     const translate = useTranslate();
     const publish = usePublish();
-    const { log, isConfigured } = useLog();
+    const { log } = useLog();
     const handleNotification = useHandleNotification();
 
     const mutation = useMutation<
@@ -126,17 +126,15 @@ export const useCreate = <
                     date: new Date(),
                 });
 
-                if (isConfigured) {
-                    log({
-                        action: "create",
-                        resource,
-                        data: data.data,
-                        meta: {
-                            dataProviderName,
-                            id: data?.data?.id ?? undefined,
-                        },
-                    });
-                }
+                log?.({
+                    action: "create",
+                    resource,
+                    data: data.data,
+                    meta: {
+                        dataProviderName,
+                        id: data?.data?.id ?? undefined,
+                    },
+                });
             },
             onError: (
                 err: TError,

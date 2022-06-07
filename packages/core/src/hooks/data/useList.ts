@@ -72,7 +72,7 @@ export const useList = <
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const handleNotification = useHandleNotification();
-    const { log, isConfigured } = useLog();
+    const { log } = useLog();
 
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
@@ -96,18 +96,16 @@ export const useList = <
                 queryOptions?.onSuccess?.(data);
                 handleNotification(successNotification);
 
-                if (isConfigured) {
-                    log({
-                        action: "list",
-                        resource,
-                        data: data.data,
-                        meta: {
-                            config,
-                            metaData,
-                            dataProviderName,
-                        },
-                    });
-                }
+                log?.({
+                    action: "list",
+                    resource,
+                    data: data.data,
+                    meta: {
+                        config,
+                        metaData,
+                        dataProviderName,
+                    },
+                });
             },
             onError: (err: TError) => {
                 checkError(err);

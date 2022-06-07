@@ -79,7 +79,7 @@ export const useUpdateMany = <
     const { mutate: checkError } = useCheckError();
     const { notificationDispatch } = useCancelNotification();
     const publish = usePublish();
-    const { log, isConfigured } = useLog();
+    const { log } = useLog();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
 
@@ -329,24 +329,23 @@ export const useUpdateMany = <
                     date: new Date(),
                 });
 
-                if (isConfigured) {
-                    const previousData = ids.map((id) => {
-                        return queryClient.getQueryData<
-                            UpdateManyResponse<TData>
-                        >(context.queryKey.detail(id))?.data;
-                    });
+                // TODO: get previous data from context
+                // const previousData = ids.map((id) => {
+                //     return queryClient.getQueryData<
+                //         UpdateManyResponse<TData>
+                //     >(context.queryKey.detail(id))?.data;
+                // });
 
-                    log({
-                        action: "update",
-                        resource,
-                        data: data.data,
-                        previousData,
-                        meta: {
-                            ids,
-                            dataProviderName,
-                        },
-                    });
-                }
+                log?.({
+                    action: "update",
+                    resource,
+                    data: data.data,
+                    previousData: {},
+                    meta: {
+                        ids,
+                        dataProviderName,
+                    },
+                });
             },
             onError: (
                 err: TError,

@@ -12,24 +12,20 @@ export type LogParams = {
     meta: Record<number | string, any>;
 };
 
-export type IAuditLogContext =
-    | {
-          create?: (params: LogParams) => void;
-          get?: (params: {
-              resource: string;
-              action?: string;
-              meta?: Record<number | string, any>;
-              author?: Record<number | string, any>;
-              metaData?: MetaDataQuery;
-          }) => Promise<any>;
-          update?: (params: {
-              id: BaseKey;
-              name: string;
-              [key: string]: any;
-          }) => Promise<any>;
-      }
-    | undefined;
+export type IAuditLogContext = {
+    create?: (params: LogParams) => void;
+    get?: (params: {
+        resource: string;
+        action?: string;
+        meta?: Record<number | string, any>;
+        author?: Record<number | string, any>;
+        metaData?: MetaDataQuery;
+    }) => Promise<any>;
+    update?: (params: {
+        id: BaseKey;
+        name: string;
+        [key: string]: any;
+    }) => Promise<any>;
+};
 
-export interface IAuditLogContextProvider {
-    auditLogProvider: IAuditLogContext;
-}
+export type AuditLogProvider = Required<IAuditLogContext>;
