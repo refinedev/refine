@@ -30,7 +30,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
             {...rest}
         >
             {hideText ? (
-                <SaveOutlinedIcon {...svgIconProps} />
+                <SaveOutlinedIcon fontSize="small" {...svgIconProps} />
             ) : (
                 children ?? translate("buttons.save", "Save")
             )}

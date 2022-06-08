@@ -38,7 +38,10 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
                 loading={loading}
             >
                 {hideText ? (
-                    <ImportExportOutlinedIcon {...svgIconProps} />
+                    <ImportExportOutlinedIcon
+                        fontSize="small"
+                        {...svgIconProps}
+                    />
                 ) : (
                     children ?? translate("buttons.import", "Import")
                 )}

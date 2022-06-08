@@ -88,7 +88,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                 {...rest}
             >
                 {hideText ? (
-                    <AddBoxOutlinedIcon {...svgIconProps} />
+                    <AddBoxOutlinedIcon fontSize="small" {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.clone", "Clone")
                 )}

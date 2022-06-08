@@ -184,6 +184,43 @@ module.exports = {
             items: [
                 {
                     type: "category",
+                    label: "Material UI",
+                    collapsed: false,
+                    items: [
+                        {
+                            type: "category",
+                            label: "Hooks",
+                            items: [
+                                "ui-frameworks/mui/hooks/useAutocomplete",
+                                "ui-frameworks/mui/hooks/useDataGrid",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Components",
+                            items: [
+                                {
+                                    type: "category",
+                                    label: "Buttons",
+                                    items: [
+                                        "ui-frameworks/mui/components/buttons/clone-button",
+                                        "ui-frameworks/mui/components/buttons/create-button",
+                                        "ui-frameworks/mui/components/buttons/delete-button",
+                                        "ui-frameworks/mui/components/buttons/edit-button",
+                                        "ui-frameworks/mui/components/buttons/export-button",
+                                        "ui-frameworks/mui/components/buttons/import-button",
+                                        "ui-frameworks/mui/components/buttons/list-button",
+                                        "ui-frameworks/mui/components/buttons/refresh-button",
+                                        "ui-frameworks/mui/components/buttons/save-button",
+                                        "ui-frameworks/mui/components/buttons/show-button",
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    type: "category",
                     label: "Ant Design",
                     collapsed: false,
                     items: [
@@ -297,21 +334,6 @@ module.exports = {
                                         "ui-frameworks/antd/components/inputs/custom-inputs",
                                     ],
                                 },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Material Design",
-                    collapsed: false,
-                    items: [
-                        {
-                            type: "category",
-                            label: "Hooks",
-                            items: [
-                                "ui-frameworks/mui/hooks/useAutocomplete",
-                                "ui-frameworks/mui/hooks/useDataGrid",
                             ],
                         },
                     ],

@@ -23,6 +23,7 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useLog,
     useInvalidate,
 } from "@hooks";
 import { queryKeys } from "@definitions/helpers";
@@ -77,6 +78,7 @@ export const useUpdate = <
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const publish = usePublish();
+    const { log } = useLog();
     const { notificationDispatch } = useCancelNotification();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
@@ -267,7 +269,11 @@ export const useUpdate = <
                     payload: { id, resource },
                 });
             },
-            onSuccess: (data, { id, resource, successNotification }) => {
+            onSuccess: (
+                data,
+                { id, resource, successNotification, dataProviderName },
+                context,
+            ) => {
                 const resourceSingular = pluralize.singular(resource);
 
                 handleNotification(successNotification, {
@@ -296,6 +302,22 @@ export const useUpdate = <
                         ids: data.data?.id ? [data.data.id] : undefined,
                     },
                     date: new Date(),
+                });
+
+                // TODO: get previous data from context
+                // const previousData = queryClient.getQueryData<
+                //     UpdateResponse<TData>
+                // >(context.queryKey.detail(id))?.data;
+
+                log?.({
+                    action: "update",
+                    resource,
+                    data: data.data,
+                    previousData: {},
+                    meta: {
+                        id,
+                        dataProviderName,
+                    },
                 });
             },
             onError: (
