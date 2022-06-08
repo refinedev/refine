@@ -2,15 +2,19 @@ export * from "./components";
 export * from "./hooks";
 
 export {
-    IAuthContext as AuthProvider,
+    IAuthContext,
+    AuthProvider,
     Pagination,
     IDataContextProvider as DataProvider,
     ILiveContext as LiveProvider,
     LiveEvent,
     IResourceContext as ResourceProvider,
-    ITranslationContext as TranslationProvider,
-    IAccessControlContext as AccessControlProvider,
-    INotificationContext as NotificationProvider,
+    ITranslationContext,
+    TranslationProvider,
+    IAccessControlContext,
+    AccessControlProvider,
+    INotificationContext,
+    NotificationProvider,
     I18nProvider,
     MutationMode,
     IResourceComponents,

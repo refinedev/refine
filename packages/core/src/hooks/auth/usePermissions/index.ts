@@ -19,8 +19,12 @@ export const usePermissions = <TData = any>(
 
     const queryResponse = useQuery<TData>(
         ["usePermissions"],
-        getPermissions,
-        options,
+        // Enabled check for `getPermissions` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
+        getPermissions ?? (() => Promise.resolve(undefined)),
+        {
+            enabled: !!getPermissions,
+            ...options,
+        },
     );
 
     return queryResponse;

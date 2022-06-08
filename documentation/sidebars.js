@@ -184,64 +184,14 @@ module.exports = {
             items: [
                 {
                     type: "category",
-                    label: "Material-UI",
+                    label: "Material UI",
                     collapsed: false,
                     items: [
-                        // "ui-frameworks/antd/tutorial",
-                        // {
-                        //     type: "category",
-                        //     label: "Hooks",
-                        //     items: [
-                        //         {
-                        //             type: "category",
-                        //             label: "Field",
-                        //             items: [
-                        //                 "ui-frameworks/antd/hooks/field/useCheckboxGroup",
-                        //                 "ui-frameworks/antd/hooks/field/useRadioGroup",
-                        //                 "ui-frameworks/antd/hooks/field/useSelect",
-                        //             ],
-                        //         },
-                        //         {
-                        //             type: "category",
-                        //             label: "Form",
-                        //             items: [
-                        //                 "ui-frameworks/antd/hooks/form/useDrawerForm",
-                        //                 "ui-frameworks/antd/hooks/form/useForm",
-                        //                 "ui-frameworks/antd/hooks/form/useModalForm",
-                        //                 "ui-frameworks/antd/hooks/form/useStepsForm",
-                        //             ],
-                        //         },
-                        //         {
-                        //             type: "category",
-                        //             label: "Import",
-                        //             items: [
-                        //                 "ui-frameworks/antd/hooks/import/useImport",
-                        //             ],
-                        //         },
-                        //         {
-                        //             type: "category",
-                        //             label: "List",
-                        //             items: [
-                        //                 "ui-frameworks/antd/hooks/list/useSimpleList",
-                        //             ],
-                        //         },
-                        //         {
-                        //             type: "category",
-                        //             label: "Resource",
-                        //             items: [
-                        //                 "ui-frameworks/antd/hooks/resource/useMenu",
-                        //             ],
-                        //         },
-                        //         {
-                        //             type: "category",
-                        //             label: "Table",
-                        //             items: [
-                        //                 "ui-frameworks/antd/hooks/table/useEditableTable",
-                        //                 "ui-frameworks/antd/hooks/table/useTable",
-                        //             ],
-                        //         },
-                        //     ],
-                        // },
+                        {
+                            type: "category",
+                            label: "Hooks",
+                            items: ["ui-frameworks/mui/hooks/useDataGrid"],
+                        },
                         {
                             type: "category",
                             label: "Components",
@@ -272,30 +222,6 @@ module.exports = {
                                         "ui-frameworks/mui/components/buttons/show-button",
                                     ],
                                 },
-                                // {
-                                //     type: "category",
-                                //     label: "Fields",
-                                //     items: [
-                                //         "ui-frameworks/antd/components/fields/boolean",
-                                //         "ui-frameworks/antd/components/fields/date",
-                                //         "ui-frameworks/antd/components/fields/email",
-                                //         "ui-frameworks/antd/components/fields/file",
-                                //         "ui-frameworks/antd/components/fields/image",
-                                //         "ui-frameworks/antd/components/fields/markdown",
-                                //         "ui-frameworks/antd/components/fields/number",
-                                //         "ui-frameworks/antd/components/fields/tag",
-                                //         "ui-frameworks/antd/components/fields/text",
-                                //         "ui-frameworks/antd/components/fields/url",
-                                //     ],
-                                // },
-                                // "ui-frameworks/antd/components/filter-dropdown",
-                                // {
-                                //     type: "category",
-                                //     label: "Inputs",
-                                //     items: [
-                                //         "ui-frameworks/antd/components/inputs/custom-inputs",
-                                //     ],
-                                // },
                             ],
                         },
                     ],

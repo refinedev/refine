@@ -76,8 +76,9 @@ export const compareSorters = (left: CrudSort, right: CrudSort): boolean =>
 export const unionFilters = (
     permanentFilter: CrudFilters,
     newFilters: CrudFilters,
+    prevFilters: CrudFilters = [],
 ): CrudFilters =>
-    unionWith(permanentFilter, newFilters, compareFilters).filter(
+    unionWith(permanentFilter, newFilters, prevFilters, compareFilters).filter(
         (crudFilter) =>
             crudFilter.value !== undefined && crudFilter.value !== null,
     );
