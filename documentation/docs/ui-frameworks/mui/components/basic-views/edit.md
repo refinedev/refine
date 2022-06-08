@@ -14,14 +14,15 @@ We will show what `<Edit>` does using properties with examples.
 
 ### `canDelete` and `deleteButtonProps`
 
-`canDelete` allows us to add the delete button inside the `<Edit>` component. If the resource has the `canDelete` property,refine adds the delete button by default. If you want to customize this button you can use the `deleteButtonProps` property like the code below.
+`canDelete` allows us to add the delete button inside the `<Edit>` component. If the resource has the `canDelete` property, refine adds the delete button by default. If you want to customize this button you can use the `deleteButtonProps` property like the code below.
 
 When clicked on, the delete button executes the `useDelete` method provided by the `dataProvider`.
 
 [Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](/ui-frameworks/mui/components/buttons/delete.md)
 
-```tsx
+```tsx title="src/pages/posts/edit.tsx"
 import { usePermissions } from "@pankod/refine-core";
+// highlight-next-line
 import { Edit } from "@pankod/refine-mui";
 
 export const EditPage: React.FC = () => {
@@ -29,8 +30,10 @@ export const EditPage: React.FC = () => {
 
     return (
         <Edit
+            // highlight-start
             canDelete={data === "admin"}
             deleteButtonProps={{ size: "small" }}
+            // highlight-end
         >
             ...
         </Edit>
@@ -49,9 +52,11 @@ Clicking on the save button will submit your form.
 [Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/ui-frameworks/mui/components/buttons/save.md)
 
 ```tsx
+// highlight-next-line
 import { Edit } from "@pankod/refine-mui";
 
 export const EditPage: React.FC = () => {
+    // highlight-next-line
     return <Edit saveButtonProps={{ size: "small" }}>...</Edit>;
 };
 ```
@@ -60,18 +65,21 @@ export const EditPage: React.FC = () => {
 
 `<Edit>` uses the Material UI [`<CardActions>`](https://mui.com/material-ui/api/card-actions/#main-content) component. The children of the `<CardActions>` component shows [`<SaveButton>`](/ui-frameworks/mui/components/buttons/save.md) and [`<DeleteButton>`](/ui-frameworks/mui/components/buttons/delete.md) based on your resource definition in the`resources`property you pass to `<Refine>`. If you want to use other things instead of these buttons, you can use the `actionButton` property like the code below.
 
-```tsx
+```tsx title="src/pages/posts/edit.tsx"
+// highlight-next-line
 import { Edit, Button } from "@pankod/refine-mui";
 
 export const EditPage: React.FC = () => {
     return (
         <Edit
+            // highlight-start
             actionButtons={
                 <>
                     <Button>Custom Button 1</Button>
                     <Button>Custom Button 2</Button>
                 </>
             }
+            // highlight-end
         >
             ...
         </Edit>
@@ -92,21 +100,24 @@ export const EditPage: React.FC = () => {
 
 ### `cardProps`
 
-`<Edit>` uses the Material UI `<Card>` components so you can customize with the props of `cardProps`.
+`<Edit>` uses the Material UI [`<Card>`](https://mui.com/material-ui/react-card/#main-content) components so you can customize with the props of `cardProps`.
 
 ### `cardHeaderProps`
 
-`<Edit>` uses the Material UI `<CardHeader>` components so you can customize with the props of `cardHeaderProps`.
+`<Edit>` uses the Material UI [`<CardHeader>`](https://mui.com/material-ui/api/card-header/) components so you can customize with the props of `cardHeaderProps`.
 
-```tsx
-import { Edit, Button } from "@pankod/refine-mui";
+```tsx title="src/pages/posts/edit.tsx"
+// highlight-next-line
+import { Edit, Typography } from "@pankod/refine-mui";
 
 export const EditPage: React.FC = () => {
     return (
         <Edit
+            //highlight-start
             cardHeaderProps={{
                 title: <Typography variant="h5">Custom Title</Typography>,
             }}
+            //highlight-end
         >
             ...
         </Edit>
@@ -127,19 +138,19 @@ export const EditPage: React.FC = () => {
 
 ### `cardContentProps`
 
-`<Edit>` uses the Material UI `<CardContent>` components so you can customize with the props of `cardContentProps`.
+`<Edit>` uses the Material UI [`<CardContent>`](https://mui.com/material-ui/api/card-content/) components so you can customize with the props of `cardContentProps`.
 
 ### `cardActionsProps`
 
-`<Edit>` uses the Material UI `<CardActions>` components so you can customize with the props of `cardActionsProps`.
+`<Edit>` uses the Material UI [`<CardActions>`](https://mui.com/material-ui/api/card-actions/) components so you can customize with the props of `cardActionsProps`.
 
 ### `recordItemId`
 
 The `<Edit>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL(when used on a custom page, modal or drawer).
 
-```tsx
+```tsx title="src/pages/posts/edit.tsx"
 import { useModalForm } from "@pankod/refine-react-hook-form";
-import { Drawer, ...} from "@pankod/refine-mui";
+import { Drawer, Edit} from "@pankod/refine-mui";
 
 export const PostEdit: React.FC = () => {
     const editDrawerFormProps = useModalForm<ICategory>({
@@ -171,14 +182,15 @@ The `<Edit>` component needs the `id` information for the `<RefreshButton>` to w
 
 ### `mutationMode`
 
-Determines which mode mutation will have while executing `<DeleteButton>` .
+Determines which mode mutation will have while executing `<DeleteButton>`.
 
 [Refer to the mutation mode docs for further information. &#8594](guides-and-concepts/mutation-mode.md)
 
-```tsx
+```tsx title="src/pages/posts/edit.tsx"
 import { Edit } from "@pankod/refine-mui";
 
 export const EditPage: React.FC = () => {
+    // highlight-next-line
     return <Edit mutationMode="undoable">...</Edit>;
 };
 ```
@@ -232,7 +244,7 @@ export const App: React.FC = () => {
 | deleteButtonProps | Adds properties for delete button                                               | [`DeleteButtonProps`](/core/interfaces.md#delete-button-props)            | `<DeleteButton>`                                                               |
 | saveButtonProps   | Adds props for edit button                                                      | `{ disabled: boolean; onClick: () => void; loading: boolean; }`           | `<SaveButton>`                                                                 |
 | actionButtons     | Passes the props for `<CardActions>`                                            | `React.ReactNode`                                                         | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
-| cardProps         | Passes the props for `<Card>`                                                   | [`CardHeaderProps`](https://mui.com/material-ui/api/card/#props)          | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
+| cardProps         | Passes the props for `<Card>`                                                   | [`CardProps`](https://mui.com/material-ui/api/card/#props)                | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
 | cardHeaderProps   | Passes the props for `<CardHeader>`                                             | [`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)   |                                                                                |
 | cardContentProps  | Passes the props for `<CardContent>`                                            | [`CardContentProps`](https://mui.com/material-ui/api/card-content/#props) |                                                                                |
 | cardActionsProps  | Passes the props for `<CardActions>`                                            | [`CardActionsProps`](https://mui.com/material-ui/api/card-actions/#props) |                                                                                |
