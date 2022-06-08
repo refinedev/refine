@@ -206,7 +206,6 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 const App: React.FC = () => {
-
     return (
         <ThemeProvider theme={LightTheme}>
             <CssBaseline />
@@ -227,7 +226,7 @@ export default App;
 
 :::info
 `<CssBaseline>` is a component that is used to apply the global reset CSS to the application. You may refer to the [**CssBaseline** documentation](https://mui.com/material-ui/react-css-baseline/) for more information.
- 
+
 `<GlobalStyles>` is a component that is used to apply the global styles to the application. You may refer to the [**GlobalStyles** documentation](https://mui.com/material-ui/api/global-styles/) for more information.
 :::
 
@@ -333,7 +332,6 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 export const App: React.FC = () => {
-
     return (
         <ThemeProvider theme={LightTheme}>
             <CssBaseline />
@@ -468,9 +466,7 @@ Let's break down the `<PostList/>` component to understand what's going on here:
 You may refer to [Material UI Docs](https://mui.com/x/api/data-grid/data-grid/) for further information about the `<DataGrid/>` component.
 :::
 
-
 ✳️ `useDataGrid` hook is a helper function to simplify the creation of a `<DataGrid/>` component. `useDataGrid()` is passed to the `<DataGrid/>` component as `{...dataGridProps}`.
-
 
 :::info
 The `useDataGrid` hook works in compatible with both the `<DataGrid>` and the `<DataGridPro>` component.
@@ -489,7 +485,9 @@ On [useDataGrid() documentation](/ui-frameworks/mui/hooks/useDataGrid.md) you ma
 
 :::note
 The example uses `<TagField>` and `<DateField>` components. To get the full list of available components, you may refer to the [Field Components Documentation](#).
+
 <!-- [Field Components Documentation](/ui-frameworks/mui/components/fields/boolean.md). -->
+
 :::
 
 ✳️ `<List>` is a **refine** component. It acts as a wrapper to `<DataGrid>` to add some extras like _Create Button_ and _title_.
@@ -515,7 +513,6 @@ import { PostList } from "pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
-
     return (
         <ThemeProvider theme={LightTheme}>
             <CssBaseline />
@@ -689,11 +686,13 @@ export const PostList: React.FC = () => {
     );
 };
 ```
+
 We access the row record with `valueGetter` and pass categoryId to the `useOne` hook. `useOne` hook returns a `data` object which contains the category title.
 
 Try the result on your browser and you'll notice that the category column is filled correctly with the matching category titles for the each record's category id's. Even the loading state is managed by **refine**.
 
 To get more detailed information about this hook, please refer the [useOne Documentation](#).
+
 <!-- To get more detailed information about this hook, please refer the [useOne Documentation](/core/hooks/data/useOne.md). -->
 
 ## Adding search and filters
@@ -803,6 +802,7 @@ Let's create a `<PostShow>` component on `/pages/posts` folder:
 ```tsx title="src/pages/posts/show.tsx"
 import { useOne, useShow } from "@pankod/refine-core";
 import { Show, Stack, Typography, TagField } from "@pankod/refine-mui";
+
 import { ICategory, IPost } from "interfaces";
 
 export const PostShow: React.FC = () => {
@@ -860,6 +860,7 @@ Since we've got access to raw data returning from `useShow()`, there is no restr
 the `<Show>` component which has extra features like `list` and `refresh` buttons.
 
 [Refer to the `<Show>` documentation for detailed usage information. &#8594](#)
+
 <!-- [Refer to the `<Show>` documentation for detailed usage information. &#8594](/ui-frameworks/mui/components/basic-views/show.md) -->
 
 <br />
@@ -970,7 +971,6 @@ export const PostList: React.FC = () => {
                     <ShowButton
                         hideText
                         size="small"
-                        variant="outlined"
                         recordItemId={params.row.id}
                     />
                 );
@@ -1156,6 +1156,7 @@ In the example, it returns `formProps` and `saveButtonProps`, where the former i
 In edit page, `useForm` hook initializes the form with current record values.
 
 [Refer to the `useForm` documentation for detailed usage information . &#8594](#)
+
 <!-- [Refer to the `useForm` documentation for detailed usage information . &#8594](/ui-frameworks/mui/hooks/form/useForm.md) -->
 
 ✳️ You can give form property to `<Box>` component and it will render the form.
@@ -1277,20 +1278,18 @@ export const PostList: React.FC = () => {
             headerName: "Actions",
             field: "actions",
             minWidth: 250,
-            renderCell: function render(params){
+            renderCell: function render(params) {
                 return (
                     // highlight-start
                     <Stack direction="row" spacing={1}>
                         <EditButton
                             hideText
                             size="small"
-                            variant="outlined"
                             recordItemId={params.row.id}
                         />
                         <ShowButton
                             hideText
                             size="small"
-                            variant="outlined"
                             recordItemId={params.row.id}
                         />
                     </Stack>
@@ -1326,6 +1325,7 @@ export const PostList: React.FC = () => {
 ```
 
 [Refer to the `<EditButton>` documentation for detailed usage information. &#8594](#)
+
 <!-- [Refer to the `<EditButton>` documentation for detailed usage information. &#8594](/ui-frameworks/mui/components/buttons/edit.md) -->
 
 You can try using edit buttons which will trigger the edit forms for each record, allowing you to update the record data.
@@ -1340,7 +1340,6 @@ You can try using edit buttons which will trigger the edit forms for each record
     </div>
     <img src={editGif} alt="Edit record action" />
 </div>
-
 
 ## Creating a record
 
@@ -1604,20 +1603,17 @@ export const PostList: React.FC = () => {
                         <EditButton
                             hideText
                             size="small"
-                            variant="outlined"
                             recordItemId={params.row.id}
                         />
                         <ShowButton
                             hideText
                             size="small"
-                            variant="outlined"
                             recordItemId={params.row.id}
                         />
                         // highlight-start
                         <DeleteButton
                             hideText
                             size="small"
-                            variant="outlined"
                             recordItemId={params.row.id}
                         />
                         // highlight-end
@@ -1653,6 +1649,7 @@ export const PostList: React.FC = () => {
 ```
 
 [Refer to the `<DeleteButton>` documentation for detailed usage information. &#8594](#)
+
 <!-- [Refer to the `<DeleteButton>` documentation for detailed usage information. &#8594](/ui-frameworks/mui/components/buttons/delete.md) -->
 
 Now you can try deleting records yourself. Just click on the delete button of the record you want to delete and confirm.
