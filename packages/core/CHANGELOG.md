@@ -1,5 +1,15 @@
 # @pankod/refine-core
 
+## 3.26.0
+
+### Minor Changes
+
+-   [#1616](https://github.com/pankod/refine/pull/1616) [`6cb571e3b8`](https://github.com/pankod/refine/commit/6cb571e3b8a9a02c38764616640e0e06e71cd9fd) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Add `auditLogProvider` on `<Refine />` component.
+
+*   [#1888](https://github.com/pankod/refine/pull/1888) [`2b9f2f837a`](https://github.com/pankod/refine/commit/2b9f2f837aab8d7796f32cccea7ae2d46bfd08bc) Thanks [@aliemir](https://github.com/aliemir)! - - Extend `useTable.setFilters` with `behavior` as 2nd parameter (defaults to `merge`)
+    -   Add `defaultSetFilterBehavior` property to `useTable` options. (defaults to `merge`)
+    -   Add setter function overload to `useTable.setFilters`
+
 ## 3.23.2
 
 ### Patch Changes

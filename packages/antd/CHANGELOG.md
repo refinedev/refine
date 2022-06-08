@@ -1,5 +1,16 @@
 # @pankod/refine-antd
 
+## 3.26.0
+
+### Minor Changes
+
+-   [#1888](https://github.com/pankod/refine/pull/1888) [`2b9f2f837a`](https://github.com/pankod/refine/commit/2b9f2f837aab8d7796f32cccea7ae2d46bfd08bc) Thanks [@aliemir](https://github.com/aliemir)! - - Add `defaultSetFilterBehavior` property to `useTable` options.
+
+### Patch Changes
+
+-   Updated dependencies [[`6cb571e3b8`](https://github.com/pankod/refine/commit/6cb571e3b8a9a02c38764616640e0e06e71cd9fd), [`2b9f2f837a`](https://github.com/pankod/refine/commit/2b9f2f837aab8d7796f32cccea7ae2d46bfd08bc)]:
+    -   @pankod/refine-core@3.26.0
+
 ## 3.23.2
 
 ### Patch Changes
