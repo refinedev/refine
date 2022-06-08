@@ -13,7 +13,6 @@ import {
 } from "@pankod/refine-mui";
 
 import { IPost, ICategory } from "interfaces";
-import React from "react";
 
 export const PostList: React.FC = () => {
     const columns: GridColumns = [
@@ -57,19 +56,16 @@ export const PostList: React.FC = () => {
                         <EditButton
                             hideText
                             size="small"
-                            variant="outlined"
                             recordItemId={params.row.id}
                         />
                         <ShowButton
                             hideText
                             size="small"
-                            variant="outlined"
                             recordItemId={params.row.id}
                         />
                         <DeleteButton
                             hideText
                             size="small"
-                            variant="outlined"
                             recordItemId={params.row.id}
                         />
                     </Stack>

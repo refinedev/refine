@@ -25,16 +25,16 @@ const App: React.FC = () => {
                 ReadyPage={ReadyPage}
                 Layout={Layout}
                 catchAll={<ErrorComponent />}
-                // resources={[
-                //     {
-                //         name: "posts",
-                //         list: PostList,
-                //         create: PostCreate,
-                //         edit: PostEdit,
-                //         show: PostShow,
-                //         canDelete: true,
-                //     },
-                // ]}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        create: PostCreate,
+                        edit: PostEdit,
+                        show: PostShow,
+                        canDelete: true,
+                    },
+                ]}
             />
         </ThemeProvider>
     );
