@@ -7,8 +7,8 @@ import {
     GlobalStyles,
     CssBaseline,
     styled,
+    SnackbarProvider,
 } from "@pankod/refine-mui";
-import { SnackbarProvider } from "notistack";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 import { useTranslation } from "react-i18next";
