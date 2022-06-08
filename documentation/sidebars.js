@@ -350,7 +350,18 @@ module.exports = {
         {
             type: "category",
             label: "Packages",
-            items: ["packages/react-table", "packages/react-hook-form"],
+            items: [
+                "packages/react-table",
+                {
+                    type: "category",
+                    label: "React Hook Form",
+                    items: [
+                        "packages/react-hook-form/useForm",
+                        "packages/react-hook-form/useModalForm",
+                        "packages/react-hook-form/useStepsForm",
+                    ],
+                },
+            ],
         },
         {
             type: "category",
@@ -557,7 +568,10 @@ module.exports = {
                 {
                     type: "category",
                     label: "React Hook Form",
-                    items: ["examples/react-hook-form/react-hook-form"],
+                    items: [
+                        "examples/react-hook-form/useForm",
+                        "examples/react-hook-form/useStepsForm",
+                    ],
                 },
                 {
                     type: "category",
