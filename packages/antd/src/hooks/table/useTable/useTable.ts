@@ -1,4 +1,4 @@
-import React, { cloneElement, createElement } from "react";
+import React, { Children, createElement, Fragment } from "react";
 import { Grid, FormProps, Form, TablePaginationConfig, TableProps } from "antd";
 import { QueryObserverResult } from "react-query";
 import { useForm as useFormSF } from "sunflower-antd";
@@ -184,10 +184,19 @@ export const useTable = <
                     }
 
                     if (type === "jump-next" || type === "jump-prev") {
+                        const elementChildren = (element as React.ReactElement)
+                            ?.props?.children;
+
                         return createElement(PaginationLink, {
                             to: link,
-                            element: (element as React.ReactElement)?.props
-                                ?.children,
+                            element:
+                                Children.count(elementChildren) > 1
+                                    ? createElement(
+                                          Fragment,
+                                          {},
+                                          elementChildren,
+                                      )
+                                    : elementChildren,
                         });
                     }
 
