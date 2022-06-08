@@ -22,6 +22,10 @@ export const useBreadcrumb = (): UseBreadcrumbReturnType => {
 
     const breadcrumbs: BreadcrumbsType[] = [];
 
+    if (!resource?.name) {
+        return { breadcrumbs };
+    }
+
     const addBreadcrumb = (parentName: string) => {
         const parentResource = resources.find(
             (resource) => resource.name === parentName,
