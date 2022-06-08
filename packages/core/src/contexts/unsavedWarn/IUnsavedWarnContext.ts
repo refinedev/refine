@@ -1,4 +1,4 @@
 export interface IUnsavedWarnContext {
-    warnWhen: boolean;
-    setWarnWhen: (value: boolean) => void;
+    warnWhen?: boolean;
+    setWarnWhen?: (value: boolean) => void;
 }
