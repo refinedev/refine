@@ -1015,7 +1015,7 @@ export const PostList: React.FC = () => {
 </div>
 <br/>
 
-## `Editing` a record
+## Editing a record
 
 Until this point, we were basically working with reading operations such as fetching and displaying data from resources. From now on, we are going to start creating and updating records by using **refine**.
 
