@@ -9,6 +9,7 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useLog,
     useInvalidate,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
@@ -76,9 +77,9 @@ export const useUpdateMany = <
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
     const { mutate: checkError } = useCheckError();
-
     const { notificationDispatch } = useCancelNotification();
     const publish = usePublish();
+    const { log } = useLog();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
 
@@ -273,7 +274,6 @@ export const useUpdateMany = <
             },
             onSettled: (_data, _error, { ids, resource, dataProviderName }) => {
                 // invalidate the cache for the list and many queries:
-
                 invalidateStore({
                     resource,
                     invalidates: ["list", "many"],
@@ -294,7 +294,11 @@ export const useUpdateMany = <
                     payload: { id: ids, resource },
                 });
             },
-            onSuccess: (_data, { ids, resource, successNotification }) => {
+            onSuccess: (
+                data,
+                { ids, resource, successNotification, dataProviderName },
+                context,
+            ) => {
                 const resourceSingular = pluralize.singular(resource);
 
                 handleNotification(successNotification, {
@@ -324,6 +328,24 @@ export const useUpdateMany = <
                     },
                     date: new Date(),
                 });
+
+                // TODO: get previous data from context
+                // const previousData = ids.map((id) => {
+                //     return queryClient.getQueryData<
+                //         UpdateManyResponse<TData>
+                //     >(context.queryKey.detail(id))?.data;
+                // });
+
+                log?.({
+                    action: "update",
+                    resource,
+                    data: data.data,
+                    previousData: {},
+                    meta: {
+                        ids,
+                        dataProviderName,
+                    },
+                });
             },
             onError: (
                 err: TError,
@@ -331,7 +353,6 @@ export const useUpdateMany = <
                 context,
             ) => {
                 // set back the queries to the context:
-
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query[0], query[1]);

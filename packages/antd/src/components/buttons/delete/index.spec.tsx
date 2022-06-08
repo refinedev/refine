@@ -199,7 +199,7 @@ describe("Delete Button", () => {
             expect(deleteOneMock).toBeCalledTimes(1);
         });
 
-        it("should confirm Popconfirm successfuly with onSuccess", async () => {
+        fit("should confirm Popconfirm successfuly with onSuccess", async () => {
             const deleteOneMock = jest.fn();
             const onSuccessMock = jest.fn();
 
