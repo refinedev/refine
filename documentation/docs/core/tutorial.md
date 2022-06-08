@@ -1514,7 +1514,7 @@ First, we'll install [`@pankod/refine-react-hook-form`](https://github.com/panko
 
 Until this point, we were basically working with read operations such as fetching and displaying data from resources. From now on, we are going to start creating and updating records by using `@pankod/refine-react-hook-form`.
 
-[Refer to the `@pankod/refine-react-hook-form` documentation for detailed usage information. &#8594](/packages/react-hook-form.md)
+[Refer to the `@pankod/refine-react-hook-form` documentation for detailed usage information. &#8594](/packages/react-hook-form/useForm.md)
 
 Let's start by creating a new `<PostEdit>` page responsible for editing a single record:
 
