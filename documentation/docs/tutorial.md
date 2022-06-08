@@ -20,7 +20,6 @@ These tutorials will go through process of building a simple _admin panel_ for a
 
 Step by step, you're going to learn how to consume a _REST API_ and add basic CRUD functionality to your panel leveraging the unique capabilities of **refine**.
 
-
 <div className="tutorial-cards">
     <Card
         iconPath={"/img/cra-tailwind.png"}
@@ -32,10 +31,11 @@ Step by step, you're going to learn how to consume a _REST API_ and add basic CR
         title={"Refine Core & Ant Design - CRA"}
         direction={"/docs/ui-frameworks/antd/tutorial"}
     />
+</div>
+<div className="tutorial-cards-center">
     <Card
-        iconPath={"#"}
+        iconPath={"/img/cra-mui.png"}
         title={"Refine Core & Material UI - CRA"}
         direction={"/docs/ui-frameworks/mui/tutorial"}
     />
 </div>
-
