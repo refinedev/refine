@@ -49,6 +49,5 @@ jobs:
       - name: Release to @next version
         run: npm run release-next
         env:
-          GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
