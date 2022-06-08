@@ -200,15 +200,12 @@ Replace the contents of `index.tsx` with the following code:
 ```tsx title="src/index.tsx"
 import React from "react";
 import ReactDOM from "react-dom";
-import { SnackbarProvider } from "notistack";
 
 import App from "./App";
 
 ReactDOM.render(
     <React.StrictMode>
-        <SnackbarProvider>
             <App />
-        </SnackbarProvider>
     </React.StrictMode>,
     document.getElementById("root"),
 );
@@ -224,24 +221,23 @@ import {
     ErrorComponent,
     LightTheme,
     CssBaseline,
+    GlobalStyles,
     ThemeProvider,
-    notificationProviderHandle,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 const App: React.FC = () => {
-    const notificationProvider = notificationProviderHandle();
 
     return (
         <ThemeProvider theme={LightTheme}>
             <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 Layout={Layout}
                 ReadyPage={ReadyPage}
-                notificationProvider={notificationProvider}
                 catchAll={<ErrorComponent />}
             />
         </ThemeProvider>
@@ -250,6 +246,10 @@ const App: React.FC = () => {
 
 export default App;
 ```
+
+:::tip
+refine comes natively with Light/Dark theme support. Check out the [theme](#) documentation for more information.
+:::
 
 <br/>
 
@@ -342,24 +342,23 @@ import {
     ErrorComponent,
     LightTheme,
     CssBaseline,
+    GlobalStyles,
     ThemeProvider,
-    notificationProviderHandle,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 export const App: React.FC = () => {
-    const notificationProvider = notificationProviderHandle();
 
     return (
         <ThemeProvider theme={LightTheme}>
             <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 Layout={Layout}
                 ReadyPage={ReadyPage}
-                notificationProvider={notificationProvider}
                 catchAll={<ErrorComponent />}
                 // highlight-next-line
                 resources={[{ name: "posts" }]}
@@ -522,25 +521,22 @@ import {
     ReadyPage,
     LightTheme,
     CssBaseline,
+    GlobalStyles,
     ThemeProvider,
-    notificationProviderHandle,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "authProvider";
 // highlight-next-line
 import { PostList } from "pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
-    const notificationProvider = notificationProviderHandle();
 
     return (
         <ThemeProvider theme={LightTheme}>
             <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <Refine
-                authProvider={authProvider}
                 routerProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}
                 ReadyPage={ReadyPage}
@@ -895,8 +891,8 @@ import {
     ReadyPage,
     LightTheme,
     CssBaseline,
+    GlobalStyles,
     ThemeProvider,
-    notificationProviderHandle,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -905,17 +901,15 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { PostList, PostShow } from "./pages/posts";
 
 export const App: React.FC = () => {
-    const notificationProvider = notificationProviderHandle();
-
     return (
         <ThemeProvider theme={LightTheme}>
             <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 Layout={Layout}
                 ReadyPage={ReadyPage}
-                notificationProvider={notificationProvider}
                 catchAll={<ErrorComponent />}
                 // highlight-start
                 resources={[
@@ -1205,6 +1199,7 @@ import {
     ReadyPage,
     LightTheme,
     CssBaseline,
+    GlobalStyles,
     ThemeProvider,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -1216,11 +1211,10 @@ import { PostEdit, PostList, PostShow } from "pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
-    const notificationProvider = notificationProviderHandle();
-
     return (
         <ThemeProvider theme={LightTheme}>
             <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <Refine
                 authProvider={authProvider}
                 routerProvider={routerProvider}
@@ -1506,8 +1500,8 @@ import {
     ReadyPage,
     LightTheme,
     CssBaseline,
+    GlobalStyles,
     ThemeProvider,
-    notificationProvider,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -1518,11 +1512,10 @@ import { PostCreate, PostEdit, PostList, PostShow } from "pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
-    const notificationProvider = notificationProviderHandle();
-
     return (
         <ThemeProvider theme={LightTheme}>
             <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <Refine
                 authProvider={authProvider}
                 routerProvider={routerProvider}
@@ -1691,8 +1684,8 @@ import {
     ReadyPage,
     LightTheme,
     CssBaseline,
+    GlobalStyles,
     ThemeProvider,
-    notificationProvider,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -1703,11 +1696,10 @@ import { PostCreate, PostEdit, PostList, PostShow } from "pages/posts";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
-    const notificationProvider = notificationProviderHandle();
-
     return (
         <ThemeProvider theme={LightTheme}>
             <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <Refine
                 authProvider={authProvider}
                 routerProvider={routerProvider}
