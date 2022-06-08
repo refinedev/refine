@@ -1,6 +1,6 @@
 {
   "name": "refine-react-hook-form-use-form-example",
-  "version": "3.22.1",
+  "version": "3.24.0-next.11",
   "private": true,
   "dependencies": {
     "@pankod/refine-core": "^3.23.2",
