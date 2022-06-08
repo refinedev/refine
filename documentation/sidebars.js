@@ -182,7 +182,7 @@ module.exports = {
             type: "category",
             label: "UI Frameworks",
             items: [
-                {
+                /*   {
                     type: "category",
                     label: "Material UI",
                     collapsed: false,
@@ -215,7 +215,7 @@ module.exports = {
                             ],
                         },
                     ],
-                },
+                }, */
                 {
                     type: "category",
                     label: "Ant Design",
