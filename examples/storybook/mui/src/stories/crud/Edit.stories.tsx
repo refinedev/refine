@@ -17,7 +17,7 @@ export default {
 
 export const EditBasicView: ComponentStory<typeof Edit> = (args) => {
     return (
-        <Edit title={args.title} canDelete={args.canDelete}>
+        <Edit canDelete={args.canDelete}>
             Content of Edit Basic View comes here 🤸‍♀️
         </Edit>
     );
