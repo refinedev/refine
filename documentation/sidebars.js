@@ -203,7 +203,7 @@ module.exports = {
                                         "ui-frameworks/mui/components/basic-views/create",
                                         "ui-frameworks/mui/components/basic-views/edit",
                                         "ui-frameworks/mui/components/basic-views/list",
-                                        // "ui-frameworks/mui/components/basic-views/show",
+                                        "ui-frameworks/mui/components/basic-views/show",
                                     ],
                                 },
                                 {
