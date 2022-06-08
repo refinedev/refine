@@ -28,20 +28,23 @@ export const CreatePage: React.FC = () => {
 
 ### `actionButtons`
 
-`<Create>` uses the Material UI [`<CardActions>`](https://mui.com/material-ui/api/card-actions/#main-content) component. The children of the `<CardActions>` component shows [`<SaveButton>`](/ui-frameworks/mui/components/buttons/save.md) and [`<DeleteButton>`](/ui-frameworks/mui/components/buttons/delete.md) based on your resource definition in the`resources`property you pass to `<Refine>`. If you want to use other things instead of these buttons, you can use the `actionButton` property like the code below.
+`<Create>` uses the Material UI [`<CardActions>`](https://mui.com/material-ui/api/card-actions/#main-content) component. The children of the `<CardActions>` component shows [`<SaveButton>`](/ui-frameworks/mui/components/buttons/save.md) and [`<DeleteButton>`](/ui-frameworks/mui/components/buttons/delete.md) based on your resource definition in the`resources` property you pass to `<Refine>`. If you want to use other things instead of these buttons, you can use the `actionButton` property like the code below.
 
-```tsx
+```tsx title="src/pages/posts/create.tsx"
+// highlight-next-line
 import { Create, Button } from "@pankod/refine-mui";
 
 export const CreatePage: React.FC = () => {
     return (
         <Create
+            // highlight-start
             actionButtons={
                 <>
                     <Button>Custom Button 1</Button>
                     <Button>Custom Button 2</Button>
                 </>
             }
+            // highlight-end
         >
             ...
         </Create>
@@ -62,21 +65,24 @@ export const CreatePage: React.FC = () => {
 
 ### `cardProps`
 
-`<Create>` uses the Material UI `<Card>` components so you can customize with the props of `cardProps`.
+`<Create>` uses the Material UI [`<Card>`](https://mui.com/material-ui/react-card/#main-content) components so you can customize with the props of `cardProps`.
 
 ### `cardHeaderProps`
 
-`<Create>` uses the Material UI `<CardHeader>` components so you can customize with the props of `cardHeaderProps`.
+`<Create>` uses the Material UI [`<CardHeader>`](https://mui.com/material-ui/api/card-header/) components so you can customize with the props of `cardHeaderProps`.
 
 ```tsx
-import { Create, Button, Typography } from "@pankod/refine-mui";
+// highlight-next-line
+import { Create, Typography } from "@pankod/refine-mui";
 
 export const CreatePage: React.FC = () => {
     return (
         <Create
+            // highlight-start
             cardHeaderProps={{
                 title: <Typography variant="h5">Custom Title</Typography>,
             }}
+            // highlight-end
         >
             ...
         </Create>
@@ -91,17 +97,17 @@ export const CreatePage: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={cardHeaderPropsTitle} alt="actionButton Usage" />
+    <img src={cardHeaderPropsTitle} alt="Card Header Props Usage" />
 </div>
 <br/>
 
 ### `cardContentProps`
 
-`<Create>` uses the Material UI `<CardContent>` components so you can customize with the props of `cardContentProps`.
+`<Create>` uses the Material UI [`<CardContent>`](https://mui.com/material-ui/api/card-content/) components so you can customize with the props of `cardContentProps`.
 
 ### `cardActionsProps`
 
-`<Create>` uses the Material UI `<CardActions>` components so you can customize with the props of `cardActionsProps`.
+`<Create>` uses the Material UI [`<CardActions>`](https://mui.com/material-ui/api/card-actions/) components so you can customize with the props of `cardActionsProps`.
 
 ### `resource`
 
@@ -150,7 +156,7 @@ export const App: React.FC = () => {
 | ---------------- | --------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | saveButtonProps  | Adds props for save button              | `{ disabled: boolean; onClick: () => void; loading: boolean; }`           | `<SaveButton>`                                                                 |
 | actionButtons    | Passes the props for `<CardActions>`    | `React.ReactNode`                                                         | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
-| cardProps        | Passes the props for `<Card>`           | [`CardHeaderProps`](https://mui.com/material-ui/api/card/#props)          | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
+| cardProps        | Passes the props for `<Card>`           | [`CardProps`](https://mui.com/material-ui/api/card/#props)                | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
 | cardHeaderProps  | Passes the props for `<CardHeader>`     | [`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)   |                                                                                |
 | cardContentProps | Passes the props for `<CardContent>`    | [`CardContentProps`](https://mui.com/material-ui/api/card-content/#props) |                                                                                |
 | cardActionsProps | Passes the props for `<CardActions>`    | [`CardActionsProps`](https://mui.com/material-ui/api/card-actions/#props) |                                                                                |
