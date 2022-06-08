@@ -9,7 +9,7 @@ import showButton from '@site/static/img/guides-and-concepts/components/buttons/
 
 ## Usage
 
-```tsx
+```tsx title="src/pages/posts/list.tsx"
 import { useTable } from "@pankod/refine-core";
 
 import {
