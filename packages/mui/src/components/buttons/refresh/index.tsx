@@ -63,7 +63,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
             {...rest}
         >
             {hideText ? (
-                <RefreshOutlinedIcon {...svgIconProps} />
+                <RefreshOutlinedIcon fontSize="small" {...svgIconProps} />
             ) : (
                 children ?? translate("buttons.refresh", "Refresh")
             )}
