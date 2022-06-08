@@ -1,37 +1,42 @@
 import { renderHook } from "@testing-library/react-hooks";
-
 import { TestWrapper } from "@test";
 
 import { useLogList } from "./";
 
-const logListMock = jest.fn();
+const auditLogProviderGetMock = jest.fn();
 
 describe("useLogList Hook", () => {
-    xit("useLogList should call the auditLogProvider's list method with same properties", () => {
+    beforeEach(() => {
+        auditLogProviderGetMock.mockReset();
+    });
+
+    it("useLogList should call the auditLogProvider's list method with same properties", () => {
         renderHook(
             () =>
                 useLogList({
                     resource: "posts",
+                    action: "list",
                     meta: { id: 1 },
                     metaData: { fields: ["id", "action", "data"] },
                 }),
             {
                 wrapper: TestWrapper({
                     auditLogProvider: {
-                        get: logListMock,
+                        get: auditLogProviderGetMock,
                     },
                 }),
             },
         );
 
-        expect(logListMock).toBeCalledWith({
+        expect(auditLogProviderGetMock).toBeCalledWith({
             resource: "posts",
-            params: { id: 1 },
+            action: "list",
+            meta: { id: 1 },
             metaData: { fields: ["id", "action", "data"] },
         });
     });
 
-    xit("useLogList should return data with 'posts' resource", async () => {
+    it("useLogList should return data with 'posts' resource", async () => {
         const { result, waitFor } = renderHook(
             () => useLogList({ resource: "posts" }),
             {
