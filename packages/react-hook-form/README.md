@@ -17,7 +17,7 @@
 
 ## Documentation
 
-For more detailed information and usage, refer to the [refine React Hook Form documentation](https://refine.dev/docs/packages/react-hook-form/).
+For more detailed information and usage, refer to the [refine React Hook Form documentation](https://refine.dev/docs/packages/react-hook-form/useForm).
 
 ## Install
 
