@@ -42,9 +42,11 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
+          version: cp -r ./.changeset/ ./_changeset/ && npm run changeset version
           publish: npm run changeset publish -- --tag next
           commit: "ci(changesets): next version packages"
           title: "ci(changesets): next version packages"
+          createGithubReleases: false
         env:
           GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,4 +1,4 @@
-name: Publish Master
+name: stable Release
 
 on:
   push:
@@ -6,7 +6,51 @@ on:
       - master
 
 jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    outputs:
+      published: ${{ steps.changesets.outputs.published }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
+      - name: Creating .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Install Dependencies & Build
+        run: |
+          npm ci
+          npm run bootstrap
+      - name: Lint
+        run: npm run lint
+      - name: Test
+        run: npm test
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: cp -r ./_changeset/ ./.changeset/ && rm -rf ./_changeset/ && npm run changeset version 
+          publish: npm run changeset publish
+          commit: "ci(changesets): version packages"
+          title: "ci(changesets): version packages"
+        env:
+          GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
   admin-example:
+    if: ${{ needs.publish.outputs.published == 'true' }}
     runs-on: ubuntu-latest
 
     strategy:
@@ -71,6 +115,7 @@ jobs:
           meercode-token: ${{ secrets.MEERCODE_TOKEN }}
           url: "https://example.admin.refine.dev"
   client-example:
+    if: ${{ needs.publish.outputs.published == 'true' }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -122,7 +167,7 @@ jobs:
         env:
           domain: "example.refine.dev"
   documentation-gh:
-    if: github.event_name != 'pull_request'
+    if: ${{ needs.publish.outputs.published == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
