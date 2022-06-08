@@ -117,7 +117,7 @@ Clicking the button will trigger the [`useDelete`](/core/hooks/data/useDelete.md
 
 For example, let's `console.log` after deletion:
 
-```tsx
+```tsx title="src/pages/posts/list.tsx"
 import { useTable } from "@pankod/refine-core";
 
 import {

@@ -9,8 +9,9 @@ import refreshButton from '@site/static/img/guides-and-concepts/components/butto
 
 ## Usage
 
-```tsx
+```tsx title="src/pages/posts/show.tsx"
 import { useShow } from "@pankod/refine-core";
+// highlight-next-line
 import { Show, Typography, Stack, RefreshButton } from "@pankod/refine-mui";
 
 export const ShowPage: React.FC = () => {

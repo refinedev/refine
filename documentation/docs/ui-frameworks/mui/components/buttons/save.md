@@ -9,9 +9,10 @@ import saveButton from '@site/static/img/guides-and-concepts/components/buttons/
 
 ## Usage
 
-For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`] hook.
+For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/docs/core/hooks/useForm) hook.
 
-```tsx
+```tsx title="src/pages/posts/edit.tsx"
+// highlight-next-line
 import { useForm } from "@pankod/refine-react-hook-form";
 import { Edit, Box, TextField } from "@pankod/refine-mui";
 

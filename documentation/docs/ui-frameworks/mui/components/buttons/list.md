@@ -9,8 +9,9 @@ import listButton from '@site/static/img/guides-and-concepts/components/buttons/
 
 ## Usage
 
-```tsx
+```tsx title="src/pages/posts/show.tsx"
 import { useShow } from "@pankod/refine-core";
+// highlight-next-line
 import { ListButton, Show, Typography, Stack } from "@pankod/refine-mui";
 
 export const ShowPage: React.FC = () => {

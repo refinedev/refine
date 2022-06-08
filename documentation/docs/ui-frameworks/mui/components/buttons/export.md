@@ -14,6 +14,7 @@ import exportButton from '@site/static/img/guides-and-concepts/components/button
 Use it like any other Ant Design [`<Button>`][button]. You can use it with [useExport][useexport]:
 
 ```tsx title="/src/pages/posts/list.tsx"
+// highlight-next-line
 import { useExport, useTable } from "@pankod/refine-core";
 import {
     ExportButton,
