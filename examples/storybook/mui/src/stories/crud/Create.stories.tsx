@@ -15,9 +15,5 @@ export default {
 } as ComponentMeta<typeof Create>;
 
 export const CreateBasicView: ComponentStory<typeof Create> = (args) => {
-    return (
-        <Create title={args.title}>
-            Content of Create Basic View comes here 🎉
-        </Create>
-    );
+    return <Create>Content of Create Basic View comes here 🎉</Create>;
 };
