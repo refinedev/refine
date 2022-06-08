@@ -2,16 +2,14 @@
 id: tutorial
 title: Tutorial
 ---
+
+import readyPage from '@site/static/img/tutorial/mui/ready-page.png';
+import resourceFirst from '@site/static/img/tutorial/mui/resource-1.png';
 import resourceSecond from '@site/static/img/tutorial/mui/resource-2.png';
 import filter from '@site/static/img/tutorial/mui/filter.gif';
 import showGif from '@site/static/img/tutorial/mui/show.gif';
 import editGif from '@site/static/img/tutorial/mui/edit.gif';
 import createGif from '@site/static/img/tutorial/mui/create.gif'
-
-<!-- import readyPage from '@site/static/img/tutorial/mui/ready-page.png';
-import resourceFirst from '@site/static/img/tutorial/mui/resource-1.png';
-;
- -->
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -191,26 +189,6 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 
 ## Bootstrapping the Application
 
-:::note
-If you used `superplate` to create the project, you can skip this part. `superplate` already bootstrapped the application.
-:::
-
-Replace the contents of `index.tsx` with the following code:
-
-```tsx title="src/index.tsx"
-import React from "react";
-import ReactDOM from "react-dom";
-
-import App from "./App";
-
-ReactDOM.render(
-    <React.StrictMode>
-            <App />
-    </React.StrictMode>,
-    document.getElementById("root"),
-);
-```
-
 Replace the contents of `App.tsx` with the following code:
 
 ```tsx title="src/App.tsx"
@@ -246,6 +224,12 @@ const App: React.FC = () => {
 
 export default App;
 ```
+
+:::info
+`<CssBaseline>` is a component that is used to apply the global reset CSS to the application. You may refer to the [**CssBaseline** documentation](https://mui.com/material-ui/react-css-baseline/) for more information.
+ 
+`<GlobalStyles>` is a component that is used to apply the global styles to the application. You may refer to the [**GlobalStyles** documentation](https://mui.com/material-ui/api/global-styles/) for more information.
+:::
 
 :::tip
 refine comes natively with Light/Dark theme support. Check out the [theme](#) documentation for more information.
@@ -288,7 +272,7 @@ Point your browser to [http://localhost:3000](http://localhost:3000) to access i
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="" alt="Ready Page" />
+    <img src={readyPage} alt="Ready Page" />
 </div>
 <br/>
 
@@ -384,7 +368,7 @@ Instead of showing the welcome page, the application should redirect now to an U
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="" alt="Resource only with name" />
+    <img src={resourceFirst} alt="Resource only with name" />
 </div>
 <br/>
 </>
