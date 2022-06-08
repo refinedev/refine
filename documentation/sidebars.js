@@ -335,18 +335,6 @@ module.exports = {
                         },
                     ],
                 },
-                {
-                    type: "category",
-                    label: "Material Design",
-                    collapsed: false,
-                    items: [
-                        {
-                            type: "category",
-                            label: "Hooks",
-                            items: ["ui-frameworks/mui/hooks/useDataGrid"],
-                        },
-                    ],
-                },
             ],
         },
         {
