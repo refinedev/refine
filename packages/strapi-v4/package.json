@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@pankod/refine-core": "^3.24.0-next.12",
-    "axios": "^0.21.4",
+    "axios": "^0.26.1",
     "qs": "^6.10.1"
   },
   "repository": {

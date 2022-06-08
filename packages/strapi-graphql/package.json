@@ -37,7 +37,7 @@
     "graphql": "^15.6.1",
     "graphql-request": "^3.5.0",
     "pluralize": "^8.0.0",
-    "query-string": "^7.0.1"
+    "query-string": "^7.1.1"
   },
   "peerDependencies": {
     "@pankod/refine-core": "^3.23.2"
