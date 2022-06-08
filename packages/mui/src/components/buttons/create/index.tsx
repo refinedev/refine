@@ -83,7 +83,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                 {...rest}
             >
                 {hideText ? (
-                    <AddBoxOutlinedIcon {...svgIconProps} />
+                    <AddBoxOutlinedIcon fontSize="small" {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.create", "Create")
                 )}

@@ -80,12 +80,19 @@ export const EditButton: React.FC<EditButtonProps> = ({
         >
             <Button
                 disabled={data?.can === false}
-                startIcon={!hideText && <EditOutlinedIcon {...svgIconProps} />}
+                startIcon={
+                    !hideText && (
+                        <EditOutlinedIcon
+                            sx={{ selfAlign: "center" }}
+                            {...svgIconProps}
+                        />
+                    )
+                }
                 title={disabledTitle()}
                 {...rest}
             >
                 {hideText ? (
-                    <EditOutlinedIcon {...svgIconProps} />
+                    <EditOutlinedIcon fontSize="small" {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.edit", "Edit")
                 )}

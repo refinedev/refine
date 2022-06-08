@@ -89,7 +89,10 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
                 {...rest}
             >
                 {hideText ? (
-                    <VisibilityOutlinedIcon {...svgIconProps} />
+                    <VisibilityOutlinedIcon
+                        fontSize="small"
+                        {...svgIconProps}
+                    />
                 ) : (
                     children ?? translate("buttons.show", "Show")
                 )}
