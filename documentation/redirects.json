@@ -713,10 +713,6 @@
             "to": "/docs/examples/notification-provider/react-toastify/"
         },
         {
-            "from": "/docs/next/examples/react-hook-form/react-hook-form/",
-            "to": "/docs/examples/react-hook-form/react-hook-form/"
-        },
-        {
             "from": "/docs/next/examples/react-table/advanced-react-table/",
             "to": "/docs/examples/react-table/advanced-react-table/"
         },
@@ -881,10 +877,6 @@
             "to": "/docs/migration-guide/"
         },
         {
-            "from": "/docs/next/packages/react-hook-form/",
-            "to": "/docs/packages/react-hook-form/"
-        },
-        {
             "from": "/docs/next/packages/react-table/",
             "to": "/docs/packages/react-table/"
         },
@@ -1047,6 +1039,14 @@
         {
             "from": "/docs/next/ui-frameworks/antd/tutorial/",
             "to": "/docs/ui-frameworks/antd/tutorial/"
+        },
+        {
+            "from": "/docs/packages/react-hook-form/",
+            "to": "/docs/packages/react-hook-form/useForm/"
+        },
+        {
+            "from": "/docs/examples/react-hook-form/react-hook-form/",
+            "to": "/docs/examples/react-hook-form/useForm/"
         }
     ]
 }
