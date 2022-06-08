@@ -47,7 +47,7 @@ export interface RefineProps {
     dataProvider: IDataContextProvider | IDataMultipleContextProvider;
     liveProvider?: ILiveContext;
     routerProvider: IRouterProvider;
-    notificationProvider?: NotificationProvider;
+    notificationProvider?: NotificationProvider | (() => NotificationProvider);
     accessControlProvider?: AccessControlProvider;
     resources?: ResourceProps[];
     i18nProvider?: I18nProvider;
@@ -149,9 +149,15 @@ export const Refine: React.FC<RefineProps> = ({
 
     const { RouterComponent } = routerProvider;
 
+    const notificationProviderContextValues = React.useMemo(() => {
+        return typeof notificationProvider === "function"
+            ? notificationProvider()
+            : notificationProvider ?? {};
+    }, [notificationProvider]);
+
     return (
         <QueryClientProvider client={queryClient}>
-            <NotificationContextProvider {...(notificationProvider ?? {})}>
+            <NotificationContextProvider {...notificationProviderContextValues}>
                 <AuthContextProvider
                     {...(authProvider ?? {})}
                     isProvided={Boolean(authProvider)}
