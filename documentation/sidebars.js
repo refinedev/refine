@@ -313,6 +313,7 @@ module.exports = {
                     label: "React Hook Form",
                     items: [
                         "packages/react-hook-form/useForm",
+                        "packages/react-hook-form/useModalForm",
                         "packages/react-hook-form/useStepsForm",
                     ],
                 },
