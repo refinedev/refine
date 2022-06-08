@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { ThemeProvider } from "@mui/system";
+import { ThemeProvider } from "@pankod/refine-mui";
 import {
     DarkThemeWithResponsiveFontSizes as DarkTheme,
     LightThemeWithResponsiveFontSizes as LightTheme,
