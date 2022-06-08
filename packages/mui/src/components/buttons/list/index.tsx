@@ -82,7 +82,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
                 {...rest}
             >
                 {hideText ? (
-                    <ListOutlinedIcon {...svgIconProps} />
+                    <ListOutlinedIcon fontSize="small" {...svgIconProps} />
                 ) : (
                     children ??
                     translate(

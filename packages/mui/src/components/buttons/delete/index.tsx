@@ -122,7 +122,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                 {...rest}
             >
                 {hideText ? (
-                    <DeleteOutlineIcon {...svgIconProps} />
+                    <DeleteOutlineIcon fontSize="small" {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.delete", "Delete")
                 )}

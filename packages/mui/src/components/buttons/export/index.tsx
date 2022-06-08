@@ -34,7 +34,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
             }
         >
             {hideText ? (
-                <ImportExportOutlinedIcon {...svgIconProps} />
+                <ImportExportOutlinedIcon fontSize="small" {...svgIconProps} />
             ) : (
                 children ?? translate("buttons.export", "Export")
             )}
