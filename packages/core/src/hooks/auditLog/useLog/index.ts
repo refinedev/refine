@@ -59,11 +59,6 @@ export const useLog = <
                         ...params,
                         author: identityData ?? authorData?.data,
                     });
-
-                    const queryKey = queryKeys(resource?.name);
-                    setTimeout(() => {
-                        queryClient.invalidateQueries(queryKey.logList());
-                    }, 500);
                 }
             }
         },

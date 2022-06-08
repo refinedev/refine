@@ -4,26 +4,33 @@ import { TestWrapper } from "@test";
 import { useLog } from ".";
 import { LogParams } from "../../../interfaces";
 
-const logEventMock = jest.fn();
-const logRenameMock = jest.fn();
+const auditLogProviderCreateMock = jest.fn();
+const auditLogProviderUpdateMock = jest.fn();
+const auditLogProviderGetMock = jest.fn();
 
 describe("useLog Hook", () => {
-    describe("log callback", () => {
-        beforeEach(() => {
-            logEventMock.mockReset();
-        });
+    beforeEach(() => {
+        auditLogProviderCreateMock.mockReset();
+        auditLogProviderUpdateMock.mockReset();
+        auditLogProviderGetMock.mockReset();
+    });
 
-        xit("should called logEvent if include permissions", async () => {
-            const { result, waitForNextUpdate } = renderHook(() => useLog(), {
+    describe("log callback", () => {
+        it("should called logEvent if include permissions", async () => {
+            const { result } = renderHook(() => useLog(), {
                 wrapper: TestWrapper({
                     resources: [
                         {
                             name: "posts",
-                            options: { auditLog: { permissions: ["create"] } },
+                            options: {
+                                auditLog: {
+                                    permissions: ["*"],
+                                },
+                            },
                         },
                     ],
                     auditLogProvider: {
-                        get: logEventMock,
+                        create: auditLogProviderCreateMock,
                     },
                 }),
             });
@@ -41,13 +48,11 @@ describe("useLog Hook", () => {
 
             log(logEventPayload);
 
-            await waitForNextUpdate();
-
-            expect(logEventMock).toBeCalledWith(logEventPayload);
-            expect(logEventMock).toBeCalledTimes(1);
+            expect(auditLogProviderCreateMock).toBeCalledWith(logEventPayload);
+            expect(auditLogProviderCreateMock).toBeCalledTimes(1);
         });
 
-        xit("should not called logEvent if no includes permissions", async () => {
+        it("should not called logEvent if no includes permissions", async () => {
             const { result } = renderHook(() => useLog(), {
                 wrapper: TestWrapper({
                     resources: [
@@ -57,7 +62,7 @@ describe("useLog Hook", () => {
                         },
                     ],
                     auditLogProvider: {
-                        get: logEventMock,
+                        get: auditLogProviderGetMock,
                     },
                 }),
             });
@@ -75,15 +80,15 @@ describe("useLog Hook", () => {
 
             log(logEventPayload);
 
-            expect(logEventMock).not.toBeCalled();
+            expect(auditLogProviderGetMock).not.toBeCalled();
         });
 
-        xit("should not called logEvent if no exist auditLogPermissions", async () => {
+        it("should not called logEvent if no exist auditLogPermissions", async () => {
             const { result } = renderHook(() => useLog(), {
                 wrapper: TestWrapper({
                     resources: [{ name: "posts" }],
                     auditLogProvider: {
-                        get: logEventMock,
+                        get: auditLogProviderGetMock,
                     },
                 }),
             });
@@ -101,11 +106,11 @@ describe("useLog Hook", () => {
 
             log(logEventPayload);
 
-            expect(logEventMock).not.toBeCalled();
+            expect(auditLogProviderGetMock).not.toBeCalled();
         });
 
-        xit("should called logEvent every action if permisson is `*`", async () => {
-            const { result, waitForNextUpdate } = renderHook(() => useLog(), {
+        it("should called logEvent every action if permisson is `*`", async () => {
+            const { result } = renderHook(() => useLog(), {
                 wrapper: TestWrapper({
                     resources: [
                         {
@@ -114,7 +119,7 @@ describe("useLog Hook", () => {
                         },
                     ],
                     auditLogProvider: {
-                        get: logEventMock,
+                        create: auditLogProviderGetMock,
                     },
                 }),
             });
@@ -130,10 +135,8 @@ describe("useLog Hook", () => {
 
             log(logEventPayload);
 
-            await waitForNextUpdate();
-
-            expect(logEventMock).toBeCalledWith(logEventPayload);
-            expect(logEventMock).toBeCalledTimes(1);
+            expect(auditLogProviderGetMock).toBeCalledWith(logEventPayload);
+            expect(auditLogProviderGetMock).toBeCalledTimes(1);
 
             const logEventPayload2: LogParams = {
                 action: "createMany",
@@ -144,13 +147,11 @@ describe("useLog Hook", () => {
 
             log(logEventPayload2);
 
-            await waitForNextUpdate();
-
-            expect(logEventMock).toBeCalledWith(logEventPayload2);
-            expect(logEventMock).toBeCalledTimes(2);
+            expect(auditLogProviderGetMock).toBeCalledWith(logEventPayload2);
+            expect(auditLogProviderGetMock).toBeCalledTimes(2);
         });
 
-        xit("should not called logEvent if resources no match", async () => {
+        it("should not called logEvent if resources no match", async () => {
             const { result } = renderHook(() => useLog(), {
                 wrapper: TestWrapper({
                     resources: [
@@ -160,7 +161,7 @@ describe("useLog Hook", () => {
                         },
                     ],
                     auditLogProvider: {
-                        get: logEventMock,
+                        create: auditLogProviderCreateMock,
                     },
                 }),
             });
@@ -176,29 +177,31 @@ describe("useLog Hook", () => {
 
             log(logEventPayload);
 
-            expect(logEventMock).not.toBeCalled();
+            expect(auditLogProviderCreateMock).not.toBeCalled();
         });
     });
 
     describe("rename mutation", () => {
-        xit("succeed rename", async () => {
+        it("succeed rename", async () => {
             const { result, waitForNextUpdate } = renderHook(() => useLog(), {
                 wrapper: TestWrapper({
                     auditLogProvider: {
-                        update: logRenameMock,
+                        update: auditLogProviderUpdateMock,
                     },
                 }),
             });
-
-            const { rename } = result.current!;
+            const { rename } = result.current;
             const { mutate } = rename;
 
-            await mutate({ id: 1, name: "test name" });
+            mutate({ id: 1, name: "test name" });
 
             await waitForNextUpdate();
 
-            expect(logRenameMock).toBeCalledWith({ id: 1, name: "test name" });
-            expect(logRenameMock).toBeCalledTimes(1);
+            expect(auditLogProviderUpdateMock).toBeCalledWith({
+                id: 1,
+                name: "test name",
+            });
+            expect(auditLogProviderUpdateMock).toBeCalledTimes(1);
         });
     });
 });

@@ -32,10 +32,10 @@ import {
     ILiveContext,
     LiveModeProps,
     IDataMultipleContextProvider,
-    IAuditLogContext,
     AuthProvider,
     NotificationProvider,
     AccessControlProvider,
+    AuditLogProvider,
 } from "../../../interfaces";
 import { routeGenerator } from "@definitions";
 
@@ -51,7 +51,7 @@ export interface RefineProps {
     routerProvider: IRouterProvider;
     notificationProvider?: NotificationProvider;
     accessControlProvider?: AccessControlProvider;
-    auditLogProvider?: IAuditLogContext;
+    auditLogProvider?: AuditLogProvider;
     resources?: ResourceProps[];
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
