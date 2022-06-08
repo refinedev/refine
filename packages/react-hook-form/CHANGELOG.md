@@ -1,5 +1,11 @@
 # @pankod/refine-react-hook-form
 
+## 3.23.0
+
+### Minor Changes
+
+-   [#1866](https://github.com/pankod/refine/pull/1866) [`9c72dae441`](https://github.com/pankod/refine/commit/9c72dae4418fde8792375be00a9628a0df751c6d) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Change `isBackValidate` default value to `false` for [`useStepsForm`](https://refine.dev/docs/packages/react-hook-form/useStepsForm/).
+
 ## 3.22.2
 
 ### Patch Changes
