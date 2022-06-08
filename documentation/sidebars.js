@@ -212,6 +212,16 @@ module.exports = {
                                         "ui-frameworks/mui/components/buttons/show-button",
                                     ],
                                 },
+                                {
+                                    type: "category",
+                                    label: "Fields",
+                                    items: [
+                                        "ui-frameworks/mui/components/fields/boolean",
+                                        "ui-frameworks/mui/components/fields/date",
+                                        "ui-frameworks/mui/components/fields/email",
+                                        "ui-frameworks/mui/components/fields/file",
+                                    ],
+                                },
                             ],
                         },
                     ],
