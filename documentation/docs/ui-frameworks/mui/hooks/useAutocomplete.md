@@ -157,7 +157,7 @@ const { autocompleteProps } = useAutocomplete({
 });
 ```
 
-Adds extra `options` to `<Autocomplete>` component. It uses `useMany` so `defaultValue` can be an array of strings like follows.
+Adds extra `options` to [`<Autocomplete>`](https://mui.com/material-ui/react-autocomplete/#main-content) component. It uses [`useMany`](/core/hooks/data/useMany.md) so `defaultValue` can be an array of strings like follows.
 
 ```ts
 defaultValue: ["1", "2"],
