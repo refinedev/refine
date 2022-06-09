@@ -30,6 +30,10 @@ export const queryKeys = (
             id?.toString(),
             { ...metaData } as QueryKey,
         ],
+        logList: (meta) =>
+            ["logList", resource, meta as any, metaData as QueryKey].filter(
+                (item) => item !== undefined,
+            ),
     };
     return keys;
 };

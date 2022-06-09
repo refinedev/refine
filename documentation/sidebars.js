@@ -184,6 +184,68 @@ module.exports = {
             items: [
                 {
                     type: "category",
+                    label: "Material UI",
+                    collapsed: false,
+                    items: [
+                        {
+                            type: "category",
+                            label: "Hooks",
+                            items: [
+                                "ui-frameworks/mui/hooks/useAutocomplete",
+                                "ui-frameworks/mui/hooks/useDataGrid",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Components",
+                            items: [
+                                {
+                                    type: "category",
+                                    label: "Basic Views",
+                                    items: [
+                                        "ui-frameworks/mui/components/basic-views/create",
+                                        "ui-frameworks/mui/components/basic-views/edit",
+                                        "ui-frameworks/mui/components/basic-views/list",
+                                        "ui-frameworks/mui/components/basic-views/show",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Buttons",
+                                    items: [
+                                        "ui-frameworks/mui/components/buttons/clone-button",
+                                        "ui-frameworks/mui/components/buttons/create-button",
+                                        "ui-frameworks/mui/components/buttons/delete-button",
+                                        "ui-frameworks/mui/components/buttons/edit-button",
+                                        "ui-frameworks/mui/components/buttons/export-button",
+                                        "ui-frameworks/mui/components/buttons/import-button",
+                                        "ui-frameworks/mui/components/buttons/list-button",
+                                        "ui-frameworks/mui/components/buttons/refresh-button",
+                                        "ui-frameworks/mui/components/buttons/save-button",
+                                        "ui-frameworks/mui/components/buttons/show-button",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Fields",
+                                    items: [
+                                        "ui-frameworks/mui/components/fields/boolean",
+                                        "ui-frameworks/mui/components/fields/date",
+                                        "ui-frameworks/mui/components/fields/email",
+                                        "ui-frameworks/mui/components/fields/file",
+                                        "ui-frameworks/mui/components/fields/markdown",
+                                        "ui-frameworks/mui/components/fields/number",
+                                        "ui-frameworks/mui/components/fields/tag",
+                                        "ui-frameworks/mui/components/fields/text",
+                                        "ui-frameworks/mui/components/fields/url",
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    type: "category",
                     label: "Ant Design",
                     collapsed: false,
                     items: [
@@ -551,6 +613,11 @@ module.exports = {
                     type: "category",
                     label: "Table",
                     items: [
+                        {
+                            type: "category",
+                            label: "MUI",
+                            items: ["examples/table/mui/useDataGrid"],
+                        },
                         "examples/table/advancedTable",
                         "examples/table/tableFilter",
                         "examples/table/useDeleteMany",

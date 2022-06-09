@@ -13,6 +13,7 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useLog,
     useInvalidate,
 } from "@hooks";
 import pluralize from "pluralize";
@@ -57,6 +58,7 @@ export const useCreateMany = <
 
     const translate = useTranslate();
     const publish = usePublish();
+    const { log } = useLog();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
 
@@ -119,6 +121,15 @@ export const useCreateMany = <
                             .map((item) => item.id!),
                     },
                     date: new Date(),
+                });
+
+                log?.({
+                    action: "create",
+                    resource,
+                    data: response.data,
+                    meta: {
+                        dataProviderName,
+                    },
                 });
             },
             onError: (err: TError, { resource, errorNotification }) => {
