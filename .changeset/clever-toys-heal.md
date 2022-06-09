@@ -2,4 +2,4 @@
 "@pankod/refine-mui": minor
 ---
 
-added new provider. <RefineSnackbarProvider/> for notifications. 
+Added new provider. `<RefineSnackbarProvider/>` for notifications. 
