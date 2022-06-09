@@ -1114,7 +1114,7 @@ In edit page, `useForm` hook initializes the form with current record values.
 ✳️ [`<TextField>`](components/fields/text.md) is Material UI components to build form inputs.
 
 ✳️ `<Autocomplete>` is a text input that helps you find what you're looking for by suggesting options. useAutocomplete is a refine hook for handling `<Autocomplete>` data. It returns `autocompleteProps` which includes all necessary props to build the autocomplete.
-You may refer to the [`useAutocomplete`](/ui-frameworks/mui/hooks/form/useAutocomplete.md) to get the full information about the hook.
+You may refer to the [`useAutocomplete`](/ui-frameworks/mui/hooks/useAutocomplete.md) to get the full information about the hook.
 
 ✳️ `<Edit>` is a wrapper **refine** component for `<form>`. It provides save, delete and refresh buttons that can be used for form actions.
 
