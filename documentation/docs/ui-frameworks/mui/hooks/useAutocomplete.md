@@ -8,7 +8,7 @@ import search from '@site/static/img/hooks/useSelect/mui/search.png';
 
 The `useAutocomplete` hook is used to get data from the API and to manage the Material UI [`<Autocomplete>`][mui-autocomplete] component.
 
-## Usage
+## Usage with React Hook Form (`@pankod/refine-react-hook-form`)
 
 We'll demonstrate how to get data at `/categories` endpoint from `https://api.fake-rest.refine.dev` REST API.
 
