@@ -3,11 +3,6 @@ import {
     Edit,
     Box,
     TextField,
-    FormControl,
-    InputLabel,
-    Select,
-    MenuItem,
-    FormHelperText,
     Autocomplete,
     useAutocomplete,
 } from "@pankod/refine-mui";
@@ -51,22 +46,32 @@ export const PostEdit: React.FC = () => {
                     name="title"
                     autoFocus
                 />
-                <FormControl
-                    margin="normal"
-                    required
-                    fullWidth
-                    error={!!errors.status}
-                >
-                    <InputLabel>Status</InputLabel>
-                    <Select {...register("status")} label="Status">
-                        <MenuItem value="published">Published</MenuItem>
-                        <MenuItem value="draft">Draft</MenuItem>
-                        <MenuItem value="rejected">Rejected</MenuItem>
-                    </Select>
-                    {errors.status && (
-                        <FormHelperText>{errors.status.message}</FormHelperText>
+                <Controller
+                    control={control}
+                    name="status"
+                    rules={{ required: "This field is required" }}
+                    defaultValue=""
+                    render={({ field }) => (
+                        <Autocomplete
+                            options={["published", "draft", "rejected"]}
+                            {...field}
+                            onChange={(_, value) => {
+                                field.onChange(value);
+                            }}
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    label="Status"
+                                    margin="normal"
+                                    variant="outlined"
+                                    error={!!errors.status}
+                                    helperText={errors.status?.message}
+                                    required
+                                />
+                            )}
+                        />
                     )}
-                </FormControl>
+                />
                 <Controller
                     control={control}
                     name="category"
@@ -80,13 +85,13 @@ export const PostEdit: React.FC = () => {
                                 field.onChange(value);
                             }}
                             getOptionLabel={(item) => {
-                                return item.title
-                                    ? item.title
-                                    : autocompleteProps?.options?.find(
-                                          (p) =>
-                                              p.id.toString() ===
-                                              item.toString(),
-                                      )?.title ?? "";
+                                return (
+                                    autocompleteProps?.options?.find(
+                                        (p) =>
+                                            p?.id?.toString() ===
+                                            item?.id?.toString(),
+                                    )?.title ?? ""
+                                );
                             }}
                             isOptionEqualToValue={(option, value) =>
                                 value === undefined ||
@@ -98,9 +103,9 @@ export const PostEdit: React.FC = () => {
                                     label="Category"
                                     margin="normal"
                                     variant="outlined"
-                                    required
                                     error={!!errors.category}
-                                    helperText={errors.category?.message}
+                                    helperText={errors.status?.category}
+                                    required
                                 />
                             )}
                         />

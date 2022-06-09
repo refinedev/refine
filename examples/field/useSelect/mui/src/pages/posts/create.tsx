@@ -51,30 +51,31 @@ export const PostCreate: React.FC = () => {
                     name="title"
                     autoFocus
                 />
-                <FormControl
-                    margin="normal"
-                    required
-                    fullWidth
-                    error={!!errors.status}
-                >
-                    <InputLabel>Status</InputLabel>
-                    <Select
-                        {...register("status")}
-                        labelId="status"
-                        label="Status"
-                        defaultValue="draft"
-                    >
-                        <MenuItem value="published">Published</MenuItem>
-                        <MenuItem value="draft">Draft</MenuItem>
-                        <MenuItem value="rejected">Rejected</MenuItem>
-                    </Select>
-                    {errors.status && (
-                        <FormHelperText>
-                            {errors.status?.message}
-                        </FormHelperText>
+                <Controller
+                    control={control}
+                    name="status"
+                    rules={{ required: "This field is required" }}
+                    render={({ field }) => (
+                        <Autocomplete
+                            options={["published", "draft", "rejected"]}
+                            {...field}
+                            onChange={(_, value) => {
+                                field.onChange(value);
+                            }}
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    label="Status"
+                                    margin="normal"
+                                    variant="outlined"
+                                    error={!!errors.status}
+                                    helperText={errors.status?.message}
+                                    required
+                                />
+                            )}
+                        />
                     )}
-                </FormControl>
-
+                />
                 <Controller
                     control={control}
                     name="category"
@@ -87,20 +88,27 @@ export const PostCreate: React.FC = () => {
                                 field.onChange(value);
                             }}
                             getOptionLabel={(item) => {
-                                return item.title ? item.title : "";
+                                return (
+                                    autocompleteProps?.options?.find(
+                                        (p) =>
+                                            p?.id?.toString() ===
+                                            item?.id?.toString(),
+                                    )?.title ?? ""
+                                );
                             }}
                             isOptionEqualToValue={(option, value) =>
-                                value === undefined || option.id === value.id
+                                value === undefined ||
+                                option.id.toString() === value.toString()
                             }
                             renderInput={(params) => (
                                 <TextField
                                     {...params}
-                                    required
                                     label="Category"
                                     margin="normal"
                                     variant="outlined"
                                     error={!!errors.category}
-                                    helperText={errors.category?.message}
+                                    helperText={errors.status?.category}
+                                    required
                                 />
                             )}
                         />
