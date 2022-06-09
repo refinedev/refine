@@ -235,7 +235,7 @@ const { autocompleteProps } = useAutocomplete({
 });
 ```
 
-If defined, it allows us to override the filters to use when fetching list of records. Thus, it . It should return [`CrudFilters`](/core/interfaces.md#crudfilters).
+If defined, it allows us to override the filters to use when fetching the list of records. Thus, it. It should return [`CrudFilters`](/core/interfaces.md#crudfilters).
 
 ### `queryOptions`
 
