@@ -14,8 +14,8 @@ const columns: GridColumns = [
         headerName: "ID",
         type: "number",
     },
-    { field: "title", headerName: "Title", width: 500 },
-    { field: "status", headerName: "Status", width: 120 },
+    { field: "title", headerName: "Title", minWidth: 500, flex: 1 },
+    { field: "status", headerName: "Status", minWidth: 120, flex: 0.5 },
     {
         field: "actions",
         headerName: "Actions",
@@ -34,7 +34,7 @@ const columns: GridColumns = [
         ),
         align: "center",
         headerAlign: "center",
-        width: 80,
+        minWidth: 80,
     },
 ];
 
