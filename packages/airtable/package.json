@@ -34,7 +34,7 @@
     "@qualifyze/airtable-formulator": "^1.0.1",
     "airtable": "^0.11.1",
     "asyncairtable": "^2.1.0",
-    "query-string": "^7.0.1"
+    "query-string": "^7.1.1"
   },
   "peerDependencies": {
     "@pankod/refine-core": "^3.23.2"
