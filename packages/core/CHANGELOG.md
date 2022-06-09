@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.27.0
+
+### Minor Changes
+
+-   Updated `notificationProvider` prop in the `Refine` wrapper component to be able to lazily initialized.
+
 ## 3.26.0
 
 ### Minor Changes
