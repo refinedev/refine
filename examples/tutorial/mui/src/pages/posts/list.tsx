@@ -77,22 +77,9 @@ export const PostList: React.FC = () => {
         columns,
     });
 
-    const {
-        filterMode,
-        filterModel,
-        onFilterModelChange,
-        ...restDataGridProps
-    } = dataGridProps;
-
     return (
         <List>
-            <DataGrid
-                {...restDataGridProps}
-                filterMode={filterMode}
-                filterModel={filterModel}
-                onFilterModelChange={onFilterModelChange}
-                autoHeight
-            />
+            <DataGrid {...dataGridProps} autoHeight />
         </List>
     );
 };
