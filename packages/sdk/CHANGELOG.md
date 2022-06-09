@@ -1,6 +1,6 @@
-# @pankod/refine-airtable
+# @pankod/refine-sdk
 
-## 3.25.1
+## 0.0.22
 
 ### Patch Changes
 
@@ -13,13 +13,3 @@
     // new v0.26.1
     axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${data.jwt}`;
     ```
-
--   Updated dependencies [[`2ba2a96fd2`](https://github.com/pankod/refine/commit/2ba2a96fd24aa733c355ac9ef4c99b7d48115746)]:
-    -   @pankod/refine-core@3.26.0
-
-## 3.22.2
-
-### Patch Changes
-
--   Updated dependencies [[`2deb19babf`](https://github.com/pankod/refine/commit/2deb19babfc6db5b00b111ec29aa5ece4c371bbc)]:
-    -   @pankod/refine-core@3.23.2
