@@ -132,13 +132,6 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
     const { dataGridProps } = useDataGrid<IStore>({
         initialPageSize: 10,
         columns,
-        permanentFilter: [
-            {
-                field: "status",
-                operator: "eq",
-                value: "pending",
-            },
-        ],
     });
 
     return (
