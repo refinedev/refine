@@ -1,5 +1,16 @@
 # @pankod/refine-mui
 
+## 3.25.2
+
+### Patch Changes
+
+-   [#1909](https://github.com/pankod/refine/pull/1909) [`0170b1306d`](https://github.com/pankod/refine/commit/0170b1306d38d20891a189e3103a7a8bddd3a3dc) Thanks [@aliemir](https://github.com/aliemir)! - Renamed export `notificationProviderHandle` from `@pankod/refine-mui` to `notificationProvider` for consistency across packages
+
+*   [#1896](https://github.com/pankod/refine/pull/1896) [`2ba2a96fd2`](https://github.com/pankod/refine/commit/2ba2a96fd24aa733c355ac9ef4c99b7d48115746) Thanks [@aliemir](https://github.com/aliemir)! - Added missing exports from `notistack` package.
+
+*   Updated dependencies [[`2ba2a96fd2`](https://github.com/pankod/refine/commit/2ba2a96fd24aa733c355ac9ef4c99b7d48115746)]:
+    -   @pankod/refine-core@3.26.0
+
 ## 3.25.1
 
 ### Patch Changes
