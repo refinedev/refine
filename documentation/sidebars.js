@@ -190,7 +190,10 @@ module.exports = {
                         {
                             type: "category",
                             label: "Hooks",
-                            items: ["ui-frameworks/mui/hooks/useDataGrid"],
+                            items: [
+                                "ui-frameworks/mui/hooks/useAutocomplete",
+                                "ui-frameworks/mui/hooks/useDataGrid",
+                            ],
                         },
                         {
                             type: "category",
@@ -220,6 +223,21 @@ module.exports = {
                                         "ui-frameworks/mui/components/buttons/refresh-button",
                                         "ui-frameworks/mui/components/buttons/save-button",
                                         "ui-frameworks/mui/components/buttons/show-button",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Fields",
+                                    items: [
+                                        "ui-frameworks/mui/components/fields/boolean",
+                                        "ui-frameworks/mui/components/fields/date",
+                                        "ui-frameworks/mui/components/fields/email",
+                                        "ui-frameworks/mui/components/fields/file",
+                                        "ui-frameworks/mui/components/fields/markdown",
+                                        "ui-frameworks/mui/components/fields/number",
+                                        "ui-frameworks/mui/components/fields/tag",
+                                        "ui-frameworks/mui/components/fields/text",
+                                        "ui-frameworks/mui/components/fields/url",
                                     ],
                                 },
                             ],

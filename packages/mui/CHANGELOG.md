@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 3.26.0
+
+### Minor Changes
+
+-   [#1911](https://github.com/pankod/refine/pull/1911) [`6aa09d34b8`](https://github.com/pankod/refine/commit/6aa09d34b8756d22b76cb9804814594e730587b0) Thanks [@biskuvit](https://github.com/biskuvit)! - Added new provider. `<RefineSnackbarProvider/>` for notifications.
+
 ## 3.25.2
 
 ### Patch Changes
