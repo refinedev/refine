@@ -45,9 +45,9 @@ import { useForm, Controller } from "@pankod/refine-react-hook-form";
 
 export const PostCreate = () => {
     const {
-        refineCore: { onFinish, formLoading },
+        saveButtonProps,
+        refineCore: { formLoading, queryResult },
         register,
-        handleSubmit,
         control,
         formState: { errors },
     } = useForm();
@@ -59,10 +59,7 @@ export const PostCreate = () => {
     // highlight-end
 
     return (
-        <Create
-            isLoading={formLoading}
-            saveButtonProps={{ onClick: handleSubmit(onFinish) }}
-        >
+        <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
             <Box component="form">
                 <Controller
                     control={control}
