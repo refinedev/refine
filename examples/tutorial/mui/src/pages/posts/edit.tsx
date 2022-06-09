@@ -11,9 +11,9 @@ import { ICategory } from "interfaces";
 
 export const PostEdit: React.FC = () => {
     const {
-        refineCore: { onFinish, formLoading, queryResult },
+        refineCore: { formLoading, queryResult },
+        saveButtonProps,
         register,
-        handleSubmit,
         control,
         formState: { errors },
     } = useForm();
@@ -25,21 +25,18 @@ export const PostEdit: React.FC = () => {
     });
 
     return (
-        <Edit
-            isLoading={formLoading}
-            saveButtonProps={{ onClick: handleSubmit(onFinish) }}
-        >
+        <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
             <Box
                 component="form"
                 sx={{ display: "flex", flexDirection: "column" }}
                 autoComplete="off"
             >
                 <TextField
-                    {...register("title", { required: true })}
+                    {...register("title", { required: "Title is required" })}
                     error={!!errors?.title}
                     helperText={errors?.title?.message}
-                    margin="normal"
                     required
+                    margin="normal"
                     fullWidth
                     id="title"
                     label="Title"
@@ -49,7 +46,7 @@ export const PostEdit: React.FC = () => {
                 <Controller
                     control={control}
                     name="status"
-                    rules={{ required: true }}
+                    rules={{ required: "Status is required" }}
                     defaultValue=""
                     render={({ field }) => (
                         <Autocomplete
@@ -61,13 +58,11 @@ export const PostEdit: React.FC = () => {
                             renderInput={(params) => (
                                 <TextField
                                     {...params}
-                                    label="status"
+                                    label="Status"
                                     margin="normal"
                                     variant="outlined"
                                     error={!!errors.status}
-                                    helperText={
-                                        errors.status && "status required"
-                                    }
+                                    helperText={errors.status?.message}
                                     required
                                 />
                             )}
@@ -77,7 +72,7 @@ export const PostEdit: React.FC = () => {
                 <Controller
                     control={control}
                     name="category"
-                    rules={{ required: true }}
+                    rules={{ required: "Category is required" }}
                     defaultValue=""
                     render={({ field }) => (
                         <Autocomplete
@@ -106,9 +101,7 @@ export const PostEdit: React.FC = () => {
                                     margin="normal"
                                     variant="outlined"
                                     error={!!errors.category}
-                                    helperText={
-                                        errors.category && "category required"
-                                    }
+                                    helperText={errors.category?.message}
                                     required
                                 />
                             )}
