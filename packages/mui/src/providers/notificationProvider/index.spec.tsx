@@ -42,12 +42,12 @@ describe("Notistack notificationProvider", () => {
             } as any),
     );
 
-    const notificationProvider = notificationProvider();
+    const notificationProviderHandle = notificationProvider();
 
     // This test cover the case when the type is not "progress" ("success" or "error")
 
     it("should render notification snack with success type ", () => {
-        notificationProvider.open(mockNotification);
+        notificationProviderHandle.open(mockNotification);
 
         expect(enqueueSnackbarMock).toHaveBeenCalled();
         expect(enqueueSnackbarMock).toHaveBeenCalledWith(
@@ -64,7 +64,7 @@ describe("Notistack notificationProvider", () => {
     });
 
     it("should render error notification if type set as error", async () => {
-        notificationProvider.open({ ...mockNotification, type: "error" });
+        notificationProviderHandle.open({ ...mockNotification, type: "error" });
 
         expect(enqueueSnackbarMock).toHaveBeenCalledTimes(1);
         expect(enqueueSnackbarMock).toBeCalledWith(mockNotification.message, {
@@ -80,7 +80,7 @@ describe("Notistack notificationProvider", () => {
     // This test cover the case when the type is "progress"
 
     it("should render notification with undoable when type is progress", async () => {
-        notificationProvider.open(mockNotificationUndoable);
+        notificationProviderHandle.open(mockNotificationUndoable);
 
         expect(enqueueSnackbarMock).toHaveBeenCalledTimes(1);
         expect(enqueueSnackbarMock).toBeCalledWith(
@@ -107,7 +107,7 @@ describe("Notistack notificationProvider", () => {
     // This test cover the case when the closeSnackbar is called
 
     it("should close notification", async () => {
-        notificationProvider.close("");
+        notificationProviderHandle.close("");
 
         expect(closeSnackbarMock).toBeCalledTimes(1);
     });
