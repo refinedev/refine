@@ -16,7 +16,7 @@ We will show what `<Show>` does using properties with examples.
 
 `canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the resource has `canDelete` or `canEdit` property refine adds the buttons by default.
 
-When clicked on, delete button executes the `useDelete` method provided by the [`dataProvider`](/core/providers/data-provider.md) and the edit button redirects the user to the record edit page.
+When clicked on, delete button executes the [`useDelete`](/core/hooks/data/useDelete.md) method provided by the [`dataProvider`](/core/providers/data-provider.md) and the edit button redirects the user to the record edit page.
 
 Refer to the [`<DeleteButton>`](/ui-frameworks/mui/components/buttons/delete.md) and the [`<EditButton>`](/ui-frameworks/mui/components/buttons/edit.md) documentation for detailed usage.
 
@@ -45,7 +45,7 @@ export const ShowPage: React.FC = () => {
 
 ### `actionButtons`
 
-`<Show>` uses the Material UI [`<CardActions>`](https://mui.com/material-ui/api/card-actions/#main-content) component. By default,The children of the `<CardActions>` component shows nothing in the `<Show>` component.
+`<Show>` uses the Material UI [`<CardActions>`](https://mui.com/material-ui/api/card-actions/#main-content) component. By default,The children of the [`<CardActions>`](https://mui.com/material-ui/api/card-actions/#main-content) component shows nothing in the `<Show>` component.
 
 ```tsx title="src/pages/posts/show.tsx"
 // highlight-next-line
@@ -178,7 +178,7 @@ export const ShowPage: React.FC = () => {
 ```
 
 :::note
-`<Show>` component needs the `id` information for `<RefreshButton>` to work properly.
+`<Show>` component needs the `id` information for [`<RefreshButton>`](/ui-frameworks/mui/components/buttons/refresh.md) to work properly.
 :::
 
 ### `resource`
@@ -234,8 +234,8 @@ The `<Show>` component needs the `id` information for work properly, so if you u
 
 | Property         | Description                             | Type                                                                      | Default                                                                        |
 | ---------------- | --------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| canDelete        | Adds a delete button                    | `boolean`                                                                 | If the resource has `canDelete` prop it is `true` else `false`                 |
-| canEdit          | Adds an edit button                     | `boolean`                                                                 | If the resource has `canEdit` prop it is `true` else `false`                   |
+| canDelete        | Adds a `<DeleteButton>`                 | `boolean`                                                                 | If the resource has `canDelete` prop it is `true` else `false`                 |
+| canEdit          | Adds an `<EditButton>`                  | `boolean`                                                                 | If the resource has `canEdit` prop it is `true` else `false`                   |
 | actionButtons    | Passes the props for `<CardActions>`    | `React.ReactNode`                                                         | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
 | cardProps        | Passes the props for `<Card>`           | [`CardProps`](https://mui.com/material-ui/api/card/#props)                | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
 | cardHeaderProps  | Passes the props for `<CardHeader>`     | [`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)   |                                                                                |
