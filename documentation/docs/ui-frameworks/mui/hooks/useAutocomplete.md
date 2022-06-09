@@ -130,7 +130,7 @@ The use of `useAutocomplete` with [`useForm`](/packages/react-hook-form/useForm.
 <br/>
 
 :::info
-By default, refine does the search using the `useList` hook and passes it to the search parameter. If you get a problem you should check your `getList` function in your Data Provider. If you want to change this behavior to make client-side filtering, you can examine [this](https://mui.com/material-ui/react-autocomplete/#search-as-you-type) documentation.
+By default, refine does the search using the [`useList`](/core/hooks/data/useDelete.md) hook and passes it to the search parameter. If you get a problem you should check your `getList` function in your Data Provider. If you want to change this behavior to make client-side filtering, you can examine [this](https://mui.com/material-ui/react-autocomplete/#search-as-you-type) documentation.
 :::
 
 ## Options
@@ -143,7 +143,7 @@ const { autocompleteProps } = useAutocomplete({
 });
 ```
 
-`resource` property determines API resource endpoint to fetch records from [`dataProvider`](/core/providers/data-provider.md). It returns properly configured `options` values for `<Autocomplete>` options.
+`resource` property determines API resource endpoint to fetch records from [`dataProvider`](/core/providers/data-provider.md). It returns properly configured `options` values for [`<Autocomplete>`](https://mui.com/material-ui/react-autocomplete/#main-content) options.
 
 [Refer to Material UI `Autocomplete` component documentation for detailed info for `options`. &#8594](https://mui.com/material-ui/react-autocomplete/#options-structure)
 
@@ -157,7 +157,7 @@ const { autocompleteProps } = useAutocomplete({
 });
 ```
 
-Adds extra `options` to `<Autocomplete>` component. It uses `useMany` so `defaultValue` can be an array of strings like follows.
+Adds extra `options` to [`<Autocomplete>`](https://mui.com/material-ui/react-autocomplete/#main-content) component. It uses [`useMany`](/core/hooks/data/useMany.md) so `defaultValue` can be an array of strings like follows.
 
 ```ts
 defaultValue: ["1", "2"],
@@ -216,7 +216,7 @@ const { autocompleteProps } = useAutocomplete({
 });
 ```
 
-Amount of records to fetch in select box.
+Amount of records to fetch in the select box.
 
 ### `onSearch`
 
@@ -235,7 +235,7 @@ const { autocompleteProps } = useAutocomplete({
 });
 ```
 
-If defined, it allows us to override the filters to use when fetching list of records. Thus, it . It should return [`CrudFilters`](/core/interfaces.md#crudfilters).
+If defined, it allows us to override the filters to use when fetching the list of records. Thus, it. It should return [`CrudFilters`](/core/interfaces.md#crudfilters).
 
 ### `queryOptions`
 
@@ -256,7 +256,7 @@ const { autocompleteProps } = useAutocomplete({
 
 ### `defaultValueQueryOptions`
 
-When the `defaultValue` property is given, the `useMany` data hook is called for the selected records. With this property, you can change the options of this query. If not given, the values given in `queryOptions` will be used.
+When the `defaultValue` property is given, the [`useMany`](/core/hooks/data/useMany.md) data hook is called for the selected records. With this property, you can change the options of this query. If not given, the values given in `queryOptions` will be used.
 
 ```tsx
 const { autocompleteProps } = useAutocomplete({
