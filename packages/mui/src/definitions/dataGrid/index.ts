@@ -183,7 +183,7 @@ export const transformCrudFiltersToFilterModel = (
                     operator,
                     column?.type,
                 ),
-                value,
+                value: value === "" ? undefined : value,
                 id: field + operator,
             });
         });
@@ -197,7 +197,7 @@ export const transformCrudFiltersToFilterModel = (
                     operator,
                     column?.type,
                 ),
-                value,
+                value: value === "" ? undefined : value,
                 id: field + operator,
             });
         });
