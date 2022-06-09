@@ -6,7 +6,7 @@ title: Edit
 import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views/edit/actionButtonUsageMui.png'
 import cardHeaderPropsTitle from '@site/static/img/guides-and-concepts/basic-views/edit/cardHeaderPropsTitle.png'
 
-`<Edit>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a refresh button.
+`<Edit>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a [`<RefreshButton>`](/ui-frameworks/mui/components/buttons/refresh.md).
 
 We will show what `<Edit>` does using properties with examples.
 
@@ -16,7 +16,7 @@ We will show what `<Edit>` does using properties with examples.
 
 `canDelete` allows us to add the delete button inside the `<Edit>` component. If the resource has the `canDelete` property, refine adds the delete button by default. If you want to customize this button you can use the `deleteButtonProps` property like the code below.
 
-When clicked on, the delete button executes the `useDelete` method provided by the `dataProvider`.
+When clicked on, the delete button executes the [`useDelete`](/core/hooks/data/useDelete.md) method provided by the [`dataProvider`](/core/providers/data-provider.md).
 
 [Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](/ui-frameworks/mui/components/buttons/delete.md)
 
@@ -63,7 +63,7 @@ export const EditPage: React.FC = () => {
 
 ### `actionButtons`
 
-`<Edit>` uses the Material UI [`<CardActions>`](https://mui.com/material-ui/api/card-actions/#main-content) component. The children of the `<CardActions>` component shows [`<SaveButton>`](/ui-frameworks/mui/components/buttons/save.md) and [`<DeleteButton>`](/ui-frameworks/mui/components/buttons/delete.md) based on your resource definition in the`resources`property you pass to `<Refine>`. If you want to use other things instead of these buttons, you can use the `actionButton` property like the code below.
+`<Edit>` uses the Material UI [`<CardActions>`](https://mui.com/material-ui/api/card-actions/#main-content) component. The children of the [`<CardActions>`](https://mui.com/material-ui/api/card-actions/#main-content) component shows [`<SaveButton>`](/ui-frameworks/mui/components/buttons/save.md) and [`<DeleteButton>`](/ui-frameworks/mui/components/buttons/delete.md) based on your resource definition in the`resources`property you pass to `<Refine>`. If you want to use other things instead of these buttons, you can use the `actionButton` property like the code below.
 
 ```tsx title="src/pages/posts/edit.tsx"
 // highlight-next-line
@@ -177,12 +177,12 @@ interface ICategory {
 ```
 
 :::note
-The `<Edit>` component needs the `id` information for the `<RefreshButton>` to work properly.
+The `<Edit>` component needs the `id` information for the [`<RefreshButton>`](/ui-frameworks/mui/components/buttons/refresh.md) to work properly.
 :::
 
 ### `mutationMode`
 
-Determines which mode mutation will have while executing `<DeleteButton>`.
+Determines which mode mutation will have while executing [`<DeleteButton>`](/ui-frameworks/mui/components/buttons/delete.md).
 
 [Refer to the mutation mode docs for further information. &#8594](guides-and-concepts/mutation-mode.md)
 
@@ -240,9 +240,9 @@ export const App: React.FC = () => {
 
 | Property          | Description                                                                     | Type                                                                      | Default                                                                        |
 | ----------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| canDelete         | Adds a delete button                                                            | `boolean`                                                                 | If the resource has `canDelete` prop it is `true` else `false` `false`         |
-| deleteButtonProps | Adds properties for delete button                                               | [`DeleteButtonProps`](/core/interfaces.md#delete-button-props)            | `<DeleteButton>`                                                               |
-| saveButtonProps   | Adds props for edit button                                                      | `{ disabled: boolean; onClick: () => void; loading: boolean; }`           | `<SaveButton>`                                                                 |
+| canDelete         | Adds a `<DeleteButton>`                                                         | `boolean`                                                                 | If the resource has `canDelete` prop it is `true` else `false` `false`         |
+| deleteButtonProps | Adds properties for `<DeleteButton>`                                            | [`DeleteButtonProps`](/core/interfaces.md#delete-button-props)            | `<DeleteButton>`                                                               |
+| saveButtonProps   | Adds props for `<SaveButton>`                                                   | `{ disabled: boolean; onClick: () => void; loading: boolean; }`           | `<SaveButton>`                                                                 |
 | actionButtons     | Passes the props for `<CardActions>`                                            | `React.ReactNode`                                                         | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
 | cardProps         | Passes the props for `<Card>`                                                   | [`CardProps`](https://mui.com/material-ui/api/card/#props)                | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
 | cardHeaderProps   | Passes the props for `<CardHeader>`                                             | [`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)   |                                                                                |
