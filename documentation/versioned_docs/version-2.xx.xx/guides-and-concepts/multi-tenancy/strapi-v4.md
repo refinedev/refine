@@ -59,9 +59,7 @@ export const authProvider: AuthProvider = {
             localStorage.setItem(TOKEN_KEY, data.jwt);
 
             // set header axios instance
-            axiosInstance.defaults.headers = {
-                Authorization: `Bearer ${data.jwt}`,
-            };
+            axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${data.jwt}`;
 
             return Promise.resolve();
         }
@@ -75,9 +73,7 @@ export const authProvider: AuthProvider = {
     checkAuth: () => {
         const token = localStorage.getItem(TOKEN_KEY);
         if (token) {
-            axiosInstance.defaults.headers = {
-                Authorization: `Bearer ${token}`,
-            };
+            axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
             return Promise.resolve();
         }
 
