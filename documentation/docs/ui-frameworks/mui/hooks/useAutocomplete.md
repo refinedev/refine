@@ -216,7 +216,7 @@ const { autocompleteProps } = useAutocomplete({
 });
 ```
 
-Amount of records to fetch in select box.
+Amount of records to fetch in the select box.
 
 ### `onSearch`
 
