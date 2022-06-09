@@ -2,4 +2,8 @@
 "@pankod/refine-mui": patch
 ---
 
-Passed svgButtonProps to mui buttons
+Added `svgButtonProps` property for Material UI buttons.
+
+```tsx
+<CreateButton svgButtonProps={{ size: "small" }} />
+```

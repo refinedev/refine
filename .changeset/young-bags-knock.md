@@ -2,4 +2,4 @@
 "@pankod/refine-mui": patch
 ---
 
-fixed the `<ErrorComponent/>` to be responsive to mobile screens
+Fixed Material UI `<ErrorComponent />` to be responsive for any screen

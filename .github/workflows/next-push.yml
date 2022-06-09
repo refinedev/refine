@@ -11,6 +11,7 @@ on:
 jobs:
   publish-npm:
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
 
     strategy:
       matrix:
