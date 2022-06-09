@@ -1,5 +1,21 @@
 # @pankod/refine-mui
 
+## 3.25.1
+
+### Patch Changes
+
+-   [#1898](https://github.com/pankod/refine/pull/1898) [`906cf51eca`](https://github.com/pankod/refine/commit/906cf51eca72201d4469a5e2f5cbd7842b9a2796) Thanks [@ozkalai](https://github.com/ozkalai)! - We are fixed the buttons' icon fontSize when hideText prop passed
+
+*   [#1889](https://github.com/pankod/refine/pull/1889) [`683fd6f932`](https://github.com/pankod/refine/commit/683fd6f932624e284195005c8408935a89da73d3) Thanks [@biskuvit](https://github.com/biskuvit)! - Fixed Material UI `ReadyPage` to be responsive for any screen
+
+-   [#1878](https://github.com/pankod/refine/pull/1878) [`07a2c48157`](https://github.com/pankod/refine/commit/07a2c481572d31bb50dbfa1160ff1759b6b50fbb) Thanks [@omeraplak](https://github.com/omeraplak)! - Added `svgButtonProps` property for Material UI buttons.
+
+    ```tsx
+    <CreateButton svgButtonProps={{ size: "small" }} />
+    ```
+
+*   [#1890](https://github.com/pankod/refine/pull/1890) [`607de3446b`](https://github.com/pankod/refine/commit/607de3446ba314a05e9deca88dd41a09f343e7b9) Thanks [@biskuvit](https://github.com/biskuvit)! - Fixed Material UI `<ErrorComponent />` to be responsive for any screen
+
 ## 3.18.0-next.1
 
 ### Minor Changes
