@@ -3,6 +3,7 @@ name: next Release
 on:
   push:
     paths:
+      - ".changeset/**"
       - "packages/**"
     branches:
       - next
@@ -10,6 +11,7 @@ on:
 jobs:
   publish-npm:
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
 
     strategy:
       matrix:
@@ -37,32 +39,22 @@ jobs:
         run: |
           npm ci
           npm run bootstrap
-      - name: Lint
-        run: npm run lint
-      - name: Test
-        run: npm test
-      - run: |
-          git config --global user.email "bot@pankod.com"
-          git config --global user.name "pankod-bot"
-      - id: check-release
-        run: |
-          echo $(git describe --exact-match 2> /dev/null || :)
-          if [[ $(git describe --exact-match 2> /dev/null || :) =~ -next ]];
-            then
-              echo "::set-output name=IS_STABLE_RELEASE::false"
-            else
-              echo "::set-output name=IS_STABLE_RELEASE::true"
-          fi
-      - name: Create release to @next version
-        if: ${{ steps.check-release.outputs.IS_STABLE_RELEASE == 'true' }}
-        run: npm run publish-next -- --github-auth-token ${{ secrets.PANKOD_BOT_TOKEN }}
+      #- name: Lint
+      #  run: npm run lint
+      #- name: Test
+      #  run: npm test
+      - name: Copy changesets for Stable version
+        run: cp -r ./.changeset/ ./_changeset/ 
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: npm run changeset version
+          publish: npm run changeset publish -- --tag next
+          commit: "ci(changesets): next version packages"
+          title: "ci(changesets): next version packages"
+          createGithubReleases: false
         env:
           GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-      - name: Release to @next version
-        if: ${{ steps.check-release.outputs.IS_STABLE_RELEASE == 'true' }}
-        run: npm run release-next
-        env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

@@ -15,6 +15,7 @@ export {
     AccessControlProvider,
     INotificationContext,
     NotificationProvider,
+    AuditLogProvider,
     I18nProvider,
     MutationMode,
     IResourceComponents,
@@ -57,6 +58,9 @@ export {
     MapDataFn,
     OpenNotificationParams,
     ResourceErrorRouterParams,
+    LogParams,
+    ILogData,
+    ILog,
     ITreeMenu,
     IQueryKeys,
 } from "./interfaces";
