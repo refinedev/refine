@@ -5,6 +5,7 @@ import {
     ErrorComponent,
     ReadyPage,
     LightTheme,
+    ThemeProvider,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
