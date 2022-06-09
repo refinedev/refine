@@ -104,7 +104,7 @@ export const PostEdit: React.FC = () => {
                                     margin="normal"
                                     variant="outlined"
                                     error={!!errors.category}
-                                    helperText={errors.status?.category}
+                                    helperText={errors.category?.message}
                                     required
                                 />
                             )}

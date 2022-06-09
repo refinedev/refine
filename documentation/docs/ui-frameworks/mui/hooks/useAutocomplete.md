@@ -96,7 +96,7 @@ export const PostCreate = () => {
                                     margin="normal"
                                     variant="outlined"
                                     error={!!errors.category}
-                                    helperText={errors.status?.category}
+                                    helperText={errors.category?.message}
                                     required
                                 />
                             )}
