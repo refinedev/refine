@@ -39,11 +39,13 @@ jobs:
       #  run: npm run lint
       #- name: Test
       #  run: npm test
+      - name: Copy changesets for Stable version
+        run: cp -r ./.changeset/ ./_changeset/ 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-          version: npm run next-version
+          version: npm run changeset version
           publish: npm run changeset publish -- --tag next
           commit: "ci(changesets): next version packages"
           title: "ci(changesets): next version packages"
