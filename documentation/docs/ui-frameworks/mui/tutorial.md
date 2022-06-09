@@ -711,7 +711,7 @@ To get more detailed information about this hook, please refer the [useOne Docum
 
 We're done with displaying `post` records on our `<DataGrid>`. Let's see search and filtering capabilities to the component, so that the user can have more control over the data.
 
-`useDataGrid` hook provides a native `sorting` and `filters` props. Our way to handle these is to use the `useDataGrid` hook and pass the props to the `<DataGrid>` component.
+`useDataGrid` hook provides a native `sorting` and `filters` props. Our way to handle these is to use `useDataGrid` hook and pass the props to the `<DataGrid>` component.
 
 :::tip
 To see how the filtering works and more detail, you can look at the [`useDataGrid`](/ui-frameworks/mui/hooks/useDataGrid.md) hook.
