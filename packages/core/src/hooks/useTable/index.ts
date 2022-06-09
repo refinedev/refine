@@ -30,12 +30,15 @@ import {
     LiveModeProps,
 } from "../../interfaces";
 
+type SetFilterBehavior = "merge" | "replace";
+
 export type useTableProps<TData, TError> = {
     resource?: string;
     initialCurrent?: number;
     initialPageSize?: number;
     initialSorter?: CrudSorting;
     permanentSorter?: CrudSorting;
+    defaultSetFilterBehavior?: SetFilterBehavior;
     initialFilter?: CrudFilters;
     permanentFilter?: CrudFilters;
     syncWithLocation?: boolean;
@@ -58,7 +61,8 @@ export type useTableReturnType<TData extends BaseRecord = BaseRecord> = {
     sorter: CrudSorting;
     setSorter: (sorter: CrudSorting) => void;
     filters: CrudFilters;
-    setFilters: (filters: CrudFilters) => void;
+    setFilters: ((filters: CrudFilters, behavior?: SetFilterBehavior) => void) &
+        ((setter: (prevFilters: CrudFilters) => CrudFilters) => void);
     current: number;
     setCurrent: ReactSetState<useTableReturnType["current"]>;
     pageSize: number;
@@ -86,6 +90,7 @@ export const useTable = <
     initialPageSize = 10,
     initialSorter,
     permanentSorter = defaultPermanentSorter,
+    defaultSetFilterBehavior = "merge",
     initialFilter,
     permanentFilter = defaultPermanentFilter,
     syncWithLocation: syncWithLocationProp,
@@ -186,7 +191,7 @@ export const useTable = <
                 current,
                 pageSize,
             },
-            filters: unionFilters(permanentFilter, [], filters),
+            filters: unionFilters(permanentFilter, filters),
             sort: unionSorters(permanentSorter, sorter),
         },
         queryOptions,
@@ -199,10 +204,35 @@ export const useTable = <
         dataProviderName,
     });
 
-    const setFiltersWithUnion = (newFilters: CrudFilters) => {
+    const setFiltersAsMerge = (newFilters: CrudFilters) => {
         setFilters((prevFilters) =>
             unionFilters(permanentFilter, newFilters, prevFilters),
         );
+    };
+
+    const setFiltersAsReplace = (newFilters: CrudFilters) => {
+        setFilters(unionFilters(permanentFilter, newFilters));
+    };
+
+    const setFiltersWithSetter = (
+        setter: (prevFilters: CrudFilters) => CrudFilters,
+    ) => {
+        setFilters((prev) => unionFilters(permanentFilter, setter(prev)));
+    };
+
+    const setFiltersFn: useTableReturnType<TData>["setFilters"] = (
+        setterOrFilters,
+        behavior: SetFilterBehavior = defaultSetFilterBehavior,
+    ) => {
+        if (typeof setterOrFilters === "function") {
+            setFiltersWithSetter(setterOrFilters);
+        } else {
+            if (behavior === "replace") {
+                setFiltersAsReplace(setterOrFilters);
+            } else {
+                setFiltersAsMerge(setterOrFilters);
+            }
+        }
     };
 
     const setSortWithUnion = (newSorter: CrudSorting) => {
@@ -216,7 +246,7 @@ export const useTable = <
         sorter,
         setSorter: setSortWithUnion,
         filters,
-        setFilters: setFiltersWithUnion,
+        setFilters: setFiltersFn,
         current,
         setCurrent,
         pageSize,

@@ -6,7 +6,6 @@ on:
       - synchronize
       - opened
       - reopened
-      - closed
     paths:
       - "documentation/**"
 jobs:

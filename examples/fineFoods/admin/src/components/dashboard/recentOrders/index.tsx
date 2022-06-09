@@ -51,7 +51,7 @@ export const RecentOrders: React.FC = () => {
                 render={(_, record) => (
                     <Avatar
                         size={{
-                            md: 60,
+                            xs: 60,
                             lg: 108,
                             xl: 132,
                             xxl: 144,

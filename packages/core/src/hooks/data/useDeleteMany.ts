@@ -22,6 +22,7 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useLog,
     useInvalidate,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
@@ -78,6 +79,7 @@ export const useDeleteMany = <
     const { notificationDispatch } = useCancelNotification();
     const translate = useTranslate();
     const publish = usePublish();
+    const { log } = useLog();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
 
@@ -267,7 +269,7 @@ export const useDeleteMany = <
             },
             onSuccess: (
                 _data,
-                { ids, resource, successNotification },
+                { ids, resource, successNotification, dataProviderName },
                 context,
             ) => {
                 // Remove the queries from the cache:
@@ -297,6 +299,20 @@ export const useDeleteMany = <
                     payload: { ids },
                     date: new Date(),
                 });
+
+                log?.({
+                    action: "delete",
+                    resource,
+                    meta: {
+                        ids,
+                        dataProviderName,
+                    },
+                });
+
+                // Remove the queries from the cache:
+                ids.forEach((id) =>
+                    queryClient.removeQueries(context?.queryKey.detail(id)),
+                );
             },
             onError: (err, { ids, resource, errorNotification }, context) => {
                 // set back the queries to the context:

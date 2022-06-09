@@ -31,10 +31,10 @@ describe("Show", () => {
     });
 
     it("should render default list and refresh buttons successfuly", async () => {
-        const { container, getByText } = renderShow(<Show />);
+        const { container, getByText, queryByTestId } = renderShow(<Show />);
 
         expect(container.querySelector("button")).toBeTruthy();
-        getByText("Posts");
+        expect(queryByTestId("show-list-button")).toBeTruthy();
         getByText("Refresh");
     });
 
@@ -63,9 +63,9 @@ describe("Show", () => {
                 },
             },
         );
-
         expect(getByText("Edit").closest("button")).not.toBeDisabled();
-        expect(getByText("Posts").closest("button")).not.toBeDisabled();
+        expect(queryByTestId("show-list-button")).not.toBeDisabled();
+
         await waitFor(() =>
             expect(queryByTestId("show-delete-button")).toBeDisabled(),
         );

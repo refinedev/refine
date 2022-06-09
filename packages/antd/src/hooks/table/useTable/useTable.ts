@@ -1,4 +1,4 @@
-import { createElement } from "react";
+import React, { createElement } from "react";
 import { Grid, FormProps, Form, TablePaginationConfig, TableProps } from "antd";
 import { QueryObserverResult } from "react-query";
 import { useForm as useFormSF } from "sunflower-antd";
@@ -129,13 +129,20 @@ export const useTable = <
         >,
         sorter: SorterResult<any> | SorterResult<any>[],
     ) => {
-        // Map Antd:Filter -> refine:CrudFilter
-        const crudFilters = mapAntdFilterToCrudFilter(tableFilters, filters);
-        setFilters(crudFilters);
+        if (tableFilters && Object.keys(tableFilters).length > 0) {
+            // Map Antd:Filter -> refine:CrudFilter
+            const crudFilters = mapAntdFilterToCrudFilter(
+                tableFilters,
+                filters,
+            );
+            setFilters(crudFilters);
+        }
 
-        // Map Antd:Sorter -> refine:CrudSorting
-        const crudSorting = mapAntdSorterToCrudSorting(sorter);
-        setSorter(crudSorting);
+        if (sorter && Object.keys(sorter).length > 0) {
+            // Map Antd:Sorter -> refine:CrudSorting
+            const crudSorting = mapAntdSorterToCrudSorting(sorter);
+            setSorter(crudSorting);
+        }
 
         // tablePropsSunflower.onChange(pagination, filters, sorter);
         setCurrent(pagination.current || 1);
@@ -169,10 +176,29 @@ export const useTable = <
                         sorter,
                         filters,
                     });
-                    return createElement(PaginationLink, {
-                        to: link,
-                        element,
-                    });
+
+                    if (type === "page") {
+                        return createElement(PaginationLink, {
+                            to: link,
+                            element: page,
+                        });
+                    }
+                    if (type === "next" || type === "prev") {
+                        return createElement(PaginationLink, {
+                            to: link,
+                            element: element,
+                        });
+                    }
+
+                    if (type === "jump-next" || type === "jump-prev") {
+                        return createElement(PaginationLink, {
+                            to: link,
+                            element: (element as React.ReactElement)?.props
+                                ?.children,
+                        });
+                    }
+
+                    return element;
                 },
                 pageSize,
                 current,

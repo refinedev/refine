@@ -3,7 +3,7 @@
 exports[`<List/> JSON Rest Server renders given data 1`] = `
 <div>
   <div
-    class="ant-page-header"
+    class="ant-page-header has-breadcrumb"
   >
     <div
       class="ant-page-header-heading"

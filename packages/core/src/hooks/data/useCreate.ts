@@ -15,6 +15,7 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useLog,
     useInvalidate,
 } from "@hooks";
 
@@ -61,6 +62,7 @@ export const useCreate = <
 
     const translate = useTranslate();
     const publish = usePublish();
+    const { log } = useLog();
     const handleNotification = useHandleNotification();
 
     const mutation = useMutation<
@@ -122,6 +124,16 @@ export const useCreate = <
                         ids: data?.data?.id ? [data.data.id] : undefined,
                     },
                     date: new Date(),
+                });
+
+                log?.({
+                    action: "create",
+                    resource,
+                    data: data.data,
+                    meta: {
+                        dataProviderName,
+                        id: data?.data?.id ?? undefined,
+                    },
                 });
             },
             onError: (

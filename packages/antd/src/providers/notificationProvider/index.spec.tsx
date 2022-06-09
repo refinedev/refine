@@ -22,7 +22,7 @@ describe("Antd notificationProvider", () => {
     const notificationCloseSpy = jest.spyOn(notification, "close");
 
     it("should render notification type succes notification", async () => {
-        notificationProvider.open(mockNotification);
+        notificationProvider.open?.(mockNotification);
 
         expect(notificationOpenSpy).toBeCalledTimes(1);
         expect(notificationOpenSpy).toBeCalledWith({
@@ -33,7 +33,7 @@ describe("Antd notificationProvider", () => {
     });
 
     it("should render notification type error notification", async () => {
-        notificationProvider.open({
+        notificationProvider.open?.({
             ...mockNotification,
             type: "error",
         });
@@ -48,7 +48,7 @@ describe("Antd notificationProvider", () => {
     });
 
     it("should render notification with description", async () => {
-        notificationProvider.open({
+        notificationProvider.open?.({
             ...mockNotification,
             description: "Notification Description",
         });
@@ -62,7 +62,7 @@ describe("Antd notificationProvider", () => {
     });
 
     it("should render notification type error notification", async () => {
-        notificationProvider.open({
+        notificationProvider.open?.({
             ...mockNotification,
             type: "progress",
             cancelMutation,
@@ -87,7 +87,7 @@ describe("Antd notificationProvider", () => {
     });
 
     it("should close notification", async () => {
-        notificationProvider.close("notification-key");
+        notificationProvider.close?.("notification-key");
 
         expect(notificationCloseSpy).toBeCalledTimes(1);
         expect(notificationCloseSpy).toBeCalledWith("notification-key");

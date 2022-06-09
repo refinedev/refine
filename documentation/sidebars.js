@@ -56,6 +56,11 @@ module.exports = {
                         },
                         {
                             type: "category",
+                            label: "Breadcrumb",
+                            items: ["core/hooks/useBreadcrumb"],
+                        },
+                        {
+                            type: "category",
                             label: "Data",
                             items: [
                                 "core/hooks/data/useApiUrl",
@@ -179,6 +184,40 @@ module.exports = {
             items: [
                 {
                     type: "category",
+                    label: "Material UI",
+                    collapsed: false,
+                    items: [
+                        {
+                            type: "category",
+                            label: "Hooks",
+                            items: ["ui-frameworks/mui/hooks/useDataGrid"],
+                        },
+                        {
+                            type: "category",
+                            label: "Components",
+                            items: [
+                                {
+                                    type: "category",
+                                    label: "Buttons",
+                                    items: [
+                                        "ui-frameworks/mui/components/buttons/clone-button",
+                                        "ui-frameworks/mui/components/buttons/create-button",
+                                        "ui-frameworks/mui/components/buttons/delete-button",
+                                        "ui-frameworks/mui/components/buttons/edit-button",
+                                        "ui-frameworks/mui/components/buttons/export-button",
+                                        "ui-frameworks/mui/components/buttons/import-button",
+                                        "ui-frameworks/mui/components/buttons/list-button",
+                                        "ui-frameworks/mui/components/buttons/refresh-button",
+                                        "ui-frameworks/mui/components/buttons/save-button",
+                                        "ui-frameworks/mui/components/buttons/show-button",
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    type: "category",
                     label: "Ant Design",
                     collapsed: false,
                     items: [
@@ -251,6 +290,7 @@ module.exports = {
                                         "ui-frameworks/antd/components/basic-views/show",
                                     ],
                                 },
+                                "ui-frameworks/antd/components/breadcrumb",
                                 {
                                     type: "category",
                                     label: "Buttons",
@@ -300,7 +340,18 @@ module.exports = {
         {
             type: "category",
             label: "Packages",
-            items: ["packages/react-table", "packages/react-hook-form"],
+            items: [
+                "packages/react-table",
+                {
+                    type: "category",
+                    label: "React Hook Form",
+                    items: [
+                        "packages/react-hook-form/useForm",
+                        "packages/react-hook-form/useModalForm",
+                        "packages/react-hook-form/useStepsForm",
+                    ],
+                },
+            ],
         },
         {
             type: "category",
@@ -400,6 +451,7 @@ module.exports = {
                         "examples/auth-provider/otpLogin",
                     ],
                 },
+                "examples/breadcrumb/useBreadcrumb",
                 "examples/antd-calendar-example",
                 {
                     type: "category",
@@ -506,7 +558,10 @@ module.exports = {
                 {
                     type: "category",
                     label: "React Hook Form",
-                    items: ["examples/react-hook-form/react-hook-form"],
+                    items: [
+                        "examples/react-hook-form/useForm",
+                        "examples/react-hook-form/useStepsForm",
+                    ],
                 },
                 {
                     type: "category",
@@ -530,6 +585,11 @@ module.exports = {
                     type: "category",
                     label: "Table",
                     items: [
+                        {
+                            type: "category",
+                            label: "MUI",
+                            items: ["examples/table/mui/useDataGrid"],
+                        },
                         "examples/table/advancedTable",
                         "examples/table/tableFilter",
                         "examples/table/useDeleteMany",

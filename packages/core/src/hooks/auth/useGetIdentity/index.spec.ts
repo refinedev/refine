@@ -65,7 +65,7 @@ describe("useGetIdentity Hook", () => {
             return !result.current.isLoading;
         });
 
-        expect(result.current.status).toEqual("success");
+        expect(result.current.status).toEqual("idle");
         expect(result.current.data).not.toBeDefined();
     });
 });

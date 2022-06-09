@@ -3,10 +3,10 @@ import { TestWrapper } from "@test";
 import { useGetLocale } from "@hooks";
 
 describe("useGetLocale", () => {
-    it("should get default locale value if i18n provider not defined", () => {
+    it("should get undefined value if i18n provider not defined", () => {
         const { result } = renderHook(() => useGetLocale());
 
-        expect(result.current()).toBe("en");
+        expect(result.current()).toBe(undefined);
     });
 
     it("should get locale value from i18nProvider getLocale method", () => {
