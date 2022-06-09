@@ -3,7 +3,7 @@ id: boolean
 title: Boolean
 ---
 
-import booleanField from '@site/static/img/guides-and-concepts/fields/boolean/booleanfieldMui.png'
+import booleanField from '@site/static/img/guides-and-concepts/fields/boolean/booleanFieldMui.png'
 
 This field is used to display boolean values. It uses the [`<Tooltip>`](https://mui.com/material-ui/react-tooltip/#main-content) values from Material UI.
 
