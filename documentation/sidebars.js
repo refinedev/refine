@@ -198,6 +198,16 @@ module.exports = {
                             items: [
                                 {
                                     type: "category",
+                                    label: "Basic Views",
+                                    items: [
+                                        "ui-frameworks/mui/components/basic-views/create",
+                                        "ui-frameworks/mui/components/basic-views/edit",
+                                        "ui-frameworks/mui/components/basic-views/list",
+                                        "ui-frameworks/mui/components/basic-views/show",
+                                    ],
+                                },
+                                {
+                                    type: "category",
                                     label: "Buttons",
                                     items: [
                                         "ui-frameworks/mui/components/buttons/clone-button",
