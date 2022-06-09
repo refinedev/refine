@@ -173,7 +173,7 @@ export const useTable = <
                     if (type === "page") {
                         return createElement(PaginationLink, {
                             to: link,
-                            element: page,
+                            element: `${page}`,
                         });
                     }
                     if (type === "next" || type === "prev") {
