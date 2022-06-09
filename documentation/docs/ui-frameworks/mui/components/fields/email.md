@@ -76,7 +76,7 @@ export interface IUser {
 ```
 
 :::tip
-`<EmailField>` uses "mailto:" in the href prop of the `<Link>` component. For this reason, clicking `<EmailField>` opens your device's default mail application.
+`<EmailField>` uses "mailto:" in the href prop of the [`<Link>`](https://mui.com/material-ui/react-link/#main-content) component. For this reason, clicking `<EmailField>` opens your device's default mail application.
 :::
 
 <br/>
