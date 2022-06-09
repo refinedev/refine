@@ -10,9 +10,9 @@ describe("dataProvider", () => {
     const axiosInstance = axios.create();
 
     beforeAll(() => {
-        axiosInstance.defaults.headers = {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM5NDgxNjgzLCJleHAiOjE2NDIwNzM2ODN9.yqfuYb-Mr7I_VDxd2pe6elDROGiA6vqvChY_xNIIPu8`,
-        };
+        axiosInstance.defaults.headers.common[
+            "Authorization"
+        ] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM5NDgxNjgzLCJleHAiOjE2NDIwNzM2ODN9.yqfuYb-Mr7I_VDxd2pe6elDROGiA6vqvChY_xNIIPu8`;
     });
 
     // create
