@@ -77,20 +77,27 @@ export const PostCreate = () => {
                                 field.onChange(value);
                             }}
                             getOptionLabel={(item) => {
-                                return item.title ? item.title : "";
+                                return (
+                                    autocompleteProps?.options?.find(
+                                        (p) =>
+                                            p?.id?.toString() ===
+                                            item?.id?.toString(),
+                                    )?.title ?? ""
+                                );
                             }}
                             isOptionEqualToValue={(option, value) =>
-                                value === undefined || option.id === value.id
+                                value === undefined ||
+                                option.id.toString() === value.toString()
                             }
                             renderInput={(params) => (
                                 <TextField
                                     {...params}
-                                    required
                                     label="Category"
                                     margin="normal"
                                     variant="outlined"
                                     error={!!errors.category}
-                                    helperText={errors.category?.message}
+                                    helperText={errors.status?.category}
+                                    required
                                 />
                             )}
                         />
