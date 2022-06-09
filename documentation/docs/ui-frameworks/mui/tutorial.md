@@ -195,12 +195,14 @@ Replace the contents of `App.tsx` with the following code:
 import { Refine } from "@pankod/refine-core";
 import {
     Layout,
-    ReadyPage,
     ErrorComponent,
+    ReadyPage,
     LightTheme,
     CssBaseline,
-    GlobalStyles,
     ThemeProvider,
+    GlobalStyles,
+    RefineSnackbarProvider,
+    notificationProvider,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -208,15 +210,22 @@ import dataProvider from "@pankod/refine-simple-rest";
 const App: React.FC = () => {
     return (
         <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-            />
+            <RefineSnackbarProvider>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    Layout={Layout}
+                    ReadyPage={ReadyPage}
+                    catchAll={<ErrorComponent />}
+                />
+            </RefineSnackbarProvider>
         </ThemeProvider>
     );
 };
@@ -327,6 +336,8 @@ import {
     CssBaseline,
     GlobalStyles,
     ThemeProvider,
+    RefineSnackbarProvider,
+    notificationProvider,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -334,17 +345,24 @@ import dataProvider from "@pankod/refine-simple-rest";
 export const App: React.FC = () => {
     return (
         <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                // highlight-next-line
-                resources={[{ name: "posts" }]}
-            />
+            <RefineSnackbarProvider>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    Layout={Layout}
+                    ReadyPage={ReadyPage}
+                    catchAll={<ErrorComponent />}
+                    // highlight-next-line
+                    resources={[{ name: "posts" }]}
+                />
+            </RefineSnackbarProvider>
         </ThemeProvider>
     );
 };
@@ -510,6 +528,8 @@ import {
     CssBaseline,
     GlobalStyles,
     ThemeProvider,
+    notificationProvider,
+    RefineSnackbarProvider,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -521,22 +541,27 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                ReadyPage={ReadyPage}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "posts",
-                        // highlight-next-line
-                        list: PostList,
-                    },
-                ]}
-            />
+            <RefineSnackbarProvider>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    notificationProvider={notificationProvider}
+                    ReadyPage={ReadyPage}
+                    Layout={Layout}
+                    catchAll={<ErrorComponent />}
+                    resources={[
+                        {
+                            name: "posts",
+                            // highlight-next-line
+                            list: PostList,
+                        },
+                    ]}
+                />
+            </RefineSnackbarProvider>
         </ThemeProvider>
     );
 };
@@ -711,10 +736,10 @@ To get more detailed information about this hook, please refer the [useOne Docum
 
 We're done with displaying `post` records on our `<DataGrid>`. Let's see search and filtering capabilities to the component, so that the user can have more control over the data.
 
-`useDataGrid` hook provides a native `sorting` and `filters` props. Our way to handle these is to use `useDataGrid` hook and pass the props to the `<DataGrid>` component.
+Thanks [`<DataGrid>`](https://mui.com/x/react-data-grid/components/#main-content) for the default `filtering` and `sorting` UI. The [`useDataGrid`](/ui-frameworks/mui/hooks/useDataGrid.md) hook works in harmony with the `<DataGrid>` component, and you have `filtering` and `sorting` without additional code. Our way to handle these is to use the `useDataGrid` hook and pass the props to the `<DataGrid>` component.
 
 :::tip
-To see how the filtering works and more detail, you can look at the [`useDataGrid`](/ui-frameworks/mui/hooks/useDataGrid.md) hook.
+To see how the filtering works and more detail, you can look at the [`useDataGrid`](/ui-frameworks/mui/hooks/useDataGrid.md#sorting) hook.
 :::
 
 <div class="img-container">
@@ -810,6 +835,8 @@ import {
     CssBaseline,
     GlobalStyles,
     ThemeProvider,
+    RefineSnackbarProvider,
+    notificationProvider,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -820,24 +847,30 @@ import { PostList, PostShow } from "./pages/posts";
 export const App: React.FC = () => {
     return (
         <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                Layout={Layout}
-                ReadyPage={ReadyPage}
-                catchAll={<ErrorComponent />}
-                // highlight-start
-                resources={[
-                    {
-                        name: "posts",
-                        list: PostList,
-                        show: PostShow,
-                    },
-                ]}
-                // highlight-end
-            />
+            <RefineSnackbarProvider>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    Layout={Layout}
+                    ReadyPage={ReadyPage}
+                    catchAll={<ErrorComponent />}
+                    // highlight-start
+                    resources={[
+                        {
+                            name: "posts",
+                            list: PostList,
+                            show: PostShow,
+                        },
+                    ]}
+                    // highlight-end
+                />
+            </RefineSnackbarProvider>
         </ThemeProvider>
     );
 };
@@ -1104,6 +1137,8 @@ import {
     CssBaseline,
     GlobalStyles,
     ThemeProvider,
+    RefineSnackbarProvider,
+    notificationProvider,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -1116,25 +1151,30 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                authProvider={authProvider}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                ReadyPage={ReadyPage}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "posts",
-                        list: PostList,
-                        // highlight-next-line
-                        edit: PostEdit,
-                        show: PostShow,
-                    },
-                ]}
-            />
+            <RefineSnackbarProvider>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
+                <Refine
+                    authProvider={authProvider}
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    notificationProvider={notificationProvider}
+                    ReadyPage={ReadyPage}
+                    Layout={Layout}
+                    catchAll={<ErrorComponent />}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: PostList,
+                            // highlight-next-line
+                            edit: PostEdit,
+                            show: PostShow,
+                        },
+                    ]}
+                />
+            </RefineSnackbarProvider>
         </ThemeProvider>
     );
 };
@@ -1381,6 +1421,8 @@ import {
     CssBaseline,
     GlobalStyles,
     ThemeProvider,
+    RefineSnackbarProvider,
+    notificationProvider,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -1393,26 +1435,31 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                authProvider={authProvider}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                ReadyPage={ReadyPage}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "posts",
-                        list: PostList,
-                        // highlight-next-line
-                        create: PostCreate,
-                        edit: PostEdit,
-                        show: PostShow,
-                    },
-                ]}
-            />
+            <RefineSnackbarProvider>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
+                <Refine
+                    authProvider={authProvider}
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    notificationProvider={notificationProvider}
+                    ReadyPage={ReadyPage}
+                    Layout={Layout}
+                    catchAll={<ErrorComponent />}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: PostList,
+                            // highlight-next-line
+                            create: PostCreate,
+                            edit: PostEdit,
+                            show: PostShow,
+                        },
+                    ]}
+                />
+            </RefineSnackbarProvider>
         </ThemeProvider>
     );
 };
@@ -1545,6 +1592,8 @@ import {
     CssBaseline,
     GlobalStyles,
     ThemeProvider,
+    RefineSnackbarProvider,
+    notificationProvider,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -1557,27 +1606,31 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                authProvider={authProvider}
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                ReadyPage={ReadyPage}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "posts",
-                        list: PostList,
-                        create: PostCreate,
-                        edit: PostEdit,
-                        show: PostShow,
-                        // highlight-next-line
-                        canDelete: true,
-                    },
-                ]}
-            />
+            <RefineSnackbarProvider>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
+                <Refine
+                    authProvider={authProvider}
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    ReadyPage={ReadyPage}
+                    Layout={Layout}
+                    catchAll={<ErrorComponent />}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: PostList,
+                            create: PostCreate,
+                            edit: PostEdit,
+                            show: PostShow,
+                            // highlight-next-line
+                            canDelete: true,
+                        },
+                    ]}
+                />
+            </RefineSnackbarProvider>
         </ThemeProvider>
     );
 };
