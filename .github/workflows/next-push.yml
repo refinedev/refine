@@ -11,7 +11,7 @@ on:
 jobs:
   publish-npm:
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, 'ci skip')"
+    #if: "!contains(github.event.head_commit.message, 'ci skip')"
 
     strategy:
       matrix:
@@ -35,15 +35,15 @@ jobs:
         run: |
           npm ci
           npm run bootstrap
-      - name: Lint
-        run: npm run lint
-      - name: Test
-        run: npm test
+      #- name: Lint
+      #  run: npm run lint
+      #- name: Test
+      #  run: npm test
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-          version: cp -r ./.changeset/ ./_changeset/ && npm run changeset version
+          version: npm run next-version
           publish: npm run changeset publish -- --tag next
           commit: "ci(changesets): next version packages"
           title: "ci(changesets): next version packages"
