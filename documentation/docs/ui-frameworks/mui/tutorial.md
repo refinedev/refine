@@ -775,26 +775,9 @@ export const PostList: React.FC = () => {
         columns,
     });
 
-    // highlight-start
-    const {
-        filterMode,
-        filterModel,
-        onFilterModelChange,
-        ...restDataGridProps
-    } = dataGridProps;
-    // highlight-end
-
     return (
         <List>
-            <DataGrid
-                // highlight-start
-                {...restDataGridProps}
-                filterMode={filterMode}
-                filterModel={filterModel}
-                onFilterModelChange={onFilterModelChange}
-                autoHeight
-                // highlight-end
-            />
+            <DataGrid {...dataGridProps} autoHeight />
         </List>
     );
 };
@@ -1008,22 +991,9 @@ export const PostList: React.FC = () => {
         columns,
     });
 
-    const {
-        filterMode,
-        filterModel,
-        onFilterModelChange,
-        ...restDataGridProps
-    } = dataGridProps;
-
     return (
         <List>
-            <DataGrid
-                {...restDataGridProps}
-                filterMode={filterMode}
-                filterModel={filterModel}
-                onFilterModelChange={onFilterModelChange}
-                autoHeight
-            />
+            <DataGrid {...dataGridProps} autoHeight />
         </List>
     );
 };
@@ -1322,22 +1292,9 @@ export const PostList: React.FC = () => {
         columns,
     });
 
-    const {
-        filterMode,
-        filterModel,
-        onFilterModelChange,
-        ...restDataGridProps
-    } = dataGridProps;
-
     return (
         <List>
-            <DataGrid
-                {...restDataGridProps}
-                filterMode={filterMode}
-                filterModel={filterModel}
-                onFilterModelChange={onFilterModelChange}
-                autoHeight
-            />
+            <DataGrid {...dataGridProps} autoHeight />
         </List>
     );
 };
@@ -1636,22 +1593,9 @@ export const PostList: React.FC = () => {
         columns,
     });
 
-    const {
-        filterMode,
-        filterModel,
-        onFilterModelChange,
-        ...restDataGridProps
-    } = dataGridProps;
-
     return (
         <List>
-            <DataGrid
-                {...restDataGridProps}
-                filterMode={filterMode}
-                filterModel={filterModel}
-                onFilterModelChange={onFilterModelChange}
-                autoHeight
-            />
+            <DataGrid {...dataGridProps} autoHeight />
         </List>
     );
 };
