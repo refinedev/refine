@@ -6,6 +6,8 @@ import {
     LightTheme,
     CssBaseline,
     ThemeProvider,
+    RefineSnackbarProvider,
+    notificationProvider,
     GlobalStyles,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -17,25 +19,30 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <ThemeProvider theme={LightTheme}>
-            <CssBaseline />
-            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                ReadyPage={ReadyPage}
-                Layout={Layout}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "posts",
-                        list: PostList,
-                        create: PostCreate,
-                        edit: PostEdit,
-                        show: PostShow,
-                        canDelete: true,
-                    },
-                ]}
-            />
+            <RefineSnackbarProvider>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    notificationProvider={notificationProvider}
+                    ReadyPage={ReadyPage}
+                    Layout={Layout}
+                    catchAll={<ErrorComponent />}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: PostList,
+                            create: PostCreate,
+                            edit: PostEdit,
+                            show: PostShow,
+                            canDelete: true,
+                        },
+                    ]}
+                />
+            </RefineSnackbarProvider>
         </ThemeProvider>
     );
 };
