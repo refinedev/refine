@@ -5,7 +5,7 @@ import { OpenNotificationParams } from "@pankod/refine-core";
 
 import { CircularDeterminate } from "@components/circularDeterminate";
 
-import { notificationProviderHandle } from ".";
+import { notificationProvider } from ".";
 
 const cancelMutationMock = jest.fn();
 
@@ -42,7 +42,7 @@ describe("Notistack notificationProvider", () => {
             } as any),
     );
 
-    const notificationProvider = notificationProviderHandle();
+    const notificationProvider = notificationProvider();
 
     // This test cover the case when the type is not "progress" ("success" or "error")
 

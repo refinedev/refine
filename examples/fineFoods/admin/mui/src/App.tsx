@@ -2,7 +2,7 @@ import { Refine } from "@pankod/refine-core";
 import {
     ErrorComponent,
     ReadyPage,
-    notificationProviderHandle,
+    notificationProvider,
     Layout,
     GlobalStyles,
     CssBaseline,
@@ -87,7 +87,7 @@ const App: React.FC = () => {
                         catchAll={<ErrorComponent />}
                         syncWithLocation
                         warnWhenUnsavedChanges
-                        notificationProvider={notificationProviderHandle}
+                        notificationProvider={notificationProvider}
                         resources={[
                             {
                                 name: "orders",
