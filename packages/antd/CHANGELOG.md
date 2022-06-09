@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 3.25.1
+
+### Patch Changes
+
+-   [#1897](https://github.com/pankod/refine/pull/1897) [`b1636033fa`](https://github.com/pankod/refine/commit/b1636033faee2b5eacbad413e2d1f975316e97cb) Thanks [@aliemir](https://github.com/aliemir)! - `@pankod/refine-antd` Pagination with Next.js Links breaks the app
+
 ## 3.23.2
 
 ### Patch Changes
