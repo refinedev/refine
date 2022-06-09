@@ -74,7 +74,7 @@ export const transformFilterModelToCrudFilters = ({
 }: GridFilterModel): CrudFilters => {
     const filters = items.map(({ columnField, value, operatorValue }) => ({
         field: columnField,
-        value,
+        value: value ?? "",
         operator: transformMuiOperatorToCrudOperator(operatorValue),
     }));
 
