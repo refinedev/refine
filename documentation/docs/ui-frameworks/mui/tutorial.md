@@ -967,13 +967,7 @@ export const PostList: React.FC = () => {
             field: "actions",
             minWidth: 250,
             renderCell: function render(params) {
-                return (
-                    <ShowButton
-                        hideText
-                        size="small"
-                        recordItemId={params.row.id}
-                    />
-                );
+                return <ShowButton hideText recordItemId={params.row.id} />;
             },
         },
         // highlight-end
@@ -1282,16 +1276,8 @@ export const PostList: React.FC = () => {
                 return (
                     // highlight-start
                     <Stack direction="row" spacing={1}>
-                        <EditButton
-                            hideText
-                            size="small"
-                            recordItemId={params.row.id}
-                        />
-                        <ShowButton
-                            hideText
-                            size="small"
-                            recordItemId={params.row.id}
-                        />
+                        <EditButton hideText recordItemId={params.row.id} />
+                        <ShowButton hideText recordItemId={params.row.id} />
                     </Stack>
                     // highlight-end
                 );
@@ -1600,22 +1586,10 @@ export const PostList: React.FC = () => {
             renderCell: function render(params) {
                 return (
                     <Stack direction="row" spacing={1}>
-                        <EditButton
-                            hideText
-                            size="small"
-                            recordItemId={params.row.id}
-                        />
-                        <ShowButton
-                            hideText
-                            size="small"
-                            recordItemId={params.row.id}
-                        />
+                        <EditButton hideText recordItemId={params.row.id} />
+                        <ShowButton hideText recordItemId={params.row.id} />
                         // highlight-start
-                        <DeleteButton
-                            hideText
-                            size="small"
-                            recordItemId={params.row.id}
-                        />
+                        <DeleteButton hideText recordItemId={params.row.id} />
                         // highlight-end
                     </Stack>
                 );
