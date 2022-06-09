@@ -143,7 +143,7 @@ const { autocompleteProps } = useAutocomplete({
 });
 ```
 
-`resource` property determines API resource endpoint to fetch records from [`dataProvider`](/core/providers/data-provider.md). It returns properly configured `options` values for `<Autocomplete>` options.
+`resource` property determines API resource endpoint to fetch records from [`dataProvider`](/core/providers/data-provider.md). It returns properly configured `options` values for [`<Autocomplete>`](https://mui.com/material-ui/react-autocomplete/#main-content) options.
 
 [Refer to Material UI `Autocomplete` component documentation for detailed info for `options`. &#8594](https://mui.com/material-ui/react-autocomplete/#options-structure)
 
