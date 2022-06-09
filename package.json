@@ -14,13 +14,11 @@
     "lint": "eslint -c ./.eslintrc packages examples",
     "lint:fix": "npm run lint -- --quiet --fix",
     "build": "lerna run build --ignore @pankod/refine-react-router --scope @pankod/refine*",
-    "publish-next": "npm run lerna version -- --preid next --conventional-commits --conventional-prerelease --no-changelog --force-publish --yes && release --pre --skip-questions --pre-suffix next --show-url",
-    "release-next": "npm run lerna publish from-git -- --npm-tag next --no-git-reset --no-verify-access --yes",
-    "release-stable": "npm run lerna version -- --force-publish && release --skip-questions",
     "nuke": "rm -rf node_modules; for d in for d in packages/*/node_modules; do echo $d; rm -rf $d; done; for d in for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in examples/*/node_modules; do echo $d; rm -rf $d; done;  for d in examples/*/package-lock.json; do echo $d; rm -rf $d; done;",
     "coffee": "npm run nuke && npm i && npm run bootstrap && npm run build",
     "prepare": "husky install",
-    "changeset": "changeset"
+    "changeset": "changeset",
+    "next-version": "cp -r ./.changeset/ ./_changeset/ && npm run changeset version"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -53,7 +51,6 @@
   "dependencies": {
     "@changesets/changelog-github": "^0.4.4",
     "@changesets/cli": "^2.22.0",
-    "prettier": "2.3.0",
-    "release": "github:aliemir/release"
+    "prettier": "2.3.0"
   }
 }
