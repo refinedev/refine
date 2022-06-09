@@ -38,7 +38,7 @@ jobs:
       - name: Test
         run: npm test
       - name: Prepare Stable version changesets
-        run: cp -r ./_changeset/ ./.changeset/ && rm -rf ./_changeset/
+        run: cp -R ./_changeset/* ./.changeset && rm -rf ./_changeset/
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
