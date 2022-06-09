@@ -18,7 +18,8 @@
     "coffee": "npm run nuke && npm i && npm run bootstrap && npm run build",
     "prepare": "husky install",
     "changeset": "changeset",
-    "next-version": "cp -r ./.changeset/ ./_changeset/ && npm run changeset version"
+    "next-version": "cp -r ./.changeset/ ./_changeset/ && npm run changeset version",
+    "stable-version": "cp -r ./_changeset/ ./.changeset/ && rm -rf ./_changeset/ && npm run changeset version"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
