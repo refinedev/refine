@@ -6,7 +6,7 @@ title: useAutocomplete
 import basicUsage from '@site/static/img/hooks/useSelect/mui/basic-usage.png';
 import search from '@site/static/img/hooks/useSelect/mui/search.png';
 
-The `useAutocomplete` hook is used to get data from the REST API and to manage the Material UI [`<Autocomplete>`][mui-autocomplete] component.
+The `useAutocomplete` hook is used to get data from the API and to manage the Material UI [`<Autocomplete>`][mui-autocomplete] component.
 
 ## Usage
 
