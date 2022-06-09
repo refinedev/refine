@@ -7,7 +7,7 @@ import { CircularDeterminate } from "@components";
 import { IconButton } from "@mui/material";
 import { UndoOutlined } from "@mui/icons-material";
 
-export const notificationProviderHandle = (): NotificationProvider => {
+export const notificationProvider = (): NotificationProvider => {
     const { closeSnackbar, enqueueSnackbar } = useSnackbar();
 
     const notificationProvider: NotificationProvider = {
