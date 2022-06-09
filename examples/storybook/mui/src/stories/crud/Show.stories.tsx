@@ -18,11 +18,7 @@ export default {
 
 export const ShowBasicView: ComponentStory<typeof Show> = (args) => {
     return (
-        <Show
-            title={args.title}
-            canDelete={args.canDelete}
-            canEdit={args.canEdit}
-        >
+        <Show canDelete={args.canDelete} canEdit={args.canEdit}>
             Content of Show Basic View comes here 🤸‍♀️
         </Show>
     );

@@ -17,7 +17,7 @@ export default {
 
 export const ListBasicView: ComponentStory<typeof List> = (args) => {
     return (
-        <List title={args.title} canCreate={args.canCreate}>
+        <List canCreate={args.canCreate}>
             Content of List Basic View comes here 🎉
         </List>
     );
