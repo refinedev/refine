@@ -28,7 +28,7 @@ There are two alternative methods to set up a **refine** application.
 
 The recommended way is using the [superplate](https://github.com/pankod/superplate) tool. _superplate_'s _CLI wizard_ will let you create and customize your application in seconds.
 
-Alternatively, you may use the _create-react-app_ tool to create an empty _React_ application and then add **refine** module via _npm_.
+Alternatively, you may use the _create-react-app_ tool to create an empty _React_ application and then add **refine** module via _npm_ etc.
 
 <Tabs
 defaultValue="superplate"
@@ -231,7 +231,7 @@ export default App;
 :::
 
 :::tip
-refine comes natively with Light/Dark theme support. Check out the [theme](#) documentation for more information.
+**refine** comes natively with Light/Dark theme support. Check out the [theme](#) documentation for more information.
 :::
 
 <br/>
@@ -400,6 +400,7 @@ We'll be using **title**, **status** and **createdAt** fields of every **post** 
 Now, create a new folder named _"pages/posts"_ under _"/src"_. Under that folder, create a _"list.tsx"_ file with the following code:
 
 ```tsx title="src/pages/posts/list.tsx"
+import React from "react";
 import {
     useDataGrid,
     DataGrid,
@@ -411,25 +412,29 @@ import {
 
 import { IPost } from "interfaces";
 
-const columns: GridColumns = [
-    { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
-    {
-        field: "status",
-        headerName: "Status",
-        minWidth: 150,
-        renderCell: function render(params) {
-            return <TagField value={params.row.status} />;
+const columns = React.useMemo<GridColumns<IPost>>(
+    () => [
+        { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
+        {
+            field: "status",
+            headerName: "Status",
+            minWidth: 150,
+            flex: 1,
+            renderCell: function render(params) {
+                return <TagField value={params.row.status} />;
+            },
         },
-    },
-    {
-        field: "createdAt",
-        headerName: "CreatedAt",
-        minWidth: 150,
-        renderCell: function render(params) {
-            return <DateField format="LLL" value={params.row.createdAt} />;
+        {
+            field: "createdAt",
+            headerName: "CreatedAt",
+            minWidth: 220,
+            renderCell: function render(params) {
+                return <DateField format="LLL" value={params.row.createdAt} />;
+            },
         },
-    },
-];
+    ],
+    [],
+);
 
 export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>({
@@ -508,6 +513,7 @@ import {
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
+
 // highlight-next-line
 import { PostList } from "pages/posts";
 
@@ -625,6 +631,7 @@ export interface IPost {
 So we can update our `list.tsx` with the highlighted lines:
 
 ```tsx title="src/pages/posts/list.tsx"
+import React from "react";
 // highlight-next-line
 import { useOne } from "@pankod/refine-core";
 import {
@@ -640,40 +647,47 @@ import {
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
-    const columns: GridColumns = [
-        { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
-        // highlight-start
-        {
-            field: "category.id",
-            headerName: "Category",
-            type: "number",
-            minWidth: 350,
-            valueGetter: (params) => {
-                const { data } = useOne<ICategory>({
-                    resource: "categories",
-                    id: params.row.category.id,
-                });
-                return data?.data.title;
+    const columns = React.useMemo<GridColumns<IPost>>(
+        () => [
+            { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
+            // highlight-start
+            {
+                field: "category.id",
+                headerName: "Category",
+                type: "number",
+                minWidth: 250,
+                flex: 1,
+                valueGetter: (params) => {
+                    const { data } = useOne<ICategory>({
+                        resource: "categories",
+                        id: params.row.category.id,
+                    });
+                    return data?.data.title;
+                },
             },
-        },
-        // highlight-end
-        {
-            field: "status",
-            headerName: "Status",
-            minWidth: 150,
-            renderCell: function render(params) {
-                return <TagField value={params.row.status} />;
+            // highlight-end
+            {
+                field: "status",
+                headerName: "Status",
+                minWidth: 150,
+                flex: 1,
+                renderCell: function render(params) {
+                    return <TagField value={params.row.status} />;
+                },
             },
-        },
-        {
-            field: "createdAt",
-            headerName: "CreatedAt",
-            minWidth: 150,
-            renderCell: function render(params) {
-                return <DateField format="LLL" value={params.row.createdAt} />;
+            {
+                field: "createdAt",
+                headerName: "CreatedAt",
+                minWidth: 220,
+                renderCell: function render(params) {
+                    return (
+                        <DateField format="LLL" value={params.row.createdAt} />
+                    );
+                },
             },
-        },
-    ];
+        ],
+        [],
+    );
 
     const { dataGridProps } = useDataGrid<IPost>({
         columns,
@@ -702,6 +716,7 @@ We're done with displaying `post` records on our `<DataGrid>`. Let's add search 
 We are going to use [`filterMode`](/ui-frameworks/mui/hooks/useDataGrid.md#filtering) property and `<DataGrid>` component as following:
 
 ```tsx title="src/pages/posts/list.tsx"
+import React from "react";
 import { useOne } from "@pankod/refine-core";
 import {
     useDataGrid,
@@ -713,42 +728,48 @@ import {
     Stack,
 } from "@pankod/refine-mui";
 
-// highlight-next-line
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
-    const columns: GridColumns = [
-        { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
-        // highlight-start
-        {
-            field: "category.id",
-            headerName: "Category",
-            type: "number",
-            minWidth: 350,
-            valueGetter: (params) => {
-                const { data } = useOne<ICategory>({
-                    resource: "categories",
-                    id: params.row.category.id,
-                });
-                return data?.data.title;
+    const columns = React.useMemo<GridColumns<IPost>>(
+        () => [
+            { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
+            {
+                field: "category.id",
+                headerName: "Category",
+                type: "number",
+                minWidth: 250,
+                flex: 1,
+                valueGetter: (params) => {
+                    const { data } = useOne<ICategory>({
+                        resource: "categories",
+                        id: params.row.category.id,
+                    });
+                    return data?.data.title;
+                },
             },
-        },
-        // highlight-end
-        {
-            field: "status",
-            headerName: "Status",
-            minWidth: 150,
-            renderCell: (params) => <TagField value={params.row.status} />,
-        },
-        {
-            field: "createdAt",
-            headerName: "CreatedAt",
-            minWidth: 150,
-            renderCell: (params) => (
-                <DateField format="LLL" value={params.row.createdAt} />
-            ),
-        },
-    ];
+            {
+                field: "status",
+                headerName: "Status",
+                minWidth: 150,
+                flex: 1,
+                renderCell: function render(params) {
+                    return <TagField value={params.row.status} />;
+                },
+            },
+            {
+                field: "createdAt",
+                headerName: "CreatedAt",
+                minWidth: 220,
+                renderCell: function render(params) {
+                    return (
+                        <DateField format="LLL" value={params.row.createdAt} />
+                    );
+                },
+            },
+        ],
+        [],
+    );
 
     const { dataGridProps } = useDataGrid<IPost>({
         columns,
@@ -916,6 +937,7 @@ export const App: React.FC = () => {
 And then we can add a `<ShowButton>` on the list page to make it possible for users to navigate to detail pages:
 
 ```tsx title="src/pages/posts/list.tsx"
+import React from "react";
 import { useOne } from "@pankod/refine-core";
 import {
     useDataGrid,
@@ -930,48 +952,57 @@ import {
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
-    const columns: GridColumns = [
-        { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
-        {
-            field: "category.id",
-            headerName: "Category",
-            type: "number",
-            minWidth: 350,
-            valueGetter: (params) => {
-                const { data } = useOne<ICategory>({
-                    resource: "categories",
-                    id: params.row.category.id,
-                });
-                return data?.data.title;
+    const columns = React.useMemo<GridColumns<IPost>>(
+        () => [
+            { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
+            // highlight-start
+            {
+                field: "category.id",
+                headerName: "Category",
+                type: "number",
+                minWidth: 250,
+                flex: 1,
+                valueGetter: (params) => {
+                    const { data } = useOne<ICategory>({
+                        resource: "categories",
+                        id: params.row.category.id,
+                    });
+                    return data?.data.title;
+                },
             },
-        },
-        {
-            field: "status",
-            headerName: "Status",
-            minWidth: 150,
-            renderCell: function render(params) {
-                return <TagField value={params.row.status} />;
+            // highlight-end
+            {
+                field: "status",
+                headerName: "Status",
+                minWidth: 150,
+                flex: 1,
+                renderCell: function render(params) {
+                    return <TagField value={params.row.status} />;
+                },
             },
-        },
-        {
-            field: "createdAt",
-            headerName: "CreatedAt",
-            minWidth: 150,
-            renderCell: function render(params) {
-                return <DateField format="LLL" value={params.row.createdAt} />;
+            {
+                field: "createdAt",
+                headerName: "CreatedAt",
+                minWidth: 220,
+                renderCell: function render(params) {
+                    return (
+                        <DateField format="LLL" value={params.row.createdAt} />
+                    );
+                },
             },
-        },
-        // highlight-start
-        {
-            headerName: "Actions",
-            field: "actions",
-            minWidth: 250,
-            renderCell: function render(params) {
-                return <ShowButton hideText recordItemId={params.row.id} />;
+            // highlight-start
+            {
+                headerName: "Actions",
+                field: "actions",
+                minWidth: 250,
+                renderCell: function render(params) {
+                    return <ShowButton hideText recordItemId={params.row.id} />;
+                },
             },
-        },
-        // highlight-end
-    ];
+            // highlight-end
+        ],
+        [],
+    );
 
     const { dataGridProps } = useDataGrid<IPost>({
         columns,
@@ -1015,7 +1046,7 @@ Until this point, we were basically working with reading operations such as fetc
 
 Let's start by creating a new `<PostEdit>` page responsible for `editing` a single record:
 
-```tsx title="pages/posts/edit.tsx"
+```tsx title="src/pages/posts/edit.tsx"
 import { Controller, useForm } from "@pankod/refine-react-hook-form";
 import {
     Edit,
@@ -1029,9 +1060,9 @@ import { ICategory } from "interfaces";
 
 export const PostEdit: React.FC = () => {
     const {
-        refineCore: { onFinish, formLoading, queryResult },
+        refineCore: { formLoading, queryResult },
+        saveButtonProps,
         register,
-        handleSubmit,
         control,
         formState: { errors },
     } = useForm();
@@ -1043,19 +1074,16 @@ export const PostEdit: React.FC = () => {
     });
 
     return (
-        <Edit
-            isLoading={formLoading}
-            saveButtonProps={{ onClick: handleSubmit(onFinish) }}
-        >
+        <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
             <Box
                 component="form"
                 sx={{ display: "flex", flexDirection: "column" }}
                 autoComplete="off"
             >
                 <TextField
-                    {...register("title", { required: true })}
+                    {...register("title", { required: "Title is required" })}
                     error={!!errors?.title}
-                    helperText={errors?.title?.message}
+                    helperText={errors.title?.message}
                     margin="normal"
                     required
                     fullWidth
@@ -1063,11 +1091,12 @@ export const PostEdit: React.FC = () => {
                     label="Title"
                     name="title"
                     defaultValue={" "}
+                    autoFocus
                 />
                 <Controller
                     control={control}
                     name="status"
-                    rules={{ required: true }}
+                    rules={{ required: "Status is required" }}
                     defaultValue=""
                     render={({ field }) => (
                         <Autocomplete
@@ -1083,9 +1112,7 @@ export const PostEdit: React.FC = () => {
                                     margin="normal"
                                     variant="outlined"
                                     error={!!errors.status}
-                                    helperText={
-                                        errors.status && "status required"
-                                    }
+                                    helperText={errors.status?.message}
                                     required
                                 />
                             )}
@@ -1095,7 +1122,7 @@ export const PostEdit: React.FC = () => {
                 <Controller
                     control={control}
                     name="category"
-                    rules={{ required: true }}
+                    rules={{ required: "Category is required" }}
                     defaultValue=""
                     render={({ field }) => (
                         <Autocomplete
@@ -1124,9 +1151,7 @@ export const PostEdit: React.FC = () => {
                                     margin="normal"
                                     variant="outlined"
                                     error={!!errors.category}
-                                    helperText={
-                                        errors.category && "category required"
-                                    }
+                                    helperText={errors.category?.message}
                                     required
                                 />
                             )}
@@ -1163,7 +1188,7 @@ In edit page, `useForm` hook initializes the form with current record values.
 
 ✳️ Form data is set automatically with `register` coming out of the`useForm` hook, whenever children inputs `<TextField>`'s are edited.
 
-✳️ Save button submits the form by executing the `useUpdate` method provided by the [`dataProvider`](/core/providers/data-provider.md). After a successfull response, the application will be redirected to the listing page.
+✳️ Save button submits the form by executing the `useUpdate` method provided by the [`dataProvider`](/core/providers/data-provider.md). After a successful response, the application will be redirected to the listing page.
 :::
 
 <br />
@@ -1219,6 +1244,7 @@ const App: React.FC = () => {
 We are going to need an _edit_ button on each row to display the `<PostEdit>` component. **refine** doesn't automatically add one, so we have to update our `<PostList>` component to add a `<EditButton>` for each record:
 
 ```tsx title="src/pages/posts/list.tsx"
+import React from "react";
 import { useOne } from "@pankod/refine-core";
 import {
     useDataGrid,
@@ -1237,53 +1263,60 @@ import {
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
-    const columns: GridColumns = [
-        { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
-        {
-            field: "category.id",
-            headerName: "Category",
-            type: "number",
-            minWidth: 350,
-            valueGetter: (params) => {
-                const { data } = useOne<ICategory>({
-                    resource: "categories",
-                    id: params.row.category.id,
-                });
-                return data?.data.title;
+    const columns = React.useMemo<GridColumns<IPost>>(
+        () => [
+            { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
+            {
+                field: "category.id",
+                headerName: "Category",
+                type: "number",
+                minWidth: 250,
+                flex: 1,
+                valueGetter: (params) => {
+                    const { data } = useOne<ICategory>({
+                        resource: "categories",
+                        id: params.row.category.id,
+                    });
+                    return data?.data.title;
+                },
             },
-        },
-        {
-            field: "status",
-            headerName: "Status",
-            minWidth: 150,
-            renderCell: function render(params) {
-                return <TagField value={params.row.status} />;
+            {
+                field: "status",
+                headerName: "Status",
+                minWidth: 150,
+                flex: 1,
+                renderCell: function render(params) {
+                    return <TagField value={params.row.status} />;
+                },
             },
-        },
-        {
-            field: "createdAt",
-            headerName: "CreatedAt",
-            minWidth: 150,
-            renderCell: function render(params) {
-                return <DateField format="LLL" value={params.row.createdAt} />;
+            {
+                field: "createdAt",
+                headerName: "CreatedAt",
+                minWidth: 220,
+                renderCell: function render(params) {
+                    return (
+                        <DateField format="LLL" value={params.row.createdAt} />
+                    );
+                },
             },
-        },
-        {
-            headerName: "Actions",
-            field: "actions",
-            minWidth: 250,
-            renderCell: function render(params) {
-                return (
-                    // highlight-start
-                    <Stack direction="row" spacing={1}>
-                        <EditButton hideText recordItemId={params.row.id} />
-                        <ShowButton hideText recordItemId={params.row.id} />
-                    </Stack>
-                    // highlight-end
-                );
+            {
+                headerName: "Actions",
+                field: "actions",
+                minWidth: 250,
+                renderCell: function render(params) {
+                    return (
+                        // highlight-start
+                        <Stack direction="row" spacing={1}>
+                            <EditButton hideText recordItemId={params.row.id} />
+                            <ShowButton hideText recordItemId={params.row.id} />
+                        </Stack>
+                        // highlight-end
+                    );
+                },
             },
-        },
-    ];
+        ],
+        [],
+    );
 
     const { dataGridProps } = useDataGrid<IPost>({
         columns,
@@ -1347,9 +1380,9 @@ import { ICategory } from "interfaces";
 
 export const PostCreate: React.FC = () => {
     const {
-        refineCore: { onFinish, formLoading },
+        refineCore: { formLoading },
+        saveButtonProps,
         register,
-        handleSubmit,
         control,
         formState: { errors },
     } = useForm();
@@ -1359,19 +1392,16 @@ export const PostCreate: React.FC = () => {
     });
 
     return (
-        <Create
-            isLoading={formLoading}
-            saveButtonProps={{ onClick: handleSubmit(onFinish) }}
-        >
+        <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
             <Box
                 component="form"
                 sx={{ display: "flex", flexDirection: "column" }}
                 autoComplete="off"
             >
                 <TextField
-                    {...register("title", { required: true })}
+                    {...register("title", { required: "Title is required" })}
                     error={!!errors?.title}
-                    helperText={errors?.title?.message}
+                    helperText={errors.title?.message}
                     margin="normal"
                     required
                     fullWidth
@@ -1383,7 +1413,7 @@ export const PostCreate: React.FC = () => {
                 <Controller
                     control={control}
                     name="status"
-                    rules={{ required: true }}
+                    rules={{ required: "Status is required" }}
                     defaultValue=""
                     render={({ field }) => (
                         <Autocomplete
@@ -1395,13 +1425,11 @@ export const PostCreate: React.FC = () => {
                             renderInput={(params) => (
                                 <TextField
                                     {...params}
-                                    label="status"
+                                    label="Status"
                                     margin="normal"
                                     variant="outlined"
                                     error={!!errors.status}
-                                    helperText={
-                                        errors.status && "status required"
-                                    }
+                                    helperText={errors.status?.message}
                                     required
                                 />
                             )}
@@ -1411,7 +1439,7 @@ export const PostCreate: React.FC = () => {
                 <Controller
                     control={control}
                     name="category"
-                    rules={{ required: true }}
+                    rules={{ required: "Category is required" }}
                     render={({ field }) => (
                         <Autocomplete
                             {...autocompleteProps}
@@ -1432,9 +1460,7 @@ export const PostCreate: React.FC = () => {
                                     margin="normal"
                                     variant="outlined"
                                     error={!!errors.category}
-                                    helperText={
-                                        errors.category && "category required"
-                                    }
+                                    helperText={errors.category?.message}
                                     required
                                 />
                             )}
@@ -1530,6 +1556,7 @@ Deleting a record can be done in two ways.
 The first way is adding a delete button on each row since _refine_ doesn't automatically add one, so we have to update our `<PostList>` component to add a `<DeleteButton>` for each record:
 
 ```tsx title="src/pages/posts/list.tsx"
+import React from "react";
 import { useOne } from "@pankod/refine-core";
 import {
     useDataGrid,
@@ -1548,54 +1575,62 @@ import {
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
-    const columns: GridColumns = [
-        { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
-        {
-            field: "category.id",
-            headerName: "Category",
-            type: "number",
-            minWidth: 250,
-            valueGetter: (params) => {
-                const { data } = useOne<ICategory>({
-                    resource: "categories",
-                    id: params.row.category.id,
-                });
-                return data?.data.title;
+    const columns = React.useMemo<GridColumns<IPost>>(
+        () => [
+            { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
+            {
+                field: "category.id",
+                headerName: "Category",
+                type: "number",
+                minWidth: 250,
+                valueGetter: (params) => {
+                    const { data } = useOne<ICategory>({
+                        resource: "categories",
+                        id: params.row.category.id,
+                    });
+                    return data?.data.title;
+                },
             },
-        },
-        {
-            field: "status",
-            headerName: "Status",
-            minWidth: 150,
-            renderCell: function render(params) {
-                return <TagField value={params.row.status} />;
+            {
+                field: "status",
+                headerName: "Status",
+                minWidth: 150,
+                renderCell: function render(params) {
+                    return <TagField value={params.row.status} />;
+                },
             },
-        },
-        {
-            field: "createdAt",
-            headerName: "CreatedAt",
-            minWidth: 150,
-            renderCell: function render(params) {
-                return <DateField format="LLL" value={params.row.createdAt} />;
+            {
+                field: "createdAt",
+                headerName: "CreatedAt",
+                minWidth: 150,
+                renderCell: function render(params) {
+                    return (
+                        <DateField format="LLL" value={params.row.createdAt} />
+                    );
+                },
             },
-        },
-        {
-            headerName: "Actions",
-            field: "actions",
-            minWidth: 250,
-            renderCell: function render(params) {
-                return (
-                    <Stack direction="row" spacing={1}>
-                        <EditButton hideText recordItemId={params.row.id} />
-                        <ShowButton hideText recordItemId={params.row.id} />
-                        // highlight-start
-                        <DeleteButton hideText recordItemId={params.row.id} />
-                        // highlight-end
-                    </Stack>
-                );
+            {
+                headerName: "Actions",
+                field: "actions",
+                minWidth: 250,
+                renderCell: function render(params) {
+                    return (
+                        <Stack direction="row" spacing={1}>
+                            <EditButton hideText recordItemId={params.row.id} />
+                            <ShowButton hideText recordItemId={params.row.id} />
+                            // highlight-start
+                            <DeleteButton
+                                hideText
+                                recordItemId={params.row.id}
+                            />
+                            // highlight-end
+                        </Stack>
+                    );
+                },
             },
-        },
-    ];
+        ],
+        [],
+    );
 
     const { dataGridProps } = useDataGrid<IPost>({
         columns,
