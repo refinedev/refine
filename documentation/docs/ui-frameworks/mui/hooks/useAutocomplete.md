@@ -27,7 +27,7 @@ We'll demonstrate how to get data at `/categories` endpoint from `https://api.fa
             id: 3,
             title: "Unbranded",
         },
-    ];
+    ]
 }
 ```
 
