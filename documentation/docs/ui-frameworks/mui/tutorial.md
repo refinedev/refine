@@ -709,80 +709,12 @@ To get more detailed information about this hook, please refer the [useOne Docum
 
 ## Adding search and filters
 
-We're done with displaying `post` records on our `<DataGrid>`. Let's add search and filtering capabilities to the component, so that the user can have more control over the data.
+We're done with displaying `post` records on our `<DataGrid>`. Let's see search and filtering capabilities to the component, so that the user can have more control over the data.
 
-We are going to use [`filterMode`](/ui-frameworks/mui/hooks/useDataGrid.md#filtering) property and `<DataGrid>` component as following:
+`useDataGrid` hook provides a native `sorting` and `filters` props. Our way to handle these is to use the `useDataGrid` hook and pass the props to the `<DataGrid>` component.
 
-```tsx title="src/pages/posts/list.tsx"
-import React from "react";
-import { useOne } from "@pankod/refine-core";
-import {
-    useDataGrid,
-    DataGrid,
-    GridColumns,
-    TagField,
-    DateField,
-    List,
-    Stack,
-} from "@pankod/refine-mui";
-
-import { IPost, ICategory } from "interfaces";
-
-export const PostList: React.FC = () => {
-    const columns = React.useMemo<GridColumns<IPost>>(
-        () => [
-            { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
-            {
-                field: "category.id",
-                headerName: "Category",
-                type: "number",
-                minWidth: 250,
-                flex: 1,
-                valueGetter: (params) => {
-                    const { data } = useOne<ICategory>({
-                        resource: "categories",
-                        id: params.row.category.id,
-                    });
-                    return data?.data.title;
-                },
-            },
-            {
-                field: "status",
-                headerName: "Status",
-                minWidth: 150,
-                flex: 1,
-                renderCell: function render(params) {
-                    return <TagField value={params.row.status} />;
-                },
-            },
-            {
-                field: "createdAt",
-                headerName: "CreatedAt",
-                minWidth: 220,
-                renderCell: function render(params) {
-                    return (
-                        <DateField format="LLL" value={params.row.createdAt} />
-                    );
-                },
-            },
-        ],
-        [],
-    );
-
-    const { dataGridProps } = useDataGrid<IPost>({
-        columns,
-    });
-
-    return (
-        <List>
-            <DataGrid {...dataGridProps} autoHeight />
-        </List>
-    );
-};
-```
-
-:::note
-To see how the filtering works, you can look at the [`useDataGrid`](/ui-frameworks/mui/hooks/useDataGrid.md) hook.
+:::tip
+To see how the filtering works and more detail, you can look at the [`useDataGrid`](/ui-frameworks/mui/hooks/useDataGrid.md) hook.
 :::
 
 <div class="img-container">
