@@ -1,13 +1,8 @@
 import {
     Box,
     TextField,
-    FormControl,
-    InputLabel,
-    Select,
-    MenuItem,
     Autocomplete,
     useAutocomplete,
-    FormHelperText,
     Create,
 } from "@pankod/refine-mui";
 import { useForm, Controller } from "@pankod/refine-react-hook-form";
