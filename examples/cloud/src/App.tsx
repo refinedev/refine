@@ -3,6 +3,7 @@ import {
     notificationProvider,
     Layout,
     ErrorComponent,
+    LoginPage,
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -21,6 +22,7 @@ window.localStorage.setItem(
 const App: React.FC = () => {
     return (
         <Refine
+            LoginPage={LoginPage}
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
             resources={[
