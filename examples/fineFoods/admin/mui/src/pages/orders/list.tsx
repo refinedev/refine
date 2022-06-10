@@ -270,7 +270,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
 
     const { autocompleteProps: userAutocompleteProps } = useAutocomplete({
         resource: "users",
-        optionLabel: "fullName",
         defaultValue: getDefaultFilter("user.id", filters, "eq"),
     });
 

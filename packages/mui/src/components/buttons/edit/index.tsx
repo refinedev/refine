@@ -65,6 +65,8 @@ export const EditButton: React.FC<EditButtonProps> = ({
 
     const editUrl = generateEditUrl(resource.route!, id!);
 
+    const { sx, ...restProps } = rest;
+
     return (
         <Link
             to={editUrl}
@@ -89,7 +91,8 @@ export const EditButton: React.FC<EditButtonProps> = ({
                     )
                 }
                 title={disabledTitle()}
-                {...rest}
+                sx={{ minWidth: 0, ...sx }}
+                {...restProps}
             >
                 {hideText ? (
                     <EditOutlinedIcon fontSize="small" {...svgIconProps} />
