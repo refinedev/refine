@@ -7,10 +7,26 @@ import {
     List,
     EditButton,
 } from "@pankod/refine-mui";
+import { useModalForm } from "@pankod/refine-react-hook-form";
 
+import { CreatePostModal, EditPostModal } from "components";
 import { ICategory, IPost } from "interfaces";
 
 export const PostsList: React.FC = () => {
+    const createModalFormProps = useModalForm<IPost>({
+        refineCoreProps: { action: "create" },
+    });
+    const {
+        modal: { show: showCreateModal },
+    } = createModalFormProps;
+
+    const editModalFormProps = useModalForm<IPost>({
+        refineCoreProps: { action: "edit" },
+    });
+    const {
+        modal: { show: showEditModal },
+    } = editModalFormProps;
+
     const columns = React.useMemo<GridColumns<IPost>>(
         () => [
             {
@@ -41,7 +57,12 @@ export const PostsList: React.FC = () => {
                 field: "actions",
                 headerName: "Actions",
                 renderCell: function render({ row }) {
-                    return <EditButton hideText recordItemId={row.id} />;
+                    return (
+                        <EditButton
+                            hideText
+                            onClick={() => showEditModal(row.id)}
+                        />
+                    );
                 },
                 align: "center",
                 headerAlign: "center",
@@ -56,8 +77,12 @@ export const PostsList: React.FC = () => {
     });
 
     return (
-        <List>
-            <DataGrid {...dataGridProps} autoHeight />
-        </List>
+        <>
+            <List createButtonProps={{ onClick: () => showCreateModal() }}>
+                <DataGrid {...dataGridProps} autoHeight />
+            </List>
+            <CreatePostModal {...createModalFormProps} />
+            <EditPostModal {...editModalFormProps} />
+        </>
     );
 };
