@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useQueryClient } from "react-query";
 
-import { useNavigation } from "@hooks";
+import { useNavigation, useSdk } from "@hooks";
+import { cloudAuthProvider } from "@definitions/cloud/authProvider";
 import { IAuthContext } from "../../interfaces";
 
 export const AuthContext = React.createContext<IAuthContext>({});
@@ -14,12 +15,18 @@ export const AuthContextProvider: React.FC<IAuthContext> = ({
     const { replace } = useNavigation();
     const [isAuthenticated, setAuthenticated] = useState(false);
     const queryClient = useQueryClient();
+    const sdk = useSdk();
 
     useEffect(() => {
         queryClient.invalidateQueries(["useAuthenticated"]);
         queryClient.invalidateQueries(["getUserIdentity"]);
         queryClient.invalidateQueries(["usePermissions"]);
     }, [isAuthenticated]);
+
+    if (!isProvided && sdk) {
+        isProvided = true;
+        authOperations = cloudAuthProvider(sdk);
+    }
 
     const loginFunc = async (params: any) => {
         try {
@@ -28,7 +35,7 @@ export const AuthContextProvider: React.FC<IAuthContext> = ({
             return Promise.resolve(result);
         } catch (error) {
             setAuthenticated(false);
-            throw error;
+            return Promise.reject(error);
         }
     };
 

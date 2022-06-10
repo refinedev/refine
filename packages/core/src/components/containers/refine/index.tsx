@@ -42,6 +42,8 @@ import {
     AccessControlProvider,
     AuditLogProvider,
 } from "../../../interfaces";
+import { cloudAuthProvider } from "@definitions/cloud/authProvider";
+import { initial } from "lodash";
 
 interface QueryClientConfig {
     queryCache?: QueryCache;
