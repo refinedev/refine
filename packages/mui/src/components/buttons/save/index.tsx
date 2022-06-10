@@ -24,10 +24,13 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
+    const { sx, ...restProps } = rest;
+
     return (
         <LoadingButton
             startIcon={!hideText && <SaveOutlinedIcon {...svgIconProps} />}
-            {...rest}
+            sx={{ minWidth: 0, ...sx }}
+            {...restProps}
         >
             {hideText ? (
                 <SaveOutlinedIcon fontSize="small" {...svgIconProps} />

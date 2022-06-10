@@ -19,19 +19,9 @@ const columns: GridColumns = [
     {
         field: "actions",
         headerName: "Actions",
-        // eslint-disable-next-line react/display-name
-        renderCell: ({ row }) => (
-            <EditButton
-                svgIconProps={{ fontSize: "small" }}
-                variant="outlined"
-                size="small"
-                hideText
-                recordItemId={row.id}
-                sx={{
-                    minWidth: "24px",
-                }}
-            />
-        ),
+        renderCell: function render({ row }) {
+            return <EditButton hideText recordItemId={row.id} />;
+        },
         align: "center",
         headerAlign: "center",
         minWidth: 80,

@@ -148,43 +148,45 @@ export const PostList: React.FC = () => {
             hooks.visibleColumns.push((columns) => [
                 {
                     id: "selection",
-                    // eslint-disable-next-line react/display-name
-                    Header: ({
+                    Header: function render({
                         getToggleAllPageRowsSelectedProps,
                         selectedFlatRows,
-                    }) => (
-                        <div>
-                            <IndeterminateCheckbox
-                                {...getToggleAllPageRowsSelectedProps()}
-                            />
+                    }) {
+                        return (
+                            <div>
+                                <IndeterminateCheckbox
+                                    {...getToggleAllPageRowsSelectedProps()}
+                                />
 
-                            {selectedFlatRows.length > 0 && (
-                                <button
-                                    onClick={() =>
-                                        deleteSelectedItems(
-                                            selectedFlatRows.map(
-                                                ({ original }: any) =>
-                                                    original.id,
-                                            ),
-                                        )
-                                    }
-                                >
-                                    Delete
-                                </button>
-                            )}
-                        </div>
-                    ),
-                    // eslint-disable-next-line react/display-name
-                    Cell: ({ row }: any) => (
-                        <div>
-                            <IndeterminateCheckbox
-                                {...row.getToggleRowSelectedProps()}
-                            />
-                            <span {...row.getToggleRowExpandedProps()}>
-                                {row.isExpanded ? "👇" : "👉"}
-                            </span>
-                        </div>
-                    ),
+                                {selectedFlatRows.length > 0 && (
+                                    <button
+                                        onClick={() =>
+                                            deleteSelectedItems(
+                                                selectedFlatRows.map(
+                                                    ({ original }: any) =>
+                                                        original.id,
+                                                ),
+                                            )
+                                        }
+                                    >
+                                        Delete
+                                    </button>
+                                )}
+                            </div>
+                        );
+                    },
+                    Cell: function render({ row }: any) {
+                        return (
+                            <div>
+                                <IndeterminateCheckbox
+                                    {...row.getToggleRowSelectedProps()}
+                                />
+                                <span {...row.getToggleRowExpandedProps()}>
+                                    {row.isExpanded ? "👇" : "👉"}
+                                </span>
+                            </div>
+                        );
+                    },
                 },
                 ...columns,
             ]);

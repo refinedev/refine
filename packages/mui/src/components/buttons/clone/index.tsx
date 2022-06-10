@@ -66,6 +66,8 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
 
     const cloneUrl = generateCloneUrl(resource.route!, id!);
 
+    const { sx, ...restProps } = rest;
+
     return (
         <Link
             to={cloneUrl}
@@ -85,7 +87,8 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                     !hideText && <AddBoxOutlinedIcon {...svgIconProps} />
                 }
                 title={disabledTitle()}
-                {...rest}
+                sx={{ minWidth: 0, ...sx }}
+                {...restProps}
             >
                 {hideText ? (
                     <AddBoxOutlinedIcon fontSize="small" {...svgIconProps} />

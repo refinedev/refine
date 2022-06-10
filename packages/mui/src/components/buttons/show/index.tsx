@@ -67,6 +67,8 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
 
     const showUrl = generateShowUrl(resource.route!, id!);
 
+    const { sx, ...restProps } = rest;
+
     return (
         <Link
             to={showUrl}
@@ -86,7 +88,8 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
                     !hideText && <VisibilityOutlinedIcon {...svgIconProps} />
                 }
                 title={disabledTitle()}
-                {...rest}
+                sx={{ minWidth: 0, ...sx }}
+                {...restProps}
             >
                 {hideText ? (
                     <VisibilityOutlinedIcon
