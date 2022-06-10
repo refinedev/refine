@@ -16,6 +16,10 @@ jobs:
     outputs:
       published: ${{ steps.changesets.outputs.published }}
     steps:
+      - name: Workflow run cleanup action
+        uses: rokroskar/workflow-run-cleanup-action@v0.2.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
