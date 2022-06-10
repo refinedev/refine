@@ -41,18 +41,7 @@ export const PostsList: React.FC = () => {
                 field: "actions",
                 headerName: "Actions",
                 renderCell: function render({ row }) {
-                    return (
-                        <EditButton
-                            svgIconProps={{ fontSize: "small" }}
-                            variant="outlined"
-                            size="small"
-                            hideText
-                            recordItemId={row.id}
-                            sx={{
-                                minWidth: "24px",
-                            }}
-                        />
-                    );
+                    return <EditButton hideText recordItemId={row.id} />;
                 },
                 align: "center",
                 headerAlign: "center",
