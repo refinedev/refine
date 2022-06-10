@@ -7,7 +7,8 @@ export const ReadyPage: React.FC = () => {
     const renderCode = (text: string) => (
         <Typography
             sx={{
-                backgroundColor: "white",
+                backgroundColor: (theme) =>
+                    theme.palette.secondary.contrastText,
                 color: (theme) => theme.palette.secondary.main,
                 display: "inline-block",
                 fontFamily: "monospace",

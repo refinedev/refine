@@ -12,7 +12,7 @@ import {
     GridFilterModel,
     GridSortModel,
 } from "@mui/x-data-grid";
-import { useTheme } from "@mui/material";
+import { useTheme, darken } from "@mui/material";
 
 import {
     transformCrudSortingToSortModel,
@@ -174,16 +174,17 @@ export const useDataGrid = <
             sx: {
                 border: "none",
                 "& .MuiDataGrid-columnHeaders": {
-                    background:
-                        theme.palette.mode === "light" ? "#fafafa" : "#1b1d1e",
-                    borderBottom: `1px solid ${
-                        theme.palette.mode === "light" ? "#f0f0f0" : "#34393b"
-                    }`,
+                    background: darken(theme.palette.background.paper, 0.05),
+                    borderBottom: `1px solid ${darken(
+                        theme.palette.background.paper,
+                        0.1,
+                    )}`,
                 },
                 "& .MuiDataGrid-cell": {
-                    borderBottom: `1px solid ${
-                        theme.palette.mode === "light" ? "#f0f0f0" : "#34393b"
-                    }`,
+                    borderBottom: `1px solid ${darken(
+                        theme.palette.background.paper,
+                        0.05,
+                    )}`,
                 },
             },
         },
