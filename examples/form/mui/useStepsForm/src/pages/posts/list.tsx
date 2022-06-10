@@ -40,19 +40,20 @@ export const PostsList: React.FC = () => {
             {
                 field: "actions",
                 headerName: "Actions",
-                // eslint-disable-next-line react/display-name
-                renderCell: ({ row }) => (
-                    <EditButton
-                        svgIconProps={{ fontSize: "small" }}
-                        variant="outlined"
-                        size="small"
-                        hideText
-                        recordItemId={row.id}
-                        sx={{
-                            minWidth: "24px",
-                        }}
-                    />
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <EditButton
+                            svgIconProps={{ fontSize: "small" }}
+                            variant="outlined"
+                            size="small"
+                            hideText
+                            recordItemId={row.id}
+                            sx={{
+                                minWidth: "24px",
+                            }}
+                        />
+                    );
+                },
                 align: "center",
                 headerAlign: "center",
                 minWidth: 80,
