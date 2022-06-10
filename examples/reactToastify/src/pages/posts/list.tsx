@@ -41,10 +41,13 @@ export const PostList: React.FC = () => {
                 id: "action",
                 Header: "Action",
                 accessor: "id",
-                // eslint-disable-next-line react/display-name
-                Cell: ({ value }) => (
-                    <button onClick={() => edit("posts", value)}>Edit</button>
-                ),
+                Cell: function render({ value }) {
+                    return (
+                        <button onClick={() => edit("posts", value)}>
+                            Edit
+                        </button>
+                    );
+                },
             },
         ],
         [],

@@ -65,10 +65,9 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                 id: "title",
                 Header: t("categories.fields.title"),
                 accessor: "title",
-                // eslint-disable-next-line react/display-name
-                Cell: ({
+                Cell: function render({
                     row,
-                }: React.PropsWithChildren<CellProps<ICategory>>) => {
+                }: React.PropsWithChildren<CellProps<ICategory>>) {
                     return (
                         <Stack direction="row" spacing={3}>
                             <span {...row.getToggleRowExpandedProps()}>
@@ -87,21 +86,19 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                 id: "isActive",
                 Header: t("categories.fields.isActive"),
                 accessor: "isActive",
-                // eslint-disable-next-line react/display-name
-                Cell: ({
+                Cell: function render({
                     value,
-                }: React.PropsWithChildren<CellProps<ICategory>>) => (
-                    <BooleanField value={value} />
-                ),
+                }: React.PropsWithChildren<CellProps<ICategory>>) {
+                    return <BooleanField value={value} />;
+                },
             },
             {
                 id: "actions",
                 Header: "Actions",
                 accessor: "id",
-                //eslint-disable-next-line react/display-name
-                Cell: ({
+                Cell: function render({
                     value,
-                }: React.PropsWithChildren<CellProps<{ id: number }>>) => {
+                }: React.PropsWithChildren<CellProps<{ id: number }>>) {
                     return (
                         <Stack direction="row">
                             {id ? (
@@ -339,20 +336,22 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
         () => [
             {
                 field: "image",
-                // eslint-disable-next-line react/display-name
-                renderHeader: () => <></>,
+                renderHeader: function render() {
+                    return <></>;
+                },
                 filterable: false,
                 filterOperators: undefined,
                 disableColumnMenu: true,
                 hideSortIcons: true,
-                // eslint-disable-next-line react/display-name
-                renderCell: ({ row }) => (
-                    <Avatar
-                        alt={`${row.name}`}
-                        src={row.images[0]?.url}
-                        sx={{ width: 74, height: 74 }}
-                    />
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <Avatar
+                            alt={`${row.name}`}
+                            src={row.images[0]?.url}
+                            sx={{ width: 74, height: 74 }}
+                        />
+                    );
+                },
                 flex: 1,
                 minWidth: 100,
             },
@@ -365,17 +364,18 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
             {
                 field: "price",
                 headerName: t("products.fields.price"),
-                // eslint-disable-next-line react/display-name
-                renderCell: ({ value }) => (
-                    <NumberField
-                        options={{
-                            currency: "USD",
-                            style: "currency",
-                            notation: "compact",
-                        }}
-                        value={value / 100}
-                    />
-                ),
+                renderCell: function render({ value }) {
+                    return (
+                        <NumberField
+                            options={{
+                                currency: "USD",
+                                style: "currency",
+                                notation: "compact",
+                            }}
+                            value={value / 100}
+                        />
+                    );
+                },
                 flex: 1,
                 minWidth: 100,
             },
@@ -383,18 +383,18 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                 field: "isActive",
 
                 headerName: t("products.fields.isActive"),
-                // eslint-disable-next-line react/display-name
-                renderCell: ({ row }) => <BooleanField value={row.isActive} />,
+                renderCell: function render({ row }) {
+                    return <BooleanField value={row.isActive} />;
+                },
                 flex: 0.5,
                 minWidth: 100,
             },
             {
                 field: "createdAt",
                 headerName: t("products.fields.createdAt"),
-                // eslint-disable-next-line react/display-name
-                renderCell: ({ row }) => (
-                    <DateField value={row.createdAt} format="LLL" />
-                ),
+                renderCell: function render({ row }) {
+                    return <DateField value={row.createdAt} format="LLL" />;
+                },
                 flex: 1,
                 minWidth: 200,
             },
@@ -403,15 +403,17 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                 field: "actions",
                 headerName: t("table.actions"),
                 type: "actions",
-                getActions: ({ row }) => [
-                    <GridActionsCellItem
-                        key={1}
-                        label={t("buttons.edit")}
-                        icon={<Edit />}
-                        onClick={() => showEditDrawer(row.id)}
-                        showInMenu
-                    />,
-                ],
+                getActions: function render({ row }) {
+                    return [
+                        <GridActionsCellItem
+                            key={1}
+                            label={t("buttons.edit")}
+                            icon={<Edit />}
+                            onClick={() => showEditDrawer(row.id)}
+                            showInMenu
+                        />,
+                    ];
+                },
                 flex: 0.5,
                 minWidth: 100,
             },

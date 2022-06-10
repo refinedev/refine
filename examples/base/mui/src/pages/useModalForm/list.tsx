@@ -62,10 +62,9 @@ export const UseModalFormList: React.FC = () => {
                 field: "actions",
                 headerName: "Actions",
                 width: 150,
-                // eslint-disable-next-line react/display-name
-                renderCell: (params) => (
-                    <EditButton onClick={() => showEdit(params.id)} />
-                ),
+                renderCell: function render({ row }) {
+                    return <EditButton onClick={() => showEdit(row.id)} />;
+                },
             },
         ],
         [],

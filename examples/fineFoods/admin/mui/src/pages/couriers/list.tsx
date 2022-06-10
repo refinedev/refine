@@ -30,18 +30,19 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
             {
                 field: "name",
                 headerName: t("couriers.fields.name"),
-                // eslint-disable-next-line react/display-name
-                renderCell: ({ row }) => (
-                    <Stack alignItems="center" direction="row" spacing={2}>
-                        <Avatar
-                            alt={`${row.name} ${row.surname}`}
-                            src={row.avatar?.[0]?.url}
-                        />
-                        <Typography variant="body2">
-                            {row.name} {row.surname}
-                        </Typography>
-                    </Stack>
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <Stack alignItems="center" direction="row" spacing={2}>
+                            <Avatar
+                                alt={`${row.name} ${row.surname}`}
+                                src={row.avatar?.[0]?.url}
+                            />
+                            <Typography variant="body2">
+                                {row.name} {row.surname}
+                            </Typography>
+                        </Stack>
+                    );
+                },
                 flex: 1,
                 minWidth: 200,
             },
@@ -60,20 +61,21 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
             {
                 field: "address",
                 headerName: t("couriers.fields.address"),
-                // eslint-disable-next-line react/display-name
-                renderCell: ({ row }) => (
-                    <Tooltip title={row.address}>
-                        <Typography
-                            variant="body2"
-                            sx={{
-                                textOverflow: "ellipsis",
-                                overflow: "hidden",
-                            }}
-                        >
-                            {row.address}
-                        </Typography>
-                    </Tooltip>
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <Tooltip title={row.address}>
+                            <Typography
+                                variant="body2"
+                                sx={{
+                                    textOverflow: "ellipsis",
+                                    overflow: "hidden",
+                                }}
+                            >
+                                {row.address}
+                            </Typography>
+                        </Tooltip>
+                    );
+                },
                 flex: 1,
                 minWidth: 300,
             },
@@ -81,28 +83,30 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                 field: "actions",
                 headerName: t("table.actions"),
                 type: "actions",
-                getActions: ({ row }) => [
-                    <GridActionsCellItem
-                        key={1}
-                        label={t("buttons.edit")}
-                        icon={<Edit color="success" />}
-                        onClick={() => edit("couriers", row.id)}
-                        showInMenu
-                    />,
-                    <GridActionsCellItem
-                        key={2}
-                        label={t("buttons.delete")}
-                        icon={<Close color="error" />}
-                        onClick={() => {
-                            mutateDelete({
-                                resource: "couriers",
-                                id: row.id,
-                                mutationMode: "undoable",
-                            });
-                        }}
-                        showInMenu
-                    />,
-                ],
+                getActions: function render({ row }) {
+                    return [
+                        <GridActionsCellItem
+                            key={1}
+                            label={t("buttons.edit")}
+                            icon={<Edit color="success" />}
+                            onClick={() => edit("couriers", row.id)}
+                            showInMenu
+                        />,
+                        <GridActionsCellItem
+                            key={2}
+                            label={t("buttons.delete")}
+                            icon={<Close color="error" />}
+                            onClick={() => {
+                                mutateDelete({
+                                    resource: "couriers",
+                                    id: row.id,
+                                    mutationMode: "undoable",
+                                });
+                            }}
+                            showInMenu
+                        />,
+                    ];
+                },
             },
         ],
         [],
