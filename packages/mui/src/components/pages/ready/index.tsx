@@ -1,12 +1,5 @@
 import * as React from "react";
-import {
-    Stack,
-    Grid,
-    Typography,
-    Button,
-    CssBaseline,
-    Link,
-} from "@mui/material";
+import { Stack, Grid, Typography, Button, Link } from "@mui/material";
 
 import logo from "../../../assets/images/refine.svg";
 
@@ -44,6 +37,7 @@ export const ReadyPage: React.FC = () => {
                     flexDirection="column"
                     flex={1}
                     alignItems="center"
+                    color={(theme) => theme.palette.primary.contrastText}
                 >
                     <Typography display="flex" justifyContent="center">
                         <img

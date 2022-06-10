@@ -1,13 +1,8 @@
 import {
     Box,
     TextField,
-    FormControl,
-    InputLabel,
-    Select,
-    MenuItem,
     Autocomplete,
     useAutocomplete,
-    FormHelperText,
     Create,
 } from "@pankod/refine-mui";
 import { useForm, Controller } from "@pankod/refine-react-hook-form";
@@ -16,9 +11,9 @@ import { ICategory } from "interfaces";
 
 export const PostCreate: React.FC = () => {
     const {
-        refineCore: { onFinish, formLoading },
+        refineCore: { formLoading },
+        saveButtonProps,
         register,
-        handleSubmit,
         control,
         formState: { errors },
     } = useForm();
@@ -28,19 +23,16 @@ export const PostCreate: React.FC = () => {
     });
 
     return (
-        <Create
-            isLoading={formLoading}
-            saveButtonProps={{ onClick: handleSubmit(onFinish) }}
-        >
+        <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
             <Box
                 component="form"
                 sx={{ display: "flex", flexDirection: "column" }}
                 autoComplete="off"
             >
                 <TextField
-                    {...register("title", { required: true })}
+                    {...register("title", { required: "Title is required" })}
                     error={!!errors?.title}
-                    helperText={errors?.title?.message}
+                    helperText={errors.title?.message}
                     margin="normal"
                     required
                     fullWidth
@@ -49,34 +41,36 @@ export const PostCreate: React.FC = () => {
                     name="title"
                     autoFocus
                 />
-                <FormControl
-                    margin="normal"
-                    required
-                    fullWidth
-                    error={!!errors?.status}
-                >
-                    <InputLabel id="status">Status</InputLabel>
-                    <Select
-                        {...register("status")}
-                        labelId="status"
-                        label="Status"
-                        defaultValue="published"
-                    >
-                        <MenuItem value="published">Published</MenuItem>
-                        <MenuItem value="draft">Draft</MenuItem>
-                        <MenuItem value="rejected">Rejected</MenuItem>
-                    </Select>
-                    {errors?.status && (
-                        <FormHelperText>
-                            {errors?.status?.message}
-                        </FormHelperText>
+                <Controller
+                    control={control}
+                    name="status"
+                    rules={{ required: "Status is required" }}
+                    defaultValue=""
+                    render={({ field }) => (
+                        <Autocomplete
+                            {...field}
+                            options={["published", "draft", "rejected"]}
+                            onChange={(_, value) => {
+                                field.onChange(value);
+                            }}
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    label="Status"
+                                    margin="normal"
+                                    variant="outlined"
+                                    error={!!errors.status}
+                                    helperText={errors.status?.message}
+                                    required
+                                />
+                            )}
+                        />
                     )}
-                </FormControl>
-
+                />
                 <Controller
                     control={control}
                     name="category"
-                    rules={{ required: true }}
+                    rules={{ required: "Category is required" }}
                     render={({ field }) => (
                         <Autocomplete
                             {...autocompleteProps}
@@ -93,27 +87,16 @@ export const PostCreate: React.FC = () => {
                             renderInput={(params) => (
                                 <TextField
                                     {...params}
-                                    label="items"
+                                    label="Category"
                                     margin="normal"
                                     variant="outlined"
-                                    error={!!errors.item}
-                                    helperText={errors.item && "item required"}
+                                    error={!!errors.category}
+                                    helperText={errors.category?.message}
                                     required
                                 />
                             )}
                         />
                     )}
-                />
-                <TextField
-                    {...register("content", { required: true })}
-                    error={!!errors?.content}
-                    helperText={errors?.content?.message}
-                    margin="normal"
-                    label="Content"
-                    required
-                    multiline
-                    rows={4}
-                    defaultValue="Default Value"
                 />
             </Box>
         </Create>
