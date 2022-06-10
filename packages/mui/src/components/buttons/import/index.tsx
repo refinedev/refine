@@ -4,9 +4,9 @@ import { LoadingButton } from "@mui/lab";
 import ImportExportOutlinedIcon from "@mui/icons-material/ImportExportOutlined";
 
 import { useTranslate, UseImportInputPropsType } from "@pankod/refine-core";
-import { SvgIconProps } from "@mui/material";
+import { ButtonProps, SvgIconProps } from "@mui/material";
 
-export type ImportButtonProps = {
+export type ImportButtonProps = ButtonProps & {
     inputProps: UseImportInputPropsType;
     hideText?: boolean;
     loading?: boolean;
@@ -24,8 +24,11 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
     loading = false,
     svgIconProps,
     children,
+    ...rest
 }) => {
     const translate = useTranslate();
+
+    const { sx, ...restProps } = rest;
 
     return (
         <label htmlFor="contained-button-file">
@@ -36,6 +39,8 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
                     !hideText && <ImportExportOutlinedIcon {...svgIconProps} />
                 }
                 loading={loading}
+                sx={{ minWidth: 0, ...sx }}
+                {...restProps}
             >
                 {hideText ? (
                     <ImportExportOutlinedIcon

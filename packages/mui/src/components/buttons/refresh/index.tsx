@@ -55,12 +55,15 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
         dataProviderName,
     });
 
+    const { sx, ...restProps } = rest;
+
     return (
         <LoadingButton
             startIcon={!hideText && <RefreshOutlinedIcon {...svgIconProps} />}
             loading={isFetching}
             onClick={(e) => (onClick ? onClick(e) : refetch())}
-            {...rest}
+            sx={{ minWidth: 0, ...sx }}
+            {...restProps}
         >
             {hideText ? (
                 <RefreshOutlinedIcon fontSize="small" {...svgIconProps} />

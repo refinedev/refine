@@ -62,6 +62,8 @@ export const ListButton: React.FC<ListButtonProps> = ({
 
     const listUrl = generateListUrl(resource.route!);
 
+    const { sx, ...restProps } = rest;
+
     return (
         <Link
             to={listUrl}
@@ -79,7 +81,8 @@ export const ListButton: React.FC<ListButtonProps> = ({
                 disabled={data?.can === false}
                 startIcon={!hideText && <ListOutlinedIcon {...svgIconProps} />}
                 title={disabledTitle()}
-                {...rest}
+                sx={{ minWidth: 0, ...sx }}
+                {...restProps}
             >
                 {hideText ? (
                     <ListOutlinedIcon fontSize="small" {...svgIconProps} />
