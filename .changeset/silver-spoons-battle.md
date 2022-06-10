@@ -2,4 +2,4 @@
 "@pankod/refine-mui": patch
 ---
 
-Update Sider with internal state.
+Refactor default `<Sider>` component of `@pankod/refine-mui`
