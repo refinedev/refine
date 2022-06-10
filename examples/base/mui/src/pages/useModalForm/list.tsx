@@ -25,7 +25,8 @@ import { IPost } from "interfaces";
 
 export const UseModalFormList: React.FC = () => {
     const {
-        modal: { visible, close, show, title, saveButtonProps },
+        modal: { visible, close, show, title },
+        saveButtonProps,
         register,
         formState: { errors },
     } = useModalForm<IPost>({
@@ -38,8 +39,8 @@ export const UseModalFormList: React.FC = () => {
             close: closeEdit,
             show: showEdit,
             title: titleEdit,
-            saveButtonProps: saveButtonPropsEdit,
         },
+        saveButtonProps: saveButtonPropsEdit,
         register: registerEdit,
         formState: { errors: errorsEdit },
     } = useModalForm<IPost>({

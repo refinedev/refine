@@ -25,7 +25,8 @@ export default {
 
 export const EditForm: React.FC = () => {
     const {
-        modal: { visible, close, show, title, saveButtonProps },
+        modal: { visible, close, show, title },
+        saveButtonProps,
         register,
         formState: { errors },
     } = useModalForm<IPost>({
