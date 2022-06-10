@@ -181,7 +181,6 @@ jobs:
         env:
           domain: "example.refine.dev"
   documentation-gh:
-    if: ${{ needs.publish.outputs.published == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
