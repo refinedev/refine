@@ -6,7 +6,7 @@ import {
     ReadyPage,
     LightTheme,
     ThemeProvider,
-    notificationProviderHandle,
+    notificationProvider,
     SnackbarProvider,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -23,7 +23,7 @@ const App: React.FC = () => {
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}
-                    notificationProvider={notificationProviderHandle}
+                    notificationProvider={notificationProvider}
                     ReadyPage={ReadyPage}
                     Layout={Layout}
                     LoginPage={LoginPage}
