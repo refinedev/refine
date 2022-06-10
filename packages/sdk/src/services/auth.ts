@@ -33,6 +33,8 @@ class Auth {
                 `${baseUrl}/oauth/${provider}?applicationClientId=${clientId}`,
             );
         }
+
+        throw Error("Email and password or provider are required!");
     }
 
     async register(data: {
