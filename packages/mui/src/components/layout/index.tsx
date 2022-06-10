@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { MenuRounded } from "@mui/icons-material";
+import React from "react";
 import { LayoutProps } from "@pankod/refine-core";
 
-import { Box, IconButton } from "@mui/material";
+import { Box } from "@mui/material";
 
 import { Sider as DefaultSider } from "./sider";
 
@@ -13,50 +12,17 @@ export const Layout: React.FC<LayoutProps> = ({
     OffLayoutArea,
     children,
 }) => {
-    const [collapsed, setCollapsed] = useState(false);
-    const [opened, setOpened] = useState(false);
-
-    const drawerWidth = () => {
-        if (collapsed) return 64;
-        return 200;
-    };
-
     const SiderToRender = Sider ?? DefaultSider;
 
     return (
-        <Box>
-            <SiderToRender
-                opened={opened}
-                setOpened={setOpened}
-                collapsed={collapsed}
-                setCollapsed={setCollapsed}
-                drawerWidth={drawerWidth()}
-            />
-            <Box
-                sx={{
-                    display: { xs: "block", md: "none" },
-                    position: "fixed",
-                    top: "64px",
-                    left: "0px",
-                    borderRadius: "0 6px 6px 0",
-                    bgcolor: "secondary.main",
-                    zIndex: 1199,
-                    width: "36px",
-                }}
-            >
-                <IconButton
-                    sx={{ color: "#fff", width: "36px" }}
-                    onClick={() => setOpened((prev) => !prev)}
-                >
-                    <MenuRounded />
-                </IconButton>
-            </Box>
+        <Box display="flex" flexDirection="row">
+            <SiderToRender />
             <Box
                 sx={{
                     display: "flex",
                     flexDirection: "column",
+                    flex: 1,
                     minHeight: "100vh",
-                    marginLeft: { md: `${drawerWidth()}px` },
                     transition:
                         "margin-left 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
                 }}

@@ -14,17 +14,9 @@ const mockAuthProvider = {
     isProvided: true,
 };
 
-const defaultProps = {
-    opened: true,
-    setOpened: jest.fn(),
-    collapsed: true,
-    setCollapsed: jest.fn(),
-    drawerWidth: 256,
-};
-
 describe("Sider", () => {
     it("should render successful", async () => {
-        const { getAllByText } = render(<Sider {...defaultProps} />, {
+        const { getAllByText } = render(<Sider />, {
             wrapper: TestWrapper({}),
         });
 
@@ -33,7 +25,7 @@ describe("Sider", () => {
     });
 
     it("should render logout menu item successful", async () => {
-        const { getAllByText } = render(<Sider {...defaultProps} />, {
+        const { getAllByText } = render(<Sider />, {
             wrapper: TestWrapper({
                 authProvider: mockAuthProvider,
             }),
@@ -44,7 +36,7 @@ describe("Sider", () => {
     });
 
     it("should work menu item click", async () => {
-        const { getAllByText } = render(<Sider {...defaultProps} />, {
+        const { getAllByText } = render(<Sider />, {
             wrapper: TestWrapper({
                 authProvider: mockAuthProvider,
             }),
@@ -59,7 +51,7 @@ describe("Sider", () => {
             ...mockAuthProvider,
             logout: jest.fn().mockImplementation(() => Promise.resolve()),
         };
-        const { getAllByText } = render(<Sider {...defaultProps} />, {
+        const { getAllByText } = render(<Sider />, {
             wrapper: TestWrapper({
                 authProvider: logoutMockedAuthProvider,
             }),
@@ -72,38 +64,23 @@ describe("Sider", () => {
         expect(logoutMockedAuthProvider.logout).toBeCalledTimes(1);
     });
 
-    xit("should work sider collapse ", async () => {
-        const { container } = render(<Sider {...defaultProps} />, {
-            wrapper: TestWrapper({}),
-        });
-        await act(async () => {
-            fireEvent.click(
-                container.children.item(0)!.children.item(1)!
-                    .firstElementChild!,
-            );
-        });
-    });
-
     it("should render only allowed menu items", async () => {
-        const { getAllByText, queryByText } = render(
-            <Sider {...defaultProps} />,
-            {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }, { name: "users" }],
-                    accessControlProvider: {
-                        can: ({ action, resource }) => {
-                            if (action === "list" && resource === "posts") {
-                                return Promise.resolve({ can: true });
-                            }
-                            if (action === "list" && resource === "users") {
-                                return Promise.resolve({ can: false });
-                            }
+        const { getAllByText, queryByText } = render(<Sider />, {
+            wrapper: TestWrapper({
+                resources: [{ name: "posts" }, { name: "users" }],
+                accessControlProvider: {
+                    can: ({ action, resource }) => {
+                        if (action === "list" && resource === "posts") {
+                            return Promise.resolve({ can: true });
+                        }
+                        if (action === "list" && resource === "users") {
                             return Promise.resolve({ can: false });
-                        },
+                        }
+                        return Promise.resolve({ can: false });
                     },
-                }),
-            },
-        );
+                },
+            }),
+        });
 
         await waitFor(() => getAllByText("Posts"));
         await waitFor(() => expect(queryByText("Users")).toBeNull());
