@@ -37,7 +37,9 @@ export const cloudAuthProvider = (sdk: Client): AuthProvider => {
         getUserIdentity: () =>
             sdk.auth
                 .session()
-                .then(({ user }) => Promise.resolve({ ...user }))
+                .then((user) => {
+                    return Promise.resolve(user);
+                })
                 .catch(() => Promise.reject()),
     };
 };
