@@ -101,14 +101,10 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                 headerName: t("table.actions"),
                 renderCell: ({ row }) => (
                     <ShowButton
-                        svgIconProps={{ fontSize: "small" }}
-                        variant="outlined"
                         size="small"
+                        variant="outlined"
                         hideText
                         recordItemId={row.id}
-                        sx={{
-                            minWidth: "24px",
-                        }}
                     />
                 ),
                 align: "center",
