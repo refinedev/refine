@@ -45,7 +45,7 @@ jobs:
       - name: Test
         run: npm test
       - name: Copy changesets for Stable version
-        run: cp -r ./.changeset/* ./_changeset/
+        run: mkdir -p ./_changeset/ && cp -r ./.changeset/* ./_changeset/
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
