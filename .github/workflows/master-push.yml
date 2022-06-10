@@ -38,6 +38,7 @@ jobs:
       - name: Test
         run: npm test
       - name: Prepare Stable version changesets
+        if: "!contains(github.event.head_commit.message, 'ci(changesets): version packages')"
         run: cp -R ./_changeset/* ./.changeset && rm -rf ./_changeset/
       - name: Create Release Pull Request or Publish to npm
         id: changesets
