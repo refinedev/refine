@@ -70,31 +70,32 @@ export const PostList: React.FC = () => {
                 id: "action",
                 Header: "Action",
                 accessor: "id",
-                // eslint-disable-next-line react/display-name
-                Cell: ({ value }) => (
-                    <div className="flex gap-2">
-                        <button
-                            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-                            onClick={() => edit("posts", value)}
-                        >
-                            {EditIcon}
-                        </button>
-                        <button
-                            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-                            onClick={() => show("posts", value)}
-                        >
-                            {ShowIcon}
-                        </button>
-                        <button
-                            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-red-500 hover:text-white"
-                            onClick={() =>
-                                mutate({ id: value, resource: "posts" })
-                            }
-                        >
-                            {DeleteIcon}
-                        </button>
-                    </div>
-                ),
+                Cell: function render({ value }) {
+                    return (
+                        <div className="flex gap-2">
+                            <button
+                                className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                                onClick={() => edit("posts", value)}
+                            >
+                                {EditIcon}
+                            </button>
+                            <button
+                                className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                                onClick={() => show("posts", value)}
+                            >
+                                {ShowIcon}
+                            </button>
+                            <button
+                                className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-red-500 hover:text-white"
+                                onClick={() =>
+                                    mutate({ id: value, resource: "posts" })
+                                }
+                            >
+                                {DeleteIcon}
+                            </button>
+                        </div>
+                    );
+                },
             },
         ],
         [],
