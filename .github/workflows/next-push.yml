@@ -5,6 +5,7 @@ on:
     paths:
       - ".changeset/**"
       - "packages/**"
+      - "documentation/**"
     branches:
       - next
 
@@ -60,7 +61,6 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
   documentation:
     runs-on: ubuntu-latest
-    if: ${{ needs.publish.outputs.published == 'true' }}
     strategy:
       matrix:
         node-version: [16.x]
