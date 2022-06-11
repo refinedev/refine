@@ -1,8 +1,10 @@
-import { Client } from "@pankod/refine-sdk";
-
+import { useSdk } from "@hooks";
 import { AuthProvider } from "../../../interfaces";
 
-export const cloudAuthProvider = (sdk: Client): AuthProvider => {
+// TODO: Add hook docs
+export const useAuthProviderWithCloudConfig = (): AuthProvider => {
+    const sdk = useSdk();
+
     return {
         login: async ({ username, password }) => {
             return sdk.auth

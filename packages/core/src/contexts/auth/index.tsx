@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useQueryClient } from "react-query";
 
 import { useNavigation, useSdk } from "@hooks";
-import { cloudAuthProvider } from "@definitions/cloud/authProvider";
 import { IAuthContext } from "../../interfaces";
+import { useAuthProviderWithCloudConfig } from "@hooks/cloud/useAuthProviderWithCloudConfig";
 
 export const AuthContext = React.createContext<IAuthContext>({});
 
@@ -25,7 +25,7 @@ export const AuthContextProvider: React.FC<IAuthContext> = ({
 
     if (!isProvided && sdk) {
         isProvided = true;
-        authOperations = cloudAuthProvider(sdk);
+        authOperations = useAuthProviderWithCloudConfig();
     }
 
     const loginFunc = async (params: any) => {
