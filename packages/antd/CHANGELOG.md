@@ -1,5 +1,14 @@
 # @pankod/refine-antd
 
+## 3.25.5
+
+### Patch Changes
+
+-   `@pankod/refine-antd` Pagination with Next.js Links breaks the app
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.30.0
+
 ## 3.25.4
 
 ### Patch Changes
