@@ -25,6 +25,8 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
+    const { sx, ...restProps } = rest;
+
     return (
         <LoadingButton
             {...rest}
@@ -32,6 +34,8 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
             startIcon={
                 !hideText && <ImportExportOutlinedIcon {...svgIconProps} />
             }
+            sx={{ minWidth: 0, ...sx }}
+            {...restProps}
         >
             {hideText ? (
                 <ImportExportOutlinedIcon fontSize="small" {...svgIconProps} />

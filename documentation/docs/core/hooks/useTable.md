@@ -10,7 +10,7 @@ If you're looking for a complete table library, Refine supports two table librar
 
 -   [React Table](https://react-table.tanstack.com/) (for Headless users) - [Documentation](/packages/react-table.md) - [Example](/examples/react-table/react-table.md)
 -   [Ant Design Table](https://ant.design/components/table/#header) (for Ant Design users) - [Documentation](/ui-frameworks/antd/hooks/table/useTable.md) - [Example](/examples/table/useTable.md)
-    :::
+:::
 
 Lets say you have a endpoint that returns the following data:
 
@@ -153,11 +153,11 @@ setFilter([
     {
         field: "title",
         operator: "contains",
-        value: "A",
+        value: "F",
     },
 ]);
 
-console.log(filters); // [{ field: "title", operator: "contains", value: "A" }, { field: "status", operator: "equals", value: "published" }]
+console.log(filters); // [{ field: "title", operator: "contains", value: "F" }, { field: "status", operator: "equals", value: "published" }]
 
 setFilter([
     {
@@ -171,8 +171,8 @@ setFilter([
 console.log(filters);
 /*
 [
-    { field: "title", operator: "contains", value: "A" },
-    { field: "author", operator: "contains", value: "Ali" },
+    { field: "title", operator: "contains", value: "F" },
+    { field: "author", operator: "contains", value: "Foo" },
     { field: "status", operator: "equals", value: "published" }
 ]
 */
@@ -181,7 +181,7 @@ setFilter([
     {
         field: "author",
         operator: "ne",
-        value: "Ali",
+        value: "Foo",
     },
     "replace",
 ]);
@@ -189,7 +189,7 @@ setFilter([
 console.log(filters);
 /*
 [
-    { field: "author", operator: "ne", value: "Ali" },
+    { field: "author", operator: "ne", value: "Foo" },
     { field: "status", operator: "equals", value: "published" }
 ]
 */

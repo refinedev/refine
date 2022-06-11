@@ -60,6 +60,8 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
 
     const createUrl = generateCreateUrl(resource.route!);
 
+    const { sx, ...restProps } = rest;
+
     return (
         <Link
             to={createUrl}
@@ -80,7 +82,8 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                 }
                 title={disabledTitle()}
                 variant="contained"
-                {...rest}
+                sx={{ minWidth: 0, ...sx }}
+                {...restProps}
             >
                 {hideText ? (
                     <AddBoxOutlinedIcon fontSize="small" {...svgIconProps} />

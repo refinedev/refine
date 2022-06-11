@@ -1,5 +1,126 @@
 # @pankod/refine-mui
 
+## 3.30.0
+
+### Minor Changes
+
+-   Added default `sx` property for Material UI buttons.
+
+    ```tsx
+    const { sx, ...restProps } = rest;
+
+    <Button sx={{ minWidth: 0, ...sx }} {...restProps} />;
+    ```
+
+### Patch Changes
+
+-   Fixed the `useDataGrid` filter bug that the selected filter was not displayed.
+
+*   Applied `refine`'s base theme to `@pankod/refine-mui` package with dark and light options.
+
+-   Refactor default `<Sider>` component of `@pankod/refine-mui`
+
+-   Updated dependencies []:
+    -   @pankod/refine-react-hook-form@3.27.0
+
+## 3.29.0
+
+### Minor Changes
+
+-   Added new provider. `<RefineSnackbarProvider/>` for notifications.
+
+### Patch Changes
+
+-   We are fixed the buttons' icon fontSize when hideText prop passed
+
+*   Renamed export `notificationProviderHandle` from `@pankod/refine-mui` to `notificationProvider` for consistency across packages
+
+-   Fixed Material UI `ReadyPage` to be responsive for any screen
+
+*   Added missing exports from `notistack` package.
+
+-   Added `svgButtonProps` property for Material UI buttons.
+
+    ```tsx
+    <CreateButton svgButtonProps={{ size: "small" }} />
+    ```
+
+*   Fixed Material UI `<ErrorComponent />` to be responsive for any screen
+
+*   Updated dependencies []:
+    -   @pankod/refine-core@3.29.0
+
+## 3.28.0
+
+### Minor Changes
+
+-   Added new provider. `<RefineSnackbarProvider/>` for notifications.
+
+### Patch Changes
+
+-   We are fixed the buttons' icon fontSize when hideText prop passed
+
+*   Renamed export `notificationProviderHandle` from `@pankod/refine-mui` to `notificationProvider` for consistency across packages
+
+-   Fixed Material UI `ReadyPage` to be responsive for any screen
+
+*   Added missing exports from `notistack` package.
+
+-   Added `svgButtonProps` property for Material UI buttons.
+
+    ```tsx
+    <CreateButton svgButtonProps={{ size: "small" }} />
+    ```
+
+*   Fixed Material UI `<ErrorComponent />` to be responsive for any screen
+
+*   Updated dependencies []:
+    -   @pankod/refine-core@3.28.0
+
+## 3.27.0
+
+### Minor Changes
+
+-   Added new provider. `<RefineSnackbarProvider/>` for notifications.
+
+### Patch Changes
+
+-   We are fixed the buttons' icon fontSize when hideText prop passed
+
+*   Renamed export `notificationProviderHandle` from `@pankod/refine-mui` to `notificationProvider` for consistency across packages
+
+-   Fixed Material UI `ReadyPage` to be responsive for any screen
+
+*   Added missing exports from `notistack` package.
+
+-   Added `svgButtonProps` property for Material UI buttons.
+
+    ```tsx
+    <CreateButton svgButtonProps={{ size: "small" }} />
+    ```
+
+*   Fixed Material UI `<ErrorComponent />` to be responsive for any screen
+
+*   Updated dependencies []:
+    -   @pankod/refine-core@3.27.0
+
+## 3.26.0
+
+### Minor Changes
+
+-   [#1911](https://github.com/pankod/refine/pull/1911) [`6aa09d34b8`](https://github.com/pankod/refine/commit/6aa09d34b8756d22b76cb9804814594e730587b0) Thanks [@biskuvit](https://github.com/biskuvit)! - Added new provider. `<RefineSnackbarProvider/>` for notifications.
+
+## 3.25.2
+
+### Patch Changes
+
+-   [#1909](https://github.com/pankod/refine/pull/1909) [`0170b1306d`](https://github.com/pankod/refine/commit/0170b1306d38d20891a189e3103a7a8bddd3a3dc) Thanks [@aliemir](https://github.com/aliemir)! - Renamed export `notificationProviderHandle` from `@pankod/refine-mui` to `notificationProvider` for consistency across packages
+
+*   [#1896](https://github.com/pankod/refine/pull/1896) [`2ba2a96fd2`](https://github.com/pankod/refine/commit/2ba2a96fd24aa733c355ac9ef4c99b7d48115746) Thanks [@aliemir](https://github.com/aliemir)! - Added missing exports from `notistack` package.
+
+*   Updated dependencies [[`2ba2a96fd2`](https://github.com/pankod/refine/commit/2ba2a96fd24aa733c355ac9ef4c99b7d48115746)]:
+    -   @pankod/refine-core@3.26.0
+
 ## 3.25.1
 
 ### Patch Changes

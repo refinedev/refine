@@ -9,6 +9,7 @@ import {
     Collapse,
     Tooltip,
     Button,
+    IconButton,
 } from "@mui/material";
 import {
     ListOutlined,
@@ -17,6 +18,7 @@ import {
     ExpandMore,
     ChevronLeft,
     ChevronRight,
+    MenuRounded,
 } from "@mui/icons-material";
 import {
     CanAccess,
@@ -31,21 +33,15 @@ import {
 import { useMenu } from "@hooks";
 import { Title as DefaultTitle } from "../title";
 
-type SiderProps = {
-    opened: boolean;
-    setOpened: React.Dispatch<React.SetStateAction<boolean>>;
-    collapsed: boolean;
-    setCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
-    drawerWidth: number;
-};
+export const Sider: React.FC = () => {
+    const [collapsed, setCollapsed] = useState(false);
+    const [opened, setOpened] = useState(false);
 
-export const Sider: React.FC<SiderProps> = ({
-    opened,
-    setOpened,
-    collapsed,
-    setCollapsed,
-    drawerWidth,
-}) => {
+    const drawerWidth = () => {
+        if (collapsed) return 64;
+        return 200;
+    };
+
     const t = useTranslate();
     const { Link } = useRouterContext();
 
@@ -221,87 +217,122 @@ export const Sider: React.FC<SiderProps> = ({
     );
 
     return (
-        <Box
-            component="nav"
-            sx={{
-                position: "fixed",
-                zIndex: 1101,
-                width: { sm: drawerWidth },
-                display: "flex",
-            }}
-        >
-            <Drawer
-                variant="temporary"
-                open={opened}
-                onClose={() => setOpened(false)}
-                ModalProps={{
-                    keepMounted: true, // Better open performance on mobile.
-                }}
+        <>
+            <Box
                 sx={{
-                    display: { xs: "block", md: "none" },
-                    "& .MuiDrawer-paper": {
-                        width: 256,
-                        bgcolor: "secondary.main",
+                    width: { xs: drawerWidth() },
+                    display: {
+                        xs: "none",
+                        md: "block",
                     },
+                    transition: "width 0.3s ease",
+                }}
+            />
+            <Box
+                component="nav"
+                sx={{
+                    position: "fixed",
+                    zIndex: 1101,
+                    width: { sm: drawerWidth() },
+                    display: "flex",
                 }}
             >
-                <Box
+                <Drawer
+                    variant="temporary"
+                    open={opened}
+                    onClose={() => setOpened(false)}
+                    ModalProps={{
+                        keepMounted: true, // Better open performance on mobile.
+                    }}
                     sx={{
-                        height: 64,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
+                        display: { sm: "block", md: "none" },
+                        "& .MuiDrawer-paper": {
+                            width: 256,
+                            bgcolor: "secondary.main",
+                        },
                     }}
                 >
-                    <RenderToTitle collapsed={false} />
-                </Box>
-                {drawer}
-            </Drawer>
-            <Drawer
-                variant="permanent"
-                PaperProps={{ elevation: 1 }}
-                sx={{
-                    display: { xs: "none", md: "block" },
-                    "& .MuiDrawer-paper": {
-                        width: drawerWidth,
-                        bgcolor: "secondary.main",
-                        overflow: "hidden",
-                        transition:
-                            "width 200ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
-                    },
-                }}
-                open
-            >
-                <Box
-                    sx={{
-                        height: 64,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                    }}
-                >
-                    <RenderToTitle collapsed={collapsed} />
-                </Box>
-                <Box
-                    sx={{ flexGrow: 1, overflowX: "hidden", overflowY: "auto" }}
-                >
+                    <Box
+                        sx={{
+                            height: 64,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                        }}
+                    >
+                        <RenderToTitle collapsed={false} />
+                    </Box>
                     {drawer}
-                </Box>
-                <Button
+                </Drawer>
+                <Drawer
+                    variant="permanent"
+                    PaperProps={{ elevation: 1 }}
                     sx={{
-                        background: "rgba(0,0,0,.5)",
-                        color: "primary.contrastText",
-                        textAlign: "center",
-                        borderRadius: 0,
-                        borderTop: "1px solid #ffffff1a",
+                        display: { xs: "none", md: "block" },
+                        "& .MuiDrawer-paper": {
+                            width: drawerWidth,
+                            bgcolor: "secondary.main",
+                            overflow: "hidden",
+                            transition:
+                                "width 200ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+                        },
                     }}
-                    fullWidth
-                    size="large"
-                    onClick={() => setCollapsed((prev) => !prev)}
+                    open
                 >
-                    {collapsed ? <ChevronRight /> : <ChevronLeft />}
-                </Button>
-            </Drawer>
-        </Box>
+                    <Box
+                        sx={{
+                            height: 64,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                        }}
+                    >
+                        <RenderToTitle collapsed={collapsed} />
+                    </Box>
+                    <Box
+                        sx={{
+                            flexGrow: 1,
+                            overflowX: "hidden",
+                            overflowY: "auto",
+                        }}
+                    >
+                        {drawer}
+                    </Box>
+                    <Button
+                        sx={{
+                            background: "rgba(0,0,0,.5)",
+                            color: "primary.contrastText",
+                            textAlign: "center",
+                            borderRadius: 0,
+                            borderTop: "1px solid #ffffff1a",
+                        }}
+                        fullWidth
+                        size="large"
+                        onClick={() => setCollapsed((prev) => !prev)}
+                    >
+                        {collapsed ? <ChevronRight /> : <ChevronLeft />}
+                    </Button>
+                </Drawer>
+                <Box
+                    sx={{
+                        display: { xs: "block", md: "none" },
+                        position: "fixed",
+                        top: "64px",
+                        left: "0px",
+                        borderRadius: "0 6px 6px 0",
+                        bgcolor: "secondary.main",
+                        zIndex: 1199,
+                        width: "36px",
+                    }}
+                >
+                    <IconButton
+                        sx={{ color: "#fff", width: "36px" }}
+                        onClick={() => setOpened((prev) => !prev)}
+                    >
+                        <MenuRounded />
+                    </IconButton>
+                </Box>
+            </Box>
+        </>
     );
 };

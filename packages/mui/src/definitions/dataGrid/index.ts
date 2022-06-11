@@ -74,7 +74,7 @@ export const transformFilterModelToCrudFilters = ({
 }: GridFilterModel): CrudFilters => {
     const filters = items.map(({ columnField, value, operatorValue }) => ({
         field: columnField,
-        value,
+        value: value ?? "",
         operator: transformMuiOperatorToCrudOperator(operatorValue),
     }));
 
@@ -183,7 +183,7 @@ export const transformCrudFiltersToFilterModel = (
                     operator,
                     column?.type,
                 ),
-                value,
+                value: value === "" ? undefined : value,
                 id: field + operator,
             });
         });
@@ -197,7 +197,7 @@ export const transformCrudFiltersToFilterModel = (
                     operator,
                     column?.type,
                 ),
-                value,
+                value: value === "" ? undefined : value,
                 id: field + operator,
             });
         });
