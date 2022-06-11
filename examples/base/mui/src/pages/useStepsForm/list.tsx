@@ -18,8 +18,9 @@ const columns: GridColumns = [
     {
         field: "action",
         headerName: "Actions",
-        // eslint-disable-next-line react/display-name
-        renderCell: (params) => <EditButton recordItemId={params.id} />,
+        renderCell: function render({ row }) {
+            return <EditButton recordItemId={row.id} />;
+        },
     },
 ];
 

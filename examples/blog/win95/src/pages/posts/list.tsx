@@ -66,7 +66,7 @@ export const PostList = () => {
                 id: "category.id",
                 Header: "Category",
                 accessor: "category.id",
-                Cell: ({ cell }) => {
+                Cell: function render({ cell }) {
                     const { data, isLoading } = useOne<ICategory>({
                         resource: "categories",
                         id: (cell.row.original as any).categoryId,
@@ -83,10 +83,13 @@ export const PostList = () => {
                 id: "action",
                 Header: "Action",
                 accessor: "id",
-                // eslint-disable-next-line react/display-name
-                Cell: ({ value }) => (
-                    <Button onClick={() => edit("posts", value)}>Edit</Button>
-                ),
+                Cell: function render({ value }) {
+                    return (
+                        <Button onClick={() => edit("posts", value)}>
+                            Edit
+                        </Button>
+                    );
+                },
             },
         ],
         [],

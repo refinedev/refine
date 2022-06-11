@@ -167,25 +167,29 @@ export const PostList: React.FC = () => {
             hooks.visibleColumns.push((columns: any) => [
                 {
                     id: "selection",
-                    // eslint-disable-next-line react/display-name
-                    Header: ({ getToggleAllPageRowsSelectedProps }: any) => (
-                        <>
-                            <IndeterminateCheckbox
-                                {...getToggleAllPageRowsSelectedProps()}
-                            />
-                        </>
-                    ),
-                    // eslint-disable-next-line react/display-name
-                    Cell: ({ row }: any) => (
-                        <>
-                            <IndeterminateCheckbox
-                                {...row.getToggleRowSelectedProps()}
-                            />
-                            <span {...row.getToggleRowExpandedProps()}>
-                                {row.isExpanded ? "👇" : "👉"}
-                            </span>
-                        </>
-                    ),
+                    Header: function render({
+                        getToggleAllPageRowsSelectedProps,
+                    }: any) {
+                        return (
+                            <>
+                                <IndeterminateCheckbox
+                                    {...getToggleAllPageRowsSelectedProps()}
+                                />
+                            </>
+                        );
+                    },
+                    Cell: function render({ row }: any) {
+                        return (
+                            <>
+                                <IndeterminateCheckbox
+                                    {...row.getToggleRowSelectedProps()}
+                                />
+                                <span {...row.getToggleRowExpandedProps()}>
+                                    {row.isExpanded ? "👇" : "👉"}
+                                </span>
+                            </>
+                        );
+                    },
                 },
                 ...columns,
             ]);

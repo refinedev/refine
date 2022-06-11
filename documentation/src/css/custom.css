@@ -267,20 +267,31 @@
     border: none !important;
 }
 
-
 .tutorial-cards {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
 }
 
+.tutorial-cards > a {
+    width: 100%;
+}
+
+.tutorial-cards-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}
+  
+.tutorial-cards-center > a {
+      width: 50%;
+}
 
 @media (max-width: 425px) {
     .tutorial-cards {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        gap: 16px;
-        margin-top: 24px;
+       flex-direction: column;
+    }        
+    .tutorial-cards-center > a {
+        width: 100%;
     }
-  }
+} 

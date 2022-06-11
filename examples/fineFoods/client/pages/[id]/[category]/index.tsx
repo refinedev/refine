@@ -28,8 +28,9 @@ const Category: React.FC<CategoryPageProps> = ({ category, products }) => {
             {
                 id: "product",
                 accessor: (row: any) => row,
-                // eslint-disable-next-line react/display-name
-                Cell: ({ value }) => <ProductListItem product={value} />,
+                Cell: function render({ value }) {
+                    return <ProductListItem product={value} />;
+                },
             },
         ],
         [],

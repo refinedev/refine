@@ -5,6 +5,7 @@ on:
     paths:
       - ".changeset/**"
       - "packages/**"
+      - "documentation/**"
     branches:
       - next
 
@@ -44,7 +45,7 @@ jobs:
       - name: Test
         run: npm test
       - name: Copy changesets for Stable version
-        run: cp -r ./.changeset/* ./_changeset/
+        run: mkdir -p ./_changeset/ && cp -r ./.changeset/* ./_changeset/
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
@@ -60,7 +61,6 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
   documentation:
     runs-on: ubuntu-latest
-    if: ${{ needs.publish.outputs.published == 'true' }}
     strategy:
       matrix:
         node-version: [16.x]

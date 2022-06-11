@@ -25,7 +25,8 @@ import { IPost } from "interfaces";
 
 export const UseModalFormList: React.FC = () => {
     const {
-        modal: { visible, close, show, title, saveButtonProps },
+        modal: { visible, close, show, title },
+        saveButtonProps,
         register,
         formState: { errors },
     } = useModalForm<IPost>({
@@ -38,8 +39,8 @@ export const UseModalFormList: React.FC = () => {
             close: closeEdit,
             show: showEdit,
             title: titleEdit,
-            saveButtonProps: saveButtonPropsEdit,
         },
+        saveButtonProps: saveButtonPropsEdit,
         register: registerEdit,
         formState: { errors: errorsEdit },
     } = useModalForm<IPost>({
@@ -62,10 +63,9 @@ export const UseModalFormList: React.FC = () => {
                 field: "actions",
                 headerName: "Actions",
                 width: 150,
-                // eslint-disable-next-line react/display-name
-                renderCell: (params) => (
-                    <EditButton onClick={() => showEdit(params.id)} />
-                ),
+                renderCell: function render({ row }) {
+                    return <EditButton onClick={() => showEdit(row.id)} />;
+                },
             },
         ],
         [],

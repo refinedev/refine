@@ -112,6 +112,8 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         );
     };
 
+    const { sx, ...restProps } = rest;
+
     return (
         <div>
             <LoadingButton
@@ -119,7 +121,8 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                 disabled={data?.can === false}
                 loading={id === variables?.id && isLoading}
                 startIcon={!hideText && <DeleteOutlineIcon {...svgIconProps} />}
-                {...rest}
+                sx={{ minWidth: 0, ...sx }}
+                {...restProps}
             >
                 {hideText ? (
                     <DeleteOutlineIcon fontSize="small" {...svgIconProps} />

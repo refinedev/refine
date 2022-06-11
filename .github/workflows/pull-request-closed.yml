@@ -4,6 +4,8 @@ on:
   pull_request:
     types:
       - closed
+    paths:
+      - "documentation/**"
 jobs:
   documentation:
     runs-on: ubuntu-latest

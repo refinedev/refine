@@ -69,35 +69,37 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
             {
                 field: "id",
                 headerName: t("reviews.fields.orderId"),
-                // eslint-disable-next-line react/display-name
-                renderCell: ({ row }) => (
-                    <Button
-                        onClick={() => {
-                            show("orders", row.order.id);
-                        }}
-                    >
-                        #{row.order.id}
-                    </Button>
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <Button
+                            onClick={() => {
+                                show("orders", row.order.id);
+                            }}
+                        >
+                            #{row.order.id}
+                        </Button>
+                    );
+                },
                 width: 150,
             },
 
             {
                 field: "review",
                 headerName: t("reviews.fields.review"),
-                // eslint-disable-next-line react/display-name
-                renderCell: ({ row }) => (
-                    <Tooltip title={row.comment[0]}>
-                        <Typography
-                            sx={{
-                                textOverflow: "ellipsis",
-                                overflow: "hidden",
-                            }}
-                        >
-                            {row.comment[0]}
-                        </Typography>
-                    </Tooltip>
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <Tooltip title={row.comment[0]}>
+                            <Typography
+                                sx={{
+                                    textOverflow: "ellipsis",
+                                    overflow: "hidden",
+                                }}
+                            >
+                                {row.comment[0]}
+                            </Typography>
+                        </Tooltip>
+                    );
+                },
                 flex: 1,
             },
             {
@@ -106,19 +108,20 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
                 headerAlign: "center",
                 flex: 1,
                 align: "center",
-                // eslint-disable-next-line react/display-name
-                renderCell: ({ row }) => (
-                    <Stack alignItems="center">
-                        <Typography variant="h5" fontWeight="bold">
-                            {row.star}
-                        </Typography>
-                        <Rating
-                            name="rating"
-                            defaultValue={row.star}
-                            readOnly
-                        />
-                    </Stack>
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <Stack alignItems="center">
+                            <Typography variant="h5" fontWeight="bold">
+                                {row.star}
+                            </Typography>
+                            <Rating
+                                name="rating"
+                                defaultValue={row.star}
+                                readOnly
+                            />
+                        </Stack>
+                    );
+                },
             },
         ],
         [],

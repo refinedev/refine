@@ -7,11 +7,19 @@ export const RefineSnackbarProvider = styled(SnackbarProvider)`
         color: ${(props) => props.theme.palette.primary.main};
     }
     &.SnackbarItem-variantSuccess {
-        background-color: ${(props) => props.theme.palette.primary.main};
-        color: ${(props) => props.theme.palette.primary.contrastText};
+        background-color: ${(props) => props.theme.palette.success.main};
+        color: ${(props) => props.theme.palette.success.contrastText};
     }
     &.SnackbarItem-variantError {
         background-color: ${(props) => props.theme.palette.error.main};
-        color: ${(props) => props.theme.palette.common.white};
+        color: ${(props) => props.theme.palette.error.contrastText};
+    }
+    &.SnackbarItem-variantInfo {
+        background-color: ${(props) => props.theme.palette.info.main};
+        color: ${(props) => props.theme.palette.info.contrastText};
+    }
+    &.SnackbarItem-variantWarning {
+        background-color: ${(props) => props.theme.palette.warning.main};
+        color: ${(props) => props.theme.palette.warning.contrastText};
     }
 `;
