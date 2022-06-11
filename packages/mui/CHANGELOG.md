@@ -1,5 +1,28 @@
 # @pankod/refine-mui
 
+## 3.30.0
+
+### Minor Changes
+
+-   Added default `sx` property for Material UI buttons.
+
+    ```tsx
+    const { sx, ...restProps } = rest;
+
+    <Button sx={{ minWidth: 0, ...sx }} {...restProps} />;
+    ```
+
+### Patch Changes
+
+-   Fixed the `useDataGrid` filter bug that the selected filter was not displayed.
+
+*   Applied `refine`'s base theme to `@pankod/refine-mui` package with dark and light options.
+
+-   Refactor default `<Sider>` component of `@pankod/refine-mui`
+
+-   Updated dependencies []:
+    -   @pankod/refine-react-hook-form@3.27.0
+
 ## 3.29.0
 
 ### Minor Changes
