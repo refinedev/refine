@@ -35,7 +35,7 @@ export const AuthContextProvider: React.FC<IAuthContext> = ({
             return Promise.resolve(result);
         } catch (error) {
             setAuthenticated(false);
-            return Promise.reject(error);
+            throw error;
         }
     };
 
