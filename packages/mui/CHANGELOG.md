@@ -1,5 +1,28 @@
 # @pankod/refine-mui
 
+## 3.27.0
+
+### Minor Changes
+
+-   [#1919](https://github.com/pankod/refine/pull/1919) [`22ea289524`](https://github.com/pankod/refine/commit/22ea289524d1a65871b310a5e9e99264b716e64e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added default `sx` property for Material UI buttons.
+
+    ```tsx
+    const { sx, ...restProps } = rest;
+
+    <Button sx={{ minWidth: 0, ...sx }} {...restProps} />;
+    ```
+
+### Patch Changes
+
+-   [#1910](https://github.com/pankod/refine/pull/1910) [`6a7cd18813`](https://github.com/pankod/refine/commit/6a7cd18813aa2fbe522de1e46ebb3cc466647b2a) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed the `useDataGrid` filter bug that the selected filter was not displayed.
+
+*   [#1924](https://github.com/pankod/refine/pull/1924) [`f16c5d2d69`](https://github.com/pankod/refine/commit/f16c5d2d6938f0b987c290bac682139311eb9ce1) Thanks [@aliemir](https://github.com/aliemir)! - Applied `refine`'s base theme to `@pankod/refine-mui` package with dark and light options.
+
+-   [#1921](https://github.com/pankod/refine/pull/1921) [`d613e83fcb`](https://github.com/pankod/refine/commit/d613e83fcbc5354ede5abc51ff446a789875e2c9) Thanks [@ozkalai](https://github.com/ozkalai)! - Refactor default `<Sider>` component of `@pankod/refine-mui`
+
+-   Updated dependencies [[`45cd1f7097`](https://github.com/pankod/refine/commit/45cd1f7097e68604f6f2908b8befd0c61e44d419)]:
+    -   @pankod/refine-react-hook-form@3.26.0
+
 ## 3.26.0
 
 ### Minor Changes

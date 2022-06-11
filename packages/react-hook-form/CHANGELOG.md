@@ -1,5 +1,20 @@
 # @pankod/refine-react-hook-form
 
+## 3.26.0
+
+### Minor Changes
+
+-   [#1923](https://github.com/pankod/refine/pull/1923) [`45cd1f7097`](https://github.com/pankod/refine/commit/45cd1f7097e68604f6f2908b8befd0c61e44d419) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Removed `saveButtonProps` exported from `useModalForm` because `saveButtonProps` is already exported from `useForm` hook in `@pankod/refine-react-hook-form`.
+
+    ```diff
+     const {
+       modal: {
+    -    saveButtonProps
+       },
+    +  saveButtonProps
+     } = useModalForm();
+    ```
+
 ## 3.23.0
 
 ### Minor Changes
