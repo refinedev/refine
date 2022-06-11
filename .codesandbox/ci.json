@@ -1,6 +1,6 @@
 {
-    "node": "16",
-    "buildCommand": "bootstrap",
+    "node": "14",
+    "buildCommand": "bootstrap -- --scope fine-foods --scope mui-fine-foods --scope fine-foods-client",
     "packages": [
         "packages/antd",
         "packages/mui",
