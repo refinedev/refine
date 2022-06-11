@@ -36,14 +36,12 @@ import {
     ILiveContext,
     LiveModeProps,
     IDataMultipleContextProvider,
-    ICloudConfig,
     AuthProvider,
     NotificationProvider,
     AccessControlProvider,
     AuditLogProvider,
+    CloudConfigProvider,
 } from "../../../interfaces";
-import { cloudAuthProvider } from "@definitions/cloud/authProvider";
-import { initial } from "lodash";
 
 interface QueryClientConfig {
     queryCache?: QueryCache;
@@ -78,7 +76,7 @@ export interface RefineProps {
     reactQueryDevtoolConfig?: any;
     liveMode?: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
-    cloudConfig?: ICloudConfig;
+    cloudConfig?: CloudConfigProvider;
 }
 
 /**
@@ -163,7 +161,7 @@ export const Refine: React.FC<RefineProps> = ({
 
     return (
         <QueryClientProvider client={queryClient}>
-            <CloudContextProvider cloudConfig={cloudConfig}>
+            <CloudContextProvider {...(cloudConfig ?? {})}>
                 <NotificationContextProvider {...(notificationProvider ?? {})}>
                     <AuthContextProvider
                         {...(authProvider ?? {})}

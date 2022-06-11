@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Client } from "@pankod/refine-sdk";
+import { Client, createClient } from "@pankod/refine-sdk";
 
 import { CloudContext } from "@contexts/cloud";
 
@@ -7,7 +7,14 @@ export type UseSdkPropsType = {};
 
 // TODO: Add hook docs
 export const useSdk = (): Client | undefined => {
-    const cloudContext = useContext(CloudContext);
+    const { baseUrl, clientId } = useContext(CloudContext);
 
-    return cloudContext?.sdk;
+    if (baseUrl && clientId) {
+        return createClient({
+            baseUrl,
+            clientId,
+        });
+    }
+
+    return;
 };

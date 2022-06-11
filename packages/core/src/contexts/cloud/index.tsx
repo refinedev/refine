@@ -1,28 +1,19 @@
 import React from "react";
-import { createClient, Client } from "@pankod/refine-sdk";
 
-import { ICloudContext, IContextContextProvider } from "./ICloudContext";
+import { ICloudContext } from "./ICloudContext";
 
-export const CloudContext = React.createContext<ICloudContext>(undefined);
+export const CloudContext = React.createContext<ICloudContext>({});
 
-export const CloudContextProvider: React.FC<IContextContextProvider> = ({
-    cloudConfig,
+export const CloudContextProvider: React.FC<ICloudContext> = ({
+    baseUrl,
+    clientId,
     children,
 }) => {
-    let sdk: Client | undefined = undefined;
-
-    if (cloudConfig?.baseUrl && cloudConfig?.clientId) {
-        const { baseUrl, clientId } = cloudConfig;
-        sdk = createClient({
-            baseUrl,
-            clientId,
-        });
-    }
-
     return (
         <CloudContext.Provider
             value={{
-                sdk,
+                baseUrl,
+                clientId,
             }}
         >
             {children}

@@ -1,18 +1,6 @@
-import { Client } from "@pankod/refine-sdk";
-
-export type ICloudContext =
-    | {
-          sdk: Client | undefined;
-      }
-    | undefined;
-
-export type IContextContextProvider =
-    | {
-          cloudConfig?: ICloudConfig;
-      }
-    | undefined;
-
-export type ICloudConfig = {
-    baseUrl: string;
-    clientId: string;
+export type ICloudContext = {
+    baseUrl?: string;
+    clientId?: string;
 };
+
+export type CloudConfigProvider = Required<ICloudContext>;

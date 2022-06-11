@@ -3,15 +3,14 @@ import { IResource } from "@pankod/refine-sdk";
 
 import { CloudContext } from "@contexts/cloud";
 import { useResource } from "@hooks/resource";
+import { useSdk } from "@hooks/cloud";
 
 export const Cloud: React.FC<{}> = () => {
-    const cloud = useContext(CloudContext);
+    const sdk = useSdk();
     const { resources: contextResources } = useResource();
 
     useEffect(() => {
-        if (cloud?.sdk) {
-            const { sdk } = cloud;
-
+        if (sdk) {
             const resources: IResource[] = contextResources.map((i) => {
                 const { name, route, list, create, edit, show, canDelete } = i;
 
