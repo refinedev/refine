@@ -74,6 +74,8 @@ export const useModalForm = <
     const {
         reset,
         refineCore: { onFinish, setId },
+        saveButtonProps,
+        handleSubmit,
     } = useHookFormResult;
 
     const { visible, show, close } = useModal({
@@ -141,5 +143,9 @@ export const useModalForm = <
             title,
         },
         ...useHookFormResult,
+        saveButtonProps: {
+            ...saveButtonProps,
+            onClick: () => handleSubmit(submit as any)(),
+        },
     };
 };
