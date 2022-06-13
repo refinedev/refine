@@ -8,6 +8,8 @@ import {
     ThemeProvider,
     notificationProvider,
     RefineSnackbarProvider,
+    CssBaseline,
+    GlobalStyles,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -17,6 +19,8 @@ import { PostsList, PostCreate, PostEdit } from "pages/posts";
 const App: React.FC = () => {
     return (
         <ThemeProvider theme={LightTheme}>
+            <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
                 <Refine
                     routerProvider={routerProvider}
