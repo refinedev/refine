@@ -29,6 +29,14 @@ First we define `<CustomMenu>`:
 ```tsx title="src/CustomMenu.tsx"
 import React, { useState } from "react";
 import {
+    CanAccess,
+    ITreeMenu,
+    useIsExistAuthentication,
+    useTitle,
+    useTranslate,
+    useRouterContext,
+} from "@pankod/refine-core";
+import {
     Box,
     Drawer,
     MuiList,
@@ -38,7 +46,6 @@ import {
     Collapse,
     Tooltip,
     Button,
-    // highlight-next-line
     useMenu,
     Title as DefaultTitle,
 } from "@pankod/refine-mui";
@@ -49,14 +56,6 @@ import {
     ChevronLeft,
     ChevronRight,
 } from "@mui/icons-material";
-import {
-    CanAccess,
-    ITreeMenu,
-    useIsExistAuthentication,
-    useTitle,
-    useTranslate,
-    useRouterContext,
-} from "@pankod/refine-core";
 
 export const CustomMenu: React.FC = () => {
     const [collapsed, setCollapsed] = useState(false);
