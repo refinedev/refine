@@ -22,18 +22,19 @@ export const ErrorComponent: React.FC = () => {
 
     useEffect(() => {
         const action = params.action ?? "list";
+        const resourceName = params.resource;
         setErrorMessage(
             translate(
                 "pages.error.info",
                 {
                     action,
-                    resource: params.resource,
+                    resource: resourceName,
                 },
-                `You may have forgotten to add the "${action}" component to "${params.resource}" resource.`,
+                `You may have forgotten to add the "${action}" component to "${resourceName}" resource.`,
             ),
         );
-        if (params.resource) {
-            const resourceFromRoute = resource(params.resource);
+        if (resourceName) {
+            const resourceFromRoute = resource(resourceName);
             if (
                 action &&
                 actionTypes.includes(action) &&
@@ -44,9 +45,9 @@ export const ErrorComponent: React.FC = () => {
                         "pages.error.info",
                         {
                             action,
-                            resource: params.resource,
+                            resource: resourceName,
                         },
-                        `You may have forgotten to add the "${action}" component to "${params.resource}" resource.`,
+                        `You may have forgotten to add the "${action}" component to "${resourceName}" resource.`,
                     ),
                 );
             }
