@@ -6,8 +6,7 @@ import {
     Layout,
     GlobalStyles,
     CssBaseline,
-    styled,
-    SnackbarProvider,
+    RefineSnackbarProvider,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -40,21 +39,6 @@ import { ColorModeContextProvider } from "contexts";
 import { Header, Title } from "components";
 import { BikeWhiteIcon } from "components/icons/bike-white";
 
-const StyledSnackbarProvider = styled(SnackbarProvider)`
-    &.SnackbarItem-contentRoot {
-        background-color: ${(props) => props.theme.palette.background.default};
-        color: ${(props) => props.theme.palette.primary.main};
-    }
-    &.SnackbarItem-variantSuccess {
-        background-color: ${(props) => props.theme.palette.primary.main};
-        color: ${(props) => props.theme.palette.primary.contrastText};
-    }
-    &.SnackbarItem-variantError {
-        background-color: ${(props) => props.theme.palette.error.main};
-        color: ${(props) => props.theme.palette.common.white};
-    }
-`;
-
 const App: React.FC = () => {
     const { t, i18n } = useTranslation();
     const i18nProvider = {
@@ -66,7 +50,7 @@ const App: React.FC = () => {
     return (
         <>
             <ColorModeContextProvider>
-                <StyledSnackbarProvider>
+                <RefineSnackbarProvider>
                     <CssBaseline />
                     <GlobalStyles
                         styles={{ html: { WebkitFontSmoothing: "auto" } }}
@@ -133,7 +117,7 @@ const App: React.FC = () => {
                             },
                         ]}
                     />
-                </StyledSnackbarProvider>
+                </RefineSnackbarProvider>
             </ColorModeContextProvider>
         </>
     );
