@@ -15,7 +15,6 @@ export {
     AccessControlProvider,
     INotificationContext,
     NotificationProvider,
-    CloudConfigProvider,
     AuditLogProvider,
     I18nProvider,
     MutationMode,
