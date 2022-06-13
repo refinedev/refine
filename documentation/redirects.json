@@ -1067,6 +1067,14 @@
         {
             "from": "/docs/examples/form/useStepsForm/",
             "to": "/docs/examples/form/antd/useStepsForm/"
+        },
+        {
+            "from": "/docs/examples/react-hook-form/useForm/",
+            "to": "/docs/examples/form/react-hook-form/useForm/"
+        },
+        {
+            "from": "/docs/examples/react-hook-form/useStepsForm/",
+            "to": "/docs/examples/form/react-hook-form/useStepsForm/"
         }
     ]
 }

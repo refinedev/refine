@@ -556,6 +556,15 @@ module.exports = {
                                 "examples/form/mui/useStepsForm",
                             ],
                         },
+                        {
+                            type: "category",
+                            label: "React Hook Form",
+                            items: [
+                                "examples/form/react-hook-form/useForm",
+                                "examples/form/react-hook-form/useModalForm",
+                                "examples/form/react-hook-form/useStepsForm",
+                            ],
+                        },
                     ],
                 },
                 {
@@ -599,14 +608,6 @@ module.exports = {
                     type: "category",
                     label: "Notification Provider",
                     items: ["examples/notification-provider/react-toastify"],
-                },
-                {
-                    type: "category",
-                    label: "React Hook Form",
-                    items: [
-                        "examples/react-hook-form/useForm",
-                        "examples/react-hook-form/useStepsForm",
-                    ],
                 },
                 {
                     type: "category",
