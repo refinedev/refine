@@ -13,7 +13,7 @@ import { ICategory } from "interfaces";
 export const PostEdit: React.FC = () => {
     const {
         saveButtonProps,
-        refineCore: { formLoading, queryResult },
+        refineCore: { queryResult },
         register,
         control,
         formState: { errors },
@@ -25,7 +25,7 @@ export const PostEdit: React.FC = () => {
     });
 
     return (
-        <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
+        <Edit saveButtonProps={saveButtonProps}>
             <Box
                 component="form"
                 sx={{ display: "flex", flexDirection: "column" }}

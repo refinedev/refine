@@ -13,7 +13,6 @@ import { ICategory } from "interfaces";
 export const PostCreate: React.FC = () => {
     const {
         saveButtonProps,
-        refineCore: { formLoading },
         register,
         control,
         formState: { errors },
@@ -24,7 +23,7 @@ export const PostCreate: React.FC = () => {
     });
 
     return (
-        <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
+        <Create saveButtonProps={saveButtonProps}>
             <Box
                 component="form"
                 sx={{ display: "flex", flexDirection: "column" }}
