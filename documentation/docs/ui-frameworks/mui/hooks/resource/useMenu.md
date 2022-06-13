@@ -69,7 +69,6 @@ export const CustomMenu: React.FC = () => {
     const t = useTranslate();
     const { Link } = useRouterContext();
 
-    // highlight-next-line
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const isExistAuthentication = useIsExistAuthentication();
     const Title = useTitle();
@@ -81,7 +80,7 @@ export const CustomMenu: React.FC = () => {
     const handleClick = (key: string) => {
         setOpen({ ...open, [key]: !open[key] });
     };
-    // highlight-start
+
     const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
         return tree.map((item: ITreeMenu) => {
             const { icon, label, route, name, children, parentName } = item;
@@ -202,15 +201,12 @@ export const CustomMenu: React.FC = () => {
             );
         });
     };
-    // highlight-end
 
-    // highlight-start
     const drawer = (
         <MuiList disablePadding sx={{ mt: 1, color: "primary.contrastText" }}>
             {renderTreeView(menuItems, selectedKey)}
         </MuiList>
     );
-    // highlight-end
 
     return (
         <>
