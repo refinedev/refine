@@ -19,7 +19,6 @@ import {
     Typography,
     FormLabel,
     Stack,
-    useTheme,
     Box,
     IconButton,
     FormControl,
@@ -47,8 +46,6 @@ export const EditProduct: React.FC<UseModalFormReturnType> = ({
     getValues,
 }) => {
     const t = useTranslate();
-
-    const theme = useTheme();
 
     const apiUrl = useApiUrl();
 
@@ -96,15 +93,8 @@ export const EditProduct: React.FC<UseModalFormReturnType> = ({
 
     return (
         <Drawer
-            sx={{
-                "& .MuiDrawer-paper": {
-                    [theme.breakpoints.down("sm")]: {
-                        width: " 100%",
-                    },
-                    width: "500px",
-                },
-                zIndex: "1301",
-            }}
+            sx={{ zIndex: "1301" }}
+            PaperProps={{ sx: { width: { sm: "100%", md: 500 } } }}
             open={visible}
             onClose={close}
             anchor="right"
