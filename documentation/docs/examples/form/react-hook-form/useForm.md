@@ -7,7 +7,7 @@ title: useForm
 
 [Refer to the useForm documentation for more information. →](/packages/react-hook-form/useForm.md)
 
-[View React Hook Form Example Source](https://github.com/pankod/refine/tree/master/examples/form/reactHookForm/useForm)
+[View useForm Example Source](https://github.com/pankod/refine/tree/master/examples/form/reactHookForm/useForm)
 
 <iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/form/reactHookForm/useForm?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
