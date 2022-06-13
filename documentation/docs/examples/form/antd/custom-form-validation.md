@@ -7,9 +7,9 @@ You can make basic validations with Ant Design [Form.Item](https://ant.design/co
 
 [Refer to the **refine** Custom Form Validation documentation for more information. →](/docs/ui-frameworks/antd/hooks/form/useStepsForm/)
 
-[View Custom Form Validation Example Source](https://github.com/pankod/refine/tree/master/examples/form/customValidation)
+[View Custom Form Validation Example Source](https://github.com/pankod/refine/tree/master/examples/form/antd/customValidation)
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/form/customValidation?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/form/antd/customValidation?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-custom-validation-example-app"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
