@@ -1,13 +1,10 @@
 import {
     Autocomplete,
     Box,
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
+    Create,
+    Drawer,
+    IconButton,
     MenuItem,
-    SaveButton,
     TextField,
     useAutocomplete,
 } from "@pankod/refine-mui";
@@ -15,30 +12,42 @@ import {
     Controller,
     UseModalFormReturnType,
 } from "@pankod/refine-react-hook-form";
+import { CloseOutlined } from "@mui/icons-material";
 
 import { ICategory } from "interfaces";
 
-export const EditPostModal: React.FC<UseModalFormReturnType> = ({
+export const CreatePostDrawer: React.FC<UseModalFormReturnType> = ({
     saveButtonProps,
-    refineCore: { queryResult },
-    modal: { visible, close, title },
+    modal: { visible, close },
     register,
     control,
     formState: { errors },
 }) => {
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
-        defaultValue: queryResult?.data?.data.category.id,
     });
 
     return (
-        <Dialog
+        <Drawer
             open={visible}
             onClose={close}
-            PaperProps={{ sx: { minWidth: 500 } }}
+            anchor="right"
+            PaperProps={{ sx: { width: { sm: "100%", md: 500 } } }}
         >
-            <DialogTitle>{title}</DialogTitle>
-            <DialogContent>
+            <Create
+                saveButtonProps={saveButtonProps}
+                cardHeaderProps={{
+                    action: (
+                        <IconButton
+                            onClick={() => close()}
+                            sx={{ width: "30px", height: "30px" }}
+                        >
+                            <CloseOutlined />
+                        </IconButton>
+                    ),
+                    avatar: null,
+                }}
+            >
                 <Box
                     component="form"
                     autoComplete="off"
@@ -54,7 +63,6 @@ export const EditPostModal: React.FC<UseModalFormReturnType> = ({
                         fullWidth
                         label="Title"
                         name="title"
-                        autoFocus
                     />
                     <TextField
                         {...register("status", {
@@ -121,11 +129,7 @@ export const EditPostModal: React.FC<UseModalFormReturnType> = ({
                         rows={4}
                     />
                 </Box>
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={close}>Cancel</Button>
-                <SaveButton {...saveButtonProps} />
-            </DialogActions>
-        </Dialog>
+            </Create>
+        </Drawer>
     );
 };

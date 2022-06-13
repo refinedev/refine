@@ -1,2 +1,2 @@
-export * from "./createPostModal";
-export * from "./editPostModal";
+export * from "./createPostDrawer";
+export * from "./editPostDrawer";

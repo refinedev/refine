@@ -9,23 +9,23 @@ import {
 } from "@pankod/refine-mui";
 import { useModalForm } from "@pankod/refine-react-hook-form";
 
-import { CreatePostModal, EditPostModal } from "components";
+import { CreatePostDrawer, EditPostDrawer } from "components";
 import { ICategory, IPost } from "interfaces";
 
 export const PostsList: React.FC = () => {
-    const createModalFormProps = useModalForm<IPost>({
+    const createDrawerFormProps = useModalForm<IPost>({
         refineCoreProps: { action: "create" },
     });
     const {
-        modal: { show: showCreateModal },
-    } = createModalFormProps;
+        modal: { show: showCreateDrawer },
+    } = createDrawerFormProps;
 
-    const editModalFormProps = useModalForm<IPost>({
+    const editDrawerFormProps = useModalForm<IPost>({
         refineCoreProps: { action: "edit" },
     });
     const {
-        modal: { show: showEditModal },
-    } = editModalFormProps;
+        modal: { show: showEditDrawer },
+    } = editDrawerFormProps;
 
     const columns = React.useMemo<GridColumns<IPost>>(
         () => [
@@ -60,7 +60,7 @@ export const PostsList: React.FC = () => {
                     return (
                         <EditButton
                             hideText
-                            onClick={() => showEditModal(row.id)}
+                            onClick={() => showEditDrawer(row.id)}
                         />
                     );
                 },
@@ -78,11 +78,11 @@ export const PostsList: React.FC = () => {
 
     return (
         <>
-            <List createButtonProps={{ onClick: () => showCreateModal() }}>
+            <List createButtonProps={{ onClick: () => showCreateDrawer() }}>
                 <DataGrid {...dataGridProps} autoHeight />
             </List>
-            <CreatePostModal {...createModalFormProps} />
-            <EditPostModal {...editModalFormProps} />
+            <CreatePostDrawer {...createDrawerFormProps} />
+            <EditPostDrawer {...editDrawerFormProps} />
         </>
     );
 };
