@@ -8,6 +8,8 @@ import {
     ThemeProvider,
     notificationProvider,
     RefineSnackbarProvider,
+    CssBaseline,
+    GlobalStyles,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -18,6 +20,10 @@ const App: React.FC = () => {
     return (
         <ThemeProvider theme={LightTheme}>
             <RefineSnackbarProvider>
+                <CssBaseline />
+                <GlobalStyles
+                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+                />
                 <Refine
                     routerProvider={routerProvider}
                     dataProvider={dataProvider(
