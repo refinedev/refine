@@ -1,0 +1,113 @@
+import {
+    Create,
+    Box,
+    TextField,
+    Autocomplete,
+    useAutocomplete,
+    MenuItem,
+} from "@pankod/refine-mui";
+import { Controller, useForm } from "@pankod/refine-react-hook-form";
+
+import { ICategory } from "interfaces";
+
+export const PostCreate: React.FC = () => {
+    const {
+        saveButtonProps,
+        refineCore: { formLoading },
+        register,
+        control,
+        formState: { errors },
+    } = useForm();
+
+    const { autocompleteProps } = useAutocomplete<ICategory>({
+        resource: "categories",
+    });
+
+    return (
+        <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
+            <Box
+                component="form"
+                sx={{ display: "flex", flexDirection: "column" }}
+                autoComplete="off"
+            >
+                <TextField
+                    {...register("title", {
+                        required: "This field is required",
+                    })}
+                    error={!!errors.title}
+                    helperText={errors.title?.message}
+                    margin="normal"
+                    fullWidth
+                    label="Title"
+                    name="title"
+                    autoFocus
+                />
+                <TextField
+                    {...register("status", {
+                        required: "This field is required",
+                    })}
+                    select
+                    label="Status"
+                    margin="normal"
+                    error={!!errors.status}
+                    helperText={errors.status?.message}
+                    defaultValue="draft"
+                >
+                    <MenuItem value="published">Published</MenuItem>
+                    <MenuItem value="draft">Draft</MenuItem>
+                    <MenuItem value="rejected">Rejected</MenuItem>
+                </TextField>
+                <Controller
+                    control={control}
+                    name="category"
+                    rules={{ required: "This field is required" }}
+                    defaultValue=""
+                    render={({ field }) => (
+                        <Autocomplete
+                            {...autocompleteProps}
+                            {...field}
+                            onChange={(_, value) => {
+                                field.onChange(value);
+                            }}
+                            getOptionLabel={(item) => {
+                                return (
+                                    autocompleteProps?.options?.find(
+                                        (p) =>
+                                            p?.id?.toString() ===
+                                            item?.id?.toString(),
+                                    )?.title ?? ""
+                                );
+                            }}
+                            isOptionEqualToValue={(option, value) =>
+                                value === undefined ||
+                                option.id.toString() === value.toString()
+                            }
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    label="Category"
+                                    margin="normal"
+                                    variant="outlined"
+                                    error={!!errors.category}
+                                    helperText={errors.category?.message}
+                                    required
+                                />
+                            )}
+                        />
+                    )}
+                />
+                <TextField
+                    {...register("content", {
+                        required: "This field is required",
+                    })}
+                    error={!!errors.content}
+                    helperText={errors.content?.message}
+                    margin="normal"
+                    label="Content"
+                    multiline
+                    rows={4}
+                />
+            </Box>
+        </Create>
+    );
+};
