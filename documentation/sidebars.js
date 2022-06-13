@@ -313,6 +313,13 @@ module.exports = {
                             items: [
                                 "ui-frameworks/mui/hooks/useAutocomplete",
                                 "ui-frameworks/mui/hooks/useDataGrid",
+                                {
+                                    type: "category",
+                                    label: "Resource",
+                                    items: [
+                                        "ui-frameworks/mui/hooks/resource/useMenu",
+                                    ],
+                                },
                             ],
                         },
                         {
