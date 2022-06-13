@@ -19,11 +19,9 @@ import { PostsList } from "pages/posts";
 const App: React.FC = () => {
     return (
         <ThemeProvider theme={LightTheme}>
+            <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
-                <CssBaseline />
-                <GlobalStyles
-                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
-                />
                 <Refine
                     routerProvider={routerProvider}
                     dataProvider={dataProvider(
