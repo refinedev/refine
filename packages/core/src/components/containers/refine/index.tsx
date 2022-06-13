@@ -167,7 +167,7 @@ export const Refine: React.FC<RefineProps> = ({
 
     return (
         <QueryClientProvider client={queryClient}>
-            <CloudContextProvider {...(authProvider ?? {})}>
+            <CloudContextProvider {...(cloudConfig ?? {})}>
                 <NotificationContextProvider
                     {...notificationProviderContextValues}
                 >
