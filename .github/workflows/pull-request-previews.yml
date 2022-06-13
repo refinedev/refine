@@ -25,7 +25,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - uses: actions/checkout@v2
       - name: Install Dependencies
-      - run: |
+        run: |
           npm ci
           npm run bootstrap -- --scope fine-foods --scope mui-fine-foods
           npm run build -- --scope fine-foods --scope mui-fine-foods
