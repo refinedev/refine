@@ -535,6 +535,16 @@ module.exports = {
                     type: "category",
                     label: "Form",
                     items: [
+                        {
+                            type: "category",
+                            label: "Material UI",
+                            items: [
+                                "examples/form/mui/drawerForm",
+                                "examples/form/mui/useForm",
+                                "examples/form/mui/useModalForm",
+                                "examples/form/mui/useStepsForm",
+                            ],
+                        },
                         "examples/form/custom-form-validation",
                         "examples/form/useDrawerForm",
                         "examples/form/useForm",
