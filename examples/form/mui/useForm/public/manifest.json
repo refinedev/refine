@@ -1,6 +1,6 @@
 {
-    "short_name": "Material UI base example",
-    "name": "Material UI base example",
+    "short_name": "Material UI useForm example",
+    "name": "Material UI useForm example",
     "icons": [
         {
             "src": "favicon.ico",

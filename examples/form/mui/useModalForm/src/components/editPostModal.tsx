@@ -6,7 +6,6 @@ import {
     DialogActions,
     DialogContent,
     DialogTitle,
-    MenuItem,
     SaveButton,
     TextField,
     useAutocomplete,
@@ -56,21 +55,32 @@ export const EditPostModal: React.FC<UseModalFormReturnType> = ({
                         name="title"
                         autoFocus
                     />
-                    <TextField
-                        {...register("status", {
-                            required: "This field is required",
-                        })}
-                        select
-                        label="Status"
-                        margin="normal"
-                        error={!!errors.status}
-                        helperText={errors.status?.message}
-                        defaultValue="draft"
-                    >
-                        <MenuItem value="published">Published</MenuItem>
-                        <MenuItem value="draft">Draft</MenuItem>
-                        <MenuItem value="rejected">Rejected</MenuItem>
-                    </TextField>
+                    <Controller
+                        control={control}
+                        name="status"
+                        rules={{ required: "This field is required" }}
+                        defaultValue=""
+                        render={({ field }) => (
+                            <Autocomplete
+                                options={["published", "draft", "rejected"]}
+                                {...field}
+                                onChange={(_, value) => {
+                                    field.onChange(value);
+                                }}
+                                renderInput={(params) => (
+                                    <TextField
+                                        {...params}
+                                        label="Status"
+                                        margin="normal"
+                                        variant="outlined"
+                                        error={!!errors.status}
+                                        helperText={errors.status?.message}
+                                        required
+                                    />
+                                )}
+                            />
+                        )}
+                    />
                     <Controller
                         control={control}
                         name="category"
