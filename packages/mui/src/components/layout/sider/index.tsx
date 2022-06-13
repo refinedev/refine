@@ -89,6 +89,12 @@ export const Sider: React.FC = () => {
                                 sx={{
                                     pl: isNested ? 4 : 2,
                                     justifyContent: "center",
+                                    "&.Mui-selected": {
+                                        "&:hover": {
+                                            backgroundColor: "transparent",
+                                        },
+                                        backgroundColor: "transparent",
+                                    },
                                 }}
                             >
                                 <ListItemIcon
@@ -152,6 +158,12 @@ export const Sider: React.FC = () => {
                             sx={{
                                 pl: isNested ? 4 : 2,
                                 py: isNested ? 1.25 : 1,
+                                "&.Mui-selected": {
+                                    "&:hover": {
+                                        backgroundColor: "transparent",
+                                    },
+                                    backgroundColor: "transparent",
+                                },
                                 justifyContent: "center",
                             }}
                         >
