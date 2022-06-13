@@ -49,11 +49,9 @@ const App: React.FC = () => {
 
     return (
         <ColorModeContextProvider>
+            <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
-                <CssBaseline />
-                <GlobalStyles
-                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
-                />
                 <Refine
                     routerProvider={routerProvider}
                     dataProvider={dataProvider(
