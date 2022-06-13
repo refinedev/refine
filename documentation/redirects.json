@@ -1047,6 +1047,26 @@
         {
             "from": "/docs/examples/react-hook-form/react-hook-form/",
             "to": "/docs/examples/react-hook-form/useForm/"
+        },
+        {
+            "from": "/docs/examples/form/custom-form-validation/",
+            "to": "/docs/examples/form/antd/custom-form-validation/"
+        },
+        {
+            "from": "/docs/examples/form/useDrawerForm/",
+            "to": "/docs/examples/form/antd/useDrawerForm/"
+        },
+        {
+            "from": "/docs/examples/form/useForm/",
+            "to": "/docs/examples/form/antd/useForm/"
+        },
+        {
+            "from": "/docs/examples/form/useModalForm/",
+            "to": "/docs/examples/form/antd/useModalForm/"
+        },
+        {
+            "from": "/docs/examples/form/useStepsForm/",
+            "to": "/docs/examples/form/antd/useStepsForm/"
         }
     ]
 }

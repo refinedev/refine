@@ -537,6 +537,17 @@ module.exports = {
                     items: [
                         {
                             type: "category",
+                            label: "Ant Design",
+                            items: [
+                                "examples/form/antd/custom-form-validation",
+                                "examples/form/antd/useDrawerForm",
+                                "examples/form/antd/useForm",
+                                "examples/form/antd/useModalForm",
+                                "examples/form/antd/useStepsForm",
+                            ],
+                        },
+                        {
+                            type: "category",
                             label: "Material UI",
                             items: [
                                 "examples/form/mui/drawerForm",
@@ -545,11 +556,6 @@ module.exports = {
                                 "examples/form/mui/useStepsForm",
                             ],
                         },
-                        "examples/form/custom-form-validation",
-                        "examples/form/useDrawerForm",
-                        "examples/form/useForm",
-                        "examples/form/useModalForm",
-                        "examples/form/useStepsForm",
                     ],
                 },
                 {
