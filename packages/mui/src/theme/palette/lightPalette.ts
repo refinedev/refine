@@ -7,13 +7,33 @@ export const lightPalette: PaletteOptions = {
         contrastText: "#fff",
     },
     secondary: {
-        main: "#2a132e",
+        main: "#331049",
+        contrastText: "#fff",
+    },
+    background: {
+        default: "#f0f0f0",
+        paper: "#ffffff",
+    },
+    success: {
+        main: "#67be23",
+        contrastText: "#fff",
     },
     error: {
         main: "#fa541c",
+        contrastText: "#fff",
+    },
+    warning: {
+        main: "#fa8c16",
+        contrastText: "#fff",
+    },
+    info: {
+        main: "#0b82f0",
+        contrastText: "#fff",
     },
     divider: "rgba(0,0,0,0)",
     text: {
         primary: "#626262",
+        secondary: "#9f9f9f",
+        disabled: "#c1c1c1",
     },
 };

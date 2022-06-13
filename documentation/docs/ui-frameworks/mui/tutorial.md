@@ -23,17 +23,16 @@ Step by step, you're going to learn how to consume a _REST API_ and add basic CR
 Let's begin by setting up a new **refine** project.
 
 ## Setting up
-
+<!-- 
 There are two alternative methods to set up a **refine** application.
 
 The recommended way is using the [superplate](https://github.com/pankod/superplate) tool. _superplate_'s _CLI wizard_ will let you create and customize your application in seconds.
 
 Alternatively, you may use the _create-react-app_ tool to create an empty _React_ application and then add **refine** module via _npm_ etc.
-
+ -->
 <Tabs
-defaultValue="superplate"
+defaultValue="create-react-app"
 values={[
-{label: 'use superplate', value: 'superplate'},
 {label: 'use create-react-app', value: 'create-react-app'}
 ]}>
 <TabItem value="create-react-app">
@@ -154,9 +153,9 @@ yarn add @pankod/refine-simple-rest
   </TabItem>
 </Tabs>
 
-:::note
+<!-- :::note
 If you used `superplate` to bootstrap the project, you can skip issuing this command as `superplate` already installs the selected data provider.
-:::
+::: -->
 
 :::note
 
@@ -250,9 +249,8 @@ export default App;
 Run the following command to install the required package:
 
 <Tabs
-defaultValue="superplate"
+defaultValue="create-react-app"
 values={[
-{label: 'with superplate', value: 'superplate'},
 {label: 'with create-react-app', value: 'create-react-app'}
 ]}>
 <TabItem value="superplate">
@@ -1105,9 +1103,7 @@ In the example, it returns `formProps` and `saveButtonProps`, where the former i
 :::caution Attention
 In edit page, `useForm` hook initializes the form with current record values.
 
-[Refer to the `useForm` documentation for detailed usage information . &#8594](#)
-
-<!-- [Refer to the `useForm` documentation for detailed usage information . &#8594](/ui-frameworks/mui/hooks/form/useForm.md) -->
+[Refer to the `useForm` documentation for detailed usage information . &#8594](/packages/react-hook-form/useForm.md) 
 
 ✳️ You can give form property to `<Box>` component and it will render the form.
 

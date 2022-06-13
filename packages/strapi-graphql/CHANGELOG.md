@@ -1,5 +1,56 @@
 # @pankod/refine-strapi-graphql
 
+## 3.25.4
+
+### Patch Changes
+
+-   Updated axios version (0.21.4 to 0.26.1). In this version, the way of sending headers has changed as follows.
+
+    ```
+    // old v0.21.4
+    axiosInstance.defaults.headers = { Authorization: `Bearer ${data.jwt}` };
+
+    // new v0.26.1
+    axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${data.jwt}`;
+    ```
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.29.0
+
+## 3.25.3
+
+### Patch Changes
+
+-   Updated axios version (0.21.4 to 0.26.1). In this version, the way of sending headers has changed as follows.
+
+    ```
+    // old v0.21.4
+    axiosInstance.defaults.headers = { Authorization: `Bearer ${data.jwt}` };
+
+    // new v0.26.1
+    axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${data.jwt}`;
+    ```
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.28.0
+
+## 3.25.2
+
+### Patch Changes
+
+-   Updated axios version (0.21.4 to 0.26.1). In this version, the way of sending headers has changed as follows.
+
+    ```
+    // old v0.21.4
+    axiosInstance.defaults.headers = { Authorization: `Bearer ${data.jwt}` };
+
+    // new v0.26.1
+    axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${data.jwt}`;
+    ```
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.27.0
+
 ## 3.25.1
 
 ### Patch Changes
