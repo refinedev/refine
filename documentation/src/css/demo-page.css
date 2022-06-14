@@ -119,7 +119,7 @@
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.2s;
 }
 
 .tab-button:hover {
@@ -135,7 +135,7 @@
     display: flex;
     margin-left: 6px;
     color: #595959;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.2s;
     padding: 2px;
     border-radius: 6px;
 }
