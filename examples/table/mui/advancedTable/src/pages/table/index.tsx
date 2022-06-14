@@ -1,4 +1,4 @@
-import React, { useState, useCallback, HTMLProps } from "react";
+import React, { useState, useCallback } from "react";
 import { useDeleteMany, useOne, useSelect } from "@pankod/refine-core";
 import { alpha } from "@mui/material/styles";
 import {
