@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 3.25.6
+
+### Patch Changes
+
+-   Could not stop `e.preventDefault()` redirection in Next.js `<Link>` component. So we added in `e.stopPropagation()` for [Ant Design Buttons](https://refine.dev/docs/ui-frameworks/antd/components/buttons/clone-button/) and [Material UI Buttons](https://refine.dev/docs/ui-frameworks/mui/components/buttons/clone-button/)
+
 ## 3.25.5
 
 ### Patch Changes
