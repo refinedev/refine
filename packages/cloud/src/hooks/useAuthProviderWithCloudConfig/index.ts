@@ -13,10 +13,10 @@ export const useAuthProviderWithCloudConfig =
 
         const generateCloudAuthProvider = (): AuthProvider => {
             return {
-                login: async ({ username, password }) => {
+                login: async ({ email, password }) => {
                     return sdk.auth
                         .login({
-                            email: username,
+                            email,
                             password,
                         })
                         .then(() => Promise.resolve())
