@@ -23,14 +23,19 @@ const App: React.FC = () => {
             catchAll={<ErrorComponent />}
             resources={[
                 {
-                    name: "posts",
-                    list: PostList,
-                    options: { name: "Table" },
+                    name: "Posts",
                 },
                 {
                     name: "posts",
+                    parentName: "Posts",
+                    list: PostList,
+                    options: { route: "react-table", label: "React Table" },
+                },
+                {
+                    name: "posts",
+                    parentName: "Posts",
                     list: BasicDataGrid,
-                    options: { route: "basic-data-grid", name: "Data table" },
+                    options: { route: "data-grid", label: "Data Grid" },
                 },
             ]}
         />

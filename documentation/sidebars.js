@@ -535,11 +535,36 @@ module.exports = {
                     type: "category",
                     label: "Form",
                     items: [
-                        "examples/form/custom-form-validation",
-                        "examples/form/useDrawerForm",
-                        "examples/form/useForm",
-                        "examples/form/useModalForm",
-                        "examples/form/useStepsForm",
+                        {
+                            type: "category",
+                            label: "Ant Design",
+                            items: [
+                                "examples/form/antd/custom-form-validation",
+                                "examples/form/antd/useDrawerForm",
+                                "examples/form/antd/useForm",
+                                "examples/form/antd/useModalForm",
+                                "examples/form/antd/useStepsForm",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Material UI",
+                            items: [
+                                "examples/form/mui/drawerForm",
+                                "examples/form/mui/useForm",
+                                "examples/form/mui/useModalForm",
+                                "examples/form/mui/useStepsForm",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "React Hook Form",
+                            items: [
+                                "examples/form/react-hook-form/useForm",
+                                "examples/form/react-hook-form/useModalForm",
+                                "examples/form/react-hook-form/useStepsForm",
+                            ],
+                        },
                     ],
                 },
                 {
@@ -583,14 +608,6 @@ module.exports = {
                     type: "category",
                     label: "Notification Provider",
                     items: ["examples/notification-provider/react-toastify"],
-                },
-                {
-                    type: "category",
-                    label: "React Hook Form",
-                    items: [
-                        "examples/react-hook-form/useForm",
-                        "examples/react-hook-form/useStepsForm",
-                    ],
                 },
                 {
                     type: "category",
