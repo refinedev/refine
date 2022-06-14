@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { ComponentProps, useEffect, useState } from "react";
 import { Layout, Menu, Grid } from "antd";
 import { LogoutOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import {
     useTranslate,
     useLogout,
     useTitle,
-    CanAccess,
     ITreeMenu,
     useIsExistAuthentication,
-    useRouterContext,
+    useNavigation,
+    useCanWithoutCache,
 } from "@pankod/refine-core";
 
 import { Title as DefaultTitle } from "@components";
@@ -16,65 +16,100 @@ import { Title as DefaultTitle } from "@components";
 import { useMenu } from "@hooks";
 
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
-const { SubMenu } = Menu;
+
+type ItemType = NonNullable<ComponentProps<typeof Menu>["items"]>[number];
 
 export const Sider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const isExistAuthentication = useIsExistAuthentication();
-    const { Link } = useRouterContext();
+    const { push } = useNavigation();
     const { mutate: logout } = useLogout();
     const Title = useTitle();
     const translate = useTranslate();
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const breakpoint = Grid.useBreakpoint();
+    const { can: checkCan } = useCanWithoutCache();
+    const [renderedItems, setRenderedItems] = React.useState<Array<ItemType>>(
+        [],
+    );
 
     const isMobile = !breakpoint.lg;
 
     const RenderToTitle = Title ?? DefaultTitle;
 
-    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
-        return tree.map((item: ITreeMenu) => {
-            const { icon, label, route, name, children, parentName } = item;
-
-            if (children.length > 0) {
-                return (
-                    <SubMenu
-                        key={name}
-                        icon={icon ?? <UnorderedListOutlined />}
-                        title={label}
-                    >
-                        {renderTreeView(children, selectedKey)}
-                    </SubMenu>
-                );
+    const handleMenuItem = async (
+        item: ITreeMenu,
+        selectedKey?: string,
+    ): Promise<ItemType | undefined> => {
+        if (item.children?.length > 0) {
+            const handledChildren = await Promise.all(
+                item.children.map((child) =>
+                    handleMenuItem(child, selectedKey),
+                ),
+            );
+            // is sub
+            if (handledChildren.length > 0) {
+                return {
+                    key: item.name,
+                    label: item.label,
+                    icon: item.icon ?? <UnorderedListOutlined />,
+                    title: item.label,
+                    children: handledChildren,
+                } as ItemType;
             }
-            const isSelected = route === selectedKey;
+
+            return undefined;
+        } else {
+            const isSelected = item.route === selectedKey;
             const isRoute = !(
-                parentName !== undefined && children.length === 0
+                item.parentName !== undefined && item.children.length === 0
             );
-            return (
-                <CanAccess
-                    key={route}
-                    resource={name.toLowerCase()}
-                    action="list"
-                >
-                    <Menu.Item
-                        key={selectedKey}
-                        style={{
-                            fontWeight: isSelected ? "bold" : "normal",
-                        }}
-                        icon={icon ?? (isRoute && <UnorderedListOutlined />)}
-                    >
-                        <Link href={route} to={route}>
-                            {label}
-                        </Link>
-                        {!collapsed && isSelected && (
-                            <div className="ant-menu-tree-arrow" />
-                        )}
-                    </Menu.Item>
-                </CanAccess>
-            );
-        });
+
+            const { can: hasAccess } = checkCan
+                ? await checkCan({
+                      resource: item.name,
+                      action: "list",
+                  })
+                : { can: true };
+            // is leaf
+            if (hasAccess) {
+                return {
+                    key: item.name,
+                    label: (
+                        <>
+                            {item.label}{" "}
+                            {!collapsed && isSelected && (
+                                <div className="ant-menu-tree-arrow" />
+                            )}
+                        </>
+                    ),
+                    icon: item.icon ?? (isRoute && <UnorderedListOutlined />),
+                    route: item.route,
+                    onClick: () => push(item.route ?? "/"),
+                    style: isSelected ? { fontWeight: "bold" } : undefined,
+                } as ItemType;
+            }
+            return undefined;
+        }
     };
+
+    const renderTree = React.useCallback(
+        async (items: ITreeMenu[], selected: string) => {
+            const promises = items.map((item) =>
+                handleMenuItem(item, selected),
+            );
+            setRenderedItems(
+                (await Promise.all(promises)).filter(
+                    (el) => typeof el !== "undefined",
+                ) as ItemType[],
+            );
+        },
+        [],
+    );
+
+    useEffect(() => {
+        renderTree(menuItems, selectedKey);
+    }, [menuItems, selectedKey]);
 
     return (
         <Layout.Sider
@@ -95,19 +130,20 @@ export const Sider: React.FC = () => {
                         setCollapsed(true);
                     }
                 }}
-            >
-                {renderTreeView(menuItems, selectedKey)}
-
-                {isExistAuthentication && (
-                    <Menu.Item
-                        key="logout"
-                        onClick={() => logout()}
-                        icon={<LogoutOutlined />}
-                    >
-                        {translate("buttons.logout", "Logout")}
-                    </Menu.Item>
-                )}
-            </Menu>
+                items={[
+                    ...renderedItems,
+                    ...(isExistAuthentication
+                        ? [
+                              {
+                                  key: "logout",
+                                  label: translate("buttons.logout", "Logout"),
+                                  onClick: () => logout(),
+                                  icon: <LogoutOutlined />,
+                              } as ItemType,
+                          ]
+                        : []),
+                ]}
+            />
         </Layout.Sider>
     );
 };
