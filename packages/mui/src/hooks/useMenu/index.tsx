@@ -1,102 +1,304 @@
 import React from "react";
 
 import {
-    useRefineContext,
-    useTranslate,
-    useResource,
-    useRouterContext,
-    userFriendlyResourceName,
-    createTreeView,
+    CanAccess,
     ITreeMenu,
+    useMenu as useMenuCore,
+    useRouterContext,
 } from "@pankod/refine-core";
+import {
+    Collapse,
+    List,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    Tooltip,
+} from "@mui/material";
+import { ExpandLess, ExpandMore, ListOutlined } from "@mui/icons-material";
 
 type useMenuReturnType = {
-    defaultOpenKeys: string[];
+    defaultOpenKeys: Record<string, boolean>;
     selectedKey: string;
-    menuItems: ITreeMenu[];
+    menuItems: JSX.Element[];
+    openKeys: Record<string, boolean>;
+    setOpenKeys: (open: Record<string, boolean>) => void;
 };
 
-export const useMenu: () => useMenuReturnType = () => {
-    const { resources } = useResource();
-    const translate = useTranslate();
+type handlerContextType = {
+    item: ITreeMenu;
+    openKeys: Record<string, boolean>;
+    setOpenKeys: (open: Record<string, boolean>) => void;
+    open: boolean;
+    setOpen: (open: boolean) => void;
+    selectedKey?: string;
+    collapsed: boolean;
+    setCollapsed: (status: boolean) => void;
+    Link: React.FC<any>;
+    children?: (JSX.Element | null)[];
+};
 
-    const { useLocation, useParams } = useRouterContext();
-    const location = useLocation();
-    const params = useParams<{ resource: string }>();
+type useMenuConfigType = {
+    collapsed: boolean;
+    setCollapsed: (status: boolean) => void;
+    open: boolean;
+    setOpen: (open: boolean) => void;
+    openKeys: Record<string, boolean>;
+    setOpenKeys: (open: Record<string, boolean>) => void;
+    handleSubMenuItem?: (context: handlerContextType) => JSX.Element | null;
+    handleMenuItem?: (context: handlerContextType) => JSX.Element | null;
+};
 
-    const { hasDashboard } = useRefineContext();
+const defaultUseMenuConfig: useMenuConfigType = {
+    open: false,
+    collapsed: false,
+    openKeys: {},
+    setOpen: () => undefined,
+    setOpenKeys: () => undefined,
+    setCollapsed: () => undefined,
+    handleSubMenuItem: function defaultHandleSubMenuItem({
+        item,
+        openKeys,
+        setOpenKeys,
+        selectedKey,
+        collapsed,
+        setCollapsed,
+        children: renderedChildren,
+    }) {
+        const { icon, label, route, name, children, parentName } = item;
+        const isOpen = openKeys[route || ""] || false;
 
-    let selectedResource = resources.find(
-        (el) => location?.pathname === `/${el.route}`,
-    );
+        const isSelected = route === selectedKey;
+        const isNested = !(parentName === undefined);
 
-    // for no ssr
-    if (!selectedResource) {
-        selectedResource = resources.find(
-            (el) => params?.resource === (el.route as string),
-        );
-    }
+        const handleClick = (key: string) => {
+            setOpenKeys({ ...openKeys, [key]: !openKeys[key] });
+        };
 
-    let selectedKey: string;
-    if (selectedResource?.route) {
-        selectedKey = `/${selectedResource?.route}`;
-    } else if (location.pathname === "/") {
-        selectedKey = "/";
-    } else {
-        selectedKey = location?.pathname;
-    }
-
-    const treeMenuItems: any[] = React.useMemo(
-        () => [
-            ...(hasDashboard
-                ? [
-                      {
-                          name: "Dashboard",
-                          route: `/`,
-                          key: "dashboard",
-                          label: translate("dashboard.title", "Dashboard"),
-                      },
-                  ]
-                : []),
-            ...resources.map((resource) => {
-                const route = `/${resource.route}`;
-
-                return {
-                    ...resource,
-                    icon: resource.icon,
-                    route: route,
-                    key: resource.key ?? route,
-                    label:
-                        resource.label ??
-                        translate(
-                            `${resource.name}.${resource.name}`,
-                            userFriendlyResourceName(resource.name, "plural"),
-                        ),
-                };
-            }),
-        ],
-        [resources, hasDashboard],
-    );
-    const menuItems: ITreeMenu[] = createTreeView(treeMenuItems);
-
-    const keys = selectedKey.split("/").filter((x) => x !== "");
-
-    let defaultOpenKeys: any = {};
-    let key = "";
-
-    for (let index = 0; index < keys.length - 1; index++) {
-        if (keys[index] !== "undefined") {
-            key = key + `/${keys[index]}`;
+        if (children.length > 0) {
+            return (
+                <div key={route}>
+                    <Tooltip
+                        title={label ?? name}
+                        placement="right"
+                        disableHoverListener={!collapsed}
+                        arrow
+                    >
+                        <ListItemButton
+                            onClick={() => {
+                                if (collapsed) {
+                                    setCollapsed(false);
+                                    if (!isOpen) {
+                                        handleClick(route || "");
+                                    }
+                                } else {
+                                    handleClick(route || "");
+                                }
+                            }}
+                            sx={{
+                                pl: isNested ? 4 : 2,
+                                justifyContent: "center",
+                                "&.Mui-selected": {
+                                    "&:hover": {
+                                        backgroundColor: "transparent",
+                                    },
+                                    backgroundColor: "transparent",
+                                },
+                            }}
+                        >
+                            <ListItemIcon
+                                sx={{
+                                    justifyContent: "center",
+                                    minWidth: 36,
+                                    color: "primary.contrastText",
+                                }}
+                            >
+                                {icon ?? <ListOutlined />}
+                            </ListItemIcon>
+                            <ListItemText
+                                primary={label}
+                                primaryTypographyProps={{
+                                    noWrap: true,
+                                    fontSize: "14px",
+                                    fontWeight: isSelected ? "bold" : "normal",
+                                }}
+                            />
+                            {!collapsed &&
+                                (isOpen ? <ExpandLess /> : <ExpandMore />)}
+                        </ListItemButton>
+                    </Tooltip>
+                    {!collapsed && (
+                        <Collapse
+                            in={openKeys[route || ""]}
+                            timeout="auto"
+                            unmountOnExit
+                        >
+                            <List component="div" disablePadding>
+                                {renderedChildren}
+                            </List>
+                        </Collapse>
+                    )}
+                </div>
+            );
         }
 
-        defaultOpenKeys = {
-            ...defaultOpenKeys,
-            [key]: !defaultOpenKeys[key],
+        return null;
+    },
+    handleMenuItem: function defaultHandleMenuItem({
+        item,
+        Link,
+        collapsed,
+        setOpen,
+        selectedKey,
+    }) {
+        const { icon, label, route, name, parentName } = item;
+
+        const isSelected = route === selectedKey;
+        const isNested = !(parentName === undefined);
+
+        return (
+            <CanAccess key={route} resource={name.toLowerCase()} action="list">
+                <Tooltip
+                    title={label ?? name}
+                    placement="right"
+                    disableHoverListener={!collapsed}
+                    arrow
+                >
+                    <ListItemButton
+                        component={Link}
+                        href={route}
+                        to={route}
+                        selected={isSelected}
+                        onClick={() => {
+                            setOpen(false);
+                        }}
+                        sx={{
+                            pl: isNested ? 4 : 2,
+                            py: isNested ? 1.25 : 1,
+                            "&.Mui-selected": {
+                                "&:hover": {
+                                    backgroundColor: "transparent",
+                                },
+                                backgroundColor: "transparent",
+                            },
+                            justifyContent: "center",
+                        }}
+                    >
+                        <ListItemIcon
+                            sx={{
+                                justifyContent: "center",
+                                minWidth: 36,
+                                color: "primary.contrastText",
+                            }}
+                        >
+                            {icon ?? <ListOutlined />}
+                        </ListItemIcon>
+                        <ListItemText
+                            primary={label}
+                            primaryTypographyProps={{
+                                noWrap: true,
+                                fontSize: "14px",
+                                fontWeight: isSelected ? "bold" : "normal",
+                            }}
+                        />
+                    </ListItemButton>
+                </Tooltip>
+            </CanAccess>
+        );
+    },
+};
+
+export const useMenu: (config?: useMenuConfigType) => useMenuReturnType = ({
+    open,
+    collapsed,
+    setOpen,
+    setCollapsed,
+    handleMenuItem,
+    handleSubMenuItem,
+} = defaultUseMenuConfig) => {
+    const {
+        selectedKey,
+        defaultOpenKeys: _defaultOpenKeys,
+        menuItems,
+    } = useMenuCore();
+    const { Link } = useRouterContext();
+
+    const defaultOpenKeys = React.useMemo(() => {
+        let keys: Record<string, boolean> = {};
+        let key = "";
+
+        for (let index = 0; index < _defaultOpenKeys.length - 1; index++) {
+            if (_defaultOpenKeys[index] !== "undefined") {
+                key = key + `/${_defaultOpenKeys[index]}`;
+            }
+
+            keys = {
+                ...keys,
+                [key]: !keys[key],
+            };
+        }
+
+        return keys;
+    }, [_defaultOpenKeys]);
+
+    const [openKeys, setOpenKeys] =
+        React.useState<{ [k: string]: any }>(defaultOpenKeys);
+
+    const renderTreeView = (
+        tree: ITreeMenu[],
+        selectedKey: string,
+    ): (JSX.Element | null)[] => {
+        return tree.map((item: ITreeMenu) => {
+            if (item.children.length > 0) {
+                return (
+                    handleSubMenuItem?.({
+                        item,
+                        selectedKey,
+                        open,
+                        collapsed,
+                        setOpen,
+                        setCollapsed,
+                        openKeys,
+                        Link,
+                        setOpenKeys,
+                        children: renderTreeView(item.children, selectedKey),
+                    }) ?? null
+                );
+            }
+
+            return (
+                handleMenuItem?.({
+                    item,
+                    selectedKey,
+                    open,
+                    collapsed,
+                    setOpen,
+                    setCollapsed,
+                    openKeys,
+                    Link,
+                    setOpenKeys,
+                }) ?? null
+            );
+        });
+    };
+
+    const values = React.useMemo(() => {
+        return {
+            selectedKey,
+            menuItems: renderTreeView(menuItems, selectedKey).filter(
+                Boolean,
+            ) as JSX.Element[],
+            defaultOpenKeys,
+            openKeys,
+            setOpenKeys,
         };
-    }
-    return {
+    }, [
+        renderTreeView,
         selectedKey,
         defaultOpenKeys,
+        openKeys,
+        setOpenKeys,
         menuItems,
-    };
+    ]);
+
+    return values;
 };

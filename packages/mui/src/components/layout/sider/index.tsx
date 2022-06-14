@@ -6,28 +6,21 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
-    Collapse,
     Tooltip,
     Button,
     IconButton,
 } from "@mui/material";
 import {
-    ListOutlined,
     Logout,
-    ExpandLess,
-    ExpandMore,
     ChevronLeft,
     ChevronRight,
     MenuRounded,
 } from "@mui/icons-material";
 import {
-    CanAccess,
-    ITreeMenu,
     useIsExistAuthentication,
     useLogout,
     useTitle,
     useTranslate,
-    useRouterContext,
 } from "@pankod/refine-core";
 
 import { useMenu } from "@hooks";
@@ -43,157 +36,17 @@ export const Sider: React.FC = () => {
     };
 
     const t = useTranslate();
-    const { Link } = useRouterContext();
 
-    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
+    const { menuItems } = useMenu();
     const isExistAuthentication = useIsExistAuthentication();
     const { mutate: logout } = useLogout();
     const Title = useTitle();
 
-    const [open, setOpen] = useState<{ [k: string]: any }>(defaultOpenKeys);
-
     const RenderToTitle = Title ?? DefaultTitle;
-
-    const handleClick = (key: string) => {
-        setOpen({ ...open, [key]: !open[key] });
-    };
-
-    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
-        return tree.map((item: ITreeMenu) => {
-            const { icon, label, route, name, children, parentName } = item;
-            const isOpen = open[route || ""] || false;
-
-            const isSelected = route === selectedKey;
-            const isNested = !(parentName === undefined);
-
-            if (children.length > 0) {
-                return (
-                    <div key={route}>
-                        <Tooltip
-                            title={label ?? name}
-                            placement="right"
-                            disableHoverListener={!collapsed}
-                            arrow
-                        >
-                            <ListItemButton
-                                onClick={() => {
-                                    if (collapsed) {
-                                        setCollapsed(false);
-                                        if (!isOpen) {
-                                            handleClick(route || "");
-                                        }
-                                    } else {
-                                        handleClick(route || "");
-                                    }
-                                }}
-                                sx={{
-                                    pl: isNested ? 4 : 2,
-                                    justifyContent: "center",
-                                    "&.Mui-selected": {
-                                        "&:hover": {
-                                            backgroundColor: "transparent",
-                                        },
-                                        backgroundColor: "transparent",
-                                    },
-                                }}
-                            >
-                                <ListItemIcon
-                                    sx={{
-                                        justifyContent: "center",
-                                        minWidth: 36,
-                                        color: "primary.contrastText",
-                                    }}
-                                >
-                                    {icon ?? <ListOutlined />}
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary={label}
-                                    primaryTypographyProps={{
-                                        noWrap: true,
-                                        fontSize: "14px",
-                                        fontWeight: isSelected
-                                            ? "bold"
-                                            : "normal",
-                                    }}
-                                />
-                                {!collapsed &&
-                                    (isOpen ? <ExpandLess /> : <ExpandMore />)}
-                            </ListItemButton>
-                        </Tooltip>
-                        {!collapsed && (
-                            <Collapse
-                                in={open[route || ""]}
-                                timeout="auto"
-                                unmountOnExit
-                            >
-                                <List component="div" disablePadding>
-                                    {renderTreeView(children, selectedKey)}
-                                </List>
-                            </Collapse>
-                        )}
-                    </div>
-                );
-            }
-
-            return (
-                <CanAccess
-                    key={route}
-                    resource={name.toLowerCase()}
-                    action="list"
-                >
-                    <Tooltip
-                        title={label ?? name}
-                        placement="right"
-                        disableHoverListener={!collapsed}
-                        arrow
-                    >
-                        <ListItemButton
-                            component={Link}
-                            href={route}
-                            to={route}
-                            selected={isSelected}
-                            onClick={() => {
-                                setOpened(false);
-                            }}
-                            sx={{
-                                pl: isNested ? 4 : 2,
-                                py: isNested ? 1.25 : 1,
-                                "&.Mui-selected": {
-                                    "&:hover": {
-                                        backgroundColor: "transparent",
-                                    },
-                                    backgroundColor: "transparent",
-                                },
-                                justifyContent: "center",
-                            }}
-                        >
-                            <ListItemIcon
-                                sx={{
-                                    justifyContent: "center",
-                                    minWidth: 36,
-                                    color: "primary.contrastText",
-                                }}
-                            >
-                                {icon ?? <ListOutlined />}
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={label}
-                                primaryTypographyProps={{
-                                    noWrap: true,
-                                    fontSize: "14px",
-                                    fontWeight: isSelected ? "bold" : "normal",
-                                }}
-                            />
-                        </ListItemButton>
-                    </Tooltip>
-                </CanAccess>
-            );
-        });
-    };
 
     const drawer = (
         <List disablePadding sx={{ mt: 1, color: "primary.contrastText" }}>
-            {renderTreeView(menuItems, selectedKey)}
+            {menuItems}
             {isExistAuthentication && (
                 <Tooltip
                     title={t("buttons.logout", "Logout")}
