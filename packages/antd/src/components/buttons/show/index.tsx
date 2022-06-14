@@ -79,7 +79,6 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
             onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
                 if (onClick) {
                     e.preventDefault();
-                    e.stopPropagation();
                     onClick(e);
                 }
             }}
