@@ -74,6 +74,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
             onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
                 if (onClick) {
                     e.preventDefault();
+                    e.stopPropagation();
                     onClick(e);
                 }
             }}
