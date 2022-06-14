@@ -1,5 +1,11 @@
 # @pankod/refine-graphql
 
+## 3.25.2
+
+### Patch Changes
+
+-   Added `graphql-request` dependency to peerDependencies
+
 ## 3.25.1
 
 ### Patch Changes

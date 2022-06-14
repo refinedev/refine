@@ -1,5 +1,16 @@
 # @pankod/refine-mui
 
+## 3.30.3
+
+### Patch Changes
+
+-   We've updated `secondary` color to `#2A132E`
+
+*   Could not stop `e.preventDefault()` redirection in Next.js `<Link>` component. So we added in `e.stopPropagation()` for [Ant Design Buttons](https://refine.dev/docs/ui-frameworks/antd/components/buttons/clone-button/) and [Material UI Buttons](https://refine.dev/docs/ui-frameworks/mui/components/buttons/clone-button/)
+
+*   Updated dependencies []:
+    -   @pankod/refine-react-hook-form@3.27.2
+
 ## 3.30.2
 
 ### Patch Changes
