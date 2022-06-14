@@ -3,7 +3,6 @@ import {
     notificationProvider,
     Layout,
     ErrorComponent,
-    LoginPage,
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -11,6 +10,7 @@ import { withCloud } from "@pankod/refine-cloud";
 import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import { Login } from "pages/login";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -28,7 +28,7 @@ const RefineWithCloud = withCloud(Refine, {
 const App: React.FC = () => {
     return (
         <RefineWithCloud
-            LoginPage={LoginPage}
+            LoginPage={Login}
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
             resources={[
