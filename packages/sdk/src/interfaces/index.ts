@@ -51,7 +51,7 @@ export interface IDraftResource {
     updatedAt: string;
 }
 
-export interface IConfigItem {
+export interface IResourceConfigItem {
     name: string;
     options: {
         auditLog: {
@@ -60,4 +60,13 @@ export interface IConfigItem {
     };
 }
 
-export type IConfig = IConfigItem[];
+export type IResourcesConfig = IResourceConfigItem[];
+
+export interface IAuthConfigItem {
+    name: string;
+    type: string;
+    disableSignup: boolean;
+    url?: string;
+}
+
+export type IAuthConfig = IAuthConfigItem[];

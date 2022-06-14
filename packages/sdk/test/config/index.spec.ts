@@ -7,7 +7,7 @@ const client = createClient({
 });
 
 describe("Config", () => {
-    describe("Get", () => {
+    describe("Get Resources", () => {
         it("get config successfull", async () => {
             const response: any = await client.config.get();
 

@@ -1,7 +1,7 @@
 import nock from "nock";
 
 nock("http://awesome.localhost:3001", { encodedQueryParams: true })
-    .get("/config")
+    .get("/config/resources")
     .query({ applicationClientId: "client-id" })
     .reply(
         200,
