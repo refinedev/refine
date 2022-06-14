@@ -45,10 +45,30 @@ export const Sider: React.FC = () => {
     const t = useTranslate();
     const { Link } = useRouterContext();
 
-    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
+    const { menuItems, selectedKey } = useMenu();
     const isExistAuthentication = useIsExistAuthentication();
     const { mutate: logout } = useLogout();
     const Title = useTitle();
+
+    const defaultOpenKeys = React.useMemo(() => {
+        const keys = selectedKey.split("/").filter((x) => x !== "");
+
+        let _defaultOpenKeys: Record<string, boolean> = {};
+        let key = "";
+
+        for (let index = 0; index < keys.length - 1; index++) {
+            if (keys[index] !== "undefined") {
+                key = key + `/${keys[index]}`;
+            }
+
+            _defaultOpenKeys = {
+                ..._defaultOpenKeys,
+                [key]: !_defaultOpenKeys[key],
+            };
+        }
+
+        return _defaultOpenKeys;
+    }, []);
 
     const [open, setOpen] = useState<{ [k: string]: any }>(defaultOpenKeys);
 
