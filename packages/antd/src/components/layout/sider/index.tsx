@@ -7,8 +7,8 @@ import {
     useTitle,
     ITreeMenu,
     useIsExistAuthentication,
-    useNavigation,
     useCanWithoutCache,
+    useRouterContext,
 } from "@pankod/refine-core";
 
 import { Title as DefaultTitle } from "@components";
@@ -22,7 +22,7 @@ type ItemType = NonNullable<ComponentProps<typeof Menu>["items"]>[number];
 export const Sider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const isExistAuthentication = useIsExistAuthentication();
-    const { push } = useNavigation();
+    const { Link } = useRouterContext();
     const { mutate: logout } = useLogout();
     const Title = useTitle();
     const translate = useTranslate();
@@ -74,20 +74,21 @@ export const Sider: React.FC = () => {
                     : { can: true };
                 // is leaf
                 if (hasAccess) {
+                    const LabelWrapper = item.route
+                        ? Link
+                        : (React.Fragment as typeof Link);
                     return {
                         key: item.name,
                         label: (
-                            <>
-                                {item.label}{" "}
+                            <LabelWrapper href={item.route} to={item.route}>
+                                {item.label}
                                 {!collapsed && isSelected && (
                                     <div className="ant-menu-tree-arrow" />
                                 )}
-                            </>
+                            </LabelWrapper>
                         ),
                         icon:
                             item.icon ?? (isRoute && <UnorderedListOutlined />),
-                        route: item.route,
-                        onClick: () => push(item.route ?? "/"),
                         style: isSelected ? { fontWeight: "bold" } : undefined,
                     } as ItemType;
                 }
