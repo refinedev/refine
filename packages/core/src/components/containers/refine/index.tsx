@@ -152,7 +152,7 @@ export const Refine: React.FC<RefineProps> = ({
         return ReadyPage ? <ReadyPage /> : <DefaultReadyPage />;
     }
 
-    const { RouterComponent } = routerProvider;
+    const { RouterComponent = React.Fragment } = routerProvider;
 
     const notificationProviderContextValues = React.useMemo(() => {
         return typeof notificationProvider === "function"
@@ -216,16 +216,10 @@ export const Refine: React.FC<RefineProps> = ({
                                                         }
                                                     >
                                                         <UnsavedWarnContextProvider>
-                                                            <>
+                                                            <RouterComponent>
                                                                 {children}
-                                                                {RouterComponent ? (
-                                                                    <RouterComponent>
-                                                                        <RouteChangeHandler />
-                                                                    </RouterComponent>
-                                                                ) : (
-                                                                    <RouteChangeHandler />
-                                                                )}
-                                                            </>
+                                                                <RouteChangeHandler />
+                                                            </RouterComponent>
                                                         </UnsavedWarnContextProvider>
                                                     </RefineContextProvider>
                                                 </UndoableQueueContextProvider>
