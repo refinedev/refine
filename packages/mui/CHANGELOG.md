@@ -1,5 +1,14 @@
 # @pankod/refine-mui
 
+## 3.30.1
+
+### Patch Changes
+
+-   [#1936](https://github.com/pankod/refine/pull/1936) [`0695c6fa01`](https://github.com/pankod/refine/commit/0695c6fa01716620dda842e1dd44222e06650d51) Thanks [@omeraplak](https://github.com/omeraplak)! - We've updated `secondary` color to `#2A132E`
+
+-   Updated dependencies [[`4012d3c4ae`](https://github.com/pankod/refine/commit/4012d3c4aeb61a6190f7624b662cbd20ca900679)]:
+    -   @pankod/refine-react-hook-form@3.27.1
+
 ## 3.30.0
 
 ### Minor Changes
