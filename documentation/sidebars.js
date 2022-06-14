@@ -153,7 +153,10 @@ module.exports = {
                         {
                             type: "category",
                             label: "UI",
-                            items: ["core/hooks/ui/useModal"],
+                            items: [
+                                "core/hooks/ui/useModal",
+                                "core/hooks/ui/useMenu",
+                            ],
                         },
                     ],
                 },
