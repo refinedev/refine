@@ -7,9 +7,9 @@ With the `useModalForm` hook, you can manage a form inside of your modal compone
 
 [Refer to the **refine** useModalForm hook documentation for more information. →](/docs/ui-frameworks/antd/hooks/form/useModalForm/)
 
-[View useModalForm Example Source](https://github.com/pankod/refine/tree/master/examples/form/useModalForm)
+[View useModalForm Example Source](https://github.com/pankod/refine/tree/master/examples/form/antd/useModalForm)
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/form/useModalForm?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/form/antd/useModalForm?autoresize=1&fontsize=14&theme=dark&view=preview"
   style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
   title="refine-use-modal-form-example"
   allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

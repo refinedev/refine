@@ -649,26 +649,6 @@
             "to": "/docs/examples/field/useSelect/"
         },
         {
-            "from": "/docs/next/examples/form/custom-form-validation/",
-            "to": "/docs/examples/form/custom-form-validation/"
-        },
-        {
-            "from": "/docs/next/examples/form/useDrawerForm/",
-            "to": "/docs/examples/form/useDrawerForm/"
-        },
-        {
-            "from": "/docs/next/examples/form/useForm/",
-            "to": "/docs/examples/form/useForm/"
-        },
-        {
-            "from": "/docs/next/examples/form/useModalForm/",
-            "to": "/docs/examples/form/useModalForm/"
-        },
-        {
-            "from": "/docs/next/examples/form/useStepsForm/",
-            "to": "/docs/examples/form/useStepsForm/"
-        },
-        {
             "from": "/docs/next/examples/i18n/i18n-nextjs/",
             "to": "/docs/examples/i18n/i18n-nextjs/"
         },
@@ -1045,8 +1025,32 @@
             "to": "/docs/packages/react-hook-form/useForm/"
         },
         {
-            "from": "/docs/examples/react-hook-form/react-hook-form/",
-            "to": "/docs/examples/react-hook-form/useForm/"
+            "from": "/docs/examples/form/custom-form-validation/",
+            "to": "/docs/examples/form/antd/custom-form-validation/"
+        },
+        {
+            "from": "/docs/examples/form/useDrawerForm/",
+            "to": "/docs/examples/form/antd/useDrawerForm/"
+        },
+        {
+            "from": "/docs/examples/form/useForm/",
+            "to": "/docs/examples/form/antd/useForm/"
+        },
+        {
+            "from": "/docs/examples/form/useModalForm/",
+            "to": "/docs/examples/form/antd/useModalForm/"
+        },
+        {
+            "from": "/docs/examples/form/useStepsForm/",
+            "to": "/docs/examples/form/antd/useStepsForm/"
+        },
+        {
+            "from": "/docs/examples/react-hook-form/useForm/",
+            "to": "/docs/examples/form/react-hook-form/useForm/"
+        },
+        {
+            "from": "/docs/examples/react-hook-form/useStepsForm/",
+            "to": "/docs/examples/form/react-hook-form/useStepsForm/"
         }
     ]
 }

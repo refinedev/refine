@@ -3,7 +3,7 @@ id: useStepsForm
 title: useStepsForm
 ---
 
-The `useStepsForm` hook is a method that allows you to split your form into multiple sections using an Ant Design [Steps](https://ant.design/components/steps/) component, which can be used to manage your form. If your form contains multiple steps, as in the example below, it's pretty simple to manage and handle your Steps form using the **refine** `useStepsForm` hook.
+`useStepsForm` allows you to manage a form with multiple steps. It provides features such as which step is currently active, the ability to go to a specific step and validation when changing steps etc. You can view the live example or review the source code to see how it's used with Material UI.
 
 [Refer to the **refine** useStepsForm hook documentation for more information. →](/docs/ui-frameworks/antd/hooks/form/useStepsForm/)
 
