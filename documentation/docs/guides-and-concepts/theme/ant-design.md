@@ -1,6 +1,6 @@
 ---
-id: theme
-title: Theme
+id: ant-design
+title: Ant Design Theme
 ---
 
 Ant Design allows you to customize many of its [less variables](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less). To be able to theme Ant Design, instead of importing Ant Design's compiled css files, you should import its less files and override the values of _less variables_ contained within these files. You should configure your bundler for handling less files to override its variables.
@@ -78,8 +78,8 @@ module.exports = {
 Create a less file and import antd styles from `node_modules/antd`:
 
 ```less title="/styles/antd.less"
-@import '~antd/lib/style/themes/default.less';
-@import '~antd/dist/antd.less';
+@import "~antd/lib/style/themes/default.less";
+@import "~antd/dist/antd.less";
 ```
 
 And import the `less` file in `App.tsx`:
@@ -124,8 +124,8 @@ There are two approaches to override variables.
 You can just change variables values in `less` files. Add these contents to your `/styles/antd.less` file:
 
 ```less title="/styles/antd.less" {0-1, 7}
-@import '~antd/lib/style/themes/default.less';
-@import '~antd/dist/antd.less';
+@import "~antd/lib/style/themes/default.less";
+@import "~antd/dist/antd.less";
 
 // There are some major variables below,
 // all less variables could be found in
@@ -148,7 +148,7 @@ module.exports = {
             options: {
                 lessLoaderOptions: {
                     lessOptions: {
-// highlight-next-line
+                        // highlight-next-line
                         modifyVars: { "@primary-color": "#1DA57A" },
                         javascriptEnabled: true,
                     },
