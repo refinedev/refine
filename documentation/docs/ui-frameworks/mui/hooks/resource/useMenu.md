@@ -3,13 +3,13 @@ id: useMenu
 title: useMenu
 ---
 
-import customMenu from '@site/static/img/guides-and-concepts/hooks/useMenu/mui-custom-menu.gif';
+import customMenu from '@site/static/img/guides-and-concepts/hooks/useMenu/mui/custom-menu.gif';
 
-import customMenuLogout from '@site/static/img/guides-and-concepts/hooks/useMenu/mui-custom-menu-logout.gif';
+import customMenuLogout from '@site/static/img/guides-and-concepts/hooks/useMenu/mui/custom-menu-logout.gif';
 
-import customMobileMenu from '@site/static/img/guides-and-concepts/hooks/useMenu/mui-custom-menu-mobile.gif';
+import customMobileMenu from '@site/static/img/guides-and-concepts/hooks/useMenu/mui/custom-menu-mobile.gif';
 
-`useMenu` is used to get menu items of the default sidebar. These items include a link to dashboard page (if it exists) and links to the user defined resources (passed as children to `<Refine>`).
+`useMenu` is used to get menu items from the default sidebar. These items include a link to the dashboard page (if it exists) and links to the user defined resources (passed as children to `<Refine>`).
 This hook can also be used to build custom menus, which is also used by default sidebar to show menu items.
 
 ```ts
@@ -305,7 +305,7 @@ export const CustomMenu: React.FC = () => {
 If you want to create a multi-level menu, you can take a look at this [`multi-level menu`](/docs/examples/multi-level-menu/multi-level-menu/) example and also [`here`](/docs/guides-and-concepts/multi-level-menu/multi-level-menu/) is the guide.
 :::
 
-We can override the default sider and show the custom menu we implemented in its place by passing a the custom component to `<Refine>`s `Sider` prop:
+We can override the default sider and show the custom menu we implemented in its place by passing a custom component to `<Refine>`s `Sider` prop:
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine-core";
@@ -323,7 +323,7 @@ const App: React.FC = () => {
         <Refine
             dataProvider={dataProvider(API_URL)}
             // highlight-next-line
-            Sider={CustomMenu}
+            Sider={CustomMenu
             resources={[{ name: "posts", list: PostList }]}
         />
     );
@@ -338,7 +338,7 @@ export default App;
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={customMenu} alt="Confirmation window" />
+    <img src={customMenu} alt="Custom Menu" />
 </div>
 
 ### Adding Logout Button
@@ -351,6 +351,15 @@ The `useLogout` hook allows us to add a Logout button to our menu if we have an 
     ...
 
 export const CustomSider: React.FC = () => {
+    import {
+        ...
+        // highlight-next-line
+        useLogout,
+        ...
+    } from "@pankod/refine-core";
+    // highlight-next-line
+    const { mutate: logout } = useLogout();
+
     ...
 
     const drawer = (
@@ -366,6 +375,7 @@ export const CustomSider: React.FC = () => {
                 >
                     <ListItemButton
                         key="logout"
+                        // highlight-next-line
                         onClick={() => logout()}
                         sx={{ justifyContent: "center" }}
                     >
@@ -401,7 +411,7 @@ export const CustomSider: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={customMenuLogout} alt="Confirmation window" />
+    <img src={customMenuLogout} alt="Custom Menu Logout" />
 </div>
 
 <br />
@@ -543,7 +553,7 @@ export const CustomSider: React.FC = () => {
 ```
 
 <div>
-    <img src={customMobileMenu} alt="Confirmation window" />
+    <img src={customMobileMenu} alt="Custom Mobile Menu" />
 </div>
 
 `useLogout` provides the logout functionality.
@@ -555,7 +565,7 @@ export const CustomSider: React.FC = () => {
 :::
 
 :::tip
-You can further customize the Sider and its appearance.  
+You can further customize the `<Sider>` and its appearance.  
 [Refer to Ant Design docs for more detailed information about Sider. &#8594](https://ant.design/components/layout/#Layout.Sider)
 :::
 
