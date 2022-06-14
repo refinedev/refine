@@ -35,25 +35,27 @@ export const useMenu: () => useMenuReturnType = () => {
 
     const { hasDashboard } = useRefineContext();
 
-    let selectedResource = resources.find(
-        (el) => location?.pathname === `/${el.route}`,
-    );
-
-    // for no ssr
-    if (!selectedResource) {
-        selectedResource = resources.find(
-            (el) => params?.resource === (el.route as string),
+    const selectedKey = React.useMemo(() => {
+        let selectedResource = resources.find(
+            (el) => location?.pathname === `/${el.route}`,
         );
-    }
 
-    let selectedKey: string;
-    if (selectedResource?.route) {
-        selectedKey = `/${selectedResource?.route}`;
-    } else if (location.pathname === "/") {
-        selectedKey = "/";
-    } else {
-        selectedKey = location?.pathname;
-    }
+        if (!selectedResource) {
+            selectedResource = resources.find(
+                (el) => params?.resource === (el.route as string),
+            );
+        }
+
+        let _selectedKey: string;
+        if (selectedResource?.route) {
+            _selectedKey = `/${selectedResource?.route}`;
+        } else if (location.pathname === "/") {
+            _selectedKey = "/";
+        } else {
+            _selectedKey = location?.pathname;
+        }
+        return _selectedKey;
+    }, [resources, location, params]);
 
     const treeMenuItems: IMenuItem[] = React.useMemo(
         () => [
@@ -87,12 +89,23 @@ export const useMenu: () => useMenuReturnType = () => {
         ],
         [resources, hasDashboard],
     );
-    const menuItems: ITreeMenu[] = createTreeView(treeMenuItems);
+    const menuItems: ITreeMenu[] = React.useMemo(
+        () => createTreeView(treeMenuItems),
+        [treeMenuItems],
+    );
 
-    const defaultOpenKeys = selectedKey.split("/").filter((x) => x !== "");
-    return {
-        selectedKey,
-        defaultOpenKeys,
-        menuItems,
-    };
+    const defaultOpenKeys = React.useMemo(
+        () => selectedKey.split("/").filter((x) => x !== ""),
+        [selectedKey],
+    );
+
+    const values = React.useMemo(() => {
+        return {
+            defaultOpenKeys,
+            selectedKey,
+            menuItems,
+        };
+    }, [defaultOpenKeys, selectedKey, menuItems]);
+
+    return values;
 };
