@@ -21,7 +21,7 @@ type useMenuReturnType = {
  * (passed as children to {@link https://refine.dev/docs/core/components/refine-config `<Refine>`}).
  * This hook can also be used to build custom menus, which is also used by default sidebar to show menu items.
  *
- * @see {@link https://refine.dev/docs/core/hooks/useMenu/useMenu} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/ui/useMenu} for more details.
  */
 export const useMenu: () => useMenuReturnType = () => {
     const { resources } = useResource();
