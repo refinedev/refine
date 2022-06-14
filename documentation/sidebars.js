@@ -632,7 +632,7 @@ module.exports = {
                     items: [
                         {
                             type: "category",
-                            label: "MUI",
+                            label: "Material UI",
                             items: ["examples/table/mui/useDataGrid"],
                         },
                         {
