@@ -1,5 +1,11 @@
 # @pankod/refine-react-hook-form
 
+## 3.27.1
+
+### Patch Changes
+
+-   [#1931](https://github.com/pankod/refine/pull/1931) [`4012d3c4ae`](https://github.com/pankod/refine/commit/4012d3c4aeb61a6190f7624b662cbd20ca900679) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed a bug that prevented modal or drawer from closing after submit.
+
 ## 3.27.0
 
 ### Minor Changes
