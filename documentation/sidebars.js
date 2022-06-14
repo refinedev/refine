@@ -632,11 +632,6 @@ module.exports = {
                     items: [
                         {
                             type: "category",
-                            label: "Material UI",
-                            items: ["examples/table/mui/useDataGrid"],
-                        },
-                        {
-                            type: "category",
                             label: "Ant Design",
                             items: [
                                 "examples/table/antd/advancedTable",
@@ -646,6 +641,11 @@ module.exports = {
                                 "examples/table/antd/useTable",
                                 "examples/table/antd/useUpdateMany",
                             ],
+                        },
+                        {
+                            type: "category",
+                            label: "Material UI",
+                            items: ["examples/table/mui/useDataGrid"],
                         },
                         {
                             type: "category",
