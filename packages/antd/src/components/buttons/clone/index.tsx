@@ -78,7 +78,6 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
             onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
                 if (onClick) {
                     e.preventDefault();
-                    e.stopPropagation();
                     onClick(e);
                 }
             }}
