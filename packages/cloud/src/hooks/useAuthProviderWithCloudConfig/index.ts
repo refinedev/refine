@@ -23,11 +23,7 @@ export const useAuthProviderWithCloudConfig =
                         .catch(() => Promise.reject());
                 },
                 logout: () => sdk.auth.logout(),
-                // TODO: Check error status
-                checkError: (error) => {
-                    // if (error && error.statusCode === 401) {
-                    //     return Promise.reject();
-                    // }
+                checkError: () => {
                     return Promise.resolve();
                 },
                 checkAuth: () =>
@@ -46,7 +42,7 @@ export const useAuthProviderWithCloudConfig =
                 getUserIdentity: () =>
                     sdk.auth
                         .session()
-                        .then((user) => {
+                        .then((user: any) => {
                             return Promise.resolve(user);
                         })
                         .catch(() => Promise.reject()),

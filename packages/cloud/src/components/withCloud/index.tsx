@@ -1,9 +1,10 @@
 import React, { FC, ComponentType } from "react";
 import { AuthProvider, RefineProps } from "@pankod/refine-core";
 
-import { ICloudContext } from "../interfaces";
-import { CloudContextProvider } from "../contexts";
-import { useAuthProviderWithCloudConfig } from "../hooks";
+import { Cloud } from "../../components";
+import { CloudContextProvider } from "../../contexts";
+import { useAuthProviderWithCloudConfig } from "../../hooks";
+import { ICloudContext } from "../../interfaces";
 
 export function withCloud(
     Refine: ComponentType<RefineProps>,
@@ -19,7 +20,7 @@ export function withCloud(
 
         return (
             <Refine {...otherProps} authProvider={authProvider}>
-                {/* <Cloud /> */}
+                <Cloud />
                 {children}
             </Refine>
         );
