@@ -25,7 +25,7 @@
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/qs": "^6.9.7",
     "jest": "^27.5.1",
-    "next": "^12.0.3",
+    "next": "^12.1.6",
     "ts-jest": "^27.1.3",
     "tslib": "^2.3.1",
     "tsup": "^5.11.13"
