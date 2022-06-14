@@ -39,7 +39,8 @@
     "dependencies": {
         "@pankod/refine-core": "^3.25.0",
         "@pankod/refine-sdk": "^0.0.25",
-        "react-hook-form": "^7.30.0"
+        "react-hook-form": "^7.30.0",
+        "react-query": "^3.19.2"
     },
     "repository": {
         "type": "git",

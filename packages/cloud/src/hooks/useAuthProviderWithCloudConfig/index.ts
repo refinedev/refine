@@ -26,12 +26,13 @@ export const useAuthProviderWithCloudConfig =
                 checkError: () => {
                     return Promise.resolve();
                 },
-                checkAuth: () =>
-                    sdk.auth
+                checkAuth: () => {
+                    sdk.auth.getSessionFromUrl();
+                    return sdk.auth
                         .session()
                         .then(() => Promise.resolve())
-                        .catch(() => Promise.reject()),
-
+                        .catch(() => Promise.reject());
+                },
                 // TODO: Add roles on refine cloud
                 getPermissions: () =>
                     sdk.auth
