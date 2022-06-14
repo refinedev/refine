@@ -7,9 +7,9 @@ title: useUpdateMany
 
 [Refer to the **refine** useUpdateMany data hook documentation for more information. →](/docs/core/hooks/data/useUpdateMany/)
 
-[View useUpdateMany Table Example Source](https://github.com/pankod/refine/tree/master/examples/table/useUpdateMany)
+[View useUpdateMany Table Example Source](https://github.com/pankod/refine/tree/master/examples/table/antd/useUpdateMany)
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/table/useUpdateMany?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/table/antd/useUpdateMany?autoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-use-update-many-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
