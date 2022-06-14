@@ -43,8 +43,7 @@ export const Login: React.FC = () => {
                 (item) => item.name !== "db",
             );
 
-            console.log("-- providers", providers);
-
+            // TODO: map social icon to provider type
             return (
                 <Space direction="vertical" style={{ width: "100%" }}>
                     {providers?.map((provider) => (
