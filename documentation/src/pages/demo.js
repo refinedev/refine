@@ -67,7 +67,7 @@ const Hello = () => {
                         </div>
                         <div className="pane-header pane-header-right">
                             <h2>Admin Panel</h2>
-                            <p>Refine Core + Antd Design / Material UI</p>
+                            <p>Refine Core + Ant Design / Material UI</p>
                         </div>
                         <div className="tabs">
                             <button
@@ -77,7 +77,7 @@ const Hello = () => {
                                     activeKeyPane2 === "antd" && "active",
                                 )}
                             >
-                                Antd Design
+                                Ant Design
                                 <Link to="https://example.admin.refine.dev">
                                     <IoMdOpen />
                                 </Link>
