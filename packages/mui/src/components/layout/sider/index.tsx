@@ -28,9 +28,9 @@ import {
     useTitle,
     useTranslate,
     useRouterContext,
+    useMenu,
 } from "@pankod/refine-core";
 
-import { useMenu } from "@hooks";
 import { Title as DefaultTitle } from "../title";
 
 export const Sider: React.FC = () => {
