@@ -72,6 +72,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
             onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
                 if (onClick) {
                     e.preventDefault();
+                    e.stopPropagation();
                     onClick(e);
                 }
             }}

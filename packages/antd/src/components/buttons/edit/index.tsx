@@ -78,6 +78,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
             onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
                 if (onClick) {
                     e.preventDefault();
+                    e.stopPropagation();
                     onClick(e);
                 }
             }}
