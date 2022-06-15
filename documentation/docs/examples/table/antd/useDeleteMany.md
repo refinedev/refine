@@ -7,9 +7,9 @@ The `useDeleteMany` is one of **refine**'s data hooks. It removes more than one 
 
 [Refer to the **refine** useDeleteMany data hook documentation for more information. →](/docs/core/hooks/data/useDeleteMany/)
 
-[View useDeleteMany Table Example Source](https://github.com/pankod/refine/tree/master/examples/table/useDeleteMany)
+[View useDeleteMany Table Example Source](https://github.com/pankod/refine/tree/master/examples/table/antd/useDeleteMany)
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/table/useDeleteMany?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/table/antd/useDeleteMany?autoresize=1&fontsize=14&theme=dark&view=preview"
   style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
   title="refine-use-delete-many-example"
   allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

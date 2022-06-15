@@ -82,8 +82,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
   antd-admin-example:
-    if: ${{ needs.publish.outputs.published == 'true' }}
     runs-on: ubuntu-latest
+    needs: publish
+    if: ${{ needs.publish.outputs.published == 'true' }}
 
     strategy:
       matrix:
@@ -142,8 +143,9 @@ jobs:
         env:
           domain: "example.admin.refine.dev"
   mui-admin-example:
-    if: ${{ needs.publish.outputs.published == 'true' }}
     runs-on: ubuntu-latest
+    needs: publish
+    if: ${{ needs.publish.outputs.published == 'true' }}
 
     strategy:
       matrix:
@@ -202,8 +204,10 @@ jobs:
         env:
           domain: "example.mui.admin.refine.dev"
   client-example:
-    if: ${{ needs.publish.outputs.published == 'true' }}
     runs-on: ubuntu-latest
+    needs: publish
+    if: ${{ needs.publish.outputs.published == 'true' }}
+
     strategy:
       matrix:
         node-version: [16.x]

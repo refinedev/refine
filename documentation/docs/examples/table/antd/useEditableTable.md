@@ -7,9 +7,9 @@ title: useEditableTable
 
 [Refer to the **refine** useEditableTable hook documentation for more information. →](/docs/ui-frameworks/antd/hooks/table/useEditableTable/)
 
-[View useEditableTable Example Source](https://github.com/pankod/refine/tree/master/examples/table/useEditableTable)
+[View useEditableTable Example Source](https://github.com/pankod/refine/tree/master/examples/table/antd/useEditableTable)
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/table/useEditableTable?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/table/antd/useEditableTable?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-editable-table-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

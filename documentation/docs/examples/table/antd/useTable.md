@@ -7,9 +7,9 @@ You may use the `useTable` hook to process your data with features compatible wi
 
 [Refer to the **refine** useTable hook documentation for more information. →](/docs/ui-frameworks/antd/hooks/table/useTable/)
 
-[View useTable Example Source](https://github.com/pankod/refine/tree/master/examples/table/useTable)
+[View useTable Example Source](https://github.com/pankod/refine/tree/master/examples/table/antd/useTable)
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/table/useTable?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/table/antd/useTable?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-table-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
