@@ -1051,6 +1051,14 @@
         {
             "from": "/docs/examples/react-hook-form/useStepsForm/",
             "to": "/docs/examples/form/react-hook-form/useStepsForm/"
+        },
+        {
+            "from": "/docs/ui-frameworks/antd/hooks/resource/useMenu/",
+            "to": "/docs/core/hooks/ui/useMenu/"
+        },
+        {
+            "from": "/docs/ui-frameworks/mui/hooks/resource/useMenu/",
+            "to": "/docs/core/hooks/ui/useMenu/"
         }
     ]
 }
