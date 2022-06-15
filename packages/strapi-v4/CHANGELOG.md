@@ -1,5 +1,11 @@
 # @pankod/refine-strapi-v4
 
+## 3.25.6
+
+### Patch Changes
+
+-   Added `populate`, `fields`, `locale` and `publicationState` support for `@pankod/refine-strapi-v4` data provider's `getMany` function
+
 ## 3.25.5
 
 ### Patch Changes
