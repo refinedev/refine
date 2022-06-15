@@ -1,4 +1,5 @@
 import { AuthProvider } from "@pankod/refine-core";
+import { IUser } from "@pankod/refine-sdk";
 
 import { useSdk } from "../useSdk";
 
@@ -33,17 +34,20 @@ export const useAuthProviderWithCloudConfig =
                         .then(() => Promise.resolve())
                         .catch(() => Promise.reject());
                 },
-                // TODO: Add roles on refine cloud
                 getPermissions: () =>
                     sdk.auth
                         .session()
-                        .then(() => Promise.resolve())
+                        .then((user: IUser) =>
+                            Promise.resolve(
+                                user.roles.map((role) => role.name),
+                            ),
+                        )
                         .catch(() => Promise.reject()),
 
                 getUserIdentity: () =>
                     sdk.auth
                         .session()
-                        .then((user: any) => {
+                        .then((user: IUser) => {
                             return Promise.resolve(user);
                         })
                         .catch(() => Promise.reject()),
