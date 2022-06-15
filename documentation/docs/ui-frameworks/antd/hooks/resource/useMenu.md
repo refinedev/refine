@@ -24,14 +24,12 @@ First we define `<CustomMenu>`:
 
 ```tsx  title="src/CustomMenu.tsx"
 import { useState, CSSProperties } from "react";
-import { useTitle, ITreeMenu, CanAccess, useRouterContext } from "@pankod/refine-core";
+import { useTitle, ITreeMenu, CanAccess, useRouterContext, useMenu } from "@pankod/refine-core";
 import {
     AntdLayout,
     Menu,
     Grid,
     Icons,
-// highlight-next-line
-    useMenu,
 } from "@pankod/refine-antd";
 
 export const CustomMenu: React.FC = () => {
@@ -174,7 +172,7 @@ We can also add a logout button:
 
 ```tsx  title="src/CustomMenu.tsx"
 import { useState, CSSProperties } from "react";
-import { useTitle, useRouterContext } from "@pankod/refine-core";
+import { useTitle, useRouterContext, useMenu } from "@pankod/refine-core";
 import {
     AntdLayout,
     Menu,
@@ -184,7 +182,6 @@ import {
     Icons,
     useLogout,
 // highlight-end
-    useMenu,
 } from "@pankod/refine-antd";
 
 export const CustomMenu: React.FC = () => {

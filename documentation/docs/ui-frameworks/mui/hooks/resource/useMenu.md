@@ -33,6 +33,7 @@ import {
     ITreeMenu,
     useIsExistAuthentication,
     useTitle,
+    useMenu,
     useTranslate,
     useRouterContext,
 } from "@pankod/refine-core";
@@ -46,7 +47,6 @@ import {
     Collapse,
     Tooltip,
     Button,
-    useMenu,
     Title as DefaultTitle,
 } from "@pankod/refine-mui";
 import {

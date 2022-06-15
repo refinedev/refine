@@ -212,6 +212,7 @@ Let's define the select component in the **refine** Sider Menu. First, we need t
 import React, { useState } from "react";
 import {
     useTitle,
+    useMenu,
     ITreeMenu,
     CanAccess,
     useRouterContext,
@@ -219,7 +220,6 @@ import {
 import {
     AntdLayout,
     Menu,
-    useMenu,
     Grid,
     Icons,
 } from "@pankod/refine-antd";

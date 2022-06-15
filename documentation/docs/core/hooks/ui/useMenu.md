@@ -26,19 +26,13 @@ First we define `<CustomMenu>`:
 import { useState, CSSProperties } from "react";
 import {
     useTitle,
+    // highlight-next-line
     useMenu,
     ITreeMenu,
     CanAccess,
     useRouterContext,
 } from "@pankod/refine-core";
-import {
-    AntdLayout,
-    Menu,
-    Grid,
-    Icons,
-    // highlight-next-line
-    useMenu,
-} from "@pankod/refine-antd";
+import { AntdLayout, Menu, Grid, Icons } from "@pankod/refine-antd";
 
 export const CustomMenu: React.FC = () => {
     const Title = useTitle();

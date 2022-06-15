@@ -81,8 +81,8 @@ Here, we override the [`<Title>`][title] and [`<Layout>`][layout] components. Wh
 So, we just provided a custom [`<Sider>`][sider]. Here's our custom sider that looks horizontal, instead of the default vertical one:
 
 ```tsx  title="/src/components/sider/index.tsx"
-import { useTitle } from "@pankod/refine-core";
-import { Menu, useMenu } from "@pankod/refine-antd";
+import { useTitle, useMenu } from "@pankod/refine-core";
+import { Menu } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 const { Link } = routerProvider;
@@ -142,5 +142,5 @@ Here's how it looks in the end:
 [custom page example]: /guides-and-concepts/custom-pages.md
 [custom page example code]: /examples/customization/topMenuLayout.md
 [antdlayout]: https://ant.design/components/layout/
-[usemenu]: /ui-frameworks/antd/hooks/resource/useMenu.md
+[usemenu]: /core/hooks/ui/useMenu.md
 [usetitle]: /core/hooks/refine/useTitle.md
