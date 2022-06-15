@@ -19,7 +19,6 @@ import { ICategory } from "interfaces";
 
 export const PostCreate: React.FC = () => {
     const [isUploadLoading, setIsUploadLoading] = useState(false);
-    const [isUploadError, setIsUploadError] = useState(false);
 
     const apiUrl = useApiUrl();
     const {
@@ -28,6 +27,7 @@ export const PostCreate: React.FC = () => {
         control,
         formState: { errors },
         setValue,
+        setError,
         watch,
     } = useForm();
 
@@ -77,7 +77,7 @@ export const PostCreate: React.FC = () => {
 
             setIsUploadLoading(false);
         } catch (error) {
-            setIsUploadError(true);
+            setError("images", { message: "Upload failed. Please try again." });
             setIsUploadLoading(false);
         }
     };
@@ -207,9 +207,9 @@ export const PostCreate: React.FC = () => {
                             Upload
                         </LoadingButton>
                         <br />
-                        {isUploadError && (
-                            <Typography variant="caption" color="red">
-                                Upload failed. Please try again.
+                        {errors.images && (
+                            <Typography variant="caption" color="#fa541c">
+                                {errors.images?.message}
                             </Typography>
                         )}
                     </label>
