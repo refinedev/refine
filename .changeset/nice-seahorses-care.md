@@ -2,4 +2,4 @@
 "@pankod/refine-core": minor
 ---
 
-Export `RefineProps` type.
+Export `RefineProps` and `ResourceProps` type.
