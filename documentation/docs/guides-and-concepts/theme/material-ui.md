@@ -27,6 +27,7 @@ import {
     ReadyPage,
     ThemeProvider,
     CssBaseline,
+    GlobalStyles,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -36,8 +37,9 @@ import { PostsList, PostCreate, PostEdit } from "pages/posts";
 const App: React.FC = () => {
     return (
         // highlight-next-line
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={YOUR_THEME_OBJECT}>
             <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
@@ -94,6 +96,7 @@ import {
     ReadyPage,
     ThemeProvider,
     CssBaseline,
+    GlobalStyles,
     // highlight-next-line
     LightTheme,
 } from "@pankod/refine-mui";
@@ -107,6 +110,7 @@ const App: React.FC = () => {
         // highlight-next-line
         <ThemeProvider theme={LightTheme}>
             <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
@@ -154,6 +158,7 @@ import {
     ReadyPage,
     ThemeProvider,
     CssBaseline,
+    GlobalStyles,
     LightTheme,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -181,6 +186,7 @@ const App: React.FC = () => {
         // highlight-next-line
         <ThemeProvider theme={overridedLightTheme}>
             <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
@@ -233,6 +239,7 @@ import {
     ThemeProvider,
     CssBaseline,
     LightTheme,
+    GlobalStyles,
     // highlight-next-line
     TypographyVariantsOptions,
 } from "@pankod/refine-mui";
@@ -271,6 +278,7 @@ const App: React.FC = () => {
         // highlight-next-line
         <ThemeProvider theme={overridedLightTheme}>
             <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
@@ -309,6 +317,7 @@ import {
     ReadyPage,
     ThemeProvider,
     CssBaseline,
+    GlobalStyles,
     // highlight-next-line
     createTheme,
 } from "@pankod/refine-mui";
@@ -334,6 +343,7 @@ const App: React.FC = () => {
         // highlight-next-line
         <ThemeProvider theme={customTheme}>
             <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
@@ -384,6 +394,7 @@ import {
     ReadyPage,
     ThemeProvider,
     CssBaseline,
+    GlobalStyles,
     // highlight-next-line
     useMediaQuery,
 } from "@pankod/refine-mui";
@@ -399,6 +410,7 @@ const App: React.FC = () => {
         // highlight-next-line
         <ThemeProvider theme={prefersDarkMode ? DarkTheme : LightTheme}>
             <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
@@ -454,6 +466,7 @@ import {
     ReadyPage,
     ThemeProvider,
     CssBaseline,
+    GlobalStyles,
     // highlight-next-line
     RefineSnackbarProvider,
     // highlight-next-line
@@ -468,6 +481,7 @@ const App: React.FC = () => {
     return (
         <ThemeProvider theme={LightTheme}>
             <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             // highlight-next-line
             <RefineSnackbarProvider>
                 <Refine
