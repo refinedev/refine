@@ -670,6 +670,14 @@ module.exports = {
                     type: "category",
                     label: "Upload",
                     items: [
+                        {
+                            type: "category",
+                            label: "Material UI",
+                            items: [
+                                "examples/upload/mui/base64",
+                                "examples/upload/mui/multipart",
+                            ],
+                        },
                         "examples/upload/base64Upload",
                         "examples/upload/multipartUpload",
                     ],
