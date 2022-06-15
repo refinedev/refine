@@ -1,11 +1,15 @@
+export interface IRole {
+    name: string;
+    description?: string;
+}
 export interface IUser {
     id: string;
     email: string;
     phone?: string;
     name: string;
     createdAt: string;
+    roles: IRole[];
 }
-
 export interface ISession {
     user: IUser;
     accessToken: string;

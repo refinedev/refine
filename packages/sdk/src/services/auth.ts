@@ -1,5 +1,5 @@
 import { Client } from "../client";
-import { ISession } from "../interfaces";
+import { ISession, IUser } from "../interfaces";
 
 class Auth {
     private client: Client;
@@ -59,7 +59,7 @@ class Auth {
         });
     }
 
-    async session(): Promise<ISession> {
+    async session(): Promise<IUser> {
         return await this.client.call({
             method: "get",
             url: "/auth/me",
