@@ -645,7 +645,10 @@ module.exports = {
                         {
                             type: "category",
                             label: "Material UI",
-                            items: ["examples/table/mui/useDataGrid"],
+                            items: [
+                                "examples/table/mui/advanced",
+                                "examples/table/mui/useDataGrid",
+                            ],
                         },
                         {
                             type: "category",
