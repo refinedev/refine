@@ -1,9 +1,10 @@
-import React, { FC, ComponentType } from "react";
-import { AuthProvider, RefineProps } from "@pankod/refine-core";
+import React, { FC, ComponentType, useEffect } from "react";
+import { AuthProvider, RefineProps, ResourceProps } from "@pankod/refine-core";
+import merge from "lodash.merge";
 
 import { Cloud } from "../../components";
 import { CloudContextProvider } from "../../contexts";
-import { useAuthProviderWithCloudConfig } from "../../hooks";
+import { useAuthProviderWithCloudConfig, useSdk } from "../../hooks";
 import { ICloudContext } from "../../interfaces";
 
 export function withCloud(
@@ -12,14 +13,31 @@ export function withCloud(
 ): FC<RefineProps> {
     const RefineComponent: FC<RefineProps> = ({ children, ...otherProps }) => {
         let authProvider: AuthProvider | undefined;
+        let resources: ResourceProps[] = otherProps.resources || [];
+        const { sdk } = useSdk();
         const { generateCloudAuthProvider } = useAuthProviderWithCloudConfig();
 
         if (!otherProps.authProvider) {
             authProvider = generateCloudAuthProvider();
         }
 
+        useEffect(() => {
+            if (cloudConfig.resourcesName) {
+                sdk.config
+                    .resources(cloudConfig.resourcesName)
+                    .then((resourcesWithConfig) => {
+                        resources = merge(resources, resourcesWithConfig);
+                    })
+                    .catch((err) => console.error(`[refine cloud]`, err));
+            }
+        }, []);
+
         return (
-            <Refine {...otherProps} authProvider={authProvider}>
+            <Refine
+                {...otherProps}
+                resources={resources}
+                authProvider={authProvider}
+            >
                 <Cloud />
                 {children}
             </Refine>

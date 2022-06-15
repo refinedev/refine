@@ -9,24 +9,25 @@ class Config {
         this.client = client;
     }
 
-    async resources(): Promise<IResourcesConfig> {
+    async resources(resourceName: string): Promise<IResourcesConfig> {
         return await this.client.call({
             method: "get",
-            url: `/config/resources?applicationClientId=${this.client.getClientId()}`,
+            url: `/config/resources?applicationClientId=${this.client.getClientId()}&resourceName=${resourceName}`,
         });
     }
 
     async auth(): Promise<IAuthConfig> {
+        const applicationClientId = this.client.getClientId();
         const authentications: IAuthConfig = await this.client.call({
             method: "get",
-            url: `/config/auth?applicationClientId=${this.client.getClientId()}`,
+            url: `/config/auth?applicationClientId=${applicationClientId}`,
         });
 
         return authentications.map((auth: IAuthConfigItem) => ({
             ...auth,
             url: `${this.client.getBaseUrl()}/oauth/${
                 auth.type
-            }?applicationClientId=${this.client.getClientId()}`,
+            }?applicationClientId=${applicationClientId}`,
         }));
     }
 }

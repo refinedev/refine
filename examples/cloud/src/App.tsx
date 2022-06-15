@@ -23,6 +23,7 @@ window.localStorage.setItem(
 const RefineWithCloud = withCloud(Refine, {
     baseUrl: process.env.REACT_APP_REFINE_BASE_URL as string,
     clientId: process.env.REACT_APP_REFINE_CLIENT_ID as string,
+    resourcesName: "development",
 });
 
 const App: React.FC = () => {
