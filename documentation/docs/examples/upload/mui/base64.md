@@ -1,6 +1,6 @@
 ---
 id: base64
-title: Base64 Uplaod
+title: Base64 Upload
 ---
 
 In this example, you'll learn how to do base64 upload in **refine** with React Hook Form. For more information, you can view the live example or review the source code.
