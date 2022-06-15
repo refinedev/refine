@@ -215,7 +215,7 @@ When we easy-override our LightTheme, it's going to look like this:
 
 <br />
 
-You can also override [`typography`](https://mui.com/material-ui/customization/typography/) variable like this:
+You can also change the Default Font Family. Refine uses the [`Montserrat`](https://fonts.google.com/specimen/Montserrat) font family by default and you can change it like this:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
