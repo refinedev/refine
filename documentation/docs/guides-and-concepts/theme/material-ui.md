@@ -25,6 +25,7 @@ import {
     LoginPage,
     ErrorComponent,
     ReadyPage,
+    // highlight-next-line
     ThemeProvider,
     CssBaseline,
     GlobalStyles,
@@ -85,7 +86,7 @@ If you don't wrap your app with [`ThemeProvider`](https://mui.com/material-ui/cu
 
 <br/>
 
-In our example we will be using LightTheme.
+In our example, we will be using LightTheme.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
@@ -211,7 +212,7 @@ export default App;
 ```
 
 :::tip
-"Get a designer's opinion anyway - you'll be happy with the end result!"
+Get a designer's opinion anyway - you'll be happy with the end result!
 :::
 
 When we easy-override our LightTheme, it's going to look like this:
@@ -306,7 +307,7 @@ export default App;
 
 ## Create Custom Theme
 
-With the help of Refine's themes, you can customize your site in a matter minutes. Alternatively there is also an option to create custom theme with the [`createTheme()`](https://mui.com/material-ui/customization/theming/#createtheme-options-args-theme) method so you can create a custom theme with the configuration variables and use it in the whole application.
+With the help of Refine's themes, you can customize your site in a matter of minutes. Alternatively, there is also an option to create a custom theme with the [`createTheme()`](https://mui.com/material-ui/customization/theming/#createtheme-options-args-theme) method so you can create a custom theme with the configuration variables and use it in the whole application.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
@@ -320,13 +321,15 @@ import {
     GlobalStyles,
     // highlight-next-line
     createTheme,
+    // highlight-next-line
+    responsiveFontSizes,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { PostsList, PostCreate, PostEdit } from "pages/posts";
 // highlight-start
-const customTheme = createTheme({
+let customTheme = createTheme({
     palette: {
         primary: {
             main: "#330f49",
@@ -336,6 +339,10 @@ const customTheme = createTheme({
         },
     },
 });
+// highlight-end
+
+// highlight-start
+customTheme = responsiveFontSizes(customTheme);
 // highlight-end
 
 const App: React.FC = () => {
@@ -367,6 +374,11 @@ const App: React.FC = () => {
 export default App;
 ```
 
+:::tip
+You can use the responsiveFontSizes() helper to make Typography font sizes in your theme automated.
+For more information, you can review [`responsiveFontSizes()`](https://mui.com/material-ui/customization/typography/#responsive-font-sizes) in the mui document.
+:::
+
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -376,9 +388,42 @@ export default App;
     <img src={customTheme} alt="Custom Theme" />
 </div>
 
+### Create Theme with Custom Variables
+
+Creating a theme with default variables is easy and we can see it in the example above. You can also create your theme with custom variables, you can check it out our example
+
+```tsx title="src/App.tsx"
+const customTheme = createTheme({
+    customVariable: {
+        custom: "#330f49",
+    },
+});
+```
+
+You need to use [` module augmentation`](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) for the theme to accept your custom values.
+
+```ts title="src/interfaces/theme.d.ts"
+import "@pankod/refine-mui";
+
+export interface CustomTheme {
+    customVariable: {
+        custom: string;
+    };
+}
+
+declare module "@pankod/refine-mui" {
+    interface Theme extends import("@pankod/refine-mui").Theme, CustomTheme {}
+    interface ThemeOptions
+        extends import("@pankod/refine-mui").ThemeOptions,
+            CustomTheme {}
+}
+```
+
+You can see an example of how to [`create your own theme with custom variables`](https://github.com/pankod/refine/blob/next/examples/fineFoods/admin/mui/src/theme.ts) and its [`interface`](https://github.com/pankod/refine/blob/next/examples/fineFoods/admin/mui/src/interfaces/theme.d.ts) by accessing the links.
+
 ## Dark Mode
 
-You might prefer to use dark mode in your applications. If want to add dark mode in your application, you can easily use [`useMediaQuery`](https://mui.com/material-ui/react-use-media-query/) to set your color mode or dynamic toogle to switch your mode by using a context. This will help you maintain a consistent look and feel throughout your app.
+You might prefer to use dark mode in your applications. If want to add dark mode in your application, you can easily use [`useMediaQuery`](https://mui.com/material-ui/react-use-media-query/) to set your color mode or dynamic toggle to switch your mode by using a context. This will help you maintain a consistent look and feel throughout your app.
 
 ### System Preference
 
@@ -438,7 +483,156 @@ export default App;
 
 Control the Dark Mode with just one click! We prepared an example that shows how you can manage to toggle Dark Mode with help of a context in your Header component, which is given as a prop to Refine.
 
-[You can use this codesanbox link to access this example. &#8594](https://codesandbox.io)
+<details>
+  <summary>Dark Mode Toggle Code Example</summary>
+  <div>
+    <details>
+      <summary>
+       App.tsx
+      </summary>
+     <p>
+
+```tsx title="src/App.tsx"
+import { Refine } from "@pankod/refine-core";
+import {
+    Layout,
+    LoginPage,
+    ErrorComponent,
+    ReadyPage,
+    CssBaseline,
+    RefineSnackbarProvider,
+    notificationProvider,
+} from "@pankod/refine-mui";
+import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+import { PostsList, PostCreate, PostEdit } from "pages/posts";
+import { ColorModeContextProvider, ColorModeContext } from "./contexts";
+
+const Header = () => {
+    const { mode, setMode } = useContext(ColorModeContext);
+    return (
+        <AppBar color="default" position="sticky">
+            <Stack width="100%" direction="row" justifyContent="end">
+                <Box marginRight="20px">
+                    <IconButton
+                        onClick={() => {
+                            setMode();
+                        }}
+                    >
+                        {mode === "dark" ? (
+                            <LightModeOutlined />
+                        ) : (
+                            <DarkModeOutlined />
+                        )}
+                    </IconButton>
+                </Box>
+            </Stack>
+        </AppBar>
+    );
+};
+
+const App: React.FC = () => {
+    return (
+        <ColorModeContextProvider>
+            <CssBaseline />
+            <RefineSnackbarProvider>
+                <Refine
+                    notificationProvider={notificationProvider}
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    ReadyPage={ReadyPage}
+                    Layout={Layout}
+                    LoginPage={LoginPage}
+                    catchAll={<ErrorComponent />}
+                    Header={Header}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: PostsList,
+                            create: PostCreate,
+                            edit: PostEdit,
+                        },
+                    ]}
+                />
+            </RefineSnackbarProvider>
+        </ColorModeContextProvider>
+    );
+};
+
+export default App;
+```
+
+</p>
+    </details>
+    <br/>
+    <details>
+      <summary>
+       ColorModeContext
+      </summary>
+           <p>
+
+```tsx title="src/contexts/index.tsx"
+import React, { createContext, useEffect, useState } from "react";
+import { ThemeProvider } from "@pankod/refine-mui";
+import { DarkTheme, LightTheme } from "@pankod/refine-mui";
+
+type ColorModeContextType = {
+    mode: string;
+    setMode: () => void;
+};
+
+export const ColorModeContext = createContext<ColorModeContextType>(
+    {} as ColorModeContextType,
+);
+
+export const ColorModeContextProvider: React.FC = ({ children }) => {
+    const colorModeFromLocalStorage = localStorage.getItem("colorMode");
+    const isSystemPreferenceDark = window?.matchMedia(
+        "(prefers-color-scheme: dark)",
+    ).matches;
+
+    const systemPreference = isSystemPreferenceDark ? "dark" : "light";
+    const [mode, setMode] = useState(
+        colorModeFromLocalStorage || systemPreference,
+    );
+
+    useEffect(() => {
+        window.localStorage.setItem("colorMode", mode);
+    }, [mode]);
+
+    const setColorMode = () => {
+        if (mode === "light") {
+            setMode("dark");
+        } else {
+            setMode("light");
+        }
+    };
+
+    return (
+        <ColorModeContext.Provider
+            value={{
+                setMode: setColorMode,
+                mode,
+            }}
+        >
+            <ThemeProvider theme={mode === "light" ? LightTheme : DarkTheme}>
+                {children}
+            </ThemeProvider>
+        </ColorModeContext.Provider>
+    );
+};
+```
+
+</p>
+    </details>
+
+  </div>
+</details>
+
+[You can use this CodeSandbox link to access this example. &#8594](https://codesandbox.io/github/pankod/refine/tree/master/examples/customization/customTheme/mui)
 
 <div class="img-container">
     <div class="window">
@@ -454,7 +648,7 @@ Control the Dark Mode with just one click! We prepared an example that shows how
 We use the [`notistack`](https://iamhosseindhv.com/notistack) library for notifications in our Material UI package provides an elegant way to engage with your users.
 The main motivation for us to use the Notistack was that while the Notistack provider ( `<SnackbarProvider>` ) is a child of our ThemeProvider, it works in harmony with the theme.
 
-We provide [`<RefineSnackbarProvider>`](https://github.com/pankod/refine/blob/next/packages/mui/src/providers/refineSnackbarProvider/index.tsx) that extended `<SnackbarProvider>` with theme style. You have to wrap Refine with [`<RefineSnackbarProvider>`](https://github.com/pankod/refine/blob/next/packages/mui/src/providers/refineSnackbarProvider/index.tsx) and also pass the [``notificationProvider`] as props.
+We provide [`<RefineSnackbarProvider>`](https://github.com/pankod/refine/blob/next/packages/mui/src/providers/refineSnackbarProvider/index.tsx) that extended `<SnackbarProvider>` with theme style. You have to wrap Refine with [`<RefineSnackbarProvider>`](https://github.com/pankod/refine/blob/next/packages/mui/src/providers/refineSnackbarProvider/index.tsx) and also pass the `notificationProvider` as props.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
