@@ -647,6 +647,7 @@ module.exports = {
                             label: "Material UI",
                             items: [
                                 "examples/table/mui/advanced",
+                                "examples/table/mui/filter",
                                 "examples/table/mui/useDataGrid",
                             ],
                         },
