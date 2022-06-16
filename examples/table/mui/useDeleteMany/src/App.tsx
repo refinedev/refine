@@ -1,6 +1,7 @@
 import { Refine } from "@pankod/refine-core";
 import {
     Layout,
+    LoginPage,
     ErrorComponent,
     ReadyPage,
     LightTheme,
@@ -13,10 +14,8 @@ import {
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import { BasicDataGrid } from "pages/dataGrid";
-import { PostList } from "pages/table";
+import { PostsList } from "pages/posts";
 
-const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <ThemeProvider theme={LightTheme}>
@@ -25,29 +24,18 @@ const App: React.FC = () => {
             <RefineSnackbarProvider>
                 <Refine
                     routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
                     notificationProvider={notificationProvider}
                     ReadyPage={ReadyPage}
                     Layout={Layout}
+                    LoginPage={LoginPage}
                     catchAll={<ErrorComponent />}
                     resources={[
                         {
-                            name: "Posts",
-                        },
-                        {
                             name: "posts",
-                            parentName: "Posts",
-                            list: PostList,
-                            options: {
-                                route: "react-table",
-                                label: "React Table",
-                            },
-                        },
-                        {
-                            name: "posts",
-                            parentName: "Posts",
-                            list: BasicDataGrid,
-                            options: { route: "data-grid", label: "Data Grid" },
+                            list: PostsList,
                         },
                     ]}
                 />
