@@ -1051,14 +1051,6 @@
         {
             "from": "/docs/examples/upload/multipartUpload/",
             "to": "/docs/examples/upload/antd/multipart/"
-        },
-        {
-           "from": "/docs/ui-frameworks/antd/hooks/resource/useMenu/",
-           "to": "/docs/core/hooks/ui/useMenu/"
-        },
-        {
-            "from": "/docs/ui-frameworks/mui/hooks/resource/useMenu/",
-            "to": "/docs/core/hooks/ui/useMenu/"
         }
     ]
 }

@@ -231,9 +231,7 @@ module.exports = {
                                 {
                                     type: "category",
                                     label: "Resource",
-                                    items: [
-                                        "ui-frameworks/antd/hooks/resource/useMenu",
-                                    ],
+                                    items: ["core/hooks/useMenu"],
                                 },
                                 {
                                     type: "category",
@@ -302,6 +300,15 @@ module.exports = {
                                 },
                             ],
                         },
+                        {
+                            type: "category",
+                            label: "Customization",
+                            items: [
+                                "ui-frameworks/antd/customization/theme",
+                                "ui-frameworks/antd/customization/layout",
+                                "ui-frameworks/antd/customization/sider",
+                            ],
+                        },
                     ],
                 },
                 {
@@ -319,9 +326,7 @@ module.exports = {
                                 {
                                     type: "category",
                                     label: "Resource",
-                                    items: [
-                                        "ui-frameworks/mui/hooks/resource/useMenu",
-                                    ],
+                                    items: ["core/hooks/ui/useMenu"],
                                 },
                             ],
                         },
@@ -370,6 +375,15 @@ module.exports = {
                                         "ui-frameworks/mui/components/fields/url",
                                     ],
                                 },
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Customization",
+                            items: [
+                                "ui-frameworks/mui/customization/theme",
+                                "ui-frameworks/mui/customization/layout",
+                                "ui-frameworks/mui/customization/sider",
                             ],
                         },
                     ],

@@ -3,6 +3,12 @@ id: sider
 title: Custom Sider
 ---
 
+import customMenu from '@site/static/img/guides-and-concepts/hooks/useMenu/mui/custom-menu.gif';
+
+import customMenuLogout from '@site/static/img/guides-and-concepts/hooks/useMenu/mui/custom-menu-logout.gif';
+
+import customMobileMenu from '@site/static/img/guides-and-concepts/hooks/useMenu/mui/custom-menu-mobile.gif';
+
 You can create a custom `<Sider />` component and use it either by passing it to [`<Refine />`][refine] or using a [Custom Layout][muicustomlayout].
 
 ## Recreating the Default Sider Menu
@@ -337,11 +343,11 @@ const App: React.FC = () => {
 export default App;
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
+<div classname="img-container">
+    <div classname="window">
+        <div classname="control red"></div>
+        <div classname="control orange"></div>
+        <div classname="control green"></div>
     </div>
     <img src={customMenu} alt="Custom Menu" />
 </div>
@@ -410,11 +416,11 @@ export const CustomSider: React.FC = () => {
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
+<div classname="img-container">
+    <div classname="window">
+        <div classname="control red"></div>
+        <div classname="control orange"></div>
+        <div classname="control green"></div>
     </div>
     <img src={customMenuLogout} alt="Custom Menu Logout" />
 </div>
