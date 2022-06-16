@@ -34,6 +34,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
             startIcon={
                 !hideText && <ImportExportOutlinedIcon {...svgIconProps} />
             }
+            loadingPosition={hideText ? "center" : "start"}
             sx={{ minWidth: 0, ...sx }}
             {...restProps}
         >
