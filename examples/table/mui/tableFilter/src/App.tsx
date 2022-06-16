@@ -1,7 +1,6 @@
 import { Refine } from "@pankod/refine-core";
 import {
     Layout,
-    LoginPage,
     ErrorComponent,
     ReadyPage,
     LightTheme,
@@ -30,7 +29,6 @@ const App: React.FC = () => {
                     notificationProvider={notificationProvider}
                     ReadyPage={ReadyPage}
                     Layout={Layout}
-                    LoginPage={LoginPage}
                     catchAll={<ErrorComponent />}
                     syncWithLocation
                     resources={[

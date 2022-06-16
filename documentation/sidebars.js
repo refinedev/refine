@@ -463,7 +463,14 @@ module.exports = {
                 },
 
                 "guides-and-concepts/ssr-nextjs",
-                "guides-and-concepts/theme",
+                {
+                    type: "category",
+                    label: "Theme",
+                    items: [
+                        "guides-and-concepts/theme/ant-design",
+                        "guides-and-concepts/theme/material-ui",
+                    ],
+                },
                 {
                     type: "category",
                     label: "Upload",
@@ -666,6 +673,7 @@ module.exports = {
                                 "examples/table/mui/advanced",
                                 "examples/table/mui/filter",
                                 "examples/table/mui/useDataGrid",
+                                "examples/table/mui/useDeleteMany",
                                 "examples/table/mui/useUpdateMany",
                             ],
                         },
