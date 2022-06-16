@@ -9,12 +9,10 @@ export interface IPost {
     content: string;
     status: "published" | "draft" | "rejected";
     category: ICategory;
-    createdAt: string;
 }
 
 export interface IPostFilterVariables {
     q: string;
     category: string;
     status: string;
-    createdAt: [Dayjs, Dayjs];
 }

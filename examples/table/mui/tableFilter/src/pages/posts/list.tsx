@@ -11,7 +11,6 @@ import {
     GridColumns,
     TagField,
     List,
-    DateField,
     Grid,
     Box,
     Button,
@@ -63,15 +62,6 @@ export const PostsList: React.FC = () => {
                 flex: 0.3,
             },
             {
-                field: "createdAt",
-                headerName: "Created At",
-                renderCell: function render({ row }) {
-                    return <DateField value={row.createdAt} format="LLL" />;
-                },
-                minWidth: 150,
-                flex: 0.5,
-            },
-            {
                 field: "category.id",
                 headerName: "Category",
                 type: "number",
@@ -100,7 +90,7 @@ export const PostsList: React.FC = () => {
         initialPageSize: 10,
         onSearch: (params) => {
             const filters: CrudFilters = [];
-            const { q, category, status, createdAt } = params;
+            const { q, category, status } = params;
 
             filters.push(
                 {
@@ -118,16 +108,6 @@ export const PostsList: React.FC = () => {
                     operator: "eq",
                     value: status !== "" ? status : undefined,
                 },
-                // {
-                //     field: "createdAt",
-                //     operator: "gte",
-                //     value: createdAt ? createdAt[0].toISOString() : undefined,
-                // },
-                // {
-                //     field: "createdAt",
-                //     operator: "lte",
-                //     value: createdAt ? createdAt[0].toISOString() : undefined,
-                // },
             );
 
             return filters;
@@ -143,10 +123,6 @@ export const PostsList: React.FC = () => {
             q: getDefaultFilter("q", filters, "eq"),
             status: getDefaultFilter("status", filters, "eq"),
             category: getDefaultFilter("category.id", filters, "eq"),
-            createdAt: [
-                getDefaultFilter("createdAt", filters, "gte"),
-                getDefaultFilter("createdAt", filters, "lte"),
-            ],
         },
     });
 
