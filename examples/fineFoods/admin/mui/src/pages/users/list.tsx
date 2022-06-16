@@ -54,6 +54,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                 renderCell: ({ row }) => <Avatar src={row.avatar[0].url} />,
                 minWidth: 100,
                 flex: 1,
+                sortable: false,
             },
             {
                 field: "firstName",
@@ -100,12 +101,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                 field: "actions",
                 headerName: t("table.actions"),
                 renderCell: ({ row }) => (
-                    <ShowButton
-                        size="small"
-                        variant="outlined"
-                        hideText
-                        recordItemId={row.id}
-                    />
+                    <ShowButton size="small" hideText recordItemId={row.id} />
                 ),
                 align: "center",
                 headerAlign: "center",
