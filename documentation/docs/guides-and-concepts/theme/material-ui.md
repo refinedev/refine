@@ -400,7 +400,7 @@ const customTheme = createTheme({
 });
 ```
 
-You need to use [` module augmentation`](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) for the theme to accept your custom values.
+You need to use [`module augmentation`](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) for the theme to accept your custom values.
 
 ```ts title="src/interfaces/theme.d.ts"
 import "@pankod/refine-mui";
