@@ -961,10 +961,6 @@
             "to": "/docs/ui-frameworks/antd/hooks/list/useSimpleList/"
         },
         {
-            "from": "/docs/next/ui-frameworks/antd/hooks/resource/useMenu/",
-            "to": "/docs/ui-frameworks/antd/hooks/resource/useMenu/"
-        },
-        {
             "from": "/docs/next/ui-frameworks/antd/hooks/table/useEditableTable/",
             "to": "/docs/ui-frameworks/antd/hooks/table/useEditableTable/"
         },
