@@ -649,6 +649,7 @@ module.exports = {
                                 "examples/table/mui/advanced",
                                 "examples/table/mui/filter",
                                 "examples/table/mui/useDataGrid",
+                                "examples/table/mui/useUpdateMany",
                             ],
                         },
                         {
