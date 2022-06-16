@@ -22,7 +22,6 @@ The [`ThemeProvider`](https://mui.com/material-ui/customization/theming/#theme-p
 import { Refine } from "@pankod/refine-core";
 import {
     Layout,
-    LoginPage,
     ErrorComponent,
     ReadyPage,
     // highlight-next-line
@@ -46,7 +45,6 @@ const App: React.FC = () => {
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 ReadyPage={ReadyPage}
                 Layout={Layout}
-                LoginPage={LoginPage}
                 catchAll={<ErrorComponent />}
                 resources={[
                     {
@@ -92,7 +90,6 @@ In our example, we will be using LightTheme.
 import { Refine } from "@pankod/refine-core";
 import {
     Layout,
-    LoginPage,
     ErrorComponent,
     ReadyPage,
     ThemeProvider,
@@ -117,7 +114,6 @@ const App: React.FC = () => {
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 ReadyPage={ReadyPage}
                 Layout={Layout}
-                LoginPage={LoginPage}
                 catchAll={<ErrorComponent />}
                 resources={[
                     {
@@ -154,7 +150,6 @@ The best way to customize your theme is by changing the configuration variables.
 import { Refine } from "@pankod/refine-core";
 import {
     Layout,
-    LoginPage,
     ErrorComponent,
     ReadyPage,
     ThemeProvider,
@@ -193,7 +188,6 @@ const App: React.FC = () => {
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 ReadyPage={ReadyPage}
                 Layout={Layout}
-                LoginPage={LoginPage}
                 catchAll={<ErrorComponent />}
                 resources={[
                     {
@@ -234,7 +228,6 @@ You can also change the Default Font Family. Refine uses the [`Montserrat`](http
 import { Refine } from "@pankod/refine-core";
 import {
     Layout,
-    LoginPage,
     ErrorComponent,
     ReadyPage,
     ThemeProvider,
@@ -285,7 +278,6 @@ const App: React.FC = () => {
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 ReadyPage={ReadyPage}
                 Layout={Layout}
-                LoginPage={LoginPage}
                 catchAll={<ErrorComponent />}
                 resources={[
                     {
@@ -313,7 +305,6 @@ With the help of Refine's themes, you can customize your site in a matter of min
 import { Refine } from "@pankod/refine-core";
 import {
     Layout,
-    LoginPage,
     ErrorComponent,
     ReadyPage,
     ThemeProvider,
@@ -356,7 +347,6 @@ const App: React.FC = () => {
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 ReadyPage={ReadyPage}
                 Layout={Layout}
-                LoginPage={LoginPage}
                 catchAll={<ErrorComponent />}
                 resources={[
                     {
@@ -434,7 +424,6 @@ For example:
 import { Refine } from "@pankod/refine-core";
 import {
     Layout,
-    LoginPage,
     ErrorComponent,
     ReadyPage,
     ThemeProvider,
@@ -461,7 +450,6 @@ const App: React.FC = () => {
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 ReadyPage={ReadyPage}
                 Layout={Layout}
-                LoginPage={LoginPage}
                 catchAll={<ErrorComponent />}
                 resources={[
                     {
@@ -486,88 +474,6 @@ Control the Dark Mode with just one click! We prepared an example that shows how
 <details>
   <summary>Dark Mode Toggle Code Example</summary>
   <div>
-    <details>
-      <summary>
-       App.tsx
-      </summary>
-     <p>
-
-```tsx title="src/App.tsx"
-import { Refine } from "@pankod/refine-core";
-import {
-    Layout,
-    LoginPage,
-    ErrorComponent,
-    ReadyPage,
-    CssBaseline,
-    RefineSnackbarProvider,
-    notificationProvider,
-} from "@pankod/refine-mui";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { PostsList, PostCreate, PostEdit } from "pages/posts";
-import { ColorModeContextProvider, ColorModeContext } from "./contexts";
-
-const Header = () => {
-    const { mode, setMode } = useContext(ColorModeContext);
-    return (
-        <AppBar color="default" position="sticky">
-            <Stack width="100%" direction="row" justifyContent="end">
-                <Box marginRight="20px">
-                    <IconButton
-                        onClick={() => {
-                            setMode();
-                        }}
-                    >
-                        {mode === "dark" ? (
-                            <LightModeOutlined />
-                        ) : (
-                            <DarkModeOutlined />
-                        )}
-                    </IconButton>
-                </Box>
-            </Stack>
-        </AppBar>
-    );
-};
-
-const App: React.FC = () => {
-    return (
-        <ColorModeContextProvider>
-            <CssBaseline />
-            <RefineSnackbarProvider>
-                <Refine
-                    notificationProvider={notificationProvider}
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    ReadyPage={ReadyPage}
-                    Layout={Layout}
-                    LoginPage={LoginPage}
-                    catchAll={<ErrorComponent />}
-                    Header={Header}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: PostsList,
-                            create: PostCreate,
-                            edit: PostEdit,
-                        },
-                    ]}
-                />
-            </RefineSnackbarProvider>
-        </ColorModeContextProvider>
-    );
-};
-
-export default App;
-```
-
-</p>
-    </details>
-    <br/>
     <details>
       <summary>
        ColorModeContext
@@ -628,6 +534,85 @@ export const ColorModeContextProvider: React.FC = ({ children }) => {
 
 </p>
     </details>
+    <details>
+      <summary>
+       App.tsx
+      </summary>
+     <p>
+
+```tsx title="src/App.tsx"
+import { Refine } from "@pankod/refine-core";
+import {
+    Layout,
+    ErrorComponent,
+    ReadyPage,
+    CssBaseline,
+    RefineSnackbarProvider,
+    notificationProvider,
+} from "@pankod/refine-mui";
+import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+import { PostsList, PostCreate, PostEdit } from "pages/posts";
+import { ColorModeContextProvider, ColorModeContext } from "./contexts";
+
+const Header = () => {
+    const { mode, setMode } = useContext(ColorModeContext);
+    return (
+        <AppBar color="default" position="sticky">
+            <Stack width="100%" direction="row" justifyContent="end">
+                <Box marginRight="20px">
+                    <IconButton
+                        onClick={() => {
+                            setMode();
+                        }}
+                    >
+                        {mode === "dark" ? (
+                            <LightModeOutlined />
+                        ) : (
+                            <DarkModeOutlined />
+                        )}
+                    </IconButton>
+                </Box>
+            </Stack>
+        </AppBar>
+    );
+};
+
+const App: React.FC = () => {
+    return (
+        <ColorModeContextProvider>
+            <CssBaseline />
+            <RefineSnackbarProvider>
+                <Refine
+                    notificationProvider={notificationProvider}
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    ReadyPage={ReadyPage}
+                    Layout={Layout}
+                    catchAll={<ErrorComponent />}
+                    Header={Header}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: PostsList,
+                            create: PostCreate,
+                            edit: PostEdit,
+                        },
+                    ]}
+                />
+            </RefineSnackbarProvider>
+        </ColorModeContextProvider>
+    );
+};
+
+export default App;
+```
+
+</p>
+    </details>
   </div>
 </details>
 
@@ -653,7 +638,6 @@ We provide [`<RefineSnackbarProvider>`](https://github.com/pankod/refine/blob/ne
 import { Refine } from "@pankod/refine-core";
 import {
     Layout,
-    LoginPage,
     LightTheme
     ErrorComponent,
     ReadyPage,
@@ -683,7 +667,6 @@ const App: React.FC = () => {
                     dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                     ReadyPage={ReadyPage}
                     Layout={Layout}
-                    LoginPage={LoginPage}
                     catchAll={<ErrorComponent />}
                     resources={[
                         {
