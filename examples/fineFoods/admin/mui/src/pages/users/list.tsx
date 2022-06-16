@@ -29,7 +29,6 @@ import {
     List,
 } from "@pankod/refine-mui";
 import { Controller, useForm } from "@pankod/refine-react-hook-form";
-
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
 import { IUser, IUserFilterVariables } from "interfaces";
