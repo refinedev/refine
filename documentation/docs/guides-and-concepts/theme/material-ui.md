@@ -628,7 +628,6 @@ export const ColorModeContextProvider: React.FC = ({ children }) => {
 
 </p>
     </details>
-
   </div>
 </details>
 
