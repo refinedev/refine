@@ -670,8 +670,22 @@ module.exports = {
                     type: "category",
                     label: "Upload",
                     items: [
-                        "examples/upload/base64Upload",
-                        "examples/upload/multipartUpload",
+                        {
+                            type: "category",
+                            label: "Antd Design",
+                            items: [
+                                "examples/upload/antd/base64",
+                                "examples/upload/antd/multipart",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Material UI",
+                            items: [
+                                "examples/upload/mui/base64",
+                                "examples/upload/mui/multipart",
+                            ],
+                        },
                     ],
                 },
                 {
