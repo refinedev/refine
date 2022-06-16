@@ -61,6 +61,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
         <LoadingButton
             startIcon={!hideText && <RefreshOutlinedIcon {...svgIconProps} />}
             loading={isFetching}
+            loadingPosition={hideText ? "center" : "start"}
             onClick={(e) => (onClick ? onClick(e) : refetch())}
             sx={{ minWidth: 0, ...sx }}
             {...restProps}
