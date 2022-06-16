@@ -1,7 +1,6 @@
 import { Refine } from "@pankod/refine-core";
 import {
     Layout,
-    LoginPage,
     ErrorComponent,
     ReadyPage,
     CssBaseline,
@@ -30,7 +29,6 @@ const App: React.FC = () => {
                     )}
                     ReadyPage={ReadyPage}
                     Layout={Layout}
-                    LoginPage={LoginPage}
                     catchAll={<ErrorComponent />}
                     Header={Header}
                     resources={[
