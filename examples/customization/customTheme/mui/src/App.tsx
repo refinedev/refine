@@ -5,6 +5,7 @@ import {
     ErrorComponent,
     ReadyPage,
     CssBaseline,
+    GlobalStyles,
     RefineSnackbarProvider,
     notificationProvider,
 } from "@pankod/refine-mui";
@@ -19,6 +20,7 @@ const App: React.FC = () => {
     return (
         <ColorModeContextProvider>
             <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
                 <Refine
                     notificationProvider={notificationProvider}
