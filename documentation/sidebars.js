@@ -231,7 +231,7 @@ module.exports = {
                                 {
                                     type: "category",
                                     label: "Resource",
-                                    items: ["core/hooks/useMenu"],
+                                    items: ["core/hooks/ui/useMenu"],
                                 },
                                 {
                                     type: "category",
