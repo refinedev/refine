@@ -27,8 +27,9 @@ const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
 
 If you are using [`@pankod/refine-antd`](#) or [`@pankod/refine-mui`](#) as a UI framework integration, you can find out more info about how their `<Sider/>` components are created and how to create a custom one by following their guides.
 
--   [Ant Design > Customization > Custom Sider &#8594](#)
--   [Material UI > Customization > Custom Sider &#8594](#)
+[Ant Design > Customization > Custom Sider &#8594](#)
+
+[Material UI > Customization > Custom Sider &#8594](#)
 
 :::
 
@@ -38,7 +39,7 @@ We will show you how to use `useMenu` to create a simple menu for your refine ap
 
 Create a `<Layout />` component inside `src/components/Layout.tsx` with the following code;
 
-```tsx title="components/Layout.tsx"
+```tsx title="components/layout.tsx"
 import { useMenu, useNavigation, useRouterContext } from "@pankod/refine-core";
 
 export const Layout: React.FC = ({ children }) => {
