@@ -90,7 +90,12 @@ export const Create: React.FC<CreateProps> = ({
             />
             <CardContent {...cardContentProps}>{children}</CardContent>
             <CardActions
-                sx={{ display: "flex", justifyContent: "flex-end" }}
+                sx={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    gap: "16px",
+                    padding: "16px",
+                }}
                 {...cardActionsProps}
             >
                 {actionButtons ?? (
