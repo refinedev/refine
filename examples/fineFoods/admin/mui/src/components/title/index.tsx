@@ -1,4 +1,5 @@
 import { useRouterContext } from "@pankod/refine-core";
+import { Box } from "@pankod/refine-mui";
 import { BikeWhiteIcon } from "components/icons/bike-white";
 
 type TitleProps = {
@@ -10,8 +11,8 @@ export const Title: React.FC<TitleProps> = ({ collapsed }) => {
 
     return (
         <Link to="/">
-            <div
-                style={{
+            <Box
+                sx={{
                     height: "72px",
                     display: "flex",
                     justifyContent: "center",
@@ -19,11 +20,11 @@ export const Title: React.FC<TitleProps> = ({ collapsed }) => {
                 }}
             >
                 {collapsed ? (
-                    <BikeWhiteIcon style={{ color: "white" }} />
+                    <BikeWhiteIcon sx={{ color: "common.white" }} />
                 ) : (
                     <img src="/images/fine-foods.svg" alt="Finefood" />
                 )}
-            </div>
+            </Box>
         </Link>
     );
 };
