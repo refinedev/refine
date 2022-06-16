@@ -465,14 +465,6 @@ module.exports = {
                 "guides-and-concepts/ssr-nextjs",
                 {
                     type: "category",
-                    label: "Theme",
-                    items: [
-                        "guides-and-concepts/theme/ant-design",
-                        "guides-and-concepts/theme/material-ui",
-                    ],
-                },
-                {
-                    type: "category",
                     label: "Upload",
                     items: [
                         "guides-and-concepts/upload/base64-upload",
