@@ -797,8 +797,8 @@
             "to": "/docs/guides-and-concepts/ssr-nextjs/"
         },
         {
-            "from": "/docs/next/guides-and-concepts/theme/",
-            "to": "/docs/guides-and-concepts/theme/"
+            "from": "/docs/guides-and-concepts/theme/",
+            "to": "/docs/guides-and-concepts/theme/ant-design/"
         },
         {
             "from": "/docs/next/guides-and-concepts/upload/base64-upload/",
