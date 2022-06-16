@@ -54,7 +54,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 minWidth: 100,
             },
             {
-                field: "status",
+                field: "status.text",
                 headerName: t("orders.fields.status"),
                 headerAlign: "center",
                 align: "center",
@@ -90,6 +90,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 valueGetter: ({ row }) => row.store.title,
                 flex: 1,
                 minWidth: 150,
+                sortable: false,
             },
             {
                 field: "user",
@@ -97,12 +98,14 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 valueGetter: ({ row }) => row.user.fullName,
                 flex: 1,
                 minWidth: 150,
+                sortable: false,
             },
             {
                 field: "products",
                 headerName: t("orders.fields.products"),
                 headerAlign: "center",
                 align: "center",
+                sortable: false,
                 renderCell: function render({ row }) {
                     return (
                         <CustomTooltip
@@ -148,6 +151,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 headerName: t("table.actions"),
                 flex: 1,
                 minWidth: 100,
+                sortable: false,
                 getActions: ({ id }) => [
                     <GridActionsCellItem
                         key={1}

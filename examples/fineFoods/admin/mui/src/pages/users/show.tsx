@@ -49,7 +49,7 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                 width: 150,
             },
             {
-                field: "status",
+                field: "status.text",
                 headerName: t("orders.fields.status"),
                 renderCell: ({ row }) => (
                     <OrderStatus status={row.status.text} />
@@ -78,11 +78,13 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                 headerName: t("orders.fields.store"),
                 width: 150,
                 valueGetter: ({ row }) => row.store.title,
+                sortable: false,
             },
             {
                 field: "user",
                 headerName: t("orders.fields.user"),
                 valueGetter: ({ row }) => row.user.fullName,
+                sortable: false,
             },
             {
                 field: "products",
@@ -90,6 +92,7 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                 flex: 1,
                 headerAlign: "center",
                 align: "center",
+                sortable: false,
                 renderCell: ({ row }) => (
                     <CustomTooltip
                         arrow

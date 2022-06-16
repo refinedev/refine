@@ -31,7 +31,13 @@ export const LoginPage: React.FC = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<BaseRecord, HttpError, ILoginForm>();
+    } = useForm<BaseRecord, HttpError, ILoginForm>({
+        defaultValues: {
+            remember: false,
+            username: "admin",
+            password: "admin",
+        },
+    });
 
     const { mutate: login, isLoading } = useLogin<ILoginForm>();
     const translate = useTranslate();
