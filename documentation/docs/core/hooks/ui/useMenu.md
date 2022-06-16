@@ -25,8 +25,8 @@ const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
 
 If you are using [`@pankod/refine-antd`](#) or [`@pankod/refine-mui`](#) as a UI framework integration, you can find out more info about how their `<Sider/>` components are created and how to create a custom one by following their guides.
 
-[Ant Design > Customization > Custom Sider](#)
-[Material UI > Customization > Custom Sider](#)
+[Ant Design > Customization > Custom Sider&#8594](#)
+[Material UI > Customization > Custom Sider&#8594](#)
 :::
 
 ### Creating a Menu
@@ -227,6 +227,12 @@ export const Layout: React.FC = ({ children }) => {
 ```
 
 ## API Reference
+
+:::note Source Code
+
+[View source code for `useMenu` on GitHub&#8594](https://github.com/pankod/refine/blob/feat/use-menu-core/packages/core/src/hooks/menu/useMenu.tsx#L26)
+
+:::
 
 ### Return values
 
