@@ -3,8 +3,8 @@ id: useMenu
 title: useMenu
 ---
 
-`useMenu` is used to get menu items of the default sidebar. These items include a link to dashboard page (if it exists) and links to the user defined resources (passed as children to `<Refine>`).
-This hook can also be used to build custom menus, which is also used by default sidebar to show menu items.
+`useMenu` is used to get menu items derived from the resources. These items include a link to dashboard page (if it exists) and links to the user defined resources (passed as children to `<Refine>`).
+This hook can also be used to build custom menus, including multi-level support. `<Sider/>` components inside [`@pankod/refine-antd`](#) and [`@pankod/refine-mui`](#) packages are using this hook as a base for their menus.
 
 ```ts
 const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
@@ -16,304 +16,210 @@ const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
 
 ## Usage
 
-### Recreating the Default `@pankod/refine-antd` Sider Menu
+:::tip
 
-We will show you how to use `useMenu` to create a custom sider menu that is identical to default sider menu.
+If you are using [`@pankod/refine-antd`](#) or [`@pankod/refine-mui`](#) as a UI framework integration, you can find out more info about how their `<Sider/>` components are created and how to create a custom one by following their guides.
 
-First we define `<CustomMenu>`:
+[Ant Design > Customization > Custom Sider](#)
+[Material UI > Customization > Custom Sider](#)
+:::
 
-```tsx title="src/CustomMenu.tsx"
-import { useState, CSSProperties } from "react";
-import {
-    useTitle,
-    // highlight-next-line
-    useMenu,
-    ITreeMenu,
-    CanAccess,
-    useRouterContext,
-} from "@pankod/refine-core";
-import { AntdLayout, Menu, Grid, Icons } from "@pankod/refine-antd";
+### Creating a Menu
 
-export const CustomMenu: React.FC = () => {
-    const Title = useTitle();
+We will show you how to use `useMenu` to create a simple menu for your refine application.
+
+Create a `<Layout />` component inside `src/components/Layout.tsx` with the following code;
+
+```tsx title="components/Layout.tsx"
+import { useMenu, useNavigation, useRouterContext } from "@pankod/refine-core";
+
+export const Layout: React.FC = ({ children }) => {
+    const { menuItems, selectedKey } = useMenu();
     const { Link } = useRouterContext();
-    const { SubMenu } = Menu;
-
-    // highlight-next-line
-    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
-
-    const [collapsed, setCollapsed] = useState<boolean>(false);
-
-    const breakpoint = Grid.useBreakpoint();
-    const isMobile = !breakpoint.lg;
-
-    const RenderToTitle = Title ?? DefaultTitle;
-
-    // highlight-start
-    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
-        return tree.map((item: ITreeMenu) => {
-            const { icon, label, route, name, children, parentName } = item;
-
-            if (children.length > 0) {
-                return (
-                    <SubMenu
-                        key={name}
-                        icon={icon ?? <Icons.UnorderedListOutlined />}
-                        title={label}
-                    >
-                        {renderTreeView(children, selectedKey)}
-                    </SubMenu>
-                );
-            }
-            const isSelected = route === selectedKey;
-            const isRoute = !(
-                parentName !== undefined && children.length === 0
-            );
-            return (
-                <CanAccess
-                    key={route}
-                    resource={name.toLowerCase()}
-                    action="list"
-                >
-                    <Menu.Item
-                        key={selectedKey}
-                        style={{
-                            fontWeight: isSelected ? "bold" : "normal",
-                        }}
-                        icon={
-                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
-                        }
-                    >
-                        <Link href={route} to={route}>
-                            {label}
-                        </Link>
-                        {!collapsed && isSelected && (
-                            <div className="ant-menu-tree-arrow" />
-                        )}
-                    </Menu.Item>
-                </CanAccess>
-            );
-        });
-    };
-    // highlight-end
+    // You can also use navigation helpers from `useNavigation` hook instead of `Link` from your Router Provider.
+    // const { push } = useNavigation();
 
     return (
-        <AntdLayout.Sider
-            collapsible
-            collapsed={collapsed}
-            onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
-            collapsedWidth={isMobile ? 0 : 80}
-            breakpoint="lg"
-            style={isMobile ? antLayoutSiderMobile : antLayoutSider}
-        >
-            <RenderToTitle collapsed={collapsed} />
-            // highlight-start
-            <Menu
-                defaultOpenKeys={defaultOpenKeys}
-                selectedKeys={[selectedKey]}
-                mode="inline"
-                onClick={() => {
-                    if (!breakpoint.lg) {
-                        setCollapsed(true);
-                    }
-                }}
-            >
-                {renderTreeView(menuItems, selectedKey)}
-            </Menu>
-            // highlight-end
-        </AntdLayout.Sider>
+        <div className="flex min-h-screen flex-col">
+            <div className="mb-2 border-b py-2">
+                <div className="container mx-auto">
+                    <div className="flex items-center gap-2">
+                        <Link to="/">
+                            <img
+                                className="w-32"
+                                src="https://refine.dev/img/refine_logo.png"
+                                alt="Logo"
+                            />
+                        </Link>
+                        // highlight-start
+                        <ul>
+                            {menuItems.map(({ name, label icon, route }) => {
+                                const isSelected = route === selectedKey;
+                                return (
+                                    <li key={name}>
+                                        <Link>
+                                            <a style={{ fontWeight: isSelected ? "bold" : "normal" }}>
+                                                {icon}
+                                                <span>{label ?? name}</span>
+                                            </a>
+                                        </Link>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                        // highlight-end
+                    </div>
+                </div>
+            </div>
+            <div className="bg-white">{children}</div>
+        </div>
     );
-};
-
-const antLayoutSider: CSSProperties = {
-    position: "relative",
-};
-const antLayoutSiderMobile: CSSProperties = {
-    position: "fixed",
-    height: "100vh",
-    zIndex: 999,
 };
 ```
 
-`useMenu` hook is used to get style agnostic menu items. We render these items in the body of the sider. We create a recursive `renderTreeView` function to create menu items from the list of resources passed to `<Refine>`. We get the `Title` component with the `useTitle` hook.
+We created a header with a logo and a list of links to all menu items (resources). The links are clickable and will navigate to the corresponding resource. To do this, we used the [`useMenu`](/core/hooks/ui/useMenu.md) hook to get the menu items from the `<Refine/>` and the [`useRouterContext`](#) hook to get the `<Link/>` component from the router provider. Also [`useNavigation`](/core/hooks/navigation/useNavigation.md) hook can be used to navigate between routes.
 
-<br />
+`children` is the content of the layout. In our case, it is the content of the **Page** components.
 
 :::tip
-If you want to create a multi-level menu, you can take a look at this [`multi-level menu`](/docs/examples/multi-level-menu/multi-level-menu/) example and also [`here`](/docs/guides-and-concepts/multi-level-menu/multi-level-menu/) is the guide.
+
+[Refer to Custom Layout guide for more detailed information on layout customization. &#8594](/guides-and-concepts/custom-layout.md)  
 :::
 
-We can override the default sider and show the custom menu we implemented in its place by passing a the custom component to `<Refine>`s `Sider` prop:
+Now, we can use the `<Layout/>` in our application.
 
-```tsx title="App.tsx"
+```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
-import "@pankod/refine/dist/styles.min.css";
-
-import { PostList } from "pages/posts";
 
 // highlight-next-line
-import { CustomMenu } from "./CustomMenu";
+import { Layout } from "components/layout";
+import { PostIcon } from "icons";
 
-const API_URL = "https://api.fake-rest.refine.dev";
-
-const App: React.FC = () => {
+export const App: React.FC = () => {
     return (
         <Refine
-            dataProvider={dataProvider(API_URL)}
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+                {
+                    name: "categories",
+                    list: CategoryList,
+                    create: CategoryCreate,
+                    edit: CategoryEdit,
+                    canDelete: true,
+                },
+            ]}
             // highlight-next-line
-            Sider={CustomMenu}
-            resources={[{ name: "posts", list: PostList }]}
+            Layout={Layout}
         />
     );
 };
-
-export default App;
 ```
 
-<br />
+### Multi Level Menus
 
-We can also add a logout button:
+`useMenu` hook comes out of the box with multi level menu support, you can render menu items recursively to get a multi level menu.
 
-```tsx title="src/CustomMenu.tsx"
-import { useState, CSSProperties } from "react";
-import {
-    useTitle,
-    useRouterContext,
-    // highlight-start
-    useMenu,
-    useLogout,
-    // highlight-end
-} from "@pankod/refine-core";
-import {
-    AntdLayout,
-    Menu,
-    Link,
-    Grid,
-    // highlight-start
-    Icons,
-    // highlight-end
-} from "@pankod/refine-antd";
+Update your `resources` in `<Refine/>` with `parentName` to nest them inside a label.
 
-export const CustomMenu: React.FC = () => {
-    const Title = useTitle();
-    const { Link } = useRouterContext();
+```tsx title="src/App.tsx"
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+
+import { Layout } from "components/layout";
+import { PostIcon } from "icons";
+
+export const App: React.FC = () => {
+    return (
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            // highlight-start
+            resources={[
+                {
+                    name: "CMS",
+                },
+                {
+                    name: "posts",
+                    parentName: "CMS",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+                {
+                    name: "categories",
+                    parentName: "CMS",
+                    list: CategoryList,
+                    create: CategoryCreate,
+                    edit: CategoryEdit,
+                    canDelete: true,
+                },
+            ]}
+            // highlight-end
+            Layout={Layout}
+        />
+    );
+};
+```
+
+Now you can update your `<Layout/>` to support multi level rendering with following code:
+
+```tsx title="components/Layout.tsx"
+import { useMenu, useNavigation, useRouterContext } from "@pankod/refine-core";
+
+export const Layout: React.FC = ({ children }) => {
     const { menuItems, selectedKey } = useMenu();
-
-    const [collapsed, setCollapsed] = useState<boolean>(false);
-
-    const breakpoint = Grid.useBreakpoint();
-    const isMobile = !breakpoint.lg;
-
-    const RenderToTitle = Title ?? DefaultTitle;
-
-    const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
-        return tree.map((item: ITreeMenu) => {
-            const { icon, label, route, name, children, parentName } = item;
-
-            if (children.length > 0) {
-                return (
-                    <SubMenu
-                        key={name}
-                        icon={icon ?? <Icons.UnorderedListOutlined />}
-                        title={label}
-                    >
-                        {renderTreeView(children, selectedKey)}
-                    </SubMenu>
-                );
-            }
-            const isSelected = route === selectedKey;
-            const isRoute = !(
-                parentName !== undefined && children.length === 0
-            );
-            return (
-                <CanAccess
-                    key={route}
-                    resource={name.toLowerCase()}
-                    action="list"
-                >
-                    <Menu.Item
-                        key={selectedKey}
-                        style={{
-                            fontWeight: isSelected ? "bold" : "normal",
-                        }}
-                        icon={
-                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
-                        }
-                    >
-                        <Link href={route} to={route}>
-                            {label}
-                        </Link>
-                        {!collapsed && isSelected && (
-                            <div className="ant-menu-tree-arrow" />
-                        )}
-                    </Menu.Item>
-                </CanAccess>
-            );
-        });
-    };
+    const { Link } = useRouterContext();
 
     // highlight-start
-    const { mutate: logout } = useLogout();
+    const renderMenu = (items) => {
+        return (
+            <ul>
+                {items.map((item) => (
+                    <li key={item.label}>
+                        <span>{item.label}</span>
+                        {item.children ? renderMenu(item.children) : null}
+                    </li>
+                ))}
+            </ul>
+        );
+    };
     // highlight-end
 
     return (
-        <AntdLayout.Sider
-            collapsible
-            collapsed={collapsed}
-            onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
-            collapsedWidth={isMobile ? 0 : 80}
-            breakpoint="lg"
-            style={isMobile ? antLayoutSiderMobile : antLayoutSider}
-        >
-            <RenderToTitle collapsed={collapsed} />
-            <Menu
-                defaultOpenKeys={defaultOpenKeys}
-                selectedKeys={[selectedKey]}
-                mode="inline"
-                onClick={() => {
-                    if (!breakpoint.lg) {
-                        setCollapsed(true);
-                    }
-                }}
-            >
-                {renderTreeView(menuItems, selectedKey)}
-                // highlight-start
-                <Menu.Item
-                    key="logout"
-                    onClick={() => logout()}
-                    icon={<Icons.LogoutOutlined />}
-                >
-                    Logout
-                </Menu.Item>
-                // highlight-end
-            </Menu>
-        </AntdLayout.Sider>
+        <div className="flex min-h-screen flex-col">
+            <div className="mb-2 border-b py-2">
+                <div className="container mx-auto">
+                    <div className="flex items-center gap-2">
+                        <Link to="/">
+                            <img
+                                className="w-32"
+                                src="https://refine.dev/img/refine_logo.png"
+                                alt="Logo"
+                            />
+                        </Link>
+                        // highlight-start
+                        {renderMenu(menuItems)}
+                        // highlight-end
+                    </div>
+                </div>
+            </div>
+            <div className="bg-white">{children}</div>
+        </div>
     );
 };
-
-const antLayoutSider: CSSProperties = {
-    position: "relative",
-};
-const antLayoutSiderMobile: CSSProperties = {
-    position: "fixed",
-    height: "100vh",
-    zIndex: 999,
-};
 ```
-
-`useLogout` provides the logout functionality.
-
-:::caution
-`useLogout` hook can only be used if the `authProvider` is provided.  
-[Refer to authProvider docs for more detailed information. &#8594](/core/providers/auth-provider.md)  
-[Refer to useLogout docs for more detailed information. &#8594](/core/hooks/auth/useLogout.md)
-:::
-
-:::tip
-You can further customize the Sider and its appearance.  
-[Refer to Ant Design docs for more detailed information about Sider. &#8594](https://ant.design/components/layout/#Layout.Sider)
-:::
 
 ## API Reference
 
@@ -356,6 +262,7 @@ interface IResourceComponentsProps<TCrudData = any> {
     initialData?: TCrudData;
 }
 
+// highlight-start
 type IMenuItem = IResourceItem & {
     key: string;
 };
@@ -363,4 +270,5 @@ type IMenuItem = IResourceItem & {
 type ITreeMenu = IMenuItem & {
     children: ITreeMenu[];
 };
+// highlight-end
 ```
