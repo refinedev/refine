@@ -423,7 +423,7 @@ You can see an example of how to [`create your own theme with custom variables`]
 
 ## Dark Mode
 
-You might prefer to use dark mode in your applications. If want to add dark mode in your application, you can easily use [`useMediaQuery`](https://mui.com/material-ui/react-use-media-query/) to set your color mode or dynamic toggle to switch your mode by using a context. This will help you maintain a consistent look and feel throughout your app.
+You might prefer to use dark mode in your applications. If you want to add dark mode to your application, you can easily use [`useMediaQuery`](https://mui.com/material-ui/react-use-media-query/) to set your color mode or dynamic toggle to switch your mode by using a context. This will help you maintain a consistent look and feel throughout your app.
 
 ### System Preference
 
