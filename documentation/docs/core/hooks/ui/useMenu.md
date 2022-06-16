@@ -14,6 +14,11 @@ const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
 -   `selectedKey` is the key of the resource user is viewing at the moment. Its inferred from the route.
 -   `defaultOpenKeys` is the array with the keys of default opened menus.
 
+:::caution
+
+`useMenu` hooks exported from `@pankod/refine-antd` and `@pankod/refine-mui` packages are now **deprecated** and will be removed. Please use `useMenu` from `@pankod/refine-core`.
+:::
+
 ## Usage
 
 :::tip
