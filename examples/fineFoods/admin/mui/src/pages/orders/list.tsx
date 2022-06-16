@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import React from "react";
 import {
     IResourceComponentsProps,
@@ -59,9 +58,9 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 headerName: t("orders.fields.status"),
                 headerAlign: "center",
                 align: "center",
-                renderCell: ({ row }) => (
-                    <OrderStatus status={row.status.text} />
-                ),
+                renderCell: function render({ row }) {
+                    return <OrderStatus status={row.status.text} />;
+                },
                 flex: 1,
                 minWidth: 100,
             },
@@ -70,16 +69,18 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 headerName: t("orders.fields.amount"),
                 headerAlign: "center",
                 align: "center",
-                renderCell: ({ row }) => (
-                    <NumberField
-                        options={{
-                            currency: "USD",
-                            style: "currency",
-                        }}
-                        value={row.amount / 100}
-                        sx={{ fontSize: "14px" }}
-                    />
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <NumberField
+                            options={{
+                                currency: "USD",
+                                style: "currency",
+                            }}
+                            value={row.amount / 100}
+                            sx={{ fontSize: "14px" }}
+                        />
+                    );
+                },
                 flex: 1,
                 minWidth: 100,
             },
@@ -102,25 +103,27 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 headerName: t("orders.fields.products"),
                 headerAlign: "center",
                 align: "center",
-                renderCell: ({ row }) => (
-                    <CustomTooltip
-                        arrow
-                        placement="top"
-                        title={
-                            <Stack sx={{ padding: "2px" }}>
-                                {row.products.map((product) => (
-                                    <li key={product.id}>{product.name}</li>
-                                ))}
-                            </Stack>
-                        }
-                    >
-                        <Typography sx={{ fontSize: "14px" }}>
-                            {t("orders.fields.itemsAmount", {
-                                amount: row.products.length,
-                            })}
-                        </Typography>
-                    </CustomTooltip>
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <CustomTooltip
+                            arrow
+                            placement="top"
+                            title={
+                                <Stack sx={{ padding: "2px" }}>
+                                    {row.products.map((product) => (
+                                        <li key={product.id}>{product.name}</li>
+                                    ))}
+                                </Stack>
+                            }
+                        >
+                            <Typography sx={{ fontSize: "14px" }}>
+                                {t("orders.fields.itemsAmount", {
+                                    amount: row.products.length,
+                                })}
+                            </Typography>
+                        </CustomTooltip>
+                    );
+                },
                 flex: 1,
                 minWidth: 100,
             },
@@ -129,13 +132,15 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 headerName: t("orders.fields.createdAt"),
                 flex: 1,
                 minWidth: 170,
-                renderCell: ({ row }) => (
-                    <DateField
-                        value={row.createdAt}
-                        format="LLL"
-                        sx={{ fontSize: "14px" }}
-                    />
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <DateField
+                            value={row.createdAt}
+                            format="LLL"
+                            sx={{ fontSize: "14px" }}
+                        />
+                    );
+                },
             },
             {
                 field: "actions",

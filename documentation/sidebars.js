@@ -621,14 +621,6 @@ module.exports = {
                 },
                 {
                     type: "category",
-                    label: "React Table",
-                    items: [
-                        "examples/react-table/advanced-react-table",
-                        "examples/react-table/react-table",
-                    ],
-                },
-                {
-                    type: "category",
                     label: "Router Provider",
                     items: ["examples/router-provider/react-location"],
                 },
@@ -643,15 +635,34 @@ module.exports = {
                     items: [
                         {
                             type: "category",
-                            label: "MUI",
-                            items: ["examples/table/mui/useDataGrid"],
+                            label: "Ant Design",
+                            items: [
+                                "examples/table/antd/advancedTable",
+                                "examples/table/antd/tableFilter",
+                                "examples/table/antd/useDeleteMany",
+                                "examples/table/antd/useEditableTable",
+                                "examples/table/antd/useTable",
+                                "examples/table/antd/useUpdateMany",
+                            ],
                         },
-                        "examples/table/advancedTable",
-                        "examples/table/tableFilter",
-                        "examples/table/useDeleteMany",
-                        "examples/table/useEditableTable",
-                        "examples/table/useTable",
-                        "examples/table/useUpdateMany",
+                        {
+                            type: "category",
+                            label: "Material UI",
+                            items: [
+                                "examples/table/mui/advanced",
+                                "examples/table/mui/filter",
+                                "examples/table/mui/useDataGrid",
+                                "examples/table/mui/useUpdateMany",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "React Table",
+                            items: [
+                                "examples/table/react-table/advanced-react-table",
+                                "examples/table/react-table/react-table",
+                            ],
+                        },
                     ],
                 },
                 "examples/customTheme",
@@ -664,8 +675,22 @@ module.exports = {
                     type: "category",
                     label: "Upload",
                     items: [
-                        "examples/upload/base64Upload",
-                        "examples/upload/multipartUpload",
+                        {
+                            type: "category",
+                            label: "Antd Design",
+                            items: [
+                                "examples/upload/antd/base64",
+                                "examples/upload/antd/multipart",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Material UI",
+                            items: [
+                                "examples/upload/mui/base64",
+                                "examples/upload/mui/multipart",
+                            ],
+                        },
                     ],
                 },
                 {
