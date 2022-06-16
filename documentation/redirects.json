@@ -193,10 +193,6 @@
             "to": "/docs/ui-frameworks/antd/hooks/form/useStepsForm"
         },
         {
-            "from": "/docs/api-references/hooks/resource/useMenu",
-            "to": "/docs/ui-frameworks/antd/hooks/resource/useMenu"
-        },
-        {
             "from": "/docs/api-references/hooks/table/useEditableTable",
             "to": "/docs/ui-frameworks/antd/hooks/table/useEditableTable"
         },
