@@ -23,9 +23,6 @@ export const PostsList: React.FC = () => {
             {
                 resource: "posts",
                 ids: selectedRowKeys.map(String),
-                values: {
-                    status: "approved",
-                },
             },
             {
                 onSuccess: () => {
