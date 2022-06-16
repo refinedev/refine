@@ -166,7 +166,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
         const { id, title, isActive } = row.original;
 
         return (
-            <>
+            <React.Fragment key={`edit-row-${id}`}>
                 <TableRow key={`edit-${id}-inputs`}>
                     <TableCell>
                         <Stack
@@ -212,7 +212,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                         </Button>
                     </TableCell>
                 </TableRow>
-            </>
+            </React.Fragment>
         );
     }, []);
 
