@@ -14,6 +14,8 @@ const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
 -   `selectedKey` is the key of the resource user is viewing at the moment. Its inferred from the route.
 -   `defaultOpenKeys` is the array with the keys of default opened menus.
 
+<br />
+
 :::caution
 
 `useMenu` hooks exported from `@pankod/refine-antd` and `@pankod/refine-mui` packages are now **deprecated** and will be removed. Please use `useMenu` from `@pankod/refine-core`.
@@ -25,8 +27,9 @@ const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
 
 If you are using [`@pankod/refine-antd`](#) or [`@pankod/refine-mui`](#) as a UI framework integration, you can find out more info about how their `<Sider/>` components are created and how to create a custom one by following their guides.
 
-[Ant Design > Customization > Custom Sider&#8594](#)
-[Material UI > Customization > Custom Sider&#8594](#)
+-   [Ant Design > Customization > Custom Sider &#8594](#)
+-   [Material UI > Customization > Custom Sider &#8594](#)
+
 :::
 
 ### Creating a Menu
@@ -228,12 +231,6 @@ export const Layout: React.FC = ({ children }) => {
 
 ## API Reference
 
-:::note Source Code
-
-[View source code for `useMenu` on GitHub&#8594](https://github.com/pankod/refine/blob/feat/use-menu-core/packages/core/src/hooks/menu/useMenu.tsx#L26)
-
-:::
-
 ### Return values
 
 | Property        | Description                                                                             | Type                         |
@@ -283,3 +280,7 @@ type ITreeMenu = IMenuItem & {
 };
 // highlight-end
 ```
+
+### Source Code
+
+[View source code for `useMenu` on GitHub &#8594](https://github.com/pankod/refine/blob/feat/use-menu-core/packages/core/src/hooks/menu/useMenu.tsx#L26)
