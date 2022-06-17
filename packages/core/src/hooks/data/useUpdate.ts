@@ -311,13 +311,19 @@ export const useUpdate = <
                     date: new Date(),
                 });
 
-                let previousData;
+                let previousData: any;
                 if (context) {
                     const queryData = queryClient.getQueryData<
                         UpdateResponse<TData>
                     >(context.queryKey.detail(id));
 
-                    previousData = queryData?.data;
+                    previousData = Object.keys(values).reduce<any>(
+                        (acc, item) => {
+                            acc[item] = queryData?.data?.[item];
+                            return acc;
+                        },
+                        {},
+                    );
                 }
 
                 const { fields, operation, variables, ...rest } =

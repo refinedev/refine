@@ -25,6 +25,7 @@ import {
     MetaDataQuery,
     GetListResponse,
     IQueryKeys,
+    UpdateResponse,
 } from "../../interfaces";
 import { queryKeys } from "@definitions/helpers";
 
@@ -336,12 +337,17 @@ export const useUpdateMany = <
                     date: new Date(),
                 });
 
-                let previousData;
+                let previousData: TData[] = [];
                 if (context) {
                     previousData = ids.map((id) => {
-                        return queryClient.getQueryData<
-                            UpdateManyResponse<TData>
-                        >(context.queryKey.detail(id))?.data;
+                        const queryData = queryClient.getQueryData<
+                            UpdateResponse<TData>
+                        >(context.queryKey.detail(id));
+
+                        return Object.keys(values).reduce<any>((acc, item) => {
+                            acc[item] = queryData?.data?.[item];
+                            return acc;
+                        }, {});
                     });
                 }
 
