@@ -1,5 +1,5 @@
 ---
-id: sider
+id: antd-custom-sider
 title: Custom Sider
 ---
 

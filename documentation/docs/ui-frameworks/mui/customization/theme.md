@@ -1,5 +1,5 @@
 ---
-id: theme
+id: antd-custom-theme
 title: Custom Theme
 ---
 
