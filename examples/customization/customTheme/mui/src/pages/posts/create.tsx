@@ -44,7 +44,6 @@ export const PostCreate: React.FC = () => {
                     control={control}
                     name="status"
                     rules={{ required: "This field is required" }}
-                   
                     render={({ field }) => (
                         <Autocomplete
                             options={["published", "draft", "rejected"]}
