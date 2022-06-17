@@ -5,7 +5,7 @@ import {
     ResourceProps,
     AuditLogProvider,
 } from "@pankod/refine-core";
-import merge from "lodash.merge";
+import merge from "lodash/merge";
 
 import { Cloud } from "../../components";
 import { CloudContextProvider } from "../../contexts";
