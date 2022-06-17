@@ -34,7 +34,7 @@ To make this example more visual, we used the [`@pankod/refine-antd`](https://gi
 
 The app will have three resources: **posts**, **users** and **categories** with CRUD pages(list, create, edit and show).
 
-[You can refer to codesandbox to see how they are implemented &#8594](#live-codesandbox-example)
+[You can refer to StackBlitz to see how they are implemented &#8594](#live-stackblitz-example)
 
 `App.tsx` will look like this before we begin implementing access control:
 
@@ -526,11 +526,11 @@ export const PostList: React.FC = () => {
     <img src={accessControl} alt="Full Example Sample" />
 </div>
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
 ### Casbin
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/accessControl/casbin?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/accessControl/casbin?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="access-control-casbin-react"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
@@ -539,9 +539,7 @@ export const PostList: React.FC = () => {
 
 ### Cerbos
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/accessControl/cerbos?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/accessControl/cerbos?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="access-control-cerbos-react"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>

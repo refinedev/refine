@@ -121,12 +121,10 @@ const { searchFormProps } = useTable<IPost, HttpError, { title: string; createdA
 `CrudFilters` types object has `field`, `operator` and `value` properties. These properties help us to filter in which field, with which operator, and with which data.
 :::
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/table/tableFilter?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/table/tableFilter?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-table-filter-example"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 

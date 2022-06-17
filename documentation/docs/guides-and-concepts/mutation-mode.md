@@ -127,11 +127,9 @@ mutate({
 
 <br />
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
-<iframe src="https://codesandbox.io/embed/refine-example-mutation-mode-yh7nb?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://stackblitz.com/refine-example-mutation-mode-yh7nb?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-example-mutation-mode"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
