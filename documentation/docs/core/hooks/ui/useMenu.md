@@ -147,6 +147,9 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
+import { PostList, PostCreate, PostEdit, PostShow } from "pages/post";
+import { CategoryList, CategoryCreate, CategoryEdit } from "pages/category";
+
 import { Layout } from "components/layout";
 import { PostIcon } from "icons";
 
