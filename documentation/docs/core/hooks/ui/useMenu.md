@@ -37,7 +37,7 @@ If you are using [`@pankod/refine-antd`](/docs/ui-frameworks/antd/tutorial/) or 
 
 We will show you how to use `useMenu` to create a simple menu for your refine application.
 
-Create a `<Layout />` component inside `src/components/Layout.tsx` with the following code;
+Create a `<Layout />` component inside `src/components/layout.tsx` with the following code;
 
 ```tsx title="src/components/layout.tsx"
 import { useMenu, useNavigation, useRouterContext } from "@pankod/refine-core";
@@ -86,7 +86,7 @@ export const Layout: React.FC = ({ children }) => {
 };
 ```
 
-We created a header with a logo and a list of links to all menu items (resources). The links are clickable and will navigate to the corresponding resource. To do this, we used the [`useMenu`](/core/hooks/ui/useMenu.md) hook to get the menu items from the `<Refine/>` and the [`useRouterContext`](#) hook to get the `<Link/>` component from the router provider. Also [`useNavigation`](/core/hooks/navigation/useNavigation.md) hook can be used to navigate between routes.
+We created a header with a logo and a list of links to all menu items (resources). The links are clickable and will navigate to the corresponding resource. To do this, we used the [`useMenu`](/core/hooks/ui/useMenu.md) hook to get the menu items from the `<Refine/>` and the `useRouterContext` hook to get the `<Link/>` component from the router provider. Also [`useNavigation`](/core/hooks/navigation/useNavigation.md) hook can be used to navigate between routes.
 
 `children` is the content of the layout. In our case, it is the content of the **Page** components.
 
