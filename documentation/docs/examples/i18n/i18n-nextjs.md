@@ -9,7 +9,7 @@ title: Next.js
 
 [View i18n-Nextjs Example Source](https://github.com/pankod/refine/tree/master/examples/i18n)
 
-<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/i18n?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/i18n/?embed=1&view=preview&theme=dark&preset=node"
 style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-i18n-example"
 ></iframe>
