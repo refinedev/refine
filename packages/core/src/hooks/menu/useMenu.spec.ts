@@ -1,5 +1,4 @@
 import { renderHook } from "@testing-library/react-hooks";
-import { act } from "react-dom/test-utils";
 
 import { TestWrapper } from "@test";
 
@@ -44,15 +43,73 @@ describe("useMenu Hook", () => {
         expect(result.current.selectedKey).toEqual("/posts/create");
     });
 
-    it("should have the defaultOpenKeys = [posts, create]", async () => {
+    it("should have the defaultOpenKeys = [/CMS]", async () => {
         const { result } = renderHook(() => useMenu(), {
             wrapper: TestWrapper({
-                routerInitialEntries: ["/posts/create"],
+                routerInitialEntries: ["/CMS/posts"],
+                resources: [
+                    {
+                        name: "CMS",
+                    },
+                    {
+                        name: "posts",
+                        parentName: "CMS",
+                        route: "asdasd",
+                    },
+                    {
+                        name: "categories",
+                        parentName: "CMS",
+                    },
+                    {
+                        name: "posts",
+                        parentName: "categories",
+                        options: {
+                            label: "else-new",
+                            route: "else-new",
+                        },
+                        canDelete: true,
+                    },
+                ],
             }),
         });
 
         expect(result.current.defaultOpenKeys).toEqual(
-            expect.arrayContaining(["posts", "create"]),
+            expect.arrayContaining(["/CMS"]),
+        );
+    });
+
+    it("should have the defaultOpenKeys = [/CMS]", async () => {
+        const { result } = renderHook(() => useMenu(), {
+            wrapper: TestWrapper({
+                routerInitialEntries: ["/else-new"],
+                resources: [
+                    {
+                        name: "CMS",
+                    },
+                    {
+                        name: "posts",
+                        parentName: "CMS",
+                        route: "asdasd",
+                    },
+                    {
+                        name: "categories",
+                        parentName: "CMS",
+                    },
+                    {
+                        name: "posts",
+                        parentName: "categories",
+                        options: {
+                            label: "else-new",
+                            route: "else-new",
+                        },
+                        canDelete: true,
+                    },
+                ],
+            }),
+        });
+
+        expect(result.current.defaultOpenKeys).toEqual(
+            expect.arrayContaining(["/CMS", "/CMS/categories"]),
         );
     });
 });
