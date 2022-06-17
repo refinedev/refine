@@ -43,9 +43,10 @@ export const EventList: React.FC<EventListProps> = ({
                                     <Menu.Item
                                         key="1"
                                         onClick={() => {
+                                            const { meta, resource } = log;
                                             mutate({
-                                                resource: "posts",
-                                                id: log.data.id,
+                                                resource,
+                                                id: meta?.id,
                                                 values: log.previousData,
                                             });
                                         }}
