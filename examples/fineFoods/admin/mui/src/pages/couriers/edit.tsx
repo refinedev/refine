@@ -5,7 +5,6 @@ import {
     IResourceComponentsProps,
     useTranslate,
     useApiUrl,
-    HttpError,
 } from "@pankod/refine-core";
 import {
     Avatar,
@@ -252,7 +251,7 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                                             { field: "Gender" },
                                                         ),
                                                     }}
-                                                    defaultValue=""
+                                                    defaultValue={null}
                                                     render={({ field }) => (
                                                         <Autocomplete
                                                             size="small"
@@ -438,7 +437,7 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                             rules={{
                                                 required: "Store required",
                                             }}
-                                            defaultValue={" "}
+                                            defaultValue={null}
                                             render={({ field }) => (
                                                 <Autocomplete
                                                     size="small"

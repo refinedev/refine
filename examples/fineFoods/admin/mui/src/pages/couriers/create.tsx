@@ -255,7 +255,6 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                                             { field: "Gender" },
                                                         ),
                                                     }}
-                                                    defaultValue=""
                                                     render={({ field }) => (
                                                         <Autocomplete
                                                             size="small"
