@@ -23,8 +23,6 @@ export const Layout: React.FC<LayoutProps> = ({
                     flexDirection: "column",
                     flex: 1,
                     minHeight: "100vh",
-                    transition:
-                        "margin-left 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
                 }}
             >
                 {Header && <Header />}
