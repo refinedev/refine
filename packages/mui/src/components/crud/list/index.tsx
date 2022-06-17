@@ -16,6 +16,7 @@ import {
     CardHeaderProps,
     CardContentProps,
     Typography,
+    Box,
 } from "@mui/material";
 
 import { CreateButton, CreateButtonProps } from "@components";
@@ -79,7 +80,11 @@ export const List: React.FC<ListProps> = ({
                         )}
                     </Typography>
                 }
-                action={defaultExtra}
+                action={
+                    <Box display="flex" gap="16px">
+                        {defaultExtra}
+                    </Box>
+                }
                 {...cardHeaderProps}
             />
             <CardContent {...cardContentProps}>{children}</CardContent>

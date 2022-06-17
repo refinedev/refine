@@ -17,6 +17,13 @@ exports[`<List/> JSON Rest Server renders given data 1`] = `
           Posts
         </h5>
       </div>
+      <div
+        class="MuiCardHeader-action css-sgoict-MuiCardHeader-action"
+      >
+        <div
+          class="MuiBox-root css-10egq61"
+        />
+      </div>
     </div>
     <div
       class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
