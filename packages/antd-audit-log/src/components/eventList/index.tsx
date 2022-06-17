@@ -79,7 +79,7 @@ export const EventList: React.FC<EventListProps> = ({
                                     "MM/DD/YYYY, hh:mm",
                                 )}
                         </Text>
-                        <Badge color="blue" text={log?.user?.email} />
+                        <Badge color="blue" text={log?.author?.email} />
                     </Button>
                 </AntdList.Item>
             )}
