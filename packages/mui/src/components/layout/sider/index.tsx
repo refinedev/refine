@@ -28,9 +28,9 @@ import {
     useTitle,
     useTranslate,
     useRouterContext,
+    useMenu,
 } from "@pankod/refine-core";
 
-import { useMenu } from "@hooks";
 import { Title as DefaultTitle } from "../title";
 
 export const Sider: React.FC = () => {
@@ -50,7 +50,21 @@ export const Sider: React.FC = () => {
     const { mutate: logout } = useLogout();
     const Title = useTitle();
 
-    const [open, setOpen] = useState<{ [k: string]: any }>(defaultOpenKeys);
+    const [open, setOpen] = useState<{ [k: string]: any }>({});
+
+    React.useEffect(() => {
+        setOpen((previousOpen) => {
+            const previousOpenKeys: string[] = Object.keys(previousOpen);
+            const uniqueKeys = new Set([
+                ...previousOpenKeys,
+                ...defaultOpenKeys,
+            ]);
+            const uniqueKeysRecord = Object.fromEntries(
+                Array.from(uniqueKeys.values()).map((key) => [key, true]),
+            );
+            return uniqueKeysRecord;
+        });
+    }, [defaultOpenKeys]);
 
     const RenderToTitle = Title ?? DefaultTitle;
 

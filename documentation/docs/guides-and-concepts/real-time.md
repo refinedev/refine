@@ -204,8 +204,8 @@ Firstly, let's implement a custom sider like in [this example](/examples/customi
 
 ```tsx title="src/components/sider.tsx"
 import React, { useState } from "react";
-import { useTitle, ITreeMenu, CanAccess, useRouterContext } from "@pankod/refine-core";
-import { AntdLayout, Menu, useMenu, Grid, Icons } from "@pankod/refine-antd";
+import { useTitle, ITreeMenu, CanAccess, useRouterContext, useMenu } from "@pankod/refine-core";
+import { AntdLayout, Menu, Grid, Icons } from "@pankod/refine-antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 export const CustomSider: React.FC = () => {
@@ -295,6 +295,7 @@ import {
     useTitle,
     ITreeMenu,
     CanAccess,
+    useMenu,
     //highlight-start
     useSubscription,
     //highlight-end
@@ -302,7 +303,6 @@ import {
 import {
     AntdLayout,
     Menu,
-    useMenu,
     Grid,
     Icons,
     //highlight-start

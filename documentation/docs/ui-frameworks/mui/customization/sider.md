@@ -1,6 +1,6 @@
 ---
-id: useMenu
-title: useMenu
+id: mui-custom-sider
+title: Custom Sider
 ---
 
 import customMenu from '@site/static/img/guides-and-concepts/hooks/useMenu/mui/custom-menu.gif';
@@ -9,16 +9,7 @@ import customMenuLogout from '@site/static/img/guides-and-concepts/hooks/useMenu
 
 import customMobileMenu from '@site/static/img/guides-and-concepts/hooks/useMenu/mui/custom-menu-mobile.gif';
 
-`useMenu` is used to get menu items from the default sidebar. These items include a link to the dashboard page (if it exists) and links to the user defined resources (passed as children to `<Refine>`).
-This hook can also be used to build custom menus, which is also used by default sidebar to show menu items.
-
-```ts
-const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
-```
-
--   `menuItems` is a list of style agnostic menu items. Each of them has a key.
--   `selectedKey` is the key of the resource user is viewing at the moment. Its inferred from the route.
--   `defaultOpenKeys` is the array with the keys of default opened menus.
+You can create a custom `<Sider />` component and use it either by passing it to [`<Refine />`][refine] or using a [Custom Layout][muicustomlayout].
 
 ## Recreating the Default Sider Menu
 
@@ -33,6 +24,7 @@ import {
     ITreeMenu,
     useIsExistAuthentication,
     useTitle,
+    useMenu,
     useTranslate,
     useRouterContext,
 } from "@pankod/refine-core";
@@ -46,7 +38,6 @@ import {
     Collapse,
     Tooltip,
     Button,
-    useMenu,
     Title as DefaultTitle,
 } from "@pankod/refine-mui";
 import {
@@ -73,7 +64,23 @@ export const CustomMenu: React.FC = () => {
     const isExistAuthentication = useIsExistAuthentication();
     const Title = useTitle();
 
-    const [open, setOpen] = useState<{ [k: string]: any }>(defaultOpenKeys);
+    const [open, setOpen] = useState<{ [k: string]: any }>({});
+
+    const [open, setOpen] = useState<{ [k: string]: any }>({});
+
+    React.useEffect(() => {
+        setOpen((previousOpen) => {
+            const previousOpenKeys: string[] = Object.keys(previousOpen);
+            const uniqueKeys = new Set([
+                ...previousOpenKeys,
+                ...defaultOpenKeys,
+            ]);
+            const uniqueKeysRecord = Object.fromEntries(
+                Array.from(uniqueKeys.values()).map((key) => [key, true]),
+            );
+            return uniqueKeysRecord;
+        });
+    }, [defaultOpenKeys]);
 
     const RenderToTitle = Title ?? DefaultTitle;
 
@@ -332,11 +339,11 @@ const App: React.FC = () => {
 export default App;
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
+<div classname="img-container">
+    <div classname="window">
+        <div classname="control red"></div>
+        <div classname="control orange"></div>
+        <div classname="control green"></div>
     </div>
     <img src={customMenu} alt="Custom Menu" />
 </div>
@@ -405,11 +412,11 @@ export const CustomSider: React.FC = () => {
 };
 ```
 
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
+<div classname="img-container">
+    <div classname="window">
+        <div classname="control red"></div>
+        <div classname="control orange"></div>
+        <div classname="control green"></div>
     </div>
     <img src={customMenuLogout} alt="Custom Menu Logout" />
 </div>
@@ -569,52 +576,5 @@ You can further customize the `<Sider>` and its appearance.
 [Refer to Ant Design docs for more detailed information about Sider. &#8594](https://ant.design/components/layout/#Layout.Sider)
 :::
 
-## API Reference
-
-### Return values
-
-| Property        | Description                                                                             | Type                         |
-| --------------- | --------------------------------------------------------------------------------------- | ---------------------------- |
-| selectedKey     | Key of the resource the user is viewing at the moment                                   | `string`                     |
-| menuItems       | List of keys and routes and some metadata of resources and also the dashboard if exists | [`ITreeMenu[]`](#interfaces) |
-| defaultOpenKeys | Array with the keys of default opened menus.                                            | `string[]`                   |
-
-#### Interfaces
-
-```ts
-interface IResourceItem extends IResourceComponents {
-    name: string;
-    label?: string;
-    route?: string;
-    icon?: ReactNode;
-    canCreate?: boolean;
-    canEdit?: boolean;
-    canShow?: boolean;
-    canDelete?: boolean;
-    parentName?: string;
-}
-
-interface IResourceComponents {
-    list?: React.FunctionComponent<IResourceComponentsProps>;
-    create?: React.FunctionComponent<IResourceComponentsProps>;
-    edit?: React.FunctionComponent<IResourceComponentsProps>;
-    show?: React.FunctionComponent<IResourceComponentsProps>;
-}
-
-interface IResourceComponentsProps<TCrudData = any> {
-    canCreate?: boolean;
-    canEdit?: boolean;
-    canDelete?: boolean;
-    canShow?: boolean;
-    name?: string;
-    initialData?: TCrudData;
-}
-
-type IMenuItem = IResourceItem & {
-    key: string;
-};
-
-type ITreeMenu = IMenuItem & {
-    children: ITreeMenu[];
-};
-```
+[refine]: /core/components/refine-config.md
+[muicustomlayout]: /ui-frameworks/mui/customization/layout.md

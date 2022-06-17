@@ -1,5 +1,5 @@
 ---
-id: custom-layout
+id: antd-custom-layout
 title: Custom Layout
 ---
 
@@ -14,17 +14,18 @@ Both of these components can accept the listed props for customization. [`<Refin
 -   [`OffLayoutArea`][offlayoutarea]
 -   [`Title`][title]
 
-## Usage
-
-:::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
-:::
+## Creating a Custom Layout
 
 Let's look at an example of modifying the default layout to have a top menu layout.
 
 ```tsx title="/src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import { AntdLayout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+import {
+    AntdLayout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -43,7 +44,7 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
-// highlight-start
+            // highlight-start
             Layout={({ children, Footer, OffLayoutArea }) => (
                 <AntdLayout>
                     <AntdLayout.Header>
@@ -60,7 +61,7 @@ const App: React.FC = () => {
                     {OffLayoutArea && <OffLayoutArea />}
                 </AntdLayout>
             )}
-// highlight-end
+            // highlight-end
             Title={() => (
                 <Link to="/" style={{ float: "left", marginRight: "10px" }}>
                     <img src="/refine.svg" alt="Refine" />
@@ -80,7 +81,7 @@ Here, we override the [`<Title>`][title] and [`<Layout>`][layout] components. Wh
 
 So, we just provided a custom [`<Sider>`][sider]. Here's our custom sider that looks horizontal, instead of the default vertical one:
 
-```tsx  title="/src/components/sider/index.tsx"
+```tsx title="/src/components/sider/index.tsx"
 import { useTitle, useMenu } from "@pankod/refine-core";
 import { Menu } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -88,14 +89,14 @@ import routerProvider from "@pankod/refine-react-router-v6";
 const { Link } = routerProvider;
 
 export const CustomSider: React.FC = () => {
-// highlight-start
+    // highlight-start
     const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
-// highlight-end
+    // highlight-end
 
     return (
         <>
-// highlight-start
+            // highlight-start
             {Title && <Title collapsed={false} />}
             <Menu selectedKeys={[selectedKey]} mode="horizontal">
                 {menuItems.map(({ icon, route, label }) => (
@@ -104,7 +105,7 @@ export const CustomSider: React.FC = () => {
                     </Menu.Item>
                 ))}
             </Menu>
-// highlight-end
+            // highlight-end
         </>
     );
 };
@@ -127,6 +128,8 @@ Here's how it looks in the end:
 <iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/customization/topMenuLayout?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-top-menu-layout-example"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
 [refine]: /core/components/refine-config.md

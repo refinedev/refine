@@ -1,6 +1,6 @@
 ---
-id: material-ui
-title: Material UI Theme
+id: mui-custom-theme
+title: Custom Theme
 ---
 
 import withoutTheme from '@site/static/img/guides-and-concepts/theme/mui/withoutTheme.png'

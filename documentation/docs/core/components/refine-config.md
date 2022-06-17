@@ -53,7 +53,6 @@ A [`dataProvider`](/core/providers/data-provider.md) makes HTTP requests and ret
 
 To activate multiple data provider in refine, we have to pass the default key with `dataProvider` for default data provider and we can pass other data provider with any key to the `<Refine />` component.
 
-
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine-core";
 
@@ -61,13 +60,17 @@ import defaultDataProvider from "./dataProvider";
 import exampleDataProvider from "./dataProvider";
 
 const App: React.FC = () => {
-    return <Refine dataProvider={{
-        default: defaultDataProvider,
-        example: exampleDataProvider 
-    }} 
-    />;
+    return (
+        <Refine
+            dataProvider={{
+                default: defaultDataProvider,
+                example: exampleDataProvider,
+            }}
+        />
+    );
 };
 ```
+
 :::
 <br />
 
@@ -79,7 +82,7 @@ const App: React.FC = () => {
 
 **refine** needs some router functions to create resource pages, handle navigation, etc. This provider allows you to use the router library you want.
 
-[Refer to the Router Provider documentation for detailed information. &#8594][routerProvider]
+[Refer to the Router Provider documentation for detailed information. &#8594][routerprovider]
 
 ## `resources`
 
@@ -268,6 +271,7 @@ const PostList: React.FC<IResourceComponentsProps<DataType, OptionType>> = (prop
     ...
 }
 ```
+
 :::
 
 <br />
@@ -418,7 +422,6 @@ Whether to update data automatically (`auto`) or not (`manual`) if a related liv
 
 [Refer to live provider documentation for detailed information. &#8594](/core/providers/live-provider.md#livemode)
 
-
 ## `onLiveEvent`
 
 Callback to handle all live events.
@@ -494,7 +497,7 @@ The default sidebar can be customized by using refine hooks and passing custom c
 
 **refine** uses [Ant Design Sider](https://ant.design/components/layout/#Layout.Sider) component by default.
 
-[Refer to the useMenu hook documentation for detailed sidebar customization. &#8594](/ui-frameworks/antd/hooks/resource/useMenu.md)
+[Refer to the `useMenu` hook documentation for detailed sidebar customization. &#8594](/core/hooks/ui/useMenu.md)
 
 <br />
 
@@ -668,6 +671,7 @@ const App: React.FC = () => (
     />
 );
 ```
+
 ### `reactQueryDevtoolConfig`
 
 Config for customize React Query Devtools.
@@ -680,22 +684,21 @@ Config for customize React Query Devtools.
     position: "bottom-right"
 }
 ```
+
 [Refer to the Devtools documentation for detailed information. &#8594](https://react-query.tanstack.com/devtools#options)
 
-
 ```tsx {4-7}
-const App: React.FC = () => 
-    (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            reactQueryDevtoolConfig={{
-                position: "bottom-left",
-                initialIsOpen: true,
-            }}
-        >
-         ...
-        </Refine>
-    );
+const App: React.FC = () => (
+    <Refine
+        dataProvider={dataProvider(API_URL)}
+        reactQueryDevtoolConfig={{
+            position: "bottom-left",
+            initialIsOpen: true,
+        }}
+    >
+        ...
+    </Refine>
+);
 ```
 
-[routerProvider]: /core/providers/router-provider.md
+[routerprovider]: /core/providers/router-provider.md

@@ -9,11 +9,10 @@ import {
     ITreeMenu,
     useIsExistAuthentication,
     useRouterContext,
+    useMenu,
 } from "@pankod/refine-core";
 
 import { Title as DefaultTitle } from "@components";
-
-import { useMenu } from "@hooks";
 
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 const { SubMenu } = Menu;
