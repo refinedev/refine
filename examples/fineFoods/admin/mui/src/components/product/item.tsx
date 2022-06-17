@@ -83,6 +83,9 @@ export const ProductItem: React.FC<PropductItem> = ({
                                 }}
                                 size="small"
                                 startIcon={<EditIcon />}
+                                sx={{
+                                    padding: "5px 10px",
+                                }}
                             >
                                 {t("stores.buttons.edit")}
                             </Button>
