@@ -673,13 +673,13 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
 
 In this guide and in our example app, we talked about how we can build Multitenancy apps with **refine**. Developing a Multitenancy application with **refine** is quite simple. By creating a context and with the hooks that **refine** provides, you can quickly and easily produce similar applications in this logic.
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
 Username: `refine-demo`
 
 Password: `demodemo`
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/multi-tenancy/strapi?fautoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/multi-tenancy/strapi?fautoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="strapi-multi-tenant-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

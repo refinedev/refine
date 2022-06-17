@@ -2154,15 +2154,13 @@ export const DeleteIcon = (
 
 Now you can try deleting records yourself. Just click on the delete button of the record you want to delete.
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
-Our tutorial is complete. Below you'll find a live Codesandbox example displaying what we have done so far:
+Our tutorial is complete. Below you'll find a Live StackBlitz Example displaying what we have done so far:
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/tutorial/headless?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/tutorial/headless?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-headless-tutorial-example"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
 ## Next Steps
