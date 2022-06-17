@@ -39,7 +39,7 @@ We will show you how to use `useMenu` to create a simple menu for your refine ap
 
 Create a `<Layout />` component inside `src/components/Layout.tsx` with the following code;
 
-```tsx title="components/layout.tsx"
+```tsx title="src/components/layout.tsx"
 import { useMenu, useNavigation, useRouterContext } from "@pankod/refine-core";
 
 export const Layout: React.FC = ({ children }) => {
@@ -186,7 +186,7 @@ export const App: React.FC = () => {
 
 Now you can update your `<Layout/>` to support multi level rendering with following code:
 
-```tsx title="components/Layout.tsx"
+```tsx title="src/components/Layout.tsx"
 import { useMenu, useNavigation, useRouterContext } from "@pankod/refine-core";
 
 export const Layout: React.FC = ({ children }) => {
