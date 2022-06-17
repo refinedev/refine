@@ -60,31 +60,27 @@ export const CustomMenu: React.FC = () => {
     const t = useTranslate();
     const { Link } = useRouterContext();
 
-    const { menuItems, selectedKey } = useMenu();
+    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const isExistAuthentication = useIsExistAuthentication();
     const Title = useTitle();
 
-    const [open, setOpen] = useState<{ [k: string]: any }>(defaultOpenKeys);
+    const [open, setOpen] = useState<{ [k: string]: any }>({});
 
-    const defaultOpenKeys = React.useMemo(() => {
-        const keys = selectedKey.split("/").filter((x) => x !== "");
+    const [open, setOpen] = useState<{ [k: string]: any }>({});
 
-        let _defaultOpenKeys: Record<string, boolean> = {};
-        let key = "";
-
-        for (let index = 0; index < keys.length - 1; index++) {
-            if (keys[index] !== "undefined") {
-                key = key + `/${keys[index]}`;
-            }
-
-            _defaultOpenKeys = {
-                ..._defaultOpenKeys,
-                [key]: !_defaultOpenKeys[key],
-            };
-        }
-
-        return _defaultOpenKeys;
-    }, []);
+    React.useEffect(() => {
+        setOpen((previousOpen) => {
+            const previousOpenKeys: string[] = Object.keys(previousOpen);
+            const uniqueKeys = new Set([
+                ...previousOpenKeys,
+                ...defaultOpenKeys,
+            ]);
+            const uniqueKeysRecord = Object.fromEntries(
+                Array.from(uniqueKeys.values()).map((key) => [key, true]),
+            );
+            return uniqueKeysRecord;
+        });
+    }, [defaultOpenKeys]);
 
     const RenderToTitle = Title ?? DefaultTitle;
 
