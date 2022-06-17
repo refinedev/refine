@@ -1,5 +1,10 @@
-import React, { FC, ComponentType, useEffect } from "react";
-import { AuthProvider, RefineProps, ResourceProps } from "@pankod/refine-core";
+import React, { FC, ComponentType, useEffect, useState } from "react";
+import {
+    AuthProvider,
+    RefineProps,
+    ResourceProps,
+    AuditLogProvider,
+} from "@pankod/refine-core";
 import merge from "lodash.merge";
 
 import { Cloud } from "../../components";
@@ -12,8 +17,9 @@ export function withCloud(
     cloudConfig: ICloudContext,
 ): FC<RefineProps> {
     const RefineComponent: FC<RefineProps> = ({ children, ...otherProps }) => {
+        let auditLogProvider: AuditLogProvider | undefined;
         let authProvider: AuthProvider | undefined;
-        let resources: ResourceProps[] = otherProps.resources || [];
+        const [resources, setResources] = useState<ResourceProps[]>();
         const { sdk } = useSdk();
         const { generateCloudAuthProvider } = useAuthProviderWithCloudConfig();
 
@@ -26,17 +32,40 @@ export function withCloud(
                 sdk.config
                     .resources(cloudConfig.resourcesName)
                     .then((resourcesWithConfig) => {
-                        resources = merge(resources, resourcesWithConfig);
+                        setResources(
+                            merge(otherProps.resources, resourcesWithConfig),
+                        );
                     })
                     .catch((err) => console.error(`[refine cloud]`, err));
             }
         }, []);
 
+        if (!otherProps.auditLogProvider) {
+            auditLogProvider = {
+                create: async ({ author, ...params }) =>
+                    await sdk.log.create(params),
+                get: async ({ resource, action, meta, author }) =>
+                    await sdk.log.get({
+                        resource,
+                        action,
+                        meta,
+                        author,
+                    }),
+                update: async ({ id, name }) =>
+                    sdk.log.update(id, {
+                        name,
+                    }),
+            };
+        }
+
         return (
             <Refine
                 {...otherProps}
-                resources={resources}
-                authProvider={authProvider}
+                resources={resources || otherProps.resources}
+                authProvider={authProvider || otherProps.authProvider}
+                auditLogProvider={
+                    auditLogProvider || otherProps.auditLogProvider
+                }
             >
                 <Cloud />
                 {children}
