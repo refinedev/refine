@@ -1,5 +1,16 @@
 # @pankod/refine-mui
 
+## 3.30.3
+
+### Patch Changes
+
+-   [#1977](https://github.com/pankod/refine/pull/1977) [`92f1d1c55f`](https://github.com/pankod/refine/commit/92f1d1c55f699e3087c47a0e1360c0cf11ce0f09) Thanks [@ozkalai](https://github.com/ozkalai)! - Fix styling for buttons in loading state
+
+*   [#1976](https://github.com/pankod/refine/pull/1976) [`96955c653f`](https://github.com/pankod/refine/commit/96955c653f4b13d8a6222f200b1db6408b41d85e) Thanks [@ozkalai](https://github.com/ozkalai)! - Fix the spacing of header and footer actions in crud components and updated their snapshot tests.
+
+*   Updated dependencies [[`206540971b`](https://github.com/pankod/refine/commit/206540971b12f3c63765aecb8aec6d506733a569)]:
+    -   @pankod/refine-core@3.29.1
+
 ## 3.30.2
 
 ### Patch Changes
