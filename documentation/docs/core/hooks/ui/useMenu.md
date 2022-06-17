@@ -27,9 +27,9 @@ const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
 
 If you are using [`@pankod/refine-antd`](/docs/ui-frameworks/antd/tutorial/) or [`@pankod/refine-mui`](/docs/ui-frameworks/mui/tutorial/) as a UI framework integration, you can find out more info about how their `<Sider/>` components are created and how to create a custom one by following their guides.
 
-[Ant Design > Customization > Custom Sider &#8594](/docs/ui-frameworks/antd/customization/sider/)
+[Ant Design > Customization > Custom Sider &#8594](/docs/ui-frameworks/antd/customization/antd-custom-sider/)
 
-[Material UI > Customization > Custom Sider &#8594](/docs/ui-frameworks/mui/customization/sider/)
+[Material UI > Customization > Custom Sider &#8594](/docs/ui-frameworks/mui/customization/mui-custom-sider/)
 
 :::
 
