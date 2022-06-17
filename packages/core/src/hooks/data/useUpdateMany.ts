@@ -296,7 +296,14 @@ export const useUpdateMany = <
             },
             onSuccess: (
                 data,
-                { ids, resource, successNotification, dataProviderName },
+                {
+                    ids,
+                    resource,
+                    successNotification,
+                    dataProviderName,
+                    values,
+                    metaData,
+                },
                 context,
             ) => {
                 const resourceSingular = pluralize.singular(resource);
@@ -329,21 +336,27 @@ export const useUpdateMany = <
                     date: new Date(),
                 });
 
-                // TODO: get previous data from context
-                // const previousData = ids.map((id) => {
-                //     return queryClient.getQueryData<
-                //         UpdateManyResponse<TData>
-                //     >(context.queryKey.detail(id))?.data;
-                // });
+                let previousData;
+                if (context) {
+                    previousData = ids.map((id) => {
+                        return queryClient.getQueryData<
+                            UpdateManyResponse<TData>
+                        >(context.queryKey.detail(id))?.data;
+                    });
+                }
+
+                const { fields, operation, variables, ...rest } =
+                    metaData || {};
 
                 log?.({
                     action: "update",
                     resource,
-                    data: data.data,
-                    previousData: {},
+                    data: values,
+                    previousData,
                     meta: {
                         ids,
                         dataProviderName,
+                        ...rest,
                     },
                 });
             },

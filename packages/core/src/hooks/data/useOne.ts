@@ -15,7 +15,6 @@ import {
     useResourceSubscription,
     useHandleNotification,
     useDataProvider,
-    useLog,
 } from "@hooks";
 import { queryKeys } from "@definitions";
 
@@ -62,7 +61,6 @@ export const useOne = <
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const handleNotification = useHandleNotification();
-    const { log } = useLog();
 
     useResourceSubscription({
         resource,
@@ -82,17 +80,6 @@ export const useOne = <
             onSuccess: (data) => {
                 queryOptions?.onSuccess?.(data);
                 handleNotification(successNotification);
-
-                log?.({
-                    action: "getOne",
-                    resource,
-                    data: data.data,
-                    meta: {
-                        id,
-                        metaData,
-                        dataProviderName,
-                    },
-                });
             },
             onError: (err: TError) => {
                 checkError(err);

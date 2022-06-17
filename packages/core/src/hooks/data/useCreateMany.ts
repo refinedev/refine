@@ -86,6 +86,8 @@ export const useCreateMany = <
                     successNotification,
                     dataProviderName,
                     invalidates = ["list", "many"],
+                    values,
+                    metaData,
                 },
             ) => {
                 const resourcePlural = pluralize.plural(resource);
@@ -112,23 +114,30 @@ export const useCreateMany = <
                     invalidates,
                 });
 
+                const ids = response?.data
+                    .filter((item) => item?.id !== undefined)
+                    .map((item) => item.id!);
+
                 publish?.({
                     channel: `resources/${resource}`,
                     type: "created",
                     payload: {
-                        ids: response?.data
-                            .filter((item) => item?.id !== undefined)
-                            .map((item) => item.id!),
+                        ids,
                     },
                     date: new Date(),
                 });
 
+                const { fields, operation, variables, ...rest } =
+                    metaData || {};
+
                 log?.({
                     action: "create",
                     resource,
-                    data: response.data,
+                    data: values,
                     meta: {
                         dataProviderName,
+                        ids,
+                        ...rest,
                     },
                 });
             },

@@ -247,7 +247,13 @@ export const useDelete = <
             },
             onSuccess: (
                 _data,
-                { id, resource, successNotification, dataProviderName },
+                {
+                    id,
+                    resource,
+                    successNotification,
+                    dataProviderName,
+                    metaData,
+                },
                 context,
             ) => {
                 const resourceSingular = pluralize.singular(resource);
@@ -280,12 +286,16 @@ export const useDelete = <
                     date: new Date(),
                 });
 
+                const { fields, operation, variables, ...rest } =
+                    metaData || {};
+
                 log?.({
                     action: "delete",
                     resource,
                     meta: {
                         id,
                         dataProviderName,
+                        ...rest,
                     },
                 });
 

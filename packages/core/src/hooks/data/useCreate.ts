@@ -91,6 +91,8 @@ export const useCreate = <
                     successNotification: successNotificationFromProp,
                     dataProviderName,
                     invalidates = ["list", "many"],
+                    values,
+                    metaData,
                 },
             ) => {
                 const resourceSingular = pluralize.singular(resource);
@@ -126,13 +128,17 @@ export const useCreate = <
                     date: new Date(),
                 });
 
+                const { fields, operation, variables, ...rest } =
+                    metaData || {};
+
                 log?.({
                     action: "create",
                     resource,
-                    data: data.data,
+                    data: values,
                     meta: {
                         dataProviderName,
                         id: data?.data?.id ?? undefined,
+                        ...rest,
                     },
                 });
             },
