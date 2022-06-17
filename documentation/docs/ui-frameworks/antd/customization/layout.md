@@ -121,11 +121,11 @@ By default, [`<Sider>`][sider] is responsible for rendering [`<Title>`][title]. 
 This example demonstrated how to configure a global layout. To learn how to use global layout in custom pages and make local modifications per page, [refer to the `<LayoutWrapper>` docs. &#8594][layoutwrapper]
 :::
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
 Here's how it looks in the end:
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/customization/topMenuLayout?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/customization/topMenuLayout?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-top-menu-layout-example"
     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
