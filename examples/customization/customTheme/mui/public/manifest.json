@@ -1,6 +1,6 @@
 {
-    "short_name": "Material UI base example",
-    "name": "Material UI base example",
+    "short_name": "Material UI custom theme example",
+    "name": "Material UI custom theme example",
     "icons": [
         {
             "src": "favicon.ico",
