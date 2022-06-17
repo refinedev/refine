@@ -126,7 +126,7 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                         />
                                         <input
                                             id="file"
-                                            {...register("Avatar")}
+                                            {...register("avatar")}
                                             type="hidden"
                                         />
                                         <Avatar
@@ -232,7 +232,7 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                                     </FormHelperText>
                                                 )}
                                             </FormControl>
-                                            <FormControl>
+                                            <FormControl fullWidth>
                                                 <FormLabel
                                                     required
                                                     sx={{
@@ -246,30 +246,46 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                                         "couriers.fields.gender.label",
                                                     )}
                                                 </FormLabel>
-                                                <TextField
-                                                    select
-                                                    {...register("gender", {
+                                                <Controller
+                                                    control={control}
+                                                    name="gender"
+                                                    rules={{
                                                         required: t(
                                                             "errors.required.field",
                                                             { field: "Gender" },
                                                         ),
-                                                    })}
-                                                    size="small"
-                                                    margin="none"
-                                                    variant="outlined"
-                                                    defaultValue=""
-                                                >
-                                                    <MenuItem value="Male">
-                                                        {t(
-                                                            "couriers.fields.gender.male",
-                                                        )}
-                                                    </MenuItem>
-                                                    <MenuItem value="Female">
-                                                        {t(
-                                                            "couriers.fields.gender.female",
-                                                        )}
-                                                    </MenuItem>
-                                                </TextField>
+                                                    }}
+                                                    render={({ field }) => (
+                                                        <Autocomplete
+                                                            size="small"
+                                                            {...field}
+                                                            onChange={(
+                                                                _,
+                                                                value,
+                                                            ) => {
+                                                                field.onChange(
+                                                                    value,
+                                                                );
+                                                            }}
+                                                            options={[
+                                                                "Male",
+                                                                "Female",
+                                                            ]}
+                                                            renderInput={(
+                                                                params,
+                                                            ) => (
+                                                                <TextField
+                                                                    {...params}
+                                                                    variant="outlined"
+                                                                    error={
+                                                                        !!errors.gender
+                                                                    }
+                                                                    required
+                                                                />
+                                                            )}
+                                                        />
+                                                    )}
+                                                />
                                                 {errors.gender && (
                                                     <FormHelperText error>
                                                         {errors.gender.message}

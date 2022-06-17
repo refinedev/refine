@@ -503,7 +503,6 @@ module.exports = {
                         "examples/auth-provider/otpLogin",
                     ],
                 },
-                "examples/breadcrumb/useBreadcrumb",
                 "examples/antd-calendar-example",
                 {
                     type: "category",

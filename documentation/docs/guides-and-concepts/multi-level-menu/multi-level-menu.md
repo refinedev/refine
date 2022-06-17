@@ -155,15 +155,13 @@ This gives you more control over the side menu, and allows you to customize it t
 
 <br/>
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
 You can review the example to examine the multi-level menu concept in more detail.
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/multi-level-menu)
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/multi-level-menu?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/multi-level-menu?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-multi-level-menu-example"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>

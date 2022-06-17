@@ -24,6 +24,7 @@ import {
     CardContentProps,
     CardActionsProps,
     Typography,
+    Box,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
@@ -116,7 +117,7 @@ export const Edit: React.FC<EditProps> = ({
                     </IconButton>
                 }
                 action={
-                    <>
+                    <Box display="flex" gap="16px">
                         {!recordItemId && (
                             <ListButton
                                 data-testid="edit-list-button"
@@ -127,13 +128,18 @@ export const Edit: React.FC<EditProps> = ({
                             resourceNameOrRouteName={resource.route}
                             recordItemId={id}
                         />
-                    </>
+                    </Box>
                 }
                 {...cardHeaderProps}
             />
             <CardContent {...cardContentProps}>{children}</CardContent>
             <CardActions
-                sx={{ display: "flex", justifyContent: "flex-end" }}
+                sx={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    gap: "16px",
+                    padding: "16px",
+                }}
                 {...cardActionsProps}
             >
                 {actionButtons ?? (
