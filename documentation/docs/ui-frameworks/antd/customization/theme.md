@@ -1,5 +1,5 @@
 ---
-id: antd-custom-theme
+id: mui-custom-theme
 title: Custom Theme
 ---
 
