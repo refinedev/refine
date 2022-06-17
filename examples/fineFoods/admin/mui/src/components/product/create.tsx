@@ -233,6 +233,7 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                             ),
                                         })}
                                         multiline
+                                        minRows={5}
                                         maxRows={5}
                                     />
                                     {errors.description && (
@@ -246,7 +247,6 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                         {t("products.fields.price")}
                                     </FormLabel>
                                     <OutlinedInput
-                                        type="number"
                                         id="price"
                                         {...register("price", {
                                             required: t(
@@ -254,6 +254,7 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                                 { field: "Price" },
                                             ),
                                         })}
+                                        type="number"
                                         style={{
                                             width: "150px",
                                             height: "40px",
