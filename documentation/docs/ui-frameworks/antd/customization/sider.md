@@ -298,4 +298,4 @@ You can further customize the Sider and its appearance.
 :::
 
 [refine]: /core/components/refine-config.md
-[antdcustomlayout]: /docs/ui-frameworks/antd/customization/layout
+[antdcustomlayout]: /ui-frameworks/antd/customization/layout.md

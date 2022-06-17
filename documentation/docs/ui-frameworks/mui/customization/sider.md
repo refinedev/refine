@@ -577,4 +577,4 @@ You can further customize the `<Sider>` and its appearance.
 :::
 
 [refine]: /core/components/refine-config.md
-[muicustomlayout]: /docs/ui-frameworks/mui/customization/layout
+[muicustomlayout]: /ui-frameworks/mui/customization/layout.md
