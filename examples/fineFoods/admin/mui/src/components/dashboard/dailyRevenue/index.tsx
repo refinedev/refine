@@ -66,7 +66,7 @@ export const DailyRevenue: React.FC = () => {
                 </Stack>
             </Stack>
             <Box sx={{ height: "130px" }}>
-                <ResponsiveContainer>
+                <ResponsiveContainer width="99%">
                     <LineChart data={data?.data.data}>
                         <Line
                             type="natural"
