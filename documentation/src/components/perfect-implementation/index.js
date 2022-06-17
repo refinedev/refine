@@ -16,7 +16,7 @@ export const PerfectImplementation = () => {
                     )}
                 >
                     <iframe
-                        src="https://stackblitz.com/github/pankod/refine/tree/master/examples/tutorial/antd?embed=1&hideExplorer=1&theme=dark&preset=node"
+                        src="https://stackblitz.com/github/pankod/refine/tree/master/examples/tutorial/antd?embed=1&view=preview&theme=dark&preset=node"
                         style={{
                             width: "100%",
                             height: "70vh",
