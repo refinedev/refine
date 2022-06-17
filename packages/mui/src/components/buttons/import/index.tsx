@@ -38,6 +38,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
                 startIcon={
                     !hideText && <ImportExportOutlinedIcon {...svgIconProps} />
                 }
+                loadingPosition={hideText ? "center" : "start"}
                 loading={loading}
                 sx={{ minWidth: 0, ...sx }}
                 {...restProps}

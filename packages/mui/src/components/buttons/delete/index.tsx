@@ -117,11 +117,14 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     return (
         <div>
             <LoadingButton
+                variant="outlined"
+                color="error"
                 onClick={handleClickOpen}
                 disabled={data?.can === false}
                 loading={id === variables?.id && isLoading}
                 startIcon={!hideText && <DeleteOutlineIcon {...svgIconProps} />}
                 sx={{ minWidth: 0, ...sx }}
+                loadingPosition={hideText ? "center" : "start"}
                 {...restProps}
             >
                 {hideText ? (
@@ -140,12 +143,16 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                     {confirmTitle ??
                         translate("buttons.confirm", "Are you sure?")}
                 </DialogTitle>
-                <DialogActions>
+                <DialogActions sx={{ justifyContent: "center" }}>
                     <Button onClick={handleClose}>
                         {confirmCancelText ??
                             translate("buttons.cancel", "Cancel")}
                     </Button>
-                    <Button onClick={handleCloseOnConfirm} autoFocus>
+                    <Button
+                        color="error"
+                        onClick={handleCloseOnConfirm}
+                        autoFocus
+                    >
                         {confirmOkText ?? translate("buttons.delete", "Delete")}
                     </Button>
                 </DialogActions>
