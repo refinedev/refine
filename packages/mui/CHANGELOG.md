@@ -1,5 +1,16 @@
 # @pankod/refine-mui
 
+## 3.30.4
+
+### Patch Changes
+
+-   Fix styling for buttons in loading state
+
+*   Fix the spacing of header and footer actions in crud components and updated their snapshot tests.
+
+*   Updated dependencies []:
+    -   @pankod/refine-core@3.29.2
+
 ## 3.30.3
 
 ### Patch Changes

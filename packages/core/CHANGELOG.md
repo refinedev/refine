@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.29.2
+
+### Patch Changes
+
+-   Fix hook-inside-hook call in `notificationProvider` setup at `<Refine/>`
+
 ## 3.29.1
 
 ### Patch Changes
