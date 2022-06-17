@@ -105,7 +105,7 @@ export const Show: React.FC<ShowProps> = ({
                     </IconButton>
                 }
                 action={
-                    <Box sx={{ display: "flex" }}>
+                    <Box display="flex" gap="16px">
                         {!recordItemId && (
                             <ListButton
                                 data-testid="show-list-button"
@@ -139,7 +139,7 @@ export const Show: React.FC<ShowProps> = ({
                 {...cardHeaderProps}
             />
             <CardContent {...cardContentProps}>{children}</CardContent>
-            <CardActions {...cardActionsProps}>
+            <CardActions sx={{ padding: "16px" }} {...cardActionsProps}>
                 {actionButtons ? [actionButtons] : undefined}
             </CardActions>
         </Card>

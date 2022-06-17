@@ -123,6 +123,11 @@ export const Refine: React.FC<RefineProps> = ({
         },
     });
 
+    const notificationProviderContextValues =
+        typeof notificationProvider === "function"
+            ? notificationProvider()
+            : notificationProvider ?? {};
+
     const resources: IResourceItem[] = [];
 
     resourcesFromProps?.map((resource) => {
@@ -152,12 +157,6 @@ export const Refine: React.FC<RefineProps> = ({
     }
 
     const { RouterComponent } = routerProvider;
-
-    const notificationProviderContextValues = React.useMemo(() => {
-        return typeof notificationProvider === "function"
-            ? notificationProvider()
-            : notificationProvider ?? {};
-    }, [notificationProvider]);
 
     return (
         <QueryClientProvider client={queryClient}>

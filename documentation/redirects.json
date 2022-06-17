@@ -709,14 +709,6 @@
             "to": "/docs/examples/ui/useModal/"
         },
         {
-            "from": "/docs/next/examples/upload/base64Upload/",
-            "to": "/docs/examples/upload/base64Upload/"
-        },
-        {
-            "from": "/docs/next/examples/upload/multipartUpload/",
-            "to": "/docs/examples/upload/multipartUpload/"
-        },
-        {
             "from": "/docs/next/examples/web3/web3Login/",
             "to": "/docs/examples/web3/web3Login/"
         },
@@ -805,8 +797,8 @@
             "to": "/docs/guides-and-concepts/ssr-nextjs/"
         },
         {
-            "from": "/docs/next/guides-and-concepts/theme/",
-            "to": "/docs/guides-and-concepts/theme/"
+            "from": "/docs/guides-and-concepts/theme/",
+            "to": "/docs/guides-and-concepts/theme/ant-design/"
         },
         {
             "from": "/docs/next/guides-and-concepts/upload/base64-upload/",
@@ -1051,6 +1043,14 @@
         {
             "from": "/docs/examples/react-table/react-table/",
             "to": "/docs/examples/table/react-table/react-table/"
+        },
+        {
+            "from": "/docs/examples/upload/base64Upload/",
+            "to": "/docs/examples/upload/antd/base64/"
+        },
+        {
+            "from": "/docs/examples/upload/multipartUpload/",
+            "to": "/docs/examples/upload/antd/multipart/"
         }
     ]
 }

@@ -1,6 +1,6 @@
 ---
-id: theme
-title: Theme
+id: ant-design
+title: Ant Design Theme
 ---
 
 Ant Design allows you to customize many of its [less variables](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less). To be able to theme Ant Design, instead of importing Ant Design's compiled css files, you should import its less files and override the values of _less variables_ contained within these files. You should configure your bundler for handling less files to override its variables.
@@ -78,8 +78,8 @@ module.exports = {
 Create a less file and import antd styles from `node_modules/antd`:
 
 ```less title="/styles/antd.less"
-@import '~antd/lib/style/themes/default.less';
-@import '~antd/dist/antd.less';
+@import "~antd/lib/style/themes/default.less";
+@import "~antd/dist/antd.less";
 ```
 
 And import the `less` file in `App.tsx`:
@@ -124,8 +124,8 @@ There are two approaches to override variables.
 You can just change variables values in `less` files. Add these contents to your `/styles/antd.less` file:
 
 ```less title="/styles/antd.less" {0-1, 7}
-@import '~antd/lib/style/themes/default.less';
-@import '~antd/dist/antd.less';
+@import "~antd/lib/style/themes/default.less";
+@import "~antd/dist/antd.less";
 
 // There are some major variables below,
 // all less variables could be found in
@@ -148,7 +148,7 @@ module.exports = {
             options: {
                 lessLoaderOptions: {
                     lessOptions: {
-// highlight-next-line
+                        // highlight-next-line
                         modifyVars: { "@primary-color": "#1DA57A" },
                         javascriptEnabled: true,
                     },
@@ -161,13 +161,11 @@ module.exports = {
 
 All variable overrides configured in `lessOptions.modifyVars` always have higher precedence than the overrides in `less` files.
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/customTheme?autoresize=1&fontsize=14&theme=dark&view=editor"
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/customTheme/?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-custom-theme-example"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
 [superplate]: https://github.com/pankod/superplate

@@ -31,7 +31,7 @@ Since we will need `apiKey` from Ably, you must first register and get the key f
 
 The app will have one resource: **posts** with [CRUD pages(list, create, edit and show) similar to base example](https://github.com/pankod/refine/tree/master/examples/base/src/pages/posts).
 
-[You can also refer to codesandbox to see final state of the app &#8594](#live-condesandbox-example)
+[You can also refer to StackBlitz to see final state of the app &#8594](#live-stackblitz-example)
 
 ## Adding `liveProvider`
 
@@ -178,7 +178,7 @@ export const PostEdit: React.FC = () => {
 
 We can also implement similar thing in show page.
 
-[Refer to the codesandbox example for detailed information. &#8594](#live-codesandbox-example)
+[Refer to the StackBlitz example for detailed information. &#8594](#live-stackblitz-example)
 :::
 
 <br/>
@@ -442,9 +442,7 @@ useSubscription({
 
 ## Live Condesandbox Example
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/ably?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/ably/?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-ably-example"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>

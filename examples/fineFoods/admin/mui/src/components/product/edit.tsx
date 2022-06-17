@@ -232,6 +232,7 @@ export const EditProduct: React.FC<UseModalFormReturnType> = ({
                                             ),
                                         })}
                                         multiline
+                                        minRows={5}
                                         maxRows={5}
                                     />
                                     {errors.description && (
@@ -245,7 +246,6 @@ export const EditProduct: React.FC<UseModalFormReturnType> = ({
                                         {t("products.fields.price")}
                                     </FormLabel>
                                     <OutlinedInput
-                                        type="number"
                                         id="price"
                                         {...register("price", {
                                             required: t(
@@ -257,6 +257,7 @@ export const EditProduct: React.FC<UseModalFormReturnType> = ({
                                             width: "150px",
                                             height: "40px",
                                         }}
+                                        type="number"
                                         startAdornment={
                                             <InputAdornment position="start">
                                                 $

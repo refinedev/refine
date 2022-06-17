@@ -30,6 +30,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
         <LoadingButton
             startIcon={!hideText && <SaveOutlinedIcon {...svgIconProps} />}
             sx={{ minWidth: 0, ...sx }}
+            variant="contained"
             {...restProps}
         >
             {hideText ? (

@@ -446,7 +446,14 @@ module.exports = {
                 },
 
                 "guides-and-concepts/ssr-nextjs",
-                "guides-and-concepts/theme",
+                {
+                    type: "category",
+                    label: "Theme",
+                    items: [
+                        "guides-and-concepts/theme/ant-design",
+                        "guides-and-concepts/theme/material-ui",
+                    ],
+                },
                 {
                     type: "category",
                     label: "Upload",
@@ -487,7 +494,6 @@ module.exports = {
                         "examples/auth-provider/otpLogin",
                     ],
                 },
-                "examples/breadcrumb/useBreadcrumb",
                 "examples/antd-calendar-example",
                 {
                     type: "category",
@@ -647,7 +653,10 @@ module.exports = {
                             label: "Material UI",
                             items: [
                                 "examples/table/mui/advanced",
+                                "examples/table/mui/filter",
                                 "examples/table/mui/useDataGrid",
+                                "examples/table/mui/useDeleteMany",
+                                "examples/table/mui/useUpdateMany",
                             ],
                         },
                         {
@@ -670,8 +679,22 @@ module.exports = {
                     type: "category",
                     label: "Upload",
                     items: [
-                        "examples/upload/base64Upload",
-                        "examples/upload/multipartUpload",
+                        {
+                            type: "category",
+                            label: "Antd Design",
+                            items: [
+                                "examples/upload/antd/base64",
+                                "examples/upload/antd/multipart",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Material UI",
+                            items: [
+                                "examples/upload/mui/base64",
+                                "examples/upload/mui/multipart",
+                            ],
+                        },
                     ],
                 },
                 {

@@ -128,7 +128,6 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                 {...dataGridProps}
                 autoHeight
                 density="comfortable"
-                rowsPerPageOptions={[10]}
                 sx={{
                     "& .MuiDataGrid-cell:hover": {
                         cursor: "pointer",
