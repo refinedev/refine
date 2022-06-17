@@ -92,9 +92,43 @@ export const useMenu: () => useMenuReturnType = () => {
         [treeMenuItems],
     );
 
+    const crawlNestedKeys = React.useCallback(
+        (
+            currentKey: string,
+            currentResources: typeof resources,
+            isParent = false,
+        ): string[] => {
+            const currentElement = currentResources.find((el) =>
+                isParent ? el.name === currentKey : el.route === currentKey,
+            );
+
+            if (currentElement) {
+                const keysArray: string[] = [];
+
+                if (isParent && currentElement.route) {
+                    keysArray.unshift(...[currentElement.route]);
+                }
+
+                if (currentElement.parentName) {
+                    keysArray.unshift(
+                        ...crawlNestedKeys(
+                            currentElement.parentName,
+                            currentResources,
+                            true,
+                        ),
+                    );
+                }
+                return keysArray;
+            }
+
+            return [];
+        },
+        [],
+    );
+
     const defaultOpenKeys = React.useMemo(
-        () => selectedKey.split("/").filter(Boolean),
-        [selectedKey],
+        () => crawlNestedKeys(selectedKey, treeMenuItems),
+        [selectedKey, treeMenuItems],
     );
 
     const values = React.useMemo(() => {
