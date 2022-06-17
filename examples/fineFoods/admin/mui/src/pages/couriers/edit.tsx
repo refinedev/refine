@@ -5,6 +5,7 @@ import {
     IResourceComponentsProps,
     useTranslate,
     useApiUrl,
+    HttpError,
 } from "@pankod/refine-core";
 import {
     Avatar,
@@ -22,7 +23,6 @@ import {
     StepButton,
     TextField,
     Typography,
-    MenuItem,
     useAutocomplete,
     Autocomplete,
     Input,
@@ -78,7 +78,7 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
 
         const { name, size, type, lastModified } = file;
 
-        const imagePaylod = [
+        const imagePayload = [
             {
                 name,
                 size,
@@ -88,7 +88,9 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
             },
         ];
 
-        setValue("avatar", imagePaylod, { shouldDirty: true });
+        setValue("avatar", imagePayload, {
+            shouldDirty: true,
+        });
     };
 
     const { autocompleteProps } = useAutocomplete<IStore>({
@@ -227,7 +229,7 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                                     </FormHelperText>
                                                 )}
                                             </FormControl>
-                                            <FormControl>
+                                            <FormControl fullWidth>
                                                 <FormLabel
                                                     required
                                                     sx={{
@@ -241,29 +243,47 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                                         "couriers.fields.gender.label",
                                                     )}
                                                 </FormLabel>
-                                                <TextField
-                                                    select
-                                                    {...register("gender", {
+                                                <Controller
+                                                    control={control}
+                                                    name="gender"
+                                                    rules={{
                                                         required: t(
                                                             "errors.required.field",
                                                             { field: "Gender" },
                                                         ),
-                                                    })}
-                                                    size="small"
-                                                    margin="none"
-                                                    variant="outlined"
-                                                >
-                                                    <MenuItem value="Male">
-                                                        {t(
-                                                            "couriers.fields.gender.male",
-                                                        )}
-                                                    </MenuItem>
-                                                    <MenuItem value="Female">
-                                                        {t(
-                                                            "couriers.fields.gender.female",
-                                                        )}
-                                                    </MenuItem>
-                                                </TextField>
+                                                    }}
+                                                    defaultValue=""
+                                                    render={({ field }) => (
+                                                        <Autocomplete
+                                                            size="small"
+                                                            {...field}
+                                                            onChange={(
+                                                                _,
+                                                                value,
+                                                            ) => {
+                                                                field.onChange(
+                                                                    value,
+                                                                );
+                                                            }}
+                                                            options={[
+                                                                "Male",
+                                                                "Female",
+                                                            ]}
+                                                            renderInput={(
+                                                                params,
+                                                            ) => (
+                                                                <TextField
+                                                                    {...params}
+                                                                    variant="outlined"
+                                                                    error={
+                                                                        !!errors.gender
+                                                                    }
+                                                                    required
+                                                                />
+                                                            )}
+                                                        />
+                                                    )}
+                                                />
                                                 {errors.gender && (
                                                     <FormHelperText error>
                                                         {errors.gender.message}
@@ -385,7 +405,7 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                         />
                                         {errors.address && (
                                             <FormHelperText error>
-                                                {errors.address.text.message}
+                                                {errors.address.message}
                                             </FormHelperText>
                                         )}
                                     </FormControl>
@@ -418,7 +438,7 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                             rules={{
                                                 required: "Store required",
                                             }}
-                                            defaultValue=""
+                                            defaultValue={" "}
                                             render={({ field }) => (
                                                 <Autocomplete
                                                     size="small"
@@ -444,7 +464,7 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                                             {...params}
                                                             variant="outlined"
                                                             error={
-                                                                !!errors.item
+                                                                !!errors.store
                                                             }
                                                             required
                                                         />
