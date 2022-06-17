@@ -1,5 +1,5 @@
 ---
-id: mui-custom-layout
+id: antd-custom-layout
 title: Custom Layout
 ---
 

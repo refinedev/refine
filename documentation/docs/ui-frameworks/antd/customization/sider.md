@@ -1,5 +1,5 @@
 ---
-id: mui-custom-sider
+id: antd-custom-sider
 title: Custom Sider
 ---
 
