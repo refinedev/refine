@@ -29,7 +29,7 @@ export const CustomSider: React.FC = () => {
             if (children.length > 0) {
                 return (
                     <SubMenu
-                        key={name}
+                        key={route}
                         icon={icon ?? <Icons.UnorderedListOutlined />}
                         title={label}
                     >
@@ -48,7 +48,7 @@ export const CustomSider: React.FC = () => {
                     action="list"
                 >
                     <Menu.Item
-                        key={selectedKey}
+                        key={route}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
@@ -79,10 +79,7 @@ export const CustomSider: React.FC = () => {
         >
             {Title && <Title collapsed={collapsed} />}
             <Menu selectedKeys={[selectedKey]} mode="inline">
-                <Menu.Item
-                    key={selectedKey}
-                    icon={<Icons.AppstoreAddOutlined />}
-                >
+                <Menu.Item key={route} icon={<Icons.AppstoreAddOutlined />}>
                     <StoreSelect
                         onSelect={() => {
                             setCollapsed(true);

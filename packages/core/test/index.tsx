@@ -30,6 +30,7 @@ import {
     MockAccessControlProvider,
     MockLiveProvider,
 } from "@test";
+import { routeGenerator } from "../src";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -57,7 +58,7 @@ export interface ITestWrapperProps {
 export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     authProvider,
     dataProvider,
-    resources,
+    resources: resourcesFromProps,
     i18nProvider,
     notificationProvider,
     accessControlProvider,
@@ -66,6 +67,28 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     liveProvider,
     auditLogProvider,
 }) => {
+    const resources: IResourceItem[] = [];
+    resourcesFromProps?.map((resource) => {
+        resources.push({
+            key: resource.key,
+            name: resource.name,
+            label: resource.options?.label,
+            icon: resource.icon,
+            route:
+                resource.options?.route ??
+                routeGenerator(resource, resourcesFromProps),
+            canCreate: !!resource.create,
+            canEdit: !!resource.edit,
+            canShow: !!resource.show,
+            canDelete: resource.canDelete,
+            create: resource.create,
+            show: resource.show,
+            list: resource.list,
+            edit: resource.edit,
+            options: resource.options,
+            parentName: resource.parentName,
+        });
+    });
     // eslint-disable-next-line react/display-name
     return ({ children }): React.ReactElement => {
         const withResource = resources ? (
