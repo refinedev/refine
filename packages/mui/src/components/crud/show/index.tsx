@@ -140,7 +140,7 @@ export const Show: React.FC<ShowProps> = ({
             />
             <CardContent {...cardContentProps}>{children}</CardContent>
             <CardActions sx={{ padding: "16px" }} {...cardActionsProps}>
-                {actionButtons ? [actionButtons] : undefined}
+                {actionButtons ? actionButtons : null}
             </CardActions>
         </Card>
     );
