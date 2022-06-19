@@ -271,6 +271,7 @@ export const Header: React.FC = () => {
                                             <Stack
                                                 direction="row"
                                                 alignItems="center"
+                                                justifyContent="center"
                                             >
                                                 <Avatar
                                                     sx={{

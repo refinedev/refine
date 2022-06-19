@@ -40,7 +40,7 @@ Hooks and components that support `MetaDataQuery`:
 ## Setup
 
 ```bash
-npm i @pankod/refine-core @pankod/refine-antd @pankod/refine-strapi-graphql graphql-request
+npm i @pankod/refine-core @pankod/refine-antd @pankod/refine-strapi-graphql graphql-request@3
 ```
 
 :::caution

@@ -16,7 +16,6 @@ import {
     Typography,
     FormLabel,
     Stack,
-    useTheme,
     Box,
     IconButton,
     FormControl,
@@ -44,8 +43,6 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
     saveButtonProps,
 }) => {
     const t = useTranslate();
-
-    const theme = useTheme();
 
     const apiUrl = useApiUrl();
 
@@ -93,15 +90,8 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
 
     return (
         <Drawer
-            sx={{
-                "& .MuiDrawer-paper": {
-                    [theme.breakpoints.down("sm")]: {
-                        width: " 100%",
-                    },
-                    width: "500px",
-                },
-                zIndex: "1301",
-            }}
+            sx={{ zIndex: "1301" }}
+            PaperProps={{ sx: { width: { sm: "100%", md: 500 } } }}
             open={visible}
             onClose={close}
             anchor="right"
@@ -243,6 +233,7 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                             ),
                                         })}
                                         multiline
+                                        minRows={5}
                                         maxRows={5}
                                     />
                                     {errors.description && (
@@ -256,7 +247,6 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                         {t("products.fields.price")}
                                     </FormLabel>
                                     <OutlinedInput
-                                        type="number"
                                         id="price"
                                         {...register("price", {
                                             required: t(
@@ -264,6 +254,7 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                                 { field: "Price" },
                                             ),
                                         })}
+                                        type="number"
                                         style={{
                                             width: "150px",
                                             height: "40px",

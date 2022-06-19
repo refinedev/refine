@@ -6,8 +6,7 @@ import {
     Layout,
     GlobalStyles,
     CssBaseline,
-    styled,
-    SnackbarProvider,
+    RefineSnackbarProvider,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -40,21 +39,6 @@ import { ColorModeContextProvider } from "contexts";
 import { Header, Title } from "components";
 import { BikeWhiteIcon } from "components/icons/bike-white";
 
-const StyledSnackbarProvider = styled(SnackbarProvider)`
-    &.SnackbarItem-contentRoot {
-        background-color: ${(props) => props.theme.palette.background.default};
-        color: ${(props) => props.theme.palette.primary.main};
-    }
-    &.SnackbarItem-variantSuccess {
-        background-color: ${(props) => props.theme.palette.primary.main};
-        color: ${(props) => props.theme.palette.primary.contrastText};
-    }
-    &.SnackbarItem-variantError {
-        background-color: ${(props) => props.theme.palette.error.main};
-        color: ${(props) => props.theme.palette.common.white};
-    }
-`;
-
 const App: React.FC = () => {
     const { t, i18n } = useTranslation();
     const i18nProvider = {
@@ -64,78 +48,74 @@ const App: React.FC = () => {
     };
 
     return (
-        <>
-            <ColorModeContextProvider>
-                <StyledSnackbarProvider>
-                    <CssBaseline />
-                    <GlobalStyles
-                        styles={{ html: { WebkitFontSmoothing: "auto" } }}
-                    />
-                    <Refine
-                        routerProvider={routerProvider}
-                        dataProvider={dataProvider(
-                            "https://api.finefoods.refine.dev",
-                        )}
-                        authProvider={authProvider}
-                        i18nProvider={i18nProvider}
-                        DashboardPage={DashboardPage}
-                        Title={Title}
-                        ReadyPage={ReadyPage}
-                        Layout={Layout}
-                        Header={Header}
-                        LoginPage={LoginPage}
-                        catchAll={<ErrorComponent />}
-                        syncWithLocation
-                        warnWhenUnsavedChanges
-                        notificationProvider={notificationProvider}
-                        resources={[
-                            {
-                                name: "orders",
-                                list: OrderList,
-                                show: OrderShow,
-                                icon: <AddShoppingCartOutlined />,
-                            },
-                            {
-                                name: "users",
-                                list: UserList,
-                                show: UserShow,
-                                icon: <PeopleOutlineOutlined />,
-                            },
-                            {
-                                name: "products",
-                                list: ProductList,
-                                icon: <LocalPizzaOutlined />,
-                            },
-                            {
-                                name: "stores",
-                                list: StoreList,
-                                edit: StoreEdit,
-                                create: StoreCreate,
-                                icon: <StoreOutlined />,
-                            },
-                            {
-                                name: "categories",
-                                list: CategoryList,
-                                icon: <CategoryOutlined />,
-                            },
-                            {
-                                name: "couriers",
-                                list: CourierList,
-                                show: CourierShow,
-                                create: CourierCreate,
-                                edit: CourierEdit,
-                                icon: <BikeWhiteIcon />,
-                            },
-                            {
-                                name: "reviews",
-                                list: ReviewsList,
-                                icon: <StarBorderOutlined />,
-                            },
-                        ]}
-                    />
-                </StyledSnackbarProvider>
-            </ColorModeContextProvider>
-        </>
+        <ColorModeContextProvider>
+            <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+            <RefineSnackbarProvider>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.finefoods.refine.dev",
+                    )}
+                    authProvider={authProvider}
+                    i18nProvider={i18nProvider}
+                    DashboardPage={DashboardPage}
+                    Title={Title}
+                    ReadyPage={ReadyPage}
+                    Layout={Layout}
+                    Header={Header}
+                    LoginPage={LoginPage}
+                    catchAll={<ErrorComponent />}
+                    syncWithLocation
+                    warnWhenUnsavedChanges
+                    notificationProvider={notificationProvider}
+                    resources={[
+                        {
+                            name: "orders",
+                            list: OrderList,
+                            show: OrderShow,
+                            icon: <AddShoppingCartOutlined />,
+                        },
+                        {
+                            name: "users",
+                            list: UserList,
+                            show: UserShow,
+                            icon: <PeopleOutlineOutlined />,
+                        },
+                        {
+                            name: "products",
+                            list: ProductList,
+                            icon: <LocalPizzaOutlined />,
+                        },
+                        {
+                            name: "stores",
+                            list: StoreList,
+                            edit: StoreEdit,
+                            create: StoreCreate,
+                            icon: <StoreOutlined />,
+                        },
+                        {
+                            name: "categories",
+                            list: CategoryList,
+                            icon: <CategoryOutlined />,
+                        },
+                        {
+                            name: "couriers",
+                            list: CourierList,
+                            show: CourierShow,
+                            create: CourierCreate,
+                            edit: CourierEdit,
+                            icon: <BikeWhiteIcon />,
+                        },
+                        {
+                            name: "reviews",
+                            list: ReviewsList,
+                            icon: <StarBorderOutlined />,
+                        },
+                    ]}
+                />
+            </RefineSnackbarProvider>
+        </ColorModeContextProvider>
     );
 };
 

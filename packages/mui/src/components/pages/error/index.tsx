@@ -21,31 +21,33 @@ export const ErrorComponent: React.FC = () => {
     const resource = useResourceWithRoute();
 
     useEffect(() => {
+        const action = params.action ?? "list";
+        const resourceName = params.resource;
         setErrorMessage(
             translate(
                 "pages.error.info",
                 {
-                    action: params.action,
-                    resource: params.resource,
+                    action,
+                    resource: resourceName,
                 },
-                `You may have forgotten to add the "${params.action}" component to "${params.resource}" resource.`,
+                `You may have forgotten to add the "${action}" component to "${resourceName}" resource.`,
             ),
         );
-        if (params.resource) {
-            const resourceFromRoute = resource(params.resource);
+        if (resourceName) {
+            const resourceFromRoute = resource(resourceName);
             if (
-                params.action &&
-                actionTypes.includes(params.action) &&
-                !resourceFromRoute[params.action]
+                action &&
+                actionTypes.includes(action) &&
+                !resourceFromRoute[action]
             ) {
                 setErrorMessage(
                     translate(
                         "pages.error.info",
                         {
-                            action: params.action,
-                            resource: params.resource,
+                            action,
+                            resource: resourceName,
                         },
-                        `You may have forgotten to add the "${params.action}" component to "${params.resource}" resource.`,
+                        `You may have forgotten to add the "${action}" component to "${resourceName}" resource.`,
                     ),
                 );
             }

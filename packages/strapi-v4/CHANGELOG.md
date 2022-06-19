@@ -1,5 +1,11 @@
 # @pankod/refine-strapi-v4
 
+## 3.25.5
+
+### Patch Changes
+
+-   [#1958](https://github.com/pankod/refine/pull/1958) [`42100b631a`](https://github.com/pankod/refine/commit/42100b631a1f829d1535da0bd3d37cac60ca7772) Thanks [@omeraplak](https://github.com/omeraplak)! - Added `populate`, `fields`, `locale` and `publicationState` support for `@pankod/refine-strapi-v4` data provider's `getMany` function
+
 ## 3.25.4
 
 ### Patch Changes

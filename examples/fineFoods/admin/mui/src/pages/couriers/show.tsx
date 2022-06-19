@@ -67,7 +67,7 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
     const columns = React.useMemo<GridColumns<IReview>>(
         () => [
             {
-                field: "id",
+                field: "order.id",
                 headerName: t("reviews.fields.orderId"),
                 renderCell: function render({ row }) {
                     return (
@@ -103,7 +103,7 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
                 flex: 1,
             },
             {
-                field: "rating",
+                field: "star",
                 headerName: t("reviews.fields.rating"),
                 headerAlign: "center",
                 flex: 1,

@@ -70,6 +70,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                 renderCell: ({ row }) => (
                     <Avatar src={row.user.avatar[0].url} />
                 ),
+                sortable: false,
             },
             {
                 field: "user",
@@ -77,9 +78,10 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                 valueGetter: ({ row }) => row.user.fullName,
                 minWidth: 200,
                 flex: 1,
+                sortable: false,
             },
             {
-                field: "order",
+                field: "order.id",
                 headerName: t("reviews.fields.orderId"),
                 renderCell: ({ row }) => (
                     <Button
@@ -114,7 +116,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                 flex: 1,
             },
             {
-                field: "review",
+                field: "star",
                 headerName: t("reviews.fields.rating"),
                 headerAlign: "center",
                 flex: 1,

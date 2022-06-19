@@ -310,12 +310,13 @@ Let's define the select component in the **refine** Sider Menu. First, we need t
 import React, { useState } from "react";
 import {
     useTitle,
+    useMenu,
     useLogout,
     CanAccess,
     ITreeMenu,
     useRouterContext,
 } from "@pankod/refine-core";
-import { AntdLayout, Menu, useMenu, Grid, Icons } from "@pankod/refine-antd";
+import { AntdLayout, Menu, Grid, Icons } from "@pankod/refine-antd";
 
 import { StoreSelect } from "components/select";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
@@ -337,7 +338,7 @@ export const CustomSider: React.FC = () => {
             if (children.length > 0) {
                 return (
                     <SubMenu
-                        key={name}
+                        key={route}
                         icon={icon ?? <Icons.UnorderedListOutlined />}
                         title={label}
                     >
@@ -356,7 +357,7 @@ export const CustomSider: React.FC = () => {
                     action="list"
                 >
                     <Menu.Item
-                        key={selectedKey}
+                        key={route}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
@@ -392,7 +393,7 @@ export const CustomSider: React.FC = () => {
                 }}
             >
                 <Menu.Item
-                    key={selectedKey}
+                    key={route}
                     icon={<Icons.AppstoreAddOutlined />}
                 >
                     <StoreSelect
@@ -673,13 +674,13 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
 
 In this guide and in our example app, we talked about how we can build Multitenancy apps with **refine**. Developing a Multitenancy application with **refine** is quite simple. By creating a context and with the hooks that **refine** provides, you can quickly and easily produce similar applications in this logic.
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
 Username: `refine-demo`
 
 Password: `demodemo`
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/multi-tenancy/strapi?fautoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/multi-tenancy/strapi?fautoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="strapi-multi-tenant-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

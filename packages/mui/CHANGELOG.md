@@ -1,5 +1,31 @@
 # @pankod/refine-mui
 
+## 3.30.3
+
+### Patch Changes
+
+-   [#1977](https://github.com/pankod/refine/pull/1977) [`92f1d1c55f`](https://github.com/pankod/refine/commit/92f1d1c55f699e3087c47a0e1360c0cf11ce0f09) Thanks [@ozkalai](https://github.com/ozkalai)! - Fix styling for buttons in loading state
+
+*   [#1976](https://github.com/pankod/refine/pull/1976) [`96955c653f`](https://github.com/pankod/refine/commit/96955c653f4b13d8a6222f200b1db6408b41d85e) Thanks [@ozkalai](https://github.com/ozkalai)! - Fix the spacing of header and footer actions in crud components and updated their snapshot tests.
+
+*   Updated dependencies [[`206540971b`](https://github.com/pankod/refine/commit/206540971b12f3c63765aecb8aec6d506733a569)]:
+    -   @pankod/refine-core@3.29.1
+
+## 3.30.2
+
+### Patch Changes
+
+-   [#1945](https://github.com/pankod/refine/pull/1945) [`592a401924`](https://github.com/pankod/refine/commit/592a40192482cf88108348ed21db437e6d304a43) Thanks [@omeraplak](https://github.com/omeraplak)! - Could not stop `e.preventDefault()` redirection in Next.js `<Link>` component. So we added in `e.stopPropagation()` for [Ant Design Buttons](https://refine.dev/docs/ui-frameworks/antd/components/buttons/clone-button/) and [Material UI Buttons](https://refine.dev/docs/ui-frameworks/mui/components/buttons/clone-button/)
+
+## 3.30.1
+
+### Patch Changes
+
+-   [#1936](https://github.com/pankod/refine/pull/1936) [`0695c6fa01`](https://github.com/pankod/refine/commit/0695c6fa01716620dda842e1dd44222e06650d51) Thanks [@omeraplak](https://github.com/omeraplak)! - We've updated `secondary` color to `#2A132E`
+
+-   Updated dependencies [[`4012d3c4ae`](https://github.com/pankod/refine/commit/4012d3c4aeb61a6190f7624b662cbd20ca900679)]:
+    -   @pankod/refine-react-hook-form@3.27.1
+
 ## 3.30.0
 
 ### Minor Changes
