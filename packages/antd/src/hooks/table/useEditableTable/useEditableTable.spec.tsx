@@ -7,6 +7,9 @@ import { useEditableTable } from "./useEditableTable";
 import { act } from "react-dom/test-utils";
 
 describe("useEditableTable Hook", () => {
+    beforeAll(() => {
+        jest.spyOn(console, "error").mockImplementation(jest.fn());
+    });
     it("fetches table and form data", async () => {
         const { result, waitFor } = renderHook(() => useEditableTable(), {
             wrapper: TestWrapper({}),
