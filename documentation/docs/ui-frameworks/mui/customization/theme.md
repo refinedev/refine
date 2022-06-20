@@ -297,6 +297,30 @@ export default App;
 
 [Refer to the Material UI documentation for more information about Material UI Theme Configuration Variables. &#8594](https://mui.com/material-ui/customization/theming/)
 
+:::info
+If you are overriding the `fontFamily` in typography, you can add the `<link>` tags  in your `index.html` like the following:
+
+```html title="index.html"
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        // highlight-start
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
+        // highlight-end
+        <title>refine adding font family example</title>
+    </head>
+
+    <body>
+        ...
+    </body>
+</html>
+```
+
+:::
+
 ## Create Custom Theme
 
 With the help of Refine's themes, you can customize your site in a matter of minutes. Alternatively, there is also an option to create a custom theme with the [`createTheme()`](https://mui.com/material-ui/customization/theming/#createtheme-options-args-theme) method so you can create a custom theme with the configuration variables and use it in the whole application.

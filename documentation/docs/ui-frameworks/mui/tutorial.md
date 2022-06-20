@@ -23,13 +23,15 @@ Step by step, you're going to learn how to consume a _REST API_ and add basic CR
 Let's begin by setting up a new **refine** project.
 
 ## Setting up
-<!-- 
+
+<!--
 There are two alternative methods to set up a **refine** application.
 
 The recommended way is using the [superplate](https://github.com/pankod/superplate) tool. _superplate_'s _CLI wizard_ will let you create and customize your application in seconds.
 
 Alternatively, you may use the _create-react-app_ tool to create an empty _React_ application and then add **refine** module via _npm_ etc.
  -->
+
 <Tabs
 defaultValue="create-react-app"
 values={[
@@ -236,8 +238,33 @@ export default App;
 `<GlobalStyles>` is a component that is used to apply the global styles to the application. You may refer to the [**GlobalStyles** documentation](https://mui.com/material-ui/api/global-styles/) for more information.
 :::
 
+:::info
+Refine application uses [`Montserrat`](https://fonts.google.com/specimen/Montserrat) font by default as it is defined in the [`typography`](https://github.com/pankod/refine/blob/next/packages/mui/src/theme/typography.ts) property of the theme.  But to use [`Montserrat`](https://fonts.google.com/specimen/Montserrat), you need to embed it to your `index.html` file.
+For more information about adding font family in your Refine application, you can look at [`Material UI Theme Customization`](/ui-frameworks/mui/customization/theme.md#overriding-variables).
+
+```html title="index.html"
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        // highlight-start
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
+        // highlight-end
+        <title>refine adding font family example</title>
+    </head>
+
+    <body>
+        ...
+    </body>
+</html>
+```
+
+:::
+
 :::tip
-**refine** comes natively with Light/Dark theme support. Check out the [theme](#) documentation for more information.
+**refine** comes native with Light/Dark theme support. Check out the [`theme`](/ui-frameworks/mui/customization/theme.md) documentation for more information.
 :::
 
 <br/>
@@ -1095,7 +1122,7 @@ In the example, it returns `formProps` and `saveButtonProps`, where the former i
 :::caution Attention
 In edit page, `useForm` hook initializes the form with current record values.
 
-[Refer to the `useForm` documentation for detailed usage information . &#8594](/packages/react-hook-form/useForm.md) 
+[Refer to the `useForm` documentation for detailed usage information . &#8594](/packages/react-hook-form/useForm.md)
 
 ✳️ You can give form property to `<Box>` component and it will render the form.
 
