@@ -298,7 +298,7 @@ export default App;
 [Refer to the Material UI documentation for more information about Material UI Theme Configuration Variables. &#8594](https://mui.com/material-ui/customization/theming/)
 
 :::info
-If you are overriding your font family in typography, you have to embed to your `index.html` like this:
+If you are overriding the `fontFamily` in typography, you can add the `<link>` tags  in your `index.html` like the following:
 
 ```html title="index.html"
 <!DOCTYPE html>
