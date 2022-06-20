@@ -1,6 +1,6 @@
 import { useTranslate } from "@pankod/refine-core";
 
-import { Chip, ChipProps } from "@pankod/refine-mui";
+import { Chip, ChipProps, useTheme } from "@pankod/refine-mui";
 
 type OrderStatusProps = {
     status?: "Pending" | "Ready" | "On The Way" | "Delivered" | "Cancelled";
@@ -9,6 +9,10 @@ type OrderStatusProps = {
 export const OrderStatus: React.FC<OrderStatusProps> = ({ status }) => {
     const t = useTranslate();
     let color: ChipProps["color"];
+
+    const { palette } = useTheme();
+
+    console.log(palette.mode);
 
     switch (status) {
         case "Pending":
@@ -21,7 +25,7 @@ export const OrderStatus: React.FC<OrderStatusProps> = ({ status }) => {
             color = "info";
             break;
         case "Delivered":
-            color = "secondary";
+            color = palette.mode === "dark" ? "default" : "secondary";
             break;
         case "Cancelled":
             color = "error";
