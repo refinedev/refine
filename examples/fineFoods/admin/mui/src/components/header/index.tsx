@@ -133,13 +133,8 @@ export const Header: React.FC = () => {
     }, [value]);
 
     return (
-        <AppBar
-            color="default"
-            position="sticky"
-            elevation={1}
-            sx={{ height: 64 }}
-        >
-            <Toolbar sx={{ padding: { xs: 1, md: 3 } }}>
+        <AppBar color="default" position="sticky" elevation={1}>
+            <Toolbar>
                 <Stack
                     direction="row"
                     width="100%"
