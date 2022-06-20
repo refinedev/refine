@@ -16,18 +16,16 @@ export const Header: React.FC = () => {
                     justifyContent="flex-end"
                     alignItems="center"
                 >
-                    <Stack direction="row" alignItems="center">
-                        <Stack
-                            direction="row"
-                            gap="4px"
-                            alignItems="center"
-                            justifyContent="center"
-                        >
-                            <Typography variant="subtitle2">
-                                {user?.name}
-                            </Typography>
-                            <Avatar src={user?.avatar} alt={user?.name} />
-                        </Stack>
+                    <Stack
+                        direction="row"
+                        gap="16px"
+                        alignItems="center"
+                        justifyContent="center"
+                    >
+                        <Typography variant="subtitle2">
+                            {user?.name}
+                        </Typography>
+                        <Avatar src={user?.avatar} alt={user?.name} />
                     </Stack>
                 </Stack>
             </Toolbar>
