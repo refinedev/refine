@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { AccessControlProvider } from "@pankod/refine-core";
 import { Table } from "antd";
 
-import { render, TestWrapper, waitFor } from "@test";
+import { act, render, TestWrapper, waitFor } from "@test";
 import { List } from "./index";
 
 const renderList = (
@@ -22,7 +22,12 @@ const renderList = (
         },
     );
 };
+
 describe("<List/>", () => {
+    beforeAll(() => {
+        jest.useFakeTimers();
+    });
+
     describe("JSON Rest Server", () => {
         it("mounts with table", async () => {
             const { getByText } = renderList(
@@ -30,6 +35,10 @@ describe("<List/>", () => {
                     <Table rowKey="id" />
                 </List>,
             );
+
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
 
             getByText("No Data");
         });
@@ -46,15 +55,24 @@ describe("<List/>", () => {
                 </List>,
             );
 
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
             expect(container).toMatchSnapshot();
         });
 
         it("should render optional title with title prop", async () => {
             const { getByText } = renderList(<List title="New Title"></List>);
+
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
             getByText("New Title");
         });
 
-        it("should render with label instead of resource name successfully", () => {
+        it("should render with label instead of resource name successfully", async () => {
             const { getByText } = render(
                 <Routes>
                     <Route path="/:resource" element={<List />} />
@@ -72,11 +90,15 @@ describe("<List/>", () => {
                 },
             );
 
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
             getByText("Tests");
         });
 
         describe("render create button", () => {
-            it("should create edit button", () => {
+            it("should create edit button", async () => {
                 const { getByText, queryByTestId } = render(
                     <Routes>
                         <Route path="/:resource" element={<List />} />
@@ -94,12 +116,16 @@ describe("<List/>", () => {
                     },
                 );
 
+                await act(async () => {
+                    jest.advanceTimersToNextTimer(1);
+                });
+
                 expect(queryByTestId("list-create-button")).not.toBeNull();
 
                 getByText("Posts");
             });
 
-            it("should not render create button on resource canCreate false", () => {
+            it("should not render create button on resource canCreate false", async () => {
                 const { getByText, queryByTestId } = render(
                     <Routes>
                         <Route path="/:resource" element={<List />} />
@@ -115,13 +141,17 @@ describe("<List/>", () => {
                         }),
                     },
                 );
+
+                await act(async () => {
+                    jest.advanceTimersToNextTimer(1);
+                });
 
                 expect(queryByTestId("list-create-button")).toBeNull();
 
                 getByText("Posts");
             });
 
-            it("should render create button on resource canCreate false & createButtonProps props not null on component", () => {
+            it("should render create button on resource canCreate false & createButtonProps props not null on component", async () => {
                 const { getByText, queryByTestId } = render(
                     <Routes>
                         <Route
@@ -138,12 +168,16 @@ describe("<List/>", () => {
                     },
                 );
 
+                await act(async () => {
+                    jest.advanceTimersToNextTimer(1);
+                });
+
                 expect(queryByTestId("list-create-button")).not.toBeNull();
 
                 getByText("Posts");
             });
 
-            it("should render create button on resource canCreate true & createButtonProps props not null on component", () => {
+            it("should render create button on resource canCreate true & createButtonProps props not null on component", async () => {
                 const { getByText, queryByTestId } = render(
                     <Routes>
                         <Route
@@ -166,12 +200,16 @@ describe("<List/>", () => {
                     },
                 );
 
+                await act(async () => {
+                    jest.advanceTimersToNextTimer(1);
+                });
+
                 expect(queryByTestId("list-create-button")).not.toBeNull();
 
                 getByText("Posts");
             });
 
-            it("should not render create button on resource canCreate true & canCreate props false on component", () => {
+            it("should not render create button on resource canCreate true & canCreate props false on component", async () => {
                 const { queryByTestId } = render(
                     <Routes>
                         <Route
@@ -192,10 +230,14 @@ describe("<List/>", () => {
                     },
                 );
 
+                await act(async () => {
+                    jest.advanceTimersToNextTimer(1);
+                });
+
                 expect(queryByTestId("list-create-button")).toBeNull();
             });
 
-            it("should render create button on resource canCreate false & canCreate props true on component", () => {
+            it("should render create button on resource canCreate false & canCreate props true on component", async () => {
                 const { queryByTestId } = render(
                     <Routes>
                         <Route
@@ -215,6 +257,10 @@ describe("<List/>", () => {
                     },
                 );
 
+                await act(async () => {
+                    jest.advanceTimersToNextTimer(1);
+                });
+
                 expect(queryByTestId("list-create-button")).not.toBeNull();
             });
 
@@ -233,9 +279,11 @@ describe("<List/>", () => {
                     },
                 );
 
-                await waitFor(() =>
-                    expect(queryByTestId("list-create-button")).toBeDisabled(),
-                );
+                await act(async () => {
+                    jest.advanceTimersToNextTimer(1);
+                });
+
+                expect(queryByTestId("list-create-button")).toBeDisabled();
             });
         });
     });
