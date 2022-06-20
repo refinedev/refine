@@ -1,5 +1,16 @@
 # @pankod/refine-mui
 
+## 3.30.5
+
+### Patch Changes
+
+-   Deprecated `useMenu` from `@pankod/refine-antd` and replaced with the `useMenu` from `@pankod/refine-core`
+
+*   Remove unused `transition` property from `@pankod/refine-mui`'s `<Layout/>`
+
+*   Updated dependencies []:
+    -   @pankod/refine-core@3.30.0
+
 ## 3.30.4
 
 ### Patch Changes
