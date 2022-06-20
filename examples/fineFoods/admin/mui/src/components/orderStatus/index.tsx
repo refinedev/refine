@@ -12,8 +12,6 @@ export const OrderStatus: React.FC<OrderStatusProps> = ({ status }) => {
 
     const { palette } = useTheme();
 
-    console.log(palette.mode);
-
     switch (status) {
         case "Pending":
             color = "warning";
