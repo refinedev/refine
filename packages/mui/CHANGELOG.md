@@ -1,5 +1,14 @@
 # @pankod/refine-mui
 
+## 3.30.6
+
+### Patch Changes
+
+-   Add Dashboard item to default `<Sider/>`
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.32.0
+
 ## 3.30.5
 
 ### Patch Changes

@@ -1,5 +1,19 @@
 # @pankod/refine-core
 
+## 3.32.0
+
+### Minor Changes
+
+-   Add `useMenu` hook to `@pankod/refine-core`
+
+### Patch Changes
+
+-   Add custom route support to `defaultOpenKeys` in `useMenu`
+
+*   Handle the `undefined` case at audit-log logger in data hooks.
+
+-   Remove dashboard item in `useMenu` hook
+
 ## 3.31.0
 
 ### Minor Changes
