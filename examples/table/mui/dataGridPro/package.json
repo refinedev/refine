@@ -4,8 +4,8 @@
     "private": true,
     "dependencies": {
         "@mui/x-data-grid-pro": "^5.11.1",
-        "@pankod/refine-core": "^3.30.0",
-        "@pankod/refine-mui": "^3.30.4",
+        "@pankod/refine-core": "^3.31.0",
+        "@pankod/refine-mui": "^3.30.5",
         "@pankod/refine-react-hook-form": "^3.27.1",
         "@pankod/refine-react-router-v6": "^3.25.1",
         "@pankod/refine-react-table": "^3.25.0",
