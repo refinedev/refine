@@ -240,7 +240,7 @@ export default App;
 
 :::info
 Font family comes in the theme as specified in the [`typography`](https://github.com/pankod/refine/blob/next/packages/mui/src/theme/typography.ts) property. Refine application uses [`Montserrat`](https://fonts.google.com/specimen/Montserrat?query=mont) font as default. You have to embed to `index.html` if you want to use [`Montserrat`](https://fonts.google.com/specimen/Montserrat?query=mont) as font family.
-For more information about to add font family in your Refine application, you can look at [`Material UI Theme Customization`](/ui-frameworks/mui/customization/theme.md#overriding-variables).
+For more information about adding font family in your Refine application, you can look at [`Material UI Theme Customization`](/ui-frameworks/mui/customization/theme.md#overriding-variables).
 
 ```html title="index.html"
 <!DOCTYPE html>
