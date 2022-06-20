@@ -29,6 +29,7 @@ import {
     useTranslate,
     useRouterContext,
     useMenu,
+    useRefineContext,
 } from "@pankod/refine-core";
 
 import { Title as DefaultTitle } from "../title";
@@ -44,6 +45,8 @@ export const Sider: React.FC = () => {
 
     const t = useTranslate();
     const { Link } = useRouterContext();
+    const { hasDashboard } = useRefineContext();
+    const translate = useTranslate();
 
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const isExistAuthentication = useIsExistAuthentication();
@@ -207,6 +210,54 @@ export const Sider: React.FC = () => {
 
     const drawer = (
         <List disablePadding sx={{ mt: 1, color: "primary.contrastText" }}>
+            {hasDashboard ? (
+                <Tooltip
+                    title={translate("dashboard.title", "Dashboard")}
+                    placement="right"
+                    disableHoverListener={!collapsed}
+                    arrow
+                >
+                    <ListItemButton
+                        component={Link}
+                        href="/"
+                        to="/"
+                        selected={selectedKey === "/"}
+                        onClick={() => {
+                            setOpened(false);
+                        }}
+                        sx={{
+                            pl: 2,
+                            py: 1,
+                            "&.Mui-selected": {
+                                "&:hover": {
+                                    backgroundColor: "transparent",
+                                },
+                                backgroundColor: "transparent",
+                            },
+                            justifyContent: "center",
+                        }}
+                    >
+                        <ListItemIcon
+                            sx={{
+                                justifyContent: "center",
+                                minWidth: 36,
+                                color: "primary.contrastText",
+                            }}
+                        >
+                            {<ListOutlined />}
+                        </ListItemIcon>
+                        <ListItemText
+                            primary={translate("dashboard.title", "Dashboard")}
+                            primaryTypographyProps={{
+                                noWrap: true,
+                                fontSize: "14px",
+                                fontWeight:
+                                    selectedKey === "/" ? "bold" : "normal",
+                            }}
+                        />
+                    </ListItemButton>
+                </Tooltip>
+            ) : null}
             {renderTreeView(menuItems, selectedKey)}
             {isExistAuthentication && (
                 <Tooltip

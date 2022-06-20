@@ -40,10 +40,11 @@ We will show you how to use `useMenu` to create a simple menu for your refine ap
 Create a `<Layout />` component inside `src/components/layout.tsx` with the following code;
 
 ```tsx title="src/components/layout.tsx"
-import { useMenu, useNavigation, useRouterContext } from "@pankod/refine-core";
+import { useMenu, useNavigation, useRouterContext, useRefineContext } from "@pankod/refine-core";
 
 export const Layout: React.FC = ({ children }) => {
     const { menuItems, selectedKey } = useMenu();
+    const { hasDashboard } = useRefineContext();
     const { Link } = useRouterContext();
     // You can also use navigation helpers from `useNavigation` hook instead of `Link` from your Router Provider.
     // const { push } = useNavigation();
@@ -62,6 +63,15 @@ export const Layout: React.FC = ({ children }) => {
                         </Link>
                         // highlight-start
                         <ul>
+                            {hasDashboard && (
+                                <li>
+                                    <Link>
+                                        <a style={{ fontWeight: selectedKey === "/" ? "bold" : "normal" }}>
+                                            <span>Dashboard</span>
+                                        </a>
+                                    </Link>
+                                </li>
+                            )}
                             {menuItems.map(({ name, label icon, route }) => {
                                 const isSelected = route === selectedKey;
                                 return (
