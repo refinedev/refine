@@ -162,7 +162,7 @@ export const ProductItem: React.FC<PropductItem> = ({
                         my: 1,
                     }}
                 >{`#10000${id}`}</Typography>
-                <Tooltip title={`${price / 100}$`}>
+                <Tooltip title={`${price / 100}$`} placement="top">
                     <Typography
                         sx={{
                             fontWeight: 800,
@@ -179,6 +179,7 @@ export const ProductItem: React.FC<PropductItem> = ({
                     <TextField
                         type="number"
                         margin="dense"
+                        size="small"
                         value={product.stock || 0}
                         onChange={(e) => {
                             e.preventDefault();
