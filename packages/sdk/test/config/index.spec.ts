@@ -7,9 +7,19 @@ const client = createClient({
 });
 
 describe("Config", () => {
-    describe("Get Resources", () => {
+    describe("Auth", () => {
         it("get config successfull", async () => {
-            const response: any = await client.config.get();
+            const response: any = await client.config.auth();
+
+            expect(response[0]["disableSignup"]).toEqual(false);
+            expect(response[0]["name"]).toEqual("database");
+            expect(response[0]["type"]).toEqual("database");
+        });
+    });
+
+    describe("Resources", () => {
+        it("get config successfull", async () => {
+            const response: any = await client.config.resources("dev");
 
             expect(response[0]["name"]).toEqual("post");
             expect(response[0]["options"]["auditLog"]["permissions"]).toEqual([
