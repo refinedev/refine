@@ -23,7 +23,7 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-hook-form": "^7.31.3",
-    "react-icons": "^4.2.0",
+    "react-icons": "^4.4.0",
     "react-lazyload": "^3.2.0",
     "react-player": "^2.10.1",
     "react-split-pane": "git+https://github.com/quarkw/react-split-pane.git"
