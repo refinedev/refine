@@ -4,13 +4,13 @@ import { screen, render } from "@test";
 import { ExportButton } from "./index";
 
 describe("<ExportButton/>", () => {
-    it("should render", () => {
+    it("should render", async () => {
         const { findByText } = render(<ExportButton />);
 
         findByText("Export");
     });
 
-    it("should render text by children", () => {
+    it("should render text by children", async () => {
         const { container, getByText } = render(
             <ExportButton>refine</ExportButton>,
         );
@@ -20,7 +20,7 @@ describe("<ExportButton/>", () => {
         getByText("refine");
     });
 
-    it("should render without text show only icon", () => {
+    it("should render without text show only icon", async () => {
         const { container, queryByText } = render(<ExportButton hideText />);
 
         expect(container).toBeTruthy();

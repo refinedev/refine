@@ -69,7 +69,7 @@ export const PostsList: React.FC = () => {
                 minWidth: 80,
             },
         ],
-        [],
+        [t],
     );
 
     const { dataGridProps } = useDataGrid<IPost>({

@@ -6,6 +6,10 @@ import { TestWrapper } from "../../test";
 import { useStepsForm } from "./";
 
 describe("useStepsForm Hook", () => {
+    beforeAll(() => {
+        jest.useFakeTimers();
+    });
+
     it("'defaultStep' props should set the initial value of 'currentStep'", async () => {
         const { result } = renderHook(
             () =>
@@ -19,12 +23,20 @@ describe("useStepsForm Hook", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(result.current.steps.currentStep).toBe(4);
     });
 
     it("'goToStep' should update the current step state", async () => {
         const { result } = renderHook(() => useStepsForm({}), {
             wrapper: TestWrapper({}),
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
         });
 
         await act(async () => {
@@ -40,6 +52,10 @@ describe("useStepsForm Hook", () => {
         });
 
         await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await act(async () => {
             result.current.steps.gotoStep(-7);
         });
 
@@ -49,6 +65,10 @@ describe("useStepsForm Hook", () => {
     it("'currentStep' should be 0 when the 'goToSteps' params less than zero", async () => {
         const { result } = renderHook(() => useStepsForm({}), {
             wrapper: TestWrapper({}),
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
         });
 
         await act(async () => {
@@ -70,6 +90,10 @@ describe("useStepsForm Hook", () => {
                 wrapper: TestWrapper({}),
             },
         );
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
         await act(async () => {
             result.current.steps.gotoStep(2);

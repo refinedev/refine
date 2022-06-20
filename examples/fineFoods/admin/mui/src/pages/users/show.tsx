@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import React from "react";
 import {
     Avatar,
@@ -51,9 +50,9 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
             {
                 field: "status.text",
                 headerName: t("orders.fields.status"),
-                renderCell: ({ row }) => (
-                    <OrderStatus status={row.status.text} />
-                ),
+                renderCell: function render({ row }) {
+                    return <OrderStatus status={row.status.text} />;
+                },
                 width: 100,
             },
             {
@@ -61,16 +60,18 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                 align: "right",
                 headerAlign: "right",
                 headerName: t("orders.fields.amount"),
-                renderCell: ({ row }) => (
-                    <NumberField
-                        options={{
-                            currency: "USD",
-                            style: "currency",
-                            notation: "compact",
-                        }}
-                        value={row.amount}
-                    />
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <NumberField
+                            options={{
+                                currency: "USD",
+                                style: "currency",
+                                notation: "compact",
+                            }}
+                            value={row.amount}
+                        />
+                    );
+                },
                 width: 100,
             },
             {
@@ -93,40 +94,44 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                 headerAlign: "center",
                 align: "center",
                 sortable: false,
-                renderCell: ({ row }) => (
-                    <CustomTooltip
-                        arrow
-                        placement="top"
-                        title={
-                            <Stack sx={{ padding: "2px" }}>
-                                {row.products.map((product) => (
-                                    <li key={product.id}>{product.name}</li>
-                                ))}
-                            </Stack>
-                        }
-                    >
-                        <Typography sx={{ fontSize: "14px" }}>
-                            {t("orders.fields.itemsAmount", {
-                                amount: row.products.length,
-                            })}
-                        </Typography>
-                    </CustomTooltip>
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <CustomTooltip
+                            arrow
+                            placement="top"
+                            title={
+                                <Stack sx={{ padding: "2px" }}>
+                                    {row.products.map((product) => (
+                                        <li key={product.id}>{product.name}</li>
+                                    ))}
+                                </Stack>
+                            }
+                        >
+                            <Typography sx={{ fontSize: "14px" }}>
+                                {t("orders.fields.itemsAmount", {
+                                    amount: row.products.length,
+                                })}
+                            </Typography>
+                        </CustomTooltip>
+                    );
+                },
             },
             {
                 field: "createdAt",
                 headerName: t("orders.fields.createdAt"),
                 flex: 1,
-                renderCell: ({ row }) => (
-                    <DateField
-                        value={row.createdAt}
-                        format="LLL"
-                        sx={{ whiteSpace: "pre-wrap", fontSize: "14px" }}
-                    />
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <DateField
+                            value={row.createdAt}
+                            format="LLL"
+                            sx={{ whiteSpace: "pre-wrap", fontSize: "14px" }}
+                        />
+                    );
+                },
             },
         ],
-        [],
+        [t],
     );
 
     const { dataGridProps } = useDataGrid<

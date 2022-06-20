@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import React from "react";
 import {
     IResourceComponentsProps,
@@ -60,23 +59,27 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 field: "name",
                 headerName: t("orders.deliverables.fields.items"),
                 width: 300,
-                renderCell: ({ row }) => (
-                    <Stack direction="row" spacing={4} alignItems="center">
-                        <Avatar
-                            sx={{ width: 108, height: 108 }}
-                            src={row.images[0].url}
-                        />
-                        <Box>
-                            <Typography
-                                variant="body1"
-                                whiteSpace="break-spaces"
-                            >
-                                {row.name}
-                            </Typography>
-                            <Typography variant="caption">#{row.id}</Typography>
-                        </Box>
-                    </Stack>
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <Stack direction="row" spacing={4} alignItems="center">
+                            <Avatar
+                                sx={{ width: 108, height: 108 }}
+                                src={row.images[0].url}
+                            />
+                            <Box>
+                                <Typography
+                                    variant="body1"
+                                    whiteSpace="break-spaces"
+                                >
+                                    {row.name}
+                                </Typography>
+                                <Typography variant="caption">
+                                    #{row.id}
+                                </Typography>
+                            </Box>
+                        </Stack>
+                    );
+                },
             },
             {
                 field: "quantity",
@@ -98,7 +101,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 type: "number",
             },
         ],
-        [],
+        [t],
     );
 
     const CustomFooter = () => (

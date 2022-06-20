@@ -194,7 +194,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 ],
             },
         ],
-        [],
+        [t],
     );
 
     const { dataGridProps, search, filters, sorter } = useDataGrid<
@@ -286,7 +286,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         <Grid container spacing={2}>
             <Grid item xs={12} lg={3}>
                 <Card sx={{ paddingX: { xs: 2, md: 0 } }}>
-                    <CardHeader title="Filters" />
+                    <CardHeader title={t("orders.filter.title")} />
                     <CardContent sx={{ pt: 0 }}>
                         <Box
                             component="form"
