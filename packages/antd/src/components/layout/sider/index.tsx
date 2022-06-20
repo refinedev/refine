@@ -117,6 +117,7 @@ export const Sider: React.FC = () => {
                         )}
                     </Menu.Item>
                 ) : null}
+
                 {renderTreeView(menuItems, selectedKey)}
 
                 {isExistAuthentication && (
