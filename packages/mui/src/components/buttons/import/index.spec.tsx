@@ -1,10 +1,9 @@
 import React from "react";
-import { act, Simulate } from "react-dom/test-utils";
 
 import { renderHook } from "@testing-library/react-hooks";
 import { useImport, UseImportInputPropsType } from "@pankod/refine-core";
 
-import { render, TestWrapper, MockJSONServer } from "@test";
+import { render, TestWrapper, MockJSONServer, fireEvent, act } from "@test";
 
 import { ImportButton } from "./";
 
@@ -103,19 +102,13 @@ describe("ImportButton", () => {
         const files = { files: [file] } as unknown as EventTarget;
 
         await act(async () => {
-            Simulate.change(hiddenFileInput as Element, {
-                target: files,
-            });
+            fireEvent.change(hiddenFileInput as Element, { target: files });
         });
 
-        await act(async () => {
-            jest.runAllTimers();
-        });
+        expect(parseMock).toHaveBeenCalled();
 
         await act(async () => {
             jest.advanceTimersByTime(5000);
         });
-
-        expect(parseMock).toHaveBeenCalled();
     });
 });
