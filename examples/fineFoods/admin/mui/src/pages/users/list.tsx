@@ -117,7 +117,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                 minWidth: 80,
             },
         ],
-        [],
+        [t],
     );
 
     const { dataGridProps, search, filters } = useDataGrid<
@@ -169,7 +169,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
         <Grid container spacing={2}>
             <Grid item xs={12} lg={3}>
                 <Card sx={{ paddingX: { xs: 2, md: 0 } }}>
-                    <CardHeader title="Filters" />
+                    <CardHeader title={t("users.filter.title")} />
                     <CardContent sx={{ pt: 0 }}>
                         <Box
                             component="form"

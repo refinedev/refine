@@ -126,7 +126,7 @@ export const useCreateMany = <
                 log?.({
                     action: "create",
                     resource,
-                    data: response.data,
+                    data: response?.data,
                     meta: {
                         dataProviderName,
                     },

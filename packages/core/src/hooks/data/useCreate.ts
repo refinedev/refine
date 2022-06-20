@@ -129,7 +129,7 @@ export const useCreate = <
                 log?.({
                     action: "create",
                     resource,
-                    data: data.data,
+                    data: data?.data,
                     meta: {
                         dataProviderName,
                         id: data?.data?.id ?? undefined,

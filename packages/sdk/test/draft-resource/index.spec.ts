@@ -7,6 +7,9 @@ const client = createClient({
 });
 
 describe("DraftResource", () => {
+    beforeAll(() => {
+        jest.spyOn(console, "warn").mockImplementation(jest.fn());
+    });
     describe("Create", () => {
         it("create successfull", async () => {
             const response: any = await client.draftResource.create({

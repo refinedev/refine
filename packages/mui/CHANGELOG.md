@@ -1,5 +1,25 @@
 # @pankod/refine-mui
 
+## 3.30.5
+
+### Patch Changes
+
+-   [#2009](https://github.com/pankod/refine/pull/2009) [`5b893a9bff`](https://github.com/pankod/refine/commit/5b893a9bff707d90b0f898a52d46a7154108b0a0) Thanks [@aliemir](https://github.com/aliemir)! - Add Dashboard item to default `<Sider/>`
+
+-   Updated dependencies [[`498c425a0e`](https://github.com/pankod/refine/commit/498c425a0e069b6b972a344ff32af46852306c71), [`498c425a0e`](https://github.com/pankod/refine/commit/498c425a0e069b6b972a344ff32af46852306c71), [`498c425a0e`](https://github.com/pankod/refine/commit/498c425a0e069b6b972a344ff32af46852306c71), [`5b893a9bff`](https://github.com/pankod/refine/commit/5b893a9bff707d90b0f898a52d46a7154108b0a0)]:
+    -   @pankod/refine-core@3.31.0
+
+## 3.30.4
+
+### Patch Changes
+
+-   [#1952](https://github.com/pankod/refine/pull/1952) [`1397f09c92`](https://github.com/pankod/refine/commit/1397f09c92c3f55c9f9f0149c4b4b3993927a12e) Thanks [@aliemir](https://github.com/aliemir)! - Deprecated `useMenu` from `@pankod/refine-antd` and replaced with the `useMenu` from `@pankod/refine-core`
+
+*   [#1952](https://github.com/pankod/refine/pull/1952) [`1397f09c92`](https://github.com/pankod/refine/commit/1397f09c92c3f55c9f9f0149c4b4b3993927a12e) Thanks [@aliemir](https://github.com/aliemir)! - Remove unused `transition` property from `@pankod/refine-mui`'s `<Layout/>`
+
+*   Updated dependencies [[`1397f09c92`](https://github.com/pankod/refine/commit/1397f09c92c3f55c9f9f0149c4b4b3993927a12e), [`1397f09c92`](https://github.com/pankod/refine/commit/1397f09c92c3f55c9f9f0149c4b4b3993927a12e), [`1199577e81`](https://github.com/pankod/refine/commit/1199577e81c0661fee1cfbf31a49a77178e706ba)]:
+    -   @pankod/refine-core@3.30.0
+
 ## 3.30.3
 
 ### Patch Changes

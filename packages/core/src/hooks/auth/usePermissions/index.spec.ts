@@ -29,6 +29,10 @@ describe("usePermissions Hook", () => {
     });
 
     it("returns error for not authenticated", async () => {
+        jest.spyOn(console, "error").mockImplementation((message) => {
+            if (!message.includes("Not Authenticated")) console.warn(message);
+        });
+
         const { result, waitFor } = renderHook(() => usePermissions(), {
             wrapper: TestWrapper({
                 authProvider: {

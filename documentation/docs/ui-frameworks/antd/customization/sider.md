@@ -17,6 +17,8 @@ import {
     useTitle,
     ITreeMenu,
     CanAccess,
+    useTranslate,
+    useRefineContext,
     useRouterContext,
     useMenu,
 } from "@pankod/refine-core";
@@ -25,6 +27,8 @@ import { AntdLayout, Menu, Grid, Icons } from "@pankod/refine-antd";
 export const CustomMenu: React.FC = () => {
     const Title = useTitle();
     const { Link } = useRouterContext();
+    const translate = useTranslate();
+    const { hasDashboard } = useRefineContext();
     const { SubMenu } = Menu;
 
     // highlight-next-line
@@ -106,6 +110,22 @@ export const CustomMenu: React.FC = () => {
                     }
                 }}
             >
+                {hasDashboard ? (
+                    <Menu.Item
+                        key="dashboard"
+                        style={{
+                            fontWeight: selectedKey === "/" ? "bold" : "normal",
+                        }}
+                        icon={<Icons.DashboardOutlined />}
+                    >
+                        <Link href="/" to="/">
+                            {translate("dashboard.title", "Dashboard")}
+                        </Link>
+                        {!collapsed && selectedKey === "/" && (
+                            <div className="ant-menu-tree-arrow" />
+                        )}
+                    </Menu.Item>
+                ) : null}
                 {renderTreeView(menuItems, selectedKey)}
             </Menu>
             // highlight-end
