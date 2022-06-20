@@ -1,5 +1,14 @@
 # @pankod/refine-antd
 
+## 3.25.8
+
+### Patch Changes
+
+-   Fix missing behavior for dashboard item in _deprecated_ `useMenu`
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.32.0
+
 ## 3.25.7
 
 ### Patch Changes
