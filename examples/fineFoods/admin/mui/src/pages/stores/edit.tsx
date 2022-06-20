@@ -49,11 +49,11 @@ export const StoreEdit: React.FC<IResourceComponentsProps> = () => {
                                 sx={{
                                     width: {
                                         xs: 180,
-                                        md: 256,
+                                        lg: 256,
                                     },
                                     height: {
                                         xs: 180,
-                                        md: 256,
+                                        lg: 256,
                                     },
                                 }}
                             />
