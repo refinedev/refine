@@ -109,11 +109,12 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
                 },
             },
         ],
-        [],
+        [t],
     );
 
     const { dataGridProps } = useDataGrid<ICourier>({
         columns,
+        initialPageSize: 10,
         initialSorter: [
             {
                 field: "id",
@@ -127,6 +128,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
             <DataGrid
                 {...dataGridProps}
                 autoHeight
+                rowsPerPageOptions={[10, 20, 50, 100]}
                 density="comfortable"
                 sx={{
                     "& .MuiDataGrid-cell:hover": {

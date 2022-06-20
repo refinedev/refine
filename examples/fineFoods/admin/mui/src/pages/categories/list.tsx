@@ -94,7 +94,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
             },
             {
                 id: "actions",
-                Header: "Actions",
+                Header: t("categories.fields.actions"),
                 accessor: "id",
                 Cell: function render({
                     value,
@@ -126,7 +126,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                 },
             },
         ],
-        [],
+        [t],
     );
     const {
         rows,
@@ -418,7 +418,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                 minWidth: 100,
             },
         ],
-        [],
+        [t],
     );
 
     const { dataGridProps } = useDataGrid<IProduct>({

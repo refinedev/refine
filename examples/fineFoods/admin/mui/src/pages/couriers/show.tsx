@@ -124,7 +124,7 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
                 },
             },
         ],
-        [],
+        [t],
     );
 
     const { dataGridProps } = useDataGrid<IReview, HttpError>({
