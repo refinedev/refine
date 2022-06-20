@@ -264,7 +264,7 @@ For more information about adding font family in your Refine application, you ca
 :::
 
 :::tip
-**refine** comes natively with Light/Dark theme support. Check out the [theme](#) documentation for more information.
+**refine** comes native with Light/Dark theme support. Check out the [`theme`](/ui-frameworks/mui/customization/theme.md) documentation for more information.
 :::
 
 <br/>
