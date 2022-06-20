@@ -1,5 +1,11 @@
 import React from "react";
-import { useMenu as useMenuCore, ITreeMenu } from "@pankod/refine-core";
+import {
+    useMenu as useMenuCore,
+    ITreeMenu,
+    useRefineContext,
+    useTranslate,
+} from "@pankod/refine-core";
+import { DashboardOutlined } from "@ant-design/icons";
 
 type useMenuReturnType = {
     defaultOpenKeys: string[];
@@ -18,10 +24,27 @@ type useMenuReturnType = {
  */
 export const useMenu: () => useMenuReturnType = () => {
     const values = useMenuCore();
+    const translate = useTranslate();
+    const { hasDashboard } = useRefineContext();
 
     const menuValues = React.useMemo(() => {
         return {
             ...values,
+            menuItems: [
+                ...(hasDashboard
+                    ? [
+                          {
+                              name: "Dashboard",
+                              icon: <DashboardOutlined />,
+                              route: `/`,
+                              key: "dashboard",
+                              label: translate("dashboard.title", "Dashboard"),
+                              children: [],
+                          },
+                      ]
+                    : []),
+                ...values.menuItems,
+            ],
             defaultOpenKeys: values.selectedKey
                 .split("/")
                 .filter((x) => x !== ""),
