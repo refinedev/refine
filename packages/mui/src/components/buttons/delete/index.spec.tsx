@@ -1,20 +1,18 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import {
-    fireEvent,
-    render,
-    TestWrapper,
-    act,
-    MockJSONServer,
-    waitFor,
-} from "@test";
+import { fireEvent, render, TestWrapper, act, MockJSONServer } from "@test";
 import { DeleteButton } from "./";
 
 describe("Delete Button", () => {
     const deleteFunc = jest.fn();
 
-    it("should render button successfuly", () => {
+    beforeAll(() => {
+        // jest.spyOn(console, "warn").mockImplementation(jest.fn());
+        jest.useFakeTimers();
+    });
+
+    it("should render button successfuly", async () => {
         const { container, getByText } = render(
             <DeleteButton onClick={() => deleteFunc()} />,
             {
@@ -22,12 +20,16 @@ describe("Delete Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
         getByText("Delete");
     });
 
-    it("should render text by children", () => {
+    it("should render text by children", async () => {
         const { container, getByText } = render(
             <DeleteButton>refine</DeleteButton>,
             {
@@ -35,14 +37,22 @@ describe("Delete Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
         getByText("refine");
     });
 
-    it("should render without text show only icon", () => {
+    it("should render without text show only icon", async () => {
         const { container, queryByText } = render(<DeleteButton hideText />, {
             wrapper: TestWrapper({}),
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
         });
 
         expect(container).toBeTruthy();
@@ -62,11 +72,13 @@ describe("Delete Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
-        await waitFor(() =>
-            expect(getByText("Delete").closest("button")).toBeDisabled(),
-        );
+        expect(getByText("Delete").closest("button")).toBeDisabled();
     });
 
     it("should be disabled when recordId not allowed", async () => {
@@ -86,11 +98,13 @@ describe("Delete Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
-        await waitFor(() =>
-            expect(getByText("Delete").closest("button")).toBeDisabled(),
-        );
+        expect(getByText("Delete").closest("button")).toBeDisabled();
     });
 
     it("should skip access control", async () => {
@@ -105,14 +119,16 @@ describe("Delete Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
-        await waitFor(() =>
-            expect(getByText("Delete").closest("button")).not.toBeDisabled(),
-        );
+        expect(getByText("Delete").closest("button")).not.toBeDisabled();
     });
 
-    it("should render called function successfully if click the button", () => {
+    it("should render called function successfully if click the button", async () => {
         const { getByText } = render(
             <DeleteButton onClick={() => deleteFunc()} />,
             {
@@ -120,7 +136,13 @@ describe("Delete Button", () => {
             },
         );
 
-        fireEvent.click(getByText("Delete"));
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await act(async () => {
+            fireEvent.click(getByText("Delete"));
+        });
 
         expect(deleteFunc).toHaveBeenCalledTimes(1);
     });
@@ -137,7 +159,13 @@ describe("Delete Button", () => {
                 }),
             });
 
-            fireEvent.click(getByText("Delete"));
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
+            await act(async () => {
+                fireEvent.click(getByText("Delete"));
+            });
 
             getByText("Are you sure?");
             getByText("Cancel");
@@ -153,6 +181,10 @@ describe("Delete Button", () => {
                         deleteOne: deleteOneMock,
                     },
                 }),
+            });
+
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
             });
 
             await act(async () => {
@@ -185,6 +217,10 @@ describe("Delete Button", () => {
                     }),
                 },
             );
+
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
 
             await act(async () => {
                 fireEvent.click(getByText("Delete"));
@@ -223,6 +259,10 @@ describe("Delete Button", () => {
                     }),
                 },
             );
+
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
 
             await act(async () => {
                 fireEvent.click(getByText("Delete"));
@@ -271,6 +311,10 @@ describe("Delete Button", () => {
             );
 
             await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
+            await act(async () => {
                 fireEvent.click(getByText("Delete"));
             });
 
@@ -287,7 +331,7 @@ describe("Delete Button", () => {
         });
     });
 
-    it("should render with custom mutationMode", () => {
+    it("should render with custom mutationMode", async () => {
         const { getByText } = render(
             <Routes>
                 <Route
@@ -303,10 +347,16 @@ describe("Delete Button", () => {
             },
         );
 
-        fireEvent.click(getByText("Delete"));
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await act(async () => {
+            fireEvent.click(getByText("Delete"));
+        });
     });
 
-    it("should render with resourceNameOrRouteName", () => {
+    it("should render with resourceNameOrRouteName", async () => {
         const { getByText } = render(
             <Routes>
                 <Route
@@ -325,6 +375,12 @@ describe("Delete Button", () => {
             },
         );
 
-        fireEvent.click(getByText("Delete"));
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await act(async () => {
+            fireEvent.click(getByText("Delete"));
+        });
     });
 });

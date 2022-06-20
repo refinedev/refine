@@ -1,20 +1,32 @@
 import React from "react";
 import Button from "@mui/material/Button";
 
-import { render } from "@test";
+import { act, render } from "@test";
 
 import { ReadyPage } from "./index";
 
 describe("ReadyPage", () => {
     it("should render 3 texts", async () => {
+        jest.useFakeTimers();
+
         const { getByText } = render(<ReadyPage />);
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
         getByText("Welcome on board");
         getByText("Your configuration is completed.");
     });
 
     it("should render 3 buttons", async () => {
+        jest.useFakeTimers();
+
         const { getByText } = render(<ReadyPage />);
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
         expect(Button).toBeDefined();
 

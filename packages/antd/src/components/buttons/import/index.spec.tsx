@@ -15,7 +15,11 @@ jest.mock("papaparse", () => {
 });
 
 describe("<ImportButton /> usage with useImport", () => {
-    it("should render without crashing", () => {
+    beforeAll(() => {
+        jest.useFakeTimers();
+    });
+
+    it("should render without crashing", async () => {
         const {
             result: { current: importProps },
         } = renderHook(() => useImport(), {
@@ -27,10 +31,15 @@ describe("<ImportButton /> usage with useImport", () => {
         const { container, getByText } = render(
             <ImportButton {...importProps}>Test</ImportButton>,
         );
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
         getByText("Test");
     });
-    it("should render without text show only icon", () => {
+    it("should render without text show only icon", async () => {
         const {
             result: { current: importProps },
         } = renderHook(() => useImport(), {
@@ -42,6 +51,11 @@ describe("<ImportButton /> usage with useImport", () => {
         const { container, queryByText } = render(
             <ImportButton {...importProps} hideText />,
         );
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
         expect(queryByText("Import")).not.toBeInTheDocument();
     });
@@ -57,6 +71,11 @@ describe("<ImportButton /> usage with useImport", () => {
         const { container } = render(
             <ImportButton {...importProps}>Test</ImportButton>,
         );
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         const file = new File(
             [
                 `"id","title","createdAt","updatedAt"

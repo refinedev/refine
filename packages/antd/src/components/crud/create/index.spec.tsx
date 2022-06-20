@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import { Button } from "antd";
 import { Route, Routes } from "react-router-dom";
 
-import { render, TestWrapper } from "@test";
+import { act, render, TestWrapper } from "@test";
 import { Create } from "./";
 
 const renderCreate = (create: ReactNode) => {
@@ -18,14 +18,27 @@ const renderCreate = (create: ReactNode) => {
     );
 };
 describe("Create", () => {
+    beforeAll(() => {
+        jest.useFakeTimers();
+    });
+
     it("should render page successfuly", async () => {
         const { container } = renderCreate(<Create />);
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
         expect(container).toBeTruthy();
     });
 
     it("should render default save button successfuly", async () => {
         const { container, getByText } = renderCreate(<Create></Create>);
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container.querySelector("button")).toBeTruthy();
         getByText("Save");
     });
@@ -35,6 +48,10 @@ describe("Create", () => {
             <Create actionButtons={<Button>Optional Button</Button>} />,
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container.querySelector("button")).toBeTruthy();
         getByText("Optional Button");
     });
@@ -42,10 +59,14 @@ describe("Create", () => {
     it("should render default title successfuly", async () => {
         const { getByText } = renderCreate(<Create />);
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         getByText("Create Post");
     });
 
-    it("should render with label instead of resource name successfully", () => {
+    it("should render with label instead of resource name successfully", async () => {
         const { getByText } = render(
             <Routes>
                 <Route path="/:resource/:action" element={<Create />} />
@@ -63,16 +84,24 @@ describe("Create", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         getByText("Create Test label");
     });
 
     it("should render optional title with title prop", async () => {
         const { getByText } = renderCreate(<Create title="New Title" />);
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         getByText("New Title");
     });
 
-    it("should render optional resource with resource prop", () => {
+    it("should render optional resource with resource prop", async () => {
         const { getByText } = render(
             <Routes>
                 <Route
@@ -87,10 +116,14 @@ describe("Create", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         getByText("Create Post");
     });
 
-    it("should render tags", () => {
+    it("should render tags", async () => {
         const { getByText } = render(
             <Routes>
                 <Route
@@ -104,6 +137,10 @@ describe("Create", () => {
                 }),
             },
         );
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
         getByText("Create Post");
     });

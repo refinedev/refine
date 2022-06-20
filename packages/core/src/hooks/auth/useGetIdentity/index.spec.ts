@@ -27,6 +27,11 @@ describe("useGetIdentity Hook", () => {
     });
 
     it("throw error useGetIdentity", async () => {
+        jest.spyOn(console, "error").mockImplementation((message) => {
+            if (message?.message === "Not Authenticated") return;
+            console.warn(message);
+        });
+
         const { result, waitFor } = renderHook(() => useGetIdentity(), {
             wrapper: TestWrapper({
                 authProvider: {

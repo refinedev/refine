@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { render, TestWrapper, ITestWrapperProps } from "@test";
+import { render, TestWrapper, ITestWrapperProps, act } from "@test";
 import { Breadcrumb } from "./";
 
 const renderBreadcrumb = (
@@ -23,8 +23,17 @@ const DummyIcon = <div>Icon</div>;
 const DummyDashboard = () => <div>Dashboard</div>;
 
 describe("Breadcrumb", () => {
+    beforeAll(() => {
+        jest.spyOn(console, "warn").mockImplementation(jest.fn());
+        jest.useFakeTimers();
+    });
+
     it("should render successfuly", async () => {
         const { container } = renderBreadcrumb(<Breadcrumb />);
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
         expect(container).toBeTruthy();
     });
@@ -35,6 +44,10 @@ describe("Breadcrumb", () => {
             routerInitialEntries: ["/posts/create"],
         });
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         getByText("Posts");
         getByText("Create");
     });
@@ -43,6 +56,10 @@ describe("Breadcrumb", () => {
         const { container } = renderBreadcrumb(<Breadcrumb />, {
             resources: [{ name: "posts", list: DummyResourcePage }],
             routerInitialEntries: ["/posts/create"],
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
         });
 
         expect(container.querySelector("a")?.getAttribute("href")).toBe(
@@ -56,6 +73,10 @@ describe("Breadcrumb", () => {
             routerInitialEntries: ["/posts/create"],
         });
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         getByText("Icon");
     });
 
@@ -63,6 +84,10 @@ describe("Breadcrumb", () => {
         const { queryByText } = renderBreadcrumb(<Breadcrumb hideIcons />, {
             resources: [{ name: "posts", icon: DummyIcon }],
             routerInitialEntries: ["/posts/create"],
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
         });
 
         expect(queryByText("Icon")).not.toBeInTheDocument();
@@ -73,6 +98,10 @@ describe("Breadcrumb", () => {
             resources: [{ name: "posts" }],
             routerInitialEntries: ["/posts/create"],
             DashboardPage: DummyDashboard,
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
         });
 
         expect(container.querySelector("svg")).toBeTruthy();
@@ -87,6 +116,10 @@ describe("Breadcrumb", () => {
                 DashboardPage: DummyDashboard,
             },
         );
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
         expect(container.querySelector("svg")).toBeFalsy();
     });

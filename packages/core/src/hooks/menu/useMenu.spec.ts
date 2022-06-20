@@ -3,6 +3,32 @@ import { renderHook } from "@testing-library/react-hooks";
 import { TestWrapper } from "@test";
 
 import { useMenu } from ".";
+import { IResourceItem } from "src/interfaces";
+import { routeGenerator } from "@definitions/helpers";
+
+const prepareResources = (items: IResourceItem[]): IResourceItem[] => {
+    const resources: IResourceItem[] = [];
+    items?.map((resource) => {
+        resources.push({
+            key: resource.key,
+            name: resource.name,
+            label: resource.options?.label,
+            icon: resource.icon,
+            route: resource.options?.route ?? routeGenerator(resource, items),
+            canCreate: !!resource.create,
+            canEdit: !!resource.edit,
+            canShow: !!resource.show,
+            canDelete: resource.canDelete,
+            create: resource.create,
+            show: resource.show,
+            list: resource.list,
+            edit: resource.edit,
+            options: resource.options,
+            parentName: resource.parentName,
+        });
+    });
+    return resources;
+};
 
 describe("useMenu Hook", () => {
     it("should be empty by default", async () => {
@@ -47,7 +73,7 @@ describe("useMenu Hook", () => {
         const { result } = renderHook(() => useMenu(), {
             wrapper: TestWrapper({
                 routerInitialEntries: ["/CMS/posts"],
-                resources: [
+                resources: prepareResources([
                     {
                         name: "CMS",
                     },
@@ -69,7 +95,7 @@ describe("useMenu Hook", () => {
                         },
                         canDelete: true,
                     },
-                ],
+                ]),
             }),
         });
 
@@ -82,7 +108,7 @@ describe("useMenu Hook", () => {
         const { result } = renderHook(() => useMenu(), {
             wrapper: TestWrapper({
                 routerInitialEntries: ["/else-new"],
-                resources: [
+                resources: prepareResources([
                     {
                         name: "CMS",
                     },
@@ -104,7 +130,7 @@ describe("useMenu Hook", () => {
                         },
                         canDelete: true,
                     },
-                ],
+                ]),
             }),
         });
 

@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Layout, Menu, Grid } from "antd";
-import { LogoutOutlined, UnorderedListOutlined } from "@ant-design/icons";
+import {
+    DashboardOutlined,
+    LogoutOutlined,
+    UnorderedListOutlined,
+} from "@ant-design/icons";
 import {
     useTranslate,
     useLogout,
@@ -10,6 +14,7 @@ import {
     useIsExistAuthentication,
     useRouterContext,
     useMenu,
+    useRefineContext,
 } from "@pankod/refine-core";
 
 import { Title as DefaultTitle } from "@components";
@@ -26,6 +31,7 @@ export const Sider: React.FC = () => {
     const translate = useTranslate();
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const breakpoint = Grid.useBreakpoint();
+    const { hasDashboard } = useRefineContext();
 
     const isMobile = !breakpoint.lg;
 
@@ -95,6 +101,23 @@ export const Sider: React.FC = () => {
                     }
                 }}
             >
+                {hasDashboard ? (
+                    <Menu.Item
+                        key="dashboard"
+                        style={{
+                            fontWeight: selectedKey === "/" ? "bold" : "normal",
+                        }}
+                        icon={<DashboardOutlined />}
+                    >
+                        <Link href="/" to="/">
+                            {translate("dashboard.title", "Dashboard")}
+                        </Link>
+                        {!collapsed && selectedKey === "/" && (
+                            <div className="ant-menu-tree-arrow" />
+                        )}
+                    </Menu.Item>
+                ) : null}
+
                 {renderTreeView(menuItems, selectedKey)}
 
                 {isExistAuthentication && (

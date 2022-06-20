@@ -1,5 +1,31 @@
 # @pankod/refine-core
 
+## 3.31.0
+
+### Minor Changes
+
+-   [`498c425a0e`](https://github.com/pankod/refine/commit/498c425a0e069b6b972a344ff32af46852306c71) Thanks [@omeraplak](https://github.com/omeraplak)! - Add `useMenu` hook to `@pankod/refine-core`
+
+### Patch Changes
+
+-   [`498c425a0e`](https://github.com/pankod/refine/commit/498c425a0e069b6b972a344ff32af46852306c71) Thanks [@omeraplak](https://github.com/omeraplak)! - Add custom route support to `defaultOpenKeys` in `useMenu`
+
+*   [`498c425a0e`](https://github.com/pankod/refine/commit/498c425a0e069b6b972a344ff32af46852306c71) Thanks [@omeraplak](https://github.com/omeraplak)! - Handle the `undefined` case at audit-log logger in data hooks.
+
+-   [#2009](https://github.com/pankod/refine/pull/2009) [`5b893a9bff`](https://github.com/pankod/refine/commit/5b893a9bff707d90b0f898a52d46a7154108b0a0) Thanks [@aliemir](https://github.com/aliemir)! - Remove dashboard item in `useMenu` hook
+
+## 3.30.0
+
+### Minor Changes
+
+-   [#1952](https://github.com/pankod/refine/pull/1952) [`1397f09c92`](https://github.com/pankod/refine/commit/1397f09c92c3f55c9f9f0149c4b4b3993927a12e) Thanks [@aliemir](https://github.com/aliemir)! - Add `useMenu` hook to `@pankod/refine-core`
+
+### Patch Changes
+
+-   [#1952](https://github.com/pankod/refine/pull/1952) [`1397f09c92`](https://github.com/pankod/refine/commit/1397f09c92c3f55c9f9f0149c4b4b3993927a12e) Thanks [@aliemir](https://github.com/aliemir)! - Add custom route support to `defaultOpenKeys` in `useMenu`
+
+*   [#1988](https://github.com/pankod/refine/pull/1988) [`1199577e81`](https://github.com/pankod/refine/commit/1199577e81c0661fee1cfbf31a49a77178e706ba) Thanks [@aliemir](https://github.com/aliemir)! - Handle the `undefined` case at audit-log logger in data hooks.
+
 ## 3.29.1
 
 ### Patch Changes

@@ -1,13 +1,21 @@
 import { renderHook } from "@testing-library/react-hooks";
 
-import { TestWrapper } from "../../test";
+import { act, TestWrapper } from "../../test";
 
 import { useModalForm } from "./";
 
 describe("useModalForm Hook", () => {
-    it("should return correct initial value of 'visible'", () => {
+    beforeAll(() => {
+        jest.useFakeTimers();
+    });
+
+    it("should return correct initial value of 'visible'", async () => {
         const { result } = renderHook(() => useModalForm(), {
             wrapper: TestWrapper({}),
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
         });
 
         expect(result.current.modal.visible).toBe(false);
@@ -29,6 +37,10 @@ describe("useModalForm Hook", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(result.current.modal.visible).toBe(true);
     });
 
@@ -45,7 +57,13 @@ describe("useModalForm Hook", () => {
             },
         );
 
-        result.current.modal.close();
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await act(async () => {
+            result.current.modal.close();
+        });
 
         expect(result.current.modal.visible).toBe(false);
     });
@@ -63,7 +81,13 @@ describe("useModalForm Hook", () => {
             },
         );
 
-        result.current.modal.show();
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await act(async () => {
+            result.current.modal.show();
+        });
 
         expect(result.current.modal.visible).toBe(true);
     });
@@ -73,9 +97,15 @@ describe("useModalForm Hook", () => {
             wrapper: TestWrapper({}),
         });
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         const id = "5";
 
-        result.current.modal.show(id);
+        await act(async () => {
+            result.current.modal.show(id);
+        });
 
         expect(result.current.refineCore.id).toBe(id);
     });
@@ -93,6 +123,10 @@ describe("useModalForm Hook", () => {
                 wrapper: TestWrapper({}),
             },
         );
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
         expect(result.current.modal.title).toBe("Edit test");
     });
@@ -113,8 +147,14 @@ describe("useModalForm Hook", () => {
             },
         );
 
-        result.current.modal.close();
-        result.current.modal.submit({});
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await act(async () => {
+            result.current.modal.close();
+            result.current.modal.submit({});
+        });
 
         expect(result.current.modal.visible).toBe(false);
     });
@@ -135,8 +175,14 @@ describe("useModalForm Hook", () => {
             },
         );
 
-        result.current.modal.show();
-        result.current.modal.submit({});
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await act(async () => {
+            result.current.modal.show();
+            result.current.modal.submit({});
+        });
 
         expect(result.current.modal.visible).toBe(true);
     });
@@ -158,10 +204,16 @@ describe("useModalForm Hook", () => {
             },
         );
 
-        result.current.modal.show();
-        result.current.register("test");
-        result.current.setValue("test", "test");
-        result.current.modal.submit({ test: "test" });
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await act(async () => {
+            result.current.modal.show();
+            result.current.register("test");
+            result.current.setValue("test", "test");
+            result.current.modal.submit({ test: "test" });
+        });
 
         await waitFor(() => result.current.refineCore.mutationResult.isSuccess);
 
@@ -184,10 +236,16 @@ describe("useModalForm Hook", () => {
             },
         );
 
-        result.current.modal.show();
-        result.current.register("test");
-        result.current.setValue("test", "test");
-        result.current.modal.submit({ test: "test" });
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await act(async () => {
+            result.current.modal.show();
+            result.current.register("test");
+            result.current.setValue("test", "test");
+            result.current.modal.submit({ test: "test" });
+        });
 
         expect(result.current.getValues()).toStrictEqual({ test: "test" });
     });

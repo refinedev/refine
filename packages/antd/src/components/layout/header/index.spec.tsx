@@ -1,6 +1,5 @@
 import React from "react";
-import { waitFor } from "@testing-library/react";
-import { render, TestWrapper } from "@test";
+import { render, TestWrapper, act } from "@test";
 
 import { Header } from "./index";
 
@@ -15,14 +14,23 @@ const mockAuthProvider = {
 };
 
 describe("Header", () => {
+    beforeAll(() => {
+        // jest.spyOn(console, "warn").mockImplementation(jest.fn());
+        jest.useFakeTimers();
+    });
+
     it("should render successfull user name and avatar in header", async () => {
-        const { getByText, container } = render(<Header />, {
+        const { findByText, container } = render(<Header />, {
             wrapper: TestWrapper({
                 authProvider: mockAuthProvider,
             }),
         });
 
-        await waitFor(() => getByText("username"));
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await findByText("username");
         expect(container.getElementsByTagName("img")[0].src).toBe(
             "localhost:3000",
         );

@@ -4,6 +4,7 @@ import { LayoutProps } from "@pankod/refine-core";
 import { Box } from "@mui/material";
 
 import { Sider as DefaultSider } from "./sider";
+import { Header as DefaultHeader } from "./header";
 
 export const Layout: React.FC<LayoutProps> = ({
     Sider,
@@ -13,6 +14,7 @@ export const Layout: React.FC<LayoutProps> = ({
     children,
 }) => {
     const SiderToRender = Sider ?? DefaultSider;
+    const HeaderToRender = Header ?? DefaultHeader;
 
     return (
         <Box display="flex" flexDirection="row">
@@ -25,7 +27,7 @@ export const Layout: React.FC<LayoutProps> = ({
                     minHeight: "100vh",
                 }}
             >
-                {Header && <Header />}
+                <HeaderToRender />
                 <Box
                     component="main"
                     sx={{
