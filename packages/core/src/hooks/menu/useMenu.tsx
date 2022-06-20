@@ -1,5 +1,4 @@
 import React from "react";
-import { DashboardOutlined } from "@ant-design/icons";
 import {
     useRefineContext,
     useTranslate,
@@ -56,19 +55,8 @@ export const useMenu: () => useMenuReturnType = () => {
     }, [resources, location, params]);
 
     const treeMenuItems: IMenuItem[] = React.useMemo(
-        () => [
-            ...(hasDashboard
-                ? [
-                      {
-                          name: "Dashboard",
-                          icon: <DashboardOutlined />,
-                          route: `/`,
-                          key: "dashboard",
-                          label: translate("dashboard.title", "Dashboard"),
-                      },
-                  ]
-                : []),
-            ...resources.map((resource) => {
+        () =>
+            resources.map((resource) => {
                 const route = `/${resource.route}`;
 
                 return {
@@ -84,7 +72,6 @@ export const useMenu: () => useMenuReturnType = () => {
                         ),
                 };
             }),
-        ],
         [resources, hasDashboard],
     );
     const menuItems: ITreeMenu[] = React.useMemo(
