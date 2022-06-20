@@ -1,5 +1,16 @@
 # @pankod/refine-antd
 
+## 3.25.7
+
+### Patch Changes
+
+-   Update `key`s in `<Sider/>` component to use `route`
+
+*   Deprecated `useMenu` from `@pankod/refine-antd` and replaced with the `useMenu` from `@pankod/refine-core`
+
+*   Updated dependencies []:
+    -   @pankod/refine-core@3.30.0
+
 ## 3.25.6
 
 ### Patch Changes
