@@ -1,5 +1,17 @@
 # @pankod/refine-core
 
+## 3.30.0
+
+### Minor Changes
+
+-   [#1952](https://github.com/pankod/refine/pull/1952) [`1397f09c92`](https://github.com/pankod/refine/commit/1397f09c92c3f55c9f9f0149c4b4b3993927a12e) Thanks [@aliemir](https://github.com/aliemir)! - Add `useMenu` hook to `@pankod/refine-core`
+
+### Patch Changes
+
+-   [#1952](https://github.com/pankod/refine/pull/1952) [`1397f09c92`](https://github.com/pankod/refine/commit/1397f09c92c3f55c9f9f0149c4b4b3993927a12e) Thanks [@aliemir](https://github.com/aliemir)! - Add custom route support to `defaultOpenKeys` in `useMenu`
+
+*   [#1988](https://github.com/pankod/refine/pull/1988) [`1199577e81`](https://github.com/pankod/refine/commit/1199577e81c0661fee1cfbf31a49a77178e706ba) Thanks [@aliemir](https://github.com/aliemir)! - Handle the `undefined` case at audit-log logger in data hooks.
+
 ## 3.29.1
 
 ### Patch Changes
