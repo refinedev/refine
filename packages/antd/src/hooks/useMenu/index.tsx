@@ -1,3 +1,4 @@
+import React from "react";
 import { useMenu as useMenuCore, ITreeMenu } from "@pankod/refine-core";
 
 type useMenuReturnType = {
@@ -18,5 +19,14 @@ type useMenuReturnType = {
 export const useMenu: () => useMenuReturnType = () => {
     const values = useMenuCore();
 
-    return values;
+    const menuValues = React.useMemo(() => {
+        return {
+            ...values,
+            defaultOpenKeys: values.selectedKey
+                .split("/")
+                .filter((x) => x !== ""),
+        };
+    }, [values]);
+
+    return menuValues;
 };

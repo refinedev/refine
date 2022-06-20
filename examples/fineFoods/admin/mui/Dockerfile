@@ -5,6 +5,7 @@ WORKDIR /opt/app
 ENV NODE_ENV development
 
 COPY package*.json ./
+COPY .npmrc ./
 
 RUN npm install
 
