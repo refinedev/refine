@@ -256,7 +256,7 @@ export const useDelete = <
                 },
                 context,
             ) => {
-                const resourceSingular = pluralize.singular(resource);
+                const resourceSingular = pluralize.singular(resource ?? "");
 
                 // Remove the queries from the cache:
                 queryClient.removeQueries(context?.queryKey.detail(id));
@@ -317,7 +317,7 @@ export const useDelete = <
                 if (err.message !== "mutationCancelled") {
                     checkError(err);
 
-                    const resourceSingular = pluralize.singular(resource);
+                    const resourceSingular = pluralize.singular(resource ?? "");
 
                     handleNotification(errorNotification, {
                         key: `${id}-${resource}-notification`,

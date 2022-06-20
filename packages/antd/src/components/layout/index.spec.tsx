@@ -1,10 +1,14 @@
 import React from "react";
-import { render, TestWrapper } from "@test";
+import { act, render, TestWrapper } from "@test";
 
 import { Layout } from "./index";
 
 describe("Layout", () => {
-    fit("Layout renders sider, header, footer, title, offLayoutArea if given props", () => {
+    beforeAll(() => {
+        jest.useFakeTimers();
+    });
+
+    it("Layout renders sider, header, footer, title, offLayoutArea if given props", async () => {
         const customTitleContent = "customTitleContent";
         const CustomTitle = () => <p>{customTitleContent}</p>;
 
@@ -30,6 +34,10 @@ describe("Layout", () => {
             />,
             { wrapper: TestWrapper({}) },
         );
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
         expect(getByText(customSiderContent));
         expect(getByText(customHeaderContent));

@@ -1,13 +1,18 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { fireEvent, render, TestWrapper, waitFor } from "@test";
+import { fireEvent, render, TestWrapper, act } from "@test";
 import { CloneButton } from "./";
 
 describe("Clone Button", () => {
+    beforeAll(() => {
+        jest.spyOn(console, "warn").mockImplementation(jest.fn());
+        jest.useFakeTimers();
+    });
+
     const clone = jest.fn();
 
-    it("should render button successfuly", () => {
+    it("should render button successfuly", async () => {
         const { container, getByText } = render(
             <CloneButton onClick={() => clone()} />,
             {
@@ -15,12 +20,16 @@ describe("Clone Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
         getByText("Clone");
     });
 
-    it("should render text by children", () => {
+    it("should render text by children", async () => {
         const { container, getByText } = render(
             <CloneButton>refine</CloneButton>,
             {
@@ -28,14 +37,22 @@ describe("Clone Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
         getByText("refine");
     });
 
-    it("should render without text show only icon", () => {
+    it("should render without text show only icon", async () => {
         const { container, queryByText } = render(<CloneButton hideText />, {
             wrapper: TestWrapper({}),
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
         });
 
         expect(container).toBeTruthy();
@@ -55,11 +72,13 @@ describe("Clone Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
-        await waitFor(() =>
-            expect(getByText("Clone").closest("button")).toBeDisabled(),
-        );
+        expect(getByText("Clone").closest("button")).toBeDisabled();
     });
 
     it("should be disabled when recordId not allowed", async () => {
@@ -79,11 +98,13 @@ describe("Clone Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
-        await waitFor(() =>
-            expect(getByText("Clone").closest("button")).toBeDisabled(),
-        );
+        expect(getByText("Clone").closest("button")).toBeDisabled();
     });
 
     it("should skip access control", async () => {
@@ -98,11 +119,13 @@ describe("Clone Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
-        await waitFor(() =>
-            expect(getByText("Clone").closest("button")).not.toBeDisabled(),
-        );
+        expect(getByText("Clone").closest("button")).not.toBeDisabled();
     });
 
     it("should successfully return disabled button custom title", async () => {
@@ -121,19 +144,19 @@ describe("Clone Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
-        await waitFor(() =>
-            expect(getByText("Clone").closest("button")).not.toBeDisabled(),
-        );
-        await waitFor(() =>
-            expect(
-                getByText("Clone").closest("button")?.getAttribute("title"),
-            ).toBe("Access Denied"),
-        );
+        expect(getByText("Clone").closest("button")).toBeDisabled();
+        expect(
+            getByText("Clone").closest("button")?.getAttribute("title"),
+        ).toBe("Access Denied");
     });
 
-    it("should render called function successfully if click the button", () => {
+    it("should render called function successfully if click the button", async () => {
         const { getByText } = render(
             <CloneButton onClick={() => clone()} recordItemId="1" />,
             {
@@ -143,12 +166,18 @@ describe("Clone Button", () => {
             },
         );
 
-        fireEvent.click(getByText("Clone"));
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await act(async () => {
+            fireEvent.click(getByText("Clone"));
+        });
 
         expect(clone).toHaveBeenCalledTimes(1);
     });
 
-    it("should create page redirect clone route called function successfully if click the button", () => {
+    it("should create page redirect clone route called function successfully if click the button", async () => {
         const { getByText } = render(
             <Routes>
                 <Route
@@ -163,12 +192,18 @@ describe("Clone Button", () => {
             },
         );
 
-        fireEvent.click(getByText("Clone"));
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await act(async () => {
+            fireEvent.click(getByText("Clone"));
+        });
 
         expect(window.location.pathname).toBe("/posts/clone/1");
     });
 
-    it("should edit page redirect clone route called function successfully if click the button", () => {
+    it("should edit page redirect clone route called function successfully if click the button", async () => {
         const { getByText } = render(
             <Routes>
                 <Route
@@ -183,11 +218,18 @@ describe("Clone Button", () => {
             },
         );
 
-        fireEvent.click(getByText("Clone"));
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await act(async () => {
+            fireEvent.click(getByText("Clone"));
+        });
+
         expect(window.location.pathname).toBe("/posts/clone/1");
     });
 
-    it("should custom resource and recordItemId redirect clone route called function successfully if click the button", () => {
+    it("should custom resource and recordItemId redirect clone route called function successfully if click the button", async () => {
         const { getByText } = render(
             <Routes>
                 <Route
@@ -208,11 +250,18 @@ describe("Clone Button", () => {
             },
         );
 
-        fireEvent.click(getByText("Clone"));
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await act(async () => {
+            fireEvent.click(getByText("Clone"));
+        });
+
         expect(window.location.pathname).toBe("/categories/clone/1");
     });
 
-    it("should redirect with custom route called function successfully if click the button", () => {
+    it("should redirect with custom route called function successfully if click the button", async () => {
         const { getByText } = render(
             <Routes>
                 <Route
@@ -239,7 +288,14 @@ describe("Clone Button", () => {
             },
         );
 
-        fireEvent.click(getByText("Clone"));
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await act(async () => {
+            fireEvent.click(getByText("Clone"));
+        });
+
         expect(window.location.pathname).toBe("/custom-route-posts/clone/1");
     });
 });

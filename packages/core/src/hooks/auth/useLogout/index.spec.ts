@@ -15,6 +15,15 @@ jest.mock("react-router-dom", () => ({
 describe("useLogout Hook", () => {
     beforeEach(() => {
         mHistory.mockReset();
+        jest.spyOn(console, "error").mockImplementation((message) => {
+            if (
+                message?.message === "Logout rejected" ||
+                typeof message === "undefined"
+            )
+                return;
+
+            console.warn(message);
+        });
     });
 
     it("logout and redirect to login", async () => {

@@ -8,9 +8,17 @@ import { useModal } from ".";
 const Wrapper = TestWrapper({});
 
 describe("useModal Hook", () => {
+    beforeAll(() => {
+        jest.useFakeTimers();
+    });
+
     it("should visible false on init", async () => {
         const { result } = renderHook(() => useModal(), {
             wrapper: Wrapper,
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
         });
 
         const { modalProps } = result.current;
@@ -31,6 +39,10 @@ describe("useModal Hook", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         const { modalProps } = result.current;
 
         expect(modalProps.visible).toEqual(true);
@@ -39,6 +51,10 @@ describe("useModal Hook", () => {
     it("should visible true on called show", async () => {
         const { result } = renderHook(() => useModal(), {
             wrapper: Wrapper,
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
         });
 
         const { show } = result.current;
@@ -53,6 +69,10 @@ describe("useModal Hook", () => {
     it("should visible false on called show after close", async () => {
         const { result } = renderHook(() => useModal(), {
             wrapper: Wrapper,
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
         });
 
         const { show, close } = result.current;
@@ -84,6 +104,10 @@ describe("useModal Hook", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         const { show, modalProps } = result.current;
 
         act(() => {
@@ -109,6 +133,10 @@ describe("useModal Hook", () => {
     it("should call close if modalProps onCancel is undefined", async () => {
         const { result } = renderHook(() => useModal(), {
             wrapper: Wrapper,
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
         });
 
         const { show, modalProps } = result.current;

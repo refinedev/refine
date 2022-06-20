@@ -1,12 +1,17 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { fireEvent, render, TestWrapper, waitFor } from "@test";
+import { act, fireEvent, render, TestWrapper } from "@test";
 import { EditButton } from "./";
 
 describe("Edit Button", () => {
     const edit = jest.fn();
 
-    it("should render button successfuly", () => {
+    beforeAll(() => {
+        jest.spyOn(console, "warn").mockImplementation(jest.fn());
+        jest.useFakeTimers();
+    });
+
+    it("should render button successfuly", async () => {
         const { container, getByText } = render(
             <EditButton onClick={() => edit()} />,
             {
@@ -14,12 +19,16 @@ describe("Edit Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
         getByText("Edit");
     });
 
-    it("should render text by children", () => {
+    it("should render text by children", async () => {
         const { container, getByText } = render(
             <EditButton>refine</EditButton>,
             {
@@ -27,14 +36,22 @@ describe("Edit Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
         getByText("refine");
     });
 
-    it("should render without text show only icon", () => {
+    it("should render without text show only icon", async () => {
         const { container, queryByText } = render(<EditButton hideText />, {
             wrapper: TestWrapper({}),
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
         });
 
         expect(container).toBeTruthy();
@@ -51,11 +68,13 @@ describe("Edit Button", () => {
             }),
         });
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
-        await waitFor(() =>
-            expect(getByText("Edit").closest("button")).toBeDisabled(),
-        );
+        expect(getByText("Edit").closest("button")).toBeDisabled();
     });
 
     it("should be disabled when recordId not allowed", async () => {
@@ -75,11 +94,13 @@ describe("Edit Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
-        await waitFor(() =>
-            expect(getByText("Edit").closest("button")).toBeDisabled(),
-        );
+        expect(getByText("Edit").closest("button")).toBeDisabled();
     });
 
     it("should skip access control", async () => {
@@ -94,11 +115,13 @@ describe("Edit Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
-        await waitFor(() =>
-            expect(getByText("Edit").closest("button")).not.toBeDisabled(),
-        );
+        expect(getByText("Edit").closest("button")).not.toBeDisabled();
     });
 
     it("should successfully return disabled button custom title", async () => {
@@ -114,29 +137,35 @@ describe("Edit Button", () => {
             }),
         });
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
-        await waitFor(() =>
-            expect(getByText("Edit").closest("button")).not.toBeDisabled(),
-        );
-        await waitFor(() =>
-            expect(
-                getByText("Edit").closest("button")?.getAttribute("title"),
-            ).toBe("Access Denied"),
+        expect(getByText("Edit").closest("button")).toBeDisabled();
+        expect(getByText("Edit").closest("button")?.getAttribute("title")).toBe(
+            "Access Denied",
         );
     });
 
-    it("should render called function successfully if click the button", () => {
+    it("should render called function successfully if click the button", async () => {
         const { getByText } = render(<EditButton onClick={() => edit()} />, {
             wrapper: TestWrapper({}),
         });
 
-        fireEvent.click(getByText("Edit"));
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await act(async () => {
+            fireEvent.click(getByText("Edit"));
+        });
 
         expect(edit).toHaveBeenCalledTimes(1);
     });
 
-    it("should redirect with custom route called function successfully if click the button", () => {
+    it("should redirect with custom route called function successfully if click the button", async () => {
         const { getByText } = render(
             <Routes>
                 <Route
@@ -163,7 +192,13 @@ describe("Edit Button", () => {
             },
         );
 
-        fireEvent.click(getByText("Edit"));
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await act(async () => {
+            fireEvent.click(getByText("Edit"));
+        });
 
         expect(window.location.pathname).toBe("/custom-route-posts/edit/1");
     });
