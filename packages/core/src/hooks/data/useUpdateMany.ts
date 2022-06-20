@@ -339,7 +339,7 @@ export const useUpdateMany = <
                 log?.({
                     action: "update",
                     resource,
-                    data: data.data,
+                    data: data?.data,
                     previousData: {},
                     meta: {
                         ids,

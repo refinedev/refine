@@ -86,7 +86,7 @@ export const useOne = <
                 log?.({
                     action: "getOne",
                     resource,
-                    data: data.data,
+                    data: data?.data,
                     meta: {
                         id,
                         metaData,

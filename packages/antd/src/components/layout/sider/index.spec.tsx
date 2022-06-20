@@ -15,6 +15,20 @@ const mockAuthProvider = {
 };
 
 describe("Sider", () => {
+    beforeAll(() => {
+        jest.spyOn(console, "error").mockImplementation((message, ...args) => {
+            if (
+                message.includes(
+                    "[antd: Menu] `children` will be removed in next major version.",
+                )
+            ) {
+                return;
+            }
+            console.error(message, ...args);
+        });
+        jest.useFakeTimers();
+    });
+
     it("should render successful", async () => {
         const { getByText } = render(<Sider />, {
             wrapper: TestWrapper({}),
@@ -92,6 +106,10 @@ describe("Sider", () => {
                     },
                 },
             }),
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
         });
 
         await waitFor(() => getByText("Posts"));

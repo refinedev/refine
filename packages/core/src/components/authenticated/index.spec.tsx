@@ -22,6 +22,12 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("Authenticated", () => {
+    beforeEach(() => {
+        jest.spyOn(console, "error").mockImplementation((message) => {
+            if (typeof message !== "undefined") console.warn(message);
+        });
+    });
+
     it("should render children successfully", async () => {
         const { getByText } = render(
             <Authenticated>Custom Authenticated</Authenticated>,

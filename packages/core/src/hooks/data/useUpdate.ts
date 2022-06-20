@@ -312,7 +312,7 @@ export const useUpdate = <
                 log?.({
                     action: "update",
                     resource,
-                    data: data.data,
+                    data: data?.data,
                     previousData: {},
                     meta: {
                         id,
