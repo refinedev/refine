@@ -1,45 +1,33 @@
 ---
-id: useMenu
-title: useMenu
+id: antd-custom-sider
+title: Custom Sider
 ---
 
-`useMenu` is used to get menu items of the default sidebar. These items include a link to dashboard page (if it exists) and links to the user defined resources (passed as children to `<Refine>`).
-This hook can also be used to build custom menus, which is also used by default sidebar to show menu items.
+You can create a custom `<Sider />` component and use it either by passing it to [`<Refine />`][refine] or using a [Custom Layout][antdcustomlayout].
 
-```ts
-const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
-```
-
--   `menuItems` is a list of style agnostic menu items. Each of them has a key.
--   `selectedKey` is the key of the resource user is viewing at the moment. Its inferred from the route.
--   `defaultOpenKeys` is the array with the keys of default opened menus.
-
-## Usage
-
-### Recreating the Default Sider Menu
+## Recreating the Default Sider Menu
 
 We will show you how to use `useMenu` to create a custom sider menu that is identical to default sider menu.
 
 First we define `<CustomMenu>`:
 
-```tsx  title="src/CustomMenu.tsx"
+```tsx title="src/CustomMenu.tsx"
 import { useState, CSSProperties } from "react";
-import { useTitle, ITreeMenu, CanAccess, useRouterContext } from "@pankod/refine-core";
 import {
-    AntdLayout,
-    Menu,
-    Grid,
-    Icons,
-// highlight-next-line
+    useTitle,
+    ITreeMenu,
+    CanAccess,
+    useRouterContext,
     useMenu,
-} from "@pankod/refine-antd";
+} from "@pankod/refine-core";
+import { AntdLayout, Menu, Grid, Icons } from "@pankod/refine-antd";
 
 export const CustomMenu: React.FC = () => {
     const Title = useTitle();
     const { Link } = useRouterContext();
     const { SubMenu } = Menu;
 
-// highlight-next-line
+    // highlight-next-line
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
 
     const [collapsed, setCollapsed] = useState<boolean>(false);
@@ -49,7 +37,7 @@ export const CustomMenu: React.FC = () => {
 
     const RenderToTitle = Title ?? DefaultTitle;
 
-// highlight-start
+    // highlight-start
     const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
         return tree.map((item: ITreeMenu) => {
             const { icon, label, route, name, children, parentName } = item;
@@ -57,7 +45,7 @@ export const CustomMenu: React.FC = () => {
             if (children.length > 0) {
                 return (
                     <SubMenu
-                        key={name}
+                        key={route}
                         icon={icon ?? <Icons.UnorderedListOutlined />}
                         title={label}
                     >
@@ -76,13 +64,17 @@ export const CustomMenu: React.FC = () => {
                     action="list"
                 >
                     <Menu.Item
-                        key={selectedKey}
+                        key={route}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
+                        icon={
+                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
+                        }
                     >
-                        <Link href={route} to={route}>{label}</Link>
+                        <Link href={route} to={route}>
+                            {label}
+                        </Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
@@ -91,8 +83,7 @@ export const CustomMenu: React.FC = () => {
             );
         });
     };
-// highlight-end
-
+    // highlight-end
 
     return (
         <AntdLayout.Sider
@@ -104,20 +95,20 @@ export const CustomMenu: React.FC = () => {
             style={isMobile ? antLayoutSiderMobile : antLayoutSider}
         >
             <RenderToTitle collapsed={collapsed} />
-// highlight-start
-            <Menu 
-                defaultOpenKeys={defaultOpenKeys} 
-                selectedKeys={[selectedKey]} 
+            // highlight-start
+            <Menu
+                defaultOpenKeys={defaultOpenKeys}
+                selectedKeys={[selectedKey]}
                 mode="inline"
                 onClick={() => {
                     if (!breakpoint.lg) {
                         setCollapsed(true);
                     }
                 }}
-                >
-               {renderTreeView(menuItems, selectedKey)}
+            >
+                {renderTreeView(menuItems, selectedKey)}
             </Menu>
-// highlight-end
+            // highlight-end
         </AntdLayout.Sider>
     );
 };
@@ -158,7 +149,7 @@ const App: React.FC = () => {
     return (
         <Refine
             dataProvider={dataProvider(API_URL)}
-// highlight-next-line
+            // highlight-next-line
             Sider={CustomMenu}
             resources={[{ name: "posts", list: PostList }]}
         />
@@ -172,19 +163,18 @@ export default App;
 
 We can also add a logout button:
 
-```tsx  title="src/CustomMenu.tsx"
+```tsx title="src/CustomMenu.tsx"
 import { useState, CSSProperties } from "react";
-import { useTitle, useRouterContext } from "@pankod/refine-core";
+import { useTitle, useRouterContext, useMenu } from "@pankod/refine-core";
 import {
     AntdLayout,
     Menu,
     Link,
     Grid,
-// highlight-start
+    // highlight-start
     Icons,
     useLogout,
-// highlight-end
-    useMenu,
+    // highlight-end
 } from "@pankod/refine-antd";
 
 export const CustomMenu: React.FC = () => {
@@ -225,13 +215,17 @@ export const CustomMenu: React.FC = () => {
                     action="list"
                 >
                     <Menu.Item
-                        key={selectedKey}
+                        key={route}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
+                        icon={
+                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
+                        }
                     >
-                        <Link href={route} to={route}>{label}</Link>
+                        <Link href={route} to={route}>
+                            {label}
+                        </Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
@@ -241,9 +235,9 @@ export const CustomMenu: React.FC = () => {
         });
     };
 
-// highlight-start
+    // highlight-start
     const { mutate: logout } = useLogout();
-// highlight-end
+    // highlight-end
 
     return (
         <AntdLayout.Sider
@@ -256,7 +250,7 @@ export const CustomMenu: React.FC = () => {
         >
             <RenderToTitle collapsed={collapsed} />
             <Menu
-                defaultOpenKeys={defaultOpenKeys} 
+                defaultOpenKeys={defaultOpenKeys}
                 selectedKeys={[selectedKey]}
                 mode="inline"
                 onClick={() => {
@@ -266,15 +260,15 @@ export const CustomMenu: React.FC = () => {
                 }}
             >
                 {renderTreeView(menuItems, selectedKey)}
-// highlight-start
-                <Menu.Item 
-                    key="logout" 
-                    onClick={() => logout()} 
+                // highlight-start
+                <Menu.Item
+                    key="logout"
+                    onClick={() => logout()}
                     icon={<Icons.LogoutOutlined />}
                 >
                     Logout
                 </Menu.Item>
-// highlight-end
+                // highlight-end
             </Menu>
         </AntdLayout.Sider>
     );
@@ -303,52 +297,5 @@ You can further customize the Sider and its appearance.
 [Refer to Ant Design docs for more detailed information about Sider. &#8594](https://ant.design/components/layout/#Layout.Sider)
 :::
 
-## API Reference
-
-### Return values
-
-| Property        | Description                                                                             | Type                         |
-| --------------- | --------------------------------------------------------------------------------------- | ---------------------------- |
-| selectedKey     | Key of the resource the user is viewing at the moment                                   | `string`                     |
-| menuItems       | List of keys and routes and some metadata of resources and also the dashboard if exists | [`ITreeMenu[]`](#interfaces) |
-| defaultOpenKeys | Array with the keys of default opened menus.                                            | `string[]`                   |
-
-#### Interfaces
-
-```ts
-interface IResourceItem extends IResourceComponents {
-    name: string;
-    label?: string;
-    route?: string;
-    icon?: ReactNode;
-    canCreate?: boolean;
-    canEdit?: boolean;
-    canShow?: boolean;
-    canDelete?: boolean;
-    parentName?: string;
-}
-
-interface IResourceComponents {
-    list?: React.FunctionComponent<IResourceComponentsProps>;
-    create?: React.FunctionComponent<IResourceComponentsProps>;
-    edit?: React.FunctionComponent<IResourceComponentsProps>;
-    show?: React.FunctionComponent<IResourceComponentsProps>;
-}
-
-interface IResourceComponentsProps<TCrudData = any> {
-    canCreate?: boolean;
-    canEdit?: boolean;
-    canDelete?: boolean;
-    canShow?: boolean;
-    name?: string;
-    initialData?: TCrudData;
-}
-
-type IMenuItem = IResourceItem & {
-    key: string;
-};
-
-type ITreeMenu = IMenuItem & {
-    children: ITreeMenu[];
-};
-```
+[refine]: /core/components/refine-config.md
+[antdcustomlayout]: /ui-frameworks/antd/customization/layout.md

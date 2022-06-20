@@ -1,6 +1,6 @@
 ---
-id: ant-design
-title: Ant Design Theme
+id: antd-custom-theme
+title: Custom Theme
 ---
 
 Ant Design allows you to customize many of its [less variables](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less). To be able to theme Ant Design, instead of importing Ant Design's compiled css files, you should import its less files and override the values of _less variables_ contained within these files. You should configure your bundler for handling less files to override its variables.
@@ -163,7 +163,7 @@ All variable overrides configured in `lessOptions.modifyVars` always have higher
 
 ## Live StackBlitz Example
 
-<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/customTheme/?embed=1&view=preview&theme=dark&preset=node"
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/customTheme?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-custom-theme-example"
 ></iframe>

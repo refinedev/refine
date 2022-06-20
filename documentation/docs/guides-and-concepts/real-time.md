@@ -204,8 +204,8 @@ Firstly, let's implement a custom sider like in [this example](/examples/customi
 
 ```tsx title="src/components/sider.tsx"
 import React, { useState } from "react";
-import { useTitle, ITreeMenu, CanAccess, useRouterContext } from "@pankod/refine-core";
-import { AntdLayout, Menu, useMenu, Grid, Icons } from "@pankod/refine-antd";
+import { useTitle, ITreeMenu, CanAccess, useRouterContext, useMenu } from "@pankod/refine-core";
+import { AntdLayout, Menu, Grid, Icons } from "@pankod/refine-antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 export const CustomSider: React.FC = () => {
@@ -224,7 +224,7 @@ export const CustomSider: React.FC = () => {
             if (children.length > 0) {
                 return (
                     <SubMenu
-                        key={name}
+                        key={route}
                         icon={icon ?? <Icons.UnorderedListOutlined />}
                         title={label}
                     >
@@ -243,7 +243,7 @@ export const CustomSider: React.FC = () => {
                     action="list"
                 >
                     <Menu.Item
-                        key={selectedKey}
+                        key={route}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
@@ -295,6 +295,7 @@ import {
     useTitle,
     ITreeMenu,
     CanAccess,
+    useMenu,
     //highlight-start
     useSubscription,
     //highlight-end
@@ -302,7 +303,6 @@ import {
 import {
     AntdLayout,
     Menu,
-    useMenu,
     Grid,
     Icons,
     //highlight-start
@@ -355,7 +355,7 @@ export const CustomSider: React.FC = () => {
                     action="list"
                 >
                     <Menu.Item
-                        key={selectedKey}
+                        key={route}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}

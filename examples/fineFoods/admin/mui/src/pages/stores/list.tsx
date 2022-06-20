@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import React from "react";
 import {
     useTranslate,
@@ -41,13 +40,15 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                 field: "avatar",
                 headerName: "",
                 align: "center",
-                renderCell: () => (
-                    <Avatar
-                        sx={{ width: 64, height: 64 }}
-                        src="/images/default-store-img.png"
-                        alt="Default Store Image"
-                    />
-                ),
+                renderCell: function render() {
+                    return (
+                        <Avatar
+                            sx={{ width: 64, height: 64 }}
+                            src="/images/default-store-img.png"
+                            alt="Default Store Image"
+                        />
+                    );
+                },
             },
             {
                 field: "id",
@@ -77,16 +78,18 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                 headerName: t("stores.fields.address"),
                 flex: 2,
                 minWidth: 300,
-                renderCell: ({ row }) => (
-                    <TextFieldComponent value={row.address?.text} />
-                ),
+                renderCell: function render({ row }) {
+                    return <TextFieldComponent value={row.address?.text} />;
+                },
             },
             {
                 field: "createdAt",
                 headerName: t("stores.fields.createdAt"),
                 flex: 1,
                 minWidth: 100,
-                renderCell: ({ row }) => <DateField value={row.createdAt} />,
+                renderCell: function render({ row }) {
+                    return <DateField value={row.createdAt} />;
+                },
             },
             {
                 field: "isActive",
@@ -94,12 +97,16 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                 flex: 0.5,
                 align: "center",
                 headerAlign: "center",
-                renderCell: ({ row }) => (
-                    <BooleanField
-                        svgIconProps={{ sx: { width: "16px", height: "16px" } }}
-                        value={row.isActive}
-                    />
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <BooleanField
+                            svgIconProps={{
+                                sx: { width: "16px", height: "16px" },
+                            }}
+                            value={row.isActive}
+                        />
+                    );
+                },
             },
             {
                 field: "actions",
@@ -126,7 +133,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                 ],
             },
         ],
-        [],
+        [t],
     );
 
     const { dataGridProps } = useDataGrid<IStore>({
@@ -138,10 +145,11 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
         <Paper>
             <List canCreate cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
                 <DataGrid
+                    {...dataGridProps}
                     rowHeight={80}
                     autoHeight
                     density="comfortable"
-                    {...dataGridProps}
+                    rowsPerPageOptions={[10, 20, 50, 100]}
                 />
             </List>
             {record && (

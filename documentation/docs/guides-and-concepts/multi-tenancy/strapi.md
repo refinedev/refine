@@ -310,12 +310,13 @@ Let's define the select component in the **refine** Sider Menu. First, we need t
 import React, { useState } from "react";
 import {
     useTitle,
+    useMenu,
     useLogout,
     CanAccess,
     ITreeMenu,
     useRouterContext,
 } from "@pankod/refine-core";
-import { AntdLayout, Menu, useMenu, Grid, Icons } from "@pankod/refine-antd";
+import { AntdLayout, Menu, Grid, Icons } from "@pankod/refine-antd";
 
 import { StoreSelect } from "components/select";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
@@ -337,7 +338,7 @@ export const CustomSider: React.FC = () => {
             if (children.length > 0) {
                 return (
                     <SubMenu
-                        key={name}
+                        key={route}
                         icon={icon ?? <Icons.UnorderedListOutlined />}
                         title={label}
                     >
@@ -356,7 +357,7 @@ export const CustomSider: React.FC = () => {
                     action="list"
                 >
                     <Menu.Item
-                        key={selectedKey}
+                        key={route}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
@@ -392,7 +393,7 @@ export const CustomSider: React.FC = () => {
                 }}
             >
                 <Menu.Item
-                    key={selectedKey}
+                    key={route}
                     icon={<Icons.AppstoreAddOutlined />}
                 >
                     <StoreSelect

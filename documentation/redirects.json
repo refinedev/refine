@@ -193,10 +193,6 @@
             "to": "/docs/ui-frameworks/antd/hooks/form/useStepsForm"
         },
         {
-            "from": "/docs/api-references/hooks/resource/useMenu",
-            "to": "/docs/ui-frameworks/antd/hooks/resource/useMenu"
-        },
-        {
             "from": "/docs/api-references/hooks/table/useEditableTable",
             "to": "/docs/ui-frameworks/antd/hooks/table/useEditableTable"
         },
@@ -797,10 +793,6 @@
             "to": "/docs/guides-and-concepts/ssr-nextjs/"
         },
         {
-            "from": "/docs/guides-and-concepts/theme/",
-            "to": "/docs/guides-and-concepts/theme/ant-design/"
-        },
-        {
             "from": "/docs/next/guides-and-concepts/upload/base64-upload/",
             "to": "/docs/guides-and-concepts/upload/base64-upload/"
         },
@@ -963,10 +955,6 @@
         {
             "from": "/docs/next/ui-frameworks/antd/hooks/list/useSimpleList/",
             "to": "/docs/ui-frameworks/antd/hooks/list/useSimpleList/"
-        },
-        {
-            "from": "/docs/next/ui-frameworks/antd/hooks/resource/useMenu/",
-            "to": "/docs/ui-frameworks/antd/hooks/resource/useMenu/"
         },
         {
             "from": "/docs/next/ui-frameworks/antd/hooks/table/useEditableTable/",

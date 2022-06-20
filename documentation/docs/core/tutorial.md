@@ -175,6 +175,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 -   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
 ### Community ❤️
+
 -   [Firebase](https://github.com/rturan29/refine-firebase) - a fully featured [Firebase](https://firebase.google.com/) Data Provider by [rturan29](https://github.com/rturan29)
 -   [Directus](https://github.com/tspvivek/refine-directus) - a fully featured [Directus](https://directus.io/) Data Provider by [tspvivek](https://github.com/tspvivek)
 
@@ -403,14 +404,14 @@ We will create a **Layout** component to handle the rendering of the **Page** co
 Create a new folder named _"components"_ under _"/src"_ and create a new file named _"Layout.tsx"_ with the following code:
 
 ```tsx title="components/Layout.tsx"
-import { useResource, useNavigation } from "@pankod/refine-core";
+import { useMenu, useNavigation } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 const { Link } = routerProvider;
 
 export const Layout: React.FC = ({ children }) => {
-    const { resources } = useResource();
-    const { list } = useNavigation();
+    const { menuItems } = useMenu();
+    const { push } = useNavigation();
 
     return (
         <div className="flex min-h-screen flex-col">
@@ -425,14 +426,14 @@ export const Layout: React.FC = ({ children }) => {
                             />
                         </Link>
                         <ul>
-                            {resources.map(({ name, icon }) => (
+                            {menuItems.map(({ name, label icon, route }) => (
                                 <li key={name} className="float-left">
                                     <a
                                         className="flex cursor-pointer items-center gap-1 rounded-sm px-2 py-1 capitalize decoration-indigo-500 decoration-2 underline-offset-1 transition duration-300 ease-in-out hover:underline"
-                                        onClick={() => list(name)}
+                                        onClick={() => push(route)}
                                     >
                                         {icon}
-                                        <span>{name}</span>
+                                        <span>{label ?? name}</span>
                                     </a>
                                 </li>
                             ))}
@@ -446,7 +447,7 @@ export const Layout: React.FC = ({ children }) => {
 };
 ```
 
-We created a header with a logo and a list of links to all resources. The links are clickable and will navigate to the corresponding resource. To do this, we used the [`useResource`](/core/hooks/resource/useResource.md) hook to get the resources from the `<Refine/>` and the [`useNavigation`](/core/hooks/navigation/useNavigation.md) hook to used to navigate between resources.
+We created a header with a logo and a list of links to all menu items (resources). The links are clickable and will navigate to the corresponding resource. To do this, we used the [`useMenu`](/core/hooks/ui/useMenu.md) hook to get the menu items from the `<Refine/>` and the [`useNavigation`](/core/hooks/navigation/useNavigation.md) hook to used to navigate between resources.
 
 `children` is the content of the layout. In our case, it is the content of the **Page** components.
 

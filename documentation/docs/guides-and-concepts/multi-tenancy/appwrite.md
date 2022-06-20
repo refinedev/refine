@@ -212,6 +212,7 @@ Let's define the select component in the **refine** Sider Menu. First, we need t
 import React, { useState } from "react";
 import {
     useTitle,
+    useMenu,
     ITreeMenu,
     CanAccess,
     useRouterContext,
@@ -219,7 +220,6 @@ import {
 import {
     AntdLayout,
     Menu,
-    useMenu,
     Grid,
     Icons,
 } from "@pankod/refine-antd";
@@ -263,7 +263,7 @@ export const CustomSider: React.FC = () => {
                     action="list"
                 >
                     <Menu.Item
-                        key={selectedKey}
+                        key={route}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}

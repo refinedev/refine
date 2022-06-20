@@ -9,11 +9,10 @@ import {
     ITreeMenu,
     useIsExistAuthentication,
     useRouterContext,
+    useMenu,
 } from "@pankod/refine-core";
 
 import { Title as DefaultTitle } from "@components";
-
-import { useMenu } from "@hooks";
 
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 const { SubMenu } = Menu;
@@ -39,7 +38,7 @@ export const Sider: React.FC = () => {
             if (children.length > 0) {
                 return (
                     <SubMenu
-                        key={name}
+                        key={route}
                         icon={icon ?? <UnorderedListOutlined />}
                         title={label}
                     >
@@ -58,7 +57,7 @@ export const Sider: React.FC = () => {
                     action="list"
                 >
                     <Menu.Item
-                        key={selectedKey}
+                        key={route}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}

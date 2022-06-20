@@ -153,7 +153,10 @@ module.exports = {
                         {
                             type: "category",
                             label: "UI",
-                            items: ["core/hooks/ui/useModal"],
+                            items: [
+                                "core/hooks/ui/useModal",
+                                "core/hooks/ui/useMenu",
+                            ],
                         },
                     ],
                 },
@@ -228,9 +231,7 @@ module.exports = {
                                 {
                                     type: "category",
                                     label: "Resource",
-                                    items: [
-                                        "ui-frameworks/antd/hooks/resource/useMenu",
-                                    ],
+                                    items: ["core/hooks/ui/useMenu"],
                                 },
                                 {
                                     type: "category",
@@ -299,6 +300,15 @@ module.exports = {
                                 },
                             ],
                         },
+                        {
+                            type: "category",
+                            label: "Customization",
+                            items: [
+                                "ui-frameworks/antd/customization/antd-custom-theme",
+                                "ui-frameworks/antd/customization/antd-custom-layout",
+                                "ui-frameworks/antd/customization/antd-custom-sider",
+                            ],
+                        },
                     ],
                 },
                 {
@@ -316,9 +326,7 @@ module.exports = {
                                 {
                                     type: "category",
                                     label: "Resource",
-                                    items: [
-                                        "ui-frameworks/mui/hooks/resource/useMenu",
-                                    ],
+                                    items: ["core/hooks/ui/useMenu"],
                                 },
                             ],
                         },
@@ -367,6 +375,15 @@ module.exports = {
                                         "ui-frameworks/mui/components/fields/url",
                                     ],
                                 },
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Customization",
+                            items: [
+                                "ui-frameworks/mui/customization/mui-custom-theme",
+                                "ui-frameworks/mui/customization/mui-custom-layout",
+                                "ui-frameworks/mui/customization/mui-custom-sider",
                             ],
                         },
                     ],
@@ -446,14 +463,6 @@ module.exports = {
                 },
 
                 "guides-and-concepts/ssr-nextjs",
-                {
-                    type: "category",
-                    label: "Theme",
-                    items: [
-                        "guides-and-concepts/theme/ant-design",
-                        "guides-and-concepts/theme/material-ui",
-                    ],
-                },
                 {
                     type: "category",
                     label: "Upload",

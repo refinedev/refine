@@ -94,8 +94,10 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
             },
             {
                 id: "actions",
-                Header: "Actions",
+                Header: t("categories.fields.actions"),
                 accessor: "id",
+                align: "center",
+                maxWidth: 150,
                 Cell: function render({
                     value,
                 }: React.PropsWithChildren<CellProps<{ id: number }>>) {
@@ -126,7 +128,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                 },
             },
         ],
-        [],
+        [t],
     );
     const {
         rows,
@@ -166,53 +168,58 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
         const { id, title, isActive } = row.original;
 
         return (
-            <React.Fragment key={`edit-row-${id}`}>
-                <TableRow key={`edit-${id}-inputs`}>
-                    <TableCell>
-                        <Stack
-                            direction="row"
-                            spacing={3}
-                            alignContent="center"
-                            alignItems="center"
-                        >
-                            <span {...row.getToggleRowExpandedProps()}>
-                                {row.isExpanded ? (
-                                    <RemoveCircleOutline />
-                                ) : (
-                                    <AddCircleOutline />
-                                )}
-                            </span>
-                            <TextField
-                                fullWidth
-                                id="title"
-                                type="text"
-                                defaultValue={title}
-                                {...register("title", {
-                                    required: t("errors.required.field", {
-                                        field: "Title",
-                                    }),
-                                })}
-                            />
-                        </Stack>
-                    </TableCell>
-                    <TableCell>
-                        <Checkbox
-                            id="isActive"
-                            defaultChecked={isActive}
-                            {...register("isActive")}
-                        />
-                    </TableCell>
+            <TableRow key={`edit-${id}-inputs`}>
+                <TableCell
+                    sx={{
+                        flex: "1",
+                    }}
+                >
+                    <Stack
+                        direction="row"
+                        spacing={3}
+                        alignContent="center"
+                        alignItems="center"
+                    >
+                        <span {...row.getToggleRowExpandedProps()}>
+                            {row.isExpanded ? (
+                                <RemoveCircleOutline fontSize="small" />
+                            ) : (
+                                <AddCircleOutline fontSize="small" />
+                            )}
+                        </span>
 
-                    <TableCell>
-                        <SaveButton type="submit">
-                            {t("buttons.save")}
-                        </SaveButton>
-                        <Button onClick={() => setId(undefined)}>
-                            {t("buttons.cancel")}
-                        </Button>
-                    </TableCell>
-                </TableRow>
-            </React.Fragment>
+                        <TextField
+                            fullWidth
+                            id="title"
+                            type="text"
+                            size="small"
+                            defaultValue={title}
+                            {...register("title", {
+                                required: t("errors.required.field", {
+                                    field: "Title",
+                                }),
+                            })}
+                        />
+                    </Stack>
+                </TableCell>
+                <TableCell>
+                    <Checkbox
+                        id="isActive"
+                        defaultChecked={isActive}
+                        {...register("isActive")}
+                    />
+                </TableCell>
+                <TableCell
+                    sx={{
+                        maxWidth: "150px",
+                    }}
+                >
+                    <SaveButton type="submit">{t("buttons.save")}</SaveButton>
+                    <Button onClick={() => setId(undefined)}>
+                        {t("buttons.cancel")}
+                    </Button>
+                </TableCell>
+            </TableRow>
         );
     }, []);
 
@@ -246,13 +253,12 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                         <TableBody {...getTableBodyProps()}>
                             {rows.map((row) => {
                                 prepareRow(row);
-                                if (id === (row.original as ICategory).id) {
-                                    return renderEditRow(row);
-                                } else
-                                    return (
-                                        <React.Fragment
-                                            key={row.getRowProps().key}
-                                        >
+                                return (
+                                    <React.Fragment key={row.getRowProps().key}>
+                                        {id ===
+                                        (row.original as ICategory).id ? (
+                                            renderEditRow(row)
+                                        ) : (
                                             <TableRow>
                                                 {row.cells.map(
                                                     (cell: {
@@ -283,22 +289,22 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                                                     },
                                                 )}
                                             </TableRow>
-
-                                            {row.isExpanded ? (
-                                                <TableRow>
-                                                    <TableCell
-                                                        colSpan={
-                                                            visibleColumns.length
-                                                        }
-                                                    >
-                                                        {renderRowSubComponent({
-                                                            row,
-                                                        })}
-                                                    </TableCell>
-                                                </TableRow>
-                                            ) : null}
-                                        </React.Fragment>
-                                    );
+                                        )}
+                                        {row.isExpanded ? (
+                                            <TableRow>
+                                                <TableCell
+                                                    colSpan={
+                                                        visibleColumns.length
+                                                    }
+                                                >
+                                                    {renderRowSubComponent({
+                                                        row,
+                                                    })}
+                                                </TableCell>
+                                            </TableRow>
+                                        ) : null}
+                                    </React.Fragment>
+                                );
                             })}
                         </TableBody>
                     </Table>
@@ -418,7 +424,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                 minWidth: 100,
             },
         ],
-        [],
+        [t],
     );
 
     const { dataGridProps } = useDataGrid<IProduct>({
