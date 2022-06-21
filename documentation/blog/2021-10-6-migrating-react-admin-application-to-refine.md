@@ -19,7 +19,7 @@ Recently, our team decided to migrate a B2B admin panel of one of our customers 
 
 ### Migrating a React-Admin Application to refine
 
-[refine](https://refine.dev/) is an extremely customizable [Ant Desig](https://ant.design/) based [React](https://reactjs.org/) framework for data-intensive applications and it handles most of the CRUD functionality that can be a requirement in many applications, without much effort. Providing the rest of the desired functionality (outside CRUD) is up to you, like in any <strong>React</strong> application.
+[refine](https://refine.dev/) is an extremely customizable [Ant Design](https://ant.design/) based [React](https://reactjs.org/) framework for data-intensive applications and it handles most of the CRUD functionality that can be a requirement in many applications, without much effort. Providing the rest of the desired functionality (outside CRUD) is up to you, like in any <strong>React</strong> application.
 
 [React-Admin](https://marmelab.com/react-admin/) is an amazing B2B application framework based on [Material Design](https://material.io/), using [Material UI](https://mui.com/). It provides ready-to-fetch-data components, so you just compose them together to create an application.
 
