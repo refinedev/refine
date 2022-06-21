@@ -58,6 +58,12 @@ export function withCloud(
             };
         }
 
+        // TODO: Fix this
+        // It re-render and breaks the react-query caches. Temporarily added.
+        if (!resources) {
+            return null;
+        }
+
         return (
             <Refine
                 {...otherProps}
