@@ -19,7 +19,8 @@ This guide will help you learn and get information of basic **refine** concepts.
 **UI Framework Packages:**
 
 -   `@pankod/refine-antd` - a fully featured [Ant Design](https://ant.design/) System UI Framework support. Includes +20 Table, Form, Select, Menu, Layout, Notification and CRUD components and hooks.
--   `@pankod/refine-mui` (Coming soon!) - a fully featured [Material UI](https://mui.com/) Framework support.
+-   `@pankod/refine-mui` - a fully featured [Material UI](https://mui.com/) Framework support. Includes DataGrid (Pro included), AutoComplete, Menu, Layout, Notification and CRUD components and hooks.
+-   `@pankod/refine-mantine` - (Coming soon!) - a fully featured [Mantine](https://mantine.dev/) support.
 
 **[Data Provider](https://refine.dev/docs/core/providers/data-provider/) Packages:**
 

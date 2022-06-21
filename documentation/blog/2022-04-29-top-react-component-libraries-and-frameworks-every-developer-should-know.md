@@ -136,6 +136,6 @@ It has many examples to help you get started, as well as documentation. Also it 
 -   **Zero-configuration**: One-line setup with [superplate](https://github.com/pankod/superplate). It takes less than a minute to start a project.
 -   **Out-of-the-box**: Routing, networking, authentication, state management, i18n and UI.
 -   **Backend Agnostic**: Connects to any custom backend.
--   **Powerful UI**: Works seamlessly with integrated [Ant Design](https://ant.design/)(It can also be used with any UI Framework).
+-   **Powerful UI**: Works seamlessly with integrated [Ant Design](https://ant.design/) and [Material UI](https://mui.com/) (It can also be used with any UI Framework).
 
 👉 [Showcase](https://refine.dev/demo/)

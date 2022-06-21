@@ -13,7 +13,6 @@ import warnwhen from '@site/static/img/warnwhen.png';
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
-import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList } from "pages/posts";
 
@@ -96,7 +95,6 @@ Page components that are for interacting with the CRUD API operations are passed
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-json-server";
-import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
