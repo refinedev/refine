@@ -71,7 +71,6 @@ export const CategoryFilter: React.FC<ProductItemProps> = ({
                         {t("stores.all")}
                     </LoadingButton>
                 </Grid>
-
                 {categories?.data.map((category: ICategory) => (
                     <Grid item key={category.id} p={0.5}>
                         <LoadingButton

@@ -61,12 +61,13 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
 
     const { data: productData } = tableQueryResult;
 
-    const mergedData = productData?.data.map((product) => ({
-        ...record?.products.find(
-            (storeProduct) => storeProduct.id === product.id,
-        ),
-        ...product,
-    }));
+    const mergedData =
+        productData?.data.map((product) => ({
+            ...record?.products.find(
+                (storeProduct) => storeProduct.id === product.id,
+            ),
+            ...product,
+        })) || [];
 
     const { mutate } = useUpdate<IStore>();
 
@@ -192,25 +193,40 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
                                     overflow="scroll"
                                 >
                                     <Grid container>
-                                        {mergedData?.map(
-                                            (product: IProduct) => (
-                                                <Grid
-                                                    item
-                                                    xs={12}
-                                                    sm={6}
-                                                    md={4}
-                                                    key={product.id}
-                                                    sx={{ padding: "8px" }}
-                                                >
-                                                    <ProductItem
-                                                        updateStock={
-                                                            updateStock
-                                                        }
-                                                        product={product}
-                                                        show={showEditDrawer}
-                                                    />
-                                                </Grid>
-                                            ),
+                                        {mergedData.length > 0 ? (
+                                            mergedData.map(
+                                                (product: IProduct) => (
+                                                    <Grid
+                                                        item
+                                                        xs={12}
+                                                        sm={6}
+                                                        md={4}
+                                                        key={product.id}
+                                                        sx={{ padding: "8px" }}
+                                                    >
+                                                        <ProductItem
+                                                            updateStock={
+                                                                updateStock
+                                                            }
+                                                            product={product}
+                                                            show={
+                                                                showEditDrawer
+                                                            }
+                                                        />
+                                                    </Grid>
+                                                ),
+                                            )
+                                        ) : (
+                                            <Grid
+                                                container
+                                                justifyContent="center"
+                                                padding={3}
+                                                minHeight={200}
+                                            >
+                                                <Typography variant="body2">
+                                                    {t("products.noProducts")}
+                                                </Typography>
+                                            </Grid>
                                         )}
                                     </Grid>
                                     <Pagination
