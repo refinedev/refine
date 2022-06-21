@@ -40,7 +40,7 @@ export const Login: React.FC = () => {
     const renderSocialLogin = () => {
         if (authConfig.isFetched) {
             const providers = authConfig.data?.filter(
-                (item) => item.name !== "db",
+                (item) => item.type !== "database",
             );
 
             // TODO: map social icon to provider type
