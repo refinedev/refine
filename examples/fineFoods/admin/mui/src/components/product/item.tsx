@@ -12,7 +12,7 @@ import {
     Popover,
     Button,
     Divider,
-    Paper,
+    TextField,
 } from "@pankod/refine-mui";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditIcon from "@mui/icons-material/Edit";
@@ -162,7 +162,7 @@ export const ProductItem: React.FC<PropductItem> = ({
                         my: 1,
                     }}
                 >{`#10000${id}`}</Typography>
-                <Tooltip title={`${price / 100}$`}>
+                <Tooltip title={`${price / 100}$`} placement="top">
                     <Typography
                         sx={{
                             fontWeight: 800,
@@ -176,37 +176,16 @@ export const ProductItem: React.FC<PropductItem> = ({
                     >{`${price / 100}$`}</Typography>
                 </Tooltip>
                 {updateStock && (
-                    <Paper
-                        sx={{
-                            display: "flex",
-                            justifyContent: "center",
-                            height: "32px",
-                            alignItems: "center",
-                            marginTop: "4px",
-                            boxShadow: "none",
-                            border: "1px solid #e0e0e0",
+                    <TextField
+                        type="number"
+                        margin="dense"
+                        size="small"
+                        value={product.stock || 0}
+                        onChange={(e) => {
+                            e.preventDefault();
+                            updateStock(parseInt(e.target.value, 10), product);
                         }}
-                    >
-                        <input
-                            style={{
-                                width: "70px",
-                                height: "30px",
-                                border: "none",
-                                borderRadius: "5px",
-                                margin: "10px 0",
-                                outline: "none",
-                            }}
-                            type="number"
-                            value={product.stock || 0}
-                            onChange={(e) => {
-                                e.preventDefault();
-                                updateStock(
-                                    parseInt(e.target.value, 10),
-                                    product,
-                                );
-                            }}
-                        />
-                    </Paper>
+                    />
                 )}
             </CardContent>
         </Card>
