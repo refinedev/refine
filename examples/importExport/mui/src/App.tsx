@@ -11,7 +11,6 @@ import {
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import { authProvider } from "authProvider";
 import { ImportList } from "pages/list";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -20,7 +19,6 @@ const App: React.FC = () => {
         <ThemeProvider theme={LightTheme}>
             <CssBaseline />
             <Refine
-                authProvider={authProvider}
                 routerProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}
                 ReadyPage={ReadyPage}
