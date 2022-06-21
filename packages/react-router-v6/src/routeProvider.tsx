@@ -243,7 +243,7 @@ export const RouteProvider = () => {
                             <Navigate
                                 to={`/${
                                     resources.find((p) => p.list !== undefined)
-                                        ?.route ?? ""
+                                        ?.route
                                 }`}
                             />
                         )
