@@ -127,7 +127,7 @@ export const RouterComponent: React.FC<RouterProps> = ({
                         <Navigate
                             to={`/${
                                 resources.find((p) => p.list !== undefined)
-                                    ?.route
+                                    ?.route ?? ""
                             }`}
                         />
                     ),

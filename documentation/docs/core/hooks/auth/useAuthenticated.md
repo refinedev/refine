@@ -83,24 +83,19 @@ type AuthenticatedProps = {
 Now, only authenticated users can see the price field.
 
 ```tsx title="components/postShow"
-import { Typography, Show } from "@pankod/refine-antd";
-
 // highlight-next-line
 import { Authenticated } from "components/authenticated"
 
 const { Title, Text } = Typography;
 
 export const PostShow: React.FC = () => (
-    <Show>
-        <Title>Status</Title>
-        <Text>Approved</Text>
+    <div>
         // highlight-start
         <Authenticated>
-            <Title>Price</Title>
-            <Text>20</Text>
+            <span>Only authenticated users can see</span>
         </Authenticated>
         // highlight-end
-    </Show>
+    </div>
 )
 ```
 

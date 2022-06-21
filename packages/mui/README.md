@@ -34,8 +34,8 @@
 [![Meercode CI Success Rate](https://meercode.io/badge/pankod/refine?type=ci-success-rate&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
 [![Maintainability](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/maintainability)](https://codeclimate.com/github/pankod/refine/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/test_coverage)](https://codeclimate.com/github/pankod/refine/test_coverage)
-[![npm version](https://img.shields.io/npm/v/@pankod/refine-antd.svg)](https://www.npmjs.com/package/@pankod/refine-antd)
-[![npm](https://img.shields.io/npm/dm/@pankod/refine-core-antd)](https://www.npmjs.com/package/@pankod/refine-antd)
+[![npm version](https://img.shields.io/npm/v/@pankod/refine-mui.svg)](https://www.npmjs.com/package/@pankod/refine-mui)
+[![npm](https://img.shields.io/npm/dm/@pankod/refine-mui)](https://www.npmjs.com/package/@pankod/refine-antd)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](code_of_conduct.md)
 
 
@@ -150,65 +150,91 @@ Your **refine** application will be accessible at [http://localhost:3000](http:/
 Replace the contents of `App.tsx` with the following code:
 
 ```tsx title="App.tsx"
-mport { Refine, useMany } from "@pankod/refine-core";
+import React from "react";
+import { Refine, useOne } from "@pankod/refine-core";
 import {
-    useTable,
-    List,
-    Table,
-    DateField,
-} from "@pankod/refine-antd";
+    Layout,
+    ErrorComponent,
+    LightTheme,
+    ThemeProvider,
+    notificationProvider,
+    RefineSnackbarProvider,
+    CssBaseline,
+    GlobalStyles,
+} from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine-antd/dist/styles.min.css";
-
 const App: React.FC = () => {
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[{ name: "posts", list: PostList }]}
-        />
+        <ThemeProvider theme={LightTheme}>
+            <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+            <RefineSnackbarProvider>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    Layout={Layout}
+                    catchAll={<ErrorComponent />}
+                    resources={[{ name: "posts", list: PostList }]}
+                />
+            </RefineSnackbarProvider>
+        </ThemeProvider>
     );
 };
 
 export const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+    const getOne = React.useCallback(useOne, []);
+    const columns = React.useMemo<GridColumns<IPost>>(
+        () => [
+            {
+                field: "id",
+                headerName: "ID",
+                type: "number",
+                width: 50,
+            },
+            { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
+            {
+                field: "category.id",
+                headerName: "Category",
+                type: "number",
+                headerAlign: "left",
+                align: "left",
+                minWidth: 250,
+                flex: 0.5,
+                valueGetter: ({ row }) => {
+                    const { data } = getOne<ICategory>({
+                        resource: "categories",
+                        id: row.category.id,
+                    });
+                    return data?.data.title;
+                },
+            },
+            { field: "status", headerName: "Status", minWidth: 120, flex: 0.3 },
+            {
+                field: "actions",
+                headerName: "Actions",
+                renderCell: function render({ row }) {
+                    return <EditButton hideText recordItemId={row.id} />;
+                },
+                align: "center",
+                headerAlign: "center",
+                minWidth: 80,
+            },
+        ],
+        [getOne],
+    );
 
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-
-    const { data, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
+    const { dataGridProps } = useDataGrid<IPost>({
+        columns,
     });
 
     return (
         <List>
-            <Table<IPost> {...tableProps} rowKey="id">
-                <Table.Column dataIndex="title" title="title" />
-                <Table.Column
-                    dataIndex={["category", "id"]}
-                    title="category"
-                    render={(value: string) => {
-                        if (isLoading) {
-                            return "loading...";
-                        }
-
-                        return data?.data.find(
-                            (item: ICategory) => item.id === value,
-                        )?.title;
-                    }}
-                />
-                <Table.Column
-                    dataIndex="createdAt"
-                    title="createdAt"
-                    render={(value) => <DateField format="LLL" value={value} />}
-                />
-            </Table>
+            <DataGrid {...dataGridProps} autoHeight />
         </List>
     );
 };
@@ -224,7 +250,7 @@ interface IPost {
 }
 
 interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }
 ```
