@@ -1,5 +1,11 @@
 # @pankod/refine-nextjs-router
 
+## 3.25.2
+
+### Patch Changes
+
+-   We've updated Next.js version to `12.1.6`
+
 ## 3.25.1
 
 ### Patch Changes

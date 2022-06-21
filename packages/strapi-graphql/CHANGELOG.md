@@ -1,5 +1,11 @@
 # @pankod/refine-strapi-graphql
 
+## 3.25.6
+
+### Patch Changes
+
+-   Added `graphql-request` dependency to peerDependencies
+
 ## 3.25.5
 
 ### Patch Changes

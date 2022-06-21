@@ -1,5 +1,14 @@
 # @pankod/refine-antd
 
+## 3.25.8
+
+### Patch Changes
+
+-   Fix missing behavior for dashboard item in _deprecated_ `useMenu`
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.32.0
+
 ## 3.25.7
 
 ### Patch Changes
@@ -13,12 +22,18 @@
 
 ### Patch Changes
 
--   [#1985](https://github.com/pankod/refine/pull/1985) [`f0345a42ef`](https://github.com/pankod/refine/commit/f0345a42ef56a06e1f46c83d7c78b3e86a9b52c9) Thanks [@aliemir](https://github.com/aliemir)! - Update `key`s in `<Sider/>` component to use `route`
+-   Update `key`s in `<Sider/>` component to use `route`
 
-*   [#1952](https://github.com/pankod/refine/pull/1952) [`1397f09c92`](https://github.com/pankod/refine/commit/1397f09c92c3f55c9f9f0149c4b4b3993927a12e) Thanks [@aliemir](https://github.com/aliemir)! - Deprecated `useMenu` from `@pankod/refine-antd` and replaced with the `useMenu` from `@pankod/refine-core`
+*   Deprecated `useMenu` from `@pankod/refine-antd` and replaced with the `useMenu` from `@pankod/refine-core`
 
-*   Updated dependencies [[`1397f09c92`](https://github.com/pankod/refine/commit/1397f09c92c3f55c9f9f0149c4b4b3993927a12e), [`1397f09c92`](https://github.com/pankod/refine/commit/1397f09c92c3f55c9f9f0149c4b4b3993927a12e), [`1199577e81`](https://github.com/pankod/refine/commit/1199577e81c0661fee1cfbf31a49a77178e706ba)]:
+*   Updated dependencies []:
     -   @pankod/refine-core@3.30.0
+
+## 3.25.6
+
+### Patch Changes
+
+-   Could not stop `e.preventDefault()` redirection in Next.js `<Link>` component. So we added in `e.stopPropagation()` for [Ant Design Buttons](https://refine.dev/docs/ui-frameworks/antd/components/buttons/clone-button/) and [Material UI Buttons](https://refine.dev/docs/ui-frameworks/mui/components/buttons/clone-button/)
 
 ## 3.25.5
 
