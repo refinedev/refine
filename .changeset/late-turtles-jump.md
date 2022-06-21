@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-cloud": major
+"@pankod/refine-cloud": minor
 ---
 
 Add HOC `withCloud` function. This function, your application will communicate with the refine cloud. Check out the `examples/cloud` folder for more.
