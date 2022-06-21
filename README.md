@@ -55,7 +55,7 @@ For more detailed information and usage, refer to the [refine documentation](htt
 
 ## What is refine?
 
-**refine** is a [React](https://reactjs.org/)-based framework for building internal tools, rapidly. :sparkles: It ships with [Ant Design System](https://ant.design/), an enterprise-level UI toolkit.
+**refine** is a [React](https://reactjs.org/)-based framework for building internal tools, rapidly. :sparkles: It ships with [Ant Design System](https://ant.design/) and [Material UI](https://mui.com/), an enterprise-level UI toolkit.
 
 Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to _admin panels_, _B2B applications_ and _dashboards_.
 
@@ -82,7 +82,7 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 📝 **Native Typescript Core** : You can always opt out for plain JavaScript.
 
-🐜 **Powerful UI** : Works seamlessly with integrated [Ant Design System](https://ant.design/). (It can also be used with **any** UI Framework)
+🐜 **Powerful UI** : Works seamlessly with integrated [Ant Design System](https://ant.design/) and [Material UI](https://mui.com/). (It can also be used with **any** UI Framework)
 
 📝 **Boilerplate-free Code** : Keeps your codebase clean and readable.
 
