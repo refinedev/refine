@@ -992,7 +992,7 @@ export const PostList: React.FC = () => {
 
 Until this point, we were basically working with reading operations such as fetching and displaying data from resources. From now on, we are going to start creating and updating records by using **refine**
 
-The Material UI provides already styled, but still very customizable inputs that encapsulate adding labels and error handling with helper texts.However, we need a third party library to handle forms when using Material UI. React hook form is one of the best options for this job!
+The Material UI provides already styled, but still very customizable inputs that encapsulate adding labels and error handling with helper texts. However, we need a third-party library to handle forms when using Material UI. [React Hook Form](https://react-hook-form.com/) is one of the best options for this job!
 The React Hook Form library has been integrated with **refine** ([`@pankod/refine-react-hook-form`](https://github.com/pankod/refine/tree/master/packages/react-hook-form)) . This means you can now use Material UI for your forms and manage them using [`@pankod/refine-react-hook-form`](https://github.com/pankod/refine/tree/master/packages/react-hook-form)!
 
 Let's start by creating a new `<PostEdit>` page responsible for `editing` a single record:
