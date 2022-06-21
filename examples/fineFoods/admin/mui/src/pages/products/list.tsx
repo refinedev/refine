@@ -3,6 +3,7 @@ import {
     useTranslate,
     IResourceComponentsProps,
     useTable,
+    GetListResponse,
 } from "@pankod/refine-core";
 import { useModalForm } from "@pankod/refine-react-hook-form";
 import {
@@ -50,7 +51,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         modal: { show: showEditDrawer },
     } = editDrawerFormProps;
 
-    const products = tableQueryResult.data;
+    const products: IProduct[] = tableQueryResult.data?.data || [];
 
     return (
         <>
@@ -121,8 +122,8 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                             </CreateButton>
                         </Stack>
                         <Grid container>
-                            {(products?.total || 0) > 0 ? (
-                                products?.data.map((product: IProduct) => (
+                            {products.length > 0 ? (
+                                products.map((product: IProduct) => (
                                     <Grid
                                         item
                                         xs={12}

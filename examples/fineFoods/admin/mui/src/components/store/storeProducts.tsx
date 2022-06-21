@@ -61,12 +61,13 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
 
     const { data: productData } = tableQueryResult;
 
-    const mergedData = productData?.data.map((product) => ({
-        ...record?.products.find(
-            (storeProduct) => storeProduct.id === product.id,
-        ),
-        ...product,
-    }));
+    const mergedData =
+        productData?.data.map((product) => ({
+            ...record?.products.find(
+                (storeProduct) => storeProduct.id === product.id,
+            ),
+            ...product,
+        })) || [];
 
     const { mutate } = useUpdate<IStore>();
 
@@ -192,8 +193,7 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
                                     overflow="scroll"
                                 >
                                     <Grid container>
-                                        {mergedData &&
-                                        mergedData?.length > 0 ? (
+                                        {mergedData.length > 0 ? (
                                             mergedData.map(
                                                 (product: IProduct) => (
                                                     <Grid
