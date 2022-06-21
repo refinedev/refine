@@ -22,7 +22,6 @@ import React, { useState } from "react";
 import {
     CanAccess,
     ITreeMenu,
-    useIsExistAuthentication,
     useTitle,
     useMenu,
     useTranslate,
@@ -64,10 +63,7 @@ export const CustomMenu: React.FC = () => {
     const { hasDashboard } = useRefineContext();
 
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
-    const isExistAuthentication = useIsExistAuthentication();
     const Title = useTitle();
-
-    const [open, setOpen] = useState<{ [k: string]: any }>({});
 
     const [open, setOpen] = useState<{ [k: string]: any }>({});
 
@@ -411,12 +407,16 @@ The `useLogout` hook allows us to add a Logout button to our menu if we have an 
 export const CustomSider: React.FC = () => {
     import {
         ...
-        // highlight-next-line
+        // highlight-start
+        useIsExistAuthentication,
         useLogout,
+        // highlight-end
         ...
     } from "@pankod/refine-core";
-    // highlight-next-line
+    // highlight-start
+    const isExistAuthentication = useIsExistAuthentication();
     const { mutate: logout } = useLogout();
+    // highlight-end
 
     ...
 
