@@ -1,4 +1,4 @@
-import { useQueryClient, useMutation, UseMutationResult } from "react-query";
+import { useMutation, UseMutationResult } from "react-query";
 
 import {
     BaseRecord,
@@ -13,7 +13,6 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
-    useLog,
     useInvalidate,
 } from "@hooks";
 import pluralize from "pluralize";
@@ -58,7 +57,6 @@ export const useCreateMany = <
 
     const translate = useTranslate();
     const publish = usePublish();
-    const { log } = useLog();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
 
@@ -86,8 +84,6 @@ export const useCreateMany = <
                     successNotification,
                     dataProviderName,
                     invalidates = ["list", "many"],
-                    values,
-                    metaData,
                 },
             ) => {
                 const resourcePlural = pluralize.plural(resource);
@@ -125,20 +121,6 @@ export const useCreateMany = <
                         ids,
                     },
                     date: new Date(),
-                });
-
-                const { fields, operation, variables, ...rest } =
-                    metaData || {};
-
-                log?.({
-                    action: "create",
-                    resource,
-                    data: values,
-                    meta: {
-                        dataProviderName,
-                        ids,
-                        ...rest,
-                    },
                 });
             },
             onError: (err: TError, { resource, errorNotification }) => {

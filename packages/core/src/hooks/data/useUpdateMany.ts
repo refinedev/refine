@@ -9,7 +9,6 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
-    useLog,
     useInvalidate,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
@@ -25,7 +24,6 @@ import {
     MetaDataQuery,
     GetListResponse,
     IQueryKeys,
-    UpdateResponse,
 } from "../../interfaces";
 import { queryKeys } from "@definitions/helpers";
 
@@ -80,7 +78,6 @@ export const useUpdateMany = <
     const { mutate: checkError } = useCheckError();
     const { notificationDispatch } = useCancelNotification();
     const publish = usePublish();
-    const { log } = useLog();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
 
@@ -295,18 +292,7 @@ export const useUpdateMany = <
                     payload: { id: ids, resource },
                 });
             },
-            onSuccess: (
-                data,
-                {
-                    ids,
-                    resource,
-                    successNotification,
-                    dataProviderName,
-                    values,
-                    metaData,
-                },
-                context,
-            ) => {
+            onSuccess: (data, { ids, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);
 
                 handleNotification(successNotification, {
@@ -335,35 +321,6 @@ export const useUpdateMany = <
                         ids: ids.map(String),
                     },
                     date: new Date(),
-                });
-
-                let previousData: TData[] = [];
-                if (context) {
-                    previousData = ids.map((id) => {
-                        const queryData = queryClient.getQueryData<
-                            UpdateResponse<TData>
-                        >(context.queryKey.detail(id));
-
-                        return Object.keys(values).reduce<any>((acc, item) => {
-                            acc[item] = queryData?.data?.[item];
-                            return acc;
-                        }, {});
-                    });
-                }
-
-                const { fields, operation, variables, ...rest } =
-                    metaData || {};
-
-                log?.({
-                    action: "update",
-                    resource,
-                    data: values,
-                    previousData,
-                    meta: {
-                        ids,
-                        dataProviderName,
-                        ...rest,
-                    },
                 });
             },
             onError: (

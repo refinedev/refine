@@ -23,7 +23,6 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
-    useLog,
     useInvalidate,
 } from "@hooks";
 import { queryKeys } from "@definitions/helpers";
@@ -78,7 +77,6 @@ export const useUpdate = <
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const publish = usePublish();
-    const { log } = useLog();
     const { notificationDispatch } = useCancelNotification();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
@@ -309,36 +307,6 @@ export const useUpdate = <
                         ids: data.data?.id ? [data.data.id] : undefined,
                     },
                     date: new Date(),
-                });
-
-                let previousData: any;
-                if (context) {
-                    const queryData = queryClient.getQueryData<
-                        UpdateResponse<TData>
-                    >(context.queryKey.detail(id));
-
-                    previousData = Object.keys(values).reduce<any>(
-                        (acc, item) => {
-                            acc[item] = queryData?.data?.[item];
-                            return acc;
-                        },
-                        {},
-                    );
-                }
-
-                const { fields, operation, variables, ...rest } =
-                    metaData || {};
-
-                log?.({
-                    action: "update",
-                    resource,
-                    data: values,
-                    previousData,
-                    meta: {
-                        id,
-                        dataProviderName,
-                        ...rest,
-                    },
                 });
             },
             onError: (
