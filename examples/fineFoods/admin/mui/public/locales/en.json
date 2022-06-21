@@ -223,6 +223,7 @@
     },
     "products": {
         "products": "Products",
+        "noProducts": "No Products",
         "titles": {
             "list": "Products",
             "create": "Create Product",

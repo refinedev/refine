@@ -94,7 +94,6 @@ export const ProductItem: React.FC<PropductItem> = ({
                 }
                 sx={{ padding: 0 }}
             />
-
             <Box
                 sx={{
                     display: "flex",

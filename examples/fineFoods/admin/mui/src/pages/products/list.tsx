@@ -50,6 +50,8 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         modal: { show: showEditDrawer },
     } = editDrawerFormProps;
 
+    const products = tableQueryResult.data;
+
     return (
         <>
             <CreateProduct {...createDrawerFormProps} />
@@ -119,8 +121,8 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                             </CreateButton>
                         </Stack>
                         <Grid container>
-                            {tableQueryResult.data?.data.map(
-                                (product: IProduct) => (
+                            {(products?.total || 0) > 0 ? (
+                                products?.data.map((product: IProduct) => (
                                     <Grid
                                         item
                                         xs={12}
@@ -134,7 +136,17 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                                             show={showEditDrawer}
                                         />
                                     </Grid>
-                                ),
+                                ))
+                            ) : (
+                                <Grid
+                                    container
+                                    justifyContent="center"
+                                    padding={3}
+                                >
+                                    <Typography variant="body2">
+                                        {t("products.noProducts")}
+                                    </Typography>
+                                </Grid>
                             )}
                         </Grid>
                         <Pagination
