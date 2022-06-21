@@ -122,10 +122,9 @@ export const ProductItem: React.FC<PropductItem> = ({
                 <Divider />
                 <Tooltip title={name}>
                     <Typography
-                        variant="h4"
                         sx={{
                             fontWeight: 800,
-                            fontSize: "24px",
+                            fontSize: "1.2rem",
                             color: "text.secondary",
                             overflow: "hidden",
                             whiteSpace: "nowrap",
@@ -137,7 +136,7 @@ export const ProductItem: React.FC<PropductItem> = ({
                 </Tooltip>
                 <Tooltip title={description}>
                     <Typography
-                        variant="body1"
+                        variant="body2"
                         sx={{
                             mt: 2,
                             overflowWrap: "break-word",
@@ -154,9 +153,9 @@ export const ProductItem: React.FC<PropductItem> = ({
                     </Typography>
                 </Tooltip>
                 <Typography
+                    variant="h6"
                     sx={{
                         fontWeight: 700,
-                        fontSize: "20px",
                         color: "#999999",
                         my: 1,
                     }}
