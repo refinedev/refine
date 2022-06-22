@@ -19,6 +19,7 @@ import {
     ChevronLeft,
     ChevronRight,
     MenuRounded,
+    Dashboard,
 } from "@mui/icons-material";
 import {
     CanAccess,
@@ -244,7 +245,7 @@ export const Sider: React.FC = () => {
                                 color: "primary.contrastText",
                             }}
                         >
-                            {<ListOutlined />}
+                            <Dashboard />
                         </ListItemIcon>
                         <ListItemText
                             primary={translate("dashboard.title", "Dashboard")}
