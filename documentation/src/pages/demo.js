@@ -13,7 +13,7 @@ const iframeURLS = {
 
 const Hello = () => {
     const [clientActiveKeyPane, setClientActiveKeyPane] = useState("headless");
-    const [activeKeyPane2, setActiveKeyPane2] = useState("antd");
+    const [adminActiveKeyPane, setAdminActiveKeyPane] = useState("antd");
 
     return (
         <Layout title="One framework for all">
