@@ -94,18 +94,21 @@ Select the following options to complete the _CLI wizard_:
 ❯ refine-react
 
 ? What will be the name of your app:
-tutorial
+> tutorial
 
 ? Package manager:
 ❯ Npm
 
-? Do you want to use an UI Framework?:
-❯ No (headless)
+? Do you want to use a UI Framework?:
+❯ No (Headless)
 
-? Data Provider :
+? Router Provider:
+❯ React Router v6
+
+? Data Provider:
 ❯ REST API
 
-? Auth Provider :
+? Auth Provider:
 ❯ None
 
 ? i18n - Internationalization:

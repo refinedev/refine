@@ -15,8 +15,9 @@ export type ImportButtonProps = ButtonProps & {
 
 /**
  * `<ImportButton>` is compatible with the {@link https://refine.dev/docs/core/hooks/import-export/useImport/ `useImport`} core hook.
- * It uses Material UI {@link https://mui.com/components/buttons/  `<Button>`} .
+ * It uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content  `<LoadingButton>`} and native html {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input  `<input>`} element.
  *
+ * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/buttons/import-button} for more details.
  */
 export const ImportButton: React.FC<ImportButtonProps> = ({
     inputProps,

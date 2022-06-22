@@ -56,22 +56,26 @@ npx superplate-cli -p refine-react refine-advanced-tutorial
 ```bash
 ✔ What will be the name of your app › refine-advanced-tutorial
 
-✔ Package manager: · npm
+✔ Package manager: · Npm
 
-✔ Do you want to use an UI Framework?: · antd
+✔ Do you want to use a UI Framework?: · Ant Design
 
-✔ Do you want to customize theme?: · css
+✔ Do you want a customized layout?: · Default theme
 
-✔ Data Provider: · custom-json-rest-data-provider
+✔ Router Provider: · React Router v6
 
-✔ Auth Provider: · none
+✔ Data Provider: · REST API
 
-✔ Do you want to add an example page? · example-resource
+✔ Auth Provider: · None
 
-✔ Do you want to customize layout? · no
+✔ Do you want to add example pages? · Yes (Recommended)
+
+✔ Do you want a customized layout? · No
+
+✔ i18n - Internationalization: · No
 ```
 
-`✔ Do you want to add an example page? ·example-resource` By selecting you can view the tutorial in your local.
+`✔ Do you want to add example pages? ·Yes (Recommended)` By selecting you can view the tutorial in your local.
 
 ```bash
 cd refine-advanced-tutorial
