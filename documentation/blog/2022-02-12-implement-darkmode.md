@@ -27,14 +27,15 @@ Select the following options to complete the CLI wizard:
 ```tsx
 Cloned remote source successfully.
 ✔ What will be the name of your app · tutorial
-✔ Package manager: · npm
-✔ Do you want to use an UI Framework?: · antd
-✔ Do you want to customize theme?: · less
-✔ Data Provider: · custom-json-rest-data-provider
-✔ Auth Provider: · none
-✔ Do you want to add an example page? · example-resource
-✔ Do you want to customize layout? · custom-layout
-✔ i18n - Internationalization: · no
+✔ Package manager: · Npm
+✔ Do you want to use a UI Framework?: · Ant Design
+✔ Do you want a customized theme?: · Yes (Custom Variables)
+✔ Router Provider: · React Router v6
+✔ Data Provider: · REST API
+✔ Auth Provider: · None
+✔ Do you want to add example pages? · Yes (Recommended)
+✔ Do you want a customized layout? · Yes
+✔ i18n - Internationalization: · No
 ```
 From there, install the following packages:
 ```tsx

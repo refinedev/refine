@@ -67,22 +67,28 @@ Select the following options to complete the CLI wizard:
 
 ```
 ? Select your project type:
-❯ refine
+❯ refine-react
 
 ? What will be the name of your app:
-refine-strapi-web
+> refine-strapi-web
 
 ? Package manager:
 ❯ Npm
 
-? Do you want to customize the theme?:
-❯ No (Ant Design default theme)
+? Do you want to use a UI Framework?:
+❯ Ant Design
 
-? Data Provider :
-❯ Strapi
+? Do you want a customized theme?:
+❯ Default theme
 
-? Do you want to customize layout?
-❯ Yes, I want
+? Router Provider:
+❯ React Router v6
+
+? Data Provider:
+❯ Strapi v3
+
+? Do you want a customized layout?
+❯ Yes
 
 ? i18n - Internationalization:
 ❯ No

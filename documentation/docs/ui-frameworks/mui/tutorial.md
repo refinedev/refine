@@ -24,17 +24,18 @@ Let's begin by setting up a new **refine** project.
 
 ## Setting up
 
-<!--
+
 There are two alternative methods to set up a **refine** application.
 
 The recommended way is using the [superplate](https://github.com/pankod/superplate) tool. _superplate_'s _CLI wizard_ will let you create and customize your application in seconds.
 
 Alternatively, you may use the _create-react-app_ tool to create an empty _React_ application and then add **refine** module via _npm_ etc.
- -->
+
 
 <Tabs
 defaultValue="create-react-app"
 values={[
+{label: 'use superplate', value: 'superplate'},
 {label: 'use create-react-app', value: 'create-react-app'}
 ]}>
 <TabItem value="create-react-app">
@@ -94,24 +95,33 @@ Select the following options to complete the _CLI wizard_:
 ❯ refine-react
 
 ? What will be the name of your app:
-tutorial
+> tutorial
 
 ? Package manager:
 ❯ Npm
 
-? Do you want to use an UI Framework?:
-❯ Yes, I want Ant Design
+? Do you want to use a UI Framework?:
+❯ Material UI
 
-? Do you want to customize the theme?:
-❯ No (Ant Design default theme)
+? Do you want an extended theme?:
+❯ No
 
-? Data Provider :
+? Do you want to add dark mode support?:
+❯ No
+
+? Router Provider:
+❯ React Router v6
+
+? Data Provider:
 ❯ REST API
 
-? Auth Provider :
+? Auth Provider:
 ❯ None
 
-? Do you want to add an example page?:
+? Do you want to add example pages?:
+❯ No
+
+? Do you want a customized layout?:
 ❯ No
 
 ? i18n - Internationalization:
@@ -155,9 +165,9 @@ yarn add @pankod/refine-simple-rest
   </TabItem>
 </Tabs>
 
-<!-- :::note
+:::note
 If you used `superplate` to bootstrap the project, you can skip issuing this command as `superplate` already installs the selected data provider.
-::: -->
+:::
 
 :::note
 
