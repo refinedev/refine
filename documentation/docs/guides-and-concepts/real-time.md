@@ -29,7 +29,7 @@ To make this example more visual, we used the [`@pankod/refine-antd`](https://gi
 
 Since we will need `apiKey` from Ably, you must first register and get the key from [Ably](https://ably.com).
 
-The app will have one resource: **posts** with [CRUD pages(list, create, edit and show) similar to base example](https://github.com/pankod/refine/tree/master/examples/base/src/pages/posts).
+The app will have one resource: **posts** with [CRUD pages(list, create, edit and show) similar to base example](https://github.com/pankod/refine/tree/master/examples/base/antd/src/pages/posts).
 
 [You can also refer to StackBlitz to see final state of the app &#8594](#live-stackblitz-example)
 
@@ -47,7 +47,12 @@ Then pass `liveProvider` from [`@pankod/refine-ably`](https://github.com/pankod/
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+import {
+    Layout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
@@ -204,7 +209,13 @@ Firstly, let's implement a custom sider like in [this example](/examples/customi
 
 ```tsx title="src/components/sider.tsx"
 import React, { useState } from "react";
-import { useTitle, ITreeMenu, CanAccess, useRouterContext, useMenu } from "@pankod/refine-core";
+import {
+    useTitle,
+    ITreeMenu,
+    CanAccess,
+    useRouterContext,
+    useMenu,
+} from "@pankod/refine-core";
 import { AntdLayout, Menu, Grid, Icons } from "@pankod/refine-antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
@@ -216,7 +227,7 @@ export const CustomSider: React.FC = () => {
     const breakpoint = Grid.useBreakpoint();
 
     const isMobile = !breakpoint.lg;
-    
+
     const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
         return tree.map((item: ITreeMenu) => {
             const { icon, label, route, name, children, parentName } = item;
@@ -247,12 +258,16 @@ export const CustomSider: React.FC = () => {
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
+                        icon={
+                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
+                        }
                     >
-                            <Link href={route} to={route}>{label}</Link>
-                            {!collapsed && isSelected && (
-                                <Icons.UnorderedListOutlined />
-                            )}
+                        <Link href={route} to={route}>
+                            {label}
+                        </Link>
+                        {!collapsed && isSelected && (
+                            <Icons.UnorderedListOutlined />
+                        )}
                     </Menu.Item>
                 </CanAccess>
             );
@@ -359,20 +374,24 @@ export const CustomSider: React.FC = () => {
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
+                        icon={
+                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
+                        }
                     >
-                            //highlight-start
-                                <div>
-                                    <Link href={route} to={route}>{label}</Link>
-                                    {label === "Posts" && (
-                                        <Badge
-                                            size="small"
-                                            count={subscriptionCount}
-                                            offset={[2, -15]}
-                                        />
-                                    )}
-                                </div>
-                            //highlight-end
+                        //highlight-start
+                        <div>
+                            <Link href={route} to={route}>
+                                {label}
+                            </Link>
+                            {label === "Posts" && (
+                                <Badge
+                                    size="small"
+                                    count={subscriptionCount}
+                                    offset={[2, -15]}
+                                />
+                            )}
+                        </div>
+                        //highlight-end
                     </Menu.Item>
                 </CanAccess>
             );
