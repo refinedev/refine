@@ -41,6 +41,7 @@ import {
     Title as DefaultTitle,
 } from "@pankod/refine-mui";
 import {
+    Dashboard,
     ListOutlined,
     ExpandLess,
     ExpandMore,
@@ -256,7 +257,7 @@ export const CustomMenu: React.FC = () => {
                                 color: "primary.contrastText",
                             }}
                         >
-                            {<ListOutlined />}
+                             {<Dashboard />}
                         </ListItemIcon>
                         <ListItemText
                             primary={t("dashboard.title", "Dashboard")}
