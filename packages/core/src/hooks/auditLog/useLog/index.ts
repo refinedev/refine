@@ -24,6 +24,11 @@ export type UseLogReturnType<TLogRenameData> = {
     >;
 };
 
+/**
+ * useLog is used to `create` a new and `rename` the existing audit log.
+ * @see {@link https://refine.dev/docs/core/hooks/audit-log/useLog} for more details.
+ */
+
 export const useLog = <
     TLogRenameData extends LogRenameData = LogRenameData,
 >(): UseLogReturnType<TLogRenameData> => {
