@@ -30,59 +30,72 @@ export const EventList: React.FC<EventListProps> = ({
     return (
         <AntdList
             dataSource={logQueryResult?.data}
-            renderItem={(log) => (
-                <AntdList.Item
-                    style={{
-                        alignItems: "flex-start",
-                        padding: "8px 0px 8px 8px",
-                    }}
-                    extra={
-                        <Dropdown
-                            overlay={
-                                <Menu mode="vertical">
-                                    <Menu.Item
-                                        key="1"
-                                        onClick={() => {
-                                            mutate({
-                                                resource: "posts",
-                                                id: log.data.id,
-                                                values: log.previousData,
-                                            });
-                                        }}
-                                    >
-                                        Restore
-                                    </Menu.Item>
-                                    <Menu.Item key="2">Rename</Menu.Item>
-                                </Menu>
-                            }
-                            trigger={["click"]}
-                        >
-                            <Icons.MoreOutlined style={{ fontSize: "18px" }} />
-                        </Dropdown>
-                    }
-                >
-                    <Button
-                        type="text"
+            renderItem={(log) => {
+                const {
+                    author,
+                    name,
+                    previousData,
+                    createdAt,
+                    resource,
+                    meta,
+                } = log;
+
+                return (
+                    <AntdList.Item
                         style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            height: "100%",
+                            alignItems: "flex-start",
+                            padding: "8px 0px 8px 8px",
                         }}
-                        onClick={() => {
-                            showModal();
-                            setSelectedLog(log);
-                        }}
+                        extra={
+                            <Dropdown
+                                overlay={
+                                    <Menu mode="vertical">
+                                        <Menu.Item
+                                            key="1"
+                                            onClick={() => {
+                                                mutate({
+                                                    resource,
+                                                    id: meta?.id,
+                                                    values: previousData,
+                                                });
+                                            }}
+                                        >
+                                            Restore
+                                        </Menu.Item>
+                                        <Menu.Item key="2">Rename</Menu.Item>
+                                    </Menu>
+                                }
+                                trigger={["click"]}
+                            >
+                                <Icons.MoreOutlined
+                                    style={{ fontSize: "18px" }}
+                                />
+                            </Dropdown>
+                        }
                     >
-                        <Text strong>
-                            {log.name ??
-                                dayjs(log.createdAt).format(
-                                    "MM/DD/YYYY, hh:mm",
-                                )}
-                        </Text>
-                        <Badge color="blue" text={log?.user?.email} />
-                    </Button>
-                </AntdList.Item>
-            )}
+                        <Button
+                            type="text"
+                            style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                height: "100%",
+                            }}
+                            onClick={() => {
+                                showModal();
+                                setSelectedLog(log);
+                            }}
+                        >
+                            <Text strong>
+                                {name ??
+                                    dayjs(createdAt).format(
+                                        "MM/DD/YYYY, hh:mm",
+                                    )}
+                            </Text>
+                            <Badge color="blue" text={author?.email} />
+                        </Button>
+                    </AntdList.Item>
+                );
+            }}
         />
     );
 };

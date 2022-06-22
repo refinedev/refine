@@ -9,7 +9,6 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
-    useLog,
     useInvalidate,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
@@ -79,7 +78,6 @@ export const useUpdateMany = <
     const { mutate: checkError } = useCheckError();
     const { notificationDispatch } = useCancelNotification();
     const publish = usePublish();
-    const { log } = useLog();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
 
@@ -294,11 +292,7 @@ export const useUpdateMany = <
                     payload: { id: ids, resource },
                 });
             },
-            onSuccess: (
-                data,
-                { ids, resource, successNotification, dataProviderName },
-                context,
-            ) => {
+            onSuccess: (data, { ids, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);
 
                 handleNotification(successNotification, {
@@ -327,24 +321,6 @@ export const useUpdateMany = <
                         ids: ids.map(String),
                     },
                     date: new Date(),
-                });
-
-                // TODO: get previous data from context
-                // const previousData = ids.map((id) => {
-                //     return queryClient.getQueryData<
-                //         UpdateManyResponse<TData>
-                //     >(context.queryKey.detail(id))?.data;
-                // });
-
-                log?.({
-                    action: "update",
-                    resource,
-                    data: data?.data,
-                    previousData: {},
-                    meta: {
-                        ids,
-                        dataProviderName,
-                    },
                 });
             },
             onError: (

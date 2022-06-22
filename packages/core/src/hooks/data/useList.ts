@@ -72,7 +72,6 @@ export const useList = <
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const handleNotification = useHandleNotification();
-    const { log } = useLog();
 
     const isEnabled =
         queryOptions?.enabled === undefined || queryOptions?.enabled === true;
@@ -95,17 +94,6 @@ export const useList = <
             onSuccess: (data) => {
                 queryOptions?.onSuccess?.(data);
                 handleNotification(successNotification);
-
-                log?.({
-                    action: "list",
-                    resource,
-                    data: data?.data,
-                    meta: {
-                        config,
-                        metaData,
-                        dataProviderName,
-                    },
-                });
             },
             onError: (err: TError) => {
                 checkError(err);

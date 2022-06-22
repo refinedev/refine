@@ -63,6 +63,7 @@ export {
     ILog,
     ITreeMenu,
     IQueryKeys,
+    ResourceProps,
 } from "./interfaces";
 
 export {

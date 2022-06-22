@@ -1,5 +1,5 @@
 import { Client } from "../client";
-import { ISession } from "../interfaces";
+import { ISession, IUser } from "../interfaces";
 
 class Auth {
     private client: Client;
@@ -33,6 +33,8 @@ class Auth {
                 `${baseUrl}/oauth/${provider}?applicationClientId=${clientId}`,
             );
         }
+
+        throw Error("Email and password or provider are required!");
     }
 
     async register(data: {
@@ -57,7 +59,7 @@ class Auth {
         });
     }
 
-    async session(): Promise<ISession> {
+    async session(): Promise<IUser> {
         return await this.client.call({
             method: "get",
             url: "/auth/me",

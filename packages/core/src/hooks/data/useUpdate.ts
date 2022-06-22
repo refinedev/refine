@@ -271,7 +271,14 @@ export const useUpdate = <
             },
             onSuccess: (
                 data,
-                { id, resource, successNotification, dataProviderName },
+                {
+                    id,
+                    resource,
+                    successNotification,
+                    dataProviderName,
+                    values,
+                    metaData,
+                },
                 context,
             ) => {
                 const resourceSingular = pluralize.singular(resource);
@@ -304,19 +311,33 @@ export const useUpdate = <
                     date: new Date(),
                 });
 
-                // TODO: get previous data from context
-                // const previousData = queryClient.getQueryData<
-                //     UpdateResponse<TData>
-                // >(context.queryKey.detail(id))?.data;
+                let previousData: any;
+                if (context) {
+                    const queryData = queryClient.getQueryData<
+                        UpdateResponse<TData>
+                    >(context.queryKey.detail(id));
+
+                    previousData = Object.keys(values).reduce<any>(
+                        (acc, item) => {
+                            acc[item] = queryData?.data?.[item];
+                            return acc;
+                        },
+                        {},
+                    );
+                }
+
+                const { fields, operation, variables, ...rest } =
+                    metaData || {};
 
                 log?.({
                     action: "update",
                     resource,
-                    data: data?.data,
-                    previousData: {},
+                    data: values,
+                    previousData,
                     meta: {
                         id,
                         dataProviderName,
+                        ...rest,
                     },
                 });
             },
