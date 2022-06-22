@@ -7,6 +7,8 @@ import {
     ThemeProvider,
     LightTheme,
     CssBaseline,
+    RefineSnackbarProvider,
+    notificationProvider,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -18,20 +20,23 @@ const App: React.FC = () => {
     return (
         <ThemeProvider theme={LightTheme}>
             <CssBaseline />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-                ReadyPage={ReadyPage}
-                Layout={Layout}
-                LoginPage={LoginPage}
-                catchAll={<ErrorComponent />}
-                resources={[
-                    {
-                        name: "posts",
-                        list: ImportList,
-                    },
-                ]}
-            />
+            <RefineSnackbarProvider>
+                <Refine
+                    routerProvider={routerProvider}
+                    notificationProvider={notificationProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    ReadyPage={ReadyPage}
+                    Layout={Layout}
+                    LoginPage={LoginPage}
+                    catchAll={<ErrorComponent />}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: ImportList,
+                        },
+                    ]}
+                />
+            </RefineSnackbarProvider>
         </ThemeProvider>
     );
 };
