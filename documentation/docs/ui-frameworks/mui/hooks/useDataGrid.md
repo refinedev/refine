@@ -439,13 +439,11 @@ When `filterModel` is not passed, it supports more than one criteria at a time, 
 
 <br/>
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/mui/examples/table/mui/useDataGrid?autoresize=1&fontsize=16&theme=dark&view=preview"
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/mui/examples/table/mui/useDataGrid?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-data-grid-example"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
 [source-code]: https://github.com/pankod/refine/blob/master/packages/mui/src/hooks/useDataGrid/index.ts

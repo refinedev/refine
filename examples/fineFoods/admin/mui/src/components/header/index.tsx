@@ -134,7 +134,7 @@ export const Header: React.FC = () => {
 
     return (
         <AppBar color="default" position="sticky" elevation={1}>
-            <Toolbar sx={{ padding: { xs: 1, md: 3 } }}>
+            <Toolbar>
                 <Stack
                     direction="row"
                     width="100%"
@@ -271,6 +271,7 @@ export const Header: React.FC = () => {
                                             <Stack
                                                 direction="row"
                                                 alignItems="center"
+                                                justifyContent="center"
                                             >
                                                 <Avatar
                                                     sx={{

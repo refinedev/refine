@@ -24,6 +24,8 @@ export type CloneButtonProps = ButtonProps & {
  * It uses the {@link https://refine.dev/docs/core/hooks/navigation/useNavigation#clone `clone`} method from {@link https://refine.dev/docs/core/hooks/navigation/useNavigation useNavigation} under the hood.
  * It can be useful when redirecting the app to the create page with the record id route of resource.
  *
+ * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/buttons/clone-button} for more details.
+ *
  */
 export const CloneButton: React.FC<CloneButtonProps> = ({
     resourceNameOrRouteName,
@@ -76,7 +78,6 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
             onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
                 if (onClick) {
                     e.preventDefault();
-                    e.stopPropagation();
                     onClick(e);
                 }
             }}

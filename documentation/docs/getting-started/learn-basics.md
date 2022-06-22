@@ -19,7 +19,8 @@ This guide will help you learn and get information of basic **refine** concepts.
 **UI Framework Packages:**
 
 -   `@pankod/refine-antd` - a fully featured [Ant Design](https://ant.design/) System UI Framework support. Includes +20 Table, Form, Select, Menu, Layout, Notification and CRUD components and hooks.
--   `@pankod/refine-mui` (Coming soon!) - a fully featured [Material UI](https://mui.com/) Framework support.
+-   `@pankod/refine-mui` - a fully featured [Material UI](https://mui.com/) Framework support. Includes DataGrid (Pro included), AutoComplete, Menu, Layout, Notification and CRUD components and hooks.
+-   `@pankod/refine-mantine` - (Coming soon!) - a fully featured [Mantine](https://mantine.dev/) support.
 
 **[Data Provider](https://refine.dev/docs/core/providers/data-provider/) Packages:**
 
@@ -74,11 +75,11 @@ This guide will help you learn and get information of basic **refine** concepts.
 
 -  [RealWorld](https://github.com/gothinkster/realworld) - Exemplary fullstack [Medium.com](https://medium.com) Clone - [Live Example](http://refine.dev/docs/examples/real-world-refine-example/) - [Source Code](https://github.com/pankod/refine/tree/master/examples/real-world-example/src)
 -  We are going back to 1995! - Win95 Style Admin Panel - [Blog Post](https://refine.dev/blog/awesome-react-windows95-ui-with-refine/) - [Live Example](https://win95.refine.dev) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/win95)
--  Invoice Generator App with Strapi & Refine & Ant Design - [Blog Post](https://refine.dev/blog/refine-react-admin-invoice-genarator/) - [Live Example](https://codesandbox.io/s/refine-invoice-generator-n59710) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/invoiceGenerator/src)
+-  Invoice Generator App with Strapi & Refine & Ant Design - [Blog Post](https://refine.dev/blog/refine-react-admin-invoice-genarator/) - [Live Example](https://stackblitz.com/github/pankod/refine/tree/master/examples/blog/invoiceGenerator/?preset=node) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/invoiceGenerator/src)
 -  Refeedback! - Feedback Admin Panel with Strapi & Refine & Ant Design - [Blog Post](https://refine.dev/blog/create-a-feedback-admin-panel-with-refine-and-strapi/) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/refeedback)
 -  E-mail Subscription Panel with Refine and Strapi & Ant Design - [Blog Post](https://refine.dev/blog/e-mail-subscription-panel-with-refine/) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/mailSubscription)
--  Internal Issue Tracker With Refine and Supabase - [Blog Post](https://refine.dev/blog/customizable-issue-tracker-with-refine-and-supabase/) - [Live Example](https://codesandbox.io/s/refine-supabase-issue-tracker-vbz3w) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/issueTracker)
--  Next.js E-commerce App with Strapi & Chakra UI & Refine - [Blog Post](https://refine.dev/blog/handcrafted-nextjs-e-commerce-app-tutorial-strapi-chakra-ui/) - [Live Example](https://codesandbox.io/s/refine-ecommerce-example-9rvzv) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/ecommerce)
+-  Internal Issue Tracker With Refine and Supabase - [Blog Post](https://refine.dev/blog/customizable-issue-tracker-with-refine-and-supabase/) - [Live Example](https://stackblitz.com/github/pankod/refine/tree/master/examples/blog/issueTracker/?preset=node) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/issueTracker)
+-  Next.js E-commerce App with Strapi & Chakra UI & Refine - [Blog Post](https://refine.dev/blog/handcrafted-nextjs-e-commerce-app-tutorial-strapi-chakra-ui/) - [Live Example](https://stackblitz.com/github/pankod/refine/tree/master/examples/blog/ecommerce/?preset=node) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/ecommerce)
 -  Multi-tenancy Example - [Appwrite Guide](https://refine.dev/docs/guides-and-concepts/multi-tenancy/appwrite/) - [Strapi Guide](https://refine.dev/docs/guides-and-concepts/multi-tenancy/strapi-v4/)
 
 

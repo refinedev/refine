@@ -1,5 +1,11 @@
 # @pankod/refine-react-location
 
+## 3.25.2
+
+### Patch Changes
+
+-   Fixed a bug that caused `<ErrorComponent/>` to does not appear in the `404` state
+
 ## 3.25.1
 
 ### Patch Changes

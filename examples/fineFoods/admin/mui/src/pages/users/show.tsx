@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import React from "react";
 import {
     Avatar,
@@ -49,11 +48,11 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                 width: 150,
             },
             {
-                field: "status",
+                field: "status.text",
                 headerName: t("orders.fields.status"),
-                renderCell: ({ row }) => (
-                    <OrderStatus status={row.status.text} />
-                ),
+                renderCell: function render({ row }) {
+                    return <OrderStatus status={row.status.text} />;
+                },
                 width: 100,
             },
             {
@@ -61,16 +60,18 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                 align: "right",
                 headerAlign: "right",
                 headerName: t("orders.fields.amount"),
-                renderCell: ({ row }) => (
-                    <NumberField
-                        options={{
-                            currency: "USD",
-                            style: "currency",
-                            notation: "compact",
-                        }}
-                        value={row.amount}
-                    />
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <NumberField
+                            options={{
+                                currency: "USD",
+                                style: "currency",
+                                notation: "compact",
+                            }}
+                            value={row.amount}
+                        />
+                    );
+                },
                 width: 100,
             },
             {
@@ -78,11 +79,13 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                 headerName: t("orders.fields.store"),
                 width: 150,
                 valueGetter: ({ row }) => row.store.title,
+                sortable: false,
             },
             {
                 field: "user",
                 headerName: t("orders.fields.user"),
                 valueGetter: ({ row }) => row.user.fullName,
+                sortable: false,
             },
             {
                 field: "products",
@@ -90,40 +93,45 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                 flex: 1,
                 headerAlign: "center",
                 align: "center",
-                renderCell: ({ row }) => (
-                    <CustomTooltip
-                        arrow
-                        placement="top"
-                        title={
-                            <Stack sx={{ padding: "2px" }}>
-                                {row.products.map((product) => (
-                                    <li key={product.id}>{product.name}</li>
-                                ))}
-                            </Stack>
-                        }
-                    >
-                        <Typography sx={{ fontSize: "14px" }}>
-                            {t("orders.fields.itemsAmount", {
-                                amount: row.products.length,
-                            })}
-                        </Typography>
-                    </CustomTooltip>
-                ),
+                sortable: false,
+                renderCell: function render({ row }) {
+                    return (
+                        <CustomTooltip
+                            arrow
+                            placement="top"
+                            title={
+                                <Stack sx={{ padding: "2px" }}>
+                                    {row.products.map((product) => (
+                                        <li key={product.id}>{product.name}</li>
+                                    ))}
+                                </Stack>
+                            }
+                        >
+                            <Typography sx={{ fontSize: "14px" }}>
+                                {t("orders.fields.itemsAmount", {
+                                    amount: row.products.length,
+                                })}
+                            </Typography>
+                        </CustomTooltip>
+                    );
+                },
             },
             {
                 field: "createdAt",
                 headerName: t("orders.fields.createdAt"),
                 flex: 1,
-                renderCell: ({ row }) => (
-                    <DateField
-                        value={row.createdAt}
-                        format="LLL"
-                        sx={{ whiteSpace: "pre-wrap", fontSize: "14px" }}
-                    />
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <DateField
+                            value={row.createdAt}
+                            format="LLL"
+                            sx={{ whiteSpace: "pre-wrap", fontSize: "14px" }}
+                        />
+                    );
+                },
             },
         ],
-        [],
+        [t],
     );
 
     const { dataGridProps } = useDataGrid<

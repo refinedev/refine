@@ -25,6 +25,7 @@ export type ShowButtonProps = ButtonProps & {
  * It uses the {@link https://refine.dev/docs/core/hooks/navigation/useNavigation#show `show`} method from {@link https://refine.dev/docs/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when red sirecting the app to the show page with the record id route of resource.
  *
+ * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/buttons/show-button} for more details.
  */
 export const ShowButton: React.FC<ShowButtonProps> = ({
     resourceNameOrRouteName,
@@ -77,7 +78,6 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
             onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
                 if (onClick) {
                     e.preventDefault();
-                    e.stopPropagation();
                     onClick(e);
                 }
             }}

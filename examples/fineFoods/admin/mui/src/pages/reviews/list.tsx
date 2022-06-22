@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import React from "react";
 import {
     useTranslate,
@@ -67,9 +66,10 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
             {
                 field: "avatar",
                 headerName: "Avatar",
-                renderCell: ({ row }) => (
-                    <Avatar src={row.user.avatar[0].url} />
-                ),
+                renderCell: function render({ row }) {
+                    return <Avatar src={row.user.avatar[0].url} />;
+                },
+                sortable: false,
             },
             {
                 field: "user",
@@ -77,62 +77,69 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                 valueGetter: ({ row }) => row.user.fullName,
                 minWidth: 200,
                 flex: 1,
+                sortable: false,
             },
             {
-                field: "order",
+                field: "order.id",
                 headerName: t("reviews.fields.orderId"),
-                renderCell: ({ row }) => (
-                    <Button
-                        onClick={() => {
-                            show("orders", row.order.id);
-                        }}
-                        variant="text"
-                    >
-                        #{row.order.id}
-                    </Button>
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <Button
+                            onClick={() => {
+                                show("orders", row.order.id);
+                            }}
+                            variant="text"
+                        >
+                            #{row.order.id}
+                        </Button>
+                    );
+                },
                 minWidth: 100,
                 flex: 0.5,
             },
             {
                 field: "comment",
                 headerName: t("reviews.fields.review"),
-                renderCell: ({ row }) => (
-                    <Tooltip title={row.comment[0]}>
-                        <Typography
-                            variant="body2"
-                            sx={{
-                                textOverflow: "ellipsis",
-                                overflow: "hidden",
-                            }}
-                        >
-                            {row.comment[0]}
-                        </Typography>
-                    </Tooltip>
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <Tooltip title={row.comment[0]}>
+                            <Typography
+                                variant="body2"
+                                sx={{
+                                    textOverflow: "ellipsis",
+                                    overflow: "hidden",
+                                }}
+                            >
+                                {row.comment[0]}
+                            </Typography>
+                        </Tooltip>
+                    );
+                },
                 minWidth: 200,
                 flex: 1,
             },
             {
-                field: "review",
+                field: "star",
                 headerName: t("reviews.fields.rating"),
                 headerAlign: "center",
                 flex: 1,
                 minWidth: 250,
                 align: "center",
-                renderCell: ({ row }) => (
-                    <Stack
-                        alignItems="center"
-                        sx={{ whiteSpace: "break-spaces" }}
-                    >
-                        <Typography variant="h5">{row.star}</Typography>
-                        <Rating
-                            name="rating"
-                            defaultValue={row.star}
-                            readOnly
-                        />
-                    </Stack>
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <Stack
+                            alignItems="center"
+                            sx={{ whiteSpace: "break-spaces" }}
+                        >
+                            <Typography variant="h5">{row.star}</Typography>
+                            <Rating
+                                name="rating"
+                                defaultValue={row.star}
+                                readOnly
+                            />
+                        </Stack>
+                    );
+                },
             },
             {
                 field: "actions",
@@ -156,11 +163,12 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                 ],
             },
         ],
-        [],
+        [t],
     );
 
     const { dataGridProps } = useDataGrid<IReview>({
         columns,
+        initialPageSize: 10,
         permanentFilter: [
             {
                 field: "status",
@@ -200,7 +208,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
                 onSelectionModelChange={(newSelectionModel) => {
                     setSelectedRowKeys(newSelectionModel as React.Key[]);
                 }}
-                rowsPerPageOptions={[10]}
+                rowsPerPageOptions={[10, 20, 50, 100]}
                 selectionModel={selectedRowKeys}
             />
         </List>

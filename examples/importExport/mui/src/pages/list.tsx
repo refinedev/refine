@@ -1,4 +1,9 @@
-import { useImport, useExport } from "@pankod/refine-core";
+import {
+    useImport,
+    useExport,
+    useNotification,
+    useOne,
+} from "@pankod/refine-core";
 
 import {
     useDataGrid,
@@ -6,11 +11,11 @@ import {
     GridColumns,
     ImportButton,
     List,
-    GridToolbarContainer,
     ExportButton,
+    Stack,
 } from "@pankod/refine-mui";
 
-import { IPost } from "../interfaces";
+import { ICategory, IPost } from "../interfaces";
 
 const columns: GridColumns = [
     {
@@ -18,7 +23,19 @@ const columns: GridColumns = [
         headerName: "ID",
         type: "number",
     },
-    { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
+    { field: "title", headerName: "Title", flex: 1.5, minWidth: 350 },
+    {
+        field: "category.id",
+        headerName: "Category",
+        flex: 1,
+        valueGetter: ({ row }) => {
+            const { data } = useOne<ICategory>({
+                resource: "categories",
+                id: row.category.id,
+            });
+            return data?.data.title;
+        },
+    },
     { field: "status", headerName: "Status", flex: 1 },
 ];
 
@@ -27,7 +44,16 @@ export const ImportList: React.FC = () => {
         columns,
     });
 
-    const { inputProps, isLoading } = useImport();
+    const { open } = useNotification();
+
+    const { inputProps, isLoading } = useImport({
+        onFinish: () => {
+            open?.({
+                message: "Import successfully completed",
+                type: "success",
+            });
+        },
+    });
 
     const { triggerExport, isLoading: exportLoading } = useExport<IPost>({
         mapData: (item) => {
@@ -41,24 +67,25 @@ export const ImportList: React.FC = () => {
         maxItemCount: 50,
     });
 
-    const CustomToolbar: React.FC = () => {
-        return (
-            <GridToolbarContainer>
-                <ImportButton loading={isLoading} inputProps={inputProps} />
-                <ExportButton loading={exportLoading} onClick={triggerExport} />
-            </GridToolbarContainer>
-        );
-    };
-
     return (
-        <List>
+        <List
+            cardHeaderProps={{
+                action: (
+                    <Stack direction="row">
+                        <ImportButton
+                            loading={isLoading}
+                            inputProps={inputProps}
+                        />
+                        <ExportButton
+                            loading={exportLoading}
+                            onClick={triggerExport}
+                        />
+                    </Stack>
+                ),
+            }}
+        >
             <div style={{ height: 700, width: "100%" }}>
-                <DataGrid
-                    {...dataGridProps}
-                    components={{
-                        Toolbar: CustomToolbar,
-                    }}
-                />
+                <DataGrid {...dataGridProps} />
             </div>
         </List>
     );

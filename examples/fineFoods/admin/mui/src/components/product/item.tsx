@@ -12,7 +12,7 @@ import {
     Popover,
     Button,
     Divider,
-    Paper,
+    TextField,
 } from "@pankod/refine-mui";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditIcon from "@mui/icons-material/Edit";
@@ -83,6 +83,9 @@ export const ProductItem: React.FC<PropductItem> = ({
                                 }}
                                 size="small"
                                 startIcon={<EditIcon />}
+                                sx={{
+                                    padding: "5px 10px",
+                                }}
                             >
                                 {t("stores.buttons.edit")}
                             </Button>
@@ -91,7 +94,6 @@ export const ProductItem: React.FC<PropductItem> = ({
                 }
                 sx={{ padding: 0 }}
             />
-
             <Box
                 sx={{
                     display: "flex",
@@ -120,10 +122,9 @@ export const ProductItem: React.FC<PropductItem> = ({
                 <Divider />
                 <Tooltip title={name}>
                     <Typography
-                        variant="h4"
                         sx={{
                             fontWeight: 800,
-                            fontSize: "24px",
+                            fontSize: "1.2rem",
                             color: "text.secondary",
                             overflow: "hidden",
                             whiteSpace: "nowrap",
@@ -135,7 +136,7 @@ export const ProductItem: React.FC<PropductItem> = ({
                 </Tooltip>
                 <Tooltip title={description}>
                     <Typography
-                        variant="body1"
+                        variant="body2"
                         sx={{
                             mt: 2,
                             overflowWrap: "break-word",
@@ -152,14 +153,14 @@ export const ProductItem: React.FC<PropductItem> = ({
                     </Typography>
                 </Tooltip>
                 <Typography
+                    variant="h6"
                     sx={{
                         fontWeight: 700,
-                        fontSize: "20px",
                         color: "#999999",
                         my: 1,
                     }}
                 >{`#10000${id}`}</Typography>
-                <Tooltip title={`${price / 100}$`}>
+                <Tooltip title={`${price / 100}$`} placement="top">
                     <Typography
                         sx={{
                             fontWeight: 800,
@@ -173,37 +174,16 @@ export const ProductItem: React.FC<PropductItem> = ({
                     >{`${price / 100}$`}</Typography>
                 </Tooltip>
                 {updateStock && (
-                    <Paper
-                        sx={{
-                            display: "flex",
-                            justifyContent: "center",
-                            height: "32px",
-                            alignItems: "center",
-                            marginTop: "4px",
-                            boxShadow: "none",
-                            border: "1px solid #e0e0e0",
+                    <TextField
+                        type="number"
+                        margin="dense"
+                        size="small"
+                        value={product.stock || 0}
+                        onChange={(e) => {
+                            e.preventDefault();
+                            updateStock(parseInt(e.target.value, 10), product);
                         }}
-                    >
-                        <input
-                            style={{
-                                width: "70px",
-                                height: "30px",
-                                border: "none",
-                                borderRadius: "5px",
-                                margin: "10px 0",
-                                outline: "none",
-                            }}
-                            type="number"
-                            value={product.stock || 0}
-                            onChange={(e) => {
-                                e.preventDefault();
-                                updateStock(
-                                    parseInt(e.target.value, 10),
-                                    product,
-                                );
-                            }}
-                        />
-                    </Paper>
+                    />
                 )}
             </CardContent>
         </Card>

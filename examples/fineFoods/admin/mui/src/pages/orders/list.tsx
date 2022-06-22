@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import React from "react";
 import {
     IResourceComponentsProps,
@@ -55,13 +54,13 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 minWidth: 100,
             },
             {
-                field: "status",
+                field: "status.text",
                 headerName: t("orders.fields.status"),
                 headerAlign: "center",
                 align: "center",
-                renderCell: ({ row }) => (
-                    <OrderStatus status={row.status.text} />
-                ),
+                renderCell: function render({ row }) {
+                    return <OrderStatus status={row.status.text} />;
+                },
                 flex: 1,
                 minWidth: 100,
             },
@@ -70,16 +69,18 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 headerName: t("orders.fields.amount"),
                 headerAlign: "center",
                 align: "center",
-                renderCell: ({ row }) => (
-                    <NumberField
-                        options={{
-                            currency: "USD",
-                            style: "currency",
-                        }}
-                        value={row.amount / 100}
-                        sx={{ fontSize: "14px" }}
-                    />
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <NumberField
+                            options={{
+                                currency: "USD",
+                                style: "currency",
+                            }}
+                            value={row.amount / 100}
+                            sx={{ fontSize: "14px" }}
+                        />
+                    );
+                },
                 flex: 1,
                 minWidth: 100,
             },
@@ -89,6 +90,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 valueGetter: ({ row }) => row.store.title,
                 flex: 1,
                 minWidth: 150,
+                sortable: false,
             },
             {
                 field: "user",
@@ -96,31 +98,35 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 valueGetter: ({ row }) => row.user.fullName,
                 flex: 1,
                 minWidth: 150,
+                sortable: false,
             },
             {
                 field: "products",
                 headerName: t("orders.fields.products"),
                 headerAlign: "center",
                 align: "center",
-                renderCell: ({ row }) => (
-                    <CustomTooltip
-                        arrow
-                        placement="top"
-                        title={
-                            <Stack sx={{ padding: "2px" }}>
-                                {row.products.map((product) => (
-                                    <li key={product.id}>{product.name}</li>
-                                ))}
-                            </Stack>
-                        }
-                    >
-                        <Typography sx={{ fontSize: "14px" }}>
-                            {t("orders.fields.itemsAmount", {
-                                amount: row.products.length,
-                            })}
-                        </Typography>
-                    </CustomTooltip>
-                ),
+                sortable: false,
+                renderCell: function render({ row }) {
+                    return (
+                        <CustomTooltip
+                            arrow
+                            placement="top"
+                            title={
+                                <Stack sx={{ padding: "2px" }}>
+                                    {row.products.map((product) => (
+                                        <li key={product.id}>{product.name}</li>
+                                    ))}
+                                </Stack>
+                            }
+                        >
+                            <Typography sx={{ fontSize: "14px" }}>
+                                {t("orders.fields.itemsAmount", {
+                                    amount: row.products.length,
+                                })}
+                            </Typography>
+                        </CustomTooltip>
+                    );
+                },
                 flex: 1,
                 minWidth: 100,
             },
@@ -129,13 +135,15 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 headerName: t("orders.fields.createdAt"),
                 flex: 1,
                 minWidth: 170,
-                renderCell: ({ row }) => (
-                    <DateField
-                        value={row.createdAt}
-                        format="LLL"
-                        sx={{ fontSize: "14px" }}
-                    />
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <DateField
+                            value={row.createdAt}
+                            format="LLL"
+                            sx={{ fontSize: "14px" }}
+                        />
+                    );
+                },
             },
             {
                 field: "actions",
@@ -143,6 +151,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 headerName: t("table.actions"),
                 flex: 1,
                 minWidth: 100,
+                sortable: false,
                 getActions: ({ id }) => [
                     <GridActionsCellItem
                         key={1}
@@ -185,7 +194,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 ],
             },
         ],
-        [],
+        [t],
     );
 
     const { dataGridProps, search, filters, sorter } = useDataGrid<
@@ -277,7 +286,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         <Grid container spacing={2}>
             <Grid item xs={12} lg={3}>
                 <Card sx={{ paddingX: { xs: 2, md: 0 } }}>
-                    <CardHeader title="Filters" />
+                    <CardHeader title={t("orders.filter.title")} />
                     <CardContent sx={{ pt: 0 }}>
                         <Box
                             component="form"

@@ -5,16 +5,20 @@ import { MockJSONServer, TestWrapper, act } from "@test";
 import { useFileUploadState } from "./index";
 
 describe("useFileUploadState Hook", () => {
+    beforeAll(() => {
+        jest.useFakeTimers();
+    });
+
     it("isLoading false", async () => {
-        const { result, waitFor } = renderHook(() => useFileUploadState(), {
+        const { result } = renderHook(() => useFileUploadState(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
                 resources: [{ name: "posts" }],
             }),
         });
 
-        await waitFor(() => {
-            return !result.current.isLoading;
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
         });
 
         const { isLoading } = result.current;
@@ -28,6 +32,10 @@ describe("useFileUploadState Hook", () => {
                 dataProvider: MockJSONServer,
                 resources: [{ name: "posts" }],
             }),
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
         });
 
         act(() => {

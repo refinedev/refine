@@ -1,7 +1,7 @@
-/* eslint-disable react/display-name */
 import React from "react";
 import {
     CrudFilters,
+    getDefaultFilter,
     HttpError,
     IResourceComponentsProps,
     useTranslate,
@@ -28,17 +28,13 @@ import {
     CardContent,
     List,
 } from "@pankod/refine-mui";
-import { useForm } from "@pankod/refine-react-hook-form";
-
+import { Controller, useForm } from "@pankod/refine-react-hook-form";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
 import { IUser, IUserFilterVariables } from "interfaces";
 
 export const UserList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
-
-    const { register, handleSubmit } =
-        useForm<IUser, HttpError, IUserFilterVariables>();
 
     const columns = React.useMemo<GridColumns<IUser>>(
         () => [
@@ -51,9 +47,12 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
             {
                 field: "avatar",
                 headerName: t("users.fields.avatar.label"),
-                renderCell: ({ row }) => <Avatar src={row.avatar[0].url} />,
+                renderCell: function render({ row }) {
+                    return <Avatar src={row.avatar[0].url} />;
+                },
                 minWidth: 100,
                 flex: 1,
+                sortable: false,
             },
             {
                 field: "firstName",
@@ -78,45 +77,50 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                 headerName: t("users.fields.isActive.label"),
                 align: "center",
                 headerAlign: "center",
-                renderCell: ({ row }) => (
-                    <BooleanField
-                        svgIconProps={{ sx: { width: "16px", height: "16px" } }}
-                        value={row.isActive}
-                    />
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <BooleanField
+                            svgIconProps={{
+                                sx: { width: "16px", height: "16px" },
+                            }}
+                            value={row.isActive}
+                        />
+                    );
+                },
                 minWidth: 80,
                 flex: 0.5,
             },
             {
                 field: "createdAt",
                 headerName: t("users.fields.createdAt"),
-                renderCell: ({ row }) => (
-                    <DateField value={row.createdAt} format="LLL" />
-                ),
+                renderCell: function render({ row }) {
+                    return <DateField value={row.createdAt} format="LLL" />;
+                },
                 minWidth: 200,
                 flex: 1,
             },
             {
                 field: "actions",
                 headerName: t("table.actions"),
-                renderCell: ({ row }) => (
-                    <ShowButton
-                        size="small"
-                        variant="outlined"
-                        hideText
-                        recordItemId={row.id}
-                    />
-                ),
+                renderCell: function render({ row }) {
+                    return (
+                        <ShowButton
+                            size="small"
+                            hideText
+                            recordItemId={row.id}
+                        />
+                    );
+                },
                 align: "center",
                 headerAlign: "center",
                 flex: 1,
                 minWidth: 80,
             },
         ],
-        [],
+        [t],
     );
 
-    const { dataGridProps, search } = useDataGrid<
+    const { dataGridProps, search, filters } = useDataGrid<
         IUser,
         HttpError,
         IUserFilterVariables
@@ -149,11 +153,23 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
         },
     });
 
+    const { register, handleSubmit, control } = useForm<
+        IUser,
+        HttpError,
+        IUserFilterVariables
+    >({
+        defaultValues: {
+            q: getDefaultFilter("q", filters, "eq"),
+            gender: getDefaultFilter("gender", filters, "eq") || "",
+            isActive: getDefaultFilter("isActive", filters, "eq") || "",
+        },
+    });
+
     return (
         <Grid container spacing={2}>
             <Grid item xs={12} lg={3}>
                 <Card sx={{ paddingX: { xs: 2, md: 0 } }}>
-                    <CardHeader title="Filters" />
+                    <CardHeader title={t("users.filter.title")} />
                     <CardContent sx={{ pt: 0 }}>
                         <Box
                             component="form"
@@ -179,48 +195,69 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                                     ),
                                 }}
                             />
+                            <Controller
+                                control={control}
+                                name="gender"
+                                render={({ field }) => (
+                                    <FormControl margin="normal" size="small">
+                                        <InputLabel id="gender-select">
+                                            {t("users.filter.gender.label")}
+                                        </InputLabel>
+                                        <Select
+                                            {...field}
+                                            labelId="gender-select"
+                                            label={t(
+                                                "users.filter.gender.label",
+                                            )}
+                                        >
+                                            <MenuItem value="">
+                                                <em>None</em>
+                                            </MenuItem>
+                                            <MenuItem value="Male">
+                                                {t("users.filter.gender.male")}
+                                            </MenuItem>
+                                            <MenuItem value="Female">
+                                                {t(
+                                                    "users.filter.gender.female",
+                                                )}
+                                            </MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                )}
+                            />
+                            <Controller
+                                control={control}
+                                name="isActive"
+                                render={({ field }) => (
+                                    <FormControl margin="normal" size="small">
+                                        <InputLabel id="isActive-select">
+                                            {t("users.filter.isActive.label")}
+                                        </InputLabel>
+                                        <Select
+                                            {...field}
+                                            labelId="isActive-select"
+                                            label={t(
+                                                "users.filter.isActive.label",
+                                            )}
+                                        >
+                                            <MenuItem value="">
+                                                <em>None</em>
+                                            </MenuItem>
+                                            <MenuItem value="true">
+                                                {t(
+                                                    "users.filter.isActive.true",
+                                                )}
+                                            </MenuItem>
+                                            <MenuItem value="false">
+                                                {t(
+                                                    "users.filter.isActive.false",
+                                                )}
+                                            </MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                )}
+                            />
 
-                            <FormControl margin="normal" size="small">
-                                <InputLabel id="gender-select">
-                                    {t("users.filter.gender.label")}
-                                </InputLabel>
-                                <Select
-                                    {...register("gender")}
-                                    labelId="gender-select"
-                                    label={t("users.filter.gender.label")}
-                                >
-                                    <MenuItem value="">
-                                        <em>None</em>
-                                    </MenuItem>
-                                    <MenuItem value="Male">
-                                        {t("users.filter.gender.male")}
-                                    </MenuItem>
-                                    <MenuItem value="Female">
-                                        {t("users.filter.gender.female")}
-                                    </MenuItem>
-                                </Select>
-                            </FormControl>
-
-                            <FormControl margin="normal" size="small">
-                                <InputLabel id="isActive-select">
-                                    {t("users.filter.isActive.label")}
-                                </InputLabel>
-                                <Select
-                                    {...register("isActive")}
-                                    labelId="isActive-select"
-                                    label={t("users.filter.isActive.label")}
-                                >
-                                    <MenuItem value="">
-                                        <em>None</em>
-                                    </MenuItem>
-                                    <MenuItem value="true">
-                                        {t("users.filter.isActive.true")}
-                                    </MenuItem>
-                                    <MenuItem value="false">
-                                        {t("users.filter.isActive.false")}
-                                    </MenuItem>
-                                </Select>
-                            </FormControl>
                             <br />
                             <Button type="submit" variant="contained">
                                 {t("orders.filter.submit")}

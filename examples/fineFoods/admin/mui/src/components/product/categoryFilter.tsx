@@ -54,28 +54,25 @@ export const CategoryFilter: React.FC<ProductItemProps> = ({
     return (
         <Stack>
             <Grid container columns={6} marginTop="10px">
-                <LoadingButton
-                    onClick={() => setFilterCategories([])}
-                    variant={
-                        filterCategories.length === 0 ? "contained" : "outlined"
-                    }
-                    size="small"
-                    loading={isLoading}
-                    sx={{
-                        borderRadius: "50px",
-                        marginRight: "10px",
-                        marginBottom: "5px",
-                    }}
-                >
-                    {t("stores.all")}
-                </LoadingButton>
-                {categories?.data.map((category: ICategory) => (
-                    <Grid
-                        item
-                        key={category.id}
-                        marginRight="10px"
-                        marginBottom="5px"
+                <Grid item p={0.5}>
+                    <LoadingButton
+                        onClick={() => setFilterCategories([])}
+                        variant={
+                            filterCategories.length === 0
+                                ? "contained"
+                                : "outlined"
+                        }
+                        size="small"
+                        loading={isLoading}
+                        sx={{
+                            borderRadius: "50px",
+                        }}
                     >
+                        {t("stores.all")}
+                    </LoadingButton>
+                </Grid>
+                {categories?.data.map((category: ICategory) => (
+                    <Grid item key={category.id} p={0.5}>
                         <LoadingButton
                             variant={
                                 filterCategories.includes(

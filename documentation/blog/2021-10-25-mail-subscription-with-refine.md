@@ -88,19 +88,28 @@ Select the following options to complete the CLI wizard:
 
 ```bash
 ? Select your project type:
-> refine
+> refine-react
+
+? What will be the name of your app:
+> email-subscription-panel
 
 ? Package manager:
 > Npm
 
-? Do you want to customize the theme?:
-> No (Ant Design default theme)
+? Do you want to use a UI Framework?:
+❯ Ant Design
+
+? Do you want a customized theme?:
+> Default theme
+
+? Router Provider:
+❯ React Router v6
 
 ? Data Provider: 
 > Strapi
 
-? Do you want to customize layout?:
-> Yes, I want
+? Do you want a customized layout?:
+> Yes
 
 ? i18n - Internationalization: 
 > No

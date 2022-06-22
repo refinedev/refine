@@ -1,15 +1,11 @@
 import React from "react";
-import { DashboardOutlined } from "@ant-design/icons";
 import {
+    useMenu as useMenuCore,
+    ITreeMenu,
     useRefineContext,
     useTranslate,
-    useResource,
-    useRouterContext,
-    userFriendlyResourceName,
-    createTreeView,
-    ITreeMenu,
 } from "@pankod/refine-core";
-import { IMenuItem } from "../../interfaces";
+import { DashboardOutlined } from "@ant-design/icons";
 
 type useMenuReturnType = {
     defaultOpenKeys: string[];
@@ -24,75 +20,36 @@ type useMenuReturnType = {
  * This hook can also be used to build custom menus, which is also used by default sidebar to show menu items.
  *
  * @see {@link https://refine.dev/docs/ui-frameworks/antd/hooks/resource/useMenu} for more details.
+ * @deprecated use {@link https://refine.dev/docs/core/hooks/ui/useMenu} instead.
  */
 export const useMenu: () => useMenuReturnType = () => {
-    const { resources } = useResource();
+    const values = useMenuCore();
     const translate = useTranslate();
-
-    const { useLocation, useParams } = useRouterContext();
-    const location = useLocation();
-    const params = useParams<{ resource: string }>();
-
     const { hasDashboard } = useRefineContext();
 
-    let selectedResource = resources.find(
-        (el) => location?.pathname === `/${el.route}`,
-    );
+    const menuValues = React.useMemo(() => {
+        return {
+            ...values,
+            menuItems: [
+                ...(hasDashboard
+                    ? [
+                          {
+                              name: "Dashboard",
+                              icon: <DashboardOutlined />,
+                              route: `/`,
+                              key: "dashboard",
+                              label: translate("dashboard.title", "Dashboard"),
+                              children: [],
+                          },
+                      ]
+                    : []),
+                ...values.menuItems,
+            ],
+            defaultOpenKeys: values.selectedKey
+                .split("/")
+                .filter((x) => x !== ""),
+        };
+    }, [values]);
 
-    // for no ssr
-    if (!selectedResource) {
-        selectedResource = resources.find(
-            (el) => params?.resource === (el.route as string),
-        );
-    }
-
-    let selectedKey: string;
-    if (selectedResource?.route) {
-        selectedKey = `/${selectedResource?.route}`;
-    } else if (location.pathname === "/") {
-        selectedKey = "/";
-    } else {
-        selectedKey = location?.pathname;
-    }
-
-    const treeMenuItems: IMenuItem[] = React.useMemo(
-        () => [
-            ...(hasDashboard
-                ? [
-                      {
-                          name: "Dashboard",
-                          icon: <DashboardOutlined />,
-                          route: `/`,
-                          key: "dashboard",
-                          label: translate("dashboard.title", "Dashboard"),
-                      },
-                  ]
-                : []),
-            ...resources.map((resource) => {
-                const route = `/${resource.route}`;
-
-                return {
-                    ...resource,
-                    icon: resource.icon,
-                    route: route,
-                    key: resource.key ?? route,
-                    label:
-                        resource.label ??
-                        translate(
-                            `${resource.name}.${resource.name}`,
-                            userFriendlyResourceName(resource.name, "plural"),
-                        ),
-                };
-            }),
-        ],
-        [resources, hasDashboard],
-    );
-    const menuItems: ITreeMenu[] = createTreeView(treeMenuItems);
-
-    const defaultOpenKeys = selectedKey.split("/").filter((x) => x !== "");
-    return {
-        selectedKey,
-        defaultOpenKeys,
-        menuItems,
-    };
+    return menuValues;
 };

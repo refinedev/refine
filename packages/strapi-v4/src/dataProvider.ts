@@ -169,14 +169,34 @@ export const DataProvider = (
         };
     },
 
-    getMany: async ({ resource, ids }) => {
+    getMany: async ({ resource, ids, metaData }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const query = ids
-            .map((item: BaseKey) => `filters[id][$in]=${item}`)
-            .join("&");
+        const locale = metaData?.locale;
+        const fields = metaData?.fields;
+        const populate = metaData?.populate;
+        const publicationState = metaData?.publicationState;
 
-        const { data } = await httpClient.get(`${url}?${query}`);
+        const queryFilters = generateFilter([
+            {
+                field: "id",
+                operator: "in",
+                value: ids,
+            },
+        ]);
+
+        const query = {
+            locale,
+            fields,
+            populate,
+            publicationState,
+        };
+
+        const { data } = await httpClient.get(
+            `${url}?${stringify(query, {
+                encodeValuesOnly: true,
+            })}&${queryFilters}`,
+        );
 
         return {
             data: normalizeData(data),

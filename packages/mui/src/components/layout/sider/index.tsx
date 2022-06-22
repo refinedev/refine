@@ -19,6 +19,7 @@ import {
     ChevronLeft,
     ChevronRight,
     MenuRounded,
+    Dashboard,
 } from "@mui/icons-material";
 import {
     CanAccess,
@@ -28,9 +29,10 @@ import {
     useTitle,
     useTranslate,
     useRouterContext,
+    useMenu,
+    useRefineContext,
 } from "@pankod/refine-core";
 
-import { useMenu } from "@hooks";
 import { Title as DefaultTitle } from "../title";
 
 export const Sider: React.FC = () => {
@@ -44,13 +46,29 @@ export const Sider: React.FC = () => {
 
     const t = useTranslate();
     const { Link } = useRouterContext();
+    const { hasDashboard } = useRefineContext();
+    const translate = useTranslate();
 
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const isExistAuthentication = useIsExistAuthentication();
     const { mutate: logout } = useLogout();
     const Title = useTitle();
 
-    const [open, setOpen] = useState<{ [k: string]: any }>(defaultOpenKeys);
+    const [open, setOpen] = useState<{ [k: string]: any }>({});
+
+    React.useEffect(() => {
+        setOpen((previousOpen) => {
+            const previousOpenKeys: string[] = Object.keys(previousOpen);
+            const uniqueKeys = new Set([
+                ...previousOpenKeys,
+                ...defaultOpenKeys,
+            ]);
+            const uniqueKeysRecord = Object.fromEntries(
+                Array.from(uniqueKeys.values()).map((key) => [key, true]),
+            );
+            return uniqueKeysRecord;
+        });
+    }, [defaultOpenKeys]);
 
     const RenderToTitle = Title ?? DefaultTitle;
 
@@ -193,6 +211,54 @@ export const Sider: React.FC = () => {
 
     const drawer = (
         <List disablePadding sx={{ mt: 1, color: "primary.contrastText" }}>
+            {hasDashboard ? (
+                <Tooltip
+                    title={translate("dashboard.title", "Dashboard")}
+                    placement="right"
+                    disableHoverListener={!collapsed}
+                    arrow
+                >
+                    <ListItemButton
+                        component={Link}
+                        href="/"
+                        to="/"
+                        selected={selectedKey === "/"}
+                        onClick={() => {
+                            setOpened(false);
+                        }}
+                        sx={{
+                            pl: 2,
+                            py: 1,
+                            "&.Mui-selected": {
+                                "&:hover": {
+                                    backgroundColor: "transparent",
+                                },
+                                backgroundColor: "transparent",
+                            },
+                            justifyContent: "center",
+                        }}
+                    >
+                        <ListItemIcon
+                            sx={{
+                                justifyContent: "center",
+                                minWidth: 36,
+                                color: "primary.contrastText",
+                            }}
+                        >
+                            <Dashboard />
+                        </ListItemIcon>
+                        <ListItemText
+                            primary={translate("dashboard.title", "Dashboard")}
+                            primaryTypographyProps={{
+                                noWrap: true,
+                                fontSize: "14px",
+                                fontWeight:
+                                    selectedKey === "/" ? "bold" : "normal",
+                            }}
+                        />
+                    </ListItemButton>
+                </Tooltip>
+            ) : null}
             {renderTreeView(menuItems, selectedKey)}
             {isExistAuthentication && (
                 <Tooltip

@@ -193,10 +193,6 @@
             "to": "/docs/ui-frameworks/antd/hooks/form/useStepsForm"
         },
         {
-            "from": "/docs/api-references/hooks/resource/useMenu",
-            "to": "/docs/ui-frameworks/antd/hooks/resource/useMenu"
-        },
-        {
             "from": "/docs/api-references/hooks/table/useEditableTable",
             "to": "/docs/ui-frameworks/antd/hooks/table/useEditableTable"
         },
@@ -693,14 +689,6 @@
             "to": "/docs/examples/notification-provider/react-toastify/"
         },
         {
-            "from": "/docs/next/examples/react-table/advanced-react-table/",
-            "to": "/docs/examples/react-table/advanced-react-table/"
-        },
-        {
-            "from": "/docs/next/examples/react-table/react-table/",
-            "to": "/docs/examples/react-table/react-table/"
-        },
-        {
             "from": "/docs/next/examples/router-provider/react-location/",
             "to": "/docs/examples/router-provider/react-location/"
         },
@@ -709,44 +697,12 @@
             "to": "/docs/examples/search/search/"
         },
         {
-            "from": "/docs/next/examples/table/advancedTable/",
-            "to": "/docs/examples/table/advancedTable/"
-        },
-        {
-            "from": "/docs/next/examples/table/tableFilter/",
-            "to": "/docs/examples/table/tableFilter/"
-        },
-        {
-            "from": "/docs/next/examples/table/useDeleteMany/",
-            "to": "/docs/examples/table/useDeleteMany/"
-        },
-        {
-            "from": "/docs/next/examples/table/useEditableTable/",
-            "to": "/docs/examples/table/useEditableTable/"
-        },
-        {
-            "from": "/docs/next/examples/table/useTable/",
-            "to": "/docs/examples/table/useTable/"
-        },
-        {
-            "from": "/docs/next/examples/table/useUpdateMany/",
-            "to": "/docs/examples/table/useUpdateMany/"
-        },
-        {
             "from": "/docs/next/examples/tutorial/",
             "to": "/docs/examples/tutorial/"
         },
         {
             "from": "/docs/next/examples/ui/useModal/",
             "to": "/docs/examples/ui/useModal/"
-        },
-        {
-            "from": "/docs/next/examples/upload/base64Upload/",
-            "to": "/docs/examples/upload/base64Upload/"
-        },
-        {
-            "from": "/docs/next/examples/upload/multipartUpload/",
-            "to": "/docs/examples/upload/multipartUpload/"
         },
         {
             "from": "/docs/next/examples/web3/web3Login/",
@@ -835,10 +791,6 @@
         {
             "from": "/docs/next/guides-and-concepts/ssr-nextjs/",
             "to": "/docs/guides-and-concepts/ssr-nextjs/"
-        },
-        {
-            "from": "/docs/next/guides-and-concepts/theme/",
-            "to": "/docs/guides-and-concepts/theme/"
         },
         {
             "from": "/docs/next/guides-and-concepts/upload/base64-upload/",
@@ -1005,10 +957,6 @@
             "to": "/docs/ui-frameworks/antd/hooks/list/useSimpleList/"
         },
         {
-            "from": "/docs/next/ui-frameworks/antd/hooks/resource/useMenu/",
-            "to": "/docs/ui-frameworks/antd/hooks/resource/useMenu/"
-        },
-        {
             "from": "/docs/next/ui-frameworks/antd/hooks/table/useEditableTable/",
             "to": "/docs/ui-frameworks/antd/hooks/table/useEditableTable/"
         },
@@ -1051,6 +999,46 @@
         {
             "from": "/docs/examples/react-hook-form/useStepsForm/",
             "to": "/docs/examples/form/react-hook-form/useStepsForm/"
+        },
+        {
+            "from": "/docs/examples/table/advancedTable/",
+            "to": "/docs/examples/table/antd/advancedTable/"
+        },
+        {
+            "from": "/docs/examples/table/tableFilter/",
+            "to": "/docs/examples/table/antd/tableFilter/"
+        },
+        {
+            "from": "/docs/examples/table/useDeleteMany/",
+            "to": "/docs/examples/table/antd/useDeleteMany/"
+        },
+        {
+            "from": "/docs/examples/table/useEditableTable/",
+            "to": "/docs/examples/table/antd/useEditableTable/"
+        },
+        {
+            "from": "/docs/examples/table/useTable/",
+            "to": "/docs/examples/table/antd/useTable/"
+        },
+        {
+            "from": "/docs/examples/table/useUpdateMany/",
+            "to": "/docs/examples/table/antd/useUpdateMany/"
+        },
+        {
+            "from": "/docs/examples/react-table/advanced-react-table/",
+            "to": "/docs/examples/table/react-table/advanced-react-table/"
+        },
+        {
+            "from": "/docs/examples/react-table/react-table/",
+            "to": "/docs/examples/table/react-table/react-table/"
+        },
+        {
+            "from": "/docs/examples/upload/base64Upload/",
+            "to": "/docs/examples/upload/antd/base64/"
+        },
+        {
+            "from": "/docs/examples/upload/multipartUpload/",
+            "to": "/docs/examples/upload/antd/multipart/"
         }
     ]
 }

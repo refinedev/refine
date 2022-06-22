@@ -24,6 +24,7 @@ import {
     CardContentProps,
     CardActionsProps,
     Typography,
+    Box,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
@@ -54,6 +55,7 @@ export interface EditProps {
  * `<Edit>` provides us a layout for displaying the page.
  * It does not contain any logic but adds extra functionalities like a refresh button.
  *
+ * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/basic-views/edit} for more details.
  */
 export const Edit: React.FC<EditProps> = ({
     actionButtons,
@@ -116,7 +118,7 @@ export const Edit: React.FC<EditProps> = ({
                     </IconButton>
                 }
                 action={
-                    <>
+                    <Box display="flex" gap="16px">
                         {!recordItemId && (
                             <ListButton
                                 data-testid="edit-list-button"
@@ -127,13 +129,18 @@ export const Edit: React.FC<EditProps> = ({
                             resourceNameOrRouteName={resource.route}
                             recordItemId={id}
                         />
-                    </>
+                    </Box>
                 }
                 {...cardHeaderProps}
             />
             <CardContent {...cardContentProps}>{children}</CardContent>
             <CardActions
-                sx={{ display: "flex", justifyContent: "flex-end" }}
+                sx={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    gap: "16px",
+                    padding: "16px",
+                }}
                 {...cardActionsProps}
             >
                 {actionButtons ?? (

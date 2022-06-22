@@ -1,6 +1,5 @@
 import React from "react";
-import { render, fireEvent, TestWrapper, act } from "@test";
-import ReactRouterDom from "react-router-dom";
+import { render, TestWrapper, act } from "@test";
 
 import { RouteChangeHandler } from "./index";
 
@@ -25,31 +24,43 @@ describe("routeChangeHandler", () => {
         expect(container.innerHTML).toHaveLength(0);
     });
 
-    it("should call checkAuth on route change", () => {
+    it("should call checkAuth on route change", async () => {
         const checkAuthMockedAuthProvider = {
             ...mockAuthProvider,
             checkAuth: jest.fn().mockImplementation(() => Promise.resolve()),
         };
 
-        render(<RouteChangeHandler />, {
-            wrapper: TestWrapper({
-                authProvider: checkAuthMockedAuthProvider,
-            }),
+        await act(async () => {
+            jest.useFakeTimers();
+
+            render(<RouteChangeHandler />, {
+                wrapper: TestWrapper({
+                    authProvider: checkAuthMockedAuthProvider,
+                }),
+            });
+
+            jest.runAllTimers();
         });
 
         expect(checkAuthMockedAuthProvider.checkAuth).toBeCalledTimes(1);
     });
 
-    it("should ignore checkAuth Promise.reject", () => {
+    it("should ignore checkAuth Promise.reject", async () => {
         const checkAuthMockedAuthProvider = {
             ...mockAuthProvider,
             checkAuth: jest.fn().mockImplementation(() => Promise.reject()),
         };
 
-        render(<RouteChangeHandler />, {
-            wrapper: TestWrapper({
-                authProvider: checkAuthMockedAuthProvider,
-            }),
+        await act(async () => {
+            jest.useFakeTimers();
+
+            render(<RouteChangeHandler />, {
+                wrapper: TestWrapper({
+                    authProvider: checkAuthMockedAuthProvider,
+                }),
+            });
+
+            jest.runAllTimers();
         });
 
         expect(checkAuthMockedAuthProvider.checkAuth).toBeCalledTimes(1);

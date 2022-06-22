@@ -12,9 +12,10 @@ export type ExportButtonProps = LoadingButtonProps & {
 };
 
 /**
- * `<ExportButton>` uses Material UI {@link https://mui.com/components/buttons/ `<Button>`} with a default export icon and a default text with "Export".
+ * `<ExportButton>` uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content `<LoadingButton>`} with a default export icon and a default text with "Export".
  * It only has presentational value.
  *
+ * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/buttons/export-button} for more details.
  */
 export const ExportButton: React.FC<ExportButtonProps> = ({
     hideText = false,
@@ -34,6 +35,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
             startIcon={
                 !hideText && <ImportExportOutlinedIcon {...svgIconProps} />
             }
+            loadingPosition={hideText ? "center" : "start"}
             sx={{ minWidth: 0, ...sx }}
             {...restProps}
         >

@@ -77,7 +77,8 @@
         "fields": {
             "id": "ID",
             "title": "Title",
-            "isActive": "Active"
+            "isActive": "Active",
+            "actions": "Aktionen"
         }
     },
     "couriers": {
@@ -222,6 +223,7 @@
     },
     "products": {
         "products": "Products",
+        "noProducts": "No Products",
         "titles": {
             "list": "Products",
             "create": "Create Product",

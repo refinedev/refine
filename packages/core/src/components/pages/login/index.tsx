@@ -21,7 +21,7 @@ export const LoginPage: React.FC = () => {
 
     return (
         <>
-            <h1>Login</h1>
+            <h1>{translate("pages.login.title", "Sign in your account")}</h1>
             <form
                 onSubmit={(e) => {
                     e.preventDefault();

@@ -12,9 +12,10 @@ export type SaveButtonProps = LoadingButtonProps & {
 };
 
 /**
- * `<SaveButton>` uses Material UI {@link https://mui.com/components/buttons/ `<Button>`} component.
+ * `<SaveButton>` uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content `<LoadingButton>`} component.
  * It uses it for presantation purposes only. Some of the hooks that refine has adds features to this button.
  *
+ * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/buttons/save-button} for more details.
  */
 export const SaveButton: React.FC<SaveButtonProps> = ({
     hideText = false,
@@ -30,6 +31,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
         <LoadingButton
             startIcon={!hideText && <SaveOutlinedIcon {...svgIconProps} />}
             sx={{ minWidth: 0, ...sx }}
+            variant="contained"
             {...restProps}
         >
             {hideText ? (

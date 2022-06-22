@@ -43,7 +43,8 @@ jobs:
         run: npm test
       - name: Prepare Stable version changesets
         if: "!contains(github.event.head_commit.message, 'ci(changesets): version packages')"
-        run: cp -R ./_changeset/* ./.changeset && rm -rf ./_changeset/
+        run: |
+          cp -R ./_changeset/* ./.changeset || : && rm -rf ./_changeset/
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
@@ -82,8 +83,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
   antd-admin-example:
-    if: ${{ needs.publish.outputs.published == 'true' }}
     runs-on: ubuntu-latest
+    needs: publish
+    if: ${{ needs.publish.outputs.published == 'true' }}
 
     strategy:
       matrix:
@@ -113,7 +115,7 @@ jobs:
           registry: ghcr.io
           repository: pankod/refine/refine-example
           tags: sha-${{ steps.current-time.outputs.formattedTime }}
-          dockerfile: examples/fineFoods/admin/Dockerfile
+          dockerfile: examples/fineFoods/admin/antd/Dockerfile
       - name: Set up kubectl
         uses: matootie/dokube@v1.3.4
         with:
@@ -142,8 +144,9 @@ jobs:
         env:
           domain: "example.admin.refine.dev"
   mui-admin-example:
-    if: ${{ needs.publish.outputs.published == 'true' }}
     runs-on: ubuntu-latest
+    needs: publish
+    if: ${{ needs.publish.outputs.published == 'true' }}
 
     strategy:
       matrix:
@@ -202,8 +205,10 @@ jobs:
         env:
           domain: "example.mui.admin.refine.dev"
   client-example:
-    if: ${{ needs.publish.outputs.published == 'true' }}
     runs-on: ubuntu-latest
+    needs: publish
+    if: ${{ needs.publish.outputs.published == 'true' }}
+
     strategy:
       matrix:
         node-version: [16.x]

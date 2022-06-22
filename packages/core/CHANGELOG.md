@@ -1,5 +1,57 @@
 # @pankod/refine-core
 
+## 3.32.0
+
+### Minor Changes
+
+-   Add `useMenu` hook to `@pankod/refine-core`
+
+### Patch Changes
+
+-   Add custom route support to `defaultOpenKeys` in `useMenu`
+
+*   Handle the `undefined` case at audit-log logger in data hooks.
+
+-   Remove dashboard item in `useMenu` hook
+
+## 3.31.0
+
+### Minor Changes
+
+-   [`498c425a0e`](https://github.com/pankod/refine/commit/498c425a0e069b6b972a344ff32af46852306c71) Thanks [@omeraplak](https://github.com/omeraplak)! - Add `useMenu` hook to `@pankod/refine-core`
+
+### Patch Changes
+
+-   [`498c425a0e`](https://github.com/pankod/refine/commit/498c425a0e069b6b972a344ff32af46852306c71) Thanks [@omeraplak](https://github.com/omeraplak)! - Add custom route support to `defaultOpenKeys` in `useMenu`
+
+*   [`498c425a0e`](https://github.com/pankod/refine/commit/498c425a0e069b6b972a344ff32af46852306c71) Thanks [@omeraplak](https://github.com/omeraplak)! - Handle the `undefined` case at audit-log logger in data hooks.
+
+-   [#2009](https://github.com/pankod/refine/pull/2009) [`5b893a9bff`](https://github.com/pankod/refine/commit/5b893a9bff707d90b0f898a52d46a7154108b0a0) Thanks [@aliemir](https://github.com/aliemir)! - Remove dashboard item in `useMenu` hook
+
+## 3.30.0
+
+### Minor Changes
+
+-   Add `useMenu` hook to `@pankod/refine-core`
+
+### Patch Changes
+
+-   Add custom route support to `defaultOpenKeys` in `useMenu`
+
+*   Handle the `undefined` case at audit-log logger in data hooks.
+
+## 3.29.2
+
+### Patch Changes
+
+-   Fix hook-inside-hook call in `notificationProvider` setup at `<Refine/>`
+
+## 3.29.1
+
+### Patch Changes
+
+-   [#1973](https://github.com/pankod/refine/pull/1973) [`206540971b`](https://github.com/pankod/refine/commit/206540971b12f3c63765aecb8aec6d506733a569) Thanks [@aliemir](https://github.com/aliemir)! - Fix hook-inside-hook call in `notificationProvider` setup at `<Refine/>`
+
 ## 3.29.0
 
 ### Minor Changes

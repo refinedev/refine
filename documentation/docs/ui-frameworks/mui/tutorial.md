@@ -23,16 +23,19 @@ Step by step, you're going to learn how to consume a _REST API_ and add basic CR
 Let's begin by setting up a new **refine** project.
 
 ## Setting up
-<!-- 
+
+
 There are two alternative methods to set up a **refine** application.
 
 The recommended way is using the [superplate](https://github.com/pankod/superplate) tool. _superplate_'s _CLI wizard_ will let you create and customize your application in seconds.
 
 Alternatively, you may use the _create-react-app_ tool to create an empty _React_ application and then add **refine** module via _npm_ etc.
- -->
+
+
 <Tabs
 defaultValue="create-react-app"
 values={[
+{label: 'use superplate', value: 'superplate'},
 {label: 'use create-react-app', value: 'create-react-app'}
 ]}>
 <TabItem value="create-react-app">
@@ -57,14 +60,14 @@ values={[
 <TabItem value="npm">
 
 ```bash
-npm i @pankod/refine-core @pankod/refine-mui @pankod/refine-react-router-v6
+npm i @pankod/refine-core @pankod/refine-mui @pankod/refine-react-router-v6 @pankod/refine-react-hook-form
 ```
 
   </TabItem>
     <TabItem value="yarn">
 
 ```bash
-yarn add  @pankod/refine-core @pankod/refine-mui @pankod/refine-react-router-v6
+yarn add  @pankod/refine-core @pankod/refine-mui @pankod/refine-react-router-v6 @pankod/refine-react-hook-form
 ```
 
   </TabItem>
@@ -92,24 +95,33 @@ Select the following options to complete the _CLI wizard_:
 ❯ refine-react
 
 ? What will be the name of your app:
-tutorial
+> tutorial
 
 ? Package manager:
 ❯ Npm
 
-? Do you want to use an UI Framework?:
-❯ Yes, I want Ant Design
+? Do you want to use a UI Framework?:
+❯ Material UI
 
-? Do you want to customize the theme?:
-❯ No (Ant Design default theme)
+? Do you want an extended theme?:
+❯ No
 
-? Data Provider :
+? Do you want to add dark mode support?:
+❯ No
+
+? Router Provider:
+❯ React Router v6
+
+? Data Provider:
 ❯ REST API
 
-? Auth Provider :
+? Auth Provider:
 ❯ None
 
-? Do you want to add an example page?:
+? Do you want to add example pages?:
+❯ No
+
+? Do you want a customized layout?:
 ❯ No
 
 ? i18n - Internationalization:
@@ -153,9 +165,9 @@ yarn add @pankod/refine-simple-rest
   </TabItem>
 </Tabs>
 
-<!-- :::note
+:::note
 If you used `superplate` to bootstrap the project, you can skip issuing this command as `superplate` already installs the selected data provider.
-::: -->
+:::
 
 :::note
 
@@ -236,8 +248,33 @@ export default App;
 `<GlobalStyles>` is a component that is used to apply the global styles to the application. You may refer to the [**GlobalStyles** documentation](https://mui.com/material-ui/api/global-styles/) for more information.
 :::
 
+:::info
+Refine application uses [`Montserrat`](https://fonts.google.com/specimen/Montserrat) font by default as it is defined in the [`typography`](https://github.com/pankod/refine/blob/next/packages/mui/src/theme/typography.ts) property of the theme. But to use [`Montserrat`](https://fonts.google.com/specimen/Montserrat), you need to embed it to your `index.html` file.
+For more information about adding font family in your Refine application, you can look at [`Material UI Theme Customization`](/ui-frameworks/mui/customization/theme.md#overriding-variables).
+
+```html title="index.html"
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        // highlight-start
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
+        // highlight-end
+        <title>refine adding font family example</title>
+    </head>
+
+    <body>
+        ...
+    </body>
+</html>
+```
+
+:::
+
 :::tip
-**refine** comes natively with Light/Dark theme support. Check out the [theme](#) documentation for more information.
+**refine** comes native with Light/Dark theme support. Check out the [`theme`](/ui-frameworks/mui/customization/theme.md) documentation for more information.
 :::
 
 <br/>
@@ -963,7 +1000,10 @@ export const PostList: React.FC = () => {
 
 ## Editing a record
 
-Until this point, we were basically working with reading operations such as fetching and displaying data from resources. From now on, we are going to start creating and updating records by using **refine**.
+Until this point, we were basically working with reading operations such as fetching and displaying data from resources. From now on, we are going to start creating and updating records by using **refine**
+
+The Material UI provides already styled, but still very customizable inputs that encapsulate adding labels and error handling with helper texts. However, we need a third-party library to handle forms when using Material UI. [React Hook Form](https://react-hook-form.com/) is one of the best options for this job!
+The React Hook Form library has been integrated with **refine** ([`@pankod/refine-react-hook-form`](https://github.com/pankod/refine/tree/master/packages/react-hook-form)) . This means you can now use Material UI for your forms and manage them using [`@pankod/refine-react-hook-form`](https://github.com/pankod/refine/tree/master/packages/react-hook-form)!
 
 Let's start by creating a new `<PostEdit>` page responsible for `editing` a single record:
 
@@ -1095,7 +1135,7 @@ In the example, it returns `formProps` and `saveButtonProps`, where the former i
 :::caution Attention
 In edit page, `useForm` hook initializes the form with current record values.
 
-[Refer to the `useForm` documentation for detailed usage information . &#8594](/packages/react-hook-form/useForm.md) 
+[Refer to the `useForm` documentation for detailed usage information . &#8594](/packages/react-hook-form/useForm.md)
 
 ✳️ You can give form property to `<Box>` component and it will render the form.
 
@@ -1620,15 +1660,13 @@ const App: React.FC = () => {
 
 After adding `canDelete` prop, `<DeleteButton>` will appear in edit form.
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
-Our tutorial is complete. Below you'll find a live Codesandbox example displaying what we have done so far:
+Our tutorial is complete. Below you'll find a Live StackBlitz Example displaying what we have done so far:
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/tutorial/mui?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/tutorial/mui?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-tutorial"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
 ## Next Steps

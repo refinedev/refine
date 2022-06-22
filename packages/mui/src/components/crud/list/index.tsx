@@ -16,6 +16,7 @@ import {
     CardHeaderProps,
     CardContentProps,
     Typography,
+    Box,
 } from "@mui/material";
 
 import { CreateButton, CreateButtonProps } from "@components";
@@ -33,6 +34,7 @@ export interface ListProps {
  * `<List>` provides us a layout for displaying the page.
  * It does not contain any logic but adds extra functionalities like a refresh button.
  *
+ * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/basic-views/list} for more details.
  */
 export const List: React.FC<ListProps> = ({
     canCreate,
@@ -79,7 +81,11 @@ export const List: React.FC<ListProps> = ({
                         )}
                     </Typography>
                 }
-                action={defaultExtra}
+                action={
+                    <Box display="flex" gap="16px">
+                        {defaultExtra}
+                    </Box>
+                }
                 {...cardHeaderProps}
             />
             <CardContent {...cardContentProps}>{children}</CardContent>

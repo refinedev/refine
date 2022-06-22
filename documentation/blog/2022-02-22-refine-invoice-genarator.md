@@ -46,12 +46,13 @@ npx superplate-cli -p refine-react refine-invoice-genarator
 
 ```bash
 ✔ What will be the name of your app ·refine-invoice-genarator
-✔ Package manager: · npm
-✔ Do you want to using UI Framework? > Yes, I want Ant Design
-✔ Do you want to customize theme?: … no
+✔ Package manager: · Npm
+✔ Do you want to use a UI Framework? · Ant Design
+✔ Do you want a customized theme?: Default theme
+✔ Router Provider: · React Router v6
 ✔ Data Provider: Strapi
-✔ Do you want to customize layout? … no
-✔ i18n - Internationalization: · no
+✔ Do you want a customized layout? No
+✔ i18n - Internationalization: · No
 ```
 
 superplate will quickly create our refine project according to the features we choose. Let's continue by install the [refine Strapi-v4 Data Provider](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/) that we will use later.

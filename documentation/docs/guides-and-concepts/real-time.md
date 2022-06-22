@@ -29,9 +29,9 @@ To make this example more visual, we used the [`@pankod/refine-antd`](https://gi
 
 Since we will need `apiKey` from Ably, you must first register and get the key from [Ably](https://ably.com).
 
-The app will have one resource: **posts** with [CRUD pages(list, create, edit and show) similar to base example](https://github.com/pankod/refine/tree/master/examples/base/src/pages/posts).
+The app will have one resource: **posts** with [CRUD pages(list, create, edit and show) similar to base example](https://github.com/pankod/refine/tree/master/examples/base/antd/src/pages/posts).
 
-[You can also refer to codesandbox to see final state of the app &#8594](#live-condesandbox-example)
+[You can also refer to StackBlitz to see final state of the app &#8594](#live-stackblitz-example)
 
 ## Adding `liveProvider`
 
@@ -47,7 +47,12 @@ Then pass `liveProvider` from [`@pankod/refine-ably`](https://github.com/pankod/
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+import {
+    Layout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
@@ -178,7 +183,7 @@ export const PostEdit: React.FC = () => {
 
 We can also implement similar thing in show page.
 
-[Refer to the codesandbox example for detailed information. &#8594](#live-codesandbox-example)
+[Refer to the StackBlitz example for detailed information. &#8594](#live-stackblitz-example)
 :::
 
 <br/>
@@ -204,8 +209,14 @@ Firstly, let's implement a custom sider like in [this example](/examples/customi
 
 ```tsx title="src/components/sider.tsx"
 import React, { useState } from "react";
-import { useTitle, ITreeMenu, CanAccess, useRouterContext } from "@pankod/refine-core";
-import { AntdLayout, Menu, useMenu, Grid, Icons } from "@pankod/refine-antd";
+import {
+    useTitle,
+    ITreeMenu,
+    CanAccess,
+    useRouterContext,
+    useMenu,
+} from "@pankod/refine-core";
+import { AntdLayout, Menu, Grid, Icons } from "@pankod/refine-antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 export const CustomSider: React.FC = () => {
@@ -216,7 +227,7 @@ export const CustomSider: React.FC = () => {
     const breakpoint = Grid.useBreakpoint();
 
     const isMobile = !breakpoint.lg;
-    
+
     const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
         return tree.map((item: ITreeMenu) => {
             const { icon, label, route, name, children, parentName } = item;
@@ -224,7 +235,7 @@ export const CustomSider: React.FC = () => {
             if (children.length > 0) {
                 return (
                     <SubMenu
-                        key={name}
+                        key={route}
                         icon={icon ?? <Icons.UnorderedListOutlined />}
                         title={label}
                     >
@@ -243,16 +254,20 @@ export const CustomSider: React.FC = () => {
                     action="list"
                 >
                     <Menu.Item
-                        key={selectedKey}
+                        key={route}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
+                        icon={
+                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
+                        }
                     >
-                            <Link href={route} to={route}>{label}</Link>
-                            {!collapsed && isSelected && (
-                                <Icons.UnorderedListOutlined />
-                            )}
+                        <Link href={route} to={route}>
+                            {label}
+                        </Link>
+                        {!collapsed && isSelected && (
+                            <Icons.UnorderedListOutlined />
+                        )}
                     </Menu.Item>
                 </CanAccess>
             );
@@ -295,6 +310,7 @@ import {
     useTitle,
     ITreeMenu,
     CanAccess,
+    useMenu,
     //highlight-start
     useSubscription,
     //highlight-end
@@ -302,7 +318,6 @@ import {
 import {
     AntdLayout,
     Menu,
-    useMenu,
     Grid,
     Icons,
     //highlight-start
@@ -355,24 +370,28 @@ export const CustomSider: React.FC = () => {
                     action="list"
                 >
                     <Menu.Item
-                        key={selectedKey}
+                        key={route}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
+                        icon={
+                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
+                        }
                     >
-                            //highlight-start
-                                <div>
-                                    <Link href={route} to={route}>{label}</Link>
-                                    {label === "Posts" && (
-                                        <Badge
-                                            size="small"
-                                            count={subscriptionCount}
-                                            offset={[2, -15]}
-                                        />
-                                    )}
-                                </div>
-                            //highlight-end
+                        //highlight-start
+                        <div>
+                            <Link href={route} to={route}>
+                                {label}
+                            </Link>
+                            {label === "Posts" && (
+                                <Badge
+                                    size="small"
+                                    count={subscriptionCount}
+                                    offset={[2, -15]}
+                                />
+                            )}
+                        </div>
+                        //highlight-end
                     </Menu.Item>
                 </CanAccess>
             );
@@ -442,9 +461,7 @@ useSubscription({
 
 ## Live Condesandbox Example
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/ably?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/ably/?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-ably-example"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>

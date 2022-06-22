@@ -94,18 +94,21 @@ Select the following options to complete the _CLI wizard_:
 ❯ refine-react
 
 ? What will be the name of your app:
-tutorial
+> tutorial
 
 ? Package manager:
 ❯ Npm
 
-? Do you want to use an UI Framework?:
-❯ No (headless)
+? Do you want to use a UI Framework?:
+❯ No (Headless)
 
-? Data Provider :
+? Router Provider:
+❯ React Router v6
+
+? Data Provider:
 ❯ REST API
 
-? Auth Provider :
+? Auth Provider:
 ❯ None
 
 ? i18n - Internationalization:
@@ -175,6 +178,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 -   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
 ### Community ❤️
+
 -   [Firebase](https://github.com/rturan29/refine-firebase) - a fully featured [Firebase](https://firebase.google.com/) Data Provider by [rturan29](https://github.com/rturan29)
 -   [Directus](https://github.com/tspvivek/refine-directus) - a fully featured [Directus](https://directus.io/) Data Provider by [tspvivek](https://github.com/tspvivek)
 
@@ -403,14 +407,14 @@ We will create a **Layout** component to handle the rendering of the **Page** co
 Create a new folder named _"components"_ under _"/src"_ and create a new file named _"Layout.tsx"_ with the following code:
 
 ```tsx title="components/Layout.tsx"
-import { useResource, useNavigation } from "@pankod/refine-core";
+import { useMenu, useNavigation } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 const { Link } = routerProvider;
 
 export const Layout: React.FC = ({ children }) => {
-    const { resources } = useResource();
-    const { list } = useNavigation();
+    const { menuItems } = useMenu();
+    const { push } = useNavigation();
 
     return (
         <div className="flex min-h-screen flex-col">
@@ -425,14 +429,14 @@ export const Layout: React.FC = ({ children }) => {
                             />
                         </Link>
                         <ul>
-                            {resources.map(({ name, icon }) => (
+                            {menuItems.map(({ name, label icon, route }) => (
                                 <li key={name} className="float-left">
                                     <a
                                         className="flex cursor-pointer items-center gap-1 rounded-sm px-2 py-1 capitalize decoration-indigo-500 decoration-2 underline-offset-1 transition duration-300 ease-in-out hover:underline"
-                                        onClick={() => list(name)}
+                                        onClick={() => push(route)}
                                     >
                                         {icon}
-                                        <span>{name}</span>
+                                        <span>{label ?? name}</span>
                                     </a>
                                 </li>
                             ))}
@@ -446,7 +450,7 @@ export const Layout: React.FC = ({ children }) => {
 };
 ```
 
-We created a header with a logo and a list of links to all resources. The links are clickable and will navigate to the corresponding resource. To do this, we used the [`useResource`](/core/hooks/resource/useResource.md) hook to get the resources from the `<Refine/>` and the [`useNavigation`](/core/hooks/navigation/useNavigation.md) hook to used to navigate between resources.
+We created a header with a logo and a list of links to all menu items (resources). The links are clickable and will navigate to the corresponding resource. To do this, we used the [`useMenu`](/core/hooks/ui/useMenu.md) hook to get the menu items from the `<Refine/>` and the [`useNavigation`](/core/hooks/navigation/useNavigation.md) hook to used to navigate between resources.
 
 `children` is the content of the layout. In our case, it is the content of the **Page** components.
 
@@ -2154,15 +2158,13 @@ export const DeleteIcon = (
 
 Now you can try deleting records yourself. Just click on the delete button of the record you want to delete.
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
-Our tutorial is complete. Below you'll find a live Codesandbox example displaying what we have done so far:
+Our tutorial is complete. Below you'll find a Live StackBlitz Example displaying what we have done so far:
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/tutorial/headless?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/tutorial/headless?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-headless-tutorial-example"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
 ## Next Steps

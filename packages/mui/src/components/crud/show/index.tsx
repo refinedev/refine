@@ -48,6 +48,7 @@ export interface ShowProps {
  * `<Show>` provides us a layout for displaying the page.
  * It does not contain any logic but adds extra functionalities like a refresh button.
  *
+ * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/basic-views/show} for more details.
  */
 export const Show: React.FC<ShowProps> = ({
     canEdit,
@@ -105,7 +106,7 @@ export const Show: React.FC<ShowProps> = ({
                     </IconButton>
                 }
                 action={
-                    <Box sx={{ display: "flex" }}>
+                    <Box display="flex" gap="16px">
                         {!recordItemId && (
                             <ListButton
                                 data-testid="show-list-button"
@@ -139,8 +140,8 @@ export const Show: React.FC<ShowProps> = ({
                 {...cardHeaderProps}
             />
             <CardContent {...cardContentProps}>{children}</CardContent>
-            <CardActions {...cardActionsProps}>
-                {actionButtons ? [actionButtons] : undefined}
+            <CardActions sx={{ padding: "16px" }} {...cardActionsProps}>
+                {actionButtons ? actionButtons : null}
             </CardActions>
         </Card>
     );

@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Layout, Menu, Grid } from "antd";
-import { LogoutOutlined, UnorderedListOutlined } from "@ant-design/icons";
+import {
+    DashboardOutlined,
+    LogoutOutlined,
+    UnorderedListOutlined,
+} from "@ant-design/icons";
 import {
     useTranslate,
     useLogout,
@@ -9,11 +13,11 @@ import {
     ITreeMenu,
     useIsExistAuthentication,
     useRouterContext,
+    useMenu,
+    useRefineContext,
 } from "@pankod/refine-core";
 
 import { Title as DefaultTitle } from "@components";
-
-import { useMenu } from "@hooks";
 
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 const { SubMenu } = Menu;
@@ -27,6 +31,7 @@ export const Sider: React.FC = () => {
     const translate = useTranslate();
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const breakpoint = Grid.useBreakpoint();
+    const { hasDashboard } = useRefineContext();
 
     const isMobile = !breakpoint.lg;
 
@@ -39,7 +44,7 @@ export const Sider: React.FC = () => {
             if (children.length > 0) {
                 return (
                     <SubMenu
-                        key={name}
+                        key={route}
                         icon={icon ?? <UnorderedListOutlined />}
                         title={label}
                     >
@@ -58,7 +63,7 @@ export const Sider: React.FC = () => {
                     action="list"
                 >
                     <Menu.Item
-                        key={selectedKey}
+                        key={route}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
@@ -96,6 +101,23 @@ export const Sider: React.FC = () => {
                     }
                 }}
             >
+                {hasDashboard ? (
+                    <Menu.Item
+                        key="dashboard"
+                        style={{
+                            fontWeight: selectedKey === "/" ? "bold" : "normal",
+                        }}
+                        icon={<DashboardOutlined />}
+                    >
+                        <Link href="/" to="/">
+                            {translate("dashboard.title", "Dashboard")}
+                        </Link>
+                        {!collapsed && selectedKey === "/" && (
+                            <div className="ant-menu-tree-arrow" />
+                        )}
+                    </Menu.Item>
+                ) : null}
+
                 {renderTreeView(menuItems, selectedKey)}
 
                 {isExistAuthentication && (

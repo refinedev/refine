@@ -1,5 +1,56 @@
 # @pankod/refine-mui
 
+## 3.30.6
+
+### Patch Changes
+
+-   Add Dashboard item to default `<Sider/>`
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.32.0
+
+## 3.30.5
+
+### Patch Changes
+
+-   [#2009](https://github.com/pankod/refine/pull/2009) [`5b893a9bff`](https://github.com/pankod/refine/commit/5b893a9bff707d90b0f898a52d46a7154108b0a0) Thanks [@aliemir](https://github.com/aliemir)! - Add Dashboard item to default `<Sider/>`
+
+-   Updated dependencies [[`498c425a0e`](https://github.com/pankod/refine/commit/498c425a0e069b6b972a344ff32af46852306c71), [`498c425a0e`](https://github.com/pankod/refine/commit/498c425a0e069b6b972a344ff32af46852306c71), [`498c425a0e`](https://github.com/pankod/refine/commit/498c425a0e069b6b972a344ff32af46852306c71), [`5b893a9bff`](https://github.com/pankod/refine/commit/5b893a9bff707d90b0f898a52d46a7154108b0a0)]:
+    -   @pankod/refine-core@3.31.0
+
+## 3.30.4
+
+### Patch Changes
+
+-   Deprecated `useMenu` from `@pankod/refine-antd` and replaced with the `useMenu` from `@pankod/refine-core`
+
+*   Remove unused `transition` property from `@pankod/refine-mui`'s `<Layout/>`
+
+*   Updated dependencies []:
+    -   @pankod/refine-core@3.30.0
+
+## 3.30.4
+
+### Patch Changes
+
+-   Fix styling for buttons in loading state
+
+*   Fix the spacing of header and footer actions in crud components and updated their snapshot tests.
+
+*   Updated dependencies []:
+    -   @pankod/refine-core@3.29.2
+
+## 3.30.3
+
+### Patch Changes
+
+-   We've updated `secondary` color to `#2A132E`
+
+*   Could not stop `e.preventDefault()` redirection in Next.js `<Link>` component. So we added in `e.stopPropagation()` for [Ant Design Buttons](https://refine.dev/docs/ui-frameworks/antd/components/buttons/clone-button/) and [Material UI Buttons](https://refine.dev/docs/ui-frameworks/mui/components/buttons/clone-button/)
+
+*   Updated dependencies []:
+    -   @pankod/refine-react-hook-form@3.27.2
+
 ## 3.30.2
 
 ### Patch Changes
