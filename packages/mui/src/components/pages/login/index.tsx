@@ -70,43 +70,27 @@ export const LoginPage: React.FC = () => {
                         </div>
                         <Box mt={4}>
                             <Card>
-                                <CardContent>
+                                <CardContent sx={{ paddingX: "32px" }}>
                                     <Typography
                                         component="h1"
-                                        variant="h4"
+                                        variant="h5"
                                         align="center"
                                         sx={{
                                             fontWeight: "700",
-                                            fontSize: "30px",
-                                            letterSpacing: "-0.04px",
-                                            lineHeight: "38px",
-                                            color: "text.primary",
+                                            margin: "12px 0",
                                         }}
                                     >
-                                        <Box
-                                            component="span"
-                                            color="primary.main"
-                                        >
-                                            {translate(
-                                                "pages.login.title",
-                                                "Sign in ",
-                                            )}
-                                        </Box>
-                                        <Box
-                                            component="span"
-                                            sx={{ color: "text.secondary" }}
-                                        >
-                                            {translate(
-                                                "pages.login.title",
-                                                "your account",
-                                            )}
-                                        </Box>
+                                        {translate(
+                                            "pages.login.title",
+                                            "Sign in your account",
+                                        )}
                                     </Typography>
                                     <Box
                                         component="form"
                                         onSubmit={handleSubmit((data) => {
                                             login(data);
                                         })}
+                                        gap="16px"
                                     >
                                         <TextField
                                             {...register("username", {
@@ -114,6 +98,7 @@ export const LoginPage: React.FC = () => {
                                             })}
                                             id="username"
                                             margin="normal"
+                                            size="small"
                                             fullWidth
                                             label={translate(
                                                 "pages.login.username",
@@ -128,6 +113,7 @@ export const LoginPage: React.FC = () => {
                                                 required: true,
                                             })}
                                             id="password"
+                                            size="small"
                                             margin="normal"
                                             fullWidth
                                             name="password"
@@ -186,7 +172,7 @@ export const LoginPage: React.FC = () => {
                                                 >
                                                     {translate(
                                                         "pages.login.forgotPassword",
-                                                        "Forgot?",
+                                                        "Forgot password?",
                                                     )}
                                                 </Typography>
                                             </Link>
@@ -197,7 +183,6 @@ export const LoginPage: React.FC = () => {
                                             variant="contained"
                                             sx={{
                                                 my: "8px",
-                                                height: "64px",
                                                 color: "white",
                                             }}
                                             disabled={isLoading}
@@ -224,8 +209,8 @@ export const LoginPage: React.FC = () => {
                                             >
                                                 {translate(
                                                     "pages.login.noAccount",
-                                                    "Don’t have an account? ",
-                                                )}{" "}
+                                                    "Don’t have an account?",
+                                                )}
                                             </Typography>
                                             <Typography
                                                 sx={{
@@ -239,7 +224,7 @@ export const LoginPage: React.FC = () => {
                                             >
                                                 {translate(
                                                     "pages.login.signup",
-                                                    " Sign up",
+                                                    "Sign up",
                                                 )}
                                             </Typography>
                                             <Typography
@@ -254,7 +239,7 @@ export const LoginPage: React.FC = () => {
                                                 {translate(
                                                     "pages.login.noAccount",
                                                     "here ",
-                                                )}{" "}
+                                                )}
                                             </Typography>
                                         </Link>
                                     </Box>
