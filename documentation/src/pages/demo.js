@@ -8,7 +8,7 @@ import { IoMdOpen, IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
 const iframeURLS = {
     antd: "https://example.admin.refine.dev",
-    mui: "https://example.admin.refine.dev",
+    mui: "https://example.mui.admin.refine.dev",
 };
 
 const Hello = () => {
@@ -43,10 +43,13 @@ const Hello = () => {
                         </div>
                         <div className="tabs">
                             <button
-                                onClick={() => setActiveKeyPane1("headless")}
+                                onClick={() =>
+                                    setClientActiveKeyPane("headless")
+                                }
                                 className={clsx(
                                     "tab-button",
-                                    activeKeyPane1 === "headless" && "active",
+                                    clientActiveKeyPane === "headless" &&
+                                        "active",
                                 )}
                             >
                                 Headless
@@ -71,10 +74,10 @@ const Hello = () => {
                         </div>
                         <div className="tabs">
                             <button
-                                onClick={() => setActiveKeyPane2("antd")}
+                                onClick={() => setAdminActiveKeyPane("antd")}
                                 className={clsx(
                                     "tab-button",
-                                    activeKeyPane2 === "antd" && "active",
+                                    adminActiveKeyPane === "antd" && "active",
                                 )}
                             >
                                 Ant Design
@@ -83,10 +86,10 @@ const Hello = () => {
                                 </Link>
                             </button>
                             <button
-                                onClick={() => setActiveKeyPane2("mui")}
+                                onClick={() => setAdminActiveKeyPane("mui")}
                                 className={clsx(
                                     "tab-button",
-                                    activeKeyPane2 === "mui" && "active",
+                                    adminActiveKeyPane === "mui" && "active",
                                 )}
                             >
                                 Material UI
@@ -96,7 +99,7 @@ const Hello = () => {
                             </button>
                         </div>
                         <iframe
-                            src={iframeURLS[activeKeyPane2]}
+                            src={iframeURLS[adminActiveKeyPane]}
                             width="100%"
                             height="100%"
                         ></iframe>
@@ -105,27 +108,28 @@ const Hello = () => {
             </div>
             <div className="mobile-view">
                 <div className="mobile-pane client-pane">
-                    <Link
-                        className="link-button"
-                        to="https://example.refine.dev"
-                    >
-                        Refine Headless <br />
+                    <h2>Customer Facing App</h2>
+                    <p>
+                        <strong>Refine Headless &gt;</strong>
+                        <br />
                         Refine Core + Next.js (SSR) + Tailwind CSS
-                        <IoMdOpen />
-                    </Link>
+                    </p>
                     <img src="/demo/nextjs-client.png" />
                 </div>
                 <div className="mobile-pane admin-pane">
-                    <Link
-                        className="link-button"
-                        to="https://example.admin.refine.dev"
-                    >
-                        Refine Antd
-                        <br />
-                        Refine Core + Refine Ant Design
-                        <IoMdOpen />
-                    </Link>
-                    <img src="/demo/react-admin.png" />
+                    <h2>Admin Panel</h2>
+                    <p>Refine Core + Antd Design</p>
+                    <div className="mobile-img-container">
+                        <Link to={iframeURLS["antd"]}>
+                            <img src="/demo/mobile-antd.png" />
+                        </Link>
+                        <Link to={iframeURLS["mui"]}>
+                            <img src="/demo/mobile-mui.png" />
+                        </Link>
+                    </div>
+                    <p style={{ marginTop: "16px" }}>
+                        Refine Core + Material UI
+                    </p>
                 </div>
             </div>
         </Layout>

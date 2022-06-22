@@ -161,8 +161,26 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 32px;
+    gap: 12px;
     padding: 24px;
+    text-align: center;
+    line-height: 24px;
+}
+
+.mobile-pane h2 {
+    font-size: 48px;
+    font-weight: 900;
+    color: white;
+    text-shadow: 1.41799px 2.83598px 4.25397px rgba(0, 0, 0, 0.32);
+    margin-bottom: -4px;
+    text-transform: uppercase;
+}
+
+.mobile-pane p {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+    text-shadow: 1.41799px 2.83598px 4.25397px rgba(0, 0, 0, 0.32);
 }
 
 .mobile-pane img {
@@ -175,4 +193,14 @@
 
 .admin-pane {
     background-color: rgba(251, 122, 50, 1);
+}
+
+.mobile-img-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mobile-img-container img:first-child {
+    margin-bottom: -24px;
 }
