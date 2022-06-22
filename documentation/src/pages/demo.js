@@ -12,7 +12,7 @@ const iframeURLS = {
 };
 
 const Hello = () => {
-    const [activeKeyPane1, setActiveKeyPane1] = useState("headless");
+    const [clientActiveKeyPane, setClientActiveKeyPane] = useState("headless");
     const [activeKeyPane2, setActiveKeyPane2] = useState("antd");
 
     return (
