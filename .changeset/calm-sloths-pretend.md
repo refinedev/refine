@@ -2,4 +2,4 @@
 "@pankod/refine-core": minor
 ---
 
-add translate support to [`useBreadcrumb`](https://refine.dev/docs/core/hooks/useBreadcrumb/)
+Added i18n support for resource names on [`useBreadcrumb`](https://refine.dev/docs/core/hooks/useBreadcrumb/) hook.
