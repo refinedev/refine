@@ -146,7 +146,7 @@ The `id` of the record created in the `meta` object is added. It is used for fil
 | author   | `Record<string, any>` |
 
 :::important
-The `author` object is the value returned from the [`getUserIdentity`](/core/providers/auth-provider) method in the `authProvider`.
+The `author` object is the value returned from the [`getUserIdentity`](/core/providers/auth-provider.md) method in the `authProvider`.
 :::
 
 <br/>
@@ -215,10 +215,10 @@ const auditLogProvider: AuditLogProvider = {
 
 #### Parameter Types
 
-| Name | Type    |
-| ---- | ------- |
-| id   | BaseKey |
-| name | string  |
+| Name   | Type      |
+| ------ | --------- |
+| `id`   | `BaseKey` |
+| `name` | `string`  |
 
 <br />
 
