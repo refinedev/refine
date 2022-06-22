@@ -33,7 +33,7 @@ jobs:
         with:
           surge_token: ${{ secrets.SURGE_TOKEN }}
           github_token: ${{ secrets.PANKOD_BOT_TOKEN }}
-          dist: examples/fineFoods/admin/build
+          dist: examples/fineFoods/admin/antd/build
           teardown: 'true'
           build: echo
   mui-fine-foods:

@@ -114,7 +114,7 @@ jobs:
           registry: ghcr.io
           repository: pankod/refine/refine-example
           tags: sha-${{ steps.current-time.outputs.formattedTime }}
-          dockerfile: examples/fineFoods/admin/Dockerfile
+          dockerfile: examples/fineFoods/admin/antd/Dockerfile
       - name: Set up kubectl
         uses: matootie/dokube@v1.3.4
         with:
