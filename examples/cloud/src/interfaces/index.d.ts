@@ -4,7 +4,7 @@ export interface ICategory {
 }
 
 export interface IPost {
-    id: string;
+    id: number;
     title: string;
     content: string;
     status: "published" | "draft" | "rejected";
