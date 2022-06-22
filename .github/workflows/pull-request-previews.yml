@@ -6,7 +6,10 @@ on:
       - synchronize
       - opened
       - reopened
-      - closed
+    paths:
+      - "packages/**"
+      - "examples/fineFoods/**"
+
 jobs:
   antd-fine-foods:
     runs-on: ubuntu-latest
