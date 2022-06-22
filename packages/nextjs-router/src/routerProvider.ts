@@ -7,7 +7,8 @@ import { handleUseParams, IRouterProvider } from "@pankod/refine-core";
 
 import { Prompt } from "./prompt";
 
-const RefineLink = Link.bind({});
+// @ts-expect-error `next/link` exports in type of function but in runtime it's an object.
+const RefineLink = typeof Link === "object" ? { ...Link } : Link.bind({});
 
 RefineLink.defaultProps = {
     legacyBehavior: false,
