@@ -38,9 +38,10 @@ export type DeleteButtonProps = ButtonProps & {
 } & SuccessErrorNotification;
 
 /**
- * `<DeleteButton>` uses Material UI {@link https://mui.com/components/buttons/  `<Button>`} and {@link https://ant.design/components/button/ `<Popconfirm>`} components.
- * When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the `useDelete` method provided by your `dataProvider`.
+ * `<DeleteButton>` uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content `<LoadingButton>`} and {@link https://mui.com/material-ui/react-dialog/#main-content `<Dialog>`} components.
+ * When you try to delete something, a dialog modal shows up and asks for confirmation. When confirmed it executes the `useDelete` method provided by your `dataProvider`.
  *
+ * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/buttons/delete-button} for more details.
  */
 export const DeleteButton: React.FC<DeleteButtonProps> = ({
     resourceNameOrRouteName,
