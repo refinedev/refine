@@ -49,9 +49,9 @@ export const ImportList: React.FC = () => {
     const { inputProps, isLoading } = useImport({
         onFinish: () => {
             open?.({
-                    message: "Import successfully completed",
-                    type: "success",
-                });
+                message: "Import successfully completed",
+                type: "success",
+            });
         },
     });
 
