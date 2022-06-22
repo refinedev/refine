@@ -257,7 +257,7 @@ export const CustomMenu: React.FC = () => {
                                 color: "primary.contrastText",
                             }}
                         >
-                             {<Dashboard />}
+                             <Dashboard />
                         </ListItemIcon>
                         <ListItemText
                             primary={t("dashboard.title", "Dashboard")}
