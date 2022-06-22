@@ -70,43 +70,27 @@ export const LoginPage: React.FC = () => {
                         </div>
                         <Box mt={4}>
                             <Card>
-                                <CardContent>
+                                <CardContent sx={{ paddingX: "32px" }}>
                                     <Typography
                                         component="h1"
-                                        variant="h4"
+                                        variant="h5"
                                         align="center"
                                         sx={{
                                             fontWeight: "700",
-                                            fontSize: "30px",
-                                            letterSpacing: "-0.04px",
-                                            lineHeight: "38px",
-                                            color: "text.primary",
+                                            margin: "12px 0",
                                         }}
                                     >
-                                        <Box
-                                            component="span"
-                                            color="primary.main"
-                                        >
-                                            {translate(
-                                                "pages.login.title",
-                                                "Sign in ",
-                                            )}
-                                        </Box>
-                                        <Box
-                                            component="span"
-                                            sx={{ color: "text.secondary" }}
-                                        >
-                                            {translate(
-                                                "pages.login.title",
-                                                "your account",
-                                            )}
-                                        </Box>
+                                        {translate(
+                                            "pages.login.title",
+                                            "Sign in your account",
+                                        )}
                                     </Typography>
                                     <Box
                                         component="form"
                                         onSubmit={handleSubmit((data) => {
                                             login(data);
                                         })}
+                                        gap="16px"
                                     >
                                         <TextField
                                             {...register("username", {
@@ -114,6 +98,7 @@ export const LoginPage: React.FC = () => {
                                             })}
                                             id="username"
                                             margin="normal"
+                                            size="small"
                                             fullWidth
                                             label={translate(
                                                 "pages.login.username",
@@ -128,6 +113,7 @@ export const LoginPage: React.FC = () => {
                                                 required: true,
                                             })}
                                             id="password"
+                                            size="small"
                                             margin="normal"
                                             fullWidth
                                             name="password"
@@ -186,7 +172,7 @@ export const LoginPage: React.FC = () => {
                                                 >
                                                     {translate(
                                                         "pages.login.forgotPassword",
-                                                        "Forgot?",
+                                                        "Forgot password?",
                                                     )}
                                                 </Typography>
                                             </Link>
@@ -197,7 +183,6 @@ export const LoginPage: React.FC = () => {
                                             variant="contained"
                                             sx={{
                                                 my: "8px",
-                                                height: "64px",
                                                 color: "white",
                                             }}
                                             disabled={isLoading}
@@ -207,56 +192,26 @@ export const LoginPage: React.FC = () => {
                                                 "Sign in",
                                             )}
                                         </Button>
-                                        <Link
-                                            href="#"
-                                            sx={{
-                                                textDecoration: "none",
-                                                display: "flex",
-                                            }}
-                                        >
-                                            <Typography
-                                                sx={{
-                                                    fontSize: "12px",
-                                                    letterSpacing: "-0.04px",
-                                                    lineHeight: "38px",
-                                                    color: "text.secondary",
-                                                }}
-                                            >
+                                        <Box style={{ marginTop: 8 }}>
+                                            <Typography variant="subtitle2">
                                                 {translate(
                                                     "pages.login.noAccount",
-                                                    "Don’t have an account? ",
+                                                    "Don’t have an account?",
                                                 )}{" "}
+                                                <Link
+                                                    underline="none"
+                                                    href="#"
+                                                    style={{
+                                                        fontWeight: "bold",
+                                                    }}
+                                                >
+                                                    {translate(
+                                                        "pages.login.signup",
+                                                        "Sign up",
+                                                    )}
+                                                </Link>
                                             </Typography>
-                                            <Typography
-                                                sx={{
-                                                    fontWeight: "700",
-                                                    fontSize: "12px",
-                                                    letterSpacing: "-0.04px",
-                                                    lineHeight: "38px",
-                                                    color: "primary.main",
-                                                    marginLeft: "2px",
-                                                }}
-                                            >
-                                                {translate(
-                                                    "pages.login.signup",
-                                                    " Sign up",
-                                                )}
-                                            </Typography>
-                                            <Typography
-                                                sx={{
-                                                    fontSize: "12px",
-                                                    letterSpacing: "-0.04px",
-                                                    lineHeight: "38px",
-                                                    color: "text.secondary",
-                                                    marginLeft: "2px",
-                                                }}
-                                            >
-                                                {translate(
-                                                    "pages.login.noAccount",
-                                                    "here ",
-                                                )}{" "}
-                                            </Typography>
-                                        </Link>
+                                        </Box>
                                     </Box>
                                 </CardContent>
                             </Card>
