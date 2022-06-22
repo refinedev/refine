@@ -675,14 +675,6 @@ const routerProvider: IRouterProvider = {
 </TabItem>
 <TabItem value="nextjs-link">
 
-:::info
-
-`@pankod/refine-nextjs-router` uses `<Link/>` component with `legacyBehavior` prop set to `false` by default to comply with the new `<Link/>` behavior of Next.js which is currently under `experimental` flag but soon to be the default behavior with Next.js 13.
-
-[To learn more about the changing behavior of `<Link/>` check out this PR](https://github.com/vercel/next.js/pull/36436)
-
-:::
-
 ```ts title="routerProvider.ts"
 import { IRouterProvider } from "@pankod/refine-core";
 // highlight-next-line
@@ -695,6 +687,14 @@ const routerProvider: IRouterProvider = {
     ...
 };
 ```
+
+:::info
+
+`@pankod/refine-nextjs-router` uses `<Link/>` component with `legacyBehavior` prop set to `false` by default to comply with the new `<Link/>` behavior of Next.js which is currently under `experimental` flag but soon to be the default behavior with Next.js 13.
+
+[To learn more about the changing behavior of `<Link/>` check out this PR](https://github.com/vercel/next.js/pull/36436)
+
+:::
 
   </TabItem>
 </Tabs>
