@@ -245,7 +245,7 @@ export const Sider: React.FC = () => {
                                 color: "primary.contrastText",
                             }}
                         >
-                            {<Dashboard />}
+                            <Dashboard />
                         </ListItemIcon>
                         <ListItemText
                             primary={translate("dashboard.title", "Dashboard")}
