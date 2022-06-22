@@ -192,56 +192,26 @@ export const LoginPage: React.FC = () => {
                                                 "Sign in",
                                             )}
                                         </Button>
-                                        <Link
-                                            href="#"
-                                            sx={{
-                                                textDecoration: "none",
-                                                display: "flex",
-                                            }}
-                                        >
-                                            <Typography
-                                                sx={{
-                                                    fontSize: "12px",
-                                                    letterSpacing: "-0.04px",
-                                                    lineHeight: "38px",
-                                                    color: "text.secondary",
-                                                }}
-                                            >
+                                        <Box style={{ marginTop: 8 }}>
+                                            <Typography variant="subtitle2">
                                                 {translate(
                                                     "pages.login.noAccount",
                                                     "Don’t have an account?",
-                                                )}
+                                                )}{" "}
+                                                <Link
+                                                    underline="none"
+                                                    href="#"
+                                                    style={{
+                                                        fontWeight: "bold",
+                                                    }}
+                                                >
+                                                    {translate(
+                                                        "pages.login.signup",
+                                                        "Sign up",
+                                                    )}
+                                                </Link>
                                             </Typography>
-                                            <Typography
-                                                sx={{
-                                                    fontWeight: "700",
-                                                    fontSize: "12px",
-                                                    letterSpacing: "-0.04px",
-                                                    lineHeight: "38px",
-                                                    color: "primary.main",
-                                                    marginLeft: "2px",
-                                                }}
-                                            >
-                                                {translate(
-                                                    "pages.login.signup",
-                                                    "Sign up",
-                                                )}
-                                            </Typography>
-                                            <Typography
-                                                sx={{
-                                                    fontSize: "12px",
-                                                    letterSpacing: "-0.04px",
-                                                    lineHeight: "38px",
-                                                    color: "text.secondary",
-                                                    marginLeft: "2px",
-                                                }}
-                                            >
-                                                {translate(
-                                                    "pages.login.noAccount",
-                                                    "here ",
-                                                )}
-                                            </Typography>
-                                        </Link>
+                                        </Box>
                                     </Box>
                                 </CardContent>
                             </Card>
