@@ -48,6 +48,7 @@ export interface ShowProps {
  * `<Show>` provides us a layout for displaying the page.
  * It does not contain any logic but adds extra functionalities like a refresh button.
  *
+ * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/basic-views/show} for more details.
  */
 export const Show: React.FC<ShowProps> = ({
     canEdit,
