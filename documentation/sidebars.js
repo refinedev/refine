@@ -26,6 +26,7 @@ module.exports = {
                     items: [
                         "core/providers/accessControl-provider",
                         "core/providers/auth-provider",
+                        "core/providers/audit-log-provider",
                         "core/providers/data-provider",
                         "core/providers/i18n-provider",
                         "core/providers/live-provider",
@@ -52,6 +53,14 @@ module.exports = {
                                 "core/hooks/auth/useLogin",
                                 "core/hooks/auth/useLogout",
                                 "core/hooks/auth/usePermissions",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Audit Log",
+                            items: [
+                                "core/hooks/audit-log/useLog",
+                                "core/hooks/audit-log/useLogList",
                             ],
                         },
                         {
