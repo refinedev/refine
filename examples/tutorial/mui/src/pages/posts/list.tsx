@@ -22,7 +22,6 @@ export const PostList: React.FC = () => {
             {
                 field: "category.id",
                 headerName: "Category",
-                type: "number",
                 minWidth: 250,
                 flex: 1,
                 valueGetter: (params) => {
@@ -54,14 +53,26 @@ export const PostList: React.FC = () => {
             },
             {
                 headerName: "Actions",
+                headerAlign: "center",
                 field: "actions",
-                minWidth: 250,
+                minWidth: 180,
+                align: "center",
+                flex: 1,
                 renderCell: function render(params) {
                     return (
                         <Stack direction="row" spacing={1}>
-                            <EditButton hideText recordItemId={params.row.id} />
-                            <ShowButton hideText recordItemId={params.row.id} />
+                            <EditButton
+                                size="small"
+                                hideText
+                                recordItemId={params.row.id}
+                            />
+                            <ShowButton
+                                size="small"
+                                hideText
+                                recordItemId={params.row.id}
+                            />
                             <DeleteButton
+                                size="small"
                                 hideText
                                 recordItemId={params.row.id}
                             />
