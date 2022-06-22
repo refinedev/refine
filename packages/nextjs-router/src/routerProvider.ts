@@ -13,6 +13,8 @@ RefineLink.defaultProps = {
     legacyBehavior: false,
 };
 
+export { RefineLink };
+
 export const RouterProvider: IRouterProvider = {
     useHistory: () => {
         const router = useRouter();
