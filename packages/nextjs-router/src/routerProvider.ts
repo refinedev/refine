@@ -7,6 +7,12 @@ import { handleUseParams, IRouterProvider } from "@pankod/refine-core";
 
 import { Prompt } from "./prompt";
 
+const RefineLink = Link.bind({});
+
+RefineLink.defaultProps = {
+    legacyBehavior: false,
+};
+
 export const RouterProvider: IRouterProvider = {
     useHistory: () => {
         const router = useRouter();
@@ -42,5 +48,5 @@ export const RouterProvider: IRouterProvider = {
         return handleUseParams(query);
     },
     Prompt,
-    Link,
+    Link: RefineLink,
 };
