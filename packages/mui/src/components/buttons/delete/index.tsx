@@ -118,7 +118,6 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     return (
         <div>
             <LoadingButton
-                variant="outlined"
                 color="error"
                 onClick={handleClickOpen}
                 disabled={data?.can === false}
