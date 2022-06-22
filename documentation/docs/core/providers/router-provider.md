@@ -677,8 +677,15 @@ const routerProvider: IRouterProvider = {
 
 ```ts title="routerProvider.ts"
 import { IRouterProvider } from "@pankod/refine-core";
-// highlight-next-line
-import { Link } from "next/link";
+// highlight-start
+import { Link as NextLink } from "next/link";
+
+const Link = typeof NextLink === "object" ? { ...NextLink } : NextLink.bind({});
+
+Link.defaultProps = {
+    legacyBehavior: false,
+};
+// highlight-end
 
 const routerProvider: IRouterProvider = {
     ...
