@@ -21,6 +21,8 @@ import { AccessControlContextProvider } from "@contexts/accessControl";
 import { NotificationContextProvider } from "@contexts/notification";
 import { AuditLogContextProvider } from "@contexts/auditLog";
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
+import { routeGenerator } from "@definitions";
+
 import {
     MutationMode,
     IDataContextProvider,
@@ -37,7 +39,6 @@ import {
     AccessControlProvider,
     AuditLogProvider,
 } from "../../../interfaces";
-import { routeGenerator } from "@definitions";
 
 interface QueryClientConfig {
     queryCache?: QueryCache;
@@ -156,7 +157,7 @@ export const Refine: React.FC<RefineProps> = ({
         return ReadyPage ? <ReadyPage /> : <DefaultReadyPage />;
     }
 
-    const { RouterComponent } = routerProvider;
+    const { RouterComponent = React.Fragment } = routerProvider;
 
     return (
         <QueryClientProvider client={queryClient}>
@@ -214,16 +215,10 @@ export const Refine: React.FC<RefineProps> = ({
                                                         }
                                                     >
                                                         <UnsavedWarnContextProvider>
-                                                            <>
+                                                            <RouterComponent>
                                                                 {children}
-                                                                {RouterComponent ? (
-                                                                    <RouterComponent>
-                                                                        <RouteChangeHandler />
-                                                                    </RouterComponent>
-                                                                ) : (
-                                                                    <RouteChangeHandler />
-                                                                )}
-                                                            </>
+                                                                <RouteChangeHandler />
+                                                            </RouterComponent>
                                                         </UnsavedWarnContextProvider>
                                                     </RefineContextProvider>
                                                 </UndoableQueueContextProvider>

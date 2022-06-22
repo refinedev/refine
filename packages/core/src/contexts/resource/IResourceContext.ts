@@ -2,15 +2,7 @@ import { ReactNode } from "react";
 import { UseQueryResult } from "react-query";
 import { ILogData } from "src/interfaces";
 
-const auditLogPermissions = [
-    "list",
-    "create",
-    "update",
-    "delete",
-    "getOne",
-    "getMany",
-    "*",
-] as const;
+const auditLogPermissions = ["create", "update", "delete", "*"] as const;
 type AuditLogPermissions = typeof auditLogPermissions;
 
 export interface IResourceContext {
