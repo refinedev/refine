@@ -3,7 +3,7 @@ id: useLog
 title: useLog
 ---
 
-If you need to send a create audit log **refine** provides the `useLog` hook for it, It returns the `create` or `update` method from [`auditLogProvider`](/core/providers/audit-log-provider.md#create) under the hood.
+If you need to create an audit log **refine** provides the `useLog` hook for it, It returns the `create` or `update` method from [`auditLogProvider`](/core/providers/audit-log-provider.md#create) under the hood.
 
 ## Usage
 
@@ -38,7 +38,7 @@ log({
 
 | Property                                                                                            | Description                                              | Type                                                              | Default |
 | --------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ----------------------------------------------------------------- | ------- |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name                                            | `string`                                                          |         |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name that it reads from URL                     | `string`                                                          |         |
 | <div className="required-block"><div>action</div> <div className=" required">Required</div></div>   | Action name                                              | `string`                                                          |         |
 | author                                                                                              | Author info                                              | `Record<string, any>`                                             |         |
 | meta                                                                                                | For make to unique                                       | `Record<string, any>`                                             |         |
