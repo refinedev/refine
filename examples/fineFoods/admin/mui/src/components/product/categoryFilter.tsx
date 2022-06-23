@@ -21,11 +21,8 @@ export const CategoryFilter: React.FC<ProductItemProps> = ({
 }) => {
     const t = useTranslate();
 
-    const selectedCategories =
-        getDefaultFilter("category.id", filters, "in") ?? [];
-
     const [filterCategories, setFilterCategories] =
-        useState<string[]>(selectedCategories);
+        useState<string[]>(getDefaultFilter("category.id", filters, "in") ?? []);
 
     const { data: categories, isLoading } = useList<ICategory>({
         resource: "categories",
