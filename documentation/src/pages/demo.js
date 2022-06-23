@@ -114,11 +114,13 @@ const Hello = () => {
                         <br />
                         Refine Core + Next.js (SSR) + Tailwind CSS
                     </p>
-                    <img src="/demo/nextjs-client.png" />
+                    <Link to="https://example.refine.dev">
+                        <img src="/demo/nextjs-client.png" />
+                    </Link>
                 </div>
                 <div className="mobile-pane admin-pane">
                     <h2>Admin Panel</h2>
-                    <p>Refine Core + Antd Design</p>
+                    <p>Refine Core + Ant Design</p>
                     <div className="mobile-img-container">
                         <Link to={iframeURLS["antd"]}>
                             <img src="/demo/mobile-antd.png" />
