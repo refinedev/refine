@@ -1039,10 +1039,6 @@
         {
             "from": "/docs/examples/upload/multipartUpload/",
             "to": "/docs/examples/upload/antd/multipart/"
-        },
-        {
-            "from": "/docs/examples/tutorial/",
-            "to": "/docs/examples/tutorial/antd-tutorial/"
         }
     ]
 }
