@@ -93,7 +93,7 @@ const Hello = () => {
                                 )}
                             >
                                 Material UI
-                                <Link to="https://example.admin.refine.dev">
+                                <Link to="https://example.mui.admin.refine.dev">
                                     <IoMdOpen />
                                 </Link>
                             </button>
