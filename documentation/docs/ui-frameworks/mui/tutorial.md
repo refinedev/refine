@@ -33,7 +33,7 @@ Alternatively, you may use the _create-react-app_ tool to create an empty _React
 
 
 <Tabs
-defaultValue="create-react-app"
+defaultValue="superplate"
 values={[
 {label: 'use superplate', value: 'superplate'},
 {label: 'use create-react-app', value: 'create-react-app'}
@@ -284,7 +284,7 @@ For more information about adding font family in your Refine application, you ca
 Run the following command to install the required package:
 
 <Tabs
-defaultValue="create-react-app"
+defaultValue="superplate"
 values={[
 {label: 'with create-react-app', value: 'create-react-app'}
 ]}>
