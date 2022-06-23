@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import { LoadingButton } from "@mui/lab";
-import { CrudFilters, useList, useTranslate } from "@pankod/refine-core";
+import {
+    CrudFilters,
+    getDefaultFilter,
+    useList,
+    useTranslate,
+} from "@pankod/refine-core";
 import { Stack, Grid } from "@pankod/refine-mui";
 
 import { ICategory } from "interfaces";
@@ -16,7 +21,8 @@ export const CategoryFilter: React.FC<ProductItemProps> = ({
 }) => {
     const t = useTranslate();
 
-    const [filterCategories, setFilterCategories] = useState<string[]>([]);
+    const [filterCategories, setFilterCategories] =
+        useState<string[]>(getDefaultFilter("category.id", filters, "in") ?? []);
 
     const { data: categories, isLoading } = useList<ICategory>({
         resource: "categories",
@@ -26,10 +32,10 @@ export const CategoryFilter: React.FC<ProductItemProps> = ({
         setFilters?.([
             {
                 field: "category.id",
-                operator: "contains",
-                value: filterCategories,
+                operator: "in",
+                value:
+                    filterCategories.length > 0 ? filterCategories : undefined,
             },
-            ...filters,
         ]);
     }, [filterCategories]);
 

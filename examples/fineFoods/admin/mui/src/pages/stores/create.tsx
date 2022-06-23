@@ -13,7 +13,9 @@ import {
     Typography,
     FormHelperText,
     Create,
+    TextFieldProps,
 } from "@pankod/refine-mui";
+import InputMask from "react-input-mask";
 
 import { IStore } from "interfaces";
 
@@ -131,16 +133,24 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                                 >
                                     {t("stores.fields.gsm")}
                                 </FormLabel>
-                                <TextField
+                                <InputMask
+                                    mask="(999) 999 99 99"
+                                    disabled={false}
                                     {...register("gsm", {
                                         required: t("errors.required.field", {
                                             field: "Phone",
                                         }),
                                     })}
-                                    size="small"
-                                    margin="none"
-                                    variant="outlined"
-                                />
+                                >
+                                    {(props: TextFieldProps) => (
+                                        <TextField
+                                            {...props}
+                                            size="small"
+                                            margin="none"
+                                            variant="outlined"
+                                        />
+                                    )}
+                                </InputMask>
                                 {errors.gsm && (
                                     <FormHelperText error>
                                         {errors.gsm.message}
