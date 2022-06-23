@@ -127,8 +127,9 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                                     <Grid
                                         item
                                         xs={12}
-                                        md={4}
-                                        lg={3}
+                                        md={6}
+                                        lg={4}
+                                        xl={3}
                                         key={product.id}
                                         sx={{ padding: "8px" }}
                                     >
