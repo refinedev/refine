@@ -5,41 +5,9 @@ title: Audit Log Provider
 
 ## Overview
 
-List activities, track user actions and send custom events with `audit-log-provider`. Automatically sends **refine** logs in `create`, `edit` and `delete` operations. In which cases it will be sent is done in the `options` section under the `resources`.
+Provides Audit Log support via **refine** `auditLogProvider`. A new log record is automatically created when a new record is created, updated and deleted. You can access these records from anywhere via hooks.
 
-```tsx
-<Refine
-    auditLogProvider={auditLogProvider}
-    routerProvider={routerProvider}
-    dataProvider={dataProvider(API_URL)}
-    resources={[
-        {
-            name: "posts",
-            list: PostList,
-            create: PostCreate,
-            edit: PostEdit,
-            show: PostShow,
-            canDelete: true,
-            // highlight-start
-            options: {
-                auditLog: {
-                    permissions: ["create", "delete", "update"],
-                },
-            },
-            // highlight-end
-        },
-    ]}
-    notificationProvider={notificationProvider}
-    Layout={Layout}
-    catchAll={<ErrorComponent />}
-/>
-```
-
-Complete all this by writing an `audit-log-provider` to **refine**.
-
-
-
-This provider must include following methods:
+Complete all this by writing an `audit-log-provider` to **refine**. This provider must include following methods:
 
 ```ts
 const auditLogProvider = {
@@ -90,6 +58,44 @@ const App: React.FC = () => {
 
 Now let's prepare an example audit log provider using the `https://api.fake-rest.refine.dev/logs` end-point.
 
+### `get`
+
+This method is used to get audit logs. Expects audit logs to be returned with the given parameters. Here we return activities using `resource` and `meta` data.
+
+```ts title="auditLogProvider.ts"
+const auditLogProvider: AuditLogProvider = {
+    get: async ({ resource, meta }) => {
+        const { data } = await dataProvider(API_URL).getList({
+            resource: "logs",
+            filters: [
+                {
+                    field: "resource",
+                    operator: "eq",
+                    value: resource,
+                },
+                {
+                    field: "meta.id",
+                    operator: "eq",
+                    value: meta?.id,
+                },
+            ],
+        });
+
+        return data;
+    },
+};
+```
+
+#### Parameter Types
+
+| Name     | Type                  |
+| -------- | --------------------- |
+| resource | `string`              |
+| action   | `string`              |
+| meta     | `Record<string, any>` |
+| author   | `Record<string, any>` |
+
+
 ### `create`
 
 This method is triggered when a new log is created. The incoming parameters contain the data we need and we need to return a Promise.
@@ -133,8 +139,6 @@ When we test, we will see that an object like the one below is created in the `l
 The `id` of the record created in the `meta` object is added. It is used for filtering purposes.
 :::
 
-
-
 #### Parameter Types
 
 | Name     | Type                  |
@@ -154,47 +158,6 @@ The `author` object is the value returned from the [`getUserIdentity`](/core/pro
 **refine** will use this create method in the [`useLog`](/core/hooks/audit-log/useLog.md) hook.
 
 > [Refer to the useLog documentation for more information. &#8594](/core/hooks/audit-log/useLog.md)
-
-<br />
-
-### `get`
-
-This method is used to get audit logs. Expects audit logs to be returned with the given parameters. Here we return activities using `resource` and `meta` data.
-
-```ts title="auditLogProvider.ts"
-const auditLogProvider: AuditLogProvider = {
-    get: async ({ resource, meta }) => {
-        const { data } = await dataProvider(API_URL).getList({
-            resource: "logs",
-            filters: [
-                {
-                    field: "resource",
-                    operator: "eq",
-                    value: resource,
-                },
-                {
-                    field: "meta.id",
-                    operator: "eq",
-                    value: meta?.id,
-                },
-            ],
-        });
-
-        return data;
-    },
-};
-```
-
-#### Parameter Types
-
-| Name     | Type                  |
-| -------- | --------------------- |
-| resource | `string`              |
-| action   | `string`              |
-| meta     | `Record<string, any>` |
-| author   | `Record<string, any>` |
-
-<br/>
 
 ### `update`
 
@@ -225,3 +188,104 @@ const auditLogProvider: AuditLogProvider = {
 **refine** will use this update method in the [`useLog`](/core/hooks/audit-log/useLog.md) hook.
 
 > [Refer to the useLog documentation for more information. &#8594](/core/hooks/audit-log/useLog.md)
+
+
+## Supported Hooks
+
+Supported hooks subscribe in the following way:
+
+### useCreate
+
+When `useCreate` is called, `refine` sends the following parameters to auditLogProvider's `create` method.
+
+```ts
+const { mutate } = useCreate();
+mutate({
+    resource: "posts",
+    values: {
+        title: "New Post",
+        status: "published",
+        content: "New Post Content",
+    },
+    metaData: {
+        foo: "bar",
+    },
+});
+```
+
+```json
+{
+    "action": "create",
+    "resource": "posts",
+    "data": {
+        "title": "Title",
+        "status": "published",
+        "content": "New Post Content"
+    },
+    "meta": {
+        "id": 1,
+        "foo": "bar"
+    }
+}
+```
+
+:::tip
+`metaData` is included in `meta`.
+:::
+
+### useUpdate
+
+When `useUpdate` is called, `refine` sends the following parameters to auditLogProvider's `create` method.
+
+```ts
+const { mutate } = useUpdate();
+mutate({
+    id: 1,
+    resource: "posts",
+    values: {
+        title: "Updated New Title",
+    },
+});
+```
+
+```json
+{
+    "action": "update",
+    "resource": "posts",
+    "data": {
+        "title": "Updated New Title",
+        "status": "published",
+        "content": "New Post Content"
+    },
+    "previousData": {
+        "title": "Title",
+        "status": "published",
+        "content": "New Post Content"
+    },
+    "meta": {
+        "id": 1
+    }
+}
+```
+
+### useDelete
+
+When `useDelete` is called, `refine` sends the following parameters to auditLogProvider's `create` method.
+
+```ts
+const { mutate } = useDelete();
+mutate({
+    id: 1,
+    resource: "posts",
+});
+```
+
+```json
+{
+    "action": "delete",
+    "resource": "posts",
+    "meta": {
+        "id": 1
+    }
+}
+```
