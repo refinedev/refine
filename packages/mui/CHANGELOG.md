@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 3.30.10
+
+### Patch Changes
+
+-   Added the `description` property to the notifications
+
 ## 3.30.9
 
 ### Patch Changes
