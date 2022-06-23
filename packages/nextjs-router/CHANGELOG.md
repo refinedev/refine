@@ -1,5 +1,14 @@
 # @pankod/refine-nextjs-router
 
+## 3.25.4
+
+### Patch Changes
+
+-   Add `legacyBehavior: false` to `<Link/>` component to migrate to the new Next.js Link behavior. [next.js#36436](https://github.com/vercel/next.js/pull/36436)
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.34.0
+
 ## 3.25.3
 
 ### Patch Changes

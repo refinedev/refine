@@ -1,5 +1,18 @@
 # @pankod/refine-mui
 
+## 3.30.8
+
+### Patch Changes
+
+-   We have fixed texts with translations of default login pages in Material UI and Headless.
+
+*   Update default variant of `<DeleteButton>` to `text` and replace overrides in the `<Edit>` crud component.
+
+-   dashboard icon changed from `<ListOutlined>` to [`<Dashboard>`](https://mui.com/material-ui/material-icons/?query=Dashboard&selected=Dashboard) in `<Sider>` for **Material UI** package
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.34.0
+
 ## 3.30.7
 
 ### Patch Changes
