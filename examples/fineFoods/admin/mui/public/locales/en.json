@@ -77,8 +77,7 @@
         "fields": {
             "id": "ID",
             "title": "Title",
-            "isActive": "Active",
-            "actions": "Aktionen"
+            "isActive": "Active"
         }
     },
     "couriers": {

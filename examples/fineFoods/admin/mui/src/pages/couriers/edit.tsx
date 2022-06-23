@@ -291,7 +291,15 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                             </FormControl>
                                         </Stack>
                                     </Grid>
-                                    <Grid item paddingX={4} xs={12} md={6}>
+                                    <Grid
+                                        item
+                                        sx={{
+                                            marginTop: { xs: 2, sm: 2, md: 0 },
+                                        }}
+                                        paddingX={4}
+                                        xs={12}
+                                        md={6}
+                                    >
                                         <Stack gap="24px">
                                             <FormControl>
                                                 <FormLabel
