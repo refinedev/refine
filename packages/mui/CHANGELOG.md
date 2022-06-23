@@ -1,5 +1,18 @@
 # @pankod/refine-mui
 
+## 3.30.7
+
+### Patch Changes
+
+-   [#2029](https://github.com/pankod/refine/pull/2029) [`b257d87fef`](https://github.com/pankod/refine/commit/b257d87fef4e8572e4c463894e9d79af96d78184) Thanks [@ozkalai](https://github.com/ozkalai)! - We have fixed texts with translations of default login pages in Material UI and Headless.
+
+*   [#2033](https://github.com/pankod/refine/pull/2033) [`14e14709ec`](https://github.com/pankod/refine/commit/14e14709ecd8f2c5106cbcaca3a1acd966d69a07) Thanks [@ozkalai](https://github.com/ozkalai)! - Update default variant of `<DeleteButton>` to `text` and replace overrides in the `<Edit>` crud component.
+
+-   [#2022](https://github.com/pankod/refine/pull/2022) [`01f8631953`](https://github.com/pankod/refine/commit/01f8631953c17f7e5ef2c6b7aa20aed825b7f235) Thanks [@biskuvit](https://github.com/biskuvit)! - dashboard icon changed from `<ListOutlined>` to [`<Dashboard>`](https://mui.com/material-ui/material-icons/?query=Dashboard&selected=Dashboard) in `<Sider>` for **Material UI** package
+
+-   Updated dependencies [[`d96ba1e9c8`](https://github.com/pankod/refine/commit/d96ba1e9c88724ee0b0d828bc4589befcb7a783d), [`b257d87fef`](https://github.com/pankod/refine/commit/b257d87fef4e8572e4c463894e9d79af96d78184), [`12f08ae6a3`](https://github.com/pankod/refine/commit/12f08ae6a3755487cd0e4f498b7fc3c2a9488c58)]:
+    -   @pankod/refine-core@3.33.0
+
 ## 3.30.6
 
 ### Patch Changes

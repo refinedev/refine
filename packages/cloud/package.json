@@ -1,5 +1,5 @@
 {
-    "version": "0.0.1",
+    "version": "0.1.0",
     "license": "MIT",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
@@ -37,7 +37,7 @@
         "tsup": "^5.11.13"
     },
     "dependencies": {
-        "@pankod/refine-core": "^3.25.0",
+        "@pankod/refine-core": "^3.33.0",
         "@pankod/refine-sdk": "^0.0.25",
         "lodash": "^4.17.21",
         "lodash-es": "^4.17.21"

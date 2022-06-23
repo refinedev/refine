@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@pankod/refine-antd": "^3.25.8",
-    "@pankod/refine-core": "^3.32.0",
+    "@pankod/refine-core": "^3.33.0",
     "@pankod/refine-nestjsx-crud": "^3.25.4",
     "@pankod/refine-react-router-v6": "^3.25.2",
     "@types/node": "^12.20.11",
