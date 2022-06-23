@@ -6,6 +6,7 @@ import { OpenNotificationParams } from "@pankod/refine-core";
 import { CircularDeterminate } from "@components/circularDeterminate";
 
 import { notificationProvider } from ".";
+import { Box, Typography } from "@mui/material";
 
 const cancelMutationMock = jest.fn();
 
@@ -13,6 +14,7 @@ const mockNotification: OpenNotificationParams = {
     key: "test-notification",
     message: "Test Notification Message",
     type: "success",
+    description: "Test Notification Description",
 };
 
 const mockNotificationUndoable: OpenNotificationParams = {
@@ -51,7 +53,14 @@ describe("Notistack notificationProvider", () => {
 
         expect(enqueueSnackbarMock).toHaveBeenCalled();
         expect(enqueueSnackbarMock).toHaveBeenCalledWith(
-            mockNotification.message,
+            <Box>
+                <Typography variant="subtitle2" component="h6">
+                    {mockNotification.description}
+                </Typography>
+                <Typography variant="caption" component="p">
+                    {mockNotification.message}
+                </Typography>
+            </Box>,
             {
                 variant: "success",
                 anchorOrigin: {
@@ -67,14 +76,24 @@ describe("Notistack notificationProvider", () => {
         notificationProviderHandle.open({ ...mockNotification, type: "error" });
 
         expect(enqueueSnackbarMock).toHaveBeenCalledTimes(1);
-        expect(enqueueSnackbarMock).toBeCalledWith(mockNotification.message, {
-            variant: "error",
-            anchorOrigin: {
-                vertical: "top",
-                horizontal: "right",
+        expect(enqueueSnackbarMock).toBeCalledWith(
+            <Box>
+                <Typography variant="subtitle2" component="h6">
+                    {mockNotification.description}
+                </Typography>
+                <Typography variant="caption" component="p">
+                    {mockNotification.message}
+                </Typography>
+            </Box>,
+            {
+                variant: "error",
+                anchorOrigin: {
+                    vertical: "top",
+                    horizontal: "right",
+                },
+                disableWindowBlurListener: true,
             },
-            disableWindowBlurListener: true,
-        });
+        );
     });
 
     // This test cover the case when the type is "progress"
