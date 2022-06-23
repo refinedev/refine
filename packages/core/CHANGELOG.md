@@ -1,5 +1,17 @@
 # @pankod/refine-core
 
+## 3.34.0
+
+### Minor Changes
+
+-   Added i18n support for resource names on [`useBreadcrumb`](https://refine.dev/docs/core/hooks/useBreadcrumb/) hook.
+
+*   Export `RefineProps` and `ResourceProps` type.
+
+### Patch Changes
+
+-   We have fixed texts with translations of default login pages in Material UI and Headless.
+
 ## 3.33.0
 
 ### Minor Changes
