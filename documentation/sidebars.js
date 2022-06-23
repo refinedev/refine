@@ -690,7 +690,7 @@ module.exports = {
                     items: [
                         {
                             type: "category",
-                            label: "Antd Design",
+                            label: "Ant Design",
                             items: [
                                 "examples/upload/antd/base64",
                                 "examples/upload/antd/multipart",
