@@ -20,17 +20,30 @@ export const useTranslate = () => {
 
         function translate(
             key: string,
-            options?: string | any,
+            optionsOrDefaultMessage?: string | any,
             defaultMessage?: string,
         ) {
-            return (
-                i18nProvider?.translate(key, options, defaultMessage) ??
-                defaultMessage ??
-                (typeof options === "string" &&
-                typeof defaultMessage === "undefined"
-                    ? options
-                    : key)
+            const hasI18nProvider = Boolean(i18nProvider);
+
+            const i18nResponse = i18nProvider?.translate(
+                key,
+                optionsOrDefaultMessage,
+                defaultMessage,
             );
+            const isSameAsKey = i18nResponse === key;
+
+            const fallback =
+                defaultMessage ??
+                (typeof optionsOrDefaultMessage === "string" &&
+                typeof defaultMessage === "undefined"
+                    ? optionsOrDefaultMessage
+                    : key);
+
+            if (hasI18nProvider && !isSameAsKey) {
+                return i18nResponse ?? fallback;
+            } else {
+                return fallback;
+            }
         }
 
         return translate;

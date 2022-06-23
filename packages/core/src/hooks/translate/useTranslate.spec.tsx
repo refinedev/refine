@@ -47,4 +47,20 @@ describe("useTranslate", () => {
 
         expect(getByText("merhaba test")).toBeTruthy();
     });
+
+    it("returns the fallback if key is returned from the provider", () => {
+        const { getByText, queryByText } = render(<TestComponent />, {
+            wrapper: TestWrapper({
+                resources: [{ name: "tests" }],
+                i18nProvider: {
+                    translate: () => "undefined key",
+                    changeLocale: () => Promise.resolve(),
+                    getLocale: () => "tr",
+                },
+            }),
+        });
+
+        expect(queryByText("undefined key")).toBeFalsy();
+        expect(getByText("hello test")).toBeTruthy();
+    });
 });
