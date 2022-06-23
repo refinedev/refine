@@ -52,7 +52,6 @@ export const notificationProvider = (): NotificationProvider => {
                 );
             } else {
                 enqueueSnackbar(
-                    <>
                         <Box>
                             <Typography variant="subtitle2" component="h6">
                                 {description}
@@ -61,7 +60,6 @@ export const notificationProvider = (): NotificationProvider => {
                                 {message}
                             </Typography>
                         </Box>
-                    </>,
                     {
                         variant: type,
                         anchorOrigin: {
