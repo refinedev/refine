@@ -121,12 +121,12 @@ export const RecentOrders: React.FC = () => {
                         />
                     );
                 },
+                align: "center",
                 flex: 1,
                 width: 80,
             },
             {
                 field: "status",
-                headerAlign: "center",
                 align: "center",
                 renderCell: function render({ row }) {
                     return <OrderStatus status={row.status.text} />;
