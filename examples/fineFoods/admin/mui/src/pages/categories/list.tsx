@@ -94,7 +94,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
             },
             {
                 id: "actions",
-                Header: t("categories.fields.actions"),
+                Header: t("table.actions"),
                 accessor: "id",
                 align: "center",
                 maxWidth: 150,
