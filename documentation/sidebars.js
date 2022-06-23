@@ -230,11 +230,6 @@ module.exports = {
                                 },
                                 {
                                     type: "category",
-                                    label: "Resource",
-                                    items: ["core/hooks/ui/useMenu"],
-                                },
-                                {
-                                    type: "category",
                                     label: "Table",
                                     items: [
                                         "ui-frameworks/antd/hooks/table/useEditableTable",
@@ -323,11 +318,6 @@ module.exports = {
                             items: [
                                 "ui-frameworks/mui/hooks/useAutocomplete",
                                 "ui-frameworks/mui/hooks/useDataGrid",
-                                {
-                                    type: "category",
-                                    label: "Resource",
-                                    items: ["core/hooks/ui/useMenu"],
-                                },
                             ],
                         },
                         {
