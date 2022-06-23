@@ -1,9 +1,8 @@
 ---
-slug: tutorial
-id: tutorial-example
-title: Tutorial
+slug: antd-tutorial
+id: antd-tutorial-example
+title: Ant Design
 ---
-
 
 This [tutorial](/docs/ui-frameworks/antd/tutorial/) will go through process of building a simple admin panel for a CMS-like application.
 <br/>
