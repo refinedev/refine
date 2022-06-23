@@ -3,7 +3,7 @@ import {
     useTranslate,
     IResourceComponentsProps,
     useTable,
-    GetListResponse,
+    getDefaultFilter,
 } from "@pankod/refine-core";
 import { useModalForm } from "@pankod/refine-react-hook-form";
 import {
@@ -92,6 +92,11 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                                     inputProps={{
                                         "aria-label": "product search",
                                     }}
+                                    value={getDefaultFilter(
+                                        "name",
+                                        filters,
+                                        "contains",
+                                    )}
                                     onChange={(
                                         e: React.ChangeEvent<HTMLInputElement>,
                                     ) => {
@@ -99,9 +104,11 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                                             {
                                                 field: "name",
                                                 operator: "contains",
-                                                value: e.target.value,
+                                                value:
+                                                    e.target.value !== ""
+                                                        ? e.target.value
+                                                        : undefined,
                                             },
-                                            ...filters,
                                         ]);
                                     }}
                                 />
