@@ -482,7 +482,15 @@ module.exports = {
             type: "category",
             label: "Examples",
             items: [
-                "examples/tutorial-example",
+                {
+                    type: "category",
+                    label: "Tutorial",
+                    items: [
+                        "examples/tutorial/antd-tutorial-example",
+                        "examples/tutorial/mui-tutorial-example",
+                        "examples/tutorial/headless-tutorial-example",
+                    ],
+                },
                 "examples/real-world-example",
                 {
                     type: "category",
