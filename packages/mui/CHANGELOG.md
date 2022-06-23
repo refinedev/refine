@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 3.30.9
+
+### Patch Changes
+
+-   [#2039](https://github.com/pankod/refine/pull/2039) [`6c8e1c9be2`](https://github.com/pankod/refine/commit/6c8e1c9be273ade2ba918490f319880ddd4d60ed) Thanks [@ozkalai](https://github.com/ozkalai)! - Added the `description` property to the notifications
+
 ## 3.30.8
 
 ### Patch Changes
