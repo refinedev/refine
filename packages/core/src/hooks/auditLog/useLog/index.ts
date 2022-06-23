@@ -52,8 +52,7 @@ export const useLog = <
             const logPermissions = resource?.options?.auditLog?.permissions;
 
             if (logPermissions) {
-                const shouldLog = hasPermission(logPermissions, params.action);
-                if (!shouldLog) {
+                if (!hasPermission(logPermissions, params.action)) {
                     return;
                 }
             }
