@@ -79,8 +79,8 @@ This tutorial assumes your project is configured for absolute imports. Since CRA
 [Refer to CRA docs for more information about absolute imports. &#8594](https://create-react-app.dev/docs/importing-a-component/#absolute-imports)
 :::
 
-  </TabItem>
-  <TabItem value="superplate">
+</TabItem>
+<TabItem value="superplate">
 
 First, run the **superplate** with the following command:
 
@@ -286,6 +286,7 @@ Run the following command to install the required package:
 <Tabs
 defaultValue="superplate"
 values={[
+{label: 'with superplate', value: 'superplate'},
 {label: 'with create-react-app', value: 'create-react-app'}
 ]}>
 <TabItem value="superplate">
@@ -294,8 +295,8 @@ values={[
 npm run dev
 ```
 
-  </TabItem>
-  <TabItem value="create-react-app">
+</TabItem>
+<TabItem value="create-react-app">
 
 ```sh
 npm run start
