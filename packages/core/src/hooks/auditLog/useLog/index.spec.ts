@@ -108,35 +108,6 @@ describe("useLog Hook", () => {
 
             expect(auditLogProviderCreateMock).toBeCalled();
         });
-
-        xit("should not called logEvent if resources no match", async () => {
-            const { result } = renderHook(() => useLog(), {
-                wrapper: TestWrapper({
-                    resources: [
-                        {
-                            name: "categories",
-                            options: { auditLog: { permissions: ["update"] } },
-                        },
-                    ],
-                    auditLogProvider: {
-                        create: auditLogProviderCreateMock,
-                    },
-                }),
-            });
-
-            const { log } = result.current;
-
-            const logEventPayload: LogParams = {
-                action: "update",
-                resource: "posts",
-                data: { id: 1, title: "title" },
-                meta: { id: 1 },
-            };
-
-            log(logEventPayload);
-
-            expect(auditLogProviderCreateMock).not.toBeCalled();
-        });
     });
 
     describe("rename mutation", () => {
