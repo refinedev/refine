@@ -1,7 +1,7 @@
 import React from "react";
 import humanizeString from "humanize-string";
 
-import { useResource, useRouterContext } from "@hooks";
+import { useResource, useRouterContext, useTranslate } from "@hooks";
 import { ResourceRouterParams } from "src/interfaces";
 
 export type BreadcrumbsType = {
@@ -16,6 +16,8 @@ type UseBreadcrumbReturnType = {
 
 export const useBreadcrumb = (): UseBreadcrumbReturnType => {
     const { useParams } = useRouterContext();
+    const translate = useTranslate();
+
     const { resources, resource } = useResource();
 
     const { action } = useParams<ResourceRouterParams>();
@@ -38,7 +40,12 @@ export const useBreadcrumb = (): UseBreadcrumbReturnType => {
 
             breadcrumbs.push({
                 label:
-                    parentResource.label ?? humanizeString(parentResource.name),
+                    parentResource.label ??
+                    translate(
+                        `${parentResource.name}.${parentResource.name}`,
+                        humanizeString(parentResource.name),
+                    ),
+
                 href: !!parentResource.list
                     ? `/${parentResource.route}`
                     : undefined,
@@ -52,13 +59,20 @@ export const useBreadcrumb = (): UseBreadcrumbReturnType => {
     }
 
     breadcrumbs.push({
-        label: resource.label ?? humanizeString(resource.name),
+        label:
+            resource.label ??
+            translate(
+                `${resource.name}.${resource.name}`,
+                humanizeString(resource.name),
+            ),
         href: !!resource.list ? `/${resource.route}` : undefined,
         icon: resource.icon,
     });
 
     if (action) {
-        breadcrumbs.push({ label: humanizeString(action) });
+        breadcrumbs.push({
+            label: humanizeString(action),
+        });
     }
 
     return {

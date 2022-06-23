@@ -1,11 +1,15 @@
+export interface IRole {
+    name: string;
+    description?: string;
+}
 export interface IUser {
     id: string;
     email: string;
     phone?: string;
     name: string;
     createdAt: string;
+    roles: IRole[];
 }
-
 export interface ISession {
     user: IUser;
     accessToken: string;
@@ -51,7 +55,7 @@ export interface IDraftResource {
     updatedAt: string;
 }
 
-export interface IConfigItem {
+export interface IResourceConfigItem {
     name: string;
     options: {
         auditLog: {
@@ -60,4 +64,13 @@ export interface IConfigItem {
     };
 }
 
-export type IConfig = IConfigItem[];
+export type IResourcesConfig = IResourceConfigItem[];
+
+export interface IAuthConfigItem {
+    name: string;
+    type: string;
+    disableSignup: boolean;
+    url?: string;
+}
+
+export type IAuthConfig = IAuthConfigItem[];

@@ -92,24 +92,30 @@ Select the following options to complete the _CLI wizard_:
 ❯ refine-react
 
 ? What will be the name of your app:
-tutorial
+> tutorial
 
 ? Package manager:
 ❯ Npm
 
-? Do you want to use an UI Framework?:
-❯ Yes, I want Ant Design
+? Do you want to use a UI Framework?:
+❯ Ant Design
 
-? Do you want to customize the theme?:
-❯ No (Ant Design default theme)
+? Do you want a customized theme?:
+❯ Default theme
 
-? Data Provider :
+? Router Provider:
+❯ React Router v6
+
+? Data Provider:
 ❯ REST API
 
-? Auth Provider :
+? Auth Provider:
 ❯ None
 
-? Do you want to add an example page?:
+? Do you want to add example pages?:
+❯ No
+
+? Do you want a customized layout?:
 ❯ No
 
 ? i18n - Internationalization:

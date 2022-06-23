@@ -227,13 +227,15 @@ Now let's refine the task-manager panel. With superplate, we can quickly create 
 ```
 
 ```bash
-✔ Select your project type › refine
+✔ Select your project type › refine-react
 ✔ What will be the name of your app · refine-task-manager
-✔ Package manager: · npm
-✔ Do you want to customize theme?: · css
-✔ Data Provider: · supabase-data-provider
-✔ Do you want to customize layout? · custom-layout
-✔ i18n - Internationalization: · no
+✔ Package manager: · Npm
+✔ Do you want to use a UI Framework? · Ant Design
+✔ Do you want a customized theme?: · Default theme
+✔ Router Provider: · React Router v6
+✔ Data Provider: · Supabase
+✔ Do you want a customized layout? · Yes
+✔ i18n - Internationalization: · No
 ```
 
 After the project setup is loaded, let's start by entering our project and making the necessary changes.

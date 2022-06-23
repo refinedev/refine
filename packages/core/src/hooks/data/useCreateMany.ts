@@ -1,4 +1,4 @@
-import { useQueryClient, useMutation, UseMutationResult } from "react-query";
+import { useMutation, UseMutationResult } from "react-query";
 
 import {
     BaseRecord,
@@ -13,7 +13,6 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
-    useLog,
     useInvalidate,
 } from "@hooks";
 import pluralize from "pluralize";
@@ -58,7 +57,6 @@ export const useCreateMany = <
 
     const translate = useTranslate();
     const publish = usePublish();
-    const { log } = useLog();
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
 
@@ -112,24 +110,17 @@ export const useCreateMany = <
                     invalidates,
                 });
 
+                const ids = response?.data
+                    .filter((item) => item?.id !== undefined)
+                    .map((item) => item.id!);
+
                 publish?.({
                     channel: `resources/${resource}`,
                     type: "created",
                     payload: {
-                        ids: response?.data
-                            .filter((item) => item?.id !== undefined)
-                            .map((item) => item.id!),
+                        ids,
                     },
                     date: new Date(),
-                });
-
-                log?.({
-                    action: "create",
-                    resource,
-                    data: response?.data,
-                    meta: {
-                        dataProviderName,
-                    },
                 });
             },
             onError: (err: TError, { resource, errorNotification }) => {
