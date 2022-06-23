@@ -29,8 +29,8 @@ export const RecentOrders: React.FC = () => {
                     return (
                         <Avatar
                             sx={{
-                                width: { xs: 40, sm: 56, lg: 72, xl: 102 },
-                                height: { xs: 40, sm: 56, lg: 72, xl: 102 },
+                                width: { xs: 72, xl: 102 },
+                                height: { xs: 72, xl: 102 },
                             }}
                             src={row?.products[0]?.images[0]?.url}
                         />
