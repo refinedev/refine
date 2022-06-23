@@ -13,6 +13,7 @@ import {
     Button,
     Modal,
     Fade,
+    CreateButton,
 } from "@pankod/refine-mui";
 import { SearchOutlined, CloseOutlined } from "@mui/icons-material";
 
@@ -41,10 +42,15 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
         useTable<IProduct>({
             resource: "products",
             initialPageSize: 12,
+            syncWithLocation: false,
         });
 
     const createDrawerFormProps = useModalForm<IProduct>({
-        refineCoreProps: { action: "create", resource: "products" },
+        refineCoreProps: {
+            action: "create",
+            resource: "products",
+            redirect: false,
+        },
     });
 
     const {
@@ -52,7 +58,11 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
     } = createDrawerFormProps;
 
     const editDrawerFormProps = useModalForm<IProduct>({
-        refineCoreProps: { action: "edit", resource: "products" },
+        refineCoreProps: {
+            action: "edit",
+            resource: "products",
+            redirect: false,
+        },
     });
 
     const {
@@ -99,6 +109,7 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
         transform: "translate(-50%, -50%)",
         maxWidth: { xs: 380, sm: 580, md: 880, lg: 1000 },
         maxHeight: 650,
+        minHeight: 650,
         bgcolor: "background.paper",
         p: 2,
         my: 2,
@@ -177,13 +188,13 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
                                             <SearchOutlined />
                                         </IconButton>
                                     </Paper>
-                                    <Button
+                                    <CreateButton
                                         onClick={() => showCreateDrawer()}
                                         variant="outlined"
                                         sx={{ marginBottom: "5px" }}
                                     >
                                         {t("stores.buttons.addProduct")}
-                                    </Button>
+                                    </CreateButton>
                                 </Stack>
                                 <Stack
                                     maxHeight={{
