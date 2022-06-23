@@ -26,7 +26,7 @@ const postAuditLogResults = useLogList({
 
 | Property                                                                                            | Description                                              | Type                                                              | Default |
 | --------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ----------------------------------------------------------------- | ------- |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name                                            | `string`                                                          |         |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name that it reads from URL                     | `string`                                                          |         |
 | action                                                                                              | Action name                                              | `string`                                                          |         |
 | author                                                                                              | Author info                                              | `Record<string, any>`                                             |         |
 | meta                                                                                                | For make to unique                                       | `Record<string, any>`                                             |         |
