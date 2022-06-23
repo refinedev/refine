@@ -53,19 +53,20 @@ export const useLog = <
 
             if (logPermissions) {
                 const shouldLog = hasPermission(logPermissions, params.action);
-
-                if (shouldLog) {
-                    let authorData;
-                    if (isLoading) {
-                        authorData = await refetch();
-                    }
-
-                    auditLogContext.create?.({
-                        ...params,
-                        author: identityData ?? authorData?.data,
-                    });
+                if (!shouldLog) {
+                    return;
                 }
             }
+
+            let authorData;
+            if (isLoading) {
+                authorData = await refetch();
+            }
+
+            auditLogContext.create?.({
+                ...params,
+                author: identityData ?? authorData?.data,
+            });
         },
         [resources, identityData, auditLogContext],
     );
