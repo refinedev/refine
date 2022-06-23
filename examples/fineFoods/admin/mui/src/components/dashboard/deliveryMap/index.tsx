@@ -1,10 +1,10 @@
 import { useList, useNavigation } from "@pankod/refine-core";
+import { Box } from "@pankod/refine-mui";
 import GoogleMapReact from "google-map-react";
 
 import { MapMarker } from "components/mapMarker";
 import { LocationIcon, CourierIcon } from "components/icons";
 import { IOrder } from "interfaces";
-import { Box } from "@pankod/refine-mui";
 
 export const DeliveryMap: React.FC = () => {
     const { data: orderData } = useList<IOrder>({
