@@ -52,14 +52,14 @@ export const notificationProvider = (): NotificationProvider => {
                 );
             } else {
                 enqueueSnackbar(
-                        <Box>
-                            <Typography variant="subtitle2" component="h6">
-                                {description}
-                            </Typography>
-                            <Typography variant="caption" component="p">
-                                {message}
-                            </Typography>
-                        </Box>
+                    <Box>
+                        <Typography variant="subtitle2" component="h6">
+                            {description}
+                        </Typography>
+                        <Typography variant="caption" component="p">
+                            {message}
+                        </Typography>
+                    </Box>,
                     {
                         variant: type,
                         anchorOrigin: {
