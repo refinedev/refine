@@ -124,8 +124,7 @@ export const ProductItem: React.FC<PropductItem> = ({
                     <Typography
                         sx={{
                             fontWeight: 800,
-                            fontSize: "1.2rem",
-                            color: "text.secondary",
+                            fontSize: "18px",
                             overflow: "hidden",
                             whiteSpace: "nowrap",
                             textOverflow: "ellipsis",
@@ -163,9 +162,8 @@ export const ProductItem: React.FC<PropductItem> = ({
                 <Tooltip title={`${price / 100}$`} placement="top">
                     <Typography
                         sx={{
-                            fontWeight: 800,
+                            fontWeight: 500,
                             fontSize: "24px",
-                            color: "text.secondary",
                             overflowWrap: "break-word",
                             overflow: "hidden",
                             textOverflow: "ellipsis",
