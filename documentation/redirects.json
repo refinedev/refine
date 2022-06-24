@@ -1039,6 +1039,10 @@
         {
             "from": "/docs/examples/tutorial/",
             "to": "/docs/examples/tutorial/antd-tutorial/"
+        },
+        {
+            "from": "/docs/ui-frameworks/antd/hooks/resource/useMenu/",
+            "to": "/docs/core/hooks/ui/useMenu/"
         }
     ]
 }
