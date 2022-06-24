@@ -39,14 +39,15 @@ describe("Show", () => {
     it("should render default list and refresh buttons successfuly", async () => {
         jest.useFakeTimers();
 
-        const { container, getByText } = renderShow(<Show />);
+        const { container, getByText, getAllByText } = renderShow(<Show />);
 
         await act(async () => {
             jest.advanceTimersToNextTimer(1);
         });
 
         expect(container.querySelector("button")).toBeTruthy();
-        getByText("Posts");
+        expect(getAllByText("Posts").length).toEqual(2);
+
         getByText("Refresh");
     });
 
@@ -68,7 +69,7 @@ describe("Show", () => {
     it("depending on the accessControlProvider it should get the buttons successfully", async () => {
         jest.useFakeTimers();
 
-        const { getByText, queryByTestId } = renderShow(
+        const { getByText, getAllByText, queryByTestId } = renderShow(
             <Show canEdit canDelete />,
             {
                 can: ({ action }) => {
@@ -89,7 +90,7 @@ describe("Show", () => {
         });
 
         expect(getByText("Edit").closest("button")).not.toBeDisabled();
-        expect(getByText("Posts").closest("button")).not.toBeDisabled();
+        expect(getAllByText("Posts")[1].closest("button")).not.toBeDisabled();
 
         expect(queryByTestId("show-delete-button")).toBeDisabled();
     });
@@ -462,6 +463,59 @@ describe("Show", () => {
             });
 
             expect(queryByTestId("show-delete-button")).not.toBeNull();
+        });
+
+        describe("Breadcrumb", () => {
+            it("should render breadcrumb", async () => {
+                jest.useFakeTimers();
+
+                const { getAllByLabelText } = render(
+                    <Routes>
+                        <Route
+                            path="/:resource/:action/:id"
+                            element={<Show recordItemId="1" />}
+                        />
+                    </Routes>,
+                    {
+                        wrapper: TestWrapper({
+                            resources: [{ name: "posts" }],
+                            routerInitialEntries: ["/posts/show/1"],
+                        }),
+                    },
+                );
+
+                await act(async () => {
+                    jest.advanceTimersToNextTimer(1);
+                });
+
+                expect(getAllByLabelText("breadcrumb")).not.toBeNull();
+            });
+            it("should not render breadcrumb", async () => {
+                jest.useFakeTimers();
+
+                const { queryByLabelText } = render(
+                    <Routes>
+                        <Route
+                            path="/:resource/:action/:id"
+                            element={
+                                <Show recordItemId="1" breadcrumb={null} />
+                            }
+                        />
+                    </Routes>,
+                    {
+                        wrapper: TestWrapper({
+                            resources: [{ name: "posts" }],
+                            routerInitialEntries: ["/posts/show/1"],
+                        }),
+                    },
+                );
+
+                await act(async () => {
+                    jest.advanceTimersToNextTimer(1);
+                });
+
+                expect(queryByLabelText("breadcrumb")).not.toBeInTheDocument();
+            });
         });
     });
 });
