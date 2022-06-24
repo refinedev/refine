@@ -23,10 +23,10 @@ import {
     StepButton,
     TextField,
     Typography,
-    MenuItem,
     useAutocomplete,
     Autocomplete,
     Input,
+    TextFieldProps,
 } from "@pankod/refine-mui";
 import { useStepsForm, Controller } from "@pankod/refine-react-hook-form";
 import { IStore } from "interfaces";
@@ -318,7 +318,9 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                                         ),
                                                     })}
                                                 >
-                                                    {(props: any) => (
+                                                    {(
+                                                        props: TextFieldProps,
+                                                    ) => (
                                                         <TextField
                                                             {...props}
                                                             size="small"
