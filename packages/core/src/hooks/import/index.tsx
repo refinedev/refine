@@ -219,7 +219,6 @@ export const useImport = <
                             );
                             resolve(createdValues);
                         } else {
-                            console.log("batchSize > 1");
                             const createdValues = await Promise.all(
                                 chunk(values, batchSize)
                                     .map((batch) => {
