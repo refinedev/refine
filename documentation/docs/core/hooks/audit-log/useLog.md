@@ -71,7 +71,7 @@ This hook can only be used if `auditLogProvider`'s `create` method is provided.
 
 ## Rename
 
-If you need to update the audit-log, you can use the `useLog` hook `rename` method. It returns the `update` method from [`auditLogProvider`](/core/providers/audit-log-provider.md) under the hood.
+If you need to update the audit-log, you can use the `useLog` hook's `rename` method. It returns the `update` method from [`auditLogProvider`](/core/providers/audit-log-provider.md) under the hood.
 
 ```tsx
 import { useLog } from "@pankod/refine-core";
