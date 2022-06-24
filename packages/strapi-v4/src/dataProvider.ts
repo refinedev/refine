@@ -165,6 +165,7 @@ export const DataProvider = (
 
         return {
             data: normalizeData(data),
+            // added to support pagination on client side when using endpoints that provide only data (see https://github.com/pankod/refine/issues/2028)
             total: data.meta?.pagination.total || data.data.length,
         };
     },
