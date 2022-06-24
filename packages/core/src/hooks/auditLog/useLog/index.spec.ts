@@ -17,7 +17,7 @@ describe("useLog Hook", () => {
 
     describe("log callback", () => {
         it("should called logEvent empty permission", async () => {
-            const { result } = renderHook(() => useLog(), {
+            const { result, waitForNextUpdate } = renderHook(() => useLog(), {
                 wrapper: TestWrapper({
                     resources: [
                         {
@@ -39,16 +39,19 @@ describe("useLog Hook", () => {
                 meta: {
                     id: 1,
                 },
+                author: undefined,
             };
 
-            log(logEventPayload);
+            log.mutate(logEventPayload);
+
+            await waitForNextUpdate();
 
             expect(auditLogProviderCreateMock).toBeCalledWith(logEventPayload);
             expect(auditLogProviderCreateMock).toBeCalledTimes(1);
         });
 
         it("should not called logEvent if no includes permissions", async () => {
-            const { result } = renderHook(() => useLog(), {
+            const { result, waitForNextUpdate } = renderHook(() => useLog(), {
                 wrapper: TestWrapper({
                     resources: [
                         {
@@ -73,13 +76,15 @@ describe("useLog Hook", () => {
                 },
             };
 
-            log(logEventPayload);
+            log.mutate(logEventPayload);
+
+            await waitForNextUpdate();
 
             expect(auditLogProviderGetMock).not.toBeCalled();
         });
 
         it("should called logEvent if exist auditLogPermissions", async () => {
-            const { result } = renderHook(() => useLog(), {
+            const { result, waitForNextUpdate } = renderHook(() => useLog(), {
                 wrapper: TestWrapper({
                     resources: [
                         {
@@ -104,7 +109,9 @@ describe("useLog Hook", () => {
                 },
             };
 
-            log(logEventPayload);
+            log.mutate(logEventPayload);
+
+            await waitForNextUpdate();
 
             expect(auditLogProviderCreateMock).toBeCalled();
         });
