@@ -42,7 +42,7 @@ const auditLogProvider = {
 
 ## Usage
 
-You must pass a audit log provider to the `auditLogProvider` prop of `<Refine>`.
+You must pass an `auditLogProvider` prop to `<Refine>`.
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine-core";
