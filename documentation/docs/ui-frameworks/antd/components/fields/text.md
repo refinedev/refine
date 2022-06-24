@@ -64,13 +64,13 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
 };
 
 interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }
 
 interface IPost {
-    id: string;
-    category: ICategory;
+    id: number;
+    category: { id: number };
 }
 ```
 

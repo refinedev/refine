@@ -220,11 +220,11 @@ export default App;
 interface IPost {
     title: string;
     createdAt: string;
-    category: ICategory;
+    category: { id: number };
 }
 
 interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }
 ```

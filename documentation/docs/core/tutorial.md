@@ -665,18 +665,18 @@ Before we start, just edit our interface for the new `ICategory` type:
 ```ts title="interfaces/index.d.ts"
 // highlight-start
 export interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }
 // highlight-end
 
 export interface IPost {
-    id: string;
+    id: number;
     title: string;
     status: "published" | "draft" | "rejected";
     createdAt: string;
     // highlight-next-line
-    category: ICategory;
+    category: { id: number };
 }
 ```
 
