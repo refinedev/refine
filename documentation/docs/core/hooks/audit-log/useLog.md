@@ -14,6 +14,8 @@ const { log, rename } = useLog();
 
 ## `log`
 
+If you need to create an audit-log, you can use the `useLog` hook's `create` method. It returns the `create` method from [auditLogProvider](https://pankod-refine-documentation-pr-2049.surge.sh/docs/core/providers/audit-log-provider/) under the hood.
+
 ```tsx
 import { useLog } from "@pankod/refine-core";
 
