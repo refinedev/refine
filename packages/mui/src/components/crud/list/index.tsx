@@ -45,7 +45,7 @@ export const List: React.FC<ListProps> = ({
     cardProps,
     cardHeaderProps,
     cardContentProps,
-    breadcrumb = <Breadcrumb data-testid="breadcrumb-test-id" />,
+    breadcrumb = <Breadcrumb />,
 }) => {
     const { useParams } = useRouterContext();
 
