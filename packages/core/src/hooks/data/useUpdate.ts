@@ -329,7 +329,7 @@ export const useUpdate = <
                 const { fields, operation, variables, ...rest } =
                     metaData || {};
 
-                log?.({
+                log?.mutate({
                     action: "update",
                     resource,
                     data: values,
