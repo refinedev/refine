@@ -26,6 +26,7 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 - Maintenance - By removing the API surface to support every UI use case, **refine** easy to use and update/maintain is simple.
  -->
+
 ###
 
 ## Key features
@@ -103,12 +104,7 @@ Replace the contents of `App.tsx` with the following code:
 
 ```tsx title="App.tsx"
 import { Refine, useMany } from "@pankod/refine-core";
-import {
-    useTable,
-    List,
-    Table,
-    DateField,
-} from "@pankod/refine-antd";
+import { useTable, List, Table, DateField } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -181,7 +177,6 @@ interface ICategory {
 }
 ```
 
-
 ## Next Steps
 
 -   [Learn the basics &#8594](/getting-started/learn-basics.md)
@@ -194,4 +189,4 @@ interface ICategory {
 
 -   [Check the Guides & Concept section to learn generic solutions to common problems &#8594](/guides-and-concepts/upload/multipart-upload.md)
 
--   [Check example section for code snippets &#8594](/examples/tutorial.md)
+-   [Check example section for code snippets &#8594](/examples/tutorial/antd-tutorial.md)
