@@ -4,6 +4,7 @@ import {
     useUpdateMany,
     useNavigation,
     IResourceComponentsProps,
+    BaseKey,
 } from "@pankod/refine-core";
 
 import {
@@ -34,7 +35,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
 
     const { mutate } = useUpdateMany<IReview>();
 
-    const handleUpdate = (id: string, status: IReview["status"]) => {
+    const handleUpdate = (id: BaseKey, status: IReview["status"]) => {
         mutate({
             resource: "reviews",
             ids: [id],
