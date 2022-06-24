@@ -289,3 +289,35 @@ mutate({
     }
 }
 ```
+<br/>
+
+## Manage
+
+The `options` section is used to determine in which actions the resources will work. **If no definition is made, it works in all actions**.
+
+In this case, only the `create` logs will be active.
+
+```ts title="App.tsx"
+<Refein
+    dataProvider={dataProvider(API_URL)}
+    resources={[
+        {
+            name: "posts",
+            list: PostList,
+            create: PostCreate,
+            edit: PostEdit,
+            show: PostShow,
+            canDelete: true,
+            // highlight-start
+            options: {
+                auditLog: {
+                    permissions: ["create"],
+                },
+            },
+            // highlight-end
+        },
+    ]}
+/>
+```
+
+
