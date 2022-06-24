@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-mui": patch
+"@pankod/refine-mui": minor
 ---
 
 create `<Breadcrumb>` component from [`<Breadcrumbs>`](https://mui.com/material-ui/react-breadcrumbs/#api)
