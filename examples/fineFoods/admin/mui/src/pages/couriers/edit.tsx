@@ -25,6 +25,7 @@ import {
     useAutocomplete,
     Autocomplete,
     Input,
+    TextFieldProps,
 } from "@pankod/refine-mui";
 import { useStepsForm, Controller } from "@pankod/refine-react-hook-form";
 import { IStore } from "interfaces";
@@ -291,7 +292,15 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                             </FormControl>
                                         </Stack>
                                     </Grid>
-                                    <Grid item paddingX={4} xs={12} md={6}>
+                                    <Grid
+                                        item
+                                        sx={{
+                                            marginTop: { xs: 2, sm: 2, md: 0 },
+                                        }}
+                                        paddingX={4}
+                                        xs={12}
+                                        md={6}
+                                    >
                                         <Stack gap="24px">
                                             <FormControl>
                                                 <FormLabel
@@ -315,7 +324,9 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                                         ),
                                                     })}
                                                 >
-                                                    {(props: any) => (
+                                                    {(
+                                                        props: TextFieldProps,
+                                                    ) => (
                                                         <TextField
                                                             {...props}
                                                             size="small"

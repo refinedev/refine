@@ -1,1 +1,1 @@
-export { Refine } from "./refine";
+export { Refine, RefineProps } from "./refine";

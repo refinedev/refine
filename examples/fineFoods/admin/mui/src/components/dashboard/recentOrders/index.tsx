@@ -29,8 +29,8 @@ export const RecentOrders: React.FC = () => {
                     return (
                         <Avatar
                             sx={{
-                                width: { xs: 40, sm: 56, lg: 72, xl: 102 },
-                                height: { xs: 40, sm: 56, lg: 72, xl: 102 },
+                                width: { xs: 72, xl: 102 },
+                                height: { xs: 72, xl: 102 },
                             }}
                             src={row?.products[0]?.images[0]?.url}
                         />
@@ -121,12 +121,12 @@ export const RecentOrders: React.FC = () => {
                         />
                     );
                 },
+                align: "center",
                 flex: 1,
                 width: 80,
             },
             {
                 field: "status",
-                headerAlign: "center",
                 align: "center",
                 renderCell: function render({ row }) {
                     return <OrderStatus status={row.status.text} />;

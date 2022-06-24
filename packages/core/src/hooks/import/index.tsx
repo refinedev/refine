@@ -217,9 +217,7 @@ export const useImport = <
                                             ),
                                     ),
                             );
-
                             resolve(createdValues);
-                            handleFinish(createdValues);
                         } else {
                             const createdValues = await Promise.all(
                                 chunk(values, batchSize)
@@ -274,7 +272,6 @@ export const useImport = <
                             );
 
                             resolve(createdValues);
-                            handleFinish(createdValues);
                         }
                     },
 

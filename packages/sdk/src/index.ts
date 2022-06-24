@@ -1,5 +1,5 @@
 import { Client } from "./client";
-import { IResource } from "./interfaces";
+export * from "./interfaces";
 
 const createClient = (payload: {
     baseUrl: string;
@@ -15,4 +15,4 @@ const createClient = (payload: {
     });
 };
 
-export { createClient, Client, IResource };
+export { createClient, Client };

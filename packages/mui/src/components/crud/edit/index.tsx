@@ -154,6 +154,7 @@ export const Edit: React.FC<EditProps> = ({
                             <DeleteButton
                                 data-testid="edit-delete-button"
                                 mutationMode={mutationMode}
+                                variant="outlined"
                                 onSuccess={() => {
                                     list(resource.route ?? resource.name);
                                 }}

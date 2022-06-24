@@ -257,7 +257,7 @@ export const CustomMenu: React.FC = () => {
                                 color: "primary.contrastText",
                             }}
                         >
-                             <Dashboard />
+                            <Dashboard />
                         </ListItemIcon>
                         <ListItemText
                             primary={t("dashboard.title", "Dashboard")}
@@ -672,8 +672,10 @@ export const CustomSider: React.FC = () => {
 :::
 
 :::tip
+
 You can further customize the `<Sider>` and its appearance.  
-[Refer to Ant Design docs for more detailed information about Sider. &#8594](https://ant.design/components/layout/#Layout.Sider)
+Refer to Material UI docs for more detailed information about [Menu &#8594](https://mui.com/material-ui/react-menu) and [Drawer &#8594](https://mui.com/material-ui/react-drawer).
+
 :::
 
 [refine]: /core/components/refine-config.md
