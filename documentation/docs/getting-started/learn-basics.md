@@ -93,6 +93,8 @@ You can find Refine's [Public Roadmap here!](https://github.com/pankod/refine/pr
 
 -   [Create React App + Ant Design Tutorial &#8594](/ui-frameworks/antd/tutorial.md)
 
+-   [Create React App + Material UI Tutorial &#8594](/ui-frameworks/mui/tutorial.md)
+
 -   [Next.js + Tailwind Tutorial &#8594](/core/tutorial.md)
 
 -   [Check the Guides & Concept section to learn generic solutions to common problems &#8594](/guides-and-concepts/upload/multipart-upload.md)
