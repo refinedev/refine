@@ -1,5 +1,10 @@
 import React from "react";
-import { useBreadcrumb, useRefineContext } from "@pankod/refine-core";
+import {
+    useBreadcrumb,
+    useRefineContext,
+    useRouterContext,
+} from "@pankod/refine-core";
+
 import {
     Breadcrumbs as MuiBreadcrumbs,
     BreadcrumbsProps as MuiBreadcrumbProps,
@@ -24,32 +29,38 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     hideIcons = false,
 }) => {
     const { breadcrumbs } = useBreadcrumb();
+    const { Link: RouterLink } = useRouterContext();
     const { hasDashboard } = useRefineContext();
 
     if (breadcrumbs.length === 1) {
         return null;
     }
 
+    const LinkRouter = (props: LinkProps & { to: string }) => (
+        <Link {...props} component={RouterLink} />
+    );
+
     return (
         <MuiBreadcrumbs
-            {...breadcrumbProps}
             aria-label="breadcrumb"
             sx={{
                 paddingY: 2,
                 paddingX: 2,
                 ...(breadcrumbProps?.sx ?? {}),
             }}
+            {...breadcrumbProps}
         >
             {showHome && hasDashboard && (
-                <Link
+                <LinkRouter
                     underline="hover"
-                    {...linkProps}
                     sx={{ display: "flex", alignItems: "center" }}
                     color="inherit"
                     href="/"
+                    to="/"
+                    {...linkProps}
                 >
                     <HomeOutlined />
-                </Link>
+                </LinkRouter>
             )}
             {breadcrumbs.map(({ label, icon, href }) => {
                 return (
@@ -62,23 +73,20 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                     >
                         {!hideIcons && icon}
                         {href ? (
-                            <Link
+                            <LinkRouter
                                 underline="hover"
                                 sx={{ display: "flex", alignItems: "center" }}
                                 color="inherit"
                                 href={href}
+                                to={href}
+                                variant="subtitle2"
+                                lineHeight={0}
                                 {...linkProps}
                             >
-                                <Typography variant="subtitle2" lineHeight={0}>
-                                    {label}
-                                </Typography>
-                            </Link>
+                                {label}
+                            </LinkRouter>
                         ) : (
-                            <Typography
-                                variant="subtitle2"
-                                fontWeight="bold"
-                                lineHeight={0}
-                            >
+                            <Typography variant="subtitle2" fontWeight="bold">
                                 {label}
                             </Typography>
                         )}
