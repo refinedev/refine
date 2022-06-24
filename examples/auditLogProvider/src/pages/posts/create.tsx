@@ -1,58 +1,100 @@
-import { useForm } from "@pankod/refine-react-hook-form";
-import { useSelect } from "@pankod/refine-core";
+import React, { useState } from "react";
+import { IResourceComponentsProps } from "@pankod/refine-core";
 
-export const PostCreate: React.FC = () => {
-    const {
-        refineCore: { onFinish, formLoading },
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
+import { Create, Form, Input, Select } from "@pankod/refine-antd";
 
-    const { options } = useSelect({
+import { useForm, useSelect } from "@pankod/refine-antd";
+
+import ReactMarkdown from "react-markdown";
+import ReactMde from "react-mde";
+
+import "react-mde/lib/styles/css/react-mde-all.css";
+
+import { IPost, ICategory } from "../../interfaces";
+
+export const PostCreate: React.FC<IResourceComponentsProps> = () => {
+    const { formProps, saveButtonProps } = useForm<IPost>({
+        // warnWhenUnsavedChanges: true,
+    });
+
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
     });
 
+    const [selectedTab, setSelectedTab] =
+        useState<"write" | "preview">("write");
+
     return (
-        <form onSubmit={handleSubmit(onFinish)}>
-            <label>Title: </label>
-            <input {...register("title", { required: true })} />
-            {errors.title && <span>This field is required</span>}
-            <br />
-            <label>Status: </label>
-            <select {...register("status")}>
-                <option value="published">published</option>
-                <option value="draft">draft</option>
-                <option value="rejected">rejected</option>
-            </select>
-            <br />
-            <label>Category: </label>
-            <select
-                defaultValue={""}
-                {...register("category.id", { required: true })}
-            >
-                <option value={""} disabled>
-                    Please select
-                </option>
-                {options?.map((category) => (
-                    <option key={category.value} value={category.value}>
-                        {category.label}
-                    </option>
-                ))}
-            </select>
-            {errors.category && <span>This field is required</span>}
-            <br />
-            <label>Content: </label>
-            <br />
-            <textarea
-                {...register("content", { required: true })}
-                rows={10}
-                cols={50}
-            />
-            {errors.content && <span>This field is required</span>}
-            <br />
-            <input type="submit" value="Submit" />
-            {formLoading && <p>Loading</p>}
-        </form>
+        <Create saveButtonProps={saveButtonProps}>
+            <Form {...formProps} layout="vertical">
+                <Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Category"
+                    name={["category", "id"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select {...categorySelectProps} />
+                </Form.Item>
+                <Form.Item
+                    label="Status"
+                    name="status"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select
+                        options={[
+                            {
+                                label: "Published",
+                                value: "published",
+                            },
+                            {
+                                label: "Draft",
+                                value: "draft",
+                            },
+                            {
+                                label: "Rejected",
+                                value: "rejected",
+                            },
+                        ]}
+                    />
+                </Form.Item>
+                <Form.Item
+                    label="Content"
+                    name="content"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <ReactMde
+                        selectedTab={selectedTab}
+                        onTabChange={setSelectedTab}
+                        generateMarkdownPreview={(markdown) =>
+                            Promise.resolve(
+                                <ReactMarkdown>{markdown}</ReactMarkdown>,
+                            )
+                        }
+                    />
+                </Form.Item>
+            </Form>
+        </Create>
     );
 };

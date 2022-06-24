@@ -1,185 +1,124 @@
-/* eslint-disable react/jsx-key */
-import React from "react";
 import {
-    useTable,
-    Column,
-    usePagination,
-    useSortBy,
-    useFilters,
-} from "@pankod/refine-react-table";
-import { useNavigation } from "@pankod/refine-core";
+    IResourceComponentsProps,
+    useMany,
+    getDefaultFilter,
+} from "@pankod/refine-core";
 
-import { IPost } from "interfaces";
+import {
+    List,
+    Table,
+    TextField,
+    Space,
+    EditButton,
+    ShowButton,
+    FilterDropdown,
+    Select,
+    Radio,
+    TagField,
+} from "@pankod/refine-antd";
 
-export const PostList: React.FC = () => {
-    const { edit, create } = useNavigation();
+import { useTable, useSelect } from "@pankod/refine-antd";
 
-    const columns: Array<Column> = React.useMemo(
-        () => [
-            {
-                id: "id",
-                Header: "ID",
-                accessor: "id",
-            },
-            {
-                id: "title",
-                Header: "Title",
-                accessor: "title",
-                filter: "contains",
-            },
-            {
-                id: "status",
-                Header: "Status",
-                accessor: "status",
-            },
-            {
-                id: "createdAt",
-                Header: "CreatedAt",
-                accessor: "createdAt",
-            },
-            {
-                id: "action",
-                Header: "Action",
-                accessor: "id",
-                Cell: function render({ value }) {
-                    return (
-                        <button onClick={() => edit("posts", value)}>
-                            Edit
-                        </button>
-                    );
-                },
-            },
-        ],
-        [],
-    );
+import { IPost, ICategory } from "../../interfaces";
 
-    const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        prepareRow,
-        page,
-        canPreviousPage,
-        canNextPage,
-        pageOptions,
-        pageCount,
-        gotoPage,
-        nextPage,
-        previousPage,
-        setPageSize,
-        setFilter,
-        state: { pageIndex, pageSize, filters },
-    } = useTable<IPost>({ columns }, useFilters, useSortBy, usePagination);
+export const PostList: React.FC<IResourceComponentsProps> = () => {
+    const { tableProps, filters } = useTable<IPost>({
+        syncWithLocation: true,
+    });
+
+    const categoryIds =
+        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+    const { data, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+        optionLabel: "title",
+        optionValue: "id",
+        defaultValue: getDefaultFilter("category.id", filters, "in"),
+    });
 
     return (
-        <>
-            <div>
-                <button onClick={() => create("posts")}>Create Post</button>
-                <br />
-                <br />
-                <label htmlFor="title">Title: </label>
-                <input
-                    id="title"
-                    type="text"
-                    value={
-                        filters.find((filter) => filter.id === "title")?.value
-                    }
-                    onChange={(event) => setFilter("title", event.target.value)}
-                />
-            </div>
-            <table {...getTableProps()}>
-                <thead>
-                    {headerGroups.map((headerGroup) => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column) => (
-                                <th
-                                    {...column.getHeaderProps(
-                                        column.getSortByToggleProps(),
-                                    )}
-                                >
-                                    {column.render("Header")}
-                                    <span>
-                                        {column.isSorted
-                                            ? column.isSortedDesc
-                                                ? " 🔽"
-                                                : " 🔼"
-                                            : ""}
-                                    </span>
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody {...getTableBodyProps()}>
-                    {page.map((row, i) => {
-                        prepareRow(row);
-                        return (
-                            <tr {...row.getRowProps()}>
-                                {row.cells.map((cell) => {
-                                    return (
-                                        <td {...cell.getCellProps()}>
-                                            {cell.render("Cell")}
-                                        </td>
-                                    );
-                                })}
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
+        <List>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column dataIndex="id" title="ID" />
+                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column
+                    dataIndex={["category", "id"]}
+                    title="Category"
+                    render={(value) => {
+                        if (isLoading) {
+                            return <TextField value="Loading..." />;
+                        }
 
-            <div className="pagination">
-                <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-                    {"<<"}
-                </button>
-                <button
-                    onClick={() => previousPage()}
-                    disabled={!canPreviousPage}
-                >
-                    {"<"}
-                </button>
-                <button onClick={() => nextPage()} disabled={!canNextPage}>
-                    {">"}
-                </button>
-                <button
-                    onClick={() => gotoPage(pageCount - 1)}
-                    disabled={!canNextPage}
-                >
-                    {">>"}
-                </button>
-                <span>
-                    Page
-                    <strong>
-                        {pageIndex + 1} of {pageOptions.length}
-                    </strong>
-                </span>
-                <span>
-                    | Go to page:
-                    <input
-                        type="number"
-                        defaultValue={pageIndex + 1}
-                        onChange={(e) => {
-                            const page = e.target.value
-                                ? Number(e.target.value) - 1
-                                : 0;
-                            gotoPage(page);
-                        }}
-                        style={{ width: "100px" }}
-                    />
-                </span>{" "}
-                <select
-                    value={pageSize}
-                    onChange={(e) => {
-                        setPageSize(Number(e.target.value));
+                        return (
+                            <TextField
+                                value={
+                                    data?.data.find((item) => item.id === value)
+                                        ?.title
+                                }
+                            />
+                        );
                     }}
-                >
-                    {[10, 20, 30, 40, 50].map((pageSize) => (
-                        <option key={pageSize} value={pageSize}>
-                            Show {pageSize}
-                        </option>
-                    ))}
-                </select>
-            </div>
-        </>
+                    filterDropdown={(props) => (
+                        <FilterDropdown
+                            {...props}
+                            mapValue={(selectedKeys) =>
+                                selectedKeys.map(Number)
+                            }
+                        >
+                            <Select
+                                style={{ minWidth: 200 }}
+                                mode="multiple"
+                                placeholder="Select Category"
+                                {...categorySelectProps}
+                            />
+                        </FilterDropdown>
+                    )}
+                    defaultFilteredValue={getDefaultFilter(
+                        "category.id",
+                        filters,
+                        "in",
+                    )}
+                />
+                <Table.Column
+                    dataIndex="status"
+                    title="Status"
+                    render={(value: string) => <TagField value={value} />}
+                    filterDropdown={(props: any) => (
+                        <FilterDropdown {...props}>
+                            <Radio.Group>
+                                <Radio value="published">Published</Radio>
+                                <Radio value="draft">Draft</Radio>
+                                <Radio value="rejected">Rejected</Radio>
+                            </Radio.Group>
+                        </FilterDropdown>
+                    )}
+                />
+                <Table.Column<IPost>
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(_, record) => (
+                        <Space>
+                            <EditButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <ShowButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                        </Space>
+                    )}
+                />
+            </Table>
+        </List>
     );
 };

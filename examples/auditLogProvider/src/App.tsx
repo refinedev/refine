@@ -1,21 +1,31 @@
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
+import {
+    notificationProvider,
+    Layout,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
-import "./App.css";
+import routerProvider from "@pankod/refine-react-router-v6";
+import "@pankod/refine-antd/dist/styles.min.css";
 
-import { PostList, PostCreate, PostEdit } from "pages/posts";
+import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
 
 const App: React.FC = () => {
     return (
         <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={notificationProvider}
+            Layout={Layout}
+            catchAll={<ErrorComponent />}
             resources={[
                 {
                     name: "posts",
                     list: PostList,
                     create: PostCreate,
                     edit: PostEdit,
+                    show: PostShow,
+                    canDelete: true,
                 },
             ]}
         />
