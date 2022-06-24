@@ -100,6 +100,10 @@ const auditLogProvider: AuditLogProvider = {
 
 This method is triggered when a new log is created. The incoming parameters contain the data we need and we need to return a Promise.
 
+:::important
+We recommend that you create audit logs server-side. So when the user performs an action (create, createMany, update, updateMany, delete and deleteMany), we recommend that you do it on the API side.
+:::
+
 ```ts title="auditLogProvider.ts"
 const auditLogProvider: AuditLogProvider = {
     create: (params) => {
@@ -193,6 +197,12 @@ const auditLogProvider: AuditLogProvider = {
 ## Supported Hooks
 
 Supported hooks subscribe in the following way:
+
+:::important
+It only **works** on `useCreate`, `useUpdate` and `useDelete` hooks. 
+
+`useCreateMany` **does not support** `useUpdateMany` and `useDeleteMany` hooks.
+:::
 
 ### useCreate
 
