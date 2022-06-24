@@ -112,7 +112,7 @@ const siteConfig = {
                     position: "left",
                 },
                 {
-                    to: "docs/examples/tutorial",
+                    to: "docs/examples/tutorial/headless-tutorial",
                     label: "Examples",
                     position: "left",
                 },

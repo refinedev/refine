@@ -1,4 +1,8 @@
-import { IResourceComponentsProps, useTranslate } from "@pankod/refine-core";
+import {
+    HttpError,
+    IResourceComponentsProps,
+    useTranslate,
+} from "@pankod/refine-core";
 import { Controller, useForm } from "@pankod/refine-react-hook-form";
 import {
     FormControl,
@@ -26,7 +30,7 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
         control,
         formState: { errors },
         saveButtonProps,
-    } = useForm<IStore>();
+    } = useForm<IStore, HttpError, IStore>();
 
     return (
         <Create saveButtonProps={saveButtonProps}>
@@ -133,24 +137,30 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                                 >
                                     {t("stores.fields.gsm")}
                                 </FormLabel>
-                                <InputMask
-                                    mask="(999) 999 99 99"
-                                    disabled={false}
-                                    {...register("gsm", {
-                                        required: t("errors.required.field", {
-                                            field: "Phone",
-                                        }),
-                                    })}
-                                >
-                                    {(props: TextFieldProps) => (
-                                        <TextField
-                                            {...props}
-                                            size="small"
-                                            margin="none"
-                                            variant="outlined"
-                                        />
+                                <Controller
+                                    control={control}
+                                    name="gsm"
+                                    rules={{
+                                        required: t("errors.required.field"),
+                                    }}
+                                    defaultValue={""}
+                                    render={({ field }) => (
+                                        <InputMask
+                                            {...field}
+                                            mask="(999) 999 99 99"
+                                            disabled={false}
+                                        >
+                                            {(props: TextFieldProps) => (
+                                                <TextField
+                                                    {...props}
+                                                    size="small"
+                                                    margin="none"
+                                                    variant="outlined"
+                                                />
+                                            )}
+                                        </InputMask>
                                     )}
-                                </InputMask>
+                                />
                                 {errors.gsm && (
                                     <FormHelperText error>
                                         {errors.gsm.message}
@@ -172,7 +182,6 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                                 <Controller
                                     control={control}
                                     name="isActive"
-                                    defaultValue={""}
                                     rules={{
                                         required: t("errors.required.common"),
                                     }}
@@ -241,7 +250,7 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                             />
                             {errors.address && (
                                 <FormHelperText error>
-                                    {errors.address.text.message}
+                                    {errors.address.text?.message}
                                 </FormHelperText>
                             )}
                         </FormControl>
