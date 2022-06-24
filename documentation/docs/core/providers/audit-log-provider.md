@@ -98,7 +98,7 @@ const auditLogProvider: AuditLogProvider = {
 
 ### `create`
 
-This method is triggered when a new log is created. The incoming parameters contain the data we need and we need to return a Promise.
+This method is triggered when a new log is created or when you use `useLog`'s `log` method. The incoming parameters show the values of the new record to be created.
 
 :::important
 We recommend that you create audit logs server-side. So when the user performs an action (create, createMany, update, updateMany, delete and deleteMany), we recommend that you do it on the API side.
