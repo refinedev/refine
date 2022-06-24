@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { QueryObserverResult, UseQueryOptions } from "react-query";
+import differenceWith from "lodash/differenceWith";
+import isEqual from "lodash/isEqual";
 
 import {
     useRouterContext,
@@ -175,8 +177,8 @@ export const useTable = <
                     pageSize,
                     current,
                 },
-                sorter,
-                filters,
+                sorter: differenceWith(sorter, permanentSorter, isEqual),
+                filters: differenceWith(filters, permanentFilter, isEqual),
             });
 
             // Careful! This triggers render
