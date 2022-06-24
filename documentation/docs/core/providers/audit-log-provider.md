@@ -7,7 +7,7 @@ title: Audit Log Provider
 
 **refine** provides Audit Log support via `auditLogProvider`. A new log record is automatically created when a new record is created, updated and deleted. You can access these records from anywhere via hooks. You can also manually create or update an audit-log via hooks.
 
-Complete all this by writing an `audit-log-provider` to **refine**. This provider must include following methods:
+Complete all this by writing an `auditLogProvider` to **refine**. This provider must include following methods:
 
 ```ts
 const auditLogProvider = {
