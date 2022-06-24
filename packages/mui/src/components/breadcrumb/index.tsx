@@ -31,7 +31,15 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     }
 
     return (
-        <MuiBreadcrumbs {...breadcrumbProps} aria-label="breadcrumb">
+        <MuiBreadcrumbs
+            {...breadcrumbProps}
+            aria-label="breadcrumb"
+            sx={{
+                paddingY: 2,
+                paddingX: 2,
+                ...(breadcrumbProps?.sx ?? {}),
+            }}
+        >
             {showHome && hasDashboard && (
                 <Link
                     underline="hover"
@@ -44,38 +52,37 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                 </Link>
             )}
             {breadcrumbs.map(({ label, icon, href }) => {
-                return href ? (
-                    <Link
+                return (
+                    <div
                         key={label}
-                        underline="hover"
-                        {...linkProps}
-                        sx={{ display: "flex", alignItems: "center" }}
-                        color="inherit"
-                        href={href}
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                        }}
                     >
-                        {!hideIcons && (
-                            <div
-                                style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                }}
+                        {!hideIcons && icon}
+                        {href ? (
+                            <Link
+                                underline="hover"
+                                sx={{ display: "flex", alignItems: "center" }}
+                                color="inherit"
+                                href={href}
+                                {...linkProps}
                             >
-                                {icon}
-                            </div>
+                                <Typography variant="subtitle2" lineHeight={0}>
+                                    {label}
+                                </Typography>
+                            </Link>
+                        ) : (
+                            <Typography
+                                variant="subtitle2"
+                                fontWeight="bold"
+                                lineHeight={0}
+                            >
+                                {label}
+                            </Typography>
                         )}
-                        <Typography variant="subtitle2" lineHeight={0}>
-                            {label}
-                        </Typography>
-                    </Link>
-                ) : (
-                    <Typography
-                        key={label}
-                        variant="subtitle2"
-                        fontWeight="bold"
-                        lineHeight={0}
-                    >
-                        {label}
-                    </Typography>
+                    </div>
                 );
             })}
         </MuiBreadcrumbs>
