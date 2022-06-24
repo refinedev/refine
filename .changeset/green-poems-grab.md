@@ -2,4 +2,4 @@
 "@pankod/refine-strapi-v4": patch
 ---
 
-The data length added to `total` return value of `@refine/strapi-v4` dataProvider `getList` method.
+Resolves [#2028](https://github.com/pankod/refine/issues/2028)
