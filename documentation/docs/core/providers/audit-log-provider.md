@@ -20,7 +20,7 @@ const auditLogProvider = {
             [key: string]: any;
         };
         previousData?: any;
-        meta: Record<number | string, any>;
+        meta?: Record<number | string, any>;
     }) => void;
     get: (params: {
         resource: string;
