@@ -116,10 +116,12 @@ const AirtableDataProvider = (
         airtableClient || new Airtable({ apiKey: apiKey }).base(baseId);
 
     return {
-        getList: async ({ resource, pagination, sort, filters }) => {
-            const current = pagination?.current || 1;
-            const pageSize = pagination?.pageSize || 10;
-
+        getList: async ({
+            resource,
+            pagination: { current, pageSize } = { current: 1, pageSize: 10 },
+            sort,
+            filters,
+        }) => {
             const generetedSort = generateSort(sort) || [];
             const queryFilters = generateFilter(filters);
 
@@ -133,7 +135,16 @@ const AirtableDataProvider = (
 
             return {
                 data: data
-                    .slice((current - 1) * pageSize, current * pageSize)
+                    .slice(
+                        typeof current !== "undefined" &&
+                            typeof pageSize !== "undefined"
+                            ? (current - 1) * pageSize
+                            : undefined,
+                        typeof current !== "undefined" &&
+                            typeof pageSize !== "undefined"
+                            ? current * pageSize
+                            : undefined,
+                    )
                     .map((p) => ({
                         id: p.id,
                         ...p.fields,

@@ -122,19 +122,26 @@ const NestsxCrud = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
-    getList: async ({ resource, pagination, filters, sort }) => {
+    getList: async ({
+        resource,
+        pagination: { current, pageSize } = { current: 1, pageSize: 10 },
+        filters,
+        sort,
+    }) => {
         const url = `${apiUrl}/${resource}`;
-        const current = pagination?.current || 1;
-        const pageSize = pagination?.pageSize || 10;
 
         const { crudFilters, orFilters } = generateFilter(filters);
 
         const query = RequestQueryBuilder.create()
             .setFilter(crudFilters)
-            .setOr(orFilters)
-            .setLimit(pageSize)
-            .setPage(current)
-            .setOffset((current - 1) * pageSize);
+            .setOr(orFilters);
+
+        if (typeof current !== "undefined" && typeof pageSize !== "undefined") {
+            query
+                .setLimit(pageSize)
+                .setPage(current)
+                .setOffset((current - 1) * pageSize);
+        }
 
         const sortBy = generateSort(sort);
         if (sortBy) {

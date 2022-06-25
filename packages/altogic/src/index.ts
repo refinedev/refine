@@ -100,23 +100,27 @@ const AltogicDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
-    getList: async ({ resource, pagination, filters, sort }) => {
+    getList: async ({
+        resource,
+        pagination: { current, pageSize } = { current: 1, pageSize: 10 },
+        filters,
+        sort,
+    }) => {
         const url = `${apiUrl}/${resource}`;
-
-        // pagination
-        const current = pagination?.current || 1;
-        const pageSize = pagination?.pageSize || 10;
 
         const queryFilters = generateFilter(filters);
 
         const query: {
-            page: number;
-            size: number;
+            page?: number;
+            size?: number;
             sort?: string;
-        } = {
-            page: current,
-            size: pageSize,
-        };
+        } =
+            typeof current !== "undefined" && typeof pageSize !== "undefined"
+                ? {
+                      page: current,
+                      size: pageSize,
+                  }
+                : {};
 
         const generatedSort = generateSort(sort);
         if (generatedSort) {
