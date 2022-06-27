@@ -316,6 +316,34 @@ describe("<List/>", () => {
 
                 expect(queryByTestId("list-create-button")).toBeDisabled();
             });
+            describe("Breadcrumb", () => {
+                it("should not render breadcrumb", async () => {
+                    jest.useFakeTimers();
+                    const { queryByLabelText } = render(
+                        <Routes>
+                            <Route path="/:resource" element={<List />}></Route>
+                        </Routes>,
+                        {
+                            wrapper: TestWrapper({
+                                resources: [
+                                    {
+                                        name: "posts",
+                                    },
+                                ],
+                                routerInitialEntries: ["/posts"],
+                            }),
+                        },
+                    );
+
+                    await act(async () => {
+                        jest.advanceTimersToNextTimer(1);
+                    });
+
+                    expect(
+                        queryByLabelText("breadcrumb"),
+                    ).not.toBeInTheDocument();
+                });
+            });
         });
     });
 });
