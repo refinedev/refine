@@ -1,30 +1,57 @@
 import { Refine } from "@pankod/refine-core";
-import {
-    notificationProvider,
-    Layout,
-    ErrorComponent,
-} from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
-import "@pankod/refine-antd/dist/styles.min.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
+import { PostList, PostCreate, PostEdit } from "./pages/posts";
+
+const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
         <Refine
+            auditLogProvider={{
+                get: async ({ resource, meta }) => {
+                    const { data } = await dataProvider(API_URL).getList({
+                        resource: "logs",
+                        filters: [
+                            {
+                                field: "resource",
+                                operator: "eq",
+                                value: resource,
+                            },
+                            {
+                                field: "meta.id",
+                                operator: "eq",
+                                value: meta?.id,
+                            },
+                        ],
+                    });
+
+                    return data;
+                },
+                create: (params) => {
+                    return dataProvider(API_URL).create({
+                        resource: "logs",
+                        variables: params,
+                    });
+                },
+                update: async ({ id, name }) => {
+                    const { data } = await dataProvider(API_URL).update({
+                        resource: "logs",
+                        id,
+                        variables: { name },
+                    });
+                    return data;
+                },
+            }}
             routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
+            dataProvider={dataProvider(API_URL)}
             resources={[
                 {
                     name: "posts",
                     list: PostList,
                     create: PostCreate,
                     edit: PostEdit,
-                    show: PostShow,
                     canDelete: true,
                 },
             ]}
