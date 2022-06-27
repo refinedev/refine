@@ -1,5 +1,6 @@
 import { FormInstance, FormProps, ModalProps } from "../components/antd";
 import { UseFormConfig, UseModalFormConfig } from "sunflower-antd";
+import { BaseKey } from "@pankod/refine-core";
 
 export interface UseStepsFormConfig
     extends Omit<UseFormConfig, "defaultFormValues"> {
@@ -11,7 +12,7 @@ export interface UseStepsFormConfig
 export type useModalFormFromSFReturnType<TData, TVariables> = {
     form: FormInstance<TVariables>;
     visible: boolean;
-    show: (id?: string) => void;
+    show: (id?: BaseKey) => void;
     close: () => void;
     modalProps: ModalProps;
     formProps: FormProps<TVariables>;
