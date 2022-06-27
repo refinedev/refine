@@ -92,6 +92,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                                 href={href}
                                 to={href}
                                 variant="subtitle1"
+                                marginLeft={0.5}
                             >
                                 {label}
                             </LinkRouter>
