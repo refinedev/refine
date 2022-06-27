@@ -34,7 +34,7 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
 
     const { mutate: mutateDelete } = useDelete();
 
-    const moreMenu = (id: string) => (
+    const moreMenu = (id: number) => (
         <Menu
             mode="vertical"
             onClick={({ domEvent }) => domEvent.stopPropagation()}
