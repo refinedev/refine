@@ -88,12 +88,12 @@ const auditLogProvider: AuditLogProvider = {
 
 #### Parameter Types
 
-| Name     | Type                  |
-| -------- | --------------------- |
-| resource | `string`              |
-| action   | `string`              |
-| meta     | `Record<string, any>` |
-| author   | `Record<string, any>` |
+| Name                                                                                                | Type                  | Description                          |
+| --------------------------------------------------------------------------------------------------- | --------------------- | ------------------------------------ |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | `string`              | Resource name that it reads from URL |
+| action                                                                                              | `string`              | Action name                          |
+| meta                                                                                                | `Record<string, any>` | Record info                          |
+| author                                                                                              | `Record<string, any>` | Author info                          |
 
 
 ### `create`
