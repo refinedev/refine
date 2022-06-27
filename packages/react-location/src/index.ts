@@ -1,26 +1,35 @@
+import React from "react";
+import { handleUseParams } from "@pankod/refine-core";
 import { IRouterProvider } from "@pankod/refine-core";
 import {
     useLocation,
-    Link,
     useNavigate,
     useMatch,
     Route,
     RouterProps,
     ReactLocation,
+    LinkProps,
 } from "react-location";
 
 import { RouterComponent, location } from "./routerComponent";
 import { Prompt } from "./prompt";
-import { handleUseParams } from "@pankod/refine-core";
+import { MappedLink } from "./link";
 
 export type RefineRouteProps = Route & {
     layout?: boolean;
 };
 
+type MakeOptional<Type, Key extends keyof Type> = Omit<Type, Key> &
+    Partial<Pick<Type, Key>>;
+
+export interface MappedLinkProps extends MakeOptional<LinkProps, "to"> {
+    href: LinkProps["to"];
+}
+
 interface IReactRouterProvider extends IRouterProvider {
     routes?: RefineRouteProps[];
     RouterComponent: React.FC<RouterProps>;
-    Link: typeof Link;
+    Link: React.FC<MappedLinkProps>;
     location: ReactLocation;
 }
 
@@ -74,7 +83,7 @@ const RouterProvider: IReactRouterProvider = {
         });
     },
     Prompt,
-    Link,
+    Link: MappedLink,
     RouterComponent,
     location,
 };
