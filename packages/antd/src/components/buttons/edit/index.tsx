@@ -72,7 +72,6 @@ export const EditButton: React.FC<EditButtonProps> = ({
 
     return (
         <Link
-            to={editUrl}
             href={editUrl}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {

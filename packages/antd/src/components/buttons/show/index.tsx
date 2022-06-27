@@ -73,7 +73,6 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
 
     return (
         <Link
-            to={showUrl}
             href={showUrl}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
