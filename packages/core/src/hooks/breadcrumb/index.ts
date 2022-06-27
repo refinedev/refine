@@ -71,7 +71,10 @@ export const useBreadcrumb = (): UseBreadcrumbReturnType => {
 
     if (action) {
         breadcrumbs.push({
-            label: humanizeString(action),
+            label: translate(
+                `actions.${action}`,
+                humanizeString(resource.name),
+            ),
         });
     }
 
