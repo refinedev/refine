@@ -697,10 +697,6 @@
             "to": "/docs/examples/search/search/"
         },
         {
-            "from": "/docs/next/examples/tutorial/",
-            "to": "/docs/examples/tutorial/"
-        },
-        {
             "from": "/docs/next/examples/ui/useModal/",
             "to": "/docs/examples/ui/useModal/"
         },
@@ -1039,6 +1035,14 @@
         {
             "from": "/docs/examples/upload/multipartUpload/",
             "to": "/docs/examples/upload/antd/multipart/"
+        },
+        {
+            "from": "/docs/examples/tutorial/",
+            "to": "/docs/examples/tutorial/antd-tutorial/"
+        },
+        {
+            "from": "/docs/ui-frameworks/antd/hooks/resource/useMenu/",
+            "to": "/docs/core/hooks/ui/useMenu/"
         }
     ]
 }

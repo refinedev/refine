@@ -24,7 +24,7 @@ import {
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-import { SaveButton } from "@components";
+import { Breadcrumb, SaveButton } from "@components";
 
 export interface CreateProps {
     actionButtons?: React.ReactNode;
@@ -35,6 +35,7 @@ export interface CreateProps {
     cardHeaderProps?: CardHeaderProps;
     cardContentProps?: CardContentProps;
     cardActionsProps?: CardActionsProps;
+    breadcrumb?: React.ReactNode;
 }
 
 /**
@@ -53,6 +54,7 @@ export const Create: React.FC<CreateProps> = ({
     cardHeaderProps,
     cardContentProps,
     cardActionsProps,
+    breadcrumb = <Breadcrumb />,
 }) => {
     const { goBack } = useNavigation();
 
@@ -69,6 +71,7 @@ export const Create: React.FC<CreateProps> = ({
 
     return (
         <Card {...cardProps}>
+            {breadcrumb}
             <CardHeader
                 sx={{ display: "flex", flexWrap: "wrap" }}
                 title={

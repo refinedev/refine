@@ -15,6 +15,8 @@ import {
     UseFormProps as UseFormPropsCore,
     BaseRecord,
     LiveModeProps,
+    BaseKey,
+    userFriendlyResourceName,
 } from "@pankod/refine-core";
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 import { useModalFormFromSFReturnType } from "../../../types/sunflower";
@@ -147,7 +149,7 @@ export const useModalForm = <
         sunflowerUseModal.close();
     }, [warnWhen]);
 
-    const handleShow = useCallback((id?: string) => {
+    const handleShow = useCallback((id?: BaseKey) => {
         setId?.(id);
 
         sunflowerUseModal.show();
@@ -185,7 +187,3 @@ export const useModalForm = <
         formLoading,
     };
 };
-
-function userFriendlyResourceName(arg0: string, arg1: string) {
-    return arg0;
-}
