@@ -3,6 +3,9 @@ id: audit-log-provider
 title: Audit Log Provider
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## Overview
 
 **refine** provides Audit Log support via `auditLogProvider`. A new log record is automatically created when a new record is created, updated and deleted. You can access these records from anywhere via hooks. You can also manually create or update an audit-log via hooks.
@@ -82,7 +85,7 @@ const auditLogProvider: AuditLogProvider = {
         });
 
         return data;
-    },****
+    },
 };
 ```
 
@@ -98,11 +101,20 @@ const auditLogProvider: AuditLogProvider = {
 
 ### `create`
 
-This method is triggered when a new log is created or when you use `useLog`'s `log` method. The incoming parameters show the values of the new record to be created.
+This method is triggered when a new successful mutation or when you use `useLog`'s `log` method. The incoming parameters show the values of the new record to be created.
 
 :::important
-We recommend that you create audit logs on the server side for cors security concern. Because data can be changed on the client-side.
+We recommend you create `Audit logs` on the API side for security concerns because data can be changed on the client side.
 :::
+
+<Tabs
+    defaultValue="usage"
+    values={[
+        {label: 'usage', value: 'usage'},
+        {label: 'parameters', value: 'parameters'}
+    ]}
+>
+<TabItem value="usage">
 
 ```ts title="auditLogProvider.ts"
 const auditLogProvider: AuditLogProvider = {
@@ -114,8 +126,9 @@ const auditLogProvider: AuditLogProvider = {
     },
 };
 ```
+</TabItem>
 
-When we test, we will see that an object like the one below is created in the `logs` resource.
+<TabItem value="parameters">
 
 ```json
 [
@@ -138,6 +151,8 @@ When we test, we will see that an object like the one below is created in the `l
   }
 ]
 ```
+</TabItem>
+</Tabs>
 
 :::important
 The `id` of the record created in the `meta` object is added. It is used for filtering purposes.
