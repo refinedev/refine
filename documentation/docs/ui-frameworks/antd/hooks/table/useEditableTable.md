@@ -310,20 +310,20 @@ export const PostList: React.FC = () => {
 
 ### Properties
 
-| Key                                           | Description                                                                                                                                                        | Type                                                                                     |
-| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
-| permanentFilter                               | Default and unchangeable filter.                                                                                                                                   | [`CrudFilters`][crudfilters]                                                             |
-| initialCurrent                                | Initial page index.                                                                                                                                                | `number`                                                                                 |
-| initialPageSize                               | Number of records shown per initial number of pages.                                                                                                               | `number`                                                                                 |
-| initialSorter                                 | Initial sorting.                                                                                                                                                   | [`CrudSorting`][crudsorting]                                                             |
-| initialFilter                                 | Initial filtering.                                                                                                                                                 | [`CrudFilters`][crudfilters]                                                             |
-| syncWithLocation                              | Sortings, filters, page index and records shown per page are tracked by browser history.                                                                           | `boolean`                                                                                |
-| onSearch                                      | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][table search] to learn how to create a search form.                 | `Function`                                                                               |
-| queryOptions                                  | `react-query`'s `useQuery` options                                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                              |
-| metaData                                      | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                           |
-| [liveMode](/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)       |
-| liveParams                                    | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: string[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | 
-| onLiveEvent                                   | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)              |
+| Key                                                          | Description                                                                                                                                                        | Type                                                                           |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| permanentFilter                                              | Default and unchangeable filter.                                                                                                                                   | [`CrudFilters`][crudfilters]                                                   |
+| initialCurrent                                               | Initial page index.                                                                                                                                                | `number`                                                                       |
+| initialPageSize                                              | Number of records shown per initial number of pages.                                                                                                               | `number`                                                                       |
+| initialSorter                                                | Initial sorting.                                                                                                                                                   | [`CrudSorting`][crudsorting]                                                   |
+| initialFilter                                                | Initial filtering.                                                                                                                                                 | [`CrudFilters`][crudfilters]                                                   |
+| syncWithLocation                                             | Sortings, filters, page index and records shown per page are tracked by browser history.                                                                           | `boolean`                                                                      |
+| onSearch                                                     | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][table search] to learn how to create a search form.                 | `Function`                                                                     |
+| queryOptions                                                 | `react-query`'s `useQuery` options                                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                    |
+| metaData                                                     | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                           |
+| [liveMode](/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)         |
+| liveParams                                                   | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: string[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) |
+| onLiveEvent                                                  | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)              |
 
 ### Type Parameters
 
@@ -351,17 +351,15 @@ export const PostList: React.FC = () => {
 | queryResult       | Result of the query of a record                         | [`QueryObserverResult<T>`][usequery]                                                              |
 | mutationResult    | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`][usemutation]                                                             |
 | formLoading       | Loading state of form request                           | `boolean`                                                                                         |
-| cloneId           | Record id for clone action                              | `"string"` \| `"number"`                                                                          |
-| setCloneId        | `cloneId` setter                                        | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                  |
-| id            | Record id for edit action                               | `"string"` \| `"number"`                                                                          |
-| setId         | `id` setter                                         | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                  |
-| isEditing         | Check if is editing                                     | `(id: string) => boolean`                                                                         |
+| id                | Record id for edit action                               | [`BaseKey`][basekey]                                                                              |
+| setId             | `id` setter                                             | `Dispatch<SetStateAction<` [`BaseKey`][basekey] \| `undefined>>`                                  |
+| isEditing         | Check if is editing                                     | `(id: `[`BaseKey`][basekey]`) => boolean`                                                         |
 
 <br />
 
 ## Live StackBlitz Example
 
-<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/table/useEditableTable?embed=1&view=preview&theme=dark&preset=node"
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/table/antd/useEditableTable?embed=1&view=preview&theme=dark&preset=node"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-use-editable-table-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
@@ -374,6 +372,7 @@ export const PostList: React.FC = () => {
 [usequery]: https://react-query.tanstack.com/reference/useQuery
 [usemutation]: https://react-query.tanstack.com/reference/useMutation
 [baserecord]: /core/interfaces.md#baserecord
+[basekey]: /core/interfaces.md#basekey
 [crudsorting]: /core/interfaces.md#crudsorting
 [crudfilters]: /core/interfaces.md#crudfilters
 [httperror]: /core/interfaces.md#httperror
