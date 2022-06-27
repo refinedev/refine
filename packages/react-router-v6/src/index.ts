@@ -3,10 +3,10 @@ import { handleUseParams, IRouterProvider } from "@pankod/refine-core";
 import {
     useLocation,
     useParams,
-    Link,
     RouteProps,
     BrowserRouterProps,
     useNavigate,
+    LinkProps,
 } from "react-router-dom";
 
 import {
@@ -15,13 +15,21 @@ import {
     HashRouterComponent,
 } from "./routerComponent";
 import { Prompt } from "./prompt";
+import { MappedLink } from "./link";
 
 export type RefineRouteProps = RouteProps & {
     layout?: boolean;
 };
+
+type MakeOptional<Type, Key extends keyof Type> = Omit<Type, Key> &
+    Partial<Pick<Type, Key>>;
+
+export interface MappedLinkProps extends MakeOptional<LinkProps, "to"> {
+    href: LinkProps["to"];
+}
 interface IReactRouterProvider extends IRouterProvider {
     useLocation: typeof useLocation;
-    Link: typeof Link;
+    Link: React.FC<MappedLinkProps>;
     useParams: any;
     RouterComponent: React.FC<BrowserRouterProps>;
     routes?: RefineRouteProps[];
@@ -56,7 +64,7 @@ const RouterProvider: IReactRouterProvider = {
         });
     },
     Prompt: Prompt as any,
-    Link,
+    Link: MappedLink,
     RouterComponent: BrowserRouterComponent,
 };
 export default RouterProvider;
