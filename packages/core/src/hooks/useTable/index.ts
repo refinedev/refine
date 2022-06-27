@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { QueryObserverResult, UseQueryOptions } from "react-query";
 import differenceWith from "lodash/differenceWith";
 import isEqual from "lodash/isEqual";
@@ -38,6 +38,7 @@ export type useTableProps<TData, TError> = {
     resource?: string;
     initialCurrent?: number;
     initialPageSize?: number;
+    hasPagination?: boolean;
     initialSorter?: CrudSorting;
     permanentSorter?: CrudSorting;
     defaultSetFilterBehavior?: SetFilterBehavior;
@@ -58,6 +59,13 @@ type SyncWithLocationParams = {
     filters: CrudFilters;
 };
 
+export type useTablePaginationKeys =
+    | "current"
+    | "setCurrent"
+    | "pageSize"
+    | "setPageSize"
+    | "pageCount";
+
 export type useTableReturnType<TData extends BaseRecord = BaseRecord> = {
     tableQueryResult: QueryObserverResult<GetListResponse<TData>>;
     sorter: CrudSorting;
@@ -65,13 +73,18 @@ export type useTableReturnType<TData extends BaseRecord = BaseRecord> = {
     filters: CrudFilters;
     setFilters: ((filters: CrudFilters, behavior?: SetFilterBehavior) => void) &
         ((setter: (prevFilters: CrudFilters) => CrudFilters) => void);
+    createLinkForSyncWithLocation: (params: SyncWithLocationParams) => string;
     current: number;
     setCurrent: ReactSetState<useTableReturnType["current"]>;
     pageSize: number;
     setPageSize: ReactSetState<useTableReturnType["pageSize"]>;
     pageCount: number;
-    createLinkForSyncWithLocation: (params: SyncWithLocationParams) => string;
 };
+
+export type useTableNoPaginationReturnType<
+    TData extends BaseRecord = BaseRecord,
+> = Omit<useTableReturnType<TData>, useTablePaginationKeys> &
+    Record<useTablePaginationKeys, undefined>;
 
 /**
  * By using useTable, you are able to get properties that are compatible with
@@ -84,12 +97,32 @@ export type useTableReturnType<TData extends BaseRecord = BaseRecord> = {
 const defaultPermanentFilter: CrudFilters = [];
 const defaultPermanentSorter: CrudSorting = [];
 
-export const useTable = <
+// overload with pagination
+export function useTable<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+>(
+    props: useTableProps<TData, TError> & {
+        hasPagination: true;
+    },
+): useTableReturnType<TData>;
+// overload without pagination
+export function useTable<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+>(
+    props: useTableProps<TData, TError> & {
+        hasPagination: false;
+    },
+): useTableNoPaginationReturnType<TData>;
+// implementation
+export function useTable<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
 >({
     initialCurrent = 1,
     initialPageSize = 10,
+    hasPagination = true,
     initialSorter,
     permanentSorter = defaultPermanentSorter,
     defaultSetFilterBehavior = "merge",
@@ -105,7 +138,9 @@ export const useTable = <
     liveParams,
     metaData,
     dataProviderName,
-}: useTableProps<TData, TError> = {}): useTableReturnType<TData> => {
+}: useTableProps<TData, TError> = {}):
+    | useTableReturnType<TData>
+    | useTableNoPaginationReturnType<TData> {
     const { syncWithLocation: syncWithLocationContext } = useSyncWithLocation();
 
     const syncWithLocation = syncWithLocationProp ?? syncWithLocationContext;
@@ -114,20 +149,15 @@ export const useTable = <
     const { search, pathname } = useLocation();
     const liveMode = useLiveMode(liveModeFromProp);
 
-    let defaultCurrent = initialCurrent;
-    let defaultPageSize = initialPageSize;
-    let defaultSorter = initialSorter;
-    let defaultFilter = initialFilter;
-
     // We want to always parse the query string even when syncWithLocation is
     // deactivated, for hotlinking to work properly
     const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
         parseTableParams(search);
 
-    defaultCurrent = parsedCurrent || defaultCurrent;
-    defaultPageSize = parsedPageSize || defaultPageSize;
-    defaultSorter = parsedSorter.length ? parsedSorter : defaultSorter;
-    defaultFilter = parsedFilters.length ? parsedFilters : defaultFilter;
+    const defaultCurrent = parsedCurrent || initialCurrent;
+    const defaultPageSize = parsedPageSize || initialPageSize;
+    const defaultSorter = parsedSorter.length ? parsedSorter : initialSorter;
+    const defaultFilter = parsedFilters.length ? parsedFilters : initialFilter;
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
@@ -173,10 +203,14 @@ export const useTable = <
     useEffect(() => {
         if (syncWithLocation) {
             const stringifyParams = stringifyTableParams({
-                pagination: {
-                    pageSize,
-                    current,
-                },
+                ...(hasPagination
+                    ? {
+                          pagination: {
+                              pageSize,
+                              current,
+                          },
+                      }
+                    : {}),
                 sorter: differenceWith(sorter, permanentSorter, isEqual),
                 filters: differenceWith(filters, permanentFilter, isEqual),
             });
@@ -189,10 +223,7 @@ export const useTable = <
     const queryResult = useList<TData, TError>({
         resource: resource.name,
         config: {
-            pagination: {
-                current,
-                pageSize,
-            },
+            pagination: hasPagination ? { current, pageSize } : false,
             filters: unionFilters(permanentFilter, filters),
             sort: unionSorters(permanentSorter, sorter),
         },
@@ -241,7 +272,27 @@ export const useTable = <
         setSorter(() => unionSorters(permanentSorter, newSorter));
     };
 
-    const pageCount = Math.ceil((queryResult.data?.total ?? 0) / pageSize);
+    const paginationValues = useMemo(() => {
+        if (hasPagination) {
+            return {
+                current,
+                setCurrent,
+                pageSize,
+                setPageSize,
+                pageCount: pageSize
+                    ? Math.ceil((queryResult.data?.total ?? 0) / pageSize)
+                    : 0,
+            };
+        }
+
+        return {
+            current: undefined,
+            setCurrent: undefined,
+            pageSize: undefined,
+            setPageSize: undefined,
+            pageCount: undefined,
+        };
+    }, [hasPagination, current, pageSize]);
 
     return {
         tableQueryResult: queryResult,
@@ -249,11 +300,7 @@ export const useTable = <
         setSorter: setSortWithUnion,
         filters,
         setFilters: setFiltersFn,
-        current,
-        setCurrent,
-        pageSize,
-        setPageSize,
-        pageCount,
+        ...paginationValues,
         createLinkForSyncWithLocation,
     };
-};
+}
