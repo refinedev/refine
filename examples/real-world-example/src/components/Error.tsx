@@ -1,5 +1,5 @@
 type ErrorProps = {
-    errors: {}[];
+    errors: any;
 };
 
 export const ErrorList: React.FC<ErrorProps> = ({ errors }) => {
