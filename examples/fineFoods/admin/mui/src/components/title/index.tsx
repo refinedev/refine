@@ -11,7 +11,7 @@ export const Title: React.FC<TitleProps> = ({ collapsed }) => {
     const { Link } = useRouterContext();
 
     return (
-        <Link to="/">
+        <Link href="/">
             <Box
                 sx={{
                     height: "72px",
