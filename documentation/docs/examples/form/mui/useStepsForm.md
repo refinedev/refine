@@ -7,9 +7,9 @@ title: useStepsForm
 
 [Refer to the **refine** useStepsForm hook documentation for more information. →](/docs/ui-frameworks/antd/hooks/form/useStepsForm/)
 
-[View useSteps Example Source](https://github.com/pankod/refine/tree/master/examples/form/useStepsForm)
+[View useSteps Example Source](https://github.com/pankod/refine/tree/master/examples/form/mui/useStepsForm)
 
-<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/form/useStepsForm?embed=1&view=preview&theme=dark&preset=node"
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/form/mui/useStepsForm?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-steps-form-example"
 ></iframe>
