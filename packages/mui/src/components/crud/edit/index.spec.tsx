@@ -373,4 +373,55 @@ describe("Edit", () => {
             expect(queryByTestId("edit-delete-button")).toBeDisabled();
         });
     });
+
+    describe("Breadcrumb ", () => {
+        it("should render breadcrumb", async () => {
+            jest.useFakeTimers();
+
+            const { getAllByLabelText } = render(
+                <Routes>
+                    <Route
+                        path="/:resource/:action/:id"
+                        element={<Edit recordItemId="1" />}
+                    />
+                </Routes>,
+                {
+                    wrapper: TestWrapper({
+                        resources: [{ name: "posts" }],
+                        routerInitialEntries: ["/posts/edit/1"],
+                    }),
+                },
+            );
+
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
+            expect(getAllByLabelText("breadcrumb")).not.toBeNull();
+        });
+        it("should not render breadcrumb", async () => {
+            jest.useFakeTimers();
+
+            const { queryByLabelText } = render(
+                <Routes>
+                    <Route
+                        path="/:resource/:action/:id"
+                        element={<Edit recordItemId="1" breadcrumb={null} />}
+                    />
+                </Routes>,
+                {
+                    wrapper: TestWrapper({
+                        resources: [{ name: "posts" }],
+                        routerInitialEntries: ["/posts/edit/1"],
+                    }),
+                },
+            );
+
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
+            expect(queryByLabelText("breadcrumb")).not.toBeInTheDocument();
+        });
+    });
 });
