@@ -13,6 +13,8 @@ import {
     GridSortModel,
 } from "@mui/x-data-grid";
 import { useTheme, darken } from "@mui/material";
+import differenceWith from "lodash/differenceWith";
+import isEqual from "lodash/isEqual";
 
 import {
     transformCrudSortingToSortModel,
@@ -166,10 +168,15 @@ export const useDataGrid = <
             pageSize: pageSize,
             onPageSizeChange: handlePageSizeChange,
             sortingMode: "server",
-            sortModel: transformCrudSortingToSortModel(sorter),
+            sortModel: transformCrudSortingToSortModel(
+                differenceWith(sorter, permanentSorter ?? [], isEqual),
+            ),
             onSortModelChange: handleSortModelChange,
             filterMode: "server",
-            filterModel: transformCrudFiltersToFilterModel(filters, columns),
+            filterModel: transformCrudFiltersToFilterModel(
+                differenceWith(filters, permanentFilter ?? [], isEqual),
+                columns,
+            ),
             onFilterModelChange: handleFilterModelChange,
             sx: {
                 border: "none",
