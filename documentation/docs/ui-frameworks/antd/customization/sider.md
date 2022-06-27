@@ -76,9 +76,7 @@ export const CustomMenu: React.FC = () => {
                             icon ?? (isRoute && <Icons.UnorderedListOutlined />)
                         }
                     >
-                        <Link href={route} to={route}>
-                            {label}
-                        </Link>
+                        <Link href={route}>{label}</Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
@@ -118,7 +116,7 @@ export const CustomMenu: React.FC = () => {
                         }}
                         icon={<Icons.DashboardOutlined />}
                     >
-                        <Link href="/" to="/">
+                        <Link href="/">
                             {translate("dashboard.title", "Dashboard")}
                         </Link>
                         {!collapsed && selectedKey === "/" && (
@@ -243,9 +241,7 @@ export const CustomMenu: React.FC = () => {
                             icon ?? (isRoute && <Icons.UnorderedListOutlined />)
                         }
                     >
-                        <Link href={route} to={route}>
-                            {label}
-                        </Link>
+                        <Link href={route}>{label}</Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}

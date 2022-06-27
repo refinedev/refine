@@ -180,7 +180,6 @@ export const CustomMenu: React.FC = () => {
                         <ListItemButton
                             component={Link}
                             href={route}
-                            to={route}
                             selected={isSelected}
                             onClick={() => {
                                 setOpened(false);
@@ -233,7 +232,6 @@ export const CustomMenu: React.FC = () => {
                     <ListItemButton
                         component={Link}
                         href="/"
-                        to="/"
                         selected={selectedKey === "/"}
                         onClick={() => {
                             setOpened(false);
@@ -433,7 +431,6 @@ export const CustomSider: React.FC = () => {
                     <ListItemButton
                         component={Link}
                         href="/"
-                        to="/"
                         selected={selectedKey === "/"}
                         onClick={() => {
                             setOpened(false);
