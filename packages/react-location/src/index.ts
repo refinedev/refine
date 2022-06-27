@@ -13,7 +13,7 @@ import {
 
 import { RouterComponent, location } from "./routerComponent";
 import { Prompt } from "./prompt";
-import { MappedLink } from "./link";
+import { WrapperLink } from "./link";
 
 export type RefineRouteProps = Route & {
     layout?: boolean;
@@ -22,14 +22,14 @@ export type RefineRouteProps = Route & {
 type MakeOptional<Type, Key extends keyof Type> = Omit<Type, Key> &
     Partial<Pick<Type, Key>>;
 
-export interface MappedLinkProps extends MakeOptional<LinkProps, "to"> {
+export interface WrapperLinkProps extends MakeOptional<LinkProps, "to"> {
     href: LinkProps["to"];
 }
 
 interface IReactRouterProvider extends IRouterProvider {
     routes?: RefineRouteProps[];
     RouterComponent: React.FC<RouterProps>;
-    Link: React.FC<MappedLinkProps>;
+    Link: React.FC<WrapperLinkProps>;
     location: ReactLocation;
 }
 
@@ -83,7 +83,7 @@ const RouterProvider: IReactRouterProvider = {
         });
     },
     Prompt,
-    Link: MappedLink,
+    Link: WrapperLink,
     RouterComponent,
     location,
 };

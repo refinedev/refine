@@ -15,7 +15,7 @@ import {
     HashRouterComponent,
 } from "./routerComponent";
 import { Prompt } from "./prompt";
-import { MappedLink } from "./link";
+import { WrapperLink } from "./link";
 
 export type RefineRouteProps = RouteProps & {
     layout?: boolean;
@@ -24,12 +24,12 @@ export type RefineRouteProps = RouteProps & {
 type MakeOptional<Type, Key extends keyof Type> = Omit<Type, Key> &
     Partial<Pick<Type, Key>>;
 
-export interface MappedLinkProps extends MakeOptional<LinkProps, "to"> {
+export interface WrapperLinkProps extends MakeOptional<LinkProps, "to"> {
     href: LinkProps["to"];
 }
 interface IReactRouterProvider extends IRouterProvider {
     useLocation: typeof useLocation;
-    Link: React.FC<MappedLinkProps>;
+    Link: React.FC<WrapperLinkProps>;
     useParams: any;
     RouterComponent: React.FC<BrowserRouterProps>;
     routes?: RefineRouteProps[];
@@ -64,7 +64,7 @@ const RouterProvider: IReactRouterProvider = {
         });
     },
     Prompt: Prompt as any,
-    Link: MappedLink,
+    Link: WrapperLink,
     RouterComponent: BrowserRouterComponent,
 };
 export default RouterProvider;
