@@ -33,7 +33,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 <Table.Column
                     dataIndex="language"
                     title="Language"
-                    render={(value: string) => {
+                    render={(value: number) => {
                         if (isLoading) {
                             return <TextField value="Loading..." />;
                         }

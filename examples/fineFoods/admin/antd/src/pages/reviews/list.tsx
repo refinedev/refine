@@ -51,7 +51,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
         onChange: onSelectChange,
     };
 
-    const handleUpdate = (id: string, status: IReview["status"]) => {
+    const handleUpdate = (id: number, status: IReview["status"]) => {
         mutate({
             resource: "reviews",
             ids: [id],
