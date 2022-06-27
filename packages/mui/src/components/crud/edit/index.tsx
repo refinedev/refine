@@ -25,7 +25,6 @@ import {
     CardActionsProps,
     Typography,
     Box,
-    Grid,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
