@@ -56,13 +56,11 @@ export type {
     ComponentsPropsList,
     ComponentsVariants,
     CreateMUIStyled,
-    // DefaultColorScheme,
     DeprecatedThemeOptions,
     Direction,
     Duration,
     Easing,
     Experimental_CssVarsProvider,
-    // ExtendedColorScheme,
     Interpolation,
     Opacity,
     Palette,
@@ -92,7 +90,7 @@ export type {
 /** @deprecated not exists anymore - this type exists as a fallback for existing usages */
 export type ThemeInput = any;
 
-export {
+export type {
     DefaultColorScheme,
     ExtendedColorScheme,
 } from "@mui/material/styles/experimental_extendTheme";
