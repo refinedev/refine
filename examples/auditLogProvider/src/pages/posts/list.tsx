@@ -1,6 +1,7 @@
 import { useTable, useNavigation, useModal } from "@pankod/refine-core";
 import { useState } from "react";
 
+import { Modal } from "../../components/modal";
 import { History } from "../../components/history";
 import { IPost } from "../../interfaces";
 
@@ -37,11 +38,6 @@ export const PostList: React.FC = () => {
                                 </button>
                                 <button
                                     onClick={() => {
-                                        // toggle modal
-                                        if (visible && historyId === post.id) {
-                                            return close();
-                                        }
-
                                         setHistoryId(post.id);
                                         show();
                                     }}
@@ -53,12 +49,9 @@ export const PostList: React.FC = () => {
                     ))}
                 </tbody>
             </table>
-            {visible && (
-                <>
-                    <h2>History</h2>
-                    <History resource="posts" id={historyId} />
-                </>
-            )}
+            <Modal isOpen={visible} onClose={close}>
+                <History resource="posts" id={historyId} />
+            </Modal>
         </div>
     );
 };

@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { useForm } from "@pankod/refine-react-hook-form";
-import { useResource, useSelect } from "@pankod/refine-core";
+import { useModal, useResource, useSelect } from "@pankod/refine-core";
 
+import { Modal } from "../../components/modal";
 import { History } from "../../components/history";
 
 export const PostEdit: React.FC = () => {
+    const { close, show, visible } = useModal();
     const { resourceName, id } = useResource();
 
     const {
@@ -26,10 +28,17 @@ export const PostEdit: React.FC = () => {
 
     return (
         <>
-            <h2>History</h2>
-            <History resource={resourceName} id={id} />
-            <hr />
-            <h2>Edit Post</h2>
+            <div className="actions">
+                <h2>Edit Post</h2>
+                <button
+                    onClick={() => {
+                        show();
+                    }}
+                >
+                    History
+                </button>
+            </div>
+
             <form onSubmit={handleSubmit(onFinish)}>
                 <label>Title: </label>
                 <input {...register("title", { required: true })} />
@@ -70,6 +79,10 @@ export const PostEdit: React.FC = () => {
                 <input type="submit" value="Submit" />
                 {formLoading && <p>Loading</p>}
             </form>
+
+            <Modal isOpen={visible} onClose={close}>
+                <History resource={resourceName} id={id} />
+            </Modal>
         </>
     );
 };

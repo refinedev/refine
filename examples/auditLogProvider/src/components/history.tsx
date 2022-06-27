@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { BaseKey, useLogList } from "@pankod/refine-core";
 
-import { ILog } from "../../interfaces";
+import { ILog } from "../interfaces";
 
 type HistoryProps = {
     resource: string;
@@ -22,6 +22,7 @@ export const History: FC<HistoryProps> = ({ resource, id }) => {
 
     return (
         <div>
+            <h2>History #{id}</h2>
             {data?.length === 0 && <div>No history</div>}
             {data?.map((item) => (
                 <div key={item.id}>
