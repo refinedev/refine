@@ -30,7 +30,7 @@ export const parseTableParamsFromQuery = (params: any) => {
 };
 
 export const stringifyTableParams = (params: {
-    pagination: { current?: number; pageSize?: number };
+    pagination?: { current?: number; pageSize?: number };
     sorter: CrudSorting;
     filters: CrudFilters;
 }): string => {
@@ -41,7 +41,22 @@ export const stringifyTableParams = (params: {
     };
     const { pagination, sorter, filters } = params;
 
-    let queryString = `current=${pagination.current}&pageSize=${pagination.pageSize}`;
+    let queryString = pagination
+        ? `${
+              typeof pagination.current !== "undefined"
+                  ? `current=${pagination.current}`
+                  : ""
+          }${
+              typeof pagination.current !== "undefined" &&
+              typeof pagination.pageSize !== "undefined"
+                  ? "&"
+                  : ""
+          }${
+              typeof pagination.pageSize !== "undefined"
+                  ? `pageSize=${pagination.pageSize}`
+                  : ""
+          }`
+        : "";
 
     const qsSorters = qs.stringify({ sorter }, options);
     if (qsSorters) {
