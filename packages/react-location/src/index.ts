@@ -22,9 +22,11 @@ export type RefineRouteProps = Route & {
 type MakeOptional<Type, Key extends keyof Type> = Omit<Type, Key> &
     Partial<Pick<Type, Key>>;
 
-export interface WrapperLinkProps extends MakeOptional<LinkProps, "to"> {
-    href: LinkProps["to"];
-}
+export type WrapperLinkProps =
+    | (MakeOptional<LinkProps, "to"> & {
+          href: LinkProps["to"];
+      })
+    | LinkProps;
 
 interface IReactRouterProvider extends IRouterProvider {
     routes?: RefineRouteProps[];
