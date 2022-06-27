@@ -330,4 +330,9 @@ In this case, only the `create` logs will be active.
 />
 ```
 
+## Live StackBlitz Example
 
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/audit-log/examples/auditLogProvider?embed=1&view=preview&theme=dark&preset=node"
+    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+    title="refine-audit-log-provider-example"
+></iframe>
