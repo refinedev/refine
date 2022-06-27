@@ -56,7 +56,7 @@ const App: React.FC = () => {
 
 ## Creating an audit log provider
 
-Now let's prepare an example audit log provider using the `https://api.fake-rest.refine.dev/logs` end-point.
+For this example, we will use the [`logs`](https://api.fake-rest.refine.dev/logs) end-point from [json-server](https://api.fake-rest.refine.dev) for this data. So we can use the methods of the `dataProvider`.
 
 ### `get`
 
@@ -82,7 +82,7 @@ const auditLogProvider: AuditLogProvider = {
         });
 
         return data;
-    },
+    },****
 };
 ```
 
