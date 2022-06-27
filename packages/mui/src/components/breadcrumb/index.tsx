@@ -11,6 +11,7 @@ import {
     Typography,
     Link,
     LinkProps,
+    Grid,
 } from "@mui/material";
 
 import { HomeOutlined } from "@mui/icons-material";
@@ -36,7 +37,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
         return null;
     }
 
-    const LinkRouter = (props: LinkProps & { to: string }) => (
+    const LinkRouter = (props: LinkProps & { to?: string }) => (
         <Link {...props} component={RouterLink} />
     );
 
@@ -53,44 +54,55 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
             {showHome && hasDashboard && (
                 <LinkRouter
                     underline="hover"
-                    sx={{ display: "flex", alignItems: "center" }}
+                    sx={{
+                        display: "flex",
+                        alignItems: "center",
+                    }}
                     color="inherit"
                     href="/"
                     to="/"
                     {...linkProps}
                 >
-                    <HomeOutlined />
+                    <HomeOutlined
+                        sx={{
+                            fontSize: "18px",
+                        }}
+                    />
                 </LinkRouter>
             )}
             {breadcrumbs.map(({ label, icon, href }) => {
                 return (
-                    <div
+                    <Grid
                         key={label}
-                        style={{
+                        sx={{
                             display: "flex",
                             alignItems: "center",
+                            "& .MuiSvgIcon-root": {
+                                fontSize: "16px",
+                            },
                         }}
                     >
                         {!hideIcons && icon}
                         {href ? (
                             <LinkRouter
                                 underline="hover"
-                                sx={{ display: "flex", alignItems: "center" }}
+                                sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    fontSize: "14px",
+                                }}
                                 color="inherit"
                                 href={href}
                                 to={href}
-                                variant="subtitle2"
-                                lineHeight={0}
+                                variant="subtitle1"
                                 {...linkProps}
                             >
                                 {label}
                             </LinkRouter>
                         ) : (
-                            <Typography variant="subtitle2" fontWeight="bold">
-                                {label}
-                            </Typography>
+                            <Typography fontSize="14px">{label}</Typography>
                         )}
-                    </div>
+                    </Grid>
                 );
             })}
         </MuiBreadcrumbs>
