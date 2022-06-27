@@ -397,7 +397,10 @@ export const ArticlePage: React.FC = () => {
                                         </div>
                                         <div className="card-footer">
                                             <img
-                                                src={user?.image}
+                                                src={
+                                                    user?.image ??
+                                                    "https://api.realworld.io/images/smiley-cyrus.jpeg"
+                                                }
                                                 className="comment-author-img"
                                             />
                                             <button className="btn btn-sm btn-primary">

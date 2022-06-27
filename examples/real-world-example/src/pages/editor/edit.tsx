@@ -1,18 +1,23 @@
-import { useNavigation, useOne } from "@pankod/refine-core";
+import { HttpError, useNavigation, useOne } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 import routerProvider from "@pankod/refine-react-router-v6";
 import { ErrorList } from "components/Error";
-import { IArticle } from "interfaces";
-import { useEffect } from "react";
-import { useState } from "react";
 
 const { useParams } = routerProvider;
+
+type IArticlesVariables = {
+    article: {
+        title: string;
+        description: string;
+        body: string;
+        tagList: string[];
+        slug: string;
+    };
+};
 
 export const EditArticlePage: React.FC = () => {
     const { push } = useNavigation();
     const params = useParams();
-
-    const [tags, setTags] = useState<string[]>([]);
 
     const {
         refineCore: { onFinish, formLoading },
@@ -21,35 +26,36 @@ export const EditArticlePage: React.FC = () => {
         formState: { errors },
         setError,
         clearErrors,
-    } = useForm({
+        setValue,
+        getValues,
+    } = useForm<
+        IArticlesVariables,
+        HttpError,
+        IArticlesVariables & {
+            api: Record<string, string>;
+        }
+    >({
         refineCoreProps: {
-            resource: `articles/${params?.slug}`,
+            resource: "articles",
             action: "edit",
+            id: params?.slug,
             redirect: false,
+            metaData: {
+                resource: "article",
+            },
             onMutationError: (error) => {
                 setError("api", error?.response?.data.errors);
             },
             onMutationSuccess: (response) => {
                 push(`/article/${response.data.article.slug}`);
             },
+            queryOptions: {
+                select: (data) => ({ data: { article: data?.data } } as any),
+            },
         },
     });
 
-    const defaultValue = useOne<IArticle>({
-        resource: "articles",
-        id: params?.slug,
-        metaData: {
-            resource: "article",
-        },
-    });
-
-    useEffect(() => {
-        setTags(defaultValue?.data?.data?.tagList || []);
-    }, [defaultValue?.data]);
-
-    const onSubmit = (data: any) => {
-        onFinish({ article: { ...data, tagList: tags } });
-    };
+    const tags = getValues("article.tagList") ?? [];
 
     return (
         <div className="editor-page">
@@ -61,17 +67,14 @@ export const EditArticlePage: React.FC = () => {
                             <fieldset disabled={formLoading}>
                                 <fieldset className="form-group">
                                     <input
-                                        {...register("title", {
+                                        {...register("article.title", {
                                             required: true,
                                         })}
                                         type="text"
                                         className="form-control form-control-lg"
                                         placeholder="Article Title"
-                                        defaultValue={
-                                            defaultValue?.data?.data?.title
-                                        }
                                     />
-                                    {errors.title && (
+                                    {errors.article?.title && (
                                         <ul className="error-messages">
                                             <li>This field is required</li>
                                         </ul>
@@ -79,17 +82,14 @@ export const EditArticlePage: React.FC = () => {
                                 </fieldset>
                                 <fieldset className="form-group">
                                     <input
-                                        {...register("description", {
+                                        {...register("article.description", {
                                             required: true,
                                         })}
                                         type="text"
                                         className="form-control"
                                         placeholder="What's this article about?"
-                                        defaultValue={
-                                            defaultValue.data?.data?.description
-                                        }
                                     />
-                                    {errors.description && (
+                                    {errors.article?.description && (
                                         <ul className="error-messages">
                                             <li>This field is required</li>
                                         </ul>
@@ -97,17 +97,14 @@ export const EditArticlePage: React.FC = () => {
                                 </fieldset>
                                 <fieldset className="form-group">
                                     <textarea
-                                        {...register("body", {
+                                        {...register("article.body", {
                                             required: true,
                                         })}
                                         className="form-control"
                                         rows={8}
                                         placeholder="Write your article (in markdown)"
-                                        defaultValue={
-                                            defaultValue.data?.data?.body
-                                        }
                                     ></textarea>
-                                    {errors.body && (
+                                    {errors.article?.body && (
                                         <ul className="error-messages">
                                             <li>This field is required</li>
                                         </ul>
@@ -123,7 +120,14 @@ export const EditArticlePage: React.FC = () => {
                                             if (e.key === "Enter") {
                                                 const value = e.target.value;
                                                 if (!tags.includes(value)) {
-                                                    setTags([...tags, value]);
+                                                    setValue(
+                                                        "article.tagList",
+                                                        [...tags, value],
+                                                        {
+                                                            shouldValidate:
+                                                                true,
+                                                        },
+                                                    );
                                                     e.target.value = "";
                                                 }
                                             }
@@ -139,12 +143,17 @@ export const EditArticlePage: React.FC = () => {
                                                     <i
                                                         className="ion-close-round"
                                                         onClick={() => {
-                                                            setTags(
+                                                            setValue(
+                                                                "article.tagList",
                                                                 tags.filter(
                                                                     (tag) =>
                                                                         tag !==
                                                                         item,
                                                                 ),
+                                                                {
+                                                                    shouldValidate:
+                                                                        true,
+                                                                },
                                                             );
                                                         }}
                                                     ></i>
@@ -160,7 +169,9 @@ export const EditArticlePage: React.FC = () => {
                                     onClick={(e) => {
                                         e.preventDefault();
                                         clearErrors();
-                                        handleSubmit(onSubmit)();
+                                        handleSubmit(async (values) => {
+                                            await onFinish(values);
+                                        })();
                                     }}
                                 >
                                     Publish Article
