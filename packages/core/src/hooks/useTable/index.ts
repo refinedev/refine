@@ -102,8 +102,8 @@ export function useTable<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
 >(
-    props: useTableProps<TData, TError> & {
-        hasPagination: true;
+    props?: useTableProps<TData, TError> & {
+        hasPagination?: true;
     },
 ): useTableReturnType<TData>;
 // overload without pagination
@@ -111,7 +111,7 @@ export function useTable<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
 >(
-    props: useTableProps<TData, TError> & {
+    props?: useTableProps<TData, TError> & {
         hasPagination: false;
     },
 ): useTableNoPaginationReturnType<TData>;
