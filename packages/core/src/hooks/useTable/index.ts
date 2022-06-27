@@ -281,7 +281,7 @@ export function useTable<
                 setPageSize,
                 pageCount: pageSize
                     ? Math.ceil((queryResult.data?.total ?? 0) / pageSize)
-                    : 0,
+                    : 1,
             };
         }
 
@@ -292,7 +292,7 @@ export function useTable<
             setPageSize: undefined,
             pageCount: undefined,
         };
-    }, [hasPagination, current, pageSize]);
+    }, [hasPagination, current, pageSize, queryResult.data?.total]);
 
     return {
         tableQueryResult: queryResult,
