@@ -18,14 +18,12 @@ import { HomeOutlined } from "@mui/icons-material";
 
 export type BreadcrumbProps = {
     breadcrumbProps?: MuiBreadcrumbProps;
-    linkProps?: LinkProps;
     showHome?: boolean;
     hideIcons?: boolean;
 };
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     breadcrumbProps,
-    linkProps,
     showHome = true,
     hideIcons = false,
 }) => {
@@ -61,7 +59,6 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                     color="inherit"
                     href="/"
                     to="/"
-                    {...linkProps}
                 >
                     <HomeOutlined
                         sx={{
@@ -96,7 +93,6 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                                 to={href}
                                 variant="subtitle1"
                                 marginLeft={0.5}
-                                {...linkProps}
                             >
                                 {label}
                             </LinkRouter>
