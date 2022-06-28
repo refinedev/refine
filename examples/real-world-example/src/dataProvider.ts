@@ -36,25 +36,29 @@ const generateFilter = (filters?: CrudFilters) => {
 export const dataProvider = (axios: AxiosInstance): DataProvider => {
     return {
         ...restDataProvider(API_URL, axios),
-        getList: async ({ resource, pagination, filters, metaData }) => {
+        getList: async ({
+            resource,
+            pagination = { current: 1, pageSize: 10 },
+            filters,
+            metaData,
+        }) => {
             const url = `${API_URL}/${resource}`;
 
             // pagination
-            const current = pagination?.current || 1;
-            const pageSize = pagination?.pageSize || 10;
+            const hasPagination = pagination !== false;
+            const { current = 1, pageSize = 10 } = pagination ? pagination : {};
 
             const queryFilters = generateFilter(filters);
 
-            const query: {
-                limit: number;
-                offset: number;
-            } = {
-                offset: (current - 1) * pageSize,
-                limit: pageSize,
-            };
+            const query = hasPagination
+                ? {
+                      offset: (current - 1) * pageSize,
+                      limit: pageSize,
+                  }
+                : {};
 
             const { data } = await axios.get(
-                `${url}?${stringify(query)}&${stringify(queryFilters)}`,
+                `${url}?${stringify({ ...query, ...queryFilters })}`,
             );
 
             return {
