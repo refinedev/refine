@@ -54,7 +54,7 @@ export const Layout: React.FC = ({ children }) => {
             <div className="mb-2 border-b py-2">
                 <div className="container mx-auto">
                     <div className="flex items-center gap-2">
-                        <Link href="/">
+                        <Link to="/">
                             <img
                                 className="w-32"
                                 src="https://refine.dev/img/refine_logo.png"
@@ -65,7 +65,7 @@ export const Layout: React.FC = ({ children }) => {
                         <ul>
                             {hasDashboard && (
                                 <li>
-                                    <Link href="/">
+                                    <Link to="/">
                                         <a style={{ fontWeight: selectedKey === "/" ? "bold" : "normal" }}>
                                             <span>Dashboard</span>
                                         </a>
@@ -76,7 +76,7 @@ export const Layout: React.FC = ({ children }) => {
                                 const isSelected = route === selectedKey;
                                 return (
                                     <li key={name}>
-                                        <Link href={route}>
+                                        <Link to={route}>
                                             <a style={{ fontWeight: isSelected ? "bold" : "normal" }}>
                                                 {icon}
                                                 <span>{label ?? name}</span>
@@ -226,7 +226,7 @@ export const Layout: React.FC = ({ children }) => {
             <div className="mb-2 border-b py-2">
                 <div className="container mx-auto">
                     <div className="flex items-center gap-2">
-                        <Link href="/">
+                        <Link to="/">
                             <img
                                 className="w-32"
                                 src="https://refine.dev/img/refine_logo.png"
