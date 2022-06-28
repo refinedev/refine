@@ -23,7 +23,7 @@ const routerProvider = {
     },
     useParams: <Params extends { [K in keyof Params]?: string } = {}>() => Params,
     Prompt: React.FC<PromptProps*>,
-    Link: React.FC<{ to: any } & Record<string, any>>,
+    Link: React.FC<any>,
     RouterComponent?: React.FC<any>,
 };
 ```
