@@ -107,7 +107,7 @@ export const Sider: React.FC = () => {
                         }}
                         icon={<DashboardOutlined />}
                     >
-                        <Link href="/">
+                        <Link to="/">
                             {translate("dashboard.title", "Dashboard")}
                         </Link>
                         {!collapsed && selectedKey === "/" && (
