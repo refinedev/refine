@@ -41,7 +41,7 @@ In basic usage `useTable` returns the data as it comes from the endpoint.
 import { useTable } from "@pankod/core";
 
 interface IPost {
-    id: string;
+    id: number;
     title: string;
     content: string;
     status: "published" | "draft" | "rejected";

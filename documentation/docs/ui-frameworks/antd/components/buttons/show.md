@@ -40,7 +40,7 @@ export const PostList: React.FC = () => {
 };
 
 interface IPost {
-    id: string;
+    id: number;
     title: string;
 }
 ```

@@ -44,12 +44,12 @@ export const PostCreate: React.FC = () => {
 };
 
 interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }
 
 interface IPost {
-    id: string;
+    id: number;
     title: string;
     status: "published" | "draft" | "rejected";
 }

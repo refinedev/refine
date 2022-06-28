@@ -89,7 +89,7 @@ export const UserList: React.FC = () => {
 };
 // highlight-end
 interface IPost {
-    id: string;
+    id: number;
     firstName: string;
 }
 
@@ -163,7 +163,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 // highlight-end
 
 interface IPost {
-    id: string;
+    id: number;
     firstName: string;
 }
 
@@ -283,7 +283,7 @@ export const PostList: React.FC<
 };
 
 interface IPost {
-    id: string;
+    id: number;
     firstName: string;
 }
 ```

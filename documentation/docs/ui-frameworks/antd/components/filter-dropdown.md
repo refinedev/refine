@@ -55,9 +55,9 @@ const PostList: React.FC = (props) => {
 };
 
 interface IPost {
-    id: string;
+    id: number;
     category: {
-        id: string;
+        id: number;
     }
 }
 ```

@@ -41,7 +41,7 @@ import { useGetIdentity } from "@pankod/refine-core";
 
 export const User: React.FC = () => {
     // highlight-next-line
-    const { data: identity } = useGetIdentity<{ id: string; fullName: string}>();
+    const { data: identity } = useGetIdentity<{ id: number; fullName: string}>();
 
     return <span>{identity?.fullName}</span>
 }

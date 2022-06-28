@@ -78,16 +78,16 @@ export const PostList: React.FC = () => {
 };
 
 interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }
 
 interface IPost {
-    id: string;
+    id: number;
     title: string;
     content: string;
     hit: number;
-    category: ICategory;
+    category: { id: number };
 }
 ```
 

@@ -1,12 +1,18 @@
-import { useNavigation } from "@pankod/refine-core";
+import { HttpError, useNavigation } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 import { ErrorList } from "components/Error";
-import { useState } from "react";
 
+type IArticlesVariables = {
+    article: {
+        title: string;
+        description: string;
+        body: string;
+        tagList: string[];
+        slug: string;
+    };
+};
 export const EditorPage: React.FC = () => {
     const { push } = useNavigation();
-
-    const [tags, setTags] = useState<string[]>([]);
 
     const {
         refineCore: { onFinish, formLoading },
@@ -15,7 +21,15 @@ export const EditorPage: React.FC = () => {
         formState: { errors },
         setError,
         clearErrors,
-    } = useForm({
+        setValue,
+        getValues,
+    } = useForm<
+        IArticlesVariables,
+        HttpError,
+        IArticlesVariables & {
+            api: Record<string, string>;
+        }
+    >({
         refineCoreProps: {
             resource: "articles",
             redirect: false,
@@ -28,9 +42,7 @@ export const EditorPage: React.FC = () => {
         },
     });
 
-    const onSubmit = (data: any) => {
-        onFinish({ article: { ...data, tagList: tags } });
-    };
+    const tags = getValues("article.tagList") ?? [];
 
     return (
         <div className="editor-page">
@@ -42,14 +54,14 @@ export const EditorPage: React.FC = () => {
                             <fieldset disabled={formLoading}>
                                 <fieldset className="form-group">
                                     <input
-                                        {...register("title", {
+                                        {...register("article.title", {
                                             required: true,
                                         })}
                                         type="text"
                                         className="form-control form-control-lg"
                                         placeholder="Article Title"
                                     />
-                                    {errors.title && (
+                                    {errors.article?.title && (
                                         <ul className="error-messages">
                                             <li>This field is required</li>
                                         </ul>
@@ -57,14 +69,14 @@ export const EditorPage: React.FC = () => {
                                 </fieldset>
                                 <fieldset className="form-group">
                                     <input
-                                        {...register("description", {
+                                        {...register("article.description", {
                                             required: true,
                                         })}
                                         type="text"
                                         className="form-control"
                                         placeholder="What's this article about?"
                                     />
-                                    {errors.description && (
+                                    {errors.article?.description && (
                                         <ul className="error-messages">
                                             <li>This field is required</li>
                                         </ul>
@@ -72,14 +84,14 @@ export const EditorPage: React.FC = () => {
                                 </fieldset>
                                 <fieldset className="form-group">
                                     <textarea
-                                        {...register("body", {
+                                        {...register("article.body", {
                                             required: true,
                                         })}
                                         className="form-control"
                                         rows={8}
                                         placeholder="Write your article (in markdown)"
                                     ></textarea>
-                                    {errors.body && (
+                                    {errors.article?.body && (
                                         <ul className="error-messages">
                                             <li>This field is required</li>
                                         </ul>
@@ -95,7 +107,14 @@ export const EditorPage: React.FC = () => {
                                             if (e.key === "Enter") {
                                                 const value = e.target.value;
                                                 if (!tags.includes(value)) {
-                                                    setTags([...tags, value]);
+                                                    setValue(
+                                                        "article.tagList",
+                                                        [...tags, value],
+                                                        {
+                                                            shouldValidate:
+                                                                true,
+                                                        },
+                                                    );
                                                     e.target.value = "";
                                                 }
                                             }
@@ -111,12 +130,17 @@ export const EditorPage: React.FC = () => {
                                                     <i
                                                         className="ion-close-round"
                                                         onClick={() => {
-                                                            setTags(
+                                                            setValue(
+                                                                "article.tagList",
                                                                 tags.filter(
                                                                     (tag) =>
                                                                         tag !==
                                                                         item,
                                                                 ),
+                                                                {
+                                                                    shouldValidate:
+                                                                        true,
+                                                                },
                                                             );
                                                         }}
                                                     ></i>
@@ -131,8 +155,11 @@ export const EditorPage: React.FC = () => {
                                     type="button"
                                     onClick={(e) => {
                                         e.preventDefault();
+
                                         clearErrors();
-                                        handleSubmit(onSubmit)();
+                                        handleSubmit(async (values) => {
+                                            await onFinish(values);
+                                        })();
                                     }}
                                 >
                                     Publish Article

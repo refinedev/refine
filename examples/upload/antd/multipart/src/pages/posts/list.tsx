@@ -41,7 +41,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 <Table.Column
                     dataIndex={["category", "id"]}
                     title="Category"
-                    render={(value: string) => {
+                    render={(value: number) => {
                         if (isLoading) {
                             return <TextField value="Loading..." />;
                         }

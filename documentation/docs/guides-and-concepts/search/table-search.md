@@ -64,7 +64,7 @@ export const ListPage: React.FC = () => {
 };
 
 interface IPost {
-    id: string;
+    id: number;
     title: string;
     createdAt: string;
 }

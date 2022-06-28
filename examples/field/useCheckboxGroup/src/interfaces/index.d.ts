@@ -1,10 +1,10 @@
 export interface ITag {
-    id: string;
+    id: number;
     title: string;
 }
 
 export interface IPost {
-    id: string;
+    id: number;
     title: string;
     content: string;
     tags: Array<string>;

@@ -1,5 +1,7 @@
+import { FieldErrors } from "@pankod/refine-react-hook-form";
+
 type ErrorProps = {
-    errors: {}[];
+    errors: FieldErrors<Record<string, string>>;
 };
 
 export const ErrorList: React.FC<ErrorProps> = ({ errors }) => {

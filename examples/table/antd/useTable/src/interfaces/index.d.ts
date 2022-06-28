@@ -1,5 +1,5 @@
 export interface IPost {
-    id: string;
+    id: number;
     title: string;
     content: string;
     status: "published" | "draft" | "rejected";
@@ -9,6 +9,6 @@ export interface IPost {
 }
 
 interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }

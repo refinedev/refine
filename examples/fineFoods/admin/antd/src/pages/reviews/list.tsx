@@ -51,7 +51,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
         onChange: onSelectChange,
     };
 
-    const handleUpdate = (id: string, status: IReview["status"]) => {
+    const handleUpdate = (id: number, status: IReview["status"]) => {
         mutate({
             resource: "reviews",
             ids: [id],
@@ -80,7 +80,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
 
     const hasSelected = selectedRowKeys.length > 0;
 
-    const moreMenu = (id: string) => (
+    const moreMenu = (id: number) => (
         <Menu mode="vertical">
             <Menu.Item
                 key="accept"

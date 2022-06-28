@@ -49,7 +49,7 @@ export const PostEdit: React.FC = () => {
 };
 
 interface IPost {
-    id: string;
+    id: number;
     title: string;
     status: "published" | "draft" | "rejected";
 }
@@ -205,7 +205,7 @@ export const PostEdit: React.FC = () => {
 };
 
 interface IPost {
-    id: string;
+    id: number;
     title: string;
     status: "published" | "draft" | "rejected";
 }

@@ -1,14 +1,14 @@
 export interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }
 
 export interface IPost {
-    id: string;
+    id: number;
     title: string;
     content: string;
     hit: number;
-    category: ICategory;
+    category: { id: number };
 }
 
 export interface IPostFilterVariables {
