@@ -216,6 +216,22 @@ export function useDataGrid<
         };
     }, [hasPagination, current, pageSize, pageCount]);
 
+    const dataGridPaginationValues = () => {
+        if (hasPagination) {
+            return {
+                paginationMode: "server" as const,
+                page: (current ?? 1) - 1,
+                onPageChange: handlePageChange,
+                pageSize: pageSize,
+                onPageSizeChange: handlePageSizeChange,
+            };
+        }
+
+        return {
+            hideFooterPagination: true,
+        };
+    };
+
     return {
         tableQueryResult,
         dataGridProps: {
@@ -224,17 +240,7 @@ export function useDataGrid<
             rows: data?.data || [],
             loading: liveMode === "auto" ? isLoading : !isFetched,
             rowCount: data?.total || 0,
-            ...(hasPagination
-                ? {
-                      paginationMode: "server",
-                      page: (current ?? 1) - 1,
-                      onPageChange: handlePageChange,
-                      pageSize: pageSize,
-                      onPageSizeChange: handlePageSizeChange,
-                  }
-                : {
-                      hideFooterPagination: true,
-                  }),
+            ...dataGridPaginationValues(),
             sortingMode: "server",
             sortModel: transformCrudSortingToSortModel(
                 differenceWith(sorter, permanentSorter ?? [], isEqual),
