@@ -167,7 +167,7 @@ export const Sider: React.FC = () => {
                     >
                         <ListItemButton
                             component={Link}
-                            href={route}
+                            to={route}
                             selected={isSelected}
                             onClick={() => {
                                 setOpened(false);
@@ -219,7 +219,7 @@ export const Sider: React.FC = () => {
                 >
                     <ListItemButton
                         component={Link}
-                        href="/"
+                        to="/"
                         selected={selectedKey === "/"}
                         onClick={() => {
                             setOpened(false);

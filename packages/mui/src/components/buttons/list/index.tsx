@@ -67,7 +67,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
 
     return (
         <Link
-            href={listUrl}
+            to={listUrl}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
                 if (onClick) {

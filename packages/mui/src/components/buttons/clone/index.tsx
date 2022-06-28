@@ -72,7 +72,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
 
     return (
         <Link
-            href={cloneUrl}
+            to={cloneUrl}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
                 if (onClick) {
