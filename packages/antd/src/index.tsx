@@ -1,3 +1,4 @@
+import { BaseKey } from "@pankod/refine-core";
 import { FormInstance, FormProps, ModalProps } from "./components/antd";
 
 export * from "./hooks";
@@ -8,7 +9,7 @@ export * from "./components";
 export type useModalFormFromSFReturnType<TData, TVariables> = {
     form: FormInstance<TVariables>;
     visible: boolean;
-    show: (id?: string) => void;
+    show: (id?: BaseKey) => void;
     close: () => void;
     modalProps: ModalProps;
     formProps: FormProps<TVariables>;

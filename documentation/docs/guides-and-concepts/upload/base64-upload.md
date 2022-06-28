@@ -106,7 +106,7 @@ export const UserCreate: React.FC = () => {
 };
 
 interface IUser {
-    id: string;
+    id: number;
     firstName: string;
     avatar: [
         {

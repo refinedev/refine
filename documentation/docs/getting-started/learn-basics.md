@@ -48,11 +48,12 @@ This guide will help you learn and get information of basic **refine** concepts.
 
 -   `@pankod/refine-ably` - [Ably](https://ably.com/) Live/Realtime Provider
 
-**❤️ Community  Packages:**
+**❤️ Community Packages:**
 
 -   [`refine-firebase`](https://github.com/rturan29/refine-firebase) - a fully featured [Firebase](https://firebase.google.com/) Data Provider by [rturan29](https://github.com/rturan29)
 -   [`@tspvivek/refine-directus`](https://github.com/tspvivek/refine-directus) - a fully featured [Directus](https://directus.io/) Data Provider by [tspvivek](https://github.com/tspvivek)
 -   [`data-provider-customizer`](https://github.com/miyavsu-limited/data-provider-customizer) - Customize your data provider by mixing it with different data providers/data methods by [miyavsu-limited](https://github.com/miyavsu-limited)
+
 ## Refine 3rd Party Integration Examples
 
 **[i18n Provider](https://refine.dev/docs/core/providers/i18n-provider/)**
@@ -73,27 +74,29 @@ This guide will help you learn and get information of basic **refine** concepts.
 
 ## Complete Application Examples
 
--  [RealWorld](https://github.com/gothinkster/realworld) - Exemplary fullstack [Medium.com](https://medium.com) Clone - [Live Example](http://refine.dev/docs/examples/real-world-refine-example/) - [Source Code](https://github.com/pankod/refine/tree/master/examples/real-world-example/src)
--  We are going back to 1995! - Win95 Style Admin Panel - [Blog Post](https://refine.dev/blog/awesome-react-windows95-ui-with-refine/) - [Live Example](https://win95.refine.dev) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/win95)
--  Invoice Generator App with Strapi & Refine & Ant Design - [Blog Post](https://refine.dev/blog/refine-react-admin-invoice-genarator/) - [Live Example](https://stackblitz.com/github/pankod/refine/tree/master/examples/blog/invoiceGenerator/?preset=node) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/invoiceGenerator/src)
--  Refeedback! - Feedback Admin Panel with Strapi & Refine & Ant Design - [Blog Post](https://refine.dev/blog/create-a-feedback-admin-panel-with-refine-and-strapi/) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/refeedback)
--  E-mail Subscription Panel with Refine and Strapi & Ant Design - [Blog Post](https://refine.dev/blog/e-mail-subscription-panel-with-refine/) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/mailSubscription)
--  Internal Issue Tracker With Refine and Supabase - [Blog Post](https://refine.dev/blog/customizable-issue-tracker-with-refine-and-supabase/) - [Live Example](https://stackblitz.com/github/pankod/refine/tree/master/examples/blog/issueTracker/?preset=node) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/issueTracker)
--  Next.js E-commerce App with Strapi & Chakra UI & Refine - [Blog Post](https://refine.dev/blog/handcrafted-nextjs-e-commerce-app-tutorial-strapi-chakra-ui/) - [Live Example](https://stackblitz.com/github/pankod/refine/tree/master/examples/blog/ecommerce/?preset=node) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/ecommerce)
--  Multi-tenancy Example - [Appwrite Guide](https://refine.dev/docs/guides-and-concepts/multi-tenancy/appwrite/) - [Strapi Guide](https://refine.dev/docs/guides-and-concepts/multi-tenancy/strapi-v4/)
-
+-   [RealWorld](https://github.com/gothinkster/realworld) - Exemplary fullstack [Medium.com](https://medium.com) Clone - [Live Example](http://refine.dev/docs/examples/real-world-refine-example/) - [Source Code](https://github.com/pankod/refine/tree/master/examples/real-world-example/src)
+-   We are going back to 1995! - Win95 Style Admin Panel - [Blog Post](https://refine.dev/blog/awesome-react-windows95-ui-with-refine/) - [Live Example](https://win95.refine.dev) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/win95)
+-   Invoice Generator App with Strapi & Refine & Ant Design - [Blog Post](https://refine.dev/blog/refine-react-admin-invoice-genarator/) - [Live Example](https://stackblitz.com/github/pankod/refine/tree/master/examples/blog/invoiceGenerator/?preset=node) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/invoiceGenerator/src)
+-   Refeedback! - Feedback Admin Panel with Strapi & Refine & Ant Design - [Blog Post](https://refine.dev/blog/create-a-feedback-admin-panel-with-refine-and-strapi/) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/refeedback)
+-   E-mail Subscription Panel with Refine and Strapi & Ant Design - [Blog Post](https://refine.dev/blog/e-mail-subscription-panel-with-refine/) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/mailSubscription)
+-   Internal Issue Tracker With Refine and Supabase - [Blog Post](https://refine.dev/blog/customizable-issue-tracker-with-refine-and-supabase/) - [Live Example](https://stackblitz.com/github/pankod/refine/tree/master/examples/blog/issueTracker/?preset=node) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/issueTracker)
+-   Next.js E-commerce App with Strapi & Chakra UI & Refine - [Blog Post](https://refine.dev/blog/handcrafted-nextjs-e-commerce-app-tutorial-strapi-chakra-ui/) - [Live Example](https://stackblitz.com/github/pankod/refine/tree/master/examples/blog/ecommerce/?preset=node) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/ecommerce)
+-   Multi-tenancy Example - [Appwrite Guide](https://refine.dev/docs/guides-and-concepts/multi-tenancy/appwrite/) - [Strapi Guide](https://refine.dev/docs/guides-and-concepts/multi-tenancy/strapi-v4/)
 
 ## Roadmap
 
 You can find Refine's [Public Roadmap here!](https://github.com/pankod/refine/projects/1)
+
 ## Next Steps
 
 -   [Comparison | Refine vs React-Admin vs AdminBro vs Retool &#8594](/comparison.md)
 
 -   [Create React App + Ant Design Tutorial &#8594](/ui-frameworks/antd/tutorial.md)
 
+-   [Create React App + Material UI Tutorial &#8594](/ui-frameworks/mui/tutorial.md)
+
 -   [Next.js + Tailwind Tutorial &#8594](/core/tutorial.md)
 
 -   [Check the Guides & Concept section to learn generic solutions to common problems &#8594](/guides-and-concepts/upload/multipart-upload.md)
 
--   [Check example section for code snippets &#8594](/examples/tutorial.md)
+-   [Check example section for code snippets &#8594](/examples/tutorial/antd-tutorial.md)

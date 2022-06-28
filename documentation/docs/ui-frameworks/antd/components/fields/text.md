@@ -40,7 +40,7 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
                 <Table.Column
                     dataIndex={["category", "id"]}
                     title="category"
-                    render={(value: string) => {
+                    render={(value: number) => {
                         // highlight-start
                         if (isLoading) {
                             return <TextField value="Loading..." />;
@@ -64,13 +64,13 @@ export const PostList: React.FC<IResourceComponentsProps> = (props) => {
 };
 
 interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }
 
 interface IPost {
-    id: string;
-    category: ICategory;
+    id: number;
+    category: { id: number };
 }
 ```
 

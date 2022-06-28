@@ -230,11 +230,6 @@ module.exports = {
                                 },
                                 {
                                     type: "category",
-                                    label: "Resource",
-                                    items: ["core/hooks/ui/useMenu"],
-                                },
-                                {
-                                    type: "category",
                                     label: "Table",
                                     items: [
                                         "ui-frameworks/antd/hooks/table/useEditableTable",
@@ -323,11 +318,6 @@ module.exports = {
                             items: [
                                 "ui-frameworks/mui/hooks/useAutocomplete",
                                 "ui-frameworks/mui/hooks/useDataGrid",
-                                {
-                                    type: "category",
-                                    label: "Resource",
-                                    items: ["core/hooks/ui/useMenu"],
-                                },
                             ],
                         },
                         {
@@ -344,6 +334,7 @@ module.exports = {
                                         "ui-frameworks/mui/components/basic-views/show",
                                     ],
                                 },
+                                "ui-frameworks/mui/components/mui-breadcrumb",
                                 {
                                     type: "category",
                                     label: "Buttons",
@@ -482,7 +473,15 @@ module.exports = {
             type: "category",
             label: "Examples",
             items: [
-                "examples/tutorial-example",
+                {
+                    type: "category",
+                    label: "Tutorial",
+                    items: [
+                        "examples/tutorial/antd-tutorial-example",
+                        "examples/tutorial/mui-tutorial-example",
+                        "examples/tutorial/headless-tutorial-example",
+                    ],
+                },
                 "examples/real-world-example",
                 {
                     type: "category",

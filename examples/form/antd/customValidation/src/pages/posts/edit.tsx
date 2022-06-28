@@ -28,7 +28,7 @@ interface PostUniqueCheckResponse {
 
 interface PostUniqueCheckRequestQuery {
     title: string;
-    id?: string;
+    id?: number;
 }
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {

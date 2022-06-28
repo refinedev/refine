@@ -1,4 +1,4 @@
-import { useTranslate } from "@pankod/refine-core";
+import { useTranslate, BaseKey } from "@pankod/refine-core";
 
 import {
     Avatar,
@@ -20,7 +20,7 @@ import { IProduct } from "interfaces";
 type ProductItemProps = {
     item: IProduct;
     updateStock?: (changedValue: number, clickedProduct: IProduct) => void;
-    editShow: (id?: string | undefined) => void;
+    editShow: (id?: BaseKey) => void;
 };
 
 export const ProductItem: React.FC<ProductItemProps> = ({

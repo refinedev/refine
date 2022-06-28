@@ -35,7 +35,7 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
     const { data: showQueryResult } = queryResult;
     const record = showQueryResult?.data;
 
-    const moreMenu = (id: string) => (
+    const moreMenu = (id: number) => (
         <Menu mode="vertical">
             <Menu.Item
                 key="1"

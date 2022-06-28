@@ -28,7 +28,7 @@ import {
 const List = () => {
     return <div>hede</div>;
 };
-interface ITestWrapperProps {
+export interface ITestWrapperProps {
     dataProvider?: DataProvider;
     authProvider?: AuthProvider;
     resources?: IResourceItem[];

@@ -55,9 +55,9 @@ const PostList: React.FC = (props) => {
 };
 
 interface IPost {
-    id: string;
+    id: number;
     category: {
-        id: string;
+        id: number;
     }
 }
 ```
@@ -166,7 +166,7 @@ If [syncWithLocation](/core/components/refine-config.md#syncwithlocation) is ena
 
 ## Live StackBlitz Example
 
-<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/table/useTable?embed=1&view=preview&theme=dark&preset=node"
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/table/antd/useTable?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-table-example"
 ></iframe>
