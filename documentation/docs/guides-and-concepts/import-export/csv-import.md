@@ -55,12 +55,12 @@ export const PostList: React.FC = () => {
 };
 
 interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }
 
 interface IPostFile {
-    id: string;
+    id: number;
     title: string;
     content: string;
     userId: number;
@@ -69,11 +69,11 @@ interface IPostFile {
 }
 
 interface IPost {
-    id: string;
+    id: number;
     title: string;
     content: string;
     status: "published" | "draft" | "rejected";
-    category: ICategory;
+    category: { id: number };
 }
 ```
 

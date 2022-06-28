@@ -114,17 +114,6 @@ mutate({
 -   [`useDelete` &#8594](/core/hooks/data/useDelete.md)
 -   [`useDeleteMany` &#8594](/core/hooks/data/useDeleteMany.md)
 
-### Supported form hooks
-
--   [`useForm` &#8594](/ui-frameworks/antd/hooks/form/useForm.md)
--   [`useModalForm` &#8594](/ui-frameworks/antd/hooks/form/useModalForm.md)
--   [`useDrawerForm` &#8594](/ui-frameworks/antd/hooks/form/useDrawerForm.md)
--   [`useStepsForm` &#8594](/ui-frameworks/antd/hooks/form/useStepsForm.md)
-
-### Supported components
-
--   [`DeleteButton` &#8594](/ui-frameworks/antd/components/buttons/delete.md)
-
 <br />
 
 ## Live StackBlitz Example

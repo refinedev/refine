@@ -51,7 +51,7 @@ export const PostCreate: React.FC = () => {
 };
 
 interface ITag {
-    id: string;
+    id: number;
     title: string;
 }
 ```

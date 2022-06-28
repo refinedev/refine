@@ -1,5 +1,27 @@
 # @pankod/refine-antd
 
+## 3.25.10
+
+### Patch Changes
+
+-   Updated the `id` parameter type to [`BaseKey`](https://refine.dev/docs/core/interfaceReferences/#basekey) for `show` function in [`useModalForm`](https://refine.dev/docs/packages/react-hook-form/useModalForm/) hook
+
+*   Updated the `id` type to `BaseKey` for `isEditing` and `editButtonProps` properties in `useEditableTable` hook.
+
+*   Updated dependencies []:
+    -   @pankod/refine-core@3.34.2
+
+## 3.25.9
+
+### Patch Changes
+
+-   [#2059](https://github.com/pankod/refine/pull/2059) [`326341c94e`](https://github.com/pankod/refine/commit/326341c94edb7f6a1507900506caccc60a386229) Thanks [@omeraplak](https://github.com/omeraplak)! - Updated the `id` parameter type to [`BaseKey`](https://refine.dev/docs/core/interfaceReferences/#basekey) for `show` function in [`useModalForm`](https://refine.dev/docs/packages/react-hook-form/useModalForm/) hook
+
+*   [#2052](https://github.com/pankod/refine/pull/2052) [`cbb09e5b22`](https://github.com/pankod/refine/commit/cbb09e5b22add54d7dccf180cd17c9019d32ed44) Thanks [@omeraplak](https://github.com/omeraplak)! - Updated the `id` type to `BaseKey` for `isEditing` and `editButtonProps` properties in `useEditableTable` hook.
+
+*   Updated dependencies [[`0338ce9d6b`](https://github.com/pankod/refine/commit/0338ce9d6bee673b76a18cf9e6ad480fd9928e09)]:
+    -   @pankod/refine-core@3.34.1
+
 ## 3.25.8
 
 ### Patch Changes

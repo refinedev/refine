@@ -343,6 +343,7 @@ module.exports = {
                                         "ui-frameworks/mui/components/basic-views/show",
                                     ],
                                 },
+                                "ui-frameworks/mui/components/mui-breadcrumb",
                                 {
                                     type: "category",
                                     label: "Buttons",

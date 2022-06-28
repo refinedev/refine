@@ -364,7 +364,7 @@ Create a new folder named _"interfaces"_ under _"/src"_ if you don't already hav
 
 ```ts title="interfaces/index.d.ts"
 export interface IPost {
-    id: string;
+    id: number;
     title: string;
     status: "published" | "draft" | "rejected";
     createdAt: string;
@@ -545,17 +545,17 @@ Before we start, just edit our interface for the new `ICategory` type:
 ```ts title="interfaces/index.d.ts"
 // highlight-start
 export interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }
 // highlight-end
 
 export interface IPost {
-    id: string;
+    id: number;
     title: string;
     status: "published" | "draft" | "rejected";
 // highlight-next-line
-    category: { id: string };
+    category: { id: number };
     createdAt: string;
 }
 ```

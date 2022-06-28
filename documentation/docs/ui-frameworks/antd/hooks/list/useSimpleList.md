@@ -117,15 +117,15 @@ export const PostList: React.FC = () => {
 };
 
 interface IPost {
-    id: string;
+    id: number;
     title: string;
     content: string;
     hit: number;
-    category: ICategory;
+    category: { id: number };
 }
 
 interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }
 ```

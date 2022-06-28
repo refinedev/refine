@@ -6,15 +6,15 @@ export interface UploadFile {
 }
 
 export interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }
 
 export interface IPost {
-    id: string;
+    id: number;
     title: string;
     content: string;
     status: "published" | "draft" | "rejected";
     image: UploadFile[];
-    category: ICategory;
+    category: { id: number };
 }

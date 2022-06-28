@@ -29,6 +29,7 @@ import {
     RefreshButton,
     ListButton,
     EditButton,
+    Breadcrumb,
 } from "@components";
 
 export interface ShowProps {
@@ -42,6 +43,7 @@ export interface ShowProps {
     cardHeaderProps?: CardHeaderProps;
     cardContentProps?: CardContentProps;
     cardActionsProps?: CardActionsProps;
+    breadcrumb?: React.ReactNode;
 }
 
 /**
@@ -62,6 +64,7 @@ export const Show: React.FC<ShowProps> = ({
     cardHeaderProps,
     cardContentProps,
     cardActionsProps,
+    breadcrumb = <Breadcrumb />,
 }) => {
     const translate = useTranslate();
 
@@ -87,6 +90,7 @@ export const Show: React.FC<ShowProps> = ({
 
     return (
         <Card {...cardProps}>
+            {breadcrumb}
             <CardHeader
                 sx={{ display: "flex", flexWrap: "wrap" }}
                 title={

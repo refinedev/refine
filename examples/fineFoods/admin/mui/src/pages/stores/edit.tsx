@@ -1,4 +1,8 @@
-import { IResourceComponentsProps, useTranslate } from "@pankod/refine-core";
+import {
+    HttpError,
+    IResourceComponentsProps,
+    useTranslate,
+} from "@pankod/refine-core";
 import { Controller, useForm } from "@pankod/refine-react-hook-form";
 import {
     Edit,
@@ -24,13 +28,14 @@ export const StoreEdit: React.FC<IResourceComponentsProps> = () => {
     const {
         register,
         control,
+        refineCore: { formLoading },
         formState: { errors },
         saveButtonProps,
-        getValues,
-    } = useForm<IStore>();
+        setValue,
+    } = useForm<IStore, HttpError, IStore>();
 
     return (
-        <Edit saveButtonProps={saveButtonProps}>
+        <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
             <form>
                 <Grid
                     container
@@ -139,26 +144,30 @@ export const StoreEdit: React.FC<IResourceComponentsProps> = () => {
                                 >
                                     {t("stores.fields.gsm")}
                                 </FormLabel>
-
-                                <InputMask
-                                    mask="(999) 999 99 99"
-                                    disabled={false}
-                                    {...register("gsm", {
-                                        required: t("errors.required.field", {
-                                            field: "Phone",
-                                        }),
-                                    })}
-                                >
-                                    {(props: TextFieldProps) => (
-                                        <TextField
-                                            {...props}
-                                            size="small"
-                                            margin="none"
-                                            variant="outlined"
-                                        />
+                                <Controller
+                                    control={control}
+                                    name="gsm"
+                                    rules={{
+                                        required: t("errors.required.field"),
+                                    }}
+                                    defaultValue={""}
+                                    render={({ field }) => (
+                                        <InputMask
+                                            {...field}
+                                            mask="(999) 999 99 99"
+                                            disabled={false}
+                                        >
+                                            {(props: TextFieldProps) => (
+                                                <TextField
+                                                    {...props}
+                                                    size="small"
+                                                    margin="none"
+                                                    variant="outlined"
+                                                />
+                                            )}
+                                        </InputMask>
                                     )}
-                                </InputMask>
-
+                                />
                                 {errors.gsm && (
                                     <FormHelperText error>
                                         {errors.gsm.message}
@@ -180,15 +189,21 @@ export const StoreEdit: React.FC<IResourceComponentsProps> = () => {
                                 <Controller
                                     control={control}
                                     name="isActive"
-                                    rules={{
-                                        required: t("errors.required.common"),
-                                    }}
-                                    defaultValue=""
+                                    defaultValue={false}
                                     render={({ field }) => (
                                         <RadioGroup
-                                            id="isActive"
-                                            defaultValue={getValues("isActive")}
                                             {...field}
+                                            onChange={(event) => {
+                                                const value =
+                                                    event.target.value ===
+                                                    "true";
+
+                                                setValue("isActive", value, {
+                                                    shouldValidate: true,
+                                                });
+
+                                                return value;
+                                            }}
                                             row
                                         >
                                             <FormControlLabel
@@ -250,7 +265,7 @@ export const StoreEdit: React.FC<IResourceComponentsProps> = () => {
                             />
                             {errors.address && (
                                 <FormHelperText error>
-                                    {errors.address.text.message}
+                                    {errors.address.text?.message}
                                 </FormHelperText>
                             )}
                         </FormControl>

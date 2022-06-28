@@ -193,7 +193,7 @@ export const PostList: React.FC = () => {
                 <Table.Column
                     dataIndex={["category", "id"]}
                     title="category"
-                    render={(value: string) => {
+                    render={(value: number) => {
                         if (isLoading) {
                             return "loading...";
                         }
@@ -220,11 +220,11 @@ export default App;
 interface IPost {
     title: string;
     createdAt: string;
-    category: ICategory;
+    category: { id: number };
 }
 
 interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }
 ```

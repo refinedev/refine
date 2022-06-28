@@ -8,7 +8,7 @@ export interface IUserAvatar {
 }
 
 export interface IUserVariable {
-    id: string;
+    id: number;
     email: string;
     firstName: string;
     lastName: string;
@@ -16,7 +16,7 @@ export interface IUserVariable {
 }
 
 export interface IUser {
-    id: string;
+    id: number;
     email: string;
     firstName: string;
     lastName: string;

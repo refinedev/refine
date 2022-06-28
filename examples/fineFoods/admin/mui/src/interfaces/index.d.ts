@@ -20,12 +20,12 @@ export interface ISalesChart {
 }
 
 export interface IOrderStatus {
-    id: string;
+    id: number;
     text: "Pending" | "Ready" | "On The Way" | "Delivered" | "Cancelled";
 }
 
 export interface IUser {
-    id: string;
+    id: number;
     firstName: string;
     lastName: string;
     fullName: string;
@@ -58,7 +58,7 @@ export interface IEvent {
 }
 
 export interface IStore {
-    id: string;
+    id: number;
     gsm: string;
     email: string;
     title: string;
@@ -69,7 +69,7 @@ export interface IStore {
 }
 
 export interface ICourier {
-    id: string;
+    id: number;
     name: string;
     surname: string;
     email: string;
@@ -83,7 +83,7 @@ export interface ICourier {
     store: IStore;
 }
 export interface IOrder {
-    id: string;
+    id: number;
     user: IUser;
     createdAt: string;
     products: IProduct[];
@@ -97,7 +97,7 @@ export interface IOrder {
 }
 
 export interface IProduct {
-    id: string;
+    id: number;
     name: string;
     isActive: boolean;
     description: string;
@@ -109,7 +109,7 @@ export interface IProduct {
 }
 
 export interface ICategory {
-    id: string;
+    id: number;
     title: string;
     isActive: boolean;
 }
@@ -129,7 +129,7 @@ export interface IUserFilterVariables {
 }
 
 export interface ICourier {
-    id: string;
+    id: number;
     name: string;
     surname: string;
     gender: string;
@@ -140,7 +140,7 @@ export interface ICourier {
 }
 
 export interface IReview {
-    id: string;
+    id: number;
     order: IOrder;
     user: IUser;
     star: number;
