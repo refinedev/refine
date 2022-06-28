@@ -88,7 +88,6 @@ export function useTable<
                     ? {
                           pageIndex: (current ?? 1) - 1,
                           pageSize: pageSizeCore,
-                          pageCount,
                       }
                     : {}),
                 sortBy: sorter.map((sorting) => ({
@@ -100,6 +99,7 @@ export function useTable<
                     value: filter.value,
                 })),
             },
+            pageCount: hasPagination ? pageCount : 1,
             manualPagination: true,
             manualSortBy: true,
             manualFilters: true,
