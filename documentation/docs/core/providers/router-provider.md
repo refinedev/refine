@@ -104,9 +104,7 @@ import { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
-        <Refine
-            routerProvider={routerProvider}
-        >
+        <Refine routerProvider={routerProvider}>
             <Component {...pageProps} />
         </Refine>
     );
@@ -675,27 +673,50 @@ const routerProvider: IRouterProvider = {
 </TabItem>
 <TabItem value="nextjs-link">
 
+```tsx title="RefineLink.tsx"
+import React from "react";
+import Link, { LinkProps } from "next/link";
+
+type MakeOptional<Type, Key extends keyof Type> = Omit<Type, Key> &
+    Partial<Pick<Type, Key>>;
+
+type RefineLinkProps =
+    | (MakeOptional<LinkProps, "href"> & {
+          to: LinkProps["href"];
+      })
+    | LinkProps;
+
+export const RefineLink: React.FC<RefineLinkProps> = ({
+    children,
+    ...props
+}) => (
+    <Link
+        href={"to" in props ? props.to : props.href}
+        legacyBehavior={false}
+        {...props}
+    >
+        {children}
+    </Link>
+);
+```
+
 ```ts title="routerProvider.ts"
 import { IRouterProvider } from "@pankod/refine-core";
+
 // highlight-start
-import { Link as NextLink } from "next/link";
-
-const Link = typeof NextLink === "object" ? { ...NextLink } : NextLink.bind({});
-
-Link.defaultProps = {
-    legacyBehavior: false,
-};
-// highlight-end
+import { RefineLink } from "./refineLink";
 
 const routerProvider: IRouterProvider = {
     ...
-// highlight-next-line
-    Link,
+    // highlight-next-line
+    Link: RefineLink,
     ...
 };
 ```
 
 :::info
+
+We use `<WrapperLink>` instead of using `<Link>` directly because **refine** uses `<Link>` component with `to` prop in its packages. So `<WrapperLink>` maps `to` to `href` prop.
 
 `@pankod/refine-nextjs-router` uses `<Link/>` component with `legacyBehavior` prop set to `false` by default to comply with the new `<Link/>` behavior of Next.js which is currently under `experimental` flag but soon to be the default behavior with Next.js 13.
 
@@ -717,7 +738,6 @@ const routerProvider: IRouterProvider = {
 Since **Nextjs** has a file system based router built on the page concept, you can create your custom pages under the pages folder you don't need `routes` property.
 
 :::
-
 
 ### `RouterComponent`
 
@@ -779,12 +799,12 @@ const CustomRouterComponent = () => <RouterComponent basename="/admin" />;
 const App: React.FC = () => {
     return (
         <Refine
-// highlight-start
+            // highlight-start
             routerProvider={{
                 ...routerProvider,
                 RouterComponent: CustomRouterComponent,
             }}
-// highlight-end
+            // highlight-end
             dataProvider={dataProvider(API_URL)}
             resources={[
                 {
@@ -832,12 +852,12 @@ const CustomRouterComponent = () => <RouterComponent basename="/admin" />;
 const App: React.FC = () => {
     return (
         <Refine
-// highlight-start
+            // highlight-start
             routerProvider={{
                 ...routerProvider,
                 RouterComponent: CustomRouterComponent,
             }}
-// highlight-end
+            // highlight-end
             dataProvider={dataProvider(API_URL)}
             resources={[
                 {
@@ -888,12 +908,12 @@ const CustomRouterComponent = () => (
 const App: React.FC = () => {
     return (
         <Refine
-// highlight-start
+            // highlight-start
             routerProvider={{
                 ...routerProvider,
                 RouterComponent: CustomRouterComponent,
             }}
-// highlight-end
+            // highlight-end
             dataProvider={dataProvider(API_URL)}
             resources={[
                 {
@@ -933,11 +953,10 @@ Now you can access our application at `www.domain.com/admin`.
 
 [browserrouter]: https://github.com/pankod/refine/blob/master/packages/react-router-v6/src/routerComponent.tsx
 [router]: https://react-location.tanstack.com/docs/api#router
-[routercomponent-v6]:https://github.com/pankod/refine/blob/master/packages/react-router-v6/src/routerComponent.tsx
+[routercomponent-v6]: https://github.com/pankod/refine/blob/master/packages/react-router-v6/src/routerComponent.tsx
 [routercomponent]: https://github.com/pankod/refine/blob/master/packages/react-router/src/routerComponent.tsx
 [react-location-routercomponent]: https://github.com/pankod/refine/blob/master/packages/react-location/src/routerComponent.tsx
 [react-router-v5]: https://github.com/pankod/refine/tree/master/packages/react-router
 [react-router-v6]: https://github.com/pankod/refine/tree/master/packages/react-router-v6
 [nextjs-router]: https://github.com/pankod/refine/tree/master/packages/nextjs-router
 [react-location]: https://github.com/pankod/refine/tree/master/packages/react-location
-
