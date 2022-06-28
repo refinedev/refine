@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.34.2
+
+### Patch Changes
+
+-   Fixed `useImport` `onFinish` twice call bug.
+
 ## 3.34.1
 
 ### Patch Changes

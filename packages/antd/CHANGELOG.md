@@ -1,5 +1,16 @@
 # @pankod/refine-antd
 
+## 3.25.10
+
+### Patch Changes
+
+-   Updated the `id` parameter type to [`BaseKey`](https://refine.dev/docs/core/interfaceReferences/#basekey) for `show` function in [`useModalForm`](https://refine.dev/docs/packages/react-hook-form/useModalForm/) hook
+
+*   Updated the `id` type to `BaseKey` for `isEditing` and `editButtonProps` properties in `useEditableTable` hook.
+
+*   Updated dependencies []:
+    -   @pankod/refine-core@3.34.2
+
 ## 3.25.9
 
 ### Patch Changes
