@@ -93,13 +93,7 @@ export const useList = <
             return getList<TData>({
                 resource,
                 ...restConfig,
-                pagination:
-                    pagination === false
-                        ? {
-                              current: undefined,
-                              pageSize: undefined,
-                          }
-                        : pagination,
+                pagination,
                 metaData,
             });
         },
