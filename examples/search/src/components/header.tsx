@@ -24,7 +24,7 @@ const renderTitle = (title: string) => {
     );
 };
 
-const renderItem = (title: string, resource: string, id: string) => {
+const renderItem = (title: string, resource: string, id: number) => {
     return {
         value: title,
         label: (
