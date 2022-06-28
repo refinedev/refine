@@ -2,4 +2,4 @@
 "@pankod/refine-react-table": minor
 ---
 
-s
+Add `hasPagination` property to `useTable` hook to enable/disable pagination.
