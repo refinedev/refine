@@ -104,9 +104,7 @@ import { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
-        <Refine
-            routerProvider={routerProvider}
-        >
+        <Refine routerProvider={routerProvider}>
             <Component {...pageProps} />
         </Refine>
     );
@@ -627,18 +625,48 @@ values={[
 ]}>
 <TabItem value="react-router-v6-link">
 
+```tsx title="WrapperLink.tsx"
+import React from "react";
+import { Link, LinkProps } from "react-router-dom";
+
+type MakeOptional<Type, Key extends keyof Type> = Omit<Type, Key> &
+    Partial<Pick<Type, Key>>;
+
+type WrapperLinkProps =
+    | (MakeOptional<LinkProps, "to"> & {
+          href: LinkProps["to"];
+      })
+    | LinkProps;
+
+export const WrapperLink: React.FC<WrapperLinkProps> = ({
+    children,
+    ...props
+}) => {
+    return (
+        <Link to={"href" in props ? props.href : props.to} {...props}>
+            {children}
+        </Link>
+    );
+};
+```
+
 ```ts title="routerProvider.ts"
 import { IRouterProvider } from "@pankod/refine-core";
+
 // highlight-next-line
-import { Link } from "react-router-dom";
+import { WrapperLink } from "./link";
 
 const routerProvider: IRouterProvider = {
     ...
-// highlight-next-line
-    Link,
+    // highlight-next-line
+    Link: WrapperLink,
     ...
 };
 ```
+
+:::info
+We use `<WrapperLink>` instead of `<Link>` because **refine** uses `<Link>` component with `href` prop. So `<WrapperLink>` maps `href` to `to` prop.
+:::
 
 </TabItem>
 <TabItem value="react-router-v5-link">
@@ -650,7 +678,7 @@ import { Link } from "react-router-dom";
 
 const routerProvider: IRouterProvider = {
     ...
-// highlight-next-line
+    // highlight-next-line
     Link,
     ...
 };
@@ -659,18 +687,48 @@ const routerProvider: IRouterProvider = {
 </TabItem>
 <TabItem value="react-location-link">
 
+```tsx title="WrapperLink.tsx"
+import React from "react";
+import { Link, LinkProps } from "react-location";
+
+type MakeOptional<Type, Key extends keyof Type> = Omit<Type, Key> &
+    Partial<Pick<Type, Key>>;
+
+type WrapperLinkProps =
+    | (MakeOptional<LinkProps, "to"> & {
+          href: LinkProps["to"];
+      })
+    | LinkProps;
+
+export const WrapperLink: React.FC<WrapperLinkProps> = ({
+    children,
+    ...props
+}) => {
+    return (
+        <Link to={"href" in props ? props.href : props.to} {...props}>
+            {children}
+        </Link>
+    );
+};
+```
+
 ```ts title="routerProvider.ts"
 import { IRouterProvider } from "@pankod/refine-core";
+
 // highlight-next-line
-import { Link } from "react-location";
+import { WrapperLink } from "./link";
 
 const routerProvider: IRouterProvider = {
     ...
-// highlight-next-line
-    Link,
+    // highlight-next-line
+    Link: WrapperLink,
     ...
 };
 ```
+
+:::info
+We use `<WrapperLink>` instead of `<Link>` because **refine** uses `<Link>` component with `href` prop. So `<WrapperLink>` maps `href` to `to` prop.
+:::
 
 </TabItem>
 <TabItem value="nextjs-link">
@@ -689,7 +747,7 @@ Link.defaultProps = {
 
 const routerProvider: IRouterProvider = {
     ...
-// highlight-next-line
+    // highlight-next-line
     Link,
     ...
 };
@@ -717,7 +775,6 @@ const routerProvider: IRouterProvider = {
 Since **Nextjs** has a file system based router built on the page concept, you can create your custom pages under the pages folder you don't need `routes` property.
 
 :::
-
 
 ### `RouterComponent`
 
@@ -779,12 +836,12 @@ const CustomRouterComponent = () => <RouterComponent basename="/admin" />;
 const App: React.FC = () => {
     return (
         <Refine
-// highlight-start
+            // highlight-start
             routerProvider={{
                 ...routerProvider,
                 RouterComponent: CustomRouterComponent,
             }}
-// highlight-end
+            // highlight-end
             dataProvider={dataProvider(API_URL)}
             resources={[
                 {
@@ -832,12 +889,12 @@ const CustomRouterComponent = () => <RouterComponent basename="/admin" />;
 const App: React.FC = () => {
     return (
         <Refine
-// highlight-start
+            // highlight-start
             routerProvider={{
                 ...routerProvider,
                 RouterComponent: CustomRouterComponent,
             }}
-// highlight-end
+            // highlight-end
             dataProvider={dataProvider(API_URL)}
             resources={[
                 {
@@ -888,12 +945,12 @@ const CustomRouterComponent = () => (
 const App: React.FC = () => {
     return (
         <Refine
-// highlight-start
+            // highlight-start
             routerProvider={{
                 ...routerProvider,
                 RouterComponent: CustomRouterComponent,
             }}
-// highlight-end
+            // highlight-end
             dataProvider={dataProvider(API_URL)}
             resources={[
                 {
@@ -933,11 +990,10 @@ Now you can access our application at `www.domain.com/admin`.
 
 [browserrouter]: https://github.com/pankod/refine/blob/master/packages/react-router-v6/src/routerComponent.tsx
 [router]: https://react-location.tanstack.com/docs/api#router
-[routercomponent-v6]:https://github.com/pankod/refine/blob/master/packages/react-router-v6/src/routerComponent.tsx
+[routercomponent-v6]: https://github.com/pankod/refine/blob/master/packages/react-router-v6/src/routerComponent.tsx
 [routercomponent]: https://github.com/pankod/refine/blob/master/packages/react-router/src/routerComponent.tsx
 [react-location-routercomponent]: https://github.com/pankod/refine/blob/master/packages/react-location/src/routerComponent.tsx
 [react-router-v5]: https://github.com/pankod/refine/tree/master/packages/react-router
 [react-router-v6]: https://github.com/pankod/refine/tree/master/packages/react-router-v6
 [nextjs-router]: https://github.com/pankod/refine/tree/master/packages/nextjs-router
 [react-location]: https://github.com/pankod/refine/tree/master/packages/react-location
-
