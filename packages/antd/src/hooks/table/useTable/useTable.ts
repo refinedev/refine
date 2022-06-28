@@ -179,13 +179,13 @@ export const useTable = <
 
                     if (type === "page") {
                         return createElement(PaginationLink, {
-                            href: link,
+                            to: link,
                             element: `${page}`,
                         });
                     }
                     if (type === "next" || type === "prev") {
                         return createElement(PaginationLink, {
-                            href: link,
+                            to: link,
                             element: element,
                         });
                     }
@@ -195,7 +195,7 @@ export const useTable = <
                             ?.props?.children;
 
                         return createElement(PaginationLink, {
-                            href: link,
+                            to: link,
                             element:
                                 Children.count(elementChildren) > 1
                                     ? createElement(

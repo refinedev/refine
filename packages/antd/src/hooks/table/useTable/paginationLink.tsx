@@ -2,16 +2,16 @@ import { useRouterContext } from "@pankod/refine-core";
 import React, { ReactNode } from "react";
 
 interface PaginationLinkProps {
-    href: string;
+    to: string;
     element: ReactNode;
 }
 
-export const PaginationLink = ({ href, element }: PaginationLinkProps) => {
+export const PaginationLink = ({ to, element }: PaginationLinkProps) => {
     const { Link } = useRouterContext();
 
     return (
         <Link
-            href={href}
+            to={to}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
                 e.preventDefault();
