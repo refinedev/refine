@@ -56,7 +56,7 @@ We recommend [**superplate**][superplate] to initialize your refine projects. It
 :::
 
 :::caution
-This example is for SPA react apps, for Next.js [refer to i18n Nextjs example ][i18nNextjs]
+This example is for SPA react apps, for Next.js [refer to i18n Nextjs example ][i18nnextjs]
 :::
 
 Let's add multi-language support using the `react-i18next` framework. At the end of our example, our application will support both German and English.
@@ -110,11 +110,11 @@ import "./i18n";
 
 ReactDOM.render(
     <React.StrictMode>
-// highlight-start
+        // highlight-start
         <React.Suspense fallback="loading">
             <App />
         </React.Suspense>
-// highlight-end
+        // highlight-end
     </React.StrictMode>,
     document.getElementById("root"),
 );
@@ -138,7 +138,7 @@ import { useTranslation } from "react-i18next";
 import { PostList } from "pages/posts";
 
 const App: React.FC = () => {
-// highlight-start
+    // highlight-start
     const { t, i18n } = useTranslation();
 
     const i18nProvider = {
@@ -146,13 +146,13 @@ const App: React.FC = () => {
         changeLocale: (lang: string) => i18n.changeLanguage(lang),
         getLocale: () => i18n.language,
     };
-// highlight-end
+    // highlight-end
 
     return (
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-// highlight-next-line
+            // highlight-next-line
             i18nProvider={i18nProvider}
             resources={[{ name: "posts", list: PostList }]}
         />
@@ -186,6 +186,12 @@ Before we get started, let's look at the translations that refine uses in compon
             "backHome": "Back Home"
         }
     },
+    "actions": {
+        "list": "List",
+        "create": "Create",
+        "edit": "Edit",
+        "show": "Show"
+    },
     "buttons": {
         "create": "Create",
         "save": "Save",
@@ -201,7 +207,7 @@ Before we get started, let's look at the translations that refine uses in compon
         "undo": "Undo",
         "import": "Import",
         "clone": "Clone",
-        "notAccessTitle": "You don't have permission to access",
+        "notAccessTitle": "You don't have permission to access"
     },
     "warnWhenUnsavedChanges": "Are you sure you want to leave? You have unsaved changes.",
     "notifications": {
@@ -267,6 +273,12 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
             "backHome": "Back Home"
         }
     },
+    "actions": {
+        "list": "List",
+        "create": "Create",
+        "edit": "Edit",
+        "show": "Show"
+    },
     "buttons": {
         "create": "Create",
         "save": "Save",
@@ -282,7 +294,7 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
         "undo": "Undo",
         "import": "Import",
         "clone": "Clone",
-        "notAccessTitle": "You don't have permission to access",
+        "notAccessTitle": "You don't have permission to access"
     },
     "warnWhenUnsavedChanges": "Are you sure you want to leave? You have unsaved changes.",
     "notifications": {
@@ -355,6 +367,12 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
             "backHome": "Zurück"
         }
     },
+    "actions": {
+        "list": "List",
+        "create": "Create",
+        "edit": "Edit",
+        "show": "Show"
+    },
     "buttons": {
         "create": "Erstellen",
         "save": "Speichern",
@@ -370,7 +388,7 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
         "undo": "Undo",
         "import": "Importieren",
         "clone": "Klon",
-        "notAccessTitle": "Sie haben keine zugriffsberechtigung",
+        "notAccessTitle": "Sie haben keine zugriffsberechtigung"
     },
     "warnWhenUnsavedChanges": "Nicht gespeicherte Änderungen werden nicht übernommen.",
     "notifications": {
@@ -532,7 +550,7 @@ const App: React.FC = () => {
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             i18nProvider={i18nProvider}
-// highlight-next-line
+            // highlight-next-line
             Header={Header}
             resources={[{ name: "posts", list: PostList }]}
         />
@@ -545,11 +563,11 @@ const App: React.FC = () => {
 Finally, we will create the `<PostList>` page and then we will translate texts using `useTranslate`.
 
 ```tsx title="src/App.tsx"
-import { 
+import {
     // highlight-next-line
     useTranslate,
     useMany,
- } from "@pankod/refine-core";
+} from "@pankod/refine-core";
 import {
     List,
     Table,
@@ -563,7 +581,7 @@ import {
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
-// highlight-next-line
+    // highlight-next-line
     const translate = useTranslate();
     const { tableProps } = useTable<IPost>();
 
@@ -583,12 +601,12 @@ export const PostList: React.FC = () => {
                 <Table.Column dataIndex="id" title="ID" />
                 <Table.Column
                     dataIndex="title"
-// highlight-next-line
+                    // highlight-next-line
                     title={translate("posts.fields.title")}
                 />
                 <Table.Column
                     dataIndex={["category", "id"]}
-// highlight-next-line
+                    // highlight-next-line
                     title={translate("posts.fields.category")}
                     render={(value) => {
                         if (isLoading) {
@@ -606,7 +624,7 @@ export const PostList: React.FC = () => {
                     }}
                 />
                 <Table.Column<IPost>
-// highlight-next-line
+                    // highlight-next-line
                     title={translate("table.actions")}
                     dataIndex="actions"
                     key="actions"
@@ -658,5 +676,5 @@ export interface IPost {
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-[i18nNextjs]: /examples/i18n/i18n-nextjs.md
+[i18nnextjs]: /examples/i18n/i18n-nextjs.md
 [superplate]: https://github.com/pankod/superplate
