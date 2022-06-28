@@ -1,5 +1,20 @@
 # @pankod/refine-mui
 
+## 3.32.0
+
+### Minor Changes
+
+-   -   Created `<Breadcrumb>` component from [`<Breadcrumbs>`](https://mui.com/material-ui/react-breadcrumbs/#api)
+    -   Added `<Breadcrumb>` component to `CRUD` components. (`<List>`, `<Create>`, `<Edit>`, `<Show>`)
+    -   Added breadcrumb props to all `CRUD` components. We can use `breadcrumbs` prop to add custom breadcrumbs.
+
+### Patch Changes
+
+-   Fixed missing imports (`DefaultColorScheme`, `ExtendedColorScheme` and `ThemeInput`) in `@mui/material/styles` in `@pankod/refine-mui` package.
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.34.2
+
 ## 3.31.0
 
 ### Minor Changes
