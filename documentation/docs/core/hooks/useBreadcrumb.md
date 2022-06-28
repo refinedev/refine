@@ -15,6 +15,12 @@ Congratulations [@salihozdemir](https://github.com/salihozdemir)! It was great s
 -   `href`: the route of the resource.
 -   `icon`: the icon of the resource.
 
+:::tip
+You can refer to the [source-code][source-code] of the `useBreadcrumb` hook to see how it is built.
+:::
+
+## Basic Usage
+
 ```tsx
 import React from "react";
 import { useBreadcrumb } from "@pankod/refine-core";
@@ -47,6 +53,16 @@ The `breadcrumbs` are created with your resource definitions. For example, if yo
     },
 ];
 ```
+
+:::info
+If label is not provided in your `posts` resource `useBreadcrumb` uses the [`useTranslate`](/core/hooks/translate/useTranslate.md) hook to translate the names.
+
+For Crud operations (`list`,`create`,`edit`,`show`) the `useBreadcrumb` uses:
+
+1. The `actions` key to translate key `` translate(`actions.create`) ``
+2. The `buttons` key to translate key `` translate(`buttons.create`) ``
+
+:::
 
 -   On the `list` page of the `posts` resource, the breadcrumbs look like this:
 
@@ -139,3 +155,5 @@ If you have a nested resource definition as below:
 >     icon?: React.ReactNode;
 > };
 > ```
+>
+> [source-code]: https://github.com/pankod/refine/blob/master/packages/core/src/hooks/breadcrumb/index.ts
