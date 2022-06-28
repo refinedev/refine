@@ -56,13 +56,11 @@ export type {
     ComponentsPropsList,
     ComponentsVariants,
     CreateMUIStyled,
-    DefaultColorScheme,
     DeprecatedThemeOptions,
     Direction,
     Duration,
     Easing,
     Experimental_CssVarsProvider,
-    ExtendedColorScheme,
     Interpolation,
     Opacity,
     Palette,
@@ -74,7 +72,6 @@ export type {
     SupportedColorScheme,
     SxProps,
     Theme,
-    ThemeInput,
     ThemeOptions,
     ThemeProvider,
     ThemeWithProps,
@@ -89,6 +86,14 @@ export type {
     TypographyVariants,
     TypographyVariantsOptions,
 } from "@mui/material/styles";
+
+/** @deprecated not exists anymore - this type exists as a fallback for existing usages */
+export type ThemeInput = any;
+
+export type {
+    DefaultColorScheme,
+    ExtendedColorScheme,
+} from "@mui/material/styles/experimental_extendTheme";
 
 export * from "@mui/material/utils";
 
