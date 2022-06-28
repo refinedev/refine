@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 **refine** provides Audit Log support via `auditLogProvider`. A new log record is automatically created when a new record is created, updated and deleted. You can access these records from anywhere via hooks. You can also manually create or update an audit-log via hooks.
 
-Complete all this by writing an `auditLogProvider` to **refine**. This provider must include following methods:
+Complete all this by writing an `auditLogProvider` to **refine**. This provider must include the following methods:
 
 ```ts
 const auditLogProvider = {
@@ -66,6 +66,12 @@ For this example, we will use the [`logs`](https://api.fake-rest.refine.dev/logs
 This method is used to get audit logs. Expects audit logs to be returned with the given parameters. Here we return activities using `resource` and `meta` data.
 
 ```ts title="auditLogProvider.ts"
+import refineSimpleRestDataProvider from "@pankod/refine-simple-rest";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const dataProvider = refineSimpleRestDataProvider(API_URL);
+
 const auditLogProvider: AuditLogProvider = {
     get: async ({ resource, meta }) => {
         const { data } = await dataProvider(API_URL).getList({
@@ -107,16 +113,14 @@ This method is triggered when a new successful mutation or when you use `useLog`
 We recommend you create `Audit logs` on the API side for security concerns because data can be changed on the client side.
 :::
 
-<Tabs
-    defaultValue="usage"
-    values={[
-        {label: 'usage', value: 'usage'},
-        {label: 'parameters', value: 'parameters'}
-    ]}
->
-<TabItem value="usage">
 
 ```ts title="auditLogProvider.ts"
+import refineSimpleRestDataProvider from "@pankod/refine-simple-rest";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const dataProvider = refineSimpleRestDataProvider(API_URL);
+
 const auditLogProvider: AuditLogProvider = {
     create: (params) => {
         return dataProvider(API_URL).create({
@@ -126,9 +130,6 @@ const auditLogProvider: AuditLogProvider = {
     },
 };
 ```
-</TabItem>
-
-<TabItem value="parameters">
 
 ```json
 [
@@ -151,8 +152,6 @@ const auditLogProvider: AuditLogProvider = {
   }
 ]
 ```
-</TabItem>
-</Tabs>
 
 :::important
 The `id` of the record created in the `meta` object is added. It is used for filtering purposes.
@@ -183,6 +182,12 @@ The `author` object is the value returned from the [`getUserIdentity`](/core/pro
 This method is used to update the `name` data in the audit logs. `id` and `name` parameters come and Promise waits for you to resolve.
 
 ```ts title="auditLogProvider.ts"
+import refineSimpleRestDataProvider from "@pankod/refine-simple-rest";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const dataProvider = refineSimpleRestDataProvider(API_URL);
+
 const auditLogProvider: AuditLogProvider = {
     update: async ({ id, name }) => {
         const { data } = await dataProvider(API_URL).update({
@@ -316,7 +321,7 @@ mutate({
 ```
 <br/>
 
-## Manage
+## Enable for specific mutations type
 
 The `options` section is used to determine in which actions the resources will work. **If no definition is made, it works in all actions**.
 

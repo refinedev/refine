@@ -3,7 +3,7 @@ id: useLog
 title: useLog
 ---
 
-If you need to create an audit log, **refine** provides the useLog hook for it. Returns two mutations `log` and `rename` that the methods uses `create` or `update` from [`auditLogProvider`](/core/providers/audit-log-provider.md#create) under the hood.
+If you need to create an audit log, **refine** provides the `useLog` hook for it. Returns two mutations `log` and `rename` that the methods uses `create` or `update` from [`auditLogProvider`](/core/providers/audit-log-provider.md#create) under the hood.
 
 ```tsx
 import { useLog } from "@pankod/refine-core";
