@@ -193,7 +193,7 @@ export const PostList: React.FC = () => {
                 <Table.Column
                     dataIndex={["category", "id"]}
                     title="category"
-                    render={(value: string) => {
+                    render={(value: number) => {
                         if (isLoading) {
                             return "loading...";
                         }
