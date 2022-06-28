@@ -10,7 +10,7 @@ export type ProductCardProps = {
     description: string;
     price: number;
     badgeBgColor?: string;
-    productId?: string;
+    productId?: number;
 };
 
 export const ProductCard: React.FC<ProductCardProps> = ({
