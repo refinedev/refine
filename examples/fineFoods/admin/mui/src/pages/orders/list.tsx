@@ -328,8 +328,8 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                             value,
                                         ) => {
                                             return (
-                                                value === undefined ||
-                                                option.text === value
+                                                option.text === value ||
+                                                option.text === value.text
                                             );
                                         }}
                                         renderInput={(params) => (
@@ -368,11 +368,17 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                                           item.toString(),
                                                   )?.title ?? "";
                                         }}
-                                        isOptionEqualToValue={(option, value) =>
-                                            value === undefined ||
-                                            option.id.toString() ===
-                                                value.toString()
-                                        }
+                                        isOptionEqualToValue={(
+                                            option,
+                                            value,
+                                        ) => {
+                                            return (
+                                                option.id.toString() ===
+                                                    value.id?.toString() ||
+                                                option.id.toString() ===
+                                                    value.toString()
+                                            );
+                                        }}
                                         renderInput={(params) => (
                                             <TextField
                                                 {...params}
@@ -414,8 +420,10 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                             value,
                                         ) => {
                                             return (
-                                                value === undefined ||
-                                                option.id === value
+                                                option.id.toString() ===
+                                                    value.id?.toString() ||
+                                                option.id.toString() ===
+                                                    value.toString()
                                             );
                                         }}
                                         renderInput={(params) => (
