@@ -163,6 +163,62 @@ export const useTable = <
         }
     };
 
+    const antdPagination = (): false | TablePaginationConfig => {
+        if (hasPagination) {
+            return {
+                itemRender: (page, type, element) => {
+                    const link = createLinkForSyncWithLocation({
+                        pagination: {
+                            pageSize,
+                            current: page,
+                        },
+                        sorter,
+                        filters,
+                    });
+
+                    if (type === "page") {
+                        return createElement(PaginationLink, {
+                            to: link,
+                            element: `${page}`,
+                        });
+                    }
+                    if (type === "next" || type === "prev") {
+                        return createElement(PaginationLink, {
+                            to: link,
+                            element: element,
+                        });
+                    }
+
+                    if (type === "jump-next" || type === "jump-prev") {
+                        const elementChildren = (element as React.ReactElement)
+                            ?.props?.children;
+
+                        return createElement(PaginationLink, {
+                            to: link,
+                            element:
+                                Children.count(elementChildren) > 1
+                                    ? createElement(
+                                          Fragment,
+                                          {},
+                                          elementChildren,
+                                      )
+                                    : elementChildren,
+                        });
+                    }
+
+                    return element;
+                },
+                pageSize,
+                current,
+                simple: !breakpoint.sm,
+                position: !breakpoint.sm ? ["bottomCenter"] : ["bottomRight"],
+                total: data?.total,
+            };
+        }
+
+        return false;
+    };
+
     return {
         searchFormProps: {
             ...formSF.formProps,
@@ -172,60 +228,7 @@ export const useTable = <
             dataSource: data?.data,
             loading: liveMode === "auto" ? isLoading : !isFetched,
             onChange,
-            pagination: hasPagination
-                ? {
-                      itemRender: (page, type, element) => {
-                          const link = createLinkForSyncWithLocation({
-                              pagination: {
-                                  pageSize,
-                                  current: page,
-                              },
-                              sorter,
-                              filters,
-                          });
-
-                          if (type === "page") {
-                              return createElement(PaginationLink, {
-                                  to: link,
-                                  element: `${page}`,
-                              });
-                          }
-                          if (type === "next" || type === "prev") {
-                              return createElement(PaginationLink, {
-                                  to: link,
-                                  element: element,
-                              });
-                          }
-
-                          if (type === "jump-next" || type === "jump-prev") {
-                              const elementChildren = (
-                                  element as React.ReactElement
-                              )?.props?.children;
-
-                              return createElement(PaginationLink, {
-                                  to: link,
-                                  element:
-                                      Children.count(elementChildren) > 1
-                                          ? createElement(
-                                                Fragment,
-                                                {},
-                                                elementChildren,
-                                            )
-                                          : elementChildren,
-                              });
-                          }
-
-                          return element;
-                      },
-                      pageSize,
-                      current,
-                      simple: !breakpoint.sm,
-                      position: !breakpoint.sm
-                          ? ["bottomCenter"]
-                          : ["bottomRight"],
-                      total: data?.total,
-                  }
-                : false,
+            pagination: antdPagination(),
             scroll: { x: true },
         },
         tableQueryResult,
