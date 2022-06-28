@@ -41,32 +41,10 @@ export const stringifyTableParams = (params: {
     };
     const { pagination, sorter, filters } = params;
 
-    let queryString = pagination
-        ? `${
-              typeof pagination.current !== "undefined"
-                  ? `current=${pagination.current}`
-                  : ""
-          }${
-              typeof pagination.current !== "undefined" &&
-              typeof pagination.pageSize !== "undefined"
-                  ? "&"
-                  : ""
-          }${
-              typeof pagination.pageSize !== "undefined"
-                  ? `pageSize=${pagination.pageSize}`
-                  : ""
-          }`
-        : "";
-
-    const qsSorters = qs.stringify({ sorter }, options);
-    if (qsSorters) {
-        queryString += `&${qsSorters}`;
-    }
-
-    const qsFilters = qs.stringify({ filters }, options);
-    if (qsFilters) {
-        queryString += `&${qsFilters}`;
-    }
+    const queryString = qs.stringify(
+        { ...(pagination ? pagination : {}), sorter, filters },
+        options,
+    );
 
     return queryString;
 };
