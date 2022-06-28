@@ -14,7 +14,7 @@ export interface IRouterProvider {
         Params extends { [K in keyof Params]?: string } = {},
     >() => Params;
     Prompt: React.FC<PromptProps>;
-    Link: React.FC<any>;
+    Link: React.FC<{ to: any } & Record<string, any>>;
     RouterComponent?: React.FC<any>;
     routes?: any;
 }
@@ -26,7 +26,7 @@ export interface IRouterContext {
         Params extends { [K in keyof Params]?: string } = {},
     >() => Params;
     Prompt: React.FC<PromptProps>;
-    Link: React.FC<any>;
+    Link: React.FC<{ to: any } & Record<string, any>>;
     routes?: any;
 }
 
