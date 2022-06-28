@@ -328,7 +328,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                             value,
                                         ) => {
                                             return (
-                                                value === undefined ||
                                                 option.text === value ||
                                                 option.text === value.text
                                             );
@@ -374,7 +373,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                             value,
                                         ) => {
                                             return (
-                                                value === undefined ||
                                                 option.id.toString() ===
                                                     value.id?.toString() ||
                                                 option.id.toString() ===
@@ -422,7 +420,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                             value,
                                         ) => {
                                             return (
-                                                value === undefined ||
                                                 option.id.toString() ===
                                                     value.id?.toString() ||
                                                 option.id.toString() ===
