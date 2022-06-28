@@ -19,7 +19,7 @@ import {
     Box,
 } from "@mui/material";
 
-import { CreateButton, CreateButtonProps } from "@components";
+import { CreateButton, CreateButtonProps, Breadcrumb } from "@components";
 
 export interface ListProps {
     canCreate?: boolean;
@@ -28,6 +28,7 @@ export interface ListProps {
     cardProps?: CardProps;
     cardHeaderProps?: CardHeaderProps;
     cardContentProps?: CardContentProps;
+    breadcrumb?: React.ReactNode;
 }
 
 /**
@@ -44,6 +45,7 @@ export const List: React.FC<ListProps> = ({
     cardProps,
     cardHeaderProps,
     cardContentProps,
+    breadcrumb = <Breadcrumb />,
 }) => {
     const { useParams } = useRouterContext();
 
@@ -68,6 +70,7 @@ export const List: React.FC<ListProps> = ({
 
     return (
         <Card {...cardProps}>
+            {breadcrumb}
             <CardHeader
                 sx={{ display: "flex", flexWrap: "wrap" }}
                 title={

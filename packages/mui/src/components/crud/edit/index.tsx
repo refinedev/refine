@@ -33,6 +33,7 @@ import {
     RefreshButton,
     ListButton,
     SaveButton,
+    Breadcrumb,
 } from "@components";
 import { DeleteButtonProps } from "@components";
 
@@ -49,6 +50,7 @@ export interface EditProps {
     cardHeaderProps?: CardHeaderProps;
     cardContentProps?: CardContentProps;
     cardActionsProps?: CardActionsProps;
+    breadcrumb?: React.ReactNode;
 }
 
 /**
@@ -71,6 +73,7 @@ export const Edit: React.FC<EditProps> = ({
     cardHeaderProps,
     cardContentProps,
     cardActionsProps,
+    breadcrumb = <Breadcrumb />,
 }) => {
     const translate = useTranslate();
 
@@ -99,6 +102,7 @@ export const Edit: React.FC<EditProps> = ({
 
     return (
         <Card {...cardProps}>
+            {breadcrumb}
             <CardHeader
                 sx={{ display: "flex", flexWrap: "wrap" }}
                 title={
