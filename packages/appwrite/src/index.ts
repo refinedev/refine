@@ -102,10 +102,13 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
         //TODO: Fix typing
         getList: async ({
             resource,
-            pagination: { current, pageSize } = { current: 1, pageSize: 10 },
+            pagination = { current: 1, pageSize: 10 },
             filters,
             sort,
         }) => {
+            const hasPagination = pagination !== false;
+            const { current = 1, pageSize = 10 } = pagination ? pagination : {};
+
             const appwriteFilters = getAppwriteFilters(filters);
             const { orderField, orderType } = getAppwriteSorting(sort);
 
@@ -114,10 +117,7 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
                     resource,
                     appwriteFilters,
                     pageSize,
-                    typeof current !== "undefined" &&
-                        typeof pageSize !== "undefined"
-                        ? (current - 1) * pageSize
-                        : undefined,
+                    hasPagination ? (current - 1) * pageSize : undefined,
                     undefined,
                     undefined,
                     orderField,

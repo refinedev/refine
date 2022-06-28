@@ -156,12 +156,14 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             resource,
             sort,
             filters,
-            pagination: { current, pageSize: limit } = {
-                current: 1,
-                pageSize: 10,
-            },
+            pagination = { current: 1, pageSize: 10 },
             metaData,
         }) => {
+            const hasPagination = pagination !== false;
+            const { current = 1, pageSize: limit = 10 } = pagination
+                ? pagination
+                : {};
+
             const hasuraSorting = generateSorting(sort);
             const hasuraFilters = generateFilters(filters);
 
@@ -177,8 +179,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                     operation,
                     fields: metaData?.fields,
                     variables: {
-                        ...(typeof current !== "undefined" &&
-                        typeof limit !== "undefined"
+                        ...(hasPagination
                             ? {
                                   limit,
                                   offset: (current - 1) * limit,

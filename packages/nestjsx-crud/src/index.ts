@@ -124,11 +124,14 @@ const NestsxCrud = (
 ): DataProvider => ({
     getList: async ({
         resource,
-        pagination: { current, pageSize } = { current: 1, pageSize: 10 },
+        pagination = { current: 1, pageSize: 10 },
         filters,
         sort,
     }) => {
         const url = `${apiUrl}/${resource}`;
+
+        const hasPagination = pagination !== false;
+        const { current = 1, pageSize = 10 } = pagination ? pagination : {};
 
         const { crudFilters, orFilters } = generateFilter(filters);
 
@@ -136,7 +139,7 @@ const NestsxCrud = (
             .setFilter(crudFilters)
             .setOr(orFilters);
 
-        if (typeof current !== "undefined" && typeof pageSize !== "undefined") {
+        if (hasPagination) {
             query
                 .setLimit(pageSize)
                 .setPage(current)

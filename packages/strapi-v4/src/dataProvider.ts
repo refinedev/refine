@@ -136,12 +136,15 @@ export const DataProvider = (
 ): IDataProvider => ({
     getList: async ({
         resource,
-        pagination: { current, pageSize } = { current: 1, pageSize: 10 },
+        pagination = { current: 1, pageSize: 10 },
         filters,
         sort,
         metaData,
     }) => {
         const url = `${apiUrl}/${resource}`;
+
+        const hasPagination = pagination !== false;
+        const { current = 1, pageSize = 10 } = pagination ? pagination : {};
 
         const locale = metaData?.locale;
         const fields = metaData?.fields;
@@ -152,8 +155,7 @@ export const DataProvider = (
         const queryFilters = generateFilter(filters);
 
         const query = {
-            ...(typeof current !== "undefined" &&
-            typeof pageSize !== "undefined"
+            ...(hasPagination
                 ? {
                       "pagination[page]": current,
                       "pagination[pageSize]": pageSize,

@@ -85,11 +85,14 @@ const JsonServer = (
 ): DataProvider => ({
     getList: async ({
         resource,
-        pagination: { current, pageSize } = { current: 1, pageSize: 10 },
+        pagination = { current: 1, pageSize: 10 },
         filters,
         sort,
     }) => {
         const url = `${apiUrl}/${resource}`;
+
+        const hasPagination = pagination !== false;
+        const { current = 1, pageSize = 10 } = pagination ? pagination : {};
 
         const queryFilters = generateFilter(filters);
 
@@ -98,13 +101,12 @@ const JsonServer = (
             _end?: number;
             _sort?: string;
             _order?: string;
-        } =
-            typeof current !== "undefined" && typeof pageSize !== "undefined"
-                ? {
-                      _start: (current - 1) * pageSize,
-                      _end: current * pageSize,
-                  }
-                : {};
+        } = hasPagination
+            ? {
+                  _start: (current - 1) * pageSize,
+                  _end: current * pageSize,
+              }
+            : {};
 
         const generatedSort = generateSort(sort);
         if (generatedSort) {

@@ -51,11 +51,14 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
     return {
         getList: async ({
             resource,
-            pagination: { current, pageSize } = { current: 1, pageSize: 10 },
+            pagination = { current: 1, pageSize: 10 },
             sort,
             filters,
             metaData,
         }) => {
+            const hasPagination = pagination !== false;
+            const { current = 1, pageSize = 10 } = pagination ? pagination : {};
+
             const sortBy = genereteSort(sort);
             const filterBy = generateFilter(filters);
 
@@ -80,8 +83,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                         ...metaData?.variables,
                         sort: sortBy,
                         where: { value: filterBy, type: "JSON" },
-                        ...(typeof current !== "undefined" &&
-                        typeof pageSize !== "undefined"
+                        ...(hasPagination
                             ? {
                                   start: (current - 1) * pageSize,
                                   limit: pageSize,

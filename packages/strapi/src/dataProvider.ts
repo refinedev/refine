@@ -79,7 +79,7 @@ export const DataProvider = (
 ): IDataProvider => ({
     getList: async ({
         resource,
-        pagination: { current, pageSize: _limit } = {
+        pagination = {
             current: 1,
             pageSize: 10,
         },
@@ -88,11 +88,16 @@ export const DataProvider = (
     }) => {
         const url = `${apiUrl}/${resource}`;
 
+        const hasPagination = pagination !== false;
+        const { current = 1, pageSize: _limit = 10 } = pagination
+            ? pagination
+            : {};
+
         const _sort = generateSort(sort);
         const queryFilters = generateFilter(filters);
 
         const query = {
-            ...(typeof current !== "undefined" && typeof _limit !== "undefined"
+            ...(hasPagination
                 ? {
                       _start: (current - 1) * _limit,
                       _limit,

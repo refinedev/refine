@@ -118,10 +118,13 @@ const AirtableDataProvider = (
     return {
         getList: async ({
             resource,
-            pagination: { current, pageSize } = { current: 1, pageSize: 10 },
+            pagination = { current: 1, pageSize: 10 },
             sort,
             filters,
         }) => {
+            const hasPagination = pagination !== false;
+            const { current = 1, pageSize = 10 } = pagination ? pagination : {};
+
             const generetedSort = generateSort(sort) || [];
             const queryFilters = generateFilter(filters);
 
@@ -136,14 +139,8 @@ const AirtableDataProvider = (
             return {
                 data: data
                     .slice(
-                        typeof current !== "undefined" &&
-                            typeof pageSize !== "undefined"
-                            ? (current - 1) * pageSize
-                            : undefined,
-                        typeof current !== "undefined" &&
-                            typeof pageSize !== "undefined"
-                            ? current * pageSize
-                            : undefined,
+                        hasPagination ? (current - 1) * pageSize : undefined,
+                        hasPagination ? current * pageSize : undefined,
                     )
                     .map((p) => ({
                         id: p.id,

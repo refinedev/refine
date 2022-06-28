@@ -102,10 +102,15 @@ const AltogicDataProvider = (
 ): DataProvider => ({
     getList: async ({
         resource,
-        pagination: { current, pageSize } = { current: 1, pageSize: 10 },
+        pagination = { current: 1, pageSize: 10 },
         filters,
         sort,
     }) => {
+        const hasPagination = pagination !== false;
+        const { current: page = 1, pageSize: size = 10 } = pagination
+            ? pagination
+            : {};
+
         const url = `${apiUrl}/${resource}`;
 
         const queryFilters = generateFilter(filters);
@@ -114,13 +119,7 @@ const AltogicDataProvider = (
             page?: number;
             size?: number;
             sort?: string;
-        } =
-            typeof current !== "undefined" && typeof pageSize !== "undefined"
-                ? {
-                      page: current,
-                      size: pageSize,
-                  }
-                : {};
+        } = hasPagination ? { page, size } : {};
 
         const generatedSort = generateSort(sort);
         if (generatedSort) {

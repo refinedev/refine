@@ -106,20 +106,20 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
     return {
         getList: async ({
             resource,
-            pagination: { current, pageSize } = { current: 1, pageSize: 10 },
+            pagination = { current: 1, pageSize: 10 },
             filters,
             sort,
             metaData,
         }) => {
+            const hasPagination = pagination !== false;
+            const { current = 1, pageSize = 10 } = pagination ? pagination : {};
+
             const query = supabaseClient
                 .from(resource)
                 .select(metaData?.select ?? "*", {
                     count: "exact",
                 });
-            if (
-                typeof current !== "undefined" &&
-                typeof pageSize !== "undefined"
-            ) {
+            if (hasPagination) {
                 query.range((current - 1) * pageSize, current * pageSize - 1);
             }
 
@@ -139,7 +139,7 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
 
             return {
                 data: data || [],
-                total: count || data?.length || 0,
+                total: count || 0,
             };
         },
 
