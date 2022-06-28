@@ -96,12 +96,12 @@ Before we start, let's create the interfaces of our [`<AutoComplete>`](https://a
 
 ```ts title="src/interfaces/index.d.ts"
 export interface IPost {
-    id: string;
+    id: number;
     title: string;
 }
 
 export interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }
 
@@ -144,7 +144,7 @@ const renderTitle = (title: string) => {
 };
 
 // To be able to customize the option item
-const renderItem = (title: string, resource: string, id: string) => {
+const renderItem = (title: string, resource: string, id: number) => {
     return {
         value: title,
         label: (

@@ -52,7 +52,7 @@ export const PostCreate = () => {
 };
 
 interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }
 ```

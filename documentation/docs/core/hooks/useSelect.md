@@ -56,7 +56,7 @@ export const DummyList = () => {
 };
 
 interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }
 ```

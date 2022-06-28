@@ -51,7 +51,7 @@ export const PostCreate = () => {
 };
 
 interface ILanguage {
-    id: string;
+    id: number;
     title: string;
 }
 ```

@@ -496,7 +496,7 @@ Create a new folder named _"interfaces"_ under _"/src"_ if you don't already hav
 
 ```ts title="interfaces/index.d.ts"
 export interface IPost {
-    id: string;
+    id: number;
     title: string;
     status: "published" | "draft" | "rejected";
     createdAt: string;
