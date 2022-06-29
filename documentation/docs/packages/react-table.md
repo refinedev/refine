@@ -237,6 +237,10 @@ We need to import the `usePagination` plugin and inject it into the `useTable` h
 
 [Refer to the `usePagination` documentation for detailed information. &#8594](https://react-table.tanstack.com/docs/api/usePagination#usepagination)
 
+:::info
+`useTable` hook from `@pankod/refine-react-table` sets `paginationMode` to `server` by default to handle the pagination. If you set `hasPagination` to `false` in `refineCoreProps` property in the `useTable` config, it will disable the server-side pagination and it will let you handle the pagination in the client side.
+:::
+
 ```tsx title="src/posts/list.tsx"
 //highlight-next-line
 import { useTable, Column, usePagination } from "@pankod/refine-react-table";

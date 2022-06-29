@@ -37,7 +37,6 @@ export const useBreadcrumb = (): UseBreadcrumbReturnType => {
             if (parentResource.parentName) {
                 addBreadcrumb(parentResource.parentName);
             }
-
             breadcrumbs.push({
                 label:
                     parentResource.label ??
@@ -70,9 +69,20 @@ export const useBreadcrumb = (): UseBreadcrumbReturnType => {
     });
 
     if (action) {
-        breadcrumbs.push({
-            label: humanizeString(action),
-        });
+        const key = `actions.${action}`;
+        const actionLabel = translate(key);
+        if (actionLabel === key) {
+            console.warn(
+                `Breadcrumb missing translate key for the "${action}" action. Please add "actions.${action}" key to your translation file. For more information, see https://refine.dev/docs/core/hooks/useBreadcrumb/#i18n-support`,
+            );
+            breadcrumbs.push({
+                label: translate(`buttons.${action}`, humanizeString(action)),
+            });
+        } else {
+            breadcrumbs.push({
+                label: translate(key, humanizeString(action)),
+            });
+        }
     }
 
     return {
