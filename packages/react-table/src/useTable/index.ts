@@ -49,6 +49,7 @@ export function useTable<
 >(
     {
         refineCoreProps: { hasPagination = true, ...refineCoreProps } = {},
+        initialState: reactTableInitialState = {},
         ...rest
     }: UseTableProps<TData, TError>,
     ...plugins: Array<PluginHook<{}>>
@@ -98,6 +99,7 @@ export function useTable<
                     id: filter.field,
                     value: filter.value,
                 })),
+                ...reactTableInitialState,
             },
             pageCount: hasPagination ? pageCount : 1,
             manualPagination: true,
