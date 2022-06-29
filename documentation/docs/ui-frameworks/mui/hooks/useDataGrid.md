@@ -414,15 +414,14 @@ When `filterModel` is not passed, it supports more than one criteria at a time, 
 >
 > | Property                | Default    | Property            | Default    |
 > | ----------------------- | ---------- | ------------------- | ---------- |
-> | columns                 |            | pageSize            | `25`       |
-> | rows                    | `[]`       | onPageSizeChange    |            |
-> | rowCount                | `0`        | sortingMode         | `"server"` |
-> | disableSelectionOnClick | `true`     | sortModel           |            |
-> | loading                 | `false`    | onSortModelChange   |            |
-> | paginationMode          | `"server"` | filterMode          | `"server"` |
-> | page                    | `0`        | filterModel         |            |
-> | onPageChange            |            | onFilterModelChange |            |
-> | onStateChange           |            |
+> | rows                    | `[]`       | pageSize            | `25`       |
+> | rowCount                | `0`        | onPageSizeChange    |            |
+> | disableSelectionOnClick | `true`     | sortingMode         | `"server"` |
+> | loading                 | `false`    | sortModel           |            |
+> | paginationMode          | `"server"` | onSortModelChange   |            |
+> | page                    | `0`        | filterMode          | `"server"` |
+> | onPageChange            |            | filterModel         |            |
+> | onStateChange           |            | onFilterModelChange |            |
 
 <br/>
 
