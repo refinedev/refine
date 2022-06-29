@@ -35,6 +35,7 @@
         "filter": "Filter",
         "clear": "Clear",
         "refresh": "Refresh",
+        "show": "Show",
         "undo": "Undo",
         "import": "Import",
         "export": "Export",

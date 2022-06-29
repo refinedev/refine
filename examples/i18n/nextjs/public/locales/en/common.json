@@ -17,6 +17,12 @@
             "backHome": "Back Home"
         }
     },
+    "actions": {
+        "list": "List",
+        "create": "Create",
+        "edit": "Edit",
+        "show": "Show"
+    },
     "buttons": {
         "create": "Create",
         "save": "Save",
