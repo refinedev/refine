@@ -59,6 +59,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     });
 
     const t = useTranslate();
+
     const columns: Array<Column> = React.useMemo(
         () => [
             {
@@ -338,6 +339,19 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
 const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
     const t = useTranslate();
 
+    const { dataGridProps } = useDataGrid<IProduct>({
+        resource: "products",
+        initialPageSize: 5,
+        permanentFilter: [
+            {
+                field: "category.id",
+                operator: "eq",
+                value: record.id,
+            },
+        ],
+        syncWithLocation: false,
+    });
+
     const columns = React.useMemo<GridColumns<IProduct>>(
         () => [
             {
@@ -427,20 +441,6 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
         [t],
     );
 
-    const { dataGridProps } = useDataGrid<IProduct>({
-        columns,
-        resource: "products",
-        initialPageSize: 5,
-        permanentFilter: [
-            {
-                field: "category.id",
-                operator: "eq",
-                value: record.id,
-            },
-        ],
-        syncWithLocation: false,
-    });
-
     const editDrawerFormProps = useModalForm<IProduct>({
         refineCoreProps: {
             action: "edit",
@@ -461,6 +461,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
         >
             <DataGrid
                 {...dataGridProps}
+                columns={columns}
                 rowHeight={80}
                 autoHeight
                 density="comfortable"

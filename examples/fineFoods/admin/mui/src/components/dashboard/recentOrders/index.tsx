@@ -21,6 +21,25 @@ export const RecentOrders: React.FC = () => {
     const { show } = useNavigation();
     const { mutate } = useUpdate();
 
+    const { dataGridProps } = useDataGrid<IOrder>({
+        resource: "orders",
+        initialSorter: [
+            {
+                field: "createdAt",
+                order: "desc",
+            },
+        ],
+        initialPageSize: 4,
+        permanentFilter: [
+            {
+                field: "status.text",
+                operator: "eq",
+                value: "Pending",
+            },
+        ],
+        syncWithLocation: false,
+    });
+
     const columns = React.useMemo<GridColumns<IOrder>>(
         () => [
             {
@@ -181,29 +200,10 @@ export const RecentOrders: React.FC = () => {
         [t],
     );
 
-    const { dataGridProps } = useDataGrid<IOrder>({
-        columns,
-        resource: "orders",
-        initialSorter: [
-            {
-                field: "createdAt",
-                order: "desc",
-            },
-        ],
-        initialPageSize: 4,
-        permanentFilter: [
-            {
-                field: "status.text",
-                operator: "eq",
-                value: "Pending",
-            },
-        ],
-        syncWithLocation: false,
-    });
-
     return (
         <DataGrid
             {...dataGridProps}
+            columns={columns}
             autoHeight
             headerHeight={0}
             rowHeight={200}
