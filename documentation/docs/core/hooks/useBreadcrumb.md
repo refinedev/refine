@@ -54,16 +54,6 @@ The `breadcrumbs` are created with your resource definitions. For example, if yo
 ];
 ```
 
-:::info
-If label is not provided in your `posts` resource `useBreadcrumb` uses the [`useTranslate`](/core/hooks/translate/useTranslate.md) hook to translate the names.
-
-For Crud operations (`list`,`create`,`edit`,`show`) the `useBreadcrumb` uses:
-
-1. The `actions` key to translate key `` translate(`actions.create`) ``
-2. If there are no actions key the `buttons` key uses to translate key `` translate(`buttons.create`) ``
-
-:::
-
 -   On the `list` page of the `posts` resource, the breadcrumbs look like this:
 
     ```tsx
@@ -91,10 +81,6 @@ For Crud operations (`list`,`create`,`edit`,`show`) the `useBreadcrumb` uses:
 
 :::info
 If resource has no `icon` property, the `icon` property of the breadcrumbs is `undefined`. Likewise, if the resource's list page is not found, the `href` property of the breadcrumbs is `undefined`.
-:::
-
-:::tip
-If resource definition has `label` property, `useBreadcrumbs` uses the `label` property. Otherwise, the `name` property of the resource is used. Likewise, if resource definition has `route` property, `useBreadcrumbs` uses the `route` property. Otherwise, the `name` property of the resource is used.
 :::
 
 If you have a nested resource definition as below:
@@ -137,6 +123,19 @@ If you have a nested resource definition as below:
         { label: "Create" },
     ];
     ```
+
+### Translate
+
+If resource definition has `label` property, `useBreadcrumbs` uses the `label` property. Otherwise, the `name` property of the resource is used. Likewise, if resource definition has `route` property, `useBreadcrumbs` uses the `route` property. Otherwise, the `name` property of the resource is used.
+
+:::info
+If label is not provided in your `posts` resource `useBreadcrumb` uses the [`useTranslate`](/core/hooks/translate/useTranslate.md) hook to translate the names.
+
+For CRUD operations (`list`,`create`,`edit`,`show`) the `useBreadcrumb` uses the `actions` key to translate key `` translate(`actions.${action}`) ``.
+
+For example; `create` action should look like : `` translate(`actions.create`) ``
+
+:::
 
 ## API Reference
 
