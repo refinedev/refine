@@ -94,10 +94,11 @@ export const useDataGrid = <
     liveParams,
     metaData,
     dataProviderName,
-}: UseDataGridProps<TData, TError, TSearchVariables>): UseDataGridReturnType<
+}: UseDataGridProps<
     TData,
+    TError,
     TSearchVariables
-> => {
+> = {}): UseDataGridReturnType<TData, TSearchVariables> => {
     const [columnsLookup, setColumnsLookup] = useState<ColumnsLookupType>();
 
     const {
