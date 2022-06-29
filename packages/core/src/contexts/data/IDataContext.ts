@@ -107,7 +107,8 @@ export interface DeleteManyResponse<TData = BaseRecord> {
 export interface IDataContext {
     getList: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
-        pagination?: Pagination | false;
+        pagination?: Pagination;
+        hasPagination?: boolean;
         sort?: CrudSorting;
         filters?: CrudFilters;
         metaData?: MetaDataQuery;
@@ -183,7 +184,8 @@ export interface IDataContext {
 export interface IDataContextProvider {
     getList: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
-        pagination?: Pagination | false;
+        pagination?: Pagination;
+        hasPagination?: boolean;
         sort?: CrudSorting;
         filters?: CrudFilters;
         metaData?: MetaDataQuery;

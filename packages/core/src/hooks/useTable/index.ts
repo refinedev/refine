@@ -223,7 +223,8 @@ export function useTable<
     const queryResult = useList<TData, TError>({
         resource: resource.name,
         config: {
-            pagination: hasPagination ? { current, pageSize } : false,
+            hasPagination,
+            pagination: { current, pageSize },
             filters: unionFilters(permanentFilter, filters),
             sort: unionSorters(permanentSorter, sorter),
         },
