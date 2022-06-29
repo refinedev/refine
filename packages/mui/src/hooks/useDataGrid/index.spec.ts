@@ -14,7 +14,6 @@ describe("useDataGrid Hook", () => {
             () =>
                 useDataGrid<any, any, SearchVariables>({
                     resource: "posts",
-                    columns: [{ field: "title" }, { field: "status" }],
                     onSearch: (values) => {
                         const filters: CrudFilters = [];
 
@@ -67,7 +66,6 @@ describe("useDataGrid Hook", () => {
             () =>
                 useDataGrid<any, any>({
                     resource: "posts",
-                    columns: [{ field: "title" }, { field: "status" }],
                     hasPagination: false,
                 }),
             {
