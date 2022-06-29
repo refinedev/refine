@@ -2,7 +2,7 @@
 "@pankod/refine-core": patch
 ---
 
-Added `actions` translate support for CRUD operations (`list`,`create`,`edit`,`show`) in the `useBreadcrumb` [`useBreadcrumb`](https://refine.dev/docs/core/hooks/useBreadcrumb/#translate) hook.
+Added `actions` translate support for CRUD operations (`list`,`create`,`edit`,`show`) in the `useBreadcrumb` [`useBreadcrumb`](https://refine.dev/docs/core/hooks/useBreadcrumb/#i18n-support) hook.
 
 #️⃣ First, We need to add the `actions` key to the translation file.
 
@@ -15,7 +15,7 @@ Added `actions` translate support for CRUD operations (`list`,`create`,`edit`,`s
     },
 ```
 
-#️⃣ If you don't provide the `actions` key, `useBreadcrumb` will try to find the `buttons` key in the `translate` file for backward compatibility.
+#️⃣ If you don't provide the `actions` key, `useBreadcrumb` will try to find the `buttons` key in the `translation` file for backward compatibility.
 
 ```json
     "buttons": {
@@ -33,7 +33,7 @@ const key = `actions.${action}`;
 const actionLabel = translate(key);
 if (actionLabel === key) {
     console.warn(
-        `Breadcrumb missing translate key for the "${action}" action. Please add "actions.${action}" key to your translation file. For more information, see https://refine.dev/docs/core/hooks/useBreadcrumb/#translate`,
+        `Breadcrumb missing translate key for the "${action}" action. Please add "actions.${action}" key to your translation file. For more information, see https://refine.dev/docs/core/hooks/useBreadcrumb/#i18n-support`,
     );
     breadcrumbs.push({
         label: translate(`buttons.${action}`, humanizeString(action)),
