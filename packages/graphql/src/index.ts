@@ -49,9 +49,15 @@ const generateFilter = (filters?: CrudFilters) => {
 
 const dataProvider = (client: GraphQLClient): DataProvider => {
     return {
-        getList: async ({ resource, pagination, sort, filters, metaData }) => {
-            const current = pagination?.current || 1;
-            const pageSize = pagination?.pageSize || 10;
+        getList: async ({
+            resource,
+            hasPagination = true,
+            pagination = { current: 1, pageSize: 10 },
+            sort,
+            filters,
+            metaData,
+        }) => {
+            const { current = 1, pageSize = 10 } = pagination ?? {};
 
             const sortBy = genereteSort(sort);
             const filterBy = generateFilter(filters);
@@ -66,8 +72,12 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
                     ...metaData?.variables,
                     sort: sortBy,
                     where: { value: filterBy, type: "JSON" },
-                    start: (current - 1) * pageSize,
-                    limit: pageSize,
+                    ...(hasPagination
+                        ? {
+                              start: (current - 1) * pageSize,
+                              limit: pageSize,
+                          }
+                        : {}),
                 },
                 fields: metaData?.fields,
             });

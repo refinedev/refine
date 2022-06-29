@@ -22,6 +22,7 @@ import { queryKeys } from "@definitions/helpers";
 
 export interface UseListConfig {
     pagination?: Pagination;
+    hasPagination?: boolean;
     sort?: CrudSorting;
     filters?: CrudFilters;
 }
@@ -88,7 +89,15 @@ export const useList = <
 
     const queryResponse = useQuery<GetListResponse<TData>, TError>(
         queryKey.list(config),
-        () => getList<TData>({ resource, ...config, metaData }),
+        () => {
+            const { hasPagination, ...restConfig } = config || {};
+            return getList<TData>({
+                resource,
+                ...restConfig,
+                hasPagination,
+                metaData,
+            });
+        },
         {
             ...queryOptions,
             onSuccess: (data) => {

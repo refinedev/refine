@@ -33,7 +33,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
         <AntdBreadcrumb {...breadcrumbProps}>
             {showHome && hasDashboard && (
                 <AntdBreadcrumb.Item>
-                    <Link to="/" href="/">
+                    <Link to="/">
                         <HomeOutlined />
                     </Link>
                 </AntdBreadcrumb.Item>
@@ -42,13 +42,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                 return (
                     <AntdBreadcrumb.Item key={label}>
                         {!hideIcons && icon}
-                        {href ? (
-                            <Link to={href} href={href}>
-                                {label}
-                            </Link>
-                        ) : (
-                            label
-                        )}
+                        {href ? <Link to={href}>{label}</Link> : label}
                     </AntdBreadcrumb.Item>
                 );
             })}
