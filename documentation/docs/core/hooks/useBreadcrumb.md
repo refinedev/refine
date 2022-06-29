@@ -15,6 +15,12 @@ Congratulations [@salihozdemir](https://github.com/salihozdemir)! It was great s
 -   `href`: the route of the resource.
 -   `icon`: the icon of the resource.
 
+:::tip
+You can refer to the [source-code][source-code] of the `useBreadcrumb` hook to see how it is built.
+:::
+
+## Basic Usage
+
 ```tsx
 import React from "react";
 import { useBreadcrumb } from "@pankod/refine-core";
@@ -77,10 +83,6 @@ The `breadcrumbs` are created with your resource definitions. For example, if yo
 If resource has no `icon` property, the `icon` property of the breadcrumbs is `undefined`. Likewise, if the resource's list page is not found, the `href` property of the breadcrumbs is `undefined`.
 :::
 
-:::tip
-If resource definition has `label` property, `useBreadcrumbs` uses the `label` property. Otherwise, the `name` property of the resource is used. Likewise, if resource definition has `route` property, `useBreadcrumbs` uses the `route` property. Otherwise, the `name` property of the resource is used.
-:::
-
 If you have a nested resource definition as below:
 
 ```tsx
@@ -122,6 +124,19 @@ If you have a nested resource definition as below:
     ];
     ```
 
+### i18n support
+
+If resource definition has `label` property, `useBreadcrumbs` uses the `label` property. Otherwise, the `name` property of the resource is used. Likewise, if resource definition has `route` property, `useBreadcrumbs` uses the `route` property. Otherwise, the `name` property of the resource is used.
+
+:::info
+If label is not provided in your `posts` resource `useBreadcrumb` uses the [`useTranslate`](/core/hooks/translate/useTranslate.md) hook to translate the names.
+
+For CRUD operations (`list`,`create`,`edit`,`show`) the `useBreadcrumb` uses the `actions` key to translate key `` translate(`actions.${action}`) ``.
+
+For example; `create` action should look like : `` translate(`actions.create`) ``
+
+:::
+
 ## API Reference
 
 ### Return values
@@ -139,3 +154,5 @@ If you have a nested resource definition as below:
 >     icon?: React.ReactNode;
 > };
 > ```
+>
+> [source-code]: https://github.com/pankod/refine/blob/master/packages/core/src/hooks/breadcrumb/index.ts
