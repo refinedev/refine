@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
     BaseRecord,
     CrudFilters,
@@ -9,6 +10,7 @@ import {
 } from "@pankod/refine-core";
 import {
     DataGridProps,
+    GridColType,
     GridFilterModel,
     GridSortModel,
 } from "@mui/x-data-grid";
@@ -23,11 +25,18 @@ import {
     transformCrudFiltersToFilterModel,
 } from "@definitions";
 
+export type ColumnsLookupType = Record<
+    string,
+    {
+        type?: GridColType;
+        [key: string]: any;
+    }
+>;
+
 type DataGridPropsType = Pick<DataGridProps, "filterModel"> &
     Required<
         Pick<
             DataGridProps,
-            | "columns"
             | "rows"
             | "loading"
             | "paginationMode"
@@ -43,12 +52,12 @@ type DataGridPropsType = Pick<DataGridProps, "filterModel"> &
             | "onFilterModelChange"
             | "sx"
             | "disableSelectionOnClick"
+            | "onStateChange"
         >
     >;
 
 export type UseDataGridProps<TData, TError, TSearchVariables = unknown> =
     useTablePropsCore<TData, TError> & {
-        columns: DataGridProps["columns"];
         onSearch?: (
             data: TSearchVariables,
         ) => CrudFilters | Promise<CrudFilters>;
@@ -67,7 +76,6 @@ export const useDataGrid = <
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
 >({
-    columns,
     onSearch: onSearchProp,
     initialCurrent,
     initialPageSize = 25,
@@ -90,6 +98,8 @@ export const useDataGrid = <
     TData,
     TSearchVariables
 > => {
+    const [columnsLookup, setColumnsLookup] = useState<ColumnsLookupType>();
+
     const {
         tableQueryResult,
         current,
@@ -157,7 +167,6 @@ export const useDataGrid = <
     return {
         tableQueryResult,
         dataGridProps: {
-            columns,
             disableSelectionOnClick: true,
             rows: data?.data || [],
             loading: liveMode === "auto" ? isLoading : !isFetched,
@@ -175,9 +184,12 @@ export const useDataGrid = <
             filterMode: "server",
             filterModel: transformCrudFiltersToFilterModel(
                 differenceWith(filters, permanentFilter ?? [], isEqual),
-                columns,
+                columnsLookup,
             ),
             onFilterModelChange: handleFilterModelChange,
+            onStateChange: (state) => {
+                setColumnsLookup(state.columns.lookup);
+            },
             sx: {
                 border: "none",
                 "& .MuiDataGrid-columnHeaders": {
