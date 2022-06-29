@@ -58,28 +58,28 @@ export const useTable = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
->({
-    onSearch,
-    initialCurrent,
-    initialPageSize,
-    initialSorter,
-    permanentSorter,
-    initialFilter,
-    permanentFilter,
-    syncWithLocation: syncWithLocationProp,
-    resource: resourceFromProp,
-    successNotification,
-    errorNotification,
-    queryOptions,
-    liveMode: liveModeFromProp,
-    onLiveEvent,
-    liveParams,
-    metaData,
-    dataProviderName,
-}: useTableProps<TData, TError, TSearchVariables> = {}): useTableReturnType<
-    TData,
-    TSearchVariables
-> => {
+>(
+    {
+        onSearch,
+        initialCurrent,
+        initialPageSize,
+        hasPagination = true,
+        initialSorter,
+        permanentSorter,
+        initialFilter,
+        permanentFilter,
+        syncWithLocation: syncWithLocationProp,
+        resource: resourceFromProp,
+        successNotification,
+        errorNotification,
+        queryOptions,
+        liveMode: liveModeFromProp,
+        onLiveEvent,
+        liveParams,
+        metaData,
+        dataProviderName,
+    }: useTableProps<TData, TError, TSearchVariables> = { hasPagination: true },
+): useTableReturnType<TData, TSearchVariables> => {
     const {
         tableQueryResult,
         current,
@@ -96,6 +96,8 @@ export const useTable = <
         permanentFilter,
         initialCurrent,
         initialPageSize,
+        // @ts-expect-error currently boolean casting is not supported in overloaded types.
+        hasPagination: hasPagination,
         initialSorter,
         initialFilter,
         syncWithLocation: syncWithLocationProp,
@@ -145,28 +147,25 @@ export const useTable = <
         }
 
         // tablePropsSunflower.onChange(pagination, filters, sorter);
-        setCurrent(pagination.current || 1);
-        setPageSize(pagination.pageSize || 10);
+        if (hasPagination) {
+            setCurrent?.(pagination.current || 1);
+            setPageSize?.(pagination.pageSize || 10);
+        }
     };
 
     const onFinish = async (value: TSearchVariables) => {
         if (onSearch) {
             const searchFilters = await onSearch(value);
             setFilters(searchFilters);
-            setCurrent(1);
+            if (hasPagination) {
+                setCurrent?.(1);
+            }
         }
     };
 
-    return {
-        searchFormProps: {
-            ...formSF.formProps,
-            onFinish,
-        },
-        tableProps: {
-            dataSource: data?.data,
-            loading: liveMode === "auto" ? isLoading : !isFetched,
-            onChange,
-            pagination: {
+    const antdPagination = (): false | TablePaginationConfig => {
+        if (hasPagination) {
+            return {
                 itemRender: (page, type, element) => {
                     const link = createLinkForSyncWithLocation({
                         pagination: {
@@ -214,7 +213,22 @@ export const useTable = <
                 simple: !breakpoint.sm,
                 position: !breakpoint.sm ? ["bottomCenter"] : ["bottomRight"],
                 total: data?.total,
-            },
+            };
+        }
+
+        return false;
+    };
+
+    return {
+        searchFormProps: {
+            ...formSF.formProps,
+            onFinish,
+        },
+        tableProps: {
+            dataSource: data?.data,
+            loading: liveMode === "auto" ? isLoading : !isFetched,
+            onChange,
+            pagination: antdPagination(),
             scroll: { x: true },
         },
         tableQueryResult,

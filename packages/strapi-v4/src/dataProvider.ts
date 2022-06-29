@@ -134,11 +134,18 @@ export const DataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): IDataProvider => ({
-    getList: async ({ resource, pagination, filters, sort, metaData }) => {
+    getList: async ({
+        resource,
+        hasPagination = true,
+        pagination = { current: 1, pageSize: 10 },
+        filters,
+        sort,
+        metaData,
+    }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const current = pagination?.current || 1;
-        const pageSize = pagination?.pageSize || 10;
+        const { current = 1, pageSize = 10 } = pagination ?? {};
+
         const locale = metaData?.locale;
         const fields = metaData?.fields;
         const populate = metaData?.populate;
@@ -148,8 +155,12 @@ export const DataProvider = (
         const queryFilters = generateFilter(filters);
 
         const query = {
-            "pagination[page]": current,
-            "pagination[pageSize]": pageSize,
+            ...(hasPagination
+                ? {
+                      "pagination[page]": current,
+                      "pagination[pageSize]": pageSize,
+                  }
+                : {}),
             locale,
             publicationState,
             fields,
@@ -165,7 +176,8 @@ export const DataProvider = (
 
         return {
             data: normalizeData(data),
-            total: data.meta.pagination.total,
+            // added to support pagination on client side when using endpoints that provide only data (see https://github.com/pankod/refine/issues/2028)
+            total: data.meta?.pagination?.total || normalizeData(data)?.length,
         };
     },
 
