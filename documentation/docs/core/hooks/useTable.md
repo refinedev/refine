@@ -10,6 +10,7 @@ If you're looking for a complete table library, Refine supports two table librar
 
 -   [React Table](https://react-table.tanstack.com/) (for Headless users) - [Documentation](/packages/react-table.md) - [Example](/examples/table/react-table/basic.md)
 -   [Ant Design Table](https://ant.design/components/table/#header) (for Ant Design users) - [Documentation](/ui-frameworks/antd/hooks/table/useTable.md) - [Example](/examples/table/antd/useTable.md)
+
 :::
 
 Lets say you have a endpoint that returns the following data:
@@ -59,6 +60,12 @@ const { tableQueryResult } = useTable<IPost>({
 By default, the `current` is 1 and the `pageSize` is 10. You can change default values by passing the `initialCurrent` and `initialPageSize` props to the `useTable` hook.
 
 You can also change the `current` and `pageSize` values by using the `setCurrent` and `setPageSize` functions that are returned by the `useTable` hook. Every change will trigger a new fetch.
+
+If you want to disable pagination, you can use `hasPagination` property in `useTable` config and set it to `false`
+
+:::info
+If `hasPagination` is set to `false`, `current`, `setCurrent`, `pageSize`, `setPageSize` and `pageCount` will return `undefined`
+:::
 
 ```tsx
 import { useTable } from "@pankod/core";
@@ -211,6 +218,7 @@ console.log(filters);
 | Key                      | Description                                                                                                                                                        | Type                                                         | Default                                                                              |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | resource                 | Resource name for API data interactions                                                                                                                            | `string` \| `undefined`                                      | Resource name that it reads from the URL                                             |
+| hasPagination            | Whether to use server side pagination or not.                                                                                                                      | `boolean`                                                    | `true`                                                                               |
 | initialCurrent           | Initial page index                                                                                                                                                 | `number`                                                     | `1`                                                                                  |
 | initialPageSize          | Initial number of items per page                                                                                                                                   | `number`                                                     | `10`                                                                                 |
 | initialSorter            | Initial sorter state                                                                                                                                               | [`CrudSorting`][crudsorting]                                 |                                                                                      |
@@ -235,19 +243,19 @@ console.log(filters);
 
 ### Return values
 
-| Property                      | Description                                             | Type                                                                                                                                                    |
-| ----------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| tableQueryResult              | Result of the `react-query`'s `useQuery`                | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery]                                                       |
-| current                       | Current page index state                                | `number`                                                                                                                                                |
-| totalPage                     | Total page count                                        | `number`                                                                                                                                                |
-| setCurrent                    | A function that changes the current                     | `React.Dispatch<React.SetStateAction<number>>`                                                                                                          |
-| pageSize                      | Current pageSize state                                  | `number`                                                                                                                                                |
-| setPageSize                   | A function that changes the pageSize.                   | `React.Dispatch<React.SetStateAction<number>>`                                                                                                          |
-| sorter                        | Current sorting state                                   | [`CrudSorting`][crudsorting]                                                                                                                            |
-| setSorter                     | A function that accepts a new sorter state.             | `(sorter: CrudSorting) => void`                                                                                                                         |
-| filters                       | Current filters state                                   | [`CrudFilters`][crudfilters]                                                                                                                            |
-| setFilters                    | A function that accepts a new filter state              | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` <br/> - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
-| createLinkForSyncWithLocation | A function create accessible links for syncWithLocation | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`                                                                               |
+| Property                      | Description                                                                           | Type                                                                                                                                                    |
+| ----------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| tableQueryResult              | Result of the `react-query`'s `useQuery`                                              | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery]                                                       |
+| current                       | Current page index state (returns `undefined` if pagination is disabled)              | `number` \| `undefined`                                                                                                                                 |
+| totalPage                     | Total page count (returns `undefined` if pagination is disabled)                      | `number` \| `undefined`                                                                                                                                 |
+| setCurrent                    | A function that changes the current (returns `undefined` if pagination is disabled)   | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                           |
+| pageSize                      | Current pageSize state (returns `undefined` if pagination is disabled)                | `number` \| `undefined`                                                                                                                                 |
+| setPageSize                   | A function that changes the pageSize. (returns `undefined` if pagination is disabled) | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                           |
+| sorter                        | Current sorting state s                                                               | [`CrudSorting`][crudsorting]                                                                                                                            |
+| setSorter                     | A function that accepts a new sorter state.                                           | `(sorter: CrudSorting) => void`                                                                                                                         |
+| filters                       | Current filters state                                                                 | [`CrudFilters`][crudfilters]                                                                                                                            |
+| setFilters                    | A function that accepts a new filter state                                            | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` <br/> - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
+| createLinkForSyncWithLocation | A function create accessible links for syncWithLocation                               | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`                                                                               |
 
 <br />
 

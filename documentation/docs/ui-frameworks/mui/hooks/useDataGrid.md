@@ -90,6 +90,10 @@ const { dataGridProps } = useDataGrid({
 
 The hook handles pagination by setting the `paginationMode`, `page`, `onPageChange`, `pageSize` and `onPageSizeChange` props that are compatible with `<DataGrid>`.
 
+:::info
+To disable pagination, you can set `hasPagination` property to `false` which is `true` by default. If pagination is disabled, `hideFooterPagination` property will be send as `true` with `paginationMode`, `page,` `onPageChange`, `pageSize` and `onPageSizeChange` set to undefined.
+:::
+
 ```tsx
 export const PostsList: React.FC = () => {
     const { dataGridProps } = useDataGrid({
@@ -386,6 +390,7 @@ When `filterModel` is not passed, it supports more than one criteria at a time, 
 | resource                                                                                           | The resource to use for table data                                                                                                                                 | `string` \| `undefined`                                                        | Resource name that it reads from the URL                                             |
 | permanentFilter                                                                                    | Default and unchangeable filter                                                                                                                                    | [`CrudFilters`][crudfilters]                                                   | `[]`                                                                                 |
 | permanentSorter                                                                                    | Default and unchangeable sorter state                                                                                                                              | [`CrudSorting`][crudsorting]                                                   | `[]`                                                                                 |
+| hasPagination                                                                                      | Whether to use server side pagination or not                                                                                                                       | `boolean`                                                                      | `true`                                                                               |
 | initialCurrent                                                                                     | Initial page index                                                                                                                                                 | `number`                                                                       | `1`                                                                                  |
 | initialPageSize                                                                                    | Number of records shown per initial number of pages                                                                                                                | `number`                                                                       | `25`                                                                                 |
 | initialSorter                                                                                      | Initial sorting                                                                                                                                                    | [`CrudSorting`][crudsorting]                                                   |
@@ -408,21 +413,22 @@ When `filterModel` is not passed, it supports more than one criteria at a time, 
 
 ### Return values
 
-| Property                      | Description                                                    | Type                                                                                              |
-| ----------------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| dataGridProps                 | MUI X [`<DataGrid>`][data-grid] props                          | `DataGridPropsType`\*                                                                             |
-| tableQueryResult              | Result of the `react-query`'s `useQuery`                       | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery] |
-| search                        | It sends the parameters it receives to its `onSearch` function | `(value: TSearchVariables) => Promise<void>`                                                      |
-| current                       | Current page index state                                       | `number`                                                                                          |
-| totalPage                     | Total page count                                               | `number`                                                                                          |
-| setCurrent                    | A function that changes the current                            | `React.Dispatch<React.SetStateAction<number>>`                                                    |
-| pageSize                      | Current pageSize state                                         | `number`                                                                                          |
-| setPageSize                   | A function that changes the pageSize                           | `React.Dispatch<React.SetStateAction<number>>`                                                    |
-| sorter                        | Current sorting state                                          | [`CrudSorting`][crudsorting]                                                                      |
-| setSorter                     | A function that accepts a new sorter state                     | `(sorter: CrudSorting) => void`                                                                   |
-| filters                       | Current filters state                                          | [`CrudFilters`][crudfilters]                                                                      |
-| setFilters                    | A function that accepts a new filter state                     | `(filters: CrudFilters) => void`                                                                  |
-| createLinkForSyncWithLocation | A function create accessible links for syncWithLocation        | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`                         |
+| Property                      | Description                                                                                                    | Type                                                                                              |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| dataGridProps                 | MUI X [`<DataGrid>`][data-grid] props                                                                          | `DataGridPropsType`\*                                                                             |
+| tableQueryResult              | Result of the `react-query`'s `useQuery`                                                                       | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery] |
+| search                        | It sends the parameters it receives to its `onSearch` function                                                 | `(value: TSearchVariables) => Promise<void>`                                                      |
+| current                       | Current page index state (returns `undefined` if pagination is disabled)                                       | `number` \| `undefined`                                                                           |
+| totalPage                     | Total page count (returns `undefined` if pagination is disabled)                                               | `number` \| `undefined`                                                                           |
+| setCurrent                    | A function that changes the current (returns `undefined` if pagination is disabled)                            | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                     |
+| pageSize                      | Current pageSize state (returns `undefined` if pagination is disabled)                                         | `number` \| `undefined`                                                                           |
+| setPageSize                   | A function that changes the pageSize (returns `undefined` if pagination is disabled)                           | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                     |
+| hideFooterPagination          | Whether to hide the footer pagination or not. This value is only returned if `hasPagination` is set to `false` | `boolean`                                                                                         |
+| sorter                        | Current sorting state                                                                                          | [`CrudSorting`][crudsorting]                                                                      |
+| setSorter                     | A function that accepts a new sorter state                                                                     | `(sorter: CrudSorting) => void`                                                                   |
+| filters                       | Current filters state                                                                                          | [`CrudFilters`][crudfilters]                                                                      |
+| setFilters                    | A function that accepts a new filter state                                                                     | `(filters: CrudFilters) => void`                                                                  |
+| createLinkForSyncWithLocation | A function create accessible links for syncWithLocation                                                        | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`                         |
 
 > **DataGridProps**
 >
