@@ -65,7 +65,7 @@ export const Layout: React.FC = ({ children }) => {
                         <ul>
                             {hasDashboard && (
                                 <li>
-                                    <Link>
+                                    <Link to="/">
                                         <a style={{ fontWeight: selectedKey === "/" ? "bold" : "normal" }}>
                                             <span>Dashboard</span>
                                         </a>
@@ -76,7 +76,7 @@ export const Layout: React.FC = ({ children }) => {
                                 const isSelected = route === selectedKey;
                                 return (
                                     <li key={name}>
-                                        <Link>
+                                        <Link to={route}>
                                             <a style={{ fontWeight: isSelected ? "bold" : "normal" }}>
                                                 {icon}
                                                 <span>{label ?? name}</span>
