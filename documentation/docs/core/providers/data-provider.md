@@ -66,7 +66,8 @@ const dataProvider = {
 
 -   [Firebase](https://github.com/rturan29/refine-firebase) by [rturan29](https://github.com/rturan29)
 -   [Directus](https://github.com/tspvivek/refine-directus) by [tspvivek](https://github.com/tspvivek)
-    :::
+
+:::
 
 <br/>
 
@@ -74,10 +75,12 @@ const dataProvider = {
 **refine** consumes this methods using [data hooks](/core/hooks/data/useCreate.md).
 
 Data hooks are used to operate CRUD actions like creating a new record, listing a resource or deleting a record etc..
+
 :::
 
 :::note
 Data hooks uses [React Query](https://react-query.tanstack.com/) to manage data fetching. React Query handles important concerns like caching, invalidation, loading states etc..
+
 :::
 
 <br/>
