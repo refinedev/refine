@@ -49,13 +49,11 @@ const columns: GridColumns = [
 ];
 
 export const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid<IPost>({
-        columns,
-    });
+    const { dataGridProps } = useDataGrid<IPost>();
 
     return (
         <List>
-            <DataGrid {...dataGridProps} autoHeight />
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
 };
@@ -78,7 +76,6 @@ If you want to use a different resource name, you can pass `resource` as a prop 
 const { dataGridProps } = useDataGrid({
     //highlight-next-line
     resource: "categories",
-    columns,
 });
 ```
 
@@ -92,9 +89,7 @@ The hook handles pagination by setting the `paginationMode`, `page`, `onPageChan
 
 ```tsx
 export const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid({
-        columns,
-    });
+    const { dataGridProps } = useDataGrid();
 
     const {
         //highlight-start
@@ -110,6 +105,7 @@ export const PostsList: React.FC = () => {
     return (
         <List>
             <DataGrid
+                columns={columns}
                 {...restDataGridProps}
                 //highlight-start
                 paginationMode={paginationMode}
@@ -136,7 +132,6 @@ You can set initial values for the pagination by passing `initialCurrent` and `i
 
 ```tsx
 const { dataGridProps } = useDataGrid({
-    columns,
     initialCurrent: 2,
     initialPageSize: 10,
 });
@@ -150,9 +145,7 @@ The hook handles sorting by setting the `sortingMode`, `sortModel` and `onSortMo
 
 ```tsx
 export const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid({
-        columns,
-    });
+    const { dataGridProps } = useDataGrid();
 
     //highlight-start
     const { sortingMode, sortModel, onSortModelChange, ...restDataGridProps } =
@@ -162,6 +155,7 @@ export const PostsList: React.FC = () => {
     return (
         <List>
             <DataGrid
+                columns={columns}
                 {...restDataGridProps}
                 //highlight-start
                 sortingMode={sortingMode}
@@ -186,7 +180,6 @@ You can pass `initialSorter` prop to set initial sorting and `permanentSorter` p
 
 ```tsx
 const { dataGridProps } = useDataGrid({
-    columns,
     initialSorter: [{ field: "id", order: "desc" }],
     permanentSorter: [{ field: "title", order: "asc" }],
 });
@@ -219,9 +212,7 @@ const columns: GridColumns = [
 ];
 
 export const PostsList: React.FC = () => {
-    const { dataGridProps, setSorter } = useDataGrid({
-        columns,
-    });
+    const { dataGridProps, setSorter } = useDataGrid();
 
     const handleSorting = (order: "asc" | "desc") => {
         setSorter([
@@ -238,7 +229,7 @@ export const PostsList: React.FC = () => {
                 <Button onClick={() => handleSorting("asc")}>Asc</Button>
                 <Button onClick={() => handleSorting("desc")}>Desc</Button>
             </ButtonGroup>
-            <DataGrid {...dataGridProps} autoHeight />
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
 };
@@ -262,9 +253,7 @@ The hook handles filtering by setting the `filterMode`, `filterModel` and `onFil
 
 ```tsx
 export const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid({
-        columns,
-    });
+    const { dataGridProps } = useDataGrid();
 
     //highlight-start
     const {
@@ -278,6 +267,7 @@ export const PostsList: React.FC = () => {
     return (
         <List>
             <DataGrid
+                columns={columns}
                 {...restDataGridProps}
                 //highlight-start
                 filterMode={filterMode}
@@ -302,7 +292,6 @@ You can pass `initialFilter` prop to set initial filter and `permanentFilter` pr
 
 ```tsx
 const { dataGridProps } = useDataGrid({
-    columns,
     initialFilter: [{ field: "title", value: "lorem", operator: "contains" }],
     permanentFilter: [{ field: "status", value: "draft", operator: "eq" }],
 });
@@ -335,9 +324,7 @@ const columns: GridColumns = [
 ];
 
 export const PostsList: React.FC = () => {
-    const { dataGridProps, setFilters } = useDataGrid({
-        columns,
-    });
+    const { dataGridProps, setFilters } = useDataGrid();
 
     const handleFilter = (
         e: React.ChangeEvent<HTMLInputElement>,
@@ -358,7 +345,7 @@ export const PostsList: React.FC = () => {
                 label="Filter by Draft Status"
                 control={<Checkbox onChange={handleFilter} />}
             />
-            <DataGrid {...dataGridProps} autoHeight />
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
 };
@@ -380,23 +367,22 @@ When `filterModel` is not passed, it supports more than one criteria at a time, 
 
 ### Properties
 
-| Key                                                                                                | Description                                                                                                                                                        | Type                                                                           | Default                                                                              |
-| -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| <div className="required-block"><div>columns</div> <div className=" required">Required</div></div> | Set of columns of type `GridColumns`                                                                                                                               | [`GridColDef`](https://mui.com/x/api/data-grid/grid-col-def)                   |                                                                                      |
-| resource                                                                                           | The resource to use for table data                                                                                                                                 | `string` \| `undefined`                                                        | Resource name that it reads from the URL                                             |
-| permanentFilter                                                                                    | Default and unchangeable filter                                                                                                                                    | [`CrudFilters`][crudfilters]                                                   | `[]`                                                                                 |
-| permanentSorter                                                                                    | Default and unchangeable sorter state                                                                                                                              | [`CrudSorting`][crudsorting]                                                   | `[]`                                                                                 |
-| initialCurrent                                                                                     | Initial page index                                                                                                                                                 | `number`                                                                       | `1`                                                                                  |
-| initialPageSize                                                                                    | Number of records shown per initial number of pages                                                                                                                | `number`                                                                       | `25`                                                                                 |
-| initialSorter                                                                                      | Initial sorting                                                                                                                                                    | [`CrudSorting`][crudsorting]                                                   |
-| initialFilter                                                                                      | Initial filtering                                                                                                                                                  | [`CrudFilters`][crudfilters]                                                   |
-| syncWithLocation                                                                                   | Sortings, filters, page index and records shown per page are tracked by browser history                                                                            | `boolean`                                                                      | Value set in [Refine][refine swl]. If a custom resource is given, it will be `false` |
-| onSearch                                                                                           | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][table search] to learn how to create a search form                  | `Function`                                                                     |
-| queryOptions                                                                                       | `react-query`'s `useQuery` options                                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                    |
-| metaData                                                                                           | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                           | {}                                                                                   |
-| [liveMode](/core/providers/live-provider.md#usage-in-a-hook)                                       | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)         | `"off"`                                                                              |
-| liveParams                                                                                         | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled                                                                                     | [`{ ids?: string[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | `undefined`                                                                          |
-| onLiveEvent                                                                                        | Callback to handle all related live events of this hook                                                                                                            | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)              | `undefined`                                                                          |
+| Key                                                          | Description                                                                                                                                                        | Type                                                                           | Default                                                                              |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| resource                                                     | The resource to use for table data                                                                                                                                 | `string` \| `undefined`                                                        | Resource name that it reads from the URL                                             |
+| permanentFilter                                              | Default and unchangeable filter                                                                                                                                    | [`CrudFilters`][crudfilters]                                                   | `[]`                                                                                 |
+| permanentSorter                                              | Default and unchangeable sorter state                                                                                                                              | [`CrudSorting`][crudsorting]                                                   | `[]`                                                                                 |
+| initialCurrent                                               | Initial page index                                                                                                                                                 | `number`                                                                       | `1`                                                                                  |
+| initialPageSize                                              | Number of records shown per initial number of pages                                                                                                                | `number`                                                                       | `25`                                                                                 |
+| initialSorter                                                | Initial sorting                                                                                                                                                    | [`CrudSorting`][crudsorting]                                                   |
+| initialFilter                                                | Initial filtering                                                                                                                                                  | [`CrudFilters`][crudfilters]                                                   |
+| syncWithLocation                                             | Sortings, filters, page index and records shown per page are tracked by browser history                                                                            | `boolean`                                                                      | Value set in [Refine][refine swl]. If a custom resource is given, it will be `false` |
+| onSearch                                                     | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][table search] to learn how to create a search form                  | `Function`                                                                     |
+| queryOptions                                                 | `react-query`'s `useQuery` options                                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                    |
+| metaData                                                     | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                           | {}                                                                                   |
+| [liveMode](/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)         | `"off"`                                                                              |
+| liveParams                                                   | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled                                                                                     | [`{ ids?: string[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | `undefined`                                                                          |
+| onLiveEvent                                                  | Callback to handle all related live events of this hook                                                                                                            | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)              | `undefined`                                                                          |
 
 ### Type Parameters
 
@@ -436,17 +422,45 @@ When `filterModel` is not passed, it supports more than one criteria at a time, 
 > | paginationMode          | `"server"` | filterMode          | `"server"` |
 > | page                    | `0`        | filterModel         |            |
 > | onPageChange            |            | onFilterModelChange |            |
+> | onStateChange           |            |
 
 <br/>
 
+:::caution
+The `onStateChange` callback is used internally by the `useDataGrid` hook. If you want to override it, you can use like this:
+
+```tsx
+export const PostsList: React.FC = () => {
+    const { dataGridProps } = useDataGrid<IPost>();
+
+    return (
+        <List>
+            <DataGrid
+                {...dataGridProps}
+                columns={columns}
+                autoHeight
+                //highlight-start
+                onStateChange={(state) => {
+                    dataGridProps.onStateChange(state);
+                    // do something else
+                }}
+                //highlight-end
+            />
+        </List>
+    );
+};
+```
+
+:::
+
 ## Live StackBlitz Example
 
-<iframe src="https://stackblitz.com/github/pankod/refine/tree/mui/examples/table/mui/useDataGrid?embed=1&view=preview&theme=dark&preset=node"
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/table/mui/useDataGrid?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-data-grid-example"
 ></iframe>
 
-[source-code]: https://github.com/pankod/refine/blob/master/packages/mui/src/hooks/useDataGrid/index.ts
+[source-code]: https://github.com/pankod/refine/blob/master/packages/master/src/hooks/useDataGrid/index.ts
 [syncwithlocationparams]: /core/interfaces.md#syncwithlocationparams
 [crudsorting]: /core/interfaces.md#crudsorting
 [crudfilters]: /core/interfaces.md#crudfilters
