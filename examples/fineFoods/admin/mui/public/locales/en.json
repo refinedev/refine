@@ -20,7 +20,8 @@
     "actions": {
         "list": "List",
         "create": "Create",
-        "edit": "Edit"
+        "edit": "Edit",
+        "show": "Show"
     },
     "buttons": {
         "add": "Add",
