@@ -70,7 +70,8 @@ const siteConfig = {
     themeConfig: {
         image: "img/refine_social.png",
         algolia: {
-            apiKey: "fbebca5afe7376dbef2995691670b708",
+            appId: "KRR9VEUPCT",
+            apiKey: "cd0188125dcd31fb4b011b5e536d963a",
             indexName: "refine",
             contextualSearch: true,
         },
