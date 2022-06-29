@@ -73,7 +73,7 @@ export const useBreadcrumb = (): UseBreadcrumbReturnType => {
         const actionLabel = translate(key);
         if (actionLabel === key) {
             console.warn(
-                `Breadcrumb missing translate key for action "${action}". Please add "actions.${action}" key to your translation file. For more information, see https://refine.dev/docs/core/hooks/useBreadcrumb/`,
+                `Breadcrumb missing translate key for the "${action}" action. Please add "actions.${action}" key to your translation file. For more information, see https://refine.dev/docs/core/hooks/useBreadcrumb/#translate`,
             );
             breadcrumbs.push({
                 label: translate(`buttons.${action}`, humanizeString(action)),
