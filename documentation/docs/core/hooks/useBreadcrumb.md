@@ -124,7 +124,7 @@ If you have a nested resource definition as below:
     ];
     ```
 
-### Translate
+### i18n support
 
 If resource definition has `label` property, `useBreadcrumbs` uses the `label` property. Otherwise, the `name` property of the resource is used. Likewise, if resource definition has `route` property, `useBreadcrumbs` uses the `route` property. Otherwise, the `name` property of the resource is used.
 
