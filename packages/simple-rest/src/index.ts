@@ -83,24 +83,30 @@ const JsonServer = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
-    getList: async ({ resource, pagination, filters, sort }) => {
+    getList: async ({
+        resource,
+        hasPagination = true,
+        pagination = { current: 1, pageSize: 10 },
+        filters,
+        sort,
+    }) => {
         const url = `${apiUrl}/${resource}`;
 
-        // pagination
-        const current = pagination?.current || 1;
-        const pageSize = pagination?.pageSize || 10;
+        const { current = 1, pageSize = 10 } = pagination ?? {};
 
         const queryFilters = generateFilter(filters);
 
         const query: {
-            _start: number;
-            _end: number;
+            _start?: number;
+            _end?: number;
             _sort?: string;
             _order?: string;
-        } = {
-            _start: (current - 1) * pageSize,
-            _end: current * pageSize,
-        };
+        } = hasPagination
+            ? {
+                  _start: (current - 1) * pageSize,
+                  _end: current * pageSize,
+              }
+            : {};
 
         const generatedSort = generateSort(sort);
         if (generatedSort) {

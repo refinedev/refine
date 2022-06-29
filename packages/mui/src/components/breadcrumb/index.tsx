@@ -57,7 +57,6 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                         alignItems: "center",
                     }}
                     color="inherit"
-                    href="/"
                     to="/"
                 >
                     <HomeOutlined
@@ -89,7 +88,6 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                                     fontSize: "14px",
                                 }}
                                 color="inherit"
-                                href={href}
                                 to={href}
                                 variant="subtitle1"
                                 marginLeft={0.5}

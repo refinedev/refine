@@ -6,6 +6,7 @@ import {
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
     useTableReturnType as useTableReturnTypeCore,
+    useTableNoPaginationReturnType as useTableNoPaginationReturnTypeCore,
     useLiveMode,
 } from "@pankod/refine-core";
 import {
@@ -24,6 +25,7 @@ import {
     transformFilterModelToCrudFilters,
     transformCrudFiltersToFilterModel,
 } from "@definitions";
+import { useMemo } from "react";
 
 export type ColumnsLookupType = Record<
     string,
@@ -39,12 +41,7 @@ type DataGridPropsType = Pick<DataGridProps, "filterModel"> &
             DataGridProps,
             | "rows"
             | "loading"
-            | "paginationMode"
             | "rowCount"
-            | "page"
-            | "onPageChange"
-            | "pageSize"
-            | "onPageSizeChange"
             | "sortingMode"
             | "sortModel"
             | "onSortModelChange"
@@ -54,6 +51,15 @@ type DataGridPropsType = Pick<DataGridProps, "filterModel"> &
             | "disableSelectionOnClick"
             | "onStateChange"
         >
+    > &
+    Pick<
+        DataGridProps,
+        | "hideFooterPagination"
+        | "paginationMode"
+        | "page"
+        | "onPageChange"
+        | "pageSize"
+        | "onPageSizeChange"
     >;
 
 export type UseDataGridProps<TData, TError, TSearchVariables = unknown> =
@@ -71,7 +77,33 @@ export type UseDataGridReturnType<
     search: (value: TSearchVariables) => Promise<void>;
 };
 
-export const useDataGrid = <
+export type UseDataGridNoPaginationReturnType<
+    TData extends BaseRecord = BaseRecord,
+    TSearchVariables = unknown,
+> = useTableNoPaginationReturnTypeCore<TData> & {
+    dataGridProps: DataGridPropsType;
+    search: (value: TSearchVariables) => Promise<void>;
+};
+
+export function useDataGrid<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TSearchVariables = unknown,
+>(
+    props: UseDataGridProps<TData, TError, TSearchVariables> & {
+        hasPagination?: true;
+    },
+): UseDataGridReturnType<TData, TSearchVariables>;
+export function useDataGrid<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TSearchVariables = unknown,
+>(
+    props: UseDataGridProps<TData, TError, TSearchVariables> & {
+        hasPagination: false;
+    },
+): UseDataGridNoPaginationReturnType<TData, TSearchVariables>;
+export function useDataGrid<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
@@ -79,6 +111,7 @@ export const useDataGrid = <
     onSearch: onSearchProp,
     initialCurrent,
     initialPageSize = 25,
+    hasPagination = true,
     initialSorter,
     permanentSorter,
     defaultSetFilterBehavior = "replace",
@@ -94,13 +127,10 @@ export const useDataGrid = <
     liveParams,
     metaData,
     dataProviderName,
-}: UseDataGridProps<
-    TData,
-    TError,
-    TSearchVariables
-> = {}): UseDataGridReturnType<TData, TSearchVariables> => {
+}: UseDataGridProps<TData, TError, TSearchVariables>):
+    | UseDataGridReturnType<TData, TSearchVariables>
+    | UseDataGridNoPaginationReturnType<TData, TSearchVariables> {
     const [columnsLookup, setColumnsLookup] = useState<ColumnsLookupType>();
-
     const {
         tableQueryResult,
         current,
@@ -118,6 +148,8 @@ export const useDataGrid = <
         permanentFilter,
         initialCurrent,
         initialPageSize,
+        // @ts-expect-error currently boolean casting is not supported in overloaded types.
+        hasPagination: hasPagination,
         initialSorter,
         initialFilter,
         syncWithLocation: syncWithLocationProp,
@@ -140,10 +172,14 @@ export const useDataGrid = <
     const liveMode = useLiveMode(liveModeFromProp);
 
     const handlePageChange = (page: number) => {
-        setCurrent(page + 1);
+        if (hasPagination) {
+            setCurrent(page + 1);
+        }
     };
     const handlePageSizeChange = (pageSize: number) => {
-        setPageSize(pageSize);
+        if (hasPagination) {
+            setPageSize(pageSize);
+        }
     };
 
     const handleSortModelChange = (sortModel: GridSortModel) => {
@@ -154,15 +190,55 @@ export const useDataGrid = <
     const handleFilterModelChange = (filterModel: GridFilterModel) => {
         const crudFilters = transformFilterModelToCrudFilters(filterModel);
         setFilters(crudFilters);
-        setCurrent(1);
+        if (hasPagination) {
+            setCurrent(1);
+        }
     };
 
     const search = async (value: TSearchVariables) => {
         if (onSearchProp) {
             const searchFilters = await onSearchProp(value);
             setFilters(searchFilters);
-            setCurrent(1);
+            if (hasPagination) {
+                setCurrent(1);
+            }
         }
+    };
+
+    const paginationValues = useMemo(() => {
+        if (hasPagination) {
+            return {
+                current,
+                setCurrent,
+                pageSize,
+                setPageSize,
+                pageCount,
+            };
+        }
+
+        return {
+            current: undefined,
+            setCurrent: undefined,
+            pageSize: undefined,
+            setPageSize: undefined,
+            pageCount: undefined,
+        };
+    }, [hasPagination, current, pageSize, pageCount]);
+
+    const dataGridPaginationValues = () => {
+        if (hasPagination) {
+            return {
+                paginationMode: "server" as const,
+                page: (current ?? 1) - 1,
+                onPageChange: handlePageChange,
+                pageSize: pageSize,
+                onPageSizeChange: handlePageSizeChange,
+            };
+        }
+
+        return {
+            hideFooterPagination: true,
+        };
     };
 
     return {
@@ -171,12 +247,8 @@ export const useDataGrid = <
             disableSelectionOnClick: true,
             rows: data?.data || [],
             loading: liveMode === "auto" ? isLoading : !isFetched,
-            paginationMode: "server",
             rowCount: data?.total || 0,
-            page: current - 1,
-            onPageChange: handlePageChange,
-            pageSize: pageSize,
-            onPageSizeChange: handlePageSizeChange,
+            ...dataGridPaginationValues(),
             sortingMode: "server",
             sortModel: transformCrudSortingToSortModel(
                 differenceWith(sorter, permanentSorter ?? [], isEqual),
@@ -208,16 +280,12 @@ export const useDataGrid = <
                 },
             },
         },
-        current,
-        setCurrent,
-        pageSize,
-        setPageSize,
+        ...paginationValues,
         sorter,
         setSorter,
         filters,
         setFilters,
         search,
-        pageCount,
         createLinkForSyncWithLocation,
     };
-};
+}

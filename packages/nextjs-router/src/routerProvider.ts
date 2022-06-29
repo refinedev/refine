@@ -1,20 +1,10 @@
 import { useRouter } from "next/router";
-import Link from "next/link";
-
 import qs from "qs";
 
 import { handleUseParams, IRouterProvider } from "@pankod/refine-core";
 
 import { Prompt } from "./prompt";
-
-// @ts-expect-error `next/link` exports in type of function but in runtime it's an object.
-const RefineLink = typeof Link === "object" ? { ...Link } : Link.bind({});
-
-RefineLink.defaultProps = {
-    legacyBehavior: false,
-};
-
-export { RefineLink };
+import { RefineLink } from "./refineLink";
 
 export const RouterProvider: IRouterProvider = {
     useHistory: () => {

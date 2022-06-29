@@ -104,16 +104,24 @@ const handleError = (error: PostgrestError) => {
 
 const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
     return {
-        getList: async ({ resource, pagination, filters, sort, metaData }) => {
-            const current = pagination?.current || 1;
-            const pageSize = pagination?.pageSize || 10;
+        getList: async ({
+            resource,
+            hasPagination = true,
+            pagination = { current: 1, pageSize: 10 },
+            filters,
+            sort,
+            metaData,
+        }) => {
+            const { current = 1, pageSize = 10 } = pagination ?? {};
 
             const query = supabaseClient
                 .from(resource)
                 .select(metaData?.select ?? "*", {
                     count: "exact",
-                })
-                .range((current - 1) * pageSize, current * pageSize - 1);
+                });
+            if (hasPagination) {
+                query.range((current - 1) * pageSize, current * pageSize - 1);
+            }
 
             sort?.map((item) => {
                 query.order(item.field, { ascending: item.order === "asc" });
