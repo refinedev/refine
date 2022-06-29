@@ -60,7 +60,7 @@ If label is not provided in your `posts` resource `useBreadcrumb` uses the [`use
 For Crud operations (`list`,`create`,`edit`,`show`) the `useBreadcrumb` uses:
 
 1. The `actions` key to translate key `` translate(`actions.create`) ``
-2. The `buttons` key to translate key `` translate(`buttons.create`) ``
+2. If there are no actions key the `buttons` key uses to translate key `` translate(`buttons.create`) ``
 
 :::
 
