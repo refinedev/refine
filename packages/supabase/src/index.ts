@@ -106,13 +106,13 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
     return {
         getList: async ({
             resource,
+            hasPagination = true,
             pagination = { current: 1, pageSize: 10 },
             filters,
             sort,
             metaData,
         }) => {
-            const hasPagination = pagination !== false;
-            const { current = 1, pageSize = 10 } = pagination ? pagination : {};
+            const { current = 1, pageSize = 10 } = pagination ?? {};
 
             const query = supabaseClient
                 .from(resource)

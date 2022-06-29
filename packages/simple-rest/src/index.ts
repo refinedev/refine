@@ -85,14 +85,14 @@ const JsonServer = (
 ): DataProvider => ({
     getList: async ({
         resource,
+        hasPagination = true,
         pagination = { current: 1, pageSize: 10 },
         filters,
         sort,
     }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const hasPagination = pagination !== false;
-        const { current = 1, pageSize = 10 } = pagination ? pagination : {};
+        const { current = 1, pageSize = 10 } = pagination ?? {};
 
         const queryFilters = generateFilter(filters);
 

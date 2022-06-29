@@ -118,12 +118,12 @@ const AirtableDataProvider = (
     return {
         getList: async ({
             resource,
+            hasPagination = true,
             pagination = { current: 1, pageSize: 10 },
             sort,
             filters,
         }) => {
-            const hasPagination = pagination !== false;
-            const { current = 1, pageSize = 10 } = pagination ? pagination : {};
+            const { current = 1, pageSize = 10 } = pagination ?? {};
 
             const generetedSort = generateSort(sort) || [];
             const queryFilters = generateFilter(filters);

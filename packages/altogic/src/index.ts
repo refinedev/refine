@@ -102,14 +102,12 @@ const AltogicDataProvider = (
 ): DataProvider => ({
     getList: async ({
         resource,
+        hasPagination = true,
         pagination = { current: 1, pageSize: 10 },
         filters,
         sort,
     }) => {
-        const hasPagination = pagination !== false;
-        const { current: page = 1, pageSize: size = 10 } = pagination
-            ? pagination
-            : {};
+        const { current: page = 1, pageSize: size = 10 } = pagination ?? {};
 
         const url = `${apiUrl}/${resource}`;
 

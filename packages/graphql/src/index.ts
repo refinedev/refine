@@ -51,13 +51,13 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
     return {
         getList: async ({
             resource,
+            hasPagination = true,
             pagination = { current: 1, pageSize: 10 },
             sort,
             filters,
             metaData,
         }) => {
-            const hasPagination = pagination !== false;
-            const { current = 1, pageSize = 10 } = pagination ? pagination : {};
+            const { current = 1, pageSize = 10 } = pagination ?? {};
 
             const sortBy = genereteSort(sort);
             const filterBy = generateFilter(filters);

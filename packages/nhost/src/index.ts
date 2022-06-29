@@ -184,16 +184,14 @@ const dataProvider = (client: NhostClient): DataProvider => {
             resource,
             sort,
             filters,
+            hasPagination = true,
             pagination = {
                 current: 1,
                 pageSize: 10,
             },
             metaData,
         }) => {
-            const hasPagination = pagination !== false;
-            const { current = 1, pageSize: limit = 10 } = pagination
-                ? pagination
-                : {};
+            const { current = 1, pageSize: limit = 10 } = pagination ?? {};
 
             const hasuraSorting = generateSorting(sort);
             const hasuraFilters = generateFilters(filters);
