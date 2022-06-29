@@ -36,7 +36,7 @@ export const BasicDataGrid: React.FC = () => {
                 headerName: "Category",
                 flex: 1,
                 type: "number",
-                renderCell: ({ row }) => {
+                renderCell: function render({ row }) {
                     if (isLoading) {
                         return "Loading...";
                     }

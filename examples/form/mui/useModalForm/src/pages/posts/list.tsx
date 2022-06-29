@@ -55,7 +55,7 @@ export const PostsList: React.FC = () => {
                 align: "left",
                 minWidth: 250,
                 flex: 0.5,
-                renderCell: ({ row }) => {
+                renderCell: function render({ row }) {
                     if (isLoading) {
                         return "Loading...";
                     }

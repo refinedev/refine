@@ -41,7 +41,7 @@ export const Basic: ComponentStory<typeof DataGrid> = () => {
                 align: "left",
                 minWidth: 250,
                 flex: 0.5,
-                renderCell: ({ row }) => {
+                renderCell: function render({ row }) {
                     if (isLoading) {
                         return "Loading...";
                     }

@@ -35,7 +35,7 @@ export const PostList: React.FC = () => {
                 headerName: "Category",
                 minWidth: 250,
                 flex: 1,
-                renderCell: ({ row }) => {
+                renderCell: function render({ row }) {
                     if (isLoading) {
                         return "Loading...";
                     }
