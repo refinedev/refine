@@ -51,7 +51,9 @@ export const PostsList: React.FC = () => {
         [],
     );
 
-    const { dataGridProps } = useDataGrid<IPost>({});
+    const { dataGridProps } = useDataGrid({
+        columns,
+    });
 
     return (
         <List>

@@ -3,45 +3,77 @@ import {
     JSCodeshift,
     Collection,
     FileInfo,
-    ImportSpecifier,
-    JSXExpressionContainer,
     ObjectExpression,
-    ObjectProperty,
     Identifier,
     Property,
-    Node,
+    JSXAttribute,
 } from "jscodeshift";
-import fs from "fs";
-import path from "path";
-import { install, remove } from "../helpers";
-import checkPackageLock from "../helpers/checkPackageLock";
 
 export const parser = "tsx";
 
-const updateSetEditIdToSetId = (j: JSCodeshift, root: Collection<any>) => {
-    const updatedFormHooks = ["useDataGrid"];
+const removeColumnsOnUseDataGrid = (j: JSCodeshift, root: Collection<any>) => {
+    const useDataGridHook = root.find(j.CallExpression, {
+        callee: {
+            name: "useDataGrid",
+        },
+    });
 
-    for (const formHook of updatedFormHooks) {
-        const useEditableTableHook = root.find(j.CallExpression, {
-            callee: {
-                name: formHook,
-            },
-        });
+    useDataGridHook.replaceWith((p) => {
+        if (p.node.arguments.length === 0) {
+            return p.node;
+        }
 
-        useEditableTableHook.replaceWith((p) => {
-            const hede = (
-                p.node.arguments[0] as unknown as ObjectExpression
-            ).properties.filter(
-                (p: Property) => (p.key as Identifier).name !== "columns",
-            );
-            console.log("hede", hede.length);
+        const propertiesWithoutColumns = (
+            p.node.arguments[0] as unknown as ObjectExpression
+        ).properties.filter(
+            (p: Property) => (p.key as Identifier).name !== "columns",
+        );
 
-            (p.node.arguments[0] as unknown as ObjectExpression).properties =
-                hede;
+        if (propertiesWithoutColumns.length === 0) {
+            p.node.arguments = [];
 
             return p.node;
-        });
+        }
+
+        (p.node.arguments[0] as unknown as ObjectExpression).properties =
+            propertiesWithoutColumns;
+
+        return p.node;
+    });
+};
+
+const addColumnsToUseDataGrid = (j: JSCodeshift, root: Collection<any>) => {
+    const dataGridElement = root.find(j.JSXElement, {
+        openingElement: {
+            name: {
+                name: "DataGrid",
+            },
+        },
+    });
+
+    if (dataGridElement.length === 0) {
+        console.warn(
+            "If you use `useDataGrid` hook, you need to use `DataGrid` element.",
+        );
+        return;
     }
+
+    dataGridElement.forEach((path) => {
+        const hasColumnsAttribute = path.node.openingElement.attributes.find(
+            (attribute) => (attribute as JSXAttribute).name?.name === "columns",
+        );
+
+        if (hasColumnsAttribute) {
+            return;
+        }
+
+        path.node.openingElement.attributes.push(
+            j.jsxAttribute(
+                j.jsxIdentifier("columns"),
+                j.jsxExpressionContainer(j.identifier("columns")),
+            ),
+        );
+    });
 };
 
 export default function transformer(file: FileInfo, api: API): string {
@@ -65,7 +97,8 @@ export default function transformer(file: FileInfo, api: API): string {
         return;
     }
 
-    updateSetEditIdToSetId(j, source);
+    removeColumnsOnUseDataGrid(j, source);
+    addColumnsToUseDataGrid(j, source);
 
     return source.toSource();
 }
