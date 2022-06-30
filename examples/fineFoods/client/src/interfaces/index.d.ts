@@ -89,6 +89,6 @@ export interface IOrder {
 }
 
 export interface IBasketOrder {
-    productid: number;
+    productId: number;
     amount: number;
 }
