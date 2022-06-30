@@ -1,5 +1,14 @@
 # @pankod/refine-nextjs-router
 
+## 3.25.6
+
+### Patch Changes
+
+-   Created a wrapper `<Link>` component for handling `href` and `to` props. When using `to` the wrapper will pass it to the `href` prop.
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.36.0
+
 ## 3.25.5
 
 ### Patch Changes
