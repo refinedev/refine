@@ -12,6 +12,9 @@ import { useResource } from "@hooks/resource";
 
 import { ITelemetryData } from "../../interfaces/telementry";
 
+// It reads and updates from package.json during build. ref: tsup.config.ts
+const REFINE_VERSION = "1.0.0";
+
 export const Telemetry: React.FC<{}> = () => {
     const authContext = useContext(AuthContext);
     const auditLogContext = useContext(AuditLogContext);
@@ -47,7 +50,7 @@ export const Telemetry: React.FC<{}> = () => {
                 notificationProvider,
                 accessControlProvider,
             },
-            version: "0.0.0",
+            version: REFINE_VERSION,
             resourceCount: resources.length,
         };
 
