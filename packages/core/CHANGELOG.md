@@ -1,5 +1,64 @@
 # @pankod/refine-core
 
+## 3.35.0
+
+### Minor Changes
+
+-   [#2050](https://github.com/pankod/refine/pull/2050) [`635cfe9fdb`](https://github.com/pankod/refine/commit/635cfe9fdbfe5940b950ae99c1f0b686c78bb8e5) Thanks [@ozkalai](https://github.com/ozkalai)! - Ability to disable server-side pagination on `useTable` and `useList` hooks.
+
+    **Implementation**
+
+    Added `hasPagination` property to `useTable` to enable/disable pagination. Updated `useList` config with no pagination option. Set `hasPagination` to `false` to disable pagination. `useTable` hook uses the `useList` hook under the hood and propagates the `hasPagination` property to it. Also setting pagination related return values to `undefined` for better type check on the user side.
+
+    **Use Cases**
+
+    In some data providers, some of the resources might not support pagination which was not supported prior to these changes. To handle the pagination on the client-side or to disable completely, users can set `hasPagination` to `false`.
+
+### Patch Changes
+
+-   [#2069](https://github.com/pankod/refine/pull/2069) [`ecde34a9b3`](https://github.com/pankod/refine/commit/ecde34a9b38ef5667fa863f9ebb9dcb1cfff1651) Thanks [@biskuvit](https://github.com/biskuvit)! - Added `actions` translate support for CRUD operations (`list`,`create`,`edit`,`show`) in the `useBreadcrumb` [`useBreadcrumb`](https://refine.dev/docs/core/hooks/useBreadcrumb/#i18n-support) hook.
+
+    #️⃣ First, We need to add the `actions` key to the translation file.
+
+    ```json
+        "actions": {
+            "list": "List",
+            "create": "Create",
+            "edit": "Edit",
+            "show": "Show"
+        },
+    ```
+
+    #️⃣ If you don't provide the `actions` key, `useBreadcrumb` will try to find the `buttons` key in the `translation` file for backward compatibility.
+
+    ```json
+        "buttons": {
+            "list": "List",
+            "create": "Create",
+            "edit": "Edit",
+            "show": "Show"
+        },
+    ```
+
+    🎉 You can check the code part of this pull request to see how it works [here👇🏼](https://github.com/pankod/refine/pull/2069)
+
+    ```tsx
+    const key = `actions.${action}`;
+    const actionLabel = translate(key);
+    if (actionLabel === key) {
+        console.warn(
+            `Breadcrumb missing translate key for the "${action}" action. Please add "actions.${action}" key to your translation file. For more information, see https://refine.dev/docs/core/hooks/useBreadcrumb/#i18n-support`,
+        );
+        breadcrumbs.push({
+            label: translate(`buttons.${action}`, humanizeString(action)),
+        });
+    } else {
+        breadcrumbs.push({
+            label: translate(key, humanizeString(action)),
+        });
+    }
+    ```
+
 ## 3.34.2
 
 ### Patch Changes
