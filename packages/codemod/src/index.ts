@@ -119,7 +119,7 @@ export function runTransform({ files, flags, transformer }) {
 
 const TRANSFORMER_INQUIRER_CHOICES = [
     {
-        name: "use-data-grid-columns: Transform from refine 2.x.x to at least 3.0.0",
+        name: "use-data-grid-columns: Transform `useDataGrid` `columns` usage",
         value: "use-data-grid-columns",
     },
     {
