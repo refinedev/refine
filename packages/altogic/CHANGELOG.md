@@ -1,5 +1,22 @@
 # @pankod/refine-altogic
 
+## 3.25.6
+
+### Patch Changes
+
+-   Updated pagination parameters default values and added `hasPagination` property to `getList` method of the data providers.
+
+    **Implementation**
+
+    Updated the `getList` method accordingly to the changes in the `useTable` and `useList` of `@pankod/refine-core`. `hasPagination` is used to disable pagination (defaults to `true`)
+
+    **Use Cases**
+
+    For some resources, there might be no support for pagination or users might want to see all of the data without any pagination, prior to these changes this was not supported in **refine** data providers.
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.36.0
+
 ## 3.25.5
 
 ### Patch Changes

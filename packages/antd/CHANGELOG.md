@@ -1,5 +1,35 @@
 # @pankod/refine-antd
 
+## 3.27.0
+
+### Minor Changes
+
+-   Updated `useTable` hook with `hasPagination` to enable/disable pagination.
+
+    **Implementation**
+
+    Updated the `useTable` accordingly to the changes in the `useTable` of `@pankod/refine-core`. `hasPagination` property is being send directly to the `useTable` of `@pankod/refine-core` to disable pagination.
+
+    **Use Cases**
+
+    In some data providers, some of the resources might not support pagination which was not supported prior to these changes. To handle the pagination on the client-side or to disable completely, users can set `hasPagination` to `false`.
+
+### Patch Changes
+
+-   Fixed `<Link>` usage in packages.
+
+    ```diff
+    - <Link href={route} to={route}>
+    -    {label}
+    - </Link>
+    + <Link to={route}>{label}</Link>
+    ```
+
+    We used to have to pass `href` and `to` for Next.js and React applications, now we just need to pass `to`. **refine** router providers handle for us.
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.36.0
+
 ## 3.26.0
 
 ### Minor Changes
