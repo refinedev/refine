@@ -29,7 +29,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 // See https://cerbos.dev for more information
 
 // The Cerbos PDP instance
-const cerbos = new Cerbos("https://demo-pdp.cerbos.cloud", {   
+const cerbos = new Cerbos("https://demo-pdp.cerbos.cloud", {
     playgroundInstance: "WS961950bd85QNYlAvTmJYubP0bqF7e3", // The playground instance ID to test
 });
 
@@ -45,12 +45,14 @@ const App: React.FC = () => {
                         principal: {
                             id: "demoUser", // Fake a user ID
                             roles: [role],
+                            policyVersion: "default",
                             // this is where user attributes can be passed
                             attributes: {},
                         },
                         resource: {
                             kind: resource,
-                            id: params?.id || "new",
+                            policyVersion: "default",
+                            id: params?.id+'' || "new",
                             attributes: params
                         },
                         // the list of actions on the resource to check authorization for
