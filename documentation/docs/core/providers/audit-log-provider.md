@@ -8,9 +8,15 @@ import TabItem from '@theme/TabItem';
 
 ## Overview
 
-**refine** provides Audit Log support via `auditLogProvider`. A new log record is automatically created when a new record is created, updated and deleted. You can access these records from anywhere via hooks. You can also manually create or update an audit-log via hooks.
+**refine** allows you to track changes in your data and keep track of who made the changes. This is done by sending a new log event record whenever a new record is created, updated or deleted. Mutations made with data hooks are automatically sent the `auditLogProvider` as an event. You can also manually send events to the `auditLogProvider` via hooks.
 
-Complete all this by writing an `auditLogProvider` to **refine**. This provider must include the following methods:
+An `auditLogProvider` must have the following three methods:
+
+-   `create`: Logs an event to the audit log.
+-   `get`: Returns a list of events.
+-   `update`: Updates an event in the audit log.
+
+Below are the corresponding interfaces for each of these methods.
 
 ```ts
 const auditLogProvider = {
@@ -40,7 +46,7 @@ const auditLogProvider = {
 ```
 
 :::note
-**refine** uses these methods in [`useLog`](/core/hooks/audit-log/useLog.md) and [`useLogList`](/core/hooks/audit-log/useLogList.md).
+**refine** provides the `useLog` and `useLogList` hooks to access your `auditLogProvider` methods from anywhere in your application.
 :::
 
 ## Usage
@@ -104,7 +110,6 @@ const auditLogProvider: AuditLogProvider = {
 | meta                                                                                                | `Record<string, any>` | Record info                          |
 | author                                                                                              | `Record<string, any>` | Author info                          |
 
-
 ### `create`
 
 This method is triggered when a new successful mutation or when you use `useLog`'s `log` method. The incoming parameters show the values of the new record to be created.
@@ -112,7 +117,6 @@ This method is triggered when a new successful mutation or when you use `useLog`
 :::important
 We recommend you create `Audit logs` on the API side for security concerns because data can be changed on the client side.
 :::
-
 
 ```ts title="auditLogProvider.ts"
 import refineSimpleRestDataProvider from "@pankod/refine-simple-rest";
@@ -133,23 +137,23 @@ const auditLogProvider: AuditLogProvider = {
 
 ```json
 [
-  {
-    "action": "create",
-    "resource": "posts",
-    "data": {
-      "title": "Test",
-      "category": {
+    {
+        "action": "create",
+        "resource": "posts",
+        "data": {
+            "title": "Test",
+            "category": {
+                "id": 1
+            },
+            "status": "published",
+            "content": "Test Content"
+        },
+        "meta": {
+            "id": 1001
+        },
+        "timestamp": "2022-06-22T10:04:47.157Z",
         "id": 1
-      },
-      "status": "published",
-      "content": "Test Content"
-    },
-    "meta": {
-      "id": 1001
-    },
-    "timestamp": "2022-06-22T10:04:47.157Z",
-    "id": 1
-  }
+    }
 ]
 ```
 
@@ -213,13 +217,12 @@ const auditLogProvider: AuditLogProvider = {
 
 > [Refer to the useLog documentation for more information. &#8594](/core/hooks/audit-log/useLog.md)
 
-
 ## Supported Hooks
 
 Supported hooks subscribe in the following way:
 
 :::important
-It only **works** on `useCreate`, `useUpdate` and `useDelete` hooks. 
+It only **works** on `useCreate`, `useUpdate` and `useDelete` hooks.
 
 `useCreateMany` **does not support** `useUpdateMany` and `useDeleteMany` hooks.
 :::
@@ -319,6 +322,7 @@ mutate({
     }
 }
 ```
+
 <br/>
 
 ## Enable for specific mutations type
