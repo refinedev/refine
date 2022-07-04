@@ -1,8 +1,8 @@
 # @pankod/refine-mui
 
-## 4.0.0
+## 3.36.0
 
-### Major Changes
+### Minor Changes
 
 -   [#2072](https://github.com/pankod/refine/pull/2072) [`bbca622ede`](https://github.com/pankod/refine/commit/bbca622eded117271350aa178b3e757c890c5bc4) Thanks [@salihozdemir](https://github.com/salihozdemir)! - The `useDataGrid` hook required the `columns` property. Therefore, the `queryResult` could not be used in the `columns`. Now, we can define the `columns` property wherever we want since the `useDataGrid` hook does not take the `column` property.
 
