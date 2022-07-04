@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useSelect, useForm, useNavigation } from "@pankod/refine-core";
 import { v4 as uuidv4 } from "uuid";
 
@@ -14,7 +14,7 @@ export const PostCreate: React.FC = () => {
             id: "",
         },
     });
-    const { formLoading, onFinish, redirect, id } = useForm({
+    const { formLoading, onFinish, redirect } = useForm({
         redirect: false,
         id: formValues.id,
     });
@@ -26,14 +26,13 @@ export const PostCreate: React.FC = () => {
     });
 
     const handleSubmit = async (
-        e: any,
+        e: React.MouseEvent<HTMLInputElement>,
         redirectTo: "list" | "edit" | "create",
     ) => {
-        e.preventDefault();
         await onFinish(formValues);
 
         setFormValues({
-            id: "1",
+            id: uuidv4(),
             title: "",
             content: "",
             status: "draft",
@@ -123,17 +122,17 @@ export const PostCreate: React.FC = () => {
                 </div>
                 <div className="saveActions">
                     <input
-                        onClick={() => handleSubmit(event, "list")}
+                        onClick={(e) => handleSubmit(e, "list")}
                         type="submit"
                         value="Save"
                     />
                     <input
-                        onClick={() => handleSubmit(event, "edit")}
+                        onClick={(e) => handleSubmit(e, "edit")}
                         type="submit"
                         value="Save and continue editing"
                     />
                     <input
-                        onClick={() => handleSubmit(event, "create")}
+                        onClick={(e) => handleSubmit(e, "create")}
                         type="submit"
                         value="Save and add another"
                     />
