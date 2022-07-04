@@ -31,36 +31,65 @@ export default defineConfig({
                         args.path,
                         "utf8",
                     );
-                    let finalContents: string = contents;
 
                     const extension = path.extname(args.path).replace(".", "");
                     const loader = JS_EXTENSIONS.has(extension)
                         ? "jsx"
                         : (extension as any);
 
-                    // find and replace lodash imports
+                    const versionRegex = /const REFINE_VERSION = "\d.\d.\d";/gm;
+                    const hasVersion = contents.match(versionRegex);
+
+                    if (!hasVersion) {
+                        return {
+                            loader,
+                            contents,
+                        };
+                    }
+
+                    const version = await getRefineCoreVersion();
+                    return {
+                        loader,
+                        contents: contents.replace(
+                            versionRegex,
+                            `const REFINE_VERSION = "${version}";`,
+                        ),
+                    };
+                });
+            },
+        },
+        {
+            name: "textReplace",
+            setup: (build) => {
+                // original code: https://github.com/josteph/esbuild-plugin-lodash
+                if (build.initialOptions.format === "cjs") {
+                    return;
+                }
+                build.onLoad({ filter: /.*/ }, async (args) => {
+                    const contents = await fs.promises.readFile(
+                        args.path,
+                        "utf8",
+                    );
+
+                    const extension = path.extname(args.path).replace(".", "");
+                    const loader = JS_EXTENSIONS.has(extension)
+                        ? "jsx"
+                        : (extension as any);
+
                     const lodashImportRegex =
                         /import\s+?(?:(?:(?:[\w*\s{},]*)\s+from\s+?)|)[\'\"](?:(?:lodash\/?.*?))[\'\"][\s]*?(?:;|$|)/g;
 
                     const lodashImports = contents.match(lodashImportRegex);
-                    if (lodashImports) {
-                        finalContents = contents.replace("lodash", "lodash-es");
-                    }
-
-                    // find version and replace
-                    const versionRegex = /const REFINE_VERSION = "\d.\d.\d";/gm;
-                    const hasVersion = contents.match(versionRegex);
-                    if (hasVersion) {
-                        const version = await getRefineCoreVersion();
-                        finalContents = contents.replace(
-                            versionRegex,
-                            `const REFINE_VERSION = "${version}";`,
-                        );
+                    if (!lodashImports) {
+                        return {
+                            loader,
+                            contents,
+                        };
                     }
 
                     return {
                         loader,
-                        contents: finalContents,
+                        contents: contents.replace("lodash", "lodash-es"),
                     };
                 });
             },
