@@ -452,7 +452,6 @@ module.exports = {
                         "guides-and-concepts/search/table-search",
                     ],
                 },
-
                 "guides-and-concepts/ssr-nextjs",
                 {
                     type: "category",
@@ -467,6 +466,7 @@ module.exports = {
                     label: "Web3",
                     items: ["guides-and-concepts/web3/ethereum-signin"],
                 },
+                "guides-and-concepts/save-and-continue",
             ],
         },
         {
