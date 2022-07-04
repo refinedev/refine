@@ -1,9 +1,8 @@
-import { IResourceComponentsProps, useMany } from "@pankod/refine-core";
+import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
     List,
     Table,
-    TextField,
     useTable,
     Space,
     EditButton,
@@ -24,16 +23,8 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 order: "asc",
             },
         ],
-    });
-
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
-
-    const { data, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
+        metaData: {
+            select: "*, categories(title)",
         },
     });
 
@@ -58,8 +49,13 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     sorter
                 />
                 <Table.Column
-                    dataIndex="categoryId"
+                    key="categoryId"
+                    dataIndex={["categories", "title"]}
                     title="Category"
+                    defaultSortOrder={getDefaultSortOrder(
+                        "categories.title",
+                        sorter,
+                    )}
                     filterDropdown={(props) => (
                         <FilterDropdown {...props}>
                             <Select
@@ -70,20 +66,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                             />
                         </FilterDropdown>
                     )}
-                    render={(value) => {
-                        if (isLoading) {
-                            return <TextField value="Loading..." />;
-                        }
-
-                        return (
-                            <TextField
-                                value={
-                                    data?.data.find((item) => item.id === value)
-                                        ?.title
-                                }
-                            />
-                        );
-                    }}
                 />
                 <Table.Column<IPost>
                     title="Actions"
