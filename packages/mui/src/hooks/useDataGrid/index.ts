@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
     BaseRecord,
     CrudFilters,
@@ -11,7 +11,6 @@ import {
 } from "@pankod/refine-core";
 import {
     DataGridProps,
-    GridColType,
     GridFilterModel,
     GridSortModel,
 } from "@mui/x-data-grid";
@@ -25,15 +24,6 @@ import {
     transformFilterModelToCrudFilters,
     transformCrudFiltersToFilterModel,
 } from "@definitions";
-import { useMemo } from "react";
-
-export type ColumnsLookupType = Record<
-    string,
-    {
-        type?: GridColType;
-        [key: string]: any;
-    }
->;
 
 type DataGridPropsType = Pick<DataGridProps, "filterModel"> &
     Required<
@@ -90,7 +80,7 @@ export function useDataGrid<
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
 >(
-    props: UseDataGridProps<TData, TError, TSearchVariables> & {
+    props?: UseDataGridProps<TData, TError, TSearchVariables> & {
         hasPagination?: true;
     },
 ): UseDataGridReturnType<TData, TSearchVariables>;
@@ -99,7 +89,7 @@ export function useDataGrid<
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
 >(
-    props: UseDataGridProps<TData, TError, TSearchVariables> & {
+    props?: UseDataGridProps<TData, TError, TSearchVariables> & {
         hasPagination: false;
     },
 ): UseDataGridNoPaginationReturnType<TData, TSearchVariables>;
@@ -127,10 +117,11 @@ export function useDataGrid<
     liveParams,
     metaData,
     dataProviderName,
-}: UseDataGridProps<TData, TError, TSearchVariables>):
+}: UseDataGridProps<TData, TError, TSearchVariables> = {}):
     | UseDataGridReturnType<TData, TSearchVariables>
     | UseDataGridNoPaginationReturnType<TData, TSearchVariables> {
-    const [columnsLookup, setColumnsLookup] = useState<ColumnsLookupType>();
+    const [columnsTypes, setColumnsType] = useState<Record<string, string>>();
+
     const {
         tableQueryResult,
         current,
@@ -257,11 +248,20 @@ export function useDataGrid<
             filterMode: "server",
             filterModel: transformCrudFiltersToFilterModel(
                 differenceWith(filters, permanentFilter ?? [], isEqual),
-                columnsLookup,
+                columnsTypes,
             ),
             onFilterModelChange: handleFilterModelChange,
             onStateChange: (state) => {
-                setColumnsLookup(state.columns.lookup);
+                const newColumnsTypes = Object.fromEntries(
+                    Object.entries(state.columns.lookup).map(([key, value]) => {
+                        return [key, (value as any).type];
+                    }),
+                );
+                const isStateChanged = !isEqual(newColumnsTypes, columnsTypes);
+
+                if (isStateChanged) {
+                    setColumnsType(newColumnsTypes);
+                }
             },
             sx: {
                 border: "none",
