@@ -23,7 +23,7 @@ const { tableProps } = useTable({
 
 📢 `field: "categories.title"` means in the `posts` table `categories` is the foreign table, `title` is the field in the foreign table, and `asc` is the order.
 
-🚨 Don't forget to pass the `sorter` and `dataIndex` property to the your `Columm` component:
+🚨 If you are using **Ant Design** don't forget to pass the `sorter` and `dataIndex` property to the your `Columm` component:
 
 ```tsx
 ...
