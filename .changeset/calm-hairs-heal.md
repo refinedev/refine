@@ -2,7 +2,7 @@
 "@pankod/refine-codemod": minor
 ---
 
-Create codemod wizard fixing changes made in [#2072](https://github.com/pankod/refine/pull/2072).
+Add Codemod support for changed `columns` usage of `useDataGrid` hook. [#2072](https://github.com/pankod/refine/pull/2072).
 
 ```diff
 export const PostsList: React.FC = () => {
