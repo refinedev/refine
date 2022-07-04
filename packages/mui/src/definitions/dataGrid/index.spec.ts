@@ -3,7 +3,6 @@ import {
     GridSortModel,
     GridFilterModel,
     GridLinkOperator,
-    GridColumns,
 } from "@mui/x-data-grid";
 
 import {
@@ -14,7 +13,6 @@ import {
     transformCrudOperatorToMuiOperator,
     transformCrudFiltersToFilterModel,
 } from ".";
-import { ColumnsLookupType } from "@hooks/useDataGrid";
 
 describe("transformSortModelToCrudSorting", () => {
     it("Map grid sort model to crud sorting", () => {
@@ -286,9 +284,9 @@ describe("transformCrudFiltersToFilterModel", () => {
             },
         ];
 
-        const columnsLookup: ColumnsLookupType = {
-            rating: { type: "number" },
-            isAdmin: { type: "boolean" },
+        const columnsLookup = {
+            rating: "number",
+            isAdmin: "boolean",
         };
 
         const filterModel: GridFilterModel = {
@@ -328,9 +326,9 @@ describe("transformCrudFiltersToFilterModel", () => {
             },
         ];
 
-        const columnsLookup: ColumnsLookupType = {
-            rating: { type: "number" },
-            isAdmin: { type: "boolean" },
+        const columnsLookup = {
+            rating: "number",
+            isAdmin: "boolean",
         };
 
         const filterModel: GridFilterModel = {
@@ -385,9 +383,9 @@ describe("transformCrudFiltersToFilterModel", () => {
             },
         ];
 
-        const columnsLookup: ColumnsLookupType = {
-            rating: { type: "number" },
-            isAdmin: { type: "boolean" },
+        const columnsLookup = {
+            rating: "number",
+            isAdmin: "boolean",
         };
 
         const filterModel: GridFilterModel = {
@@ -416,7 +414,7 @@ describe("transformCrudFiltersToFilterModel", () => {
     it("Map crud filters to filter model with no filters, should return default mui filter mui", () => {
         const crudFilters: CrudFilters = [];
 
-        const columnsLookup: ColumnsLookupType = {};
+        const columnsLookup = {};
 
         expect(
             transformCrudFiltersToFilterModel(crudFilters, columnsLookup),
