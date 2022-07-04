@@ -9,18 +9,18 @@ title: useForm
 
 We'll show the basic usage of `useForm` by adding an editing form.
 
-```tsx  title="pages/posts/edit.tsx"
+```tsx title="pages/posts/edit.tsx"
 // highlight-next-line
 import { Edit, Form, Input, useForm, Select } from "@pankod/refine-antd";
 
 export const PostEdit: React.FC = () => {
-// highlight-next-line
+    // highlight-next-line
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     return (
-// highlight-next-line
+        // highlight-next-line
         <Edit saveButtonProps={saveButtonProps}>
-// highlight-next-line
+            // highlight-next-line
             <Form {...formProps} layout="vertical">
                 <Form.Item label="Title" name="title">
                     <Input />
@@ -55,7 +55,7 @@ interface IPost {
 }
 ```
 
-```tsx 
+```tsx
 const { formProps, saveButtonProps } = useForm<IPost>();
 ```
 
@@ -79,7 +79,7 @@ By default it determines the action from route. In the example, the route is `/p
 
 It can take an `action` parameter for the situations where it isn't possible to determine the action from route i.e. using a form in a modal, using a custom route.
 
-```tsx 
+```tsx
 const { formProps, saveButtonProps } = useForm({ action: "edit" });
 ```
 
@@ -102,7 +102,7 @@ When creating a new record, `useForm` can initialize the form with the data of a
 `useForm` works on clone mode when a route has a `clone` and `id` parameters like this `{{resourceName}}/clone/1234`.
 Alternatively, if route doesn't have those parameters, action can be set with `action: "clone"` and id can be set with `setId` and `id`.
 
-```tsx 
+```tsx
 const { setId, id } = useForm({
     action: "clone",
 });
@@ -115,103 +115,19 @@ If you want to show a form in a modal or drawer where necessary route params mig
 :::tip
 `<CloneButton>` can be used to navigate to a clone route with an id like this `{{resourceName}}/clone/1234`.
 
-```tsx 
+```tsx
 <CloneButton recordItemId={record.id} />
 ```
 
 Also the `clone` method from the [`useNavigation`](/core/hooks/navigation/useNavigation.md) hook can be used as well.
 
-```tsx 
+```tsx
 const { clone } = useNavigation();
 
-<Button onClick={() => clone("posts", record.id)} />
+<Button onClick={() => clone("posts", record.id)} />;
 ```
 
 :::
-
-## How can I implement the save and continue feature?
-refine provides you with the necessary methods to add this feature. This feature is familiar to [Django](https://www.djangoproject.com/) users.
-
-We have three save options: `Save`, `Save and continue editing` and `Save and add another`. By default, only the `Save` button is added from [CRUD components](/ui-frameworks/antd/components/basic-views/create.md) for now. 
-
-Now let's see how to handle other cases,
-
-```tsx title="pages/posts/create.tsx"
-import { Edit, Form, Input, useForm, Select, Space } from "@pankod/refine-antd";
-
-export const PostEdit: React.FC = () => {
-    const { 
-        formProps,
-        saveButtonProps,
-        // highlight-start
-        onFinish,
-        redirect
-        // highlight-end
-    } = useForm<IPost>({
-        redirect: false,
-    });
-
-    return (
-        <Edit 
-        // highlight-start
-            actionButtons={
-                <Space>
-                    <SaveButton
-                        {...saveButtonProps}
-                        onClick={async () => {
-                            await onFinish?.();
-                            redirect("list");
-                        }}
-                    />
-                    <SaveButton {...saveButtonProps}>
-                        Save and continue editing
-                    </SaveButton>
-                    <SaveButton {...saveButtonProps}
-                        onClick={async () => {
-                            await onFinish?.();
-                            redirect("create");
-                        }}>
-                        Save and add another
-                    </SaveButton>
-                </Space>
-            }
-        // highlight-end
-        >
-            <Form {...formProps} layout="vertical">
-                <Form.Item label="Title" name="title">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Status" name="status">
-                    <Select
-                        options={[
-                            {
-                                label: "Published",
-                                value: "published",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
-                            },
-                            {
-                                label: "Rejected",
-                                value: "rejected",
-                            },
-                        ]}
-                    />
-                </Form.Item>
-            </Form>
-        </Edit>
-    );
-};
-
-interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
-}
-```
-
-
 
 ## API Reference
 
@@ -220,7 +136,7 @@ interface IPost {
 | Property                                                     | Description                                                                                                                                                        | Type                                                                            | Default                                                                                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | action                                                       | Type of the form mode                                                                                                                                              | `"edit"` \| `"create"` \| `"clone"`                                             |                                                                                                                                      |
-| resource                                                     | Resource name for API data interactions                                                                                                                            | `string`                                                                        |                                                              |
+| resource                                                     | Resource name for API data interactions                                                                                                                            | `string`                                                                        |                                                                                                                                      |
 | id                                                           | Record id for fetching                                                                                                                                             | [`BaseKey`](/core/interfaces.md#basekey)                                        | Id that it reads from the URL                                                                                                        |
 | onMutationSuccess                                            | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) is successful                                                                     | `(data: UpdateResponse<M>, variables: any, context: any) => void`               |                                                                                                                                      |
 | onMutationError                                              | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error                                                               | `(error: any, variables: any, context: any) => void`                            |                                                                                                                                      |
@@ -261,8 +177,8 @@ interface IPost {
 
 | Property   | Desription                                                       | Default                    |
 | ---------- | ---------------------------------------------------------------- | -------------------------- |
-| TData      | Result data of the query that extends [`BaseRecord`][BaseRecord] | [`BaseRecord`][BaseRecord] |
-| TError     | Custom error object that extends [`HttpError`][HttpError]        | [`HttpError`][HttpError]   |
+| TData      | Result data of the query that extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError     | Custom error object that extends [`HttpError`][httperror]        | [`HttpError`][httperror]   |
 | TVariables | Values for params.                                               | `{}`                       |
 
 ## Live StackBlitz Example
@@ -272,5 +188,5 @@ interface IPost {
     title="refine-use-form-example"
 ></iframe>
 
-[BaseRecord]: /core/interfaces.md#baserecord
-[HttpError]: /core/interfaces.md#httperror
+[baserecord]: /core/interfaces.md#baserecord
+[httperror]: /core/interfaces.md#httperror
