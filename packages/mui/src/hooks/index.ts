@@ -1,3 +1,7 @@
 export * from "./useAutocomplete";
-export * from "./useDataGrid";
+export {
+    UseDataGridProps,
+    UseDataGridReturnType,
+    useDataGrid,
+} from "./useDataGrid";
 export * from "./useMenu";

@@ -61,7 +61,7 @@ const CustomToolbar: React.FC<CustomToolbarProps> = ({ selectedRowIds }) => {
 };
 
 export const DeleteMany: ComponentStory<typeof DataGrid> = () => {
-    const { dataGridProps } = useDataGrid({ columns });
+    const { dataGridProps } = useDataGrid();
 
     const [selectedRowIds, setSelectedRowIds] = useState<GridSelectionModel>(
         [],
@@ -71,6 +71,7 @@ export const DeleteMany: ComponentStory<typeof DataGrid> = () => {
         <div style={{ height: 700, width: "100%" }}>
             <DataGrid
                 {...dataGridProps}
+                columns={columns}
                 checkboxSelection
                 disableSelectionOnClick
                 onSelectionModelChange={(newSelectionModel) => {

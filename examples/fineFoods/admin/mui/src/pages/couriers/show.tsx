@@ -32,6 +32,26 @@ import {
 
 import { ICourier, IReview } from "interfaces";
 
+type CourierInfoTextProps = {
+    icon: React.ReactNode;
+    text?: string;
+};
+
+const CourierInfoText: React.FC<CourierInfoTextProps> = ({ icon, text }) => (
+    <Stack
+        direction="row"
+        alignItems="center"
+        justifyContent={{
+            sm: "center",
+            lg: "flex-start",
+        }}
+        gap={1}
+    >
+        {icon}
+        <Typography variant="body1">{text}</Typography>
+    </Stack>
+);
+
 export const CourierShow: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const { show } = useNavigation();
@@ -41,28 +61,27 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
     } = useShow<ICourier>();
     const courier = data?.data;
 
-    type CourierInfoTextProps = {
-        icon: React.ReactNode;
-        text?: string;
-    };
-
-    const CourierInfoText: React.FC<CourierInfoTextProps> = ({
-        icon,
-        text,
-    }) => (
-        <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent={{
-                sm: "center",
-                lg: "flex-start",
-            }}
-            gap={1}
-        >
-            {icon}
-            <Typography variant="body1">{text}</Typography>
-        </Stack>
-    );
+    const { dataGridProps } = useDataGrid<IReview, HttpError>({
+        resource: "reviews",
+        initialSorter: [
+            {
+                field: "id",
+                order: "desc",
+            },
+        ],
+        permanentFilter: [
+            {
+                field: "order.courier.id",
+                operator: "eq",
+                value: courier?.id,
+            },
+        ],
+        initialPageSize: 4,
+        queryOptions: {
+            enabled: courier !== undefined,
+        },
+        syncWithLocation: false,
+    });
 
     const columns = React.useMemo<GridColumns<IReview>>(
         () => [
@@ -127,29 +146,6 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
         [t],
     );
 
-    const { dataGridProps } = useDataGrid<IReview, HttpError>({
-        columns,
-        resource: "reviews",
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
-        permanentFilter: [
-            {
-                field: "order.courier.id",
-                operator: "eq",
-                value: courier?.id,
-            },
-        ],
-        initialPageSize: 4,
-        queryOptions: {
-            enabled: courier !== undefined,
-        },
-        syncWithLocation: false,
-    });
-
     return (
         <Grid container spacing={2}>
             <Grid item xs={12} lg={3}>
@@ -200,6 +196,7 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
                     >
                         <DataGrid
                             {...dataGridProps}
+                            columns={columns}
                             autoHeight
                             rowHeight={80}
                             rowsPerPageOptions={[4, 10, 20, 100]}

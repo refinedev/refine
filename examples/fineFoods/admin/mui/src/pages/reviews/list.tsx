@@ -35,6 +35,17 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
 
     const { mutate } = useUpdateMany<IReview>();
 
+    const { dataGridProps } = useDataGrid<IReview>({
+        initialPageSize: 10,
+        permanentFilter: [
+            {
+                field: "status",
+                operator: "eq",
+                value: "pending",
+            },
+        ],
+    });
+
     const handleUpdate = (id: BaseKey, status: IReview["status"]) => {
         mutate({
             resource: "reviews",
@@ -167,18 +178,6 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
         [t],
     );
 
-    const { dataGridProps } = useDataGrid<IReview>({
-        columns,
-        initialPageSize: 10,
-        permanentFilter: [
-            {
-                field: "status",
-                operator: "eq",
-                value: "pending",
-            },
-        ],
-    });
-
     return (
         <List
             cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
@@ -203,6 +202,7 @@ export const ReviewsList: React.FC<IResourceComponentsProps> = () => {
         >
             <DataGrid
                 {...dataGridProps}
+                columns={columns}
                 autoHeight
                 checkboxSelection
                 density="comfortable"

@@ -25,6 +25,16 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const { mutate: mutateDelete } = useDelete();
 
+    const { dataGridProps } = useDataGrid<ICourier>({
+        initialPageSize: 10,
+        initialSorter: [
+            {
+                field: "id",
+                order: "desc",
+            },
+        ],
+    });
+
     const columns = React.useMemo<GridColumns<ICourier>>(
         () => [
             {
@@ -112,21 +122,11 @@ export const CourierList: React.FC<IResourceComponentsProps> = () => {
         [t],
     );
 
-    const { dataGridProps } = useDataGrid<ICourier>({
-        columns,
-        initialPageSize: 10,
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
-    });
-
     return (
         <List cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
             <DataGrid
                 {...dataGridProps}
+                columns={columns}
                 autoHeight
                 rowsPerPageOptions={[10, 20, 50, 100]}
                 density="comfortable"

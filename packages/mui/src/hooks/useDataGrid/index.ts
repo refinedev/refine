@@ -1,3 +1,4 @@
+import { useState, useMemo, useEffect } from "react";
 import {
     BaseRecord,
     CrudFilters,
@@ -23,13 +24,11 @@ import {
     transformFilterModelToCrudFilters,
     transformCrudFiltersToFilterModel,
 } from "@definitions";
-import { useMemo } from "react";
 
 type DataGridPropsType = Pick<DataGridProps, "filterModel"> &
     Required<
         Pick<
             DataGridProps,
-            | "columns"
             | "rows"
             | "loading"
             | "rowCount"
@@ -40,6 +39,7 @@ type DataGridPropsType = Pick<DataGridProps, "filterModel"> &
             | "onFilterModelChange"
             | "sx"
             | "disableSelectionOnClick"
+            | "onStateChange"
         >
     > &
     Pick<
@@ -54,10 +54,14 @@ type DataGridPropsType = Pick<DataGridProps, "filterModel"> &
 
 export type UseDataGridProps<TData, TError, TSearchVariables = unknown> =
     useTablePropsCore<TData, TError> & {
-        columns: DataGridProps["columns"];
         onSearch?: (
             data: TSearchVariables,
         ) => CrudFilters | Promise<CrudFilters>;
+    } & {
+        /**
+         * @deprecated columns is deprecated and will be removed in the next major version. # https://github.com/pankod/refine/pull/2072
+         */
+        columns?: DataGridProps<TData>["columns"];
     };
 
 export type UseDataGridReturnType<
@@ -76,13 +80,30 @@ export type UseDataGridNoPaginationReturnType<
     search: (value: TSearchVariables) => Promise<void>;
 };
 
+export type UseDataGridWithColumnsReturnType<
+    TData extends BaseRecord = BaseRecord,
+    TSearchVariables = unknown,
+> = useTableReturnTypeCore<TData> & {
+    dataGridProps: DataGridPropsType & Pick<DataGridProps, "columns">;
+    search: (value: TSearchVariables) => Promise<void>;
+};
+
+export type UseDataGridWithColumnsNoPaginationReturnType<
+    TData extends BaseRecord = BaseRecord,
+    TSearchVariables = unknown,
+> = useTableNoPaginationReturnTypeCore<TData> & {
+    dataGridProps: DataGridPropsType & Pick<DataGridProps, "columns">;
+    search: (value: TSearchVariables) => Promise<void>;
+};
+
 export function useDataGrid<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
 >(
-    props: UseDataGridProps<TData, TError, TSearchVariables> & {
+    props?: UseDataGridProps<TData, TError, TSearchVariables> & {
         hasPagination?: true;
+        columns?: undefined;
     },
 ): UseDataGridReturnType<TData, TSearchVariables>;
 export function useDataGrid<
@@ -90,10 +111,31 @@ export function useDataGrid<
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
 >(
-    props: UseDataGridProps<TData, TError, TSearchVariables> & {
+    props?: UseDataGridProps<TData, TError, TSearchVariables> & {
         hasPagination: false;
+        columns?: undefined;
     },
 ): UseDataGridNoPaginationReturnType<TData, TSearchVariables>;
+export function useDataGrid<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TSearchVariables = unknown,
+>(
+    props?: UseDataGridProps<TData, TError, TSearchVariables> & {
+        hasPagination?: true;
+        columns: DataGridProps<TData>["columns"];
+    },
+): UseDataGridWithColumnsReturnType<TData, TSearchVariables>;
+export function useDataGrid<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TSearchVariables = unknown,
+>(
+    props?: UseDataGridProps<TData, TError, TSearchVariables> & {
+        hasPagination: false;
+        columns: DataGridProps<TData>["columns"];
+    },
+): UseDataGridWithColumnsNoPaginationReturnType<TData, TSearchVariables>;
 export function useDataGrid<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
@@ -119,9 +161,13 @@ export function useDataGrid<
     liveParams,
     metaData,
     dataProviderName,
-}: UseDataGridProps<TData, TError, TSearchVariables>):
+}: UseDataGridProps<TData, TError, TSearchVariables> = {}):
     | UseDataGridReturnType<TData, TSearchVariables>
-    | UseDataGridNoPaginationReturnType<TData, TSearchVariables> {
+    | UseDataGridNoPaginationReturnType<TData, TSearchVariables>
+    | UseDataGridWithColumnsReturnType<TData, TSearchVariables>
+    | UseDataGridWithColumnsNoPaginationReturnType<TData, TSearchVariables> {
+    const [columnsTypes, setColumnsType] = useState<Record<string, string>>();
+
     const {
         tableQueryResult,
         current,
@@ -155,6 +201,14 @@ export function useDataGrid<
         metaData,
         dataProviderName,
     });
+
+    useEffect(() => {
+        if (columns) {
+            console.warn(
+                "🚨 [useDataGrid]: `columns` is deprecated and will be removed in the next major version. \n https://github.com/pankod/refine/pull/2072",
+            );
+        }
+    }, []);
 
     const theme = useTheme();
 
@@ -232,10 +286,20 @@ export function useDataGrid<
         };
     };
 
+    const isReturnColumn = () => {
+        if (columns) {
+            return {
+                columns,
+            };
+        }
+
+        return {};
+    };
+
     return {
         tableQueryResult,
         dataGridProps: {
-            columns,
+            ...isReturnColumn(),
             disableSelectionOnClick: true,
             rows: data?.data || [],
             loading: liveMode === "auto" ? isLoading : !isFetched,
@@ -249,9 +313,21 @@ export function useDataGrid<
             filterMode: "server",
             filterModel: transformCrudFiltersToFilterModel(
                 differenceWith(filters, permanentFilter ?? [], isEqual),
-                columns,
+                columnsTypes,
             ),
             onFilterModelChange: handleFilterModelChange,
+            onStateChange: (state) => {
+                const newColumnsTypes = Object.fromEntries(
+                    Object.entries(state.columns.lookup).map(([key, value]) => {
+                        return [key, (value as any).type];
+                    }),
+                );
+                const isStateChanged = !isEqual(newColumnsTypes, columnsTypes);
+
+                if (isStateChanged) {
+                    setColumnsType(newColumnsTypes);
+                }
+            },
             sx: {
                 border: "none",
                 "& .MuiDataGrid-columnHeaders": {

@@ -34,11 +34,51 @@ import { CustomTooltip, OrderStatus } from "components";
 
 import { IOrder, IOrderFilterVariables, IUser } from "interfaces";
 
+const UserInfoText: React.FC = ({ children }) => (
+    <Stack
+        direction="row"
+        alignItems="center"
+        justifyContent={{
+            sm: "center",
+            lg: "flex-start",
+        }}
+        gap={1}
+    >
+        {children}
+    </Stack>
+);
+
 export const UserShow: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
 
     const { queryResult } = useShow<IUser>();
     const user = queryResult.data?.data;
+
+    const { dataGridProps } = useDataGrid<
+        IOrder,
+        HttpError,
+        IOrderFilterVariables
+    >({
+        resource: "orders",
+        initialSorter: [
+            {
+                field: "createdAt",
+                order: "desc",
+            },
+        ],
+        permanentFilter: [
+            {
+                field: "user.id",
+                operator: "eq",
+                value: user?.id,
+            },
+        ],
+        initialPageSize: 4,
+        queryOptions: {
+            enabled: user !== undefined,
+        },
+        syncWithLocation: false,
+    });
 
     const columns = React.useMemo<GridColumns<IOrder>>(
         () => [
@@ -134,47 +174,6 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
         [t],
     );
 
-    const { dataGridProps } = useDataGrid<
-        IOrder,
-        HttpError,
-        IOrderFilterVariables
-    >({
-        columns,
-        resource: "orders",
-        initialSorter: [
-            {
-                field: "createdAt",
-                order: "desc",
-            },
-        ],
-        permanentFilter: [
-            {
-                field: "user.id",
-                operator: "eq",
-                value: user?.id,
-            },
-        ],
-        initialPageSize: 4,
-        queryOptions: {
-            enabled: user !== undefined,
-        },
-        syncWithLocation: false,
-    });
-
-    const UserInfoText: React.FC = ({ children }) => (
-        <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent={{
-                sm: "center",
-                lg: "flex-start",
-            }}
-            gap={1}
-        >
-            {children}
-        </Stack>
-    );
-
     return (
         <Grid container spacing={2}>
             <Grid item xs={12} lg={3}>
@@ -225,6 +224,7 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                     >
                         <DataGrid
                             {...dataGridProps}
+                            columns={columns}
                             autoHeight
                             rowsPerPageOptions={[4, 10, 20, 100]}
                         />
