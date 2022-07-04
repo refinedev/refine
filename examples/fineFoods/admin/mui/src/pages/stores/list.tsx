@@ -34,6 +34,10 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
     const { data: showQueryResult } = queryResult;
     const record = showQueryResult?.data;
 
+    const { dataGridProps } = useDataGrid<IStore>({
+        initialPageSize: 10,
+    });
+
     const columns = React.useMemo<GridColumns<IStore>>(
         () => [
             {
@@ -136,16 +140,12 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
         [t],
     );
 
-    const { dataGridProps } = useDataGrid<IStore>({
-        initialPageSize: 10,
-        columns,
-    });
-
     return (
         <Paper>
             <List canCreate cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
                 <DataGrid
                     {...dataGridProps}
+                    columns={columns}
                     rowHeight={80}
                     autoHeight
                     density="comfortable"

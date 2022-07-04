@@ -34,7 +34,7 @@ const columns: GridColumns = [
 ];
 
 export const Editable: ComponentStory<typeof DataGrid> = (args) => {
-    const { dataGridProps } = useDataGrid({ columns });
+    const { dataGridProps } = useDataGrid();
     const { mutate } = useUpdate();
 
     return (
@@ -51,6 +51,7 @@ export const Editable: ComponentStory<typeof DataGrid> = (args) => {
                     return newRow;
                 }}
                 {...args}
+                columns={columns}
             />
         </div>
     );

@@ -1,5 +1,5 @@
 import React from "react";
-import { useOne } from "@pankod/refine-core";
+import { useMany } from "@pankod/refine-core";
 import {
     useDataGrid,
     DataGrid,
@@ -8,9 +8,20 @@ import {
     GridActionsCellItem,
 } from "@pankod/refine-mui";
 
-import { IPost } from "interfaces";
+import { ICategory, IPost } from "interfaces";
 
 export const BasicDataGrid: React.FC = () => {
+    const { dataGridProps } = useDataGrid<IPost>();
+
+    const categoryIds = dataGridProps.rows.map((item) => item.category.id);
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
     const columns = React.useMemo<GridColumns<IPost>>(
         () => [
             {
@@ -25,12 +36,15 @@ export const BasicDataGrid: React.FC = () => {
                 headerName: "Category",
                 flex: 1,
                 type: "number",
-                valueGetter: (params) => {
-                    const { data } = useOne({
-                        resource: "categories",
-                        id: params.row.category.id,
-                    });
-                    return data?.data.title;
+                renderCell: function render({ row }) {
+                    if (isLoading) {
+                        return "Loading...";
+                    }
+
+                    const category = categoriesData?.data.find(
+                        (item) => item.id === row.category.id,
+                    );
+                    return category?.title;
                 },
             },
             { field: "status", headerName: "Status", flex: 1 },
@@ -46,13 +60,11 @@ export const BasicDataGrid: React.FC = () => {
         ],
         [],
     );
-    const { dataGridProps } = useDataGrid({
-        columns,
-    });
 
     return (
         <DataGrid
             {...dataGridProps}
+            columns={columns}
             components={{
                 Toolbar: GridToolbar,
             }}

@@ -1,6 +1,6 @@
 import React, { ComponentProps, useMemo } from "react";
 import {
-    useOne,
+    useMany,
     HttpError,
     CrudFilters,
     getDefaultFilter,
@@ -28,6 +28,47 @@ import { Controller, useForm } from "@pankod/refine-react-hook-form";
 import { ICategory, IPost, IPostFilterVariables } from "interfaces";
 
 export const PostsList: React.FC = () => {
+    const { dataGridProps, filters, search } = useDataGrid<
+        IPost,
+        HttpError,
+        IPostFilterVariables
+    >({
+        initialPageSize: 10,
+        onSearch: (params) => {
+            const filters: CrudFilters = [];
+            const { q, category, status } = params;
+
+            filters.push(
+                {
+                    field: "q",
+                    operator: "eq",
+                    value: q !== "" ? q : undefined,
+                },
+                {
+                    field: "category.id",
+                    operator: "eq",
+                    value: category !== "" ? category : undefined,
+                },
+                {
+                    field: "status",
+                    operator: "eq",
+                    value: status !== "" ? status : undefined,
+                },
+            );
+
+            return filters;
+        },
+    });
+
+    const categoryIds = dataGridProps.rows.map((item) => item.category.id);
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
     const columns = useMemo<GridColumns<IPost>>(
         () => [
             {
@@ -69,50 +110,20 @@ export const PostsList: React.FC = () => {
                 align: "left",
                 minWidth: 250,
                 flex: 0.5,
-                valueGetter: ({ row }) => {
-                    const { data } = useOne<ICategory>({
-                        resource: "categories",
-                        id: row.category.id,
-                    });
-                    return data?.data.title;
+                renderCell: function render({ row }) {
+                    if (isLoading) {
+                        return "Loading...";
+                    }
+
+                    const category = categoriesData?.data.find(
+                        (item) => item.id === row.category.id,
+                    );
+                    return category?.title;
                 },
             },
         ],
-        [],
+        [categoriesData, isLoading],
     );
-
-    const { dataGridProps, filters, search } = useDataGrid<
-        IPost,
-        HttpError,
-        IPostFilterVariables
-    >({
-        columns,
-        initialPageSize: 10,
-        onSearch: (params) => {
-            const filters: CrudFilters = [];
-            const { q, category, status } = params;
-
-            filters.push(
-                {
-                    field: "q",
-                    operator: "eq",
-                    value: q !== "" ? q : undefined,
-                },
-                {
-                    field: "category.id",
-                    operator: "eq",
-                    value: category !== "" ? category : undefined,
-                },
-                {
-                    field: "status",
-                    operator: "eq",
-                    value: status !== "" ? status : undefined,
-                },
-            );
-
-            return filters;
-        },
-    });
 
     const { control, register, handleSubmit } = useForm<
         IPost,
@@ -239,6 +250,7 @@ export const PostsList: React.FC = () => {
                 <List>
                     <DataGrid
                         {...dataGridProps}
+                        columns={columns}
                         filterModel={undefined}
                         autoHeight
                         rowsPerPageOptions={[10, 20, 50, 100]}

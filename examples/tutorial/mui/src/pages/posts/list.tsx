@@ -1,5 +1,5 @@
 import React from "react";
-import { useOne } from "@pankod/refine-core";
+import { useMany } from "@pankod/refine-core";
 import {
     useDataGrid,
     DataGrid,
@@ -16,6 +16,17 @@ import {
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
+    const { dataGridProps } = useDataGrid<IPost>();
+
+    const categoryIds = dataGridProps.rows.map((item) => item.category.id);
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
     const columns = React.useMemo<GridColumns<IPost>>(
         () => [
             { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
@@ -24,12 +35,15 @@ export const PostList: React.FC = () => {
                 headerName: "Category",
                 minWidth: 250,
                 flex: 1,
-                valueGetter: (params) => {
-                    const { data } = useOne<ICategory>({
-                        resource: "categories",
-                        id: params.row.category.id,
-                    });
-                    return data?.data.title;
+                renderCell: function render({ row }) {
+                    if (isLoading) {
+                        return "Loading...";
+                    }
+
+                    const category = categoriesData?.data.find(
+                        (item) => item.id === row.category.id,
+                    );
+                    return category?.title;
                 },
             },
             {
@@ -84,13 +98,9 @@ export const PostList: React.FC = () => {
         [],
     );
 
-    const { dataGridProps } = useDataGrid<IPost>({
-        columns,
-    });
-
     return (
         <List>
-            <DataGrid {...dataGridProps} autoHeight />
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
 };

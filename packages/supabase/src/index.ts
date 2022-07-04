@@ -124,7 +124,22 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
             }
 
             sort?.map((item) => {
-                query.order(item.field, { ascending: item.order === "asc" });
+                const [foreignTable, field] = item.field.split(/\.(.*)/);
+
+                if (foreignTable && field) {
+                    query
+                        .select(
+                            metaData?.select ?? `*, ${foreignTable}(${field})`,
+                        )
+                        .order(field, {
+                            ascending: item.order === "asc",
+                            foreignTable: foreignTable,
+                        });
+                } else {
+                    query.order(item.field, {
+                        ascending: item.order === "asc",
+                    });
+                }
             });
 
             filters?.map((item) => {
