@@ -88,9 +88,6 @@ npx superplate-cli -p refine-react tutorial
 Select the following options to complete the _CLI wizard_:
 
 ```
-? Select your project type:
-❯ refine-react
-
 ? What will be the name of your app:
 > tutorial
 
