@@ -62,26 +62,18 @@ export const PostList: React.FC = () => {
 </p>
 </details>
 
+When we create our Create Page, we pass `redirect` false to the [`userForm`](/docs/core/hooks/useForm) hook that we will use to manage the form. Thus, we will be able to do the redirection we want in our buttons.
+
 ```tsx title="src/pages/create.tsx"
-import { useState } from "react";
+import React, { useState } from "react";
 import { useSelect, useForm, useNavigation } from "@pankod/refine-core";
-import { v4 as uuidv4 } from "uuid";
 
 import { IPost } from "interfaces";
 
 export const PostCreate: React.FC = () => {
-    const [formValues, setFormValues] = useState({
-        id: uuidv4(),
-        title: "",
-        content: "",
-        status: "draft",
-        category: {
-            id: "",
-        },
-    });
-    const { formLoading, onFinish, redirect, id } = useForm({
+    const { formLoading, onFinish, redirect } = useForm({
+        // highlight-next-line
         redirect: false,
-        id: formValues.id,
     });
 
     const { goBack } = useNavigation();
@@ -89,16 +81,45 @@ export const PostCreate: React.FC = () => {
     const { options } = useSelect({
         resource: "categories",
     });
+};
+```
+
+We will create the form and listen to the changes in this form with the help of a state.We add the `Save`, `Save and continue editing` and `Save and add another` buttons that we will use to submit the form to our page.
+
+:::info
+`onFinish` function resolves respecting to the mutationMode property. In `pessimistic` mode it will resolve after the response is returned from the request, in `optimistic` and `undoable` modes it will resolve immediately. Only real await will happen in pessimistic mode and this will resolve with the response data, others will resolve immediately with undefined data.
+:::
+
+```tsx title="src/pages/create.tsx"
+import React, { useState } from "react";
+import { useSelect, useForm, useNavigation } from "@pankod/refine-core";
+
+import { IPost } from "interfaces";
+
+export const PostCreate: React.FC = () => {
+    const [formValues, setFormValues] = useState({
+        title: "",
+        content: "",
+        status: "draft",
+        category: {
+            id: "",
+        },
+    });
+    const { formLoading, onFinish, redirect } = useForm({
+        redirect: false,
+    });
+
+    const { goBack } = useNavigation();
+
+    const { options } = useSelect({
+        resource: "categories",
+    });
+
     // highlight-start
-    const handleSubmit = async (
-        e: any,
-        redirectTo: "list" | "edit" | "create",
-    ) => {
-        e.preventDefault();
-        await onFinish(formValues);
+    const handleSubmit = async (redirectTo: "list" | "edit" | "create") => {
+        const response = await onFinish(formValues);
 
         setFormValues({
-            id: "1",
             title: "",
             content: "",
             status: "draft",
@@ -107,7 +128,7 @@ export const PostCreate: React.FC = () => {
             },
         });
 
-        redirect(redirectTo);
+        redirect(redirectTo, response?.data?.id);
     };
     // highlight-end
 
@@ -189,21 +210,18 @@ export const PostCreate: React.FC = () => {
                 </div>
                 <div className="saveActions">
                     // highlight-start
-                    <input
-                        onClick={() => handleSubmit(event, "list")}
-                        type="submit"
-                        value="Save"
-                    />
-                    <input
-                        onClick={() => handleSubmit(event, "edit")}
-                        type="submit"
-                        value="Save and continue editing"
-                    />
-                    <input
-                        onClick={() => handleSubmit(event, "create")}
-                        type="submit"
-                        value="Save and add another"
-                    />
+                    <button onClick={() => handleSubmit("list")} type="button">
+                        Save
+                    </button>
+                    <button onClick={() => handleSubmit("edit")} type="button">
+                        Save and continue editing
+                    </button>
+                    <button
+                        onClick={() => handleSubmit("create")}
+                        type="button"
+                    >
+                        Save and add another
+                    </button>
                     // highlight-end
                 </div>
                 {formLoading && <p>Loading</p>}
