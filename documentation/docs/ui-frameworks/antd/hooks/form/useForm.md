@@ -160,18 +160,18 @@ const { clone } = useNavigation();
 
 ### Return values
 
-| Property        | Description                                             | Type                                                                             |
-| --------------- | ------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| onFinish        | Triggers the mutation                                   | `(values?: TVariables) => Promise<void>`                                         |
-| form            | Ant Design form instance                                | [`FormInstance`](https://ant.design/components/form/#FormInstance)               |
-| formProps       | Ant Design form props                                   | [`FormProps`](https://ant.design/components/form/#Form)                          |
-| saveButtonProps | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; loading?:boolean; }`                  |
-| redirect        | Redirect function for custom redirections               | `(redirect: "list"` \| `"edit"` \| `"show"` \| `"create"` \| `false) => void`    |
-| queryResult     | Result of the query of a record                         | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)  |
-| mutationResult  | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation) |
-| formLoading     | Loading state of form request                           | `boolean`                                                                        |
-| id              | Record id for `clone` and `create` action               | [`BaseKey`](/core/interfaces.md#basekey)                                         |
-| setId           | `id` setter                                             | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                 |
+| Property        | Description                                             | Type                                                                                                                                                 |
+| --------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| onFinish        | Triggers the mutation                                   | `(values?: TVariables) => Promise<void>`                                                                                                             |
+| form            | Ant Design form instance                                | [`FormInstance`](https://ant.design/components/form/#FormInstance)                                                                                   |
+| formProps       | Ant Design form props                                   | [`FormProps`](https://ant.design/components/form/#Form)                                                                                              |
+| saveButtonProps | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; loading?:boolean; }`                                                                                      |
+| redirect        | Redirect function for custom redirections               | `(redirect:` `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,`idFromFunction?:` [`BaseKey`](/core/interfaces.md#basekey)\|`undefined`) => `void` |
+| queryResult     | Result of the query of a record                         | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)                                                                      |
+| mutationResult  | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                     |
+| formLoading     | Loading state of form request                           | `boolean`                                                                                                                                            |
+| id              | Record id for `clone` and `create` action               | [`BaseKey`](/core/interfaces.md#basekey)                                                                                                             |
+| setId           | `id` setter                                             | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                     |
 
 ### Type Parameters
 
