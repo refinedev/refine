@@ -154,7 +154,7 @@ export const PostList: React.FC = () => {
                 <Table.Column
                     dataIndex="createdAt"
                     title="createdAt"
-                    render={(value) => <DateField format="LLL" value={value} />}
+                    render={(value: string) => <DateField format="LLL" value={value} />}
                 />
             </Table>
         </List>
