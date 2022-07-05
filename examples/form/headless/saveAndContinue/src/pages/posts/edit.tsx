@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelect, useForm, useNavigation } from "@pankod/refine-core";
 import { IPost } from "interfaces";
-import { v4 as uuidv4 } from "uuid";
 
 export const PostEdit: React.FC = () => {
     const { formLoading, onFinish, redirect, queryResult } = useForm<IPost>();
@@ -14,7 +13,6 @@ export const PostEdit: React.FC = () => {
     });
 
     const [formValues, setFormValues] = useState({
-        id: result?.id.toString(),
         title: result?.title,
         content: result?.content,
         status: result?.status,
@@ -25,7 +23,6 @@ export const PostEdit: React.FC = () => {
 
     useEffect(() => {
         setFormValues({
-            id: result?.id.toString(),
             title: result?.title,
             content: result?.content,
             status: result?.status,
@@ -37,15 +34,10 @@ export const PostEdit: React.FC = () => {
 
     const { goBack } = useNavigation();
 
-    const handleSubmit = async (
-        e: React.MouseEvent<HTMLInputElement>,
-        redirectTo: "list" | "edit" | "create",
-    ) => {
-        e.preventDefault();
+    const handleSubmit = async (redirectTo: "list" | "edit" | "create") => {
         await onFinish(formValues);
 
         setFormValues({
-            id: uuidv4(),
             title: "",
             content: "",
             status: "draft",
@@ -137,27 +129,24 @@ export const PostEdit: React.FC = () => {
                         />
                     </div>
                     <div className="saveActions">
-                        <input
-                            onClick={(e: React.MouseEvent<HTMLInputElement>) =>
-                                handleSubmit(e, "list")
-                            }
-                            type="submit"
-                            value="Save"
-                        />
-                        <input
-                            onClick={(e: React.MouseEvent<HTMLInputElement>) =>
-                                handleSubmit(e, "edit")
-                            }
-                            type="submit"
-                            value="Save and continue editing"
-                        />
-                        <input
-                            onClick={(e: React.MouseEvent<HTMLInputElement>) =>
-                                handleSubmit(e, "create")
-                            }
-                            type="submit"
-                            value="Save and add another"
-                        />
+                        <button
+                            onClick={() => handleSubmit("list")}
+                            type="button"
+                        >
+                            Save
+                        </button>
+                        <button
+                            onClick={() => handleSubmit("edit")}
+                            type="button"
+                        >
+                            Save and continue editing
+                        </button>
+                        <button
+                            onClick={() => handleSubmit("create")}
+                            type="button"
+                        >
+                            Save and add another
+                        </button>
                     </div>
                     {formLoading && <p>Loading</p>}
                 </form>

@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { useSelect, useForm, useNavigation } from "@pankod/refine-core";
-import { v4 as uuidv4 } from "uuid";
 
 import { IPost } from "interfaces";
 
 export const PostCreate: React.FC = () => {
     const [formValues, setFormValues] = useState({
-        id: uuidv4(),
         title: "",
         content: "",
         status: "draft",
@@ -16,7 +14,6 @@ export const PostCreate: React.FC = () => {
     });
     const { formLoading, onFinish, redirect } = useForm({
         redirect: false,
-        id: formValues.id,
     });
 
     const { goBack } = useNavigation();
@@ -25,14 +22,10 @@ export const PostCreate: React.FC = () => {
         resource: "categories",
     });
 
-    const handleSubmit = async (
-        e: React.MouseEvent<HTMLInputElement>,
-        redirectTo: "list" | "edit" | "create",
-    ) => {
-        await onFinish(formValues);
+    const handleSubmit = async (redirectTo: "list" | "edit" | "create") => {
+        const response = await onFinish(formValues);
 
         setFormValues({
-            id: uuidv4(),
             title: "",
             content: "",
             status: "draft",
@@ -41,7 +34,7 @@ export const PostCreate: React.FC = () => {
             },
         });
 
-        redirect(redirectTo);
+        redirect(redirectTo, response?.data?.id);
     };
 
     return (
@@ -121,21 +114,18 @@ export const PostCreate: React.FC = () => {
                     />
                 </div>
                 <div className="saveActions">
-                    <input
-                        onClick={(e) => handleSubmit(e, "list")}
-                        type="submit"
-                        value="Save"
-                    />
-                    <input
-                        onClick={(e) => handleSubmit(e, "edit")}
-                        type="submit"
-                        value="Save and continue editing"
-                    />
-                    <input
-                        onClick={(e) => handleSubmit(e, "create")}
-                        type="submit"
-                        value="Save and add another"
-                    />
+                    <button onClick={() => handleSubmit("list")} type="button">
+                        Save
+                    </button>
+                    <button onClick={() => handleSubmit("edit")} type="button">
+                        Save and continue editing
+                    </button>
+                    <button
+                        onClick={() => handleSubmit("create")}
+                        type="button"
+                    >
+                        Save and add another
+                    </button>
                 </div>
                 {formLoading && <p>Loading</p>}
             </form>
