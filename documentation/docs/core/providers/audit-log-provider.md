@@ -29,13 +29,13 @@ const auditLogProvider = {
             [key: string]: any;
         };
         previousData?: any;
-        meta?: Record<number | string, any>;
+        meta?: Record<string, any>;
     }) => void;
     get: (params: {
         resource: string;
         action?: string;
-        meta?: Record<number | string, any>;
-        author?: Record<number | string, any>;
+        meta?: Record<string, any>;
+        author?: Record<string, any>;
         metaData?: MetaDataQuery;
     }) => Promise<any>;
     update: (params: {
@@ -122,12 +122,12 @@ const auditLogProvider: AuditLogProvider = {
 
 This method can take the following parameters via hooks. You can use these parameters to filter the events.
 
-| Name                                                                                                | Type                  | Description                          |
-| --------------------------------------------------------------------------------------------------- | --------------------- | ------------------------------------ |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | `string`              | Resource name that it reads from URL |
-| action                                                                                              | `string`              | Action name                          |
-| meta                                                                                                | `Record<string, any>` | Record info                          |
-| author                                                                                              | `Record<string, any>` | Author info                          |
+| Name     | Type                                               |
+| -------- | -------------------------------------------------- |
+| resource | `string`                                           |
+| action   | `"create"` \| `"update"` \| `"delete"` \| `string` |
+| meta     | `Record<string, any>`                              |
+| author   | `Record<string, any>`                              |
 
 ### `create`
 
@@ -250,13 +250,13 @@ const auditLogProvider: AuditLogProvider = {
 
 This method can take the following parameters.
 
-| Name     | Type                  |
-| -------- | --------------------- |
-| resource | `string`              |
-| action   | `string`              |
-| meta     | `Record<string, any>` |
-| data     | `Record<string, any>` |
-| author   | `Record<string, any>` |
+| Name     | Type                                               |
+| -------- | -------------------------------------------------- |
+| resource | `string`                                           |
+| action   | `"create"` \| `"update"` \| `"delete"` \| `string` |
+| meta     | `Record<string, any>`                              |
+| data     | `Record<string, any>`                              |
+| author   | `Record<string, any>`                              |
 
 <br/>
 
@@ -271,7 +271,7 @@ This method can take the following parameters.
 
 This method is used to update an audit log event.
 
-:::tips
+:::tip
 If you want to name an event, this is the way to do it. You can create a milestone by naming it.
 :::
 
@@ -307,10 +307,10 @@ const auditLogProvider: AuditLogProvider = {
 
 This method can take the following parameters.
 
-| Name   | Type      |
-| ------ | --------- |
-| `id`   | `BaseKey` |
-| `name` | `string`  |
+| Name | Type      |
+| ---- | --------- |
+| id   | `BaseKey` |
+| name | `string`  |
 
 <br />
 
