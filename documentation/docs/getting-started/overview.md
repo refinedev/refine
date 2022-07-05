@@ -92,7 +92,43 @@ npx superplate-cli -p refine-react tutorial
 
 Follow the _CLI wizard_ to select options and start creating your project.
 
-For this example, select Ant Design as a UI Framework option in the creation phase.
+
+<details><summary>Select the following options to complete the _CLI wizard_:</summary>
+<p>
+
+```bash title="CLI options selection"
+? What will be the name of your app:
+> tutorial
+
+? Do you want to use a UI Framework?:
+❯ Ant Design
+
+? Do you want a customized theme?:
+❯ Default theme
+
+? Router Provider:
+❯ React Router v6
+
+? Data Provider:
+❯ REST API
+
+? Auth Provider:
+❯ None
+
+? Do you want to add example pages?:
+❯ No
+
+? Do you want a customized layout?:
+❯ No
+
+? i18n - Internationalization:
+❯ No
+```
+
+</p>
+</details>
+
+<br>
 
 After setup is complete, navigate to the project folder and start your project with:
 
