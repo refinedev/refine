@@ -3,7 +3,9 @@ id: useLogList
 title: useLogList
 ---
 
-If you need to get audit logs **refine** provides the `useLogList` hook for it, It returns the `get` method from [`auditLogProvider`](/core/providers/audit-log-provider.md#get) under the hood.
+## Overview
+
+If you need to list audit log events **refine** provides the `useLogList` hook for it, It uses the `get` method from [`auditLogProvider`](/core/providers/audit-log-provider.md#get) under the hood.
 
 ## Usage
 
@@ -19,19 +21,18 @@ const postAuditLogResults = useLogList({
 });
 ```
 
-
 ## API
 
 ### Properties
 
-| Property                                                                                            | Description                                              | Type                                                              | Default |
-| --------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ----------------------------------------------------------------- | ------- |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name that it reads from URL                     | `string`                                                          |         |
-| action                                                                                              | Action name                                              | `string`                                                          |         |
-| author                                                                                              | Author info                                              | `Record<string, any>`                                             |         |
-| meta                                                                                                | For make to unique                                       | `Record<string, any>`                                             |         |
-| metaData                                                                                            | Metadata query for `dataProvider`                        | [`MetaDataQuery`](/core/interfaces.md#metadataquery)              | {}      |
-| queryOptions                                                                                        | Callback to handle all related live events of this hook. | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops) |         |
+| Property                                                                                            | Type                                                 | Default                         |
+| --------------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ------------------------------- |
+| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | `string`                                             | Action that it reads from route |
+| action                                                                                              | `string`                                             |                                 |
+| author                                                                                              | `Record<string, any>`                                |                                 |
+| meta                                                                                                | `Record<string, any>`                                |                                 |
+| metaData                                                                                            | [`MetaDataQuery`](/core/interfaces.md#metadataquery) |                                 |
+| queryOptions                                                                                        | `UseQueryOptions<TData, TError>`                     |                                 |
 
 ### Type Parameters
 
