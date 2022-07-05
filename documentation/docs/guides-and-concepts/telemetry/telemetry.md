@@ -1,0 +1,57 @@
+---
+id: telemetry
+title: Telemetry
+sidebar_label: Telemetry
+---
+
+# Telemetry
+
+
+## Summary
+
+**refine** implements a **simple** and **transparent** telemetry module for collecting usage statistics defined in a **very limited scope**. 
+
+Tracking is totally **secure** and **anonymous**. It includes no personally identifiable Information and **does not use cookies**. Participation is optional and users may easily **opt-out**.
+
+
+## Why do we need this?
+
+We try to answer the question **how many users are actively using the Refine framework**. This information is critical for open-source projects like Refine to better understand their communities and measure their growth metrics.
+
+
+## How do we collect data?
+
+The tracking happens when a Refine application is loaded on users browser. On application init, a single HTTP request is sent to [https://telemery.refine.dev](https://telemery.refine.dev) . The request is encrypted with 1024-bit RSA public key and securely decrypted on Refine servers.
+
+There are no consequent requests on that session, as we do NOT collect any behavioral information as _page views_, _button clicks_ etc.
+
+
+## What is collected?
+
+The HTTP call has a JSON payload having the following application-specific attributes:
+
+| Value         | Type    | Description                      |
+| ------------- | ------- | -------------------------------- |
+| auth          | boolean | Is `authProvider` used?          |
+| data          | boolean | Is `dataProvider` used?          |
+| router        | boolean | Is `routerProvider` used?        |
+| notification  | boolean | Is `notificationProvider` used?  |
+| live          | boolean | Is `liveProvider` used?          |
+| auditLog      | boolean | Is `auditLogProvider` used?      |
+| i18n          | boolean | Is `i18nProvider` used?          |
+| accessControl | boolean | Is `accessControlProvider` used? |
+| version       | string  | Version of the refine package.   |
+| resourceCount | number  | Number of total resources.       |
+
+Additionaly following information is extracted and collected from the HTTP header:
+
+| Value      | Description                                           |
+| ---------- | ----------------------------------------------------- |
+| IP Address | IP Address of the machine the request is coming from. |
+| Hostname   | Hostname of the machine the request is coming from.   |
+| Browser    | Browser and browser version.                          |
+| OS         | OS and OS version.                                    |
+
+## How to opt-out?
+
+You can opt out of telemetry by simply adding `disableTelemetry` prop to the `<Refine />` component.

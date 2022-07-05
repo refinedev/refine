@@ -467,6 +467,7 @@ module.exports = {
                     label: "Web3",
                     items: ["guides-and-concepts/web3/ethereum-signin"],
                 },
+                "guides-and-concepts/telemetry/telemetry",
             ],
         },
         {
