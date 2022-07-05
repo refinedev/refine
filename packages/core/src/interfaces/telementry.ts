@@ -1,14 +1,12 @@
 export type ITelemetryData = {
-    providers: {
-        authProvider?: boolean;
-        dataProvider?: boolean;
-        routerProvider?: boolean;
-        notificationProvider?: boolean;
-        liveProvider?: boolean;
-        auditLogProvider?: boolean;
-        i18nProvider?: boolean;
-        accessControlProvider?: boolean;
-    };
+    auth?: boolean;
+    data?: boolean;
+    router?: boolean;
+    notification?: boolean;
+    live?: boolean;
+    auditLog?: boolean;
+    i18n?: boolean;
+    accessControl?: boolean;
     version: string;
     resourceCount: number;
 };
