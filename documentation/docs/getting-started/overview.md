@@ -128,7 +128,7 @@ Follow the _CLI wizard_ to select options and start creating your project.
 </p>
 </details>
 
-<br>
+<br/>
 
 After setup is complete, navigate to the project folder and start your project with:
 
