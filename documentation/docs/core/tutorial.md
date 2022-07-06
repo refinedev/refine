@@ -370,7 +370,7 @@ Let's create a **Page** component to fetch **posts** and display them as a table
 
 ## Adding Tailwind CSS
 
-We will use Tailwind for the UI of the example app. You can prefer any UI library or design system since it's not affecting usability.
+We will use Tailwind for the UI of the example app. You can prefer any UI library or design system since it's not affecting the usability.
 
 Install `tailwindcss` and its peer dependencies via npm, and then run the init command to generate both `tailwind.config.js` and `postcss.config.js`.
 
