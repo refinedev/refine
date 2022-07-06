@@ -693,10 +693,6 @@
             "to": "/docs/examples/router-provider/react-location/"
         },
         {
-            "from": "/docs/next/examples/search/search/",
-            "to": "/docs/examples/search/search/"
-        },
-        {
             "from": "/docs/next/examples/ui/useModal/",
             "to": "/docs/examples/ui/useModal/"
         },
@@ -775,10 +771,6 @@
         {
             "from": "/docs/next/guides-and-concepts/search/list-search/",
             "to": "/docs/guides-and-concepts/search/list-search/"
-        },
-        {
-            "from": "/docs/next/guides-and-concepts/search/search/",
-            "to": "/docs/guides-and-concepts/search/search/"
         },
         {
             "from": "/docs/next/guides-and-concepts/search/table-search/",
