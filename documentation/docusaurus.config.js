@@ -56,6 +56,12 @@ const siteConfig = {
                         require.resolve("./src/css/demo-page.css"),
                     ],
                 },
+                gtag: {
+                    // You can also use your "G-" Measurement ID here.
+                    trackingID: "G-27Z1WY952H",
+                    // Optional fields.
+                    anonymizeIP: true, // Should IPs be anonymized?
+                },
             },
         ],
     ],
@@ -79,7 +85,7 @@ const siteConfig = {
             {
                 name: "keywords",
                 content:
-                    "react-admin, react-framework, internal-tool, admin-panel, ant-design",
+                    "react-admin, react-framework, internal-tool, admin-panel, ant-design, material ui, mui",
             },
         ],
         announcementBar: {
@@ -145,12 +151,6 @@ const siteConfig = {
                         "header-icon-link header-twitter-link header-last-nav-item",
                 },
             ],
-        },
-        gtag: {
-            // You can also use your "G-" Measurement ID here.
-            trackingID: "G-27Z1WY952H",
-            // Optional fields.
-            anonymizeIP: true, // Should IPs be anonymized?
         },
         // footer: {
         //     style: "dark",
