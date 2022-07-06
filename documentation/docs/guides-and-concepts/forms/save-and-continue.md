@@ -62,7 +62,9 @@ export const PostList: React.FC = () => {
 </p>
 </details>
 
-When we create our Create Page, we pass `redirect` false to the [`useForm`](/docs/core/hooks/useForm) hook that we will use to manage the form. Thus, we will be able to do the redirection we want in our buttons.
+### useForm without redirect
+
+When we create our Create Page, we pass `redirect` false to the [`userForm`](/docs/core/hooks/useForm) hook that we will use to manage the form. Thus, we will be able to do the redirection we want in our buttons.
 
 ```tsx title="src/pages/create.tsx"
 import React, { useState } from "react";
@@ -84,12 +86,137 @@ export const PostCreate: React.FC = () => {
 };
 ```
 
-We will create the form and listen to the changes in this form with the help of a state. We add the `Save`, `Save and continue editing`, and `Save and add another` buttons that we will use to submit the form to our page.
+### Creating form and adding buttons
+
+We will create the form and listen to the changes in this form with the help of a state.We add the `Save`, `Save and continue editing` and `Save and add another` buttons that we will use to submit the form to our page.
+
+```tsx title="src/pages/create.tsx"
+import React, { useState } from "react";
+import { useSelect, useForm, useNavigation } from "@pankod/refine-core";
+
+import { IPost } from "interfaces";
+
+export const PostCreate: React.FC = () => {
+    const [formValues, setFormValues] = useState({
+        title: "",
+        content: "",
+        status: "draft",
+        category: {
+            id: "",
+        },
+    });
+    const { formLoading, onFinish, redirect } = useForm({
+        redirect: false,
+    });
+
+    const { goBack } = useNavigation();
+
+    const { options } = useSelect({
+        resource: "categories",
+    });
+
+    return (
+        <div>
+            <button className="back" onClick={() => goBack()}>
+                Go Back
+            </button>
+            <form className="form-wrapper">
+                <div className="form-group">
+                    <label>Title: </label>
+                    <input
+                        required
+                        onChange={(e) =>
+                            setFormValues({
+                                ...formValues,
+                                title: e.target.value,
+                            })
+                        }
+                        value={formValues.title}
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Status: </label>
+                    <select
+                        required
+                        onChange={(e) =>
+                            setFormValues({
+                                ...formValues,
+                                status: e.target.value as IPost["status"],
+                            })
+                        }
+                        value={formValues.status}
+                    >
+                        <option value="published">published</option>
+                        <option value="draft">draft</option>
+                        <option value="rejected">rejected</option>
+                    </select>
+                </div>
+                <div className="form-group">
+                    <label>Category: </label>
+                    <select
+                        required
+                        onChange={(e) =>
+                            setFormValues({
+                                ...formValues,
+                                category: {
+                                    id: e.target.value,
+                                },
+                            })
+                        }
+                        value={formValues.category.id}
+                    >
+                        <option value={""} disabled>
+                            Please select
+                        </option>
+                        {options?.map((category) => (
+                            <option key={category.value} value={category.value}>
+                                {category.label}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className="form-group">
+                    <label>Content: </label>
+
+                    <textarea
+                        required
+                        onChange={(e) =>
+                            setFormValues({
+                                ...formValues,
+                                content: e.target.value,
+                            })
+                        }
+                        rows={10}
+                        cols={50}
+                        value={formValues.content}
+                    />
+                </div>
+                <div className="saveActions">
+                    // highlight-start
+                    <button type="button">Save</button>
+                    <button stype="button">Save and continue editing</button>
+                    <button type="button">Save and add another</button>
+                    // highlight-end
+                </div>
+                {formLoading && <p>Loading</p>}
+            </form>
+        </div>
+    );
+};
+```
+
+### Handling submit events on buttons
 
 :::info
 `onFinish` function resolves respecting to the mutationMode property. In `pessimistic` mode it will resolve after the response is returned from the request, in `optimistic` and `undoable` modes it will resolve immediately. Only real await will happen in pessimistic mode and this will resolve with the response data, others will resolve immediately with undefined data.
 
 [Refer to the `mutationMode` documentation for more details. &#8594](/guides-and-concepts/mutation-mode.md)
+:::
+
+We will use `handleSubmit` function to manage submit event when clicking the buttons we created.
+
+:::tip
+We used the `redirect` method to perform the redirection, which returns from [`userForm`](/docs/core/hooks/useForm) instead of [`useNavigation`](/docs/core/hooks/navigation/useNavigation) Thus, we can do our routing without dealing with managing resources.
 :::
 
 ```tsx title="src/pages/create.tsx"
@@ -232,3 +359,10 @@ export const PostCreate: React.FC = () => {
     );
 };
 ```
+
+## Live StackBlitz Example
+
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/form/headless/saveAndContinue?embed=1&view=preview&theme=dark&preset=node"
+    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+    title="refine-custom-validation-example-app"
+></iframe>
