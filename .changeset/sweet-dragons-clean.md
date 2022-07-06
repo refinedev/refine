@@ -9,3 +9,5 @@ const { redirect } = useForm();
 
 redirect("edit", id);
 ```
+
+The data is resolved in the `onSuccess` of the `onFinishCreate` method.
