@@ -1,5 +1,14 @@
 # @pankod/refine-antd
 
+## 3.27.1
+
+### Patch Changes
+
+-   [#2106](https://github.com/pankod/refine/pull/2106) [`10a20d8714`](https://github.com/pankod/refine/commit/10a20d87142b694bc9c02afaee5b4fe6c5853c5a) Thanks [@omeraplak](https://github.com/omeraplak)! - Add `dataProviderName` property for `<RefreshButton>` and `<DeleteButton>` in `<Edit>` and `<Show>` CRUD components - #2096
+
+-   Updated dependencies [[`9d77c63a92`](https://github.com/pankod/refine/commit/9d77c63a925dca0133b3e83974dff486a2233017), [`98966b586f`](https://github.com/pankod/refine/commit/98966b586f6febd8669065b5b453a8e441f76bc1)]:
+    -   @pankod/refine-core@3.37.0
+
 ## 3.27.0
 
 ### Minor Changes
