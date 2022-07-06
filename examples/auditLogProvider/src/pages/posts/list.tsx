@@ -7,7 +7,7 @@ import { IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
     const { show, close, visible } = useModal();
-    const [historyId, setHistoryId] = useState<string>();
+    const [historyId, setHistoryId] = useState<number>();
     const { tableQueryResult } = useTable<IPost>({
         initialSorter: [
             {
@@ -23,9 +23,11 @@ export const PostList: React.FC = () => {
             <button onClick={() => create("posts")}>Create Post</button>
             <table>
                 <thead>
-                    <td>ID</td>
-                    <td>Title</td>
-                    <td>Actions</td>
+                    <tr>
+                        <td>ID</td>
+                        <td>Title</td>
+                        <td>Actions</td>
+                    </tr>
                 </thead>
                 <tbody>
                     {tableQueryResult.data?.data.map((post) => (
