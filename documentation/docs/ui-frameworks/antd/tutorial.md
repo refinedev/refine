@@ -823,8 +823,11 @@ Now we can add the newly created component to our resource with `show` prop:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
+
+import "@pankod/refine-antd/dist/styles.min.css";
 
 // highlight-next-line
 import { PostList, PostShow } from "./pages/posts";
