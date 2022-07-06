@@ -85,7 +85,7 @@ export default defineConfig({
 
                     return {
                         loader,
-                        contents: contents.replace("lodash", "lodash-es"),
+                        contents: contents.replaceAll("lodash", "lodash-es"),
                     };
                 });
             },
