@@ -5,7 +5,7 @@
 The redirect method that return from `useForm` updated to be avaiable for passing `id`.
 
 ```
-const {redirect} = useForm()
+const { redirect } = useForm();
 
-redirect("edit", id)
+redirect("edit", id);
 ```
