@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
-import * as JSEncrypt from "jsencrypt";
-import { stringify } from "qs";
+import { CompactEncrypt, importJWK } from "jose";
 
 import { AuthContext } from "@contexts/auth";
 import { AuditLogContext } from "@contexts/auditLog";
@@ -16,14 +15,6 @@ import { ITelemetryData } from "../../interfaces/telementry";
 
 // It reads and updates from package.json during build. ref: tsup.config.ts
 const REFINE_VERSION = "1.0.0";
-
-const PUBLIC_KEY =
-    "-----BEGIN PUBLIC KEY-----" +
-    "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDhZUdZYIyloRbQ+flNWC9Ysofo" +
-    "abRH1+FD8iKRqIRouwoPWfaTUo3RrfMVGfyasxOERZzUQRwTGbekRJyrPGb7HH+p" +
-    "z1yt+dzsvSshmJK6bh//Vo+4aMqNpKmTDnylmsPE0wqyarb0bXy/cP7TV38utf2J" +
-    "b8SrOsqVAQdYgxHkNQIDAQAB" +
-    "-----END PUBLIC KEY-----";
 
 export const Telemetry: React.FC<{}> = () => {
     const authContext = useContext(AuthContext);
@@ -63,19 +54,30 @@ export const Telemetry: React.FC<{}> = () => {
             resourceCount: resources.length,
         };
 
-        // Encrypt the data
-        const encrypt = new JSEncrypt.JSEncrypt();
-        encrypt.setPublicKey(PUBLIC_KEY);
+        (async () => {
+            const publicKey = await importJWK({
+                kty: "RSA",
+                e: "AQAB",
+                use: "enc",
+                alg: "RSA-OAEP-256",
+                n: "glC_mSwk1VqaofnOPXK3HEC5njb4uHZM5_shFdQLRn_898dxVUMK7HkyOgoVOtEsNxDBjwK_KPbSEYX_lyfrJ6ONjnxPJ2_d0W_1ZwdwT_gr5ofFLz5Bm7WbVHcKDK1j5iMYsqUJbFVQ-KXzAswae2iiqzCBKLD4y-fLsIvOUGZliERMMi54hRPqVj6p0xhJEvH22jZ5rk48KJBNvjBBuLes1qk5cehirDHnh07A8Alr3Pe6Qk7xpyC_mUvMqX99JvYThyvjQMMPEXHLJY9m1g-sgHJPlMkxMoLUd5JI1v6QMLezhq2F-bNXiRgXJgT0ew3g-H_PKpWmMQmSRtgiEw",
+            });
 
-        // Send the data to the server
-        fetch("http://localhost:3001/send", {
-            headers: {
-                Accept: "application/text",
-                "Content-Type": "application/text",
-            },
-            method: "POST",
-            body: encrypt.encrypt(stringify(payload)) as any,
-        });
+            const encryptedPayload = await new CompactEncrypt(
+                new TextEncoder().encode(JSON.stringify(payload)),
+            )
+                .setProtectedHeader({ alg: "RSA-OAEP-256", enc: "A256GCM" })
+                .encrypt(publicKey);
+
+            fetch("https://telemetry.refine.dev/send", {
+                headers: {
+                    Accept: "application/text",
+                    "Content-Type": "application/text",
+                },
+                method: "POST",
+                body: encryptedPayload,
+            });
+        })();
     }, []);
 
     return null;
