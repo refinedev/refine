@@ -28,10 +28,7 @@ export const Telemetry: React.FC<{}> = () => {
     const { resources } = useResource();
 
     useEffect(() => {
-        if (
-            typeof window === "undefined" ||
-            process.env.NODE_ENV !== "production"
-        ) {
+        if (typeof window === "undefined") {
             return;
         }
 
