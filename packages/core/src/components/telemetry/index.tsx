@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
 import { CompactEncrypt, importJWK } from "jose";
-import { TextEncoder } from "util";
 
 import { AuthContext } from "@contexts/auth";
 import { AuditLogContext } from "@contexts/auditLog";
