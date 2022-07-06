@@ -34,11 +34,11 @@
     "@pankod/refine-core": "^3.36.0",
     "gql-query-builder": "^3.5.5",
     "graphql": "^15.6.1",
-    "graphql-request": "^3.5.0"
+    "graphql-request": "^4.3.0"
   },
   "peerDependencies": {
     "@pankod/refine-core": "^3.23.2",
-    "graphql-request": "^3.5.0",
+    "graphql-request": "^4.3.0",
     "gql-query-builder": "^3.5.5"
   },
   "repository": {

@@ -35,13 +35,13 @@
     "camelcase": "^6.2.0",
     "gql-query-builder": "^3.5.5",
     "graphql": "^15.6.1",
-    "graphql-request": "^3.5.0",
+    "graphql-request": "^4.3.0",
     "pluralize": "^8.0.0",
     "query-string": "^7.1.1"
   },
   "peerDependencies": {
     "@pankod/refine-core": "^3.23.2",
-    "graphql-request": "^3.5.0",
+    "graphql-request": "^4.3.0",
     "gql-query-builder": "^3.5.5"
   },
   "repository": {
