@@ -1,5 +1,6 @@
 import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
+import { TextEncoder, TextDecoder } from "util";
 // import { createMockServer } from "./dataMocks";
 
 /** Antd mocks */
@@ -22,3 +23,6 @@ window.alert = jest.fn();
 // beforeAll(() => server.listen());
 // afterEach(() => server.resetHandlers());
 // afterAll(() => server.close());
+
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder as any;

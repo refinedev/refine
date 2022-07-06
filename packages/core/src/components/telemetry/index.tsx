@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { CompactEncrypt, importJWK } from "jose";
+import { TextEncoder } from "util";
 
 import { AuthContext } from "@contexts/auth";
 import { AuditLogContext } from "@contexts/auditLog";
@@ -28,6 +29,13 @@ export const Telemetry: React.FC<{}> = () => {
     const { resources } = useResource();
 
     useEffect(() => {
+        if (
+            typeof window === "undefined" ||
+            process.env.NODE_ENV !== "production"
+        ) {
+            return;
+        }
+
         const auth = authContext.isProvided;
         const auditLog =
             !!auditLogContext.create ||
