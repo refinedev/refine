@@ -8,7 +8,7 @@ Advanced table examples with [`useDataGrid`](/ui-frameworks/mui/hooks/useDataGri
 
 [View advanced example source](https://github.com/pankod/refine/tree/master/examples/table/mui/advancedTable)
 
-<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/table/mui/useDataGrid?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/table/mui/useDataGrid?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-data-grid-example"
 ></iframe>
