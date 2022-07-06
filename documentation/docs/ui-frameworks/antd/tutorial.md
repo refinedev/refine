@@ -838,15 +838,15 @@ export const App: React.FC = () => {
             ReadyPage={ReadyPage}
             notificationProvider={notificationProvider}
             catchAll={<ErrorComponent />}
-            // highlight-start
             resources={[
                 {
                     name: "posts",
                     list: PostList,
+                    // highlight-start
                     show: PostShow,
+                     // highlight-end
                 },
             ]}
-            // highlight-end
         />
     );
 };
@@ -934,10 +934,10 @@ export const PostList: React.FC = () => {
                         </FilterDropdown>
                     )}
                 />
+                 // highlight-start
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
-                    // highlight-start
                     render={(_text, record): React.ReactNode => {
                         return (
                             <ShowButton
@@ -947,8 +947,8 @@ export const PostList: React.FC = () => {
                             />
                         );
                     }}
-                    // highlight-end
                 />
+                 // highlight-end
             </Table>
         </List>
     );
@@ -1083,16 +1083,16 @@ export const App: React.FC = () => {
             ReadyPage={ReadyPage}
             notificationProvider={notificationProvider}
             catchAll={<ErrorComponent />}
-            // highlight-start
             resources={[
                 {
                     name: "posts",
                     list: PostList,
-                    edit: PostEdit,
                     show: PostShow,
+                    // highlight-start
+                    edit: PostEdit
+                    // highlight-end
                 },
             ]}
-            // highlight-end
         />
     );
 };
