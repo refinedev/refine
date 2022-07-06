@@ -2162,7 +2162,7 @@ Now you can try deleting records yourself. Just click on the delete button of th
 
 Our tutorial is complete. Below you'll find a Live StackBlitz Example displaying what we have done so far:
 
-<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/tutorial/headless?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com/github/pankod/refine/tree/master/examples/tutorial/headless?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-headless-tutorial-example"
 ></iframe>
