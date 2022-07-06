@@ -1,5 +1,14 @@
 # @pankod/refine-mui
 
+## 3.37.2
+
+### Patch Changes
+
+-   Add `dataProviderName` property for `<RefreshButton>` and `<DeleteButton>` in `<Edit>` and `<Show>` CRUD components - #2096
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.38.0
+
 ## 3.37.1
 
 ### Patch Changes
