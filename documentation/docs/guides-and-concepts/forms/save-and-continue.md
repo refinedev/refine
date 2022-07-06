@@ -88,7 +88,7 @@ export const PostCreate: React.FC = () => {
 
 ### Creating form and adding buttons
 
-We will create the form and listen to the changes in this form with the help of a state.We add the `Save`, `Save and continue editing` and `Save and add another` buttons that we will use to submit the form to our page.
+We will create the form and listen to the changes in this form with the help of a state. We add the `Save`, `Save and continue editing` and `Save and add another` buttons that we will use to submit the form to our page.
 
 ```tsx title="src/pages/create.tsx"
 import React, { useState } from "react";
@@ -208,7 +208,7 @@ export const PostCreate: React.FC = () => {
 ### Handling submit events on buttons
 
 :::info
-`onFinish` function resolves respecting to the mutationMode property. In `pessimistic` mode it will resolve after the response is returned from the request, in `optimistic` and `undoable` modes it will resolve immediately. Only real await will happen in pessimistic mode and this will resolve with the response data, others will resolve immediately with undefined data.
+`onFinish` function resolves to respect the `mutationMode` property. In `pessimistic` mode it will resolve after the response is returned from the request, in `optimistic` and `undoable` modes it will resolve immediately. Only real await will happen in pessimistic mode and this will resolve with the response data, others will resolve immediately with undefined data.
 
 [Refer to the `mutationMode` documentation for more details. &#8594](/guides-and-concepts/mutation-mode.md)
 :::
