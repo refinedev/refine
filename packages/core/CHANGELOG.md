@@ -1,5 +1,40 @@
 # @pankod/refine-core
 
+## 3.38.0
+
+### Minor Changes
+
+-   `useLog` is converted to useQuery mutation.
+
+    ```
+    // before
+    const { log } = useLog();
+    log({
+      resource: 'posts',
+      action: 'create',
+      data: {
+          id: 1
+      }
+    });
+    ```
+
+    ```
+    // after
+    const { log } = useLog();
+    const { mutation } = log;
+    mutation({
+      resource: 'posts',
+      action: 'create',
+      data: {
+          id: 1
+      }
+    });
+    ```
+
+### Patch Changes
+
+-   Fixed `useBreadcrumb` hook throws `console.warn` even if i18nProvider is not used - #2103
+
 ## 3.37.0
 
 ### Minor Changes
