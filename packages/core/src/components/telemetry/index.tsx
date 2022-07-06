@@ -75,8 +75,7 @@ export const Telemetry: React.FC<{}> = () => {
                 .setProtectedHeader({ alg: "RSA-OAEP-256", enc: "A256GCM" })
                 .encrypt(publicKey);
 
-            // https://telemetry.refine.dev/send
-            fetch("http://localhost:3001/send", {
+            fetch("https://telemetry.refine.dev/send", {
                 headers: {
                     Accept: "application/text",
                     "Content-Type": "application/text",
