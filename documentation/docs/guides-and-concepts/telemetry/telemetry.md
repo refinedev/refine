@@ -30,18 +30,11 @@ There are no consequent requests on that session, as we do NOT collect any behav
 
 The HTTP call has a JSON payload having the following application-specific attributes:
 
-| Value         | Type    | Description                      |
-| ------------- | ------- | -------------------------------- |
-| auth          | boolean | Is `authProvider` used?          |
-| data          | boolean | Is `dataProvider` used?          |
-| router        | boolean | Is `routerProvider` used?        |
-| notification  | boolean | Is `notificationProvider` used?  |
-| live          | boolean | Is `liveProvider` used?          |
-| auditLog      | boolean | Is `auditLogProvider` used?      |
-| i18n          | boolean | Is `i18nProvider` used?          |
-| accessControl | boolean | Is `accessControlProvider` used? |
-| version       | string  | Version of the refine package.   |
-| resourceCount | number  | Number of total resources.       |
+| Value         | Type      | Description                                                                                                     |
+| ------------- | --------- | --------------------------------------------------------------------------------------------------------------- |
+| providers     | boolean[] | List of providers used in the project (auth, data, router, live, notification, auditLog, i18n or accessControl) |
+| version       | string    | Version of the refine package.                                                                                  |
+| resourceCount | number    | Number of total resources.                                                                                      |
 
 Additionaly following information is extracted and collected from the HTTP header:
 

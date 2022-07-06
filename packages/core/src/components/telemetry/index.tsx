@@ -42,14 +42,16 @@ export const Telemetry: React.FC<{}> = () => {
         const accessControl = !!accessControlContext;
 
         const payload: ITelemetryData = {
-            auth,
-            auditLog,
-            live,
-            router,
-            data,
-            i18n,
-            notification,
-            accessControl,
+            providers: {
+                auth,
+                auditLog,
+                live,
+                router,
+                data,
+                i18n,
+                notification,
+                accessControl,
+            },
             version: REFINE_VERSION,
             resourceCount: resources.length,
         };
@@ -69,7 +71,8 @@ export const Telemetry: React.FC<{}> = () => {
                 .setProtectedHeader({ alg: "RSA-OAEP-256", enc: "A256GCM" })
                 .encrypt(publicKey);
 
-            fetch("https://telemetry.refine.dev/send", {
+            // https://telemetry.refine.dev/send
+            fetch("http://localhost:3001/send", {
                 headers: {
                     Accept: "application/text",
                     "Content-Type": "application/text",
