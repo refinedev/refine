@@ -22,10 +22,6 @@ export default defineConfig({
         {
             name: "textReplace",
             setup: (build) => {
-                // original code: https://github.com/josteph/esbuild-plugin-lodash
-                if (build.initialOptions.format === "cjs") {
-                    return;
-                }
                 build.onLoad({ filter: /.*/ }, async (args) => {
                     const contents = await fs.promises.readFile(
                         args.path,
