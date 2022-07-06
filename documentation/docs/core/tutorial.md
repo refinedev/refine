@@ -343,7 +343,7 @@ export const PostIcon = (
 The `icon` property of every single resource is can be used to display the resource in whatever way you want for example in the sidebar or header. We'll use it when we'll create layout component.
 :::
 
-Instead of showing the welcome page, the application should redirect now? to an URL defined by the `name` property. Open your application to check that the URL is routed to **/posts**:
+Instead of showing the welcome page, the application should redirect now to an URL defined by the `name` property. Open your application to check that the URL is routed to **/posts**:
 
 <div class="img-container">
     <div class="window">
@@ -369,6 +369,8 @@ For basic _CRUD_ operations, there are **four** predefined props: **list**, **cr
 Let's create a **Page** component to fetch **posts** and display them as a table. Later, we will pass the component as the **list** prop to our resource.
 
 ## Adding Tailwind CSS
+
+We will use Tailwind for the UI of the example app. You can prefer any UI library or design system since it's not affecting usability.
 
 Install `tailwindcss` and its peer dependencies via npm, and then run the init command to generate both `tailwind.config.js` and `postcss.config.js`.
 
@@ -429,11 +431,11 @@ export const Layout: React.FC = ({ children }) => {
                             />
                         </Link>
                         <ul>
-                            {menuItems.map(({ name, label icon, route }) => (
+                            {menuItems.map(({ name, label, icon, route }) => (
                                 <li key={name} className="float-left">
                                     <a
                                         className="flex cursor-pointer items-center gap-1 rounded-sm px-2 py-1 capitalize decoration-indigo-500 decoration-2 underline-offset-1 transition duration-300 ease-in-out hover:underline"
-                                        onClick={() => push(route)}
+                                        onClick={() => push(route || "")}
                                     >
                                         {icon}
                                         <span>{label ?? name}</span>
@@ -1388,8 +1390,11 @@ Now we can add the newly created component to our resource with `show` prop:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
+
+import "@pankod/refine-antd/dist/styles.min.css";
 
 // highlight-next-line
 import { PostList, PostShow } from "./pages/posts";
