@@ -1,7 +1,7 @@
 ---
-id: tutorial
-title: Tutorial
-sidebar_label: Tutorial
+id: tutorials
+title: Tutorials
+sidebar_label: Tutorials
 slug: /
 ---
 
