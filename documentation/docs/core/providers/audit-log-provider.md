@@ -71,13 +71,13 @@ Let's create an `auditLogProvider` to understand better. In this example, we wil
 
 This method is used to list audit log events.
 
-For example, using `useLogList` hook to list all resource activities by a specific user creates an event like this:
+For example, using `useLogList` hook to list all resource activities by a specific record id creates an event like this:
 
 ```json
 {
     "resource": "posts",
-    "author": {
-        "name": "John Doe"
+    "meta": {
+        "id": "1"
     }
 }
 ```
@@ -96,7 +96,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const dataProvider = refineSimpleRestDataProvider(API_URL);
 
 const auditLogProvider: AuditLogProvider = {
-    get: async ({ resource, author }) => {
+    get: async ({ resource, meta }) => {
         const { data } = await dataProvider(API_URL).getList({
             resource: "logs",
             filters: [
@@ -106,9 +106,9 @@ const auditLogProvider: AuditLogProvider = {
                     value: resource,
                 },
                 {
-                    field: "author.name",
+                    field: "meta.id",
                     operator: "eq",
-                    value: author?.name,
+                    value: meta?.id,
                 },
             ],
         });
