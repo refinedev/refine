@@ -1,5 +1,40 @@
 # @pankod/refine-core
 
+## 3.37.0
+
+### Minor Changes
+
+-   [#2049](https://github.com/pankod/refine/pull/2049) [`98966b586f`](https://github.com/pankod/refine/commit/98966b586f6febd8669065b5b453a8e441f76bc1) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - `useLog` is converted to useQuery mutation.
+
+    ```
+    // before
+    const { log } = useLog();
+    log({
+      resource: 'posts',
+      action: 'create',
+      data: {
+          id: 1
+      }
+    });
+    ```
+
+    ```
+    // after
+    const { log } = useLog();
+    const { mutation } = log;
+    mutation({
+      resource: 'posts',
+      action: 'create',
+      data: {
+          id: 1
+      }
+    });
+    ```
+
+### Patch Changes
+
+-   [#2104](https://github.com/pankod/refine/pull/2104) [`9d77c63a92`](https://github.com/pankod/refine/commit/9d77c63a925dca0133b3e83974dff486a2233017) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed `useBreadcrumb` hook throws `console.warn` even if i18nProvider is not used - #2103
+
 ## 3.36.0
 
 ### Minor Changes
