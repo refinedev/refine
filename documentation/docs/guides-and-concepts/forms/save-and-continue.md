@@ -3,7 +3,7 @@ id: save-and-continue
 title: Save and Continue
 ---
 
-## How can I implement the save and continue feature?
+import saveButtons from '@site/static/img/guides-and-concepts/form/save-and-continue/saveButtons.png';
 
 refine provides you with the necessary methods to add this feature. This feature is familiar to [Django](https://www.djangoproject.com/) users.
 
@@ -21,14 +21,7 @@ import { useTable, useNavigation } from "@pankod/refine-core";
 import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
-    const { tableQueryResult } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
-    });
+    const { tableQueryResult } = useTable<IPost>();
     const { edit, create } = useNavigation();
 
     return (
@@ -62,26 +55,20 @@ export const PostList: React.FC = () => {
 </p>
 </details>
 
-### useForm without redirect
+### Disable `useForm` redirection after successfull mutation
 
-When we create our Create Page, we pass `redirect` false to the [`userForm`](/docs/core/hooks/useForm) hook that we will use to manage the form. Thus, we will be able to do the redirection we want in our buttons.
+When we create our Create Page, we pass `redirect` false to the [`useForm`](/docs/core/hooks/useForm) hook that we will use to manage the form. Thus, we will be able to do the redirection we want in our buttons.
 
 ```tsx title="src/pages/create.tsx"
-import React, { useState } from "react";
-import { useSelect, useForm, useNavigation } from "@pankod/refine-core";
+// highlight-next-line
+import { useForm } from "@pankod/refine-core";
 
 import { IPost } from "interfaces";
 
 export const PostCreate: React.FC = () => {
-    const { formLoading, onFinish, redirect } = useForm({
+    const { formLoading, onFinish, redirect } = useForm<IPost>({
         // highlight-next-line
         redirect: false,
-    });
-
-    const { goBack } = useNavigation();
-
-    const { options } = useSelect({
-        resource: "categories",
     });
 };
 ```
@@ -105,7 +92,7 @@ export const PostCreate: React.FC = () => {
             id: "",
         },
     });
-    const { formLoading, onFinish, redirect } = useForm({
+    const { formLoading, onFinish, redirect } = useForm<IPost>({
         redirect: false,
     });
 
@@ -205,18 +192,24 @@ export const PostCreate: React.FC = () => {
 };
 ```
 
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={saveButtons} alt="save and continue buttons" />
+</div>
+<br/>
+
 ### Handling submit events on buttons
+
+We will use `handleSubmit` function to manage submit event when clicking the buttons we created.
 
 :::info
 `onFinish` function resolves to respect the `mutationMode` property. In `pessimistic` mode it will resolve after the response is returned from the request, in `optimistic` and `undoable` modes it will resolve immediately. Only real await will happen in pessimistic mode and this will resolve with the response data, others will resolve immediately with undefined data.
 
 [Refer to the `mutationMode` documentation for more details. &#8594](/guides-and-concepts/mutation-mode.md)
-:::
-
-We will use `handleSubmit` function to manage submit event when clicking the buttons we created.
-
-:::tip
-We used the `redirect` method to perform the redirection, which returns from [`userForm`](/docs/core/hooks/useForm) instead of [`useNavigation`](/docs/core/hooks/navigation/useNavigation) Thus, we can do our routing without dealing with managing resources.
 :::
 
 ```tsx title="src/pages/create.tsx"
@@ -234,7 +227,7 @@ export const PostCreate: React.FC = () => {
             id: "",
         },
     });
-    const { formLoading, onFinish, redirect } = useForm({
+    const { formLoading, onFinish, redirect } = useForm<IPost>({
         redirect: false,
     });
 
@@ -359,6 +352,10 @@ export const PostCreate: React.FC = () => {
     );
 };
 ```
+
+:::tip
+We used the `redirect` method to perform the redirection, which returns from [`useForm`](/docs/core/hooks/useForm) instead of [`useNavigation`](/docs/core/hooks/navigation/useNavigation) Thus, we can do our routing without dealing with managing resources.
+:::
 
 ## Live StackBlitz Example
 
