@@ -119,7 +119,7 @@ It fetches the record data according to the `id` and returns the `queryResult` f
 | formLoading    | Loading state of form request                          | `boolean`                                                                                                                                        |
 | id             | Record id for `clone` and `create` action              | [`BaseKey`](/core/interfaces.md#basekey)                                                                                                         |
 | setId          | `id` setter                                            | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                 |
-| redirect       | Redirect function for custom redirections              | (redirect: `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,idFromFunction?: [`BaseKey`](/core/interfaces.md#basekey)\|`undefined`) => `void` |
+| redirect       | Redirect function for custom redirections              | (redirect: `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,idFromFunction?: [`BaseKey`](/core/interfaces.md#basekey)\|`undefined`) => `data` |
 
 [baserecord]: //core/interfaces.md#baserecord
 [httperror]: //core/interfaces.md#httperror
