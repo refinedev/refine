@@ -40,6 +40,7 @@ export interface EditProps {
     deleteButtonProps?: DeleteButtonProps;
     resource?: string;
     isLoading?: boolean;
+    dataProviderName?: string;
 }
 
 /**
@@ -60,6 +61,7 @@ export const Edit: React.FC<EditProps> = ({
     canDelete,
     resource: resourceFromProps,
     isLoading = false,
+    dataProviderName,
 }) => {
     const translate = useTranslate();
     const { goBack, list } = useNavigation();
@@ -108,6 +110,7 @@ export const Edit: React.FC<EditProps> = ({
                     <RefreshButton
                         resourceNameOrRouteName={resource.route}
                         recordItemId={id}
+                        dataProviderName={dataProviderName}
                     />
                 </Space>
             }
@@ -134,6 +137,7 @@ export const Edit: React.FC<EditProps> = ({
                                                         resource.name,
                                                 );
                                             }}
+                                            dataProviderName={dataProviderName}
                                             {...deleteButtonProps}
                                         />
                                     )}
