@@ -62,7 +62,7 @@ export const PostList: React.FC = () => {
 </p>
 </details>
 
-When we create our Create Page, we pass `redirect` false to the [`userForm`](/docs/core/hooks/useForm) hook that we will use to manage the form. Thus, we will be able to do the redirection we want in our buttons.
+When we create our Create Page, we pass `redirect` false to the [`useForm`](/docs/core/hooks/useForm) hook that we will use to manage the form. Thus, we will be able to do the redirection we want in our buttons.
 
 ```tsx title="src/pages/create.tsx"
 import React, { useState } from "react";
