@@ -1,7 +1,7 @@
 ---
-"@pankod/refine-graphql": major
-"@pankod/refine-hasura": major
-"@pankod/refine-strapi-graphql": major
+"@pankod/refine-graphql": minor
+"@pankod/refine-hasura": minor
+"@pankod/refine-strapi-graphql": minor
 ---
 
 Upgraded `grapql-request` version in graphql data provider packages.
