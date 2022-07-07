@@ -183,15 +183,16 @@ We can also add a logout button:
 
 ```tsx title="src/CustomMenu.tsx"
 import { useState, CSSProperties } from "react";
-import { useTitle, useRouterContext, useMenu } from "@pankod/refine-core";
+// highlight-start
+import { useTitle, useRouterContext, useMenu, useLogout } from "@pankod/refine-core";
+// highlight-end
 import {
     AntdLayout,
     Menu,
     Link,
     Grid,
     // highlight-start
-    Icons,
-    useLogout,
+    Icons
     // highlight-end
 } from "@pankod/refine-antd";
 
