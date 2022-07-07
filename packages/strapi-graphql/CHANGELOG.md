@@ -1,5 +1,25 @@
 # @pankod/refine-strapi-graphql
 
+## 4.1.0
+
+### Minor Changes
+
+-   Upgraded `grapql-request` version in graphql data provider packages.
+
+    Now the `graphql-request` and `qql-query-builder` packages are exported in these packages.
+
+    ```diff
+    - import dataProvider from "@pankod/refine-strapi-graphql";
+    - import { GraphQLClient } from "graphql-request";
+    - import * as qqlQueryBuilder from "gql-query-builder";
+    + import dataProvider, { GraphQLClient, qqlQueryBuilder } from "@pankod/refine-strapi-graphql";
+    ```
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.38.2
+
 ## 4.0.0
 
 ### Major Changes
