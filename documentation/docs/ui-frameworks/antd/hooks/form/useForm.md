@@ -162,7 +162,7 @@ const { clone } = useNavigation();
 
 | Property        | Description                                             | Type                                                                                                                                                 |
 | --------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| onFinish        | Triggers the mutation                                   | `(values?: TVariables) => Promise<void>`                                                                                                             |
+| onFinish        | Triggers the mutation                                   | `(values?: TVariables) => Promise<CreateResponse<TData>` \| `UpdateResponse<TData>` \| `void`>                                                       |
 | form            | Ant Design form instance                                | [`FormInstance`](https://ant.design/components/form/#FormInstance)                                                                                   |
 | formProps       | Ant Design form props                                   | [`FormProps`](https://ant.design/components/form/#Form)                                                                                              |
 | saveButtonProps | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; loading?:boolean; }`                                                                                      |

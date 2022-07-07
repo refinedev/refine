@@ -113,7 +113,7 @@ It fetches the record data according to the `id` and returns the `queryResult` f
 
 | Property       | Description                                            | Type                                                                                                                                             |
 | -------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| onFinish       | Triggers the mutation                                  | `(values: TVariables) => Promise<void>`                                                                                                          |
+| onFinish       | Triggers the mutation                                  | `(values: TVariables) => Promise<CreateResponse<TData>` \| `UpdateResponse<TData>` \| `void`>                                                    |
 | queryResult    | Result of the query of a record                        | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)                                                                  |
 | mutationResult | Result of the mutation triggered by calling `onFinish` | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                 |
 | formLoading    | Loading state of form request                          | `boolean`                                                                                                                                        |
