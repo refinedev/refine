@@ -431,7 +431,10 @@ module.exports = {
                 {
                     type: "category",
                     label: "Form",
-                    items: ["guides-and-concepts/forms/custom-form-validation"],
+                    items: [
+                        "guides-and-concepts/forms/custom-form-validation",
+                        "guides-and-concepts/forms/save-and-continue",
+                    ],
                 },
                 {
                     type: "category",
@@ -461,7 +464,6 @@ module.exports = {
                         "guides-and-concepts/search/table-search",
                     ],
                 },
-
                 "guides-and-concepts/ssr-nextjs",
                 {
                     type: "category",
@@ -575,6 +577,11 @@ module.exports = {
                                 "examples/form/antd/useModalForm",
                                 "examples/form/antd/useStepsForm",
                             ],
+                        },
+                        {
+                            type: "category",
+                            label: "Headless",
+                            items: ["examples/form/headless/save-and-continue"],
                         },
                         {
                             type: "category",
