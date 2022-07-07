@@ -2,10 +2,14 @@ import { useContext, useEffect } from "react";
 import { useQueryClient } from "react-query";
 import {
     BaseKey,
+    CrudFilters,
+    CrudSorting,
     ILiveContext,
     IRefineContext,
     LiveEvent,
     LiveModeProps,
+    MetaDataQuery,
+    Pagination,
 } from "../../../interfaces";
 import { LiveContext } from "@contexts/live";
 import { RefineContext } from "@contexts/refine";
@@ -20,6 +24,12 @@ export type UseResourceSubscriptionProps = {
     types: LiveEvent["type"][];
     resource: string;
     enabled?: boolean;
+    metaData?: MetaDataQuery;
+    pagination?: Pagination;
+    hasPagination?: boolean;
+    sort?: CrudSorting;
+    filters?: CrudFilters;
+    subscriptionType: "list" | "one" | "many";
 } & LiveModeProps;
 
 export type PublishType = {
@@ -34,6 +44,12 @@ export const useResourceSubscription = ({
     enabled = true,
     liveMode: liveModeFromProp,
     onLiveEvent,
+    metaData,
+    pagination,
+    hasPagination,
+    sort,
+    filters,
+    subscriptionType,
 }: UseResourceSubscriptionProps): void => {
     const queryClient = useQueryClient();
     const queryKey = queryKeys(resource);
@@ -62,6 +78,13 @@ export const useResourceSubscription = ({
                     onLiveEvent?.(event);
                     onLiveEventContextCallback?.(event);
                 },
+                resource,
+                metaData,
+                pagination,
+                hasPagination,
+                sort,
+                filters,
+                subscriptionType,
             });
         }
 

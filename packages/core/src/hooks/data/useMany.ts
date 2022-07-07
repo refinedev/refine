@@ -76,6 +76,8 @@ export const useMany = <
         enabled: isEnabled,
         liveMode,
         onLiveEvent,
+        metaData,
+        subscriptionType: "many",
     });
 
     const queryResponse = useQuery<GetManyResponse<TData>, TError>(

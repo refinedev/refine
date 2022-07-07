@@ -70,6 +70,8 @@ export const useOne = <
         enabled: queryOptions?.enabled,
         liveMode,
         onLiveEvent,
+        metaData,
+        subscriptionType: "one",
     });
 
     const queryResponse = useQuery<GetOneResponse<TData>, TError>(

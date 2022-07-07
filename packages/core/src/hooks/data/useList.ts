@@ -16,7 +16,6 @@ import {
     useResourceSubscription,
     useTranslate,
     useDataProvider,
-    useLog,
 } from "@hooks";
 import { queryKeys } from "@definitions/helpers";
 
@@ -85,6 +84,12 @@ export const useList = <
         enabled: isEnabled,
         liveMode,
         onLiveEvent,
+        metaData,
+        pagination: config?.pagination,
+        hasPagination: config?.hasPagination,
+        sort: config?.sort,
+        filters: config?.filters,
+        subscriptionType: "list",
     });
 
     const queryResponse = useQuery<GetListResponse<TData>, TError>(

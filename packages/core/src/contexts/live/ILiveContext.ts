@@ -1,4 +1,11 @@
-import { BaseKey, LiveEvent } from "../../interfaces";
+import {
+    BaseKey,
+    CrudFilters,
+    CrudSorting,
+    LiveEvent,
+    MetaDataQuery,
+    Pagination,
+} from "../../interfaces";
 
 export type ILiveContext =
     | {
@@ -11,6 +18,13 @@ export type ILiveContext =
               };
               types: LiveEvent["type"][];
               callback: (event: LiveEvent) => void;
+              resource: string;
+              metaData?: MetaDataQuery;
+              pagination?: Pagination;
+              hasPagination?: boolean;
+              sort?: CrudSorting;
+              filters?: CrudFilters;
+              subscriptionType: "list" | "one" | "many";
           }) => any;
           unsubscribe: (subscription: any) => void;
       }
