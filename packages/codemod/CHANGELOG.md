@@ -1,5 +1,11 @@
 # @pankod/refine-codemod
 
+## 3.27.2
+
+### Patch Changes
+
+-   Fixed `@pankod/refine-codemod` build issue
+
 ## 3.27.1
 
 ### Patch Changes
