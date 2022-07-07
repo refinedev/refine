@@ -5,7 +5,11 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider, { GraphQLClient } from "@pankod/refine-hasura";
+import dataProvider, {
+    liveProvider,
+    GraphQLClient,
+    graphqlWS,
+} from "@pankod/refine-hasura";
 import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -16,6 +20,11 @@ import {
 } from "pages/categories";
 
 const API_URL = "https://flowing-mammal-24.hasura.app/v1/graphql";
+const WS_URL = "ws://flowing-mammal-24.hasura.app/v1/graphql";
+
+const gqlWebSocketClient = graphqlWS.createClient({
+    url: WS_URL,
+});
 
 const client = new GraphQLClient(API_URL, {
     headers: {
@@ -48,6 +57,8 @@ const App: React.FC = () => {
             notificationProvider={notificationProvider}
             Layout={Layout}
             catchAll={<ErrorComponent />}
+            liveProvider={liveProvider(gqlWebSocketClient)}
+            liveMode="auto"
         />
     );
 };
