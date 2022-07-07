@@ -1,64 +1,17 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { CompactEncrypt, importJWK } from "jose";
 
-import { AuthContext } from "@contexts/auth";
-import { AuditLogContext } from "@contexts/auditLog";
-import { LiveContext } from "@contexts/live";
-import { RouterContext } from "@contexts/router";
-import { DataContext } from "@contexts/data";
-import { TranslationContext } from "@contexts/translation";
-import { NotificationContext } from "@contexts/notification";
-import { AccessControlContext } from "@contexts/accessControl";
-import { useResource } from "@hooks/resource";
-
-import { ITelemetryData } from "../../interfaces/telementry";
-
-// It reads and updates from package.json during build. ref: tsup.config.ts
-const REFINE_VERSION = "1.0.0";
+import { useTelemetryData } from "@hooks/useTelemetryData";
 
 export const Telemetry: React.FC<{}> = () => {
-    const authContext = useContext(AuthContext);
-    const auditLogContext = useContext(AuditLogContext);
-    const liveContext = useContext(LiveContext);
-    const routerContext = useContext(RouterContext);
-    const dataContext = useContext(DataContext);
-    const i18nContext = useContext(TranslationContext);
-    const notificationContext = useContext(NotificationContext);
-    const accessControlContext = useContext(AccessControlContext);
-    const { resources } = useResource();
+    const payload = useTelemetryData();
 
     useEffect(() => {
         if (typeof window === "undefined") {
             return;
         }
 
-        const auth = authContext.isProvided;
-        const auditLog =
-            !!auditLogContext.create ||
-            !!auditLogContext.update ||
-            !!auditLogContext.get;
-
-        const live = !!liveContext;
-        const router = !!routerContext;
-        const data = !!dataContext;
-        const i18n = !!i18nContext;
-        const notification = !!notificationContext;
-        const accessControl = !!accessControlContext;
-
-        const payload: ITelemetryData = {
-            providers: {
-                auth,
-                auditLog,
-                live,
-                router,
-                data,
-                i18n,
-                notification,
-                accessControl,
-            },
-            version: REFINE_VERSION,
-            resourceCount: resources.length,
-        };
+        console.log("--payload", JSON.stringify(payload, null, 2));
 
         (async () => {
             const publicKey = await importJWK({
