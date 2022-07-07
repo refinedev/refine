@@ -74,7 +74,6 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
                     resources={resources ?? [{ name: "posts", list: List }]}
                     accessControlProvider={accessControlProvider}
                     DashboardPage={DashboardPage ?? undefined}
-                    disableTelemetry={true}
                 >
                     {children}
                 </Refine>
