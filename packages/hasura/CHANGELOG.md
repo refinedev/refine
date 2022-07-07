@@ -1,5 +1,25 @@
 # @pankod/refine-hasura
 
+## 4.0.0
+
+### Major Changes
+
+-   [#2113](https://github.com/pankod/refine/pull/2113) [`c2fb7ac0e9`](https://github.com/pankod/refine/commit/c2fb7ac0e9b5871de76aa975b2a196ab39fa7a6b) Thanks [@omeraplak](https://github.com/omeraplak)! - Upgraded `grapql-request` version in graphql data provider packages.
+
+    Now the `graphql-request` and `qql-query-builder` packages are exported in these packages.
+
+    ```diff
+    - import dataProvider from "@pankod/refine-strapi-graphql";
+    - import { GraphQLClient } from "graphql-request";
+    - import * as qqlQueryBuilder from "gql-query-builder";
+    + import dataProvider, { GraphQLClient, qqlQueryBuilder } from "@pankod/refine-strapi-graphql";
+    ```
+
+### Patch Changes
+
+-   Updated dependencies [[`ee8e8bbd6c`](https://github.com/pankod/refine/commit/ee8e8bbd6cf6ff2ab1a87883e4030205dedb16ea)]:
+    -   @pankod/refine-core@3.38.1
+
 ## 3.25.4
 
 ### Patch Changes

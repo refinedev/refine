@@ -1,5 +1,19 @@
 # @pankod/refine-core
 
+## 3.38.1
+
+### Patch Changes
+
+-   [#2089](https://github.com/pankod/refine/pull/2089) [`ee8e8bbd6c`](https://github.com/pankod/refine/commit/ee8e8bbd6cf6ff2ab1a87883e4030205dedb16ea) Thanks [@ozkalai](https://github.com/ozkalai)! - - The redirect method that return from `useForm` updated to be avaiable for passing `id`.
+
+    ```
+    const { redirect } = useForm();
+
+    redirect("edit", id);
+    ```
+
+    -   Returning API response to `onFinish` function for successful mutations
+
 ## 3.38.0
 
 ### Minor Changes
