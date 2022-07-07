@@ -8,23 +8,12 @@ import {
     EditButton,
     DeleteButton,
     DateField,
-    getDefaultSortOrder,
 } from "@pankod/refine-antd";
 
 import { ICategory } from "interfaces";
 
 export const CategoriesList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter } = useTable<ICategory>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "asc",
-            },
-        ],
-        metaData: {
-            fields: ["id", "title", "created_at"],
-        },
-    });
+    const { tableProps } = useTable<ICategory>();
 
     return (
         <List>
@@ -35,7 +24,6 @@ export const CategoriesList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="created_at"
                     title="Created At"
                     render={(value) => <DateField value={value} format="LLL" />}
-                    defaultSortOrder={getDefaultSortOrder("created_at", sorter)}
                     sorter
                 />
                 <Table.Column<ICategory>
