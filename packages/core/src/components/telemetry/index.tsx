@@ -11,6 +11,7 @@ export const Telemetry: React.FC<{}> = () => {
             return;
         }
 
+        // TODO: Add temporary
         console.log("--payload", JSON.stringify(payload, null, 2));
 
         (async () => {
