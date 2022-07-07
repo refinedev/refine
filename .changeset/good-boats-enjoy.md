@@ -1,9 +1,10 @@
 ---
+"@pankod/refine-graphql": major
 "@pankod/refine-hasura": major
 "@pankod/refine-strapi-graphql": major
 ---
 
-Upgraded `grapql-request` version in `@pankod/refine-hasura` and `@pankod/refine-strapi-graphql` packages.
+Upgraded `grapql-request` version in graphql data provider packages.
 
 Now the `graphql-request` and `qql-query-builder` packages are exported in these packages.
 
