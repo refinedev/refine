@@ -279,7 +279,7 @@ For more information about adding font family in your Refine application, you ca
 
 `<Refine/>` is the root component of a **refine** application. Using the [`dataProvider`](/core/providers/data-provider.md) prop, we made our **Simple REST Dataprovider** available to the entire application.
 
-Run the following command to install the required package:
+Run the following command to launch the app in development mode:
 
 <Tabs
 defaultValue="superplate"
