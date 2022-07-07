@@ -21,7 +21,7 @@ We try to answer the question **how many users are actively using the Refine fra
 
 ## How do we collect data?
 
-The tracking happens when a Refine application is loaded on users browser. On application init, a single HTTP request is sent to [https://telemery.refine.dev](https://telemery.refine.dev) . The request is encrypted with 1024-bit RSA public key and securely decrypted on Refine servers.
+The tracking happens when a Refine application is loaded on users browser. On application init, a single HTTP request is sent to [https://telemery.refine.dev](https://telemery.refine.dev). The request body is encrypted with JSON Web Encryption (JWE) standard  ([ietf.org/doc/html/rfc7516](https://datatracker.ietf.org/doc/html/rfc7516)) to be decrypted securely on Refine servers.
 
 There are no consequent requests on that session, as we do NOT collect any behavioral information as _page views_, _button clicks_ etc.
 
