@@ -23,6 +23,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
                     dataProvider={dataProvider ?? MockJSONServer}
                     routerProvider={MockRouterProvider}
                     resources={resources ?? [{ name: "posts" }]}
+                    disableTelemetry={true}
                 >
                     {children}
                 </Refine>
