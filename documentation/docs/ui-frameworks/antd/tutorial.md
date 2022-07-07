@@ -823,8 +823,11 @@ Now we can add the newly created component to our resource with `show` prop:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
+
+import "@pankod/refine-antd/dist/styles.min.css";
 
 // highlight-next-line
 import { PostList, PostShow } from "./pages/posts";
@@ -838,15 +841,15 @@ export const App: React.FC = () => {
             ReadyPage={ReadyPage}
             notificationProvider={notificationProvider}
             catchAll={<ErrorComponent />}
-            // highlight-start
             resources={[
                 {
                     name: "posts",
                     list: PostList,
+                    // highlight-start
                     show: PostShow,
+                     // highlight-end
                 },
             ]}
-            // highlight-end
         />
     );
 };
@@ -934,10 +937,10 @@ export const PostList: React.FC = () => {
                         </FilterDropdown>
                     )}
                 />
+                 // highlight-start
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
-                    // highlight-start
                     render={(_text, record): React.ReactNode => {
                         return (
                             <ShowButton
@@ -947,8 +950,8 @@ export const PostList: React.FC = () => {
                             />
                         );
                     }}
-                    // highlight-end
                 />
+                 // highlight-end
             </Table>
         </List>
     );
@@ -1083,16 +1086,16 @@ export const App: React.FC = () => {
             ReadyPage={ReadyPage}
             notificationProvider={notificationProvider}
             catchAll={<ErrorComponent />}
-            // highlight-start
             resources={[
                 {
                     name: "posts",
                     list: PostList,
-                    edit: PostEdit,
                     show: PostShow,
+                    // highlight-start
+                    edit: PostEdit
+                    // highlight-end
                 },
             ]}
-            // highlight-end
         />
     );
 };

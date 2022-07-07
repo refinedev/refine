@@ -13,7 +13,7 @@ module.exports = {
         },
         {
             type: "doc",
-            id: "tutorial",
+            id: "tutorials",
         },
         {
             type: "category",
