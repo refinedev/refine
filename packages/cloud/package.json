@@ -40,7 +40,8 @@
         "@pankod/refine-core": "^3.34.0",
         "@pankod/refine-sdk": "^0.0.25",
         "lodash": "^4.17.21",
-        "lodash-es": "^4.17.21"
+        "lodash-es": "^4.17.21",
+        "react-query": "^3.19.2"
     },
     "repository": {
         "type": "git",
