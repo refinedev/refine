@@ -29,6 +29,7 @@ export interface ListProps {
     cardHeaderProps?: CardHeaderProps;
     cardContentProps?: CardContentProps;
     breadcrumb?: React.ReactNode;
+    children: React.ReactNode;
 }
 
 /**

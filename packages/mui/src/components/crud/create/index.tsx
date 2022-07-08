@@ -36,6 +36,7 @@ export interface CreateProps {
     cardContentProps?: CardContentProps;
     cardActionsProps?: CardActionsProps;
     breadcrumb?: React.ReactNode;
+    children: React.ReactNode;
 }
 
 /**

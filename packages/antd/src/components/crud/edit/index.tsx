@@ -41,6 +41,7 @@ export interface EditProps {
     resource?: string;
     isLoading?: boolean;
     dataProviderName?: string;
+    children: React.ReactNode;
 }
 
 /**
