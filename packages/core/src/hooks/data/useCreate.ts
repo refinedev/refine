@@ -131,7 +131,7 @@ export const useCreate = <
                 const { fields, operation, variables, ...rest } =
                     metaData || {};
 
-                log?.({
+                log?.mutate({
                     action: "create",
                     resource,
                     data: values,

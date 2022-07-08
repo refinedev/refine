@@ -81,8 +81,13 @@ export type UseFormReturnType<
         | UseUpdateReturnType<TData, TError, TVariables>
         | UseCreateReturnType<TData, TError, TVariables>;
     formLoading: boolean;
-    onFinish: (values: TVariables) => Promise<void>;
-    redirect: (redirect: "show" | "list" | "edit" | "create" | false) => void;
+    onFinish: (
+        values: TVariables,
+    ) => Promise<CreateResponse<TData> | UpdateResponse<TData> | void>;
+    redirect: (
+        redirect: "show" | "list" | "edit" | "create" | false,
+        idFromFunction?: BaseKey | undefined,
+    ) => void;
 };
 
 /**
@@ -205,7 +210,7 @@ export const useForm = <
             });
         }
 
-        return new Promise<void>((resolve, reject) => {
+        return new Promise<CreateResponse<TData> | void>((resolve, reject) => {
             if (mutationMode !== "pessimistic") {
                 resolve();
             }
@@ -225,11 +230,11 @@ export const useForm = <
                             onMutationSuccess(data, values, context);
                         }
 
-                        const id = data?.data?.id;
+                        const responseId = data?.data?.id;
 
-                        onSuccess(id);
+                        onSuccess(responseId);
 
-                        resolve();
+                        resolve(data);
                     },
                     onError: (error: TError, _, context) => {
                         if (onMutationError) {
@@ -276,7 +281,7 @@ export const useForm = <
         }
 
         // setTimeout is required to make onSuccess e.g. callbacks to work if component unmounts i.e. on route change
-        return new Promise<void>((resolve, reject) => {
+        return new Promise<UpdateResponse<TData> | void>((resolve, reject) => {
             if (mutationMode !== "pessimistic") {
                 resolve();
             }
@@ -291,7 +296,7 @@ export const useForm = <
                             onSuccess();
                         }
 
-                        resolve();
+                        resolve(data);
                     },
                     onError: (error: TError, _, context) => {
                         if (onMutationError) {
@@ -323,7 +328,7 @@ export const useForm = <
         queryResult,
         id,
         setId,
-        redirect: (redirect) => {
+        redirect: (redirect, idFromFunction?: BaseKey | undefined) => {
             handleSubmitWithRedirect({
                 redirect:
                     redirect !== undefined
@@ -332,7 +337,7 @@ export const useForm = <
                         ? "list"
                         : "edit",
                 resource,
-                id,
+                id: idFromFunction ?? id,
             });
         },
     };

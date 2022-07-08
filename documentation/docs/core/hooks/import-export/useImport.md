@@ -229,7 +229,7 @@ Now, parsed data is mapped to conform our APIs requirements.
 
 ## Live StackBlitz Example
 
-<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/core/useImport?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/core/useImport?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-modal-example"
 ></iframe>

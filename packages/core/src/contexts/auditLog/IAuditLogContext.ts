@@ -13,7 +13,7 @@ export type LogParams = {
 };
 
 export type IAuditLogContext = {
-    create?: (params: LogParams) => void;
+    create?: (params: LogParams) => Promise<any>;
     get?: (params: {
         resource: string;
         action?: string;

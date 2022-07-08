@@ -7,7 +7,7 @@ By using **refine**`s full-featured [Airtable](https://www.airtable.com/) Data P
 
 [View Airtable Example Source](https://github.com/pankod/refine/tree/master/examples/dataProvider/airtable)
 
-<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/dataProvider/airtable?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/dataProvider/airtable?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-airtable-example"
 ></iframe>

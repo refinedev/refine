@@ -3,7 +3,6 @@ import {
     GridFilterModel,
     GridLinkOperator,
     GridFilterItem,
-    DataGridProps,
 } from "@mui/x-data-grid";
 import {
     CrudFilters,
@@ -161,7 +160,7 @@ export const transformCrudOperatorToMuiOperator = (
 
 export const transformCrudFiltersToFilterModel = (
     crudFilters: CrudFilters,
-    columns: DataGridProps["columns"],
+    columnsType?: Record<string, string>,
 ): GridFilterModel | undefined => {
     const gridFilterItems: GridFilterItem[] = [];
 
@@ -169,38 +168,42 @@ export const transformCrudFiltersToFilterModel = (
         (filter) => filter.operator === "or",
     );
 
-    if (isExistOrFilter) {
-        const orLogicalFilters = crudFilters.find(
-            (filter) => filter.operator === "or",
-        )?.value as LogicalFilter[];
+    if (columnsType) {
+        if (isExistOrFilter) {
+            const orLogicalFilters = crudFilters.find(
+                (filter) => filter.operator === "or",
+            )?.value as LogicalFilter[];
 
-        orLogicalFilters.map(({ field, value, operator }) => {
-            const column = columns.find((col) => col.field === field);
+            orLogicalFilters.map(({ field, value, operator }) => {
+                const columnType = columnsType[field];
 
-            gridFilterItems.push({
-                columnField: field,
-                operatorValue: transformCrudOperatorToMuiOperator(
-                    operator,
-                    column?.type,
-                ),
-                value: value === "" ? undefined : value,
-                id: field + operator,
+                gridFilterItems.push({
+                    columnField: field,
+                    operatorValue: transformCrudOperatorToMuiOperator(
+                        operator,
+                        columnType,
+                    ),
+                    value: value === "" ? undefined : value,
+                    id: field + operator,
+                });
             });
-        });
-    } else {
-        (crudFilters as LogicalFilter[]).map(({ field, value, operator }) => {
-            const column = columns.find((col) => col.field === field);
+        } else {
+            (crudFilters as LogicalFilter[]).map(
+                ({ field, value, operator }) => {
+                    const columnType = columnsType[field];
 
-            gridFilterItems.push({
-                columnField: field,
-                operatorValue: transformCrudOperatorToMuiOperator(
-                    operator,
-                    column?.type,
-                ),
-                value: value === "" ? undefined : value,
-                id: field + operator,
-            });
-        });
+                    gridFilterItems.push({
+                        columnField: field,
+                        operatorValue: transformCrudOperatorToMuiOperator(
+                            operator,
+                            columnType,
+                        ),
+                        value: value === "" ? undefined : value,
+                        id: field + operator,
+                    });
+                },
+            );
+        }
     }
 
     return {

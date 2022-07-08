@@ -56,6 +56,12 @@ const siteConfig = {
                         require.resolve("./src/css/demo-page.css"),
                     ],
                 },
+                gtag: {
+                    // You can also use your "G-" Measurement ID here.
+                    trackingID: "G-27Z1WY952H",
+                    // Optional fields.
+                    anonymizeIP: true, // Should IPs be anonymized?
+                },
             },
         ],
     ],
@@ -79,7 +85,7 @@ const siteConfig = {
             {
                 name: "keywords",
                 content:
-                    "react-admin, react-framework, internal-tool, admin-panel, ant-design",
+                    "react-admin, react-framework, internal-tool, admin-panel, ant-design, material ui, mui",
             },
         ],
         announcementBar: {
@@ -87,7 +93,7 @@ const siteConfig = {
             backgroundColor: "#0B82F0",
             textColor: "#fff",
             isCloseable: false,
-            content: `<a target="_blank" style="text-decoration: none;" rel="noopener noreferrer" href="https://refine.dev/blog/weve-raised-dollar1m-seed-funding/">We’ve raised $1M in Seed Funding! 🚀🚀🚀</a>`,
+            content: `⭐️ If you like Refine, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/pankod/refine">GitHub</a> and follow us on <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/refine_dev">Twitter</a> ${TwitterSvg}`,
         },
         navbar: {
             logo: {
@@ -145,12 +151,6 @@ const siteConfig = {
                         "header-icon-link header-twitter-link header-last-nav-item",
                 },
             ],
-        },
-        gtag: {
-            // You can also use your "G-" Measurement ID here.
-            trackingID: "G-27Z1WY952H",
-            // Optional fields.
-            anonymizeIP: true, // Should IPs be anonymized?
         },
         // footer: {
         //     style: "dark",

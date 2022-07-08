@@ -49,13 +49,11 @@ const columns: GridColumns = [
 ];
 
 export const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid<IPost>({
-        columns,
-    });
+    const { dataGridProps } = useDataGrid<IPost>();
 
     return (
         <List>
-            <DataGrid {...dataGridProps} autoHeight />
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
 };
@@ -78,7 +76,6 @@ If you want to use a different resource name, you can pass `resource` as a prop 
 const { dataGridProps } = useDataGrid({
     //highlight-next-line
     resource: "categories",
-    columns,
 });
 ```
 
@@ -96,9 +93,7 @@ To disable pagination, you can set `hasPagination` property to `false` which is 
 
 ```tsx
 export const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid({
-        columns,
-    });
+    const { dataGridProps } = useDataGrid();
 
     const {
         //highlight-start
@@ -114,6 +109,7 @@ export const PostsList: React.FC = () => {
     return (
         <List>
             <DataGrid
+                columns={columns}
                 {...restDataGridProps}
                 //highlight-start
                 paginationMode={paginationMode}
@@ -140,7 +136,6 @@ You can set initial values for the pagination by passing `initialCurrent` and `i
 
 ```tsx
 const { dataGridProps } = useDataGrid({
-    columns,
     initialCurrent: 2,
     initialPageSize: 10,
 });
@@ -154,9 +149,7 @@ The hook handles sorting by setting the `sortingMode`, `sortModel` and `onSortMo
 
 ```tsx
 export const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid({
-        columns,
-    });
+    const { dataGridProps } = useDataGrid();
 
     //highlight-start
     const { sortingMode, sortModel, onSortModelChange, ...restDataGridProps } =
@@ -166,6 +159,7 @@ export const PostsList: React.FC = () => {
     return (
         <List>
             <DataGrid
+                columns={columns}
                 {...restDataGridProps}
                 //highlight-start
                 sortingMode={sortingMode}
@@ -190,7 +184,6 @@ You can pass `initialSorter` prop to set initial sorting and `permanentSorter` p
 
 ```tsx
 const { dataGridProps } = useDataGrid({
-    columns,
     initialSorter: [{ field: "id", order: "desc" }],
     permanentSorter: [{ field: "title", order: "asc" }],
 });
@@ -223,9 +216,7 @@ const columns: GridColumns = [
 ];
 
 export const PostsList: React.FC = () => {
-    const { dataGridProps, setSorter } = useDataGrid({
-        columns,
-    });
+    const { dataGridProps, setSorter } = useDataGrid();
 
     const handleSorting = (order: "asc" | "desc") => {
         setSorter([
@@ -242,7 +233,7 @@ export const PostsList: React.FC = () => {
                 <Button onClick={() => handleSorting("asc")}>Asc</Button>
                 <Button onClick={() => handleSorting("desc")}>Desc</Button>
             </ButtonGroup>
-            <DataGrid {...dataGridProps} autoHeight />
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
 };
@@ -266,9 +257,7 @@ The hook handles filtering by setting the `filterMode`, `filterModel` and `onFil
 
 ```tsx
 export const PostsList: React.FC = () => {
-    const { dataGridProps } = useDataGrid({
-        columns,
-    });
+    const { dataGridProps } = useDataGrid();
 
     //highlight-start
     const {
@@ -282,6 +271,7 @@ export const PostsList: React.FC = () => {
     return (
         <List>
             <DataGrid
+                columns={columns}
                 {...restDataGridProps}
                 //highlight-start
                 filterMode={filterMode}
@@ -306,7 +296,6 @@ You can pass `initialFilter` prop to set initial filter and `permanentFilter` pr
 
 ```tsx
 const { dataGridProps } = useDataGrid({
-    columns,
     initialFilter: [{ field: "title", value: "lorem", operator: "contains" }],
     permanentFilter: [{ field: "status", value: "draft", operator: "eq" }],
 });
@@ -339,9 +328,7 @@ const columns: GridColumns = [
 ];
 
 export const PostsList: React.FC = () => {
-    const { dataGridProps, setFilters } = useDataGrid({
-        columns,
-    });
+    const { dataGridProps, setFilters } = useDataGrid();
 
     const handleFilter = (
         e: React.ChangeEvent<HTMLInputElement>,
@@ -362,7 +349,7 @@ export const PostsList: React.FC = () => {
                 label="Filter by Draft Status"
                 control={<Checkbox onChange={handleFilter} />}
             />
-            <DataGrid {...dataGridProps} autoHeight />
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
 };
@@ -386,7 +373,6 @@ When `filterModel` is not passed, it supports more than one criteria at a time, 
 
 | Key                                                                                                | Description                                                                                                                                                        | Type                                                                           | Default                                                                              |
 | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| <div className="required-block"><div>columns</div> <div className=" required">Required</div></div> | Set of columns of type `GridColumns`                                                                                                                               | [`GridColDef`](https://mui.com/x/api/data-grid/grid-col-def)                   |                                                                                      |
 | resource                                                                                           | The resource to use for table data                                                                                                                                 | `string` \| `undefined`                                                        | Resource name that it reads from the URL                                             |
 | permanentFilter                                                                                    | Default and unchangeable filter                                                                                                                                    | [`CrudFilters`][crudfilters]                                                   | `[]`                                                                                 |
 | permanentSorter                                                                                    | Default and unchangeable sorter state                                                                                                                              | [`CrudSorting`][crudsorting]                                                   | `[]`                                                                                 |
@@ -434,25 +420,52 @@ When `filterModel` is not passed, it supports more than one criteria at a time, 
 >
 > | Property                | Default    | Property            | Default    |
 > | ----------------------- | ---------- | ------------------- | ---------- |
-> | columns                 |            | pageSize            | `25`       |
-> | rows                    | `[]`       | onPageSizeChange    |            |
-> | rowCount                | `0`        | sortingMode         | `"server"` |
-> | disableSelectionOnClick | `true`     | sortModel           |            |
-> | loading                 | `false`    | onSortModelChange   |            |
-> | paginationMode          | `"server"` | filterMode          | `"server"` |
-> | page                    | `0`        | filterModel         |            |
-> | onPageChange            |            | onFilterModelChange |            |
+> | rows                    | `[]`       | pageSize            | `25`       |
+> | rowCount                | `0`        | onPageSizeChange    |            |
+> | disableSelectionOnClick | `true`     | sortingMode         | `"server"` |
+> | loading                 | `false`    | sortModel           |            |
+> | paginationMode          | `"server"` | onSortModelChange   |            |
+> | page                    | `0`        | filterMode          | `"server"` |
+> | onPageChange            |            | filterModel         |            |
+> | onStateChange           |            | onFilterModelChange |            |
 
 <br/>
 
+:::caution
+The `onStateChange` callback is used internally by the `useDataGrid` hook. If you want to override it, you can use like this:
+
+```tsx
+export const PostsList: React.FC = () => {
+    const { dataGridProps } = useDataGrid<IPost>();
+
+    return (
+        <List>
+            <DataGrid
+                {...dataGridProps}
+                columns={columns}
+                autoHeight
+                //highlight-start
+                onStateChange={(state) => {
+                    dataGridProps.onStateChange(state);
+                    // do something else
+                }}
+                //highlight-end
+            />
+        </List>
+    );
+};
+```
+
+:::
+
 ## Live StackBlitz Example
 
-<iframe src="https://stackblitz.com/github/pankod/refine/tree/mui/examples/table/mui/useDataGrid?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/table/mui/useDataGrid?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-data-grid-example"
 ></iframe>
 
-[source-code]: https://github.com/pankod/refine/blob/master/packages/mui/src/hooks/useDataGrid/index.ts
+[source-code]: https://github.com/pankod/refine/blob/master/packages/master/src/hooks/useDataGrid/index.ts
 [syncwithlocationparams]: /core/interfaces.md#syncwithlocationparams
 [crudsorting]: /core/interfaces.md#crudsorting
 [crudfilters]: /core/interfaces.md#crudfilters

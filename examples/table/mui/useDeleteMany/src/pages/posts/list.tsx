@@ -1,5 +1,5 @@
 import React from "react";
-import { useOne, useDeleteMany } from "@pankod/refine-core";
+import { useMany, useDeleteMany } from "@pankod/refine-core";
 import {
     useDataGrid,
     DataGrid,
@@ -32,6 +32,19 @@ export const PostsList: React.FC = () => {
         );
     };
 
+    const { dataGridProps } = useDataGrid<IPost>({
+        initialPageSize: 10,
+    });
+
+    const categoryIds = dataGridProps.rows.map((item) => item.category.id);
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
     const columns = React.useMemo<GridColumns<IPost>>(
         () => [
             {
@@ -49,23 +62,21 @@ export const PostsList: React.FC = () => {
                 align: "left",
                 minWidth: 250,
                 flex: 0.5,
-                valueGetter: ({ row }) => {
-                    const { data } = useOne<ICategory>({
-                        resource: "categories",
-                        id: row.category.id,
-                    });
-                    return data?.data.title;
+                renderCell: function render({ row }) {
+                    if (isLoading) {
+                        return "Loading...";
+                    }
+
+                    const category = categoriesData?.data.find(
+                        (item) => item.id === row.category.id,
+                    );
+                    return category?.title;
                 },
             },
             { field: "status", headerName: "Status", minWidth: 120, flex: 0.3 },
         ],
-        [],
+        [categoriesData, isLoading],
     );
-
-    const { dataGridProps } = useDataGrid<IPost>({
-        columns,
-        initialPageSize: 10,
-    });
 
     return (
         <List
@@ -85,6 +96,7 @@ export const PostsList: React.FC = () => {
         >
             <DataGrid
                 {...dataGridProps}
+                columns={columns}
                 autoHeight
                 checkboxSelection
                 onSelectionModelChange={(newSelectionModel) => {

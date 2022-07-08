@@ -3,7 +3,6 @@ import {
     GridSortModel,
     GridFilterModel,
     GridLinkOperator,
-    GridColumns,
 } from "@mui/x-data-grid";
 
 import {
@@ -285,10 +284,10 @@ describe("transformCrudFiltersToFilterModel", () => {
             },
         ];
 
-        const column: GridColumns = [
-            { field: "rating", type: "number" },
-            { field: "isAdmin", type: "boolean" },
-        ];
+        const columnsLookup = {
+            rating: "number",
+            isAdmin: "boolean",
+        };
 
         const filterModel: GridFilterModel = {
             items: [
@@ -308,9 +307,9 @@ describe("transformCrudFiltersToFilterModel", () => {
             linkOperator: GridLinkOperator.Or,
         };
 
-        expect(transformCrudFiltersToFilterModel(crudFilters, column)).toEqual(
-            filterModel,
-        );
+        expect(
+            transformCrudFiltersToFilterModel(crudFilters, columnsLookup),
+        ).toEqual(filterModel);
     });
 
     it("Map crud filters to filter model with 'and' operator", () => {
@@ -327,10 +326,10 @@ describe("transformCrudFiltersToFilterModel", () => {
             },
         ];
 
-        const column: GridColumns = [
-            { field: "rating", type: "number" },
-            { field: "isAdmin", type: "boolean" },
-        ];
+        const columnsLookup = {
+            rating: "number",
+            isAdmin: "boolean",
+        };
 
         const filterModel: GridFilterModel = {
             items: [
@@ -350,9 +349,9 @@ describe("transformCrudFiltersToFilterModel", () => {
             linkOperator: GridLinkOperator.And,
         };
 
-        expect(transformCrudFiltersToFilterModel(crudFilters, column)).toEqual(
-            filterModel,
-        );
+        expect(
+            transformCrudFiltersToFilterModel(crudFilters, columnsLookup),
+        ).toEqual(filterModel);
     });
 
     it("Map crud filters to filter model with 'or' and 'and' operator, should prioritize to 'or' filter", () => {
@@ -384,10 +383,10 @@ describe("transformCrudFiltersToFilterModel", () => {
             },
         ];
 
-        const column: GridColumns = [
-            { field: "rating", type: "number" },
-            { field: "isAdmin", type: "boolean" },
-        ];
+        const columnsLookup = {
+            rating: "number",
+            isAdmin: "boolean",
+        };
 
         const filterModel: GridFilterModel = {
             items: [
@@ -407,17 +406,19 @@ describe("transformCrudFiltersToFilterModel", () => {
             linkOperator: GridLinkOperator.Or,
         };
 
-        expect(transformCrudFiltersToFilterModel(crudFilters, column)).toEqual(
-            filterModel,
-        );
+        expect(
+            transformCrudFiltersToFilterModel(crudFilters, columnsLookup),
+        ).toEqual(filterModel);
     });
 
     it("Map crud filters to filter model with no filters, should return default mui filter mui", () => {
         const crudFilters: CrudFilters = [];
 
-        const column: GridColumns = [];
+        const columnsLookup = {};
 
-        expect(transformCrudFiltersToFilterModel(crudFilters, column)).toEqual({
+        expect(
+            transformCrudFiltersToFilterModel(crudFilters, columnsLookup),
+        ).toEqual({
             items: [],
             linkOperator: "and",
         });

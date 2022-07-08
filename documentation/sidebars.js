@@ -13,7 +13,7 @@ module.exports = {
         },
         {
             type: "doc",
-            id: "tutorial",
+            id: "tutorials",
         },
         {
             type: "category",
@@ -26,6 +26,7 @@ module.exports = {
                     items: [
                         "core/providers/accessControl-provider",
                         "core/providers/auth-provider",
+                        "core/providers/audit-log-provider",
                         "core/providers/data-provider",
                         "core/providers/i18n-provider",
                         "core/providers/live-provider",
@@ -52,6 +53,14 @@ module.exports = {
                                 "core/hooks/auth/useLogin",
                                 "core/hooks/auth/useLogout",
                                 "core/hooks/auth/usePermissions",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Audit Log",
+                            items: [
+                                "core/hooks/audit-log/useLog",
+                                "core/hooks/audit-log/useLogList",
                             ],
                         },
                         {
@@ -422,7 +431,10 @@ module.exports = {
                 {
                     type: "category",
                     label: "Form",
-                    items: ["guides-and-concepts/forms/custom-form-validation"],
+                    items: [
+                        "guides-and-concepts/forms/custom-form-validation",
+                        "guides-and-concepts/forms/save-and-continue",
+                    ],
                 },
                 {
                     type: "category",
@@ -452,7 +464,6 @@ module.exports = {
                         "guides-and-concepts/search/table-search",
                     ],
                 },
-
                 "guides-and-concepts/ssr-nextjs",
                 {
                     type: "category",
@@ -566,6 +577,11 @@ module.exports = {
                                 "examples/form/antd/useModalForm",
                                 "examples/form/antd/useStepsForm",
                             ],
+                        },
+                        {
+                            type: "category",
+                            label: "Headless",
+                            items: ["examples/form/headless/save-and-continue"],
                         },
                         {
                             type: "category",

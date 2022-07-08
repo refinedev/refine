@@ -44,6 +44,7 @@ export interface ShowProps {
     cardContentProps?: CardContentProps;
     cardActionsProps?: CardActionsProps;
     breadcrumb?: React.ReactNode;
+    dataProviderName?: string;
 }
 
 /**
@@ -65,6 +66,7 @@ export const Show: React.FC<ShowProps> = ({
     cardContentProps,
     cardActionsProps,
     breadcrumb = <Breadcrumb />,
+    dataProviderName,
 }) => {
     const translate = useTranslate();
 
@@ -133,11 +135,13 @@ export const Show: React.FC<ShowProps> = ({
                                 onSuccess={() =>
                                     list(resource.route ?? resource.name)
                                 }
+                                dataProviderName={dataProviderName}
                             />
                         )}
                         <RefreshButton
                             resourceNameOrRouteName={resource.route}
                             recordItemId={id}
+                            dataProviderName={dataProviderName}
                         />
                     </Box>
                 }

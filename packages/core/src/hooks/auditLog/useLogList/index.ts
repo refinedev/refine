@@ -14,6 +14,10 @@ export type UseLogProps<TData, TError> = {
     metaData?: MetaDataQuery;
 };
 
+/**
+ * useLogList is used to get and filter audit logs.
+ * @see {@link https://refine.dev/docs/core/hooks/audit-log/useLogList} for more details.
+ */
 export const useLogList = <TData = any, TError extends HttpError = HttpError>({
     resource,
     action,
