@@ -1,6 +1,6 @@
 {
     "name": "@pankod/refine-kbar",
-    "description": "refine kbar. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
+    "description": "refine fully kbar(cmd+k/ctrl+k) integration. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
     "version": "0.0.1",
     "license": "MIT",
     "main": "dist/index.js",
