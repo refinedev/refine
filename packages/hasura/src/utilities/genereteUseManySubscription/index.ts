@@ -1,23 +1,23 @@
 import { MetaDataQuery, BaseKey } from "@pankod/refine-core";
 import * as gql from "gql-query-builder";
 
-type GenereteManySubscriptionParams = {
+type GenereteUseManySubscriptionParams = {
     resource: string;
     metaData?: MetaDataQuery;
     ids: BaseKey[];
 };
 
-type GenereteManySubscriptionReturnValues = {
+type GenereteUseManySubscriptionReturnValues = {
     variables: any;
     query: string;
     operation: string;
 };
 
-export const genereteManySubscription = ({
+export const genereteUseManySubscription = ({
     resource,
     metaData,
     ids,
-}: GenereteManySubscriptionParams): GenereteManySubscriptionReturnValues => {
+}: GenereteUseManySubscriptionParams): GenereteUseManySubscriptionReturnValues => {
     const operation = metaData?.operation ?? resource;
 
     const { query, variables } = gql.subscription({

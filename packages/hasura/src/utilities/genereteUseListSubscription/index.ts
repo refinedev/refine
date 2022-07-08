@@ -8,7 +8,7 @@ import * as gql from "gql-query-builder";
 
 import { generateFilters, generateSorting } from "src/dataProvider";
 
-type GenereteListSubscriptionParams = {
+type GenereteUseListSubscriptionParams = {
     resource: string;
     metaData?: MetaDataQuery;
     pagination?: Pagination;
@@ -17,20 +17,20 @@ type GenereteListSubscriptionParams = {
     filters?: CrudFilters;
 };
 
-type GenereteListSubscriptionReturnValues = {
+type GenereteUseListSubscriptionReturnValues = {
     variables: any;
     query: string;
     operation: string;
 };
 
-export const genereteListSubscription = ({
+export const genereteUseListSubscription = ({
     resource,
     metaData,
     pagination,
     hasPagination,
     sort,
     filters,
-}: GenereteListSubscriptionParams): GenereteListSubscriptionReturnValues => {
+}: GenereteUseListSubscriptionParams): GenereteUseListSubscriptionReturnValues => {
     const { current = 1, pageSize: limit = 10 } = pagination ?? {};
 
     const hasuraSorting = generateSorting(sort);

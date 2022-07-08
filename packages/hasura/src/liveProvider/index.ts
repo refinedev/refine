@@ -2,30 +2,42 @@ import { LiveProvider } from "@pankod/refine-core";
 import { Client } from "graphql-ws";
 
 import {
-    genereteListSubscription,
-    genereteManySubscription,
-    genereteOneSubscription,
+    genereteUseListSubscription,
+    genereteUseManySubscription,
+    genereteUseOneSubscription,
 } from "src/utilities";
 
 const subscriptions = {
-    list: genereteListSubscription,
-    one: genereteOneSubscription,
-    many: genereteManySubscription,
+    useList: genereteUseListSubscription,
+    useOne: genereteUseOneSubscription,
+    useMany: genereteUseManySubscription,
 };
 
 export const liveProvider = (client: Client): LiveProvider => {
     return {
-        subscribe: ({
-            callback,
-            params,
-            resource,
-            metaData,
-            pagination,
-            hasPagination,
-            sort,
-            filters,
-            subscriptionType,
-        }) => {
+        subscribe: ({ callback, params }) => {
+            const {
+                resource,
+                metaData,
+                pagination,
+                hasPagination,
+                sort,
+                filters,
+                subscriptionType,
+            } = params ?? {};
+
+            if (!subscriptionType) {
+                throw new Error(
+                    "[useSubscription]: `subscriptionType` is required in `params` for graphql subscriptions",
+                );
+            }
+
+            if (!resource) {
+                throw new Error(
+                    "[useSubscription]: `resource` is required in `params` for graphql subscriptions",
+                );
+            }
+
             const genereteSubscription = subscriptions[subscriptionType];
 
             const { query, variables, operation } = genereteSubscription({

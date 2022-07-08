@@ -14,17 +14,18 @@ export type ILiveContext =
               channel: string;
               params?: {
                   ids?: BaseKey[];
+                  id?: BaseKey;
+                  metaData?: MetaDataQuery;
+                  pagination?: Pagination;
+                  hasPagination?: boolean;
+                  sort?: CrudSorting;
+                  filters?: CrudFilters;
+                  subscriptionType?: "useList" | "useOne" | "useMany";
+                  resource?: string;
                   [key: string]: any;
               };
               types: LiveEvent["type"][];
               callback: (event: LiveEvent) => void;
-              resource: string;
-              metaData?: MetaDataQuery;
-              pagination?: Pagination;
-              hasPagination?: boolean;
-              sort?: CrudSorting;
-              filters?: CrudFilters;
-              subscriptionType: "list" | "one" | "many";
           }) => any;
           unsubscribe: (subscription: any) => void;
       }

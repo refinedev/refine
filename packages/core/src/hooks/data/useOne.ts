@@ -66,12 +66,16 @@ export const useOne = <
         resource,
         types: ["*"],
         channel: `resources/${resource}`,
-        params: { ids: id ? [id] : [], ...liveParams },
+        params: {
+            ids: id ? [id] : [],
+            id: id,
+            metaData,
+            subscriptionType: "useOne",
+            ...liveParams,
+        },
         enabled: queryOptions?.enabled,
         liveMode,
         onLiveEvent,
-        metaData,
-        subscriptionType: "one",
     });
 
     const queryResponse = useQuery<GetOneResponse<TData>, TError>(

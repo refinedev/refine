@@ -71,13 +71,16 @@ export const useMany = <
     useResourceSubscription({
         resource,
         types: ["*"],
-        params: { ids: ids ?? [], ...liveParams },
+        params: {
+            ids: ids ?? [],
+            metaData,
+            subscriptionType: "useMany",
+            ...liveParams,
+        },
         channel: `resources/${resource}`,
         enabled: isEnabled,
         liveMode,
         onLiveEvent,
-        metaData,
-        subscriptionType: "many",
     });
 
     const queryResponse = useQuery<GetManyResponse<TData>, TError>(

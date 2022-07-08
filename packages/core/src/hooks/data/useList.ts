@@ -79,17 +79,19 @@ export const useList = <
     useResourceSubscription({
         resource,
         types: ["*"],
-        params: liveParams,
+        params: {
+            metaData,
+            pagination: config?.pagination,
+            hasPagination: config?.hasPagination,
+            sort: config?.sort,
+            filters: config?.filters,
+            subscriptionType: "useList",
+            ...liveParams,
+        },
         channel: `resources/${resource}`,
         enabled: isEnabled,
         liveMode,
         onLiveEvent,
-        metaData,
-        pagination: config?.pagination,
-        hasPagination: config?.hasPagination,
-        sort: config?.sort,
-        filters: config?.filters,
-        subscriptionType: "list",
     });
 
     const queryResponse = useQuery<GetListResponse<TData>, TError>(
