@@ -10,9 +10,22 @@ export const NumberInput: React.FC<NumberInputProps> = ({
     setValue,
 }) => {
     return (
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden flex items-center">
+            <button
+                className="h-full border p-2 transition-all hover:bg-gray-50 active:bg-gray-50 rounded-tl-md rounded-bl-md"
+                onClick={() =>
+                    setValue((prev) => {
+                        if (prev > 0) {
+                            return prev - 1;
+                        }
+                        return 0;
+                    })
+                }
+            >
+                <ChevronDownIcon className="text-primary h-full w-4" />
+            </button>
             <input
-                className="focus:outline-primary focus:border-primary h-full w-16 rounded-md border py-2 pl-2 transition-colors"
+                className="focus:outline-primary focus:border-primary h-full w-16 border p-2 transition-colors"
                 value={value}
                 onChange={(event) => {
                     const parseNumber = Number(event.target.value);
@@ -22,31 +35,18 @@ export const NumberInput: React.FC<NumberInputProps> = ({
                     }
                 }}
             />
-            <button className="absolute right-0.5 top-0 h-1/2 border border-t-0 border-r-0 transition-all hover:scale-95 active:bg-gray-50">
-                <ChevronUpIcon
-                    onClick={() =>
-                        setValue((prev) => {
-                            if (prev >= 0) {
-                                return prev + 1;
-                            }
-                            return 0;
-                        })
-                    }
-                    className="text-primary h-full w-4"
-                />
-            </button>
-            <button className="absolute right-0.5 bottom-0 h-1/2 border border-b-0 border-r-0 transition-all hover:scale-95 active:bg-gray-50">
-                <ChevronDownIcon
-                    onClick={() =>
-                        setValue((prev) => {
-                            if (prev > 0) {
-                                return prev - 1;
-                            }
-                            return 0;
-                        })
-                    }
-                    className="text-primary h-full w-4"
-                />
+            <button
+                className="h-full border p-2 transition-all hover:bg-gray-50 active:bg-gray-50 rounded-tr-md rounded-br-md"
+                onClick={() =>
+                    setValue((prev) => {
+                        if (prev >= 0) {
+                            return prev + 1;
+                        }
+                        return 0;
+                    })
+                }
+            >
+                <ChevronUpIcon className="text-primary h-full w-4" />
             </button>
         </div>
     );
