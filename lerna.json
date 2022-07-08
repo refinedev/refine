@@ -8,12 +8,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "3.25.0",
-  "command": {
-    "bootstrap": {
-      "nohoist": [
-        "react-router-dom"
-      ]
-    }
-  }
+  "version": "3.25.0"
+  
 }
