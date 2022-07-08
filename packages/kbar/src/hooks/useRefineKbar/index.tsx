@@ -94,6 +94,7 @@ export const useRefineKbar = (): void => {
             canDelete,
             canEdit,
             edit,
+            route,
         } = resource;
 
         const resourceName = label ?? name;
@@ -112,7 +113,7 @@ export const useRefineKbar = (): void => {
                     section: resourceName,
                     icon,
                     perform: () => {
-                        goToList(resourceName);
+                        goToList(route!);
                     },
                 }),
             );
@@ -133,7 +134,7 @@ export const useRefineKbar = (): void => {
                     icon,
                     keywords: "new",
                     perform: () => {
-                        goToCreate(resourceName);
+                        goToCreate(route!);
                     },
                 }),
             );
@@ -153,7 +154,7 @@ export const useRefineKbar = (): void => {
                         section: resourceName,
                         icon,
                         perform: () => {
-                            goToShow(resourceName, idFromRoute);
+                            goToShow(route!, idFromRoute);
                         },
                     }),
                 );
@@ -172,7 +173,7 @@ export const useRefineKbar = (): void => {
                         section: resourceName,
                         icon,
                         perform: () => {
-                            goToEdit(resourceName, idFromRoute);
+                            goToEdit(route!, idFromRoute);
                         },
                     }),
                 );
@@ -203,7 +204,7 @@ export const useRefineKbar = (): void => {
                                 },
                                 {
                                     onSuccess: () => {
-                                        goToList(resourceName);
+                                        goToList(route!);
                                     },
                                 },
                             );
@@ -217,8 +218,6 @@ export const useRefineKbar = (): void => {
                 );
             }
         }
-        console.log("tempActions", tempActions);
-
         return tempActions;
     };
 
