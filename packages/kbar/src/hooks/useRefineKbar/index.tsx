@@ -1,5 +1,4 @@
 import { useEffect, useState, useContext } from "react";
-
 import {
     ResourceRouterParams,
     useRouterContext,
@@ -99,6 +98,7 @@ export const useRefineKbar = (): void => {
 
         const resourceName = label ?? name;
         const tempActions: Action[] = [];
+        const section = t(`${resourceName}.${resourceName}`, resourceName);
         if (
             list &&
             (resourceFromRoute !== name ||
@@ -110,7 +110,7 @@ export const useRefineKbar = (): void => {
                         `actions.list`,
                         capitalize(RefineKbarActionType.List),
                     ),
-                    section: resourceName,
+                    section,
                     icon,
                     perform: () => {
                         goToList(route!);
@@ -130,7 +130,7 @@ export const useRefineKbar = (): void => {
                         `actions.create`,
                         capitalize(RefineKbarActionType.Create),
                     ),
-                    section: resourceName,
+                    section,
                     icon,
                     keywords: "new",
                     perform: () => {
@@ -151,7 +151,7 @@ export const useRefineKbar = (): void => {
                             `actions.show`,
                             capitalize(RefineKbarActionType.Show),
                         ),
-                        section: resourceName,
+                        section,
                         icon,
                         perform: () => {
                             goToShow(route!, idFromRoute);
@@ -170,7 +170,7 @@ export const useRefineKbar = (): void => {
                             `actions.edit`,
                             capitalize(RefineKbarActionType.Edit),
                         ),
-                        section: resourceName,
+                        section,
                         icon,
                         perform: () => {
                             goToEdit(route!, idFromRoute);
@@ -186,8 +186,8 @@ export const useRefineKbar = (): void => {
                             `actions.delete`,
                             capitalize(RefineKbarActionType.Delete),
                         ),
+                        section,
                         icon,
-                        section: resourceName,
                     },
                     createAction({
                         name: t(
