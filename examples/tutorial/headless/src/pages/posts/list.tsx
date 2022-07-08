@@ -3,6 +3,10 @@ import React from "react";
 import {
     useTable,
     Column,
+    HeaderGroup,
+    Cell,
+    UseTableColumnProps,
+    UseTableRowProps,
     usePagination,
     useSortBy,
     useFilters,
@@ -10,7 +14,7 @@ import {
 
 import { useDelete, useNavigation, useOne } from "@pankod/refine-core";
 
-import { ICategory, IPost } from "interfaces";
+import { ICategory, IPost, IFilter } from "interfaces";
 import {
     ChevronLeftIcon,
     ChevronRightIcon,
@@ -53,7 +57,7 @@ export const PostList: React.FC = () => {
                 id: "category.id",
                 Header: "Category",
                 accessor: "category.id",
-                Cell: ({ cell }) => {
+                Cell: ({ cell }: Cell) => {
                     const { data, isLoading } = useOne<ICategory>({
                         resource: "categories",
                         id: cell.value,
@@ -132,8 +136,9 @@ export const PostList: React.FC = () => {
                         className="rounded border border-gray-200 p-1 text-gray-700"
                         placeholder="Filter by title"
                         value={
-                            filters.find((filter) => filter.id === "title")
-                                ?.value
+                            filters.find(
+                                (filter: IFilter) => filter.id === "title",
+                            )?.value
                         }
                         onChange={(event) =>
                             setFilter("title", event.target.value)
@@ -154,25 +159,27 @@ export const PostList: React.FC = () => {
                 {...getTableProps()}
             >
                 <thead className="bg-gray-100">
-                    {headerGroups.map((headerGroup) => (
+                    {headerGroups.map((headerGroup: HeaderGroup) => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column) => (
-                                <th
-                                    {...column.getHeaderProps(
-                                        column.getSortByToggleProps(),
-                                    )}
-                                    className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
-                                >
-                                    {column.render("Header")}
-                                    <span>
-                                        {column.isSorted
-                                            ? column.isSortedDesc
-                                                ? " 🔽"
-                                                : " 🔼"
-                                            : ""}
-                                    </span>
-                                </th>
-                            ))}
+                            {headerGroup.headers.map(
+                                (column: UseTableColumnProps) => (
+                                    <th
+                                        {...column.getHeaderProps(
+                                            column.getSortByToggleProps(),
+                                        )}
+                                        className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
+                                    >
+                                        {column.render("Header")}
+                                        <span>
+                                            {column.isSorted
+                                                ? column.isSortedDesc
+                                                    ? " 🔽"
+                                                    : " 🔼"
+                                                : ""}
+                                        </span>
+                                    </th>
+                                ),
+                            )}
                         </tr>
                     ))}
                 </thead>
@@ -180,14 +187,14 @@ export const PostList: React.FC = () => {
                     {...getTableBodyProps()}
                     className="divide-y divide-gray-200 bg-white"
                 >
-                    {page.map((row) => {
+                    {page.map((row: UseTableRowProps) => {
                         prepareRow(row);
                         return (
                             <tr
                                 {...row.getRowProps()}
                                 className="transition hover:bg-gray-100"
                             >
-                                {row.cells.map((cell) => {
+                                {row.cells.map((cell: Cell) => {
                                     return (
                                         <td
                                             {...cell.getCellProps()}

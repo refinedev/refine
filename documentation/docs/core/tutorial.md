@@ -2216,7 +2216,7 @@ export const PostList: React.FC = () => {
                 id: "action",
                 Header: "Action",
                 accessor: "id",
-                Cell: ({ value }) => (
+                Cell: ({ value }: Cell) => (
                     <div className="flex gap-2">
                        ...
 
