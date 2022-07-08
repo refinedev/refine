@@ -26,14 +26,7 @@ export const useTelemetryData = (): ITelemetryData => {
     const accessControlContext = useContext(AccessControlContext);
     const { resources } = useResource();
 
-    const auth =
-        !!authContext.checkAuth ||
-        !!authContext.checkError ||
-        !!authContext.getPermissions ||
-        !!authContext.getUserIdentity ||
-        !!authContext.getUserIdentity ||
-        !!authContext.login ||
-        !!authContext.logout;
+    const auth = authContext.isProvided;
 
     const auditLog =
         !!auditLogContext.create ||
@@ -51,13 +44,17 @@ export const useTelemetryData = (): ITelemetryData => {
         !!routerContext.Prompt ||
         !!routerContext.useLocation ||
         !!routerContext.useParams;
+
     const data = !!dataContext;
+
     const i18n =
         !!i18nProvider?.changeLocale ||
         !!i18nProvider?.getLocale ||
         !!i18nProvider?.translate;
+
     const notification =
         !!notificationContext.close || !!notificationContext.open;
+
     const accessControl = !!accessControlContext.can;
 
     return {
