@@ -1,0 +1,47 @@
+@keyframes bounce {
+    from {
+        transform: scale(1) translateX(0);
+    }
+
+    to {
+        transform: scale(1.3) translateX(-2px);
+    }
+}
+
+.toggle-container {
+    position: fixed;
+    top: calc(50% - 28px);
+    right: -25px;
+    transform: translateX(101px);
+    background-color: #fb7a32;
+    color: white;
+    padding: 3px 6px;
+    text-align: center;
+    border-top-left-radius: 99px;
+    border-bottom-left-radius: 99px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: transform 0.8s ease-out;
+    z-index: 2;
+}
+
+.toggle-container:hover {
+    transform: translateX(0px);
+    right: 0px;
+}
+a {
+    color: white;
+    transform: translateX(0px);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+.icon {
+    color: white;
+    animation: bounce 1s alternate;
+    animation-iteration-count: infinite;
+}
+
