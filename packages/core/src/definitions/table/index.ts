@@ -1,6 +1,5 @@
 import qs, { IStringifyOptions } from "qs";
 import unionWith from "lodash/unionWith";
-import reverse from "lodash/reverse";
 import differenceWith from "lodash/differenceWith";
 
 import {
@@ -31,7 +30,7 @@ export const parseTableParamsFromQuery = (params: any) => {
 };
 
 export const stringifyTableParams = (params: {
-    pagination: { current?: number; pageSize?: number };
+    pagination?: { current?: number; pageSize?: number };
     sorter: CrudSorting;
     filters: CrudFilters;
 }): string => {
@@ -42,17 +41,10 @@ export const stringifyTableParams = (params: {
     };
     const { pagination, sorter, filters } = params;
 
-    let queryString = `current=${pagination.current}&pageSize=${pagination.pageSize}`;
-
-    const qsSorters = qs.stringify({ sorter }, options);
-    if (qsSorters) {
-        queryString += `&${qsSorters}`;
-    }
-
-    const qsFilters = qs.stringify({ filters }, options);
-    if (qsFilters) {
-        queryString += `&${qsFilters}`;
-    }
+    const queryString = qs.stringify(
+        { ...(pagination ? pagination : {}), sorter, filters },
+        options,
+    );
 
     return queryString;
 };
@@ -77,11 +69,9 @@ export const compareSorters = (left: CrudSort, right: CrudSort): boolean =>
 export const unionFilters = (
     permanentFilter: CrudFilters,
     newFilters: CrudFilters,
-    prevFilters: CrudFilters,
+    prevFilters: CrudFilters = [],
 ): CrudFilters =>
-    reverse(
-        unionWith(permanentFilter, newFilters, prevFilters, compareFilters),
-    ).filter(
+    unionWith(permanentFilter, newFilters, prevFilters, compareFilters).filter(
         (crudFilter) =>
             crudFilter.value !== undefined && crudFilter.value !== null,
     );
@@ -90,7 +80,7 @@ export const unionSorters = (
     permanentSorter: CrudSorting,
     newSorters: CrudSorting,
 ): CrudSorting =>
-    reverse(unionWith(permanentSorter, newSorters, compareSorters)).filter(
+    unionWith(permanentSorter, newSorters, compareSorters).filter(
         (crudSorter) =>
             crudSorter.order !== undefined && crudSorter.order !== null,
     );

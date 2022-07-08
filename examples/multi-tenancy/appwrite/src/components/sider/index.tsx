@@ -27,7 +27,7 @@ export const CustomSider: React.FC = () => {
             if (children.length > 0) {
                 return (
                     <SubMenu
-                        key={name}
+                        key={route}
                         icon={icon ?? <Icons.UnorderedListOutlined />}
                         title={label}
                     >
@@ -46,7 +46,7 @@ export const CustomSider: React.FC = () => {
                     action="list"
                 >
                     <Menu.Item
-                        key={selectedKey}
+                        key={route}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
@@ -54,9 +54,7 @@ export const CustomSider: React.FC = () => {
                             icon ?? (isRoute && <Icons.UnorderedListOutlined />)
                         }
                     >
-                        <Link href={route} to={route}>
-                            {label}
-                        </Link>
+                        <Link to={route}>{label}</Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}

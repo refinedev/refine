@@ -76,7 +76,6 @@ export const useUpdateMany = <
         undoableTimeout: undoableTimeoutContext,
     } = useMutationMode();
     const { mutate: checkError } = useCheckError();
-
     const { notificationDispatch } = useCancelNotification();
     const publish = usePublish();
     const handleNotification = useHandleNotification();
@@ -273,7 +272,6 @@ export const useUpdateMany = <
             },
             onSettled: (_data, _error, { ids, resource, dataProviderName }) => {
                 // invalidate the cache for the list and many queries:
-
                 invalidateStore({
                     resource,
                     invalidates: ["list", "many"],
@@ -294,7 +292,7 @@ export const useUpdateMany = <
                     payload: { id: ids, resource },
                 });
             },
-            onSuccess: (_data, { ids, resource, successNotification }) => {
+            onSuccess: (data, { ids, resource, successNotification }) => {
                 const resourceSingular = pluralize.singular(resource);
 
                 handleNotification(successNotification, {
@@ -331,7 +329,6 @@ export const useUpdateMany = <
                 context,
             ) => {
                 // set back the queries to the context:
-
                 if (context) {
                     for (const query of context.previousQueries) {
                         queryClient.setQueryData(query[0], query[1]);

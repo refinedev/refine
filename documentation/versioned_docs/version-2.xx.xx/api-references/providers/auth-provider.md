@@ -528,10 +528,7 @@ const App = () => {
                 if (user) {
                     localStorage.setItem("auth", JSON.stringify(user));
 
-                    axiosInstance.defaults.headers = {
-                        Authorization: `Bearer ${user.token}`,
-                    };
-
+                    axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${user.token}`;
                     return Promise.resolve();
                 }
                 return Promise.reject();

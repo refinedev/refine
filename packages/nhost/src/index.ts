@@ -180,10 +180,18 @@ const dataProvider = (client: NhostClient): DataProvider => {
             };
         },
 
-        getList: async ({ resource, sort, filters, pagination, metaData }) => {
-            const current = pagination?.current ?? 1;
-            const limit = pagination?.pageSize || 10;
-            const offset = (current - 1) * limit;
+        getList: async ({
+            resource,
+            sort,
+            filters,
+            hasPagination = true,
+            pagination = {
+                current: 1,
+                pageSize: 10,
+            },
+            metaData,
+        }) => {
+            const { current = 1, pageSize: limit = 10 } = pagination ?? {};
 
             const hasuraSorting = generateSorting(sort);
             const hasuraFilters = generateFilters(filters);
@@ -200,8 +208,12 @@ const dataProvider = (client: NhostClient): DataProvider => {
                     operation,
                     fields: metaData?.fields,
                     variables: {
-                        limit,
-                        offset,
+                        ...(hasPagination
+                            ? {
+                                  limit,
+                                  offset: (current - 1) * limit,
+                              }
+                            : {}),
                         ...(hasuraSorting && {
                             order_by: {
                                 value: hasuraSorting,

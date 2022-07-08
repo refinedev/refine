@@ -23,9 +23,14 @@ beforeEach(() => {
 });
 
 describe("useImport hook", () => {
+    beforeEach(() => {
+        jest.useFakeTimers();
+    });
+
     const notificationOpenSpy = jest.spyOn(notification, "open");
     const notificationCloseSpy = jest.spyOn(notification, "close");
-    it("should return false from uploadProps.beforeUpload callback", () => {
+
+    it("should return false from uploadProps.beforeUpload callback", async () => {
         const { result } = renderHook(
             () =>
                 useImport({
@@ -38,6 +43,10 @@ describe("useImport hook", () => {
                 }),
             },
         );
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
         const beforeUploadResult = result.current.uploadProps.beforeUpload?.(
             file as unknown as RcFile,
@@ -65,10 +74,16 @@ describe("useImport hook", () => {
         );
 
         await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await act(async () => {
             await result.current.uploadProps.onChange?.({
                 fileList: [],
                 file: file as unknown as UploadFile,
             });
+
+            jest.advanceTimersToNextTimer(1);
         });
         jest.runAllTimers();
 

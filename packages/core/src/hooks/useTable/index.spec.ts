@@ -1,8 +1,10 @@
+import { act } from "react-dom/test-utils";
 import { renderHook } from "@testing-library/react-hooks";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
 import { useTable } from ".";
+import { CrudFilters } from "src/interfaces";
 
 const defaultPagination = {
     pageSize: 10,
@@ -66,6 +68,31 @@ describe("useTable Hook", () => {
         expect(pageSize).toEqual(customPagination.pageSize);
         expect(current).toEqual(customPagination.current);
         expect(pageCount).toEqual(2);
+    });
+
+    it("with disabled pagination", async () => {
+        const { result, waitFor } = renderHook(
+            () =>
+                useTable({
+                    hasPagination: false,
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            return !result.current.tableQueryResult.isLoading;
+        });
+
+        const { pageSize, current, pageCount } = result.current;
+
+        expect(pageSize).toBeUndefined();
+        expect(current).toBeUndefined();
+        expect(pageCount).toBeUndefined();
     });
 
     it("with custom resource", async () => {
@@ -145,5 +172,742 @@ describe("useTable Hook", () => {
         await waitFor(() => {
             return result.current.tableQueryResult.isSuccess;
         });
+    });
+});
+
+describe("useTable Filters", () => {
+    const wrapper = TestWrapper({
+        dataProvider: MockJSONServer,
+        resources: [{ name: "posts" }],
+    });
+
+    it("should be empty initially", () => {
+        const { result } = renderHook(() => useTable(), {
+            wrapper,
+        });
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toHaveLength(0);
+    });
+
+    it("should only present permanentFilters initially", () => {
+        const permanentFilter = [
+            {
+                field: "id",
+                operator: "gte",
+                value: 5,
+            },
+        ] as CrudFilters;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    permanentFilter,
+                }),
+            {
+                wrapper,
+            },
+        );
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(permanentFilter);
+        expect(result.current.filters).toHaveLength(1);
+    });
+
+    it("should only present initialFilters initially", () => {
+        const initialFilter = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "test",
+            },
+        ] as CrudFilters;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialFilter,
+                }),
+            {
+                wrapper,
+            },
+        );
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(initialFilter);
+        expect(result.current.filters).toHaveLength(1);
+    });
+
+    it("should include both initial and permanent filters initially", () => {
+        const initialFilter = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "test",
+            },
+        ] as CrudFilters;
+        const permanentFilter = [
+            {
+                field: "id",
+                operator: "gte",
+                value: 5,
+            },
+        ] as CrudFilters;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialFilter,
+                    permanentFilter,
+                }),
+            {
+                wrapper,
+            },
+        );
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual([
+            ...initialFilter,
+            ...permanentFilter,
+        ]);
+        expect(result.current.filters).toHaveLength(2);
+        expect(result.current.filters).toEqual(
+            expect.arrayContaining(initialFilter),
+        );
+        expect(result.current.filters).toEqual(
+            expect.arrayContaining(permanentFilter),
+        );
+    });
+
+    it("permanent filter should take precedence over initial filter", () => {
+        const initialFilter = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "test",
+            },
+        ] as CrudFilters;
+        const permanentFilter = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "foo",
+            },
+        ] as CrudFilters;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    permanentFilter,
+                    initialFilter,
+                }),
+            {
+                wrapper,
+            },
+        );
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(permanentFilter);
+        expect(result.current.filters).toHaveLength(1);
+    });
+
+    it("[behavior=merge] should merge new filters with existing ones", () => {
+        const initialFilter = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "test",
+            },
+        ] as CrudFilters;
+
+        const newFilters = [
+            {
+                field: "id",
+                operator: "gte",
+                value: 5,
+            },
+        ] as CrudFilters;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialFilter,
+                }),
+            {
+                wrapper,
+            },
+        );
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(initialFilter);
+        expect(result.current.filters).toHaveLength(1);
+
+        act(() => {
+            result.current.setFilters(newFilters, "merge");
+        });
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(
+            expect.arrayContaining([...initialFilter, ...newFilters]),
+        );
+        expect(result.current.filters).toHaveLength(2);
+    });
+
+    it("[behavior=merge] permanent filter should not be overwritten", () => {
+        const initialFilter = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "test",
+            },
+        ] as CrudFilters;
+
+        const permanentFilter = [
+            {
+                field: "id",
+                operator: "ne",
+                value: 3,
+            },
+        ] as CrudFilters;
+
+        const newFilters = [
+            {
+                field: "id",
+                operator: "ne",
+                value: 5,
+            },
+        ] as CrudFilters;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    permanentFilter,
+                    initialFilter,
+                }),
+            {
+                wrapper,
+            },
+        );
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(
+            expect.arrayContaining([...initialFilter, ...permanentFilter]),
+        );
+        expect(result.current.filters).toHaveLength(2);
+
+        act(() => {
+            result.current.setFilters(newFilters, "merge");
+        });
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(
+            expect.arrayContaining([...initialFilter, ...permanentFilter]),
+        );
+        expect(result.current.filters).toHaveLength(2);
+        // should not contain newFilters elements
+        expect(result.current.filters).toEqual(
+            expect.not.arrayContaining(newFilters),
+        );
+    });
+
+    it("[behavior=merge] should merge new filters and remove duplicates", () => {
+        const initialFilter = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "test",
+            },
+        ] as CrudFilters;
+
+        const permanentFilter = [
+            {
+                field: "id",
+                operator: "ne",
+                value: 3,
+            },
+        ] as CrudFilters;
+
+        const newFilters = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "foo",
+            },
+        ] as CrudFilters;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    permanentFilter,
+                    initialFilter,
+                }),
+            {
+                wrapper,
+            },
+        );
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual([
+            ...initialFilter,
+            ...permanentFilter,
+        ]);
+        expect(result.current.filters).toHaveLength(2);
+
+        act(() => {
+            result.current.setFilters(newFilters, "merge");
+        });
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(
+            expect.arrayContaining([...newFilters, ...permanentFilter]),
+        );
+        expect(result.current.filters).toHaveLength(2);
+        // should not contain initialFilter elements
+        expect(result.current.filters).toEqual(
+            expect.not.arrayContaining(initialFilter),
+        );
+        // should contain newFilter elements
+        expect(result.current.filters).toEqual(
+            expect.arrayContaining(newFilters),
+        );
+    });
+
+    it("[behavior=merge] should remove the filter when value is undefined/null", () => {
+        const initialFilter = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "test",
+            },
+        ] as CrudFilters;
+
+        const newFilters = [
+            {
+                field: "name",
+                operator: "contains",
+                value: undefined,
+            },
+        ] as CrudFilters;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialFilter,
+                }),
+            {
+                wrapper,
+            },
+        );
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(initialFilter);
+        expect(result.current.filters).toHaveLength(1);
+
+        act(() => {
+            result.current.setFilters(newFilters, "merge");
+        });
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toHaveLength(0);
+        // should not contain initialFilter elements
+        expect(result.current.filters).toEqual(
+            expect.not.arrayContaining(initialFilter),
+        );
+        // should contain newFilter elements
+        expect(result.current.filters).toEqual(
+            expect.not.arrayContaining(newFilters),
+        );
+    });
+
+    it("[behavior=replace] should replace the existing filters with newFilters", () => {
+        const initialFilter = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "test",
+            },
+        ] as CrudFilters;
+
+        const newFilters = [
+            {
+                field: "id",
+                operator: "ne",
+                value: 5,
+            },
+        ] as CrudFilters;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialFilter,
+                }),
+            {
+                wrapper,
+            },
+        );
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(initialFilter);
+        expect(result.current.filters).toHaveLength(1);
+
+        act(() => {
+            result.current.setFilters(newFilters, "replace");
+        });
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(newFilters);
+        expect(result.current.filters).toHaveLength(1);
+    });
+
+    it("[behavior=replace] replace behavior should not overwrite permanent filters", () => {
+        const initialFilter = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "test",
+            },
+        ] as CrudFilters;
+
+        const permanentFilter = [
+            {
+                field: "id",
+                operator: "ne",
+                value: 3,
+            },
+        ] as CrudFilters;
+
+        const newFilters = [
+            {
+                field: "id",
+                operator: "ne",
+                value: 5,
+            },
+        ] as CrudFilters;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    permanentFilter,
+                    initialFilter,
+                }),
+            {
+                wrapper,
+            },
+        );
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual([
+            ...initialFilter,
+            ...permanentFilter,
+        ]);
+        expect(result.current.filters).toHaveLength(2);
+
+        act(() => {
+            result.current.setFilters(newFilters, "replace");
+        });
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(permanentFilter);
+        // should not contain newFilters elements
+        expect(result.current.filters).toEqual(
+            expect.not.arrayContaining(newFilters),
+        );
+        // should not contain initialFilter elements (because of replace behavior)
+        expect(result.current.filters).toEqual(
+            expect.not.arrayContaining(initialFilter),
+        );
+    });
+
+    it("[behavior=replace] should remove duplicates in the newFilters array", () => {
+        const initialFilter = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "test",
+            },
+        ] as CrudFilters;
+
+        const newFilters = [
+            {
+                field: "id",
+                operator: "ne",
+                value: 5,
+            },
+            {
+                field: "name",
+                operator: "contains",
+                value: "this-should-be-in-it",
+            },
+            {
+                field: "name",
+                operator: "contains",
+                value: "foo",
+            },
+        ] as CrudFilters;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialFilter,
+                }),
+            {
+                wrapper,
+            },
+        );
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(initialFilter);
+        expect(result.current.filters).toHaveLength(1);
+
+        act(() => {
+            result.current.setFilters(newFilters, "replace");
+        });
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(
+            expect.arrayContaining([newFilters[0], newFilters[1]]),
+        );
+        expect(result.current.filters).toHaveLength(2);
+
+        // should not contain initialFilter elements
+        expect(result.current.filters).toEqual(
+            expect.not.arrayContaining(initialFilter),
+        );
+
+        // item at index = 2 should be ignored because of index = 1
+        expect(result.current.filters).toEqual(
+            expect.not.arrayContaining([newFilters[2]]),
+        );
+    });
+
+    it("should use behavior = merge (default) by default", () => {
+        const initialFilter = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "test",
+            },
+        ] as CrudFilters;
+
+        const newFilters = [
+            {
+                field: "id",
+                operator: "gte",
+                value: 5,
+            },
+        ] as CrudFilters;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialFilter,
+                }),
+            {
+                wrapper,
+            },
+        );
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(initialFilter);
+        expect(result.current.filters).toHaveLength(1);
+
+        act(() => {
+            result.current.setFilters(newFilters);
+        });
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(
+            expect.arrayContaining([...initialFilter, ...newFilters]),
+        );
+        expect(result.current.filters).toHaveLength(2);
+    });
+
+    it("should use `defaultSetFiltersBehavior` property as default behavior (replace)", () => {
+        const initialFilter = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "test",
+            },
+        ] as CrudFilters;
+
+        const newFilters = [
+            {
+                field: "id",
+                operator: "ne",
+                value: 5,
+            },
+        ] as CrudFilters;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialFilter,
+                    defaultSetFilterBehavior: "replace",
+                }),
+            {
+                wrapper,
+            },
+        );
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(initialFilter);
+        expect(result.current.filters).toHaveLength(1);
+
+        act(() => {
+            result.current.setFilters(newFilters);
+        });
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(newFilters);
+        expect(result.current.filters).toHaveLength(1);
+    });
+
+    it("[setter function] should set the return value of the setter function as filters", () => {
+        const initialFilter = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "test",
+            },
+        ] as CrudFilters;
+
+        const newFilters = [
+            {
+                field: "id",
+                operator: "ne",
+                value: 5,
+            },
+        ] as CrudFilters;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialFilter,
+                }),
+            {
+                wrapper,
+            },
+        );
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(initialFilter);
+        expect(result.current.filters).toHaveLength(1);
+
+        act(() => {
+            result.current.setFilters(() => newFilters);
+        });
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(newFilters);
+        expect(result.current.filters).toHaveLength(1);
+    });
+
+    it("[setter function] should pass the existing filters as first argument", () => {
+        const initialFilter = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "test",
+            },
+        ] as CrudFilters;
+
+        const newFilters = [
+            {
+                field: "id",
+                operator: "ne",
+                value: 5,
+            },
+        ] as CrudFilters;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialFilter,
+                }),
+            {
+                wrapper,
+            },
+        );
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(initialFilter);
+        expect(result.current.filters).toHaveLength(1);
+
+        const setterFunction = jest.fn(
+            (prevFilters) => [...prevFilters, ...newFilters] as CrudFilters,
+        );
+
+        act(() => {
+            result.current.setFilters(setterFunction);
+        });
+
+        expect(setterFunction).toBeCalledTimes(1);
+        expect(setterFunction).toBeCalledWith(initialFilter);
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(
+            expect.arrayContaining([...initialFilter, ...newFilters]),
+        );
+        expect(result.current.filters).toHaveLength(2);
+    });
+
+    it("[setter function] should not be able to overwrite permanent filters", () => {
+        const initialFilter = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "test",
+            },
+        ] as CrudFilters;
+
+        const newFilters = [
+            {
+                field: "id",
+                operator: "gte",
+                value: 3,
+            },
+        ] as CrudFilters;
+
+        const permanentFilter = [
+            {
+                field: "id",
+                operator: "gte",
+                value: 5,
+            },
+        ] as CrudFilters;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    initialFilter,
+                    permanentFilter,
+                }),
+            {
+                wrapper,
+            },
+        );
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(
+            expect.arrayContaining([...initialFilter, ...permanentFilter]),
+        );
+        expect(result.current.filters).toHaveLength(2);
+
+        act(() => {
+            result.current.setFilters(() => newFilters);
+        });
+
+        expect(result.current.filters).toBeInstanceOf(Array);
+        expect(result.current.filters).toEqual(
+            expect.arrayContaining(permanentFilter),
+        );
+        expect(result.current.filters).toEqual(
+            expect.not.arrayContaining(newFilters),
+        );
+        expect(result.current.filters).toEqual(
+            expect.not.arrayContaining(initialFilter),
+        );
+        expect(result.current.filters).toHaveLength(1);
     });
 });

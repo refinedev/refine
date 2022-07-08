@@ -1,10 +1,10 @@
 export interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }
 
 export interface IPost {
-    id: string;
+    id: number;
     title: string;
-    category: ICategory;
+    category: { id: number };
 }

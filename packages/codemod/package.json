@@ -1,7 +1,7 @@
 {
   "name": "@pankod/refine-codemod",
   "description": "refine Codemod CLI. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
-  "version": "3.9.0",
+  "version": "3.27.2",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -37,6 +37,11 @@
     "is-git-clean": "1.1.0",
     "jscodeshift": "^0.6.4",
     "meow": "7.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pankod/refine.git",
+    "directory": "packages/codemod"
   },
   "publishConfig": {
     "access": "public"

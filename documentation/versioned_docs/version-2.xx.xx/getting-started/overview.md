@@ -27,7 +27,7 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 🔘 **Decoupled UI** : UI components are exposed directly without encapsulation. You have full control on UI elements.
 
-🐜 **Powerful Default UI** : Works seamlessly with integrated [Ant Design System](https://ant.design/). (Support for multiple UI frameworks is on the Roadmap)
+🐜 **Powerful Default UI** : Works seamlessly with integrated [Ant Design System](https://ant.design/) and [Material UI](https://mui.com/). (Support for multiple UI frameworks is on the Roadmap)
 
 📝 **Boilerplate-free Code** : Keeps your codebase clean and readable.
 

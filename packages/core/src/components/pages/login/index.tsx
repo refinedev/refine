@@ -21,7 +21,7 @@ export const LoginPage: React.FC = () => {
 
     return (
         <>
-            <h1>Login</h1>
+            <h1>{translate("pages.login.title", "Sign in your account")}</h1>
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
@@ -32,7 +32,12 @@ export const LoginPage: React.FC = () => {
                     <tbody>
                         <tr>
                             <td>
-                                {translate("pages.login.username", "username")}:
+                                {translate(
+                                    "pages.login.username",
+                                    undefined,
+                                    "username",
+                                )}
+                                :
                             </td>
                             <td>
                                 <input
@@ -52,7 +57,12 @@ export const LoginPage: React.FC = () => {
                         </tr>
                         <tr>
                             <td>
-                                {translate("pages.login.password", "password")}:
+                                {translate(
+                                    "pages.login.password",
+                                    undefined,
+                                    "password",
+                                )}
+                                :
                             </td>
                             <td>
                                 <input

@@ -115,8 +115,8 @@ describe("useTable Hook", () => {
         } = result.current;
 
         expect(filtersCore).toEqual([
-            { field: "active", value: true, operator: "eq" },
             { field: "title", value: "Hello2", operator: "contains" },
+            { field: "active", value: true, operator: "eq" },
         ]);
         expect(filters).toEqual([
             { id: "title", value: "Hello2" },
@@ -128,8 +128,8 @@ describe("useTable Hook", () => {
         });
 
         expect(result.current.refineCore.filters).toEqual([
-            { field: "active", value: true, operator: "eq" },
             { field: "title", value: "Hello", operator: "contains" },
+            { field: "active", value: true, operator: "eq" },
         ]);
         expect(result.current.state.filters).toEqual([
             { id: "title", value: "Hello" },
@@ -157,8 +157,8 @@ describe("useTable Hook", () => {
                         columns,
                         refineCoreProps: {
                             initialSorter: [
-                                { field: "title", order: "desc" },
                                 { field: "id", order: "asc" },
+                                { field: "title", order: "desc" },
                             ],
                         },
                     },
@@ -184,8 +184,8 @@ describe("useTable Hook", () => {
             { field: "title", order: "desc" },
         ]);
         expect(sortBy).toEqual([
-            { id: "title", desc: true },
             { id: "id", desc: false },
+            { id: "title", desc: true },
         ]);
 
         act(() => {
@@ -196,8 +196,8 @@ describe("useTable Hook", () => {
         });
 
         expect(result.current.refineCore.sorter).toEqual([
-            { field: "id", order: "desc" },
             { field: "title", order: "asc" },
+            { field: "id", order: "desc" },
         ]);
         expect(result.current.state.sortBy).toEqual([
             { id: "title", desc: false },
@@ -246,8 +246,8 @@ describe("useTable Hook", () => {
         } = result.current;
 
         expect(filtersCore).toEqual([
-            { field: "title", value: "Hello", operator: "contains" },
             { field: "category.id", operator: "eq", value: 1 },
+            { field: "title", value: "Hello", operator: "contains" },
         ]);
         expect(filters).toEqual([
             { id: "title", value: "Hello" },
@@ -259,8 +259,8 @@ describe("useTable Hook", () => {
         });
 
         expect(result.current.refineCore.filters).toEqual([
-            { field: "title", value: "Test", operator: "contains" },
             { field: "category.id", value: 1, operator: "eq" },
+            { field: "title", value: "Test", operator: "contains" },
         ]);
         expect(result.current.state.filters).toEqual([
             { id: "title", value: "Test" },
@@ -318,8 +318,8 @@ describe("useTable Hook", () => {
         } = result.current;
 
         expect(sorter).toEqual([
-            { field: "title", order: "asc" },
             { field: "category.id", order: "desc" },
+            { field: "title", order: "asc" },
         ]);
         expect(sortBy).toEqual([
             { id: "title", desc: false },
@@ -331,8 +331,8 @@ describe("useTable Hook", () => {
         });
 
         expect(result.current.refineCore.sorter).toEqual([
-            { field: "title", order: "desc" },
             { field: "category.id", order: "desc" },
+            { field: "title", order: "desc" },
         ]);
 
         expect(result.current.state.sortBy).toEqual([

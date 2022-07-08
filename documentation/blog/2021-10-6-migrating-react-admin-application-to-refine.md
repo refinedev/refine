@@ -16,9 +16,10 @@ import react_admin_create from '@site/static/img/blog/2021-10-6-migrating-react-
 Recently, our team decided to migrate a B2B admin panel of one of our customers from React-Admin to refine to battle test our new framework and improve our productivity. My mission was to migrate it and it took one and a half days for me to rewrite the panel in refine.
 
 <!--truncate-->
+
 ### Migrating a React-Admin Application to refine
 
-[refine](https://refine.dev/) is an extremely customizable [Ant Desig](https://ant.design/) based [React](https://reactjs.org/) framework for data-intensive applications and it handles most of the CRUD functionality that can be a requirement in many applications, without much effort. Providing the rest of the desired functionality (outside CRUD) is up to you, like in any <strong>React</strong> application.
+[refine](https://refine.dev/) is an extremely customizable [Ant Design](https://ant.design/) based [React](https://reactjs.org/) framework for data-intensive applications and it handles most of the CRUD functionality that can be a requirement in many applications, without much effort. Providing the rest of the desired functionality (outside CRUD) is up to you, like in any <strong>React</strong> application.
 
 [React-Admin](https://marmelab.com/react-admin/) is an amazing B2B application framework based on [Material Design](https://material.io/), using [Material UI](https://mui.com/). It provides ready-to-fetch-data components, so you just compose them together to create an application.
 
@@ -28,10 +29,9 @@ It is, also, one step forward towards the dream of <strong>making it headless</s
 
 To learn more about refine, see: https://refine.dev/docs/getting-started/overview
 
-
-|  <img src={sider} alt="sider" /> | 
-|:--:| 
-| *Our panel has 7 resources (all listable), which 4 of them must have create and edit pages, 6 of them must be exportable to `.csv` files and some of those resources have images, all images must be uploaded in `base64` format.* |
+|                                                                                                  <img src={sider} alt="sider" />                                                                                                   |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| _Our panel has 7 resources (all listable), which 4 of them must have create and edit pages, 6 of them must be exportable to `.csv` files and some of those resources have images, all images must be uploaded in `base64` format._ |
 
 This is how it looks before the migration (React-Admin):
 
@@ -63,7 +63,7 @@ Both of these images show a list page of a resource (campaign).
 
 List pages have one/more tables inside them. Ideally, all table state should be managed by the framework in use.
 
-refine is very flexible with tables. You can put them anywhere, configure it as much as you want with [useTable](https://refine.dev/docs/api-references/hooks/table/useTable/). See the [fineFoods example](https://refine.dev/demo/) and [it's code](https://github.com/pankod/refine/blob/master/examples/fineFoods/admin/src/pages/categories/list.tsx).
+refine is very flexible with tables. You can put them anywhere, configure it as much as you want with [useTable](https://refine.dev/docs/api-references/hooks/table/useTable/). See the [fineFoods example](https://refine.dev/demo/) and [it's code](https://github.com/pankod/refine/blob/master/examples/fineFoods/admin/antd/src/pages/categories/list.tsx).
 
 Here is an example list page from React-Admin that shows you the list of `id`,`name`, `isActive`, `startDate`, `endDate` from the API endpoint for `campaigns` resource.
 
@@ -405,7 +405,3 @@ Also note that for both refine and React-Admin, this is all customizable. These 
 Advantage of refine is that you use Ant Design directly. Let's assume you have your own way around your Ant Design application. refine doesn't interfere. Instead, it provides you the necessary data for your Ant Design application. This way, refine gives you all the freedom to customize all the components as you wish.
 
 Happy hacking with refine 🪄
-
-
-
-

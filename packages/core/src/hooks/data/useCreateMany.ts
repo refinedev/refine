@@ -1,4 +1,4 @@
-import { useQueryClient, useMutation, UseMutationResult } from "react-query";
+import { useMutation, UseMutationResult } from "react-query";
 
 import {
     BaseRecord,
@@ -110,13 +110,15 @@ export const useCreateMany = <
                     invalidates,
                 });
 
+                const ids = response?.data
+                    .filter((item) => item?.id !== undefined)
+                    .map((item) => item.id!);
+
                 publish?.({
                     channel: `resources/${resource}`,
                     type: "created",
                     payload: {
-                        ids: response?.data
-                            .filter((item) => item?.id !== undefined)
-                            .map((item) => item.id!),
+                        ids,
                     },
                     date: new Date(),
                 });

@@ -159,21 +159,21 @@ const { triggerExport, isLoading } = useExport<IPost>({
 
 
 interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }
 
 interface IUser {
-    id: string;
+    id: number;
 }
 
 interface IPost {
-    id: string;
+    id: number;
     title: string;
     content: string;
     slug: string;
     status: "published" | "draft" | "rejected";
-    category: ICategory;
+    category: { id: number };
     user: IUser;
 }
 ```

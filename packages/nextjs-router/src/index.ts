@@ -1,7 +1,6 @@
-import { RouterProvider } from "./routerProvider";
+export { RouterProvider as default } from "./routerProvider";
 
-export { default as Link } from "next/link";
+export { RefineLink as Link } from "./refineLink";
 
 export * from "./nextRouteComponent";
 export * from "./checkAuthentication";
-export default RouterProvider;

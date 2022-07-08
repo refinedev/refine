@@ -25,6 +25,7 @@ import {
     RefreshButton,
     ListButton,
     SaveButton,
+    Breadcrumb,
 } from "@components";
 import { DeleteButtonProps } from "../../../components";
 
@@ -39,7 +40,7 @@ export interface EditProps {
     deleteButtonProps?: DeleteButtonProps;
     resource?: string;
     isLoading?: boolean;
-    children?: ReactNode;
+    dataProviderName?: string;
 }
 
 /**
@@ -60,6 +61,7 @@ export const Edit: React.FC<EditProps> = ({
     canDelete,
     resource: resourceFromProps,
     isLoading = false,
+    dataProviderName,
 }) => {
     const translate = useTranslate();
     const { goBack, list } = useNavigation();
@@ -108,9 +110,11 @@ export const Edit: React.FC<EditProps> = ({
                     <RefreshButton
                         resourceNameOrRouteName={resource.route}
                         recordItemId={id}
+                        dataProviderName={dataProviderName}
                     />
                 </Space>
             }
+            breadcrumb={<Breadcrumb />}
             {...pageHeaderProps}
         >
             <Spin spinning={isLoading}>
@@ -133,6 +137,7 @@ export const Edit: React.FC<EditProps> = ({
                                                         resource.name,
                                                 );
                                             }}
+                                            dataProviderName={dataProviderName}
                                             {...deleteButtonProps}
                                         />
                                     )}

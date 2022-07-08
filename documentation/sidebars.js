@@ -13,7 +13,7 @@ module.exports = {
         },
         {
             type: "doc",
-            id: "tutorial",
+            id: "tutorials",
         },
         {
             type: "category",
@@ -26,6 +26,7 @@ module.exports = {
                     items: [
                         "core/providers/accessControl-provider",
                         "core/providers/auth-provider",
+                        "core/providers/audit-log-provider",
                         "core/providers/data-provider",
                         "core/providers/i18n-provider",
                         "core/providers/live-provider",
@@ -53,6 +54,19 @@ module.exports = {
                                 "core/hooks/auth/useLogout",
                                 "core/hooks/auth/usePermissions",
                             ],
+                        },
+                        {
+                            type: "category",
+                            label: "Audit Log",
+                            items: [
+                                "core/hooks/audit-log/useLog",
+                                "core/hooks/audit-log/useLogList",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Breadcrumb",
+                            items: ["core/hooks/useBreadcrumb"],
                         },
                         {
                             type: "category",
@@ -148,7 +162,10 @@ module.exports = {
                         {
                             type: "category",
                             label: "UI",
-                            items: ["core/hooks/ui/useModal"],
+                            items: [
+                                "core/hooks/ui/useModal",
+                                "core/hooks/ui/useMenu",
+                            ],
                         },
                     ],
                 },
@@ -222,13 +239,6 @@ module.exports = {
                                 },
                                 {
                                     type: "category",
-                                    label: "Resource",
-                                    items: [
-                                        "ui-frameworks/antd/hooks/resource/useMenu",
-                                    ],
-                                },
-                                {
-                                    type: "category",
                                     label: "Table",
                                     items: [
                                         "ui-frameworks/antd/hooks/table/useEditableTable",
@@ -251,6 +261,7 @@ module.exports = {
                                         "ui-frameworks/antd/components/basic-views/show",
                                     ],
                                 },
+                                "ui-frameworks/antd/components/breadcrumb",
                                 {
                                     type: "category",
                                     label: "Buttons",
@@ -293,6 +304,88 @@ module.exports = {
                                 },
                             ],
                         },
+                        {
+                            type: "category",
+                            label: "Customization",
+                            items: [
+                                "ui-frameworks/antd/customization/antd-custom-theme",
+                                "ui-frameworks/antd/customization/antd-custom-layout",
+                                "ui-frameworks/antd/customization/antd-custom-sider",
+                            ],
+                        },
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Material UI",
+                    collapsed: false,
+                    items: [
+                        "ui-frameworks/mui/tutorial",
+                        {
+                            type: "category",
+                            label: "Hooks",
+                            items: [
+                                "ui-frameworks/mui/hooks/useAutocomplete",
+                                "ui-frameworks/mui/hooks/useDataGrid",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Components",
+                            items: [
+                                {
+                                    type: "category",
+                                    label: "Basic Views",
+                                    items: [
+                                        "ui-frameworks/mui/components/basic-views/create",
+                                        "ui-frameworks/mui/components/basic-views/edit",
+                                        "ui-frameworks/mui/components/basic-views/list",
+                                        "ui-frameworks/mui/components/basic-views/show",
+                                    ],
+                                },
+                                "ui-frameworks/mui/components/mui-breadcrumb",
+                                {
+                                    type: "category",
+                                    label: "Buttons",
+                                    items: [
+                                        "ui-frameworks/mui/components/buttons/clone-button",
+                                        "ui-frameworks/mui/components/buttons/create-button",
+                                        "ui-frameworks/mui/components/buttons/delete-button",
+                                        "ui-frameworks/mui/components/buttons/edit-button",
+                                        "ui-frameworks/mui/components/buttons/export-button",
+                                        "ui-frameworks/mui/components/buttons/import-button",
+                                        "ui-frameworks/mui/components/buttons/list-button",
+                                        "ui-frameworks/mui/components/buttons/refresh-button",
+                                        "ui-frameworks/mui/components/buttons/save-button",
+                                        "ui-frameworks/mui/components/buttons/show-button",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Fields",
+                                    items: [
+                                        "ui-frameworks/mui/components/fields/boolean",
+                                        "ui-frameworks/mui/components/fields/date",
+                                        "ui-frameworks/mui/components/fields/email",
+                                        "ui-frameworks/mui/components/fields/file",
+                                        "ui-frameworks/mui/components/fields/markdown",
+                                        "ui-frameworks/mui/components/fields/number",
+                                        "ui-frameworks/mui/components/fields/tag",
+                                        "ui-frameworks/mui/components/fields/text",
+                                        "ui-frameworks/mui/components/fields/url",
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Customization",
+                            items: [
+                                "ui-frameworks/mui/customization/mui-custom-theme",
+                                "ui-frameworks/mui/customization/mui-custom-layout",
+                                "ui-frameworks/mui/customization/mui-custom-sider",
+                            ],
+                        },
                     ],
                 },
             ],
@@ -300,7 +393,18 @@ module.exports = {
         {
             type: "category",
             label: "Packages",
-            items: ["packages/react-table", "packages/react-hook-form"],
+            items: [
+                "packages/react-table",
+                {
+                    type: "category",
+                    label: "React Hook Form",
+                    items: [
+                        "packages/react-hook-form/useForm",
+                        "packages/react-hook-form/useModalForm",
+                        "packages/react-hook-form/useStepsForm",
+                    ],
+                },
+            ],
         },
         {
             type: "category",
@@ -327,7 +431,10 @@ module.exports = {
                 {
                     type: "category",
                     label: "Form",
-                    items: ["guides-and-concepts/forms/custom-form-validation"],
+                    items: [
+                        "guides-and-concepts/forms/custom-form-validation",
+                        "guides-and-concepts/forms/save-and-continue",
+                    ],
                 },
                 {
                     type: "category",
@@ -357,9 +464,7 @@ module.exports = {
                         "guides-and-concepts/search/table-search",
                     ],
                 },
-
                 "guides-and-concepts/ssr-nextjs",
-                "guides-and-concepts/theme",
                 {
                     type: "category",
                     label: "Upload",
@@ -379,7 +484,15 @@ module.exports = {
             type: "category",
             label: "Examples",
             items: [
-                "examples/tutorial-example",
+                {
+                    type: "category",
+                    label: "Tutorial",
+                    items: [
+                        "examples/tutorial/antd-tutorial-example",
+                        "examples/tutorial/mui-tutorial-example",
+                        "examples/tutorial/headless-tutorial-example",
+                    ],
+                },
                 "examples/real-world-example",
                 {
                     type: "category",
@@ -454,11 +567,41 @@ module.exports = {
                     type: "category",
                     label: "Form",
                     items: [
-                        "examples/form/custom-form-validation",
-                        "examples/form/useDrawerForm",
-                        "examples/form/useForm",
-                        "examples/form/useModalForm",
-                        "examples/form/useStepsForm",
+                        {
+                            type: "category",
+                            label: "Ant Design",
+                            items: [
+                                "examples/form/antd/custom-form-validation",
+                                "examples/form/antd/useDrawerForm",
+                                "examples/form/antd/useForm",
+                                "examples/form/antd/useModalForm",
+                                "examples/form/antd/useStepsForm",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Headless",
+                            items: ["examples/form/headless/save-and-continue"],
+                        },
+                        {
+                            type: "category",
+                            label: "Material UI",
+                            items: [
+                                "examples/form/mui/drawerForm",
+                                "examples/form/mui/useForm",
+                                "examples/form/mui/useModalForm",
+                                "examples/form/mui/useStepsForm",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "React Hook Form",
+                            items: [
+                                "examples/form/react-hook-form/useForm",
+                                "examples/form/react-hook-form/useModalForm",
+                                "examples/form/react-hook-form/useStepsForm",
+                            ],
+                        },
                     ],
                 },
                 {
@@ -505,19 +648,6 @@ module.exports = {
                 },
                 {
                     type: "category",
-                    label: "React Hook Form",
-                    items: ["examples/react-hook-form/react-hook-form"],
-                },
-                {
-                    type: "category",
-                    label: "React Table",
-                    items: [
-                        "examples/react-table/advanced-react-table",
-                        "examples/react-table/react-table",
-                    ],
-                },
-                {
-                    type: "category",
                     label: "Router Provider",
                     items: ["examples/router-provider/react-location"],
                 },
@@ -530,12 +660,37 @@ module.exports = {
                     type: "category",
                     label: "Table",
                     items: [
-                        "examples/table/advancedTable",
-                        "examples/table/tableFilter",
-                        "examples/table/useDeleteMany",
-                        "examples/table/useEditableTable",
-                        "examples/table/useTable",
-                        "examples/table/useUpdateMany",
+                        {
+                            type: "category",
+                            label: "Ant Design",
+                            items: [
+                                "examples/table/antd/advancedTable",
+                                "examples/table/antd/tableFilter",
+                                "examples/table/antd/useDeleteMany",
+                                "examples/table/antd/useEditableTable",
+                                "examples/table/antd/useTable",
+                                "examples/table/antd/useUpdateMany",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Material UI",
+                            items: [
+                                "examples/table/mui/advanced",
+                                "examples/table/mui/filter",
+                                "examples/table/mui/useDataGrid",
+                                "examples/table/mui/useDeleteMany",
+                                "examples/table/mui/useUpdateMany",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "React Table",
+                            items: [
+                                "examples/table/react-table/advanced-react-table",
+                                "examples/table/react-table/react-table",
+                            ],
+                        },
                     ],
                 },
                 "examples/customTheme",
@@ -548,8 +703,22 @@ module.exports = {
                     type: "category",
                     label: "Upload",
                     items: [
-                        "examples/upload/base64Upload",
-                        "examples/upload/multipartUpload",
+                        {
+                            type: "category",
+                            label: "Ant Design",
+                            items: [
+                                "examples/upload/antd/base64",
+                                "examples/upload/antd/multipart",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Material UI",
+                            items: [
+                                "examples/upload/mui/base64",
+                                "examples/upload/mui/multipart",
+                            ],
+                        },
                     ],
                 },
                 {

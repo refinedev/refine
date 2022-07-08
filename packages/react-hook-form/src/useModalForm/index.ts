@@ -20,10 +20,6 @@ export type UseModalFormReturnType<
     TContext extends object = {},
 > = UseFormReturnType<TData, TError, TVariables, TContext> & {
     modal: {
-        saveButtonProps: {
-            disabled: boolean;
-            onClick: () => void;
-        };
         submit: (values: TVariables) => void;
         close: () => void;
         show: (id?: BaseKey) => void;
@@ -76,9 +72,10 @@ export const useModalForm = <
     });
 
     const {
-        handleSubmit,
         reset,
-        refineCore: { onFinish, formLoading, setId },
+        refineCore: { onFinish, setId },
+        saveButtonProps,
+        handleSubmit,
     } = useHookFormResult;
 
     const { visible, show, close } = useModal({
@@ -128,13 +125,9 @@ export const useModalForm = <
         show();
     }, []);
 
-    const saveButtonProps = {
-        disabled: formLoading,
-        onClick: handleSubmit(submit as any),
-    };
-
     const title = translate(
         `${resourceName}.titles.${actionProp}`,
+        undefined,
         `${userFriendlyResourceName(
             `${actionProp} ${resourceName}`,
             "singular",
@@ -143,7 +136,6 @@ export const useModalForm = <
 
     return {
         modal: {
-            saveButtonProps,
             submit,
             close: handleClose,
             show: handleShow,
@@ -151,6 +143,9 @@ export const useModalForm = <
             title,
         },
         ...useHookFormResult,
-        saveButtonProps,
+        saveButtonProps: {
+            ...saveButtonProps,
+            onClick: () => handleSubmit(submit as any)(),
+        },
     };
 };

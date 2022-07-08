@@ -55,18 +55,18 @@ For more detailed information and usage, refer to the [refine documentation](htt
 
 ## What is refine?
 
-**refine** is a [React](https://reactjs.org/)-based framework for building internal tools, rapidly. :sparkles: It ships with [Ant Design System](https://ant.design/), an enterprise-level UI toolkit.
+**refine** is a [React](https://reactjs.org/)-based framework for building internal tools, rapidly. :sparkles: It ships with [Ant Design System](https://ant.design/) and [Material UI](https://mui.com/), an enterprise-level UI toolkit.
 
 Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to _admin panels_, _B2B applications_ and _dashboards_.
 
 ## What is a "headless" Framework?
-**refine** is a **headless** React framework, which means all out-of-the-box features(**Routing**, **Networking**, **Authentication**, **Authorization**, **State Management**, **Realtime**, **i18n**, etc.), it can be used without being tied to any UI elements or framework. Also, Ant Design as out-of-the-box is supported.
+**refine** is a **headless** React framework, which means all out-of-the-box features such as **Routing**, **Networking**, **Authentication**, **Authorization**, **State Management**, **Realtime**, **i18n**, etc. can be used without being tied to any UI element or framework. Also, Ant Design as out-of-the-box is supported.
 
-- Customization & Extensibility -  UI is a completely customizable area and each developer uses different solutions. **refine** features does not restrict or interfere with your UI structure. **refine** allows the you to design and customizable the UI based on their unique use case.
+- Customization & Extensibility -  UI is a completely customizable area and each developer uses different solutions. **refine** features do not restrict or interfere with your UI structure. **refine** allows you to design and customize the UI based on your unique use case.
 
-- Separation of Concerns - **refine** as a framework, is not responsible for your UI and is independent.
+- Separation of Concerns - **refine**, as a framework, is not responsible for your UI and is independent.
 
-- Maintenance - By removing the API surface to support every UI use case, **refine** easy to use and update/maintain is simple.
+- Maintenance - By removing the API surface to support every UI use case, **refine** is easy to use and its update/maintain is simple.
 
 ###
 
@@ -82,32 +82,32 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 📝 **Native Typescript Core** : You can always opt out for plain JavaScript.
 
-🐜 **Powerful UI** : Works seamlessly with integrated [Ant Design System](https://ant.design/). (It can also be used with **any** UI Framework)
+🐜 **Powerful UI** : Works seamlessly with integrated [Ant Design System](https://ant.design/) and [Material UI](https://mui.com/). (It can also be used with **any** UI Framework)
 
 📝 **Boilerplate-free Code** : Keeps your codebase clean and readable.
 
 ## Motivation
 
-Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility.
+Higher-level frontend frameworks can save you a lot of time, but they typically offer you a trade-off between speed and flexibility.
 
-After many years of experience in developing B2B frontend applications and working with popular frameworks, we came up with a new approach to tackle this dilemma. This is how **refine** is born.
+After many years of experience in developing B2B frontend applications and working with popular frameworks, we came up with a new approach to tackle this dilemma. This is how **refine** was born.
 
 **refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
 
-As **refine** is totally _unopinionated_ about UI and logic, it's strongly _opinionated_ about three parts of your application:
+Whereas **refine** is totally _unopinionated_ about UI and logic, it's strongly _opinionated_ about three parts of your application:
 
 1. **API Networking**
 2. **State Management**
 3. **Authentication & Authorization**
 
-We believe, these are the most important components of a data-intensive frontend application and should be handled in a robust way by leveraging industry best practices.
+We believe that these are the most important components of a data-intensive frontend application and should be handled in a robust way by leveraging industry best practices.
 
-**refine** guarantees you a perfect implementation of these building blocks in your project, so you can focus on your development.
+**refine** guarantees you a perfect implementation of these building blocks in your project, so that you can focus on your development.
 
 ## Architecture
 
 **refine** makes extensive use of [hooks](https://reactjs.org/docs/hooks-reference.html#gatsby-focus-wrapper) as a default way for interacting with your components.
-Under the hood, **refine** relies heavily to [React Query](https://react-query.tanstack.com/) for data handling, caching and state management.
+Under the hood, **refine** relies heavily on [React Query](https://react-query.tanstack.com/) for data handling, caching and state management.
 Access to external sources and API's happen via providers which are basically plug-in type components for extendibility.
 
 <br/>
@@ -139,7 +139,7 @@ npx superplate-cli -p refine-react tutorial
 
 Follow the _CLI wizard_ to select options and start creating your project.
 
-After setup is complete, navigate to the project folder and start your project with:
+Once the setup is complete, navigate to the project folder and start your project with:
 
 ```
 npm run dev
@@ -193,7 +193,7 @@ export const PostList: React.FC = () => {
                 <Table.Column
                     dataIndex={["category", "id"]}
                     title="category"
-                    render={(value: string) => {
+                    render={(value: number) => {
                         if (isLoading) {
                             return "loading...";
                         }
@@ -220,17 +220,17 @@ export default App;
 interface IPost {
     title: string;
     createdAt: string;
-    category: ICategory;
+    category: { id: number };
 }
 
 interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }
 ```
 
 ## Roadmap
-You can find Refine's <a href="https://github.com/pankod/refine/projects/1">Public Roadmap here!</a> 
+You can find refine's <a href="https://github.com/pankod/refine/projects/1">Public Roadmap here!</a> 
 
 ## Stargazers
 
@@ -245,7 +245,3 @@ If you are willing to fix an issue or propose a feature; all PRs with clear expl
 ## License
 
 Licensed under the MIT License, Copyright © 2021-present Pankod
-
-## Special Thanks
-
-[React Admin](https://marmelab.com/react-admin/) has been a great source of ideas and inspiration for refine. Big thanks to friends at [Marmelab](https://marmelab.com) for the amazing work they are doing.

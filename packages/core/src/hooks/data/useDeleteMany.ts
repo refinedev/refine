@@ -297,6 +297,11 @@ export const useDeleteMany = <
                     payload: { ids },
                     date: new Date(),
                 });
+
+                // Remove the queries from the cache:
+                ids.forEach((id) =>
+                    queryClient.removeQueries(context?.queryKey.detail(id)),
+                );
             },
             onError: (err, { ids, resource, errorNotification }, context) => {
                 // set back the queries to the context:

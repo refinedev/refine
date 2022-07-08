@@ -9,18 +9,18 @@ title: useForm
 
 We'll show the basic usage of `useForm` by adding an editing form.
 
-```tsx  title="pages/posts/edit.tsx"
+```tsx title="pages/posts/edit.tsx"
 // highlight-next-line
 import { Edit, Form, Input, useForm, Select } from "@pankod/refine-antd";
 
 export const PostEdit: React.FC = () => {
-// highlight-next-line
+    // highlight-next-line
     const { formProps, saveButtonProps } = useForm<IPost>();
 
     return (
-// highlight-next-line
+        // highlight-next-line
         <Edit saveButtonProps={saveButtonProps}>
-// highlight-next-line
+            // highlight-next-line
             <Form {...formProps} layout="vertical">
                 <Form.Item label="Title" name="title">
                     <Input />
@@ -49,13 +49,13 @@ export const PostEdit: React.FC = () => {
 };
 
 interface IPost {
-    id: string;
+    id: number;
     title: string;
     status: "published" | "draft" | "rejected";
 }
 ```
 
-```tsx 
+```tsx
 const { formProps, saveButtonProps } = useForm<IPost>();
 ```
 
@@ -79,7 +79,7 @@ By default it determines the action from route. In the example, the route is `/p
 
 It can take an `action` parameter for the situations where it isn't possible to determine the action from route i.e. using a form in a modal, using a custom route.
 
-```tsx 
+```tsx
 const { formProps, saveButtonProps } = useForm({ action: "edit" });
 ```
 
@@ -102,7 +102,7 @@ When creating a new record, `useForm` can initialize the form with the data of a
 `useForm` works on clone mode when a route has a `clone` and `id` parameters like this `{{resourceName}}/clone/1234`.
 Alternatively, if route doesn't have those parameters, action can be set with `action: "clone"` and id can be set with `setId` and `id`.
 
-```tsx 
+```tsx
 const { setId, id } = useForm({
     action: "clone",
 });
@@ -115,103 +115,19 @@ If you want to show a form in a modal or drawer where necessary route params mig
 :::tip
 `<CloneButton>` can be used to navigate to a clone route with an id like this `{{resourceName}}/clone/1234`.
 
-```tsx 
+```tsx
 <CloneButton recordItemId={record.id} />
 ```
 
 Also the `clone` method from the [`useNavigation`](/core/hooks/navigation/useNavigation.md) hook can be used as well.
 
-```tsx 
+```tsx
 const { clone } = useNavigation();
 
-<Button onClick={() => clone("posts", record.id)} />
+<Button onClick={() => clone("posts", record.id)} />;
 ```
 
 :::
-
-## How can I implement the save and continue feature?
-refine provides you with the necessary methods to add this feature. This feature is familiar to [Django](https://www.djangoproject.com/) users.
-
-We have three save options: `Save`, `Save and continue editing` and `Save and add another`. By default, only the `Save` button is added from [CRUD components](/ui-frameworks/antd/components/basic-views/create.md) for now. 
-
-Now let's see how to handle other cases,
-
-```tsx title="pages/posts/create.tsx"
-import { Edit, Form, Input, useForm, Select, Space } from "@pankod/refine-antd";
-
-export const PostEdit: React.FC = () => {
-    const { 
-        formProps,
-        saveButtonProps,
-        // highlight-start
-        onFinish,
-        redirect
-        // highlight-end
-    } = useForm<IPost>({
-        redirect: false,
-    });
-
-    return (
-        <Edit 
-        // highlight-start
-            actionButtons={
-                <Space>
-                    <SaveButton
-                        {...saveButtonProps}
-                        onClick={async () => {
-                            await onFinish?.();
-                            redirect("list");
-                        }}
-                    />
-                    <SaveButton {...saveButtonProps}>
-                        Save and continue editing
-                    </SaveButton>
-                    <SaveButton {...saveButtonProps}
-                        onClick={async () => {
-                            await onFinish?.();
-                            redirect("create");
-                        }}>
-                        Save and add another
-                    </SaveButton>
-                </Space>
-            }
-        // highlight-end
-        >
-            <Form {...formProps} layout="vertical">
-                <Form.Item label="Title" name="title">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Status" name="status">
-                    <Select
-                        options={[
-                            {
-                                label: "Published",
-                                value: "published",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
-                            },
-                            {
-                                label: "Rejected",
-                                value: "rejected",
-                            },
-                        ]}
-                    />
-                </Form.Item>
-            </Form>
-        </Edit>
-    );
-};
-
-interface IPost {
-    id: string;
-    title: string;
-    status: "published" | "draft" | "rejected";
-}
-```
-
-
 
 ## API Reference
 
@@ -220,7 +136,7 @@ interface IPost {
 | Property                                                     | Description                                                                                                                                                        | Type                                                                            | Default                                                                                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | action                                                       | Type of the form mode                                                                                                                                              | `"edit"` \| `"create"` \| `"clone"`                                             |                                                                                                                                      |
-| resource                                                     | Resource name for API data interactions                                                                                                                            | `string`                                                                        |                                                              |
+| resource                                                     | Resource name for API data interactions                                                                                                                            | `string`                                                                        |                                                                                                                                      |
 | id                                                           | Record id for fetching                                                                                                                                             | [`BaseKey`](/core/interfaces.md#basekey)                                        | Id that it reads from the URL                                                                                                        |
 | onMutationSuccess                                            | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) is successful                                                                     | `(data: UpdateResponse<M>, variables: any, context: any) => void`               |                                                                                                                                      |
 | onMutationError                                              | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error                                                               | `(error: any, variables: any, context: any) => void`                            |                                                                                                                                      |
@@ -244,35 +160,33 @@ interface IPost {
 
 ### Return values
 
-| Property        | Description                                             | Type                                                                             |
-| --------------- | ------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| onFinish        | Triggers the mutation                                   | `(values?: TVariables) => Promise<void>`                                         |
-| form            | Ant Design form instance                                | [`FormInstance`](https://ant.design/components/form/#FormInstance)               |
-| formProps       | Ant Design form props                                   | [`FormProps`](https://ant.design/components/form/#Form)                          |
-| saveButtonProps | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; loading?:boolean; }`                  |
-| redirect        | Redirect function for custom redirections               | `(redirect: "list"` \| `"edit"` \| `"show"` \| `"create"` \| `false) => void`    |
-| queryResult     | Result of the query of a record                         | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)  |
-| mutationResult  | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation) |
-| formLoading     | Loading state of form request                           | `boolean`                                                                        |
-| id              | Record id for `clone` and `create` action               | [`BaseKey`](/core/interfaces.md#basekey)                                         |
-| setId           | `id` setter                                             | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                 |
+| Property        | Description                                             | Type                                                                                                                                                 |
+| --------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| onFinish        | Triggers the mutation                                   | `(values?: TVariables) => Promise<CreateResponse<TData>` \| `UpdateResponse<TData>` \| `void`>                                                       |
+| form            | Ant Design form instance                                | [`FormInstance`](https://ant.design/components/form/#FormInstance)                                                                                   |
+| formProps       | Ant Design form props                                   | [`FormProps`](https://ant.design/components/form/#Form)                                                                                              |
+| saveButtonProps | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; loading?:boolean; }`                                                                                      |
+| redirect        | Redirect function for custom redirections               | `(redirect:` `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,`idFromFunction?:` [`BaseKey`](/core/interfaces.md#basekey)\|`undefined`) => `data` |
+| queryResult     | Result of the query of a record                         | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)                                                                      |
+| mutationResult  | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                     |
+| formLoading     | Loading state of form request                           | `boolean`                                                                                                                                            |
+| id              | Record id for `clone` and `create` action               | [`BaseKey`](/core/interfaces.md#basekey)                                                                                                             |
+| setId           | `id` setter                                             | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                     |
 
 ### Type Parameters
 
 | Property   | Desription                                                       | Default                    |
 | ---------- | ---------------------------------------------------------------- | -------------------------- |
-| TData      | Result data of the query that extends [`BaseRecord`][BaseRecord] | [`BaseRecord`][BaseRecord] |
-| TError     | Custom error object that extends [`HttpError`][HttpError]        | [`HttpError`][HttpError]   |
+| TData      | Result data of the query that extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError     | Custom error object that extends [`HttpError`][httperror]        | [`HttpError`][httperror]   |
 | TVariables | Values for params.                                               | `{}`                       |
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/form/useForm?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/form/antd/useForm?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-form-example"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
-[BaseRecord]: /core/interfaces.md#baserecord
-[HttpError]: /core/interfaces.md#httperror
+[baserecord]: /core/interfaces.md#baserecord
+[httperror]: /core/interfaces.md#httperror

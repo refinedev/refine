@@ -79,7 +79,7 @@ interface IPostFile {
 }
 
 interface IPost {
-    id: string;
+    id: number;
     title: string;
     status: string;
 }
@@ -189,7 +189,7 @@ interface IPostFile {
     status: string;
     content: string;
     categoryId: string;
-    userId: string;
+    userId: number;
 }
 ```
 Now, parsed data is mapped to conform our APIs requirements.

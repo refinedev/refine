@@ -9,14 +9,14 @@ export interface IFile {
 }
 
 export interface ICategory {
-    id: string;
+    id: number;
     title: string;
     isActive: boolean;
     cover?: string;
 }
 
 export interface IProduct {
-    id: string;
+    id: number;
     name: string;
     isActive: boolean;
     description: string;
@@ -32,7 +32,7 @@ export interface IAddress {
     coordinate: [string, string];
 }
 export interface IUser {
-    id: string;
+    id: number;
     firstName: string;
     lastName: string;
     fullName: string;
@@ -45,12 +45,12 @@ export interface IUser {
 }
 
 export interface IOrderStatus {
-    id: string;
+    id: number;
     text: "Pending" | "Ready" | "On The Way" | "Delivered" | "Cancelled";
 }
 
 export interface IStore {
-    id: string;
+    id: number;
     title: string;
     isActive: boolean;
     createdAt: string;
@@ -59,7 +59,7 @@ export interface IStore {
 }
 
 export interface ICourier {
-    id: string;
+    id: number;
     name: string;
     surname: string;
     gender: string;
@@ -75,7 +75,7 @@ export interface IEvent {
 }
 
 export interface IOrder {
-    id: string;
+    id: number;
     user: IUser;
     createdAt: string;
     products: IProduct[];
@@ -89,6 +89,6 @@ export interface IOrder {
 }
 
 export interface IBasketOrder {
-    productId: string;
+    productId: number;
     amount: number;
 }

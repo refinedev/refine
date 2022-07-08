@@ -26,6 +26,7 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 - Maintenance - By removing the API surface to support every UI use case, **refine** easy to use and update/maintain is simple.
  -->
+
 ###
 
 ## Key features
@@ -40,7 +41,7 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 📝 **Native Typescript Core** : You can always opt out for plain JavaScript.
 
-🐜 **Enterprise UI** : Works seamlessly with Ant Design System. (Support for multiple UI frameworks is on the Roadmap)
+🐜 **Enterprise UI** : Works seamlessly with Ant Design System, and Material UI. (Support for other UI frameworks is on the Roadmap)
 
 📝 **Boilerplate-free Code** : Keeps your codebase clean and readable.
 
@@ -91,6 +92,44 @@ npx superplate-cli -p refine-react tutorial
 
 Follow the _CLI wizard_ to select options and start creating your project.
 
+
+<details><summary>Select the following options to complete the _CLI wizard_:</summary>
+<p>
+
+```bash title="CLI options selection"
+? What will be the name of your app:
+> tutorial
+
+? Do you want to use a UI Framework?:
+❯ Ant Design
+
+? Do you want a customized theme?:
+❯ Default theme
+
+? Router Provider:
+❯ React Router v6
+
+? Data Provider:
+❯ REST API
+
+? Auth Provider:
+❯ None
+
+? Do you want to add example pages?:
+❯ No
+
+? Do you want a customized layout?:
+❯ No
+
+? i18n - Internationalization:
+❯ No
+```
+
+</p>
+</details>
+
+<br/>
+
 After setup is complete, navigate to the project folder and start your project with:
 
 ```
@@ -103,12 +142,7 @@ Replace the contents of `App.tsx` with the following code:
 
 ```tsx title="App.tsx"
 import { Refine, useMany } from "@pankod/refine-core";
-import {
-    useTable,
-    List,
-    Table,
-    DateField,
-} from "@pankod/refine-antd";
+import { useTable, List, Table, DateField } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -145,7 +179,7 @@ export const PostList: React.FC = () => {
                 <Table.Column
                     dataIndex={["category", "id"]}
                     title="category"
-                    render={(value: string) => {
+                    render={(value: number) => {
                         if (isLoading) {
                             return "loading...";
                         }
@@ -158,7 +192,7 @@ export const PostList: React.FC = () => {
                 <Table.Column
                     dataIndex="createdAt"
                     title="createdAt"
-                    render={(value) => <DateField format="LLL" value={value} />}
+                    render={(value: string) => <DateField format="LLL" value={value} />}
                 />
             </Table>
         </List>
@@ -172,15 +206,14 @@ export default App;
 interface IPost {
     title: string;
     createdAt: string;
-    category: ICategory;
+    category: { id: number };
 }
 
 interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }
 ```
-
 
 ## Next Steps
 
@@ -194,4 +227,4 @@ interface ICategory {
 
 -   [Check the Guides & Concept section to learn generic solutions to common problems &#8594](/guides-and-concepts/upload/multipart-upload.md)
 
--   [Check example section for code snippets &#8594](/examples/tutorial.md)
+-   [Check example section for code snippets &#8594](/examples/tutorial/antd-tutorial.md)

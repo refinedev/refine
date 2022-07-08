@@ -69,7 +69,6 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
     return (
         <Link
             to={createUrl}
-            href={createUrl}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
                 if (onClick) {

@@ -1,4 +1,4 @@
-import { useContext, useCallback } from "react";
+import { useContext, useMemo } from "react";
 import { TranslationContext } from "@contexts/translation";
 
 /**
@@ -10,9 +10,31 @@ import { TranslationContext } from "@contexts/translation";
 export const useTranslate = () => {
     const { i18nProvider } = useContext(TranslationContext);
 
-    return useCallback(
-        (key: string, options?: any, defaultMessage?: string) =>
-            i18nProvider?.translate(key, options, defaultMessage),
-        [],
-    );
+    const fn = useMemo(() => {
+        function translate(
+            key: string,
+            options?: any,
+            defaultMessage?: string,
+        ): string;
+        function translate(key: string, defaultMessage?: string): string;
+
+        function translate(
+            key: string,
+            options?: string | any,
+            defaultMessage?: string,
+        ) {
+            return (
+                i18nProvider?.translate(key, options, defaultMessage) ??
+                defaultMessage ??
+                (typeof options === "string" &&
+                typeof defaultMessage === "undefined"
+                    ? options
+                    : key)
+            );
+        }
+
+        return translate;
+    }, [i18nProvider]);
+
+    return fn;
 };

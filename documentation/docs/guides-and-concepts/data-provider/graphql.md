@@ -22,25 +22,25 @@ In order to create a GraphQL query, our `dataProvider` has to take some options,
 
 Hooks and components that support `MetaDataQuery`:
 
-| Supported data hooks                                                 | Supported other hooks                                                       | Supported components                                                   |
-| -------------------------------------------------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`useUpdate` &#8594](/core/hooks/data/useUpdate.md)         | [`useForm` &#8594](/core/hooks/useForm.md)                    | [`DeleteButton` &#8594](/ui-frameworks/antd/components/buttons/delete.md)   |
+| Supported data hooks                                        | Supported other hooks                                                            | Supported components                                                        |
+| ----------------------------------------------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| [`useUpdate` &#8594](/core/hooks/data/useUpdate.md)         | [`useForm` &#8594](/core/hooks/useForm.md)                                       | [`DeleteButton` &#8594](/ui-frameworks/antd/components/buttons/delete.md)   |
 | [`useUpdateMany` &#8594](/core/hooks/data/useUpdateMany.md) | [`useModalForm` &#8594](/ui-frameworks/antd/hooks/form/useModalForm.md)          | [`RefreshButton` &#8594](/ui-frameworks/antd/components/buttons/refresh.md) |
-| [`useDelete` &#8594](/core/hooks/data/useDelete.md)         | [`useDrawerForm` &#8594](/ui-frameworks/antd/hooks/form/useDrawerForm.md)        |                                                                        |
-| [`useDeleteMany` &#8594](/core/hooks/data/useDeleteMany.md) | [`useStepsForm` &#8594](/ui-frameworks/antd/hooks/form/useStepsForm.md)          |                                                                        |
-| [`useCreate` &#8594](/core/hooks/data/useCreate.md)         | [`useTable` &#8594](/core/hooks/useTable.md)                 |                                                                        |
-| [`useCreateMany` &#8594](/core/hooks/data/useCreateMany.md) | [`useEditableTable` &#8594](/ui-frameworks/antd/hooks/table/useEditableTable.md) |                                                                        |
-| [`useList` &#8594](/core/hooks/data/useList.md)             | [`useSimpleList` &#8594](/ui-frameworks/antd/hooks/list/useSimpleList.md)        |                                                                        |
-| [`useOne` &#8594](/core/hooks/data/useOne.md)               | [`useShow` &#8594](/core/hooks/show/useShow.md)                    |                                                                        |
-| [`useMany` &#8594](/core/hooks/data/useMany.md)             | [`useExport` &#8594](/core/hooks/import-export/useExport.md)       |                                                                        |
-| [`useCustom` &#8594](/core/hooks/data/useCustom.md)         | [`useCheckboxGroup` &#8594](/ui-frameworks/antd/hooks/field/useCheckboxGroup.md) |                                                                        |
-|                                                                      | [`useSelect` &#8594](/core/hooks/useSelect.md)               |                                                                        |
-|                                                                      | [`useRadioGroup` &#8594](/ui-frameworks/antd/hooks/field/useRadioGroup.md)       |                                                                        |
+| [`useDelete` &#8594](/core/hooks/data/useDelete.md)         | [`useDrawerForm` &#8594](/ui-frameworks/antd/hooks/form/useDrawerForm.md)        |                                                                             |
+| [`useDeleteMany` &#8594](/core/hooks/data/useDeleteMany.md) | [`useStepsForm` &#8594](/ui-frameworks/antd/hooks/form/useStepsForm.md)          |                                                                             |
+| [`useCreate` &#8594](/core/hooks/data/useCreate.md)         | [`useTable` &#8594](/core/hooks/useTable.md)                                     |                                                                             |
+| [`useCreateMany` &#8594](/core/hooks/data/useCreateMany.md) | [`useEditableTable` &#8594](/ui-frameworks/antd/hooks/table/useEditableTable.md) |                                                                             |
+| [`useList` &#8594](/core/hooks/data/useList.md)             | [`useSimpleList` &#8594](/ui-frameworks/antd/hooks/list/useSimpleList.md)        |                                                                             |
+| [`useOne` &#8594](/core/hooks/data/useOne.md)               | [`useShow` &#8594](/core/hooks/show/useShow.md)                                  |                                                                             |
+| [`useMany` &#8594](/core/hooks/data/useMany.md)             | [`useExport` &#8594](/core/hooks/import-export/useExport.md)                     |                                                                             |
+| [`useCustom` &#8594](/core/hooks/data/useCustom.md)         | [`useCheckboxGroup` &#8594](/ui-frameworks/antd/hooks/field/useCheckboxGroup.md) |                                                                             |
+|                                                             | [`useSelect` &#8594](/core/hooks/useSelect.md)                                   |                                                                             |
+|                                                             | [`useRadioGroup` &#8594](/ui-frameworks/antd/hooks/field/useRadioGroup.md)       |                                                                             |
 
 ## Setup
 
 ```bash
-npm i @pankod/refine-core @pankod/refine-antd @pankod/refine-strapi-graphql graphql-request
+npm i @pankod/refine-core @pankod/refine-antd @pankod/refine-strapi-graphql
 ```
 
 :::caution
@@ -55,14 +55,17 @@ We used [strapi-graphql](https://github.com/pankod/refine/tree/master/packages/s
 
 To activate data provider in `@pankod/refine-strapi-graphql`, we have to pass the API address with `GraphQLClient`.
 
-```tsx  title="src/App.tsx"
+```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+import {
+    Layout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
-// highlight-start
-import dataProvider from "@pankod/refine-strapi-graphql";
-import { GraphQLClient } from "graphql-request";
-// highlight-end
+// highlight-next-line
+import dataProvider, { GraphQLClient } from "@pankod/refine-strapi-graphql";
 
 const client = new GraphQLClient("API_URL");
 
@@ -70,7 +73,7 @@ const App: React.FC = () => {
     return (
         <Refine
             routerProvider={routerProvider}
-// highlight-next-line
+            // highlight-next-line
             dataProvider={dataProvider(client)}
             Layout={Layout}
             ReadyPage={ReadyPage}
@@ -124,7 +127,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 order: "asc",
             },
         ],
-// highlight-start
+        // highlight-start
         metaData: {
             fields: [
                 "id",
@@ -134,16 +137,16 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 },
             ],
         },
-// highlight-end
+        // highlight-end
     });
 
     const { selectProps } = useSelect<ICategory>({
         resource: "categories",
-// highlight-start
+        // highlight-start
         metaData: {
             fields: ["id", "title"],
         },
-// highlight-end
+        // highlight-end
     });
 
     return (
@@ -252,7 +255,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         HttpError,
         IPost
     >({
-// highlight-start
+        // highlight-start
         metaData: {
             fields: [
                 "id",
@@ -263,18 +266,18 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                 "content",
             ],
         },
-// highlight-end
+        // highlight-end
     });
 
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
         defaultValue: postData?.category.id,
-// highlight-start
+        // highlight-start
         metaData: {
             fields: ["id", "title"],
         },
-// highlight-end
+        // highlight-end
     });
 
     const [selectedTab, setSelectedTab] =
@@ -385,7 +388,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>({
         resource: "posts",
         // highlight-start
-        metaData:{
+        metaData: {
             fields: [
                 "id",
                 "title",
@@ -404,7 +407,9 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
         <Show
             isLoading={isLoading}
             // highlight-next-line
-            pageHeaderProps={{ extra: <RefreshButton onClick={() => queryResult.refetch()} /> }}
+            pageHeaderProps={{
+                extra: <RefreshButton onClick={() => queryResult.refetch()} />,
+            }}
         >
             <Title level={5}>Id</Title>
             <Text>{record?.id}</Text>

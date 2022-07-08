@@ -1,5 +1,10 @@
 import { useTable } from "@hooks";
-import { BaseRecord, HttpError, UseFormProps } from "@pankod/refine-core";
+import {
+    BaseKey,
+    BaseRecord,
+    HttpError,
+    UseFormProps,
+} from "@pankod/refine-core";
 
 import { ButtonProps } from "../../../components/antd";
 import { useTableProps, useTableReturnType } from "../useTable";
@@ -18,10 +23,10 @@ export type useEditableTableReturnType<
         cancelButtonProps: ButtonProps & {
             onClick: () => void;
         };
-        editButtonProps: (id: string) => ButtonProps & {
+        editButtonProps: (id: BaseKey) => ButtonProps & {
             onClick: () => void;
         };
-        isEditing: (id: string) => boolean;
+        isEditing: (id: BaseKey) => boolean;
     };
 
 type useEditableTableProps<
@@ -68,13 +73,13 @@ export const useEditableTable = <
         },
     };
 
-    const editButtonProps = (id: string) => {
+    const editButtonProps = (id: BaseKey) => {
         return {
             onClick: () => setId(id),
         };
     };
 
-    const isEditing = (id: string) => id === editId;
+    const isEditing = (id: BaseKey) => id === editId;
 
     return {
         ...table,

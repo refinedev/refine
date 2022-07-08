@@ -90,22 +90,22 @@ npx superplate-cli -p refine-react tutorial
 Select the following options to complete the _CLI wizard_:
 
 ```
-? Select your project type:
-❯ refine-react
-
 ? What will be the name of your app:
-tutorial
+> tutorial
 
 ? Package manager:
 ❯ Npm
 
-? Do you want to use an UI Framework?:
-❯ No (headless)
+? Do you want to use a UI Framework?:
+❯ No (Headless)
 
-? Data Provider :
+? Router Provider:
+❯ React Router v6
+
+? Data Provider:
 ❯ REST API
 
-? Auth Provider :
+? Auth Provider:
 ❯ None
 
 ? i18n - Internationalization:
@@ -135,14 +135,14 @@ values={[
 ]}>
 <TabItem value="npm">
 
-```bash
+```
 npm i @pankod/refine-simple-rest
 ```
 
   </TabItem>
     <TabItem value="yarn">
 
-```bash
+```
 yarn add @pankod/refine-simple-rest
 ```
 
@@ -160,7 +160,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 
 :::tip
 
-**refine** includes many out-of-the-box data providers to use in your projects like
+**refine** includes many out-of-the-box data providers to use in your projects like:
 
 -   [Simple REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest)
 -   [GraphQL](https://github.com/pankod/refine/tree/master/packages/graphql)
@@ -175,6 +175,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 -   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
 ### Community ❤️
+
 -   [Firebase](https://github.com/rturan29/refine-firebase) - a fully featured [Firebase](https://firebase.google.com/) Data Provider by [rturan29](https://github.com/rturan29)
 -   [Directus](https://github.com/tspvivek/refine-directus) - a fully featured [Directus](https://directus.io/) Data Provider by [tspvivek](https://github.com/tspvivek)
 
@@ -183,7 +184,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 
 ## Bootstrapping the Application
 
-If you don't use _superplate_ replace the contents of `App.tsx` with the following code:
+If you don't use _superplate_, replace the contents of `App.tsx` with the following code:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
@@ -206,7 +207,7 @@ export default App;
 
 `<Refine/>` is the root component of a **refine** application. Using the [`dataProvider`](/core/providers/data-provider.md) prop, we made our **Simple REST Dataprovider** available to the entire application.
 
-Run the following command to install the required package:
+Run the following command to launch the app in development mode:
 
 <Tabs
 defaultValue="superplate"
@@ -216,14 +217,14 @@ values={[
 ]}>
 <TabItem value="superplate">
 
-```bash
+```
 npm run dev
 ```
 
   </TabItem>
   <TabItem value="create-react-app">
 
-```bash
+```
 npm run start
 ```
 
@@ -287,6 +288,8 @@ Let's add **/posts/** endpoint from our API as a resource. First take a look to 
 
 Now, add the highlighted code to your `App.tsx` to connect to the endpoint.
 
+
+
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -306,6 +309,9 @@ export const App: React.FC = () => {
     );
 };
 ```
+
+The `icon` property of every single resource is can be used to display the resource in whatever way you want. For example in the sidebar or header. We'll use it when we'll create layout component.
+
 
 <details><summary>Show PostIcon</summary>
 <p>
@@ -336,10 +342,10 @@ export const PostIcon = (
 :::info
 `resources` is a property of `<Refine/>` representing API Endpoints. The `name` property of every single resource should match one of the endpoints in your API!
 
-The `icon` property of every single resource is can be used to display the resource in whatever way you want for example in the sidebar or header. We'll use it when we'll create layout component.
+
 :::
 
-Instead of showing the welcome page, the application should redirect now? to an URL defined by the `name` property. Open your application to check that the URL is routed to **/posts**:
+Instead of showing the welcome page, the application should redirect now to an URL defined by the `name` property. Open your application to check that the URL is routed to **/posts**:
 
 <div class="img-container">
     <div class="window">
@@ -366,9 +372,11 @@ Let's create a **Page** component to fetch **posts** and display them as a table
 
 ## Adding Tailwind CSS
 
+We will use Tailwind for the UI of the example app. You can prefer any UI library or design system since it's not affecting the usability.
+
 Install `tailwindcss` and its peer dependencies via npm, and then run the init command to generate both `tailwind.config.js` and `postcss.config.js`.
 
-```bash
+```
 npm i -D tailwindcss postcss autoprefixer
 npx tailwindcss init
 ```
@@ -392,25 +400,33 @@ Add the `@tailwind` directives for each of Tailwind’s layers to your `src/inde
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 ```
 
+Add css file import to `src/App.tsx`.
+```ts title="App.tsx"
+...
+
+//highlight-next-line
+import 'index.css';
+```
 Now, you can use Tailwind to style your application.
 
 ## Creating a Layout
 
 We will create a **Layout** component to handle the rendering of the **Page** components.
 
-Create a new folder named _"components"_ under _"/src"_ and create a new file named _"Layout.tsx"_ with the following code:
+Create a new folder named _"components"_ under _"/src"_ and create a new file named _"layout.tsx"_ with the following code:
 
 ```tsx title="components/Layout.tsx"
-import { useResource, useNavigation } from "@pankod/refine-core";
+import { useMenu, useNavigation } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 const { Link } = routerProvider;
 
 export const Layout: React.FC = ({ children }) => {
-    const { resources } = useResource();
-    const { list } = useNavigation();
+    const { menuItems } = useMenu();
+    const { push } = useNavigation();
 
     return (
         <div className="flex min-h-screen flex-col">
@@ -425,14 +441,14 @@ export const Layout: React.FC = ({ children }) => {
                             />
                         </Link>
                         <ul>
-                            {resources.map(({ name, icon }) => (
+                            {menuItems.map(({ name, label, icon, route }) => (
                                 <li key={name} className="float-left">
                                     <a
                                         className="flex cursor-pointer items-center gap-1 rounded-sm px-2 py-1 capitalize decoration-indigo-500 decoration-2 underline-offset-1 transition duration-300 ease-in-out hover:underline"
-                                        onClick={() => list(name)}
+                                        onClick={() => push(route || "")}
                                     >
                                         {icon}
-                                        <span>{name}</span>
+                                        <span>{label ?? name}</span>
                                     </a>
                                 </li>
                             ))}
@@ -446,7 +462,7 @@ export const Layout: React.FC = ({ children }) => {
 };
 ```
 
-We created a header with a logo and a list of links to all resources. The links are clickable and will navigate to the corresponding resource. To do this, we used the [`useResource`](/core/hooks/resource/useResource.md) hook to get the resources from the `<Refine/>` and the [`useNavigation`](/core/hooks/navigation/useNavigation.md) hook to used to navigate between resources.
+We created a header with a logo and a list of links to all menu items (resources). The links are clickable and will navigate to the corresponding resource. To do this, we used the [`useMenu`](/core/hooks/ui/useMenu.md) hook to get the menu items from the `<Refine/>` and the [`useNavigation`](/core/hooks/navigation/useNavigation.md) hook to used to navigate between resources.
 
 `children` is the content of the layout. In our case, it is the content of the **Page** components.
 
@@ -492,7 +508,7 @@ Create a new folder named _"interfaces"_ under _"/src"_ if you don't already hav
 
 ```ts title="interfaces/index.d.ts"
 export interface IPost {
-    id: string;
+    id: number;
     title: string;
     status: "published" | "draft" | "rejected";
     createdAt: string;
@@ -505,7 +521,14 @@ Now, create a new folder named _"pages/posts"_ under _"/src"_. Under that folder
 
 ```tsx title="pages/posts/list.tsx"
 import React from "react";
-import { useTable, Column } from "@pankod/refine-react-table";
+import {
+    useTable,
+    Column,
+    HeaderGroup,
+    Cell,
+    UseTableColumnProps,
+    UseTableRowProps,
+} from '@pankod/refine-react-table';
 
 export const PostList: React.FC = () => {
     const columns: Array<Column> = React.useMemo(
@@ -544,9 +567,9 @@ export const PostList: React.FC = () => {
                 {...getTableProps()}
             >
                 <thead className="bg-gray-100">
-                    {headerGroups.map((headerGroup) => (
+                    {headerGroups.map((headerGroup: HeaderGroup) => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column) => (
+                            {headerGroup.headers.map((column: UseTableColumnProps) => (
                                 <th
                                     {...column.getHeaderProps()}
                                     className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700"
@@ -561,14 +584,14 @@ export const PostList: React.FC = () => {
                     {...getTableBodyProps()}
                     className="divide-y divide-gray-200 bg-white"
                 >
-                    {rows.map((row) => {
+                    {rows.map((row: UseTableRowProps) => {
                         prepareRow(row);
                         return (
                             <tr
                                 {...row.getRowProps()}
                                 className="transition hover:bg-gray-100"
                             >
-                                {row.cells.map((cell) => {
+                                {row.cells.map((cell: Cell) => {
                                     return (
                                         <td
                                             {...cell.getCellProps()}
@@ -615,9 +638,24 @@ export const App: React.FC = () => {
         />
     );
 };
+
+<br />
+
+```
+Note you will need a few more files which help `src/App.tsx` to find your pages and posts. In the `/pages` folder, put this `index.tsx` file in it which allows everything in the `posts` folder to be used elsewhere.
+
+```tsx title="src/pages/index.tsx"
+export * from "./posts";
 ```
 
 <br />
+
+Similarly, put a file in the `/src/pages/posts` folder which accomplishes the same function. We will use the commented out code later as we add more capabilities to our app. Remember as you add functions, uncomment each appropriate line.
+
+
+```tsx title="src/pages/posts/index.tsx"
+export * from "./list";
+```
 
 Open your application in your browser. You will see **posts** are displayed correctly in a table structure.
 
@@ -634,7 +672,7 @@ On the next step, we are going to add a category field to the table which involv
 
 ### Handling relationships
 
-Remember the records from `/posts` endpoint that had a category id field?
+Remember the records from `/posts` endpoint has a category id field.
 
 ```ts title="https://api.fake-rest.refine.dev/posts/1"
 ...
@@ -654,35 +692,44 @@ The category title data can be obtained from the `/categories` endpoint for each
   }
 ```
 
-At this point, we need to join records from different resources. For this, we're goint to use the **refine** hook `useOne`.
+At this point, we need to join records from different resources. For this, we're going to use the **refine** hook `useOne`.
 
 Before we start, just edit our interface for the new `ICategory` type:
 
 ```ts title="interfaces/index.d.ts"
 // highlight-start
 export interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }
 // highlight-end
 
 export interface IPost {
-    id: string;
+    id: number;
     title: string;
     status: "published" | "draft" | "rejected";
     createdAt: string;
     // highlight-next-line
-    category: ICategory;
+    category: { id: number };
 }
 ```
 
 So we can update our `list.tsx` with the highlighted lines:
 
-```tsx title="pages/posts/list.tsx"
+```tsx title="src/pages/posts/list.tsx"
 import React from "react";
-import { useTable, Column } from "@pankod/refine-react-table";
-//highlight-next-line
+import {
+    useTable,
+    Column,
+    HeaderGroup,
+    Cell,
+    UseTableColumnProps,
+    UseTableRowProps,
+} from '@pankod/refine-react-table';
+// highlight-start
 import { useOne } from "@pankod/refine-core";
+import { ICategory } from 'interfaces';
+// highlight-end
 
 export const PostList: React.FC = () => {
     const columns: Array<Column> = React.useMemo(
@@ -712,7 +759,7 @@ export const PostList: React.FC = () => {
                 id: "category.id",
                 Header: "Category",
                 accessor: "category.id",
-                Cell: ({ cell }) => {
+                Cell: ({ cell }: { cell: Cell }) => {
                     const { data, isLoading } = useOne<ICategory>({
                         resource: "categories",
                         id: cell.value,
@@ -740,9 +787,9 @@ export const PostList: React.FC = () => {
                 {...getTableProps()}
             >
                 <thead className="bg-gray-100">
-                    {headerGroups.map((headerGroup) => (
+                    {headerGroups.map((headerGroup: HeaderGroup) => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column) => (
+                            {headerGroup.headers.map((column: UseTableColumnProps) => (
                                 <th
                                     {...column.getHeaderProps()}
                                     className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700"
@@ -757,14 +804,14 @@ export const PostList: React.FC = () => {
                     {...getTableBodyProps()}
                     className="divide-y divide-gray-200 bg-white"
                 >
-                    {rows.map((row) => {
+                    {rows.map((row: UseTableRowProps) => {
                         prepareRow(row);
                         return (
                             <tr
                                 {...row.getRowProps()}
                                 className="transition hover:bg-gray-100"
                             >
-                                {row.cells.map((cell) => {
+                                {row.cells.map((cell: Cell) => {
                                     return (
                                         <td
                                             {...cell.getCellProps()}
@@ -801,11 +848,19 @@ Try the result on your browser and you'll notice that the category column is fil
 
 We can add pagination to our table by using the `usePagination` hook that **react-table** provides.
 
-```tsx title="pages/posts/list.tsx"
+```tsx title="src/pages/posts/list.tsx"
 import React from "react";
 import { useOne } from "@pankod/refine-core";
-//highlight-next-line
-import { useTable, Column, usePagination } from "@pankod/refine-react-table";
+import {
+    useTable,
+    Column,
+    HeaderGroup,
+    Cell,
+    UseTableColumnProps,
+    UseTableRowProps,
+    //highlight-next-line
+    usePagination
+} from '@pankod/refine-react-table';
 
 import { ICategory } from "interfaces";
 //highlight-start
@@ -844,7 +899,7 @@ export const PostList: React.FC = () => {
                 id: "category.id",
                 Header: "Category",
                 accessor: "category.id",
-                Cell: ({ cell }) => {
+                Cell: ({ cell }: { cell: Cell}) => {
                     const { data, isLoading } = useOne<ICategory>({
                         resource: "categories",
                         id: cell.value,
@@ -886,9 +941,9 @@ export const PostList: React.FC = () => {
                 {...getTableProps()}
             >
                 <thead className="bg-gray-100">
-                    {headerGroups.map((headerGroup) => (
+                    {headerGroups.map((headerGroup: HeaderGroup) => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column) => (
+                            {headerGroup.headers.map((column: UseTableColumnProps) => (
                                 <th
                                     {...column.getHeaderProps()}
                                     className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
@@ -904,14 +959,14 @@ export const PostList: React.FC = () => {
                     className="divide-y divide-gray-200 bg-white"
                 >
                     //highlight-next-line
-                    {page.map((row) => {
+                    {page.map((row: UseTableRowProps) => {
                         prepareRow(row);
                         return (
                             <tr
                                 {...row.getRowProps()}
                                 className="transition hover:bg-gray-100"
                             >
-                                {row.cells.map((cell) => {
+                                {row.cells.map((cell: Cell) => {
                                     return (
                                         <td
                                             {...cell.getCellProps()}
@@ -1083,13 +1138,30 @@ export const ChevronsRightIcon = (
 
 ### Adding Sorting and Filtering
 
+Before we start, just edit our interface for the new `IFilter` type:
+
+```ts title="interfaces/index.d.ts"
+...
+
+//highlight-start
+export interface IFilter {
+    id: string;
+    value: string;
+}
+//highlight-end
+```
+
 We can add sorting and filtering to our table by adding the following codes to the table:
 
-```tsx
+```tsx title="src/pages/posts/list.tsx"
 import React from "react";
 import {
     useTable,
     Column,
+    HeaderGroup,
+    Cell,
+    UseTableColumnProps,
+    UseTableRowProps,
     usePagination,
     //highlight-start
     useSortBy,
@@ -1168,7 +1240,7 @@ export const PostList: React.FC = () => {
                         className="rounded border border-gray-200 p-1 text-gray-700"
                         placeholder="Filter by title"
                         value={
-                            filters.find((filter) => filter.id === "title")
+                            filters.find((filter: IFilter) => filter.id === "title")
                                 ?.value
                         }
                         onChange={(event) =>
@@ -1184,9 +1256,9 @@ export const PostList: React.FC = () => {
                 {...getTableProps()}
             >
                 <thead className="bg-gray-100">
-                    {headerGroups.map((headerGroup) => (
+                    {headerGroups.map((headerGroup: HeaderGroup) => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column) => (
+                            {headerGroup.headers.map((column: UseTableColumnProps) => (
                                 //highlight-start
                                 <th
                                     {...column.getHeaderProps(
@@ -1212,14 +1284,14 @@ export const PostList: React.FC = () => {
                     {...getTableBodyProps()}
                     className="divide-y divide-gray-200 bg-white"
                 >
-                    {page.map((row) => {
+                    {page.map((row: UseTableRowProps,) => {
                         prepareRow(row);
                         return (
                             <tr
                                 {...row.getRowProps()}
                                 className="transition hover:bg-gray-100"
                             >
-                                {row.cells.map((cell) => {
+                                {row.cells.map((cell: Cell) => {
                                     return (
                                         <td
                                             {...cell.getCellProps()}
@@ -1318,9 +1390,25 @@ export const PostList: React.FC = () => {
 
 At this point we are able to list all _post_ records on the table component. Next, we are going to add a _details page_ to fetch and display data from a single record.
 
+Before we start, just edit our interface for the new `IPost` type:
+
+```ts title="interfaces/index.d.ts"
+... 
+
+export interface IPost {
+    id: number;
+    title: string;
+    status: "published" | "draft" | "rejected";
+    createdAt: string;
+    category: { id: number };
+    // highlight-next-line
+    content: string;
+}
+```
+
 Let's create a `<PostShow>` component on `/pages/posts` folder:
 
-```tsx title="pages/posts/show.tsx"
+```tsx title="src/pages/posts/show.tsx"
 import { useShow, useOne } from "@pankod/refine-core";
 
 import { IPost, ICategory } from "interfaces";
@@ -1380,6 +1468,14 @@ export const PostShow: React.FC = () => {
 };
 ```
 
+```tsx title="src/pages/posts/index.tsx"
+...
+
+//highlight-next-line
+export * from "./show";
+```
+<br/>
+
 Now we can add the newly created component to our resource with `show` prop:
 
 ```tsx title="src/App.tsx"
@@ -1415,16 +1511,21 @@ export const App: React.FC = () => {
 
 <br />
 
-And then we can add a show button on the list page to make it possible for users to navigate to detail pages:
+And then we can add a show button on the list page to make it possible for users to navigate to detail pages.
+
+Just add the following highlighted lines to the existed list page: 
 
 ```tsx title="src/pages/posts/list.tsx"
-//highlight-next-line
 ...
 
+//highlight-next-line
 import { useNavigation } from "@pankod/refine-core";
 
+import { 
+    ..., 
 //highlight-next-line
-import { ShowIcon } from "icons";
+    ShowIcon 
+} from "icons";
 
 export const PostList: React.FC = () => {
     //highlight-next-line
@@ -1485,7 +1586,7 @@ export const ShowIcon = (
 </p>
 </details>
 
-✳️ `useShow()` is a **refine** hook used to fetch a single record data. The `queryResult` has the response and also `isLoading` state.
+✳️ `useShow()` is a **refine** hook used to fetch a single record of data. The `queryResult` has the response and also `isLoading` state.
 
 [Refer to the `useShow` documentation for detailed usage information. &#8594](/core/hooks/show/useShow.md)
 
@@ -1494,10 +1595,10 @@ export const ShowIcon = (
 [Refer to the `useOne` documentation for detailed usage information. &#8594](/core/hooks/data/useOne.md)
 
 :::caution attention
-`useShow()` is the preferred hook for fetching data from current resource. For query foreign resources you may use the low-level `useOne()` hook.
+`useShow()` is the preferred hook for fetching data from the current resource. To query foreign resources you may use the low-level `useOne()` hook.
 :::
 
-Since we've got access to raw data returning from `useShow()`, there is no restriction how it's displayed on your components.
+Since we've got access to raw data returning from `useShow()`, there is no restriction on how it's displayed on your components.
 
 <div class="img-container">
     <div class="window">
@@ -1512,13 +1613,17 @@ Since we've got access to raw data returning from `useShow()`, there is no restr
 
 First, we'll install [`@pankod/refine-react-hook-form`](https://github.com/pankod/refine/tree/master/packages/react-hook-form) package to use the `useForm` hook.
 
-Until this point, we were basically working with read operations such as fetching and displaying data from resources. From now on, we are going to start creating and updating records by using `@pankod/refine-react-hook-form`.
+```
+npm i @pankod/refine-react-hook-form
+```
 
-[Refer to the `@pankod/refine-react-hook-form` documentation for detailed usage information. &#8594](/packages/react-hook-form.md)
+Until this point, we were basically working with reading operations such as fetching and displaying data from resources. From now on, we are going to start creating and updating records by using `@pankod/refine-react-hook-form`.
+
+[Refer to the `@pankod/refine-react-hook-form` documentation for detailed usage information. &#8594](/packages/react-hook-form/useForm.md)
 
 Let's start by creating a new `<PostEdit>` page responsible for editing a single record:
 
-```tsx title="pages/posts/edit.tsx"
+```tsx title="src/pages/posts/edit.tsx"
 import { useEffect } from "react";
 import { useForm } from "@pankod/refine-react-hook-form";
 import { useSelect } from "@pankod/refine-core";
@@ -1646,6 +1751,15 @@ export const PostEdit: React.FC = () => {
 };
 ```
 
+```tsx title="src/pages/posts/index.tsx"
+...
+
+//highlight-next-line
+export * from "./edit";
+```
+<br/>
+
+
 <details><summary>Show LoadingIcon</summary>
 <p>
 
@@ -1692,32 +1806,35 @@ export const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            // highlight-start
             resources={[
                 {
                     name: "posts",
                     icon: PostIcon,
                     list: PostList,
                     show: PostShow,
+                     // highlight-next-line
                     edit: PostEdit,
                 },
             ]}
-            // highlight-end
             Layout={Layout}
         />
     );
 };
 ```
 
-We are going to need an _edit_ button on each row to display the `<PostEdit>` component. **refine** doesn't automatically add one, so we have to update our `<PostList>` component to add a edit button for each record:
+We are going to need an _edit_ button on each row to display the `<PostEdit>` component. **refine** doesn't automatically add one, so we have to update our `<PostList>` component to add a edit button for each record by using highlighted lines:
 
-```tsx title="components/pages/posts.tsx"
+```tsx title="src/pages/posts/list.tsx"
 ...
 
 import { useNavigation } from "@pankod/refine-core";
 
+import { 
+    ...
+    ShowIcon,
 //highlight-next-line
-import { EditIcon, ShowIcon } from "icons";
+    EditIcon 
+} from "icons";
 
 export const PostList: React.FC = () => {
     //highlight-next-line
@@ -1731,7 +1848,7 @@ export const PostList: React.FC = () => {
                 Header: "Action",
                 accessor: "id",
                 //highlight-start
-                Cell: ({ value }) => (
+                Cell: ({ value }: Cell) => (
                     <div className="flex gap-2">
                         <button
                             className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
@@ -1802,7 +1919,7 @@ Creating a record in **refine** follows a similar flow as editing records.
 
 First, we'll create a `<PostCreate>` page:
 
-```tsx title="pages/posts/create.tsx"
+```tsx title="src/pages/posts/create.tsx"
 import { useForm } from "@pankod/refine-react-hook-form";
 import { useSelect } from "@pankod/refine-core";
 
@@ -1923,6 +2040,12 @@ export const PostCreate: React.FC = () => {
 };
 ```
 
+```tsx title="src/pages/posts/index.tsx"
+...
+
+//highlight-next-line
+export * from "./create";
+```
 <br />
 
 After creating the `<PostCreate>` component, add it to resource with `create` prop:
@@ -1944,7 +2067,6 @@ export const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            // highlight-start
             resources={[
                 {
                     name: "posts",
@@ -1952,9 +2074,10 @@ export const App: React.FC = () => {
                     list: PostList,
                     show: PostShow,
                     edit: PostEdit,
+                // highlight-next-line
+                    create: PostCreate,
                 },
             ]}
-            // highlight-end
             Layout={Layout}
         />
     );
@@ -1963,37 +2086,34 @@ export const App: React.FC = () => {
 
 <br />
 
-And that's it! Try it on browser and see if you can create new posts from scratch.
 
-We should notice some minor differences from the edit example:
-
-✳️ No `defaultValue` is passed to `useSelect`.
-
-✳️ `resetField` in not necessary, because we don't have any default values.
-
-<br />
 
 Finally, We are going to need an _create_ button on top of the right side of the `PostList` page to create new posts. It redirects to create page.
 
-```tsx
+```tsx title="src/pages/posts/list.tsx"
 ...
 
 // highlight-next-line
 import { useNavigation } from "@pankod/refine-core";
 
+import { 
+    ...,
 // highlight-next-line
-import { CreateIcon } from "icons";
+    CreateIcon 
+} from "icons";
 
 export const PostList: React.FC = () => {
+    const {
+        ...,
     // highlight-next-line
-    const { create } = useNavigation();
+        create 
+        } = useNavigation();
 
     const columns: Array<Column> = React.useMemo(...);
 
     const {
        ...
     } = useTable<IPost>({ columns }, useFilters, useSortBy, usePagination);
-    //highlight-end
 
     return (
         <div className="container mx-auto pb-4">
@@ -2044,6 +2164,16 @@ export const CreateIcon = (
 </p>
 </details>
 
+And that's it! Try it on the browser and see if you can create new posts from scratch.
+
+We should notice some minor differences from the edit example:
+
+✳️ No `defaultValue` is passed to `useSelect`.
+
+✳️ `resetField` in not necessary, because we don't have any default values.
+
+<br />
+
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -2061,16 +2191,19 @@ Deleting a record can be done with `useDelete` hook.
 
 [Refer to the `useDelete` documentation for detailed usage information. &#8594](/core/hooks/data/useDelete.md)
 
-We are adding an _delete_ button on each row since _refine_ doesn't automatically add one, so we have to update our `<PostList>` component to add a _delete_ button for each record:
+We are adding an _delete_ button on each row since _refine_ doesn't automatically add one, so we have to update our `<PostList>` component to add a _delete_ button for each record. Add the following highlighted lines to the existing list component.
 
-```tsx title="components/pages/posts.tsx"
+```tsx title="src/pages/posts/list.tsx"
 ...
 
 //highlight-next-line
 import { useNavigation, useDelete } from "@pankod/refine-core";
 
+import {
+...,
 //highlight-next-line
-import { EditIcon, ShowIcon, DeleteIcon } from "icons";
+DeleteIcon
+} from "icons";
 
 export const PostList: React.FC = () => {
     const { show, edit } = useNavigation();
@@ -2085,20 +2218,10 @@ export const PostList: React.FC = () => {
                 id: "action",
                 Header: "Action",
                 accessor: "id",
-                Cell: ({ value }) => (
+                Cell: ({ value }: Cell) => (
                     <div className="flex gap-2">
-                        <button
-                            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-                            onClick={() => edit("posts", value)}
-                        >
-                            {EditIcon}
-                        </button>
-                        <button
-                            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-                            onClick={() => show("posts", value)}
-                        >
-                            {ShowIcon}
-                        </button>
+                       ...
+
                         //highlight-start
                          <button
                             className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-red-500 hover:text-white"
@@ -2154,15 +2277,13 @@ export const DeleteIcon = (
 
 Now you can try deleting records yourself. Just click on the delete button of the record you want to delete.
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
-Our tutorial is complete. Below you'll find a live Codesandbox example displaying what we have done so far:
+Our tutorial is complete. Below you'll find a Live StackBlitz Example displaying what we have done so far:
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/tutorial/headless?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com/github/pankod/refine/tree/master/examples/tutorial/headless?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-headless-tutorial-example"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
 ## Next Steps

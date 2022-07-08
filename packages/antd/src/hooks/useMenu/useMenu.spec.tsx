@@ -6,7 +6,8 @@ import { MockJSONServer, TestWrapper } from "@test";
 import { useMenu } from "./";
 const DashboardPage = () => <div>dashboard</div>;
 
-describe("useMenu Hook", () => {
+/** Ignored due to being deprecated and having a buggy behavior of the unit tests (act warnings) */
+xdescribe("useMenu Hook", () => {
     it("returns menuItems", async () => {
         const { result } = renderHook(() => useMenu(), {
             wrapper: TestWrapper({

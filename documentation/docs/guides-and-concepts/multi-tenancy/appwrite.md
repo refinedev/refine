@@ -212,6 +212,7 @@ Let's define the select component in the **refine** Sider Menu. First, we need t
 import React, { useState } from "react";
 import {
     useTitle,
+    useMenu,
     ITreeMenu,
     CanAccess,
     useRouterContext,
@@ -219,7 +220,6 @@ import {
 import {
     AntdLayout,
     Menu,
-    useMenu,
     Grid,
     Icons,
 } from "@pankod/refine-antd";
@@ -263,13 +263,13 @@ export const CustomSider: React.FC = () => {
                     action="list"
                 >
                     <Menu.Item
-                        key={selectedKey}
+                        key={route}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
                         icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
                     >
-                        <Link href={route} to={route}>{label}</Link>
+                        <Link to={route}>{label}</Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
@@ -645,9 +645,9 @@ export default App;
 
 In this guide and in our example app, we talked about how we can build Multitenancy apps with **refine**. Developing a Multitenancy application with **refine** is quite simple. By creating a context and with the hooks that **refine** provides, you can quickly and easily produce similar applications in this logic.
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/multi-tenancy/appwrite?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/multi-tenancy/appwrite?embed=1&view=preview&theme=dark&preset=node"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="cake-house"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

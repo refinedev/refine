@@ -53,7 +53,7 @@ export const PostList: React.FC = () => {
 };
 
 interface IPost {
-    id: string;
+    id: number;
     title: string;
     content: string;
     status: "published" | "draft" | "rejected";
@@ -93,6 +93,10 @@ const { tableProps } = useTable<IPost>();
 </Table>;
 ```
 
+:::
+
+:::info
+To disable pagination, you can set `hasPagination` property to `false` which is `true` by default. If `hasPagination` has set to `false`, pagination elements will be hidden in the `<Table/>`. If you want to handle the pagination on the client-side you can override the `pagination` property in `tableProps`.
 :::
 
 ## Sorting
@@ -386,6 +390,7 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 | resource                                                     | The resource to use for table data                                                                                                                                 | `string` \| `undefined`                                                        | Resource name that it reads from the url                                             |
 | permanentFilter                                              | Default and unchangeable filter                                                                                                                                    | [`CrudFilters`][crudfilters]                                                   | `[]`                                                                                 |
 | permanentSorter                                              | Default and unchangeable sorter state                                                                                                                              | [`CrudSorting`][crudsorting]                                                   | `[]`                                                                                 |
+| hasPagination                                                | Whether to use server side pagination or not.                                                                                                                      | `boolean`                                                                      | `true`                                                                               |
 | initialCurrent                                               | Initial page index                                                                                                                                                 | `number`                                                                       | `1`                                                                                  |
 | initialPageSize                                              | Number of records shown per initial number of pages                                                                                                                | `number`                                                                       | `10`                                                                                 |
 | initialSorter                                                | Initial sorting                                                                                                                                                    | [`CrudSorting`][crudsorting]                                                   |
@@ -418,9 +423,9 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 
 <br />
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/table/useTable?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/table/antd/useTable?embed=1&view=preview&theme=dark&preset=node"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-use-table-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

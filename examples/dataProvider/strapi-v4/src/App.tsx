@@ -13,6 +13,7 @@ import axios from "axios";
 import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit } from "pages/posts";
+import { UsersList } from "pages/users";
 import { CategoryList, CategoryCreate, CategoryEdit } from "pages/categories";
 
 import { TOKEN_KEY, API_URL } from "./constants";
@@ -31,9 +32,9 @@ const App: React.FC = () => {
                 localStorage.setItem(TOKEN_KEY, data.jwt);
 
                 // set header axios instance
-                axiosInstance.defaults.headers = {
-                    Authorization: `Bearer ${data.jwt}`,
-                };
+                axiosInstance.defaults.headers.common[
+                    "Authorization"
+                ] = `Bearer ${data.jwt}`;
 
                 return Promise.resolve();
             }
@@ -47,9 +48,9 @@ const App: React.FC = () => {
         checkAuth: () => {
             const token = localStorage.getItem(TOKEN_KEY);
             if (token) {
-                axiosInstance.defaults.headers = {
-                    Authorization: `Bearer ${token}`,
-                };
+                axiosInstance.defaults.headers.common[
+                    "Authorization"
+                ] = `Bearer ${token}`;
                 return Promise.resolve();
             }
 
@@ -93,6 +94,10 @@ const App: React.FC = () => {
                     list: CategoryList,
                     create: CategoryCreate,
                     edit: CategoryEdit,
+                },
+                {
+                    name: "users",
+                    list: UsersList,
                 },
             ]}
             notificationProvider={notificationProvider}

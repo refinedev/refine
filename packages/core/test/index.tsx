@@ -14,6 +14,7 @@ import {
     INotificationContext,
     IDataMultipleContextProvider,
     IDataContextProvider,
+    IAuditLogContext,
 } from "../src/interfaces";
 import { TranslationContextProvider } from "@contexts/translation";
 import { RefineContextProvider } from "@contexts/refine";
@@ -22,6 +23,7 @@ import { RouterContextProvider } from "@contexts/router";
 import { AccessControlContextProvider } from "@contexts/accessControl";
 import { LiveContextProvider } from "@contexts/live";
 import { NotificationContextProvider } from "@contexts/notification";
+import { AuditLogContextProvider } from "@contexts/auditLog";
 
 import {
     MockRouterProvider,
@@ -38,7 +40,7 @@ const queryClient = new QueryClient({
     },
 });
 
-interface ITestWrapperProps {
+export interface ITestWrapperProps {
     authProvider?: IAuthContext;
     dataProvider?: IDataContextProvider | IDataMultipleContextProvider;
     i18nProvider?: I18nProvider;
@@ -49,6 +51,7 @@ interface ITestWrapperProps {
     children?: React.ReactNode;
     routerInitialEntries?: string[];
     refineProvider?: IRefineContextProvider;
+    auditLogProvider?: IAuditLogContext;
 }
 
 export const TestWrapper: (
@@ -63,6 +66,7 @@ export const TestWrapper: (
     routerInitialEntries,
     refineProvider,
     liveProvider,
+    auditLogProvider,
 }) => {
     // eslint-disable-next-line react/display-name
     return ({ children }): React.ReactElement => {
@@ -99,13 +103,21 @@ export const TestWrapper: (
             </AccessControlContextProvider>
         );
 
+        const withAuidtLogProvider = auditLogProvider ? (
+            <AuditLogContextProvider {...auditLogProvider}>
+                {withAccessControl}
+            </AuditLogContextProvider>
+        ) : (
+            withAccessControl
+        );
+
         const withLive = liveProvider ? (
             <LiveContextProvider liveProvider={liveProvider}>
-                {withAccessControl}
+                {withAuidtLogProvider}
             </LiveContextProvider>
         ) : (
             <LiveContextProvider liveProvider={MockLiveProvider}>
-                {withAccessControl}
+                {withAuidtLogProvider}
             </LiveContextProvider>
         );
 

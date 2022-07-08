@@ -268,6 +268,13 @@ describe("useImport hook", () => {
     });
 
     describe("batchSize = undefined", () => {
+        beforeEach(() => {
+            jest.spyOn(console, "error").mockImplementation((message) => {
+                if (message?.message === "something happened") return;
+                console.warn(message);
+            });
+        });
+
         it("should call mutate method of result of useCreateMany one time with correct values if batchSize=undefined", async () => {
             const mockDataProvider = {
                 default: {

@@ -1,0 +1,16 @@
+{
+    "node": "16",
+    "buildCommand": "bootstrap",
+    "packages": [
+        "packages/antd",
+        "packages/mui",
+        "packages/core",
+        "packages/nextjs-router",
+        "packages/react-hook-form",
+        "packages/react-location",
+        "packages/react-router-v6",
+        "packages/react-table",
+        "packages/simple-rest"
+    ],
+    "sandboxes": ["/examples/fineFoods/admin/antd", "/examples/fineFoods/client", "/examples/fineFoods/admin/mui"]
+  }

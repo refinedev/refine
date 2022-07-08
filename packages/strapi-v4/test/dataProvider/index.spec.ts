@@ -10,9 +10,9 @@ describe("dataProvider", () => {
     const axiosInstance = axios.create();
 
     beforeAll(() => {
-        axiosInstance.defaults.headers = {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM5NDgxNjgzLCJleHAiOjE2NDIwNzM2ODN9.yqfuYb-Mr7I_VDxd2pe6elDROGiA6vqvChY_xNIIPu8`,
-        };
+        axiosInstance.defaults.headers.common[
+            "Authorization"
+        ] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjU1Mjc0MTIzLCJleHAiOjE2NTc4NjYxMjN9.Au8NsqnS2mjtKBHf1oRl-juEQ_l9JZrPk4Fsv4GsvVA`;
     });
 
     // create
@@ -188,12 +188,19 @@ describe("dataProvider", () => {
     describe("getMany", () => {
         it("correct response", async () => {
             const { data } = await DataProvider(API_URL, axiosInstance).getMany(
-                { resource: "posts", ids: ["8"] },
+                {
+                    resource: "posts",
+                    ids: ["30", "29"],
+                    metaData: { populate: ["category"] },
+                },
             );
 
-            expect(data[0].id).toBe(8);
+            expect(data[0].id).toBe(29);
             expect(data[0].title).toBe("Hello");
-            expect(data[0].content).toBe("New post content");
+            expect(data[0].content).toBe("Testtt ");
+
+            expect(data[1].id).toBe(30);
+            expect(data[1].category.id).toBe(12);
         });
     });
 

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
     useTitle,
-    useNavigation,
     useSubscription,
     CanAccess,
     ITreeMenu,
@@ -26,7 +25,6 @@ export const CustomSider: React.FC = () => {
 
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
-    const { push } = useNavigation();
 
     const isMobile = !breakpoint.lg;
 
@@ -43,7 +41,7 @@ export const CustomSider: React.FC = () => {
             if (children.length > 0) {
                 return (
                     <SubMenu
-                        key={name}
+                        key={route}
                         icon={icon ?? <Icons.UnorderedListOutlined />}
                         title={label}
                     >
@@ -62,7 +60,7 @@ export const CustomSider: React.FC = () => {
                     action="list"
                 >
                     <Menu.Item
-                        key={selectedKey}
+                        key={route}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
@@ -70,9 +68,7 @@ export const CustomSider: React.FC = () => {
                             icon ?? (isRoute && <Icons.UnorderedListOutlined />)
                         }
                     >
-                        <Link href={route} to={route}>
-                            {label}
-                        </Link>
+                        <Link to={route}>{label}</Link>
                         {label === "Posts" && (
                             <Badge
                                 size="small"

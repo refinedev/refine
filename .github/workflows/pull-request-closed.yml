@@ -1,46 +1,77 @@
-name: Pull Request [closed]
+name: Pull Request Documentation [closed]
 
 on:
   pull_request:
     types:
       - closed
-
+    paths:
+      - "documentation/**"
+      - "packages/**"
+      - "examples/fineFoods/**"
 jobs:
-  api:
+  documentation:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
 
     steps:
       - name: Workflow run cleanup action
         uses: rokroskar/workflow-run-cleanup-action@v0.2.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Get PR Branch Name
-        uses: mdecoleman/pr-branch-name@1.0.0
-        id: pr-branch-name
+      - uses: actions/checkout@v2
+      - uses: afc163/surge-preview@v1
+        id: preview_step
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Substring PR Branch Name
-        id: substring-pr-branch-name
-        run: |
-          id=$(echo ${branch:0:7})
-          echo "::set-output name=substring::$id"
+          surge_token: ${{ secrets.SURGE_TOKEN }}
+          github_token: ${{ secrets.PANKOD_BOT_TOKEN }}
+          dist: documentation/build
+          teardown: 'true'
+          build: echo
+  antd-fine-foods:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - name: Workflow run cleanup action
+        uses: rokroskar/workflow-run-cleanup-action@v0.2.2
         env:
-          branch: ${{ steps.pr-branch-name.outputs.branch }}
-      - name: Set up kubectl
-        uses: matootie/dokube@v1.3.4
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
         with:
-          personalAccessToken: ${{ secrets.DIGITALOCEAN_TOKEN }}
-          clusterName: pankod-k8s
-          expirationTime: 1200
-      - name: Get nodes
-        run: |
-          kubectl get nodes 
-      - name: Delete helm release
-        run: |
-          echo ${{ steps.substring-pr-branch-name.outputs.substring }}
-          helm delete ${{ env.branch }}-refine-example || :
-          helm delete ${{ env.branch }}-client-refine-example || :
-          helm delete ${{ env.branch }}-refine-documentation || :
+          node-version: ${{ matrix.node-version }}
+      - uses: actions/checkout@v2
+      - uses: afc163/surge-preview@v1
+        with:
+          surge_token: ${{ secrets.SURGE_TOKEN }}
+          github_token: ${{ secrets.PANKOD_BOT_TOKEN }}
+          dist: examples/fineFoods/admin/antd/build
+          teardown: 'true'
+          build: echo
+  mui-fine-foods:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - name: Workflow run cleanup action
+        uses: rokroskar/workflow-run-cleanup-action@v0.2.2
         env:
-          branch: ${{ steps.substring-pr-branch-name.outputs.substring }}
- 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: actions/checkout@v2
+      - uses: afc163/surge-preview@v1
+        with:
+          surge_token: ${{ secrets.SURGE_TOKEN }}
+          github_token: ${{ secrets.PANKOD_BOT_TOKEN }}
+          dist: examples/fineFoods/admin/mui/build
+          teardown: 'true'
+          build: echo

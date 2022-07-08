@@ -42,7 +42,7 @@ export const useStepsForm = <
     TVariables,
     TContext
 > = {}): UseStepsFormReturnType<TData, TError, TVariables, TContext> => {
-    const { defaultStep = 0, isBackValidate = true } = stepsProps ?? {};
+    const { defaultStep = 0, isBackValidate = false } = stepsProps ?? {};
     const [current, setCurrent] = useState(defaultStep);
 
     const useHookFormResult = useForm({

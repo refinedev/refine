@@ -15,6 +15,7 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useLog,
     useInvalidate,
 } from "@hooks";
 
@@ -61,6 +62,7 @@ export const useCreate = <
 
     const translate = useTranslate();
     const publish = usePublish();
+    const { log } = useLog();
     const handleNotification = useHandleNotification();
 
     const mutation = useMutation<
@@ -89,6 +91,8 @@ export const useCreate = <
                     successNotification: successNotificationFromProp,
                     dataProviderName,
                     invalidates = ["list", "many"],
+                    values,
+                    metaData,
                 },
             ) => {
                 const resourceSingular = pluralize.singular(resource);
@@ -122,6 +126,20 @@ export const useCreate = <
                         ids: data?.data?.id ? [data.data.id] : undefined,
                     },
                     date: new Date(),
+                });
+
+                const { fields, operation, variables, ...rest } =
+                    metaData || {};
+
+                log?.mutate({
+                    action: "create",
+                    resource,
+                    data: values,
+                    meta: {
+                        dataProviderName,
+                        id: data?.data?.id ?? undefined,
+                        ...rest,
+                    },
                 });
             },
             onError: (

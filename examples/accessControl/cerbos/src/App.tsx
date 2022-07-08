@@ -7,7 +7,7 @@ import {
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import { Cerbos } from "cerbos";
+import { HTTP as Cerbos } from "@cerbos/http";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 
@@ -28,8 +28,8 @@ const API_URL = "https://api.fake-rest.refine.dev";
 // For production we recommend running a PDP container along side your application
 // See https://cerbos.dev for more information
 
-const cerbos = new Cerbos({
-    hostname: "https://demo-pdp.cerbos.cloud", // The Cerbos PDP instance
+// The Cerbos PDP instance
+const cerbos = new Cerbos("https://demo-pdp.cerbos.cloud", {
     playgroundInstance: "WS961950bd85QNYlAvTmJYubP0bqF7e3", // The playground instance ID to test
 });
 
@@ -41,28 +41,25 @@ const App: React.FC = () => {
             dataProvider={dataProvider(API_URL)}
             accessControlProvider={{
                 can: async ({ action, params, resource }) => {
-                    const cerbosPayload = {
+                    const result = await cerbos.checkResource({
                         principal: {
                             id: "demoUser", // Fake a user ID
                             roles: [role],
+                            policyVersion: "default",
                             // this is where user attributes can be passed
-                            attr: {},
+                            attributes: {},
                         },
-                        // the resouces being access - can be multiple
                         resource: {
                             kind: resource,
-                            instances: {
-                                [params?.id || "new"]: {
-                                    attr: params,
-                                },
-                            },
+                            policyVersion: "default",
+                            id: params?.id + "" || "new",
+                            attributes: params,
                         },
                         // the list of actions on the resource to check authorization for
                         actions: [action],
-                    };
-                    const result = await cerbos.check(cerbosPayload);
+                    });
                     return Promise.resolve({
-                        can: result.isAuthorized(params?.id || "new", action),
+                        can: result.isAllowed(action) || false,
                     });
                 },
             }}

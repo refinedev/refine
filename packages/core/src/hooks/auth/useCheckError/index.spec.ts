@@ -15,6 +15,11 @@ jest.mock("react-router-dom", () => ({
 describe("useCheckError Hook", () => {
     beforeEach(() => {
         mHistory.mockReset();
+
+        jest.spyOn(console, "error").mockImplementation((message) => {
+            if (message === "rejected" || message === "/customPath") return;
+            console.warn(message);
+        });
     });
 
     it("logout and redirect to login if check error rejected", async () => {
@@ -26,7 +31,7 @@ describe("useCheckError Hook", () => {
                     isProvided: true,
                     login: () => Promise.resolve(),
                     checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.reject(),
+                    checkError: () => Promise.reject("rejected"),
                     getPermissions: () => Promise.resolve(),
                     logout: logoutMock,
                     getUserIdentity: () => Promise.resolve(),

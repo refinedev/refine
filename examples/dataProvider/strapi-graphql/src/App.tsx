@@ -4,10 +4,8 @@ import {
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
-import dataProvider from "@pankod/refine-strapi-graphql";
+import dataProvider, { GraphQLClient } from "@pankod/refine-strapi-graphql";
 import routerProvider from "@pankod/refine-react-router-v6";
-
-import { GraphQLClient } from "graphql-request";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 

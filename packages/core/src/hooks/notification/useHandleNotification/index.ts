@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { OpenNotificationParams } from "../../../interfaces";
 import { useNotification } from "@hooks";
 
-export const useHandleNotification = () => {
+export const useHandleNotification = (): typeof handleNotification => {
     const { open } = useNotification();
 
     const handleNotification = useCallback(
@@ -13,9 +13,9 @@ export const useHandleNotification = () => {
         ) => {
             if (notification !== false) {
                 if (notification) {
-                    open(notification);
+                    open?.(notification);
                 } else if (fallbackNotification) {
-                    open(fallbackNotification);
+                    open?.(fallbackNotification);
                 }
             }
         },

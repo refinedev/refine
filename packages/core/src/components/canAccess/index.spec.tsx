@@ -1,11 +1,11 @@
 import React from "react";
-import { render, TestWrapper, waitFor } from "@test";
+import { render, TestWrapper } from "@test";
 
 import { CanAccess } from ".";
 
 describe("CanAccess Component", () => {
     it("should render children", async () => {
-        const { container, getByText } = render(
+        const { container, findByText } = render(
             <CanAccess action="access" resource="posts">
                 Accessible
             </CanAccess>,
@@ -24,7 +24,7 @@ describe("CanAccess Component", () => {
         );
 
         expect(container).toBeTruthy();
-        await waitFor(() => getByText("Accessible"));
+        await findByText("Accessible");
     });
 
     it("should not render children", async () => {
@@ -42,13 +42,11 @@ describe("CanAccess Component", () => {
         );
 
         expect(container).toBeTruthy();
-        await waitFor(() =>
-            expect(queryByText("Accessible")).not.toBeInTheDocument(),
-        );
+        expect(queryByText("Accessible")).not.toBeInTheDocument();
     });
 
     it("should successfully pass the own attirbute to its children", async () => {
-        const { container, getByText } = render(
+        const { container, findByText } = render(
             <CanAccess action="access" resource="posts" data-id="refine">
                 <p>Accessible</p>
             </CanAccess>,
@@ -63,15 +61,13 @@ describe("CanAccess Component", () => {
 
         expect(container).toBeTruthy();
 
-        await waitFor(() =>
-            expect(
-                getByText("Accessible").closest("p")?.getAttribute("data-id"),
-            ).toBe("refine"),
-        );
+        const el = await findByText("Accessible");
+
+        expect(el.closest("p")?.getAttribute("data-id"));
     });
 
     it("should fallback successfully render when not accessible", async () => {
-        const { container, queryByText, getByText } = render(
+        const { container, queryByText, findByText } = render(
             <CanAccess
                 action="access"
                 resource="posts"
@@ -90,9 +86,7 @@ describe("CanAccess Component", () => {
 
         expect(container).toBeTruthy();
 
-        await waitFor(() =>
-            expect(queryByText("Accessible")).not.toBeInTheDocument(),
-        );
-        await waitFor(() => getByText("Access Denied"));
+        expect(queryByText("Accessible")).not.toBeInTheDocument();
+        await findByText("Access Denied");
     });
 });
