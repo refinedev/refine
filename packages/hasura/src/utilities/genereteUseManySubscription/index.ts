@@ -3,8 +3,8 @@ import * as gql from "gql-query-builder";
 
 type GenereteUseManySubscriptionParams = {
     resource: string;
-    metaData?: MetaDataQuery;
-    ids: BaseKey[];
+    metaData: MetaDataQuery;
+    ids?: BaseKey[];
 };
 
 type GenereteUseManySubscriptionReturnValues = {
@@ -18,12 +18,18 @@ export const genereteUseManySubscription = ({
     metaData,
     ids,
 }: GenereteUseManySubscriptionParams): GenereteUseManySubscriptionReturnValues => {
-    const operation = metaData?.operation ?? resource;
+    if (!ids) {
+        console.error(
+            "[useSubscription]: `ids` is required in `params` for graphql subscriptions",
+        );
+    }
+
+    const operation = metaData.operation ?? resource;
 
     const { query, variables } = gql.subscription({
         operation,
-        fields: metaData?.fields,
-        variables: metaData?.variables ?? {
+        fields: metaData.fields,
+        variables: metaData.variables ?? {
             where: {
                 type: `${operation}_bool_exp`,
                 value: {

@@ -3,8 +3,8 @@ import * as gql from "gql-query-builder";
 
 type GenereteUseOneSubscriptionParams = {
     resource: string;
-    metaData?: MetaDataQuery;
-    id: BaseKey;
+    metaData: MetaDataQuery;
+    id?: BaseKey;
 };
 
 type GenereteUseOneSubscriptionReturnValues = {
@@ -18,15 +18,21 @@ export const genereteUseOneSubscription = ({
     metaData,
     id,
 }: GenereteUseOneSubscriptionParams): GenereteUseOneSubscriptionReturnValues => {
-    const operation = `${metaData?.operation ?? resource}_by_pk`;
+    if (!id) {
+        console.error(
+            "[useSubscription]: `ids` is required in `params` for graphql subscriptions",
+        );
+    }
+
+    const operation = `${metaData.operation ?? resource}_by_pk`;
 
     const { query, variables } = gql.subscription({
         operation,
         variables: {
             id: { value: id, type: "uuid", required: true },
-            ...metaData?.variables,
+            ...metaData.variables,
         },
-        fields: metaData?.fields,
+        fields: metaData.fields,
     });
 
     return { query, variables, operation };

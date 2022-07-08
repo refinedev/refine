@@ -5,7 +5,7 @@ import {
     genereteUseListSubscription,
     genereteUseManySubscription,
     genereteUseOneSubscription,
-} from "src/utilities";
+} from "../utilities";
 
 const subscriptions = {
     useList: genereteUseListSubscription,
@@ -24,7 +24,15 @@ export const liveProvider = (client: Client): LiveProvider => {
                 sort,
                 filters,
                 subscriptionType,
+                id,
+                ids,
             } = params ?? {};
+
+            if (!metaData) {
+                throw new Error(
+                    "[useSubscription]: `metaData` is required in `params` for graphql subscriptions",
+                );
+            }
 
             if (!subscriptionType) {
                 throw new Error(
@@ -41,8 +49,8 @@ export const liveProvider = (client: Client): LiveProvider => {
             const genereteSubscription = subscriptions[subscriptionType];
 
             const { query, variables, operation } = genereteSubscription({
-                id: params?.ids?.[0] || "",
-                ids: params?.ids || [],
+                ids,
+                id,
                 resource,
                 filters,
                 hasPagination,

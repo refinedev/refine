@@ -6,11 +6,11 @@ import {
 } from "@pankod/refine-core";
 import * as gql from "gql-query-builder";
 
-import { generateFilters, generateSorting } from "src/dataProvider";
+import { generateFilters, generateSorting } from "../../dataProvider";
 
 type GenereteUseListSubscriptionParams = {
     resource: string;
-    metaData?: MetaDataQuery;
+    metaData: MetaDataQuery;
     pagination?: Pagination;
     hasPagination?: boolean;
     sort?: CrudSorting;
@@ -36,7 +36,7 @@ export const genereteUseListSubscription = ({
     const hasuraSorting = generateSorting(sort);
     const hasuraFilters = generateFilters(filters);
 
-    const operation = metaData?.operation ?? resource;
+    const operation = metaData.operation ?? resource;
 
     const hasuraSortingType = `[${operation}_order_by!]`;
     const hasuraFiltersType = `${operation}_bool_exp`;
@@ -44,7 +44,7 @@ export const genereteUseListSubscription = ({
     const { query, variables } = gql.subscription([
         {
             operation,
-            fields: metaData?.fields,
+            fields: metaData.fields,
             variables: {
                 ...(hasPagination
                     ? {
