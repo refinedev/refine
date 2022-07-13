@@ -1,0 +1,38 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "baseUrl": ".",
+        "paths": {
+            "@components/*": ["src/components/*"],
+            "@components": ["src/components"],
+            "@styles/*": ["src/styles/*"],
+            "@styles": ["src/styles"],
+            "@public/*": ["public/*"],
+            "@public": ["public"],
+            "@lib/*": ["src/lib/*"],
+            "@utils/*": ["utils/*"],
+            "@config/*": ["config/*"],
+            "@assets/*": ["src/assets/*"],
+            "@assets": ["src/assets"],
+            "@commerce": ["../packages/commerce/src"],
+            "@commerce/*": ["../packages/commerce/src/*"],
+            "@framework": ["../packages/local/src"],
+            "@framework/*": ["../packages/local/src/*"]
+        },
+        "incremental": true
+    },
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "tailwind.config.js"],
+    "exclude": ["node_modules"]
+}
