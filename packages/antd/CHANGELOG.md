@@ -1,5 +1,14 @@
 # @pankod/refine-antd
 
+## 3.27.4
+
+### Patch Changes
+
+-   Removed unused cases in `useFileUploadState` and fixed conflicting type in `antd#UploadFileStatus` interface.
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.40.0
+
 ## 3.27.3
 
 ### Patch Changes
