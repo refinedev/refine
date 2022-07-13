@@ -6,12 +6,12 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-nhost";
+import dataProvider, { liveProvider } from "@pankod/refine-nhost";
 import { NhostAuthProvider } from "@nhost/react-auth";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 
-import { nhost } from "utility";
+import { nhost, gqlWebSocketClient } from "utility";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import {
     CategoriesList,
@@ -82,6 +82,8 @@ const App: React.FC = () => {
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider(nhost)}
+                liveProvider={liveProvider(gqlWebSocketClient)}
+                liveMode="auto"
                 authProvider={authProvider}
                 resources={[
                     {
