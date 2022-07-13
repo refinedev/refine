@@ -19,7 +19,6 @@ export const Telemetry: React.FC<{}> = () => {
             return;
         }
 
-
         (async () => {
             const jwk = await importJWK(PUBLIC_KEY);
 
