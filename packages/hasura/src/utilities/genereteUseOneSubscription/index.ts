@@ -20,7 +20,7 @@ export const genereteUseOneSubscription = ({
 }: GenereteUseOneSubscriptionParams): GenereteUseOneSubscriptionReturnValues => {
     if (!id) {
         console.error(
-            "[useSubscription]: `ids` is required in `params` for graphql subscriptions",
+            "[useSubscription]: `id` is required in `params` for graphql subscriptions",
         );
     }
 
