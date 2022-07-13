@@ -1,0 +1,135 @@
+.root {
+  @apply grid grid-cols-1 gap-0;
+}
+.root > * {
+  @apply row-span-1 bg-transparent box-border overflow-hidden;
+  height: 500px;
+  max-height: 800px;
+}
+
+.default > * {
+  @apply bg-transparent;
+}
+
+.layoutNormal {
+  @apply gap-3;
+}
+
+.layoutA {
+  & > *:nth-child(6n + 1),
+  & > *:nth-child(6n + 5) {
+    @apply row-span-2 lg:col-span-2;
+    height: var(--row-height);
+  }
+
+  &.filled {
+    & > *:nth-child(6n + 1) {
+      @apply bg-violet;
+    }
+
+    & > *:nth-child(6n + 2) {
+      @apply bg-accent-8;
+    }
+
+    & > *:nth-child(6n + 3) {
+      @apply bg-pink;
+    }
+
+    & > *:nth-child(6n + 6) {
+      @apply bg-cyan;
+    }
+  }
+}
+
+.layoutB {
+  & > *:nth-child(6n + 2),
+  & > *:nth-child(6n + 4) {
+    @apply row-span-2 lg:col-span-2;
+    height: var(--row-height);
+  }
+
+  &.filled {
+    & > *:nth-child(6n + 1) {
+      @apply bg-violet;
+    }
+
+    & > *:nth-child(6n + 2) {
+      @apply bg-accent-8;
+    }
+
+    & > *:nth-child(6n + 3) {
+      @apply bg-pink;
+    }
+
+    & > *:nth-child(6n + 6) {
+      @apply bg-cyan;
+    }
+  }
+}
+
+.layoutC {
+  & > *:nth-child(12n + 1),
+  & > *:nth-child(12n + 8) {
+    @apply row-span-2 lg:col-span-2;
+    height: var(--row-height);
+  }
+
+  &.filled {
+    & > *:nth-child(12n + 1) {
+      @apply bg-violet;
+      height: var(--row-height);
+    }
+
+    & > *:nth-child(12n + 8) {
+      @apply bg-cyan;
+      height: var(--row-height);
+    }
+
+    & > *:nth-child(6n + 3) {
+      @apply bg-pink;
+    }
+  }
+}
+
+.layoutD {
+  & > *:nth-child(12n + 2),
+  & > *:nth-child(12n + 7) {
+    @apply row-span-2 lg:col-span-2;
+    height: var(--row-height);
+  }
+
+  &.filled {
+    & > *:nth-child(12n + 2) {
+      @apply bg-violet;
+    }
+
+    & > *:nth-child(12n + 7) {
+      @apply bg-cyan;
+    }
+
+    & > *:nth-child(6n + 3) {
+      @apply bg-pink;
+    }
+  }
+}
+
+@screen md {
+  .layoutNormal > * {
+    max-height: min-content !important;
+  }
+}
+
+@screen lg {
+  .root {
+    @apply grid-cols-3 grid-rows-2;
+  }
+
+  .root > * {
+    @apply col-span-1;
+    height: inherit;
+  }
+
+  .layoutNormal > * {
+    max-height: 400px;
+  }
+}

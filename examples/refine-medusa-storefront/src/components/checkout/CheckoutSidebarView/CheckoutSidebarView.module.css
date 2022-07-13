@@ -1,0 +1,7 @@
+.root {
+  min-height: calc(100vh - 322px);
+}
+
+.lineItemsList {
+  @apply py-4 space-y-6 sm:py-0 sm:space-y-0 sm:divide-y sm:divide-accent-2 border-accent-2;
+}

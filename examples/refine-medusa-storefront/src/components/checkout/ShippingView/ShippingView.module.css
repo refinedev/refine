@@ -1,0 +1,21 @@
+.fieldset {
+  @apply flex flex-col my-3;
+}
+
+.fieldset .label {
+  @apply text-accent-7 uppercase text-xs font-medium mb-2;
+}
+
+.fieldset .input,
+.fieldset .select {
+  @apply p-2 border border-accent-2 w-full text-sm font-normal;
+}
+
+.fieldset .input:focus,
+.fieldset .select:focus {
+  @apply outline-none shadow-outline-normal;
+}
+
+.radio {
+  @apply bg-black;
+}
