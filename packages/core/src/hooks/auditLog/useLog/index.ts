@@ -1,4 +1,4 @@
-import { useCallback, useContext } from "react";
+import { useContext } from "react";
 import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 
 import { AuditLogContext } from "@contexts/auditLog";
@@ -12,8 +12,9 @@ type LogRenameData =
           resource?: string;
       }
     | undefined;
-export type UseLogReturnType<TLogRenameData> = {
-    log: (params: LogParams) => Promise<void>;
+
+export type UseLogReturnType<TLogData, TLogRenameData> = {
+    log: UseMutationResult<TLogData, Error, LogParams>;
     rename: UseMutationResult<
         TLogRenameData,
         Error,
@@ -24,9 +25,15 @@ export type UseLogReturnType<TLogRenameData> = {
     >;
 };
 
+/**
+ * useLog is used to `create` a new and `rename` the existing audit log.
+ * @see {@link https://refine.dev/docs/core/hooks/audit-log/useLog} for more details.
+ */
+
 export const useLog = <
+    TLogData,
     TLogRenameData extends LogRenameData = LogRenameData,
->(): UseLogReturnType<TLogRenameData> => {
+>(): UseLogReturnType<TLogData, TLogRenameData> => {
     const queryClient = useQueryClient();
     const auditLogContext = useContext(AuditLogContext);
 
@@ -41,28 +48,27 @@ export const useLog = <
         },
     });
 
-    const log = useCallback(
-        async (params: LogParams) => {
+    const log = useMutation<TLogData, Error, LogParams, unknown>(
+        async (params) => {
             const resource = resources.find((p) => p.name === params.resource);
             const logPermissions = resource?.options?.auditLog?.permissions;
 
             if (logPermissions) {
-                const shouldLog = hasPermission(logPermissions, params.action);
-
-                if (shouldLog) {
-                    let authorData;
-                    if (isLoading) {
-                        authorData = await refetch();
-                    }
-
-                    auditLogContext.create?.({
-                        ...params,
-                        author: identityData ?? authorData?.data,
-                    });
+                if (!hasPermission(logPermissions, params.action)) {
+                    return;
                 }
             }
+
+            let authorData;
+            if (isLoading) {
+                authorData = await refetch();
+            }
+
+            return await auditLogContext.create?.({
+                ...params,
+                author: identityData ?? authorData?.data,
+            });
         },
-        [resources, identityData, auditLogContext],
     );
 
     const rename = useMutation<

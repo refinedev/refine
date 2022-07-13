@@ -40,9 +40,7 @@ const columns: GridColumns = [
 ];
 
 export const ImportList: React.FC = () => {
-    const { dataGridProps } = useDataGrid({
-        columns,
-    });
+    const { dataGridProps } = useDataGrid();
 
     const { open } = useNotification();
 
@@ -85,7 +83,7 @@ export const ImportList: React.FC = () => {
             }}
         >
             <div style={{ height: 700, width: "100%" }}>
-                <DataGrid {...dataGridProps} />
+                <DataGrid {...dataGridProps} columns={columns} />
             </div>
         </List>
     );

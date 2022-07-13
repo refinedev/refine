@@ -88,9 +88,6 @@ npx superplate-cli -p refine-react tutorial
 Select the following options to complete the _CLI wizard_:
 
 ```
-? Select your project type:
-❯ refine-react
-
 ? What will be the name of your app:
 > tutorial
 
@@ -223,7 +220,7 @@ export default App;
 
 `<Refine/>` is the root component of a **refine** application. Using the [`dataProvider`](/core/providers/data-provider.md) prop, we made our **Simple REST Dataprovider** available to the entire application.
 
-Run the following command to install the required package:
+Run the following command to launch the app in development mode:
 
 <Tabs
 defaultValue="superplate"
@@ -826,8 +823,11 @@ Now we can add the newly created component to our resource with `show` prop:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
+
+import "@pankod/refine-antd/dist/styles.min.css";
 
 // highlight-next-line
 import { PostList, PostShow } from "./pages/posts";
@@ -841,15 +841,15 @@ export const App: React.FC = () => {
             ReadyPage={ReadyPage}
             notificationProvider={notificationProvider}
             catchAll={<ErrorComponent />}
-            // highlight-start
             resources={[
                 {
                     name: "posts",
                     list: PostList,
+                    // highlight-start
                     show: PostShow,
+                     // highlight-end
                 },
             ]}
-            // highlight-end
         />
     );
 };
@@ -937,10 +937,10 @@ export const PostList: React.FC = () => {
                         </FilterDropdown>
                     )}
                 />
+                 // highlight-start
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
-                    // highlight-start
                     render={(_text, record): React.ReactNode => {
                         return (
                             <ShowButton
@@ -950,8 +950,8 @@ export const PostList: React.FC = () => {
                             />
                         );
                     }}
-                    // highlight-end
                 />
+                 // highlight-end
             </Table>
         </List>
     );
@@ -1086,16 +1086,16 @@ export const App: React.FC = () => {
             ReadyPage={ReadyPage}
             notificationProvider={notificationProvider}
             catchAll={<ErrorComponent />}
-            // highlight-start
             resources={[
                 {
                     name: "posts",
                     list: PostList,
-                    edit: PostEdit,
                     show: PostShow,
+                    // highlight-start
+                    edit: PostEdit
+                    // highlight-end
                 },
             ]}
-            // highlight-end
         />
     );
 };
@@ -1565,7 +1565,7 @@ After adding `canDelete` prop, `<DeleteButton>` will appear in edit form.
 
 Our tutorial is complete. Below you'll find a Live StackBlitz Example displaying what we have done so far:
 
-<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/tutorial/antd?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/tutorial/antd?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-tutorial"
 ></iframe>

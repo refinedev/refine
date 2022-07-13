@@ -289,7 +289,7 @@ export const useDelete = <
                 const { fields, operation, variables, ...rest } =
                     metaData || {};
 
-                log?.({
+                log?.mutate({
                     action: "delete",
                     resource,
                     meta: {

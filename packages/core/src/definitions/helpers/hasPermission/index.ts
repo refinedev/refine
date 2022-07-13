@@ -5,5 +5,5 @@ export const hasPermission = (
     if (!permissions || !action) {
         return false;
     }
-    return !!permissions.find((i) => i === action || i === "*");
+    return !!permissions.find((i) => i === action);
 };

@@ -42,6 +42,44 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const { mutate } = useUpdate();
 
+    const { dataGridProps, search, filters, sorter } = useDataGrid<
+        IOrder,
+        HttpError,
+        IOrderFilterVariables
+    >({
+        initialPageSize: 10,
+        onSearch: (params) => {
+            const filters: CrudFilters = [];
+            const { q, store, user, status } = params;
+
+            filters.push({
+                field: "q",
+                operator: "eq",
+                value: q !== "" ? q : undefined,
+            });
+
+            filters.push({
+                field: "store.id",
+                operator: "eq",
+                value: (store ?? [].length) > 0 ? store : undefined,
+            });
+
+            filters.push({
+                field: "user.id",
+                operator: "eq",
+                value: user,
+            });
+
+            filters.push({
+                field: "status.text",
+                operator: "in",
+                value: (status ?? []).length > 0 ? status : undefined,
+            });
+
+            return filters;
+        },
+    });
+
     const columns = React.useMemo<GridColumns<IOrder>>(
         () => [
             {
@@ -196,45 +234,6 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         ],
         [t],
     );
-
-    const { dataGridProps, search, filters, sorter } = useDataGrid<
-        IOrder,
-        HttpError,
-        IOrderFilterVariables
-    >({
-        columns,
-        initialPageSize: 10,
-        onSearch: (params) => {
-            const filters: CrudFilters = [];
-            const { q, store, user, status } = params;
-
-            filters.push({
-                field: "q",
-                operator: "eq",
-                value: q !== "" ? q : undefined,
-            });
-
-            filters.push({
-                field: "store.id",
-                operator: "eq",
-                value: (store ?? [].length) > 0 ? store : undefined,
-            });
-
-            filters.push({
-                field: "user.id",
-                operator: "eq",
-                value: user,
-            });
-
-            filters.push({
-                field: "status.text",
-                operator: "in",
-                value: (status ?? []).length > 0 ? status : undefined,
-            });
-
-            return filters;
-        },
-    });
 
     const { show } = useNavigation();
 
@@ -465,6 +464,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 >
                     <DataGrid
                         {...dataGridProps}
+                        columns={columns}
                         filterModel={undefined}
                         autoHeight
                         onRowClick={({ id }) => {

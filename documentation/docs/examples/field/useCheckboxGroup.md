@@ -9,7 +9,7 @@ The **refine** `useCheckboxGroup` hook allows you to manage your data in the for
 
 [View useCheckboxGroup Example Source](https://github.com/pankod/refine/tree/master/examples/field/useCheckboxGroup)
 
-<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/field/useCheckboxGroup?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/field/useCheckboxGroup?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-checkbox-group-example"
 ></iframe>

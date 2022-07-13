@@ -24,13 +24,11 @@ Let's begin by setting up a new **refine** project.
 
 ## Setting up
 
-
 There are two alternative methods to set up a **refine** application.
 
 The recommended way is using the [superplate](https://github.com/pankod/superplate) tool. _superplate_'s _CLI wizard_ will let you create and customize your application in seconds.
 
 Alternatively, you may use the _create-react-app_ tool to create an empty _React_ application and then add **refine** module via _npm_ etc.
-
 
 <Tabs
 defaultValue="superplate"
@@ -281,7 +279,7 @@ For more information about adding font family in your Refine application, you ca
 
 `<Refine/>` is the root component of a **refine** application. Using the [`dataProvider`](/core/providers/data-provider.md) prop, we made our **Simple REST Dataprovider** available to the entire application.
 
-Run the following command to install the required package:
+Run the following command to launch the app in development mode:
 
 <Tabs
 defaultValue="superplate"
@@ -487,13 +485,11 @@ const columns = React.useMemo<GridColumns<IPost>>(
 );
 
 export const PostList: React.FC = () => {
-    const { dataGridProps } = useDataGrid<IPost>({
-        columns,
-    });
+    const { dataGridProps } = useDataGrid<IPost>();
 
     return (
         <List>
-            <DataGrid {...dataGridProps} autoHeight />
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
 };
@@ -661,7 +657,7 @@ The category title data can be obtained from the `/categories` endpoint for each
 
 <br />
 
-At this point, we need to join records from different resources. For this, we're going to use the refine hook `useOne`.
+At this point, we need to join records from different resources. For this, we're going to use the refine hook `useMany`.
 
 Before we start, just edit our interface for the new `ICategory` type:
 
@@ -688,7 +684,7 @@ So we can update our `list.tsx` with the highlighted lines:
 ```tsx title="src/pages/posts/list.tsx"
 import React from "react";
 // highlight-next-line
-import { useOne } from "@pankod/refine-core";
+import { useMany } from "@pankod/refine-core";
 import {
     useDataGrid,
     DataGrid,
@@ -702,6 +698,19 @@ import {
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
+    const { dataGridProps } = useDataGrid<IPost>();
+
+    // highlight-start
+    const categoryIds = dataGridProps.rows.map((item) => item.category.id);
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+    // highlight-end
+
     const columns = React.useMemo<GridColumns<IPost>>(
         () => [
             { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
@@ -712,12 +721,15 @@ export const PostList: React.FC = () => {
                 type: "number",
                 minWidth: 250,
                 flex: 1,
-                valueGetter: (params) => {
-                    const { data } = useOne<ICategory>({
-                        resource: "categories",
-                        id: params.row.category.id,
-                    });
-                    return data?.data.title;
+                renderCell: function render({ row }) {
+                    if (isLoading) {
+                        return "Loading...";
+                    }
+
+                    const category = categoriesData?.data.find(
+                        (item) => item.id === row.category.id,
+                    );
+                    return category?.title;
                 },
             },
             // highlight-end
@@ -741,26 +753,23 @@ export const PostList: React.FC = () => {
                 },
             },
         ],
-        [],
+        // highlight-next-line
+        [categoriesData, isLoading],
     );
-
-    const { dataGridProps } = useDataGrid<IPost>({
-        columns,
-    });
 
     return (
         <List>
-            <DataGrid {...dataGridProps} autoHeight />
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
 };
 ```
 
-We access the row record with `valueGetter` and pass categoryId to the `useOne` hook. `useOne` hook returns a `data` object which contains the category title.
+We construct an array of `categoryId`'s from `/posts` endpoint and pass it to the `useMany` hook. `categoriesData` will be filled with _id-title_ tuples to be used for rendering our component.
 
 Try the result on your browser and you'll notice that the category column is filled correctly with the matching category titles for the each record's category id's. Even the loading state is managed by **refine**.
 
-To get more detailed information about this hook, please refer the [useOne Documentation](/core/hooks/data/useOne.md).
+To get more detailed information about this hook, please refer the [useMany Documentation](/core/hooks/data/useMany.md).
 
 ## Adding search and filters
 
@@ -910,7 +919,7 @@ And then we can add a `<ShowButton>` on the list page to make it possible for us
 
 ```tsx title="src/pages/posts/list.tsx"
 import React from "react";
-import { useOne } from "@pankod/refine-core";
+import { useMany } from "@pankod/refine-core";
 import {
     useDataGrid,
     DataGrid,
@@ -924,6 +933,17 @@ import {
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
+    const { dataGridProps } = useDataGrid<IPost>();
+
+    const categoryIds = dataGridProps.rows.map((item) => item.category.id);
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
     const columns = React.useMemo<GridColumns<IPost>>(
         () => [
             { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
@@ -934,12 +954,15 @@ export const PostList: React.FC = () => {
                 type: "number",
                 minWidth: 250,
                 flex: 1,
-                valueGetter: (params) => {
-                    const { data } = useOne<ICategory>({
-                        resource: "categories",
-                        id: params.row.category.id,
-                    });
-                    return data?.data.title;
+                renderCell: function render({ row }) {
+                    if (isLoading) {
+                        return "Loading...";
+                    }
+
+                    const category = categoriesData?.data.find(
+                        (item) => item.id === row.category.id,
+                    );
+                    return category?.title;
                 },
             },
             // highlight-end
@@ -973,16 +996,12 @@ export const PostList: React.FC = () => {
             },
             // highlight-end
         ],
-        [],
+        [categoriesData, isLoading],
     );
-
-    const { dataGridProps } = useDataGrid<IPost>({
-        columns,
-    });
 
     return (
         <List>
-            <DataGrid {...dataGridProps} autoHeight />
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
 };
@@ -1211,7 +1230,7 @@ We are going to need an _edit_ button on each row to display the `<PostEdit>` co
 
 ```tsx title="src/pages/posts/list.tsx"
 import React from "react";
-import { useOne } from "@pankod/refine-core";
+import { useMany } from "@pankod/refine-core";
 import {
     useDataGrid,
     DataGrid,
@@ -1229,6 +1248,17 @@ import {
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
+    const { dataGridProps } = useDataGrid<IPost>();
+
+    const categoryIds = dataGridProps.rows.map((item) => item.category.id);
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
     const columns = React.useMemo<GridColumns<IPost>>(
         () => [
             { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
@@ -1238,12 +1268,15 @@ export const PostList: React.FC = () => {
                 type: "number",
                 minWidth: 250,
                 flex: 1,
-                valueGetter: (params) => {
-                    const { data } = useOne<ICategory>({
-                        resource: "categories",
-                        id: params.row.category.id,
-                    });
-                    return data?.data.title;
+                renderCell: function render({ row }) {
+                    if (isLoading) {
+                        return "Loading...";
+                    }
+
+                    const category = categoriesData?.data.find(
+                        (item) => item.id === row.category.id,
+                    );
+                    return category?.title;
                 },
             },
             {
@@ -1281,16 +1314,12 @@ export const PostList: React.FC = () => {
                 },
             },
         ],
-        [],
+        [categoriesData, isLoading],
     );
-
-    const { dataGridProps } = useDataGrid<IPost>({
-        columns,
-    });
 
     return (
         <List>
-            <DataGrid {...dataGridProps} autoHeight />
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
 };
@@ -1513,7 +1542,7 @@ The first way is adding a delete button on each row since _refine_ doesn't autom
 
 ```tsx title="src/pages/posts/list.tsx"
 import React from "react";
-import { useOne } from "@pankod/refine-core";
+import { useMany } from "@pankod/refine-core";
 import {
     useDataGrid,
     DataGrid,
@@ -1531,6 +1560,17 @@ import {
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
+    const { dataGridProps } = useDataGrid<IPost>();
+
+    const categoryIds = dataGridProps.rows.map((item) => item.category.id);
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
     const columns = React.useMemo<GridColumns<IPost>>(
         () => [
             { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
@@ -1539,12 +1579,15 @@ export const PostList: React.FC = () => {
                 headerName: "Category",
                 type: "number",
                 minWidth: 250,
-                valueGetter: (params) => {
-                    const { data } = useOne<ICategory>({
-                        resource: "categories",
-                        id: params.row.category.id,
-                    });
-                    return data?.data.title;
+                renderCell: function render({ row }) {
+                    if (isLoading) {
+                        return "Loading...";
+                    }
+
+                    const category = categoriesData?.data.find(
+                        (item) => item.id === row.category.id,
+                    );
+                    return category?.title;
                 },
             },
             {
@@ -1585,16 +1628,12 @@ export const PostList: React.FC = () => {
                 },
             },
         ],
-        [],
+        [categoriesData, isLoading],
     );
-
-    const { dataGridProps } = useDataGrid<IPost>({
-        columns,
-    });
 
     return (
         <List>
-            <DataGrid {...dataGridProps} autoHeight />
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
 };
@@ -1665,7 +1704,7 @@ After adding `canDelete` prop, `<DeleteButton>` will appear in edit form.
 
 Our tutorial is complete. Below you'll find a Live StackBlitz Example displaying what we have done so far:
 
-<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/tutorial/mui?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/tutorial/mui?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-tutorial"
 ></iframe>

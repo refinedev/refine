@@ -9,7 +9,7 @@ This [tutorial](/docs/ui-frameworks/mui/tutorial/) will go through process of bu
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/tutorial)
 
-<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/tutorial/mui?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/tutorial/mui?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-tutorial"
 ></iframe>

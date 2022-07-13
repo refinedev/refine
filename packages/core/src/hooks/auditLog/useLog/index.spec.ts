@@ -16,17 +16,12 @@ describe("useLog Hook", () => {
     });
 
     describe("log callback", () => {
-        it("should called logEvent if include permissions", async () => {
-            const { result } = renderHook(() => useLog(), {
+        it("should called logEvent empty permission", async () => {
+            const { result, waitForNextUpdate } = renderHook(() => useLog(), {
                 wrapper: TestWrapper({
                     resources: [
                         {
                             name: "posts",
-                            options: {
-                                auditLog: {
-                                    permissions: ["*"],
-                                },
-                            },
                         },
                     ],
                     auditLogProvider: {
@@ -44,16 +39,19 @@ describe("useLog Hook", () => {
                 meta: {
                     id: 1,
                 },
+                author: undefined,
             };
 
-            log(logEventPayload);
+            log.mutate(logEventPayload);
+
+            await waitForNextUpdate();
 
             expect(auditLogProviderCreateMock).toBeCalledWith(logEventPayload);
             expect(auditLogProviderCreateMock).toBeCalledTimes(1);
         });
 
         it("should not called logEvent if no includes permissions", async () => {
-            const { result } = renderHook(() => useLog(), {
+            const { result, waitForNextUpdate } = renderHook(() => useLog(), {
                 wrapper: TestWrapper({
                     resources: [
                         {
@@ -78,85 +76,19 @@ describe("useLog Hook", () => {
                 },
             };
 
-            log(logEventPayload);
+            log.mutate(logEventPayload);
+
+            await waitForNextUpdate();
 
             expect(auditLogProviderGetMock).not.toBeCalled();
         });
 
-        it("should not called logEvent if no exist auditLogPermissions", async () => {
-            const { result } = renderHook(() => useLog(), {
-                wrapper: TestWrapper({
-                    resources: [{ name: "posts" }],
-                    auditLogProvider: {
-                        get: auditLogProviderGetMock,
-                    },
-                }),
-            });
-
-            const { log } = result.current;
-
-            const logEventPayload: LogParams = {
-                action: "update",
-                resource: "posts",
-                data: { id: 1, title: "title" },
-                meta: {
-                    id: 1,
-                },
-            };
-
-            log(logEventPayload);
-
-            expect(auditLogProviderGetMock).not.toBeCalled();
-        });
-
-        it("should called logEvent every action if permisson is `*`", async () => {
-            const { result } = renderHook(() => useLog(), {
+        it("should called logEvent if exist auditLogPermissions", async () => {
+            const { result, waitForNextUpdate } = renderHook(() => useLog(), {
                 wrapper: TestWrapper({
                     resources: [
                         {
                             name: "posts",
-                            options: { auditLog: { permissions: ["*"] } },
-                        },
-                    ],
-                    auditLogProvider: {
-                        create: auditLogProviderGetMock,
-                    },
-                }),
-            });
-
-            const { log } = result.current;
-
-            const logEventPayload: LogParams = {
-                action: "update",
-                resource: "posts",
-                data: { id: 1, title: "title" },
-                meta: { id: 1 },
-            };
-
-            log(logEventPayload);
-
-            expect(auditLogProviderGetMock).toBeCalledWith(logEventPayload);
-            expect(auditLogProviderGetMock).toBeCalledTimes(1);
-
-            const logEventPayload2: LogParams = {
-                action: "createMany",
-                resource: "posts",
-                data: { id: 2, title: "title2" },
-                meta: { id: 1 },
-            };
-
-            log(logEventPayload2);
-
-            expect(auditLogProviderGetMock).toBeCalledWith(logEventPayload2);
-            expect(auditLogProviderGetMock).toBeCalledTimes(2);
-        });
-
-        it("should not called logEvent if resources no match", async () => {
-            const { result } = renderHook(() => useLog(), {
-                wrapper: TestWrapper({
-                    resources: [
-                        {
-                            name: "categories",
                             options: { auditLog: { permissions: ["update"] } },
                         },
                     ],
@@ -172,12 +104,16 @@ describe("useLog Hook", () => {
                 action: "update",
                 resource: "posts",
                 data: { id: 1, title: "title" },
-                meta: { id: 1 },
+                meta: {
+                    id: 1,
+                },
             };
 
-            log(logEventPayload);
+            log.mutate(logEventPayload);
 
-            expect(auditLogProviderCreateMock).not.toBeCalled();
+            await waitForNextUpdate();
+
+            expect(auditLogProviderCreateMock).toBeCalled();
         });
     });
 

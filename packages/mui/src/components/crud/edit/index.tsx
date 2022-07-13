@@ -51,6 +51,7 @@ export interface EditProps {
     cardContentProps?: CardContentProps;
     cardActionsProps?: CardActionsProps;
     breadcrumb?: React.ReactNode;
+    dataProviderName?: string;
 }
 
 /**
@@ -74,6 +75,7 @@ export const Edit: React.FC<EditProps> = ({
     cardContentProps,
     cardActionsProps,
     breadcrumb = <Breadcrumb />,
+    dataProviderName,
 }) => {
     const translate = useTranslate();
 
@@ -132,6 +134,7 @@ export const Edit: React.FC<EditProps> = ({
                         <RefreshButton
                             resourceNameOrRouteName={resource.route}
                             recordItemId={id}
+                            dataProviderName={dataProviderName}
                         />
                     </Box>
                 }
@@ -157,6 +160,7 @@ export const Edit: React.FC<EditProps> = ({
                                 onSuccess={() => {
                                     list(resource.route ?? resource.name);
                                 }}
+                                dataProviderName={dataProviderName}
                                 {...deleteButtonProps}
                             />
                         )}

@@ -146,7 +146,7 @@ const antLayoutSiderMobile: CSSProperties = {
 <br />
 
 :::tip
-If you want to create a multi-level menu, you can take a look at this [`multi-level menu`](/docs/examples/multi-level-menu/multi-level-menu/) example and also [`here`](/docs/guides-and-concepts/multi-level-menu/multi-level-menu/) is the guide.
+If you want to create a multi-level menu, you can take a look at this [`multi-level menu`](/docs/examples/multi-level-menu/multi-level-menu.md) example and also [`here`](/docs/guides-and-concepts/multi-level-menu/multi-level-menu.md) is the guide.
 :::
 
 We can override the default sider and show the custom menu we implemented in its place by passing a the custom component to `<Refine>`s `Sider` prop:
@@ -183,16 +183,20 @@ We can also add a logout button:
 
 ```tsx title="src/CustomMenu.tsx"
 import { useState, CSSProperties } from "react";
-import { useTitle, useRouterContext, useMenu } from "@pankod/refine-core";
+import { 
+    useTitle,
+    useRouterContext,
+    useMenu,
+    // highlight-next-line
+    useLogout,
+} from "@pankod/refine-core";
 import {
     AntdLayout,
     Menu,
     Link,
     Grid,
-    // highlight-start
+    // highlight-next-line
     Icons,
-    useLogout,
-    // highlight-end
 } from "@pankod/refine-antd";
 
 export const CustomMenu: React.FC = () => {

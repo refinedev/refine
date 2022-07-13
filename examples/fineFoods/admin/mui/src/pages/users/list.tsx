@@ -36,6 +36,38 @@ import { IUser, IUserFilterVariables } from "interfaces";
 export const UserList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
 
+    const { dataGridProps, search, filters } = useDataGrid<
+        IUser,
+        HttpError,
+        IUserFilterVariables
+    >({
+        initialPageSize: 10,
+        onSearch: (params) => {
+            const filters: CrudFilters = [];
+            const { q, gender, isActive } = params;
+
+            filters.push({
+                field: "q",
+                operator: "eq",
+                value: q !== "" ? q : undefined,
+            });
+
+            filters.push({
+                field: "gender",
+                operator: "eq",
+                value: gender !== "" ? gender : undefined,
+            });
+
+            filters.push({
+                field: "isActive",
+                operator: "eq",
+                value: isActive !== "" ? isActive : undefined,
+            });
+
+            return filters;
+        },
+    });
+
     const columns = React.useMemo<GridColumns<IUser>>(
         () => [
             {
@@ -119,39 +151,6 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
         ],
         [t],
     );
-
-    const { dataGridProps, search, filters } = useDataGrid<
-        IUser,
-        HttpError,
-        IUserFilterVariables
-    >({
-        columns,
-        initialPageSize: 10,
-        onSearch: (params) => {
-            const filters: CrudFilters = [];
-            const { q, gender, isActive } = params;
-
-            filters.push({
-                field: "q",
-                operator: "eq",
-                value: q !== "" ? q : undefined,
-            });
-
-            filters.push({
-                field: "gender",
-                operator: "eq",
-                value: gender !== "" ? gender : undefined,
-            });
-
-            filters.push({
-                field: "isActive",
-                operator: "eq",
-                value: isActive !== "" ? isActive : undefined,
-            });
-
-            return filters;
-        },
-    });
 
     const { register, handleSubmit, control } = useForm<
         IUser,
@@ -270,6 +269,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                 <List cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
                     <DataGrid
                         {...dataGridProps}
+                        columns={columns}
                         filterModel={undefined}
                         autoHeight
                         rowsPerPageOptions={[10, 20, 50, 100]}
