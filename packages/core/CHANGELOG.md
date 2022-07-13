@@ -1,5 +1,39 @@
 # @pankod/refine-core
 
+## 3.40.0
+
+### Minor Changes
+
+-   Add a simple and transparent telemetry module to collect usage statistics defined within a very limited scope.
+
+    Tracking is completely safe and anonymous. It does not contain any personally identifiable information and does not use cookies. Participation is optional and users can opt out easily.
+
+    For more information, you can check the [documentation](https://refine.dev/docs/guides-and-concepts/telemetry/telemetry/).
+
+## 3.39.0
+
+### Minor Changes
+
+-   [#2078](https://github.com/pankod/refine/pull/2078) [`868bb943ad`](https://github.com/pankod/refine/commit/868bb943adc42d80a7904e2acbd6397d097ad4e2) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Add a simple and transparent telemetry module to collect usage statistics defined within a very limited scope.
+
+    Tracking is completely safe and anonymous. It does not contain any personally identifiable information and does not use cookies. Participation is optional and users can opt out easily.
+
+    For more information, you can check the [documentation](https://refine.dev/docs/guides-and-concepts/telemetry/telemetry/).
+
+## 3.38.2
+
+### Patch Changes
+
+-   -   The redirect method that return from `useForm` updated to be avaiable for passing `id`.
+
+    ```
+    const { redirect } = useForm();
+
+    redirect("edit", id);
+    ```
+
+    -   Returning API response to `onFinish` function for successful mutations
+
 ## 3.38.1
 
 ### Patch Changes

@@ -1,5 +1,17 @@
 # @pankod/refine-codemod
 
+## 3.27.2
+
+### Patch Changes
+
+-   Fixed `@pankod/refine-codemod` build issue
+
+## 3.27.1
+
+### Patch Changes
+
+-   [`031e15e797`](https://github.com/pankod/refine/commit/031e15e79731c3394623969829e5474b947371c8) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed `@pankod/refine-codemod` build issue
+
 ## 3.27.0
 
 ### Minor Changes
