@@ -1,5 +1,14 @@
 # @pankod/refine-antd
 
+## 3.27.3
+
+### Patch Changes
+
+-   [#2135](https://github.com/pankod/refine/pull/2135) [`cf90324cb4`](https://github.com/pankod/refine/commit/cf90324cb4043cb8c0fae79c15e9c17c2bda8044) Thanks [@aliemir](https://github.com/aliemir)! - Removed unused cases in `useFileUploadState` and fixed conflicting type in `antd#UploadFileStatus` interface.
+
+-   Updated dependencies [[`868bb943ad`](https://github.com/pankod/refine/commit/868bb943adc42d80a7904e2acbd6397d097ad4e2)]:
+    -   @pankod/refine-core@3.39.0
+
 ## 3.27.2
 
 ### Patch Changes
