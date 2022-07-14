@@ -1,0 +1,38 @@
+.root {
+  @apply relative grid sm:grid-cols-1 lg:grid-cols-12
+  w-full gap-6 px-3 py-6 border-b border-accent-2
+  transition duration-100 ease-in-out;
+}
+
+.root:nth-child(3n + 1) .imageWrapper {
+  @apply bg-violet;
+}
+
+.root:nth-child(3n + 2) .imageWrapper {
+  @apply bg-pink;
+}
+
+.root:nth-child(3n + 3) .imageWrapper {
+  @apply bg-blue;
+}
+
+.imageWrapper {
+  @apply col-span-3;
+  min-width: 230px;
+  width: 230px;
+  height: 230px;
+}
+
+.description {
+  @apply col-span-7 flex flex-col;
+}
+
+.actions {
+  @apply absolute bg-accent-0 p-3 top-0 right-4;
+}
+
+@media screen(lg) {
+  .actions {
+    @apply static col-span-2 flex flex-col justify-between space-y-4;
+  }
+}
