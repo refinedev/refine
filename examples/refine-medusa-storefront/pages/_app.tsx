@@ -2,6 +2,7 @@ import React from "react";
 import { AppProps } from "next/app";
 import "@assets/main.css";
 import "@assets/chrome-bug.css";
+import "keen-slider/keen-slider.min.css";
 
 import { Refine, LoginPage } from "@pankod/refine-core";
 import dataProvider from "../src/dataProvider";
@@ -17,7 +18,6 @@ import Footer from "@components/common/Footer";
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <Refine
-            // Header={Navbar}
             Layout={({ children }) => (
                 <div className="min-h-screen flex flex-col w-full ">
                     <Navbar />
