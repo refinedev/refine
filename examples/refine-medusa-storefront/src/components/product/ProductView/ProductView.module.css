@@ -1,0 +1,59 @@
+.root {
+  @apply relative grid items-start gap-1 grid-cols-1 overflow-x-hidden;
+  min-height: auto;
+}
+
+.main {
+  @apply relative px-0 pb-0 box-border  flex flex-col col-span-1;
+  min-height: 500px;
+}
+
+.sidebar {
+  @apply flex flex-col col-span-1 mx-auto max-w-8xl px-6 py-6 w-full h-full;
+}
+
+.sliderContainer {
+  @apply flex items-center justify-center overflow-x-hidden bg-violet;
+}
+
+.imageContainer {
+  @apply text-center h-full relative;
+}
+
+.imageContainer > span {
+  height: 100% !important;
+}
+
+.sliderContainer .img {
+  @apply w-full h-full max-h-full object-cover;
+}
+
+.button {
+  width: 100%;
+}
+
+.wishlistButton {
+  @apply absolute z-30 top-0 right-0;
+}
+
+.relatedProductsGrid {
+  @apply grid grid-cols-2 py-2 gap-2 md:grid-cols-4 md:gap-7;
+}
+
+@screen lg {
+  .root {
+    @apply grid-cols-12;
+  }
+
+  .main {
+    @apply mx-0 col-span-8;
+  }
+
+  .sidebar {
+    @apply col-span-4 py-6;
+  }
+
+  .imageContainer {
+    max-height: 600px;
+  }
+}

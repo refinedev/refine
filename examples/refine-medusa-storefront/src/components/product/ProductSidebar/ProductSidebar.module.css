@@ -1,0 +1,84 @@
+.root {
+  @apply relative grid items-start gap-1 grid-cols-1 overflow-x-hidden;
+  min-height: auto;
+}
+
+.main {
+  @apply relative px-0 pb-0 box-border  flex flex-col col-span-1;
+  min-height: 500px;
+}
+
+.header {
+  @apply transition-colors ease-in-out duration-500
+  absolute top-0 left-0 z-20 pr-16;
+}
+
+.header .name {
+  @apply pt-0 max-w-full w-full leading-extra-loose;
+  font-size: 2rem;
+  letter-spacing: 0.4px;
+}
+
+.header .name span {
+  @apply py-4 px-6 bg-primary text-primary font-bold;
+  font-size: inherit;
+  letter-spacing: inherit;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.header .price {
+  @apply pt-2 px-6 pb-4 text-sm bg-primary text-accent-9
+  font-semibold inline-block tracking-wide;
+}
+
+.sidebar {
+  @apply flex flex-col col-span-1 mx-auto max-w-8xl px-6 py-6 w-full h-full;
+}
+
+.sliderContainer {
+  @apply flex items-center justify-center overflow-x-hidden bg-violet;
+}
+
+.imageContainer {
+  @apply text-center;
+}
+
+.imageContainer > div,
+.imageContainer > div > div {
+  @apply h-full;
+}
+
+.sliderContainer .img {
+  @apply w-full h-auto max-h-full object-cover;
+}
+
+.button {
+  width: 100%;
+}
+
+.wishlistButton {
+  @apply absolute z-30 top-0 right-0;
+}
+
+.relatedProductsGrid {
+  @apply grid grid-cols-2 py-2 gap-2 md:grid-cols-4 md:gap-7;
+}
+
+@screen lg {
+  .root {
+    @apply grid-cols-12;
+  }
+
+  .main {
+    @apply mx-0 col-span-8;
+  }
+
+  .sidebar {
+    @apply col-span-4 py-6;
+  }
+
+  .imageContainer {
+    max-height: 600px;
+  }
+}
