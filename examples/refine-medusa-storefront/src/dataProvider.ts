@@ -94,13 +94,16 @@ const JsonServer = (apiUrl: string): DataProvider => {
             const { current = 1, pageSize = 3 } = pagination ?? {};
 
             const searchQuery = metaData?.query;
+            const collectionIds = metaData?.collectionIds;
 
             const query: {
                 limit?: number;
                 offset?: number;
                 q?: string;
                 tags?: string[];
+                collection_id?: string[];
             } = {
+                collection_id: collectionIds,
                 q: searchQuery,
                 tags: metaData?.tags,
                 ...(hasPagination
@@ -189,10 +192,10 @@ const JsonServer = (apiUrl: string): DataProvider => {
                 id: id.toString(),
             });
 
-            console.log(`products`, products);
+            console.log(`productsDataProvider`, products);
 
             return {
-                data: (products[0] as any) ?? null,
+                data: products[0] as any,
             };
         },
 
