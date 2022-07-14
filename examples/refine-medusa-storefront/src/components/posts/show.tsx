@@ -1,14 +1,25 @@
-import { useOne, useShow } from "@pankod/refine-core";
+import { useList, useOne, useShow } from "@pankod/refine-core";
+import { ProductView } from "..";
 
 export const PostShow: React.FC = () => {
     const { queryResult } = useShow();
     const { data } = queryResult;
     const record = data?.data;
 
-    const { data: categoryData } = useOne({
+    const { data: relatedProducts } = useList({
         resource: "products",
-        id: record?.id || "",
     });
 
-    return <div>{categoryData?.data?.description}</div>;
+    console.log(record);
+
+    return (
+        <>
+            {record ? (
+                <ProductView
+                    product={record}
+                    relatedProducts={relatedProducts?.data ?? []}
+                />
+            ) : null}
+        </>
+    );
 };

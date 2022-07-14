@@ -5,25 +5,6 @@ import {
     useList,
     useNavigation,
 } from "@pankod/refine-core";
-import {
-    List,
-    Table,
-    TextField,
-    useTable,
-    getDefaultSortOrder,
-    DateField,
-    Space,
-    EditButton,
-    DeleteButton,
-    useSelect,
-    TagField,
-    FilterDropdown,
-    Select,
-    ShowButton,
-    Button,
-    SaveButton,
-    useEditableTable,
-} from "@pankod/refine-antd";
 import { IPost, ICategory } from "src/interfaces";
 
 export const PostList: React.FC<
