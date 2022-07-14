@@ -23,7 +23,7 @@
             "@public": ["public"],
             "@lib/*": ["src/lib/*"],
             "@utils/*": ["utils/*"],
-            "@config/*": ["config/*"],
+            "@config/*": ["src/config/*"],
             "@assets/*": ["src/assets/*"],
             "@assets": ["src/assets"],
             "@commerce": ["../packages/commerce/src"],
