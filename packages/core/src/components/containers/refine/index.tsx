@@ -22,6 +22,7 @@ import { NotificationContextProvider } from "@contexts/notification";
 import { AuditLogContextProvider } from "@contexts/auditLog";
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
 import { routeGenerator } from "@definitions";
+import { Telemetry } from "@components/telemetry";
 
 import {
     MutationMode,
@@ -73,6 +74,7 @@ export interface RefineProps {
     reactQueryDevtoolConfig?: any;
     liveMode?: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
+    disableTelemetry?: boolean;
 }
 
 /**
@@ -111,6 +113,7 @@ export const Refine: React.FC<RefineProps> = ({
     reactQueryDevtoolConfig,
     liveMode,
     onLiveEvent,
+    disableTelemetry = false,
 }) => {
     const queryClient = new QueryClient({
         ...reactQueryClientConfig,
@@ -217,6 +220,9 @@ export const Refine: React.FC<RefineProps> = ({
                                                         <UnsavedWarnContextProvider>
                                                             <RouterComponent>
                                                                 {children}
+                                                                {!disableTelemetry && (
+                                                                    <Telemetry />
+                                                                )}
                                                                 <RouteChangeHandler />
                                                             </RouterComponent>
                                                         </UnsavedWarnContextProvider>

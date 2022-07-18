@@ -27,10 +27,6 @@ const mapStatusToLoading = (files: UploadChangeParam["fileList"]) => {
         switch (file.status) {
             case "uploading":
                 return true;
-            case "error":
-            case "done":
-            case "removed":
-            case "success":
             default:
                 return false;
         }
