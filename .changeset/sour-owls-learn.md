@@ -14,7 +14,7 @@
 
 -   Added `liveProvider`.
 
-To see example of how to use it, check out [`here`](https://github.com/pankod/refine/blob/next/examples/dataProvider/hasura/src/App.tsx).
+To see an example of how to use it, check out [`here`](https://github.com/pankod/refine/blob/master/examples/dataProvider/hasura/src/App.tsx).
 
 ### `@pankod/refine-nhost`
 
