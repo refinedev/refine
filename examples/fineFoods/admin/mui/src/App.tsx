@@ -113,6 +113,7 @@ const App: React.FC = () => {
                             icon: <StarBorderOutlined />,
                         },
                     ]}
+                    disableTelemetry={true}
                 />
             </RefineSnackbarProvider>
         </ColorModeContextProvider>
