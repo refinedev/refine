@@ -20,7 +20,7 @@ To see example of how to use it, check out [`here`](https://github.com/pankod/re
 
 -   Added `liveProvider`.
 
-To see example of how to use it, check out [`here`](https://github.com/pankod/refine/blob/next/examples/dataProvider/nhost/src/App.tsx).
+To see an example of how to use it, check out [`here`](https://github.com/pankod/refine/blob/master/examples/dataProvider/nhost/src/App.tsx).
 
 ### `@pankod/refine-graphql`
 
