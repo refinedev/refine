@@ -110,6 +110,7 @@ const App: React.FC = () => {
                     });
                 },
             }}
+            disableTelemetry={true}
         />
     );
 };

@@ -71,7 +71,12 @@ export const useMany = <
     useResourceSubscription({
         resource,
         types: ["*"],
-        params: { ids: ids ?? [], ...liveParams },
+        params: {
+            ids: ids ?? [],
+            metaData,
+            subscriptionType: "useMany",
+            ...liveParams,
+        },
         channel: `resources/${resource}`,
         enabled: isEnabled,
         liveMode,

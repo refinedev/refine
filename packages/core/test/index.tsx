@@ -98,9 +98,7 @@ export const TestWrapper: (
                 {withNotificationProvider}
             </AccessControlContextProvider>
         ) : (
-            <AccessControlContextProvider {...MockAccessControlProvider}>
-                {withNotificationProvider}
-            </AccessControlContextProvider>
+            withNotificationProvider
         );
 
         const withAuidtLogProvider = auditLogProvider ? (
@@ -116,9 +114,7 @@ export const TestWrapper: (
                 {withAuidtLogProvider}
             </LiveContextProvider>
         ) : (
-            <LiveContextProvider liveProvider={MockLiveProvider}>
-                {withAuidtLogProvider}
-            </LiveContextProvider>
+            withAuidtLogProvider
         );
 
         const withTranslation = i18nProvider ? (
@@ -136,7 +132,10 @@ export const TestWrapper: (
         );
 
         const withAuth = authProvider ? (
-            <AuthContextProvider {...authProvider}>
+            <AuthContextProvider
+                {...authProvider}
+                isProvided={Boolean(authProvider)}
+            >
                 {withNotification}
             </AuthContextProvider>
         ) : (

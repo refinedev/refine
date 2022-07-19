@@ -93,7 +93,20 @@ describe("Sider", () => {
     it("should render only allowed menu items", async () => {
         const { getByText, queryByText } = render(<Sider />, {
             wrapper: TestWrapper({
-                resources: [{ name: "posts" }, { name: "users" }],
+                resources: [
+                    {
+                        name: "posts",
+                        list: function list() {
+                            return <div>render me!</div>;
+                        },
+                    },
+                    {
+                        name: "users",
+                        list: function list() {
+                            return <div>render me!</div>;
+                        },
+                    },
+                ],
                 accessControlProvider: {
                     can: ({ action, resource }) => {
                         if (action === "list" && resource === "posts") {

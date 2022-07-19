@@ -50,6 +50,7 @@ const App: React.FC = () => {
                             options: { route: "data-grid", label: "Data Grid" },
                         },
                     ]}
+                    disableTelemetry={true}
                 />
             </RefineSnackbarProvider>
         </ThemeProvider>

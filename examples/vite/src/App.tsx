@@ -28,6 +28,7 @@ const App: React.FC = () => {
                     canDelete: true,
                 },
             ]}
+            disableTelemetry={true}
         />
     );
 };

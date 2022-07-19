@@ -34,6 +34,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                 reactQueryDevtoolConfig={{
                     position: "bottom-left",
                 }}
+                disableTelemetry={true}
             >
                 <ChakraProvider>
                     <Component {...pageProps} />

@@ -45,6 +45,7 @@ const App: React.FC = () => {
             Title={Title}
             notificationProvider={notificationProvider}
             Layout={Layout}
+            disableTelemetry={true}
         />
     );
 };

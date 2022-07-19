@@ -25,6 +25,7 @@ export const TestWrapper: (
                     dataProvider={dataProvider ?? MockJSONServer}
                     routerProvider={MockRouterProvider}
                     resources={resources ?? [{ name: "posts" }]}
+                    disableTelemetry={true}
                 >
                     {children}
                 </Refine>

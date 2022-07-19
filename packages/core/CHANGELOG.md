@@ -1,5 +1,56 @@
 # @pankod/refine-core
 
+## 3.41.1
+
+### Patch Changes
+
+-   [#2151](https://github.com/pankod/refine/pull/2151) [`d4c7377361`](https://github.com/pankod/refine/commit/d4c7377361ba347ecfdf4d5a438eb495398c2fab) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed it to appear in menu items even if `List` is not given in resources #2147
+
+## 3.41.0
+
+### Minor Changes
+
+-   [#2120](https://github.com/pankod/refine/pull/2120) [`2aa7aace52`](https://github.com/pankod/refine/commit/2aa7aace52b3f232327db2b0f41f793a2885e788) Thanks [@salihozdemir](https://github.com/salihozdemir)! - ### `@pankod/refine-core`
+
+    -   Added extra params to `useSubscription` and `useResourceSubscription`
+    -   `useOne`, `useMany` and `useList` passed extra params to own subscription hook.
+
+    ### `@pankod/refine-hasura`
+
+    -   Added `liveProvider`.
+
+    To see an example of how to use it, check out [`here`](https://github.com/pankod/refine/blob/master/examples/dataProvider/hasura/src/App.tsx).
+
+    ### `@pankod/refine-nhost`
+
+    -   Added `liveProvider`.
+
+    To see an example of how to use it, check out [`here`](https://github.com/pankod/refine/blob/master/examples/dataProvider/nhost/src/App.tsx).
+
+    ### `@pankod/refine-graphql`
+
+    -   Added `liveProvider`.
+
+## 3.40.0
+
+### Minor Changes
+
+-   Add a simple and transparent telemetry module to collect usage statistics defined within a very limited scope.
+
+    Tracking is completely safe and anonymous. It does not contain any personally identifiable information and does not use cookies. Participation is optional and users can opt out easily.
+
+    For more information, you can check the [documentation](https://refine.dev/docs/guides-and-concepts/telemetry/telemetry/).
+
+## 3.39.0
+
+### Minor Changes
+
+-   [#2078](https://github.com/pankod/refine/pull/2078) [`868bb943ad`](https://github.com/pankod/refine/commit/868bb943adc42d80a7904e2acbd6397d097ad4e2) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Add a simple and transparent telemetry module to collect usage statistics defined within a very limited scope.
+
+    Tracking is completely safe and anonymous. It does not contain any personally identifiable information and does not use cookies. Participation is optional and users can opt out easily.
+
+    For more information, you can check the [documentation](https://refine.dev/docs/guides-and-concepts/telemetry/telemetry/).
+
 ## 3.38.2
 
 ### Patch Changes
