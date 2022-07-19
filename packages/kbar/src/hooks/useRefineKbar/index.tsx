@@ -7,6 +7,7 @@ import {
     useTranslate,
     useResource,
     IResourceItem,
+    useCanWithoutCache,
 } from "@pankod/refine-core";
 import {
     useRegisterActions,
@@ -33,6 +34,8 @@ export const useRefineKbar = (): void => {
     const { mutate } = useDelete();
     const kbarContext = useContext(KBarContext);
 
+    const { can } = useCanWithoutCache();
+
     const {
         resource: resourceFromRoute,
         action: actionFromRoute,
@@ -49,11 +52,22 @@ export const useRefineKbar = (): void => {
     } = useNavigation();
 
     useEffect(() => {
-        setActions(
-            moveActionToFirst().flatMap((resource) => {
-                return createActionWithResource(resource);
-            }),
-        );
+        const preaparedActions = async () => {
+            return await Promise.all(
+                moveActionToFirst().flatMap((resource) => {
+                    return createActionWithResource(resource);
+                }),
+            );
+        };
+
+        preaparedActions().then((actions) => {
+            console.log(
+                "actions",
+                actions.flatMap((action) => action),
+            );
+
+            return setActions(actions.flatMap((action) => action));
+        });
     }, [resources, idFromRoute, resourceFromRoute, actionFromRoute]);
 
     useEffect(() => {
@@ -76,7 +90,7 @@ export const useRefineKbar = (): void => {
         return resources;
     };
 
-    const createActionWithResource = (resource: IResourceItem) => {
+    const createActionWithResource = async (resource: IResourceItem) => {
         const {
             name,
             label,
@@ -84,10 +98,7 @@ export const useRefineKbar = (): void => {
             create,
             icon,
             show,
-            canShow,
-            canCreate,
             canDelete,
-            canEdit,
             edit,
             route,
         } = resource;
@@ -116,65 +127,78 @@ export const useRefineKbar = (): void => {
             );
         }
         if (
-            canCreate &&
             create &&
             (RefineKbarActionType.Create !== actionFromRoute ||
                 resourceFromRoute !== name)
         ) {
-            tempActions.push(
-                createAction({
-                    name: t(
-                        `actions.create`,
-                        capitalize(RefineKbarActionType.Create),
-                    ),
-                    section,
-                    icon,
-                    keywords: "new",
-                    perform: () => {
-                        goToCreate(route!);
-                    },
-                }),
-            );
-        }
+            const { can: canCreate } = (await can?.({
+                resource: name,
+                action: RefineKbarActionType.Create,
+            })) || { can: true };
 
-        if (resourceFromRoute === name && idFromRoute) {
-            if (
-                canShow &&
-                show &&
-                RefineKbarActionType.Show !== actionFromRoute
-            ) {
+            if (canCreate) {
                 tempActions.push(
                     createAction({
                         name: t(
-                            `actions.show`,
-                            capitalize(RefineKbarActionType.Show),
+                            `actions.create`,
+                            capitalize(RefineKbarActionType.Create),
                         ),
                         section,
                         icon,
+                        keywords: "new",
                         perform: () => {
-                            goToShow(route!, idFromRoute);
+                            goToCreate(route!);
                         },
                     }),
                 );
             }
-            if (
-                canEdit &&
-                edit &&
-                RefineKbarActionType.Edit !== actionFromRoute
-            ) {
-                tempActions.push(
-                    createAction({
-                        name: t(
-                            `actions.edit`,
-                            capitalize(RefineKbarActionType.Edit),
-                        ),
-                        section,
-                        icon,
-                        perform: () => {
-                            goToEdit(route!, idFromRoute);
-                        },
-                    }),
-                );
+        }
+
+        if (resourceFromRoute === name && idFromRoute) {
+            if (show && RefineKbarActionType.Show !== actionFromRoute) {
+                const { can: canShow } = (await can?.({
+                    resource: name,
+                    action: RefineKbarActionType.Show,
+                    params: { id: idFromRoute },
+                })) || { can: true };
+
+                if (canShow) {
+                    tempActions.push(
+                        createAction({
+                            name: t(
+                                `actions.show`,
+                                capitalize(RefineKbarActionType.Show),
+                            ),
+                            section,
+                            icon,
+                            perform: () => {
+                                goToShow(route!, idFromRoute);
+                            },
+                        }),
+                    );
+                }
+            }
+            if (edit && RefineKbarActionType.Edit !== actionFromRoute) {
+                const { can: canEdit } = (await can?.({
+                    resource: name,
+                    action: RefineKbarActionType.Show,
+                    params: { id: idFromRoute },
+                })) || { can: true };
+                if (canEdit) {
+                    tempActions.push(
+                        createAction({
+                            name: t(
+                                `actions.edit`,
+                                capitalize(RefineKbarActionType.Edit),
+                            ),
+                            section,
+                            icon,
+                            perform: () => {
+                                goToEdit(route!, idFromRoute);
+                            },
+                        }),
+                    );
+                }
             }
             if (canDelete) {
                 tempActions.push(
@@ -218,6 +242,5 @@ export const useRefineKbar = (): void => {
         }
         return tempActions;
     };
-
     useRegisterActions(actions, [actions]);
 };
