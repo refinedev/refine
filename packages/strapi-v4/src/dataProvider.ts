@@ -202,6 +202,7 @@ export const DataProvider = (
             fields,
             populate,
             publicationState,
+            "pagination[pageSize]": ids.length,
         };
 
         const { data } = await httpClient.get(

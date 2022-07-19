@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.41.1
+
+### Patch Changes
+
+-   [#2151](https://github.com/pankod/refine/pull/2151) [`d4c7377361`](https://github.com/pankod/refine/commit/d4c7377361ba347ecfdf4d5a438eb495398c2fab) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed it to appear in menu items even if `List` is not given in resources #2147
+
 ## 3.41.0
 
 ### Minor Changes
