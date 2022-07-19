@@ -2,6 +2,7 @@ import dataProvider from "./dataProvider";
 export default dataProvider;
 
 export * from "./dataProvider";
+export * from "./liveProvider";
 
 export {
     GraphQLClient,
@@ -27,3 +28,4 @@ export type {
 } from "graphql-request";
 
 export * as qqlQueryBuilder from "gql-query-builder";
+export * as graphqlWS from "graphql-ws";

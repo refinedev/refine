@@ -5,7 +5,11 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider, { GraphQLClient } from "@pankod/refine-hasura";
+import dataProvider, {
+    liveProvider,
+    GraphQLClient,
+    graphqlWS,
+} from "@pankod/refine-hasura";
 import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -16,7 +20,15 @@ import {
 } from "pages/categories";
 
 const API_URL = "https://flowing-mammal-24.hasura.app/v1/graphql";
+/* 
+## Refine supports GraphQL subscriptions as out-of-the-box. For more detailed information, please visit here, https://refine.dev/docs/core/providers/live-provider/
 
+const WS_URL = "ws://flowing-mammal-24.hasura.app/v1/graphql";
+
+const gqlWebSocketClient = graphqlWS.createClient({
+    url: WS_URL,
+});
+ */
 const client = new GraphQLClient(API_URL, {
     headers: {
         "x-hasura-role": "public",
@@ -30,6 +42,9 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={gqlDataProvider}
+            // ## Refine supports GraphQL subscriptions as out-of-the-box. For more detailed information, please visit here, https://refine.dev/docs/core/providers/live-provider/
+            //liveProvider={liveProvider(gqlWebSocketClient)}
+            //liveMode="auto"
             resources={[
                 {
                     name: "posts",
@@ -48,6 +63,7 @@ const App: React.FC = () => {
             notificationProvider={notificationProvider}
             Layout={Layout}
             catchAll={<ErrorComponent />}
+            disableTelemetry={true}
         />
     );
 };

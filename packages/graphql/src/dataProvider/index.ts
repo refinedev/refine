@@ -4,7 +4,7 @@ import * as gql from "gql-query-builder";
 import pluralize from "pluralize";
 import camelCase from "camelcase";
 
-const genereteSort = (sort?: CrudSorting) => {
+export const genereteSort = (sort?: CrudSorting) => {
     if (sort && sort.length > 0) {
         const sortQuery = sort.map((i) => {
             return `${i.field}:${i.order}`;
@@ -16,7 +16,7 @@ const genereteSort = (sort?: CrudSorting) => {
     return [];
 };
 
-const generateFilter = (filters?: CrudFilters) => {
+export const generateFilter = (filters?: CrudFilters) => {
     const queryFilters: { [key: string]: any } = {};
 
     if (filters) {

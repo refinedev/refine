@@ -25,7 +25,7 @@ We will be using **[Casbin](https://casbin.org/)** in this guide for users with 
 We need to install Casbin.
 
 ```bash
-npm install casbin.js --save
+npm install casbin
 ```
 :::caution
 To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
@@ -104,7 +104,7 @@ The way **[Casbin](https://casbin.org/)** works is that access rights are checke
 Let's add a model and a policy for a role **editor** that have **list** access for **posts** resource.
 
 ```ts title="src/accessControl.ts"
-import { newModel, MemoryAdapter } from "casbin.js";
+import { newModel, StringAdapter } from "casbin";
 
 export const model = newModel(`
 [request_definition]
@@ -139,7 +139,7 @@ Now we will implement the `can` method for `accessControlProvider` to integrate 
 ```tsx title="src/App.tsx"
 // ...
 // highlight-next-line
-import { newEnforcer } from "casbin.js";
+import { newEnforcer } from "casbin";
 
 // highlight-next-line
 import { model, adapter } from "./accessControl";

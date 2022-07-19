@@ -1,4 +1,4 @@
-import { newModel, MemoryAdapter } from "casbin.js";
+import { newModel, StringAdapter } from "casbin";
 
 export const model = newModel(`
 [request_definition]
@@ -17,7 +17,7 @@ e = some(where (p.eft == allow)) && !some(where (p.eft == deny))
 m = g(r.sub, p.sub) && keyMatch(r.obj, p.obj) && regexMatch(r.act, p.act)
 `);
 
-export const adapter = new MemoryAdapter(`
+export const adapter = new StringAdapter(`
 p, admin, posts, (list)|(create)
 p, admin, posts/*, (edit)|(show)|(delete)
 p, admin, posts/*, field

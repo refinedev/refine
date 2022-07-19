@@ -81,6 +81,7 @@ function App() {
                 { name: "editor", list: EditorPage },
             ]}
             Layout={Layout}
+            disableTelemetry={true}
         />
     );
 }
