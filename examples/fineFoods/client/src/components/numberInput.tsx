@@ -22,7 +22,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
                     })
                 }
             >
-                <ChevronDownIcon className="text-primary h-full w-4" />
+                <ChevronDownIcon className="text-primary h-4 w-4" />
             </button>
             <input
                 className="focus:outline-primary focus:border-primary h-full w-16 border p-2 transition-colors"
