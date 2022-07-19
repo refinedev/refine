@@ -119,7 +119,7 @@ export const useMenu: () => useMenuReturnType = () => {
     );
 
     const values = React.useMemo(() => {
-        const filterMenuItemsByListView = (menus: ITreeMenu[]): any => {
+        const filterMenuItemsByListView = (menus: ITreeMenu[]): ITreeMenu[] => {
             return menus.reduce((menuItem: ITreeMenu[], obj) => {
                 if (obj.children.length > 0)
                     return [
