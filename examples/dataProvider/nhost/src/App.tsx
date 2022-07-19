@@ -82,8 +82,9 @@ const App: React.FC = () => {
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider(nhost)}
-                liveProvider={liveProvider(gqlWebSocketClient)}
-                liveMode="auto"
+                // Refine supports GraphQL subscriptions as out-of-the-box. For more detailed information, please visit here, https://refine.dev/docs/core/providers/live-provider/
+                // liveProvider={liveProvider(gqlWebSocketClient)}
+                // liveMode="auto"
                 authProvider={authProvider}
                 resources={[
                     {

@@ -20,12 +20,15 @@ import {
 } from "pages/categories";
 
 const API_URL = "https://flowing-mammal-24.hasura.app/v1/graphql";
+/* 
+## Refine supports GraphQL subscriptions as out-of-the-box. For more detailed information, please visit here, https://refine.dev/docs/core/providers/live-provider/
+
 const WS_URL = "ws://flowing-mammal-24.hasura.app/v1/graphql";
 
 const gqlWebSocketClient = graphqlWS.createClient({
     url: WS_URL,
 });
-
+ */
 const client = new GraphQLClient(API_URL, {
     headers: {
         "x-hasura-role": "public",
@@ -39,8 +42,9 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={gqlDataProvider}
-            liveProvider={liveProvider(gqlWebSocketClient)}
-            liveMode="auto"
+            // ## Refine supports GraphQL subscriptions as out-of-the-box. For more detailed information, please visit here, https://refine.dev/docs/core/providers/live-provider/
+            //liveProvider={liveProvider(gqlWebSocketClient)}
+            //liveMode="auto"
             resources={[
                 {
                     name: "posts",
