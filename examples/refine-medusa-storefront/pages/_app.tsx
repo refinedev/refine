@@ -10,7 +10,7 @@ import routerProvider from "@pankod/refine-nextjs-router";
 
 import { API_URL } from "../src/constants";
 
-import { CollectionsList, PostList, PostShow } from "@components";
+import { CollectionsList, ProductList, ProductShow } from "@components";
 import { authProvider } from "src/authProvider";
 import Navbar from "@components/common/Navbar";
 import Footer from "@components/common/Footer";
@@ -33,8 +33,8 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             resources={[
                 {
                     name: "products",
-                    list: PostList,
-                    show: PostShow,
+                    list: ProductList,
+                    show: ProductShow,
                 },
                 {
                     name: "collections",
