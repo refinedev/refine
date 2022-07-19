@@ -1,3 +1,8 @@
+const { pathsToModuleNameMapper } = require("ts-jest");
+const { compilerOptions } = require("./tsconfig.json");
+
+const paths = compilerOptions.paths ? compilerOptions.paths : {};
+
 module.exports = {
     preset: "ts-jest",
     rootDir: "./",
@@ -13,6 +18,7 @@ module.exports = {
         "<rootDir>/dist/",
     ],
     moduleNameMapper: {
+        ...pathsToModuleNameMapper(paths, { prefix: "<rootDir>/" }),
         "\\.css$": "identity-obj-proxy",
     },
     name: "core",

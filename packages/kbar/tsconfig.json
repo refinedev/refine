@@ -8,7 +8,11 @@
             "@components/*": ["src/components/*"],
             "@components": ["src/components"],
             "@hooks/*": ["src/hooks/*"],
-            "@hooks": ["src/hooks"]
+            "@hooks": ["src/hooks"],
+            "@test/*": ["test/*"],
+            "@test": ["test"],
+            "@definitions/*": ["src/definitions/*"],
+            "@definitions": ["src/definitions"]
         },
         "typeRoots": ["./types", "../../node_modules/@types"]
     }
