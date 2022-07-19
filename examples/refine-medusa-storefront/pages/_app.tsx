@@ -10,10 +10,11 @@ import routerProvider from "@pankod/refine-nextjs-router";
 
 import { API_URL } from "../src/constants";
 
-import { PostList, PostShow } from "@components";
+import { CollectionsList, PostList, PostShow } from "@components";
 import { authProvider } from "src/authProvider";
 import Navbar from "@components/common/Navbar";
 import Footer from "@components/common/Footer";
+import { CollectionsShow } from "@components/collections/show";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
@@ -34,6 +35,11 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                     name: "products",
                     list: PostList,
                     show: PostShow,
+                },
+                {
+                    name: "collections",
+                    list: CollectionsList,
+                    show: CollectionsShow,
                 },
             ]}
             warnWhenUnsavedChanges={true}
