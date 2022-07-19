@@ -40,7 +40,7 @@ describe("useMenu Hook", () => {
         expect(result.current.menuItems).toEqual([]);
     });
 
-    it("should be ignore by undefined list", async () => {
+    it("should be ignore when list is undefined", async () => {
         const { result } = renderHook(() => useMenu(), {
             wrapper: TestWrapper({
                 resources: [
