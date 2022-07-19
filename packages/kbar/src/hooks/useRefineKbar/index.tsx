@@ -16,6 +16,8 @@ import {
     VisualState,
 } from "kbar";
 
+import { capitalize } from "@definitions";
+
 enum RefineKbarActionType {
     List = "list",
     Create = "create",
@@ -23,12 +25,6 @@ enum RefineKbarActionType {
     Edit = "edit",
     Delete = "delete",
 }
-// Capitalize first letter of each word
-const capitalize = (str: string) =>
-    str.replace(
-        /\w\S*/g,
-        (txt) => txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase(),
-    );
 
 export const useRefineKbar = (): void => {
     const t = useTranslate();
@@ -99,9 +95,10 @@ export const useRefineKbar = (): void => {
         const resourceName = label ?? name;
         const tempActions: Action[] = [];
         const section = t(`${resourceName}.${resourceName}`, resourceName);
+
         if (
             list &&
-            (resourceFromRoute !== name ||
+            ((resourceFromRoute !== undefined && resourceFromRoute !== name) ||
                 (actionFromRoute !== undefined && resourceFromRoute === name))
         ) {
             tempActions.push(
@@ -139,6 +136,7 @@ export const useRefineKbar = (): void => {
                 }),
             );
         }
+
         if (resourceFromRoute === name && idFromRoute) {
             if (
                 canShow &&
