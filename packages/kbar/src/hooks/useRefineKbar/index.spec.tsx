@@ -1,5 +1,5 @@
 import React from "react";
-import { IResourceItem } from "@pankod/refine-core";
+import { AccessControlProvider, IResourceItem } from "@pankod/refine-core";
 import { Route, Routes } from "react-router-dom";
 
 import { renderHook } from "@testing-library/react-hooks";
@@ -24,6 +24,7 @@ describe("useRefineKbar Hook", () => {
         resources: IResourceItem[],
         path?: string,
         routerInitialEntries?: string[],
+        accessControlProvider?: AccessControlProvider,
     ) => {
         let Wrapper: React.FC = TestWrapper({
             resources,
@@ -33,6 +34,7 @@ describe("useRefineKbar Hook", () => {
             Wrapper = TestWrapper({
                 resources,
                 routerInitialEntries,
+                accessControlProvider,
             });
         }
 
@@ -52,7 +54,7 @@ describe("useRefineKbar Hook", () => {
         });
     };
     describe("list resources", () => {
-        it("registering the list resource when we are not on the list page", async () => {
+        it("registering the list resource when you are not on the list page", async () => {
             createRenderHook(
                 [
                     {
@@ -79,7 +81,7 @@ describe("useRefineKbar Hook", () => {
                 ]),
             );
         });
-        it("do not register the list resource when we are on the list page", async () => {
+        it("do not register the list resource when you are on the list page", async () => {
             createRenderHook(
                 [
                     {
@@ -109,7 +111,7 @@ describe("useRefineKbar Hook", () => {
     });
 
     describe("create resources", () => {
-        it("registering the create resource when we are not on the create page", async () => {
+        it("registering the create resource when you are not on the create page", async () => {
             createRenderHook(
                 [
                     {
@@ -136,7 +138,37 @@ describe("useRefineKbar Hook", () => {
                 ]),
             );
         });
-        it("do not register the create resource when we are on the create page", async () => {
+        it("registering the create resource when you have access to create", async () => {
+            createRenderHook(
+                [
+                    {
+                        name: "posts",
+                        create: function name() {
+                            return <div>create page</div>;
+                        },
+                    },
+                ],
+                "/:resource",
+                ["/posts"],
+                {
+                    can: () => Promise.resolve({ can: true }),
+                },
+            );
+
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
+            expect(mockFn).lastCalledWith(
+                expect.arrayContaining([
+                    expect.objectContaining({
+                        name: "Create",
+                        section: "posts",
+                    }),
+                ]),
+            );
+        });
+        it("do not register the create resource when you are on the create page", async () => {
             createRenderHook(
                 [
                     {
@@ -163,10 +195,40 @@ describe("useRefineKbar Hook", () => {
                 ]),
             );
         });
+        it("do not register the create resource when you don't have access to create page", async () => {
+            createRenderHook(
+                [
+                    {
+                        name: "posts",
+                        create: function name() {
+                            return <div>create page</div>;
+                        },
+                    },
+                ],
+                "/:resource",
+                ["/posts"],
+                {
+                    can: () => Promise.resolve({ can: false }),
+                },
+            );
+
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
+            expect(mockFn).not.lastCalledWith(
+                expect.arrayContaining([
+                    expect.objectContaining({
+                        name: "Create",
+                        section: "posts",
+                    }),
+                ]),
+            );
+        });
     });
 
     describe("edit resources", () => {
-        it("registering the edit resource when we have id from route", async () => {
+        it("registering the edit resource when you have an id from the route", async () => {
             createRenderHook(
                 [
                     {
@@ -193,7 +255,7 @@ describe("useRefineKbar Hook", () => {
                 ]),
             );
         });
-        it("registering the delete for resource when we have id from route", async () => {
+        it("registering the delete for resource when you have an id from the route", async () => {
             createRenderHook(
                 [
                     {
@@ -221,7 +283,7 @@ describe("useRefineKbar Hook", () => {
                 ]),
             );
         });
-        it("do not register the edit resource when we do not have id from route", async () => {
+        it("do not register the edit resource when you do not have an id from the route", async () => {
             createRenderHook(
                 [
                     {
@@ -248,7 +310,7 @@ describe("useRefineKbar Hook", () => {
                 ]),
             );
         });
-        it("do not register the edit resource when we are on the edit page", async () => {
+        it("do not register the edit resource when you are on the edit page", async () => {
             createRenderHook(
                 [
                     {
@@ -275,7 +337,7 @@ describe("useRefineKbar Hook", () => {
                 ]),
             );
         });
-        it("do not register the delete for resource when we 'canDelete' false", async () => {
+        it("do not register the delete for resource when you 'canDelete' false", async () => {
             createRenderHook(
                 [
                     {
@@ -303,7 +365,7 @@ describe("useRefineKbar Hook", () => {
                 ]),
             );
         });
-        it("do not register the edit resource when we don't have edit resource", async () => {
+        it("do not register the edit resource when you don't have an edit resource", async () => {
             createRenderHook(
                 [
                     {
@@ -330,10 +392,45 @@ describe("useRefineKbar Hook", () => {
                 ]),
             );
         });
+        it("do not register the show resource if your id doesn't have access to edit the page", async () => {
+            createRenderHook(
+                [
+                    {
+                        name: "posts",
+                        edit: function name() {
+                            return <div>edit page</div>;
+                        },
+                    },
+                ],
+                "/:resource/:action/:id",
+                ["/posts/show/2"],
+                {
+                    can: ({ params }) => {
+                        if (params.id === "1") {
+                            return Promise.resolve({ can: true });
+                        }
+                        return Promise.resolve({ can: false });
+                    },
+                },
+            );
+
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
+            expect(mockFn).not.lastCalledWith(
+                expect.arrayContaining([
+                    expect.objectContaining({
+                        name: "Edit",
+                        section: "posts",
+                    }),
+                ]),
+            );
+        });
     });
 
     describe("show resources", () => {
-        it("registering the show resource when we have id from route", async () => {
+        it("registering the show resource when you have an id from the route", async () => {
             createRenderHook(
                 [
                     {
@@ -360,7 +457,42 @@ describe("useRefineKbar Hook", () => {
                 ]),
             );
         });
-        it("do not register the show resource when we do not have id from route", async () => {
+        fit("registering the show resource when your id have access to show the page", async () => {
+            createRenderHook(
+                [
+                    {
+                        name: "posts",
+                        show: function name() {
+                            return <div>show page</div>;
+                        },
+                    },
+                ],
+                "/:resource/:action/:id",
+                ["/posts/edit/1"],
+                {
+                    can: ({ params }) => {
+                        if (params.id === "1") {
+                            return Promise.resolve({ can: true });
+                        }
+                        return Promise.resolve({ can: false });
+                    },
+                },
+            );
+
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
+            expect(mockFn).lastCalledWith(
+                expect.arrayContaining([
+                    expect.objectContaining({
+                        name: "Show",
+                        section: "posts",
+                    }),
+                ]),
+            );
+        });
+        it("do not register the show resource when you don't have an id from route", async () => {
             createRenderHook(
                 [
                     {
@@ -387,7 +519,7 @@ describe("useRefineKbar Hook", () => {
                 ]),
             );
         });
-        it("do not register the show resource when we are on the show page", async () => {
+        it("do not register the show resource when you are on the show page", async () => {
             createRenderHook(
                 [
                     {
@@ -414,10 +546,45 @@ describe("useRefineKbar Hook", () => {
                 ]),
             );
         });
+        it("do not register the show resource if your id doesn't have access to show the page", async () => {
+            createRenderHook(
+                [
+                    {
+                        name: "posts",
+                        show: function name() {
+                            return <div>show page</div>;
+                        },
+                    },
+                ],
+                "/:resource/:action/:id",
+                ["/posts/edit/2"],
+                {
+                    can: ({ params }) => {
+                        if (params.id === "1") {
+                            return Promise.resolve({ can: true });
+                        }
+                        return Promise.resolve({ can: false });
+                    },
+                },
+            );
+
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
+            expect(mockFn).not.lastCalledWith(
+                expect.arrayContaining([
+                    expect.objectContaining({
+                        name: "Show",
+                        section: "posts",
+                    }),
+                ]),
+            );
+        });
     });
 
     describe("multiple resources", () => {
-        it("registering the posts list resource when we are on the categories list page", async () => {
+        it("registering the posts list resource when you are on the categories list page", async () => {
             createRenderHook(
                 [
                     {
@@ -450,7 +617,7 @@ describe("useRefineKbar Hook", () => {
                 ]),
             );
         });
-        it("registering the categories list resource when we are on the post list page", async () => {
+        it("registering the categories list resource when you are on the post list page", async () => {
             createRenderHook(
                 [
                     {
@@ -483,7 +650,7 @@ describe("useRefineKbar Hook", () => {
                 ]),
             );
         });
-        it("registering the categories list resource when we are on the post list page while we have three resources", async () => {
+        it("registering the categories list resource when you are on the post list page while you have three resources", async () => {
             createRenderHook(
                 [
                     {
@@ -539,7 +706,7 @@ describe("useRefineKbar Hook", () => {
                 ]),
             );
         });
-        it("do not register the categories list resource when we are on the categories list page", async () => {
+        it("do not register the categories list resource when you are on the categories list page", async () => {
             createRenderHook(
                 [
                     {
