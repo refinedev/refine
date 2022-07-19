@@ -43,6 +43,7 @@ function App() {
             notificationProvider={notificationProvider}
             LoginPage={LoginPage}
             catchAll={<ErrorComponent />}
+            disableTelemetry={true}
         />
     );
 }

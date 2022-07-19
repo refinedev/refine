@@ -5,6 +5,7 @@ import { TestWrapper } from "@test";
 import { useMenu } from ".";
 import { IResourceItem } from "src/interfaces";
 import { routeGenerator } from "@definitions/helpers";
+import React from "react";
 
 const prepareResources = (items: IResourceItem[]): IResourceItem[] => {
     const resources: IResourceItem[] = [];
@@ -39,6 +40,28 @@ describe("useMenu Hook", () => {
         expect(result.current.menuItems).toEqual([]);
     });
 
+    it("should be ignore when list is undefined", async () => {
+        const { result } = renderHook(() => useMenu(), {
+            wrapper: TestWrapper({
+                resources: [
+                    {
+                        name: "posts",
+                    },
+                    {
+                        name: "CMS",
+                        key: "CMS",
+                    },
+                    {
+                        name: "Posts",
+                        parentName: "CMS",
+                    },
+                ],
+            }),
+        });
+
+        expect(result.current.menuItems).toEqual([]);
+    });
+
     it("should contain one item with label `Posts`", async () => {
         const { result } = renderHook(() => useMenu(), {
             wrapper: TestWrapper({
@@ -47,6 +70,9 @@ describe("useMenu Hook", () => {
                         name: "posts",
                         key: "posts",
                         label: "Posts",
+                        list: function list() {
+                            return <div>render me!</div>;
+                        },
                     },
                 ],
             }),

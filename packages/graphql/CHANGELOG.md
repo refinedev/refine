@@ -1,5 +1,35 @@
 # @pankod/refine-graphql
 
+## 4.2.0
+
+### Minor Changes
+
+-   [#2120](https://github.com/pankod/refine/pull/2120) [`2aa7aace52`](https://github.com/pankod/refine/commit/2aa7aace52b3f232327db2b0f41f793a2885e788) Thanks [@salihozdemir](https://github.com/salihozdemir)! - ### `@pankod/refine-core`
+
+    -   Added extra params to `useSubscription` and `useResourceSubscription`
+    -   `useOne`, `useMany` and `useList` passed extra params to own subscription hook.
+
+    ### `@pankod/refine-hasura`
+
+    -   Added `liveProvider`.
+
+    To see an example of how to use it, check out [`here`](https://github.com/pankod/refine/blob/master/examples/dataProvider/hasura/src/App.tsx).
+
+    ### `@pankod/refine-nhost`
+
+    -   Added `liveProvider`.
+
+    To see an example of how to use it, check out [`here`](https://github.com/pankod/refine/blob/master/examples/dataProvider/nhost/src/App.tsx).
+
+    ### `@pankod/refine-graphql`
+
+    -   Added `liveProvider`.
+
+### Patch Changes
+
+-   Updated dependencies [[`2aa7aace52`](https://github.com/pankod/refine/commit/2aa7aace52b3f232327db2b0f41f793a2885e788)]:
+    -   @pankod/refine-core@3.41.0
+
 ## 4.1.0
 
 ### Minor Changes

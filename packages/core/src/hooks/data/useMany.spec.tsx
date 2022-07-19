@@ -58,7 +58,12 @@ describe("useMany Hook", () => {
             expect(onSubscribeMock).toHaveBeenCalledWith({
                 channel: "resources/posts",
                 callback: expect.any(Function),
-                params: { ids: ["1", "2"] },
+                params: {
+                    ids: ["1", "2"],
+                    metaData: undefined,
+                    resource: "posts",
+                    subscriptionType: "useMany",
+                },
                 types: ["*"],
             });
         });

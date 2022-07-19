@@ -119,6 +119,7 @@ const App: React.FC = () => {
                     ]}
                     notificationProvider={notificationProvider}
                     catchAll={<ErrorComponent />}
+                    disableTelemetry={true}
                 ></Refine>
             </ConfigProvider>
         </RefineKbarProvider>
