@@ -10,8 +10,6 @@ export const ProductShow: React.FC = () => {
         resource: "products",
     });
 
-    console.log(record);
-
     return (
         <>
             {record ? (

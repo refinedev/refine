@@ -14,7 +14,6 @@ const ProductOptions: React.FC<ProductOptionsProps> = ({
     selectedOptions,
     setSelectedOptions,
 }) => {
-    console.log("ProductOptions", options);
     return (
         <div>
             {options.map((opt: any) => (
@@ -31,14 +30,8 @@ const ProductOptions: React.FC<ProductOptionsProps> = ({
                                     ) === index,
                             )
                             .map((v: any, i: number) => {
-                                console.log(`SELECTED`, selectedOptions);
                                 const active =
                                     selectedOptions[opt.title.toLowerCase()];
-                                console.log(`v`, v, "active", active);
-                                console.log(
-                                    `oplowercase`,
-                                    opt.title.toLowerCase(),
-                                );
                                 return (
                                     <Swatch
                                         key={`${opt.id}-${i}`}
