@@ -119,10 +119,27 @@ export const useMenu: () => useMenuReturnType = () => {
     );
 
     const values = React.useMemo(() => {
+        const filterMenuItemsByListView = (menus: ITreeMenu[]): ITreeMenu[] => {
+            return menus.reduce((menuItem: ITreeMenu[], obj) => {
+                if (obj.children.length > 0)
+                    return [
+                        ...menuItem,
+                        {
+                            ...obj,
+                            children: filterMenuItemsByListView(obj.children),
+                        },
+                    ];
+                else if (typeof obj.list !== "undefined")
+                    return [...menuItem, obj];
+
+                return menuItem;
+            }, []);
+        };
+
         return {
             defaultOpenKeys,
             selectedKey,
-            menuItems,
+            menuItems: filterMenuItemsByListView(menuItems),
         };
     }, [defaultOpenKeys, selectedKey, menuItems]);
 
