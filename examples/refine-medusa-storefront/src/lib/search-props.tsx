@@ -1,6 +1,6 @@
 import type { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 
-import commerce from "@lib/api/commerce";
+import commerce from "@lib/api";
 
 export async function getSearchStaticProps({
     preview,
