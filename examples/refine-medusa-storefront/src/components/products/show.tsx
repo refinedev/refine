@@ -1,7 +1,7 @@
 import { useList, useOne, useShow } from "@pankod/refine-core";
 import { ProductView } from "..";
 
-export const PostShow: React.FC = () => {
+export const ProductShow: React.FC = () => {
     const { queryResult } = useShow();
     const { data } = queryResult;
     const record = data?.data;
@@ -16,8 +16,8 @@ export const PostShow: React.FC = () => {
         <>
             {record ? (
                 <ProductView
-                    product={record}
-                    relatedProducts={relatedProducts?.data ?? []}
+                    product={record as any}
+                    relatedProducts={relatedProducts?.data ?? ([] as any)}
                 />
             ) : null}
         </>

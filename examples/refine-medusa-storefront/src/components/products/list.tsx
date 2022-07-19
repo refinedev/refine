@@ -7,7 +7,7 @@ import {
 } from "@pankod/refine-core";
 import { IPost, ICategory } from "src/interfaces";
 
-export const PostList: React.FC<
+export const ProductList: React.FC<
     IResourceComponentsProps<GetListResponse<IPost>>
 > = ({ initialData }) => {
     const t = useTranslate();
