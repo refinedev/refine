@@ -104,6 +104,7 @@ const App: React.FC = () => {
                 Layout={Layout}
                 LoginPage={LoginPage}
                 catchAll={<ErrorComponent />}
+                disableTelemetry={true}
             />
         </NhostAuthProvider>
     );

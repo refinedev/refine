@@ -39,6 +39,8 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={gqlDataProvider}
+            liveProvider={liveProvider(gqlWebSocketClient)}
+            liveMode="auto"
             resources={[
                 {
                     name: "posts",
@@ -57,8 +59,7 @@ const App: React.FC = () => {
             notificationProvider={notificationProvider}
             Layout={Layout}
             catchAll={<ErrorComponent />}
-            liveProvider={liveProvider(gqlWebSocketClient)}
-            liveMode="auto"
+            disableTelemetry={true}
         />
     );
 };
