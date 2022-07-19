@@ -11,7 +11,9 @@ const renderWrapper = (
 ) => {
     const Wrapper = TestWrapper(wrapperProps);
 
-    const WrapperWith: React.FC = ({ children }) => (
+    const WrapperWith: React.FC<{ children: React.ReactNode }> = ({
+        children,
+    }) => (
         <Wrapper>
             <Routes>
                 <Route

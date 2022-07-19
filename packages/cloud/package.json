@@ -28,6 +28,10 @@
         "react-dom": "^17.0.0 || ^18.0.0"
     },
     "devDependencies": {
+        "@testing-library/jest-dom": "^5.16.4",
+        "@testing-library/react": "^13.1.1",
+        "@testing-library/react-hooks": "^8.0.0",
+        "@testing-library/user-event": "^14.1.1",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@types/lodash": "^4.14.171",
         "jest": "^27.5.1",

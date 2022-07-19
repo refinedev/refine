@@ -45,7 +45,7 @@ export interface ShowProps {
     cardActionsProps?: CardActionsProps;
     breadcrumb?: React.ReactNode;
     dataProviderName?: string;
-    children: React.ReactNode;
+    children?: React.ReactNode;
 }
 
 /**

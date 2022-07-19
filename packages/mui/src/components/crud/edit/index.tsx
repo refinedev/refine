@@ -52,7 +52,7 @@ export interface EditProps {
     cardActionsProps?: CardActionsProps;
     breadcrumb?: React.ReactNode;
     dataProviderName?: string;
-    children: React.ReactNode;
+    children?: React.ReactNode;
 }
 
 /**
