@@ -1,31 +1,11 @@
-import axios, { AxiosInstance } from "axios";
 import { stringify } from "query-string";
 import {
     DataProvider,
-    HttpError,
     CrudOperators,
     CrudFilters,
     CrudSorting,
 } from "@pankod/refine-core";
 import Medusa from "@medusajs/medusa-js";
-
-const axiosInstance = axios.create();
-
-// axiosInstance.interceptors.response.use(
-//     (response) => {
-//         return response;
-//     },
-//     (error) => {
-//         const customError: HttpError = {
-//             ...error,
-//             message: error.response?.data?.message,
-//             statusCode: error.response?.status,
-//         };
-
-//         return Promise.reject(customError);
-//     },
-// );
-
 const mapOperator = (operator: CrudOperators): string => {
     switch (operator) {
         case "ne":
@@ -85,8 +65,34 @@ const JsonServer = (apiUrl: string): DataProvider => {
         baseUrl: apiUrl,
         maxRetries: 0,
     });
+
+    // fake client
+    const httpClient = {
+        get: async (url: string) => {
+            const data = null;
+            return data;
+        },
+        post: async (url: string, data: any) => {
+            return data;
+        },
+        put: async (url: string, data: any) => {
+            return data;
+        },
+        delete: async (url: string, variables?: any) => {
+            const data: any = [];
+            return data;
+        },
+        patch: async (url: string, data: any) => {
+            return data;
+        },
+        defaults: {
+            headers: {},
+        },
+    };
+
     return {
         getList: async ({
+            resource,
             hasPagination = true,
             pagination = { current: 1, pageSize: 10 },
             metaData,
@@ -114,23 +120,41 @@ const JsonServer = (apiUrl: string): DataProvider => {
                     : {}),
             };
 
-            const { products, count } = await medusaClient.products
-                .list(query)
-                .then((res) => res)
-                .catch((error) => {
-                    throw new Error(error);
-                });
+            let resourceList: any[] = [];
+            let count = 0;
+
+            switch (resource) {
+                case `products`:
+                    const response = await await medusaClient.products
+                        .list(query)
+                        .then((res) => res)
+                        .catch((error) => {
+                            throw new Error(error);
+                        });
+                    resourceList = response.products;
+                    count = response.count;
+                    break;
+                case `collections`:
+                    resourceList = await (
+                        await medusaClient.collections
+                            .list(query)
+                            .then((res) => res)
+                            .catch((error) => {
+                                throw new Error(error);
+                            })
+                    ).collections;
+                default:
+                    break;
+            }
 
             return {
-                data: (products as any) ?? [],
-                total: count ?? 0,
+                data: resourceList,
+                total: count,
             };
         },
 
         getMany: async ({ resource, ids }) => {
-            const { data } = await httpClient.get(
-                `${apiUrl}/${resource}?${stringify({ id: ids })}`,
-            );
+            const data: any[] = [];
 
             return {
                 data,
@@ -186,8 +210,6 @@ const JsonServer = (apiUrl: string): DataProvider => {
         },
 
         getOne: async ({ resource, id }) => {
-            const url = `${apiUrl}/store/${resource}/${id}`;
-
             const { products } = await medusaClient.products.list({
                 id: id.toString(),
             });
