@@ -46,7 +46,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
                     })
                 }
             >
-                <ChevronUpIcon className="text-primary h-full w-4" />
+                <ChevronUpIcon className="text-primary h-4 w-4" />
             </button>
         </div>
     );
