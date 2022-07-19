@@ -6,7 +6,7 @@ import {
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
-import { newEnforcer } from "casbin.js";
+import { newEnforcer } from "casbin";
 import "@pankod/refine-antd/dist/styles.min.css";
 
 import { model, adapter } from "accessControl";
