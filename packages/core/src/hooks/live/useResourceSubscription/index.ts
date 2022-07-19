@@ -2,10 +2,14 @@ import { useContext, useEffect } from "react";
 import { useQueryClient } from "react-query";
 import {
     BaseKey,
+    CrudFilters,
+    CrudSorting,
     ILiveContext,
     IRefineContext,
     LiveEvent,
     LiveModeProps,
+    MetaDataQuery,
+    Pagination,
 } from "../../../interfaces";
 import { LiveContext } from "@contexts/live";
 import { RefineContext } from "@contexts/refine";
@@ -15,6 +19,13 @@ export type UseResourceSubscriptionProps = {
     channel: string;
     params?: {
         ids?: BaseKey[];
+        id?: BaseKey;
+        metaData?: MetaDataQuery;
+        pagination?: Pagination;
+        hasPagination?: boolean;
+        sort?: CrudSorting;
+        filters?: CrudFilters;
+        subscriptionType: "useList" | "useOne" | "useMany";
         [key: string]: any;
     };
     types: LiveEvent["type"][];
@@ -52,7 +63,10 @@ export const useResourceSubscription = ({
         if (liveMode && liveMode !== "off" && enabled) {
             subscription = liveDataContext?.subscribe({
                 channel,
-                params,
+                params: {
+                    resource,
+                    ...params,
+                },
                 types,
                 callback: (event) => {
                     if (liveMode === "auto") {

@@ -16,7 +16,6 @@ import {
     useResourceSubscription,
     useTranslate,
     useDataProvider,
-    useLog,
 } from "@hooks";
 import { queryKeys } from "@definitions/helpers";
 
@@ -80,7 +79,15 @@ export const useList = <
     useResourceSubscription({
         resource,
         types: ["*"],
-        params: liveParams,
+        params: {
+            metaData,
+            pagination: config?.pagination,
+            hasPagination: config?.hasPagination,
+            sort: config?.sort,
+            filters: config?.filters,
+            subscriptionType: "useList",
+            ...liveParams,
+        },
         channel: `resources/${resource}`,
         enabled: isEnabled,
         liveMode,
