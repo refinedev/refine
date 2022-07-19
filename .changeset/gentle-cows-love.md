@@ -53,14 +53,3 @@ export const OffLayoutArea: React.FC = () => {
     return <RefineKbar />;
 };
 ```
-
-Also, we have a `useRefineKbar` hook to provide the command palette.
-
-```tsx
-import { useRefineKbar } from "@pankod/refine-kbar";
-
-export const OffLayoutArea: React.FC = () => {
-    useRefineKbar();
-    return <div>OffLayoutArea</div>;
-};
-```
