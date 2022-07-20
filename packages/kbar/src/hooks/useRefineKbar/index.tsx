@@ -72,17 +72,19 @@ export const useRefineKbar = (): void => {
     }, [actions]);
 
     const moveActionToFirst = (): IResourceItem[] => {
-        const fromIndex = resources?.findIndex(
+        const orderedResources = [...resources];
+        const fromIndex = orderedResources?.findIndex(
             (resource) => resource.name === resourceFromRoute,
         );
 
         if (fromIndex > 0) {
-            const element = resources[fromIndex];
-            resources.splice(fromIndex, 1);
-            resources.splice(0, 0, element);
+            const element = orderedResources[fromIndex];
+            orderedResources.splice(fromIndex, 1);
+            orderedResources.splice(0, 0, element);
         }
+        console.log(orderedResources);
 
-        return resources;
+        return orderedResources;
     };
 
     const createActionWithResource = async (resource: IResourceItem) => {
@@ -91,6 +93,9 @@ export const useRefineKbar = (): void => {
             label,
             list,
             create,
+            canCreate,
+            canEdit,
+            canShow,
             icon,
             show,
             canDelete,
@@ -107,21 +112,29 @@ export const useRefineKbar = (): void => {
             ((resourceFromRoute !== undefined && resourceFromRoute !== name) ||
                 (actionFromRoute !== undefined && resourceFromRoute === name))
         ) {
-            tempActions.push(
-                createAction({
-                    name: t(
-                        `actions.list`,
-                        capitalize(RefineKbarActionType.List),
-                    ),
-                    section,
-                    icon,
-                    perform: () => {
-                        goToList(route!);
-                    },
-                }),
-            );
+            const { can: canList } = (await can?.({
+                resource: name,
+                action: RefineKbarActionType.Show,
+                params: { id: idFromRoute },
+            })) || { can: true };
+            if (canList) {
+                tempActions.push(
+                    createAction({
+                        name: t(
+                            `actions.list`,
+                            capitalize(RefineKbarActionType.List),
+                        ),
+                        section,
+                        icon,
+                        perform: () => {
+                            goToList(route!);
+                        },
+                    }),
+                );
+            }
         }
         if (
+            canCreate &&
             create &&
             (RefineKbarActionType.Create !== actionFromRoute ||
                 resourceFromRoute !== name)
@@ -150,7 +163,11 @@ export const useRefineKbar = (): void => {
         }
 
         if (resourceFromRoute === name && idFromRoute) {
-            if (show && RefineKbarActionType.Show !== actionFromRoute) {
+            if (
+                canShow &&
+                show &&
+                RefineKbarActionType.Show !== actionFromRoute
+            ) {
                 const { can: canShow } = (await can?.({
                     resource: name,
                     action: RefineKbarActionType.Show,
@@ -173,7 +190,11 @@ export const useRefineKbar = (): void => {
                     );
                 }
             }
-            if (edit && RefineKbarActionType.Edit !== actionFromRoute) {
+            if (
+                canEdit &&
+                edit &&
+                RefineKbarActionType.Edit !== actionFromRoute
+            ) {
                 const { can: canEdit } = (await can?.({
                     resource: name,
                     action: RefineKbarActionType.Show,
@@ -196,43 +217,50 @@ export const useRefineKbar = (): void => {
                 }
             }
             if (canDelete) {
-                tempActions.push(
-                    {
-                        id: "delete",
-                        name: t(
-                            `actions.delete`,
-                            capitalize(RefineKbarActionType.Delete),
-                        ),
-                        section,
-                        icon,
-                    },
-                    createAction({
-                        name: t(
-                            `buttons.delete`,
-                            capitalize(RefineKbarActionType.Delete),
-                        ),
-                        section: t(`buttons.confirm`, "Are you sure?"),
-                        parent: "delete",
-                        perform: () => {
-                            mutate(
-                                {
-                                    resource: resourceName,
-                                    id: idFromRoute,
-                                },
-                                {
-                                    onSuccess: () => {
-                                        goToList(route!);
-                                    },
-                                },
-                            );
+                const { can: canDelete } = (await can?.({
+                    resource: name,
+                    action: RefineKbarActionType.Show,
+                    params: { id: idFromRoute },
+                })) || { can: true };
+                if (canDelete) {
+                    tempActions.push(
+                        {
+                            id: "delete",
+                            name: t(
+                                `actions.delete`,
+                                capitalize(RefineKbarActionType.Delete),
+                            ),
+                            section,
+                            icon,
                         },
-                    }),
-                    createAction({
-                        name: t(`buttons.cancel`, "Cancel"),
-                        parent: "delete",
-                        perform: () => null,
-                    }),
-                );
+                        createAction({
+                            name: t(
+                                `buttons.delete`,
+                                capitalize(RefineKbarActionType.Delete),
+                            ),
+                            section: t(`buttons.confirm`, "Are you sure?"),
+                            parent: "delete",
+                            perform: () => {
+                                mutate(
+                                    {
+                                        resource: resourceName,
+                                        id: idFromRoute,
+                                    },
+                                    {
+                                        onSuccess: () => {
+                                            goToList(route!);
+                                        },
+                                    },
+                                );
+                            },
+                        }),
+                        createAction({
+                            name: t(`buttons.cancel`, "Cancel"),
+                            parent: "delete",
+                            perform: () => null,
+                        }),
+                    );
+                }
             }
         }
         return tempActions;
