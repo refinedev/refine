@@ -119,7 +119,7 @@ We prefer to use patterns like  "In this tutorial you will install ..."  instead
 
 ### Copyright
 
-Quoting someone else is a great way to add originality and insights into your work. Cite them, provide the link so readers can check out what you were referring too as well as how it related back in some way
+Quoting someone else is a great way to add originality and insights into your work. Cite them, and provide the link so readers can check out what you were referring to as well as how it related back in some way
 
 At Refine, we take plagiarism seriously. All of our writers are expected to produce original content, and we run plagiarism checks on every article that we publish. If the plagiarism rate is above a certain level, we will ask the writer to rewrite the article.
 
