@@ -61,11 +61,6 @@ export const useRefineKbar = (): void => {
         };
 
         preaparedActions().then((actions) => {
-            console.log(
-                "actions",
-                actions.flatMap((action) => action),
-            );
-
             return setActions(actions.flatMap((action) => action));
         });
     }, [resources, idFromRoute, resourceFromRoute, actionFromRoute]);
