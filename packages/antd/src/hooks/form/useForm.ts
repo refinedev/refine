@@ -144,7 +144,8 @@ export const useForm = <
         form: formSF.form,
         formProps: {
             ...formSF.formProps,
-            onFinish,
+            onFinish: (values: TVariables) =>
+                onFinish?.(values).catch((error) => error),
             onKeyUp,
             onValuesChange,
             initialValues: queryResult?.data?.data,
