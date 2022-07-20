@@ -20,39 +20,7 @@ export const RefineKbarProvider: React.FunctionComponent<IKBarProviderProps> =
         );
     };
 
-export {
-    ActionGroup,
-    Action,
-    ActionId,
-    ActionImpl,
-    ActionInterface,
-    ActionSection,
-    ActionStore,
-    ActionTree,
-    History,
-    HistoryItem,
-    IKBarContext,
-    KBAR_LISTBOX,
-    KBarAnimator,
-    KBarContext,
-    KBarOptions,
-    KBarPortal,
-    KBarPositioner,
-    KBarProvider,
-    KBarProviderProps,
-    KBarQuery,
-    KBarResults,
-    KBarSearch,
-    KBarState,
-    NO_GROUP,
-    Priority,
-    VisualState,
-    createAction,
-    getListboxItemId,
-    useKBar,
-    useMatches,
-    useRegisterActions,
-} from "kbar";
+export * from "kbar";
 
-export { useRefineKbarActions, useRefineKbar } from "@hooks";
+export { useRefineKbar } from "@hooks";
 export { RefineKbar } from "@components";

@@ -82,7 +82,6 @@ export const useRefineKbar = (): void => {
             orderedResources.splice(fromIndex, 1);
             orderedResources.splice(0, 0, element);
         }
-        console.log(orderedResources);
 
         return orderedResources;
     };
