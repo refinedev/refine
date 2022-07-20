@@ -30,6 +30,7 @@ export const CommandBar: React.FC = () => {
         transition: "background 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s",
         backdropFilter: "saturate(180%) blur(1px)",
         background: "rgba(0, 0, 0, 0.1)",
+        zIndex: "9999",
     };
 
     return (
