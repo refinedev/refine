@@ -1,130 +1,106 @@
+/* eslint-disable react/jsx-key */
 import React from "react";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import {
+    useTable,
+    Column,
+    usePagination,
+    useSortBy,
+    useFilters,
+} from "@pankod/refine-react-table";
 
 import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
+    const columns: Array<Column> = React.useMemo(
         () => [
             {
                 id: "id",
-                header: "ID",
-                accessorKey: "id",
-                footer: (props) => props.column.id,
+                Header: "ID",
+                accessor: "id",
             },
             {
                 id: "title",
-                header: "Title",
-                accessorKey: "title",
-                footer: (props) => props.column.id,
-                meta: {
-                    filterOperator: "contains",
-                },
+                Header: "Title",
+                accessor: "title",
+                filter: "contains",
             },
             {
                 id: "status",
-                header: "Status",
-                accessorKey: "status",
-                footer: (props) => props.column.id,
-                meta: {
-                    filterOperator: "contains",
-                },
+                Header: "Status",
+                accessor: "status",
             },
             {
                 id: "createdAt",
-                header: "CreatedAt",
-                accessorKey: "createdAt",
-                footer: (props) => props.column.id,
-                enableColumnFilter: false,
+                Header: "CreatedAt",
+                accessor: "createdAt",
             },
         ],
         [],
     );
 
     const {
-        getHeaderGroups,
-        getRowModel,
-        getState,
-        setPageIndex,
-        getCanPreviousPage,
-        getPageCount,
-        getCanNextPage,
+        getTableProps,
+        getTableBodyProps,
+        headerGroups,
+        prepareRow,
+        page,
+        canPreviousPage,
+        canNextPage,
+        pageOptions,
+        pageCount,
+        gotoPage,
         nextPage,
         previousPage,
         setPageSize,
-        getPrePaginationRowModel,
-    } = useTable({
-        columns,
-    });
+        setFilter,
+        state: { pageIndex, pageSize, filters },
+    } = useTable<IPost>({ columns }, useFilters, useSortBy, usePagination);
 
     return (
-        <div className="p-2">
-            <table>
+        <>
+            <div>
+                <label htmlFor="title">Title: </label>
+                <input
+                    id="title"
+                    type="text"
+                    value={
+                        filters.find((filter) => filter.id === "title")?.value
+                    }
+                    onChange={(event) => setFilter("title", event.target.value)}
+                />
+            </div>
+            <table {...getTableProps()}>
                 <thead>
-                    {getHeaderGroups().map((headerGroup) => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map((header) => {
-                                return (
-                                    <th
-                                        key={header.id}
-                                        colSpan={header.colSpan}
-                                    >
-                                        {header.isPlaceholder ? null : (
-                                            <>
-                                                <div
-                                                    {...{
-                                                        className:
-                                                            header.column.getCanSort()
-                                                                ? "cursor-pointer select-none"
-                                                                : "",
-                                                        onClick:
-                                                            header.column.getToggleSortingHandler(),
-                                                    }}
-                                                >
-                                                    {flexRender(
-                                                        header.column.columnDef
-                                                            .header,
-                                                        header.getContext(),
-                                                    )}
-                                                    {{
-                                                        asc: " 🔼",
-                                                        desc: " 🔽",
-                                                    }[
-                                                        header.column.getIsSorted() as string
-                                                    ] ?? null}
-                                                </div>
-                                                <div>
-                                                    <input
-                                                        value={
-                                                            (header.column.getFilterValue() as string) ??
-                                                            ""
-                                                        }
-                                                        onChange={(e) =>
-                                                            header.column.setFilterValue(
-                                                                e.target.value,
-                                                            )
-                                                        }
-                                                    />
-                                                </div>
-                                            </>
-                                        )}
-                                    </th>
-                                );
-                            })}
+                    {headerGroups.map((headerGroup) => (
+                        <tr {...headerGroup.getHeaderGroupProps()}>
+                            {headerGroup.headers.map((column) => (
+                                <th
+                                    {...column.getHeaderProps(
+                                        column.getSortByToggleProps(),
+                                    )}
+                                >
+                                    {column.render("Header")}
+                                    <span>
+                                        {column.isSorted
+                                            ? column.isSortedDesc
+                                                ? " 🔽"
+                                                : " 🔼"
+                                            : ""}
+                                    </span>
+                                </th>
+                            ))}
                         </tr>
                     ))}
                 </thead>
-                <tbody>
-                    {getRowModel().rows.map((row) => {
+                <tbody {...getTableBodyProps()}>
+                    {page.map((row, i) => {
+                        prepareRow(row);
                         return (
-                            <tr key={row.id}>
-                                {row.getVisibleCells().map((cell) => {
+                            <tr {...row.getRowProps()}>
+                                {row.cells.map((cell) => {
                                     return (
-                                        <td key={cell.id}>
-                                            {flexRender(
-                                                cell.column.columnDef.cell,
-                                                cell.getContext(),
-                                            )}
+                                        <td {...cell.getCellProps()}>
+                                            {cell.render("Cell")}
                                         </td>
                                     );
                                 })}
@@ -133,59 +109,48 @@ export const PostList: React.FC = () => {
                     })}
                 </tbody>
             </table>
-            <div className="h-2" />
-            <div className="flex items-center gap-2">
-                <button
-                    className="border rounded p-1"
-                    onClick={() => setPageIndex(0)}
-                    disabled={!getCanPreviousPage()}
-                >
+
+            <div className="pagination">
+                <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
                     {"<<"}
                 </button>
                 <button
-                    className="border rounded p-1"
                     onClick={() => previousPage()}
-                    disabled={!getCanPreviousPage()}
+                    disabled={!canPreviousPage}
                 >
                     {"<"}
                 </button>
-                <button
-                    className="border rounded p-1"
-                    onClick={() => nextPage()}
-                    disabled={!getCanNextPage()}
-                >
+                <button onClick={() => nextPage()} disabled={!canNextPage}>
                     {">"}
                 </button>
                 <button
-                    className="border rounded p-1"
-                    onClick={() => setPageIndex(getPageCount() - 1)}
-                    disabled={!getCanNextPage()}
+                    onClick={() => gotoPage(pageCount - 1)}
+                    disabled={!canNextPage}
                 >
                     {">>"}
                 </button>
-                <span className="flex items-center gap-1">
-                    <div>Page</div>
+                <span>
+                    Page
                     <strong>
-                        {getState().pagination.pageIndex + 1} of{" "}
-                        {getPageCount()}
+                        {pageIndex + 1} of {pageOptions.length}
                     </strong>
                 </span>
-                <span className="flex items-center gap-1">
+                <span>
                     | Go to page:
                     <input
                         type="number"
-                        defaultValue={getState().pagination.pageIndex + 1}
+                        defaultValue={pageIndex + 1}
                         onChange={(e) => {
                             const page = e.target.value
                                 ? Number(e.target.value) - 1
                                 : 0;
-                            setPageIndex(page);
+                            gotoPage(page);
                         }}
-                        className="border p-1 rounded w-16"
+                        style={{ width: "100px" }}
                     />
-                </span>
+                </span>{" "}
                 <select
-                    value={getState().pagination.pageSize}
+                    value={pageSize}
                     onChange={(e) => {
                         setPageSize(Number(e.target.value));
                     }}
@@ -197,8 +162,6 @@ export const PostList: React.FC = () => {
                     ))}
                 </select>
             </div>
-            <div>{getPrePaginationRowModel().rows.length} Rows</div>
-            <pre>{JSON.stringify(getState(), null, 2)}</pre>
-        </div>
+        </>
     );
 };
