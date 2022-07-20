@@ -286,7 +286,7 @@ export const LoginPage = () => {
                                     fullWidth
                                     value={username}
                                     onChange={(
-                                        e: React.ChangeEvent<HTMLInputElement>
+                                        e: React.ChangeEvent<HTMLInputElement>,
                                     ) => {
                                         setUsername(e.target.value);
                                     }}
@@ -299,7 +299,7 @@ export const LoginPage = () => {
                                 type="password"
                                 value={password}
                                 onChange={(
-                                    e: React.ChangeEvent<HTMLInputElement>
+                                    e: React.ChangeEvent<HTMLInputElement>,
                                 ) => {
                                     setPassword(e.target.value);
                                 }}
@@ -336,6 +336,16 @@ We used React95 components to construct our Login page design. Then, using the *
 ## Refine Post Page
 
 After our login process, we'll get the posts from our Supabase Database and display them in the table. We will use React95 components for the UI portion of our table, as well as refine-react-table package to handle pagination, sorting, and filtering. You can use all the features of [React Table](https://react-table.tanstack.com/) with the `refine-react-table` adapter. On this page, we will use this adapter of **refine** to manage the table.
+
+:::caution
+
+This documentation **isn't** for the latest version of `@pankod/refine-react-table`. The package updated with accordingly to [Tanstack Tabe v8](https://tanstack.com/table/v8) version. To follow the documentation, you have to install it with following command:
+
+```bash
+npm install @pankod/refine-react-table@3
+```
+
+:::
 
 In this step, we'll show how to use the refine-react-table package to create a data table. We will begin by examining this page in two parts. In the first step, we'll utilize our refine-react-table package and React95 UI components to only use our data. Then, in the following stage, we'll arrange the sorting, pagination processes and our UI part. Let's start!
 
