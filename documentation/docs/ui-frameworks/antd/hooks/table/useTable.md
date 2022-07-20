@@ -395,6 +395,7 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 | initialPageSize                                              | Number of records shown per initial number of pages                                                                                                                | `number`                                                                       | `10`                                                                                 |
 | initialSorter                                                | Initial sorting                                                                                                                                                    | [`CrudSorting`][crudsorting]                                                   |
 | initialFilter                                                | Initial filtering                                                                                                                                                  | [`CrudFilters`][crudfilters]                                                   |
+| defaultSetFilterBehavior                                     | Default behavior for `setFilters` and its internal use in this hook                                                                                                | `"merge"` \| `"replace"`                                                       | `merge`                                                                              |
 | syncWithLocation                                             | Sortings, filters, page index and records shown per page are tracked by browser history                                                                            | `boolean`                                                                      | Value set in [Refine][refine swl]. If a custom resource is given, it will be `false` |
 | onSearch                                                     | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][table search] to learn how to create a search form                  | `Function`                                                                     |
 | queryOptions                                                 | `react-query`'s `useQuery` options                                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                    |
@@ -413,13 +414,15 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 
 ### Return values
 
-| Property         | Description                              | Type                                                                                              |
-| ---------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| searchFormProps  | Ant Design [`<Form>`][form] props        | [`FormProps<TSearchVariables>`][form]                                                             |
-| tableProps       | Ant Design [`<Table>`][table] props      | [`TableProps<TData>`][table]                                                                      |
-| tableQueryResult | Result of the `react-query`'s `useQuery` | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery] |
-| sorter           | Current sorting state                    | [`CrudSorting`][crudsorting]                                                                      |
-| filters          | Current filters state                    | [`CrudFilters`][crudfilters]                                                                      |
+| Property         | Description                                 | Type                                                                                                                                                    |
+| ---------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| searchFormProps  | Ant Design [`<Form>`][form] props           | [`FormProps<TSearchVariables>`][form]                                                                                                                   |
+| tableProps       | Ant Design [`<Table>`][table] props         | [`TableProps<TData>`][table]                                                                                                                            |
+| tableQueryResult | Result of the `react-query`'s `useQuery`    | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery]                                                       |
+| sorter           | Current sorting state                       | [`CrudSorting`][crudsorting]                                                                                                                            |
+| filters          | Current filters state                       | [`CrudFilters`][crudfilters]                                                                                                                            |
+| setFilters       | A function that accepts a new filter state  | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` <br/> - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
+| setSorter        | A function that accepts a new sorter state. | `(sorter: CrudSorting) => void`                                                                                                                         |
 
 <br />
 
