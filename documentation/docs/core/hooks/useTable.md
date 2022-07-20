@@ -133,6 +133,10 @@ Also you can add initial filter state by passing the `initialFilter` prop and pe
 
 You can also call `setFilters` with a setter function.
 
+:::info
+If you are using `merge` behavior and want to remove one of the filters; you should set the `value` to `undefined` or `null`. For `or` filters, you should set the `value` to an empty array `[]` to remove the filter.
+:::
+
 ```tsx
 import { useTable } from "@pankod/core";
 
