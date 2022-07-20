@@ -53,10 +53,11 @@ export const compareFilters = (
     left: CrudFilter,
     right: CrudFilter,
 ): boolean => {
-    if (left.operator !== "or" && right.operator !== "or") {
-        return left.field == right.field && left.operator == right.operator;
-    }
-    return false;
+    return (
+        ("field" in left ? left.field : undefined) ==
+            ("field" in right ? right.field : undefined) &&
+        left.operator == right.operator
+    );
 };
 
 export const compareSorters = (left: CrudSort, right: CrudSort): boolean =>
@@ -73,7 +74,11 @@ export const unionFilters = (
 ): CrudFilters =>
     unionWith(permanentFilter, newFilters, prevFilters, compareFilters).filter(
         (crudFilter) =>
-            crudFilter.value !== undefined && crudFilter.value !== null,
+            crudFilter.value !== undefined &&
+            crudFilter.value !== null &&
+            (crudFilter.operator !== "or" ||
+                (crudFilter.operator === "or" &&
+                    crudFilter.value.length !== 0)),
     );
 
 export const unionSorters = (

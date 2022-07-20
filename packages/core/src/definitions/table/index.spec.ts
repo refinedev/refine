@@ -285,6 +285,202 @@ describe("definitions/table", () => {
         ).toBe(false);
     });
 
+    it("compareFilters return correct result when `or` is used", () => {
+        expect(
+            compareFilters(
+                {
+                    operator: "or",
+                    value: [
+                        {
+                            field: "name",
+                            operator: "eq",
+                            value: "test",
+                        },
+                    ],
+                },
+                {
+                    operator: "or",
+                    value: [
+                        {
+                            field: "created_at",
+                            operator: "gte",
+                            value: "2022-01-01",
+                        },
+                    ],
+                },
+            ),
+        ).toBe(true);
+
+        expect(
+            compareFilters(
+                {
+                    operator: "or",
+                    value: [
+                        {
+                            field: "name",
+                            operator: "eq",
+                            value: "test",
+                        },
+                    ],
+                },
+                {
+                    field: "created_at",
+                    operator: "gte",
+                    value: "2022-01-01",
+                },
+            ),
+        ).toBe(false);
+    });
+
+    it("unionFilters should override `or` filter", () => {
+        const union = unionFilters(
+            // permanent filters
+            [],
+            // new filters
+            [
+                {
+                    field: "other-field",
+                    operator: "in",
+                    value: "crud",
+                },
+                {
+                    operator: "or",
+                    value: [
+                        {
+                            field: "created_at",
+                            operator: "contains",
+                            value: "2022",
+                        },
+                    ],
+                },
+            ],
+            // prev filters
+            [
+                {
+                    operator: "or",
+                    value: [
+                        {
+                            field: "name",
+                            operator: "eq",
+                            value: "test",
+                        },
+                    ],
+                },
+            ],
+        );
+
+        // does not include previous `or`
+        expect(union).not.toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({
+                    operator: "or",
+                    value: expect.arrayContaining([
+                        expect.objectContaining({
+                            field: "name",
+                            operator: "eq",
+                            value: "test",
+                        }),
+                    ]),
+                }),
+            ]),
+        );
+
+        // includes new `or` and new filters
+        expect(union).toMatchObject([
+            {
+                field: "other-field",
+                operator: "in",
+                value: "crud",
+            },
+            {
+                operator: "or",
+                value: [
+                    {
+                        field: "created_at",
+                        operator: "contains",
+                        value: "2022",
+                    },
+                ],
+            },
+        ]);
+    });
+
+    it("unionFilters should remove `or` filter if value is empty array", () => {
+        const union = unionFilters(
+            // permanent filters
+            [],
+            // new filters
+            [
+                {
+                    field: "other-field",
+                    operator: "in",
+                    value: "crud",
+                },
+                {
+                    operator: "or",
+                    value: [],
+                },
+            ],
+            // prev filters
+            [
+                {
+                    operator: "or",
+                    value: [
+                        {
+                            field: "name",
+                            operator: "eq",
+                            value: "test",
+                        },
+                    ],
+                },
+            ],
+        );
+
+        expect(union).not.toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({
+                    operator: "or",
+                }),
+            ]),
+        );
+    });
+
+    it("unionFilters should keep `or` filter if it's untouched", () => {
+        const union = unionFilters(
+            // permanent filters
+            [],
+            // new filters
+            [
+                {
+                    field: "other-field",
+                    operator: "in",
+                    value: "crud",
+                },
+            ],
+            // prev filters
+            [
+                {
+                    operator: "or",
+                    value: [
+                        {
+                            field: "name",
+                            operator: "eq",
+                            value: "test",
+                        },
+                    ],
+                },
+            ],
+        );
+
+        expect(union).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({
+                    operator: "or",
+                }),
+            ]),
+        );
+    });
+
     it("unionSorters should override same sorter", () => {
         expect(
             unionSorters(
