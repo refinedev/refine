@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from "react";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
