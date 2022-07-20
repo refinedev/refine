@@ -17,15 +17,19 @@ export const PostList: React.FC = () => {
                 id: "title",
                 header: "Title",
                 accessorKey: "title",
-                filterOperator: "contains",
                 footer: (props) => props.column.id,
+                meta: {
+                    filterOperator: "contains",
+                },
             },
             {
                 id: "status",
                 header: "Status",
                 accessorKey: "status",
                 footer: (props) => props.column.id,
-                filterOperator: "contains",
+                meta: {
+                    filterOperator: "contains",
+                },
             },
             {
                 id: "createdAt",

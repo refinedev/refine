@@ -157,7 +157,7 @@ export function useTable<
 
         columnFilters?.map((filter) => {
             const operator = (columns.find((c) => c.id === filter.id) as any)
-                ?.filterOperator as Exclude<CrudOperators, "or">;
+                ?.meta?.filterOperator as Exclude<CrudOperators, "or">;
 
             crudFilters.push({
                 field: filter.id,
