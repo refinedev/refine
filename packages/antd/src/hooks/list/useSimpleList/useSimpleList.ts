@@ -10,6 +10,7 @@ import {
     LiveModeProps,
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
+    useTableReturnType,
 } from "@pankod/refine-core";
 import { useLiveMode } from "@pankod/refine-core";
 
@@ -30,6 +31,7 @@ export type useSimpleListReturnType<
     queryResult: QueryObserverResult<GetListResponse<TData>>;
     searchFormProps: FormProps<TSearchVariables>;
     filters: CrudFilters;
+    setFilters: useTableReturnType<TData>["setFilters"];
 };
 
 /**
@@ -55,6 +57,7 @@ export const useSimpleList = <
     permanentSorter,
     initialFilter,
     permanentFilter,
+    defaultSetFilterBehavior,
     onSearch,
     queryOptions,
     syncWithLocation: syncWithLocationProp,
@@ -85,6 +88,7 @@ export const useSimpleList = <
         permanentSorter,
         initialFilter,
         permanentFilter,
+        defaultSetFilterBehavior,
         initialCurrent: listProps.pagination
             ? listProps.pagination.current
             : initialCurrent,
@@ -140,5 +144,6 @@ export const useSimpleList = <
         },
         queryResult,
         filters,
+        setFilters,
     };
 };
