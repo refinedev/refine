@@ -39,6 +39,7 @@ const App: React.FC = () => {
                             edit: PostEdit,
                         },
                     ]}
+                    disableTelemetry={true}
                 />
             </RefineSnackbarProvider>
         </ColorModeContextProvider>

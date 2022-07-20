@@ -861,6 +861,7 @@ nock("http://localhost:1337", { encodedQueryParams: true })
         "populate%5B0%5D": "category",
         "filters%5Bid%5D%5B%24in%5D%5B0%5D": "30",
         "filters%5Bid%5D%5B%24in%5D%5B1%5D": "29",
+        "pagination%5BpageSize%5D": "2",
     })
     .reply(
         200,

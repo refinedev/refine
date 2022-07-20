@@ -1,12 +1,29 @@
 import { useContext, useEffect } from "react";
 
 import { LiveContext } from "@contexts/live";
-import { ILiveContext, LiveEvent } from "../../../interfaces";
+import {
+    BaseKey,
+    CrudFilters,
+    CrudSorting,
+    ILiveContext,
+    LiveEvent,
+    MetaDataQuery,
+    Pagination,
+} from "../../../interfaces";
 
 export type UseSubscriptionProps = {
     channel: string;
     onLiveEvent: (event: LiveEvent) => void;
     params?: {
+        ids?: BaseKey[];
+        id?: BaseKey;
+        metaData?: MetaDataQuery;
+        pagination?: Pagination;
+        hasPagination?: boolean;
+        sort?: CrudSorting;
+        filters?: CrudFilters;
+        subscriptionType?: "useList" | "useOne" | "useMany";
+        resource?: string;
         [key: string]: any;
     };
     types?: LiveEvent["type"][];
