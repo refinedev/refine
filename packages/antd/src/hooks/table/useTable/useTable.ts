@@ -16,6 +16,7 @@ import {
     LiveModeProps,
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
+    useTableReturnType as useTableCoreReturnType,
 } from "@pankod/refine-core";
 
 import {
@@ -42,6 +43,8 @@ export type useTableReturnType<
     tableQueryResult: QueryObserverResult<GetListResponse<TData>>;
     sorter?: CrudSorting;
     filters?: CrudFilters;
+    setFilters: useTableCoreReturnType<TData>["setFilters"];
+    setSorter: useTableCoreReturnType<TData>["setSorter"];
 };
 
 /**
@@ -236,5 +239,7 @@ export const useTable = <
         tableQueryResult,
         sorter,
         filters,
+        setSorter,
+        setFilters,
     };
 };
