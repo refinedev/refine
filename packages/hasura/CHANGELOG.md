@@ -1,5 +1,11 @@
 # @pankod/refine-hasura
 
+## 4.3.1
+
+### Patch Changes
+
+-   [#2157](https://github.com/pankod/refine/pull/2157) [`6f5ec7c32f`](https://github.com/pankod/refine/commit/6f5ec7c32f0e1f3510774f8d95935fe5288e2c8a) Thanks [@smparekh](https://github.com/smparekh)! - Add support for multiple operators on the same field - #2154
+
 ## 4.3.0
 
 ### Minor Changes
