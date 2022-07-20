@@ -17,8 +17,14 @@ All of React Table's features are supported and you can use all of the React Tab
 Install the [`@pankod/refine-react-table`][refine-react-table] library.
 
 ```bash
-npm i @pankod/refine-react-table
+npm i @pankod/refine-react-table@3
 ```
+
+:::caution
+
+This documentation **isn't** for the latest version of `@pankod/refine-react-table`. The package updated with accordingly to [TanStack Table v8](https://tanstack.com/table/v8) version. We will update this documentation with the latest version as soon as possible.
+
+:::
 
 :::caution
 For typescript users, you need to add React Table types to your project.
@@ -669,7 +675,7 @@ const {
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/reactTable/basic/?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/table/reactTable/basic/?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-react-table-example"
 ></iframe>
