@@ -43,7 +43,6 @@
         "next-env.d.ts",
         "**/*.ts",
         "**/*.tsx",
-        "src/types/react-table-config.d.ts"
     ],
     "exclude": ["node_modules"]
 }
