@@ -146,8 +146,10 @@ export function useTable<
                 })),
             );
 
-            if (hasPagination) {
-                setCurrent(1);
+            if (sorting.length > 0) {
+                if (hasPagination) {
+                    setCurrent(1);
+                }
             }
         }
     }, [sorting]);
