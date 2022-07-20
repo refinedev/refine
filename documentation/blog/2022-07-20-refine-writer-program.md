@@ -140,8 +140,11 @@ If necessary, we would ask you to make edits to your draft.
 
 We ask to keep the article exclusive to us for the first 2 months due to SEO purposes. Then you can publish it on your own platform.
 
-If you have any article ideas that you think would be a good fit for us, please send us an email with your Linkedin, Github profile, and your other published articles links. We would love to hear from you and react to any new ideas you may have.
+If you have any article ideas that you think would be a good fit for us, please send us an email with your LinkedIn, GitHub profile, and your other published articles links. We would love to hear from you and react to any new ideas you may have.
 
  Thank you for your interest in writing for us!
 
-Reach us by **info@refine.dev**
+Reach us by 
+[Discord Community](https://discord.com/invite/UuU3XCc3J5) 
+or
+**info@refine.dev**
