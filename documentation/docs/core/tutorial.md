@@ -500,7 +500,7 @@ npm i @pankod/refine-react-table@3
 
 :::caution
 
-This documentation **isn't** for the latest version of `@pankod/refine-react-table`. The package updated with accordingly to [Tanstack Tabe v8](https://tanstack.com/table/v8) version. We will update this documentation with the latest version as soon as possible.
+This documentation **isn't** for the latest version of `@pankod/refine-react-table`. The package updated with accordingly to [TanStack Table v8](https://tanstack.com/table/v8) version. We will update this documentation with the latest version as soon as possible.
 
 :::
 
