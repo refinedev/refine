@@ -1,5 +1,14 @@
 # @pankod/refine-strapi-v4
 
+## 3.25.10
+
+### Patch Changes
+
+-   Add `pageSize` support for `getMany` - #2077
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.42.0
+
 ## 3.25.9
 
 ### Patch Changes
