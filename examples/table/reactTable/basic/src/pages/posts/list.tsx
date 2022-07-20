@@ -58,7 +58,7 @@ export const PostList: React.FC = () => {
     });
 
     return (
-        <div className="p-2">
+        <div>
             <table>
                 <thead>
                     {getHeaderGroups().map((headerGroup) => (
@@ -72,14 +72,7 @@ export const PostList: React.FC = () => {
                                         {header.isPlaceholder ? null : (
                                             <>
                                                 <div
-                                                    {...{
-                                                        className:
-                                                            header.column.getCanSort()
-                                                                ? "cursor-pointer select-none"
-                                                                : "",
-                                                        onClick:
-                                                            header.column.getToggleSortingHandler(),
-                                                    }}
+                                                    onClick={header.column.getToggleSortingHandler()}
                                                 >
                                                     {flexRender(
                                                         header.column.columnDef
@@ -133,44 +126,36 @@ export const PostList: React.FC = () => {
                     })}
                 </tbody>
             </table>
-            <div className="h-2" />
-            <div className="flex items-center gap-2">
+            <div>
                 <button
-                    className="border rounded p-1"
                     onClick={() => setPageIndex(0)}
                     disabled={!getCanPreviousPage()}
                 >
                     {"<<"}
                 </button>
                 <button
-                    className="border rounded p-1"
                     onClick={() => previousPage()}
                     disabled={!getCanPreviousPage()}
                 >
                     {"<"}
                 </button>
-                <button
-                    className="border rounded p-1"
-                    onClick={() => nextPage()}
-                    disabled={!getCanNextPage()}
-                >
+                <button onClick={() => nextPage()} disabled={!getCanNextPage()}>
                     {">"}
                 </button>
                 <button
-                    className="border rounded p-1"
                     onClick={() => setPageIndex(getPageCount() - 1)}
                     disabled={!getCanNextPage()}
                 >
                     {">>"}
                 </button>
-                <span className="flex items-center gap-1">
+                <span>
                     <div>Page</div>
                     <strong>
                         {getState().pagination.pageIndex + 1} of{" "}
                         {getPageCount()}
                     </strong>
                 </span>
-                <span className="flex items-center gap-1">
+                <span>
                     | Go to page:
                     <input
                         type="number"
@@ -181,7 +166,6 @@ export const PostList: React.FC = () => {
                                 : 0;
                             setPageIndex(page);
                         }}
-                        className="border p-1 rounded w-16"
                     />
                 </span>
                 <select
