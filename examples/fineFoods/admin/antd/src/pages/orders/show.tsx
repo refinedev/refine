@@ -5,7 +5,6 @@ import {
     useTranslate,
     useUpdate,
 } from "@pankod/refine-core";
-
 import {
     Row,
     Col,
@@ -29,7 +28,7 @@ import dayjs from "dayjs";
 
 import { MapMarker } from "components/map";
 import { BikeWhiteIcon, UserIcon, CourierIcon } from "components/icons";
-
+import { useOrderCustomKbarActions } from "hooks";
 import { IEvent, IOrder, IProduct } from "interfaces";
 
 import "./style.less";
@@ -44,6 +43,12 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     const { data } = queryResult;
     const { mutate } = useUpdate();
     const record = data?.data;
+
+    const canAcceptOrder = record?.status.text === "Pending";
+    const canRejectOrder =
+        record?.status.text === "Pending" ||
+        record?.status.text === "Ready" ||
+        record?.status.text === "On The Way";
 
     const currentBreakPoints = Object.entries(screens)
         .filter((screen) => !!screen[1])
@@ -64,6 +69,54 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
             return "finish";
         };
 
+        const mutateReady = (onSuccess?: () => void) => {
+            if (record) {
+                mutate(
+                    {
+                        resource: "orders",
+                        id: record.id.toString(),
+                        values: {
+                            status: {
+                                id: 2,
+                                text: "Ready",
+                            },
+                        },
+                    },
+                    {
+                        onSuccess,
+                    },
+                );
+            }
+        };
+
+        const mutateReject = (onSuccess?: () => void) => {
+            if (record) {
+                mutate(
+                    {
+                        resource: "orders",
+                        id: record?.id.toString(),
+                        values: {
+                            status: {
+                                id: 5,
+                                text: "Cancelled",
+                            },
+                        },
+                    },
+                    {
+                        onSuccess,
+                    },
+                );
+            }
+        };
+
+        useOrderCustomKbarActions(
+            canAcceptOrder,
+            canRejectOrder,
+            mutateReady,
+            mutateReject,
+            record,
+        );
+
         return (
             <PageHeader
                 className="pageHeader"
@@ -73,49 +126,20 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 subTitle={`#${record?.orderNumber ?? ""}`}
                 extra={[
                     <Button
-                        disabled={record?.status.text !== "Pending"}
+                        disabled={!canAcceptOrder}
                         key="accept"
                         icon={<Icons.CheckCircleOutlined />}
                         type="primary"
-                        onClick={() => {
-                            if (record) {
-                                mutate({
-                                    resource: "orders",
-                                    id: record?.id.toString(),
-                                    values: {
-                                        status: {
-                                            id: 2,
-                                            text: "Ready",
-                                        },
-                                    },
-                                });
-                            }
-                        }}
+                        onClick={() => mutateReady()}
                     >
                         {t("buttons.accept")}
                     </Button>,
                     <Button
-                        disabled={
-                            record?.status.text === "Delivered" ||
-                            record?.status.text === "Cancelled"
-                        }
+                        disabled={!canRejectOrder}
                         key="reject"
                         danger
                         icon={<Icons.CloseCircleOutlined />}
-                        onClick={() => {
-                            if (record) {
-                                mutate({
-                                    resource: "orders",
-                                    id: record?.id.toString(),
-                                    values: {
-                                        status: {
-                                            id: 5,
-                                            text: "Cancelled",
-                                        },
-                                    },
-                                });
-                            }
-                        }}
+                        onClick={() => mutateReject()}
                     >
                         {t("buttons.reject")}
                     </Button>,
