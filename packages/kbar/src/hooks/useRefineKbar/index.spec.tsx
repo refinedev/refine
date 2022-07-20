@@ -108,6 +108,36 @@ describe("useRefineKbar Hook", () => {
                 ]),
             );
         });
+        it("do not register the list resource when you don't have access to list page", async () => {
+            createRenderHook(
+                [
+                    {
+                        name: "posts",
+                        list: function name() {
+                            return <div>create page</div>;
+                        },
+                    },
+                ],
+                "/:resource/:action",
+                ["/posts/create"],
+                {
+                    can: () => Promise.resolve({ can: false }),
+                },
+            );
+
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
+            expect(mockFn).not.lastCalledWith(
+                expect.arrayContaining([
+                    expect.objectContaining({
+                        name: "Create",
+                        section: "posts",
+                    }),
+                ]),
+            );
+        });
     });
 
     describe("create resources", () => {
@@ -365,6 +395,39 @@ describe("useRefineKbar Hook", () => {
                 ]),
             );
         });
+        it("do not register the delete for resource when you don't have access to delete", async () => {
+            createRenderHook(
+                [
+                    {
+                        name: "posts",
+                        edit: function name() {
+                            return <div>edit page</div>;
+                        },
+                        canDelete: true,
+                    },
+                ],
+                "/:resource/:action/:id",
+                ["/posts/edit/1"],
+                {
+                    can: () => {
+                        return Promise.resolve({ can: false });
+                    },
+                },
+            );
+
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
+            expect(mockFn).not.lastCalledWith(
+                expect.arrayContaining([
+                    expect.objectContaining({
+                        name: "Delete",
+                        section: "posts",
+                    }),
+                ]),
+            );
+        });
         it("do not register the edit resource when you don't have an edit resource", async () => {
             createRenderHook(
                 [
@@ -457,7 +520,7 @@ describe("useRefineKbar Hook", () => {
                 ]),
             );
         });
-        fit("registering the show resource when your id have access to show the page", async () => {
+        it("registering the show resource when your id have access to show the page", async () => {
             createRenderHook(
                 [
                     {
