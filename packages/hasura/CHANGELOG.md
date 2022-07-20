@@ -1,5 +1,11 @@
 # @pankod/refine-hasura
 
+## 4.3.2
+
+### Patch Changes
+
+-   Add support for multiple operators on the same field - #2154
+
 ## 4.3.1
 
 ### Patch Changes
