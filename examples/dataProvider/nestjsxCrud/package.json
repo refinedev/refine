@@ -3,7 +3,7 @@
   "version": "3.25.0",
   "private": true,
   "dependencies": {
-    "@pankod/refine-antd": "^3.27.5",
+    "@pankod/refine-antd": "^3.27.6",
     "@pankod/refine-core": "^3.42.0",
     "@pankod/refine-nestjsx-crud": "^3.25.6",
     "@pankod/refine-react-router-v6": "^3.25.2",

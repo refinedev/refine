@@ -1,5 +1,11 @@
 # @pankod/refine-react-table
 
+## 4.1.0
+
+### Minor Changes
+
+-   Upgrade the package accordingly to Tanstack Table v8.
+
 ## 4.0.0
 
 ### Major Changes

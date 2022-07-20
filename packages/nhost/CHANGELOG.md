@@ -1,5 +1,11 @@
 # @pankod/refine-nhost
 
+## 3.27.2
+
+### Patch Changes
+
+-   Add support for multiple operators on the same field
+
 ## 3.27.1
 
 ### Patch Changes
