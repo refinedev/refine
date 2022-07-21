@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { useDeleteMany, useOne, useSelect } from "@pankod/refine-core";
 import { alpha } from "@mui/material/styles";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 import {
     DeleteButton,
     EditButton,
@@ -24,21 +25,11 @@ import {
     TableSortLabel,
     TablePagination,
 } from "@pankod/refine-mui";
-
 import { useForm, Controller } from "@pankod/refine-react-hook-form";
-import "react-mde/lib/styles/css/react-mde-all.css";
-
-import {
-    useTable,
-    Column,
-    usePagination,
-    useExpanded,
-    useRowSelect,
-    useSortBy,
-    useFilters,
-} from "@pankod/refine-react-table";
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
+
+import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -61,54 +52,93 @@ export const PostList: React.FC = () => {
 
     const { mutate } = useDeleteMany<IPost>();
 
-    const deleteSelectedItems = (ids: string[]) => {
+    const deleteSelectedItems = (ids: number[]) => {
         mutate({
             resource: "posts",
             ids,
         });
     };
 
-    const columns = React.useMemo<Array<Column>>(
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
         () => [
             {
+                id: "selection",
+                header: function render({ table }) {
+                    return (
+                        <IndeterminateCheckbox
+                            {...{
+                                checked: table.getIsAllRowsSelected(),
+                                indeterminate: table.getIsSomeRowsSelected(),
+                                onChange:
+                                    table.getToggleAllRowsSelectedHandler(),
+                            }}
+                        />
+                    );
+                },
+                cell: function render({ row }) {
+                    return (
+                        <Stack
+                            direction="row"
+                            alignItems="center"
+                            flexWrap="nowrap"
+                        >
+                            <IndeterminateCheckbox
+                                {...{
+                                    checked: row.getIsSelected(),
+                                    indeterminate: row.getIsSomeSelected(),
+                                    onChange: row.getToggleSelectedHandler(),
+                                }}
+                            />
+                            <span onClick={() => row.toggleExpanded()}>
+                                {row.getIsExpanded() ? "👇" : "👉"}
+                            </span>
+                        </Stack>
+                    );
+                },
+            },
+            {
                 id: "id",
-                Header: "ID",
-                accessor: "id",
+                header: "ID",
+                accessorKey: "id",
             },
             {
                 id: "title",
-                Header: "Title",
-                accessor: "title",
-                filter: "contains",
+                header: "Title",
+                accessorKey: "title",
+                meta: {
+                    filterOperator: "contains",
+                },
             },
             {
                 id: "category.id",
-                Header: "Category",
-                accessor: "category.id",
-                Cell: ({ value }) => {
+                header: "Category",
+                accessorKey: "category.id",
+                cell: ({ getValue }) => {
                     const { data } = useOne<ICategory>({
                         resource: "categories",
-                        id: value,
+                        id: getValue() as number,
                     });
                     return data?.data.title || "loading";
                 },
-                filter: "eq",
+                meta: {
+                    filterOperator: "eq",
+                },
             },
             {
                 id: "actions",
-                Header: "Actions",
-                accessor: "id",
-                Cell: function render({ value }) {
+                header: "Actions",
+                accessorKey: "id",
+                cell: function render({ getValue }) {
                     return (
                         <Stack direction="row">
                             <EditButton
                                 onClick={() => {
-                                    handleEditButtonClick(value);
+                                    handleEditButtonClick(getValue() as number);
                                 }}
                             >
                                 Edit
                             </EditButton>
-                            <DeleteButton recordItemId={value}>
+                            <DeleteButton recordItemId={getValue() as number}>
                                 Delete
                             </DeleteButton>
                         </Stack>
@@ -135,63 +165,23 @@ export const PostList: React.FC = () => {
     }
 
     const {
-        page,
-        headerGroups,
-        pageOptions,
-        pageCount,
-        visibleColumns,
-        getTableProps,
-        getTableBodyProps,
-        prepareRow,
-        gotoPage,
+        options: {
+            state: { pagination, rowSelection },
+            pageCount,
+        },
+        getColumn,
+        getAllColumns,
+        getHeaderGroups,
+        getRowModel,
+        setPageIndex,
         setPageSize,
-        setFilter,
-        selectedFlatRows,
-        state: { pageIndex, pageSize, filters },
+        getSelectedRowModel,
         refineCore: {
             tableQueryResult: { data: tableData },
         },
-    } = useTable<IPost>(
-        {
-            columns,
-        },
-        useFilters,
-        useSortBy,
-        useExpanded,
-        usePagination,
-        useRowSelect,
-        (hooks: { visibleColumns: any }) => {
-            hooks.visibleColumns.push((columns: any) => [
-                {
-                    id: "selection",
-                    Header: function render({
-                        getToggleAllPageRowsSelectedProps,
-                    }: any) {
-                        return (
-                            <>
-                                <IndeterminateCheckbox
-                                    {...getToggleAllPageRowsSelectedProps()}
-                                />
-                            </>
-                        );
-                    },
-                    Cell: function render({ row }: any) {
-                        return (
-                            <>
-                                <IndeterminateCheckbox
-                                    {...row.getToggleRowSelectedProps()}
-                                />
-                                <span {...row.getToggleRowExpandedProps()}>
-                                    {row.isExpanded ? "👇" : "👉"}
-                                </span>
-                            </>
-                        );
-                    },
-                },
-                ...columns,
-            ]);
-        },
-    );
+    } = useTable<IPost>({
+        columns,
+    });
 
     const categoryIds =
         tableData?.data?.map((item: IPost) => item.category.id) ?? [];
@@ -206,7 +196,7 @@ export const PostList: React.FC = () => {
         [],
     );
 
-    const handleEditButtonClick = (editId: string) => {
+    const handleEditButtonClick = (editId: number) => {
         setId(editId);
     };
 
@@ -265,7 +255,7 @@ export const PostList: React.FC = () => {
                         </TableCell>
                     </TableRow>
                     <TableRow key={`edit-${id}-mde`}>
-                        <td colSpan={visibleColumns.length}>
+                        <td colSpan={getAllColumns().length}>
                             <Controller
                                 defaultValue={content}
                                 control={control}
@@ -332,6 +322,9 @@ export const PostList: React.FC = () => {
         );
     };
 
+    const titleColumn = getColumn("title");
+    const categoryColumn = getColumn("category.id");
+
     return (
         <>
             <Box sx={{ width: "100%" }}>
@@ -344,13 +337,13 @@ export const PostList: React.FC = () => {
                                     id="title"
                                     type="search"
                                     value={
-                                        filters.find(
-                                            (filter: { id: string }) =>
-                                                filter.id === "title",
-                                        )?.value
+                                        (titleColumn.getFilterValue() as string) ??
+                                        ""
                                     }
                                     onChange={(event) =>
-                                        setFilter("title", event.target.value)
+                                        titleColumn.setFilterValue(
+                                            event.target.value,
+                                        )
                                     }
                                 />
 
@@ -359,12 +352,15 @@ export const PostList: React.FC = () => {
                                     id="category"
                                     label="Category Select"
                                     defaultValue={0}
-                                    onChange={(event) => {
-                                        setFilter(
-                                            "category.id",
+                                    value={
+                                        (categoryColumn.getFilterValue() as string) ??
+                                        ""
+                                    }
+                                    onChange={(event) =>
+                                        categoryColumn.setFilterValue(
                                             event.target.value,
-                                        );
-                                    }}
+                                        )
+                                    }
                                     sx={{ minWidth: 200 }}
                                 >
                                     <MenuItem key="All Categories" value={0}>
@@ -382,107 +378,90 @@ export const PostList: React.FC = () => {
                             </Stack>
                         </Box>
                         <EnhancedTableToolbar
-                            numSelected={Object.keys(selectedFlatRows).length}
+                            numSelected={getSelectedRowModel().rows.length}
                             onDelete={() => {
                                 deleteSelectedItems(
-                                    selectedFlatRows.map(
-                                        (r: any) => r.original.id,
+                                    getSelectedRowModel().flatRows.map(
+                                        (row) => row.original.id,
                                     ),
                                 );
                             }}
                         />
                         <TableContainer>
-                            <Table {...getTableProps()} size="small">
+                            <Table size="small">
                                 <TableHead>
-                                    {headerGroups.map(
-                                        (headerGroup: {
-                                            getHeaderGroupProps: () => any;
-                                            headers: any[];
-                                        }) => (
-                                            <TableRow
-                                                key={headerGroup.headers[0].id}
-                                                {...headerGroup.getHeaderGroupProps()}
-                                            >
-                                                {headerGroup.headers.map(
-                                                    (column) => (
-                                                        <TableCell
-                                                            key={column.id}
-                                                            {...(column.id ===
-                                                            "selection"
-                                                                ? column.getHeaderProps()
-                                                                : column.getHeaderProps(
-                                                                      column.getSortByToggleProps(),
-                                                                  ))}
-                                                        >
-                                                            {column.render(
-                                                                "Header",
-                                                            )}
-                                                            {column.id !==
-                                                            "selection" ? (
-                                                                <TableSortLabel
-                                                                    active={
-                                                                        column.isSorted
-                                                                    }
-                                                                    direction={
-                                                                        column.isSortedDesc
-                                                                            ? "desc"
-                                                                            : "asc"
-                                                                    }
-                                                                />
-                                                            ) : null}
-                                                        </TableCell>
-                                                    ),
-                                                )}
-                                            </TableRow>
-                                        ),
-                                    )}
+                                    {getHeaderGroups().map((headerGroup) => (
+                                        <TableRow key={headerGroup.id}>
+                                            {headerGroup.headers.map(
+                                                (header) => (
+                                                    <TableCell
+                                                        key={header.id}
+                                                        onClick={header.column.getToggleSortingHandler()}
+                                                    >
+                                                        {flexRender(
+                                                            header.column
+                                                                .columnDef
+                                                                .header,
+                                                            header.getContext(),
+                                                        )}
+                                                        {header.column.id !==
+                                                        "selection" ? (
+                                                            <TableSortLabel
+                                                                active={
+                                                                    header.column.getIsSorted() !==
+                                                                    false
+                                                                }
+                                                                direction={
+                                                                    header.column.getIsSorted() ===
+                                                                    false
+                                                                        ? undefined
+                                                                        : (header.column.getIsSorted() as
+                                                                              | "asc"
+                                                                              | "desc")
+                                                                }
+                                                            />
+                                                        ) : null}
+                                                    </TableCell>
+                                                ),
+                                            )}
+                                        </TableRow>
+                                    ))}
                                 </TableHead>
-                                <TableBody {...getTableBodyProps()}>
-                                    {page.map((row: any) => {
-                                        prepareRow(row);
-                                        if (id === (row.original as any).id) {
+                                <TableBody>
+                                    {getRowModel().rows.map((row) => {
+                                        if (id === row.original.id) {
                                             return renderEditRow(row);
                                         } else
                                             return (
-                                                <React.Fragment
-                                                    key={row.getRowProps().key}
-                                                >
+                                                <React.Fragment key={row.id}>
                                                     <TableRow>
-                                                        {row.cells.map(
-                                                            (cell: {
-                                                                getCellProps: () => any;
-                                                                render: (
-                                                                    arg0: string,
-                                                                ) =>
-                                                                    | boolean
-                                                                    | React.ReactChild
-                                                                    | React.ReactFragment
-                                                                    | React.ReactPortal
-                                                                    | null
-                                                                    | undefined;
-                                                            }) => {
+                                                        {row
+                                                            .getAllCells()
+                                                            .map((cell) => {
                                                                 return (
                                                                     <TableCell
                                                                         key={
-                                                                            cell.getCellProps()
-                                                                                .key
+                                                                            cell.id
                                                                         }
-                                                                        {...cell.getCellProps()}
                                                                     >
-                                                                        {cell.render(
-                                                                            "Cell",
+                                                                        {flexRender(
+                                                                            cell
+                                                                                .column
+                                                                                .columnDef
+                                                                                .cell,
+                                                                            cell.getContext(),
                                                                         )}
                                                                     </TableCell>
                                                                 );
-                                                            },
-                                                        )}
+                                                            })}
                                                     </TableRow>
 
-                                                    {row.isExpanded ? (
+                                                    {row.getIsExpanded() ? (
                                                         <TableRow>
                                                             <TableCell
                                                                 colSpan={
-                                                                    visibleColumns.length
+                                                                    row.getVisibleCells()
+                                                                        .length
                                                                 }
                                                             >
                                                                 {renderRowSubComponent(
@@ -505,21 +484,24 @@ export const PostList: React.FC = () => {
                                 5,
                                 10,
                                 25,
-                                { label: "All", value: pageOptions.length },
+                                {
+                                    label: "All",
+                                    value: tableData?.total ?? 100,
+                                },
                             ]}
                             showFirstButton
                             showLastButton
-                            count={pageCount}
-                            rowsPerPage={pageSize}
-                            page={pageIndex}
-                            onPageChange={(event: unknown, newPage: number) =>
-                                gotoPage(newPage)
+                            count={pageCount || 0}
+                            rowsPerPage={pagination?.pageSize || 10}
+                            page={pagination?.pageIndex || 0}
+                            onPageChange={(_, newPage: number) =>
+                                setPageIndex(newPage)
                             }
                             onRowsPerPageChange={(
                                 event: React.ChangeEvent<HTMLInputElement>,
                             ) => {
                                 setPageSize(parseInt(event.target.value, 10));
-                                gotoPage(0);
+                                setPageIndex(0);
                             }}
                         />
                     </Paper>
