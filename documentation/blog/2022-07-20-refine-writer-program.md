@@ -43,7 +43,7 @@ Please check if there are enough articles on other blog sites about the same top
 
 #### Article types we publish
 
-- How to..: Solutions for real use case problem
+- How to..: Solutions for a real use case problem
 - Tutorials: Whether it is getting started with a technology or building project from scratch in React or front end ecosystem technologies.
 - Guides: The perfect resource for those who want to use the article as a guide.
 - Case Studies: Practical examples which will be useful to other developers.
