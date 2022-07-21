@@ -1,5 +1,13 @@
 # @pankod/refine-core
 
+## 3.43.1
+
+### Patch Changes
+
+-   [#2172](https://github.com/pankod/refine/pull/2172) [`c33d13eb15`](https://github.com/pankod/refine/commit/c33d13eb15b986429d92e4e0e5f2bccd91fd1140) Thanks [@aliemir](https://github.com/aliemir)! - Fix redirection after submit in `useForm`. Both `edit` and `create` will redirect to `list` (it was `edit` previously)
+
+    Resolves #2123
+
 ## 3.43.0
 
 ### Minor Changes
