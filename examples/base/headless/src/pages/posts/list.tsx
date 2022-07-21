@@ -38,7 +38,9 @@ export const PostList: React.FC = () => {
                 accessorKey: "id",
                 cell: function render({ getValue }) {
                     return (
-                        <button onClick={() => edit("posts", getValue())}>
+                        <button
+                            onClick={() => edit("posts", getValue() as number)}
+                        >
                             Edit
                         </button>
                     );
