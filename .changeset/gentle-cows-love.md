@@ -17,23 +17,33 @@ import { RefineKbarProvider } from "@pankod/refine-kbar";
 ```tsx
 import { Refine } from "@pankod/refine-core";
 import { RefineKbarProvider } from "@pankod/refine-kbar";
-
-<RefineKbarProvider>
-    <Refine />
-</RefineKbarProvider>;
+const App: React.FC = () => {
+    return (
+        <RefineKbarProvider>
+            <Refine />
+        </RefineKbarProvider>
+    );
+};
 ```
 
-3. Create `<OffLayoutArea/>` component for the Refine component
+1. Create `<OffLayoutArea/>` component for the Refine component and use the `refine-kbar` command palette in `<OffLayoutArea>`
+
+We have the `<RefineKbar>` component to provide the command palette to the `<Refine>` component.
 
 ```tsx
 import { Refine } from "@pankod/refine-core";
-import { RefineKbarProvider } from "@pankod/refine-kbar";
+import { RefineKbarProvider, RefineKbar } from "@pankod/refine-kbar";
 
-import { OffLayoutArea } from "./components";
-
-<RefineKbarProvider>
-    <Refine OffLayoutArea={OffLayoutArea} />
-</RefineKbarProvider>;
+const OffLayoutArea: React.FC = () => {
+    return <RefineKbar />;
+};
+const App: React.FC = () => {
+    return (
+        <RefineKbarProvider>
+            <Refine OffLayoutArea={OffLayoutArea} />
+        </RefineKbarProvider>
+    );
+};
 ```
 
 > **Note** 📢
@@ -41,15 +51,3 @@ import { OffLayoutArea } from "./components";
 > A: The `<RefineKbarProvider>` is a wrapper component that provides the command palette to the `<Refine>` component.
 > Q: Why we need to add `<OffLayoutArea>` to the `<Refine>` component?
 > A: Because we need to reach the `resources` property of the `<Refine>` component.
-
-4. Use the `refine-kbar` command palette in `<OffLayoutArea>`
-
-We have `<RefineKbar>` component to provide the command palette to the `<Refine>` component.
-
-```tsx
-import { RefineKbar } from "@pankod/refine-kbar";
-
-export const OffLayoutArea: React.FC = () => {
-    return <RefineKbar />;
-};
-```
