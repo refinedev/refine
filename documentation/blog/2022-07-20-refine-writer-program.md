@@ -135,7 +135,7 @@ We ask for an outline before start writing your post. In the outline you need to
 
 A good outline is a key tool for the submission process. It helps to organize thoughts and ensure that all the important points are covered.
 
-When your outline checked and approved by our editors, we want you to write your first draft.
+When your outline is checked and approved by our editors, we want you to write your first draft.
 If necessary, we would ask you to make edits to your draft.
 
 We ask to keep the article exclusive to us for the first 2 months due to SEO purposes. Then you can publish it on your own platform.
