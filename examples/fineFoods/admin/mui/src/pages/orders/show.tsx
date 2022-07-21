@@ -119,53 +119,19 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
         </Stack>
     );
 
-    const mutateReady = (onSuccess?: () => void) => {
+    const handleMutate = (status: { id: number; text: string }) => {
         if (record) {
-            mutate(
-                {
-                    resource: "orders",
-                    id: record.id.toString(),
-                    values: {
-                        status: {
-                            id: 2,
-                            text: "Ready",
-                        },
-                    },
+            mutate({
+                resource: "orders",
+                id: record.id.toString(),
+                values: {
+                    status,
                 },
-                {
-                    onSuccess,
-                },
-            );
+            });
         }
     };
 
-    const mutateReject = (onSuccess?: () => void) => {
-        if (record) {
-            mutate(
-                {
-                    resource: "orders",
-                    id: record?.id.toString(),
-                    values: {
-                        status: {
-                            id: 5,
-                            text: "Cancelled",
-                        },
-                    },
-                },
-                {
-                    onSuccess,
-                },
-            );
-        }
-    };
-
-    useOrderCustomKbarActions(
-        canAcceptOrder,
-        canRejectOrder,
-        mutateReady,
-        mutateReject,
-        record,
-    );
+    useOrderCustomKbarActions(record);
 
     return (
         <Stack spacing={2}>
@@ -199,7 +165,12 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                                 variant="outlined"
                                 size="small"
                                 startIcon={<CheckOutlinedIcon />}
-                                onClick={() => mutateReady()}
+                                onClick={() =>
+                                    handleMutate({
+                                        id: 2,
+                                        text: "Ready",
+                                    })
+                                }
                             >
                                 {t("buttons.accept")}
                             </Button>
@@ -211,7 +182,12 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                                 startIcon={
                                     <CloseOutlinedIcon sx={{ bg: "red" }} />
                                 }
-                                onClick={() => mutateReject()}
+                                onClick={() =>
+                                    handleMutate({
+                                        id: 5,
+                                        text: "Cancelled",
+                                    })
+                                }
                             >
                                 {t("buttons.reject")}
                             </Button>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useTranslate } from "@pankod/refine-core";
+import { useTranslate, useUpdate } from "@pankod/refine-core";
 import {
     Action,
     createAction,
@@ -10,45 +10,70 @@ import { Icons } from "@pankod/refine-antd";
 
 import { IOrder } from "interfaces";
 
-export const useOrderCustomKbarActions = (
-    canAcceptOrder: boolean,
-    canRejectOrder: boolean,
-    mutateReady: (onSuccess?: () => void) => void,
-    mutateReject: (onSuccess?: () => void) => void,
-    order?: IOrder,
-): void => {
+export const useOrderCustomKbarActions = (order?: IOrder): void => {
     const t = useTranslate();
+    const { mutate } = useUpdate();
+
+    const canAcceptOrder = order?.status.text === "Pending";
+    const canRejectOrder =
+        order?.status.text === "Pending" ||
+        order?.status.text === "Ready" ||
+        order?.status.text === "On The Way";
 
     const [actions, setActions] = useState<Action[]>([]);
+
+    const handleMutate = (status: { id: number; text: string }) => {
+        if (order) {
+            mutate(
+                {
+                    resource: "orders",
+                    id: order.id.toString(),
+                    values: {
+                        status,
+                    },
+                },
+                {
+                    onSuccess: () => setActions([]),
+                },
+            );
+        }
+    };
+
     useEffect(() => {
+        const preActions: Action[] = [];
         if (canAcceptOrder) {
-            setActions((prev) => [
-                ...prev,
+            preActions.push(
                 createAction({
                     name: t("buttons.accept"),
                     icon: <Icons.CheckCircleOutlined />,
                     section: "actions",
                     perform: () => {
-                        mutateReady(() => setActions([]));
+                        handleMutate({
+                            id: 2,
+                            text: "Ready",
+                        });
                     },
                     priority: Priority.HIGH,
                 }),
-            ]);
+            );
         }
         if (canRejectOrder) {
-            setActions((prev) => [
-                ...prev,
+            preActions.push(
                 createAction({
                     name: t("buttons.reject"),
                     icon: <Icons.CloseCircleOutlined />,
                     section: "actions",
                     perform: () => {
-                        mutateReject(() => setActions([]));
+                        handleMutate({
+                            id: 5,
+                            text: "Cancelled",
+                        });
                     },
                     priority: Priority.HIGH,
                 }),
-            ]);
+            );
         }
+        setActions(preActions);
     }, [order]);
     useRegisterActions(actions, [actions]);
 };

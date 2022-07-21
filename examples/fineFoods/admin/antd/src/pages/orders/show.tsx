@@ -69,53 +69,19 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
             return "finish";
         };
 
-        const mutateReady = (onSuccess?: () => void) => {
+        const handleMutate = (status: { id: number; text: string }) => {
             if (record) {
-                mutate(
-                    {
-                        resource: "orders",
-                        id: record.id.toString(),
-                        values: {
-                            status: {
-                                id: 2,
-                                text: "Ready",
-                            },
-                        },
+                mutate({
+                    resource: "orders",
+                    id: record.id.toString(),
+                    values: {
+                        status,
                     },
-                    {
-                        onSuccess,
-                    },
-                );
+                });
             }
         };
 
-        const mutateReject = (onSuccess?: () => void) => {
-            if (record) {
-                mutate(
-                    {
-                        resource: "orders",
-                        id: record?.id.toString(),
-                        values: {
-                            status: {
-                                id: 5,
-                                text: "Cancelled",
-                            },
-                        },
-                    },
-                    {
-                        onSuccess,
-                    },
-                );
-            }
-        };
-
-        useOrderCustomKbarActions(
-            canAcceptOrder,
-            canRejectOrder,
-            mutateReady,
-            mutateReject,
-            record,
-        );
+        useOrderCustomKbarActions(record);
 
         return (
             <PageHeader
@@ -130,7 +96,12 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                         key="accept"
                         icon={<Icons.CheckCircleOutlined />}
                         type="primary"
-                        onClick={() => mutateReady()}
+                        onClick={() =>
+                            handleMutate({
+                                id: 2,
+                                text: "Ready",
+                            })
+                        }
                     >
                         {t("buttons.accept")}
                     </Button>,
@@ -139,7 +110,12 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                         key="reject"
                         danger
                         icon={<Icons.CloseCircleOutlined />}
-                        onClick={() => mutateReject()}
+                        onClick={() =>
+                            handleMutate({
+                                id: 5,
+                                text: "Cancelled",
+                            })
+                        }
                     >
                         {t("buttons.reject")}
                     </Button>,
