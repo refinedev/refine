@@ -77,7 +77,7 @@ The steps in the article should be given as a linked bullet list in the introduc
 
 #### Prerequisites
 
-If needed, the required development environment need to be listed if you write a tutorial article:
+If needed, the required development environment needs to be listed if you write a tutorial article:
 - The node version
 - Platform that needed to be registered(For example you need a Heroku account for deployment stuff)
 - The concepts needed to be known will be listed before starting reading the article.
