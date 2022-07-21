@@ -131,7 +131,7 @@ If you're using a stock image, add an author name or link below to the image
 We ask for an outline before start writing your post. In the outline you need to explain:
 - Who is your target audience?
 - What will the reader learn from the article?
-- The outline need to include the main headings or sections of the article, along with an explanation of what will be taught in that section.
+- The outline needs to include the main headings or sections of the article, along with an explanation of what will be taught in that section.
 
 A good outline is a key tool for the submission process. It helps to organize thoughts and ensure that all the important points are covered.
 
