@@ -85,11 +85,13 @@ This guide will help you learn and get information of basic **refine** concepts.
 
 ## Become a Refine guest technical writer
 
-We are looking for guest technical writers to publish posts about react and front-end ecosystem technologies. Check the post below for detailed information.
+We are looking for guest technical writers to publish posts about React and front-end ecosystem technologies.
 
-We are looking for guest technical writers to contribute to our blog. The focus of these posts should be on React and front-end ecosystem technologies. If you are interested in writing for us, please check the post below for detailed information. Thanks for considering being a part of our blog!
+ The focus of these posts should be on React and front-end ecosystem technologies. 
 
- [Blog Post](https://refine.dev/blog/refine-writer-program/)
+ [If you are interested in writing for us, please check this post for detailed information &#8594](https://refine.dev/blog/refine-writer-program/)
+
+ Thanks for considering being a part of our blog!
 
 ## Roadmap
 
