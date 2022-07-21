@@ -1,20 +1,9 @@
-/* eslint-disable react/jsx-key */
 import React from "react";
-import {
-    useTable,
-    Column,
-    HeaderGroup,
-    Cell,
-    UseTableColumnProps,
-    UseTableRowProps,
-    usePagination,
-    useSortBy,
-    useFilters,
-} from "@pankod/refine-react-table";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 import { useDelete, useNavigation, useOne } from "@pankod/refine-core";
 
-import { ICategory, IPost, IFilter } from "interfaces";
+import { ICategory, IPost } from "interfaces";
 import {
     ChevronLeftIcon,
     ChevronRightIcon,
@@ -30,37 +19,39 @@ export const PostList: React.FC = () => {
     const { edit, create, show } = useNavigation();
     const { mutate } = useDelete();
 
-    const columns: Array<Column> = React.useMemo(
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
         () => [
             {
                 id: "id",
-                Header: "ID",
-                accessor: "id",
+                header: "ID",
+                accessorKey: "id",
             },
             {
                 id: "title",
-                Header: "Title",
-                accessor: "title",
-                filter: "contains",
+                header: "Title",
+                accessorKey: "title",
+                meta: {
+                    filterOperator: "contains",
+                },
             },
             {
                 id: "status",
-                Header: "Status",
-                accessor: "status",
+                header: "Status",
+                accessorKey: "status",
             },
             {
                 id: "createdAt",
-                Header: "CreatedAt",
-                accessor: "createdAt",
+                header: "CreatedAt",
+                accessorKey: "createdAt",
             },
             {
                 id: "category.id",
-                Header: "Category",
-                accessor: "category.id",
-                Cell: ({ cell }: Cell) => {
+                header: "Category",
+                accessorKey: "category.id",
+                cell: function render({ getValue }) {
                     const { data, isLoading } = useOne<ICategory>({
                         resource: "categories",
-                        id: cell.value,
+                        id: getValue() as number,
                     });
 
                     if (isLoading) {
@@ -72,27 +63,34 @@ export const PostList: React.FC = () => {
             },
             {
                 id: "action",
-                Header: "Action",
-                accessor: "id",
-                Cell: function render({ value }) {
+                header: "Action",
+                accessorKey: "id",
+                cell: function render({ getValue }) {
                     return (
                         <div className="flex gap-2">
                             <button
                                 className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-                                onClick={() => edit("posts", value)}
+                                onClick={() =>
+                                    edit("posts", getValue() as number)
+                                }
                             >
                                 {EditIcon}
                             </button>
                             <button
                                 className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-                                onClick={() => show("posts", value)}
+                                onClick={() =>
+                                    show("posts", getValue() as number)
+                                }
                             >
                                 {ShowIcon}
                             </button>
                             <button
                                 className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-red-500 hover:text-white"
                                 onClick={() =>
-                                    mutate({ id: value, resource: "posts" })
+                                    mutate({
+                                        id: getValue() as number,
+                                        resource: "posts",
+                                    })
                                 }
                             >
                                 {DeleteIcon}
@@ -106,22 +104,22 @@ export const PostList: React.FC = () => {
     );
 
     const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        prepareRow,
-        page,
-        canPreviousPage,
-        canNextPage,
-        pageOptions,
-        pageCount,
-        gotoPage,
+        getHeaderGroups,
+        getRowModel,
+        getState,
+        setPageIndex,
+        getCanPreviousPage,
+        getPageCount,
+        getCanNextPage,
         nextPage,
         previousPage,
         setPageSize,
-        setFilter,
-        state: { pageIndex, pageSize, filters },
-    } = useTable<IPost>({ columns }, useFilters, useSortBy, usePagination);
+        getColumn,
+    } = useTable<IPost>({
+        columns,
+    });
+
+    const titleColumn = getColumn("title");
 
     return (
         <div className="container mx-auto pb-4">
@@ -135,13 +133,9 @@ export const PostList: React.FC = () => {
                         type="text"
                         className="rounded border border-gray-200 p-1 text-gray-700"
                         placeholder="Filter by title"
-                        value={
-                            filters.find(
-                                (filter: IFilter) => filter.id === "title",
-                            )?.value
-                        }
+                        value={(titleColumn.getFilterValue() as string) ?? ""}
                         onChange={(event) =>
-                            setFilter("title", event.target.value)
+                            titleColumn.setFilterValue(event.target.value)
                         }
                     />
                 </div>
@@ -154,53 +148,52 @@ export const PostList: React.FC = () => {
                 </button>
             </div>
 
-            <table
-                className="min-w-full table-fixed divide-y divide-gray-200 border"
-                {...getTableProps()}
-            >
+            <table className="min-w-full table-fixed divide-y divide-gray-200 border">
                 <thead className="bg-gray-100">
-                    {headerGroups.map((headerGroup: HeaderGroup) => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map(
-                                (column: UseTableColumnProps) => (
-                                    <th
-                                        {...column.getHeaderProps(
-                                            column.getSortByToggleProps(),
-                                        )}
-                                        className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
+                    {getHeaderGroups().map((headerGroup) => (
+                        <tr key={headerGroup.id}>
+                            {headerGroup.headers.map((header) => (
+                                <th
+                                    key={header.id}
+                                    colSpan={header.colSpan}
+                                    className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
+                                >
+                                    <div
+                                        onClick={header.column.getToggleSortingHandler()}
                                     >
-                                        {column.render("Header")}
-                                        <span>
-                                            {column.isSorted
-                                                ? column.isSortedDesc
-                                                    ? " 🔽"
-                                                    : " 🔼"
-                                                : ""}
-                                        </span>
-                                    </th>
-                                ),
-                            )}
+                                        {flexRender(
+                                            header.column.columnDef.header,
+                                            header.getContext(),
+                                        )}
+                                        {{
+                                            asc: " 🔼",
+                                            desc: " 🔽",
+                                        }[
+                                            header.column.getIsSorted() as string
+                                        ] ?? null}
+                                    </div>
+                                </th>
+                            ))}
                         </tr>
                     ))}
                 </thead>
-                <tbody
-                    {...getTableBodyProps()}
-                    className="divide-y divide-gray-200 bg-white"
-                >
-                    {page.map((row: UseTableRowProps) => {
-                        prepareRow(row);
+                <tbody className="divide-y divide-gray-200 bg-white">
+                    {getRowModel().rows.map((row) => {
                         return (
                             <tr
-                                {...row.getRowProps()}
+                                key={row.id}
                                 className="transition hover:bg-gray-100"
                             >
-                                {row.cells.map((cell: Cell) => {
+                                {row.getVisibleCells().map((cell) => {
                                     return (
                                         <td
-                                            {...cell.getCellProps()}
+                                            key={cell.id}
                                             className="whitespace-nowrap py-2 px-6 text-sm font-medium text-gray-900"
                                         >
-                                            {cell.render("Cell")}
+                                            {flexRender(
+                                                cell.column.columnDef.cell,
+                                                cell.getContext(),
+                                            )}
                                         </td>
                                     );
                                 })}
@@ -213,56 +206,57 @@ export const PostList: React.FC = () => {
             <div className="mt-2 flex items-center justify-end gap-4">
                 <div className="flex gap-1">
                     <button
-                        onClick={() => gotoPage(0)}
-                        disabled={!canPreviousPage}
+                        onClick={() => setPageIndex(0)}
+                        disabled={!getCanPreviousPage()}
                         className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
                     >
                         {ChevronsLeftIcon}
                     </button>
                     <button
                         onClick={() => previousPage()}
-                        disabled={!canPreviousPage}
+                        disabled={!getCanPreviousPage()}
                         className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
                     >
                         {ChevronLeftIcon}
                     </button>
                     <button
                         onClick={() => nextPage()}
-                        disabled={!canNextPage}
+                        disabled={!getCanNextPage()}
                         className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
                     >
                         {ChevronRightIcon}
                     </button>
                     <button
-                        onClick={() => gotoPage(pageCount - 1)}
-                        disabled={!canNextPage}
+                        onClick={() => setPageIndex(getPageCount() - 1)}
+                        disabled={!getCanNextPage()}
                         className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
                     >
                         {ChevronsRightIcon}
                     </button>
                 </div>
                 <span>
-                    Page{" "}
+                    Page
                     <strong>
-                        {pageIndex + 1} of {pageOptions.length}
+                        {getState().pagination.pageIndex + 1} of{" "}
+                        {getPageCount()}
                     </strong>
                 </span>
                 <span>
                     Go to page:
                     <input
                         type="number"
-                        defaultValue={pageIndex + 1}
+                        defaultValue={getState().pagination.pageIndex + 1}
                         onChange={(e) => {
                             const page = e.target.value
                                 ? Number(e.target.value) - 1
                                 : 0;
-                            gotoPage(page);
+                            setPageIndex(page);
                         }}
                         className="w-12 rounded border border-gray-200 p-1 text-gray-700"
                     />
                 </span>
                 <select
-                    value={pageSize}
+                    value={getState().pagination.pageSize}
                     onChange={(e) => {
                         setPageSize(Number(e.target.value));
                     }}
