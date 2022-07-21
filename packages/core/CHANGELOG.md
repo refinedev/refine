@@ -1,5 +1,17 @@
 # @pankod/refine-core
 
+## 3.44.0
+
+### Minor Changes
+
+-   Added ability to compare `or` filters. This was a missing feature on filters in `useTable` hook. With this feature, we will prevent `or` filter bugs (Resolves #2124) such as re-adding the same filters and being unable to modify `or` filter. To remove `or` filter with `merge` behavior, you should pass an empty object as `value`.
+
+### Patch Changes
+
+-   Fix redirection after submit in `useForm`. Both `edit` and `create` will redirect to `list` (it was `edit` previously)
+
+    Resolves #2123
+
 ## 3.43.1
 
 ### Patch Changes
