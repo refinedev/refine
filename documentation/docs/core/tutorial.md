@@ -495,8 +495,14 @@ export const App: React.FC = () => {
 First, we'll install [`@pankod/refine-react-table`](https://github.com/pankod/refine/tree/master/packages/react-table) package to use the `useTable` hook.
 
 ```bash
-npm i @pankod/refine-react-table
+npm i @pankod/refine-react-table@3
 ```
+
+:::caution
+
+This documentation **isn't** for the latest version of `@pankod/refine-react-table`. The package updated with accordingly to [TanStack Table v8](https://tanstack.com/table/v8) version. We will update this documentation with the latest version as soon as possible.
+
+:::
 
 :::note
 We'll use the `@pankod/refine-react-table` for benefit of the [**react-table**](https://react-table.tanstack.com) library. However, you can use `useTable` without the `@pankod/refine-react-table` package.

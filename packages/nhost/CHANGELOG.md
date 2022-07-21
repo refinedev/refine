@@ -1,5 +1,47 @@
 # @pankod/refine-nhost
 
+## 3.27.2
+
+### Patch Changes
+
+-   Add support for multiple operators on the same field
+
+## 3.27.1
+
+### Patch Changes
+
+-   [#2163](https://github.com/pankod/refine/pull/2163) [`19aa958acf`](https://github.com/pankod/refine/commit/19aa958acffb33b8e24097b411fcbe336959c352) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Add support for multiple operators on the same field
+
+## 3.27.0
+
+### Minor Changes
+
+-   ### `@pankod/refine-core`
+
+    -   Added extra params to `useSubscription` and `useResourceSubscription`
+    -   `useOne`, `useMany` and `useList` passed extra params to own subscription hook.
+
+    ### `@pankod/refine-hasura`
+
+    -   Added `liveProvider`.
+
+    To see an example of how to use it, check out [`here`](https://github.com/pankod/refine/blob/master/examples/dataProvider/hasura/src/App.tsx).
+
+    ### `@pankod/refine-nhost`
+
+    -   Added `liveProvider`.
+
+    To see an example of how to use it, check out [`here`](https://github.com/pankod/refine/blob/master/examples/dataProvider/nhost/src/App.tsx).
+
+    ### `@pankod/refine-graphql`
+
+    -   Added `liveProvider`.
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.42.0
+
 ## 3.26.0
 
 ### Minor Changes
