@@ -22,7 +22,7 @@
     "peerDependencies": {
         "@pankod/refine-core": "^3.23.2",
         "react": "^17.0.0 || ^18.0.0",
-        "react-dom": "^17.0.4"
+        "react-dom": "^17.0.0 || ^18.0.0"
     },
     "author": "Pankod",
     "module": "dist/esm/index.js",
