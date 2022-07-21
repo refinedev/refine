@@ -1,5 +1,8 @@
-import { TestWrapper } from "@test";
+import { CrudFilters } from "@pankod/refine-core";
+import isEqual from "lodash/isEqual";
 import { renderHook } from "@testing-library/react-hooks";
+
+import { act, TestWrapper } from "@test";
 
 import { useTable } from "./useTable";
 
@@ -140,6 +143,107 @@ describe("useTable Hook", () => {
 
         await waitFor(() => {
             return result.current.tableQueryResult.isSuccess;
+        });
+    });
+
+    it("should set filters manually with `setFilters`", async () => {
+        jest.useFakeTimers();
+
+        const initialFilter: CrudFilters = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "test",
+            },
+        ];
+
+        const { result, waitFor } = renderHook(
+            () =>
+                useTable({
+                    resource: "categories",
+                    initialFilter,
+                }),
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
+
+        const nextFilters: CrudFilters = [
+            {
+                field: "name",
+                operator: "contains",
+                value: "x",
+            },
+            {
+                field: "id",
+                operator: "gte",
+                value: 1,
+            },
+        ];
+
+        await act(async () => {
+            result.current.setFilters(nextFilters);
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        // TODO: update tests
+        await waitFor(() => {
+            return isEqual(result.current.filters, [...nextFilters]);
+        });
+    });
+
+    it('should change behavior to `replace` when `defaultSetFilterBehavior="replace"`', async () => {
+        jest.useFakeTimers();
+
+        const { result, waitFor } = renderHook(
+            () =>
+                useTable({
+                    resource: "categories",
+                    defaultSetFilterBehavior: "replace",
+                    initialFilter: [
+                        {
+                            field: "name",
+                            operator: "eq",
+                            value: "test",
+                        },
+                        {
+                            field: "id",
+                            operator: "gte",
+                            value: 1,
+                        },
+                    ],
+                }),
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
+
+        const newFilters: CrudFilters = [
+            {
+                field: "name",
+                operator: "eq",
+                value: "next-test",
+            },
+            {
+                field: "other-field",
+                operator: "contains",
+                value: "other",
+            },
+        ];
+
+        await act(async () => {
+            result.current.setFilters(newFilters);
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await waitFor(() => {
+            return isEqual(result.current.filters, newFilters);
         });
     });
 });
