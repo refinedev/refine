@@ -60,7 +60,7 @@ In this blog post, we are going to talk about some tips on how to structure your
 
 #### Introduction
 
-Introduction serves as an essential motivator for the reader, helping them to see the value in investing their time in reading the rest of the article.
+The introduction serves as an essential motivator for the reader, helping them to see the value in investing their time in reading the rest of the article.
 
 This is where we will persuade the reader to read the article.
 
