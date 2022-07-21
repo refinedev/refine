@@ -83,6 +83,16 @@ This guide will help you learn and get information of basic **refine** concepts.
 -   Next.js E-commerce App with Strapi & Chakra UI & Refine - [Blog Post](https://refine.dev/blog/handcrafted-nextjs-e-commerce-app-tutorial-strapi-chakra-ui/) - [Live Example](https://stackblitz.com/github/pankod/refine/tree/master/examples/blog/ecommerce/?preset=node) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/ecommerce)
 -   Multi-tenancy Example - [Appwrite Guide](https://refine.dev/docs/guides-and-concepts/multi-tenancy/appwrite/) - [Strapi Guide](https://refine.dev/docs/guides-and-concepts/multi-tenancy/strapi-v4/)
 
+## Become a Refine guest technical writer
+
+We are looking for guest technical writers to publish posts about React and front-end ecosystem technologies.
+
+ The focus of these posts should be on React and front-end ecosystem technologies. 
+
+ [If you are interested in writing for us, please check this post for detailed information &#8594](https://refine.dev/blog/refine-writer-program/)
+
+ Thanks for considering being a part of our blog!
+
 ## Roadmap
 
 You can find Refine's [Public Roadmap here!](https://github.com/pankod/refine/projects/1)
