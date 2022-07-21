@@ -90,7 +90,7 @@ If the concepts mentioned in the article need to be understood well,  you can gi
 
 Your post should have a strong logical flow between sections. Each should build on previous ones.
 
-Summarize the content of each part with a sentence, if you put these sentences one after another and it has a meaningful flow, then it means you have a good structure.We provide all the details necessary explanation for the readers to understand articles well. The goal is for our readers to learn the concepts, not just copy and paste code and commands.
+Summarize the content of each part with a sentence, if you put these sentences one after another and it has a meaningful flow, then it means you have a good structure. We provide all the details and necessary explanations for the readers to understand the articles well. The goal is for our readers to learn the concepts, not just copy and paste code and commands.
 
 We use an official documentation explanation if we are using specific tech terms for the first time.
 
