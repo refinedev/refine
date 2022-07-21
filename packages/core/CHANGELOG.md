@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.43.0
+
+### Minor Changes
+
+-   [#2164](https://github.com/pankod/refine/pull/2164) [`4d5f6b25e5`](https://github.com/pankod/refine/commit/4d5f6b25e51cf773e08a0ce0b93a3680e692564a) Thanks [@aliemir](https://github.com/aliemir)! - Added ability to compare `or` filters. This was a missing feature on filters in `useTable` hook. With this feature, we will prevent `or` filter bugs (Resolves #2124) such as re-adding the same filters and being unable to modify `or` filter. To remove `or` filter with `merge` behavior, you should pass an empty object as `value`.
+
 ## 3.42.0
 
 ### Minor Changes
