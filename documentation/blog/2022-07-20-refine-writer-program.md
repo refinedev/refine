@@ -21,7 +21,7 @@ As a technical article writer, your work will be instrumental in helping develop
 
 ### What will refine do for you?
 
-- We'll offer up to 400$ depends on quality and content of your article.
+- We'll offer up to 400$ depending on the quality and content of your article.
 - We'll promote your article on our official dev.to account, LinkedIn, Discord, and Twitter channels.
 - You'll get a byline with your name and link so readers can find more about you.
 - We'll give Refine's full swag kit as a gift.
@@ -43,7 +43,7 @@ Please check if there are enough articles on other blog sites about the same top
 
 #### Article types we publish
 
-- How to..: Solutions for real use case problem
+- How to..: Solutions for a real use case problem
 - Tutorials: Whether it is getting started with a technology or building project from scratch in React or front end ecosystem technologies.
 - Guides: The perfect resource for those who want to use the article as a guide.
 - Case Studies: Practical examples which will be useful to other developers.
@@ -60,7 +60,7 @@ In this blog post, we are going to talk about some tips on how to structure your
 
 #### Introduction
 
-Introduction serves as an essential motivator for the reader, helping them to see the value in investing their time in reading the rest of the article.
+The introduction serves as an essential motivator for the reader, helping them to see the value in investing their time in reading the rest of the article.
 
 This is where we will persuade the reader to read the article.
 
@@ -77,7 +77,7 @@ The steps in the article should be given as a linked bullet list in the introduc
 
 #### Prerequisites
 
-If needed, the required development environment need to be listed if you write a tutorial article:
+If needed, the required development environment needs to be listed if you write a tutorial article:
 - The node version
 - Platform that needed to be registered(For example you need a Heroku account for deployment stuff)
 - The concepts needed to be known will be listed before starting reading the article.
@@ -90,7 +90,7 @@ If the concepts mentioned in the article need to be understood well,  you can gi
 
 Your post should have a strong logical flow between sections. Each should build on previous ones.
 
-Summarize the content of each part with a sentence, if you put these sentences one after another and it has a meaningful flow, then it means you have a good structure.We provide all the details necessary explanation for the readers to understand articles well. The goal is for our readers to learn the concepts, not just copy and paste code and commands.
+Summarize the content of each part with a sentence, if you put these sentences one after another and it has a meaningful flow, then it means you have a good structure. We provide all the details and necessary explanations for the readers to understand the articles well. The goal is for our readers to learn the concepts, not just copy and paste code and commands.
 
 We use an official documentation explanation if we are using specific tech terms for the first time.
 
@@ -128,17 +128,17 @@ If you're using a stock image, add an author name or link below to the image
 
 ### Submission process
 
-We ask an outline before start writing your post. In outline you need to explain:
+We ask for an outline before start writing your post. In the outline you need to explain:
 - Who is your target audience?
 - What will the reader learn from the article?
-- The outline need to include the main headings or sections of the article, along with an explanation of what will be taught in that section.
+- The outline needs to include the main headings or sections of the article, along with an explanation of what will be taught in that section.
 
-A good outline is a key tool for submission process. It helps to organize thoughts and ensure that all the important points are covered.
+A good outline is a key tool for the submission process. It helps to organize thoughts and ensure that all the important points are covered.
 
-When your outline checked and approved by our editors, we want you to write your first draft.
+When your outline is checked and approved by our editors, we want you to write your first draft.
 If necessary, we would ask you to make edits to your draft.
 
-We ask to keep the article exclusive to us for the first 2 months due to SEO purposes. Then you can publish it on your own platform.
+We ask you to keep the article exclusive to us for the first 2 months due to SEO purposes. Then you can publish it on your own platform.
 
 If you have any article ideas that you think would be a good fit for us, please send us an email with your LinkedIn, GitHub profile, and your other published articles links. We would love to hear from you and react to any new ideas you may have.
 
