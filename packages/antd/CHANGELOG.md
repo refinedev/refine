@@ -1,5 +1,18 @@
 # @pankod/refine-antd
 
+## 3.28.0
+
+### Minor Changes
+
+-   [#2168](https://github.com/pankod/refine/pull/2168) [`a9196ffe2d`](https://github.com/pankod/refine/commit/a9196ffe2de8bfe266be2cac1ac05eab039d0fb7) Thanks [@aliemir](https://github.com/aliemir)! - Added `defaultSetFilterBehavior` prop to `useTable` and `useSimpleList` hooks. Return `setFilters` and `setSorter` from `useTable` of `@pankod/refine-core`.
+
+    This feature will let `@pankod/refine-antd` users to set filters manually and change filter setter logic (defaults to `merge`).
+
+### Patch Changes
+
+-   Updated dependencies [[`4d5f6b25e5`](https://github.com/pankod/refine/commit/4d5f6b25e51cf773e08a0ce0b93a3680e692564a)]:
+    -   @pankod/refine-core@3.43.0
+
 ## 3.27.6
 
 ### Patch Changes
