@@ -21,7 +21,7 @@ As a technical article writer, your work will be instrumental in helping develop
 
 ### What will refine do for you?
 
-- We'll offer up to 400$ depends on quality and content of your article.
+- We'll offer up to 400$ depending on the quality and content of your article.
 - We'll promote your article on our official dev.to account, LinkedIn, Discord, and Twitter channels.
 - You'll get a byline with your name and link so readers can find more about you.
 - We'll give Refine's full swag kit as a gift.
