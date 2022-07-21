@@ -8,6 +8,7 @@ import {
     useResource,
     IResourceItem,
     useCanWithoutCache,
+    userFriendlyResourceName,
 } from "@pankod/refine-core";
 import {
     useRegisterActions,
@@ -102,7 +103,12 @@ export const useRefineKbar = (): void => {
             route,
         } = resource;
 
-        const resourceName = label ?? name;
+        const resourceName =
+            label ??
+            t(
+                `${resource.name}.${resource.name}`,
+                userFriendlyResourceName(resource.name, "plural"),
+            );
         const tempActions: Action[] = [];
         const section = t(`${resourceName}.${resourceName}`, resourceName);
 
