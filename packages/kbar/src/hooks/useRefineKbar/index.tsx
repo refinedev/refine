@@ -103,14 +103,13 @@ export const useRefineKbar = (): void => {
             route,
         } = resource;
 
-        const resourceName =
+        const section =
             label ??
             t(
                 `${resource.name}.${resource.name}`,
                 userFriendlyResourceName(resource.name, "plural"),
             );
         const tempActions: Action[] = [];
-        const section = t(`${resourceName}.${resourceName}`, resourceName);
 
         if (
             list &&
@@ -248,7 +247,7 @@ export const useRefineKbar = (): void => {
                             perform: () => {
                                 mutate(
                                     {
-                                        resource: resourceName,
+                                        resource: resource.name,
                                         id: idFromRoute,
                                     },
                                     {
