@@ -2,7 +2,7 @@
 "@pankod/refine-antd-audit-log": patch
 ---
 
-changed `react` and `react-dom` version
+Fixed `react-dom` dependency version
 
 ```diff
 - "react": "^17.0.2",
