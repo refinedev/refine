@@ -138,7 +138,7 @@ A good outline is a key tool for the submission process. It helps to organize th
 When your outline is checked and approved by our editors, we want you to write your first draft.
 If necessary, we would ask you to make edits to your draft.
 
-We ask to keep the article exclusive to us for the first 2 months due to SEO purposes. Then you can publish it on your own platform.
+We ask you to keep the article exclusive to us for the first 2 months due to SEO purposes. Then you can publish it on your own platform.
 
 If you have any article ideas that you think would be a good fit for us, please send us an email with your LinkedIn, GitHub profile, and your other published articles links. We would love to hear from you and react to any new ideas you may have.
 
