@@ -138,12 +138,12 @@ export const useRefineKbar = (): void => {
             (RefineKbarActionType.Create !== actionFromRoute ||
                 resourceFromRoute !== name)
         ) {
-            const { can: canCreate } = (await can?.({
+            const { can: canAccessCreate } = (await can?.({
                 resource: name,
                 action: RefineKbarActionType.Create,
             })) || { can: true };
 
-            if (canCreate) {
+            if (canAccessCreate) {
                 tempActions.push(
                     createAction({
                         name: t(
@@ -167,13 +167,13 @@ export const useRefineKbar = (): void => {
                 show &&
                 RefineKbarActionType.Show !== actionFromRoute
             ) {
-                const { can: canShow } = (await can?.({
+                const { can: canAccessShow } = (await can?.({
                     resource: name,
                     action: RefineKbarActionType.Show,
                     params: { id: idFromRoute },
                 })) || { can: true };
 
-                if (canShow) {
+                if (canAccessShow) {
                     tempActions.push(
                         createAction({
                             name: t(
@@ -194,12 +194,12 @@ export const useRefineKbar = (): void => {
                 edit &&
                 RefineKbarActionType.Edit !== actionFromRoute
             ) {
-                const { can: canEdit } = (await can?.({
+                const { can: canAccessEdit } = (await can?.({
                     resource: name,
                     action: RefineKbarActionType.Show,
                     params: { id: idFromRoute },
                 })) || { can: true };
-                if (canEdit) {
+                if (canAccessEdit) {
                     tempActions.push(
                         createAction({
                             name: t(
@@ -216,12 +216,12 @@ export const useRefineKbar = (): void => {
                 }
             }
             if (canDelete) {
-                const { can: canDelete } = (await can?.({
+                const { can: canAccessDelete } = (await can?.({
                     resource: name,
                     action: RefineKbarActionType.Show,
                     params: { id: idFromRoute },
                 })) || { can: true };
-                if (canDelete) {
+                if (canAccessDelete) {
                     tempActions.push(
                         {
                             id: "delete",
