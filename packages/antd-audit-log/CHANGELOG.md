@@ -1,5 +1,18 @@
 # @pankod/refine-antd-audit-log
 
+## 3.25.2
+
+### Patch Changes
+
+-   Fixed `react-dom` dependency version
+
+    ```diff
+    - "react": "^17.0.2",
+    - "react-dom": "^17.0.4"
+    + "react": "^17.0.0 || ^18.0.0",
+    + "react-dom": "^17.0.0 || ^18.0.0"
+    ```
+
 ## 3.25.1
 
 ### Patch Changes
