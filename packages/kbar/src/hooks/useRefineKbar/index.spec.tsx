@@ -76,7 +76,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "List",
-                        section: "posts",
+                        section: "Posts",
                     }),
                 ]),
             );
@@ -103,7 +103,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "List",
-                        section: "posts",
+                        section: "Posts",
                     }),
                 ]),
             );
@@ -133,7 +133,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "Create",
-                        section: "posts",
+                        section: "Posts",
                     }),
                 ]),
             );
@@ -163,7 +163,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "Create",
-                        section: "posts",
+                        section: "Posts",
                     }),
                 ]),
             );
@@ -193,7 +193,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "Create",
-                        section: "posts",
+                        section: "Posts",
                     }),
                 ]),
             );
@@ -220,7 +220,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "Create",
-                        section: "posts",
+                        section: "Posts",
                     }),
                 ]),
             );
@@ -250,7 +250,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "Create",
-                        section: "posts",
+                        section: "Posts",
                     }),
                 ]),
             );
@@ -280,7 +280,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "Edit",
-                        section: "posts",
+                        section: "Posts",
                     }),
                 ]),
             );
@@ -308,7 +308,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "Delete",
-                        section: "posts",
+                        section: "Posts",
                     }),
                 ]),
             );
@@ -335,7 +335,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "Edit",
-                        section: "posts",
+                        section: "Posts",
                     }),
                 ]),
             );
@@ -362,7 +362,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "Edit",
-                        section: "posts",
+                        section: "Posts",
                     }),
                 ]),
             );
@@ -390,7 +390,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "Delete",
-                        section: "posts",
+                        section: "Posts",
                     }),
                 ]),
             );
@@ -423,7 +423,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "Delete",
-                        section: "posts",
+                        section: "Posts",
                     }),
                 ]),
             );
@@ -450,7 +450,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "Edit",
-                        section: "posts",
+                        section: "Posts",
                     }),
                 ]),
             );
@@ -485,7 +485,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "Edit",
-                        section: "posts",
+                        section: "Posts",
                     }),
                 ]),
             );
@@ -515,7 +515,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "Show",
-                        section: "posts",
+                        section: "Posts",
                     }),
                 ]),
             );
@@ -550,7 +550,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "Show",
-                        section: "posts",
+                        section: "Posts",
                     }),
                 ]),
             );
@@ -577,7 +577,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "Show",
-                        section: "posts",
+                        section: "Posts",
                     }),
                 ]),
             );
@@ -604,7 +604,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "Show",
-                        section: "posts",
+                        section: "Posts",
                     }),
                 ]),
             );
@@ -639,7 +639,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "Show",
-                        section: "posts",
+                        section: "Posts",
                     }),
                 ]),
             );
@@ -675,7 +675,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "List",
-                        section: "posts",
+                        section: "Posts",
                     }),
                 ]),
             );
@@ -708,7 +708,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "List",
-                        section: "categories",
+                        section: "Categories",
                     }),
                 ]),
             );
@@ -747,7 +747,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "List",
-                        section: "categories",
+                        section: "Categories",
                     }),
                 ]),
             );
@@ -755,7 +755,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "List",
-                        section: "users",
+                        section: "Users",
                     }),
                 ]),
             );
@@ -764,7 +764,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "List",
-                        section: "list",
+                        section: "List",
                     }),
                 ]),
             );
@@ -797,7 +797,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "List",
-                        section: "categories",
+                        section: "Categories",
                     }),
                 ]),
             );
@@ -806,7 +806,7 @@ describe("useRefineKbar Hook", () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "List",
-                        section: "posts",
+                        section: "Posts",
                     }),
                 ]),
             );
