@@ -517,6 +517,11 @@ module.exports = {
                 "examples/antd-calendar-example",
                 {
                     type: "category",
+                    label: "Command Palette",
+                    items: ["examples/command-palette/kbar"],
+                },
+                {
+                    type: "category",
                     label: "Core",
                     items: [
                         "examples/core/useImport",

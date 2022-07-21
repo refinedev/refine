@@ -145,6 +145,6 @@ If you have any article ideas that you think would be a good fit for us, please 
  Thank you for your interest in writing for us!
 
 Reach us by 
-[Discord Community](https://discord.com/invite/UuU3XCc3J5) 
+[Discord Community](https://discord.gg/refine) 
 or
 **info@refine.dev**
