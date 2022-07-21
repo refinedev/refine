@@ -128,7 +128,7 @@ If you're using a stock image, add an author name or link below to the image
 
 ### Submission process
 
-We ask an outline before start writing your post. In outline you need to explain:
+We ask for an outline before start writing your post. In the outline you need to explain:
 - Who is your target audience?
 - What will the reader learn from the article?
 - The outline need to include the main headings or sections of the article, along with an explanation of what will be taught in that section.
