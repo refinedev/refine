@@ -1,5 +1,34 @@
 # @pankod/refine-core
 
+## 3.45.0
+
+### Minor Changes
+
+-   [#2177](https://github.com/pankod/refine/pull/2177) [`5a805c789a`](https://github.com/pankod/refine/commit/5a805c789a167ca3bde34aebacad93bd92510611) Thanks [@aliemir](https://github.com/aliemir)! - Update notification props in data hooks of `@pankod/refine-core` to cover dynamic notifications.
+
+    Now users will be able to show notifications according to the API response by assigning a function which returns `OpenNotificationParams` instead of an `OpenNotificationParams` object.
+
+    **Example**
+
+    ```tsx
+    {
+        const { mutate } = useCreate({
+            /* ... */
+            successNotification: (data, values, resource) => ({
+                message: data?.message ?? "Success!",
+                type: "success",
+                description: data?.description;
+            }),
+            errorNotification: (error, values, resource) => ({
+                message: error?.message ?? error?.code ?? "Error!",
+                type: "error",
+                description: error?.reason;
+            })
+            /* ... */
+        });
+    }
+    ```
+
 ## 3.44.0
 
 ### Minor Changes
