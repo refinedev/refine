@@ -275,7 +275,12 @@ export const useDeleteMany = <
                     queryClient.removeQueries(context?.queryKey.detail(id)),
                 );
 
-                handleNotification(successNotification, {
+                const notificationConfig =
+                    typeof successNotification === "function"
+                        ? successNotification(_data, ids, resource)
+                        : successNotification;
+
+                handleNotification(notificationConfig, {
                     key: `${ids}-${resource}-notification`,
                     description: translate("notifications.success", "Success"),
                     message: translate(
@@ -315,7 +320,12 @@ export const useDeleteMany = <
                     checkError(err);
                     const resourceSingular = pluralize.singular(resource);
 
-                    handleNotification(errorNotification, {
+                    const notificationConfig =
+                        typeof errorNotification === "function"
+                            ? errorNotification(err, ids, resource)
+                            : errorNotification;
+
+                    handleNotification(notificationConfig, {
                         key: `${ids}-${resource}-notification`,
                         message: translate(
                             "notifications.deleteError",

@@ -283,7 +283,12 @@ export const useUpdate = <
             ) => {
                 const resourceSingular = pluralize.singular(resource);
 
-                handleNotification(successNotification, {
+                const notificationConfig =
+                    typeof successNotification === "function"
+                        ? successNotification(data, { id, values }, resource)
+                        : successNotification;
+
+                handleNotification(notificationConfig, {
                     key: `${id}-${resource}-notification`,
                     description: translate(
                         "notifications.success",
@@ -343,7 +348,7 @@ export const useUpdate = <
             },
             onError: (
                 err: TError,
-                { id, resource, errorNotification },
+                { id, resource, errorNotification, values },
                 context,
             ) => {
                 // set back the queries to the context:
@@ -359,7 +364,12 @@ export const useUpdate = <
 
                     const resourceSingular = pluralize.singular(resource);
 
-                    handleNotification(errorNotification, {
+                    const notificationConfig =
+                        typeof errorNotification === "function"
+                            ? errorNotification(err, { id, values }, resource)
+                            : errorNotification;
+
+                    handleNotification(notificationConfig, {
                         key: `${id}-${resource}-notification`,
                         message: translate(
                             "notifications.editError",

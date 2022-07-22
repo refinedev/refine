@@ -150,8 +150,8 @@ ButtonProps
 
 | Key                 | Type                                                                                 |
 | ------------------- | ------------------------------------------------------------------------------------ |
-| successNotification | [Notification Properties](https://ant.design/components/notification/#API) & `false` |
-| errorNotification   | [Notification Properties](https://ant.design/components/notification/#API) & `false` |
+| successNotification | `(data?: TData, values?: TVariables, resource?: string) => NotificationProperties` \| [Notification Properties](https://ant.design/components/notification/#API) \| `false` |
+| errorNotification   | `(error?: TError, values?: TVariables, resource?: string) => NotificationProperties` \| [Notification Properties](https://ant.design/components/notification/#API) \| `false` |
 
 ## MetaDataQuery
 
