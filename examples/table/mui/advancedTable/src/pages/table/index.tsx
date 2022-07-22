@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDeleteMany, useOne, useSelect } from "@pankod/refine-core";
 import { alpha } from "@mui/material/styles";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
@@ -53,10 +53,17 @@ export const PostList: React.FC = () => {
     const { mutate } = useDeleteMany<IPost>();
 
     const deleteSelectedItems = (ids: number[]) => {
-        mutate({
-            resource: "posts",
-            ids,
-        });
+        mutate(
+            {
+                resource: "posts",
+                ids,
+            },
+            {
+                onSuccess: () => {
+                    resetRowSelection();
+                },
+            },
+        );
     };
 
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -155,7 +162,7 @@ export const PostList: React.FC = () => {
     }: { indeterminate?: boolean } & Omit<CheckboxProps, "inputRef">) {
         const ref = React.useRef<HTMLInputElement>(null);
 
-        React.useEffect(() => {
+        useEffect(() => {
             if (typeof indeterminate === "boolean" && ref.current) {
                 ref.current.indeterminate = !rest.checked && indeterminate;
             }
@@ -176,11 +183,13 @@ export const PostList: React.FC = () => {
         setPageIndex,
         setPageSize,
         getSelectedRowModel,
+        resetRowSelection,
         refineCore: {
             tableQueryResult: { data: tableData },
         },
     } = useTable<IPost>({
         columns,
+        getRowId: (originalRow) => originalRow.id.toString(),
     });
 
     const categoryIds =
@@ -208,9 +217,7 @@ export const PostList: React.FC = () => {
                 <>
                     <TableRow key={`edit-${id}-inputs`}>
                         <TableCell>
-                            <span {...row.getToggleRowExpandedProps()}>
-                                {row.isExpanded ? "👇" : "👉"}
-                            </span>
+                            <span>{row.isExpanded ? "👇" : "👉"}</span>
                         </TableCell>
                         <TableCell>
                             <span>{id}</span>
@@ -351,19 +358,17 @@ export const PostList: React.FC = () => {
                                     select
                                     id="category"
                                     label="Category Select"
-                                    defaultValue={0}
-                                    value={
-                                        (categoryColumn.getFilterValue() as string) ??
-                                        ""
-                                    }
-                                    onChange={(event) =>
+                                    defaultValue={"0"}
+                                    onChange={(event) => {
                                         categoryColumn.setFilterValue(
-                                            event.target.value,
-                                        )
-                                    }
+                                            event.target.value === "0"
+                                                ? undefined
+                                                : event.target.value.toString(),
+                                        );
+                                    }}
                                     sx={{ minWidth: 200 }}
                                 >
-                                    <MenuItem key="All Categories" value={0}>
+                                    <MenuItem key="All Categories" value={"0"}>
                                         All Categories
                                     </MenuItem>
                                     {options?.map((category) => (
@@ -378,7 +383,7 @@ export const PostList: React.FC = () => {
                             </Stack>
                         </Box>
                         <EnhancedTableToolbar
-                            numSelected={getSelectedRowModel().rows.length}
+                            numSelected={Object.keys(rowSelection ?? {}).length}
                             onDelete={() => {
                                 deleteSelectedItems(
                                     getSelectedRowModel().flatRows.map(

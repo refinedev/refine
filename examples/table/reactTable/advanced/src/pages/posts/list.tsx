@@ -28,10 +28,17 @@ export const PostList: React.FC = () => {
     const { mutate } = useDeleteMany<IPost>();
 
     const deleteSelectedItems = (ids: number[]) => {
-        mutate({
-            resource: "posts",
-            ids,
-        });
+        mutate(
+            {
+                resource: "posts",
+                ids,
+            },
+            {
+                onSuccess: () => {
+                    resetRowSelection();
+                },
+            },
+        );
     };
 
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -39,6 +46,7 @@ export const PostList: React.FC = () => {
             {
                 id: "selection",
                 accessorKey: "id",
+                enableSorting: false,
                 header: function render({ table }) {
                     return (
                         <>
@@ -181,11 +189,13 @@ export const PostList: React.FC = () => {
         getCanNextPage,
         nextPage,
         previousPage,
+        resetRowSelection,
         refineCore: {
             tableQueryResult: { data: tableData },
         },
     } = useTable<IPost>({
         columns,
+        getRowId: (originalRow) => originalRow.id.toString(),
     });
 
     const categoryIds = tableData?.data?.map((item) => item.category.id) ?? [];
