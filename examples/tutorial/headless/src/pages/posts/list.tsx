@@ -1,7 +1,12 @@
 import React from "react";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
-import { useDelete, useNavigation, useOne } from "@pankod/refine-core";
+import {
+    GetManyResponse,
+    useDelete,
+    useMany,
+    useNavigation,
+} from "@pankod/refine-core";
 
 import { ICategory, IPost } from "interfaces";
 import {
@@ -48,17 +53,14 @@ export const PostList: React.FC = () => {
                 id: "category.id",
                 header: "Category",
                 accessorKey: "category.id",
-                cell: function render({ getValue }) {
-                    const { data, isLoading } = useOne<ICategory>({
-                        resource: "categories",
-                        id: getValue() as number,
-                    });
-
-                    if (isLoading) {
-                        return <p>loading..</p>;
-                    }
-
-                    return data?.data.title;
+                cell: function render({ getValue, table }) {
+                    const meta = table.options.meta as {
+                        categoriesData: GetManyResponse<ICategory>;
+                    };
+                    const category = meta.categoriesData?.data.find(
+                        (item) => item.id === getValue(),
+                    );
+                    return category?.title ?? "Loading...";
                 },
             },
             {
@@ -104,6 +106,7 @@ export const PostList: React.FC = () => {
     );
 
     const {
+        setOptions,
         getHeaderGroups,
         getRowModel,
         getState,
@@ -115,9 +118,29 @@ export const PostList: React.FC = () => {
         previousPage,
         setPageSize,
         getColumn,
+        refineCore: {
+            tableQueryResult: { data: tableData },
+        },
     } = useTable<IPost>({
         columns,
     });
+
+    const categoryIds = tableData?.data?.map((item) => item.category.id) ?? [];
+    const { data: categoriesData } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    setOptions((prev) => ({
+        ...prev,
+        meta: {
+            ...prev.meta,
+            categoriesData,
+        },
+    }));
 
     const titleColumn = getColumn("title");
 

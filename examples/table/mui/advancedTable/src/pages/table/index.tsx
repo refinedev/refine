@@ -1,5 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useDeleteMany, useOne, useSelect } from "@pankod/refine-core";
+import {
+    GetManyResponse,
+    useDeleteMany,
+    useMany,
+    useSelect,
+} from "@pankod/refine-core";
 import { alpha } from "@mui/material/styles";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 import {
@@ -120,12 +125,14 @@ export const PostList: React.FC = () => {
                 id: "category.id",
                 header: "Category",
                 accessorKey: "category.id",
-                cell: ({ getValue }) => {
-                    const { data } = useOne<ICategory>({
-                        resource: "categories",
-                        id: getValue() as number,
-                    });
-                    return data?.data.title || "loading";
+                cell: function render({ getValue, table }) {
+                    const meta = table.options.meta as {
+                        categoriesData: GetManyResponse<ICategory>;
+                    };
+                    const category = meta.categoriesData?.data.find(
+                        (item) => item.id === getValue(),
+                    );
+                    return category?.title ?? "Loading...";
                 },
                 meta: {
                     filterOperator: "eq",
@@ -176,6 +183,7 @@ export const PostList: React.FC = () => {
             state: { pagination, rowSelection },
             pageCount,
         },
+        setOptions,
         getColumn,
         getAllColumns,
         getHeaderGroups,
@@ -192,8 +200,22 @@ export const PostList: React.FC = () => {
         getRowId: (originalRow) => originalRow.id.toString(),
     });
 
-    const categoryIds =
-        tableData?.data?.map((item: IPost) => item.category.id) ?? [];
+    const categoryIds = tableData?.data?.map((item) => item.category.id) ?? [];
+    const { data: categoriesData } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    setOptions((prev) => ({
+        ...prev,
+        meta: {
+            ...prev.meta,
+            categoriesData,
+        },
+    }));
 
     const { options } = useSelect<ICategory>({
         resource: "categories",

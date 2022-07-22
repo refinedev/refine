@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { useDeleteMany, useOne, useSelect } from "@pankod/refine-core";
+import { useDeleteMany, useMany, useSelect } from "@pankod/refine-core";
 import { useForm, Controller } from "@pankod/refine-react-hook-form";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 import ReactMarkdown from "react-markdown";
@@ -112,13 +112,6 @@ export const PostList: React.FC = () => {
                 id: "category.id",
                 header: "Category",
                 accessorKey: "category.id",
-                cell: function render({ getValue }) {
-                    const { data } = useOne<ICategory>({
-                        resource: "categories",
-                        id: getValue() as number,
-                    });
-                    return data?.data.title || "loading";
-                },
                 meta: {
                     filterOperator: "eq",
                 },
@@ -177,6 +170,7 @@ export const PostList: React.FC = () => {
     }
 
     const {
+        setOptions,
         getColumn,
         getAllColumns,
         getHeaderGroups,
@@ -199,11 +193,41 @@ export const PostList: React.FC = () => {
     });
 
     const categoryIds = tableData?.data?.map((item) => item.category.id) ?? [];
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    setOptions((prev) => ({
+        ...prev,
+        columns: getAllColumns().map((column) => {
+            if (column.id === "category.id") {
+                return {
+                    ...column,
+                    cell: function render({ getValue }) {
+                        if (isLoading) {
+                            return "Loading...";
+                        }
+
+                        const category = categoriesData?.data.find(
+                            (item) => item.id === getValue(),
+                        );
+                        return category?.title ?? "Loading...";
+                    },
+                };
+            }
+            return column;
+        }),
+    }));
 
     const { options } = useSelect<ICategory>({
         resource: "categories",
         defaultValue: categoryIds,
     });
+
     const renderRowSubComponent = useCallback(
         ({ row }) => <ReactMarkdown>{row.original.content}</ReactMarkdown>,
         [],
