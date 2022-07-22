@@ -51,6 +51,7 @@ jobs:
         id: changesets
         uses: refinedev/action@main
         with:
+          version: npm run changeset version
           publish: npm run changeset publish -- --tag next
           commit: "ci(changesets): next version packages"
           title: "ci(changesets): next version packages"
