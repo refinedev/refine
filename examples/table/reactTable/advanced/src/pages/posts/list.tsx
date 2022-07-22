@@ -1,20 +1,11 @@
-/* eslint-disable react/jsx-key */
-import React, { useState, useCallback } from "react";
-import { useDeleteMany, useOne, useSelect } from "@pankod/refine-core";
+import React, { useState, useCallback, useEffect } from "react";
+import { useDeleteMany, useMany, useSelect } from "@pankod/refine-core";
 import { useForm, Controller } from "@pankod/refine-react-hook-form";
-import "react-mde/lib/styles/css/react-mde-all.css";
-
-import {
-    useTable,
-    Column,
-    usePagination,
-    useExpanded,
-    useRowSelect,
-    useSortBy,
-    useFilters,
-} from "@pankod/refine-react-table";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
+
+import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -36,58 +27,115 @@ export const PostList: React.FC = () => {
 
     const { mutate } = useDeleteMany<IPost>();
 
-    const deleteSelectedItems = (ids: string[]) => {
-        mutate({
-            resource: "posts",
-            ids,
-        });
+    const deleteSelectedItems = (ids: number[]) => {
+        mutate(
+            {
+                resource: "posts",
+                ids,
+            },
+            {
+                onSuccess: () => {
+                    resetRowSelection();
+                },
+            },
+        );
     };
 
-    const columns: Array<Column> = React.useMemo(
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
         () => [
             {
+                id: "selection",
+                accessorKey: "id",
+                enableSorting: false,
+                header: function render({ table }) {
+                    return (
+                        <>
+                            <IndeterminateCheckbox
+                                {...{
+                                    checked: table.getIsAllRowsSelected(),
+                                    indeterminate:
+                                        table.getIsSomeRowsSelected(),
+                                    onChange:
+                                        table.getToggleAllRowsSelectedHandler(),
+                                }}
+                            />{" "}
+                            {table.getIsSomeRowsSelected() && (
+                                <button
+                                    onClick={() =>
+                                        deleteSelectedItems(
+                                            table
+                                                .getSelectedRowModel()
+                                                .flatRows.map(
+                                                    ({ original }) =>
+                                                        original.id,
+                                                ),
+                                        )
+                                    }
+                                >
+                                    Delete
+                                </button>
+                            )}
+                        </>
+                    );
+                },
+                cell: function render({ row }) {
+                    return (
+                        <>
+                            <IndeterminateCheckbox
+                                {...{
+                                    checked: row.getIsSelected(),
+                                    indeterminate: row.getIsSomeSelected(),
+                                    onChange: row.getToggleSelectedHandler(),
+                                }}
+                            />
+                            <span onClick={() => row.toggleExpanded()}>
+                                {row.getIsExpanded() ? "👇" : "👉"}
+                            </span>
+                        </>
+                    );
+                },
+            },
+            {
                 id: "id",
-                Header: "ID",
-                accessor: "id",
+                header: "ID",
+                accessorKey: "id",
             },
             {
                 id: "title",
-                Header: "Title",
-                accessor: "title",
-                filter: "contains",
+                header: "Title",
+                accessorKey: "title",
+                meta: {
+                    filterOperator: "contains",
+                },
             },
             {
                 id: "category.id",
-                Header: "Category",
-                accessor: "category.id",
-                Cell: ({ value }) => {
-                    const { data } = useOne<ICategory>({
-                        resource: "categories",
-                        id: value,
-                    });
-                    return data?.data.title || "loading";
+                header: "Category",
+                accessorKey: "category.id",
+                meta: {
+                    filterOperator: "eq",
                 },
-                filter: "eq",
             },
             {
                 id: "actions",
-                Header: "Actions",
-                accessor: "id",
-                //eslint-disable-next-line react/display-name
-                Cell: ({ value, row }) => {
+                header: "Actions",
+                accessorKey: "id",
+                cell: function render({ getValue }) {
                     return (
                         <div>
                             <button
                                 type="button"
                                 onClick={() => {
-                                    handleEditButtonClick(value);
+                                    handleEditButtonClick(getValue() as number);
                                 }}
                             >
                                 Edit
                             </button>
                             <button
                                 type="button"
-                                onClick={() => deleteSelectedItems([value])}
+                                onClick={() =>
+                                    deleteSelectedItems([getValue() as number])
+                                }
                             >
                                 Delete
                             </button>
@@ -99,112 +147,93 @@ export const PostList: React.FC = () => {
         [],
     );
 
-    // eslint-disable-next-line react/display-name
-    const IndeterminateCheckbox = React.forwardRef<HTMLInputElement, any>(
-        ({ indeterminate, ...rest }, ref) => {
-            const defaultRef = React.useRef();
-            const resolvedRef: any = ref || defaultRef;
+    function IndeterminateCheckbox({
+        indeterminate,
+        ...rest
+    }: { indeterminate?: boolean } & React.HTMLProps<HTMLInputElement>) {
+        const ref = React.useRef<HTMLInputElement>(null!);
 
-            React.useEffect(() => {
-                if (resolvedRef.current) {
-                    resolvedRef.current.indeterminate = indeterminate;
-                }
-            }, [resolvedRef, indeterminate]);
+        useEffect(() => {
+            if (typeof indeterminate === "boolean") {
+                ref.current.indeterminate = !rest.checked && indeterminate;
+            }
+        }, [ref, indeterminate]);
 
-            return <input type="checkbox" ref={ref} {...rest} />;
-        },
-    );
+        return (
+            <input
+                type="checkbox"
+                ref={ref}
+                style={{ cursor: "pointer" }}
+                {...rest}
+            />
+        );
+    }
 
     const {
-        page,
-        headerGroups,
-        canPreviousPage,
-        canNextPage,
-        pageOptions,
-        pageCount,
-        visibleColumns,
-        getTableProps,
-        getTableBodyProps,
-        prepareRow,
-        gotoPage,
+        setOptions,
+        getColumn,
+        getAllColumns,
+        getHeaderGroups,
+        getRowModel,
+        setPageIndex,
+        setPageSize,
+        getState,
+        getCanPreviousPage,
+        getPageCount,
+        getCanNextPage,
         nextPage,
         previousPage,
-        setPageSize,
-        setFilter,
-        state: { pageIndex, pageSize, filters },
+        resetRowSelection,
         refineCore: {
             tableQueryResult: { data: tableData },
         },
-    } = useTable<IPost>(
-        {
-            columns,
-        },
-        useFilters,
-        useSortBy,
-        useExpanded,
-        usePagination,
-        useRowSelect,
-        (hooks) => {
-            hooks.visibleColumns.push((columns) => [
-                {
-                    id: "selection",
-                    Header: function render({
-                        getToggleAllPageRowsSelectedProps,
-                        selectedFlatRows,
-                    }) {
-                        return (
-                            <div>
-                                <IndeterminateCheckbox
-                                    {...getToggleAllPageRowsSelectedProps()}
-                                />
-
-                                {selectedFlatRows.length > 0 && (
-                                    <button
-                                        onClick={() =>
-                                            deleteSelectedItems(
-                                                selectedFlatRows.map(
-                                                    ({ original }: any) =>
-                                                        original.id,
-                                                ),
-                                            )
-                                        }
-                                    >
-                                        Delete
-                                    </button>
-                                )}
-                            </div>
-                        );
-                    },
-                    Cell: function render({ row }: any) {
-                        return (
-                            <div>
-                                <IndeterminateCheckbox
-                                    {...row.getToggleRowSelectedProps()}
-                                />
-                                <span {...row.getToggleRowExpandedProps()}>
-                                    {row.isExpanded ? "👇" : "👉"}
-                                </span>
-                            </div>
-                        );
-                    },
-                },
-                ...columns,
-            ]);
-        },
-    );
+    } = useTable<IPost>({
+        columns,
+        getRowId: (originalRow) => originalRow.id.toString(),
+    });
 
     const categoryIds = tableData?.data?.map((item) => item.category.id) ?? [];
+    const { data: categoriesData, isLoading } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    setOptions((prev) => ({
+        ...prev,
+        columns: getAllColumns().map((column) => {
+            if (column.id === "category.id") {
+                return {
+                    ...column,
+                    cell: function render({ getValue }) {
+                        if (isLoading) {
+                            return "Loading...";
+                        }
+
+                        const category = categoriesData?.data.find(
+                            (item) => item.id === getValue(),
+                        );
+                        return category?.title ?? "Loading...";
+                    },
+                };
+            }
+            return column;
+        }),
+    }));
 
     const { options } = useSelect<ICategory>({
         resource: "categories",
         defaultValue: categoryIds,
     });
+
     const renderRowSubComponent = useCallback(
         ({ row }) => <ReactMarkdown>{row.original.content}</ReactMarkdown>,
         [],
     );
 
-    const handleEditButtonClick = (editId: string) => {
+    const handleEditButtonClick = (editId: number) => {
         setId(editId);
     };
 
@@ -217,7 +246,7 @@ export const PostList: React.FC = () => {
                     <tr key={`edit-${id}-inputs`}>
                         <td>
                             <div>
-                                <span {...row.getToggleRowExpandedProps()}>
+                                <span onClick={() => row.toggleExpanded()}>
                                     {row.isExpanded ? "👇" : "👉"}
                                 </span>
                             </div>
@@ -262,7 +291,7 @@ export const PostList: React.FC = () => {
                         </td>
                     </tr>
                     <tr key={`edit-${id}-mde`}>
-                        <td colSpan={visibleColumns.length}>
+                        <td colSpan={getAllColumns().length}>
                             <Controller
                                 defaultValue={content}
                                 control={control}
@@ -295,6 +324,9 @@ export const PostList: React.FC = () => {
         [options, selectedTab],
     );
 
+    const titleColumn = getColumn("title");
+    const categoryColumn = getColumn("category.id");
+
     return (
         <>
             <div>
@@ -302,21 +334,18 @@ export const PostList: React.FC = () => {
                 <input
                     id="title"
                     type="text"
-                    value={
-                        filters.find((filter) => filter.id === "title")?.value
+                    value={(titleColumn.getFilterValue() as string) ?? ""}
+                    onChange={(event) =>
+                        titleColumn.setFilterValue(event.target.value)
                     }
-                    onChange={(event) => setFilter("title", event.target.value)}
                 />
                 <label htmlFor="Category">Category</label>
                 <select
                     id="category"
                     aria-label="Category select"
-                    onChange={(event) => {
-                        setFilter("category.id", event.target.value);
-                    }}
-                    value={
-                        filters.find((filter) => filter.id === "category.id")
-                            ?.value
+                    value={(categoryColumn.getFilterValue() as string) ?? ""}
+                    onChange={(event) =>
+                        categoryColumn.setFilterValue(event.target.value)
                     }
                 >
                     <option value={[]}>All Categories</option>
@@ -331,59 +360,58 @@ export const PostList: React.FC = () => {
                 </select>
             </div>
             <form onSubmit={handleSubmit(onFinish)}>
-                <table
-                    {...getTableProps()}
-                    style={{
-                        border: "1px solid black",
-                    }}
-                >
+                <table style={{ border: "1px solid black" }}>
                     <thead>
-                        {headerGroups.map((headerGroup) => (
-                            <tr {...headerGroup.getHeaderGroupProps()}>
-                                {headerGroup.headers.map((column) => (
+                        {getHeaderGroups().map((headerGroup) => (
+                            <tr key={headerGroup.id}>
+                                {headerGroup.headers.map((header) => (
                                     <th
-                                        {...column.getHeaderProps(
-                                            column.getSortByToggleProps(),
-                                        )}
+                                        key={header.id}
+                                        colSpan={header.colSpan}
+                                        onClick={header.column.getToggleSortingHandler()}
                                     >
-                                        {column.render("Header")}
-                                        <span>
-                                            {column.isSorted
-                                                ? column.isSortedDesc
-                                                    ? " 🔽"
-                                                    : " 🔼"
-                                                : ""}
-                                        </span>
+                                        {flexRender(
+                                            header.column.columnDef.header,
+                                            header.getContext(),
+                                        )}
+                                        {{
+                                            asc: " 🔼",
+                                            desc: " 🔽",
+                                        }[
+                                            header.column.getIsSorted() as string
+                                        ] ?? null}
                                     </th>
                                 ))}
                             </tr>
                         ))}
                     </thead>
-                    <tbody {...getTableBodyProps()}>
-                        {page.map((row) => {
-                            prepareRow(row);
-                            if (id === (row.original as any).id) {
+                    <tbody>
+                        {getRowModel().rows.map((row) => {
+                            if (id === (row.original as IPost).id) {
                                 return renderEditRow(row);
                             } else
                                 return (
-                                    <React.Fragment key={row.getRowProps().key}>
+                                    <React.Fragment key={row.id}>
                                         <tr>
-                                            {row.cells.map((cell) => {
+                                            {row.getAllCells().map((cell) => {
                                                 return (
-                                                    <td
-                                                        {...cell.getCellProps()}
-                                                    >
-                                                        {cell.render("Cell")}
+                                                    <td key={cell.id}>
+                                                        {flexRender(
+                                                            cell.column
+                                                                .columnDef.cell,
+                                                            cell.getContext(),
+                                                        )}
                                                     </td>
                                                 );
                                             })}
                                         </tr>
 
-                                        {row.isExpanded ? (
+                                        {row.getIsExpanded() ? (
                                             <tr>
                                                 <td
                                                     colSpan={
-                                                        visibleColumns.length
+                                                        row.getVisibleCells()
+                                                            .length
                                                     }
                                                 >
                                                     {renderRowSubComponent({
@@ -401,54 +429,55 @@ export const PostList: React.FC = () => {
                 <div className="pagination">
                     <button
                         type="button"
-                        onClick={() => gotoPage(0)}
-                        disabled={!canPreviousPage}
+                        onClick={() => setPageIndex(0)}
+                        disabled={!getCanPreviousPage()}
                     >
                         {"<<"}
                     </button>{" "}
                     <button
                         type="button"
                         onClick={() => previousPage()}
-                        disabled={!canPreviousPage}
+                        disabled={!getCanPreviousPage()}
                     >
                         {"<"}
                     </button>{" "}
                     <button
                         type="button"
                         onClick={() => nextPage()}
-                        disabled={!canNextPage}
+                        disabled={!getCanNextPage()}
                     >
                         {">"}
                     </button>{" "}
                     <button
                         type="button"
-                        onClick={() => gotoPage(pageCount - 1)}
-                        disabled={!canNextPage}
+                        onClick={() => setPageIndex(getPageCount() - 1)}
+                        disabled={!getCanNextPage()}
                     >
                         {">>"}
                     </button>{" "}
                     <span>
                         Page{" "}
                         <strong>
-                            {pageIndex + 1} of {pageOptions.length}
+                            {getState().pagination.pageIndex + 1} of{" "}
+                            {getPageCount()}
                         </strong>{" "}
                     </span>
                     <span>
                         | Go to page:{" "}
                         <input
                             type="number"
-                            defaultValue={pageIndex + 1}
+                            defaultValue={getState().pagination.pageIndex + 1}
                             onChange={(e) => {
                                 const page = e.target.value
                                     ? Number(e.target.value) - 1
                                     : 0;
-                                gotoPage(page);
+                                setPageIndex(page);
                             }}
                             style={{ width: "100px" }}
                         />
                     </span>{" "}
                     <select
-                        value={pageSize}
+                        value={getState().pagination.pageSize}
                         onChange={(e) => {
                             setPageSize(Number(e.target.value));
                         }}
