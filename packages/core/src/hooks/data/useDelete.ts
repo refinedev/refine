@@ -261,7 +261,12 @@ export const useDelete = <
                 // Remove the queries from the cache:
                 queryClient.removeQueries(context?.queryKey.detail(id));
 
-                handleNotification(successNotification, {
+                const notificationConfig =
+                    typeof successNotification === "function"
+                        ? successNotification(_data, id, resource)
+                        : successNotification;
+
+                handleNotification(notificationConfig, {
                     key: `${id}-${resource}-notification`,
                     description: translate("notifications.success", "Success"),
                     message: translate(
@@ -319,7 +324,12 @@ export const useDelete = <
 
                     const resourceSingular = pluralize.singular(resource ?? "");
 
-                    handleNotification(errorNotification, {
+                    const notificationConfig =
+                        typeof errorNotification === "function"
+                            ? errorNotification(err, id, resource)
+                            : errorNotification;
+
+                    handleNotification(notificationConfig, {
                         key: `${id}-${resource}-notification`,
                         message: translate(
                             "notifications.deleteError",
