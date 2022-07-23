@@ -1,9 +1,10 @@
 import React from "react";
+import { useAuthenticated } from "@pankod/refine-core";
 import cn from "clsx";
 import Link from "next/link";
 import s from "./UserNav.module.css";
-// import { Avatar } from "@components/common";
-import { useUI } from "@components/ui/context";
+import Avatar from "@components/common/Avatar";
+import { useUI, UIProvider } from "@components/ui/context";
 import { Heart, Bag, Menu } from "@components/icons";
 import CustomerMenuContent from "./CustomerMenuContent";
 import {
@@ -19,38 +20,36 @@ const countItem = (count: number, item: any) => count + item.quantity;
 const UserNav: React.FC<{
     className?: string;
 }> = ({ className }) => {
-    const {
-        toggleSidebar,
-        closeSidebarIfPresent,
-        openModal,
-        setSidebarView,
-        openSidebar,
-    } = useUI();
+    const data = useAuthenticated();
 
-    // const DropdownTrigger = isCustomerLoggedIn
-    //     ? DropdownTriggerInst
-    //     : React.Fragment;
+    const { isSuccess } = data;
+
+    const { closeSidebarIfPresent, openModal, setSidebarView, openSidebar } =
+        useUI();
+
+    const isCustomerLoggedIn = false;
+
+    const DropdownTrigger = isSuccess ? DropdownTriggerInst : React.Fragment;
 
     return (
         <nav className={cn(s.root, className)}>
             <ul className={s.list}>
-                {process.env.COMMERCE_CART_ENABLED && (
-                    <li className={s.item}>
-                        <Button
-                            className={s.item}
-                            variant="naked"
-                            onClick={() => {
-                                setSidebarView("CART_VIEW");
-                                openSidebar();
-                            }}
-                        >
-                            <Bag />
-                            {/* {itemsCount > 0 && (
+                <li className={s.item}>
+                    <Button
+                        className={s.item}
+                        variant="naked"
+                        onClick={() => {
+                            setSidebarView("CART_VIEW");
+                            openSidebar();
+                        }}
+                    >
+                        <Bag />
+                        {/* {itemsCount > 0 && (
                                 <span className={s.bagCount}>{itemsCount}</span>
                             )} */}
-                        </Button>
-                    </li>
-                )}
+                    </Button>
+                </li>
+
                 {process.env.COMMERCE_WISHLIST_ENABLED && (
                     <li className={s.item}>
                         <Link href="/wishlist">
@@ -63,24 +62,22 @@ const UserNav: React.FC<{
                         </Link>
                     </li>
                 )}
-                {process.env.COMMERCE_CUSTOMERAUTH_ENABLED && (
-                    <li className={s.item}>
-                        <Dropdown>
-                            {/* <DropdownTrigger>
-                                <button
-                                    aria-label="Menu"
-                                    className={s.avatarButton}
-                                    // onClick={() =>
-                                    //     isCustomerLoggedIn ? null : openModal()
-                                    // }
-                                >
-                                    <Avatar />
-                                </button>
-                            </DropdownTrigger> */}
-                            <CustomerMenuContent />
-                        </Dropdown>
-                    </li>
-                )}
+                <li className={s.item}>
+                    <Dropdown>
+                        <DropdownTrigger>
+                            <button
+                                aria-label="Menu"
+                                className={s.avatarButton}
+                                onClick={() =>
+                                    isCustomerLoggedIn ? null : openModal()
+                                }
+                            >
+                                <Avatar />
+                            </button>
+                        </DropdownTrigger>
+                        <CustomerMenuContent />
+                    </Dropdown>
+                </li>
                 <li className={s.mobileMenu}>
                     <Button
                         className={s.item}

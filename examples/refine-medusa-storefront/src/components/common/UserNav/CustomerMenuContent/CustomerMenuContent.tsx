@@ -7,6 +7,7 @@ import {
     DropdownContent,
     DropdownMenuItem,
 } from "@components/ui/Dropdown/Dropdown";
+import { useLogout } from "@pankod/refine-core";
 
 const LINKS = [
     {
@@ -27,6 +28,8 @@ export default function CustomerMenuContent() {
     const router = useRouter();
     const { pathname } = useRouter();
     const { theme, setTheme } = useTheme();
+
+    const { mutate: logout } = useLogout();
 
     function handleClick(_: React.MouseEvent<HTMLAnchorElement>, href: string) {
         router.push(href);
@@ -74,7 +77,7 @@ export default function CustomerMenuContent() {
             <DropdownMenuItem>
                 <a
                     className={cn(s.link, "border-t border-accent-2 mt-4")}
-                    onClick={() => undefined}
+                    onClick={() => logout()}
                 >
                     Logout
                 </a>
