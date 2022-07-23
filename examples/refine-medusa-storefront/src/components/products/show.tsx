@@ -1,4 +1,4 @@
-import { useList, useOne, useShow } from "@pankod/refine-core";
+import { useList, useShow } from "@pankod/refine-core";
 import { ProductView } from "..";
 
 export const ProductShow: React.FC = () => {
