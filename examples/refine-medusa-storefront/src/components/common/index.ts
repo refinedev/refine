@@ -1,4 +1,5 @@
 export * from "./Footer";
+export * from "./Navbar";
 export * from "./UserNav";
 export * from "./Searchbar";
 export * from "./Avatar";

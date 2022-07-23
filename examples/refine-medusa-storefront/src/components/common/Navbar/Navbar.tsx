@@ -1,11 +1,11 @@
 import { FC } from "react";
+import { BaseRecord } from "@pankod/refine-core";
 import Link from "next/link";
 import s from "./Navbar.module.css";
 import NavbarRoot from "./NavbarRoot";
 import { Logo, Container } from "@components/ui";
 import UserNav from "@components/common/UserNav";
 import Searchbar from "@components/common/Searchbar";
-import { useList } from "@pankod/refine-core";
 
 interface Link {
     href: string;
@@ -13,16 +13,11 @@ interface Link {
 }
 
 interface NavbarProps {
-    links?: Link[];
+    links?: BaseRecord[];
 }
 
 const Navbar: FC<NavbarProps> = ({ links }) => {
-    const { data } = useList({
-        resource: "collections",
-    });
-
-    const collections = data?.data;
-
+    console.log("Navbar links", links);
     return (
         <NavbarRoot>
             <Container clean className="mx-auto max-w-8xl px-6">
@@ -35,7 +30,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
                             <Link href="/collections">
                                 <a className={s.link}>All</a>
                             </Link>
-                            {collections?.map((col) => (
+                            {links?.map((col: any) => (
                                 <Link
                                     href={`/collections/show/${col.id}`}
                                     key={col.id}
