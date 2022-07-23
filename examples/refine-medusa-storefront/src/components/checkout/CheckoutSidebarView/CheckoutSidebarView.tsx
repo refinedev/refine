@@ -4,9 +4,9 @@ import CartItem from "@components/cart/CartItem";
 import { Button, Text } from "@components/ui";
 import { useUI } from "@components/ui/context";
 import SidebarLayout from "@components/common/SidebarLayout";
-import useCart from "@framework/cart/use-cart";
-import usePrice from "@framework/product/use-price";
-import useCheckout from "@framework/checkout/use-checkout";
+// import useCart from "@framework/cart/use-cart";
+// import usePrice from "@framework/product/use-price";
+// import useCheckout from "@framework/checkout/use-checkout";
 import ShippingWidget from "../ShippingWidget";
 import PaymentWidget from "../PaymentWidget";
 import s from "./CheckoutSidebarView.module.css";
@@ -15,38 +15,41 @@ import { useCheckoutContext } from "../context";
 const CheckoutSidebarView: FC = () => {
     const [loadingSubmit, setLoadingSubmit] = useState(false);
     const { setSidebarView, closeSidebar } = useUI();
-    const { data: cartData, mutate: refreshCart } = useCart();
-    const { data: checkoutData, submit: onCheckout } = useCheckout();
+    // const { data: cartData, mutate: refreshCart } = useCart();
+    // const { data: checkoutData, submit: onCheckout } = useCheckout();
     const { clearCheckoutFields } = useCheckoutContext();
 
-    async function handleSubmit(event: React.ChangeEvent<HTMLFormElement>) {
-        try {
-            setLoadingSubmit(true);
-            event.preventDefault();
+    const subTotal = 0;
+    const total = 0;
 
-            await onCheckout();
-            clearCheckoutFields();
-            setLoadingSubmit(false);
-            refreshCart();
-            closeSidebar();
-        } catch {
-            // TODO - handle error UI here.
-            setLoadingSubmit(false);
-        }
-    }
+    // async function handleSubmit(event: React.ChangeEvent<HTMLFormElement>) {
+    //     try {
+    //         setLoadingSubmit(true);
+    //         event.preventDefault();
 
-    const { price: subTotal } = usePrice(
-        cartData && {
-            amount: Number(cartData.subtotalPrice),
-            currencyCode: cartData.currency.code,
-        },
-    );
-    const { price: total } = usePrice(
-        cartData && {
-            amount: Number(cartData.totalPrice),
-            currencyCode: cartData.currency.code,
-        },
-    );
+    //         await onCheckout();
+    //         clearCheckoutFields();
+    //         setLoadingSubmit(false);
+    //         refreshCart();
+    //         closeSidebar();
+    //     } catch {
+    //         // TODO - handle error UI here.
+    //         setLoadingSubmit(false);
+    //     }
+    // }
+
+    // const { price: subTotal } = usePrice(
+    //     cartData && {
+    //         amount: Number(cartData.subtotalPrice),
+    //         currencyCode: cartData.currency.code,
+    //     },
+    // );
+    // const { price: total } = usePrice(
+    //     cartData && {
+    //         amount: Number(cartData.totalPrice),
+    //         currencyCode: cartData.currency.code,
+    //     },
+    // );
 
     return (
         <SidebarLayout
@@ -60,7 +63,7 @@ const CheckoutSidebarView: FC = () => {
                     </a>
                 </Link>
 
-                <PaymentWidget
+                {/* <PaymentWidget
                     isValid={checkoutData?.hasPayment}
                     onClick={() => setSidebarView("PAYMENT_VIEW")}
                 />
@@ -78,11 +81,11 @@ const CheckoutSidebarView: FC = () => {
                             variant="display"
                         />
                     ))}
-                </ul>
+                </ul> */}
             </div>
 
             <form
-                onSubmit={handleSubmit}
+                onSubmit={() => undefined} // handleSubmit
                 className="flex-shrink-0 px-6 py-6 sm:px-6 sticky z-20 bottom-0 w-full right-0 left-0 bg-accent-0 border-t text-sm"
             >
                 <ul className="pb-2">
@@ -108,10 +111,9 @@ const CheckoutSidebarView: FC = () => {
                     <Button
                         type="submit"
                         width="100%"
-                        disabled={
-                            !checkoutData?.hasPayment ||
-                            !checkoutData?.hasShipping
-                        }
+                        disabled={true}
+                        // !checkoutData?.hasPayment ||
+                        // !checkoutData?.hasShipping
                         loading={loadingSubmit}
                     >
                         Confirm Purchase

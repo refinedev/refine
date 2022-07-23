@@ -1,7 +1,7 @@
 import { FC } from "react";
 import cn from "clsx";
 
-import useAddCard from "@framework/customer/card/use-add-item";
+// import useAddCard from "@framework/customer/card/use-add-item";
 import { Button, Text } from "@components/ui";
 import { useUI } from "@components/ui/context";
 import SidebarLayout from "@components/common/SidebarLayout";
@@ -24,30 +24,30 @@ interface Form extends HTMLFormElement {
 
 const PaymentMethodView: FC = () => {
     const { setSidebarView } = useUI();
-    const addCard = useAddCard();
+    // const addCard = useAddCard();
 
-    async function handleSubmit(event: React.ChangeEvent<Form>) {
-        event.preventDefault();
+    // async function handleSubmit(event: React.ChangeEvent<Form>) {
+    //     event.preventDefault();
 
-        await addCard({
-            cardHolder: event.target.cardHolder.value,
-            cardNumber: event.target.cardNumber.value,
-            cardExpireDate: event.target.cardExpireDate.value,
-            cardCvc: event.target.cardCvc.value,
-            firstName: event.target.firstName.value,
-            lastName: event.target.lastName.value,
-            company: event.target.company.value,
-            streetNumber: event.target.streetNumber.value,
-            zipCode: event.target.zipCode.value,
-            city: event.target.city.value,
-            country: event.target.country.value,
-        });
+    //     await addCard({
+    //         cardHolder: event.target.cardHolder.value,
+    //         cardNumber: event.target.cardNumber.value,
+    //         cardExpireDate: event.target.cardExpireDate.value,
+    //         cardCvc: event.target.cardCvc.value,
+    //         firstName: event.target.firstName.value,
+    //         lastName: event.target.lastName.value,
+    //         company: event.target.company.value,
+    //         streetNumber: event.target.streetNumber.value,
+    //         zipCode: event.target.zipCode.value,
+    //         city: event.target.city.value,
+    //         country: event.target.country.value,
+    //     });
 
-        setSidebarView("CHECKOUT_VIEW");
-    }
+    //     setSidebarView("CHECKOUT_VIEW");
+    // }
 
     return (
-        <form className="h-full" onSubmit={handleSubmit}>
+        <form className="h-full" onSubmit={() => undefined}>
             <SidebarLayout handleBack={() => setSidebarView("CHECKOUT_VIEW")}>
                 <div className="px-4 sm:px-6 flex-1">
                     <Text variant="sectionHeading"> Payment Method</Text>

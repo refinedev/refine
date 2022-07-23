@@ -4,7 +4,7 @@ import cn from "clsx";
 import Button from "@components/ui/Button";
 import { useUI } from "@components/ui/context";
 import SidebarLayout from "@components/common/SidebarLayout";
-import useAddAddress from "@framework/customer/address/use-add-item";
+// import useAddAddress from "@framework/customer/address/use-add-item";
 
 import s from "./ShippingView.module.css";
 
@@ -24,28 +24,30 @@ interface Form extends HTMLFormElement {
 
 const ShippingView: FC = () => {
     const { setSidebarView } = useUI();
-    const addAddress = useAddAddress();
+    // const addAddress = useAddAddress();
 
-    async function handleSubmit(event: React.ChangeEvent<Form>) {
-        event.preventDefault();
+    // async function handleSubmit(event: React.ChangeEvent<Form>) {
+    //     event.preventDefault();
 
-        await addAddress({
-            type: event.target.type.value,
-            firstName: event.target.firstName.value,
-            lastName: event.target.lastName.value,
-            company: event.target.company.value,
-            streetNumber: event.target.streetNumber.value,
-            apartments: event.target.streetNumber.value,
-            zipCode: event.target.zipCode.value,
-            city: event.target.city.value,
-            country: event.target.country.value,
-        });
+    //     await addAddress({
+    //         type: event.target.type.value,
+    //         firstName: event.target.firstName.value,
+    //         lastName: event.target.lastName.value,
+    //         company: event.target.company.value,
+    //         streetNumber: event.target.streetNumber.value,
+    //         apartments: event.target.streetNumber.value,
+    //         zipCode: event.target.zipCode.value,
+    //         city: event.target.city.value,
+    //         country: event.target.country.value,
+    //     });
 
-        setSidebarView("CHECKOUT_VIEW");
-    }
+    //     setSidebarView("CHECKOUT_VIEW");
+    // }
+
+    // handleSubmit will be handled later
 
     return (
-        <form className="h-full" onSubmit={handleSubmit}>
+        <form className="h-full" onSubmit={() => undefined}>
             <SidebarLayout handleBack={() => setSidebarView("CHECKOUT_VIEW")}>
                 <div className="px-4 sm:px-6 flex-1">
                     <h2 className="pt-1 pb-8 text-2xl font-semibold tracking-wide cursor-pointer inline-block">
