@@ -5,7 +5,9 @@ import {
     CrudFilters,
     CrudSorting,
 } from "@pankod/refine-core";
-import Medusa from "@medusajs/medusa-js";
+
+import { getMedusaClient } from "./medusaClient";
+
 const mapOperator = (operator: CrudOperators): string => {
     switch (operator) {
         case "ne":
@@ -61,10 +63,7 @@ const generateFilter = (filters?: CrudFilters) => {
 };
 
 const JsonServer = (apiUrl: string): DataProvider => {
-    const medusaClient = new Medusa({
-        baseUrl: apiUrl,
-        maxRetries: 0,
-    });
+    const medusaClient = getMedusaClient(apiUrl);
 
     // fake client
     const httpClient = {
