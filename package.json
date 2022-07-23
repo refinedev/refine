@@ -30,6 +30,7 @@
     "devDependencies": {
         "@commitlint/cli": "^17.0.1",
         "@commitlint/config-conventional": "^17.0.0",
+        "@types/body-scroll-lock": "^3.1.0",
         "@types/jest": "^26.0.24",
         "@types/react": "^17.0.4",
         "@types/react-dom": "^17.0.4",
