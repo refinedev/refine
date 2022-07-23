@@ -12,40 +12,36 @@ import { API_URL } from "../src/constants";
 
 import { CollectionsList, ProductList, ProductShow } from "@components";
 import { authProvider } from "src/authProvider";
-import Navbar from "@components/common/Navbar";
-import Footer from "@components/common/Footer";
 import { CollectionsShow } from "@components/collections/show";
+import { ManagedUIContext } from "@components/ui/context";
+import Layout from "@components/common/Layout";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
-        <Refine
-            Layout={({ children }) => (
-                <div className="min-h-screen flex flex-col w-full ">
-                    <Navbar />
-                    <div className="flex-1">{children}</div>
-                    <Footer />
-                </div>
-            )}
-            LoginPage={LoginPage}
-            authProvider={authProvider()}
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            resources={[
-                {
-                    name: "products",
-                    list: ProductList,
-                    show: ProductShow,
-                },
-                {
-                    name: "collections",
-                    list: CollectionsList,
-                    show: CollectionsShow,
-                },
-            ]}
-            warnWhenUnsavedChanges={true}
-        >
-            <Component {...pageProps} />
-        </Refine>
+        <ManagedUIContext>
+            <Refine
+                Layout={Layout}
+                LoginPage={LoginPage}
+                authProvider={authProvider()}
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                resources={[
+                    {
+                        name: "products",
+                        list: ProductList,
+                        show: ProductShow,
+                    },
+                    {
+                        name: "collections",
+                        list: CollectionsList,
+                        show: CollectionsShow,
+                    },
+                ]}
+                warnWhenUnsavedChanges={true}
+            >
+                <Component {...pageProps} />
+            </Refine>
+        </ManagedUIContext>
     );
 }
 
