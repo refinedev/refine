@@ -8,6 +8,7 @@ import Image, { ImageProps } from "next/image";
 import WishlistButton from "@components/wishlist/WishlistButton";
 // import usePrice from "@framework/product/use-price";
 import ProductTag from "../ProductTag";
+import { currencySymbolFromCode } from "@components/product/helpers";
 
 interface Props {
     className?: string;
@@ -50,7 +51,7 @@ const ProductCard: FC<Props> = ({
                 {variant === "slim" && (
                     <>
                         <div className={s.header}>
-                            <span>{product.name}</span>
+                            <span>{product.title}</span>
                         </div>
                         {product?.images && (
                             <div>
@@ -85,7 +86,10 @@ const ProductCard: FC<Props> = ({
                                     <span>{product.title}</span>
                                 </h3>
                                 <div className={s.price}>
-                                    {`${price} ${product.price?.currencyCode}`}
+                                    {`${price} ${currencySymbolFromCode(
+                                        product?.variants[0].prices[1]
+                                            .currency_code,
+                                    )}`}
                                 </div>
                             </div>
                         )}
@@ -121,8 +125,10 @@ const ProductCard: FC<Props> = ({
                             />
                         )}
                         <ProductTag
-                            name={product.name}
-                            price={`${price} ${product.price?.currencyCode}`}
+                            name={product.title}
+                            price={`${price} ${currencySymbolFromCode(
+                                product?.variants[0].prices[1].currency_code,
+                            )}`}
                         />
                         <div className={s.imageContainer}>
                             {product?.images && (
