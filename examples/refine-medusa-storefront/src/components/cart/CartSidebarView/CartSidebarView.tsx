@@ -6,26 +6,33 @@ import CartItem from "../CartItem";
 import { Button, Text } from "@components/ui";
 import { useUI } from "@components/ui/context";
 import { Bag, Cross, Check } from "@components/icons";
-import useCart from "@framework/cart/use-cart";
-import usePrice from "@framework/product/use-price";
+// import useCart from "@framework/cart/use-cart";
+// import usePrice from "@framework/product/use-price";
 import SidebarLayout from "@components/common/SidebarLayout";
 
 const CartSidebarView: FC = () => {
     const { closeSidebar, setSidebarView } = useUI();
-    const { data, isLoading, isEmpty } = useCart();
+    // const { data, isLoading, isEmpty } = useCart();
 
-    const { price: subTotal } = usePrice(
-        data && {
-            amount: Number(data.subtotalPrice),
-            currencyCode: data.currency.code,
-        },
-    );
-    const { price: total } = usePrice(
-        data && {
-            amount: Number(data.totalPrice),
-            currencyCode: data.currency.code,
-        },
-    );
+    const isLoading = false;
+    const isEmpty = true;
+    const total = 0;
+    const subTotal = 0;
+    const data: any[] = [];
+
+    // const { price: subTotal } = usePrice(
+    //     data && {
+    //         amount: Number(data.subtotalPrice),
+    //         currencyCode: data.currency.code,
+    //     },
+    // );
+    // const { price: total } = usePrice(
+    //     data && {
+    //         amount: Number(data.totalPrice),
+    //         currencyCode: data.currency.code,
+    //     },
+    // );
+
     const handleClose = () => closeSidebar();
     const goToCheckout = () => setSidebarView("CHECKOUT_VIEW");
 
@@ -84,7 +91,7 @@ const CartSidebarView: FC = () => {
                                 </Text>
                             </a>
                         </Link>
-                        <ul className={s.lineItemsList}>
+                        {/* <ul className={s.lineItemsList}>
                             {data!.lineItems.map((item: any) => (
                                 <CartItem
                                     key={item.id}
@@ -92,7 +99,7 @@ const CartSidebarView: FC = () => {
                                     currencyCode={data!.currency.code}
                                 />
                             ))}
-                        </ul>
+                        </ul> */}
                     </div>
 
                     <div className="flex-shrink-0 px-6 py-6 sm:px-6 sticky z-20 bottom-0 w-full right-0 left-0 bg-accent-0 border-t text-sm">
