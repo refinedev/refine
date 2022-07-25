@@ -9,13 +9,14 @@ hide_table_of_contents: false
 ---
 
 
-import resourceSecond from '@site/static/img/tutorial/mui/resource-2.png';
+import listpage from '@site/static/img/blog/2022-07-21-admin-panel-with-materialui-and-strapi/list-page.png';
 import createGif from '@site/static/img/blog/2022-07-21-admin-panel-with-materialui-and-strapi/create.gif'
+import deleteGif from '@site/static/img/blog/2022-07-21-admin-panel-with-materialui-and-strapi/delete-record.gif'
 
 ## Introduction
 We will build an admin panel that supports CRUD operations, has built in authentication, and a mutation mode feature using industry-standard best tools.
 
-UI design can be a complex and time-consuming process, but using a tool like Material UI can help to simplify the process and speed up the development cycle. In this tutorial we'll use the benefits of Material UI and to handle data fetching and mutations, we'll integrate Strapi that Refine has built-in support.
+UI design can be a complex and time-consuming process, but using a tool like Material UI can help to simplify the process and speed up the development cycle. In this tutorial we'll use the benefits of Material UI and to handle data fetching and mutations, we'll integrate StrapiV4 that Refine has built-in support.
 
 We'll walk through the process of listing, creating and deleting posts in a Refine application and make use of Refine's components and hooks to build out our functionality.
 
@@ -23,10 +24,10 @@ Steps we'll cover includes:
 - What are the benefits of using Refine?
 - Bootstrapping the Refine App
 - Implementing Strapi-v4 data provider
-- Creating page
+- Creating a list page
+- Handling relational data
 - CRUD operations
-- Adding authentication
-- Implementing mutation mode
+- Implementing optimistic mutation mode
 - Testing syncwithlocation feature
 <!--truncate-->
 
@@ -85,7 +86,7 @@ Select the following options to complete CLI wizard:
 ❯ No
 ```
 
-
+CLI should be create project and install selected dependencies.
 
 ### Implementing Strapi-v4 data provider
 Data providers are refine components making it possible to consume different API's and data services conveniently.
@@ -112,15 +113,19 @@ We'll create a new folder named "interfaces" under "/src" if you don't already h
 
 
 ```tsx title="src/interfaces"
+export interface ICategory {
+    id: number;
+    title: string;
+}
+
 export interface IPost {
     id: number;
     title: string;
     content: string;
     status: "published" | "draft" | "rejected";
-    category: { id: number };
+    category: ICategory;
     createdAt: string;
 }
-
 ```
 
 <br/>
@@ -148,7 +153,6 @@ import { IPost } from "interfaces";
 export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>();
 
-
     const columns = React.useMemo<GridColumns<IPost>>(
         () => [
             { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
@@ -156,41 +160,12 @@ export const PostList: React.FC = () => {
                 field: "createdAt",
                 headerName: "CreatedAt",
                 minWidth: 220,
-                renderCell: function render(params) {
+                renderCell: function render({row}) {
                     return (
-                        <DateField format="LLL" value={params.row.createdAt} />
+                        <DateField format="LLL" value={row.createdAt} />
                     );
                 },
-            },
-            {
-                headerName: "Actions",
-                headerAlign: "center",
-                field: "actions",
-                minWidth: 180,
-                align: "center",
-                flex: 1,
-                renderCell: function render(params) {
-                    return (
-                        <Stack direction="row" spacing={1}>
-                            <EditButton
-                                size="small"
-                                hideText
-                                recordItemId={params.row.id}
-                            />
-                            <ShowButton
-                                size="small"
-                                hideText
-                                recordItemId={params.row.id}
-                            />
-                            <DeleteButton
-                                size="small"
-                                hideText
-                                recordItemId={params.row.id}
-                            />
-                        </Stack>
-                    );
-                },
-            },
+            }
         ],
         [],
     );
@@ -201,7 +176,6 @@ export const PostList: React.FC = () => {
         </List>
     );
 };
-
 ```
 
 We use Material UI components that exports from Refine.
@@ -214,15 +188,65 @@ We use Material UI components that exports from Refine.
 
 
 
-Note you will need a few more files which help src/App.tsx to find your pages and posts. In the /pages folder, put this index.tsx file in it which allows everything in the posts folder to be used elsewhere.
+Note you will need src/App.tsx file to find your pages and posts. In the /pages folder, put this index.tsx file in it which allows everything in the posts folder to be used elsewhere.
 
 ```tsx title="src/pages/posts/index.tsx"
 export * from "./list";
 ```
 
 
+### Handling relational data
+Relations are not populated when fetching entiries. We'll use `metaData` option to use relations population for Strapi-v4 API.
 
-### Adding resources and list page to Refine
+The records from `/posts` endpoint that had a category id field. To get category titles automatically from `/categories` endpoint for each record  and show on our table, we need to use `populate` feature of Strapiv4. 
+
+We'll set `populate` parameter to define which fields will be populated.
+
+```tsx title="src/pages/post/list.tsx"
+  const { dataGridProps } = useDataGrid<IPost>({
+        //highlight-start
+        metaData: {
+            populate: ["category"],
+        },
+        //highlight-end
+    });
+
+```
+
+To show category field in table, we need to add new column to the PostList component.
+
+```tsx title="src/pages/post/list.tsx"
+  const columns = React.useMemo<GridColumns<IPost>>(
+        () => [
+           ...
+           //highlight-start
+            {
+                field: "category.title",
+                headerName: "Category",
+                minWidth: 250,
+                flex: 1,
+                renderCell: function render({ row }) {
+                    return row.category?.title;
+                },
+            },
+            //highlight-end
+           ...
+        ],
+        [],
+    );
+
+```
+
+:::tip
+We use benefits of StrapiV4 relational population feature by using `populate` parameter. It handles to getting relational data automatically.
+
+ [If you use another REST API that relational populations need to be handled manually you can check the  example at the link &#8594](https://refine.dev/docs/ui-frameworks/mui/tutorial/#handling-relationships)
+:::
+
+[Refer to refine Strapi v4 documentation for more information &#8594](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/#relations-population)
+
+
+### Adding resources and connect pages to Refine app
 
 Now we are ready to start connecting to our API by adding a resource to our application.
 We'll add `/posts/` endpoint from our example API as a resource.
@@ -248,6 +272,7 @@ import { DataProvider } from "@pankod/refine-strapi-v4";
 
 import { authProvider, axiosInstance } from "./authProvider";
 import { API_URL } from "./constants";
+//highlight-next-line
 import { PostList } from "./pages/posts";
 
 function App() {
@@ -304,7 +329,7 @@ Open your application to check that the URL is routed to **/posts** and posts ar
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={resourceSecond} alt="Resource only List component" />
+    <img src={listpage} alt="Resource only List component" />
 </div>
 <br/>
 </>
@@ -314,12 +339,19 @@ Open your application to check that the URL is routed to **/posts** and posts ar
 
 We are going to implement CRUD operations features like creating records.
 
-For the sake of simplicity, we are only going to show creating a record example.
+For the sake of simplicity, we are going to show creating and editing records example.
 
-[Please check offical Refine Material UI tutorial for Showing, editing, and deleting records explanations and examples &#8594](https://refine.dev/docs/ui-frameworks/mui/tutorial/#showing-a-single-record)
+
+[Please check offical Refine Material UI tutorial for showing, editing, and deleting records with explanations and examples &#8594](https://refine.dev/docs/ui-frameworks/mui/tutorial/#showing-a-single-record)
+
+
+#### Creating a record
+
 
 The Material UI provides already styled, but still very customizable inputs that encapsulate adding labels and error handling with helper texts. However, we need a third-party library to handle forms when using Material UI. [React Hook Form](https://react-hook-form.com/) is one of the best options for this job!
-The React Hook Form library has been integrated with **refine** ([`@pankod/refine-react-hook-form`](https://github.com/pankod/refine/tree/master/packages/react-hook-form)) . This means you can now use Material UI for your forms and manage them using [`@pankod/refine-react-hook-form`](https://github.com/pankod/refine/tree/master/packages/react-hook-form)!
+
+
+The React Hook Form library has been integrated with **refine** ([`@pankod/refine-react-hook-form`](https://github.com/pankod/refine/tree/master/packages/react-hook-form)) . This means you can now use Material UI for your forms and manage them using [`@pankod/refine-react-hook-form`](https://github.com/pankod/refine/tree/master/packages/react-hook-form).
 
 First, we'll create PostCreate page to create new records.
 
@@ -366,32 +398,6 @@ export const PostCreate: React.FC = () => {
                     label="Title"
                     name="title"
                     autoFocus
-                />
-                <Controller
-                    control={control}
-                    name="status"
-                    rules={{ required: "Status is required" }}
-                    defaultValue=""
-                    render={({ field }) => (
-                        <Autocomplete
-                            {...field}
-                            options={["published", "draft", "rejected"]}
-                            onChange={(_, value) => {
-                                field.onChange(value);
-                            }}
-                            renderInput={(params) => (
-                                <TextField
-                                    {...params}
-                                    label="Status"
-                                    margin="normal"
-                                    variant="outlined"
-                                    error={!!errors.status}
-                                    helperText={errors.status?.message}
-                                    required
-                                />
-                            )}
-                        />
-                    )}
                 />
                 <Controller
                     control={control}
@@ -486,7 +492,6 @@ Try it on the browser and see if you can create new posts from scratch.
 <br />
 
 
-
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -499,5 +504,369 @@ Try it on the browser and see if you can create new posts from scratch.
 <br/>
 
 
+#### Editing a record
+
+We'll start by creating a new `<PostEdit>` page responsible for editing a single record:
+
+```tsx title="src/pages/posts/edit.tsx"
+import { Controller, useForm } from "@pankod/refine-react-hook-form";
+import {
+    Edit,
+    Box,
+    TextField,
+    Autocomplete,
+    useAutocomplete,
+} from "@pankod/refine-mui";
+
+import { ICategory } from "interfaces";
+
+export const PostEdit: React.FC = () => {
+    const {
+        refineCore: { formLoading },
+        saveButtonProps,
+        register,
+        control,
+        formState: { errors },
+    } = useForm();
+
+    const { autocompleteProps } = useAutocomplete<ICategory>({
+        resource: "categories",
+    });
+
+    return (
+        <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
+            <Box
+                component="form"
+                sx={{ display: "flex", flexDirection: "column" }}
+                autoComplete="off"
+            >
+                <TextField
+                    {...register("title", { required: "Title is required" })}
+                    error={!!errors?.title}
+                    helperText={errors.title?.message}
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="title"
+                    label="Title"
+                    name="title"
+                    defaultValue={" "}
+                    autoFocus
+                />
+                <Controller
+                    control={control}
+                    name="category"
+                    rules={{ required: "Category is required" }}
+                    defaultValue=""
+                    render={({ field }) => (
+                        <Autocomplete
+                            {...autocompleteProps}
+                            {...field}
+                            onChange={(_, value) => {
+                                field.onChange(value);
+                            }}
+                            getOptionLabel={(item) => {
+                                return item.title
+                                    ? item.title
+                                    : autocompleteProps?.options?.find(
+                                          (p) =>
+                                              p.id.toString() ===
+                                              item.toString(),
+                                      )?.title ?? "";
+                            }}
+                            isOptionEqualToValue={(option, value) =>
+                                value === undefined ||
+                                option.id.toString() === value.toString()
+                            }
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    label="Category"
+                                    margin="normal"
+                                    variant="outlined"
+                                    error={!!errors.category}
+                                    helperText={errors.category?.message}
+                                    required
+                                />
+                            )}
+                        />
+                    )}
+                />
+            </Box>
+        </Edit>
+    );
+};
+
+```
+
+<br/>
+
+We are going to add "Edit button" to the each row in the list by defining "Actions" column in PostList page.
+
+```tsx title="src/pages/posts/list.tsx"
+import React from "react";
+import {
+    useDataGrid,
+    DataGrid,
+    GridColumns,
+    DateField,
+    List,
+    Stack,
+    //highlight-next-line
+    EditButton,
+
+} from "@pankod/refine-mui";
+
+import { IPost } from "interfaces";
+
+export const PostList: React.FC = () => {
+    const { dataGridProps } = useDataGrid<IPost>({
+        metaData: {
+            populate: ["category"],
+        },
+    });
+
+    console.log("datagridprops", dataGridProps);
+
+    const columns = React.useMemo<GridColumns<IPost>>(
+        () => [
+            { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
+            {
+                field: "category.title",
+                headerName: "Category",
+                minWidth: 250,
+                flex: 1,
+                renderCell: function render({ row }) {
+                    return row.category?.title;
+                },
+            },
+
+            {
+                field: "createdAt",
+                headerName: "CreatedAt",
+                minWidth: 220,
+                renderCell: function render({ row }) {
+                    return <DateField format="LLL" value={row.createdAt} />;
+                },
+            },
+            //highlight-start
+            {
+                headerName: "Actions",
+                headerAlign: "center",
+                field: "actions",
+                minWidth: 180,
+                align: "center",
+                flex: 1,
+                sortable: false,
+                renderCell: function render({ row }) {
+                    return (
+                        <Stack direction="row" spacing={1}>
+                            <EditButton
+                                size="small"
+                                hideText
+                                recordItemId={row.id}
+                            />
+                        </Stack>
+                    );
+                },
+            },
+              //highlight-end
+        ],
+        [],
+    );
+
+    return (
+        <List>
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
+        </List>
+    );
+};
+```
+
+<br />
 
 
+After creating the `<PostEdit>` component, add it to resource with `edit` prop:
+
+<br />
+
+
+```tsx title="src/App.tsx"
+...
+
+import {
+    PostList,
+    PostCreate,
+// highlight-next-line
+    PostEdit
+} from "pages/posts";
+
+...
+
+const App: React.FC = () => {
+    return (
+        <ThemeProvider theme={LightTheme}>
+            <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+            <RefineSnackbarProvider>
+                <Refine
+                    authProvider={authProvider}
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(API_URL)}
+                    notificationProvider={notificationProvider}
+                    ReadyPage={ReadyPage}
+                    Layout={Layout}
+                    catchAll={<ErrorComponent />}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: PostList,
+                            create: PostCreate,
+                            // highlight-next-line
+                            edit: PostEdit
+                        },
+                    ]}
+                />
+            </RefineSnackbarProvider>
+        </ThemeProvider>
+    );
+};
+```
+
+You can try using edit buttons which will trigger the edit forms for each record, allowing you to update the record data.
+
+
+#### Deleting a record
+
+Deleting a record can be done in two ways.
+
+The first way is adding a delete button on each row since refine doesn't automatically add one, so we have to update our `<PostList>` component to add a `<DeleteButton>` for each record.
+
+We are going to add new cell to the "Actions" column to show delete button on each row.
+
+
+```tsx
+import React from "react";
+import {
+    useDataGrid,
+    DataGrid,
+    GridColumns,
+    EditButton,
+    DateField,
+    List,
+    Stack,
+    //highlight-next-line
+    DeleteButton,
+
+} from "@pankod/refine-mui";
+
+import { IPost } from "interfaces";
+
+export const PostList: React.FC = () => {
+    const { dataGridProps } = useDataGrid<IPost>({
+        metaData: {
+            populate: ["category"],
+        },
+    });
+
+
+    const columns = React.useMemo<GridColumns<IPost>>(
+      ...
+         
+            {
+                headerName: "Actions",
+                headerAlign: "center",
+                field: "actions",
+                minWidth: 180,
+                align: "center",
+                flex: 1,
+                sortable: false,
+                renderCell: function render({ row }) {
+                    return (
+                        <Stack direction="row" spacing={1}>
+                            <EditButton
+                                size="small"
+                                hideText
+                                recordItemId={row.id}
+                            />
+                            //highlight-start
+                            <DeleteButton
+                                size="small"
+                                hideText
+                                recordItemId={row.id}
+                            />
+                             //highlight-end
+
+                        </Stack>
+                    );
+                },
+            },
+        ],
+        [],
+    );
+
+    return (
+        <List>
+            <DataGrid {...dataGridProps} columns={columns} autoHeight />
+        </List>
+    );
+};
+```
+
+
+Now we are able to delete record by clicking delete button and confirmation. 
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={deleteGif} alt="Create record action" />
+</div>
+
+<br/>
+<br/>
+
+The second way is showing delete button in `<PostEdit>` component. To show delete button in edit page, `canDelete` prop needs to be passed to resource object.
+
+
+```tsx title="src/App.tsx"
+... 
+
+function App() {
+    return (
+        <ThemeProvider theme={LightTheme}>
+            <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+            <RefineSnackbarProvider>
+                <Refine
+                    notificationProvider={notificationProvider}
+                    Layout={Layout}
+                    ReadyPage={ReadyPage}
+                    catchAll={<ErrorComponent />}
+                    routerProvider={routerProvider}
+                    authProvider={authProvider}
+                    dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: PostList,
+                            create: PostCreate,
+                            edit: PostEdit,
+                            //highlight-next-line
+                            canDelete: true,
+                        },
+                    ]}
+                />
+            </RefineSnackbarProvider>
+        </ThemeProvider>
+    );
+}
+
+export default App;
+```
+
+The `<DeleteButton>` should be appear in an edit form.
+
+### Implementing optimistic mutation mode
