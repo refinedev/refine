@@ -28,8 +28,8 @@ const Category: React.FC<CategoryPageProps> = ({ category, products }) => {
             {
                 id: "product",
                 accessorFn: (row) => row,
-                cell: function render({ getValue }) {
-                    return <ProductListItem product={getValue()} />;
+                cell: function render({ row }) {
+                    return <ProductListItem product={row.original} />;
                 },
             },
         ],
