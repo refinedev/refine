@@ -21,12 +21,12 @@ export const useModal = ({
 
     return {
         modalProps: {
+            ...modalProps,
             onCancel: (e: React.MouseEvent<HTMLElement>) => {
                 modalProps.onCancel?.(e);
                 close();
             },
             visible,
-            ...modalProps,
         },
         show,
         close,
