@@ -12,6 +12,7 @@ hide_table_of_contents: false
 import listpage from '@site/static/img/blog/2022-07-21-admin-panel-with-materialui-and-strapi/list-page.png';
 import createGif from '@site/static/img/blog/2022-07-21-admin-panel-with-materialui-and-strapi/create.gif'
 import deleteGif from '@site/static/img/blog/2022-07-21-admin-panel-with-materialui-and-strapi/delete-record.gif'
+import undoableGif from '@site/static/img/blog/2022-07-21-admin-panel-with-materialui-and-strapi/undoable-mode.gif'
 
 ## Introduction
 We will build an admin panel that supports CRUD operations, has built in authentication, and a mutation mode feature using industry-standard best tools.
@@ -27,8 +28,8 @@ Steps we'll cover includes:
 - Creating a list page
 - Handling relational data
 - CRUD operations
-- Implementing optimistic mutation mode
-- Testing syncwithlocation feature
+- Implementing mutation mode
+- Sharing the current page and location easily using `syncwithlocation` feature.
 <!--truncate-->
 
 ## Prerequisities
@@ -86,7 +87,7 @@ Select the following options to complete CLI wizard:
 ❯ No
 ```
 
-CLI should be create project and install selected dependencies.
+CLI should be create a project and install the selected dependencies.
 
 ### Implementing Strapi-v4 data provider
 Data providers are refine components making it possible to consume different API's and data services conveniently.
@@ -335,7 +336,7 @@ Open your application to check that the URL is routed to **/posts** and posts ar
 </>
 
 
-### CRUD operations
+## CRUD operations
 
 We are going to implement CRUD operations features like creating records.
 
@@ -345,7 +346,7 @@ For the sake of simplicity, we are going to show creating and editing records ex
 [Please check offical Refine Material UI tutorial for showing, editing, and deleting records with explanations and examples &#8594](https://refine.dev/docs/ui-frameworks/mui/tutorial/#showing-a-single-record)
 
 
-#### Creating a record
+### Creating a record
 
 
 The Material UI provides already styled, but still very customizable inputs that encapsulate adding labels and error handling with helper texts. However, we need a third-party library to handle forms when using Material UI. [React Hook Form](https://react-hook-form.com/) is one of the best options for this job!
@@ -504,7 +505,7 @@ Try it on the browser and see if you can create new posts from scratch.
 <br/>
 
 
-#### Editing a record
+### Editing a record
 
 We'll start by creating a new `<PostEdit>` page responsible for editing a single record:
 
@@ -736,7 +737,7 @@ const App: React.FC = () => {
 You can try using edit buttons which will trigger the edit forms for each record, allowing you to update the record data.
 
 
-#### Deleting a record
+### Deleting a record
 
 Deleting a record can be done in two ways.
 
@@ -869,4 +870,115 @@ export default App;
 
 The `<DeleteButton>` should be appear in an edit form.
 
-### Implementing optimistic mutation mode
+## Implementing mutation mode
+
+We'll like to show how mutation modes making your app feel more responsive to the user. Refine offers three modes for mutations called `pessimistic`, `optimistic`, and `undoable`. This modes determines when the side effects are executed.
+
+If we briefly describe:
+
+`pessimistic`: UI updates are delayed until the mutation is confirmed by the server.
+
+`optimistic`:  UI updates are immediately updated before confirmed by server.
+
+`undoable`:  UI updates are immediately updated, but you can undo the mutation.
+
+We'll implement `undoable` mutation mode. The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is succesful. Waits for a customizable amount of timeout period before mutation is applied. During the timeout, mutation can be cancelled from the notification with an undo button and UI will revert back accordingly.
+
+[Refer to Refine mutation mode docs for more detailed information &#8594](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/)
+
+
+
+
+To activate mutatin mode, we'll set `mutationMode` property to the `<Refine/>` component.
+
+```tsx title="src/App.tsx"
+...
+function App() {
+    return (
+        <ThemeProvider theme={LightTheme}>
+            <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+            <RefineSnackbarProvider>
+                <Refine
+                    notificationProvider={notificationProvider}
+                    Layout={Layout}
+                    ReadyPage={ReadyPage}
+                    catchAll={<ErrorComponent />}
+                    routerProvider={routerProvider}
+                    authProvider={authProvider}
+                    dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: PostList,
+                            create: PostCreate,
+                            edit: PostEdit,
+                            canDelete: true,
+                        },
+                    ]}
+                    //highlight-next-line
+                    mutationMode="undoable"
+                />
+            </RefineSnackbarProvider>
+        </ThemeProvider>
+    );
+}
+
+export default App;
+```
+<br/>
+
+
+:::tip
+The default timeout period setted to 5000ms. You can change it by setting `undoableTimeout` property to the `<Refine>` component.
+:::
+
+<br/>
+
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={undoableGif} alt="Create record action" />
+</div>
+
+<br/>
+
+
+## Sharing the current page with filters
+
+Imagine we need to share the current page with filtering and sorting parameters to our collegues. The proper way to do is, sharing the URL that has include all needed parameters like:
+
+```
+/posts?current=1&pageSize=8&sort[]=createdAt&order[]=desc
+```
+
+Refine offers `syncWithLocation` property that allow us to editing query parameters manually and share current page, items count per page, sort and filter parameters easily to others.
+
+```tsx title="src/App.tsx"
+...
+function App() {
+    return (
+        <ThemeProvider theme={LightTheme}>
+            <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+            <RefineSnackbarProvider>
+                <Refine
+                    ...
+                    mutationMode="undoable"
+                    //highlight-next-line
+                    syncWithLocation
+                />
+            </RefineSnackbarProvider>
+        </ThemeProvider>
+    );
+}
+
+export default App;
+```
+
+
+
