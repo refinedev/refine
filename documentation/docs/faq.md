@@ -228,3 +228,31 @@ useMany({
 **Yes!** You can work with JavaScript! 
 
 [Refer to **Refine JavaScript** example  → ](https://github.com/pankod/refine/tree/master/examples/javascript)
+
+
+
+## How I can override spesific function of Data Providers?
+
+In some cases, you may need to override functions of Refine data providers. The simplest way to do this is to use the [Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
+
+For example, Let's override the `update` function of the [`@pankod/refine-simple-rest`](https://github.com/pankod/refine/tree/next/packages/simple-rest). `@pankod/refine-simple-rest` uses the `PATCH` HTTP option for `update`, let's change it to `PUT` without forking the whole data provider.
+
+```tsx
+import dataProvider from "@pankod/refine-simple-rest";
+
+const simpleRestProvider = dataProvider("API_URL");
+const myDataProvider = {
+    ...simpleRestProvider,
+    update: async ({ resource, id, variables }) => {
+        const url = `${apiUrl}/${resource}/${id}`;
+
+        const { data } = await httpClient.put(url, variables);
+
+        return {
+            data,
+        };
+    },
+};
+
+<Refine dataProvider={myDataProvider} />
+```
