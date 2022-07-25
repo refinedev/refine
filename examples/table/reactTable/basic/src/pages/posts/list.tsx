@@ -10,13 +10,11 @@ export const PostList: React.FC = () => {
                 id: "id",
                 header: "ID",
                 accessorKey: "id",
-                footer: (props) => props.column.id,
             },
             {
                 id: "title",
                 header: "Title",
                 accessorKey: "title",
-                footer: (props) => props.column.id,
                 meta: {
                     filterOperator: "contains",
                 },
@@ -25,7 +23,6 @@ export const PostList: React.FC = () => {
                 id: "status",
                 header: "Status",
                 accessorKey: "status",
-                footer: (props) => props.column.id,
                 meta: {
                     filterOperator: "contains",
                 },
@@ -34,8 +31,6 @@ export const PostList: React.FC = () => {
                 id: "createdAt",
                 header: "CreatedAt",
                 accessorKey: "createdAt",
-                footer: (props) => props.column.id,
-                enableColumnFilter: false,
             },
         ],
         [],
@@ -65,10 +60,7 @@ export const PostList: React.FC = () => {
                         <tr key={headerGroup.id}>
                             {headerGroup.headers.map((header) => {
                                 return (
-                                    <th
-                                        key={header.id}
-                                        colSpan={header.colSpan}
-                                    >
+                                    <th key={header.id}>
                                         {header.isPlaceholder ? null : (
                                             <>
                                                 <div
