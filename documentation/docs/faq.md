@@ -259,7 +259,7 @@ const myDataProvider = {
 
 What if we want to select `PUT` or `PATCH` on a request basis? 
 
-💥 We can use `metaData` for this. Remember, `metaData` can be used in all `data`, `form`, `table` hooks
+💥 We can use `metaData` for this. Remember, `metaData` can be used in all `data`, `form` and `table` hooks
 
 ```tsx
 // PATCH Request 
