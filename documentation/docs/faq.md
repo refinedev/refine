@@ -290,7 +290,7 @@ const simpleRestProvider = dataProvider("API_URL");
 const myDataProvider = {
     ...simpleRestProvider,
     update: async ({ resource, id, variables, metaData }) => {
-        const method = metaData.httpMethod ?? "PATCH";
+        const method = metaData.httpMethod ?? "patch";
 
         const url = `${apiUrl}/${resource}/${id}`;
 
