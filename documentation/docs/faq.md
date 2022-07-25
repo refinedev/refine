@@ -231,7 +231,7 @@ useMany({
 
 
 
-## How I can override spesific function of Data Providers?
+## How I can override specific function of Data Providers?
 
 In some cases, you may need to override functions of Refine data providers. The simplest way to do this is to use the [Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
 
