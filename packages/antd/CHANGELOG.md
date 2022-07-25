@@ -1,5 +1,17 @@
 # @pankod/refine-antd
 
+## 3.31.0
+
+### Minor Changes
+
+-   **BREAKING** Updated `useStepsForm` prop `isBackValidate` with default `false` instead of `true` to achieve consistency between packages (`@pankod/refine-react-hook-form`).
+
+### Patch Changes
+
+-   Fix `useModal` hook doesn't return `modalProps`
+
+*   Added `hasPagination` support to [`useSimpleList`](https://refine.dev/docs/ui-frameworks/antd/hooks/list/useSimpleList/) hook.
+
 ## 3.30.0
 
 ### Minor Changes
