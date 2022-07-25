@@ -134,6 +134,11 @@ interface ICategory {
 You can use `AntdList.Item` and `AntdList.Item.Meta` like `<List>` component from [Ant Design][list]
 :::
 
+
+:::info
+To disable pagination, you can set `hasPagination` property to `false` which is `true` by default. If `hasPagination` has been set to `false`, pagination elements will be hidden in the `<Table/>`. If you want to handle the pagination on the client-side you can override the `pagination` property in `tableProps`.
+:::
+
 <br/>
 
 <div class="img-container">
@@ -154,6 +159,7 @@ You can use `AntdList.Item` and `AntdList.Item.Meta` like `<List>` component fro
 | resource                                                     | The resource to list the data                                                                                                                                      | `string` \| `undefined`                                                        | Resource name that it reads from the url                                             |
 | permanentFilter                                              | Default and unchangeable filter                                                                                                                                    | [`CrudFilters`][crudfilters]                                                   | `[]`                                                                                 |
 | permanentSorter                                              | Default and unchangeable sorter state                                                                                                                              | [`CrudSorting`][crudsorting]                                                   | `[]`                                                                                 |
+| hasPagination                                                | Whether to use server side pagination or not.                                                                                                                      | `boolean`                                                                      | `true`                                                                               |
 | initialSorter                                                | Allows to sort records by speficified order and field                                                                                                              | [`CrudSorting`][crudsorting]                                                   |                                                                                      |
 | initialFilter                                                | Allows to filter records by speficified order and field                                                                                                            | [`CrudFilters`][crudfilters]                                                   |                                                                                      |
 | defaultSetFilterBehavior                                     | Default behavior for `setFilters` and its internal use in this hook                                                                                                | `"merge"` \| `"replace"`                                                       | `merge`                                                                              |
