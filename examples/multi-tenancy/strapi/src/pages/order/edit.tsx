@@ -41,6 +41,7 @@ export const OrderEdit: React.FC<IResourceComponentsProps> = () => {
                 layout="vertical"
                 initialValues={{
                     isActive: true,
+                    ...formProps.initialValues,
                 }}
             >
                 <Form.Item

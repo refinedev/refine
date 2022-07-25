@@ -23,6 +23,5 @@
   },
   "include": [
     "src",
-    "react-table-config.d.ts"
   ]
 }

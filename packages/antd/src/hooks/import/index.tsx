@@ -39,7 +39,7 @@ export const useImport = <
     onProgress: onProgressFromProp,
 }: ImportOptions<TItem, TVariables, TData> = {}): Omit<
     UseImportReturnType<TData, TVariables, TError>,
-    "handleChange"
+    "handleChange" | "inputProps"
 > & {
     uploadProps: UploadProps;
     buttonProps: ButtonProps;

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export type CategoryCardProps = {
-    id: string;
+    id: number;
     title: string;
     backgroundImg?: string;
 };

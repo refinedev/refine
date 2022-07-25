@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import {
     useTitle,
-    useNavigation,
     useLogout,
     ITreeMenu,
     CanAccess,
+    useRouterContext,
 } from "@pankod/refine-core";
 import { AntdLayout, Menu, useMenu, Grid, Icons } from "@pankod/refine-antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
@@ -14,11 +14,11 @@ import { StoreSelect } from "components/select";
 export const CustomSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const { mutate: logout } = useLogout();
+    const { Link } = useRouterContext();
     const Title = useTitle();
     const { SubMenu } = Menu;
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
-    const { push } = useNavigation();
 
     const isMobile = !breakpoint.lg;
 
@@ -29,7 +29,7 @@ export const CustomSider: React.FC = () => {
             if (children.length > 0) {
                 return (
                     <SubMenu
-                        key={name}
+                        key={route}
                         icon={icon ?? <Icons.UnorderedListOutlined />}
                         title={label}
                     >
@@ -48,10 +48,7 @@ export const CustomSider: React.FC = () => {
                     action="list"
                 >
                     <Menu.Item
-                        key={selectedKey}
-                        onClick={() => {
-                            push(route ?? "");
-                        }}
+                        key={route}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
@@ -59,7 +56,7 @@ export const CustomSider: React.FC = () => {
                             icon ?? (isRoute && <Icons.UnorderedListOutlined />)
                         }
                     >
-                        {label}
+                        <Link to={route}>{label}</Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
@@ -79,22 +76,8 @@ export const CustomSider: React.FC = () => {
             style={isMobile ? antLayoutSiderMobile : antLayoutSider}
         >
             {Title && <Title collapsed={collapsed} />}
-            <Menu
-                selectedKeys={[selectedKey]}
-                mode="inline"
-                onClick={({ key }) => {
-                    if (key === "logout") {
-                        logout();
-                        return;
-                    }
-
-                    push(key as string);
-                }}
-            >
-                <Menu.Item
-                    key={selectedKey}
-                    icon={<Icons.AppstoreAddOutlined />}
-                >
+            <Menu selectedKeys={[selectedKey]} mode="inline">
+                <Menu.Item key={route} icon={<Icons.AppstoreAddOutlined />}>
                     <StoreSelect
                         onSelect={() => {
                             setCollapsed(true);
@@ -102,7 +85,11 @@ export const CustomSider: React.FC = () => {
                     />
                 </Menu.Item>
                 {renderTreeView(menuItems, selectedKey)}
-                <Menu.Item key={"logout"} icon={<Icons.LoginOutlined />}>
+                <Menu.Item
+                    key="logout"
+                    onClick={() => logout()}
+                    icon={<Icons.LogoutOutlined />}
+                >
                     Logout
                 </Menu.Item>
             </Menu>

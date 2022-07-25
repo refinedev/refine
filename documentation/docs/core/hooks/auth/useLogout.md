@@ -49,7 +49,7 @@ A custom url can be given to mutate function from the `useLogout` hook if you wa
 ```tsx
 import { useLogout } from "@pankod/refine-core";
 
-const { mutate: logout } = useLogout();
+const { mutate: logout } = useLogout<{ redirectPath: string }>();
 
 logout({ redirectPath: "/custom-url" });
 ```

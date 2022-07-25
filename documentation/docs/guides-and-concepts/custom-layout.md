@@ -81,8 +81,8 @@ Here, we override the [`<Title>`][title] and [`<Layout>`][layout] components. Wh
 So, we just provided a custom [`<Sider>`][sider]. Here's our custom sider that looks horizontal, instead of the default vertical one:
 
 ```tsx  title="/src/components/sider/index.tsx"
-import { useTitle } from "@pankod/refine-core";
-import { Menu, useMenu } from "@pankod/refine-antd";
+import { useTitle, useMenu } from "@pankod/refine-core";
+import { Menu } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 const { Link } = routerProvider;
@@ -120,15 +120,13 @@ By default, [`<Sider>`][sider] is responsible for rendering [`<Title>`][title]. 
 This example demonstrated how to configure a global layout. To learn how to use global layout in custom pages and make local modifications per page, [refer to the `<LayoutWrapper>` docs. &#8594][layoutwrapper]
 :::
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
 Here's how it looks in the end:
 
-<iframe src="https://codesandbox.io/embed/refine-top-menu-layout-example-mryki?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/customization/topMenuLayout?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-top-menu-layout-example"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
 [refine]: /core/components/refine-config.md
@@ -142,5 +140,5 @@ Here's how it looks in the end:
 [custom page example]: /guides-and-concepts/custom-pages.md
 [custom page example code]: /examples/customization/topMenuLayout.md
 [antdlayout]: https://ant.design/components/layout/
-[usemenu]: /ui-frameworks/antd/hooks/resource/useMenu.md
+[usemenu]: /core/hooks/ui/useMenu.md
 [usetitle]: /core/hooks/refine/useTitle.md

@@ -7,8 +7,8 @@ import {
     HttpError,
     CrudSorting,
     MetaDataQuery,
+    SuccessErrorNotification,
     LiveModeProps,
-    OpenNotificationParams,
 } from "../../interfaces";
 import {
     useCheckError,
@@ -21,6 +21,7 @@ import { queryKeys } from "@definitions/helpers";
 
 export interface UseListConfig {
     pagination?: Pagination;
+    hasPagination?: boolean;
     sort?: CrudSorting;
     filters?: CrudFilters;
 }
@@ -29,11 +30,10 @@ export type UseListProps<TData, TError> = {
     resource: string;
     config?: UseListConfig;
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
-    successNotification?: OpenNotificationParams | false;
-    errorNotification?: OpenNotificationParams | false;
     metaData?: MetaDataQuery;
     dataProviderName?: string;
-} & LiveModeProps;
+} & SuccessErrorNotification &
+    LiveModeProps;
 
 /**
  * `useList` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving items from a `resource` with pagination, sort, and filter configurations.
@@ -78,7 +78,15 @@ export const useList = <
     useResourceSubscription({
         resource,
         types: ["*"],
-        params: liveParams,
+        params: {
+            metaData,
+            pagination: config?.pagination,
+            hasPagination: config?.hasPagination,
+            sort: config?.sort,
+            filters: config?.filters,
+            subscriptionType: "useList",
+            ...liveParams,
+        },
         channel: `resources/${resource}`,
         enabled: isEnabled,
         liveMode,
@@ -87,18 +95,41 @@ export const useList = <
 
     const queryResponse = useQuery<GetListResponse<TData>, TError>(
         queryKey.list(config),
-        () => getList<TData>({ resource, ...config, metaData }),
+        () => {
+            const { hasPagination, ...restConfig } = config || {};
+            return getList<TData>({
+                resource,
+                ...restConfig,
+                hasPagination,
+                metaData,
+            });
+        },
         {
             ...queryOptions,
             onSuccess: (data) => {
                 queryOptions?.onSuccess?.(data);
-                handleNotification(successNotification);
+
+                const notificationConfig =
+                    typeof successNotification === "function"
+                        ? successNotification(
+                              data,
+                              { metaData, config },
+                              resource,
+                          )
+                        : successNotification;
+
+                handleNotification(notificationConfig);
             },
             onError: (err: TError) => {
                 checkError(err);
                 queryOptions?.onError?.(err);
 
-                handleNotification(errorNotification, {
+                const notificationConfig =
+                    typeof errorNotification === "function"
+                        ? errorNotification(err, { metaData, config }, resource)
+                        : errorNotification;
+
+                handleNotification(notificationConfig, {
                     key: `${resource}-useList-notification`,
                     message: translate(
                         "common:notifications.error",

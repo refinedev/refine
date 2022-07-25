@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import { Layout, Menu, Grid } from "antd";
-import { LogoutOutlined, UnorderedListOutlined } from "@ant-design/icons";
+import {
+    DashboardOutlined,
+    LogoutOutlined,
+    UnorderedListOutlined,
+} from "@ant-design/icons";
 import {
     useTranslate,
     useLogout,
     useTitle,
-    useNavigation,
     CanAccess,
     ITreeMenu,
     useIsExistAuthentication,
+    useRouterContext,
+    useMenu,
+    useRefineContext,
 } from "@pankod/refine-core";
 
 import { Title as DefaultTitle } from "@components";
-
-import { useMenu } from "@hooks";
 
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 const { SubMenu } = Menu;
@@ -21,12 +25,13 @@ const { SubMenu } = Menu;
 export const Sider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const isExistAuthentication = useIsExistAuthentication();
+    const { Link } = useRouterContext();
     const { mutate: logout } = useLogout();
     const Title = useTitle();
     const translate = useTranslate();
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
-    const { push } = useNavigation();
     const breakpoint = Grid.useBreakpoint();
+    const { hasDashboard } = useRefineContext();
 
     const isMobile = !breakpoint.lg;
 
@@ -39,7 +44,7 @@ export const Sider: React.FC = () => {
             if (children.length > 0) {
                 return (
                     <SubMenu
-                        key={name}
+                        key={route}
                         icon={icon ?? <UnorderedListOutlined />}
                         title={label}
                     >
@@ -58,16 +63,13 @@ export const Sider: React.FC = () => {
                     action="list"
                 >
                     <Menu.Item
-                        key={selectedKey}
-                        onClick={() => {
-                            push(route ?? "");
-                        }}
+                        key={route}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
                         icon={icon ?? (isRoute && <UnorderedListOutlined />)}
                     >
-                        {label}
+                        <Link to={route}>{label}</Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
@@ -91,23 +93,37 @@ export const Sider: React.FC = () => {
                 selectedKeys={[selectedKey]}
                 defaultOpenKeys={defaultOpenKeys}
                 mode="inline"
-                onClick={({ key }) => {
-                    if (key === "logout") {
-                        logout();
-                        return;
-                    }
-
+                onClick={() => {
                     if (!breakpoint.lg) {
                         setCollapsed(true);
                     }
-
-                    push(key as string);
                 }}
             >
+                {hasDashboard ? (
+                    <Menu.Item
+                        key="dashboard"
+                        style={{
+                            fontWeight: selectedKey === "/" ? "bold" : "normal",
+                        }}
+                        icon={<DashboardOutlined />}
+                    >
+                        <Link to="/">
+                            {translate("dashboard.title", "Dashboard")}
+                        </Link>
+                        {!collapsed && selectedKey === "/" && (
+                            <div className="ant-menu-tree-arrow" />
+                        )}
+                    </Menu.Item>
+                ) : null}
+
                 {renderTreeView(menuItems, selectedKey)}
 
                 {isExistAuthentication && (
-                    <Menu.Item key="logout" icon={<LogoutOutlined />}>
+                    <Menu.Item
+                        key="logout"
+                        onClick={() => logout()}
+                        icon={<LogoutOutlined />}
+                    >
                         {translate("buttons.logout", "Logout")}
                     </Menu.Item>
                 )}

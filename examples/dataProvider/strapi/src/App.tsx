@@ -31,9 +31,9 @@ const App: React.FC = () => {
                 localStorage.setItem(TOKEN_KEY, data.jwt);
 
                 // set header axios instance
-                axiosInstance.defaults.headers = {
-                    Authorization: `Bearer ${data.jwt}`,
-                };
+                axiosInstance.defaults.headers.common[
+                    "Authorization"
+                ] = `Bearer ${data.jwt}`;
 
                 return Promise.resolve();
             }
@@ -47,9 +47,9 @@ const App: React.FC = () => {
         checkAuth: () => {
             const token = localStorage.getItem(TOKEN_KEY);
             if (token) {
-                axiosInstance.defaults.headers = {
-                    Authorization: `Bearer ${token}`,
-                };
+                axiosInstance.defaults.headers.common[
+                    "Authorization"
+                ] = `Bearer ${token}`;
                 return Promise.resolve();
             }
 
@@ -100,6 +100,7 @@ const App: React.FC = () => {
             LoginPage={LoginPage}
             Layout={Layout}
             catchAll={<ErrorComponent />}
+            disableTelemetry={true}
         />
     );
 };

@@ -106,7 +106,7 @@ export const UserCreate: React.FC = () => {
 };
 
 interface IUser {
-    id: string;
+    id: number;
     firstName: string;
     avatar: [
         {
@@ -126,9 +126,9 @@ An edit form can be made by using the `<Edit>` component instead of `<Create>` w
 
 :::
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
-<iframe src="https://codesandbox.io/embed/refine-base64-upload-example-sn0kj?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/upload/antd/multipart?embed=1&view=preview&theme=dark&preset=node"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-base64-upload-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

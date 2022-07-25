@@ -15,12 +15,41 @@ export const useNavigation = () => {
     const history = useHistory();
     const resourceWithRoute = useResourceWithRoute();
 
-    const create = (resource: string, type: HistoryType = "push") => {
-        const resourceName = resourceWithRoute(resource);
+    const handleUrl = (url: string, type: HistoryType = "push") => {
+        type === "push" ? history.push(url) : history.replace(url);
+    };
 
-        type === "push"
-            ? history.push(`/${resourceName.route}/create`)
-            : history.replace(`/${resourceName.route}/create`);
+    const createUrl = (resource: string) => {
+        const resourceName = resourceWithRoute(resource);
+        return `/${resourceName.route}/create`;
+    };
+
+    const editUrl = (resource: string, id: BaseKey) => {
+        const resourceName = resourceWithRoute(resource);
+        const encodedId = encodeURIComponent(id);
+
+        return `/${resourceName.route}/edit/${encodedId}`;
+    };
+
+    const cloneUrl = (resource: string, id: BaseKey) => {
+        const resourceName = resourceWithRoute(resource);
+        const encodedId = encodeURIComponent(id);
+        return `/${resourceName.route}/clone/${encodedId}`;
+    };
+
+    const showUrl = (resource: string, id: BaseKey) => {
+        const resourceName = resourceWithRoute(resource);
+        const encodedId = encodeURIComponent(id);
+        return `/${resourceName.route}/show/${encodedId}`;
+    };
+
+    const listUrl = (resource: string) => {
+        const resourceName = resourceWithRoute(resource);
+        return `/${resourceName.route}`;
+    };
+
+    const create = (resource: string, type: HistoryType = "push") => {
+        handleUrl(createUrl(resource), type);
     };
 
     const edit = (
@@ -28,13 +57,7 @@ export const useNavigation = () => {
         id: BaseKey,
         type: HistoryType = "push",
     ) => {
-        const resourceName = resourceWithRoute(resource);
-
-        const encodedId = encodeURIComponent(id);
-
-        type === "push"
-            ? history.push(`/${resourceName.route}/edit/${encodedId}`)
-            : history.replace(`/${resourceName.route}/edit/${encodedId}`);
+        handleUrl(editUrl(resource, id), type);
     };
 
     const clone = (
@@ -42,13 +65,7 @@ export const useNavigation = () => {
         id: BaseKey,
         type: HistoryType = "push",
     ) => {
-        const resourceName = resourceWithRoute(resource);
-
-        const encodedId = encodeURIComponent(id);
-
-        type === "push"
-            ? history.push(`/${resourceName.route}/clone/${encodedId}`)
-            : history.replace(`/${resourceName.route}/clone/${encodedId}`);
+        handleUrl(cloneUrl(resource, id), type);
     };
 
     const show = (
@@ -56,21 +73,11 @@ export const useNavigation = () => {
         id: BaseKey,
         type: HistoryType = "push",
     ) => {
-        const resourceName = resourceWithRoute(resource);
-
-        const encodedId = encodeURIComponent(id);
-
-        type === "push"
-            ? history.push(`/${resourceName.route}/show/${encodedId}`)
-            : history.replace(`/${resourceName.route}/show/${encodedId}`);
+        handleUrl(showUrl(resource, id), type);
     };
 
     const list = (resource: string, type: HistoryType = "push") => {
-        const resourceName = resourceWithRoute(resource);
-
-        type === "push"
-            ? history.push(`/${resourceName.route}`)
-            : history.replace(`/${resourceName.route}`);
+        handleUrl(listUrl(resource), type);
     };
 
     const push = (path: string, state?: unknown) => {
@@ -85,5 +92,19 @@ export const useNavigation = () => {
         history.goBack();
     };
 
-    return { create, edit, clone, show, list, push, replace, goBack };
+    return {
+        create,
+        createUrl,
+        edit,
+        editUrl,
+        clone,
+        cloneUrl,
+        show,
+        showUrl,
+        list,
+        listUrl,
+        push,
+        replace,
+        goBack,
+    };
 };

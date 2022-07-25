@@ -7,9 +7,7 @@ title: Strapi GraphQL
 
 [View Strapi-GraphQL Example Source](https://github.com/pankod/refine/tree/master/examples/dataProvider/strapi-graphql)
 
-<iframe src="https://codesandbox.io/embed/refine-graphql-example-l7j6q?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/dataProvider/strapi-graphql?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-graphql-example"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>

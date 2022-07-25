@@ -429,8 +429,7 @@ In order to create a query, we need to specify the fields that we will use from 
 ```tsx src/App.tsx
 import { Refine } from "@pankod/refine";
 import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-strapi-graphql";
-import { GraphQLClient } from "graphql-request";
+import dataProvider, { GraphQLClient } from "@pankod/refine-strapi-graphql";
 
 const client = new GraphQLClient("API_URL");
 

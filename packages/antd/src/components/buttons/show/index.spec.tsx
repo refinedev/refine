@@ -1,20 +1,18 @@
 import React from "react";
-import ReactRouterDom, { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
-import { fireEvent, render, TestWrapper, waitFor } from "@test";
+import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
 import { ShowButton } from "./";
-
-const mHistory = jest.fn();
-
-jest.mock("react-router-dom", () => ({
-    ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useNavigate: () => mHistory,
-}));
 
 describe("Show Button", () => {
     const show = jest.fn();
 
-    it("should render button successfuly", () => {
+    beforeAll(() => {
+        jest.spyOn(console, "warn").mockImplementation(jest.fn());
+        jest.useFakeTimers();
+    });
+
+    it("should render button successfuly", async () => {
         const { container, getByText } = render(
             <ShowButton onClick={() => show()} />,
             {
@@ -22,12 +20,16 @@ describe("Show Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
         getByText("Show");
     });
 
-    it("should render text by children", () => {
+    it("should render text by children", async () => {
         const { container, getByText } = render(
             <ShowButton>refine</ShowButton>,
             {
@@ -35,14 +37,22 @@ describe("Show Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
         getByText("refine");
     });
 
-    it("should render without text show only icon", () => {
+    it("should render without text show only icon", async () => {
         const { container, queryByText } = render(<ShowButton hideText />, {
             wrapper: TestWrapper({}),
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
         });
 
         expect(container).toBeTruthy();
@@ -59,11 +69,13 @@ describe("Show Button", () => {
             }),
         });
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
-        await waitFor(() =>
-            expect(getByText("Show").closest("button")).toBeDisabled(),
-        );
+        expect(getByText("Show").closest("button")).toBeDisabled();
     });
 
     it("should be disabled when recordId not allowed", async () => {
@@ -83,11 +95,13 @@ describe("Show Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
-        await waitFor(() =>
-            expect(getByText("Show").closest("button")).toBeDisabled(),
-        );
+        expect(getByText("Show").closest("button")).toBeDisabled();
     });
 
     it("should skip access control", async () => {
@@ -102,11 +116,13 @@ describe("Show Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
-        await waitFor(() =>
-            expect(getByText("Show").closest("button")).not.toBeDisabled(),
-        );
+        expect(getByText("Show").closest("button")).not.toBeDisabled();
     });
 
     it("should successfully return disabled button custom title", async () => {
@@ -122,11 +138,13 @@ describe("Show Button", () => {
             }),
         });
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
-        await waitFor(() =>
-            expect(getByText("Show").closest("button")).not.toBeDisabled(),
-        );
+        expect(getByText("Show").closest("button")).toBeDisabled();
         await waitFor(() =>
             expect(
                 getByText("Show").closest("button")?.getAttribute("title"),
@@ -134,17 +152,23 @@ describe("Show Button", () => {
         );
     });
 
-    it("should render called function successfully if click the button", () => {
+    it("should render called function successfully if click the button", async () => {
         const { getByText } = render(<ShowButton onClick={() => show()} />, {
             wrapper: TestWrapper({}),
         });
 
-        fireEvent.click(getByText("Show"));
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await act(async () => {
+            fireEvent.click(getByText("Show"));
+        });
 
         expect(show).toHaveBeenCalledTimes(1);
     });
 
-    it("should create page redirect show route called function successfully if click the button", () => {
+    it("should create page redirect show route called function successfully if click the button", async () => {
         const { getByText } = render(
             <Routes>
                 <Route
@@ -160,12 +184,18 @@ describe("Show Button", () => {
             },
         );
 
-        fireEvent.click(getByText("Show"));
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
-        expect(mHistory).toBeCalledWith("/posts/show/1");
+        await act(async () => {
+            fireEvent.click(getByText("Show"));
+        });
+
+        expect(window.location.pathname).toBe("/posts/show/1");
     });
 
-    it("should edit page redirect show route called function successfully if click the button", () => {
+    it("should edit page redirect show route called function successfully if click the button", async () => {
         const { getByText } = render(
             <Routes>
                 <Route path="/:resource/:action/:id" element={<ShowButton />} />
@@ -178,12 +208,18 @@ describe("Show Button", () => {
             },
         );
 
-        fireEvent.click(getByText("Show"));
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
-        expect(mHistory).toBeCalledWith("/posts/show/1");
+        await act(async () => {
+            fireEvent.click(getByText("Show"));
+        });
+
+        expect(window.location.pathname).toBe("/posts/show/1");
     });
 
-    it("should custom resource and recordItemId redirect show route called function successfully if click the button", () => {
+    it("should custom resource and recordItemId redirect show route called function successfully if click the button", async () => {
         const { getByText } = render(
             <Routes>
                 <Route
@@ -204,12 +240,18 @@ describe("Show Button", () => {
             },
         );
 
-        fireEvent.click(getByText("Show"));
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
-        expect(mHistory).toBeCalledWith("/categories/show/1");
+        await act(async () => {
+            fireEvent.click(getByText("Show"));
+        });
+
+        expect(window.location.pathname).toBe("/categories/show/1");
     });
 
-    it("should redirect with custom route called function successfully if click the button", () => {
+    it("should redirect with custom route called function successfully if click the button", async () => {
         const { getByText } = render(
             <Routes>
                 <Route
@@ -236,8 +278,14 @@ describe("Show Button", () => {
             },
         );
 
-        fireEvent.click(getByText("Show"));
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
-        expect(mHistory).toBeCalledWith("/custom-route-posts/show/1");
+        await act(async () => {
+            fireEvent.click(getByText("Show"));
+        });
+
+        expect(window.location.pathname).toBe("/custom-route-posts/show/1");
     });
 });

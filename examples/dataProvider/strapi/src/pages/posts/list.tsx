@@ -1,4 +1,7 @@
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import {
+    IResourceComponentsProps,
+    getDefaultFilter,
+} from "@pankod/refine-core";
 
 import {
     List,
@@ -7,7 +10,6 @@ import {
     getDefaultSortOrder,
     FilterDropdown,
     Select,
-    getDefaultFilter,
     useSelect,
     DateField,
     Space,

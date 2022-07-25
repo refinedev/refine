@@ -62,6 +62,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     const translate = useTranslate();
 
     const { resourceName, id } = useResource({
+        resourceNameOrRouteName: propResourceNameOrRouteName,
         resourceName: propResourceName,
         recordItemId,
     });

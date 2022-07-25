@@ -14,7 +14,6 @@ import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-nextjs-router";
 
 import { PostList, PostCreate, PostEdit, PostShow, Header } from "@components";
-import { authProvider } from "src/authProvider";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 import "@styles/global.css";
@@ -32,7 +31,6 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <Refine
             routerProvider={routerProvider}
-            authProvider={authProvider}
             dataProvider={dataProvider(API_URL)}
             i18nProvider={i18nProvider}
             Header={Header}
@@ -46,11 +44,10 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                     canDelete: true,
                 },
             ]}
-            warnWhenUnsavedChanges={true}
             notificationProvider={notificationProvider}
-            LoginPage={LoginPage}
             Layout={Layout}
             catchAll={<ErrorComponent />}
+            disableTelemetry={true}
         >
             <Component {...pageProps} />
         </Refine>

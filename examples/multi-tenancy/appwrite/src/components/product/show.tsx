@@ -11,6 +11,8 @@ export const ProductShow: React.FC<IResourceComponentsProps> = () => {
     const { data, isLoading } = queryResult;
     const record = data?.data;
 
+    const image = record?.image ? JSON.parse(record.image) : [];
+
     return (
         <Show isLoading={isLoading}>
             <Title level={5}>Id</Title>
@@ -24,8 +26,8 @@ export const ProductShow: React.FC<IResourceComponentsProps> = () => {
 
             <Title level={5}>Images</Title>
             <Space wrap>
-                {record?.image ? (
-                    record?.image.map((img: any) => (
+                {image ? (
+                    image.map((img: any) => (
                         <ImageField
                             key={img.name}
                             value={img.url}

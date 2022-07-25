@@ -227,13 +227,15 @@ Now let's refine the task-manager panel. With superplate, we can quickly create 
 ```
 
 ```bash
-✔ Select your project type › refine
+✔ Select your project type › refine-react
 ✔ What will be the name of your app · refine-task-manager
-✔ Package manager: · npm
-✔ Do you want to customize theme?: · css
-✔ Data Provider: · supabase-data-provider
-✔ Do you want to customize layout? · custom-layout
-✔ i18n - Internationalization: · no
+✔ Package manager: · Npm
+✔ Do you want to use a UI Framework? · Ant Design
+✔ Do you want a customized theme?: · Default theme
+✔ Router Provider: · React Router v6
+✔ Data Provider: · Supabase
+✔ Do you want a customized layout? · Yes
+✔ i18n - Internationalization: · No
 ```
 
 After the project setup is loaded, let's start by entering our project and making the necessary changes.
@@ -1199,7 +1201,7 @@ export const TaskShow: React.FC = () => {
 <br />
  
 
-By using Refine's basic views such as [create](https://refine.dev/docs/ui-framewors/antd/components/basic-views/create), [edit](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/edit/) and [show](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/show/), we can now create tasks, edit these tasks and view their details.
+By using Refine's basic views such as [create](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/create), [edit](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/edit/) and [show](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/show/), we can now create tasks, edit these tasks and view their details.
 
 
 Let's see how to add a dashboard page to our project together.
@@ -1439,7 +1441,7 @@ For other examples and articles that will interest you with refine:  [https://re
 
 ## Live Codesandbox Example
 
-<iframe src="https://codesandbox.io/embed/refine-supabase-issue-tracker-ifuh4?autoresize=1fontsize=14&=1&theme=dark&view=preview"
+<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/blog/issueTracker?autoresize=1fontsize=14&=1&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-supabase-issue-tracker"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

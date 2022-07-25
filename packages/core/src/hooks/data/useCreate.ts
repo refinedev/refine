@@ -1,4 +1,4 @@
-import { useMutation, UseMutationResult, useQueryClient } from "react-query";
+import { useMutation, UseMutationResult } from "react-query";
 import pluralize from "pluralize";
 
 import {
@@ -15,6 +15,7 @@ import {
     usePublish,
     useHandleNotification,
     useDataProvider,
+    useLog,
     useInvalidate,
 } from "@hooks";
 
@@ -61,6 +62,7 @@ export const useCreate = <
 
     const translate = useTranslate();
     const publish = usePublish();
+    const { log } = useLog();
     const handleNotification = useHandleNotification();
 
     const mutation = useMutation<
@@ -89,11 +91,18 @@ export const useCreate = <
                     successNotification: successNotificationFromProp,
                     dataProviderName,
                     invalidates = ["list", "many"],
+                    values,
+                    metaData,
                 },
             ) => {
                 const resourceSingular = pluralize.singular(resource);
 
-                handleNotification(successNotificationFromProp, {
+                const notificationConfig =
+                    typeof successNotificationFromProp === "function"
+                        ? successNotificationFromProp(data, values, resource)
+                        : successNotificationFromProp;
+
+                handleNotification(notificationConfig, {
                     key: `create-${resource}-notification`,
                     message: translate(
                         "notifications.createSuccess",
@@ -123,15 +132,38 @@ export const useCreate = <
                     },
                     date: new Date(),
                 });
+
+                const { fields, operation, variables, ...rest } =
+                    metaData || {};
+
+                log?.mutate({
+                    action: "create",
+                    resource,
+                    data: values,
+                    meta: {
+                        dataProviderName,
+                        id: data?.data?.id ?? undefined,
+                        ...rest,
+                    },
+                });
             },
             onError: (
                 err: TError,
-                { resource, errorNotification: errorNotificationFromProp },
+                {
+                    resource,
+                    errorNotification: errorNotificationFromProp,
+                    values,
+                },
             ) => {
                 checkError(err);
                 const resourceSingular = pluralize.singular(resource);
 
-                handleNotification(errorNotificationFromProp, {
+                const notificationConfig =
+                    typeof errorNotificationFromProp === "function"
+                        ? errorNotificationFromProp(err, values, resource)
+                        : errorNotificationFromProp;
+
+                handleNotification(notificationConfig, {
                     key: `create-${resource}-notification`,
                     description: err.message,
                     message: translate(

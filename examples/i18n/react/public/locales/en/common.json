@@ -17,6 +17,12 @@
             "backHome": "Back Home"
         }
     },
+    "actions": {
+        "list": "List",
+        "create": "Create",
+        "edit": "Edit",
+        "show": "Show"
+    },
     "buttons": {
         "create": "Create",
         "save": "Save",
@@ -36,7 +42,7 @@
     },
     "warnWhenUnsavedChanges": "Are you sure you want to leave? You have unsaved changes.",
     "notifications": {
-        "success": "Successful ",
+        "success": "Successful",
         "error": "Error (status code: {{statusCode}})",
         "undoable": "You have {{seconds}} seconds to undo",
         "createSuccess": "Successfully created {{resource}}",

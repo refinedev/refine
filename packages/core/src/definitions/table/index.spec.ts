@@ -6,10 +6,61 @@ import {
     compareFilters,
     compareSorters,
     unionSorters,
+    getDefaultSortOrder,
+    getDefaultFilter,
 } from "./";
 import { CrudSorting, CrudFilters } from "../../interfaces";
 
 describe("definitions/table", () => {
+    it("getDefaultSortOrder", () => {
+        const sorter: CrudSorting = [
+            {
+                field: "title",
+                order: "asc",
+            },
+            {
+                field: "view",
+                order: "desc",
+            },
+        ];
+
+        expect(getDefaultSortOrder("title", sorter)).toEqual("asc");
+        expect(getDefaultSortOrder("view", sorter)).toEqual("desc");
+    });
+
+    it("getDefaultFilter", () => {
+        const filters: CrudFilters = [
+            {
+                field: "title",
+                operator: "contains",
+                value: "test",
+            },
+        ];
+        expect(getDefaultFilter("title", filters, "contains")).toEqual("test");
+    });
+
+    it("getDefaultFilter empty array", () => {
+        const filters: CrudFilters = [
+            {
+                field: "title",
+                operator: "contains",
+                value: undefined,
+            },
+        ];
+        expect(getDefaultFilter("title", filters, "contains")).toEqual([]);
+    });
+
+    it("getDefaultFilter default operator", () => {
+        const filters: CrudFilters = [
+            {
+                field: "title",
+                operator: "eq",
+                value: "test",
+            },
+        ];
+        expect(getDefaultFilter("title", filters)).toEqual("test");
+    });
+
     it("stringify table params correctly", async () => {
         const pagination = {
             current: 1,
@@ -130,40 +181,6 @@ describe("definitions/table", () => {
         ]);
     });
 
-    it("unionFilters puts higher priority filters at the end", () => {
-        expect(
-            unionFilters(
-                [
-                    {
-                        field: "foo",
-                        operator: "in",
-                        value: "permenant",
-                    },
-                ],
-                [
-                    {
-                        field: "bar",
-                        operator: "in",
-                        value: "crud",
-                    },
-                ],
-            ),
-        ).toMatchInlineSnapshot(`
-            Array [
-              Object {
-                "field": "bar",
-                "operator": "in",
-                "value": "crud",
-              },
-              Object {
-                "field": "foo",
-                "operator": "in",
-                "value": "permenant",
-              },
-            ]
-        `);
-    });
-
     it("unionFilters should override same filters", () => {
         expect(
             unionFilters(
@@ -190,14 +207,14 @@ describe("definitions/table", () => {
         ).toMatchInlineSnapshot(`
             Array [
               Object {
-                "field": "bar",
-                "operator": "in",
-                "value": "crud",
-              },
-              Object {
                 "field": "foo",
                 "operator": "in",
                 "value": "permenant",
+              },
+              Object {
+                "field": "bar",
+                "operator": "in",
+                "value": "crud",
               },
             ]
         `);
@@ -268,34 +285,200 @@ describe("definitions/table", () => {
         ).toBe(false);
     });
 
-    it("unionSorters puts higher priority sorter at the end", () => {
+    it("compareFilters return correct result when `or` is used", () => {
         expect(
-            unionSorters(
-                [
-                    {
-                        field: "foo",
-                        order: "asc",
-                    },
-                ],
-                [
-                    {
-                        field: "bar",
-                        order: "asc",
-                    },
-                ],
+            compareFilters(
+                {
+                    operator: "or",
+                    value: [
+                        {
+                            field: "name",
+                            operator: "eq",
+                            value: "test",
+                        },
+                    ],
+                },
+                {
+                    operator: "or",
+                    value: [
+                        {
+                            field: "created_at",
+                            operator: "gte",
+                            value: "2022-01-01",
+                        },
+                    ],
+                },
             ),
-        ).toMatchInlineSnapshot(`
-            Array [
-              Object {
-                "field": "bar",
-                "order": "asc",
-              },
-              Object {
-                "field": "foo",
-                "order": "asc",
-              },
-            ]
-        `);
+        ).toBe(true);
+
+        expect(
+            compareFilters(
+                {
+                    operator: "or",
+                    value: [
+                        {
+                            field: "name",
+                            operator: "eq",
+                            value: "test",
+                        },
+                    ],
+                },
+                {
+                    field: "created_at",
+                    operator: "gte",
+                    value: "2022-01-01",
+                },
+            ),
+        ).toBe(false);
+    });
+
+    it("unionFilters should override `or` filter", () => {
+        const union = unionFilters(
+            // permanent filters
+            [],
+            // new filters
+            [
+                {
+                    field: "other-field",
+                    operator: "in",
+                    value: "crud",
+                },
+                {
+                    operator: "or",
+                    value: [
+                        {
+                            field: "created_at",
+                            operator: "contains",
+                            value: "2022",
+                        },
+                    ],
+                },
+            ],
+            // prev filters
+            [
+                {
+                    operator: "or",
+                    value: [
+                        {
+                            field: "name",
+                            operator: "eq",
+                            value: "test",
+                        },
+                    ],
+                },
+            ],
+        );
+
+        // does not include previous `or`
+        expect(union).not.toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({
+                    operator: "or",
+                    value: expect.arrayContaining([
+                        expect.objectContaining({
+                            field: "name",
+                            operator: "eq",
+                            value: "test",
+                        }),
+                    ]),
+                }),
+            ]),
+        );
+
+        // includes new `or` and new filters
+        expect(union).toMatchObject([
+            {
+                field: "other-field",
+                operator: "in",
+                value: "crud",
+            },
+            {
+                operator: "or",
+                value: [
+                    {
+                        field: "created_at",
+                        operator: "contains",
+                        value: "2022",
+                    },
+                ],
+            },
+        ]);
+    });
+
+    it("unionFilters should remove `or` filter if value is empty array", () => {
+        const union = unionFilters(
+            // permanent filters
+            [],
+            // new filters
+            [
+                {
+                    field: "other-field",
+                    operator: "in",
+                    value: "crud",
+                },
+                {
+                    operator: "or",
+                    value: [],
+                },
+            ],
+            // prev filters
+            [
+                {
+                    operator: "or",
+                    value: [
+                        {
+                            field: "name",
+                            operator: "eq",
+                            value: "test",
+                        },
+                    ],
+                },
+            ],
+        );
+
+        expect(union).not.toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({
+                    operator: "or",
+                }),
+            ]),
+        );
+    });
+
+    it("unionFilters should keep `or` filter if it's untouched", () => {
+        const union = unionFilters(
+            // permanent filters
+            [],
+            // new filters
+            [
+                {
+                    field: "other-field",
+                    operator: "in",
+                    value: "crud",
+                },
+            ],
+            // prev filters
+            [
+                {
+                    operator: "or",
+                    value: [
+                        {
+                            field: "name",
+                            operator: "eq",
+                            value: "test",
+                        },
+                    ],
+                },
+            ],
+        );
+
+        expect(union).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({
+                    operator: "or",
+                }),
+            ]),
+        );
     });
 
     it("unionSorters should override same sorter", () => {
@@ -321,11 +504,11 @@ describe("definitions/table", () => {
         ).toMatchInlineSnapshot(`
             Array [
               Object {
-                "field": "bar",
+                "field": "foo",
                 "order": "asc",
               },
               Object {
-                "field": "foo",
+                "field": "bar",
                 "order": "asc",
               },
             ]
@@ -338,11 +521,11 @@ describe("definitions/table", () => {
                 [],
                 [
                     {
-                        field: "foo",
+                        field: "bar",
                         order: "asc",
                     },
                     {
-                        field: "bar",
+                        field: "foo",
                         order: "asc",
                     },
                 ],

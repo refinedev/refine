@@ -17,7 +17,7 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter } = useTable<IPost>({
         initialSorter: [
             {
-                field: "id",
+                field: "$id",
                 order: "asc",
             },
         ],

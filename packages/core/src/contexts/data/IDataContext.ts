@@ -42,6 +42,8 @@ export type CrudOperators =
     | "nnull"
     | "or";
 
+export type SortOrder = "desc" | "asc" | null;
+
 export type LogicalFilter = {
     field: string;
     operator: Exclude<CrudOperators, "or">;
@@ -106,6 +108,7 @@ export interface IDataContext {
     getList: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
         pagination?: Pagination;
+        hasPagination?: boolean;
         sort?: CrudSorting;
         filters?: CrudFilters;
         metaData?: MetaDataQuery;
@@ -182,6 +185,7 @@ export interface IDataContextProvider {
     getList: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
         pagination?: Pagination;
+        hasPagination?: boolean;
         sort?: CrudSorting;
         filters?: CrudFilters;
         metaData?: MetaDataQuery;

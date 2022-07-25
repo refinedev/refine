@@ -88,19 +88,28 @@ Select the following options to complete the CLI wizard:
 
 ```bash
 ? Select your project type:
-> refine
+> refine-react
+
+? What will be the name of your app:
+> email-subscription-panel
 
 ? Package manager:
 > Npm
 
-? Do you want to customize the theme?:
-> No (Ant Design default theme)
+? Do you want to use a UI Framework?:
+❯ Ant Design
+
+? Do you want a customized theme?:
+> Default theme
+
+? Router Provider:
+❯ React Router v6
 
 ? Data Provider: 
 > Strapi
 
-? Do you want to customize layout?:
-> Yes, I want
+? Do you want a customized layout?:
+> Yes
 
 ? i18n - Internationalization: 
 > No
@@ -452,7 +461,7 @@ export const MailCreate: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
-Using refine's [form](https://refine.dev/docs/api-references/hooks/form/useForm) and [create](https://refine.dev/docs/ui-framewors/antd/components/basic-views/create) components, we can now create subscribers and messages with refine.
+Using refine's [form](https://refine.dev/docs/api-references/hooks/form/useForm) and [create](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/create/) components, we can now create subscribers and messages with refine.
 
 
 <div class="img-container">

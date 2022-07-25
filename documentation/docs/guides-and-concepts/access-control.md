@@ -25,7 +25,7 @@ We will be using **[Casbin](https://casbin.org/)** in this guide for users with 
 We need to install Casbin.
 
 ```bash
-npm install casbin.js --save
+npm install casbin
 ```
 :::caution
 To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
@@ -34,7 +34,7 @@ To make this example more visual, we used the [`@pankod/refine-antd`](https://gi
 
 The app will have three resources: **posts**, **users** and **categories** with CRUD pages(list, create, edit and show).
 
-[You can refer to codesandbox to see how they are implemented &#8594](#live-codesandbox-example)
+[You can refer to StackBlitz to see how they are implemented &#8594](#live-stackblitz-example)
 
 `App.tsx` will look like this before we begin implementing access control:
 
@@ -104,7 +104,7 @@ The way **[Casbin](https://casbin.org/)** works is that access rights are checke
 Let's add a model and a policy for a role **editor** that have **list** access for **posts** resource.
 
 ```ts title="src/accessControl.ts"
-import { newModel, MemoryAdapter } from "casbin.js";
+import { newModel, StringAdapter } from "casbin";
 
 export const model = newModel(`
 [request_definition]
@@ -139,7 +139,7 @@ Now we will implement the `can` method for `accessControlProvider` to integrate 
 ```tsx title="src/App.tsx"
 // ...
 // highlight-next-line
-import { newEnforcer } from "casbin.js";
+import { newEnforcer } from "casbin";
 
 // highlight-next-line
 import { model, adapter } from "./accessControl";
@@ -526,11 +526,11 @@ export const PostList: React.FC = () => {
     <img src={accessControl} alt="Full Example Sample" />
 </div>
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
 ### Casbin
 
-<iframe src="https://codesandbox.io/embed/access-control-casbin-react-l06vy?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/accessControl/casbin/?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="access-control-casbin-react"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
@@ -539,9 +539,7 @@ export const PostList: React.FC = () => {
 
 ### Cerbos
 
-<iframe src="https://codesandbox.io/embed/access-control-cerbos-react-mbhei?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/accessControl/cerbos/?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="access-control-cerbos-react"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>

@@ -2,7 +2,7 @@ import { dataProvider } from "../../src/index";
 import client from "../appwriteClient";
 import "./index.mock";
 
-describe("getList", () => {
+xdescribe("getList", () => {
     it("correct response", async () => {
         const { data, total } = await dataProvider(client).getList({
             resource: "6180e4315f3e7",

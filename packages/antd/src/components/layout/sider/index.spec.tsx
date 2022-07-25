@@ -1,5 +1,4 @@
 import React from "react";
-import ReactRouterDom from "react-router-dom";
 import { waitFor } from "@testing-library/react";
 import { render, fireEvent, TestWrapper, act } from "@test";
 
@@ -15,14 +14,21 @@ const mockAuthProvider = {
     isProvided: true,
 };
 
-const mHistory = jest.fn();
-
-jest.mock("react-router-dom", () => ({
-    ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useNavigate: () => mHistory,
-}));
-
 describe("Sider", () => {
+    beforeAll(() => {
+        jest.spyOn(console, "error").mockImplementation((message, ...args) => {
+            if (
+                message.includes(
+                    "[antd: Menu] `children` will be removed in next major version.",
+                )
+            ) {
+                return;
+            }
+            console.error(message, ...args);
+        });
+        jest.useFakeTimers();
+    });
+
     it("should render successful", async () => {
         const { getByText } = render(<Sider />, {
             wrapper: TestWrapper({}),
@@ -50,7 +56,7 @@ describe("Sider", () => {
         });
 
         await waitFor(() => fireEvent.click(getByText("Posts")));
-        expect(mHistory).toBeCalledWith("/posts", undefined);
+        expect(window.location.pathname).toBe("/posts");
     });
 
     it("should work logout menu item click", async () => {
@@ -87,7 +93,20 @@ describe("Sider", () => {
     it("should render only allowed menu items", async () => {
         const { getByText, queryByText } = render(<Sider />, {
             wrapper: TestWrapper({
-                resources: [{ name: "posts" }, { name: "users" }],
+                resources: [
+                    {
+                        name: "posts",
+                        list: function list() {
+                            return <div>render me!</div>;
+                        },
+                    },
+                    {
+                        name: "users",
+                        list: function list() {
+                            return <div>render me!</div>;
+                        },
+                    },
+                ],
                 accessControlProvider: {
                     can: ({ action, resource }) => {
                         if (action === "list" && resource === "posts") {
@@ -100,6 +119,10 @@ describe("Sider", () => {
                     },
                 },
             }),
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
         });
 
         await waitFor(() => getByText("Posts"));

@@ -3,8 +3,13 @@ import { AuthProvider } from "@pankod/refine-core";
 import { appwriteClient } from "utility";
 
 export const authProvider: AuthProvider = {
-    login: ({ email, password }) => {
-        return appwriteClient.account.createSession(email, password);
+    login: async ({ email, password }) => {
+        try {
+            await appwriteClient.account.createSession(email, password);
+            return Promise.resolve();
+        } catch (e) {
+            return Promise.reject();
+        }
     },
     logout: async () => {
         await appwriteClient.account.deleteSession("current");

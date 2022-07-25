@@ -77,18 +77,30 @@ export const DataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): IDataProvider => ({
-    getList: async ({ resource, pagination, filters, sort }) => {
+    getList: async ({
+        resource,
+        hasPagination = true,
+        pagination = {
+            current: 1,
+            pageSize: 10,
+        },
+        filters,
+        sort,
+    }) => {
         const url = `${apiUrl}/${resource}`;
 
-        const current = pagination?.current || 1;
-        const pageSize = pagination?.pageSize || 10;
+        const { current = 1, pageSize: _limit = 10 } = pagination ?? {};
 
         const _sort = generateSort(sort);
         const queryFilters = generateFilter(filters);
 
         const query = {
-            _start: (current - 1) * pageSize,
-            _limit: pageSize,
+            ...(hasPagination
+                ? {
+                      _start: (current - 1) * _limit,
+                      _limit,
+                  }
+                : {}),
             _sort: _sort.length > 0 ? _sort.join(",") : undefined,
         };
 

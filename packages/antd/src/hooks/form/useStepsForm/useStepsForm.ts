@@ -24,7 +24,7 @@ export type useStepsFormProps<
     TError extends HttpError = HttpError,
     TVariables = {},
 > = UseFormPropsCore<TData, TError, TVariables> &
-    UseFormProps &
+    UseFormProps<TData, TError, TVariables> &
     UseStepsFormConfig;
 
 /**
@@ -49,6 +49,7 @@ export const useStepsForm = <
     const { form, formProps } = useFormProps;
 
     const stepsPropsSunflower = useStepsFormSF<TData, TVariables>({
+        isBackValidate: false,
         ...props,
         form: form,
         submit: (values: any) => {
@@ -61,6 +62,7 @@ export const useStepsForm = <
         ...stepsPropsSunflower,
         formProps: {
             ...stepsPropsSunflower.formProps,
+            ...useFormProps.formProps,
             onValuesChange: formProps?.onValuesChange,
             onKeyUp: formProps?.onKeyUp,
         },

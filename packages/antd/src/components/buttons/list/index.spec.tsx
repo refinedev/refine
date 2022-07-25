@@ -1,20 +1,17 @@
 import React from "react";
-import ReactRouterDom, { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
-import { fireEvent, render, TestWrapper, waitFor } from "@test";
+import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
 import { ListButton } from "./";
-
-const mHistory = jest.fn();
-
-jest.mock("react-router-dom", () => ({
-    ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useNavigate: () => mHistory,
-}));
 
 describe("List Button", () => {
     const list = jest.fn();
 
-    it("should render button successfuly", () => {
+    beforeAll(() => {
+        jest.useFakeTimers();
+    });
+
+    it("should render button successfuly", async () => {
         const { container, getByText } = render(
             <ListButton onClick={() => list()} resourceName="posts-light" />,
             {
@@ -23,6 +20,10 @@ describe("List Button", () => {
                 }),
             },
         );
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
         getByText("Posts lights");
 
@@ -42,11 +43,15 @@ describe("List Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
         getByText("Tests");
     });
 
-    it("should render text by children", () => {
+    it("should render text by children", async () => {
         const { container, getByText } = render(
             <ListButton>refine</ListButton>,
             {
@@ -56,16 +61,24 @@ describe("List Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
         getByText("refine");
     });
 
-    it("should render without text show only icon", () => {
+    it("should render without text show only icon", async () => {
         const { container, queryByText } = render(<ListButton hideText />, {
             wrapper: TestWrapper({
                 resources: [{ name: "posts" }],
             }),
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
         });
 
         expect(container).toBeTruthy();
@@ -81,6 +94,10 @@ describe("List Button", () => {
                     can: () => Promise.resolve({ can: false }),
                 },
             }),
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
         });
 
         expect(container).toBeTruthy();
@@ -103,6 +120,10 @@ describe("List Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
         await waitFor(() =>
@@ -124,19 +145,19 @@ describe("List Button", () => {
             }),
         });
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
-        await waitFor(() =>
-            expect(getByText("List").closest("button")).not.toBeDisabled(),
-        );
-        await waitFor(() =>
-            expect(
-                getByText("List").closest("button")?.getAttribute("title"),
-            ).toBe("Access Denied"),
+        expect(getByText("List").closest("button")).toBeDisabled();
+        expect(getByText("List").closest("button")?.getAttribute("title")).toBe(
+            "Access Denied",
         );
     });
 
-    it("should render called function successfully if click the button", () => {
+    it("should render called function successfully if click the button", async () => {
         const { getByText } = render(
             <ListButton onClick={() => list()} resourceName="posts" />,
             {
@@ -146,12 +167,18 @@ describe("List Button", () => {
             },
         );
 
-        fireEvent.click(getByText("Posts"));
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await act(async () => {
+            fireEvent.click(getByText("Posts"));
+        });
 
         expect(list).toHaveBeenCalledTimes(1);
     });
 
-    it("should redirect with custom route called function successfully if click the button", () => {
+    it("should redirect with custom route called function successfully if click the button", async () => {
         const { getByText } = render(
             <Routes>
                 <Route
@@ -175,8 +202,14 @@ describe("List Button", () => {
             },
         );
 
-        fireEvent.click(getByText("Posts"));
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
-        expect(mHistory).toBeCalledWith("/custom-route-posts");
+        await act(async () => {
+            fireEvent.click(getByText("Posts"));
+        });
+
+        expect(window.location.pathname).toBe("/custom-route-posts");
     });
 });

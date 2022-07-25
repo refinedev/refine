@@ -53,7 +53,7 @@ export const PostList: React.FC = () => {
 };
 
 interface IPost {
-    id: string;
+    id: number;
     title: string;
     content: string;
     status: "published" | "draft" | "rejected";
@@ -93,6 +93,10 @@ const { tableProps } = useTable<IPost>();
 </Table>;
 ```
 
+:::
+
+:::info
+To disable pagination, you can set `hasPagination` property to `false` which is `true` by default. If `hasPagination` has set to `false`, pagination elements will be hidden in the `<Table/>`. If you want to handle the pagination on the client-side you can override the `pagination` property in `tableProps`.
 :::
 
 ## Sorting
@@ -305,14 +309,14 @@ const { tableProps, sorter, filters } = useTable<IPost>({
 If you give default filter values, `defaultFilteredValue` property needs to be properly given to the relevant `<Table.Column>` components so that those filter fields come with default values when the page is opened.
 
 ```tsx title="/src/pages/posts/list.tsx"
+// highlight-next-line
+import { getDefaultFilter } from "@pankod/refine-core";
 import {
     List,
     Table,
     Radio,
     FilterDropdown,
     TagField,
-    // highlight-next-line
-    getDefaultFilter,
     useTable,
     getDefaultSortOrder,
 } from "@pankod/refine-antd";
@@ -386,10 +390,12 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 | resource                                                     | The resource to use for table data                                                                                                                                 | `string` \| `undefined`                                                        | Resource name that it reads from the url                                             |
 | permanentFilter                                              | Default and unchangeable filter                                                                                                                                    | [`CrudFilters`][crudfilters]                                                   | `[]`                                                                                 |
 | permanentSorter                                              | Default and unchangeable sorter state                                                                                                                              | [`CrudSorting`][crudsorting]                                                   | `[]`                                                                                 |
+| hasPagination                                                | Whether to use server side pagination or not.                                                                                                                      | `boolean`                                                                      | `true`                                                                               |
 | initialCurrent                                               | Initial page index                                                                                                                                                 | `number`                                                                       | `1`                                                                                  |
 | initialPageSize                                              | Number of records shown per initial number of pages                                                                                                                | `number`                                                                       | `10`                                                                                 |
 | initialSorter                                                | Initial sorting                                                                                                                                                    | [`CrudSorting`][crudsorting]                                                   |
 | initialFilter                                                | Initial filtering                                                                                                                                                  | [`CrudFilters`][crudfilters]                                                   |
+| defaultSetFilterBehavior                                     | Default behavior for `setFilters` and its internal use in this hook                                                                                                | `"merge"` \| `"replace"`                                                       | `merge`                                                                              |
 | syncWithLocation                                             | Sortings, filters, page index and records shown per page are tracked by browser history                                                                            | `boolean`                                                                      | Value set in [Refine][refine swl]. If a custom resource is given, it will be `false` |
 | onSearch                                                     | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][table search] to learn how to create a search form                  | `Function`                                                                     |
 | queryOptions                                                 | `react-query`'s `useQuery` options                                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                    |
@@ -408,19 +414,21 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 
 ### Return values
 
-| Property         | Description                              | Type                                                                                              |
-| ---------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| searchFormProps  | Ant Design [`<Form>`][form] props        | [`FormProps<TSearchVariables>`][form]                                                             |
-| tableProps       | Ant Design [`<Table>`][table] props      | [`TableProps<TData>`][table]                                                                      |
-| tableQueryResult | Result of the `react-query`'s `useQuery` | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery] |
-| sorter           | Current sorting state                    | [`CrudSorting`][crudsorting]                                                                      |
-| filters          | Current filters state                    | [`CrudFilters`][crudfilters]                                                                      |
+| Property         | Description                                 | Type                                                                                                                                                    |
+| ---------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| searchFormProps  | Ant Design [`<Form>`][form] props           | [`FormProps<TSearchVariables>`][form]                                                                                                                   |
+| tableProps       | Ant Design [`<Table>`][table] props         | [`TableProps<TData>`][table]                                                                                                                            |
+| tableQueryResult | Result of the `react-query`'s `useQuery`    | [`QueryObserverResult<{`<br/>` data: TData[];`<br/>` total: number; },`<br/>` TError>`][usequery]                                                       |
+| sorter           | Current sorting state                       | [`CrudSorting`][crudsorting]                                                                                                                            |
+| filters          | Current filters state                       | [`CrudFilters`][crudfilters]                                                                                                                            |
+| setFilters       | A function that accepts a new filter state  | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` <br/> - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
+| setSorter        | A function that accepts a new sorter state. | `(sorter: CrudSorting) => void`                                                                                                                         |
 
 <br />
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
-<iframe src="https://codesandbox.io/embed/refine-use-table-example-159uj?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/table/antd/useTable?embed=1&view=preview&theme=dark&preset=node"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-use-table-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

@@ -15,6 +15,8 @@ import {
     UseFormProps as UseFormPropsCore,
     BaseRecord,
     LiveModeProps,
+    BaseKey,
+    userFriendlyResourceName,
 } from "@pankod/refine-core";
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 import { useModalFormFromSFReturnType } from "../../../types/sunflower";
@@ -38,7 +40,7 @@ export type useModalFormProps<
     TError extends HttpError = HttpError,
     TVariables = {},
 > = UseFormPropsCore<TData, TError, TVariables> &
-    UseFormProps &
+    UseFormProps<TData, TError, TVariables> &
     UseModalFormConfigSF &
     useModalFormConfig &
     LiveModeProps;
@@ -147,7 +149,7 @@ export const useModalForm = <
         sunflowerUseModal.close();
     }, [warnWhen]);
 
-    const handleShow = useCallback((id?: string) => {
+    const handleShow = useCallback((id?: BaseKey) => {
         setId?.(id);
 
         sunflowerUseModal.show();
@@ -160,6 +162,7 @@ export const useModalForm = <
         close: handleClose,
         formProps: {
             ...modalFormProps,
+            ...useFormProps.formProps,
             onValuesChange: formProps?.onValuesChange,
             onKeyUp: formProps?.onKeyUp,
             onFinish: formProps?.onFinish,
@@ -179,11 +182,8 @@ export const useModalForm = <
             cancelText: translate("buttons.cancel", "Cancel"),
             onCancel: handleClose,
             getContainer: false,
+            forceRender: true,
         },
         formLoading,
     };
 };
-
-function userFriendlyResourceName(arg0: string, arg1: string) {
-    return arg0;
-}

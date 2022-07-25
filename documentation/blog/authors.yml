@@ -4,6 +4,12 @@ melih:
   url: https://github.com/mlhekinci
   image_url: https://github.com/mlhekinci.png
 
+ege:
+  name: Ege Aytın
+  title: Software Developer
+  url: https://github.com/EgeAytin
+  image_url: https://github.com/EgeAytin.png
+
 umut:
   name: Umut Özdemir
   title: Frontend Developer
@@ -45,3 +51,9 @@ ozkalai:
   title: Frontend Developer
   url: https://github.com/ozkalai
   image_url: https://github.com/ozkalai.png
+
+necati:
+  name: Necati Özmen
+  title: Software Developer
+  url: https://github.com/necatiozmen
+  image_url: https://github.com/necatiozmen.png

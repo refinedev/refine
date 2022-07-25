@@ -1,4 +1,4 @@
-import nock from "nock";
+import { SupabaseClient } from "@supabase/supabase-js";
 import { dataProvider } from "../../src/index";
 import supabaseClient from "../supabaseClient";
 import "./index.mock";
@@ -42,8 +42,47 @@ describe("getList", () => {
         expect(data[0]["title"]).toBe("What a library");
         expect(total).toBe(2);
     });
-});
 
+    describe("Supabase order", () => {
+        const mockSupabaseOrder = jest.fn();
+        const mockSupabaseClient = {
+            select: () => mockSupabaseClient,
+            from: () => mockSupabaseClient,
+            range: () => mockSupabaseClient,
+            order: mockSupabaseOrder,
+        } as unknown as SupabaseClient;
+
+        it("correct sorting object with foreignTable", async () => {
+            await dataProvider(mockSupabaseClient).getList({
+                resource: "posts",
+                sort: [
+                    {
+                        field: "categories.title",
+                        order: "asc",
+                    },
+                ],
+            });
+            expect(mockSupabaseOrder).toHaveBeenCalledWith("title", {
+                ascending: true,
+                foreignTable: "categories",
+            });
+        });
+        it("correct sorting object without foreignTable", async () => {
+            await dataProvider(mockSupabaseClient).getList({
+                resource: "posts",
+                sort: [
+                    {
+                        field: "title",
+                        order: "asc",
+                    },
+                ],
+            });
+            expect(mockSupabaseOrder).toHaveBeenCalledWith("title", {
+                ascending: true,
+            });
+        });
+    });
+});
 describe("filtering", () => {
     it("eq operator should work correctly", async () => {
         const { data, total } = await dataProvider(supabaseClient).getList({

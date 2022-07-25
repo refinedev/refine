@@ -4,7 +4,6 @@ node_modules
 .cache
 dist
 .rpt2_cache
-.husky
 coverage
 .vscode
 
@@ -16,7 +15,9 @@ coverage
 .env.test.local
 .env.production.local
 
-!examples/fineFoods/admin/.env
+!examples/fineFoods/admin/antd/.env
+!examples/fineFoods/admin/mui/.env
+
 
 npm-debug.log*
 yarn-debug.log*
@@ -26,8 +27,8 @@ yarn-error.log*
 example/.eslintcache
 example/.cache
 
-examples/**/*/package-lock.json
-!examples/fineFoods/package-lock.json
+examples/**/package-lock.json
 .next
 
-packages/mui
+# cli tool
+/refine

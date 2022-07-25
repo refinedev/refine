@@ -96,12 +96,12 @@ Before we start, let's create the interfaces of our [`<AutoComplete>`](https://a
 
 ```ts title="src/interfaces/index.d.ts"
 export interface IPost {
-    id: string;
+    id: number;
     title: string;
 }
 
 export interface ICategory {
-    id: string;
+    id: number;
     title: string;
 }
 
@@ -144,7 +144,7 @@ const renderTitle = (title: string) => {
 };
 
 // To be able to customize the option item
-const renderItem = (title: string, resource: string, id: string) => {
+const renderItem = (title: string, resource: string, id: number) => {
     return {
         value: title,
         label: (
@@ -294,11 +294,9 @@ export const Header: React.FC = () => {
 By doing the same implementation on your other resources, you can search more than one resource with a value.
 :::
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
-<iframe src="https://codesandbox.io/embed/refine-search-example-jzrlp?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/search?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-search-example"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>

@@ -12,10 +12,8 @@ type ProductItemProps = {
 const { Meta } = Card;
 
 export const ProductItem: React.FC<ProductItemProps> = ({ item, editShow }) => {
-    const image = item?.image
-        ? item.image.map((img: any) => {
-              return img.url;
-          })
+    const image = item.image
+        ? JSON.parse(item.image).map((p: { url: string }) => p.url)
         : "./error.png";
 
     return (

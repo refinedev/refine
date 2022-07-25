@@ -17,8 +17,14 @@ All of React Table's features are supported and you can use all of the React Tab
 Install the [`@pankod/refine-react-table`][refine-react-table] library.
 
 ```bash
-npm i @pankod/refine-react-table
+npm i @pankod/refine-react-table@3
 ```
+
+:::caution
+
+This documentation **isn't** for the latest version of `@pankod/refine-react-table`. The package updated with accordingly to [TanStack Table v8](https://tanstack.com/table/v8) version. We will update this documentation with the latest version as soon as possible.
+
+:::
 
 :::caution
 For typescript users, you need to add React Table types to your project.
@@ -236,6 +242,10 @@ This example is the same as the basic example in the [React Table][react-table] 
 We need to import the `usePagination` plugin and inject it into the `useTable` hook in order to use the pagination feature. React Table provides a bunch of methods that we can use to control the pagination. For example, we can use the `setPageSize` method to set the current `pageSize`. Every change in the `pageSize` and `pageIndex` will trigger a new request to the data provider.
 
 [Refer to the `usePagination` documentation for detailed information. &#8594](https://react-table.tanstack.com/docs/api/usePagination#usepagination)
+
+:::info
+`useTable` hook from `@pankod/refine-react-table` sets `paginationMode` to `server` by default to handle the pagination. If you set `hasPagination` to `false` in `refineCoreProps` property in the `useTable` config, it will disable the server-side pagination and it will let you handle the pagination in the client side.
+:::
 
 ```tsx title="src/posts/list.tsx"
 //highlight-next-line
@@ -663,13 +673,11 @@ const {
 } = useTable({ ... });
 ```
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
-<iframe src="https://codesandbox.io/embed/refine-react-table-example-nhldb?autoresize=1&fontsize=14&module=%2Fsrc%2Fpages%2Fposts%2Flist.tsx&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/table/reactTable/basic/?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-react-table-example"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
 [react-table]: https://react-table.tanstack.com

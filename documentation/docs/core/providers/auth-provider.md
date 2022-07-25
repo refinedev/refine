@@ -350,7 +350,7 @@ const authProvider = {
    ...
 // highlight-start
     checkAuth: () => {
-        localStorage.getItem("auth") ? Promise.resolve() : Promise.reject();
+        return localStorage.getItem("auth") ? Promise.resolve() : Promise.reject();
     },
 // highlight-end
    ...
@@ -366,7 +366,7 @@ const authProvider = {
    ...
 // highlight-next-line
     checkAuth: () => {
-        localStorage.getItem("auth")
+        return localStorage.getItem("auth")
             ? Promise.resolve()
             : Promise.reject({ redirectPath: "/custom-url" });
     },
@@ -610,6 +610,8 @@ axiosInstance.interceptors.request.use(
                 Authorization: `Bearer ${token}`,
             };
         }
+
+        return request;
     },
 );
 
@@ -683,11 +685,9 @@ These hooks can be used with the `authProvider` authentication and authorization
 
 <br />
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
-<iframe src="https://codesandbox.io/embed/refine-authentication-example-niqdy?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/authorization?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-authorization-example"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>

@@ -15,29 +15,35 @@ Let's say that we want to make the `Post` data where we show the `id` and `title
 
 This time, to add the edit feature, we have to cover the `<Table>` component with a `<Form>`component and pass the properties coming from `useEditableTable` to the corresponding components:
 
-```tsx  title="/pages/posts/list.tsx"
-import { List, Table, useEditableTable, Form, TextField } from "@pankod/refine-antd";
+```tsx title="/pages/posts/list.tsx"
+import {
+    List,
+    Table,
+    useEditableTable,
+    Form,
+    TextField,
+} from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
-// highlight-next-line
+    // highlight-next-line
     const { tableProps, formProps } = useEditableTable<IPost>();
 
     return (
         <List>
-// highlight-start
+            // highlight-start
             <Form {...formProps}>
                 <Table {...tableProps} rowKey="id">
                     <Table.Column dataIndex="id" title="ID" />
                     <Table.Column dataIndex="title" title="Title" />
                 </Table>
             </Form>
-// highlight-end
+            // highlight-end
         </List>
     );
 };
 
 interface IPost {
-    id: string;
+    id: number;
     title: string;
 }
 ```
@@ -46,17 +52,17 @@ interface IPost {
 
 Now lets add a column for edit buttons:
 
-```tsx  title="/pages/posts/list.tsx"
+```tsx title="/pages/posts/list.tsx"
 import {
     List,
     Table,
     Form,
-// highlight-start
+    // highlight-start
     Space,
     Button,
     SaveButton,
     EditButton,
-// highlight-end
+    // highlight-end
     useEditableTable,
 } from "@pankod/refine-antd";
 
@@ -65,11 +71,11 @@ export const PostList: React.FC = () => {
         tableProps,
         formProps,
         isEditing,
-// highlight-start
+        // highlight-start
         saveButtonProps,
         cancelButtonProps,
         editButtonProps,
-// highlight-end
+        // highlight-end
     } = useEditableTable<IPost>();
 
     return (
@@ -82,7 +88,7 @@ export const PostList: React.FC = () => {
                         title="Actions"
                         dataIndex="actions"
                         key="actions"
-// highlight-start
+                        // highlight-start
                         render={(_text, record) => {
                             if (isEditing(record.id)) {
                                 return (
@@ -109,7 +115,7 @@ export const PostList: React.FC = () => {
                                 </Space>
                             );
                         }}
-// highlight-end
+                        // highlight-end
                     />
                 </Table>
             </Form>
@@ -126,7 +132,7 @@ export const PostList: React.FC = () => {
 
 For now, our post is not editable yet. If a post is being edited, we must show editable columns inside a `<Form.Item>` using conditional rendering:
 
-```tsx  title="/pages/posts/list.tsx"
+```tsx title="/pages/posts/list.tsx"
 import {
     List,
     Table,
@@ -135,10 +141,10 @@ import {
     Button,
     SaveButton,
     EditButton,
-// highlight-start
+    // highlight-start
     Input,
     TextField,
-// highlight-end
+    // highlight-end
     useEditableTable,
 } from "@pankod/refine-antd";
 
@@ -161,7 +167,7 @@ export const PostList: React.FC = () => {
                         key="title"
                         dataIndex="title"
                         title="Title"
-// highlight-start
+                        // highlight-start
                         render={(value, record) => {
                             if (isEditing(record.id)) {
                                 return (
@@ -175,7 +181,7 @@ export const PostList: React.FC = () => {
                             }
                             return <TextField value={value} />;
                         }}
-// highlight-end
+                        // highlight-end
                     />
                     <Table.Column<IPost>
                         title="Actions"
@@ -239,7 +245,7 @@ The `onRow` property of the `<Table>` component can be used to put a line to edi
 
 We can use `setId` to put a line to edit mode whenever its clicked on.
 
-```tsx  title="/pages/posts/list.tsx"
+```tsx title="/pages/posts/list.tsx"
 import {
     List,
     Table,
@@ -250,10 +256,10 @@ import {
 } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
-// highlight-start
+    // highlight-start
     const { tableProps, formProps, isEditing, setId } =
         useEditableTable<IPost>();
-// highlight-end
+    // highlight-end
 
     return (
         <List>
@@ -261,7 +267,7 @@ export const PostList: React.FC = () => {
                 <Table
                     {...tableProps}
                     key="id"
-// highlight-start
+                    // highlight-start
                     onRow={(record) => ({
                         onClick: (event: any) => {
                             if (event.target.nodeName === "TD") {
@@ -269,7 +275,7 @@ export const PostList: React.FC = () => {
                             }
                         },
                     })}
-// highlight-end
+                    // highlight-end
                 >
                     <Table.Column key="id" dataIndex="id" title="ID" />
                     <Table.Column<IPost>
@@ -310,20 +316,21 @@ export const PostList: React.FC = () => {
 
 ### Properties
 
-| Key                                           | Description                                                                                                                                                        | Type                                                                                     |
-| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
-| permanentFilter                               | Default and unchangeable filter.                                                                                                                                   | [`CrudFilters`][crudfilters]                                                             |
-| initialCurrent                                | Initial page index.                                                                                                                                                | `number`                                                                                 |
-| initialPageSize                               | Number of records shown per initial number of pages.                                                                                                               | `number`                                                                                 |
-| initialSorter                                 | Initial sorting.                                                                                                                                                   | [`CrudSorting`][crudsorting]                                                             |
-| initialFilter                                 | Initial filtering.                                                                                                                                                 | [`CrudFilters`][crudfilters]                                                             |
-| syncWithLocation                              | Sortings, filters, page index and records shown per page are tracked by browser history.                                                                           | `boolean`                                                                                |
-| onSearch                                      | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][table search] to learn how to create a search form.                 | `Function`                                                                               |
-| queryOptions                                  | `react-query`'s `useQuery` options                                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                              |
-| metaData                                      | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                           |
-| [liveMode](/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)       |
-| liveParams                                    | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: string[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | 
-| onLiveEvent                                   | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)              |
+| Key                                                          | Description                                                                                                                                                        | Type                                                                           |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------ |
+| permanentFilter                                              | Default and unchangeable filter.                                                                                                                                   | [`CrudFilters`][crudfilters]                                                   |
+| hasPagination                                                | Whether to use server side pagination or not.                                                                                                                      | `boolean`                                                                      | `true` |
+| initialCurrent                                               | Initial page index.                                                                                                                                                | `number`                                                                       |
+| initialPageSize                                              | Number of records shown per initial number of pages.                                                                                                               | `number`                                                                       |
+| initialSorter                                                | Initial sorting.                                                                                                                                                   | [`CrudSorting`][crudsorting]                                                   |
+| initialFilter                                                | Initial filtering.                                                                                                                                                 | [`CrudFilters`][crudfilters]                                                   |
+| syncWithLocation                                             | Sortings, filters, page index and records shown per page are tracked by browser history.                                                                           | `boolean`                                                                      |
+| onSearch                                                     | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][table search] to learn how to create a search form.                 | `Function`                                                                     |
+| queryOptions                                                 | `react-query`'s `useQuery` options                                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                    |
+| metaData                                                     | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                           |
+| [liveMode](/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)         |
+| liveParams                                                   | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: string[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) |
+| onLiveEvent                                                  | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)              |
 
 ### Type Parameters
 
@@ -351,17 +358,15 @@ export const PostList: React.FC = () => {
 | queryResult       | Result of the query of a record                         | [`QueryObserverResult<T>`][usequery]                                                              |
 | mutationResult    | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`][usemutation]                                                             |
 | formLoading       | Loading state of form request                           | `boolean`                                                                                         |
-| cloneId           | Record id for clone action                              | `"string"` \| `"number"`                                                                          |
-| setCloneId        | `cloneId` setter                                        | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                  |
-| id            | Record id for edit action                               | `"string"` \| `"number"`                                                                          |
-| setId         | `id` setter                                         | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                  |
-| isEditing         | Check if is editing                                     | `(id: string) => boolean`                                                                         |
+| id                | Record id for edit action                               | [`BaseKey`][basekey]                                                                              |
+| setId             | `id` setter                                             | `Dispatch<SetStateAction<` [`BaseKey`][basekey] \| `undefined>>`                                  |
+| isEditing         | Check if is editing                                     | `(id: `[`BaseKey`][basekey]`) => boolean`                                                         |
 
 <br />
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
-<iframe src="https://codesandbox.io/embed/refine-use-editable-table-example-7hwbz?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/table/antd/useEditableTable?embed=1&view=preview&theme=dark&preset=node"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-use-editable-table-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
@@ -374,6 +379,7 @@ export const PostList: React.FC = () => {
 [usequery]: https://react-query.tanstack.com/reference/useQuery
 [usemutation]: https://react-query.tanstack.com/reference/useMutation
 [baserecord]: /core/interfaces.md#baserecord
+[basekey]: /core/interfaces.md#basekey
 [crudsorting]: /core/interfaces.md#crudsorting
 [crudfilters]: /core/interfaces.md#crudfilters
 [httperror]: /core/interfaces.md#httperror

@@ -52,14 +52,18 @@ const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
                             action="list"
                             fallback={catchAll ?? <ErrorComponent />}
                         >
-                            <List
-                                name={name}
-                                canCreate={canCreate}
-                                canEdit={canEdit}
-                                canDelete={canDelete}
-                                canShow={canShow}
-                                options={options}
-                            />
+                            {!list ? (
+                                catchAll ?? <ErrorComponent />
+                            ) : (
+                                <List
+                                    name={name}
+                                    canCreate={canCreate}
+                                    canEdit={canEdit}
+                                    canDelete={canDelete}
+                                    canShow={canShow}
+                                    options={options}
+                                />
+                            )}
                         </CanAccess>
                     );
                 case "create":
@@ -69,15 +73,22 @@ const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
                             resource={name}
                             action="create"
                             fallback={catchAll ?? <ErrorComponent />}
+                            params={{
+                                id: id ? decodeURIComponent(id) : undefined,
+                            }}
                         >
-                            <Create
-                                name={name}
-                                canCreate={canCreate}
-                                canEdit={canEdit}
-                                canDelete={canDelete}
-                                canShow={canShow}
-                                options={options}
-                            />
+                            {!create ? (
+                                catchAll ?? <ErrorComponent />
+                            ) : (
+                                <Create
+                                    name={name}
+                                    canCreate={canCreate}
+                                    canEdit={canEdit}
+                                    canDelete={canDelete}
+                                    canShow={canShow}
+                                    options={options}
+                                />
+                            )}
                         </CanAccess>
                     );
 
@@ -86,17 +97,23 @@ const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
                         <CanAccess
                             resource={name}
                             action="edit"
-                            params={{ id }}
+                            params={{
+                                id: id ? decodeURIComponent(id) : undefined,
+                            }}
                             fallback={catchAll ?? <ErrorComponent />}
                         >
-                            <Edit
-                                name={name}
-                                canCreate={canCreate}
-                                canEdit={canEdit}
-                                canDelete={canDelete}
-                                canShow={canShow}
-                                options={options}
-                            />
+                            {!edit ? (
+                                catchAll ?? <ErrorComponent />
+                            ) : (
+                                <Edit
+                                    name={name}
+                                    canCreate={canCreate}
+                                    canEdit={canEdit}
+                                    canDelete={canDelete}
+                                    canShow={canShow}
+                                    options={options}
+                                />
+                            )}
                         </CanAccess>
                     );
 
@@ -105,17 +122,23 @@ const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
                         <CanAccess
                             resource={name}
                             action="show"
-                            params={{ id }}
+                            params={{
+                                id: id ? decodeURIComponent(id) : undefined,
+                            }}
                             fallback={catchAll ?? <ErrorComponent />}
                         >
-                            <Show
-                                name={name}
-                                canCreate={canCreate}
-                                canEdit={canEdit}
-                                canDelete={canDelete}
-                                canShow={canShow}
-                                options={options}
-                            />
+                            {!show ? (
+                                catchAll ?? <ErrorComponent />
+                            ) : (
+                                <Show
+                                    name={name}
+                                    canCreate={canCreate}
+                                    canEdit={canEdit}
+                                    canDelete={canDelete}
+                                    canShow={canShow}
+                                    options={options}
+                                />
+                            )}
                         </CanAccess>
                     );
                 default:

@@ -21,7 +21,7 @@ export const UndoableQueue: React.FC<{
                     notificationItem.doMutation();
                 }
                 if (!notificationItem.isSilent) {
-                    open({
+                    open?.({
                         key: `${notificationItem.id}-${notificationItem.resource}-notification`,
                         type: "progress",
                         message: translate(

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import {
     useTitle,
-    useNavigation,
     useSubscription,
     CanAccess,
     ITreeMenu,
+    useRouterContext,
 } from "@pankod/refine-core";
 import {
     AntdLayout,
@@ -19,12 +19,12 @@ import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 export const CustomSider: React.FC = () => {
     const [subscriptionCount, setSubscriptionCount] = useState(0);
     const [collapsed, setCollapsed] = useState<boolean>(false);
+    const { Link } = useRouterContext();
     const Title = useTitle();
     const { SubMenu } = Menu;
 
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
-    const { push } = useNavigation();
 
     const isMobile = !breakpoint.lg;
 
@@ -41,7 +41,7 @@ export const CustomSider: React.FC = () => {
             if (children.length > 0) {
                 return (
                     <SubMenu
-                        key={name}
+                        key={route}
                         icon={icon ?? <Icons.UnorderedListOutlined />}
                         title={label}
                     >
@@ -60,10 +60,7 @@ export const CustomSider: React.FC = () => {
                     action="list"
                 >
                     <Menu.Item
-                        key={selectedKey}
-                        onClick={() => {
-                            push(route ?? "");
-                        }}
+                        key={route}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
@@ -71,7 +68,7 @@ export const CustomSider: React.FC = () => {
                             icon ?? (isRoute && <Icons.UnorderedListOutlined />)
                         }
                     >
-                        {label}
+                        <Link to={route}>{label}</Link>
                         {label === "Posts" && (
                             <Badge
                                 size="small"
@@ -110,8 +107,6 @@ export const CustomSider: React.FC = () => {
                     if (key === "/posts") {
                         setSubscriptionCount(0);
                     }
-
-                    push(key as string);
                 }}
             >
                 {renderTreeView(menuItems, selectedKey)}

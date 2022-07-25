@@ -24,7 +24,7 @@ export type UseDrawerFormProps<
     TError extends HttpError = HttpError,
     TVariables = {},
 > = UseFormPropsCore<TData, TError, TVariables> &
-    UseFormProps &
+    UseFormProps<TData, TError, TVariables> &
     UseDrawerFormConfig &
     LiveModeProps;
 
@@ -151,6 +151,7 @@ export const useDrawerForm = <
         close: handleClose,
         formProps: {
             form,
+            ...useFormProps.formProps,
             onValuesChange: formProps?.onValuesChange,
             onKeyUp: formProps?.onKeyUp,
             onFinish: formProps?.onFinish,
@@ -160,6 +161,7 @@ export const useDrawerForm = <
             onClose: handleClose,
             visible,
             getContainer: false,
+            forceRender: true,
         },
         saveButtonProps,
         deleteButtonProps,

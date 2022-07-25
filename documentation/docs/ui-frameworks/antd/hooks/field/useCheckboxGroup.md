@@ -51,7 +51,7 @@ export const PostCreate: React.FC = () => {
 };
 
 interface ITag {
-    id: string;
+    id: number;
     title: string;
 }
 ```
@@ -198,9 +198,9 @@ const { checkboxGroupProps } = useCheckboxGroup({
 | checkboxGroupProps | Ant design checkbox group properties | [`Checkbox Group`](https://ant.design/components/checkbox/#Checkbox-Group)                    |
 | queryResult        | Results of the query of a record     | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
-<iframe src="https://codesandbox.io/embed/refine-use-checkbox-group-example-578v8?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/field/useCheckboxGroup?embed=1&view=preview&theme=dark&preset=node"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-use-checkbox-group-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

@@ -1,21 +1,28 @@
 import { renderHook } from "@testing-library/react-hooks";
 import { act } from "react-dom/test-utils";
-import { Column, useFilters, useSortBy } from "react-table";
+import { ColumnDef } from "@tanstack/react-table";
 
 import { TestWrapper } from "../../test";
 import { useTable } from "./index";
 
-const columns: Array<Column> = [
+type Post = {
+    id: number;
+    title: string;
+};
+
+const columns: ColumnDef<Post>[] = [
     {
         id: "id",
-        Header: "ID",
-        accessor: "id",
+        header: "ID",
+        accessorKey: "id",
     },
     {
         id: "title",
-        Header: "Title",
-        accessor: "title",
-        filter: "contains",
+        header: "Title",
+        accessorKey: "title",
+        meta: {
+            filterOperator: "contains",
+        },
     },
 ];
 
@@ -30,16 +37,15 @@ describe("useTable Hook", () => {
         });
 
         const {
-            pageCount,
-            state: { pageIndex, pageSize, filters, sortBy },
+            options: { state, pageCount },
             refineCore: { tableQueryResult },
         } = result.current;
 
-        expect(pageIndex).toBe(0);
-        expect(pageSize).toBe(10);
         expect(pageCount).toBe(1);
-        expect(filters).toEqual([]);
-        expect(sortBy).toEqual([]);
+        expect(state.pagination?.pageIndex).toBe(0);
+        expect(state.pagination?.pageSize).toBe(10);
+        expect(state.columnFilters).toEqual([]);
+        expect(state.sorting).toEqual([]);
         expect(tableQueryResult.data?.data).toHaveLength(3);
         expect(tableQueryResult.data?.total).toBe(3);
     });
@@ -64,41 +70,37 @@ describe("useTable Hook", () => {
         });
 
         const {
+            options: { state, pageCount },
             refineCore: { pageSize: corePageSize, current },
-            state: { pageIndex, pageSize },
-            pageCount,
         } = result.current;
 
         expect(corePageSize).toBe(1);
         expect(current).toBe(2);
-        expect(pageIndex).toBe(1);
-        expect(pageSize).toBe(1);
+        expect(state.pagination?.pageIndex).toBe(1);
+        expect(state.pagination?.pageSize).toBe(1);
         expect(pageCount).toBe(3);
     });
 
     it("It should work successfully with initialFilter", async () => {
         const { result, waitFor } = renderHook(
             () =>
-                useTable(
-                    {
-                        columns,
-                        refineCoreProps: {
-                            initialFilter: [
-                                {
-                                    field: "title",
-                                    operator: "contains",
-                                    value: "Hello2",
-                                },
-                                {
-                                    field: "active",
-                                    operator: "eq",
-                                    value: true,
-                                },
-                            ],
-                        },
+                useTable({
+                    columns,
+                    refineCoreProps: {
+                        initialFilter: [
+                            {
+                                field: "title",
+                                operator: "contains",
+                                value: "Hello2",
+                            },
+                            {
+                                field: "active",
+                                operator: "eq",
+                                value: true,
+                            },
+                        ],
                     },
-                    useFilters,
-                ),
+                }),
             {
                 wrapper: TestWrapper({}),
             },
@@ -109,42 +111,43 @@ describe("useTable Hook", () => {
         });
 
         const {
-            setFilter,
+            options: { state },
+            getColumn,
             refineCore: { filters: filtersCore },
-            state: { filters },
         } = result.current;
 
         expect(filtersCore).toEqual([
-            { field: "active", value: true, operator: "eq" },
             { field: "title", value: "Hello2", operator: "contains" },
+            { field: "active", value: true, operator: "eq" },
         ]);
-        expect(filters).toEqual([
+        expect(state.columnFilters).toEqual([
             { id: "title", value: "Hello2" },
             { id: "active", value: true },
         ]);
 
         act(() => {
-            setFilter("title", "Hello");
+            const titleColumn = getColumn("title");
+            titleColumn.setFilterValue("Hello");
         });
 
         expect(result.current.refineCore.filters).toEqual([
-            { field: "active", value: true, operator: "eq" },
             { field: "title", value: "Hello", operator: "contains" },
+            { field: "active", value: true, operator: "eq" },
         ]);
-        expect(result.current.state.filters).toEqual([
+        expect(result.current.options.state.columnFilters).toEqual([
             { id: "title", value: "Hello" },
             { id: "active", value: true },
         ]);
 
-        // reset filters case
         act(() => {
-            setFilter("title", undefined);
+            const titleColumn = getColumn("title");
+            titleColumn.setFilterValue(undefined);
         });
 
         expect(result.current.refineCore.filters).toEqual([
             { field: "active", value: true, operator: "eq" },
         ]);
-        expect(result.current.state.filters).toEqual([
+        expect(result.current.options.state.columnFilters).toEqual([
             { id: "active", value: true },
         ]);
     });
@@ -152,18 +155,15 @@ describe("useTable Hook", () => {
     it("It should work successfully with initialSorter", async () => {
         const { result, waitFor } = renderHook(
             () =>
-                useTable(
-                    {
-                        columns,
-                        refineCoreProps: {
-                            initialSorter: [
-                                { field: "title", order: "desc" },
-                                { field: "id", order: "asc" },
-                            ],
-                        },
+                useTable({
+                    columns,
+                    refineCoreProps: {
+                        initialSorter: [
+                            { field: "id", order: "asc" },
+                            { field: "title", order: "desc" },
+                        ],
                     },
-                    useSortBy,
-                ),
+                }),
             {
                 wrapper: TestWrapper({}),
             },
@@ -174,32 +174,32 @@ describe("useTable Hook", () => {
         });
 
         const {
-            setSortBy,
+            options: { state },
+            setSorting,
             refineCore: { sorter },
-            state: { sortBy },
         } = result.current;
 
         expect(sorter).toEqual([
             { field: "id", order: "asc" },
             { field: "title", order: "desc" },
         ]);
-        expect(sortBy).toEqual([
-            { id: "title", desc: true },
+        expect(state.sorting).toEqual([
             { id: "id", desc: false },
+            { id: "title", desc: true },
         ]);
 
         act(() => {
-            setSortBy([
+            setSorting([
                 { id: "title", desc: false },
                 { id: "id", desc: true },
             ]);
         });
 
         expect(result.current.refineCore.sorter).toEqual([
-            { field: "id", order: "desc" },
             { field: "title", order: "asc" },
+            { field: "id", order: "desc" },
         ]);
-        expect(result.current.state.sortBy).toEqual([
+        expect(result.current.options.state.sorting).toEqual([
             { id: "title", desc: false },
             { id: "id", desc: true },
         ]);
@@ -208,28 +208,25 @@ describe("useTable Hook", () => {
     it("It should work successfully with initialFilter and permanentFilter", async () => {
         const { result, waitFor } = renderHook(
             () =>
-                useTable(
-                    {
-                        columns,
-                        refineCoreProps: {
-                            initialFilter: [
-                                {
-                                    field: "title",
-                                    operator: "contains",
-                                    value: "Hello",
-                                },
-                            ],
-                            permanentFilter: [
-                                {
-                                    field: "category.id",
-                                    operator: "eq",
-                                    value: 1,
-                                },
-                            ],
-                        },
+                useTable({
+                    columns,
+                    refineCoreProps: {
+                        initialFilter: [
+                            {
+                                field: "title",
+                                operator: "contains",
+                                value: "Hello",
+                            },
+                        ],
+                        permanentFilter: [
+                            {
+                                field: "category.id",
+                                operator: "eq",
+                                value: 1,
+                            },
+                        ],
                     },
-                    useFilters,
-                ),
+                }),
             {
                 wrapper: TestWrapper({}),
             },
@@ -240,41 +237,43 @@ describe("useTable Hook", () => {
         });
 
         const {
-            setFilter,
             refineCore: { filters: filtersCore },
-            state: { filters },
+            options: { state },
+            getColumn,
         } = result.current;
 
         expect(filtersCore).toEqual([
-            { field: "title", value: "Hello", operator: "contains" },
             { field: "category.id", operator: "eq", value: 1 },
+            { field: "title", value: "Hello", operator: "contains" },
         ]);
-        expect(filters).toEqual([
+        expect(state.columnFilters).toEqual([
             { id: "title", value: "Hello" },
             { id: "category.id", value: 1 },
         ]);
 
         act(() => {
-            setFilter("title", "Test");
+            const titleColumn = getColumn("title");
+            titleColumn.setFilterValue("Test");
         });
 
         expect(result.current.refineCore.filters).toEqual([
-            { field: "title", value: "Test", operator: "contains" },
             { field: "category.id", value: 1, operator: "eq" },
+            { field: "title", value: "Test", operator: "contains" },
         ]);
-        expect(result.current.state.filters).toEqual([
+        expect(result.current.options.state.columnFilters).toEqual([
             { id: "title", value: "Test" },
             { id: "category.id", value: 1 },
         ]);
 
         act(() => {
-            setFilter("title", undefined);
+            const titleColumn = getColumn("title");
+            titleColumn.setFilterValue(undefined);
         });
 
         expect(result.current.refineCore.filters).toEqual([
             { field: "category.id", value: 1, operator: "eq" },
         ]);
-        expect(result.current.state.filters).toEqual([
+        expect(result.current.options.state.columnFilters).toEqual([
             { id: "category.id", value: 1 },
         ]);
     });
@@ -282,26 +281,23 @@ describe("useTable Hook", () => {
     it("It should work successfully with initialSorter and permanentSorter", async () => {
         const { result, waitFor } = renderHook(
             () =>
-                useTable(
-                    {
-                        columns,
-                        refineCoreProps: {
-                            initialSorter: [
-                                {
-                                    field: "title",
-                                    order: "asc",
-                                },
-                            ],
-                            permanentSorter: [
-                                {
-                                    field: "category.id",
-                                    order: "desc",
-                                },
-                            ],
-                        },
+                useTable({
+                    columns,
+                    refineCoreProps: {
+                        initialSorter: [
+                            {
+                                field: "title",
+                                order: "asc",
+                            },
+                        ],
+                        permanentSorter: [
+                            {
+                                field: "category.id",
+                                order: "desc",
+                            },
+                        ],
                     },
-                    useSortBy,
-                ),
+                }),
             {
                 wrapper: TestWrapper({}),
             },
@@ -312,30 +308,31 @@ describe("useTable Hook", () => {
         });
 
         const {
-            toggleSortBy,
+            getColumn,
             refineCore: { sorter },
-            state: { sortBy },
+            options: { state },
         } = result.current;
 
         expect(sorter).toEqual([
-            { field: "title", order: "asc" },
             { field: "category.id", order: "desc" },
+            { field: "title", order: "asc" },
         ]);
-        expect(sortBy).toEqual([
+        expect(state.sorting).toEqual([
             { id: "title", desc: false },
             { id: "category.id", desc: true },
         ]);
 
         act(() => {
-            toggleSortBy("title", true, true);
+            const titleColumn = getColumn("title");
+            titleColumn.toggleSorting(true, true);
         });
 
         expect(result.current.refineCore.sorter).toEqual([
-            { field: "title", order: "desc" },
             { field: "category.id", order: "desc" },
+            { field: "title", order: "desc" },
         ]);
 
-        expect(result.current.state.sortBy).toEqual([
+        expect(result.current.options.state.sorting).toEqual([
             { id: "title", desc: true },
             { id: "category.id", desc: true },
         ]);

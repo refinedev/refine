@@ -68,8 +68,11 @@ describe("Refine Container", () => {
                 <>
                     <h1>Posts</h1>
                     <table>
-                        <td>foo</td>
-                        <tr>bar</tr>
+                        <tbody>
+                            <tr>
+                                <td>foo</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </>
             );

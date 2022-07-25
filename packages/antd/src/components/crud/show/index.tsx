@@ -15,6 +15,7 @@ import {
     DeleteButton,
     RefreshButton,
     ListButton,
+    Breadcrumb,
 } from "@components";
 
 export interface ShowProps {
@@ -26,6 +27,7 @@ export interface ShowProps {
     pageHeaderProps?: PageHeaderProps;
     resource?: string;
     recordItemId?: BaseKey;
+    dataProviderName?: string;
 }
 
 /**
@@ -44,6 +46,7 @@ export const Show: React.FC<ShowProps> = ({
     pageHeaderProps,
     resource: resourceFromProps,
     recordItemId,
+    dataProviderName,
 }) => {
     const translate = useTranslate();
 
@@ -104,14 +107,17 @@ export const Show: React.FC<ShowProps> = ({
                             onSuccess={() =>
                                 list(resource.route ?? resource.name)
                             }
+                            dataProviderName={dataProviderName}
                         />
                     )}
                     <RefreshButton
                         resourceNameOrRouteName={resource.route}
                         recordItemId={id}
+                        dataProviderName={dataProviderName}
                     />
                 </Space>
             }
+            breadcrumb={<Breadcrumb />}
             {...pageHeaderProps}
         >
             <Spin spinning={isLoading}>

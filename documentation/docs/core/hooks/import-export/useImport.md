@@ -93,6 +93,31 @@ interface IPostFile {
 
 <br />
 
+:::tip 
+The `useImport` hook contains all the props that the HTML Input element needs (`type`, `accept`, `onChange`) so you can use directly `inputProps` in your HTML input elements like this
+
+```tsx
+import React from "react";
+import {
+    // highlight-next-line
+    useImport,
+} from "@pankod/refine-core";
+
+export const PostList: React.FC = () => {
+    // highlight-next-line
+    const { inputProps } = useImport();
+    return (
+        <input
+            // highlight-next-line
+            {...inputProps}
+        />
+    );
+};
+```
+:::
+
+<br />
+
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -177,7 +202,8 @@ Now, parsed data is mapped to conform our APIs requirements.
 
 | Property       | Description                                                            | Type                                                                                                                                                                                                                                                                                             |
 | -------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| handleChange   | Props to handle `<input type="file">` element `onChange`               | [`function`                                                                                                                                                                                                                                                                                      |
+| inputProps   | Props to that you can pass `<input />` element props.              | [`UseImportInputPropsType`][UseImportInputPropsType]     
+| handleChange   | Props to handle `<input type="file">` element `onChange`               | `function`                                                                                                                                                                                                                                                                                      |
 | isLoading      | It can be used to handle the `loading` status for the Import operation | `boolean`                                                                                                                                                                                                                                                                                        |
 | mutationResult | Result of the mutation/mutations of creating imported resources        | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { resource: string; values: TVariables; },`<br/>` unknown>`][useMutation])  \| [`UseMutationResult<`<br/>`{ data: TData[]},`<br/>`TError,`<br/>`  { resource: string; values: TVariables[]; },`<br/>` unknown>`][useMutation]) |
 
@@ -199,12 +225,11 @@ Now, parsed data is mapped to conform our APIs requirements.
 [useMutation]: https://react-query.tanstack.com/reference/useMutation
 [Number.MAX_SAFE_INTEGER]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
 [SuccessErrorNotification]: /core/interfaces.md#successerrornotification
+[UseImportInputPropsType]: /core/interfaces.md#useimportinputpropstype
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
-<iframe src="https://codesandbox.io/embed/refine-core-use-import-g95ki?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/core/useImport?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-modal-example"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>

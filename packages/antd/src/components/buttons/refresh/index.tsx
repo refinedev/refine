@@ -42,6 +42,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
 
     const { resourceName, id } = useResource({
         resourceName: propResourceName,
+        resourceNameOrRouteName: propResourceNameOrRouteName,
         recordItemId,
     });
 

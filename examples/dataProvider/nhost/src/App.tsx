@@ -6,12 +6,12 @@ import {
     ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-nhost";
+import dataProvider, { liveProvider } from "@pankod/refine-nhost";
 import { NhostAuthProvider } from "@nhost/react-auth";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 
-import { nhost } from "utility";
+import { nhost, gqlWebSocketClient } from "utility";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import {
     CategoriesList,
@@ -44,7 +44,7 @@ const authProvider: AuthProvider = {
         if (error.status === 401) {
             return nhost.auth.refreshSession();
         }
-        return Promise.reject();
+        return Promise.resolve();
     },
     checkAuth: async () => {
         const isAuthenticated = await nhost.auth.isAuthenticatedAsync();
@@ -82,6 +82,9 @@ const App: React.FC = () => {
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider(nhost)}
+                // Refine supports GraphQL subscriptions as out-of-the-box. For more detailed information, please visit here, https://refine.dev/docs/core/providers/live-provider/
+                // liveProvider={liveProvider(gqlWebSocketClient)}
+                // liveMode="auto"
                 authProvider={authProvider}
                 resources={[
                     {
@@ -102,6 +105,7 @@ const App: React.FC = () => {
                 Layout={Layout}
                 LoginPage={LoginPage}
                 catchAll={<ErrorComponent />}
+                disableTelemetry={true}
             />
         </NhostAuthProvider>
     );

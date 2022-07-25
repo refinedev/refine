@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import {
     useTitle,
-    useNavigation,
     ITreeMenu,
     CanAccess,
+    useRouterContext,
 } from "@pankod/refine-core";
 
 import { AntdLayout, Menu, Icons, useMenu } from "@pankod/refine-antd";
@@ -11,9 +11,9 @@ import { AntdLayout, Menu, Icons, useMenu } from "@pankod/refine-antd";
 export const FixedSider: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const Title = useTitle();
+    const { Link } = useRouterContext();
     const { SubMenu } = Menu;
     const { menuItems, selectedKey } = useMenu();
-    const { push } = useNavigation();
 
     const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
         return tree.map((item: ITreeMenu) => {
@@ -22,7 +22,7 @@ export const FixedSider: React.FC = () => {
             if (children.length > 0) {
                 return (
                     <SubMenu
-                        key={name}
+                        key={route}
                         icon={icon ?? <Icons.UnorderedListOutlined />}
                         title={label}
                     >
@@ -41,10 +41,7 @@ export const FixedSider: React.FC = () => {
                     action="list"
                 >
                     <Menu.Item
-                        key={selectedKey}
-                        onClick={() => {
-                            push(route ?? "");
-                        }}
+                        key={route}
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
@@ -52,7 +49,7 @@ export const FixedSider: React.FC = () => {
                             icon ?? (isRoute && <Icons.UnorderedListOutlined />)
                         }
                     >
-                        {label}
+                        <Link to={route}>{label}</Link>
                         {!collapsed && isSelected && (
                             <div className="ant-menu-tree-arrow" />
                         )}
@@ -76,13 +73,7 @@ export const FixedSider: React.FC = () => {
         >
             {Title && <Title collapsed={collapsed} />}
 
-            <Menu
-                selectedKeys={[selectedKey]}
-                mode="inline"
-                onClick={({ key }) => {
-                    push(key as string);
-                }}
-            >
+            <Menu selectedKeys={[selectedKey]} mode="inline">
                 {renderTreeView(menuItems, selectedKey)}
             </Menu>
         </AntdLayout.Sider>

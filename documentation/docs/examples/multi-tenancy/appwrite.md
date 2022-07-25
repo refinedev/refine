@@ -9,7 +9,7 @@ In this example, we've shown how to build a Multi-Tenant app using the [Appwrite
 
 [View Appwrite Multi-Tenancy Example Source](https://github.com/pankod/refine/tree/master/examples/multi-tenancy/appwrite)
 
-<iframe src="https://codesandbox.io/embed/cake-house-41kgm?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/multi-tenancy/appwrite?embed=1&view=preview&theme=dark&preset=node"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="cake-house"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

@@ -9,6 +9,8 @@ import {
     UseFormReturnType as UseFormReturnTypeCore,
     useWarnAboutChange,
     UseFormProps as UseFormPropsCore,
+    CreateResponse,
+    UpdateResponse,
 } from "@pankod/refine-core";
 
 import { ButtonProps } from "../../components/antd";
@@ -32,7 +34,9 @@ export type UseFormReturnType<
     saveButtonProps: ButtonProps & {
         onClick: () => void;
     };
-    onFinish: (values?: TVariables) => Promise<void>;
+    onFinish: (
+        values?: TVariables,
+    ) => Promise<CreateResponse<TData> | UpdateResponse<TData> | void>;
 };
 
 /**
@@ -66,6 +70,10 @@ export const useForm = <
     mutationMode,
     dataProviderName,
     onLiveEvent,
+    invalidates,
+    undoableTimeout,
+    queryOptions,
+    id: idFromProps,
 }: UseFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
     TData,
     TError,
@@ -93,6 +101,10 @@ export const useForm = <
         mutationMode,
         dataProviderName,
         onLiveEvent,
+        invalidates,
+        undoableTimeout,
+        queryOptions,
+        id: idFromProps,
     });
 
     const { formLoading, onFinish, queryResult, id } = useFormCoreResult;
@@ -105,13 +117,8 @@ export const useForm = <
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesRefine;
 
     React.useEffect(() => {
-        form.setFieldsValue({
-            ...(queryResult?.data?.data as any), // Fix Me
-        });
-        return () => {
-            form.resetFields();
-        };
-    }, [queryResult?.data?.data, id, queryResult?.isFetching]);
+        form.resetFields();
+    }, [queryResult?.data?.data, id]);
 
     const onKeyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
         if (submitOnEnter && event.key === "Enter") {
@@ -137,9 +144,11 @@ export const useForm = <
         form: formSF.form,
         formProps: {
             ...formSF.formProps,
-            onFinish,
+            onFinish: (values: TVariables) =>
+                onFinish?.(values).catch((error) => error),
             onKeyUp,
             onValuesChange,
+            initialValues: queryResult?.data?.data,
         },
         saveButtonProps,
         ...useFormCoreResult,

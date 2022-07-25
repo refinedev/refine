@@ -26,12 +26,16 @@ export const useCan = ({
 
     const queryResponse = useQuery<CanReturnType>(
         ["useCan", { action, resource, params }],
-        () => can({ action, resource, params }),
+        // Enabled check for `can` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
+        () => can?.({ action, resource, params }) ?? { can: true },
         {
+            enabled: typeof can !== "undefined",
             ...queryOptions,
             retry: false,
         },
     );
 
-    return queryResponse;
+    return typeof can === "undefined"
+        ? ({ data: { can: true } } as typeof queryResponse)
+        : queryResponse;
 };

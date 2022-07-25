@@ -16,7 +16,7 @@ export const PerfectImplementation = () => {
                     )}
                 >
                     <iframe
-                        src="https://codesandbox.io/embed/tutorial-ov79u?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+                        src="https://stackblitz.com/github/pankod/refine/tree/master/examples/tutorial/antd?embed=1&view=preview&theme=dark&preset=node"
                         style={{
                             width: "100%",
                             height: "70vh",
@@ -25,8 +25,6 @@ export const PerfectImplementation = () => {
                             overflow: "hidden",
                         }}
                         title="refine-tutorial"
-                        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-                        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
                     ></iframe>
                 </div>
                 {/*  <div className="row row--justify--center">

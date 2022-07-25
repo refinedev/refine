@@ -4,7 +4,7 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { GetListResponse, LayoutWrapper } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
-import { useTable, Column, usePagination } from "@pankod/refine-react-table";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 import {
     ProductListItem,
@@ -23,50 +23,47 @@ const Category: React.FC<CategoryPageProps> = ({ category, products }) => {
     const { query } = useRouter();
     const { id } = query;
 
-    const columns: Array<Column> = React.useMemo(
+    const columns = React.useMemo<ColumnDef<IProduct>[]>(
         () => [
             {
                 id: "product",
-                accessor: (row: any) => row,
-                // eslint-disable-next-line react/display-name
-                Cell: ({ value }) => <ProductListItem product={value} />,
+                accessorFn: (row) => row,
+                cell: function render({ row }) {
+                    return <ProductListItem product={row.original} />;
+                },
             },
         ],
         [],
     );
 
     const {
-        getTableProps,
-        getTableBodyProps,
-        prepareRow,
-        page,
-        canPreviousPage,
-        canNextPage,
-        pageOptions,
-        gotoPage,
+        options: {
+            state: { pagination },
+        },
+        getRowModel,
+        setPageIndex,
+        getCanPreviousPage,
+        getCanNextPage,
+        getPageOptions,
         nextPage,
         previousPage,
-        state: { pageIndex },
-    } = useTable<IProduct>(
-        {
-            columns,
-            refineCoreProps: {
-                resource: "products",
-                queryOptions: {
-                    initialData: products,
-                },
-                initialPageSize: 6,
-                permanentFilter: [
-                    {
-                        field: "category.id",
-                        operator: "eq",
-                        value: id,
-                    },
-                ],
+    } = useTable<IProduct>({
+        columns,
+        refineCoreProps: {
+            resource: "products",
+            queryOptions: {
+                initialData: products,
             },
+            initialPageSize: 6,
+            permanentFilter: [
+                {
+                    field: "category.id",
+                    operator: "eq",
+                    value: id,
+                },
+            ],
         },
-        usePagination,
-    );
+    });
 
     return (
         <LayoutWrapper>
@@ -81,22 +78,21 @@ const Category: React.FC<CategoryPageProps> = ({ category, products }) => {
                         {category.title}
                     </h1>
                 </div>
-                <table className="w-full" {...getTableProps()}>
-                    <tbody {...getTableBodyProps()}>
-                        {page.map((row) => {
-                            prepareRow(row);
+                <table className="w-full">
+                    <tbody>
+                        {getRowModel().rows.map((row) => {
                             return (
                                 <tr
-                                    {...row.getRowProps()}
+                                    key={row.id}
                                     className="border-b border-gray-100"
                                 >
-                                    {row.cells.map((cell) => {
+                                    {row.getVisibleCells().map((cell) => {
                                         return (
-                                            <td
-                                                className="p-4"
-                                                {...cell.getCellProps()}
-                                            >
-                                                {cell.render("Cell")}
+                                            <td key={cell.id} className="p-4">
+                                                {flexRender(
+                                                    cell.column.columnDef.cell,
+                                                    cell.getContext(),
+                                                )}
                                             </td>
                                         );
                                     })}
@@ -110,17 +106,19 @@ const Category: React.FC<CategoryPageProps> = ({ category, products }) => {
                     <button
                         className="border px-2 py-2 text-sm font-medium hover:bg-gray-50"
                         onClick={() => previousPage()}
-                        disabled={!canPreviousPage}
+                        disabled={!getCanPreviousPage()}
                     >
                         <ChevronLeftIcon className="text-primary h-5 w-5" />
                     </button>
-                    {pageOptions.map((page) => (
+                    {getPageOptions().map((page) => (
                         <button
                             key={page}
                             className={`border px-4 py-2 text-sm font-medium hover:bg-gray-50 ${
-                                pageIndex === page ? "text-primary" : ""
+                                pagination?.pageIndex === page
+                                    ? "text-primary"
+                                    : ""
                             }`}
-                            onClick={() => gotoPage(page)}
+                            onClick={() => setPageIndex(page)}
                         >
                             {page + 1}
                         </button>
@@ -128,7 +126,7 @@ const Category: React.FC<CategoryPageProps> = ({ category, products }) => {
                     <button
                         className="border px-2 py-2 text-sm font-medium hover:bg-gray-50"
                         onClick={() => nextPage()}
-                        disabled={!canNextPage}
+                        disabled={!getCanNextPage()}
                     >
                         <ChevronRightIcon className="text-primary h-5 w-5" />
                     </button>

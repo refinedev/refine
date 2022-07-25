@@ -5,7 +5,6 @@ import {
     ButtonProps,
     PageHeader,
     PageHeaderProps,
-    Tag,
     Spin,
 } from "antd";
 import {
@@ -17,7 +16,7 @@ import {
     ResourceRouterParams,
 } from "@pankod/refine-core";
 
-import { SaveButton } from "@components";
+import { Breadcrumb, SaveButton } from "@components";
 
 export interface CreateProps {
     title?: string;
@@ -68,6 +67,7 @@ export const Create: React.FC<CreateProps> = ({
                     )}`,
                 )
             }
+            breadcrumb={<Breadcrumb />}
             {...pageHeaderProps}
         >
             <Spin spinning={isLoading}>

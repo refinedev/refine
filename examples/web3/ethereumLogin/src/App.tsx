@@ -35,6 +35,7 @@ function App() {
             notificationProvider={notificationProvider}
             Layout={Layout}
             catchAll={<ErrorComponent />}
+            disableTelemetry={true}
         />
     );
 }

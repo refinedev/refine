@@ -46,12 +46,14 @@ describe("useShow Hook", () => {
         });
 
         expect(result.current.queryResult.data?.data.id).toEqual(posts[0].id);
+        expect(result.current.showId).toEqual("1");
     });
 
     it("correctly return id value from options", async () => {
         const { result } = renderHook(
             () =>
                 useShow({
+                    resource: "categories",
                     id: "2",
                 }),
             {
@@ -68,6 +70,20 @@ describe("useShow Hook", () => {
         });
 
         expect(result.current.showId).toEqual("1");
+    });
+
+    it("correctly return id undefined when route and options is different", async () => {
+        const { result } = renderHook(
+            () =>
+                useShow({
+                    resource: "categories",
+                }),
+            {
+                wrapper: WrapperWithRoute,
+            },
+        );
+
+        expect(result.current.showId).toEqual(undefined);
     });
 
     it("correctly return id undefined when resource different from route", async () => {

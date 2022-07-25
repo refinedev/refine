@@ -72,6 +72,14 @@ title: Interface References
 | `"asc"`      | Ascending order  |
 | `"desc"`     | Descending order |
 
+## SortOrder
+```ts
+"desc" |
+    "asc" |
+    "null";
+
+```
+
 ## Pagination
 
 | Key      | Type     |
@@ -130,12 +138,20 @@ ButtonProps
 | percent | `number`                                                             |
 | status  | `"error"` \| `"success"` \| `"done" `\| `"uploading"` \| `"removed"` |
 
+## UseImportInputPropsType
+
+| Key      | Type                                                   |
+| -------- | ------------------------------------------------------ |
+| type     | `"file"`                                               |
+| accept   | `".cvs"`                                               |
+| onChange | `(event: React.ChangeEvent<HTMLInputElement>) => void` |
+
 ## SuccessErrorNotification
 
 | Key                 | Type                                                                                 |
 | ------------------- | ------------------------------------------------------------------------------------ |
-| successNotification | [Notification Properties](https://ant.design/components/notification/#API) & `false` |
-| errorNotification   | [Notification Properties](https://ant.design/components/notification/#API) & `false` |
+| successNotification | `(data?: TData, values?: TVariables, resource?: string) => NotificationProperties` \| [Notification Properties](https://ant.design/components/notification/#API) \| `false` |
+| errorNotification   | `(error?: TError, values?: TVariables, resource?: string) => NotificationProperties` \| [Notification Properties](https://ant.design/components/notification/#API) \| `false` |
 
 ## MetaDataQuery
 
@@ -236,3 +252,10 @@ ButtonProps
 | parentName? | `string`    |
 
 
+## SyncWithLocationParams
+
+| Key         | Type                                      |
+| ----------- | ----------------------------------------- |
+| pagination? | `{ current?: number; pageSize?: number }` |
+| sorter?     | [`CrudSorting`](#crudsorting)             |
+| filters?    | [`CrudSCrudFiltersorting`](#crudfilters)  |

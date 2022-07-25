@@ -5,6 +5,8 @@ import {
     BrowserRouterProps,
     MemoryRouter,
     MemoryRouterProps,
+    HashRouter,
+    HashRouterProps,
 } from "react-router-dom";
 
 import { RouteProvider } from "./routeProvider";
@@ -30,5 +32,17 @@ export const MemoryRouterComponent: React.FC<MemoryRouterProps> = ({
             <RouteProvider />
             {children}
         </MemoryRouter>
+    );
+};
+
+export const HashRouterComponent: React.FC<HashRouterProps> = ({
+    children,
+    ...props
+}) => {
+    return (
+        <HashRouter {...props}>
+            <RouteProvider />
+            {children}
+        </HashRouter>
     );
 };

@@ -9,7 +9,7 @@ title: Nhost
 **Username**: info@refine.dev  
 **Password**: demodemo
 
-<iframe src="https://codesandbox.io/embed/refine-nhost-example-jb9v4c?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/dataProvider/nhost?embed=1&view=preview&theme=dark&preset=node"
   style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
   title="refine-nhost-example"
   allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

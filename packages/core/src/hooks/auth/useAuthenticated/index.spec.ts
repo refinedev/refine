@@ -35,6 +35,11 @@ describe("useAuthenticated Hook", () => {
     });
 
     it("returns authenticated false and called checkError", async () => {
+        jest.spyOn(console, "error").mockImplementation((message) => {
+            if (message?.message === "Not Authenticated") return;
+            console.warn(message);
+        });
+
         const checkErrorMock = jest.fn();
         const { result, waitFor } = renderHook(() => useAuthenticated(), {
             wrapper: TestWrapper({
@@ -58,6 +63,11 @@ describe("useAuthenticated Hook", () => {
     });
 
     it("returns authenticated false and called checkError with custom redirect path", async () => {
+        jest.spyOn(console, "error").mockImplementation((message) => {
+            if (message?.redirectPath === "/custom-url") return;
+            console.warn(message);
+        });
+
         const checkErrorMock = jest.fn();
         const { result, waitFor } = renderHook(() => useAuthenticated(), {
             wrapper: TestWrapper({

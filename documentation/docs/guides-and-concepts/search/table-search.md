@@ -64,7 +64,7 @@ export const ListPage: React.FC = () => {
 };
 
 interface IPost {
-    id: string;
+    id: number;
     title: string;
     createdAt: string;
 }
@@ -85,9 +85,10 @@ When the form is submitted, the `onSearch` method runs and we get the search for
 
 ```tsx title="pages/list.tsx"
 ...
+import { HttpError } from "@pankod/refine-core";
 import { Dayjs } from "dayjs";
 
-const { searchFormProps } = useTable<IPost, { title: string; createdAt: [Dayjs, Dayjs] }>({
+const { searchFormProps } = useTable<IPost, HttpError, { title: string; createdAt: [Dayjs, Dayjs] }>({
     onSearch: (params) => {
         const filters: CrudFilters = [];
         const { q, createdAt } = params;
@@ -120,12 +121,10 @@ const { searchFormProps } = useTable<IPost, { title: string; createdAt: [Dayjs, 
 `CrudFilters` types object has `field`, `operator` and `value` properties. These properties help us to filter in which field, with which operator, and with which data.
 :::
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
-<iframe src="https://codesandbox.io/embed/refine-table-filter-example-ngjz7?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/table/tableFilter?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-table-filter-example"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 

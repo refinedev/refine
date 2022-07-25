@@ -92,14 +92,17 @@ npx superplate-cli admin
 Answer as below:
 
 ```
-✔ Select your project type › refine
+✔ Select your project type › refine-react
 ✔ What will be the name of your app · admin
-✔ Do you want to customize theme?: · less
-✔ Data Provider: · nestjsx-crud-data-provider
-✔ Auth Provider: · none
-✔ Do you want to add an example page? · example-resource
-✔ Do you want to customize layout? · custom-layout
-✔ i18n - Internationalization: · no
+✔ Package manager: · Npm
+✔ Do you want to use a UI Framework? · Ant Design
+✔ Do you want a customized theme?: · Yes (Custom Variables)
+✔ Router Provider: · React Router v6
+✔ Data Provider: · nestjsx-crud
+✔ Auth Provider: · None
+✔ Do you want to add example pages? · Yes (Recommended)
+✔ Do you want a customized layout? · Yes
+✔ i18n - Internationalization: · No
 ```
 
 ```bash

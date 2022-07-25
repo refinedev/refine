@@ -41,6 +41,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             LoginPage={LoginPage}
             Layout={Layout}
             catchAll={<ErrorComponent />}
+            disableTelemetry={true}
         >
             <Component {...pageProps} />
         </Refine>

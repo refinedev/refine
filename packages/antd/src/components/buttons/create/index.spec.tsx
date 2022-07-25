@@ -1,20 +1,18 @@
 import React from "react";
-import ReactRouterDom, { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
-import { fireEvent, render, TestWrapper, waitFor } from "@test";
+import { act, fireEvent, render, TestWrapper } from "@test";
 import { CreateButton } from "./";
 
-const mHistory = jest.fn();
-
-jest.mock("react-router-dom", () => ({
-    ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useNavigate: () => mHistory,
-}));
-
 describe("Create Button", () => {
+    beforeAll(() => {
+        jest.spyOn(console, "warn").mockImplementation(jest.fn());
+        jest.useFakeTimers();
+    });
+
     const create = jest.fn();
 
-    it("should render button successfuly", () => {
+    it("should render button successfuly", async () => {
         const { container, getByText } = render(
             <CreateButton onClick={() => create()} />,
             {
@@ -22,12 +20,16 @@ describe("Create Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
         getByText("Create");
     });
 
-    it("should render text by children", () => {
+    it("should render text by children", async () => {
         const { container, getByText } = render(
             <CreateButton>refine</CreateButton>,
             {
@@ -35,14 +37,22 @@ describe("Create Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
         getByText("refine");
     });
 
-    it("should render without text show only icon", () => {
+    it("should render without text show only icon", async () => {
         const { container, queryByText } = render(<CreateButton hideText />, {
             wrapper: TestWrapper({}),
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
         });
 
         expect(container).toBeTruthy();
@@ -61,11 +71,13 @@ describe("Create Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
-        await waitFor(() =>
-            expect(getByText("Create").closest("button")).toBeDisabled(),
-        );
+        expect(getByText("Create").closest("button")).toBeDisabled();
     });
 
     it("should skip access control", async () => {
@@ -80,11 +92,13 @@ describe("Create Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
-        await waitFor(() =>
-            expect(getByText("Create").closest("button")).not.toBeDisabled(),
-        );
+        expect(getByText("Create").closest("button")).not.toBeDisabled();
     });
 
     it("should successfully return disabled button custom title", async () => {
@@ -103,19 +117,19 @@ describe("Create Button", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(container).toBeTruthy();
 
-        await waitFor(() =>
-            expect(getByText("Create").closest("button")).not.toBeDisabled(),
-        );
-        await waitFor(() =>
-            expect(
-                getByText("Create").closest("button")?.getAttribute("title"),
-            ).toBe("Access Denied"),
-        );
+        expect(getByText("Create").closest("button")).toBeDisabled();
+        expect(
+            getByText("Create").closest("button")?.getAttribute("title"),
+        ).toBe("Access Denied");
     });
 
-    it("should render called function successfully if click the button", () => {
+    it("should render called function successfully if click the button", async () => {
         const { getByText } = render(
             <CreateButton onClick={() => create()} />,
             {
@@ -123,12 +137,18 @@ describe("Create Button", () => {
             },
         );
 
-        fireEvent.click(getByText("Create"));
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        await act(async () => {
+            fireEvent.click(getByText("Create"));
+        });
 
         expect(create).toHaveBeenCalledTimes(1);
     });
 
-    it("should redirect custom resource route called function successfully if click the button", () => {
+    it("should redirect custom resource route called function successfully if click the button", async () => {
         const { getByText } = render(
             <Routes>
                 <Route
@@ -144,12 +164,18 @@ describe("Create Button", () => {
             },
         );
 
-        fireEvent.click(getByText("Create"));
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
-        expect(mHistory).toBeCalledWith("/categories/create");
+        await act(async () => {
+            fireEvent.click(getByText("Create"));
+        });
+
+        expect(window.location.pathname).toBe("/categories/create");
     });
 
-    it("should redirect create route called function successfully if click the button", () => {
+    it("should redirect create route called function successfully if click the button", async () => {
         const { getByText } = render(
             <Routes>
                 <Route path="/:resource" element={<CreateButton />} />
@@ -162,12 +188,18 @@ describe("Create Button", () => {
             },
         );
 
-        fireEvent.click(getByText("Create"));
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
-        expect(mHistory).toBeCalledWith("/posts/create");
+        await act(async () => {
+            fireEvent.click(getByText("Create"));
+        });
+
+        expect(window.location.pathname).toBe("/posts/create");
     });
 
-    it("should redirect with custom route called function successfully if click the button", () => {
+    it("should redirect with custom route called function successfully if click the button", async () => {
         const { getByText } = render(
             <Routes>
                 <Route
@@ -191,8 +223,14 @@ describe("Create Button", () => {
             },
         );
 
-        fireEvent.click(getByText("Create"));
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
-        expect(mHistory).toBeCalledWith("/custom-route-posts/create");
+        await act(async () => {
+            fireEvent.click(getByText("Create"));
+        });
+
+        expect(window.location.pathname).toBe("/custom-route-posts/create");
     });
 });

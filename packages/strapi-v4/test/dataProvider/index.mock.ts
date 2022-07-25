@@ -857,28 +857,76 @@ nock("http://localhost:1337", { encodedQueryParams: true })
 //getMany
 nock("http://localhost:1337", { encodedQueryParams: true })
     .get("/api/posts")
-    .query({ "filters%5Bid%5D%5B%24in%5D": "8" })
+    .query({
+        "populate%5B0%5D": "category",
+        "filters%5Bid%5D%5B%24in%5D%5B0%5D": "30",
+        "filters%5Bid%5D%5B%24in%5D%5B1%5D": "29",
+        "pagination%5BpageSize%5D": "2",
+    })
     .reply(
         200,
         {
             data: [
                 {
-                    id: 8,
+                    id: 29,
                     attributes: {
                         title: "Hello",
-                        content: "New post content",
-                        createdAt: "2021-12-10T13:10:58.478Z",
-                        updatedAt: "2021-12-13T13:56:11.613Z",
-                        publishedAt: "2021-12-10T13:10:58.328Z",
+                        content: "Testtt ",
+                        createdAt: "2022-05-31T09:26:26.195Z",
+                        updatedAt: "2022-05-31T15:51:02.594Z",
+                        publishedAt: "2022-05-31T09:26:26.179Z",
                         locale: "en",
+                        category: {
+                            data: {
+                                id: 11,
+                                attributes: {
+                                    title: "Test1ree",
+                                    createdAt: "2022-02-21T04:32:23.688Z",
+                                    updatedAt: "2022-03-29T15:12:29.279Z",
+                                    publishedAt: "2022-02-21T04:32:23.679Z",
+                                    locale: "en",
+                                },
+                            },
+                        },
+                    },
+                },
+                {
+                    id: 30,
+                    attributes: {
+                        title: "test",
+                        content: "test",
+                        createdAt: "2022-06-01T09:07:37.786Z",
+                        updatedAt: "2022-06-01T09:07:37.786Z",
+                        publishedAt: "2022-06-01T09:07:37.776Z",
+                        locale: "en",
+                        category: {
+                            data: {
+                                id: 12,
+                                attributes: {
+                                    title: "sdasd",
+                                    createdAt: "2022-03-08T06:50:11.851Z",
+                                    updatedAt: "2022-03-08T06:50:11.851Z",
+                                    publishedAt: "2022-03-08T06:50:11.834Z",
+                                    locale: "en",
+                                },
+                            },
+                        },
                     },
                 },
             ],
             meta: {
-                pagination: { page: 1, pageSize: 25, pageCount: 1, total: 1 },
+                pagination: { page: 1, pageSize: 25, pageCount: 1, total: 2 },
             },
         },
         [
+            "Date",
+            "Wed, 15 Jun 2022 07:09:12 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Content-Length",
+            "856",
+            "Connection",
+            "close",
             "Content-Security-Policy",
             "connect-src 'self' https:;img-src 'self' data: blob:;media-src 'self' data: blob:;default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline'",
             "X-DNS-Prefetch-Control",
@@ -888,7 +936,7 @@ nock("http://localhost:1337", { encodedQueryParams: true })
             "X-Frame-Options",
             "SAMEORIGIN",
             "Strict-Transport-Security",
-            "max-age=31536000; includeSubDomains",
+            "max-age=15724800; includeSubDomains",
             "X-Download-Options",
             "noopen",
             "X-Content-Type-Options",
@@ -899,19 +947,10 @@ nock("http://localhost:1337", { encodedQueryParams: true })
             "no-referrer",
             "Vary",
             "Origin",
-            "Content-Type",
-            "application/json; charset=utf-8",
             "X-Powered-By",
             "Strapi <strapi.io>",
-            "Content-Length",
-            "283",
-            "Date",
-            "Tue, 14 Dec 2021 12:41:24 GMT",
-            "Connection",
-            "close",
         ],
     );
-
 //getOne
 nock("http://localhost:1337", { encodedQueryParams: true })
     .get("/api/posts/8")

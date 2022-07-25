@@ -55,9 +55,9 @@ const PostList: React.FC = (props) => {
 };
 
 interface IPost {
-    id: string;
+    id: number;
     category: {
-        id: string;
+        id: number;
     }
 }
 ```
@@ -105,13 +105,13 @@ Determines the value passed to children. `mapValue` takes `selectedKeys` as an a
 For example when using `useSelect` for `<Select>` component. In this case values must be mapped to `number`s using `mapValue`.
 
 ```tsx 
+import { getDefaultFilter } from "@pankod/refine-core";
 import {
     useTable,
     Table,
     FilterDropdown,
     Select,
     useSelect,
-    getDefaultFilter,
 } from "@pankod/refine-antd";
 
 const { tableProps, filters } = useTable<IPost>({
@@ -164,11 +164,9 @@ If [syncWithLocation](/core/components/refine-config.md#syncwithlocation) is ena
 > `getDefaultFilter` finds filter values for a given column from the given filters. In the example, `filters` passed to `getDefaultFilter` includes filter values from the URL since it comes from `useTable`.
 :::
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
-<iframe src="https://codesandbox.io/embed/refine-use-table-example-159uj?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/table/antd/useTable?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-table-example"
-    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>

@@ -63,7 +63,7 @@ mutate({
 [Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
 :::
 
-After the mutation runs `categories` will be updated as below:
+After the mutation runs, `categories` will be updated as below:
 
 ```ts title="https://api.fake-rest.refine.dev/categories"
 {
@@ -117,7 +117,7 @@ Variables passed to `mutate` must have these types.
 | errorNotification                                                                                  | Unsuccessful Mutation notification                                                                 | [`SuccessErrorNotification`](/core/interfaces.md#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" |
 | metaData                                                                                           | Metadata query for `dataProvider`                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                       | {}                                                                   |
 | dataProviderName                                                                                   | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                   | `default`                                                            |
-| invalidates                                                                                        | You can use it to manage the invalidations that will occur at the end of the mutation.           | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                    | `["list", "many"]`                                                   |
+| invalidates                                                                                        | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                    | `["list", "many"]`                                                   |
 
 ### Type Parameters
 

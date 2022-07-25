@@ -21,6 +21,10 @@ export type UseFormReturnType<
     TContext extends object = {},
 > = UseFormReturn<TVariables, TContext> & {
     refineCore: UseFormReturnTypeCore<TData, TError, TVariables>;
+    saveButtonProps: {
+        disabled: boolean;
+        onClick: () => void;
+    };
 };
 
 export type UseFormProps<
@@ -56,19 +60,21 @@ export const useForm = <
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesRefine;
 
     const useFormCoreResult = useFormCore<TData, TError, TVariables>({
-        onMutationSuccess: () => {
-            reset();
-        },
         ...refineCoreProps,
     });
 
-    const { queryResult } = useFormCoreResult;
+    const { queryResult, onFinish, formLoading } = useFormCoreResult;
 
     const useHookFormResult = useHookForm<TVariables, TContext>({
         ...rest,
     });
 
-    const { watch, reset, getValues } = useHookFormResult;
+    const {
+        watch,
+        reset,
+        getValues,
+        handleSubmit: handleSubmitReactHookForm,
+    } = useHookFormResult;
 
     useEffect(() => {
         const fields: any = {};
@@ -100,8 +106,22 @@ export const useForm = <
         return changeValues;
     };
 
+    const handleSubmit = (e: any) => {
+        setWarnWhen(false);
+        return handleSubmitReactHookForm(e);
+    };
+
+    const saveButtonProps = {
+        disabled: formLoading,
+        onClick: () => {
+            handleSubmit(onFinish)();
+        },
+    };
+
     return {
         ...useHookFormResult,
+        handleSubmit,
         refineCore: useFormCoreResult,
+        saveButtonProps,
     };
 };

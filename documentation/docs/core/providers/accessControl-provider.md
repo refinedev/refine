@@ -60,8 +60,9 @@ You can pass a `reason` along with `can`. It will be accessible using `useCan`. 
 :::tip
 You can find access control examples made with **refine**
 
--   **Casbin** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/casbin) - [Demo](https://codesandbox.io/s/access-control-casbin-react-l06vy)
--   **Cerbos** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/cerbos) - [Demo](https://codesandbox.io/s/access-control-cerbos-react-mbhei)
+-   **Casbin** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/casbin) - [Demo](https://stackblitz.com/github/pankod/refine/tree/master/examples/accessControl/casbin/?preset=node)
+-   **Cerbos** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/cerbos) - [Demo](https://stackblitz.com/github/pankod/refine/tree/master/examples/accessControl/cerbos/?preset=node)
+-   **Permify** &#8594 [Source Code](https://github.com/Permify/permify-refine) - [Demo](https://stackblitz.io/github/Permify/permify-refine/?preset=node)
 
 :::
 
@@ -169,9 +170,9 @@ Let's say these buttons are rendered where `resource` is `posts` and `id` is `1`
 
 These buttons will be disabled if access control returns `{ can: false }`
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
-<iframe src="https://codesandbox.io/embed/access-control-casbin-react-l06vy?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/accessControl/casbin?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="access-control-casbin-react"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

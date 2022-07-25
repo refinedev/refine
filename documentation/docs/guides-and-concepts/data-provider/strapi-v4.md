@@ -251,7 +251,7 @@ By default, relations are not populated when fetching entries.
 
 The `populate` parameter is used to define which fields will be populated.
 
-[Refer to the Relations Population documentation for detailed information. →](https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest-api.html#relations-population)
+[Refer to the Relations Population documentation for detailed information. →](https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/populating-fields.html#population)
 
 ```tsx title="Get all the posts and populate the selected relations"
 const { tableProps } = useTable<IPost>({
@@ -268,6 +268,24 @@ const { tableProps } = useTable<IPost>({
     },
 });
 ```
+
+It should be noted that Strapi-V4 allows populating relations more than 1 level.
+
+```tsx title="Get all posts and populate one second-level relation and first-level relation"
+ const { tableProps } = useTable<IPost>({
+    metaData: {
+      populate: {
+        category: {
+          populate: ["cover"],
+        },
+        cover : {
+          populate: [""] 
+        }
+      },
+    },
+  });
+```
+
 
 In order to pull the `categories` related to the posts, we can now show the categories in our list by defining the `metaData` `populate` parameter.
 
@@ -750,13 +768,13 @@ const { selectProps } = useSelect({
 });
 ```
 
-## Live Codesandbox Example
+## Live StackBlitz Example
 
 Username: demo@refine.dev
 
 Password: demodemo
 
-<iframe src="https://codesandbox.io/embed/refine-strapi-v4-example-dt5gz?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/dataProvider/strapi-v4/?embed=1&view=preview&theme=dark&preset=node"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-strapi-v4-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

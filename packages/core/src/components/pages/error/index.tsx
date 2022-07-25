@@ -52,12 +52,13 @@ export const ErrorComponent: React.FC = () => {
             <h1>
                 {translate(
                     "pages.error.404",
+                    undefined,
                     "Sorry, the page you visited does not exist.",
                 )}
             </h1>
             {errorMessage && <p>{errorMessage}</p>}
             <button onClick={() => push("/")}>
-                {translate("pages.error.backHome", "Back Home")}
+                {translate("pages.error.backHome", undefined, "Back Home")}
             </button>
         </>
     );

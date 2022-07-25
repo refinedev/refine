@@ -1,6 +1,5 @@
 import qs, { IStringifyOptions } from "qs";
 import unionWith from "lodash/unionWith";
-import reverse from "lodash/reverse";
 import differenceWith from "lodash/differenceWith";
 
 import {
@@ -8,6 +7,8 @@ import {
     CrudSorting,
     CrudFilter,
     CrudSort,
+    CrudOperators,
+    SortOrder,
 } from "../../interfaces";
 
 export const parseTableParams = (url: string) => {
@@ -29,7 +30,7 @@ export const parseTableParamsFromQuery = (params: any) => {
 };
 
 export const stringifyTableParams = (params: {
-    pagination: { current?: number; pageSize?: number };
+    pagination?: { current?: number; pageSize?: number };
     sorter: CrudSorting;
     filters: CrudFilters;
 }): string => {
@@ -40,17 +41,10 @@ export const stringifyTableParams = (params: {
     };
     const { pagination, sorter, filters } = params;
 
-    let queryString = `current=${pagination.current}&pageSize=${pagination.pageSize}`;
-
-    const qsSorters = qs.stringify({ sorter }, options);
-    if (qsSorters) {
-        queryString += `&${qsSorters}`;
-    }
-
-    const qsFilters = qs.stringify({ filters }, options);
-    if (qsFilters) {
-        queryString += `&${qsFilters}`;
-    }
+    const queryString = qs.stringify(
+        { ...(pagination ? pagination : {}), sorter, filters },
+        options,
+    );
 
     return queryString;
 };
@@ -59,10 +53,11 @@ export const compareFilters = (
     left: CrudFilter,
     right: CrudFilter,
 ): boolean => {
-    if (left.operator !== "or" && right.operator !== "or") {
-        return left.field == right.field && left.operator == right.operator;
-    }
-    return false;
+    return (
+        ("field" in left ? left.field : undefined) ==
+            ("field" in right ? right.field : undefined) &&
+        left.operator == right.operator
+    );
 };
 
 export const compareSorters = (left: CrudSort, right: CrudSort): boolean =>
@@ -75,17 +70,22 @@ export const compareSorters = (left: CrudSort, right: CrudSort): boolean =>
 export const unionFilters = (
     permanentFilter: CrudFilters,
     newFilters: CrudFilters,
+    prevFilters: CrudFilters = [],
 ): CrudFilters =>
-    reverse(unionWith(permanentFilter, newFilters, compareFilters)).filter(
+    unionWith(permanentFilter, newFilters, prevFilters, compareFilters).filter(
         (crudFilter) =>
-            crudFilter.value !== undefined && crudFilter.value !== null,
+            crudFilter.value !== undefined &&
+            crudFilter.value !== null &&
+            (crudFilter.operator !== "or" ||
+                (crudFilter.operator === "or" &&
+                    crudFilter.value.length !== 0)),
     );
 
 export const unionSorters = (
     permanentSorter: CrudSorting,
     newSorters: CrudSorting,
 ): CrudSorting =>
-    reverse(unionWith(permanentSorter, newSorters, compareSorters)).filter(
+    unionWith(permanentSorter, newSorters, compareSorters).filter(
         (crudSorter) =>
             crudSorter.order !== undefined && crudSorter.order !== null,
     );
@@ -105,3 +105,40 @@ export const setInitialSorters = (
     ...differenceWith(defaultSorter, permanentSorter, compareSorters),
     ...permanentSorter,
 ];
+
+export const getDefaultSortOrder = (
+    columnName: string,
+    sorter?: CrudSorting,
+): SortOrder | undefined => {
+    if (!sorter) {
+        return undefined;
+    }
+
+    const sortItem = sorter.find((item) => item.field === columnName);
+
+    if (sortItem) {
+        return sortItem.order as SortOrder;
+    }
+
+    return undefined;
+};
+
+export const getDefaultFilter = (
+    columnName: string,
+    filters?: CrudFilters,
+    operatorType: CrudOperators = "eq",
+): CrudFilter["value"] | undefined => {
+    const filter = filters?.find((filter) => {
+        if (filter.operator !== "or") {
+            const { operator, field } = filter;
+            return field === columnName && operator === operatorType;
+        }
+        return undefined;
+    });
+
+    if (filter) {
+        return filter.value || [];
+    }
+
+    return undefined;
+};

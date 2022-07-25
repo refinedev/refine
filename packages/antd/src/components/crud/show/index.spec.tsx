@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { Button } from "antd";
 import { AccessControlProvider } from "@pankod/refine-core";
 
-import { render, TestWrapper, waitFor } from "@test";
+import { act, render, TestWrapper, waitFor } from "@test";
 
 import { Show } from "./index";
 
@@ -24,22 +24,38 @@ const renderShow = (
     );
 };
 describe("Show", () => {
-    it("should render page successfuly", () => {
+    beforeAll(() => {
+        jest.useFakeTimers();
+    });
+
+    it("should render page successfuly", async () => {
         const { container } = renderShow(<Show></Show>);
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
         expect(container).toBeTruthy();
     });
 
     it("should render default list and refresh buttons successfuly", async () => {
-        const { container, getByText } = renderShow(<Show />);
+        const { container, getByText, queryByTestId } = renderShow(<Show />);
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
         expect(container.querySelector("button")).toBeTruthy();
-        getByText("Posts");
+        expect(queryByTestId("show-list-button")).toBeTruthy();
         getByText("Refresh");
     });
 
     it("should render optional edit and delete buttons successfuly", async () => {
         const { container, getByText } = renderShow(<Show canEdit canDelete />);
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
         expect(container.querySelector("button")).toBeTruthy();
 
@@ -64,8 +80,13 @@ describe("Show", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         expect(getByText("Edit").closest("button")).not.toBeDisabled();
-        expect(getByText("Posts").closest("button")).not.toBeDisabled();
+        expect(queryByTestId("show-list-button")).not.toBeDisabled();
+
         await waitFor(() =>
             expect(queryByTestId("show-delete-button")).toBeDisabled(),
         );
@@ -83,17 +104,25 @@ describe("Show", () => {
             />,
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         await findByText("New Save Button");
         await findByText("New Delete Button");
     });
 
-    it("should render default title successfuly", () => {
+    it("should render default title successfuly", async () => {
         const { getByText } = renderShow(<Show />);
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
         getByText("Show Post");
     });
 
-    it("should render with label instead of resource name successfully", () => {
+    it("should render with label instead of resource name successfully", async () => {
         const { getByText } = render(
             <Routes>
                 <Route path="/:resource/:action/:id" element={<Show />}></Route>
@@ -111,16 +140,24 @@ describe("Show", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         getByText("Show Test");
     });
 
-    it("should render optional title with title prop", () => {
+    it("should render optional title with title prop", async () => {
         const { getByText } = renderShow(<Show title="Test Title" />);
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
         getByText("Test Title");
     });
 
-    it("should render optional resource with resource prop", () => {
+    it("should render optional resource with resource prop", async () => {
         const { getByText } = render(
             <Routes>
                 <Route
@@ -135,13 +172,21 @@ describe("Show", () => {
             },
         );
 
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         getByText("Show Post");
     });
 
-    it("should render optional recordItemId with resource prop, not render list button", () => {
+    it("should render optional recordItemId with resource prop, not render list button", async () => {
         const { getByText, queryByTestId } = renderShow(
             <Show recordItemId="1" />,
         );
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
         getByText("Show Post");
 
@@ -149,7 +194,7 @@ describe("Show", () => {
     });
 
     describe("render edit button", () => {
-        it("should render edit button", () => {
+        it("should render edit button", async () => {
             const { getByText, queryByTestId } = render(
                 <Routes>
                     <Route
@@ -165,12 +210,16 @@ describe("Show", () => {
                 },
             );
 
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
             expect(queryByTestId("show-edit-button")).not.toBeNull();
 
             getByText("Show Post");
         });
 
-        it("should not render edit button on resource canEdit false", () => {
+        it("should not render edit button on resource canEdit false", async () => {
             const { getByText, queryByTestId } = render(
                 <Routes>
                     <Route path="/:resource/:action/:id" element={<Show />} />
@@ -183,12 +232,16 @@ describe("Show", () => {
                 },
             );
 
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
             expect(queryByTestId("show-edit-button")).toBeNull();
 
             getByText("Show Post");
         });
 
-        it("should not render edit button on resource canEdit true & canEdit props false on component", () => {
+        it("should not render edit button on resource canEdit true & canEdit props false on component", async () => {
             const { queryByTestId } = render(
                 <Routes>
                     <Route
@@ -204,10 +257,14 @@ describe("Show", () => {
                 },
             );
 
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
             expect(queryByTestId("show-edit-button")).toBeNull();
         });
 
-        it("should render edit button on resource canEdit false & canEdit props true on component", () => {
+        it("should render edit button on resource canEdit false & canEdit props true on component", async () => {
             const { queryByTestId } = render(
                 <Routes>
                     <Route
@@ -223,10 +280,14 @@ describe("Show", () => {
                 },
             );
 
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
             expect(queryByTestId("show-edit-button")).not.toBeNull();
         });
 
-        it("should render edit button with recordItemId prop", () => {
+        it("should render edit button with recordItemId prop", async () => {
             const { getByText, queryByTestId } = render(
                 <Routes>
                     <Route
@@ -242,6 +303,10 @@ describe("Show", () => {
                 },
             );
 
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
             expect(queryByTestId("show-edit-button")).not.toBeNull();
 
             getByText("Show Post");
@@ -249,7 +314,7 @@ describe("Show", () => {
     });
 
     describe("render delete button", () => {
-        it("should render delete button", () => {
+        it("should render delete button", async () => {
             const { queryByTestId } = render(
                 <Routes>
                     <Route path="/:resource/:action/:id" element={<Show />} />
@@ -262,10 +327,14 @@ describe("Show", () => {
                 },
             );
 
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
             expect(queryByTestId("show-delete-button")).not.toBeNull();
         });
 
-        it("should not render delete button on resource canDelete false", () => {
+        it("should not render delete button on resource canDelete false", async () => {
             const { queryByTestId } = render(
                 <Routes>
                     <Route path="/:resource/:action/:id" element={<Show />} />
@@ -279,10 +348,14 @@ describe("Show", () => {
                 },
             );
 
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
             expect(queryByTestId("show-delete-button")).toBeNull();
         });
 
-        it("should not render delete button on resource canDelete true & canDelete props false on component", () => {
+        it("should not render delete button on resource canDelete true & canDelete props false on component", async () => {
             const { queryByTestId } = render(
                 <Routes>
                     <Route
@@ -298,10 +371,14 @@ describe("Show", () => {
                 },
             );
 
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
             expect(queryByTestId("show-delete-button")).toBeNull();
         });
 
-        it("should render delete button on resource canDelete false & canDelete props true on component", () => {
+        it("should render delete button on resource canDelete false & canDelete props true on component", async () => {
             const { queryByTestId } = render(
                 <Routes>
                     <Route
@@ -317,10 +394,14 @@ describe("Show", () => {
                 },
             );
 
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
             expect(queryByTestId("show-delete-button")).not.toBeNull();
         });
 
-        it("should render delete button with recordItemId prop", () => {
+        it("should render delete button with recordItemId prop", async () => {
             const { queryByTestId } = render(
                 <Routes>
                     <Route
@@ -335,6 +416,10 @@ describe("Show", () => {
                     }),
                 },
             );
+
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
 
             expect(queryByTestId("show-delete-button")).not.toBeNull();
         });

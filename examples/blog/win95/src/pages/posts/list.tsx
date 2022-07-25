@@ -1,13 +1,6 @@
-/* eslint-disable react/jsx-key */
-import { useMemo, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useOne, useNavigation, useImport } from "@pankod/refine-core";
-import {
-    useTable,
-    Column,
-    useSortBy,
-    usePagination,
-    useFilters,
-} from "@pankod/refine-react-table";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 import { IPost, ICategory, ICsvPost } from "interfaces";
 import {
@@ -29,7 +22,7 @@ import {
 
 import { TopMenu } from "components/bar";
 
-export const PostList = () => {
+export const PostList: React.FC = () => {
     const csvInputRef = useRef<any>(null);
     const [total, setTotal] = useState(0);
     const [processed, setProcessed] = useState(0);
@@ -38,8 +31,7 @@ export const PostList = () => {
     const { edit, create } = useNavigation();
 
     const { handleChange } = useImport<ICsvPost>({
-        onFinish: (results) => {
-            console.log(results);
+        onFinish: () => {
             setTimeout(() => {
                 setVisible(true);
             }, 3000);
@@ -50,26 +42,26 @@ export const PostList = () => {
         },
     });
 
-    const columns: Array<Column> = useMemo(
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
         () => [
             {
                 id: "id",
-                Header: "ID",
-                accessor: "id",
+                header: "ID",
+                accessorKey: "id",
             },
             {
                 id: "title",
-                Header: "Title",
-                accessor: "title",
+                header: "Title",
+                accessorKey: "title",
             },
             {
-                id: "category.id",
-                Header: "Category",
-                accessor: "category.id",
-                Cell: ({ cell }) => {
+                id: "categoryId",
+                header: "Category",
+                accessorKey: "categoryId",
+                cell: function render({ getValue }) {
                     const { data, isLoading } = useOne<ICategory>({
                         resource: "categories",
-                        id: (cell.row.original as any).categoryId,
+                        id: getValue() as number,
                     });
 
                     if (isLoading) {
@@ -81,28 +73,30 @@ export const PostList = () => {
             },
             {
                 id: "action",
-                Header: "Action",
-                accessor: "id",
-                // eslint-disable-next-line react/display-name
-                Cell: ({ value }) => (
-                    <Button onClick={() => edit("posts", value)}>Edit</Button>
-                ),
+                header: "Action",
+                accessorKey: "id",
+                cell: function render({ getValue }) {
+                    return (
+                        <Button
+                            onClick={() => edit("posts", getValue() as number)}
+                        >
+                            Edit
+                        </Button>
+                    );
+                },
             },
         ],
         [],
     );
 
     const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        rows,
-        prepareRow,
-        pageOptions,
+        options: { pageCount },
+        getHeaderGroups,
+        getRowModel,
+        getState,
+        setPageIndex,
         setPageSize,
-        gotoPage,
-        state: { pageIndex, pageSize },
-    } = useTable<IPost>({ columns }, useFilters, useSortBy, usePagination);
+    } = useTable<IPost>({ columns });
 
     return (
         <>
@@ -146,36 +140,40 @@ export const PostList = () => {
             <Window style={{ width: "100%" }}>
                 <WindowHeader>Posts</WindowHeader>
                 <WindowContent style={{ overflowX: "hidden" }}>
-                    <Table {...getTableProps()}>
+                    <Table>
                         <TableHead>
-                            {headerGroups.map((headerGroup) => (
+                            {getHeaderGroups().map((headerGroup) => (
                                 <TableRow
-                                    {...headerGroup.getHeaderGroupProps()}
+                                    key={headerGroup.id}
                                     style={{ overflowX: "auto" }}
                                 >
-                                    {headerGroup.headers.map((column) => (
+                                    {headerGroup.headers.map((header) => (
                                         <TableHeadCell
-                                            {...column.getHeaderProps(
-                                                column.getSortByToggleProps(),
-                                            )}
+                                            key={header.id}
+                                            colSpan={header.colSpan}
+                                            onClick={header.column.getToggleSortingHandler()}
                                         >
-                                            {column.render("Header")}
+                                            {flexRender(
+                                                header.column.columnDef.header,
+                                                header.getContext(),
+                                            )}
                                         </TableHeadCell>
                                     ))}
                                 </TableRow>
                             ))}
                         </TableHead>
-                        <TableBody {...getTableBodyProps()}>
-                            {rows.map((row, i) => {
-                                prepareRow(row);
+                        <TableBody>
+                            {getRowModel().rows.map((row) => {
                                 return (
-                                    <TableRow {...row.getRowProps()}>
-                                        {row.cells.map((cell) => {
+                                    <TableRow key={row.id}>
+                                        {row.getVisibleCells().map((cell) => {
                                             return (
-                                                <TableDataCell
-                                                    {...cell.getCellProps()}
-                                                >
-                                                    {cell.render("Cell")}
+                                                <TableDataCell key={cell.id}>
+                                                    {flexRender(
+                                                        cell.column.columnDef
+                                                            .cell,
+                                                        cell.getContext(),
+                                                    )}
                                                 </TableDataCell>
                                             );
                                         })}
@@ -197,7 +195,7 @@ export const PostList = () => {
                 >
                     <Select
                         style={{ marginLeft: 8 }}
-                        value={pageSize}
+                        value={getState().pagination.pageSize}
                         onChange={(_: any, selection: any) => {
                             setPageSize(selection.value);
                         }}
@@ -207,18 +205,20 @@ export const PostList = () => {
                     <span style={{ marginLeft: 8 }}>
                         Page{" "}
                         <strong>
-                            {pageIndex + 1} of {pageOptions.length}
+                            {getState().pagination.pageIndex + 1} of {pageCount}
                         </strong>
                         <span style={{ marginLeft: 8 }}>
                             Go to page:
                             <NumberField
                                 style={{ marginLeft: 8 }}
                                 min={1}
-                                defaultValue={pageIndex + 1}
+                                defaultValue={
+                                    getState().pagination.pageIndex + 1
+                                }
                                 width={130}
                                 onChange={(value: any) => {
                                     const page = value ? Number(value) - 1 : 0;
-                                    gotoPage(page);
+                                    setPageIndex(page);
                                 }}
                             />
                         </span>
