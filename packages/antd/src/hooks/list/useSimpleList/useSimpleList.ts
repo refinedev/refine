@@ -1,5 +1,6 @@
+import { Children, createElement, Fragment } from "react";
 import { QueryObserverResult } from "react-query";
-import { ListProps, FormProps, Form } from "antd";
+import { ListProps, FormProps, Form, TablePaginationConfig, Grid } from "antd";
 
 import {
     BaseRecord,
@@ -13,6 +14,8 @@ import {
     useTableReturnType,
 } from "@pankod/refine-core";
 import { useLiveMode } from "@pankod/refine-core";
+import { PaginationLink } from "@hooks/table/useTable/paginationLink";
+import { PaginationConfig } from "antd/lib/pagination";
 
 export type useSimpleListProps<TData, TError, TSearchVariables> =
     ListProps<TData> &
@@ -45,42 +48,46 @@ export type useSimpleListReturnType<
  * @typeParam TSearchVariables - Antd form values
  *
  */
+
 export const useSimpleList = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TSearchVariables = unknown,
->({
-    resource: resourceFromProp,
-    initialCurrent,
-    initialPageSize,
-    initialSorter,
-    permanentSorter,
-    initialFilter,
-    permanentFilter,
-    defaultSetFilterBehavior,
-    onSearch,
-    queryOptions,
-    syncWithLocation: syncWithLocationProp,
-    successNotification,
-    errorNotification,
-    liveMode: liveModeFromProp,
-    onLiveEvent,
-    liveParams,
-    metaData,
-    dataProviderName,
-    ...listProps
-}: useSimpleListProps<
-    TData,
-    TError,
-    TSearchVariables
-> = {}): useSimpleListReturnType<TData, TSearchVariables> => {
+>(
+    {
+        resource: resourceFromProp,
+        initialCurrent,
+        initialPageSize,
+        hasPagination = true,
+        initialSorter,
+        permanentSorter,
+        initialFilter,
+        permanentFilter,
+        defaultSetFilterBehavior,
+        onSearch,
+        queryOptions,
+        syncWithLocation: syncWithLocationProp,
+        successNotification,
+        errorNotification,
+        liveMode: liveModeFromProp,
+        onLiveEvent,
+        liveParams,
+        metaData,
+        dataProviderName,
+        ...listProps
+    }: useSimpleListProps<TData, TError, TSearchVariables> = {
+        hasPagination: true,
+    },
+): useSimpleListReturnType<TData, TSearchVariables> => {
     const {
+        sorter,
         filters,
         current,
         pageSize,
         setFilters,
         setCurrent,
         setPageSize,
+        createLinkForSyncWithLocation,
         tableQueryResult: queryResult,
     } = useTableCore({
         resource: resourceFromProp,
@@ -104,7 +111,11 @@ export const useSimpleList = <
         metaData,
         syncWithLocation: syncWithLocationProp,
         dataProviderName,
+        // @ts-expect-error currently boolean casting is not supported in overloaded types.
+        hasPagination: hasPagination,
     });
+
+    const breakpoint = Grid.useBreakpoint();
 
     const liveMode = useLiveMode(liveModeFromProp);
 
@@ -113,16 +124,77 @@ export const useSimpleList = <
     const { data, isFetched, isLoading } = queryResult;
 
     const onChange = (page: number, pageSize?: number): void => {
-        setCurrent(page);
-        setPageSize(pageSize || 10);
+        if (hasPagination) {
+            setCurrent(page);
+            setPageSize(pageSize || 10);
+        }
     };
 
     const onFinish = async (values: TSearchVariables) => {
         if (onSearch) {
             const searchFilters = await onSearch(values);
-            setCurrent(1);
+            if (hasPagination) {
+                setCurrent?.(1);
+            }
             return setFilters(searchFilters);
         }
+    };
+
+    const antdPagination = (): false | PaginationConfig => {
+        if (hasPagination) {
+            return {
+                itemRender: (page, type, element) => {
+                    const link = createLinkForSyncWithLocation({
+                        pagination: {
+                            pageSize,
+                            current: page,
+                        },
+                        sorter,
+                        filters,
+                    });
+
+                    if (type === "page") {
+                        return createElement(PaginationLink, {
+                            to: link,
+                            element: `${page}`,
+                        });
+                    }
+                    if (type === "next" || type === "prev") {
+                        return createElement(PaginationLink, {
+                            to: link,
+                            element: element,
+                        });
+                    }
+
+                    if (type === "jump-next" || type === "jump-prev") {
+                        const elementChildren = (element as React.ReactElement)
+                            ?.props?.children;
+
+                        return createElement(PaginationLink, {
+                            to: link,
+                            element:
+                                Children.count(elementChildren) > 1
+                                    ? createElement(
+                                          Fragment,
+                                          {},
+                                          elementChildren,
+                                      )
+                                    : elementChildren,
+                        });
+                    }
+
+                    return element;
+                },
+                pageSize,
+                current,
+                simple: !breakpoint.sm,
+                total: data?.total,
+                onChange,
+                ...listProps.pagination,
+            };
+        }
+
+        return false;
     };
 
     return {
@@ -134,13 +206,7 @@ export const useSimpleList = <
             ...listProps,
             dataSource: data?.data,
             loading: liveMode === "auto" ? isLoading : !isFetched,
-            pagination: {
-                ...listProps.pagination,
-                total: data?.total,
-                pageSize,
-                current,
-                onChange,
-            },
+            pagination: antdPagination(),
         },
         queryResult,
         filters,
