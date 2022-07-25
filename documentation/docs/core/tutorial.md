@@ -416,7 +416,7 @@ Now, you can use Tailwind to style your application.
 
 We will create a **Layout** component to handle the rendering of the **Page** components.
 
-Create a new folder named _"components"_ under _"/src"_ and create a new file named _"layout.tsx"_ with the following code:
+Create a new folder named _"components"_ under _"/src"_ and create a new file named _"Layout.tsx"_ with the following code:
 
 ```tsx title="components/Layout.tsx"
 import { useMenu, useNavigation } from "@pankod/refine-core";
@@ -474,7 +474,7 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-next-line
-import { Layout } from "components/layout";
+import { Layout } from "components/Layout";
 import { PostIcon } from "icons";
 
 export const App: React.FC = () => {
@@ -630,7 +630,7 @@ import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-next-line
 import { PostList } from "pages/posts";
-import { Layout } from "components/layout";
+import { Layout } from "components/Layout";
 import { PostIcon } from "/icons";
 
 export const App: React.FC = () => {
@@ -1491,7 +1491,7 @@ import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-next-line
 import { PostList, PostShow } from "./pages/posts";
-import { Layout } from "components/layout";
+import { Layout } from "components/Layout";
 import { PostIcon } from "/icons";
 
 export const App: React.FC = () => {
@@ -1804,7 +1804,7 @@ import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-next-line
 import { PostList, PostShow, PostEdit } from "./pages/posts";
-import { Layout } from "components/layout";
+import { Layout } from "components/Layout";
 import { PostIcon } from "/icons";
 
 export const App: React.FC = () => {
@@ -2065,7 +2065,7 @@ import dataProvider from "@pankod/refine-simple-rest";
 
 // highlight-next-line
 import { PostList, PostShow, PostEdit, PostCreate } from "./pages/posts";
-import { Layout } from "components/layout";
+import { Layout } from "components/Layout";
 import { PostIcon } from "/icons";
 
 export const App: React.FC = () => {

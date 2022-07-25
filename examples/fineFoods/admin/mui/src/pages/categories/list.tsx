@@ -1,15 +1,7 @@
 import React, { useCallback } from "react";
 import { useTranslate, IResourceComponentsProps } from "@pankod/refine-core";
 import { useForm, useModalForm } from "@pankod/refine-react-hook-form";
-import {
-    useTable,
-    Column,
-    useExpanded,
-    CellProps,
-    useFilters,
-    useSortBy,
-    usePagination,
-} from "@pankod/refine-react-table";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 import {
     List,
     BooleanField,
@@ -60,55 +52,49 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
 
     const t = useTranslate();
 
-    const columns: Array<Column> = React.useMemo(
+    const columns = React.useMemo<ColumnDef<ICategory>[]>(
         () => [
             {
                 id: "title",
-                Header: t("categories.fields.title"),
-                accessor: "title",
-                Cell: function render({
-                    row,
-                }: React.PropsWithChildren<CellProps<ICategory>>) {
+                accessorKey: "title",
+                header: t("categories.fields.title"),
+                cell: function render({ row, getValue }) {
                     return (
-                        <Stack direction="row" spacing={3}>
-                            <span {...row.getToggleRowExpandedProps()}>
-                                {row.isExpanded ? (
+                        <Stack direction="row" alignItems="center" spacing={3}>
+                            <IconButton onClick={() => row.toggleExpanded()}>
+                                {row.getIsExpanded() ? (
                                     <RemoveCircleOutline fontSize="small" />
                                 ) : (
                                     <AddCircleOutline fontSize="small" />
                                 )}
-                            </span>
-                            <Typography>{row.original.title}</Typography>
+                            </IconButton>
+                            <Typography>{getValue() as string}</Typography>
                         </Stack>
                     );
                 },
             },
             {
                 id: "isActive",
-                Header: t("categories.fields.isActive"),
-                accessor: "isActive",
-                Cell: function render({
-                    value,
-                }: React.PropsWithChildren<CellProps<ICategory>>) {
-                    return <BooleanField value={value} />;
+                header: t("categories.fields.isActive"),
+                accessorKey: "isActive",
+                cell: function render({ getValue }) {
+                    return <BooleanField value={getValue()} />;
                 },
             },
             {
                 id: "actions",
-                Header: t("table.actions"),
-                accessor: "id",
-                align: "center",
-                maxWidth: 150,
-                Cell: function render({
-                    value,
-                }: React.PropsWithChildren<CellProps<{ id: number }>>) {
+                header: t("table.actions"),
+                accessorKey: "id",
+                cell: function render({ getValue }) {
                     return (
                         <Stack direction="row">
                             {id ? (
                                 <>
                                     <EditButton
                                         onClick={() => {
-                                            handleEditButtonClick(value);
+                                            handleEditButtonClick(
+                                                getValue() as string,
+                                            );
                                         }}
                                     >
                                         Edit
@@ -118,7 +104,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                             ) : (
                                 <IconButton
                                     onClick={() => {
-                                        setId(value);
+                                        setId(getValue() as string);
                                     }}
                                 >
                                     <Edit fontSize="small" />
@@ -131,30 +117,23 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
         ],
         [t],
     );
+
     const {
-        rows,
-        headerGroups,
-        pageOptions,
-        pageCount,
-        visibleColumns,
-        getTableProps,
-        getTableBodyProps,
-        gotoPage,
-        setPageSize,
-        prepareRow,
-        state: { pageIndex, pageSize },
-    } = useTable<ICategory>(
-        {
-            columns,
-            initialState: {
-                sortBy: [{ id: "title", desc: false }],
-            },
+        options: {
+            state: { pagination },
+            pageCount,
         },
-        useFilters,
-        useSortBy,
-        useExpanded,
-        usePagination,
-    );
+        getHeaderGroups,
+        getRowModel,
+        setPageIndex,
+        setPageSize,
+        refineCore: { tableQueryResult },
+    } = useTable<ICategory>({
+        columns,
+        initialState: {
+            sorting: [{ id: "title", desc: false }],
+        },
+    });
 
     const renderRowSubComponent = useCallback(
         ({ row }) => <CategoryProductsTable record={row.original} />,
@@ -181,13 +160,13 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                         alignContent="center"
                         alignItems="center"
                     >
-                        <span {...row.getToggleRowExpandedProps()}>
-                            {row.isExpanded ? (
+                        <IconButton onClick={() => row.toggleExpanded()}>
+                            {row.getIsExpanded() ? (
                                 <RemoveCircleOutline fontSize="small" />
                             ) : (
                                 <AddCircleOutline fontSize="small" />
                             )}
-                        </span>
+                        </IconButton>
 
                         <TextField
                             fullWidth
@@ -228,74 +207,58 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
         <List cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}>
             <form onSubmit={handleSubmit(onFinish)}>
                 <TableContainer>
-                    <Table {...getTableProps()} size="small">
+                    <Table size="small">
                         <TableHead>
-                            {headerGroups.map(
-                                (headerGroup: {
-                                    getHeaderGroupProps: () => any;
-                                    headers: any[];
-                                }) => (
-                                    <TableRow
-                                        key={`header-group-${headerGroup.headers[0].id}`}
-                                        {...headerGroup.getHeaderGroupProps()}
-                                    >
-                                        {headerGroup.headers.map((column) => (
-                                            <TableCell
-                                                key={`header-group-cell-${column.id}`}
-                                                {...column.getHeaderProps()}
-                                            >
-                                                {column.render("Header")}
-                                            </TableCell>
-                                        ))}
-                                    </TableRow>
-                                ),
-                            )}
+                            {getHeaderGroups().map((headerGroup) => (
+                                <TableRow
+                                    key={`header-group-${headerGroup.id}`}
+                                >
+                                    {headerGroup.headers.map((header) => (
+                                        <TableCell
+                                            key={`header-group-cell-${header.id}`}
+                                        >
+                                            {flexRender(
+                                                header.column.columnDef.header,
+                                                header.getContext(),
+                                            )}
+                                        </TableCell>
+                                    ))}
+                                </TableRow>
+                            ))}
                         </TableHead>
-                        <TableBody {...getTableBodyProps()}>
-                            {rows.map((row) => {
-                                prepareRow(row);
+                        <TableBody>
+                            {getRowModel().rows.map((row) => {
                                 return (
-                                    <React.Fragment key={row.getRowProps().key}>
+                                    <React.Fragment key={row.id}>
                                         {id ===
                                         (row.original as ICategory).id ? (
                                             renderEditRow(row)
                                         ) : (
                                             <TableRow>
-                                                {row.cells.map(
-                                                    (cell: {
-                                                        getCellProps: () => any;
-                                                        render: (
-                                                            arg0: string,
-                                                        ) =>
-                                                            | boolean
-                                                            | React.ReactChild
-                                                            | React.ReactFragment
-                                                            | React.ReactPortal
-                                                            | null
-                                                            | undefined;
-                                                    }) => {
+                                                {row
+                                                    .getAllCells()
+                                                    .map((cell) => {
                                                         return (
                                                             <TableCell
-                                                                key={
-                                                                    cell.getCellProps()
-                                                                        .key
-                                                                }
-                                                                {...cell.getCellProps()}
+                                                                key={cell.id}
                                                             >
-                                                                {cell.render(
-                                                                    "Cell",
+                                                                {flexRender(
+                                                                    cell.column
+                                                                        .columnDef
+                                                                        .cell,
+                                                                    cell.getContext(),
                                                                 )}
                                                             </TableCell>
                                                         );
-                                                    },
-                                                )}
+                                                    })}
                                             </TableRow>
                                         )}
-                                        {row.isExpanded ? (
+                                        {row.getIsExpanded() ? (
                                             <TableRow>
                                                 <TableCell
                                                     colSpan={
-                                                        visibleColumns.length
+                                                        row.getVisibleCells()
+                                                            .length
                                                     }
                                                 >
                                                     {renderRowSubComponent({
@@ -316,19 +279,22 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                         5,
                         10,
                         25,
-                        { label: "All", value: pageOptions?.length },
+                        {
+                            label: "All",
+                            value: tableQueryResult.data?.total ?? 100,
+                        },
                     ]}
                     showFirstButton
                     showLastButton
-                    count={pageCount}
-                    rowsPerPage={pageSize}
-                    page={pageIndex}
-                    onPageChange={(_, newPage: number) => gotoPage(newPage)}
+                    count={pageCount || 0}
+                    rowsPerPage={pagination?.pageSize || 10}
+                    page={pagination?.pageIndex || 0}
+                    onPageChange={(_, newPage: number) => setPageIndex(newPage)}
                     onRowsPerPageChange={(
                         event: React.ChangeEvent<HTMLInputElement>,
                     ) => {
                         setPageSize(parseInt(event.target.value, 10));
-                        gotoPage(0);
+                        setPageIndex(0);
                     }}
                 />
             </form>

@@ -10,8 +10,3 @@ export interface IPost {
     status: "published" | "draft" | "rejected";
     category: { id: number };
 }
-
-export interface IFilter {
-    id: string;
-    value: string;
-}
