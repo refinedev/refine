@@ -26,6 +26,7 @@ export const useModal = ({
                 close();
             },
             visible,
+            ...modalProps,
         },
         show,
         close,
