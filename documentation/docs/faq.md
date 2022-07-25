@@ -235,7 +235,7 @@ useMany({
 
 In some cases, you may need to override functions of Refine data providers. The simplest way to do this is to use the [Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
 
-For example, Let's override the `update` function of the [`@pankod/refine-simple-rest`](https://github.com/pankod/refine/tree/next/packages/simple-rest). `@pankod/refine-simple-rest` uses the `PATCH` HTTP option for `update`, let's change it to `PUT` without forking the whole data provider.
+For example, Let's override the `update` function of the [`@pankod/refine-simple-rest`](https://github.com/pankod/refine/tree/next/packages/simple-rest). `@pankod/refine-simple-rest` uses the `PATCH` HTTP method for `update`, let's change it to `PUT` without forking the whole data provider.
 
 ```tsx
 import dataProvider from "@pankod/refine-simple-rest";
@@ -255,4 +255,50 @@ const myDataProvider = {
 };
 
 <Refine dataProvider={myDataProvider} />
+```
+
+What if we want to select `PUT` or `PATCH` on a request basis? 
+
+💥 We can use `metaData` for this. Remember, `metaData` can be used in all `data`, `form`, `table` hooks
+
+```tsx
+// PATCH Request 
+useUpdate({
+    resource: "this-is-patch",
+    id: 1,
+    variables: {
+        foo: "bar",
+    },
+    metaData: {
+        httpMethod: "patch",
+    }
+});
+
+// PUT Request 
+useUpdate({
+    resource: "this-is-put",
+    id: 1,
+    variables: {
+        foo: "bar",
+    },
+    metaData: {
+        httpMethod: "put",
+    }
+});
+
+const simpleRestProvider = dataProvider("API_URL");
+const myDataProvider = {
+    ...simpleRestProvider,
+    update: async ({ resource, id, variables, metaData }) => {
+        const method = metaData.httpMethod ?? "PATCH";
+
+        const url = `${apiUrl}/${resource}/${id}`;
+
+        const { data } = await httpClient[method](url, variables);
+
+        return {
+            data,
+        };
+    },
+};
 ```
