@@ -22,6 +22,7 @@
   "author": "Pankod",
   "module": "dist/esm/index.js",
   "devDependencies": {
+    "@pankod/refine-core": "^3.23.2",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/pluralize": "^0.0.29",
     "jest": "^27.5.1",
@@ -31,7 +32,6 @@
     "tsup": "^5.11.13"
   },
   "dependencies": {
-    "@pankod/refine-core": "^3.42.0",
     "camelcase": "^6.2.0",
     "gql-query-builder": "^3.5.5",
     "graphql": "^15.6.1",
