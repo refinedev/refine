@@ -17,6 +17,7 @@ import {
 import { useTheme, darken } from "@mui/material";
 import differenceWith from "lodash/differenceWith";
 import isEqual from "lodash/isEqual";
+import warnOnce from "warn-once";
 
 import {
     transformCrudSortingToSortModel,
@@ -203,11 +204,10 @@ export function useDataGrid<
     });
 
     useEffect(() => {
-        if (columns) {
-            console.warn(
-                "🚨 [useDataGrid]: `columns` is deprecated and will be removed in the next major version. \n https://github.com/pankod/refine/pull/2072",
-            );
-        }
+        warnOnce(
+            !!columns,
+            "[useDataGrid]: `columns` is deprecated and will be removed in the next major version.\nFor more information, see https://github.com/pankod/refine/pull/2072",
+        );
     }, []);
 
     const theme = useTheme();

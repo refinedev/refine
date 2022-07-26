@@ -47,6 +47,7 @@
         "qs": "^6.10.1",
         "react-query": "^3.19.2",
         "tslib": "^2.3.1",
+        "warn-once": "^0.1.0",
         "jose": "^4.8.3"
     },
     "repository": {
