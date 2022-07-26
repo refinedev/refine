@@ -1,5 +1,5 @@
 ---
-title: Building a Refine CRUD app with Material UI and Strapi 
+title: Building a CRUD app with Material UI and Strapi 
 description: test
 slug: build-admin-panel-with-material-ui-and-strapi
 authors: necati
