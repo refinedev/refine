@@ -26,7 +26,7 @@ Steps we'll cover includes:
 - Bootstrapping the Refine App
 - Implementing Strapi-v4 data provider
 - Creating a list page
-- Handling relational data
+- Handling relational data with [Strapi Population support](https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/populating-fields.html)
 - CRUD operations
 - Implementing mutation mode
 - Sharing the current page and location easily using `syncwithlocation` feature.
