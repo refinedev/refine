@@ -12,15 +12,15 @@ module.exports = {
             tsconfig: "<rootDir>/tsconfig.test.json",
         },
     },
-    setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
+    setupFilesAfterEnv: ["<rootDir>/src/test/jest.setup.ts"],
     testPathIgnorePatterns: ["<rootDir>/node_modules/"],
     moduleNameMapper: {
         ...pathsToModuleNameMapper(paths, { prefix: "<rootDir>/" }),
     },
-    name: "ui-essentials",
-    displayName: "ui-essentials",
+    name: "ui-tests",
+    displayName: "ui-tests",
     transform: {
-        "^.+\\.svg$": "<rootDir>/test/svgTransform.ts",
+        "^.+\\.svg$": "<rootDir>/src/test/svgTransform.ts",
     },
     coveragePathIgnorePatterns: ["<rootDir>/src/index.ts"],
 };
