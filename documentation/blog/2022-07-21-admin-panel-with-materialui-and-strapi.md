@@ -1,9 +1,9 @@
 ---
-title: Building a Refine CRUD app with Material UI and Strapi 
-description: How to build CRUD admin panel with Material UI
+title: Building a CRUD app with Material UI and Strapi 
+description: How to build CRUD admin panel with Material UI?
 slug: build-admin-panel-with-material-ui-and-strapi
 authors: necati
-tags: [refine, fundamentals, react, javascript, low-code, internal-tools]
+tags: [refine, fundamentals, react, javascript, low-code, internal-tools, crud, material-ui, mui]
 image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
 ---
@@ -46,12 +46,12 @@ Before we dive into the meat of the article, let's first take a look at the tool
 Refine is a headless React internal tool framework that helps you develop quickly while developing both B2B and B2C applications. It speeds you up while allowing full customization, making it an ideal choice for rapid development with pro features.
 
 -   It is Open Source under the MIT license.
--   Easy to use and it is easy to learn. There are many examples to help you get started, as well as documentation.
+-   It is easy to use and learn. There are many examples to help you get started, as well as documentation.
 -   Is a framework that does not require you to use any UI libraries or frameworks.
 -   Supports Ant Design and Material UI for quick and easy solutions.
 -   Backend agnostic, so you can connect to any backend you want.
 -   Customizable, which means you can change it to fit your needs.
--   Some of main features are data fetching and state management, routings, authentication, authorization, internationalization, real-time, mutation modes with optimistic and pessimistic and undoadable modes
+-   Some of the main features are data fetching and state management, routings, authentication, authorization, internationalization, real-time, mutation modes with optimistic and pessimistic and undoable modes
 
 
 ## Bootstrapping the Refine app
