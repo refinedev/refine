@@ -394,6 +394,12 @@ module.exports = {
             type: "category",
             label: "Packages",
             items: [
+                {
+                    type: "category",
+                    label: "Command Palette",
+                    items: ["packages/command-palette/kbar"],
+                },
+
                 "packages/react-table",
                 {
                     type: "category",
