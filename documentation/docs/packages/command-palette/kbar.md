@@ -114,7 +114,7 @@ const customAction = createAction({
     name: "my custom action",
     section: "custom-actions",
     perform: () => {
-        console.log("onClick my custom action");
+        console.log("onSelect my custom action");
     },
     priority: Priority.HIGH,
 });
