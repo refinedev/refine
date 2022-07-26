@@ -1010,7 +1010,7 @@ Now, we can get current information from URL as a query parameters. We can eithe
 
  ## Conclusion
 
-In this article, we'll show you how to build a CRUD admin panel using refine and Material UI. This approach will allow you to quickly create an admin interface for your application with minimal coding. We'll start by setting up our project with the required dependencies. Then, we'll create our CRUD components using Material UI. Finally, we'll wire everything up and add some extra features from refine like mutation mode. 
+In this article, we'll show you how to build a **CRUD admin panel** using refine and **Material UI**. This approach will allow you to quickly create an admin interface for your application with minimal coding. We'll start by setting up our project with the required dependencies. Then, we'll create our CRUD components using Material UI. Finally, we'll wire everything up and add some extra features from refine like mutation mode. 
 
 We covered:
 - How to bootstrap refine app
