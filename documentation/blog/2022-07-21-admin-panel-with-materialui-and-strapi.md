@@ -353,12 +353,10 @@ We use benefits of StrapiV4 relational population feature by using `populate` pa
 
 ## CRUD operations
 
-We are going to implement CRUD operations features like creating records.
-
-For the sake of simplicity, we are going to show creating and editing records example.
+We are going to implement CRUD operations features like creating and editing records.
 
 
-[Please check offical Refine Material UI tutorial for showing, editing, and deleting records with explanations and examples &#8594](https://refine.dev/docs/ui-frameworks/mui/tutorial/#showing-a-single-record)
+[Refer to offical Refine Material UI tutorial for detailed explanations and examples &#8594](https://refine.dev/docs/ui-frameworks/mui/tutorial/#showing-a-single-record)
 
 
 ### Creating a record
@@ -453,6 +451,13 @@ export const PostCreate: React.FC = () => {
 
 
 ```
+Add component export to index.tsx
+
+```tsx title="src/pages/posts/index.tsx"
+export * from "./create";
+```
+
+
 
 <br />
 
@@ -522,7 +527,7 @@ Try it on the browser and see if you can create new posts from scratch.
 
 ### Editing a record
 
-We'll start by creating a new `<PostEdit>` page responsible for editing a single record:
+We'll start by creating a new `<PostEdit>` page responsible for editing a existed single record:
 
 ```tsx title="src/pages/posts/edit.tsx"
 import { Controller, useForm } from "@pankod/refine-react-hook-form";
@@ -612,8 +617,15 @@ export const PostEdit: React.FC = () => {
         </Edit>
     );
 };
-
 ```
+
+Add component export to index.tsx
+
+```tsx title="src/pages/posts/index.tsx"
+export * from "./edit";
+```
+
+
 
 <br/>
 
@@ -627,10 +639,10 @@ import {
     GridColumns,
     DateField,
     List,
+    //highlight-start
     Stack,
-    //highlight-next-line
     EditButton,
-
+    //highlight-end
 } from "@pankod/refine-mui";
 
 import { IPost } from "interfaces";
@@ -641,8 +653,6 @@ export const PostList: React.FC = () => {
             populate: ["category"],
         },
     });
-
-    console.log("datagridprops", dataGridProps);
 
     const columns = React.useMemo<GridColumns<IPost>>(
         () => [
@@ -761,7 +771,7 @@ The first way is adding a delete button on each row since refine doesn't automat
 We are going to add new cell to the "Actions" column to show delete button on each row.
 
 
-```tsx
+```tsx title="src/pages/list.tsx"
 import React from "react";
 import {
     useDataGrid,
@@ -773,7 +783,6 @@ import {
     Stack,
     //highlight-next-line
     DeleteButton,
-
 } from "@pankod/refine-mui";
 
 import { IPost } from "interfaces";
@@ -844,7 +853,7 @@ Now we are able to delete record by clicking delete button and confirmation.
 <br/>
 <br/>
 
-The second way is showing delete button in `<PostEdit>` component. To show delete button in edit page, `canDelete` prop needs to be passed to resource object.
+The second way is showing delete button in `<PostEdit>` page. To show delete button in edit page, `canDelete` prop needs to be passed to resource object.
 
 
 ```tsx title="src/App.tsx"
@@ -996,6 +1005,8 @@ function App() {
 
 export default App;
 ```
+
+Now, we can get current information from URL as a query parameters. We can either use this link to share to others or define filter, pagination, and sorting parameters manually from changing URL parameters.
 
  ## Conclusion
 
