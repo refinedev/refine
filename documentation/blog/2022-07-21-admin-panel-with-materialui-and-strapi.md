@@ -24,7 +24,7 @@ We'll walk through the process of listing, creating and deleting posts in a Refi
 Steps we'll cover includes:
 - What are the benefits of using Refine?
 - Bootstrapping the Refine App
-- Implementing Strapi-v4 data provider
+- Implementing Strapi data provider
 - Creating a list page
 - Handling relational data with [Strapi Population support](https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/populating-fields.html)
 - CRUD operations
