@@ -1023,3 +1023,15 @@ refine is an open source tool that rapidly and flexibly develops for CRUD admin 
 [Refer to official refine page for more information &#8594](https://refine.dev/)
   
 
+## Live StackBlitz Example
+
+Username: demo@refine.dev
+
+Password: demodemo
+
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/blog/materialui/?embed=1&view=preview&theme=dark&preset=node"
+     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+     title="refine-material-ui-example"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
