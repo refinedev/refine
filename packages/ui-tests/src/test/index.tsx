@@ -66,6 +66,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
         return (
             <BrowserRouter>
                 <Refine
+                    disableTelemetry
                     dataProvider={dataProvider ?? MockJSONServer}
                     i18nProvider={i18nProvider}
                     routerProvider={MockRouterProvider}
