@@ -93,11 +93,13 @@ CLI should be create a project and install the selected dependencies.
 Data providers are refine components making it possible to consume different API's and data services conveniently.
 The required Strapi-V4 data provider setups are added automatically by CLI wizard.
 
-To consume Refine's Fake StrapiV4 provider, we'll need change API URL in the project folder.
+To consume Refine's Fake StrapiV4 data provider, we'll need change API URL in the project folder.
 
 ```tsx title="src/constants.ts"
 export const API_URL = "https://api.strapi-v4.refine.dev";
 ```
+
+
 [Refer to Refine docs for more detailed information about refine Strapi-V4 support&#8594](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/)
 
 [Refer to Refine's data provider documentation for detailed information&#8594](https://refine.dev/docs/core/providers/data-provider/)
@@ -175,6 +177,17 @@ export const PostList: React.FC = () => {
 ```
 
 We use Material UI components to show data exports from Refine.
+
+
+`<DataGrid/>` is a native Material UI component. It renders records row by row as a table. `<DataGrid/>` expects a columns prop as a required.
+
+
+
+refine hook useDataGrid() fetches data from API and wraps them with various helper hooks required for the  `<DataGrid/>` component. Data interaction functions like sorting, filtering, and pagination will be instantly available on the `<DataGrid/>` with this single line of code.
+
+[Refer to refine's useDataGrid hook doc to more information&#8594](https://refine.dev/docs/ui-frameworks/mui/hooks/useDataGrid/)
+
+`columns` array are used for mapping and formatting each field shown on the `<DataGrid/>` field prop maps the field to a matching key from the API response. `renderCell` prop is used to choose the appropriate Field component for the given data type.
 
 [Get more information about components and hooks in PostList page we defined&#8594](https://refine.dev/docs/ui-frameworks/mui/tutorial/#creating-a-list-page)
 
@@ -270,12 +283,12 @@ Username: demo@refine.dev
 
 Password: demodemo
 
-Open your application to check that the URL is routed to **/posts** and posts are displayed correctly in a table structure and even the pagination works out-of-the box.
+Check that the URL is routed to **/posts** and posts are displayed correctly in a table structure and even the pagination works out-of-the box.
 
 
 
 ### Handling relational data
-Relations are not populated when fetching entiries. We'll use `metaData` option to use relations population for Strapi-v4 API.
+Relations are not populated when fetching entiries. We'll use `metaData` option to use relational population for Strapi-v4 API.
 
 The records from `/posts` endpoint that had a category id field. To get category titles automatically from `/categories` endpoint for each record  and show on our table, we need to use `populate` feature of Strapiv4. 
 
