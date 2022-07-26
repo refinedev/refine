@@ -1,5 +1,13 @@
 # @pankod/refine-supabase
 
+## 3.29.0
+
+### Minor Changes
+
+-   All of the refine packages have dependencies on the `@pankod/refine-core` package. So far we have managed these dependencies with `peerDependencies` + `dependencies` but this causes issues like #2183. (having more than one @pankod/refine-core version in node_modules and creating different instances)
+
+    Managing as `peerDependencies` + `devDependencies` seems like the best way for now to avoid such issues.
+
 ## 3.28.0
 
 ### Minor Changes

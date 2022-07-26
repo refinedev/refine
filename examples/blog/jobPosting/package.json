@@ -5,7 +5,7 @@
   "dependencies": {
     "@craco/craco": "^6.1.2",
     "@pankod/refine": "2.0.12",
-    "@pankod/refine-nestjsx-crud": "^3.26.0",
+    "@pankod/refine-nestjsx-crud": "^3.27.0",
     "@pankod/refine-react-router": "^3.25.0",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
