@@ -1037,8 +1037,8 @@
             "to": "/docs/core/hooks/ui/useMenu/"
         },
         {
-            "from": "/docs/packages/command-palette/kbar/",
-            "to": "/docs/packages/command-palette/"
+            "from": "/docs/examples/command-palette/kbar/",
+            "to": "/docs/examples/command-palette/"
         }
     ]
 }
