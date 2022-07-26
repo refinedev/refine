@@ -46,7 +46,7 @@ Before we dive into the meat of the article, let's first take a look at the tool
 Refine is a headless React internal tool framework that helps you develop quickly while developing both B2B and B2C applications. It speeds you up while allowing full customization, making it an ideal choice for rapid development with pro features.
 
 -   It is Open Source under the MIT license.
--   Easy to use and it is easy to learn. There are many examples to help you get started, as well as documentation.
+-   It is easy to use and learn. There are many examples to help you get started, as well as documentation.
 -   Is a framework that does not require you to use any UI libraries or frameworks.
 -   Supports Ant Design and Material UI for quick and easy solutions.
 -   Backend agnostic, so you can connect to any backend you want.
