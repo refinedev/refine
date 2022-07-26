@@ -35,16 +35,8 @@ export const DailyOrders: React.FC = () => {
             },
             color: "rgba(255, 255, 255, 0.5)",
             tooltip: {
-                showCrosshairs: false,
-                marker: { fill: "#D94BF2" },
                 customContent: (title, data) => {
-                    return `<div style="padding: 8px 4px; font-size:16px; color:#fff !important; font-weight:600">${data[0]?.value}</div>`;
-                },
-                domStyles: {
-                    "g2-tooltip": {
-                        background: "rgba(255, 255, 255, 0.3)",
-                        boxShadow: "unset",
-                    },
+                    return `<div style="padding: 8px 4px; font-size:16px; font-weight:600">${data[0]?.value}</div>`;
                 },
             },
 
