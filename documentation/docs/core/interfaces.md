@@ -248,7 +248,7 @@ ButtonProps
 | canEdit?    | `boolean`   |
 | canShow?    | `boolean`   |
 | canDelete?  | `boolean`   |
-| options?    | `string`    |
+| options?    | `object`    |
 | parentName? | `string`    |
 
 
