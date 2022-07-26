@@ -1,21 +1,36 @@
-import { AuthProvider } from "@pankod/refine-core";
+import { AuthProvider, HttpError } from "@pankod/refine-core";
+import axios from "axios";
 
 import { API_URL } from "./constants";
 
-import { getMedusaClient, resetMedusaClient } from "./medusaClient";
-
 export const authProvider = (): AuthProvider => {
-    const medusaClient = getMedusaClient(API_URL);
+    const axiosInstance = axios.create();
+
+    axiosInstance.interceptors.response.use(
+        (response) => {
+            return response;
+        },
+        (error) => {
+            const customError: HttpError = {
+                ...error,
+                message: error.response?.data?.message,
+                statusCode: error.response?.status,
+            };
+
+            return Promise.reject(customError);
+        },
+    );
+    axiosInstance.defaults.baseURL = `${API_URL}/store`;
+
     return {
         login: async (user: { username: string; password: string }) => {
             try {
-                const { customer } = await medusaClient.auth.authenticate({
-                    email: user.username,
-                    password: user.password,
+                const response = await axiosInstance.post("/auth", user, {
+                    withCredentials: true,
                 });
 
-                if (customer) {
-                    localStorage.setItem("user", JSON.stringify(customer));
+                if (response) {
+                    localStorage.setItem("user", JSON.stringify(response));
                     return Promise.resolve();
                 }
             } catch (error) {
@@ -25,8 +40,9 @@ export const authProvider = (): AuthProvider => {
             return Promise.resolve("/");
         },
         logout: (props) => {
-            localStorage.removeItem("user");
-            resetMedusaClient();
+            axiosInstance
+                .delete("/auth")
+                .then(() => localStorage.removeItem("user"));
 
             return Promise.resolve(props?.redirectPath);
         },
@@ -37,17 +53,17 @@ export const authProvider = (): AuthProvider => {
             return Promise.resolve();
         },
         checkAuth: async () => {
-            const session = await medusaClient.auth.getSession();
-            if (session?.customer) {
+            const { data: session } = await axiosInstance.get("/auth");
+            if (session) {
                 return Promise.resolve();
             }
             return Promise.reject();
         },
         getPermissions: () => Promise.resolve(),
         getUserIdentity: async () => {
-            const { customer } = await medusaClient.auth.getSession();
+            const { data: session } = await axiosInstance.get("/auth");
 
-            return Promise.resolve(customer);
+            return Promise.resolve(session?.customer);
         },
     };
 };
