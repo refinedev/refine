@@ -1,5 +1,11 @@
 # @pankod/refine-react-router-v6
 
+## 3.25.4
+
+### Patch Changes
+
+-   Fix adding the current path to the `to` parameter when redirecting to the login page after `logout` - #2211
+
 ## 3.25.3
 
 ### Patch Changes
