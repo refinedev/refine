@@ -3,4 +3,4 @@
 "@pankod/refine-mui": patch
 ---
 
-Updated console warn's to trigger once.
+Updated `console.warn`'s to trigger once.
