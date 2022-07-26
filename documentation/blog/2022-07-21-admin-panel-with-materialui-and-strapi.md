@@ -15,18 +15,18 @@ import deleteGif from '@site/static/img/blog/2022-07-21-admin-panel-with-materia
 import undoableGif from '@site/static/img/blog/2022-07-21-admin-panel-with-materialui-and-strapi/undoable-mode.gif'
 
 ## Introduction
-We will build an admin panel that supports CRUD operations, has built in authentication, and a mutation mode feature using industry-standard best tools.
+We will build an **admin panel** that supports **CRUD** operations, has built-in **authentication**, and a mutation mode ([?](https://refine.dev/docs/guides-and-concepts/mutation-mode/))  feature using industry-standard best tools.
 
-UI design can be a complex and time-consuming process, but using a tool like Material UI can help to simplify the process and speed up the development cycle. In this tutorial we'll use the benefits of Material UI and to handle data fetching and mutations. We'll also integrate StrapiV4 data provider that Refine has built-in support.
+UI design can be a complex and time-consuming process, but a tool like [Material UI](https://mui.com) can help simplify the process and speed up the development cycle. In this tutorial, we'll use Material UI's benefits and handle data fetching and mutations. We'll also integrate the [Strapi](https://strapi.io/) data provider that Refine has built-in support.
 
 We'll walk through the process of listing, creating and deleting posts in a Refine application and make use of Refine's components and hooks to build out our functionality.
 
 Steps we'll cover includes:
 - What are the benefits of using Refine?
 - Bootstrapping the Refine App
-- Implementing Strapi-v4 data provider
+- Implementing Strapi data provider
 - Creating a list page
-- Handling relational data
+- Handling relational data with [Strapi Population support](https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/populating-fields.html)
 - CRUD operations
 - Implementing mutation mode
 - Sharing the current page and location easily using `syncwithlocation` feature.
@@ -48,7 +48,7 @@ Refine is a headless React internal tool framework that helps you develop quickl
 -   It is Open Source under the MIT license.
 -   It is easy to use and learn. There are many examples to help you get started, as well as documentation.
 -   Is a framework that does not require you to use any UI libraries or frameworks.
--   Supports Ant Design and Material UI for quick and easy solutions.
+-   Supports Ant Design and Material UI natively for quick and easy solutions. Thanks to the headless approach, you can easily integrate your own UI solution.
 -   Backend agnostic, so you can connect to any backend you want.
 -   Customizable, which means you can change it to fit your needs.
 -   Some of the main features are data fetching and state management, routings, authentication, authorization, internationalization, real-time, mutation modes with optimistic and pessimistic and undoable modes
@@ -91,9 +91,9 @@ CLI should be create a project and install the selected dependencies.
 
 ### Implementing Strapi-v4 data provider
 Data providers are refine components making it possible to consume different API's and data services conveniently.
-The required Strapi-V4 data provider setups are added automatically by CLI wizard.
+The required Strapi data provider setups are added automatically by the CLI wizard.
 
-To consume Refine's Fake StrapiV4 data provider, we'll need change API URL in the project folder.
+To consume Refine's Fake Strapi API, we'll need to change the `API URL` in the project folder.
 
 ```tsx title="src/constants.ts"
 export const API_URL = "https://api.strapi-v4.refine.dev";
@@ -1010,7 +1010,7 @@ Now, we can get current information from URL as a query parameters. We can eithe
 
  ## Conclusion
 
-In this article, we'll show you how to build a CRUD admin panel using refine and Material UI. This approach will allow you to quickly create an admin interface for your application with minimal coding. We'll start by setting up our project with the required dependencies. Then, we'll create our CRUD components using Material UI. Finally, we'll wire everything up and add some extra features from refine like mutation mode. 
+In this article, we'll show you how to build a **CRUD admin panel** using refine and **Material UI**. This approach will allow you to quickly create an admin interface for your application with minimal coding. We'll start by setting up our project with the required dependencies. Then, we'll create our CRUD components using Material UI. Finally, we'll wire everything up and add some extra features from refine like mutation mode. 
 
 We covered:
 - How to bootstrap refine app
