@@ -29,6 +29,7 @@
     },
     "devDependencies": {
         "@pankod/refine-core": "^3.23.2",
+        "@pankod/refine-sdk": "^0.0.25",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@types/lodash": "^4.14.171",
         "jest": "^27.5.1",
