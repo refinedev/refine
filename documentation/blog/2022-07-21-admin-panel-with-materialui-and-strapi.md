@@ -1,6 +1,6 @@
 ---
 title: Building a Refine CRUD app with Material UI and Strapi 
-description: test
+description: How to build CRUD admin panel with Material UI
 slug: build-admin-panel-with-material-ui-and-strapi
 authors: necati
 tags: [refine, fundamentals, react, javascript, low-code, internal-tools]
@@ -1009,4 +1009,17 @@ export default App;
 Now, we can get current information from URL as a query parameters. We can either use this link to share to others or define filter, pagination, and sorting parameters manually from changing URL parameters.
 
  ## Conclusion
+
+In this article, we'll show you how to build a CRUD admin panel using refine and Material UI. This approach will allow you to quickly create an admin interface for your application with minimal coding. We'll start by setting up our project with the required dependencies. Then, we'll create our CRUD components using Material UI. Finally, we'll wire everything up and add some extra features from refine like mutation mode. 
+
+We covered:
+- How to bootstrap refine app
+- Connecting Strapiv4 data provider to refine app.
+- Creating pages for CRUD operations
+- Implementing some of refine features like mutation mode and location sync.
+
+refine is an open source tool that rapidly and flexibly develops for CRUD admin panels or web apps. It is easy to get started with and doesn't require a lot of code. It has nice documentation that covered examples, guidelines, and tutorials using best practices. refine is constantly being updated with new features and improvements.
+
+[Refer to official refine page for more information &#8594](https://refine.dev/)
+  
 
