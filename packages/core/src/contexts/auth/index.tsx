@@ -34,7 +34,6 @@ export const AuthContextProvider: React.FC<IAuthContext> = ({
     const logoutFunc = async (params: any) => {
         try {
             const redirectPath = await authOperations.logout?.(params);
-            console.log({ redirectPath });
             return Promise.resolve(redirectPath);
         } catch (error) {
             return Promise.reject(error);
