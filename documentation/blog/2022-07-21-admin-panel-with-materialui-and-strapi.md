@@ -43,7 +43,7 @@ Before we dive into the meat of the article, let's first take a look at the tool
 
 ##  What are the benefits of using Refine?
 
-Refine is a headless React internal tool framework that helps you develop quickly while developing both B2B and B2C applications. t speeds you up while allowing full customization, making it an ideal choice for rapid development with pro features.
+Refine is a headless React internal tool framework that helps you develop quickly while developing both B2B and B2C applications. It speeds you up while allowing full customization, making it an ideal choice for rapid development with pro features.
 
 -   It is Open Source under the MIT license.
 -   Easy to use and it is easy to learn. There are many examples to help you get started, as well as documentation.
@@ -882,7 +882,9 @@ If we briefly describe:
 
 `undoable`:  UI updates are immediately updated, but you can undo the mutation.
 
-We'll implement `undoable` mutation mode. The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is succesful. Waits for a customizable amount of timeout period before mutation is applied. During the timeout, mutation can be cancelled from the notification with an undo button and UI will revert back accordingly.
+We'll implement `undoable` mutation mode. The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is succesful. Waits for a customizable amount of timeout period before mutation is applied. 
+
+During the timeout, mutation can be cancelled from the notification with an undo button and UI will revert back accordingly.
 
 [Refer to Refine mutation mode docs for more detailed information &#8594](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/)
 
@@ -980,5 +982,5 @@ function App() {
 export default App;
 ```
 
-
+ ## Conclusion
 
