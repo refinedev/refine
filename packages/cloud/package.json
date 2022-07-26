@@ -1,5 +1,5 @@
 {
-    "version": "0.2.0",
+    "version": "0.3.0",
     "license": "MIT",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
@@ -28,7 +28,7 @@
         "react-dom": "^17.0.0 || ^18.0.0"
     },
     "devDependencies": {
-        "@pankod/refine-core": "^3.23.2",
+        "@pankod/refine-core": "^3.47.0",
         "@pankod/refine-sdk": "^0.0.25",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@types/lodash": "^4.14.171",
