@@ -1,7 +1,12 @@
+import { IResourceItem } from "../../interfaces";
+
 export type CanParams = {
     resource: string;
     action: string;
-    params?: any;
+    params?: {
+        resource?: IResourceItem;
+        [key: string]: any;
+    };
 };
 
 export type CanReturnType = {
