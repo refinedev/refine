@@ -15,21 +15,34 @@ import deleteGif from '@site/static/img/blog/2022-07-21-admin-panel-with-materia
 import undoableGif from '@site/static/img/blog/2022-07-21-admin-panel-with-materialui-and-strapi/undoable-mode.gif'
 
 ## Introduction
-We will build an **admin panel** that supports **CRUD** operations, has built-in **authentication**, and a [mutation mode](https://refine.dev/docs/guides-and-concepts/mutation-mode/)  feature using industry-standard best tools.
+We will build an **admin panel** that supports **CRUD** operations, has built-in **authentication**, and a [mutation mode](https://refine.dev/docs/guides-and-concepts/mutation-mode/)  feature using industry-standard best tools. 
 
-UI design can be a complex and time-consuming process, but a tool like [Material UI](https://mui.com) can help simplify the process and speed up the development cycle. In this tutorial, we'll use Material UI's benefits and handle data fetching and mutations. We'll also integrate the [Strapi](https://strapi.io/) data provider that Refine has built-in support.
+Industry-standard tools and practices can be hard to reach and time-consuming to maintain on your own. Frameworks can save you time by doing these jobs for you. So, we'll use powerful frameworks including  [Material UI](https://mui.com), [Strapi](https://strapi.io/), and [refine](https://refine.dev/) to build a high-quality admin panel.
 
-We'll walk through the process of listing, creating and deleting posts in a Refine application and make use of Refine's components and hooks to build out our functionality.
+
+UI design can be a complex and time-consuming process, but a tool like Material UI can help simplify the process and speed up the development cycle. In this tutorial, we'll use Material UI's benefits and handle data fetching and mutations. We'll also integrate the Strapi data provider that Refine has built-in support.
+
+We'll walk through the process of listing, creating and deleting posts in a refine application and make use of refine's components and hooks to build out our functionality.
 
 Steps we'll cover includes:
-- What are the benefits of using Refine?
-- Bootstrapping the Refine App
-- Implementing Strapi data provider
-- Creating a list page
-- Handling relational data with [Strapi Population support](https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest/populating-fields.html)
-- CRUD operations
-- Implementing mutation mode
-- Sharing the current page and location easily using `syncwithlocation` feature.
+ 
+
+- [Introduction](#introduction)
+- [Prerequisities](#prerequisities)
+- [What are the benefits of using Refine?](#what-are-the-benefits-of-using-refine)
+- [Bootstrapping the Refine app](#bootstrapping-the-refine-app)
+  - [Implementing Strapi v4 data provider](#implementing-strapi-v4-data-provider)
+- [CRUD operations](#crud-operations)
+  - [Listing records](#listing-records)
+  - [Adding resources and connect pages to refine app](#adding-resources-and-connect-pages-to-refine-app)
+  - [Handling relational data](#handling-relational-data)
+  - [Creating a record](#creating-a-record)
+  - [Editing a record](#editing-a-record)
+  - [Deleting a record](#deleting-a-record)
+- [Implementing mutation mode](#implementing-mutation-mode)
+- [Sharing the current page with filters](#sharing-the-current-page-with-filters)
+- [Conclusion](#conclusion)
+- [Live StackBlitz Example](#live-stackblitz-example)
 <!--truncate-->
 
 ## Prerequisities
@@ -39,7 +52,7 @@ Before we dive into the meat of the article, let's first take a look at the tool
 - [Material UI](https://mui.com/material-ui/getting-started/overview/)
 - [Refine Material UI Tutorial](https://refine.dev/docs/ui-frameworks/mui/tutorial/)
 
-
+Your node version need to be mininum `v16.14.0`
 
 ##  What are the benefits of using Refine?
 
@@ -59,7 +72,7 @@ We'll use [superplate](https://github.com/pankod/superplate) CLI wizard to creat
 
 Run the following command
 ```
-npx superplate-cli -p refine-react materialui-example
+npx superplate-cli -p refine-react material-ui-example
 ```
 
 Select the following options to complete CLI wizard:
@@ -89,30 +102,37 @@ Select the following options to complete CLI wizard:
 
 CLI should be create a project and install the selected dependencies.
 
-### Implementing Strapi-v4 data provider
-Data providers are refine components making it possible to consume different API's and data services conveniently.
+### Implementing Strapi v4 data provider
+Data providers are refine hooks making it possible to consume different API's and data services conveniently.
 The required Strapi data provider setups are added automatically by the CLI wizard.
 
-To consume Refine's Fake Strapi API, we'll need to change the `API URL` in the project folder.
+To consume refine's Fake Strapi API, we'll need to change the `API URL` in the project folder.
 
 ```tsx title="src/constants.ts"
 export const API_URL = "https://api.strapi-v4.refine.dev";
 ```
 
 
-[Refer to Refine docs for more detailed information about refine Strapi-V4 support&#8594](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/)
+[Refer to refine docs for more detailed information about refine Strapi V4 support&#8594](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/)
 
-[Refer to Refine's data provider documentation for detailed information&#8594](https://refine.dev/docs/core/providers/data-provider/)
+[Refer to refine's data provider documentation for detailed information&#8594](https://refine.dev/docs/core/providers/data-provider/)
 
 [Refer to official Strapi v4 documentation&#8594](https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html)
 
 
-### Creating list page
- We need to create "PostList" page to show data on the UI.
+
+
+
+## CRUD operations
+
+We are going to implement CRUD operations features like listing, creating, and editing records.
+
+### Listing records
+ We need to create `PostList` page to show data on the UI.
 
 First, we'll need an interface to work with the data from the API endpoint.
 
-We'll create a new folder named "interfaces" under "/src" if you don't already have one. Then create a "index.d.ts" file with the following code:
+We'll create a new folder named `interfaces` under `/src` if you don't already have one. Then create a `index.d.ts` file with the following code:
 
 
 ```tsx title="src/interfaces/index.d.ts"
@@ -133,7 +153,7 @@ export interface IPost {
 
 <br/>
 
-Now, we'll create a new folder named "pages/posts" under "/src". Under that folder, create a "list.tsx" file with the following code
+Now, we'll create a new folder named `pages/posts` under `/src`. Under that folder, create a `list.tsx` file with the following code:
 
 
 ```tsx title="src/pages/posts/list.tsx"
@@ -176,28 +196,28 @@ export const PostList: React.FC = () => {
 };
 ```
 
-We use Material UI components to show data exports from Refine.
+We import and use Material UI components from refine's `@pankod/refine-mui` to show data.
 
 
-`<DataGrid/>` is a native Material UI component. It renders records row by row as a table. `<DataGrid/>` expects a columns prop as a required.
+ [`<DataGrid/>`](https://mui.com/x/react-data-grid/components/#main-content) is a native Material UI component. It renders records row by row as a table. `<DataGrid/>` expects a columns prop as a required.
 
 
 
-refine hook useDataGrid() fetches data from API and wraps them with various helper hooks required for the  `<DataGrid/>` component. Data interaction functions like sorting, filtering, and pagination will be instantly available on the `<DataGrid/>` with this single line of code.
+refine hook [`useDataGrid`]((https://refine.dev/docs/ui-frameworks/mui/hooks/useDataGrid/)) fetches data from API and wraps them with various helper hooks required for the  `<DataGrid/>` component. Data interaction functions like sorting, filtering, and pagination will be instantly available on the `<DataGrid/>` with this single line of code.
 
 [Refer to refine's useDataGrid hook doc to more information&#8594](https://refine.dev/docs/ui-frameworks/mui/hooks/useDataGrid/)
 
 `columns` array are used for mapping and formatting each field shown on the `<DataGrid/>` field prop maps the field to a matching key from the API response. `renderCell` prop is used to choose the appropriate Field component for the given data type.
 
-[Get more information about components and hooks in PostList page we defined&#8594](https://refine.dev/docs/ui-frameworks/mui/tutorial/#creating-a-list-page)
+
+:::info
+The useDataGrid hook works in compatible with both the `<DataGrid>` and the `<DataGridPro>` component.
+:::
 
 
-[Refer to Material UI offical docs to learn more about components&#8594](https://mui.com/x/react-data-grid/components/#main-content)
 
 
-
-
-Note you will need src/App.tsx file to find your pages and posts. In the /pages folder, put this index.tsx file in it which allows everything in the posts folder to be used elsewhere.
+Note you will need `src/App.tsx` file to find your pages and posts. In the `/pages` folder, put this `index.tsx` file in it which allows everything in the posts folder to be used elsewhere.
 
 ```tsx title="src/pages/posts/index.tsx"
 export * from "./list";
@@ -205,13 +225,20 @@ export * from "./list";
 
 
 
-### Adding resources and connect pages to Refine app
+
+[Refer to offical refine's Material UI tutorial for detailed explanations and examples &#8594](https://refine.dev/docs/ui-frameworks/mui/tutorial/#showing-a-single-record)
+
+
+
+
+
+### Adding resources and connect pages to refine app
 
 Now we are ready to start connecting to our API by adding a resource to our application.
 We'll add `/posts/` endpoint from our example API as a resource.
 
 
-We'll add the highlighted code to our App.tsx to connect to the endpoint and List page.
+We'll add the highlighted code to our `App.tsx` to connect to the endpoint and List page.
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine-core";
@@ -287,10 +314,12 @@ Check that the URL is routed to **/posts** and posts are displayed correctly in 
 
 
 
+
+
 ### Handling relational data
 Relations are not populated when fetching entiries. We'll use `metaData` option to use relational population for Strapi-v4 API.
 
-The records from `/posts` endpoint that had a category id field. To get category titles automatically from `/categories` endpoint for each record  and show on our table, we need to use `populate` feature of Strapiv4. 
+The records from `/posts` endpoint that had a category id field. To get category titles automatically from `/categories` endpoint for each record  and show on our table, we need to use [`populate`](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/#relations-population) feature of Strapi v4. 
 
 We'll set `populate` parameter to define which fields will be populated.
 
@@ -330,7 +359,7 @@ To show category field in table, we need to add new column to the PostList compo
 ```
 
 :::tip
-We use benefits of StrapiV4 relational population feature by using `populate` parameter. It handles to getting relational data automatically.
+We use benefits of Strapi V4 relational population feature by using `populate` parameter. It handles to getting relational data automatically.
 
  [If you use another REST API that relational populations need to be handled manually you can check the  example at the link &#8594](https://refine.dev/docs/ui-frameworks/mui/tutorial/#handling-relationships)
 :::
@@ -350,15 +379,6 @@ We use benefits of StrapiV4 relational population feature by using `populate` pa
 </div>
 <br/>
 </>
-
-## CRUD operations
-
-We are going to implement CRUD operations features like creating and editing records.
-
-
-[Refer to offical Refine Material UI tutorial for detailed explanations and examples &#8594](https://refine.dev/docs/ui-frameworks/mui/tutorial/#showing-a-single-record)
-
-
 ### Creating a record
 
 
@@ -451,7 +471,7 @@ export const PostCreate: React.FC = () => {
 
 
 ```
-Add component export to index.tsx
+Add component export to `index.tsx`.
 
 ```tsx title="src/pages/posts/index.tsx"
 export * from "./create";
@@ -619,7 +639,7 @@ export const PostEdit: React.FC = () => {
 };
 ```
 
-Add component export to index.tsx
+Add component export to `index.tsx`.
 
 ```tsx title="src/pages/posts/index.tsx"
 export * from "./edit";
@@ -768,7 +788,7 @@ Deleting a record can be done in two ways.
 
 The first way is adding a delete button on each row since refine doesn't automatically add one, so we have to update our `<PostList>` component to add a `<DeleteButton>` for each record.
 
-We are going to add new cell to the "Actions" column to show delete button on each row.
+We are going to add new cell to the `Actions` column to show delete button on each row.
 
 
 ```tsx title="src/pages/list.tsx"
@@ -915,7 +935,7 @@ During the timeout, mutation can be cancelled from the notification with an undo
 
 
 
-To activate mutatin mode, we'll set `mutationMode` property to the `<Refine/>` component.
+To activate mutation mode, we'll set `mutationMode` property to the `<Refine/>` component.
 
 ```tsx title="src/App.tsx"
 ...
