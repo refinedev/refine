@@ -18,6 +18,7 @@ type CanParams = {
     action: string;
     params?: {
         resource?: IResourceItem;
+        id?: BaseKey;
         [key: string]: any;
     };
 };
@@ -31,6 +32,7 @@ const accessControlProvider = {
     can: ({ resource, action, params }: CanParams) => Promise<CanReturnType>;
 }
 ```
+> `*`: Too see &#8594 [`IResourceItem`][iresourceitem], [`BaseKey`](/core/interfaces.md#basekey)
 
 ## Usage
 
