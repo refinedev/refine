@@ -1,12 +1,11 @@
 /* eslint-disable react/display-name */
 import React from "react";
-import { RouteProps, Route, Routes, Navigate, Outlet } from "react-router-dom";
+import { Route, Routes, Navigate, Outlet } from "react-router-dom";
 import {
     LoginPage as DefaultLoginPage,
     ErrorComponent,
     LayoutWrapper,
     useAuthenticated,
-    useIsAuthenticated,
     useResource,
     useRefineContext,
     useRouterContext,
@@ -156,20 +155,20 @@ export const RouteProvider = () => {
     const { resources } = useResource();
     const { catchAll, DashboardPage, LoginPage } = useRefineContext();
 
-    const { routes: customRoutes }: { routes: RouteProps[] } =
-        useRouterContext();
+    const { routes: customRoutes } = useRouterContext();
 
-    const isAuthenticated = useIsAuthenticated();
-    const { isLoading } = useAuthenticated({ type: "routeProvider" });
+    const { isFetching, isError } = useAuthenticated({
+        type: "routeProvider",
+    });
 
-    if (isLoading) {
+    if (isFetching) {
         return (
             <Routes>
                 <Route path="*" element={null} />
             </Routes>
         );
     }
-
+    const isAuthenticated = isError ? false : true;
     const CustomPathAfterLogin: React.FC = (): JSX.Element | null => {
         const { pathname, search } = location;
         const toURL = `${pathname}${search}`;
