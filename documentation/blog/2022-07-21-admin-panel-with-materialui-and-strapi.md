@@ -48,7 +48,7 @@ Refine is a headless React internal tool framework that helps you develop quickl
 -   It is Open Source under the MIT license.
 -   It is easy to use and learn. There are many examples to help you get started, as well as documentation.
 -   Is a framework that does not require you to use any UI libraries or frameworks.
--   Supports Ant Design and Material UI for quick and easy solutions.
+-   Supports Ant Design and Material UI natively for quick and easy solutions. Thanks to the headless approach, you can easily integrate your own UI solution.
 -   Backend agnostic, so you can connect to any backend you want.
 -   Customizable, which means you can change it to fit your needs.
 -   Some of the main features are data fetching and state management, routings, authentication, authorization, internationalization, real-time, mutation modes with optimistic and pessimistic and undoable modes
