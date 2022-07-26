@@ -3,7 +3,7 @@ title: Building a CRUD app with Material UI and Strapi
 description: test
 slug: build-admin-panel-with-material-ui-and-strapi
 authors: necati
-tags: [refine, fundamentals, react, javascript, low-code, internal-tools]
+tags: [refine, fundamentals, react, javascript, low-code, internal-tools, crud, material-ui, mui]
 image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
 ---
