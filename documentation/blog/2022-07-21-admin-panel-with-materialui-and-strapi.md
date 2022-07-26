@@ -91,7 +91,7 @@ CLI should be create a project and install the selected dependencies.
 
 ### Implementing Strapi-v4 data provider
 Data providers are refine components making it possible to consume different API's and data services conveniently.
-The required Strapi-V4 data provider setups are added automatically by CLI wizard.
+The required Strapi data provider setups are added automatically by the CLI wizard.
 
 To consume Refine's Fake StrapiV4 data provider, we'll need change API URL in the project folder.
 
