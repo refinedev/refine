@@ -1,6 +1,12 @@
 import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
+import { TextEncoder, TextDecoder } from "util";
 // import { createMockServer } from "./dataMocks";
+
+global.TextEncoder = TextEncoder;
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+global.TextDecoder = TextDecoder;
 
 /** Antd mocks */
 window.matchMedia = jest.fn().mockImplementation((query) => {
