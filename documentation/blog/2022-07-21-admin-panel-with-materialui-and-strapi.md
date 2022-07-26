@@ -15,7 +15,7 @@ import deleteGif from '@site/static/img/blog/2022-07-21-admin-panel-with-materia
 import undoableGif from '@site/static/img/blog/2022-07-21-admin-panel-with-materialui-and-strapi/undoable-mode.gif'
 
 ## Introduction
-We will build an admin panel that supports CRUD operations, has built in authentication, and a mutation mode feature using industry-standard best tools.
+We will build an **admin panel** that supports **CRUD** operations, has built-in **authentication**, and a mutation mode ([?](https://refine.dev/docs/guides-and-concepts/mutation-mode/))  feature using industry-standard best tools.
 
 UI design can be a complex and time-consuming process, but a tool like [Material UI](https://mui.com) can help simplify the process and speed up the development cycle. In this tutorial, we'll use Material UI's benefits and handle data fetching and mutations. We'll also integrate the [Strapi](https://strapi.io/) data provider that Refine has built-in support.
 
