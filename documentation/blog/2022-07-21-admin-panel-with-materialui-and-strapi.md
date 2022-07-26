@@ -17,7 +17,7 @@ import undoableGif from '@site/static/img/blog/2022-07-21-admin-panel-with-mater
 ## Introduction
 We will build an admin panel that supports CRUD operations, has built in authentication, and a mutation mode feature using industry-standard best tools.
 
-UI design can be a complex and time-consuming process, but using a tool like Material UI can help to simplify the process and speed up the development cycle. In this tutorial we'll use the benefits of Material UI and to handle data fetching and mutations, we'll integrate StrapiV4 that Refine has built-in support.
+UI design can be a complex and time-consuming process, but using a tool like Material UI can help to simplify the process and speed up the development cycle. In this tutorial we'll use the benefits of Material UI and to handle data fetching and mutations. We'll also integrate StrapiV4 data provider that Refine has built-in support.
 
 We'll walk through the process of listing, creating and deleting posts in a Refine application and make use of Refine's components and hooks to build out our functionality.
 
@@ -33,7 +33,7 @@ Steps we'll cover includes:
 <!--truncate-->
 
 ## Prerequisities
-Before we dive into the meat of the article, let's first take a look at the tools we'll be using. 
+Before we dive into the meat of the article, let's first take a look at the tools documents we'll be using. 
 - [Refine](https://refine.dev/docs/getting-started/overview/)
 - [Refine StrapiV4 data provider ](https://refine.dev/docs/examples/data-provider/strapi-v4/)
 - [Material UI](https://mui.com/material-ui/getting-started/overview/)
@@ -93,7 +93,7 @@ CLI should be create a project and install the selected dependencies.
 Data providers are refine components making it possible to consume different API's and data services conveniently.
 The required Strapi-V4 data provider setups are added automatically by CLI wizard.
 
-To consume Refine's Fake StrapiV4 provider, we'll need change API URL.
+To consume Refine's Fake StrapiV4 provider, we'll need change API URL in the project folder.
 
 ```tsx title="src/constants.ts"
 export const API_URL = "https://api.strapi-v4.refine.dev";
@@ -113,7 +113,7 @@ First, we'll need an interface to work with the data from the API endpoint.
 We'll create a new folder named "interfaces" under "/src" if you don't already have one. Then create a "index.d.ts" file with the following code:
 
 
-```tsx title="src/interfaces"
+```tsx title="src/interfaces/index.d.ts"
 export interface ICategory {
     id: number;
     title: string;
@@ -140,13 +140,8 @@ import {
     useDataGrid,
     DataGrid,
     GridColumns,
-    EditButton,
-    ShowButton,
-    DeleteButton,
-    TagField,
     DateField,
     List,
-    Stack,
 } from "@pankod/refine-mui";
 
 import { IPost } from "interfaces";
@@ -179,7 +174,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-We use Material UI components that exports from Refine.
+We use Material UI components to show data exports from Refine.
 
 [Get more information about components and hooks in PostList page we defined&#8594](https://refine.dev/docs/ui-frameworks/mui/tutorial/#creating-a-list-page)
 
@@ -195,56 +190,6 @@ Note you will need src/App.tsx file to find your pages and posts. In the /pages 
 export * from "./list";
 ```
 
-
-### Handling relational data
-Relations are not populated when fetching entiries. We'll use `metaData` option to use relations population for Strapi-v4 API.
-
-The records from `/posts` endpoint that had a category id field. To get category titles automatically from `/categories` endpoint for each record  and show on our table, we need to use `populate` feature of Strapiv4. 
-
-We'll set `populate` parameter to define which fields will be populated.
-
-```tsx title="src/pages/post/list.tsx"
-  const { dataGridProps } = useDataGrid<IPost>({
-        //highlight-start
-        metaData: {
-            populate: ["category"],
-        },
-        //highlight-end
-    });
-
-```
-
-To show category field in table, we need to add new column to the PostList component.
-
-```tsx title="src/pages/post/list.tsx"
-  const columns = React.useMemo<GridColumns<IPost>>(
-        () => [
-           ...
-           //highlight-start
-            {
-                field: "category.title",
-                headerName: "Category",
-                minWidth: 250,
-                flex: 1,
-                renderCell: function render({ row }) {
-                    return row.category?.title;
-                },
-            },
-            //highlight-end
-           ...
-        ],
-        [],
-    );
-
-```
-
-:::tip
-We use benefits of StrapiV4 relational population feature by using `populate` parameter. It handles to getting relational data automatically.
-
- [If you use another REST API that relational populations need to be handled manually you can check the  example at the link &#8594](https://refine.dev/docs/ui-frameworks/mui/tutorial/#handling-relationships)
-:::
-
-[Refer to refine Strapi v4 documentation for more information &#8594](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/#relations-population)
 
 
 ### Adding resources and connect pages to Refine app
@@ -319,7 +264,65 @@ npm run dev
 
 The application should redirect now to an URL defined by the `name` property. 
 
+It'll ask you to login to the app. Try with these credentials:
+
+Username: demo@refine.dev
+
+Password: demodemo
+
 Open your application to check that the URL is routed to **/posts** and posts are displayed correctly in a table structure and even the pagination works out-of-the box.
+
+
+
+### Handling relational data
+Relations are not populated when fetching entiries. We'll use `metaData` option to use relations population for Strapi-v4 API.
+
+The records from `/posts` endpoint that had a category id field. To get category titles automatically from `/categories` endpoint for each record  and show on our table, we need to use `populate` feature of Strapiv4. 
+
+We'll set `populate` parameter to define which fields will be populated.
+
+```tsx title="src/pages/post/list.tsx"
+  const { dataGridProps } = useDataGrid<IPost>({
+        //highlight-start
+        metaData: {
+            populate: ["category"],
+        },
+        //highlight-end
+    });
+
+```
+
+To show category field in table, we need to add new column to the PostList component.
+
+```tsx title="src/pages/post/list.tsx"
+  const columns = React.useMemo<GridColumns<IPost>>(
+        () => [
+           ...
+           //highlight-start
+            {
+                field: "category.title",
+                headerName: "Category",
+                minWidth: 250,
+                flex: 1,
+                renderCell: function render({ row }) {
+                    return row.category?.title;
+                },
+            },
+            //highlight-end
+           ...
+        ],
+        [],
+    );
+
+```
+
+:::tip
+We use benefits of StrapiV4 relational population feature by using `populate` parameter. It handles to getting relational data automatically.
+
+ [If you use another REST API that relational populations need to be handled manually you can check the  example at the link &#8594](https://refine.dev/docs/ui-frameworks/mui/tutorial/#handling-relationships)
+:::
+
+[Refer to refine Strapi v4 documentation for more information &#8594](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/#relations-population)
 
 
 <>
@@ -334,7 +337,6 @@ Open your application to check that the URL is routed to **/posts** and posts ar
 </div>
 <br/>
 </>
-
 
 ## CRUD operations
 
