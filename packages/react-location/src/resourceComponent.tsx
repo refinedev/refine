@@ -48,6 +48,9 @@ export const ResourceComponentWrapper: React.FC<{ route: string }> = ({
                             resource={name}
                             action="list"
                             fallback={catchAll ?? <ErrorComponent />}
+                            params={{
+                                resource,
+                            }}
                         >
                             {!list ? (
                                 catchAll ?? <ErrorComponent />
@@ -73,6 +76,7 @@ export const ResourceComponentWrapper: React.FC<{ route: string }> = ({
                             fallback={catchAll ?? <ErrorComponent />}
                             params={{
                                 id: id ? decodeURIComponent(id) : undefined,
+                                resource,
                             }}
                         >
                             {!create ? (
@@ -97,6 +101,7 @@ export const ResourceComponentWrapper: React.FC<{ route: string }> = ({
                             action="edit"
                             params={{
                                 id: id ? decodeURIComponent(id) : undefined,
+                                resource,
                             }}
                             fallback={catchAll ?? <ErrorComponent />}
                         >
@@ -122,6 +127,7 @@ export const ResourceComponentWrapper: React.FC<{ route: string }> = ({
                             action="show"
                             params={{
                                 id: id ? decodeURIComponent(id) : undefined,
+                                resource,
                             }}
                             fallback={catchAll ?? <ErrorComponent />}
                         >
