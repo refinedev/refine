@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import { Logo, Button, Input } from "@components/ui";
 import { useUI } from "@components/ui/context";
 import { validate } from "email-validator";
+import { useLogin } from "@pankod/refine-core";
 
 const LoginView: React.FC = () => {
     // Form State
@@ -12,30 +13,31 @@ const LoginView: React.FC = () => {
     const [dirty, setDirty] = useState(false);
     const [disabled, setDisabled] = useState(false);
     const { setModalView, closeModal } = useUI();
+    const { mutate: login } = useLogin();
 
-    // const handleLogin = async (e: React.SyntheticEvent<EventTarget>) => {
-    //     e.preventDefault();
+    const handleLogin = async (e: React.SyntheticEvent<EventTarget>) => {
+        e.preventDefault();
 
-    //     if (!dirty && !disabled) {
-    //         setDirty(true);
-    //         handleValidation();
-    //     }
+        if (!dirty && !disabled) {
+            setDirty(true);
+            handleValidation();
+        }
 
-    //     try {
-    //         setLoading(true);
-    //         setMessage("");
-    //         await login({
-    //             email,
-    //             password,
-    //         });
-    //         setLoading(false);
-    //         closeModal();
-    //     } catch (e: any) {
-    //         setMessage(e.errors[0].message);
-    //         setLoading(false);
-    //         setDisabled(false);
-    //     }
-    // };
+        try {
+            setLoading(true);
+            setMessage("");
+            await login({
+                email,
+                password,
+            });
+            setLoading(false);
+            closeModal();
+        } catch (e: any) {
+            setMessage(e.errors[0].message);
+            setLoading(false);
+            setDisabled(false);
+        }
+    };
 
     const handleValidation = useCallback(() => {
         // Test for Alphanumeric password
@@ -55,7 +57,7 @@ const LoginView: React.FC = () => {
 
     return (
         <form
-            onSubmit={() => undefined} //handleLogin
+            onSubmit={handleLogin}
             className="w-80 flex flex-col justify-between p-3"
         >
             <div className="flex justify-center pb-12 ">

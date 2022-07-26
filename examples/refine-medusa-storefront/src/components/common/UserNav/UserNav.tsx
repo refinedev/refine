@@ -20,14 +20,10 @@ const countItem = (count: number, item: any) => count + item.quantity;
 const UserNav: React.FC<{
     className?: string;
 }> = ({ className }) => {
-    const data = useAuthenticated();
-
-    const { isSuccess } = data;
+    const { isSuccess } = useAuthenticated();
 
     const { closeSidebarIfPresent, openModal, setSidebarView, openSidebar } =
         useUI();
-
-    const isCustomerLoggedIn = false;
 
     const DropdownTrigger = isSuccess ? DropdownTriggerInst : React.Fragment;
 
@@ -68,9 +64,7 @@ const UserNav: React.FC<{
                             <button
                                 aria-label="Menu"
                                 className={s.avatarButton}
-                                onClick={() =>
-                                    isCustomerLoggedIn ? null : openModal()
-                                }
+                                onClick={() => (isSuccess ? null : openModal())}
                             >
                                 <Avatar />
                             </button>

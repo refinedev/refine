@@ -1,4 +1,4 @@
-import { useList, useShow } from "@pankod/refine-core";
+import { useList, useNavigation, useShow } from "@pankod/refine-core";
 import { ProductView } from "..";
 
 export const ProductShow: React.FC = () => {
@@ -10,11 +10,15 @@ export const ProductShow: React.FC = () => {
         resource: "products",
     });
 
+    const { createUrl } = useNavigation();
+
+    console.log("createUrl", createUrl);
+
     return (
         <>
             {record ? (
                 <ProductView
-                    product={record as any}
+                    product={record.product as any}
                     relatedProducts={relatedProducts?.data ?? ([] as any)}
                 />
             ) : null}
