@@ -51,7 +51,7 @@ Refine is a headless React internal tool framework that helps you develop quickl
 -   Supports Ant Design and Material UI for quick and easy solutions.
 -   Backend agnostic, so you can connect to any backend you want.
 -   Customizable, which means you can change it to fit your needs.
--   Some of main features are data fetching and state management, routings, authentication, authorization, internationalization, real-time, mutation modes with optimistic and pessimistic and undoadable modes
+-   Some of the main features are data fetching and state management, routings, authentication, authorization, internationalization, real-time, mutation modes with optimistic and pessimistic and undoable modes
 
 
 ## Bootstrapping the Refine app
