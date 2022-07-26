@@ -1,6 +1,6 @@
 ---
-id: kbar
-title: kbar
+id: command-palette
+title: Command Palette
 ---
 
 import example from '@site/static/img/packages/command-palette/kbar/refine-kbar-example.gif';
@@ -128,7 +128,7 @@ useRegisterActions(customAction);
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/commandPalette/kbar/?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/commandPalette/?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-kbar-example"
 ></iframe>
