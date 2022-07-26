@@ -115,6 +115,9 @@ Select the following options to complete the _CLI wizard_:
 ? Do you want a customized layout?:
 ❯ No
 
+? Do you want to add Kbar command pallete?:
+❯ No
+
 ? i18n - Internationalization:
 ❯ No
 ```
@@ -182,6 +185,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 -   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
 ### Community ❤️
+
 -   [Firebase](https://github.com/rturan29/refine-firebase) by [rturan29](https://github.com/rturan29)
 -   [Directus](https://github.com/tspvivek/refine-directus) by [tspvivek](https://github.com/tspvivek)
 
@@ -192,9 +196,14 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 
 Replace the contents of `App.tsx` with the following code:
 
-```tsx  title="src/App.tsx"
+```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+import {
+    Layout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -301,7 +310,12 @@ Now, add the highlighted code to your `App.tsx` to connect to the endpoint.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+import {
+    Layout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -441,7 +455,12 @@ Finally, we are ready to add `<PostList>` to our resource. Add the highlighted l
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+import {
+    Layout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -469,23 +488,18 @@ export const App: React.FC = () => {
 Note you will need a few more files which help `src/App.tsx` to find your pages and posts. In the `/pages` folder, put this `index.tsx` file in it which allows everything in the `posts` folder to be used elsewhere.
 
 ```tsx title="src/pages/index.tsx"
-
 export * from "./posts";
-
 ```
 
 <br />
 
 Similarly, put a file in the `/src/pages/posts` folder which accomplishes the same function. We will use the commented out code later as we add more capabilities to our app. Remember as you add functions, uncomment each appropriate line.
 
-
 ```tsx title="src/pages/posts/index.tsx"
-
 export * from "./list";
 // export * from "./edit";
 // export * from "./create";
 // export * from "./show";
-
 ```
 
 <br />
@@ -551,7 +565,7 @@ export interface IPost {
     id: number;
     title: string;
     status: "published" | "draft" | "rejected";
-// highlight-next-line
+    // highlight-next-line
     category: { id: number };
     createdAt: string;
 }
@@ -823,7 +837,12 @@ Now we can add the newly created component to our resource with `show` prop:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+import {
+    Layout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -847,7 +866,7 @@ export const App: React.FC = () => {
                     list: PostList,
                     // highlight-start
                     show: PostShow,
-                     // highlight-end
+                    // highlight-end
                 },
             ]}
         />
@@ -937,7 +956,7 @@ export const PostList: React.FC = () => {
                         </FilterDropdown>
                     )}
                 />
-                 // highlight-start
+                // highlight-start
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
@@ -951,7 +970,7 @@ export const PostList: React.FC = () => {
                         );
                     }}
                 />
-                 // highlight-end
+                // highlight-end
             </Table>
         </List>
     );
@@ -994,7 +1013,14 @@ Until this point, we were basically working with reading operations such as fetc
 Let's start by creating a new `<PostEdit>` page responsible for editing a single record:
 
 ```tsx title="src/pages/posts/edit.tsx"
-import { useForm, Form, Input, Select, Edit, useSelect } from "@pankod/refine-antd";
+import {
+    useForm,
+    Form,
+    Input,
+    Select,
+    Edit,
+    useSelect,
+} from "@pankod/refine-antd";
 import { IPost } from "interfaces";
 
 export const PostEdit: React.FC = () => {
@@ -1068,7 +1094,12 @@ Now we can add the newly created component to our resource with `edit` prop:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+import {
+    Layout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -1092,7 +1123,7 @@ export const App: React.FC = () => {
                     list: PostList,
                     show: PostShow,
                     // highlight-start
-                    edit: PostEdit
+                    edit: PostEdit,
                     // highlight-end
                 },
             ]}
@@ -1339,7 +1370,12 @@ After creating the `<PostCreate>` component, add it to resource with `create` pr
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+import {
+    Layout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
@@ -1526,7 +1562,12 @@ The second way is showing delete button in `<PostEdit>` component. To show delet
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+import {
+    Layout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
