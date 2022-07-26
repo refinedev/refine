@@ -122,6 +122,9 @@ Select the following options to complete the _CLI wizard_:
 ? Do you want a customized layout?:
 ❯ No
 
+? Do you want to add Kbar command pallete?:
+❯ No
+
 ? i18n - Internationalization:
 ❯ No
 ```

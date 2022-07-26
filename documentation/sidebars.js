@@ -394,6 +394,7 @@ module.exports = {
             type: "category",
             label: "Packages",
             items: [
+                "packages/command-palette",
                 "packages/react-table",
                 {
                     type: "category",
@@ -515,11 +516,7 @@ module.exports = {
                     ],
                 },
                 "examples/antd-calendar-example",
-                {
-                    type: "category",
-                    label: "Command Palette",
-                    items: ["examples/command-palette/kbar"],
-                },
+                "examples/command-palette",
                 {
                     type: "category",
                     label: "Core",

@@ -1,5 +1,5 @@
 {
-  "version": "4.1.0",
+  "version": "4.2.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -23,11 +23,12 @@
   "module": "dist/esm/index.js",
   "peerDependencies": {
     "@pankod/refine-core": "^3.23.2",
+    "@tanstack/react-table": "^8.2.6",
     "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0",
-    "@tanstack/react-table": "^8.2.6"
+    "react-dom": "^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
+    "@pankod/refine-core": "^3.47.0",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "jest": "^27.5.1",
     "react-router-dom": "^6.0.0",
@@ -36,7 +37,6 @@
     "tsup": "^5.11.13"
   },
   "dependencies": {
-    "@pankod/refine-core": "^3.36.0",
     "@tanstack/react-table": "^8.2.6"
   },
   "repository": {

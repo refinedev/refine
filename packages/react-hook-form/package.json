@@ -1,5 +1,5 @@
 {
-  "version": "3.27.2",
+  "version": "3.28.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -28,6 +28,7 @@
     "react-hook-form": "^7.22.1"
   },
   "devDependencies": {
+    "@pankod/refine-core": "^3.47.0",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "jest": "^27.5.1",
     "react-router-dom": "^6.0.0",
@@ -36,7 +37,6 @@
     "tsup": "^5.11.13"
   },
   "dependencies": {
-    "@pankod/refine-core": "^3.25.0",
     "react-hook-form": "^7.30.0"
   },
   "repository": {
