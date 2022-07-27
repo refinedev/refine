@@ -2,10 +2,9 @@ import React from "react";
 import { Button, ButtonProps } from "antd";
 import { ExportOutlined } from "@ant-design/icons";
 import { useTranslate } from "@pankod/refine-core";
+import { RefineExportButtonProps } from "@pankod/refine-ui-types";
 
-export type ExportButtonProps = ButtonProps & {
-    hideText?: boolean;
-};
+export type ExportButtonProps = RefineExportButtonProps<ButtonProps>;
 
 /**
  * `<ExportButton>` is an Ant Design {@link https://ant.design/components/button/ `<Button>`} with a default export icon and a default text with "Export".
