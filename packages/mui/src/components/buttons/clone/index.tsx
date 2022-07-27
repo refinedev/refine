@@ -6,7 +6,10 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import { RefineCloneButtonProps } from "@pankod/refine-ui-types";
+import {
+    RefineCloneButtonProps,
+    RefineButtonTestIds,
+} from "@pankod/refine-ui-types";
 import { Button, ButtonProps, SvgIconProps } from "@mui/material";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 
@@ -87,6 +90,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                 }
                 title={disabledTitle()}
                 sx={{ minWidth: 0, ...sx }}
+                data-testid={RefineButtonTestIds.CloneButton}
                 {...restProps}
             >
                 {hideText ? (
