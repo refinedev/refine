@@ -1,25 +1,18 @@
 import React from "react";
 import { Button, ButtonProps } from "antd";
 import { RedoOutlined } from "@ant-design/icons";
-import {
-    useOne,
-    useTranslate,
-    MetaDataQuery,
-    BaseKey,
-    useResource,
-} from "@pankod/refine-core";
+import { useOne, useTranslate, useResource } from "@pankod/refine-core";
+import { RefineRefreshButtonProps } from "@pankod/refine-ui-types";
 
-export type RefreshButtonProps = ButtonProps & {
-    /**
-     * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/pankod/refine/issues/1618
-     */
-    resourceName?: string;
-    resourceNameOrRouteName?: string;
-    recordItemId?: BaseKey;
-    hideText?: boolean;
-    metaData?: MetaDataQuery;
-    dataProviderName?: string;
-};
+export type RefreshButtonProps = RefineRefreshButtonProps<
+    ButtonProps,
+    {
+        /**
+         * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/pankod/refine/issues/1618
+         */
+        resourceName?: string;
+    }
+>;
 
 /**
  * `<RefreshButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} component
