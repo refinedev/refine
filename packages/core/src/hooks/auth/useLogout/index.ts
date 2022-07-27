@@ -27,6 +27,7 @@ export const useLogout = <TVariables = void>(): UseMutationResult<
         logoutFromContext,
         {
             onSuccess: (redirectPathFromAuth) => {
+                console.log("success");
                 if (redirectPathFromAuth !== false) {
                     if (redirectPathFromAuth) {
                         push(redirectPathFromAuth);

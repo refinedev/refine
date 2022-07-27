@@ -1,6 +1,6 @@
 import React from "react";
 
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react";
 import { useImport, UseImportInputPropsType } from "@pankod/refine-core";
 
 import { render, TestWrapper, MockJSONServer, fireEvent, act } from "@test";

@@ -1,5 +1,5 @@
 import { act } from "react-dom/test-utils";
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
@@ -20,7 +20,7 @@ const customPagination = {
 
 describe("useTable Hook", () => {
     it("default", async () => {
-        const { result, waitFor } = renderHook(() => useTable(), {
+        const { result } = renderHook(() => useTable(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
                 resources: [{ name: "posts" }],
@@ -45,7 +45,7 @@ describe("useTable Hook", () => {
     });
 
     it("with initial pagination parameters", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     initialCurrent: customPagination.defaultCurrent,
@@ -71,7 +71,7 @@ describe("useTable Hook", () => {
     });
 
     it("with disabled pagination", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     hasPagination: false,
@@ -96,7 +96,7 @@ describe("useTable Hook", () => {
     });
 
     it("with custom resource", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     resource: "categories",
@@ -124,7 +124,7 @@ describe("useTable Hook", () => {
     });
 
     it("with syncWithLocation", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     resource: "categories",
@@ -153,7 +153,7 @@ describe("useTable Hook", () => {
     });
 
     it("should success data with resource", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     resource: "categories",

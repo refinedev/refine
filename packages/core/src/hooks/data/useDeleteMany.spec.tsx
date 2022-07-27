@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
@@ -6,21 +6,19 @@ import { useDeleteMany } from "./useDeleteMany";
 
 describe("useDeleteMany Hook", () => {
     it("should works with pessimistic update", async () => {
-        const { result, waitForNextUpdate, waitFor } = renderHook(
-            () => useDeleteMany(),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
-            },
-        );
+        const { result } = renderHook(() => useDeleteMany(), {
+            wrapper: TestWrapper({
+                dataProvider: MockJSONServer,
+                resources: [{ name: "posts" }],
+            }),
+        });
 
         result.current.mutate({
             resource: "posts",
             ids: ["1"],
         });
-        await waitForNextUpdate();
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        await act(() => {});
 
         await waitFor(() => {
             return result.current.isSuccess;
@@ -32,22 +30,20 @@ describe("useDeleteMany Hook", () => {
     });
 
     it("should works with optimistic update", async () => {
-        const { result, waitForNextUpdate, waitFor } = renderHook(
-            () => useDeleteMany(),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
-            },
-        );
+        const { result } = renderHook(() => useDeleteMany(), {
+            wrapper: TestWrapper({
+                dataProvider: MockJSONServer,
+                resources: [{ name: "posts" }],
+            }),
+        });
 
         result.current.mutate({
             resource: "posts",
             mutationMode: "optimistic",
             ids: ["1"],
         });
-        await waitForNextUpdate();
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        await act(() => {});
 
         await waitFor(() => {
             return result.current.isSuccess;
@@ -59,15 +55,12 @@ describe("useDeleteMany Hook", () => {
     });
 
     it("should works with undoable update", async () => {
-        const { result, waitForNextUpdate, waitFor } = renderHook(
-            () => useDeleteMany(),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
-            },
-        );
+        const { result } = renderHook(() => useDeleteMany(), {
+            wrapper: TestWrapper({
+                dataProvider: MockJSONServer,
+                resources: [{ name: "posts" }],
+            }),
+        });
 
         result.current.mutate({
             resource: "posts",
@@ -75,7 +68,8 @@ describe("useDeleteMany Hook", () => {
             undoableTimeout: 0,
             ids: ["1"],
         });
-        await waitForNextUpdate();
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        await act(() => {});
 
         await waitFor(() => {
             return result.current.isSuccess;
@@ -90,26 +84,24 @@ describe("useDeleteMany Hook", () => {
         it("publish live event on success", async () => {
             const onPublishMock = jest.fn();
 
-            const { result, waitForNextUpdate, waitFor } = renderHook(
-                () => useDeleteMany(),
-                {
-                    wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                        resources: [{ name: "posts" }],
-                        liveProvider: {
-                            unsubscribe: jest.fn(),
-                            subscribe: jest.fn(),
-                            publish: onPublishMock,
-                        },
-                    }),
-                },
-            );
+            const { result } = renderHook(() => useDeleteMany(), {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                    liveProvider: {
+                        unsubscribe: jest.fn(),
+                        subscribe: jest.fn(),
+                        publish: onPublishMock,
+                    },
+                }),
+            });
 
             result.current.mutate({
                 resource: "posts",
                 ids: ["1", "2"],
             });
-            await waitForNextUpdate();
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            await act(() => {});
 
             await waitFor(() => {
                 return result.current.isSuccess;

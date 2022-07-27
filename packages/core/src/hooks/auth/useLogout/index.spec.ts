@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 import ReactRouterDom from "react-router-dom";
 
 import { act, TestWrapper } from "@test";
@@ -27,7 +27,7 @@ describe("useLogout Hook", () => {
     });
 
     it("logout and redirect to login", async () => {
-        const { result, waitFor } = renderHook(() => useLogout(), {
+        const { result } = renderHook(() => useLogout(), {
             wrapper: TestWrapper({
                 authProvider: {
                     isProvided: true,
@@ -57,7 +57,7 @@ describe("useLogout Hook", () => {
     });
 
     it("logout and not redirect", async () => {
-        const { result, waitFor } = renderHook(() => useLogout(), {
+        const { result } = renderHook(() => useLogout(), {
             wrapper: TestWrapper({
                 authProvider: {
                     isProvided: true,
@@ -86,8 +86,8 @@ describe("useLogout Hook", () => {
         });
     });
 
-    it("logout and redirect to custom path", async () => {
-        const { result, waitFor } = renderHook(
+    fit("logout and redirect to custom path", async () => {
+        const { result } = renderHook(
             () => useLogout<{ redirectPath: string }>(),
             {
                 wrapper: TestWrapper({
@@ -111,8 +111,11 @@ describe("useLogout Hook", () => {
         await logout({ redirectPath: "/custom-path" });
 
         await waitFor(() => {
-            return !result.current?.isLoading;
+            return result.current?.status === "success";
         });
+
+        console.log({ a: result.current });
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
 
         await act(async () => {
             expect(mHistory).toBeCalledWith("/custom-path", undefined);
@@ -120,7 +123,7 @@ describe("useLogout Hook", () => {
     });
 
     it("logout rejected", async () => {
-        const { result, waitFor } = renderHook(() => useLogout(), {
+        const { result } = renderHook(() => useLogout(), {
             wrapper: TestWrapper({
                 authProvider: {
                     isProvided: true,
@@ -148,7 +151,7 @@ describe("useLogout Hook", () => {
     });
 
     it("logout rejected with undefined error", async () => {
-        const { result, waitFor } = renderHook(() => useLogout(), {
+        const { result } = renderHook(() => useLogout(), {
             wrapper: TestWrapper({
                 authProvider: {
                     isProvided: true,

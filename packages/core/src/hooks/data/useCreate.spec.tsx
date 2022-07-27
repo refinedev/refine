@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
@@ -6,19 +6,17 @@ import { useCreate } from "./useCreate";
 
 describe("useCreate Hook", () => {
     it("with rest json server", async () => {
-        const { result, waitForNextUpdate, waitFor } = renderHook(
-            () => useCreate(),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
-            },
-        );
+        const { result } = renderHook(() => useCreate(), {
+            wrapper: TestWrapper({
+                dataProvider: MockJSONServer,
+                resources: [{ name: "posts" }],
+            }),
+        });
 
         result.current.mutate({ resource: "posts", values: { id: 1 } });
 
-        await waitForNextUpdate();
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        await act(() => {});
 
         await waitFor(() => {
             return result.current.isSuccess;
@@ -34,24 +32,22 @@ describe("useCreate Hook", () => {
         it("publish live event on success", async () => {
             const onPublishMock = jest.fn();
 
-            const { result, waitForNextUpdate, waitFor } = renderHook(
-                () => useCreate(),
-                {
-                    wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                        resources: [{ name: "posts" }],
-                        liveProvider: {
-                            unsubscribe: jest.fn(),
-                            subscribe: jest.fn(),
-                            publish: onPublishMock,
-                        },
-                    }),
-                },
-            );
+            const { result } = renderHook(() => useCreate(), {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                    liveProvider: {
+                        unsubscribe: jest.fn(),
+                        subscribe: jest.fn(),
+                        publish: onPublishMock,
+                    },
+                }),
+            });
 
             result.current.mutate({ resource: "posts", values: { id: 1 } });
 
-            await waitForNextUpdate();
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            await act(() => {});
 
             await waitFor(() => {
                 return result.current.isSuccess;

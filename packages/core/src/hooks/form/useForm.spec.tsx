@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, act } from "@test";
 import { useForm } from "./useForm";
@@ -50,12 +50,9 @@ describe("useForm Hook", () => {
     });
 
     it("fetches data and puts in the form", async () => {
-        const { result, waitFor } = renderHook(
-            () => useForm({ resource: "posts" }),
-            {
-                wrapper: EditWrapperWithRoute,
-            },
-        );
+        const { result } = renderHook(() => useForm({ resource: "posts" }), {
+            wrapper: EditWrapperWithRoute,
+        });
 
         await waitFor(() => {
             return !result.current.formLoading;
@@ -89,7 +86,7 @@ describe("useForm Hook", () => {
     });
 
     it("correctly return id value from props", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useForm({
                     resource: "posts",
@@ -111,7 +108,7 @@ describe("useForm Hook", () => {
     });
 
     it("correctly return id value from route with custom resource", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useForm({
                     resource: "categories",
@@ -169,12 +166,9 @@ describe("useForm Hook", () => {
     });
 
     it("fetches data and puts in the form while cloning", async () => {
-        const { result, waitFor } = renderHook(
-            () => useForm({ resource: "posts" }),
-            {
-                wrapper: CloneWrapperWithRoute,
-            },
-        );
+        const { result } = renderHook(() => useForm({ resource: "posts" }), {
+            wrapper: CloneWrapperWithRoute,
+        });
 
         await waitFor(() => {
             return !result.current.formLoading;

@@ -1,7 +1,7 @@
 import React from "react";
 import { render, TestWrapper, MockJSONServer } from "@test";
 import { act, Simulate } from "react-dom/test-utils";
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react";
 
 import { ImportButton } from "./index";
 import { useImport } from "@hooks/import";

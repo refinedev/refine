@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 import ReactRouterDom from "react-router-dom";
 
 import { act, TestWrapper } from "@test";
@@ -25,7 +25,7 @@ describe("useCheckError Hook", () => {
     it("logout and redirect to login if check error rejected", async () => {
         const logoutMock = jest.fn();
 
-        const { result, waitFor } = renderHook(() => useCheckError(), {
+        const { result } = renderHook(() => useCheckError(), {
             wrapper: TestWrapper({
                 authProvider: {
                     isProvided: true,
@@ -52,7 +52,7 @@ describe("useCheckError Hook", () => {
     });
 
     it("logout and redirect to custom path if check error rejected", async () => {
-        const { result, waitFor } = renderHook(() => useCheckError(), {
+        const { result } = renderHook(() => useCheckError(), {
             wrapper: TestWrapper({
                 authProvider: {
                     isProvided: true,

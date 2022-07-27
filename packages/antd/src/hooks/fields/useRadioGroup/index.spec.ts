@@ -1,12 +1,12 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper } from "@test";
+import { TestWrapper } from "@test";
 
 import { useRadioGroup } from "./";
 
 describe("render hook default options", () => {
     it("should success data without default values", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useRadioGroup({
                     resource: "posts",
@@ -35,7 +35,7 @@ describe("render hook default options", () => {
     });
 
     it("should success data with resource with optionLabel and optionValue", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useRadioGroup<{ id: string; slug: string }>({
                     resource: "posts",
@@ -64,7 +64,7 @@ describe("render hook default options", () => {
     it("should invoke queryOptions methods successfully", async () => {
         const mockFunc = jest.fn();
 
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useRadioGroup<{ id: string; slug: string }>({
                     resource: "posts",

@@ -1,5 +1,5 @@
 import { TestWrapper, MockJSONServer } from "@test";
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react";
 import * as papaparse from "papaparse";
 
 import { useImport } from ".";

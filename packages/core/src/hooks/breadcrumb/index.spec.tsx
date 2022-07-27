@@ -1,5 +1,5 @@
 import React from "react";
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react";
 import { Route, Routes } from "react-router-dom";
 
 import { TestWrapper, ITestWrapperProps } from "@test";

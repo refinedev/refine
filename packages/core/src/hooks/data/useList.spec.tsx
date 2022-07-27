@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
@@ -15,15 +15,12 @@ const mockRefineProvider: IRefineContextProvider = {
 
 describe("useList Hook", () => {
     it("with rest json server", async () => {
-        const { result, waitFor } = renderHook(
-            () => useList({ resource: "posts" }),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
-            },
-        );
+        const { result } = renderHook(() => useList({ resource: "posts" }), {
+            wrapper: TestWrapper({
+                dataProvider: MockJSONServer,
+                resources: [{ name: "posts" }],
+            }),
+        });
 
         await waitFor(() => {
             return result.current.isSuccess;

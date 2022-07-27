@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react";
 
 import { TestWrapper } from "@test";
 import { posts } from "@test/dataMocks";
@@ -11,7 +11,7 @@ describe("useEditableTable Hook", () => {
         jest.spyOn(console, "error").mockImplementation(jest.fn());
     });
     it("fetches table and form data", async () => {
-        const { result, waitFor } = renderHook(() => useEditableTable(), {
+        const { result } = renderHook(() => useEditableTable(), {
             wrapper: TestWrapper({}),
         });
 

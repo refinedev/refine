@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { ColumnDef } from "@tanstack/react-table";
 
@@ -28,7 +28,7 @@ const columns: ColumnDef<Post>[] = [
 
 describe("useTable Hook", () => {
     it("It should work successfully with no properties", async () => {
-        const { result, waitFor } = renderHook(() => useTable({ columns }), {
+        const { result } = renderHook(() => useTable({ columns }), {
             wrapper: TestWrapper({}),
         });
 
@@ -51,7 +51,7 @@ describe("useTable Hook", () => {
     });
 
     it("It should work successfully with initialCurrent and initialPageSize", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     columns,
@@ -82,7 +82,7 @@ describe("useTable Hook", () => {
     });
 
     it("It should work successfully with initialFilter", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     columns,
@@ -153,7 +153,7 @@ describe("useTable Hook", () => {
     });
 
     it("It should work successfully with initialSorter", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     columns,
@@ -206,7 +206,7 @@ describe("useTable Hook", () => {
     });
 
     it("It should work successfully with initialFilter and permanentFilter", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     columns,
@@ -279,7 +279,7 @@ describe("useTable Hook", () => {
     });
 
     it("It should work successfully with initialSorter and permanentSorter", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     columns,

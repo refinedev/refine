@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { TestWrapper } from "@test";
 
@@ -6,7 +6,7 @@ import { useCan } from "./";
 
 describe("useCan Hook", () => {
     it("can should return the true ", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useCan({
                     action: "list",
@@ -43,7 +43,7 @@ describe("useCan Hook", () => {
     });
 
     it("can should return the false ", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useCan({
                     action: "list",

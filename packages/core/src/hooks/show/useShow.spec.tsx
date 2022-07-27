@@ -1,5 +1,5 @@
 import React from "react";
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 import { Route, Routes } from "react-router-dom";
 
 import { MockJSONServer, TestWrapper, act } from "@test";
@@ -24,7 +24,7 @@ const WrapperWithRoute: React.FC<{ children: React.ReactNode }> = ({
 );
 describe("useShow Hook", () => {
     it("should fetch data with use-query params succesfully", async () => {
-        const { result, waitFor } = renderHook(() => useShow(), {
+        const { result } = renderHook(() => useShow(), {
             wrapper: WrapperWithRoute,
         });
 
@@ -36,7 +36,7 @@ describe("useShow Hook", () => {
     });
 
     it("should fetch data with hook params succesfully", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () => useShow({ resource: "posts", id: "1" }),
             {
                 wrapper: WrapperWithRoute,
