@@ -15,10 +15,9 @@ describe("deleteOne", () => {
             id: "addr_01G8ZK866E4X9034N2XM35VZ8M",
         });
 
-        const shippingAddressesIds =
-            response.data.customer.shipping_addresses.map(
-                (address: any) => address["id"],
-            );
+        const shippingAddressesIds = response.data.customer[
+            "shipping_addresses"
+        ].map((address: any) => address["id"]);
 
         expect(shippingAddressesIds).not.toContain(
             "addr_01G8ZK866E4X9034N2XM35VZ8M",
