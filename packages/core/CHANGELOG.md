@@ -1,5 +1,41 @@
 # @pankod/refine-core
 
+## 3.49.0
+
+### Minor Changes
+
+-   [#2222](https://github.com/pankod/refine/pull/2222) [`43e92b9785`](https://github.com/pankod/refine/commit/43e92b97854a1aea703ba2c04f95dcd5c6f4044d) Thanks [@omeraplak](https://github.com/omeraplak)! - Pass the full `resource` to the `accessControlProvider` can method. This will enable Attribute Based Access Control (ABAC), for example granting permissions based on the value of a field in the resource object.
+
+    ```ts
+    const App: React.FC = () => {
+        <Refine
+            // other providers and props
+            accessControlProvider={{
+                can: async ({ resource, action, params }) => {
+                    if (resource === "posts" && action === "edit") {
+                        return Promise.resolve({
+                            can: false,
+                            reason: "Unauthorized",
+                        });
+                    }
+
+                    // or you can access directly *resource object
+                    // const resourceName = params?.resource?.name;
+                    // const anyUsefulOption = params?.resource?.options?.yourUsefulOption;
+                    // if (resourceName === "posts" && anyUsefulOption === true && action === "edit") {
+                    //     return Promise.resolve({
+                    //         can: false,
+                    //         reason: "Unauthorized",
+                    //     });
+                    // }
+
+                    return Promise.resolve({ can: true });
+                },
+            }}
+        />;
+    };
+    ```
+
 ## 3.48.0
 
 ### Minor Changes
