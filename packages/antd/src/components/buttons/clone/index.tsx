@@ -8,7 +8,10 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import { RefineCloneButtonProps } from "@pankod/refine-ui-types";
+import {
+    RefineCloneButtonProps,
+    RefineButtonTestIds,
+} from "@pankod/refine-ui-types";
 
 export type CloneButtonProps = RefineCloneButtonProps<
     ButtonProps,
@@ -84,6 +87,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                 icon={<PlusSquareOutlined />}
                 disabled={data?.can === false}
                 title={createButtonDisabledTitle()}
+                data-testid={RefineButtonTestIds.CloneButton}
                 {...rest}
             >
                 {!hideText && (children ?? translate("buttons.clone", "Clone"))}
