@@ -8,7 +8,10 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import { RefineCreateButtonProps } from "@pankod/refine-ui-types";
+import {
+    RefineCreateButtonProps,
+    RefineButtonTestIds,
+} from "@pankod/refine-ui-types";
 
 export type CreateButtonProps = RefineCreateButtonProps<
     ButtonProps,
@@ -82,6 +85,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                 icon={<PlusSquareOutlined />}
                 disabled={data?.can === false}
                 title={createButtonDisabledTitle()}
+                data-testid={RefineButtonTestIds.CreateButton}
                 {...rest}
             >
                 {!hideText &&
