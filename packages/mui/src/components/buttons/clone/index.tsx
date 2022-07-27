@@ -1,23 +1,21 @@
 import React from "react";
-
 import {
     useCan,
     useNavigation,
     useTranslate,
-    BaseKey,
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
+import { RefineCloneButtonProps } from "@pankod/refine-ui-types";
 import { Button, ButtonProps, SvgIconProps } from "@mui/material";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 
-export type CloneButtonProps = ButtonProps & {
-    resourceNameOrRouteName?: string;
-    recordItemId?: BaseKey;
-    hideText?: boolean;
-    ignoreAccessControlProvider?: boolean;
-    svgIconProps?: SvgIconProps;
-};
+export type CloneButtonProps = RefineCloneButtonProps<
+    ButtonProps,
+    {
+        svgIconProps?: SvgIconProps;
+    }
+>;
 
 /**
  * `<CloneButton>` uses Material UI {@link https://mui.com/components/buttons/ `<Button> component`}.
