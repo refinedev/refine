@@ -6,7 +6,10 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import { RefineCreateButtonProps } from "@pankod/refine-ui-types";
+import {
+    RefineCreateButtonProps,
+    RefineButtonTestIds,
+} from "@pankod/refine-ui-types";
 import { Button, ButtonProps, SvgIconProps } from "@mui/material";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 
@@ -84,6 +87,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                 title={disabledTitle()}
                 variant="contained"
                 sx={{ minWidth: 0, ...sx }}
+                data-testid={RefineButtonTestIds.CreateButton}
                 {...restProps}
             >
                 {hideText ? (
