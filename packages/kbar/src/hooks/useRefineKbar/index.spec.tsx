@@ -467,7 +467,7 @@ describe("useRefineKbar Hook", () => {
                 ["/posts/show/2"],
                 {
                     can: ({ params }) => {
-                        if (params.id === "1") {
+                        if (params?.id === "1") {
                             return Promise.resolve({ can: true });
                         }
                         return Promise.resolve({ can: false });
@@ -532,7 +532,7 @@ describe("useRefineKbar Hook", () => {
                 ["/posts/edit/1"],
                 {
                     can: ({ params }) => {
-                        if (params.id === "1") {
+                        if (params?.id === "1") {
                             return Promise.resolve({ can: true });
                         }
                         return Promise.resolve({ can: false });
@@ -621,7 +621,7 @@ describe("useRefineKbar Hook", () => {
                 ["/posts/edit/2"],
                 {
                     can: ({ params }) => {
-                        if (params.id === "1") {
+                        if (params?.id === "1") {
                             return Promise.resolve({ can: true });
                         }
                         return Promise.resolve({ can: false });

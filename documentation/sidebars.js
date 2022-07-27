@@ -502,7 +502,6 @@ module.exports = {
                     items: [
                         "examples/access-control/casbin",
                         "examples/access-control/cerbos",
-                        "examples/access-control/permify",
                     ],
                 },
                 "examples/authorization",

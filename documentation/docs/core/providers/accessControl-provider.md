@@ -16,7 +16,11 @@ An `accessControlProvider` must implement only one async method named `can` to b
 type CanParams = {
     resource: string;
     action: string;
-    params?: any;
+    params?: {
+        resource?: IResourceItem;
+        id?: BaseKey;
+        [key: string]: any;
+    };
 };
 
 type CanReturnType = {
@@ -28,6 +32,7 @@ const accessControlProvider = {
     can: ({ resource, action, params }: CanParams) => Promise<CanReturnType>;
 }
 ```
+> `*`: Too see &#8594 [`IResourceItem`][iresourceitem], [`BaseKey`][basekey], [`CanParams`][canparams], [`CanReturnType`][canreturntype]
 
 ## Usage
 
@@ -46,12 +51,23 @@ const App: React.FC = () => {
                     });
                 }
 
+                // or you can access directly *resource object
+                // const resourceName = params?.resource?.name;
+                // const anyUsefulOption = params?.resource?.options?.yourUsefulOption;
+                // if (resourceName === "posts" && anyUsefulOption === true && action === "edit") {
+                //     return Promise.resolve({
+                //         can: false,
+                //         reason: "Unauthorized",
+                //     });
+                // }
+
                 return Promise.resolve({ can: true });
             },
         }}
     />;
 };
 ```
+> `*resource`:  &#8594 It returns the resource ([ResourceItemProps][iresourceitem]) object you gave to `<Refine />` component. This will enable Attribute Based Access Control (ABAC), for example granting permissions based on the value of a field in the resource object.
 
 :::tip
 You can pass a `reason` along with `can`. It will be accessible using `useCan`. It will be shown at the tooltip of the buttons from **refine** when they are disabled.
@@ -62,7 +78,6 @@ You can find access control examples made with **refine**
 
 -   **Casbin** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/casbin) - [Demo](https://stackblitz.com/github/pankod/refine/tree/master/examples/accessControl/casbin/?preset=node)
 -   **Cerbos** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/cerbos) - [Demo](https://stackblitz.com/github/pankod/refine/tree/master/examples/accessControl/cerbos/?preset=node)
--   **Permify** &#8594 [Source Code](https://github.com/Permify/permify-refine) - [Demo](https://stackblitz.io/github/Permify/permify-refine/?preset=node)
 
 :::
 
@@ -140,13 +155,15 @@ const { data } = useCan({
 They will check access control with parameters:
 
 -   dashboard (`/`): `{ resource: "dashboard", action: "list" }`
--   list (e.g. `/posts`): `{ resource: "posts", action: "list" }`
--   create (e.g. `/posts/create`): `{ resource: "posts", action: "create" }`
--   clone (e.g. `/posts/clone/1`): `{ resource: "posts", action: "create", params: { id :1 } }`
--   edit (e.g. `/posts/edit/1`): `{ resource: "posts", action: "edit", params: { id :1 } }`
--   show (e.g. `/posts/show/1`): `{ resource: "posts", action: "show", params: { id :1 } }`
+-   list (e.g. `/posts`): `{ resource: "posts", action: "list", params: { *resource } }`
+-   create (e.g. `/posts/create`): `{ resource: "posts", action: "create", params: { *resource } }`
+-   clone (e.g. `/posts/clone/1`): `{ resource: "posts", action: "create", params: { id: 1, *resource }}`
+-   edit (e.g. `/posts/edit/1`): `{ resource: "posts", action: "edit", params: { id: 1, *resource } }`
+-   show (e.g. `/posts/show/1`): `{ resource: "posts", action: "show", params: { id: 1, *resource } }`
 
 In case access control returns `false` they will show [`cathcAll`][catchall] if provided or a standard error page otherwise.
+
+> `*resource`:  &#8594 It returns the resource ([ResourceItemProps][iresourceitem]) object you gave to `<Refine />` component. This will enable Attribute Based Access Control (ABAC), for example granting permissions based on the value of a field in the resource object.
 
 ### Sider
 
@@ -161,14 +178,17 @@ For example if your app has resource `posts` it will be checked with `{ resource
 These buttons will check for access control.
 Let's say these buttons are rendered where `resource` is `posts` and `id` is `1` where applicable.
 
--   [**List**](/ui-frameworks/antd/components/buttons/list.md): `{ resource: "posts, action: "list" }`
--   [**Create**](/ui-frameworks/antd/components/buttons/create.md): `{ resource: "posts, action: "create" }`
--   [**Clone**](/ui-frameworks/antd/components/buttons/clone.md): `{ resource: "posts, action: "create", params: { id: 1 } }`
--   [**Edit**](/ui-frameworks/antd/components/buttons/edit.md): `{ resource: "posts, action: "edit", params: { id: 1 } }`
--   [**Delete**](/ui-frameworks/antd/components/buttons/delete.md): `{ resource: "posts, action: "delete", params: { id: 1 } }`
--   [**Show**](/ui-frameworks/antd/components/buttons/show.md): `{ resource: "posts, action: "show", params: { id: 1 } }`
+-   [**List**](/ui-frameworks/antd/components/buttons/list.md): `{ resource: "posts", action: "list", params: { *resource } }`
+-   [**Create**](/ui-frameworks/antd/components/buttons/create.md): `{ resource: "posts", action: "create", params: { *resource } }`
+-   [**Clone**](/ui-frameworks/antd/components/buttons/clone.md): `{ resource: "posts", action: "create", params: { id: 1, *resource } }`
+-   [**Edit**](/ui-frameworks/antd/components/buttons/edit.md): `{ resource: "posts", action: "edit", params: { id: 1, *resource } }`
+-   [**Delete**](/ui-frameworks/antd/components/buttons/delete.md): `{ resource: "posts, action: "delete", params: { id: 1, *resource } }`
+-   [**Show**](/ui-frameworks/antd/components/buttons/show.md): `{ resource: "posts", action: "show", params: { id: 1, *resource } }`
+
+> `*resource`:  &#8594 It returns the resource ([ResourceItemProps][iresourceitem]) object you gave to `<Refine />` component. This will enable Attribute Based Access Control (ABAC), for example granting permissions based on the value of a field in the resource object.
 
 These buttons will be disabled if access control returns `{ can: false }`
+
 
 ## Live StackBlitz Example
 
@@ -184,3 +204,7 @@ These buttons will be disabled if access control returns `{ can: false }`
 [reactlocation]: https://www.npmjs.com/package/@pankod/refine-react-location
 [catchall]: /core/components/refine-config.md#catchall
 [listbtn]: /ui-frameworks/antd/components/buttons/list.md
+[iresourceitem]: /core/interfaces.md#resourceitemprops
+[basekey]: /core/interfaces.md#basekey
+[canparams]: /core/interfaces.md#canparams
+[canreturntype]: /core/interfaces.md#canreturntype

@@ -53,6 +53,9 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                         resource="dashboard"
                         action="list"
                         fallback={catchAll ?? <ErrorComponent />}
+                        params={{
+                            resource,
+                        }}
                     >
                         <DashboardPage />
                     </CanAccess>
@@ -91,6 +94,9 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                             resource={name}
                             action="list"
                             fallback={catchAll ?? <ErrorComponent />}
+                            params={{
+                                resource,
+                            }}
                         >
                             <List
                                 name={name}
@@ -113,6 +119,9 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                             resource={name}
                             action="create"
                             fallback={catchAll ?? <ErrorComponent />}
+                            params={{
+                                resource,
+                            }}
                         >
                             <Create
                                 name={name}
@@ -133,7 +142,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                         <CanAccess
                             resource={name}
                             action="edit"
-                            params={{ id }}
+                            params={{ id, resource }}
                             fallback={catchAll ?? <ErrorComponent />}
                         >
                             <Edit
@@ -155,7 +164,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                         <CanAccess
                             resource={name}
                             action="show"
-                            params={{ id }}
+                            params={{ id, resource }}
                             fallback={catchAll ?? <ErrorComponent />}
                         >
                             <Show
