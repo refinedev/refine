@@ -157,7 +157,7 @@ const DataProvider = (
     },
 
     getOne: async ({ resource, id }) => {
-        const { data } = await httpClient.get(`/${resource}/${id}`);
+        const { data } = await httpClient.get(`${apiUrl}/${resource}/${id}`);
 
         return {
             data,
