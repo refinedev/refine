@@ -5,6 +5,7 @@
 Added `useCustomMutation`hook for custom mutation requests.
 
 ```tsx
+import { useCustomMutation } from "@pankod/refine-core";
 const { mutation } = useCustomMutation();
 
 mutation({
