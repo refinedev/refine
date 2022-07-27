@@ -1,4 +1,4 @@
-import { useMutation, UseMutationResult, useQueryClient } from "react-query";
+import { useMutation, UseMutationResult } from "react-query";
 import pluralize from "pluralize";
 
 import {
@@ -97,7 +97,12 @@ export const useCreate = <
             ) => {
                 const resourceSingular = pluralize.singular(resource);
 
-                handleNotification(successNotificationFromProp, {
+                const notificationConfig =
+                    typeof successNotificationFromProp === "function"
+                        ? successNotificationFromProp(data, values, resource)
+                        : successNotificationFromProp;
+
+                handleNotification(notificationConfig, {
                     key: `create-${resource}-notification`,
                     message: translate(
                         "notifications.createSuccess",
@@ -144,12 +149,21 @@ export const useCreate = <
             },
             onError: (
                 err: TError,
-                { resource, errorNotification: errorNotificationFromProp },
+                {
+                    resource,
+                    errorNotification: errorNotificationFromProp,
+                    values,
+                },
             ) => {
                 checkError(err);
                 const resourceSingular = pluralize.singular(resource);
 
-                handleNotification(errorNotificationFromProp, {
+                const notificationConfig =
+                    typeof errorNotificationFromProp === "function"
+                        ? errorNotificationFromProp(err, values, resource)
+                        : errorNotificationFromProp;
+
+                handleNotification(notificationConfig, {
                     key: `create-${resource}-notification`,
                     description: err.message,
                     message: translate(

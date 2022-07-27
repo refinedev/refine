@@ -1035,6 +1035,10 @@
         {
             "from": "/docs/ui-frameworks/antd/hooks/resource/useMenu/",
             "to": "/docs/core/hooks/ui/useMenu/"
+        },
+        {
+            "from": "/docs/examples/command-palette/kbar/",
+            "to": "/docs/examples/command-palette/"
         }
     ]
 }

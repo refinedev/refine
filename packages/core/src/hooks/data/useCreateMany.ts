@@ -84,11 +84,17 @@ export const useCreateMany = <
                     successNotification,
                     dataProviderName,
                     invalidates = ["list", "many"],
+                    values,
                 },
             ) => {
                 const resourcePlural = pluralize.plural(resource);
 
-                handleNotification(successNotification, {
+                const notificationConfig =
+                    typeof successNotification === "function"
+                        ? successNotification(response, values, resource)
+                        : successNotification;
+
+                handleNotification(notificationConfig, {
                     key: `createMany-${resource}-notification`,
                     message: translate(
                         "notifications.createSuccess",
@@ -123,8 +129,13 @@ export const useCreateMany = <
                     date: new Date(),
                 });
             },
-            onError: (err: TError, { resource, errorNotification }) => {
-                handleNotification(errorNotification, {
+            onError: (err: TError, { resource, errorNotification, values }) => {
+                const notificationConfig =
+                    typeof errorNotification === "function"
+                        ? errorNotification(err, values, resource)
+                        : errorNotification;
+
+                handleNotification(notificationConfig, {
                     key: `createMany-${resource}-notification`,
                     description: err.message,
                     message: translate(

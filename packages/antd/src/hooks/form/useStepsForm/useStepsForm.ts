@@ -49,6 +49,7 @@ export const useStepsForm = <
     const { form, formProps } = useFormProps;
 
     const stepsPropsSunflower = useStepsFormSF<TData, TVariables>({
+        isBackValidate: false,
         ...props,
         form: form,
         submit: (values: any) => {

@@ -95,7 +95,8 @@ export const PostList: React.FC = () => {
                 },
             },
         ],
-        [],
+        // highlight-next-line
+        [categoriesData, isLoading],
     );
 
     return (

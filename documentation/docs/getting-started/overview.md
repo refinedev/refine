@@ -92,7 +92,6 @@ npx superplate-cli -p refine-react tutorial
 
 Follow the _CLI wizard_ to select options and start creating your project.
 
-
 <details><summary>Select the following options to complete the _CLI wizard_:</summary>
 <p>
 
@@ -119,6 +118,9 @@ Follow the _CLI wizard_ to select options and start creating your project.
 ❯ No
 
 ? Do you want a customized layout?:
+❯ No
+
+? Do you want to add Kbar command pallete?:
 ❯ No
 
 ? i18n - Internationalization:
@@ -192,7 +194,9 @@ export const PostList: React.FC = () => {
                 <Table.Column
                     dataIndex="createdAt"
                     title="createdAt"
-                    render={(value: string) => <DateField format="LLL" value={value} />}
+                    render={(value: string) => (
+                        <DateField format="LLL" value={value} />
+                    )}
                 />
             </Table>
         </List>

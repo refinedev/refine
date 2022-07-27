@@ -9,7 +9,7 @@ This guide will help you learn and get information of basic **refine** concepts.
 
 **refine** has a very friendly community, we are always happy to help you get started:
 
--   [Join the Discord Community](https://discord.com/invite/UuU3XCc3J5) – it is the easiest way to get help, all questions are usually answered in about 30 minutes.
+-   [Join the Discord Community](https://discord.gg/refine) – it is the easiest way to get help, all questions are usually answered in about 30 minutes.
 -   [GitHub Discussions](https://github.com/pankod/refine/discussions) – ask anything about the project or give feedback.
 
 ## Refine Packages
@@ -48,6 +48,10 @@ This guide will help you learn and get information of basic **refine** concepts.
 
 -   `@pankod/refine-ably` - [Ably](https://ably.com/) Live/Realtime Provider
 
+**Other Packages**
+
+-   `@pankod/refine-kbar` - [kbar](https://kbar.vercel.app/) integration for `command`/`crtrl`+`k` interface for your Refine App.
+
 **❤️ Community Packages:**
 
 -   [`refine-firebase`](https://github.com/rturan29/refine-firebase) - a fully featured [Firebase](https://firebase.google.com/) Data Provider by [rturan29](https://github.com/rturan29)
@@ -82,6 +86,16 @@ This guide will help you learn and get information of basic **refine** concepts.
 -   Internal Issue Tracker With Refine and Supabase - [Blog Post](https://refine.dev/blog/customizable-issue-tracker-with-refine-and-supabase/) - [Live Example](https://stackblitz.com/github/pankod/refine/tree/master/examples/blog/issueTracker/?preset=node) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/issueTracker)
 -   Next.js E-commerce App with Strapi & Chakra UI & Refine - [Blog Post](https://refine.dev/blog/handcrafted-nextjs-e-commerce-app-tutorial-strapi-chakra-ui/) - [Live Example](https://stackblitz.com/github/pankod/refine/tree/master/examples/blog/ecommerce/?preset=node) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/ecommerce)
 -   Multi-tenancy Example - [Appwrite Guide](https://refine.dev/docs/guides-and-concepts/multi-tenancy/appwrite/) - [Strapi Guide](https://refine.dev/docs/guides-and-concepts/multi-tenancy/strapi-v4/)
+
+## Become a Refine guest technical writer
+
+We are looking for guest technical writers to publish posts about React and front-end ecosystem technologies.
+
+ The focus of these posts should be on React and front-end ecosystem technologies. 
+
+ [If you are interested in writing for us, please check this post for detailed information &#8594](https://refine.dev/blog/refine-writer-program/)
+
+ Thanks for considering being a part of our blog!
 
 ## Roadmap
 

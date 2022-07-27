@@ -21,7 +21,9 @@ export const ProductCategoryFilter: React.FC<ProductItemProps> = ({
     );
 
     useEffect(() => {
-        onChange?.(filterCategories);
+        if (filterCategories.length > 0) {
+            onChange?.(filterCategories);
+        }
     }, [filterCategories]);
 
     const { data: categoryData, isLoading: categoryIsLoading } =
@@ -48,6 +50,8 @@ export const ProductCategoryFilter: React.FC<ProductItemProps> = ({
 
             setFilterCategories(copyFilterCategories);
         }
+
+        onChange?.(filterCategories);
     };
 
     if (categoryIsLoading) {
@@ -59,7 +63,10 @@ export const ProductCategoryFilter: React.FC<ProductItemProps> = ({
             <Button
                 shape="round"
                 type={filterCategories.length === 0 ? "primary" : "default"}
-                onClick={() => setFilterCategories([])}
+                onClick={() => {
+                    setFilterCategories([]);
+                    onChange?.([]);
+                }}
             >
                 {t("stores.all")}
             </Button>

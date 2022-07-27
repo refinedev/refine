@@ -292,10 +292,18 @@ export const useUpdateMany = <
                     payload: { id: ids, resource },
                 });
             },
-            onSuccess: (data, { ids, resource, successNotification }) => {
+            onSuccess: (
+                data,
+                { ids, resource, successNotification, values },
+            ) => {
                 const resourceSingular = pluralize.singular(resource);
 
-                handleNotification(successNotification, {
+                const notificationConfig =
+                    typeof successNotification === "function"
+                        ? successNotification(data, { ids, values }, resource)
+                        : successNotification;
+
+                handleNotification(notificationConfig, {
                     key: `${ids}-${resource}-notification`,
                     description: translate(
                         "notifications.success",
@@ -325,7 +333,7 @@ export const useUpdateMany = <
             },
             onError: (
                 err: TError,
-                { ids, resource, errorNotification },
+                { ids, resource, errorNotification, values },
                 context,
             ) => {
                 // set back the queries to the context:
@@ -340,7 +348,12 @@ export const useUpdateMany = <
 
                     const resourceSingular = pluralize.singular(resource);
 
-                    handleNotification(errorNotification, {
+                    const notificationConfig =
+                        typeof errorNotification === "function"
+                            ? errorNotification(err, { ids, values }, resource)
+                            : errorNotification;
+
+                    handleNotification(notificationConfig, {
                         key: `${ids}-${resource}-updateMany-error-notification`,
                         message: translate(
                             "notifications.editError",
