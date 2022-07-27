@@ -7,6 +7,7 @@ export type RefineCrudCommonProps<
     TExtraProps extends {} = {},
 > = {
     title?: string;
+    goBack?: React.ReactNode;
     resource?: string;
     wrapperProps?: TWrapperProps;
     headerProps?: THeaderProps;
