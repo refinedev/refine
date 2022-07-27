@@ -2,11 +2,11 @@ import React from "react";
 import { Button, ButtonProps, Upload, UploadProps } from "antd";
 import { ImportOutlined } from "@ant-design/icons";
 import { useTranslate } from "@pankod/refine-core";
+import { RefineImportButtonProps } from "@pankod/refine-ui-types";
 
-export type ImportButtonProps = {
+export type ImportButtonProps = RefineImportButtonProps & {
     uploadProps: UploadProps;
     buttonProps: ButtonProps;
-    hideText?: boolean;
 };
 
 /**
