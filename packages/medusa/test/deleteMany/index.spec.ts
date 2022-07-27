@@ -18,8 +18,6 @@ describe("deleteMany", () => {
         const shippingAddresses =
             response.data[0]["customer"]["shipping_addresses"];
 
-        console.log(`shippingAddresses`, shippingAddresses);
-
         expect(shippingAddresses).toEqual([]);
     });
 });
