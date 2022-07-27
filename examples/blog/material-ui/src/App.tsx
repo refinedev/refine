@@ -8,6 +8,7 @@ import {
     ThemeProvider,
     LightTheme,
     ReadyPage,
+    LoginPage,
     ErrorComponent,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -26,6 +27,7 @@ function App() {
                 <Refine
                     notificationProvider={notificationProvider}
                     Layout={Layout}
+                    LoginPage={LoginPage}
                     ReadyPage={ReadyPage}
                     catchAll={<ErrorComponent />}
                     routerProvider={routerProvider}
