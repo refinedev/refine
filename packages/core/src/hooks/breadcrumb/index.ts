@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import humanizeString from "humanize-string";
+import warnOnce from "warn-once";
 
 import { useResource, useRouterContext, useTranslate } from "@hooks";
 import { TranslationContext } from "@contexts/translation";
@@ -76,8 +77,9 @@ export const useBreadcrumb = (): UseBreadcrumbReturnType => {
         const key = `actions.${action}`;
         const actionLabel = translate(key);
         if (typeof i18nProvider !== "undefined" && actionLabel === key) {
-            console.warn(
-                `Breadcrumb missing translate key for the "${action}" action. Please add "actions.${action}" key to your translation file. For more information, see https://refine.dev/docs/core/hooks/useBreadcrumb/#i18n-support`,
+            warnOnce(
+                true,
+                `[useBreadcrumb]: Breadcrumb missing translate key for the "${action}" action. Please add "actions.${action}" key to your translation file.\nFor more information, see https://refine.dev/docs/core/hooks/useBreadcrumb/#i18n-support`,
             );
             breadcrumbs.push({
                 label: translate(`buttons.${action}`, humanizeString(action)),

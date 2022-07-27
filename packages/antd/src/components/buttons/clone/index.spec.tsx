@@ -88,7 +88,7 @@ describe("Clone Button", () => {
                 wrapper: TestWrapper({
                     accessControlProvider: {
                         can: ({ params }) => {
-                            if (params.id === "1") {
+                            if (params?.id === "1") {
                                 return Promise.resolve({ can: false });
                             }
                             return Promise.resolve({ can: false });
