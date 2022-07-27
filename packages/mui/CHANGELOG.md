@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 3.39.2
+
+### Patch Changes
+
+-   Updated `console.warn`'s to trigger once.
+
 ## 3.39.1
 
 ### Patch Changes

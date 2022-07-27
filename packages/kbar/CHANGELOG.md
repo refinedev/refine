@@ -1,5 +1,77 @@
 # @pankod/refine-kbar
 
+## 0.6.0
+
+### Minor Changes
+
+-   Pass the full `resource` to the `accessControlProvider` can method. This will enable Attribute Based Access Control (ABAC), for example granting permissions based on the value of a field in the resource object.
+
+    ```ts
+    const App: React.FC = () => {
+        <Refine
+            // other providers and props
+            accessControlProvider={{
+                can: async ({ resource, action, params }) => {
+                    if (resource === "posts" && action === "edit") {
+                        return Promise.resolve({
+                            can: false,
+                            reason: "Unauthorized",
+                        });
+                    }
+
+                    // or you can access directly *resource object
+                    // const resourceName = params?.resource?.name;
+                    // const anyUsefulOption = params?.resource?.options?.yourUsefulOption;
+                    // if (resourceName === "posts" && anyUsefulOption === true && action === "edit") {
+                    //     return Promise.resolve({
+                    //         can: false,
+                    //         reason: "Unauthorized",
+                    //     });
+                    // }
+
+                    return Promise.resolve({ can: true });
+                },
+            }}
+        />;
+    };
+    ```
+
+## 0.5.0
+
+### Minor Changes
+
+-   [`e78b181b12`](https://github.com/pankod/refine/commit/e78b181b12adb35e516c19b5382a211e10476add) Thanks [@omeraplak](https://github.com/omeraplak)! - Pass the full `resource` to the `accessControlProvider` can method. This will enable Attribute Based Access Control (ABAC), for example granting permissions based on the value of a field in the resource object.
+
+    ```ts
+    const App: React.FC = () => {
+        <Refine
+            // other providers and props
+            accessControlProvider={{
+                can: async ({ resource, action, params }) => {
+                    if (resource === "posts" && action === "edit") {
+                        return Promise.resolve({
+                            can: false,
+                            reason: "Unauthorized",
+                        });
+                    }
+
+                    // or you can access directly *resource object
+                    // const resourceName = params?.resource?.name;
+                    // const anyUsefulOption = params?.resource?.options?.yourUsefulOption;
+                    // if (resourceName === "posts" && anyUsefulOption === true && action === "edit") {
+                    //     return Promise.resolve({
+                    //         can: false,
+                    //         reason: "Unauthorized",
+                    //     });
+                    // }
+
+                    return Promise.resolve({ can: true });
+                },
+            }}
+        />;
+    };
+    ```
+
 ## 0.4.0
 
 ### Minor Changes

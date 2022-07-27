@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 3.33.2
+
+### Patch Changes
+
+-   Updated `console.warn`'s to trigger once.
+
 ## 3.33.1
 
 ### Patch Changes
