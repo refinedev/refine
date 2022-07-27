@@ -29,8 +29,8 @@ Steps we'll cover includes:
 
 - [Introduction](#introduction)
 - [Prerequisities](#prerequisities)
-- [What are the benefits of using Refine?](#what-are-the-benefits-of-using-refine)
-- [Bootstrapping the Refine app](#bootstrapping-the-refine-app)
+- [What are the benefits of using refine?](#what-are-the-benefits-of-using-refine)
+- [Bootstrapping the refine app](#bootstrapping-the-refine-app)
   - [Implementing Strapi v4 data provider](#implementing-strapi-v4-data-provider)
 - [CRUD operations](#crud-operations)
   - [Listing records](#listing-records)
@@ -47,16 +47,16 @@ Steps we'll cover includes:
 
 ## Prerequisities
 Before we dive into the meat of the article, let's first take a look at the tools documents we'll be using. 
-- [Refine](https://refine.dev/docs/getting-started/overview/)
-- [Refine StrapiV4 data provider ](https://refine.dev/docs/examples/data-provider/strapi-v4/)
+- [refine](https://refine.dev/docs/getting-started/overview/)
+- [refine StrapiV4 data provider ](https://refine.dev/docs/examples/data-provider/strapi-v4/)
 - [Material UI](https://mui.com/material-ui/getting-started/overview/)
-- [Refine Material UI Tutorial](https://refine.dev/docs/ui-frameworks/mui/tutorial/)
+- [refine Material UI Tutorial](https://refine.dev/docs/ui-frameworks/mui/tutorial/)
 
 Your node version need to be mininum `v16.14.0`
 
-##  What are the benefits of using Refine?
+##  What are the benefits of using refine?
 
-Refine is a headless React internal tool framework that helps you develop quickly while developing both B2B and B2C applications. It speeds you up while allowing full customization, making it an ideal choice for rapid development with pro features.
+refine is a headless React internal tool framework that helps you develop quickly while developing both B2B and B2C applications. It speeds you up while allowing full customization, making it an ideal choice for rapid development with pro features.
 
 -   It is Open Source under the MIT license.
 -   It is easy to use and learn. There are many examples to help you get started, as well as documentation.
@@ -67,8 +67,8 @@ Refine is a headless React internal tool framework that helps you develop quickl
 -   Some of the main features are data fetching and state management, routings, authentication, authorization, internationalization, real-time, mutation modes with optimistic and pessimistic and undoable modes
 
 
-## Bootstrapping the Refine app
-We'll use [superplate](https://github.com/pankod/superplate) CLI wizard to create and customize Refine application.
+## Bootstrapping the refine app
+We'll use [superplate](https://github.com/pankod/superplate) CLI wizard to create and customize refine application.
 
 Run the following command
 ```
