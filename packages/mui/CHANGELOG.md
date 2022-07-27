@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 3.39.1
+
+### Patch Changes
+
+-   [#2223](https://github.com/pankod/refine/pull/2223) [`0a215f2000`](https://github.com/pankod/refine/commit/0a215f2000b4069618e42efda48b8864b38129fd) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Updated `console.warn`'s to trigger once.
+
 ## 3.39.0
 
 ### Minor Changes
