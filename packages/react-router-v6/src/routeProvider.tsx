@@ -50,6 +50,9 @@ const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
                             resource={name}
                             action="list"
                             fallback={catchAll ?? <ErrorComponent />}
+                            params={{
+                                resource,
+                            }}
                         >
                             {!list ? (
                                 catchAll ?? <ErrorComponent />
@@ -74,6 +77,7 @@ const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
                             fallback={catchAll ?? <ErrorComponent />}
                             params={{
                                 id: id ? decodeURIComponent(id) : undefined,
+                                resource,
                             }}
                         >
                             {!create ? (
@@ -98,6 +102,7 @@ const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
                             action="edit"
                             params={{
                                 id: id ? decodeURIComponent(id) : undefined,
+                                resource,
                             }}
                             fallback={catchAll ?? <ErrorComponent />}
                         >
@@ -123,6 +128,7 @@ const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
                             action="show"
                             params={{
                                 id: id ? decodeURIComponent(id) : undefined,
+                                resource,
                             }}
                             fallback={catchAll ?? <ErrorComponent />}
                         >
