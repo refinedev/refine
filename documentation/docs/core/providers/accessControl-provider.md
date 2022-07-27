@@ -32,7 +32,7 @@ const accessControlProvider = {
     can: ({ resource, action, params }: CanParams) => Promise<CanReturnType>;
 }
 ```
-> `*`: Too see &#8594 [`IResourceItem`][iresourceitem], [`BaseKey`](/core/interfaces.md#basekey)
+> `*`: Too see &#8594 [`IResourceItem`][iresourceitem], [`BaseKey`][basekey], [`CanParams`][canparams], [`CanReturnType`][canreturntype]
 
 ## Usage
 
@@ -67,7 +67,7 @@ const App: React.FC = () => {
     />;
 };
 ```
-> `*resource`:  &#8594 It returns all the resource ([ResourceItemProps][iresourceitem]) object you gave to `<Refine />` component. This will enable Attribute Based Access Control (ABAC), for example granting permissions based on the value of a field in the resource object.
+> `*resource`:  &#8594 It returns the resource ([ResourceItemProps][iresourceitem]) object you gave to `<Refine />` component. This will enable Attribute Based Access Control (ABAC), for example granting permissions based on the value of a field in the resource object.
 
 :::tip
 You can pass a `reason` along with `can`. It will be accessible using `useCan`. It will be shown at the tooltip of the buttons from **refine** when they are disabled.
@@ -164,7 +164,7 @@ They will check access control with parameters:
 
 In case access control returns `false` they will show [`cathcAll`][catchall] if provided or a standard error page otherwise.
 
-> `*resource`:  &#8594 It returns all the resource ([ResourceItemProps][iresourceitem]) object you gave to `<Refine />` component. This will enable Attribute Based Access Control (ABAC), for example granting permissions based on the value of a field in the resource object.
+> `*resource`:  &#8594 It returns the resource ([ResourceItemProps][iresourceitem]) object you gave to `<Refine />` component. This will enable Attribute Based Access Control (ABAC), for example granting permissions based on the value of a field in the resource object.
 
 ### Sider
 
@@ -186,7 +186,7 @@ Let's say these buttons are rendered where `resource` is `posts` and `id` is `1`
 -   [**Delete**](/ui-frameworks/antd/components/buttons/delete.md): `{ resource: "posts, action: "delete", params: { id: 1, *resource } }`
 -   [**Show**](/ui-frameworks/antd/components/buttons/show.md): `{ resource: "posts", action: "show", params: { id: 1, *resource } }`
 
-> `*resource`:  &#8594 It returns all the resource ([ResourceItemProps][iresourceitem]) object you gave to `<Refine />` component. This will enable Attribute Based Access Control (ABAC), for example granting permissions based on the value of a field in the resource object.
+> `*resource`:  &#8594 It returns the resource ([ResourceItemProps][iresourceitem]) object you gave to `<Refine />` component. This will enable Attribute Based Access Control (ABAC), for example granting permissions based on the value of a field in the resource object.
 
 These buttons will be disabled if access control returns `{ can: false }`
 
@@ -206,3 +206,6 @@ These buttons will be disabled if access control returns `{ can: false }`
 [catchall]: /core/components/refine-config.md#catchall
 [listbtn]: /ui-frameworks/antd/components/buttons/list.md
 [iresourceitem]: /core/interfaces.md#resourceitemprops
+[basekey]: /core/interfaces.md#basekey
+[canparams]: /core/interfaces.md#canparams
+[canreturntype]: /core/interfaces.md#canreturntype
