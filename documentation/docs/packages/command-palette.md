@@ -94,7 +94,7 @@ Because we need to reach the `resources` property of the `<Refine>` component.
 ## Access Control
 
 `refine-kbar` respects the access control settings of your App. To learn more about access control, please refer to the [Access Control Provider][access-contol] section of the documentation. Also, we can use the `canDelete` in the `resources` to check the delete accessibility of the command palette.<br />
-For more information check out the source code of [`refine-kbar`][kbar] package
+For more information check out the source code of [`refine-kbar`][refine-kbar] package
 
 ## Actions
 
@@ -128,7 +128,7 @@ useRegisterActions(customAction);
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/commandPalette/?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/commandPalette/kbar?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-kbar-example"
 ></iframe>

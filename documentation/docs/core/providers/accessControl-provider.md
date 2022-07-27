@@ -62,7 +62,6 @@ You can find access control examples made with **refine**
 
 -   **Casbin** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/casbin) - [Demo](https://stackblitz.com/github/pankod/refine/tree/master/examples/accessControl/casbin/?preset=node)
 -   **Cerbos** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/cerbos) - [Demo](https://stackblitz.com/github/pankod/refine/tree/master/examples/accessControl/cerbos/?preset=node)
--   **Permify** &#8594 [Source Code](https://github.com/Permify/permify-refine) - [Demo](https://stackblitz.io/github/Permify/permify-refine/?preset=node)
 
 :::
 
