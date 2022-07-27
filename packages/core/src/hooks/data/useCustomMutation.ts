@@ -11,7 +11,7 @@ import {
 
 type useCustomMutationParams<TVariables> = {
     url: string;
-    method: "post" | "put" | "patch";
+    method: "post" | "put" | "patch" | "delete";
     values: TVariables;
     metaData?: MetaDataQuery;
     dataProviderName?: string;
