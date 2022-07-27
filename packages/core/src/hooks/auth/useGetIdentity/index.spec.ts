@@ -20,7 +20,7 @@ describe("useGetIdentity Hook", () => {
         });
 
         await waitFor(() => {
-            return result.current?.isSuccess;
+            expect(result.current.isSuccess).toBeTruthy();
         });
 
         expect(result.current?.data).toEqual({ id: 1 });
@@ -47,7 +47,7 @@ describe("useGetIdentity Hook", () => {
         });
 
         await waitFor(() => {
-            return result.current.isError;
+            expect(result.current.isError).toBeTruthy();
         });
 
         expect(result.current?.error).toEqual(new Error("Not Authenticated"));
@@ -67,7 +67,7 @@ describe("useGetIdentity Hook", () => {
         });
 
         await waitFor(() => {
-            return !result.current.isLoading;
+            expect(!result.current.isLoading).toBeTruthy();
         });
 
         expect(result.current.status).toEqual("idle");

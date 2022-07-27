@@ -46,7 +46,9 @@ describe("useForm Hook", () => {
             wrapper: SimpleWrapper,
         });
 
-        expect(result.current.formLoading).toBeDefined();
+        await waitFor(() => {
+            expect(result.current.formLoading).toBeDefined();
+        });
     });
 
     it("fetches data and puts in the form", async () => {
@@ -55,7 +57,7 @@ describe("useForm Hook", () => {
         });
 
         await waitFor(() => {
-            return !result.current.formLoading;
+            expect(!result.current.formLoading).toBeTruthy();
         });
 
         expect(result.current.queryResult?.data?.data.title).toEqual(
@@ -66,6 +68,10 @@ describe("useForm Hook", () => {
     it("correctly render edit form from route", async () => {
         const { result } = renderHook(() => useForm(), {
             wrapper: EditWrapperWithRoute,
+        });
+
+        await waitFor(() => {
+            expect(!result.current.formLoading).toBeTruthy();
         });
 
         expect(result.current.id).toEqual("1");
@@ -81,6 +87,10 @@ describe("useForm Hook", () => {
                 wrapper: EditWrapperWithRoute,
             },
         );
+
+        await waitFor(() => {
+            expect(!result.current.formLoading).toBeTruthy();
+        });
 
         expect(result.current.id).toEqual("1");
     });
@@ -98,7 +108,7 @@ describe("useForm Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.formLoading;
+            expect(!result.current.formLoading).toBeTruthy();
         });
 
         expect(result.current.queryResult?.data?.data.title).toEqual(
@@ -121,7 +131,7 @@ describe("useForm Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.formLoading;
+            expect(!result.current.formLoading).toBeTruthy();
         });
 
         expect(result.current.queryResult?.data?.data.title).toEqual(
@@ -144,7 +154,7 @@ describe("useForm Hook", () => {
 
         expect(result.current.id).toEqual("1");
 
-        act(() => {
+        await act(async () => {
             result.current.setId?.("3");
         });
 
@@ -171,7 +181,7 @@ describe("useForm Hook", () => {
         });
 
         await waitFor(() => {
-            return !result.current.formLoading;
+            expect(!result.current.formLoading).toBeTruthy();
         });
 
         expect(result.current.queryResult?.data?.data.title).toEqual(

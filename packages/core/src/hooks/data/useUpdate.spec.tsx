@@ -5,7 +5,7 @@ import { MockJSONServer, TestWrapper } from "@test";
 import { useUpdate } from "./useUpdate";
 
 describe("useUpdate Hook", () => {
-    it("should works with pessimistic update", async () => {
+    fit("should works with pessimistic update", async () => {
         const { result } = renderHook(() => useUpdate(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,
@@ -19,11 +19,9 @@ describe("useUpdate Hook", () => {
             id: "1",
             values: { id: "1", title: "test" },
         });
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        await act(() => {});
 
         await waitFor(() => {
-            return result.current.isSuccess;
+            expect(result.current.isSuccess).toBeTruthy();
         });
 
         const { isSuccess } = result.current;
@@ -45,13 +43,10 @@ describe("useUpdate Hook", () => {
             id: "1",
             values: { id: "1", title: "optimistic test" },
         });
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        await act(() => {});
 
         await waitFor(() => {
-            return result.current.isSuccess;
+            expect(result.current.isSuccess).toBeTruthy();
         });
-
         const { isSuccess } = result.current;
 
         expect(isSuccess).toBeTruthy();
@@ -72,11 +67,9 @@ describe("useUpdate Hook", () => {
             id: "1",
             values: { id: "1", title: "undoable test" },
         });
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        await act(() => {});
 
         await waitFor(() => {
-            return result.current.isSuccess;
+            expect(result.current.isSuccess).toBeTruthy();
         });
 
         const { isSuccess } = result.current;
@@ -108,11 +101,8 @@ describe("useUpdate Hook", () => {
                 values: { id: "1", title: "undoable test" },
             });
 
-            // eslint-disable-next-line @typescript-eslint/no-empty-function
-            await act(() => {});
-
             await waitFor(() => {
-                return result.current.isSuccess;
+                expect(result.current.isSuccess).toBeTruthy();
             });
 
             expect(onPublishMock).toBeCalled();

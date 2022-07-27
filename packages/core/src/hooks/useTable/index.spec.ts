@@ -28,7 +28,7 @@ describe("useTable Hook", () => {
         });
 
         await waitFor(() => {
-            return !result.current.tableQueryResult.isLoading;
+            expect(!result.current.tableQueryResult.isLoading).toBeTruthy();
         });
 
         const {
@@ -60,7 +60,7 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.tableQueryResult.isLoading;
+            expect(!result.current.tableQueryResult.isLoading).toBeTruthy();
         });
 
         const { pageSize, current, pageCount } = result.current;
@@ -85,7 +85,7 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.tableQueryResult.isLoading;
+            expect(!result.current.tableQueryResult.isLoading).toBeTruthy();
         });
 
         const { pageSize, current, pageCount } = result.current;
@@ -113,7 +113,7 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.tableQueryResult.isLoading;
+            expect(!result.current.tableQueryResult.isLoading).toBeTruthy();
         });
 
         const {
@@ -142,7 +142,7 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.tableQueryResult.isLoading;
+            expect(!result.current.tableQueryResult.isLoading).toBeTruthy();
         });
 
         const {
@@ -170,7 +170,7 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return result.current.tableQueryResult.isSuccess;
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
         });
     });
 });
@@ -181,16 +181,20 @@ describe("useTable Filters", () => {
         resources: [{ name: "posts" }],
     });
 
-    it("should be empty initially", () => {
+    it("should be empty initially", async () => {
         const { result } = renderHook(() => useTable(), {
             wrapper,
+        });
+
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
         });
 
         expect(result.current.filters).toBeInstanceOf(Array);
         expect(result.current.filters).toHaveLength(0);
     });
 
-    it("should only present permanentFilters initially", () => {
+    it("should only present permanentFilters initially", async () => {
         const permanentFilter = [
             {
                 field: "id",
@@ -208,13 +212,17 @@ describe("useTable Filters", () => {
                 wrapper,
             },
         );
+
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
 
         expect(result.current.filters).toBeInstanceOf(Array);
         expect(result.current.filters).toEqual(permanentFilter);
         expect(result.current.filters).toHaveLength(1);
     });
 
-    it("should only present initialFilters initially", () => {
+    it("should only present initialFilters initially", async () => {
         const initialFilter = [
             {
                 field: "name",
@@ -233,12 +241,16 @@ describe("useTable Filters", () => {
             },
         );
 
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
         expect(result.current.filters).toBeInstanceOf(Array);
         expect(result.current.filters).toEqual(initialFilter);
         expect(result.current.filters).toHaveLength(1);
     });
 
-    it("should include both initial and permanent filters initially", () => {
+    it("should include both initial and permanent filters initially", async () => {
         const initialFilter = [
             {
                 field: "name",
@@ -264,6 +276,10 @@ describe("useTable Filters", () => {
                 wrapper,
             },
         );
+
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
 
         expect(result.current.filters).toBeInstanceOf(Array);
         expect(result.current.filters).toEqual([
@@ -279,7 +295,7 @@ describe("useTable Filters", () => {
         );
     });
 
-    it("permanent filter should take precedence over initial filter", () => {
+    it("permanent filter should take precedence over initial filter", async () => {
         const initialFilter = [
             {
                 field: "name",
@@ -306,12 +322,16 @@ describe("useTable Filters", () => {
             },
         );
 
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
         expect(result.current.filters).toBeInstanceOf(Array);
         expect(result.current.filters).toEqual(permanentFilter);
         expect(result.current.filters).toHaveLength(1);
     });
 
-    it("[behavior=merge] should merge new filters with existing ones", () => {
+    it("[behavior=merge] should merge new filters with existing ones", async () => {
         const initialFilter = [
             {
                 field: "name",
@@ -338,12 +358,20 @@ describe("useTable Filters", () => {
             },
         );
 
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
         expect(result.current.filters).toBeInstanceOf(Array);
         expect(result.current.filters).toEqual(initialFilter);
         expect(result.current.filters).toHaveLength(1);
 
         act(() => {
             result.current.setFilters(newFilters, "merge");
+        });
+
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
         });
 
         expect(result.current.filters).toBeInstanceOf(Array);
@@ -353,7 +381,7 @@ describe("useTable Filters", () => {
         expect(result.current.filters).toHaveLength(2);
     });
 
-    it("[behavior=merge] permanent filter should not be overwritten", () => {
+    it("[behavior=merge] permanent filter should not be overwritten", async () => {
         const initialFilter = [
             {
                 field: "name",
@@ -389,6 +417,10 @@ describe("useTable Filters", () => {
             },
         );
 
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
         expect(result.current.filters).toBeInstanceOf(Array);
         expect(result.current.filters).toEqual(
             expect.arrayContaining([...initialFilter, ...permanentFilter]),
@@ -397,6 +429,10 @@ describe("useTable Filters", () => {
 
         act(() => {
             result.current.setFilters(newFilters, "merge");
+        });
+
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
         });
 
         expect(result.current.filters).toBeInstanceOf(Array);
@@ -410,7 +446,7 @@ describe("useTable Filters", () => {
         );
     });
 
-    it("[behavior=merge] should merge new filters and remove duplicates", () => {
+    it("[behavior=merge] should merge new filters and remove duplicates", async () => {
         const initialFilter = [
             {
                 field: "name",
@@ -446,6 +482,10 @@ describe("useTable Filters", () => {
             },
         );
 
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
         expect(result.current.filters).toBeInstanceOf(Array);
         expect(result.current.filters).toEqual([
             ...initialFilter,
@@ -455,6 +495,10 @@ describe("useTable Filters", () => {
 
         act(() => {
             result.current.setFilters(newFilters, "merge");
+        });
+
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
         });
 
         expect(result.current.filters).toBeInstanceOf(Array);
@@ -472,7 +516,7 @@ describe("useTable Filters", () => {
         );
     });
 
-    it("[behavior=merge] should remove the filter when value is undefined/null", () => {
+    it("[behavior=merge] should remove the filter when value is undefined/null", async () => {
         const initialFilter = [
             {
                 field: "name",
@@ -499,12 +543,20 @@ describe("useTable Filters", () => {
             },
         );
 
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
         expect(result.current.filters).toBeInstanceOf(Array);
         expect(result.current.filters).toEqual(initialFilter);
         expect(result.current.filters).toHaveLength(1);
 
         act(() => {
             result.current.setFilters(newFilters, "merge");
+        });
+
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
         });
 
         expect(result.current.filters).toBeInstanceOf(Array);
@@ -519,7 +571,7 @@ describe("useTable Filters", () => {
         );
     });
 
-    it("[behavior=replace] should replace the existing filters with newFilters", () => {
+    it("[behavior=replace] should replace the existing filters with newFilters", async () => {
         const initialFilter = [
             {
                 field: "name",
@@ -546,6 +598,10 @@ describe("useTable Filters", () => {
             },
         );
 
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
         expect(result.current.filters).toBeInstanceOf(Array);
         expect(result.current.filters).toEqual(initialFilter);
         expect(result.current.filters).toHaveLength(1);
@@ -554,12 +610,16 @@ describe("useTable Filters", () => {
             result.current.setFilters(newFilters, "replace");
         });
 
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
         expect(result.current.filters).toBeInstanceOf(Array);
         expect(result.current.filters).toEqual(newFilters);
         expect(result.current.filters).toHaveLength(1);
     });
 
-    it("[behavior=replace] replace behavior should not overwrite permanent filters", () => {
+    it("[behavior=replace] replace behavior should not overwrite permanent filters", async () => {
         const initialFilter = [
             {
                 field: "name",
@@ -595,6 +655,10 @@ describe("useTable Filters", () => {
             },
         );
 
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
         expect(result.current.filters).toBeInstanceOf(Array);
         expect(result.current.filters).toEqual([
             ...initialFilter,
@@ -604,6 +668,10 @@ describe("useTable Filters", () => {
 
         act(() => {
             result.current.setFilters(newFilters, "replace");
+        });
+
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
         });
 
         expect(result.current.filters).toBeInstanceOf(Array);
@@ -618,7 +686,7 @@ describe("useTable Filters", () => {
         );
     });
 
-    it("[behavior=replace] should remove duplicates in the newFilters array", () => {
+    it("[behavior=replace] should remove duplicates in the newFilters array", async () => {
         const initialFilter = [
             {
                 field: "name",
@@ -655,12 +723,20 @@ describe("useTable Filters", () => {
             },
         );
 
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
         expect(result.current.filters).toBeInstanceOf(Array);
         expect(result.current.filters).toEqual(initialFilter);
         expect(result.current.filters).toHaveLength(1);
 
         act(() => {
             result.current.setFilters(newFilters, "replace");
+        });
+
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
         });
 
         expect(result.current.filters).toBeInstanceOf(Array);
@@ -680,7 +756,7 @@ describe("useTable Filters", () => {
         );
     });
 
-    it("should use behavior = merge (default) by default", () => {
+    it("should use behavior = merge (default) by default", async () => {
         const initialFilter = [
             {
                 field: "name",
@@ -707,12 +783,20 @@ describe("useTable Filters", () => {
             },
         );
 
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
         expect(result.current.filters).toBeInstanceOf(Array);
         expect(result.current.filters).toEqual(initialFilter);
         expect(result.current.filters).toHaveLength(1);
 
         act(() => {
             result.current.setFilters(newFilters);
+        });
+
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
         });
 
         expect(result.current.filters).toBeInstanceOf(Array);
@@ -722,7 +806,7 @@ describe("useTable Filters", () => {
         expect(result.current.filters).toHaveLength(2);
     });
 
-    it("should use `defaultSetFiltersBehavior` property as default behavior (replace)", () => {
+    it("should use `defaultSetFiltersBehavior` property as default behavior (replace)", async () => {
         const initialFilter = [
             {
                 field: "name",
@@ -750,6 +834,10 @@ describe("useTable Filters", () => {
             },
         );
 
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
         expect(result.current.filters).toBeInstanceOf(Array);
         expect(result.current.filters).toEqual(initialFilter);
         expect(result.current.filters).toHaveLength(1);
@@ -758,12 +846,16 @@ describe("useTable Filters", () => {
             result.current.setFilters(newFilters);
         });
 
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
         expect(result.current.filters).toBeInstanceOf(Array);
         expect(result.current.filters).toEqual(newFilters);
         expect(result.current.filters).toHaveLength(1);
     });
 
-    it("[setter function] should set the return value of the setter function as filters", () => {
+    it("[setter function] should set the return value of the setter function as filters", async () => {
         const initialFilter = [
             {
                 field: "name",
@@ -789,6 +881,10 @@ describe("useTable Filters", () => {
                 wrapper,
             },
         );
+
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
 
         expect(result.current.filters).toBeInstanceOf(Array);
         expect(result.current.filters).toEqual(initialFilter);
@@ -798,12 +894,16 @@ describe("useTable Filters", () => {
             result.current.setFilters(() => newFilters);
         });
 
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
         expect(result.current.filters).toBeInstanceOf(Array);
         expect(result.current.filters).toEqual(newFilters);
         expect(result.current.filters).toHaveLength(1);
     });
 
-    it("[setter function] should pass the existing filters as first argument", () => {
+    it("[setter function] should pass the existing filters as first argument", async () => {
         const initialFilter = [
             {
                 field: "name",
@@ -829,6 +929,10 @@ describe("useTable Filters", () => {
                 wrapper,
             },
         );
+
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
 
         expect(result.current.filters).toBeInstanceOf(Array);
         expect(result.current.filters).toEqual(initialFilter);
@@ -842,6 +946,10 @@ describe("useTable Filters", () => {
             result.current.setFilters(setterFunction);
         });
 
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
         expect(setterFunction).toBeCalledTimes(1);
         expect(setterFunction).toBeCalledWith(initialFilter);
 
@@ -852,7 +960,7 @@ describe("useTable Filters", () => {
         expect(result.current.filters).toHaveLength(2);
     });
 
-    it("[setter function] should not be able to overwrite permanent filters", () => {
+    it("[setter function] should not be able to overwrite permanent filters", async () => {
         const initialFilter = [
             {
                 field: "name",
@@ -888,6 +996,10 @@ describe("useTable Filters", () => {
             },
         );
 
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
         expect(result.current.filters).toBeInstanceOf(Array);
         expect(result.current.filters).toEqual(
             expect.arrayContaining([...initialFilter, ...permanentFilter]),
@@ -896,6 +1008,10 @@ describe("useTable Filters", () => {
 
         act(() => {
             result.current.setFilters(() => newFilters);
+        });
+
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
         });
 
         expect(result.current.filters).toBeInstanceOf(Array);

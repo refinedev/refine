@@ -17,11 +17,9 @@ describe("useDeleteMany Hook", () => {
             resource: "posts",
             ids: ["1"],
         });
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        await act(() => {});
 
         await waitFor(() => {
-            return result.current.isSuccess;
+            expect(result.current.isSuccess).toBeTruthy();
         });
 
         const { isSuccess } = result.current;
@@ -42,11 +40,9 @@ describe("useDeleteMany Hook", () => {
             mutationMode: "optimistic",
             ids: ["1"],
         });
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        await act(() => {});
 
         await waitFor(() => {
-            return result.current.isSuccess;
+            expect(result.current.isSuccess).toBeTruthy();
         });
 
         const { isSuccess } = result.current;
@@ -68,11 +64,9 @@ describe("useDeleteMany Hook", () => {
             undoableTimeout: 0,
             ids: ["1"],
         });
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        await act(() => {});
 
         await waitFor(() => {
-            return result.current.isSuccess;
+            expect(result.current.isSuccess).toBeTruthy();
         });
 
         const { isSuccess } = result.current;
@@ -100,11 +94,9 @@ describe("useDeleteMany Hook", () => {
                 resource: "posts",
                 ids: ["1", "2"],
             });
-            // eslint-disable-next-line @typescript-eslint/no-empty-function
-            await act(() => {});
 
             await waitFor(() => {
-                return result.current.isSuccess;
+                expect(result.current.isSuccess).toBeTruthy();
             });
 
             expect(onPublishMock).toBeCalled();

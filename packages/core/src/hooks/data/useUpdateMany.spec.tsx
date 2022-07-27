@@ -18,11 +18,9 @@ describe("useUpdateMany Hook", () => {
             ids: ["1", "2"],
             values: { id: "1", title: "test" },
         });
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        await act(() => {});
 
         await waitFor(() => {
-            return result.current.isSuccess;
+            expect(result.current.isSuccess).toBeTruthy();
         });
 
         const { status } = result.current;
@@ -44,11 +42,9 @@ describe("useUpdateMany Hook", () => {
             ids: ["1", "2"],
             values: { id: "1", title: "test" },
         });
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        await act(() => {});
 
         await waitFor(() => {
-            return result.current.isSuccess;
+            expect(result.current.isSuccess).toBeTruthy();
         });
 
         const { isSuccess } = result.current;
@@ -70,11 +66,9 @@ describe("useUpdateMany Hook", () => {
             ids: ["1", "2"],
             values: { id: "1", title: "test" },
         });
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        await act(() => {});
 
         await waitFor(() => {
-            return result.current.isSuccess;
+            expect(result.current.isSuccess).toBeTruthy();
         });
 
         const { isSuccess } = result.current;
@@ -97,11 +91,9 @@ describe("useUpdateMany Hook", () => {
             undoableTimeout: 0,
             values: { id: "1", title: "test" },
         });
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        await act(() => {});
 
         await waitFor(() => {
-            return result.current.isSuccess;
+            expect(result.current.isSuccess).toBeTruthy();
         });
 
         const { isSuccess } = result.current;
@@ -132,11 +124,9 @@ describe("useUpdateMany Hook", () => {
                 ids: ["1", "2"],
                 values: { id: "1", title: "undoable test" },
             });
-            // eslint-disable-next-line @typescript-eslint/no-empty-function
-            await act(() => {});
 
             await waitFor(() => {
-                return result.current.isSuccess;
+                expect(result.current.isSuccess).toBeTruthy();
             });
 
             expect(onPublishMock).toBeCalled();

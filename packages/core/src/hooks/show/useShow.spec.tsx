@@ -29,7 +29,7 @@ describe("useShow Hook", () => {
         });
 
         await waitFor(() => {
-            return result.current.queryResult.isSuccess;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         expect(result.current.queryResult.data?.data.id).toEqual(posts[0].id);
@@ -44,7 +44,7 @@ describe("useShow Hook", () => {
         );
 
         await waitFor(() => {
-            return result.current.queryResult.isSuccess;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         expect(result.current.queryResult.data?.data.id).toEqual(posts[0].id);
@@ -63,12 +63,20 @@ describe("useShow Hook", () => {
             },
         );
 
+        await waitFor(() => {
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
+        });
+
         expect(result.current.showId).toEqual("2");
     });
 
     it("correctly return id value from route", async () => {
         const { result } = renderHook(() => useShow(), {
             wrapper: WrapperWithRoute,
+        });
+
+        await waitFor(() => {
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         expect(result.current.showId).toEqual("1");
@@ -114,6 +122,10 @@ describe("useShow Hook", () => {
             },
         );
 
+        await waitFor(() => {
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
+        });
+
         expect(result.current.showId).toEqual("2");
     });
 
@@ -124,7 +136,7 @@ describe("useShow Hook", () => {
 
         expect(result.current.showId).toEqual("1");
 
-        act(() => {
+        await act(async () => {
             result.current.setShowId("3");
         });
 

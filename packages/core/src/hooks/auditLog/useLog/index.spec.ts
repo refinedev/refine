@@ -1,4 +1,4 @@
-import { act, renderHook } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { TestWrapper } from "@test";
 import { useLog } from ".";
@@ -44,8 +44,9 @@ describe("useLog Hook", () => {
 
             log.mutate(logEventPayload);
 
-            // eslint-disable-next-line @typescript-eslint/no-empty-function
-            await act(() => {});
+            await waitFor(() => {
+                expect(result.current.log.isSuccess).toBeTruthy();
+            });
 
             expect(auditLogProviderCreateMock).toBeCalledWith(logEventPayload);
             expect(auditLogProviderCreateMock).toBeCalledTimes(1);
@@ -79,8 +80,9 @@ describe("useLog Hook", () => {
 
             log.mutate(logEventPayload);
 
-            // eslint-disable-next-line @typescript-eslint/no-empty-function
-            await act(() => {});
+            await waitFor(() => {
+                expect(result.current.log.isSuccess).toBeTruthy();
+            });
 
             expect(auditLogProviderGetMock).not.toBeCalled();
         });
@@ -113,8 +115,9 @@ describe("useLog Hook", () => {
 
             log.mutate(logEventPayload);
 
-            // eslint-disable-next-line @typescript-eslint/no-empty-function
-            await act(() => {});
+            await waitFor(() => {
+                expect(result.current.log.isSuccess).toBeTruthy();
+            });
 
             expect(auditLogProviderCreateMock).toBeCalled();
         });
@@ -134,8 +137,9 @@ describe("useLog Hook", () => {
 
             mutate({ id: 1, name: "test name" });
 
-            // eslint-disable-next-line @typescript-eslint/no-empty-function
-            await act(() => {});
+            await waitFor(() => {
+                expect(result.current.rename.isSuccess).toBeTruthy();
+            });
 
             expect(auditLogProviderUpdateMock).toBeCalledWith({
                 id: 1,

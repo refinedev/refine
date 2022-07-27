@@ -45,7 +45,9 @@ describe("useLogout Hook", () => {
 
         const { mutateAsync: logout } = result.current!;
 
-        await logout();
+        await act(async () => {
+            await logout();
+        });
 
         await waitFor(() => {
             return !result.current?.isLoading;
@@ -75,7 +77,9 @@ describe("useLogout Hook", () => {
 
         const { mutateAsync: logout } = result.current!;
 
-        await logout();
+        await act(async () => {
+            await logout();
+        });
 
         await waitFor(() => {
             return !result.current?.isLoading;
@@ -86,7 +90,7 @@ describe("useLogout Hook", () => {
         });
     });
 
-    fit("logout and redirect to custom path", async () => {
+    it("logout and redirect to custom path", async () => {
         const { result } = renderHook(
             () => useLogout<{ redirectPath: string }>(),
             {
@@ -108,14 +112,13 @@ describe("useLogout Hook", () => {
 
         const { mutate: logout } = result.current!;
 
-        await logout({ redirectPath: "/custom-path" });
+        await act(async () => {
+            await logout({ redirectPath: "/custom-path" });
+        });
 
         await waitFor(() => {
             return result.current?.status === "success";
         });
-
-        console.log({ a: result.current });
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
 
         await act(async () => {
             expect(mHistory).toBeCalledWith("/custom-path", undefined);
@@ -139,7 +142,9 @@ describe("useLogout Hook", () => {
 
         const { mutate: logout } = result.current!;
 
-        await logout();
+        await act(async () => {
+            await logout();
+        });
 
         await waitFor(() => {
             return !result.current?.isLoading;
@@ -167,7 +172,9 @@ describe("useLogout Hook", () => {
 
         const { mutate: logout } = result.current!;
 
-        await logout();
+        await act(async () => {
+            await logout();
+        });
 
         await waitFor(() => {
             return !result.current?.isLoading;

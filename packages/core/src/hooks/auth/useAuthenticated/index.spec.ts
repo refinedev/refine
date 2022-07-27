@@ -4,6 +4,7 @@ import ReactRouterDom from "react-router-dom";
 import { TestWrapper } from "@test";
 
 import { useAuthenticated } from "./";
+import { act } from "react-dom/test-utils";
 
 const mHistory = jest.fn();
 
@@ -28,10 +29,8 @@ describe("useAuthenticated Hook", () => {
         });
 
         await waitFor(() => {
-            return result.current?.isFetched;
+            expect(result.current.isSuccess).toBeTruthy();
         });
-
-        expect(result.current?.isSuccess).toBeTruthy();
     });
 
     it("returns authenticated false and called checkError", async () => {
@@ -56,10 +55,8 @@ describe("useAuthenticated Hook", () => {
         });
 
         await waitFor(() => {
-            return result.current?.isFetched;
+            expect(result.current.isError).toBeTruthy();
         });
-
-        expect(result.current?.isError).toBeTruthy();
     });
 
     it("returns authenticated false and called checkError with custom redirect path", async () => {
@@ -84,11 +81,11 @@ describe("useAuthenticated Hook", () => {
         });
 
         await waitFor(() => {
-            return result.current?.isFetched;
+            expect(result.current.isError).toBeTruthy();
         });
 
-        expect(result.current?.isError).toBeTruthy();
-
-        expect(mHistory).toBeCalledWith("/custom-url", { replace: true });
+        await act(async () => {
+            expect(mHistory).toBeCalledWith("/custom-url", { replace: true });
+        });
     });
 });

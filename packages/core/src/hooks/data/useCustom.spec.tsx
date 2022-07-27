@@ -17,7 +17,7 @@ describe("useCustom Hook", () => {
         );
 
         await waitFor(() => {
-            return result.current.isSuccess;
+            expect(result.current.isSuccess).toBeTruthy();
         });
 
         const { data } = result.current;

@@ -35,14 +35,14 @@ describe("useCan Hook", () => {
         );
 
         await waitFor(() => {
-            return result.current?.isFetched;
+            expect(result.current?.isFetched).toBeTruthy();
         });
 
         expect(result.current?.data?.can).toBeTruthy();
         expect(result.current?.data?.reason).toBe("Access granted");
     });
 
-    it("can should return the false ", async () => {
+    fit("can should return the false ", async () => {
         const { result } = renderHook(
             () =>
                 useCan({
@@ -75,7 +75,7 @@ describe("useCan Hook", () => {
         );
 
         await waitFor(() => {
-            return result.current?.isFetched;
+            expect(result.current?.isFetched).toBeTruthy();
         });
 
         expect(result.current?.data?.can).toBeFalsy();

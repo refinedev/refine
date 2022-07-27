@@ -22,7 +22,7 @@ describe("usePermissions Hook", () => {
         });
 
         await waitFor(() => {
-            return result.current.isSuccess;
+            expect(result.current.isSuccess).toBeTruthy();
         });
 
         expect(result.current.data).toEqual(["admin"]);
@@ -47,7 +47,7 @@ describe("usePermissions Hook", () => {
         });
 
         await waitFor(() => {
-            return result.current.isError;
+            expect(result.current.isError).toBeTruthy();
         });
 
         expect(result.current.error).toEqual("Not Authenticated");

@@ -18,11 +18,9 @@ describe("useDelete Hook", () => {
             resource: "posts",
             mutationMode: "pessimistic",
         });
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        await act(() => {});
 
         await waitFor(() => {
-            return result.current.isSuccess;
+            expect(result.current.isSuccess).toBeTruthy();
         });
 
         const { isSuccess } = result.current;
@@ -43,11 +41,9 @@ describe("useDelete Hook", () => {
             resource: "posts",
             mutationMode: "optimistic",
         });
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        await act(() => {});
 
         await waitFor(() => {
-            return result.current.isSuccess;
+            expect(result.current.isSuccess).toBeTruthy();
         });
 
         const { isSuccess } = result.current;
@@ -69,11 +65,9 @@ describe("useDelete Hook", () => {
             mutationMode: "undoable",
             undoableTimeout: 0,
         });
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        await act(() => {});
 
         await waitFor(() => {
-            return result.current.isSuccess;
+            expect(result.current.isSuccess).toBeTruthy();
         });
 
         const { isSuccess } = result.current;
@@ -102,11 +96,9 @@ describe("useDelete Hook", () => {
                 resource: "posts",
                 mutationMode: "pessimistic",
             });
-            // eslint-disable-next-line @typescript-eslint/no-empty-function
-            await act(() => {});
 
             await waitFor(() => {
-                return result.current.isSuccess;
+                expect(result.current.isSuccess).toBeTruthy();
             });
 
             expect(onPublishMock).toBeCalled();

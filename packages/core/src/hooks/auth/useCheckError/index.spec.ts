@@ -41,10 +41,12 @@ describe("useCheckError Hook", () => {
 
         const { mutate: checkError } = result.current!;
 
-        await checkError({});
+        await act(async () => {
+            await checkError({});
+        });
 
         await waitFor(() => {
-            return !result.current?.isLoading;
+            expect(!result.current.isLoading).toBeTruthy();
         });
 
         expect(logoutMock).toBeCalledTimes(1);
@@ -70,10 +72,12 @@ describe("useCheckError Hook", () => {
 
         const { mutate: checkError } = result.current!;
 
-        await checkError({});
+        await act(async () => {
+            await checkError({});
+        });
 
         await waitFor(() => {
-            return !result.current?.isLoading;
+            expect(!result.current.isLoading).toBeTruthy();
         });
 
         await act(async () => {

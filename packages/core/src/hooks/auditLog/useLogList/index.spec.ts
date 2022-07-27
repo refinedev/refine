@@ -10,8 +10,8 @@ describe("useLogList Hook", () => {
         auditLogProviderGetMock.mockReset();
     });
 
-    it("useLogList should call the auditLogProvider's list method with same properties", () => {
-        renderHook(
+    it("useLogList should call the auditLogProvider's list method with same properties", async () => {
+        const { result } = renderHook(
             () =>
                 useLogList({
                     resource: "posts",
@@ -27,6 +27,10 @@ describe("useLogList Hook", () => {
                 }),
             },
         );
+
+        await waitFor(() => {
+            expect(result.current.isFetched).toBeTruthy();
+        });
 
         expect(auditLogProviderGetMock).toBeCalledWith({
             resource: "posts",
@@ -57,7 +61,7 @@ describe("useLogList Hook", () => {
         });
 
         await waitFor(() => {
-            return result.current?.isFetched;
+            expect(result.current.isFetched).toBeTruthy();
         });
 
         expect(result.current?.data).toStrictEqual([

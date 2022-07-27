@@ -13,13 +13,12 @@ describe("useCreateMany Hook", () => {
             }),
         });
 
-        result.current.mutate({ resource: "posts", values: [{ id: 1 }] });
-
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        await act(() => {});
+        await act(async () => {
+            result.current.mutate({ resource: "posts", values: [{ id: 1 }] });
+        });
 
         await waitFor(() => {
-            return result.current.isSuccess;
+            expect(result.current.isSuccess).toBeTruthy();
         });
 
         const { status, data } = result.current;
@@ -45,16 +44,15 @@ describe("useCreateMany Hook", () => {
                 }),
             });
 
-            result.current.mutate({
-                resource: "posts",
-                values: [{ id: 1 }, { id: 2 }],
+            await act(async () => {
+                result.current.mutate({
+                    resource: "posts",
+                    values: [{ id: 1 }, { id: 2 }],
+                });
             });
 
-            // eslint-disable-next-line @typescript-eslint/no-empty-function
-            await act(() => {});
-
             await waitFor(() => {
-                return result.current.isSuccess;
+                expect(result.current.isSuccess).toBeTruthy();
             });
 
             expect(onPublishMock).toBeCalled();
