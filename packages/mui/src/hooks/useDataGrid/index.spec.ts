@@ -39,7 +39,7 @@ describe("useDataGrid Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.tableQueryResult?.isLoading;
+            expect(!result.current.tableQueryResult?.isLoading).toBeTruthy();
         });
 
         await act(async () => {
@@ -74,7 +74,7 @@ describe("useDataGrid Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.tableQueryResult?.isLoading;
+            expect(!result.current.tableQueryResult?.isLoading).toBeTruthy();
         });
 
         expect(result.current.current).toBeUndefined();
