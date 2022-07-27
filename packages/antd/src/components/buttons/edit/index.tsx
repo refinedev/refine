@@ -5,21 +5,20 @@ import {
     useCan,
     useNavigation,
     useTranslate,
-    BaseKey,
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
+import { RefineEditButtonProps } from "@pankod/refine-ui-types";
 
-export type EditButtonProps = ButtonProps & {
-    /**
-     * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/pankod/refine/issues/1618
-     */
-    resourceName?: string;
-    resourceNameOrRouteName?: string;
-    recordItemId?: BaseKey;
-    hideText?: boolean;
-    ignoreAccessControlProvider?: boolean;
-};
+export type EditButtonProps = RefineEditButtonProps<
+    ButtonProps,
+    {
+        /**
+         * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/pankod/refine/issues/1618
+         */
+        resourceName?: string;
+    }
+>;
 
 /**
  * `<EditButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} component.
