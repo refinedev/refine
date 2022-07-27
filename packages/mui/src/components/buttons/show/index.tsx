@@ -1,24 +1,21 @@
 import React from "react";
-
 import {
     useCan,
     useNavigation,
     useTranslate,
-    BaseKey,
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-
+import { RefineShowButtonProps } from "@pankod/refine-ui-types";
 import { Button, ButtonProps, SvgIconProps } from "@mui/material";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 
-export type ShowButtonProps = ButtonProps & {
-    resourceNameOrRouteName?: string;
-    recordItemId?: BaseKey;
-    hideText?: boolean;
-    ignoreAccessControlProvider?: boolean;
-    svgIconProps?: SvgIconProps;
-};
+export type ShowButtonProps = RefineShowButtonProps<
+    ButtonProps,
+    {
+        svgIconProps?: SvgIconProps;
+    }
+>;
 
 /**
  * `<ShowButton>` uses uses Material UI {@link https://mui.com/components/buttons/ `<Button>`} component.
