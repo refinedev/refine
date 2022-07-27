@@ -19,8 +19,6 @@ export const PostList: React.FC = () => {
         },
     });
 
-    console.log("datagridprops", dataGridProps);
-
     const columns = React.useMemo<GridColumns<IPost>>(
         () => [
             { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
