@@ -191,8 +191,13 @@ const DataProvider = (
         return apiUrl;
     },
 
-    custom: async ({ url, method, payload, query, headers }) => {
+    custom: async ({ url, method, payload, query, headers, filters }) => {
         let requestUrl = `${url}?`;
+
+        if (filters) {
+            const filterQuery = generateFilter(filters);
+            requestUrl = `${requestUrl}&${stringify(filterQuery)}`;
+        }
 
         if (query) {
             requestUrl = `${requestUrl}&${stringify(query)}`;
