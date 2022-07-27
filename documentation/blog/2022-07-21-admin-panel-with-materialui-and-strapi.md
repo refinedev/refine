@@ -203,7 +203,7 @@ We import and use Material UI components from refine's `@pankod/refine-mui` to s
 
 
 
-refine hook [`useDataGrid`]((https://refine.dev/docs/ui-frameworks/mui/hooks/useDataGrid/)) fetches data from API and wraps them with various helper hooks required for the  `<DataGrid/>` component. Data interaction functions like sorting, filtering, and pagination will be instantly available on the `<DataGrid/>` with this single line of code.
+refine hook [`useDataGrid`](https://refine.dev/docs/ui-frameworks/mui/hooks/useDataGrid/) fetches data from API and wraps them with various helper hooks required for the  `<DataGrid/>` component. Data interaction functions like sorting, filtering, and pagination will be instantly available on the `<DataGrid/>` with this single line of code.
 
 [Refer to refine's useDataGrid hook doc to more information&#8594](https://refine.dev/docs/ui-frameworks/mui/hooks/useDataGrid/)
 
