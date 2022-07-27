@@ -87,7 +87,9 @@ describe("useImport hook", () => {
         });
         jest.runAllTimers();
 
-        expect(notificationOpenSpy).toBeCalled();
-        expect(notificationCloseSpy).toBeCalled();
+        await act(async () => {
+            expect(notificationOpenSpy).toBeCalled();
+            expect(notificationCloseSpy).toBeCalled();
+        });
     });
 });

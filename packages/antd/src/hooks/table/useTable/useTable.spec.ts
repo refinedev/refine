@@ -29,7 +29,7 @@ describe("useTable Hook", () => {
         });
 
         await waitFor(() => {
-            return !result.current.tableProps.loading;
+            expect(!result.current.tableProps.loading).toBeTruthy();
         });
 
         const {
@@ -53,7 +53,7 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.tableProps.loading;
+            expect(!result.current.tableProps.loading).toBeTruthy();
         });
 
         const {
@@ -75,7 +75,7 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.tableProps.loading;
+            expect(!result.current.tableProps.loading).toBeTruthy();
         });
 
         const {
@@ -97,7 +97,7 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.tableProps.loading;
+            expect(!result.current.tableProps.loading).toBeTruthy();
         });
 
         const {
@@ -120,7 +120,7 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.tableProps.loading;
+            expect(!result.current.tableProps.loading).toBeTruthy();
         });
 
         const {
@@ -142,7 +142,7 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return result.current.tableQueryResult.isSuccess;
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
         });
     });
 
@@ -180,6 +180,10 @@ describe("useTable Hook", () => {
                 value: 1,
             },
         ];
+
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
 
         await act(async () => {
             result.current.setFilters(nextFilters);

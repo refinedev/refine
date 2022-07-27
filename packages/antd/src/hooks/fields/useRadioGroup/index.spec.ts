@@ -17,7 +17,7 @@ describe("render hook default options", () => {
         );
 
         await waitFor(() => {
-            return result.current.queryResult.isSuccess;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         const { radioGroupProps } = result.current;
@@ -48,7 +48,7 @@ describe("render hook default options", () => {
         );
 
         await waitFor(() => {
-            return result.current.queryResult.isSuccess;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         const { radioGroupProps } = result.current;
@@ -82,7 +82,7 @@ describe("render hook default options", () => {
         );
 
         await waitFor(() => {
-            return result.current.queryResult.isSuccess;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         const { radioGroupProps } = result.current;

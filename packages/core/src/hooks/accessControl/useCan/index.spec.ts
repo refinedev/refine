@@ -42,7 +42,7 @@ describe("useCan Hook", () => {
         expect(result.current?.data?.reason).toBe("Access granted");
     });
 
-    fit("can should return the false ", async () => {
+    it("can should return the false ", async () => {
         const { result } = renderHook(
             () =>
                 useCan({

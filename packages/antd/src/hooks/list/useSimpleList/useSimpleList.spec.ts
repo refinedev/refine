@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
@@ -28,7 +28,7 @@ describe("useSimpleList Hook", () => {
         });
 
         await waitFor(() => {
-            return !result.current.listProps.loading;
+            expect(!result.current.listProps.loading).toBeTruthy();
         });
 
         const {
@@ -59,7 +59,7 @@ describe("useSimpleList Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.listProps.loading;
+            expect(!result.current.listProps.loading).toBeTruthy();
         });
 
         const {
@@ -86,7 +86,7 @@ describe("useSimpleList Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.listProps.loading;
+            expect(!result.current.listProps.loading).toBeTruthy();
         });
 
         const {
@@ -111,7 +111,7 @@ describe("useSimpleList Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.listProps.loading;
+            expect(!result.current.listProps.loading).toBeTruthy();
         });
 
         const {

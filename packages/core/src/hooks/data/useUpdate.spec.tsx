@@ -5,7 +5,7 @@ import { MockJSONServer, TestWrapper } from "@test";
 import { useUpdate } from "./useUpdate";
 
 describe("useUpdate Hook", () => {
-    fit("should works with pessimistic update", async () => {
+    it("should works with pessimistic update", async () => {
         const { result } = renderHook(() => useUpdate(), {
             wrapper: TestWrapper({
                 dataProvider: MockJSONServer,

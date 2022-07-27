@@ -17,7 +17,7 @@ describe("useSelect Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.queryResult?.isLoading;
+            expect(!result.current.queryResult.isFetching).toBeTruthy();
         });
 
         const { selectProps } = result.current;
@@ -46,7 +46,7 @@ describe("useSelect Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.queryResult.isLoading;
+            expect(!result.current.queryResult.isFetching).toBeTruthy();
         });
 
         const { selectProps } = result.current;
@@ -75,7 +75,7 @@ describe("useSelect Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.queryResult.isLoading;
+            expect(!result.current.queryResult.isFetching).toBeTruthy();
         });
 
         const { selectProps } = result.current;
@@ -105,7 +105,7 @@ describe("useSelect Hook", () => {
         );
 
         await waitFor(() => {
-            return result.current.queryResult.isSuccess;
+            expect(!result.current.queryResult.isFetching).toBeTruthy();
         });
 
         const { selectProps } = result.current;
@@ -137,7 +137,7 @@ describe("useSelect Hook", () => {
         );
 
         await waitFor(() => {
-            return result.current.queryResult.isSuccess;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         const { selectProps } = result.current;
@@ -154,6 +154,8 @@ describe("useSelect Hook", () => {
     });
 
     it("onSearch debounce with default value (300ms)", async () => {
+        jest.useFakeTimers();
+
         const getListMock = jest.fn(() =>
             Promise.resolve({ data: [], total: 0 }),
         );
@@ -174,26 +176,26 @@ describe("useSelect Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.queryResult?.isLoading;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         expect(getListMock).toBeCalledTimes(1);
 
         const { selectProps } = result.current;
 
-        act(() => {
-            for (let index = 0; index < 10; index++) {
-                selectProps!.onSearch!(index.toString());
-            }
-        });
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        await act(() => {});
+        selectProps?.onSearch?.("1");
+        selectProps?.onSearch?.("12");
+        selectProps?.onSearch?.("123");
 
-        expect(getListMock).toBeCalledTimes(2);
+        await act(async () => {
+            jest.advanceTimersToNextTimer();
+        });
 
         await waitFor(() => {
-            return !result.current.queryResult?.isLoading;
+            expect(!result.current.queryResult.isFetching).toBeTruthy();
         });
+
+        expect(getListMock).toBeCalledTimes(2);
     });
 
     it("onSearch disabled debounce (0ms)", async () => {
@@ -217,28 +219,29 @@ describe("useSelect Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.queryResult?.isLoading;
+            expect(!result.current.queryResult.isFetching).toBeTruthy();
         });
 
         expect(getListMock).toBeCalledTimes(1);
 
         const { selectProps } = result.current;
 
-        selectProps!.onSearch!("1");
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        await act(() => {});
-        selectProps!.onSearch!("2");
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        await act(() => {});
-        selectProps!.onSearch!("3");
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        await act(() => {});
+        selectProps?.onSearch?.("1");
+        await act(async () => {
+            jest.advanceTimersToNextTimer();
+        });
+
+        selectProps?.onSearch?.("2");
+        await act(async () => {
+            jest.advanceTimersToNextTimer();
+        });
+
+        selectProps?.onSearch?.("3");
+        await act(async () => {
+            jest.advanceTimersToNextTimer();
+        });
 
         expect(getListMock).toBeCalledTimes(4);
-
-        await waitFor(() => {
-            return !result.current.queryResult?.isLoading;
-        });
     });
 
     it("should invoke queryOptions methods successfully", async () => {
@@ -260,7 +263,7 @@ describe("useSelect Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.queryResult?.isLoading;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         const { selectProps } = result.current;
@@ -298,7 +301,7 @@ describe("useSelect Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.queryResult.isLoading;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         const { selectProps } = result.current;

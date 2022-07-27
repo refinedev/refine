@@ -33,7 +33,9 @@ describe("useTable Hook", () => {
         });
 
         await waitFor(() => {
-            return !result.current.refineCore.tableQueryResult.isLoading;
+            expect(
+                !result.current.refineCore.tableQueryResult.isLoading,
+            ).toBeTruthy();
         });
 
         const {
@@ -66,7 +68,9 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.refineCore.tableQueryResult.isLoading;
+            expect(
+                !result.current.refineCore.tableQueryResult.isLoading,
+            ).toBeTruthy();
         });
 
         const {
@@ -107,7 +111,9 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.refineCore.tableQueryResult.isLoading;
+            expect(
+                !result.current.refineCore.tableQueryResult.isLoading,
+            ).toBeTruthy();
         });
 
         const {
@@ -130,6 +136,12 @@ describe("useTable Hook", () => {
             titleColumn.setFilterValue("Hello");
         });
 
+        await waitFor(() => {
+            expect(
+                !result.current.refineCore.tableQueryResult.isFetching,
+            ).toBeTruthy();
+        });
+
         expect(result.current.refineCore.filters).toEqual([
             { field: "title", value: "Hello", operator: "contains" },
             { field: "active", value: true, operator: "eq" },
@@ -142,6 +154,12 @@ describe("useTable Hook", () => {
         act(() => {
             const titleColumn = getColumn("title");
             titleColumn.setFilterValue(undefined);
+        });
+
+        await waitFor(() => {
+            expect(
+                !result.current.refineCore.tableQueryResult.isFetching,
+            ).toBeTruthy();
         });
 
         expect(result.current.refineCore.filters).toEqual([
@@ -170,7 +188,9 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.refineCore.tableQueryResult.isLoading;
+            expect(
+                !result.current.refineCore.tableQueryResult.isFetching,
+            ).toBeTruthy();
         });
 
         const {
@@ -193,6 +213,12 @@ describe("useTable Hook", () => {
                 { id: "title", desc: false },
                 { id: "id", desc: true },
             ]);
+        });
+
+        await waitFor(() => {
+            expect(
+                !result.current.refineCore.tableQueryResult.isFetching,
+            ).toBeTruthy();
         });
 
         expect(result.current.refineCore.sorter).toEqual([
@@ -233,7 +259,9 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.refineCore.tableQueryResult.isLoading;
+            expect(
+                !result.current.refineCore.tableQueryResult.isFetching,
+            ).toBeTruthy();
         });
 
         const {
@@ -256,6 +284,12 @@ describe("useTable Hook", () => {
             titleColumn.setFilterValue("Test");
         });
 
+        await waitFor(() => {
+            expect(
+                !result.current.refineCore.tableQueryResult.isFetching,
+            ).toBeTruthy();
+        });
+
         expect(result.current.refineCore.filters).toEqual([
             { field: "category.id", value: 1, operator: "eq" },
             { field: "title", value: "Test", operator: "contains" },
@@ -268,6 +302,12 @@ describe("useTable Hook", () => {
         act(() => {
             const titleColumn = getColumn("title");
             titleColumn.setFilterValue(undefined);
+        });
+
+        await waitFor(() => {
+            expect(
+                !result.current.refineCore.tableQueryResult.isFetching,
+            ).toBeTruthy();
         });
 
         expect(result.current.refineCore.filters).toEqual([
@@ -304,7 +344,9 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.refineCore.tableQueryResult.isLoading;
+            expect(
+                !result.current.refineCore.tableQueryResult.isFetching,
+            ).toBeTruthy();
         });
 
         const {
@@ -325,6 +367,12 @@ describe("useTable Hook", () => {
         act(() => {
             const titleColumn = getColumn("title");
             titleColumn.toggleSorting(true, true);
+        });
+
+        await waitFor(() => {
+            expect(
+                !result.current.refineCore.tableQueryResult.isFetching,
+            ).toBeTruthy();
         });
 
         expect(result.current.refineCore.sorter).toEqual([

@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { TestWrapper } from "@test";
 import { posts } from "@test/dataMocks";
@@ -16,7 +16,7 @@ describe("useEditableTable Hook", () => {
         });
 
         await waitFor(() => {
-            return !result.current.tableProps.loading;
+            expect(!result.current.tableProps.loading).toBeTruthy();
         });
 
         const {
@@ -32,7 +32,7 @@ describe("useEditableTable Hook", () => {
         });
 
         await waitFor(() => {
-            return !result.current.formLoading;
+            expect(!result.current.formLoading).toBeTruthy();
         });
 
         expect(result.current.formProps.initialValues?.title).toEqual(
