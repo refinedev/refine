@@ -1,4 +1,4 @@
-import { useTable } from "@pankod/refine-core";
+import { HttpError, useTable } from "@pankod/refine-core";
 import { useModalForm } from "@pankod/refine-react-hook-form";
 
 import { CreatePost, EditPost } from "components";
@@ -14,10 +14,10 @@ export const PostList: React.FC = () => {
         ],
     });
 
-    const createModalFormReturnValues = useModalForm({
+    const createModalFormReturnValues = useModalForm<IPost, HttpError, IPost>({
         refineCoreProps: { action: "create" },
     });
-    const editModalFormReturnValues = useModalForm({
+    const editModalFormReturnValues = useModalForm<IPost, HttpError, IPost>({
         refineCoreProps: { action: "edit" },
     });
 
