@@ -6,6 +6,7 @@ import {
     IResourceComponentsProps,
     useTranslate,
     useApiUrl,
+    HttpError,
 } from "@pankod/refine-core";
 import {
     Avatar,
@@ -29,7 +30,7 @@ import {
     TextFieldProps,
 } from "@pankod/refine-mui";
 import { useStepsForm, Controller } from "@pankod/refine-react-hook-form";
-import { IStore } from "interfaces";
+import { ICourier, IStore } from "interfaces";
 
 export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
@@ -48,7 +49,7 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
         setValue,
         formState: { errors },
         steps: { currentStep, gotoStep },
-    } = useStepsForm({
+    } = useStepsForm<ICourier, HttpError, ICourier>({
         stepsProps: {
             isBackValidate: false,
         },
@@ -80,7 +81,7 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
 
         const { name, size, type, lastModified } = file;
 
-        const imagePaylod = [
+        const imagePaylod: any = [
             {
                 name,
                 size,
@@ -318,6 +319,8 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                                         ),
                                                     })}
                                                 >
+                                                    {/* // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                                    // @ts-expect-error */}
                                                     {(
                                                         props: TextFieldProps,
                                                     ) => (
@@ -467,7 +470,8 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                                             {...params}
                                                             variant="outlined"
                                                             error={
-                                                                !!errors.item
+                                                                !!errors.store
+                                                                    ?.message
                                                             }
                                                             required
                                                         />

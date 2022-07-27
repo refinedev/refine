@@ -4,6 +4,7 @@ import {
     IResourceComponentsProps,
     useTable,
     getDefaultFilter,
+    HttpError,
 } from "@pankod/refine-core";
 import { useModalForm } from "@pankod/refine-react-hook-form";
 import {
@@ -35,7 +36,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
             initialPageSize: 12,
         });
 
-    const createDrawerFormProps = useModalForm<IProduct>({
+    const createDrawerFormProps = useModalForm<IProduct, HttpError, IProduct>({
         refineCoreProps: { action: "create" },
     });
 
@@ -43,7 +44,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         modal: { show: showCreateDrawer },
     } = createDrawerFormProps;
 
-    const editDrawerFormProps = useModalForm<IProduct>({
+    const editDrawerFormProps = useModalForm<IProduct, HttpError, IProduct>({
         refineCoreProps: { action: "edit" },
     });
 

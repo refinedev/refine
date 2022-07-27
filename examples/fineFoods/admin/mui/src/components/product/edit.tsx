@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-import { useTranslate, useApiUrl } from "@pankod/refine-core";
+import { useTranslate, useApiUrl, HttpError } from "@pankod/refine-core";
 
 import {
     Controller,
@@ -31,9 +31,11 @@ import {
 } from "@pankod/refine-mui";
 import CloseIcon from "@mui/icons-material/Close";
 
-import { ICategory } from "interfaces";
+import { ICategory, IProduct } from "interfaces";
 
-export const EditProduct: React.FC<UseModalFormReturnType> = ({
+export const EditProduct: React.FC<
+    UseModalFormReturnType<IProduct, HttpError, IProduct>
+> = ({
     watch,
     setValue,
     register,
@@ -78,7 +80,7 @@ export const EditProduct: React.FC<UseModalFormReturnType> = ({
 
         const { name, size, type, lastModified } = file;
 
-        const imagePaylod = [
+        const imagePaylod: any = [
             {
                 name,
                 size,
@@ -280,7 +282,7 @@ export const EditProduct: React.FC<UseModalFormReturnType> = ({
                                                 { field: "Category" },
                                             ),
                                         }}
-                                        defaultValue=""
+                                        defaultValue={undefined}
                                         render={({ field }) => (
                                             <Autocomplete
                                                 disablePortal
@@ -311,7 +313,10 @@ export const EditProduct: React.FC<UseModalFormReturnType> = ({
                                                         {...params}
                                                         label="Category"
                                                         variant="outlined"
-                                                        error={!!errors.item}
+                                                        error={
+                                                            !!errors.category
+                                                                ?.message
+                                                        }
                                                         required
                                                     />
                                                 )}

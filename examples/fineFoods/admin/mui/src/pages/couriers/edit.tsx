@@ -5,6 +5,7 @@ import {
     IResourceComponentsProps,
     useTranslate,
     useApiUrl,
+    HttpError,
 } from "@pankod/refine-core";
 import {
     Avatar,
@@ -28,7 +29,7 @@ import {
     TextFieldProps,
 } from "@pankod/refine-mui";
 import { useStepsForm, Controller } from "@pankod/refine-react-hook-form";
-import { IStore } from "interfaces";
+import { ICourier, IFile, IStore } from "interfaces";
 
 export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
@@ -47,7 +48,13 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
         setValue,
         formState: { errors },
         steps: { currentStep, gotoStep },
-    } = useStepsForm({
+    } = useStepsForm<
+        ICourier,
+        HttpError,
+        ICourier & {
+            avatar: any;
+        }
+    >({
         stepsProps: {
             isBackValidate: false,
         },
@@ -252,7 +259,7 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                                             { field: "Gender" },
                                                         ),
                                                     }}
-                                                    defaultValue={null}
+                                                    defaultValue={undefined}
                                                     render={({ field }) => (
                                                         <Autocomplete
                                                             size="small"
@@ -324,6 +331,9 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                                         ),
                                                     })}
                                                 >
+                                                    {/* 
+                                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                            // @ts-expect-error */}
                                                     {(
                                                         props: TextFieldProps,
                                                     ) => (
@@ -448,7 +458,7 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                             rules={{
                                                 required: "Store required",
                                             }}
-                                            defaultValue={null}
+                                            defaultValue={undefined}
                                             render={({ field }) => (
                                                 <Autocomplete
                                                     size="small"
