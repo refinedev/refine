@@ -11,15 +11,17 @@ import { ICategory } from "interfaces";
 
 export const PostEdit: React.FC = () => {
     const {
-        refineCore: { formLoading },
+        refineCore: { formLoading, queryResult },
         saveButtonProps,
         register,
         control,
         formState: { errors },
-    } = useForm();
+    } = useForm({ refineCoreProps: { metaData: { populate: ["category"] } } });
 
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
+        defaultValue: queryResult?.data?.data.category.id,
+        queryOptions: { enabled: !!queryResult?.data?.data.category.id },
     });
 
     return (

@@ -203,9 +203,9 @@ We import and use Material UI components from refine's `@pankod/refine-mui` to s
 
 
 
-refine hook [`useDataGrid`](/docs/ui-frameworks/mui/hooks/useDataGrid/) fetches data from API and wraps them with various helper hooks required for the  `<DataGrid/>` component. Data interaction functions like sorting, filtering, and pagination will be instantly available on the `<DataGrid/>` with this single line of code.
+refine hook [`useDataGrid`](/docs/ui-frameworks/mui/hooks/useDataGrid) fetches data from API and wraps them with various helper hooks required for the  `<DataGrid/>` component. Data interaction functions like sorting, filtering, and pagination will be instantly available on the `<DataGrid/>` with this single line of code.
 
-[Refer to refine's useDataGrid hook doc to more information&#8594](/docs/ui-frameworks/mui/hooks/useDataGrid/)
+[Refer to refine's useDataGrid hook doc to more information&#8594](/docs/ui-frameworks/mui/hooks/useDataGrid)
 
 `columns` array are used for mapping and formatting each field shown on the `<DataGrid/>` field prop maps the field to a matching key from the API response. `renderCell` prop is used to choose the appropriate Field component for the given data type.
 
@@ -367,7 +367,6 @@ We use benefits of Strapi V4 relational population feature by using `populate` p
 [Refer to refine Strapi v4 documentation for more information &#8594](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/#relations-population)
 
 
-<>
 
 <div class="img-container">
     <div class="window">
@@ -378,7 +377,8 @@ We use benefits of Strapi V4 relational population feature by using `populate` p
     <img src={listpage} alt="Resource only List component" />
 </div>
 <br/>
-</>
+
+
 ### Creating a record
 
 
@@ -568,10 +568,12 @@ export const PostEdit: React.FC = () => {
         register,
         control,
         formState: { errors },
-    } = useForm();
+    } = useForm({ refineCoreProps: { metaData: { populate: ["category"] } } });
 
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
+        defaultValue: queryResult?.data?.data.category.id,
+        queryOptions: { enabled: !!queryResult?.data?.data.category.id },
     });
 
     return (
