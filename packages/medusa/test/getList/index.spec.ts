@@ -6,7 +6,7 @@ import "./index.mock";
 axios.defaults.adapter = require("axios/lib/adapters/http");
 
 describe("create", () => {
-    xit("correct response", async () => {
+    it("correct response", async () => {
         const response = await DataProvider(
             "https://refine-example-storefront.herokuapp.com/store",
             axios,
@@ -22,7 +22,7 @@ describe("create", () => {
         expect(data[0]["description"]).toBe("Every programmer's best friend.");
     });
 
-    xit("correct filter response", async () => {
+    it("correct filter response", async () => {
         const response = await DataProvider(
             "https://refine-example-storefront.herokuapp.com/store",
             axios,
