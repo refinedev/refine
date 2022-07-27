@@ -2,7 +2,7 @@
 "@pankod/refine-core": minor
 ---
 
-Added useCustomMutation for custom mutation.
+Added `useCustomMutation`hook for custom mutation requests.
 
 ```tsx
 const { mutation } = useCustomMutation();
