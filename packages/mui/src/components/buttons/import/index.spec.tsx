@@ -1,9 +1,10 @@
 import React from "react";
-
+import { buttonImportTests } from "@pankod/refine-ui-tests";
 import { renderHook } from "@testing-library/react-hooks";
-import { useImport, UseImportInputPropsType } from "@pankod/refine-core";
+import { useImport } from "@pankod/refine-core";
+import { Simulate } from "react-dom/test-utils";
 
-import { render, TestWrapper, MockJSONServer, fireEvent, act } from "@test";
+import { render, TestWrapper, MockJSONServer, act } from "@test";
 
 import { ImportButton } from "./";
 
@@ -16,57 +17,9 @@ jest.mock("papaparse", () => {
 });
 
 describe("ImportButton", () => {
-    let inputProps: UseImportInputPropsType;
-    let isLoading: boolean;
+    buttonImportTests.bind(this)(ImportButton);
 
-    beforeAll(async () => {
-        jest.useFakeTimers();
-
-        await act(async () => {
-            const { result } = renderHook(() => useImport(), {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "categories" }],
-                }),
-            });
-
-            isLoading = result.current.isLoading;
-            inputProps = result.current.inputProps;
-        });
-    });
-
-    it("should render without crashing", async () => {
-        const { container, getByText } = render(
-            <ImportButton inputProps={inputProps} loading={isLoading}>
-                Test
-            </ImportButton>,
-        );
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
-
-        expect(container).toBeTruthy();
-        getByText("Test");
-    });
-    it("should render without text show only icon", async () => {
-        const { container, queryByText } = render(
-            <ImportButton
-                inputProps={inputProps}
-                loading={isLoading}
-                hideText
-            />,
-        );
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
-
-        expect(container).toBeTruthy();
-        expect(queryByText("Import")).not.toBeInTheDocument();
-    });
     it("should trigger parse when used with useImport hook", async () => {
-        // Temporary silence the console error
         jest.spyOn(console, "error").mockImplementation((message) => {
             if (
                 message?.includes?.(
@@ -79,8 +32,20 @@ describe("ImportButton", () => {
             console.warn(message);
         });
 
+        const {
+            result: { current: importProps },
+        } = renderHook(() => useImport(), {
+            wrapper: TestWrapper({
+                dataProvider: MockJSONServer,
+                resources: [{ name: "categories" }],
+            }),
+        });
+
         const { container } = render(
-            <ImportButton inputProps={inputProps} loading={isLoading}>
+            <ImportButton
+                inputProps={importProps.inputProps}
+                loading={importProps.isLoading}
+            >
                 Test
             </ImportButton>,
         );
@@ -102,13 +67,10 @@ describe("ImportButton", () => {
         const files = { files: [file] } as unknown as EventTarget;
 
         await act(async () => {
-            fireEvent.change(hiddenFileInput as Element, { target: files });
+            Simulate.change(hiddenFileInput as Element, {
+                target: files,
+            });
         });
-
         expect(parseMock).toHaveBeenCalled();
-
-        await act(async () => {
-            jest.advanceTimersByTime(5000);
-        });
     });
 });

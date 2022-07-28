@@ -1,6 +1,9 @@
 import React from "react";
 import { useTranslate, UseImportInputPropsType } from "@pankod/refine-core";
-import { RefineImportButtonProps } from "@pankod/refine-ui-types";
+import {
+    RefineImportButtonProps,
+    RefineButtonTestIds,
+} from "@pankod/refine-ui-types";
 import { ButtonProps, SvgIconProps } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import ImportExportOutlinedIcon from "@mui/icons-material/ImportExportOutlined";
@@ -42,6 +45,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
                 loadingPosition={hideText ? "center" : "start"}
                 loading={loading}
                 sx={{ minWidth: 0, ...sx }}
+                data-testid={RefineButtonTestIds.ImportButton}
                 {...restProps}
             >
                 {hideText ? (
