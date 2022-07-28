@@ -1,14 +1,20 @@
 import React from "react";
 import { RefineFieldBooleanProps } from "@pankod/refine-ui-types";
 
-import { fireEvent, render } from "@test";
+import { act, fireEvent, render, waitFor, screen } from "@test";
 
 export const fieldBooleanTests = function (
-    BooleanField: React.ComponentType<RefineFieldBooleanProps<any, any, any>>,
+    BooleanField: React.ComponentType<
+        RefineFieldBooleanProps<unknown, any, any>
+    >,
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / Boolean Field", () => {
         beforeAll(() => {
             jest.useFakeTimers();
+        });
+
+        afterAll(() => {
+            jest.useRealTimers();
         });
 
         it("should use prop for custom text", async () => {
@@ -20,9 +26,14 @@ export const fieldBooleanTests = function (
 
             const booleanField =
                 baseDom.getByTestId("custom-field").children[0];
-            fireEvent.mouseOver(booleanField);
 
-            expect(await baseDom.findByText("test")).toBeInTheDocument();
+            act(() => {
+                fireEvent.mouseOver(booleanField);
+            });
+
+            await waitFor(() => {
+                expect(screen.getByText("test")).toBeInTheDocument();
+            });
         });
 
         it("renders value with prop for custom icon", () => {
@@ -35,7 +46,7 @@ export const fieldBooleanTests = function (
                 </div>,
             );
 
-            expect(getByTestId("icon-custom-element")).toBe(true);
+            expect(getByTestId("icon-custom-element")).toBeTruthy();
         });
     });
 };

@@ -4,7 +4,9 @@ import { RefineFieldMarkdownProps } from "@pankod/refine-ui-types";
 import { render } from "@test";
 
 export const fieldMarkdownTests = function (
-    MarkdownField: React.ComponentType<RefineFieldMarkdownProps<any, any, any>>,
+    MarkdownField: React.ComponentType<
+        RefineFieldMarkdownProps<string | undefined>
+    >,
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / Markdown Field", () => {
         beforeAll(() => {

@@ -4,7 +4,15 @@ import { RefineFieldImageProps } from "@pankod/refine-ui-types";
 import { render } from "@test";
 
 export const fieldImageTests = function (
-    ImageField: React.ComponentType<RefineFieldImageProps<any, any, any>>,
+    ImageField: React.ComponentType<
+        RefineFieldImageProps<
+            string | undefined,
+            any,
+            {
+                imageTitle?: string;
+            }
+        >
+    >,
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / Image Field", () => {
         beforeAll(() => {
@@ -13,11 +21,11 @@ export const fieldImageTests = function (
 
         it("renders image with correct title", () => {
             const imageUrl = "http://placeimg.com/640/480/animals";
-            const { getByTestId, getByRole } = render(
-                <ImageField value={imageUrl} />,
+            const { getAllByRole } = render(
+                <ImageField value={imageUrl} data-testid="test-image" />,
             );
 
-            expect(getByRole("img")).toHaveProperty("src", imageUrl);
+            expect(getAllByRole("img")[0]).toHaveProperty("src", imageUrl);
         });
     });
 };
