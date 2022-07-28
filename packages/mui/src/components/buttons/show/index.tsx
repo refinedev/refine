@@ -6,7 +6,10 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import { RefineShowButtonProps } from "@pankod/refine-ui-types";
+import {
+    RefineButtonTestIds,
+    RefineShowButtonProps,
+} from "@pankod/refine-ui-types";
 import { Button, ButtonProps, SvgIconProps } from "@mui/material";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 
@@ -86,6 +89,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
                 }
                 title={disabledTitle()}
                 sx={{ minWidth: 0, ...sx }}
+                data-testid={RefineButtonTestIds.ShowButton}
                 {...restProps}
             >
                 {hideText ? (
