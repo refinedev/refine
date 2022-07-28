@@ -8,7 +8,10 @@ import {
     useCan,
     useResource,
 } from "@pankod/refine-core";
-import { RefineDeleteButtonProps } from "@pankod/refine-ui-types";
+import {
+    RefineDeleteButtonProps,
+    RefineButtonTestIds,
+} from "@pankod/refine-ui-types";
 
 export type DeleteButtonProps = RefineDeleteButtonProps<
     ButtonProps,
@@ -106,6 +109,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                 loading={id === variables?.id && isLoading}
                 icon={<DeleteOutlined />}
                 disabled={data?.can === false}
+                data-testid={RefineButtonTestIds.DeleteButton}
                 {...rest}
             >
                 {!hideText &&
