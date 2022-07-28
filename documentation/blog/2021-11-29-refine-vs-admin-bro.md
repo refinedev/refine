@@ -383,6 +383,7 @@ Connects to any REST or GraphQL custom backend.
 * Nhost: [https://github.com/pankod/refine/tree/master/examples/dataProvider/nhost](https://github.com/pankod/refine/tree/master/examples/dataProvider/nhost)
 * Appwrite: [https://github.com/pankod/refine/tree/master/examples/dataProvider/appwrite](https://github.com/pankod/refine/tree/master/examples/dataProvider/appwrite)
 * Altogic: [https://github.com/pankod/refine/tree/master/examples/dataProvider/altogic](https://github.com/pankod/refine/tree/master/examples/dataProvider/altogic)
+* Medusa: [https://github.com/pankod/refine/tree/next/packages/medusa](https://github.com/pankod/refine/tree/next/packages/medusa)
 
 ### Customization
 * **refine's** motivation and main purpose are as follows: "Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility." 

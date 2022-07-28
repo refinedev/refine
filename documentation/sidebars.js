@@ -76,6 +76,7 @@ module.exports = {
                                 "core/hooks/data/useCreate",
                                 "core/hooks/data/useCreateMany",
                                 "core/hooks/data/useCustom",
+                                "core/hooks/data/useCustomMutation",
                                 "core/hooks/data/useDataProvider",
                                 "core/hooks/data/useDelete",
                                 "core/hooks/data/useDeleteMany",
@@ -394,6 +395,7 @@ module.exports = {
             type: "category",
             label: "Packages",
             items: [
+                "packages/command-palette",
                 "packages/react-table",
                 {
                     type: "category",
@@ -501,7 +503,6 @@ module.exports = {
                     items: [
                         "examples/access-control/casbin",
                         "examples/access-control/cerbos",
-                        "examples/access-control/permify",
                     ],
                 },
                 "examples/authorization",
@@ -515,11 +516,7 @@ module.exports = {
                     ],
                 },
                 "examples/antd-calendar-example",
-                {
-                    type: "category",
-                    label: "Command Palette",
-                    items: ["examples/command-palette/kbar"],
-                },
+                "examples/command-palette",
                 {
                     type: "category",
                     label: "Core",

@@ -19,9 +19,7 @@ export type {
 } from "./types";
 
 export type {
-    RefineCrudCommonProps,
     RefineCrudCreateProps,
-    RefineCrudDataProps,
     RefineCrudEditProps,
     RefineCrudListProps,
     RefineCrudShowProps,

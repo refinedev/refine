@@ -58,6 +58,7 @@ The word headless is underlined above. So Refine drop you into UI heaven, meanwh
 - Supabase
 - Hasura
 - Nhost
+- Medusa
 - Appwrite
 - Firebase
 - Directus

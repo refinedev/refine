@@ -8,27 +8,17 @@ import pagination from '@site/static/img/packages/react-table/pagination.gif';
 import sorting from '@site/static/img/packages/react-table/sorting.gif';
 import filtering from '@site/static/img/packages/react-table/filtering.gif';
 
-**refine** offers a [React Table][react-table] adapter([@pankod/refine-react-table][refine-react-table]) that allows you to use the React Table library with **refine**. Thus, you can manage your server-side data fetching operations.
+**refine** offers a [TanStack Table][tanstack-table] adapter with [@pankod/refine-react-table][refine-react-table] that allows you to use the TanStack Table library with **refine**. Thus, you can manage your server-side data fetching operations.
 
-All of React Table's features are supported and you can use all of the React Table's examples with no changes just copy and paste them into your project.
+All of TanStack Table's features are supported and you can use all of the TanStack Table's examples with no changes just copy and paste them into your project.
 
 ## Installation
 
 Install the [`@pankod/refine-react-table`][refine-react-table] library.
 
 ```bash
-npm i @pankod/refine-react-table@3
+npm i @pankod/refine-react-table
 ```
-
-:::caution
-
-This documentation **isn't** for the latest version of `@pankod/refine-react-table`. The package updated with accordingly to [TanStack Table v8](https://tanstack.com/table/v8) version. We will update this documentation with the latest version as soon as possible.
-
-:::
-
-:::caution
-For typescript users, you need to add React Table types to your project.
-:::
 
 ## Basic Usage
 
@@ -143,36 +133,43 @@ export const PostList: React.FC = () => {
 Define columns what we want to display in the table. Then, return the headless table with using the `useTable` hook.
 
 :::info
-`useTable` does not expect any data to be passed to it. It will fetch data from the data provider by resource.
+`useTable` does not expect any data prop to be passed to it. It will fetch data from the data provider by resource.
 :::
 
 ```tsx title="src/posts/list.tsx"
 //highlight-next-line
-import { useTable, Column } from "@pankod/refine-react-table";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+
+interface IPost {
+    id: number;
+    title: string;
+    status: "published" | "draft" | "rejected";
+    createdAt: string;
+}
 
 export const PostList: React.FC = () => {
     //highlight-start
-    const columns: Array<Column> = React.useMemo(
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
         () => [
             {
                 id: "id",
-                Header: "ID",
-                accessor: "id",
+                header: "ID",
+                accessorKey: "id",
             },
             {
                 id: "title",
-                Header: "Title",
-                accessor: "title",
+                header: "Title",
+                accessorKey: "title",
             },
             {
                 id: "status",
-                Header: "Status",
-                accessor: "status",
+                header: "Status",
+                accessorKey: "status",
             },
             {
                 id: "createdAt",
-                Header: "CreatedAt",
-                accessor: "createdAt",
+                header: "CreatedAt",
+                accessorKey: "createdAt",
             },
         ],
         [],
@@ -180,39 +177,41 @@ export const PostList: React.FC = () => {
     //highlight-end
 
     //highlight-start
-    const { getTableProps, getTableBodyProps, headerGroups, prepareRow, rows } =
-        useTable({ columns });
+    const { getHeaderGroups, getRowModel } = useTable({ columns });
     //highlight-end
 
     return (
         //highlight-start
-        <table {...getTableProps()}>
+        <table>
             <thead>
-                {headerGroups.map((headerGroup) => (
-                    <tr {...headerGroup.getHeaderGroupProps()}>
-                        {headerGroup.headers.map((column) => (
-                            <th {...column.getHeaderProps()}>
-                                {column.render("Header")}
+                {getHeaderGroups().map((headerGroup) => (
+                    <tr key={headerGroup.id}>
+                        {headerGroup.headers.map((header) => (
+                            <th key={header.id}>
+                                {header.isPlaceholder
+                                    ? null
+                                    : flexRender(
+                                          header.column.columnDef.header,
+                                          header.getContext(),
+                                      )}
                             </th>
                         ))}
                     </tr>
                 ))}
             </thead>
-            <tbody {...getTableBodyProps()}>
-                {rows.map((row, i) => {
-                    prepareRow(row);
-                    return (
-                        <tr {...row.getRowProps()}>
-                            {row.cells.map((cell) => {
-                                return (
-                                    <td {...cell.getCellProps()}>
-                                        {cell.render("Cell")}
-                                    </td>
-                                );
-                            })}
-                        </tr>
-                    );
-                })}
+            <tbody>
+                {getRowModel().rows.map((row) => (
+                    <tr key={row.id}>
+                        {row.getVisibleCells().map((cell) => (
+                            <td key={cell.id}>
+                                {flexRender(
+                                    cell.column.columnDef.cell,
+                                    cell.getContext(),
+                                )}
+                            </td>
+                        ))}
+                    </tr>
+                ))}
             </tbody>
         </table>
         //highlight-end
@@ -221,9 +220,9 @@ export const PostList: React.FC = () => {
 ```
 
 :::note
-This example is the same as the basic example in the [React Table][react-table] documentation.
+This example is the same as the basic example in the [TanStack Table][tanstack-table] documentation.
 
-[Refer to the basic example of React Table. &#8594](https://react-table.tanstack.com/docs/examples/basic)
+[Refer to the basic example of TanStack Table. &#8594](https://tanstack.com/table/v8/docs/examples/react/basic)
 :::
 
 <div class="img-container">
@@ -239,118 +238,122 @@ This example is the same as the basic example in the [React Table][react-table] 
 
 ## Pagination
 
-We need to import the `usePagination` plugin and inject it into the `useTable` hook in order to use the pagination feature. React Table provides a bunch of methods that we can use to control the pagination. For example, we can use the `setPageSize` method to set the current `pageSize`. Every change in the `pageSize` and `pageIndex` will trigger a new request to the data provider.
+TanStack Table provides a bunch of methods that we can use to control the pagination. For example, we can use the `setPageSize` method to set the current `pageSize`. Every change in the `pageSize` and `pageIndex` will trigger a new request to the data provider.
 
-[Refer to the `usePagination` documentation for detailed information. &#8594](https://react-table.tanstack.com/docs/api/usePagination#usepagination)
+[Refer to the TanStack Table Pagination API documentation for detailed information. &#8594](https://tanstack.com/table/v8/docs/api/features/pagination)
 
 :::info
-`useTable` hook from `@pankod/refine-react-table` sets `paginationMode` to `server` by default to handle the pagination. If you set `hasPagination` to `false` in `refineCoreProps` property in the `useTable` config, it will disable the server-side pagination and it will let you handle the pagination in the client side.
+`useTable` hook from `@pankod/refine-react-table` sets `manualPagination` to `true` by default to handle the pagination. If you set `hasPagination` to `false` in `refineCoreProps` property in the `useTable` config, it will disable the server-side pagination and it will let you handle the pagination in the client side.
 :::
 
 ```tsx title="src/posts/list.tsx"
-//highlight-next-line
-import { useTable, Column, usePagination } from "@pankod/refine-react-table";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+
+interface IPost {
+    id: number;
+    title: string;
+    status: "published" | "draft" | "rejected";
+    createdAt: string;
+}
 
 export const PostList: React.FC = () => {
-    const columns: Array<Column> = React.useMemo(...); // Defined in the previous section
+    const columns = React.useMemo<ColumnDef<IPost>[]>(...); // Defined in the previous section
 
     const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        prepareRow,
-        //highlight-next-line
-        page, // Instead of using 'rows', we'll use page
+        getHeaderGroups,
+        getRowModel,
         //highlight-start
-        canPreviousPage,
-        canNextPage,
-        pageOptions,
-        pageCount,
-        gotoPage,
+        getState,
+        setPageIndex,
+        getCanPreviousPage,
+        getPageCount,
+        getCanNextPage,
         nextPage,
         previousPage,
         setPageSize,
-        state: { pageIndex, pageSize },
         //highlight-end
-        //highlight-next-line
-    } = useTable({ columns }, usePagination);
+    } = useTable({ columns });
 
     return (
         <>
-            <table {...getTableProps()}>
+            <table>
                 <thead>
-                    {headerGroups.map((headerGroup) => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column) => (
-                                <th {...column.getHeaderProps()}>
-                                    {column.render("Header")}
+                    {getHeaderGroups().map((headerGroup) => (
+                        <tr key={headerGroup.id}>
+                            {headerGroup.headers.map((header) => (
+                                <th key={header.id}>
+                                    {header.isPlaceholder
+                                        ? null
+                                        : flexRender(
+                                              header.column.columnDef.header,
+                                              header.getContext(),
+                                          )}
                                 </th>
                             ))}
                         </tr>
                     ))}
                 </thead>
-                <tbody {...getTableBodyProps()}>
-                    //highlight-next-line
-                    {page.map((row, i) => {
-                        prepareRow(row);
-                        return (
-                            <tr {...row.getRowProps()}>
-                                {row.cells.map((cell) => {
-                                    return (
-                                        <td {...cell.getCellProps()}>
-                                            {cell.render("Cell")}
-                                        </td>
-                                    );
-                                })}
-                            </tr>
-                        );
-                    })}
+                <tbody>
+                    {getRowModel().rows.map((row) => (
+                        <tr key={row.id}>
+                            {row.getVisibleCells().map((cell) => (
+                                <td key={cell.id}>
+                                    {flexRender(
+                                        cell.column.columnDef.cell,
+                                        cell.getContext(),
+                                    )}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
                 </tbody>
             </table>
-
-            // Pagination can be built however you'd like.
-            // This is just a very basic UI implementation:
-            //highlight-start
-            <div className="pagination">
-                <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+            // Pagination can be built however you'd like. // This is just a very
+            basic UI implementation: //highlight-start
+            <div>
+                <button
+                    onClick={() => setPageIndex(0)}
+                    disabled={!getCanPreviousPage()}
+                >
                     {"<<"}
                 </button>
                 <button
                     onClick={() => previousPage()}
-                    disabled={!canPreviousPage}
+                    disabled={!getCanPreviousPage()}
                 >
                     {"<"}
                 </button>
-                <button onClick={() => nextPage()} disabled={!canNextPage}>
+                <button onClick={() => nextPage()} disabled={!getCanNextPage()}>
                     {">"}
                 </button>
                 <button
-                    onClick={() => gotoPage(pageCount - 1)}
-                    disabled={!canNextPage}
+                    onClick={() => setPageIndex(getPageCount() - 1)}
+                    disabled={!getCanNextPage()}
                 >
                     {">>"}
                 </button>
                 <span>
-                    Page
+                    <div>Page</div>
                     <strong>
-                        {pageIndex + 1} of {pageOptions.length}
+                        {getState().pagination.pageIndex + 1} of{" "}
+                        {getPageCount()}
                     </strong>
                 </span>
                 <span>
                     | Go to page:
                     <input
                         type="number"
-                        defaultValue={pageIndex + 1}
+                        defaultValue={getState().pagination.pageIndex + 1}
                         onChange={(e) => {
                             const page = e.target.value
                                 ? Number(e.target.value) - 1
                                 : 0;
-                            gotoPage(page);
+                            setPageIndex(page);
                         }}
-                        style={{ width: "100px" }}
                     />
-                </span> <select
-                    value={pageSize}
+                </span>
+                <select
+                    value={getState().pagination.pageSize}
                     onChange={(e) => {
                         setPageSize(Number(e.target.value));
                     }}
@@ -368,12 +371,6 @@ export const PostList: React.FC = () => {
 };
 ```
 
-:::note
-This example is the same as the pagination example in the [React Table][react-table] documentation.
-
-[Refer to the pagination example of React Table. &#8594](https://react-table.tanstack.com/docs/examples/pagination)
-:::
-
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -387,97 +384,87 @@ This example is the same as the pagination example in the [React Table][react-ta
 
 ## Sorting
 
-We need to import the `useSortBy` plugin and inject it into the `useTable` hook in order to use the sorting feature. React Table provides a bunch of methods that we can use to control the sorting. For example, we can use the `toggleSortBy` method to set the current `sortBy` value. Every change in the `sortBy` will trigger a new request to the data provider.
+TanStack Table provides a bunch of methods that we can use to control the sorting. For example, we can use the `setColumnOrder` method to set the current `sorting` value. Every change in the `sorting` state will trigger a new request to the data provider.
 
 [Refer to the `useSortBy` documentation for detailed information. &#8594](https://react-table.tanstack.com/docs/api/useSortBy#usesortby)
 
 ```tsx title="src/posts/list.tsx"
-import {
-    useTable,
-    Column,
-    usePagination,
-    //highlight-next-line
-    useSortBy,
-} from "@pankod/refine-react-table";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+
+interface IPost {
+    id: number;
+    title: string;
+    status: "published" | "draft" | "rejected";
+    createdAt: string;
+}
 
 export const PostList: React.FC = () => {
-    const columns: Array<Column> = React.useMemo(...); // Defined in the previous section
+    const columns = React.useMemo<ColumnDef<IPost>[]>(...); // Defined in the previous section
 
     const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        prepareRow,
-        page
-        canPreviousPage,
-        canNextPage,
-        pageOptions,
-        pageCount,
-        gotoPage,
+        getHeaderGroups,
+        getRowModel,
+        getState,
+        setPageIndex,
+        getCanPreviousPage,
+        getPageCount,
+        getCanNextPage,
         nextPage,
         previousPage,
         setPageSize,
-        state: { pageIndex, pageSize },
-        //highlight-next-line
-    } = useTable({ columns }, useSortBy, usePagination);
+    } = useTable({ columns });
 
     return (
         <>
-            <table {...getTableProps()}>
+            <table>
                 <thead>
-                    {headerGroups.map((headerGroup) => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column) => (
-                                // Add the sorting props to control sorting. For this example
-                                // we can add them into the header props
-                                //highlight-start
-                                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                                    {column.render("Header")}
-                                    // Add a sort direction indicator
-                                    <span>
-                                    {column.isSorted
-                                        ? column.isSortedDesc
-                                        ? ' 🔽'
-                                        : ' 🔼'
-                                        : ''}
-                                    </span>
+                    {getHeaderGroups().map((headerGroup) => (
+                        <tr key={headerGroup.id}>
+                            {headerGroup.headers.map((header) => (
+                                <th key={header.id}>
+                                    {header.isPlaceholder ? null : (
+                                        //highlight-start
+                                        <div
+                                            onClick={header.column.getToggleSortingHandler()}
+                                        >
+                                            {flexRender(
+                                                header.column.columnDef.header,
+                                                header.getContext(),
+                                            )}
+                                            {{
+                                                asc: " 🔼",
+                                                desc: " 🔽",
+                                            }[
+                                                header.column.getIsSorted() as string
+                                            ] ?? null}
+                                        </div>
+                                        //highlight-end
+                                    )}
                                 </th>
-                                //highlight-end
                             ))}
                         </tr>
                     ))}
                 </thead>
-                <tbody {...getTableBodyProps()}>
-                    {page.map((row, i) => {
-                        prepareRow(row);
-                        return (
-                            <tr {...row.getRowProps()}>
-                                {row.cells.map((cell) => {
-                                    return (
-                                        <td {...cell.getCellProps()}>
-                                            {cell.render("Cell")}
-                                        </td>
-                                    );
-                                })}
-                            </tr>
-                        );
-                    })}
+                <tbody>
+                    {getRowModel().rows.map((row) => (
+                        <tr key={row.id}>
+                            {row.getVisibleCells().map((cell) => (
+                                <td key={cell.id}>
+                                    {flexRender(
+                                        cell.column.columnDef.cell,
+                                        cell.getContext(),
+                                    )}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
                 </tbody>
             </table>
-
-            <div className="pagination">
-                // Pagination defined in the previous section
-            </div>
+            // Pagination defined in the previous section
         </>
     );
 };
 ```
-
-:::note
-This example is the same as the sorting example in the [React Table][react-table] documentation.
-
-[Refer to the pagination example of React Table. &#8594](https://react-table.tanstack.com/docs/examples/pagination)
-:::
 
 <div class="img-container">
     <div class="window">
@@ -492,125 +479,133 @@ This example is the same as the sorting example in the [React Table][react-table
 
 ## Filtering
 
-We need to import the `useFilters` plugin and inject it into the `useTable` hook in order to use filtering. React Table provides a bunch of methods that we can use to control the filtering. For example, we can use the `setFilter` method to set the current `filter` value. However, with which column we are going to filter, we need to specify the `filter` prop for that column. This `filter` prop must be [`CrudOperators`](/core/interfaces.md#crudoperators) type. Every change in the `filter` will trigger a new request to the data provider.
+TanStack Table provides a bunch of methods that we can use to control the filtering. For example, we can use the `setColumnFilters` method to set the current `columnFilters` value. Every change in the `filter` will trigger a new request to the data provider.
+
+You can specify which field will be filtered with which filter operator with the `filterOperator` property in the `meta` object. `filterOperator` must be a [`CrudOperators`](/core/interfaces.md#crudoperators) type.
 
 ```tsx title="src/posts/list.tsx"
-import {
-    useTable,
-    Column,
-    usePagination,
-    useSortBy,
-    //highlight-next-line
-    useFilters,
-} from "@pankod/refine-react-table";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+
+interface IPost {
+    id: number;
+    title: string;
+    status: "published" | "draft" | "rejected";
+    createdAt: string;
+}
 
 export const PostList: React.FC = () => {
-    const columns: Array<Column> = React.useMemo(
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
         () => [
             {
                 id: "id",
-                Header: "ID",
-                accessor: "id",
+                header: "ID",
+                accessorKey: "id",
             },
             {
                 id: "title",
-                Header: "Title",
-                accessor: "title",
-                //highlight-next-line
-                filter: "contains",
+                header: "Title",
+                accessorKey: "title",
+                //highlight-start
+                meta: {
+                    filterOperator: "contains",
+                },
+                //highlight-end
             },
             {
                 id: "status",
-                Header: "Status",
-                accessor: "status",
+                header: "Status",
+                accessorKey: "status",
+                //highlight-start
+                meta: {
+                    filterOperator: "contains",
+                },
+                //highlight-end
             },
             {
                 id: "createdAt",
-                Header: "CreatedAt",
-                accessor: "createdAt",
+                header: "CreatedAt",
+                accessorKey: "createdAt",
             },
         ],
         [],
     );
 
     const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        prepareRow,
-        page,
-        canPreviousPage,
-        canNextPage,
-        pageOptions,
-        pageCount,
-        gotoPage,
+        getHeaderGroups,
+        getRowModel,
+        getState,
+        setPageIndex,
+        getCanPreviousPage,
+        getPageCount,
+        getCanNextPage,
         nextPage,
         previousPage,
         setPageSize,
-        //highlight-start
-        setFilter,
-        state: { pageIndex, pageSize, filters },
-    } = useTable({ columns }, useFilters, useSortBy, usePagination);
-    //highlight-end
+    } = useTable({ columns });
 
     return (
         <>
-            //highlight-start
-            <div className="filtering">
-                <label htmlFor="title">Title</label>
-                <input
-                    id="title"
-                    type="text"
-                    value={
-                        filters.find((filter) => filter.id === "title")?.value
-                    }
-                    onChange={(event) => setFilter("title", event.target.value)}
-                />
-            </div>
-            //highlight-end
-            <table {...getTableProps()}>
+            <table>
                 <thead>
-                    {headerGroups.map((headerGroup) => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column) => (
-                                <th
-                                    {...column.getHeaderProps(
-                                        column.getSortByToggleProps(),
+                    {getHeaderGroups().map((headerGroup) => (
+                        <tr key={headerGroup.id}>
+                            {headerGroup.headers.map((header) => (
+                                <th key={header.id}>
+                                    {header.isPlaceholder ? null : (
+                                        <>
+                                            <div
+                                                onClick={header.column.getToggleSortingHandler()}
+                                            >
+                                                {flexRender(
+                                                    header.column.columnDef
+                                                        .header,
+                                                    header.getContext(),
+                                                )}
+                                                {{
+                                                    asc: " 🔼",
+                                                    desc: " 🔽",
+                                                }[
+                                                    header.column.getIsSorted() as string
+                                                ] ?? null}
+                                            </div>
+                                            //highlight-start
+                                            <div>
+                                                <input
+                                                    value={
+                                                        (header.column.getFilterValue() as string) ??
+                                                        ""
+                                                    }
+                                                    onChange={(e) =>
+                                                        header.column.setFilterValue(
+                                                            e.target.value,
+                                                        )
+                                                    }
+                                                />
+                                            </div>
+                                            //highlight-end
+                                        </>
                                     )}
-                                >
-                                    {column.render("Header")}
-                                    <span>
-                                        {column.isSorted
-                                            ? column.isSortedDesc
-                                                ? " 🔽"
-                                                : " 🔼"
-                                            : ""}
-                                    </span>
                                 </th>
                             ))}
                         </tr>
                     ))}
                 </thead>
-                <tbody {...getTableBodyProps()}>
-                    {page.map((row, i) => {
-                        prepareRow(row);
-                        return (
-                            <tr {...row.getRowProps()}>
-                                {row.cells.map((cell) => {
-                                    return (
-                                        <td {...cell.getCellProps()}>
-                                            {cell.render("Cell")}
-                                        </td>
-                                    );
-                                })}
-                            </tr>
-                        );
-                    })}
+                <tbody>
+                    {getRowModel().rows.map((row) => (
+                        <tr key={row.id}>
+                            {row.getVisibleCells().map((cell) => (
+                                <td key={cell.id}>
+                                    {flexRender(
+                                        cell.column.columnDef.cell,
+                                        cell.getContext(),
+                                    )}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
                 </tbody>
             </table>
-            <div className="pagination">
-                // Pagination defined in the previous section
-            </div>
+            // Pagination defined in the previous section
         </>
     );
 };
@@ -627,28 +622,14 @@ export const PostList: React.FC = () => {
 
 <br/>
 
-## API
+## API Reference
 
 ### Properties
 
-Supports all the properties supported by the `useTable` hook are available in the [React Table][react-table] documentation. Also, we added the following property:
-
-`refineCoreProps`: You can define all properties provided by [`useTable`][react-table-core] here. You can see all of them in [here](/core/hooks/useTable.md#properties).
-
-> For example, we can define the `refineCoreProps` property in the `useTable` hook as:
-
-```tsx
-import { useTable } from "@pankod/refine-react-table";
-
-const { ... } = useTable({
-    ...,
-    refineCoreProps: {
-        resource: "posts",
-        syncWithLocation: true,
-        // You can define all properties provided by refine useTable
-    },
-});
-```
+| Property                  | Description                                                                                   | Type                                                  |
+| ------------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| refineCoreProps           | Configuration object for the core of the [`useTable`][use-table-core]                         | [`UseTableProps`](/core/hooks/useTable.md#properties) |
+| Tanstack Table Properties | See [TanStack Table](https://tanstack.com/table/v8/docs/api/core/table#options) documentation |
 
 ### Type Parameters
 
@@ -659,19 +640,11 @@ const { ... } = useTable({
 
 ### Return values
 
-Returns all the properties returned by [React Table][react-table] of the `useTable` hook. Also, we added the following return values:
+| Property                     | Description                                                                                     | Type                                                            |
+| ---------------------------- | ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| refineCore                   | The return values of the [`useTable`][use-table-core] in the core                               | [`UseTableReturnValues`](/core/hooks/useTable.md#return-values) |
+| Tanstack Table Return Values | See [TanStack Table](https://tanstack.com/table/v8/docs/api/core/table#table-api) documentation |
 
-`refineCore`: Returns all values returned by [`useTable`][react-table-core]. You can see all of them in [here](/core/hooks/useTable.md##return-values).
-
-> For example, we can access the `refineCore` return value in the `useTable` hook as:
-
-```tsx
-import { useTable } from "@pankod/refine-react-table";
-
-const {
-    refineCore: { tableQueryResult, ... },
-} = useTable({ ... });
-```
 
 ## Live StackBlitz Example
 
@@ -680,8 +653,8 @@ const {
     title="refine-react-table-example"
 ></iframe>
 
-[react-table]: https://react-table.tanstack.com
+[tanstack-table]: https://tanstack.com/table/v8
 [refine-react-table]: https://github.com/pankod/refine/tree/master/packages/react-table
-[react-table-core]: /core/hooks/useTable.md
+[use-table-core]: /core/hooks/useTable.md
 [baserecord]: /core/interfaces.md#baserecord
 [httperror]: /core/interfaces.md#httperror

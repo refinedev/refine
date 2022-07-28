@@ -335,21 +335,11 @@ We used React95 components to construct our Login page design. Then, using the *
 
 ## Refine Post Page
 
-After our login process, we'll get the posts from our Supabase Database and display them in the table. We will use React95 components for the UI portion of our table, as well as refine-react-table package to handle pagination, sorting, and filtering. You can use all the features of [React Table](https://react-table.tanstack.com/) with the `refine-react-table` adapter. On this page, we will use this adapter of **refine** to manage the table.
+After our login process, we'll get the posts from our Supabase Database and display them in the table. We will use React95 components for the UI portion of our table, as well as `@pankod/refine-react-table` package to handle pagination, sorting, and filtering. You can use all the features of [TanStack Table](https://react-table.tanstack.com/) with the `@pankod/refine-react-table` adapter. On this page, we will use this adapter of **refine** to manage the table.
 
-:::caution
+In this step, we'll show how to use the `@pankod/refine-react-table` package to create a data table. We will begin by examining this page in two parts. In the first step, we'll utilize our `@pankod/refine-react-table` package and React95 UI components to only use our data. Then, in the following stage, we'll arrange the sorting, pagination processes and our UI part. Let's start!
 
-This documentation **isn't** for the latest version of `@pankod/refine-react-table`. The package updated with accordingly to [TanStack Table v8](https://tanstack.com/table/v8) version. To follow the documentation, you have to install it with following command:
-
-```bash
-npm install @pankod/refine-react-table@3
-```
-
-:::
-
-In this step, we'll show how to use the refine-react-table package to create a data table. We will begin by examining this page in two parts. In the first step, we'll utilize our refine-react-table package and React95 UI components to only use our data. Then, in the following stage, we'll arrange the sorting, pagination processes and our UI part. Let's start!
-
-[Refer to the **refine** React Table packages documentation for detailed information. →](/docs/packages/react-table/)
+[Refer to the **refine** TanStack Table packages documentation for detailed information. →](/docs/packages/react-table/)
 
 <details>
 <summary>Show Part I Code</summary>
@@ -358,9 +348,9 @@ In this step, we'll show how to use the refine-react-table package to create a d
 ```tsx title="src/pages/post/PostList.tsx"
 import { useMemo } from "react";
 import { useOne } from "@pankod/refine-core";
-import { useTable, Column } from "@pankod/refine-react-table";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
-import { IPost, ICategory, ICsvPost } from "interfaces";
+import { IPost, ICategory } from "interfaces";
 import {
     Table,
     TableBody,
@@ -375,26 +365,26 @@ import {
 
 export const PostList = () => {
     //highlight-start
-    const columns: Array<Column> = useMemo(
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
         () => [
             {
                 id: "id",
-                Header: "ID",
-                accessor: "id",
+                header: "ID",
+                accessorKey: "id",
             },
             {
                 id: "title",
-                Header: "Title",
-                accessor: "title",
+                header: "Title",
+                accessorKey: "title",
             },
             {
-                id: "category.id",
-                Header: "Category",
-                accessor: "category.id",
-                Cell: ({ cell }) => {
+                id: "categoryId",
+                header: "Category",
+                accessorKey: "categoryId",
+                cell: function render({ getValue }) {
                     const { data, isLoading } = useOne<ICategory>({
                         resource: "categories",
-                        id: cell.row.original.categoryId,
+                        id: getValue() as number,
                     });
 
                     if (isLoading) {
@@ -410,8 +400,7 @@ export const PostList = () => {
     //highlight-end
 
     //highlight-start
-    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-        useTable<IPost>({ columns });
+    const { getHeaderGroups, getRowModel } = useTable<IPost>({ columns });
     //highlight-end
 
     return (
@@ -420,17 +409,22 @@ export const PostList = () => {
             <Window style={{ width: "100%" }}>
                 <WindowHeader>Posts</WindowHeader>
                 <WindowContent>
-                    <Table {...getTableProps()}>
+                    <Table>
                         <TableHead>
-                            {headerGroups.map((headerGroup) => (
+                            {getHeaderGroups().map((headerGroup) => (
                                 <TableRow
-                                    {...headerGroup.getHeaderGroupProps()}
+                                    key={headerGroup.id}
+                                    style={{ overflowX: "auto" }}
                                 >
-                                    {headerGroup.headers.map((column) => (
+                                    {headerGroup.headers.map((header) => (
                                         <TableHeadCell
-                                            {...column.getHeaderProps()}
+                                            key={header.id}
+                                            colSpan={header.colSpan}
                                         >
-                                            {column.render("Header")}
+                                            {flexRender(
+                                                header.column.columnDef.header,
+                                                header.getContext(),
+                                            )}
                                         </TableHeadCell>
                                     ))}
                                 </TableRow>
@@ -476,7 +470,7 @@ export const PostList = () => {
 </div>
 <br />
 
-As you can see, our first step is complete. Thanks to the refine-react-table adapter, we fetch our Supabase data and process as table data. Then we placed this data in React95 components. Now let's move on to the second step.
+As you can see, our first step is complete. Thanks to the `@pankod/refine-react-table` adapter, we fetch our Supabase data and process as table data. Then we placed this data in React95 components. Now let's move on to the second step.
 
 <details>
 <summary>Show Part II Code</summary>
@@ -485,15 +479,7 @@ As you can see, our first step is complete. Thanks to the refine-react-table ada
 ```tsx title="src/pages/post/PostList.tsx"
 import { useMemo, useRef, useState } from "react";
 import { useOne, useNavigation, useDelete } from "@pankod/refine-core";
-import {
-    useTable,
-    Column,
-    //highlight-start
-    useSortBy,
-    usePagination,
-    useFilters,
-    //highlight-end
-} from "@pankod/refine-react-table";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 import { IPost, ICategory } from "interfaces";
 import {
@@ -516,26 +502,26 @@ export const PostList = () => {
     const { edit, create } = useNavigation();
     const { mutate } = useDelete();
 
-    const columns: Array<Column> = useMemo(
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
         () => [
             {
                 id: "id",
-                Header: "ID",
-                accessor: "id",
+                header: "ID",
+                accessorKey: "id",
             },
             {
                 id: "title",
-                Header: "Title",
-                accessor: "title",
+                header: "Title",
+                accessorKey: "title",
             },
             {
-                id: "category.id",
-                Header: "Category",
-                accessor: "category.id",
-                Cell: ({ cell }) => {
+                id: "categoryId",
+                header: "Category",
+                accessorKey: "categoryId",
+                cell: function render({ getValue }) {
                     const { data, isLoading } = useOne<ICategory>({
                         resource: "categories",
-                        id: cell.row.original.categoryId,
+                        id: getValue() as number,
                     });
 
                     if (isLoading) {
@@ -548,24 +534,17 @@ export const PostList = () => {
             //highlight-start
             {
                 id: "action",
-                Header: "Action",
-                accessor: "id",
-                Cell: ({ value }) => (
-                    <div>
-                        <Button onClick={() => edit("posts", value)}>
+                header: "Action",
+                accessorKey: "id",
+                cell: function render({ getValue }) {
+                    return (
+                        <Button
+                            onClick={() => edit("posts", getValue() as number)}
+                        >
                             Edit
                         </Button>
-
-                        <Button
-                            style={{ marginLeft: 4, marginTop: 4 }}
-                            onClick={() =>
-                                mutate({ id: value, resource: "posts" })
-                            }
-                        >
-                            Delete
-                        </Button>
-                    </div>
-                ),
+                    );
+                },
             },
             //highlight-end
         ],
@@ -573,18 +552,15 @@ export const PostList = () => {
     );
 
     const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        rows,
-        prepareRow,
+        getHeaderGroups,
+        getRowModel,
         //highlight-start
-        pageOptions,
+        options: { pageCount },
+        getState,
+        setPageIndex,
         setPageSize,
-        gotoPage,
-        state: { pageIndex, pageSize },
-    } = useTable<IPost>({ columns }, useFilters, useSortBy, usePagination);
-    //highlight-end
+        //highlight-end
+    } = useTable<IPost>({ columns });
 
     return (
         <>
@@ -593,18 +569,22 @@ export const PostList = () => {
                 <WindowContent>
                     <Table {...getTableProps()}>
                         <TableHead>
-                            {headerGroups.map((headerGroup) => (
+                            {getHeaderGroups().map((headerGroup) => (
                                 <TableRow
-                                    {...headerGroup.getHeaderGroupProps()}
+                                    key={headerGroup.id}
+                                    style={{ overflowX: "auto" }}
                                 >
-                                    {headerGroup.headers.map((column) => (
+                                    {headerGroup.headers.map((header) => (
                                         <TableHeadCell
-                                            {...column.getHeaderProps(
-                                                //highlight-next-line
-                                                column.getSortByToggleProps(),
-                                            )}
+                                            key={header.id}
+                                            colSpan={header.colSpan}
+                                            //highlight-next-line
+                                            onClick={header.column.getToggleSortingHandler()}
                                         >
-                                            {column.render("Header")}
+                                            {flexRender(
+                                                header.column.columnDef.header,
+                                                header.getContext(),
+                                            )}
                                         </TableHeadCell>
                                     ))}
                                 </TableRow>
@@ -642,8 +622,8 @@ export const PostList = () => {
                 >
                     <Select
                         style={{ marginLeft: 8 }}
-                        value={pageSize}
-                        onChange={(_, selection) => {
+                        value={getState().pagination.pageSize}
+                        onChange={(_: any, selection: any) => {
                             setPageSize(selection.value);
                         }}
                         options={opt}
@@ -652,18 +632,20 @@ export const PostList = () => {
                     <span style={{ marginLeft: 8 }}>
                         Page{" "}
                         <strong>
-                            {pageIndex + 1} of {pageOptions.length}
+                            {getState().pagination.pageIndex + 1} of {pageCount}
                         </strong>
                         <span style={{ marginLeft: 8 }}>
                             Go to page:
                             <NumberField
                                 style={{ marginLeft: 8 }}
                                 min={1}
-                                defaultValue={pageIndex + 1}
+                                defaultValue={
+                                    getState().pagination.pageIndex + 1
+                                }
                                 width={130}
-                                onChange={(value) => {
+                                onChange={(value: any) => {
                                     const page = value ? Number(value) - 1 : 0;
-                                    gotoPage(page);
+                                    setPageIndex(page);
                                 }}
                             />
                         </span>
