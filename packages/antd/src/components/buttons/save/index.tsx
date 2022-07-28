@@ -2,7 +2,10 @@ import React from "react";
 import { Button, ButtonProps } from "antd";
 import { SaveOutlined } from "@ant-design/icons";
 import { useTranslate } from "@pankod/refine-core";
-import { RefineSaveButtonProps } from "@pankod/refine-ui-types";
+import {
+    RefineButtonTestIds,
+    RefineSaveButtonProps,
+} from "@pankod/refine-ui-types";
 
 export type SaveButtonProps = RefineSaveButtonProps<ButtonProps>;
 
@@ -20,7 +23,12 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
     const translate = useTranslate();
 
     return (
-        <Button type="primary" icon={<SaveOutlined />} {...rest}>
+        <Button
+            type="primary"
+            icon={<SaveOutlined />}
+            data-testid={RefineButtonTestIds.SaveButton}
+            {...rest}
+        >
             {!hideText && (children ?? translate("buttons.save", "Save"))}
         </Button>
     );
