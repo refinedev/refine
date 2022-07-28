@@ -1,6 +1,6 @@
 ---
-id: kbar
-title: kbar
+id: command-palette
+title: Command Palette
 description: kbar integration for `command`/`crtrl`+`k` interface for your Refine App.
 ---
 

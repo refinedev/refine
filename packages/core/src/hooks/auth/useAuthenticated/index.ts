@@ -17,7 +17,9 @@ export const useAuthenticated = (
 
     const queryResponse = useQuery(
         ["useAuthenticated", params],
-        () => checkAuth?.(params),
+        async () => {
+            await checkAuth?.(params);
+        },
         {
             retry: false,
         },

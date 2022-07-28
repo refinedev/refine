@@ -156,6 +156,7 @@ Refine includes many out-of-the-box data providers to use in your projects like:
 -   [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
 -   [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura)
 -   [Nhost](https://github.com/pankod/refine/tree/master/packages/nhost)
+-   [Medusa](https://github.com/pankod/refine/tree/master/packages/medusa)
 -   [Appwrite](https://github.com/pankod/refine/tree/master/packages/appwrite)
 -   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 

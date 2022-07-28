@@ -61,7 +61,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const { resourceName, id } = useResource({
+    const { resourceName, id, resource } = useResource({
         resourceNameOrRouteName: propResourceNameOrRouteName,
         resourceName: propResourceName,
         recordItemId,
@@ -76,7 +76,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     const { data } = useCan({
         resource: resourceName,
         action: "delete",
-        params: { id },
+        params: { id, resource },
         queryOptions: {
             enabled: !ignoreAccessControlProvider,
         },

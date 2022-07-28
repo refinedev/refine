@@ -87,6 +87,7 @@ As we mentioned above, you can easily handle any API and GraphQL queries without
 -   [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql)
 -   [Strapi v4](https://github.com/pankod/refine/tree/master/packages/strapi-v4)
 -   [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
+-   [Medusa](https://github.com/pankod/refine/tree/master/packages/medusa)
 
 [Refer to the `dataProvider` documentation for detailed usage. &#8594](/docs/core/providers/data-provider/)
 

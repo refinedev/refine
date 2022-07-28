@@ -119,7 +119,7 @@ export const useRefineKbar = (): void => {
             const { can: canList } = (await can?.({
                 resource: name,
                 action: RefineKbarActionType.Show,
-                params: { id: idFromRoute },
+                params: { id: idFromRoute, resource },
             })) || { can: true };
             if (canList) {
                 tempActions.push(
@@ -146,6 +146,7 @@ export const useRefineKbar = (): void => {
             const { can: canAccessCreate } = (await can?.({
                 resource: name,
                 action: RefineKbarActionType.Create,
+                params: { resource },
             })) || { can: true };
 
             if (canAccessCreate) {
@@ -175,7 +176,7 @@ export const useRefineKbar = (): void => {
                 const { can: canAccessShow } = (await can?.({
                     resource: name,
                     action: RefineKbarActionType.Show,
-                    params: { id: idFromRoute },
+                    params: { id: idFromRoute, resource },
                 })) || { can: true };
 
                 if (canAccessShow) {
@@ -202,7 +203,7 @@ export const useRefineKbar = (): void => {
                 const { can: canAccessEdit } = (await can?.({
                     resource: name,
                     action: RefineKbarActionType.Show,
-                    params: { id: idFromRoute },
+                    params: { id: idFromRoute, resource },
                 })) || { can: true };
                 if (canAccessEdit) {
                     tempActions.push(
@@ -224,7 +225,7 @@ export const useRefineKbar = (): void => {
                 const { can: canAccessDelete } = (await can?.({
                     resource: name,
                     action: RefineKbarActionType.Show,
-                    params: { id: idFromRoute },
+                    params: { id: idFromRoute, resource },
                 })) || { can: true };
                 if (canAccessDelete) {
                     tempActions.push(

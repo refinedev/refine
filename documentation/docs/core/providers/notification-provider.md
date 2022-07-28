@@ -264,7 +264,7 @@ import { useNotification } from "@pankod/refine-core";
 
 const { open } = useNotification();
 
-open({
+open?.({
     message: "Hey",
     description: "I <3 Refine",
     key: "unique-id",
@@ -294,7 +294,7 @@ import { useNotification } from "@pankod/refine-core";
 
 const { close } = useNotification();
 
-close("displayed-notification-key");
+close?.("displayed-notification-key");
 ```
 
 :::
