@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, ButtonProps } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
-
 import {
     useCan,
     useNavigation,
@@ -9,7 +8,10 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import { RefineShowButtonProps } from "@pankod/refine-ui-types";
+import {
+    RefineShowButtonProps,
+    RefineButtonTestIds,
+} from "@pankod/refine-ui-types";
 
 export type ShowButtonProps = RefineShowButtonProps<
     ButtonProps,
@@ -85,6 +87,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
                 icon={<EyeOutlined />}
                 disabled={data?.can === false}
                 title={createButtonDisabledTitle()}
+                data-testid={RefineButtonTestIds.ShowButton}
                 {...rest}
             >
                 {!hideText && (children ?? translate("buttons.show", "Show"))}
