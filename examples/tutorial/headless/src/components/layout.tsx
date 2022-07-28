@@ -1,9 +1,12 @@
+import React from "react";
 import { useResource, useNavigation } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 const { Link } = routerProvider;
 
-export const Layout: React.FC = ({ children }) => {
+export const Layout: React.FC<{ children: React.ReactNode }> = ({
+    children,
+}) => {
     const { resources } = useResource();
     const { list } = useNavigation();
 
