@@ -11,6 +11,10 @@ export const buttonDeleteTests = function (
     DeleteButton: React.ComponentType<RefineDeleteButtonProps<any, any>>,
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / Delete Button", () => {
+        beforeAll(() => {
+            jest.useFakeTimers();
+        });
+
         it("should render button successfuly", async () => {
             const { container } = render(<DeleteButton />, {
                 wrapper: TestWrapper({}),
@@ -365,7 +369,9 @@ export const buttonDeleteTests = function (
                 <Routes>
                     <Route
                         path="/:resource"
-                        element={<DeleteButton resourceName="categories" />}
+                        element={
+                            <DeleteButton resourceNameOrRouteName="categories" />
+                        }
                     />
                 </Routes>,
                 {
