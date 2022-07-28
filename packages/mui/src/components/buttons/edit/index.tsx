@@ -6,7 +6,10 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import { RefineEditButtonProps } from "@pankod/refine-ui-types";
+import {
+    RefineEditButtonProps,
+    RefineButtonTestIds,
+} from "@pankod/refine-ui-types";
 import { Button, ButtonProps, SvgIconProps } from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
@@ -91,6 +94,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
                 }
                 title={disabledTitle()}
                 sx={{ minWidth: 0, ...sx }}
+                data-testid={RefineButtonTestIds.EditButton}
                 {...restProps}
             >
                 {hideText ? (
