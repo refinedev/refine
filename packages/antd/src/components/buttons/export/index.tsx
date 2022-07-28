@@ -2,7 +2,10 @@ import React from "react";
 import { Button, ButtonProps } from "antd";
 import { ExportOutlined } from "@ant-design/icons";
 import { useTranslate } from "@pankod/refine-core";
-import { RefineExportButtonProps } from "@pankod/refine-ui-types";
+import {
+    RefineExportButtonProps,
+    RefineButtonTestIds,
+} from "@pankod/refine-ui-types";
 
 export type ExportButtonProps = RefineExportButtonProps<ButtonProps>;
 
@@ -20,11 +23,13 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
     const translate = useTranslate();
 
     return (
-        <>
-            <Button type="default" icon={<ExportOutlined />} {...rest}>
-                {!hideText &&
-                    (children ?? translate("buttons.export", "Export"))}
-            </Button>
-        </>
+        <Button
+            type="default"
+            icon={<ExportOutlined />}
+            data-testid={RefineButtonTestIds.ExportButton}
+            {...rest}
+        >
+            {!hideText && (children ?? translate("buttons.export", "Export"))}
+        </Button>
     );
 };
