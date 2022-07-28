@@ -1,5 +1,25 @@
 # @pankod/refine-core
 
+## 3.52.0
+
+### Minor Changes
+
+-   Added `useCustomMutation`hook for custom mutation requests.
+
+    ```tsx
+    import { useCustomMutation } from "@pankod/refine-core";
+    const { mutation } = useCustomMutation();
+
+    mutation({
+        url: "https://api.example.com/users",
+        method: "POST",
+        values: {
+            name: "John Doe",
+            email: "johndoe@mail.com",
+        },
+    });
+    ```
+
 ## 3.51.0
 
 ### Minor Changes
