@@ -22,6 +22,7 @@
     },
     "devDependencies": {
         "@pankod/refine-core": "^3.50.0",
+        "@pankod/refine-ui-tests": "^0.1.0",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@testing-library/jest-dom": "^5.12.0",
         "@testing-library/react": "^11.2.6",
