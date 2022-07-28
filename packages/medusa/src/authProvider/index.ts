@@ -21,11 +21,11 @@ export const authProvider = (API_URL: string): AuthProvider => {
     axiosInstance.defaults.baseURL = `${API_URL}/store`;
 
     return {
-        login: async (user: { username: string; password: string }) => {
+        login: async ({ username, password }) => {
             try {
                 const response = await axiosInstance.post(
                     "/auth",
-                    { email: user.username, password: user.password },
+                    { email: username, password: password },
                     {
                         withCredentials: true,
                     },
