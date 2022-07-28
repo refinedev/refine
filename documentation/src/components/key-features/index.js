@@ -152,6 +152,10 @@ const backendLinks = [
         text: "Appwrite",
     },
     {
+        href: "https://medusajs.com/",
+        text: "Medusa",
+    },
+    {
         href: "https://firebase.google.com/",
         text: "Firebase",
     },
