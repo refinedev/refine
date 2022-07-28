@@ -1,5 +1,11 @@
 # @pankod/refine-medusa
 
+## 0.3.2
+
+### Patch Changes
+
+-   Fixed mismatch in `authProvider.login` for email and username
+
 ## 0.3.1
 
 ### Patch Changes
