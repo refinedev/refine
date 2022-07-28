@@ -9,7 +9,10 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import { RefineListButtonProps } from "@pankod/refine-ui-types";
+import {
+    RefineListButtonProps,
+    RefineButtonTestIds,
+} from "@pankod/refine-ui-types";
 
 export type ListButtonProps = RefineListButtonProps<
     ButtonProps,
@@ -81,6 +84,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
                 icon={<BarsOutlined />}
                 disabled={data?.can === false}
                 title={createButtonDisabledTitle()}
+                data-testid={RefineButtonTestIds.ListButton}
                 {...rest}
             >
                 {!hideText &&
